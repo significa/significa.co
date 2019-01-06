@@ -6,9 +6,11 @@
     "tslint-react-a11y"
   ],
   "rules": {
+    "member-access": [true, "no-public"],
     "ordered-imports": false,
     "object-literal-sort-keys": false,
     "jsx-no-lambda": false,
-    "interface-over-type-literal": false
+    "interface-over-type-literal": false,
+    "jsx-boolean-value": ["never"]
   }
 }

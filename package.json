@@ -4,6 +4,17 @@
   "description": "Significa's website",
   "version": "0.1.0",
   "author": "Significa <hello@significa.pt>",
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "npm run develop",
+    "format": "prettier --write \"src/**/*.tsx\"",
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'"
+  },
   "dependencies": {
     "gatsby": "^2.0.76",
     "gatsby-image": "^2.0.20",
@@ -16,23 +27,15 @@
     "gatsby-transformer-sharp": "^2.1.8",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-helmet": "^5.2.0"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "start": "npm run develop",
-    "format": "prettier --write \"src/**/*.tsx\"",
-    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'"
+    "react-helmet": "^5.2.0",
+    "styled-components": "^4.1.3"
   },
   "devDependencies": {
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
     "@types/react-helmet": "^5.0.8",
+    "@types/styled-components": "^4.1.4",
+    "gatsby-plugin-styled-components": "^3.0.4",
     "husky": "^1.3.1",
     "prettier": "^1.15.2",
     "tslint": "^5.12.0",

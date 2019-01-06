@@ -8,8 +8,7 @@ const darkTheme = {
   ...theme,
   colors: {
     ...theme.colors,
-    brand: '#ff5050',
-    background: '#000000',
+    background: '#141618',
     foreground: '#FFFFFF',
   },
 }

@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from 'gatsby'
 
 import { Content } from './styled'
 
-import ThemeProvider from '../theme'
+import { ThemeProvider } from '../theme'
 import Header from '../components/Header'
 
 interface ILayoutProps {

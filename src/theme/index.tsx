@@ -1,15 +1,21 @@
 import React from 'react'
-import {
-  createGlobalStyle,
-  ThemeProvider as StyledThemeProvider,
-} from 'styled-components'
+import * as sc from 'styled-components'
 
 import { ITheme } from './types'
-
 import reset from './reset'
 import style from './style'
 import theme from './theme'
 
+/** Custom Styled components with theme interface (to export) */
+const {
+  default: styled,
+  css,
+  createGlobalStyle,
+  keyframes,
+  ThemeProvider: StyledThemeProvider,
+} = sc as sc.ThemedStyledComponentsModule<ITheme>
+
+/** Theme Context */
 /* tslint:disable:no-empty */
 const {
   Provider: ThemeContextProvider,
@@ -17,22 +23,16 @@ const {
 } = React.createContext({ theme: {}, updateTheme: (_: ITheme): void => {} })
 /* tslint:enable:no-empty */
 
+/** Global styles */
 const GlobalStyle = createGlobalStyle`
   ${reset}
   ${style}
 `
 
-interface IThemeProviderProps {
-  children: React.ReactNode
-}
-
-interface IThemeProviderState {
-  theme: ITheme
-}
-
+/** Theme Provider */
 class ThemeProvider extends React.Component<
-  IThemeProviderProps,
-  IThemeProviderState
+  { children: React.ReactNode },
+  { theme: ITheme }
 > {
   state = { theme }
 
@@ -52,6 +52,13 @@ class ThemeProvider extends React.Component<
   }
 }
 
-export { theme, ThemeConsumer }
+export {
+  theme,
+  ThemeProvider,
+  ThemeConsumer,
+  css,
+  createGlobalStyle,
+  keyframes,
+}
 
-export default ThemeProvider
+export default styled

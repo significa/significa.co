@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from '../../theme'
 import { Link as GatsbyLink } from 'gatsby'
 
 const Wrapper = styled.div`

@@ -6,7 +6,7 @@ type MetaProps =
   | { name: string; content: any; property?: undefined }
   | { property: string; content: any; name?: undefined }
 
-type SEOProps = {
+interface ISEOProps {
   description?: string
   lang: string
   meta: MetaProps[]
@@ -14,7 +14,7 @@ type SEOProps = {
   title: string
 }
 
-const SEO = ({ description, lang, meta, keywords, title }: SEOProps) => {
+const SEO = ({ description, lang, meta, keywords, title }: ISEOProps) => {
   return (
     <StaticQuery
       query={detailsQuery}

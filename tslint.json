@@ -10,7 +10,6 @@
     "ordered-imports": false,
     "object-literal-sort-keys": false,
     "jsx-no-lambda": false,
-    "interface-over-type-literal": false,
     "jsx-boolean-value": ["never"]
   }
 }

@@ -6,11 +6,11 @@ import { Content } from './styled'
 import ThemeProvider from '../theme'
 import Header from '../components/Header'
 
-type LayoutProps = {
+interface ILayoutProps {
   children: React.ReactNode
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children }: ILayoutProps) => {
   return (
     <StaticQuery
       query={layoutQuery}

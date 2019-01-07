@@ -4,17 +4,17 @@ import {
   ThemeProvider as StyledThemeProvider,
 } from 'styled-components'
 
+import { ITheme } from './types'
+
 import reset from './reset'
 import style from './style'
 import theme from './theme'
-
-type ThemeType = object
 
 /* tslint:disable:no-empty */
 const {
   Provider: ThemeContextProvider,
   Consumer: ThemeConsumer,
-} = React.createContext({ theme: {}, updateTheme: (_: ThemeType): void => {} })
+} = React.createContext({ theme: {}, updateTheme: (_: ITheme): void => {} })
 /* tslint:enable:no-empty */
 
 const GlobalStyle = createGlobalStyle`
@@ -22,21 +22,21 @@ const GlobalStyle = createGlobalStyle`
   ${style}
 `
 
-export type ThemeProviderProps = {
+interface IThemeProviderProps {
   children: React.ReactNode
 }
 
-export type ThemeProviderState = {
-  theme: ThemeType
+interface IThemeProviderState {
+  theme: ITheme
 }
 
 class ThemeProvider extends React.Component<
-  ThemeProviderProps,
-  ThemeProviderState
+  IThemeProviderProps,
+  IThemeProviderState
 > {
   state = { theme }
 
-  updateTheme = (t: ThemeType): void => this.setState({ theme: t })
+  updateTheme = (t: ITheme): void => this.setState({ theme: t })
 
   render() {
     return (

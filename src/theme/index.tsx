@@ -1,19 +1,16 @@
 import React from 'react'
-import * as sc from 'styled-components'
+import styled, {
+  css,
+  createGlobalStyle,
+  keyframes,
+  StyledThemeProvider,
+} from './styled'
 
-import { ITheme } from './types'
 import reset from './reset'
 import style from './style'
 import theme from './theme'
 
-/** Custom Styled components with theme interface (to export) */
-const {
-  default: styled,
-  css,
-  createGlobalStyle,
-  keyframes,
-  ThemeProvider: StyledThemeProvider,
-} = sc as sc.ThemedStyledComponentsModule<ITheme>
+import { ITheme } from './types'
 
 /** Theme Context */
 /* tslint:disable:no-empty */

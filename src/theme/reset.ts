@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from './'
 
 export default css`
   html,

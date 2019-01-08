@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from './'
 
 const TRANSITION_TIME = '0.2s'
 

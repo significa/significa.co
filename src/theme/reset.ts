@@ -1,4 +1,4 @@
-import { css } from './'
+import { css } from './styled'
 
 export default css`
   html,

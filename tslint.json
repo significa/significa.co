@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-config-prettier",
+    "tslint-react-a11y"
+  ],
+  "rules": {
+    "member-access": [true, "no-public"],
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "jsx-no-lambda": false,
+    "jsx-boolean-value": ["never"]
+  }
+}

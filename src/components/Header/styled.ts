@@ -2,10 +2,8 @@ import styled from '../../theme'
 import { Link as GatsbyLink } from 'gatsby'
 
 const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.brand};
+  background-color: ${({ theme }) => theme.colors.background};
   margin-bottom: 1.45rem;
-
-  transition: background-color 0.2s ease;
 `
 
 const Content = styled.div`
@@ -15,8 +13,18 @@ const Content = styled.div`
 `
 
 const Link = styled(GatsbyLink)`
-  color: white;
+  color: ${({ theme }) => theme.colors.foreground};
   text-decoration: none;
 `
 
-export { Wrapper, Content, Link }
+const Secondary = styled.p`
+  color: ${({ theme }) => theme.colors.secondary};
+`
+const Medium = styled.p`
+  color: ${({ theme }) => theme.colors.medium};
+`
+const Subtle = styled.p`
+  color: ${({ theme }) => theme.colors.subtle};
+`
+
+export { Wrapper, Content, Link, Secondary, Medium, Subtle }

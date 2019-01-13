@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from 'gatsby'
 
 import { Content } from './styled'
 
-import { ThemeProvider } from '../theme'
+import { Provider } from '../theme'
 import Header from '../components/Header'
 
 interface ILayoutProps {
@@ -15,7 +15,7 @@ const Layout = ({ children }: ILayoutProps) => {
     <StaticQuery
       query={layoutQuery}
       render={data => (
-        <ThemeProvider>
+        <Provider>
           <Header siteTitle={data.site.siteMetadata.title} />
           <Content>
             {children}
@@ -25,7 +25,7 @@ const Layout = ({ children }: ILayoutProps) => {
               <a href="https://www.gatsbyjs.org">Gatsby</a>
             </footer>
           </Content>
-        </ThemeProvider>
+        </Provider>
       )}
     />
   )

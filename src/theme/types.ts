@@ -1,4 +1,4 @@
-export type themeArgsType = 'light' | 'dark' | IColorsTheme
+export type colorArgumentType = 'light' | 'dark' | IColorsTheme
 
 export interface IColors {
   significa: string
@@ -27,7 +27,7 @@ export interface IColorsTheme {
   }
 }
 
-export interface ITheme {
+export interface IFullTheme {
   colors: IColorsTheme
   space: number[]
 }

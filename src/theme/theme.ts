@@ -1,4 +1,4 @@
-import { ITheme, IColors, IColorsTheme } from './types'
+import { IFullTheme, IColors, IColorsTheme } from './types'
 
 export const colors: IColors = {
   significa: '#0154FF',
@@ -67,7 +67,7 @@ export const colorTheme: IColorsTheme = {
   },
 }
 
-const theme: ITheme = {
+const theme: IFullTheme = {
   colors: lightTheme,
   space: [2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48, 80, 120, 160, 200],
 }

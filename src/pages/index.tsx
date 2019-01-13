@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 import SEO from '../components/SEO'
+import { Theme } from '@theme'
+import Header from '../components/Header'
 
 const IndexPage = () => (
   <>
@@ -9,7 +11,15 @@ const IndexPage = () => (
     <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
-    <Link to="/page-2/">Go to page 2</Link>
+    <p>
+      <Link to="/page-2/">Go to page 2</Link>
+    </p>
+    <p>
+      <Link to="/page-3/">Go to page 3</Link>
+    </p>
+    <Theme theme="dark">
+      <Header />
+    </Theme>
   </>
 )
 

@@ -11,6 +11,6 @@
     "object-literal-sort-keys": false,
     "jsx-no-lambda": false,
     "jsx-boolean-value": ["never"],
-    "no-implicit-dependencies": [true, ["@theme"]]
+    "no-implicit-dependencies": [true, ["@theme", "@storybook"]]
   }
 }

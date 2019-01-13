@@ -1,40 +1,41 @@
 module.exports = {
   siteMetadata: {
-    title: `Significa`,
-    description: `Significa is a digital agency focused on user centric interfaces`,
-    author: `@significadesign`,
+    title: 'Significa',
+    description:
+      'Significa is a digital agency focused on user centric interfaces',
+    author: '@significadesign',
   },
   plugins: [
-    `gatsby-plugin-typescript`,
-    `gatsby-plugin-styled-components`,
-    `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-typescript',
+    'gatsby-plugin-styled-components',
+    'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `images`,
+        name: 'images',
         path: `${__dirname}/src/assets/images`,
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `content`,
+        name: 'content',
         path: `${__dirname}/content`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-transformer-yaml`,
-    `gatsby-plugin-sharp`,
+    'gatsby-transformer-sharp',
+    'gatsby-transformer-yaml',
+    'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#0154FF`,
-        theme_color: `#0154FF`,
-        display: `minimal-ui`,
-        icon: `src/assets/images/icon.png`, // This path is relative to the root of the site.
+        name: 'gatsby-starter-default',
+        short_name: 'starter',
+        start_url: '/',
+        background_color: '#0154FF',
+        theme_color: '#0154FF',
+        display: 'minimal-ui',
+        icon: 'src/assets/images/icon.png', // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

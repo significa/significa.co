@@ -8,16 +8,19 @@ import styled, {
 
 import reset from './reset'
 import style from './style'
-import theme from './theme'
+import theme, { lightTheme, darkTheme, colorTheme, colors } from './theme'
 
-import { ITheme } from './types'
+import { ITheme, themeArgsType } from './types'
 
 /** Theme Context */
 /* tslint:disable:no-empty */
 const {
   Provider: ThemeContextProvider,
   Consumer: ThemeConsumer,
-} = React.createContext({ theme: {}, updateTheme: (_: ITheme): void => {} })
+} = React.createContext({
+  theme: {},
+  updateTheme: (_: themeArgsType): void => {},
+})
 /* tslint:enable:no-empty */
 
 /** Global styles */
@@ -26,6 +29,11 @@ const GlobalStyle = createGlobalStyle`
   ${style}
 `
 
+const themes = {
+  light: { ...theme, colors: lightTheme },
+  dark: { ...theme, colors: darkTheme },
+}
+
 /** Theme Provider */
 class ThemeProvider extends React.Component<
   { children: React.ReactNode },
@@ -33,7 +41,15 @@ class ThemeProvider extends React.Component<
 > {
   state = { theme }
 
-  updateTheme = (t: ITheme): void => this.setState({ theme: t })
+  setTheme = (t: ITheme): void => this.setState({ theme: t })
+
+  updateTheme = (color: themeArgsType): void => {
+    if (typeof color === 'string') {
+      return this.setTheme(themes[color] || theme)
+    }
+
+    this.setTheme({ ...theme, colors: color })
+  }
 
   render() {
     return (
@@ -51,6 +67,10 @@ class ThemeProvider extends React.Component<
 
 export {
   theme,
+  lightTheme,
+  darkTheme,
+  colorTheme,
+  colors,
   ThemeProvider,
   ThemeConsumer,
   css,

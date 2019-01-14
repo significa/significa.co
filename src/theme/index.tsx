@@ -3,7 +3,7 @@ import theme, { lightTheme, darkTheme, colorTheme, colors } from './theme'
 import { ThemeContextConsumer } from './context'
 import Provider from './components/Provider'
 import Theme from './components/Theme'
-import { colorArgumentType } from './types'
+import { colorArgumentType, IFullTheme, IColorsTheme } from './types'
 
 export {
   /** Theme related exports (colors, etc.) */
@@ -23,6 +23,8 @@ export {
   keyframes,
   /** Types */
   colorArgumentType,
+  IColorsTheme,
+  IFullTheme,
 }
 
 /** Default export is our version of styled from styled-components */

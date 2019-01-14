@@ -4,11 +4,13 @@
  */
 
 import React from 'react'
+
 import { colorArgumentType } from '@theme/types'
 
-import { ThemeContextProvider } from '../context'
 import Theme from './Theme'
 import GlobalStyle from '../style/GlobalStyle'
+import { ThemeContextProvider } from '../context'
+
 import { mergeThemeWithColors } from '@theme/utils'
 
 interface IProviderProps {

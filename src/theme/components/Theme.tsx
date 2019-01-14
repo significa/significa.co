@@ -5,9 +5,10 @@
 
 import React from 'react'
 
+import { colorArgumentType } from '../types'
+
 import { StyledThemeProvider } from '../styled'
 
-import { colorArgumentType } from '../types'
 import { mergeThemeWithColors } from '@theme/utils'
 
 interface IThemeProps {

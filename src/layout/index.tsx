@@ -3,19 +3,20 @@ import { StaticQuery, graphql } from 'gatsby'
 
 import { Content } from './styled'
 
-import { Provider } from '../theme'
+import { Provider, colorArgumentType } from '@theme'
 import Header from '../components/Header'
 
 interface ILayoutProps {
   children: React.ReactNode
+  theme?: colorArgumentType
 }
 
-const Layout = ({ children }: ILayoutProps) => {
+const Layout = ({ theme, children }: ILayoutProps) => {
   return (
     <StaticQuery
       query={layoutQuery}
       render={data => (
-        <Provider>
+        <Provider theme={theme}>
           <Header siteTitle={data.site.siteMetadata.title} />
           <Content>
             {children}

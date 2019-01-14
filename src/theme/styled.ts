@@ -1,4 +1,5 @@
 import * as sc from 'styled-components'
+
 import { IFullTheme } from './types'
 
 /** Custom Styled components with theme interface (to export) */

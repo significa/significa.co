@@ -1,12 +1,14 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
+import Layout from '../Layout'
 import SEO from '../components/SEO'
-import { Theme } from '@theme'
 import Header from '../components/Header'
 
+import { Theme } from '@theme'
+
 const IndexPage = () => (
-  <>
+  <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
@@ -20,7 +22,7 @@ const IndexPage = () => (
     <Theme theme="dark">
       <Header />
     </Theme>
-  </>
+  </Layout>
 )
 
 export default IndexPage

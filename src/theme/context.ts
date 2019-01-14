@@ -5,6 +5,7 @@
  */
 
 import React from 'react'
+
 import { colorArgumentType } from './types'
 
 /* tslint:disable:no-empty */

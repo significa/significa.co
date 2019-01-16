@@ -1,32 +1,24 @@
-import styled from '../../theme'
-import { Link as GatsbyLink } from 'gatsby'
+import styled from '@theme'
+import { Link } from 'gatsby'
 
-const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.background};
-  margin-bottom: 1.45rem;
-`
+export const Wrapper = styled.header`
+  padding-top: 3em;
 
-const Content = styled.div`
-  margin: 0 auto;
-  max-width: 960px;
-  padding: 1.45rem 1.0875rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `
 
-const Link = styled(GatsbyLink)`
-  color: ${({ theme }) => theme.colors.foreground};
-  text-decoration: none;
+export const LogoLink = styled(Link)`
+  transition: ${({ theme }) => theme.transitions.ease('opacity')};
+
+  &:hover {
+    opacity: 0.8;
+  }
 `
 
-const Secondary = styled.p`
-  color: ${({ theme }) => theme.colors.secondary};
+export const Nav = styled.nav`
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 2em;
 `
-const Medium = styled.p`
-  color: ${({ theme }) => theme.colors.medium};
-`
-const Subtle = styled.p`
-  color: ${({ theme }) => theme.colors.subtle};
-`
-
-export { Wrapper, Content, Link, Secondary, Medium, Subtle }

@@ -75,6 +75,11 @@ const theme: IFullTheme = {
     sans:
       "'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
   },
+  maxWidth: '80em',
+  transitions: {
+    ease: (time: string = '200ms') => `${time} ease-in-out`,
+    cubic: (time: string = '600ms') => `${time} cubic-bezier(0.19, 1, 0.22, 1)`,
+  },
 }
 
 export default theme

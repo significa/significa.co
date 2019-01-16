@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { select, text } from '@storybook/addon-knobs'
 
-import { Huge, Display, Title, Big, Text, Label, Small, List } from './'
+import { Huge, Display, Title, Big, Text, Label, Small } from './'
 
 const label = 'Colors'
 const options = [
@@ -65,11 +65,4 @@ storiesOf('UI/Typography', module)
     <Small as="p" color={select(label, options, defaultValue) as any}>
       {text('Text', 'The big brown fox jumps over the lazy dog')}
     </Small>
-  ))
-
-  .add('List', () => (
-    <List
-      color={select(label, options, defaultValue) as any}
-      items={['item 1', 'item 2', 'item 3', 'item 4']}
-    />
   ))

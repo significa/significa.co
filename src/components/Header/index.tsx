@@ -1,46 +1,26 @@
 import React from 'react'
 
-import { ThemeContextConsumer, colorTheme } from '@theme'
+import { Logo } from '../UI/Branding'
+import { Container } from '../UI/Layout'
 
-import { Wrapper, Content, Link, Secondary, Medium, Subtle } from './styled'
+import { Wrapper, LogoLink, Nav } from './styled'
+import { NavLink } from './NavLink'
 
-const Header = ({ siteTitle }: { siteTitle: string }) => (
-  <Wrapper>
-    <Content>
-      <div>
-        <Link to="/">{siteTitle}</Link>
-      </div>
-      <div>
-        <Secondary>This is Secondary</Secondary>
-        <Medium>This is Medium</Medium>
-        <Subtle>This is Subtle</Subtle>
-      </div>
-      <div>
-        <ThemeContextConsumer>
-          {({ updateTheme }) => {
-            const setDarkTheme = () => updateTheme('dark')
-            const setLightTheme = () => updateTheme('light')
-            const setColorTheme = () => updateTheme(colorTheme)
-            const setColorTheme2 = () =>
-              updateTheme({ ...colorTheme, background: '#FF5050' })
+const Header = () => {
+  return (
+    <Container>
+      <Wrapper>
+        <LogoLink to="/">
+          <Logo />
+        </LogoLink>
 
-            return (
-              <>
-                <button onClick={setLightTheme}>Set light theme</button>
-                <button onClick={setDarkTheme}>Set dark theme</button>
-                <button onClick={setColorTheme}>Set color theme</button>
-                <button onClick={setColorTheme2}>Set color theme 2</button>
-              </>
-            )
-          }}
-        </ThemeContextConsumer>
-      </div>
-    </Content>
-  </Wrapper>
-)
-
-Header.defaultProps = {
-  siteTitle: '',
+        <Nav>
+          <NavLink to="/page-2">Page 2</NavLink>
+          <NavLink to="/page-3">Page 3</NavLink>
+        </Nav>
+      </Wrapper>
+    </Container>
+  )
 }
 
 export default Header

@@ -34,4 +34,9 @@ export interface IFullTheme {
     serif: string
     sans: string
   }
+  maxWidth: string
+  transitions: {
+    ease: (time?: string) => string
+    cubic: (time?: string) => string
+  }
 }

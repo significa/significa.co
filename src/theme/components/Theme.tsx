@@ -16,7 +16,7 @@ interface IThemeProps {
   children: React.ReactNode
 }
 
-const Theme = ({ theme, children }: IThemeProps) => (
+const Theme: React.FC<IThemeProps> = ({ theme, children }) => (
   <StyledThemeProvider theme={mergeThemeWithColors(theme)}>
     <>{children}</>
   </StyledThemeProvider>

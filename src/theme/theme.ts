@@ -40,7 +40,7 @@ export const lightTheme: IColorsTheme = {
 }
 
 export const darkTheme: IColorsTheme = {
-  highlight: colors.white,
+  highlight: colors.darkGrey,
   background: colors.black,
   foreground: colors.white,
   secondary: colors.lightGrey,
@@ -78,7 +78,7 @@ const theme: IFullTheme = {
   maxWidth: '80em',
   transitions: {
     ease: (time: string = '200ms') => `${time} ease-in-out`,
-    cubic: (time: string = '600ms') => `${time} cubic-bezier(0.19, 1, 0.22, 1)`,
+    cubic: (time: string = '500ms') => `${time} cubic-bezier(0.2, 1, 0.2, 1)`,
   },
 }
 

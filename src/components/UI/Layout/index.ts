@@ -1,3 +1,3 @@
-import Container from './Container'
+import { Container } from './styled'
 
 export { Container }

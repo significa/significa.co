@@ -1,14 +1,15 @@
 import styled from '@theme'
 import { themeGet } from '../../../utils/themeGet'
 
-const Container = styled.div`
+export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  width: 100%;
   max-width: ${themeGet('maxWidth', '80em')};
 
-  padding: 0 1em;
-`
+  padding: 0 2em;
 
-export default Container
+  @media (max-width: 48em) {
+    padding: 0 1em;
+  }
+`

@@ -9,7 +9,7 @@ interface IList {
   color: colorType
 }
 
-const List = ({ items, color }: IList) => (
+const List: React.FC<IList> = ({ items, color }) => (
   <Ul>
     {items.map((item: string, index: number) => (
       <Li color={color} key={index}>

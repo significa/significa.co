@@ -3,22 +3,19 @@ import React from 'react'
 import { Logo } from '../UI/Branding'
 import { Container } from '../UI/Layout'
 
-import { Wrapper, LogoLink, Nav } from './styled'
-import { NavLink } from './NavLink'
+import * as S from './styled'
+import Navigation from './Navigation'
 
-const Header = () => {
+const Header: React.FC<{}> = () => {
   return (
     <Container>
-      <Wrapper>
-        <LogoLink to="/">
+      <S.Wrapper>
+        <S.LogoLink to="/">
           <Logo />
-        </LogoLink>
+        </S.LogoLink>
 
-        <Nav>
-          <NavLink to="/page-2">Page 2</NavLink>
-          <NavLink to="/page-3">Page 3</NavLink>
-        </Nav>
-      </Wrapper>
+        <Navigation />
+      </S.Wrapper>
     </Container>
   )
 }

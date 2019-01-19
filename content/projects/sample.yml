@@ -1,0 +1,44 @@
+# Main info
+title: Project name
+tagline: One liner about the project
+description: New technologies and ways of thinking that have changed the world. The digitalization is the reason  why i belive in potatoes.
+shortDescription: New technologies and ways of thinking that have changed the world.
+
+# Images
+hero: ./sample/big-wide-image.jpg
+featured: ./sample/transparent-image.png
+thumbnail: ./sample/squarish-image.jpg
+
+# Settings
+slug: project-name
+background: '#131F39' #Dark blue
+foreground: '#FFFFFF' #White
+highlight: '#FFCC33' #Yellow
+
+# Info
+client: Client name
+services:
+  - Business Analysis
+  - Project Management
+  - UI/UX Design
+  - Development
+  - Illustration
+  - Video/Animation
+deliverables:
+  - Logo
+  - Identity Guidelines
+  - Stationary
+  - Illustrations
+links:
+  - link: https://google.com/
+    linkText: Live site
+  - link: https://google.com/
+    linkText: App Store
+
+# Sections
+sections:
+  - type: text
+    style: light #default. light | dark | color
+    layout: boxed #default. boxed | wide | full
+    #title: It can have an optional title
+    content: In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark.

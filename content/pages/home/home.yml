@@ -1,0 +1,44 @@
+headline: Your "go-to" digital agency
+
+top:
+  title: Making products meaningful
+  text: |
+    Significa is a digital agency focused mostly on user-interfaces. 
+    Having a design-led approach to what we do defines what we are. We take on products from inception to launch, from business model to people's pocket, from wireframe to continuous deployment.
+  columns:
+    - title: Strategy
+      items:
+        - UX research
+        - Business strategy
+        - Brand strategy
+        - Product strategy
+        - Product management
+    - title: Product design
+      items:
+        - User experience
+        - User interface
+        - Brand development
+        - Illustration
+        - Motion & Video
+    - title: Development
+      items:
+        - Front-end engineering
+        - Web-app development
+        - Native app development
+        - Development operations
+  cta: View services
+  link: /services
+
+bottom:
+  title: |
+    Let’s move forward.
+    Together.
+  text: |
+    We offer defiance of the status quo as we create thrilling new projects with an open-minded, open-hearted team. 
+    Drop us a line if you’re passionate and talented to do everything you set your mind to.
+  cta: View careers
+  link: /careers
+  photos:
+    - home-1.png
+    - home-2.png
+    - home-3.png

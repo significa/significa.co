@@ -1,0 +1,67 @@
+seo:
+  title: About Significa
+
+hero:
+  title: Design-led and user-centric strategies can impact people’s life.
+  photos:
+    - about-1.png
+    - about-2.png
+    - about-3.png
+
+content:
+  - type: paragraph
+    text: |
+      People's ingenuity has always been focused on improving overall life. 
+      Things were hard to move? Enter the wheel. Travelling long distances to fetch water was nowhere near practical, so the aqueducts were a very convenient solution. 
+      If farmers suffered from back-pain, tools were invented that allowed them to work in an upright position thus improving their life.
+  - type: highlight
+    text: Tools should adapt themselves to the user, not the other way around.
+  - type: paragraph
+    text: |
+      Digital products should have the same level of requirement. They should — somehow — improve people's life by having a good sense of the problem it solves, who is it solving it for and, above all, how it is solved.
+  - type: paragraph
+    text: |
+      Only, there's some peculiarities to digital products. Things can get really complex, really quickly, and a pragmatic, synthetic and clear vision is essential to be able to create something that, after all, is meant to be used. 
+      Clear and beautiful aesthetics are also of the utmost importance to create a pleasant environment in which the user actually enjoys the time spent using the product. We're all suckers for beautiful things!
+
+communication:
+  photo: about-4.png
+  title: Communication is key
+  text: Solid communication, iteration and prototyping allows us to work alongside clients from all around the world. Just like being neighbours, you can drop by for some eggs, anytime.
+
+careers:
+  title: Life here, in the heart of Porto.
+  text: |
+    We spend a great deal of our days at work, so why not make it interesting? With a friendly and laid back environment you get all the perks to ensure a creative and productive day. 
+    Want to find out more about what's it like working here? Take a look at our careers page.
+  link: /careers
+  linkText: More on Careers
+  photos:
+    - about-5.png
+    - about-6.png
+    - about-7.png
+
+network:
+  title: Our Network
+  text: We’ve partnered up with some amazing people to bring tech-led and security-led ways of thinking into Significa's melting pot.
+  companies:
+    - logo: coletiv-logo.svg
+      title: Software development
+      text: Coletiv crafts software tailored to your needs. With a transparent and well defined development process.
+    - logo: adamant-logo.svg
+      title: Cyber security
+      text: Coletiv crafts software tailored to your needs. With a transparent and well defined development.
+  why:
+    text: Read more about why we operate like this
+    link: https://blog.significa.pt/on-creating-synergies-60cce7486296
+    linkText: \"On creating synergies\" on Medium
+
+team:
+  title: An omelette is made of eggs.
+  text: Ours has {team_count}
+
+cta:
+  title: From inception to launch.
+  text: Get to know our process a little better.
+  link: /services
+  linkText: View our Services

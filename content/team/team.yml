@@ -1,0 +1,95 @@
+team:
+  - name: Ana Moreno
+    position: Designer
+    photo: ana.jpg
+
+  - name: André Resendes
+    position: Creative Director
+    photo: andre.jpg
+
+  - name: André Silva
+    position: iOS Developer
+    photo: andresilva.jpg
+    company: coletiv
+
+  - name: António Valente
+    position: Android Developer
+    photo: antonio.jpg
+    company: coletiv
+
+  - name: Catarina Silva
+    position: Office Manager
+    photo: catarina.jpg
+
+  - name: Daniel Almeida
+    position: Product Manager / iOS
+    photo: daniel.jpg
+    company: coletiv
+
+  - name: Danilo Woznika
+    position: Developer
+    photo: danilo.jpg
+
+  - name: David Magalhães
+    position: Backend Developer
+    photo: david.jpg
+    company: coletiv
+
+  - name: Frederico Jesus
+    position: Illustrator / Motion
+    photo: fred.jpg
+
+  - name: Filipe Almeida
+    position: Product Designer
+    photo: filipe.jpg
+
+  - name: Isabel Sá
+    position: Front-end Developer
+    photo: isabel.jpg
+
+  - name: Lisa Cosme
+    position: Design Intern
+    photo: lisa.jpg
+
+  - name: Mariana Gomes
+    position: Product Manager / Designer
+    photo: mariana.jpg
+
+  - name: Mário Rodrigues
+    position: Product Designer
+    photo: mario.jpg
+
+  - name: Márcio Pinto
+    position: Front-end Developer
+    photo: marcio.jpg
+
+  - name: Nuno Marino
+    position: Backend Developer
+    photo: nuno.jpg
+    company: coletiv
+
+  - name: Pedro Brandão
+    position: Founder / CEO
+    photo: pedro.jpg
+
+  - name: Pedro Teixeira
+    position: Designer
+    photo: pedroteixeira.jpg
+
+  - name: Pedro Costa
+    position: Backend Developer
+    photo: pedrocosta.jpg
+    company: coletiv
+
+  - name: Robbie Hilado
+    position: Developer
+    photo: robbie.jpg
+
+  - name: Rui Sereno
+    position: Business Development
+    photo: rui.jpg
+
+  - name: Tiago Duarte
+    position: Coletiv CEO
+    photo: tiago.jpg
+    company: coletiv

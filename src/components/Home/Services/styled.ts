@@ -16,6 +16,7 @@ export const Container = styled(BaseContainer).attrs({ as: 'section' })`
     '. . . . . b b b b b b .';
 
   @media (max-width: 64em) {
+    margin: 10em auto;
     grid-template-areas:
       't t t t x x x x x x x x'
       'c c c c c c c c c c c c'
@@ -23,6 +24,8 @@ export const Container = styled(BaseContainer).attrs({ as: 'section' })`
   }
 
   @media (max-width: 48em) {
+    margin: 7em auto;
+    grid-row-gap: 3em;
     grid-template-rows: repeat(4, auto);
     grid-column-gap: 0;
     grid-template-areas:

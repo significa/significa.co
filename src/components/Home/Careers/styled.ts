@@ -10,8 +10,9 @@ export const Container = styled(BaseContainer).attrs({ as: 'section' })`
   grid-column-gap: 3em;
 
   @media (max-width: 48em) {
+    margin: 7em auto;
     grid-column-gap: 0;
-    grid-row-gap: 5em;
+    grid-row-gap: 3em;
   }
 `
 

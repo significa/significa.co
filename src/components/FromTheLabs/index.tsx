@@ -76,6 +76,11 @@ class FromTheLabs extends React.Component {
 const fromTheLabsQuery = graphql`
   query FromTheLabsQuery {
     labsYaml {
+      fromTheLabs {
+        title
+        cta
+        link
+      }
       content {
         title
         image

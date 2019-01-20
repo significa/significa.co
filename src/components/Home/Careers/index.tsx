@@ -24,8 +24,8 @@ const Careers: React.FC<ICareersContent> = ({
       </S.Right>
       <S.Photos>
         {photos.map((photo, i) => (
-          <div>
-            <Img key={i} fluid={photo.childImageSharp.fluid} />
+          <div key={i}>
+            <Img fluid={photo.childImageSharp.fluid} />
           </div>
         ))}
       </S.Photos>

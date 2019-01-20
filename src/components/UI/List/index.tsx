@@ -6,7 +6,7 @@ import { Ul, Li } from './styled'
 
 interface IList {
   items: string[]
-  color: colorType
+  color?: colorType
 }
 
 const List: React.FC<IList> = ({ items, color }) => (

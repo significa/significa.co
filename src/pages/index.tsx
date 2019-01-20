@@ -6,6 +6,7 @@ import Layout from '../Layout'
 import SEO from '../components/SEO'
 
 import { Top, Services, Careers } from '../components/Home/'
+import { RecentProjects } from '../components/RecentProjects'
 import { FromTheLabs } from '../components/FromTheLabs'
 import { Theme } from '@theme'
 
@@ -56,6 +57,7 @@ const IndexPage: React.FC<IIndexPage> = ({ data }) => {
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
 
       <Top headline={content.headline} />
+      <RecentProjects />
       <Services {...content.services} />
       <Theme theme="dark">
         <FromTheLabs />

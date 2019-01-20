@@ -33,7 +33,9 @@ const Services: React.FC<IServicesContent> = ({
       ))}
     </S.Columns>
     <S.Bottom>
-      <ArrowLink to={link}>{cta}</ArrowLink>
+      <ArrowLink highlight to={link}>
+        {cta}
+      </ArrowLink>
     </S.Bottom>
   </S.Container>
 )

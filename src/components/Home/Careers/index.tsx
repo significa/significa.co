@@ -20,7 +20,9 @@ const Careers: React.FC<ICareersContent> = ({
       </S.Left>
       <S.Right>
         <S.Big>{text}</S.Big>
-        <ArrowLink to={link}>{cta}</ArrowLink>
+        <ArrowLink highlight to={link}>
+          {cta}
+        </ArrowLink>
       </S.Right>
       <S.Photos>
         {photos.map((photo, i) => (

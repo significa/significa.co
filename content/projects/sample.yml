@@ -1,13 +1,16 @@
+# Date for order
+date: 2019/01/01
+
 # Main info
-title: Project name
-tagline: One liner about the project
+title: Oopsie User App
+tagline: Your favorite food one click away
 description: New technologies and ways of thinking that have changed the world. The digitalization is the reason  why i belive in potatoes.
 shortDescription: New technologies and ways of thinking that have changed the world.
 
 # Images
 hero: ./sample/big-wide-image.jpg
 featured: ./sample/transparent-image.png
-thumbnail: ./sample/squarish-image.jpg
+thumbnail: ./sample/triangle.png
 
 # Settings
 slug: project-name
@@ -18,12 +21,11 @@ highlight: '#FFCC33' #Yellow
 # Info
 client: Client name
 services:
-  - Business Analysis
-  - Project Management
-  - UI/UX Design
+  - Business development
+  - Product management
+  - UI/UX
   - Development
   - Illustration
-  - Video/Animation
 deliverables:
   - Logo
   - Identity Guidelines

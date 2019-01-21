@@ -1,13 +1,16 @@
+# Date for order
+date: 2019/01/02
+
 # Main info
-title: Project name 2
-tagline: Another one liner
+title: OpenNode
+tagline: The quickest & easiest way to accept Bitcoin
 description: New technologies and ways of thinking that have changed the world. The digitalization is the reason  why i belive in potatoes.
 shortDescription: New technologies and ways of thinking that have changed the world.
 
 # Images
 hero: ./sample2/big-wide-image.jpg
 featured: ./sample2/transparent-image.png
-thumbnail: ./sample2/squarish-image.jpg
+thumbnail: ./sample2/red-wall.png
 
 # Settings
 slug: project-name-2
@@ -18,8 +21,6 @@ highlight: '#FFCC33'
 # Info
 client: Client name
 services:
-  - Business Analysis
-  - Project Management
   - UI/UX Design
   - Development
   - Illustration

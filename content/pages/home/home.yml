@@ -1,6 +1,6 @@
-headline: Your "go-to" digital agency
+headline: Your “go-to” digital agency
 
-top:
+services:
   title: Making products meaningful
   text: |
     Significa is a digital agency focused mostly on user-interfaces. 
@@ -29,7 +29,7 @@ top:
   cta: View services
   link: /services
 
-bottom:
+careers:
   title: |
     Let’s move forward.
     Together.

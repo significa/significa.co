@@ -1,3 +1,8 @@
+fromTheLabs:
+  title: New on Significa Labs
+  cta: Enter the lab
+  link: /labs
+
 tags:
   - label: Articles
     tag: article
@@ -31,7 +36,7 @@ content:
   - title: i18n with Gatsby — Taking advantage of Gatsby nodes to add internationalisation to a Gatsby project.
     image: i18n.jpg
     more: Tutorial on Medium
-    source: Medium
+    source: medium
     tag: article
     link: https://blog.significa.pt/i18n-with-gatsby-528607b4da81
 

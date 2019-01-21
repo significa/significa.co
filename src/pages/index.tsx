@@ -1,16 +1,105 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { graphql } from 'gatsby'
+import { FluidObject } from 'gatsby-image'
+import { Theme } from '@theme'
 
+import Layout from '../Layout'
 import SEO from '../components/SEO'
 
-const IndexPage = () => (
-  <>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <Link to="/page-2/">Go to page 2</Link>
-  </>
-)
+import { Top, Services, Careers } from '../components/Home/'
+import { RecentProjects } from '../components/RecentProjects'
+import { FromTheLabs } from '../components/FromTheLabs'
+
+export interface IServicesContent {
+  title: string
+  text: string
+  cta: string
+  link: string
+  columns: Array<{
+    title: string
+    items: string[]
+  }>
+}
+
+export interface ICareersContent {
+  title: string
+  text: string
+  cta: string
+  link: string
+  photos: Array<{
+    childImageSharp: {
+      fluid: FluidObject
+    }
+  }>
+}
+
+interface IHomeContent {
+  edges: Array<{
+    node: {
+      headline: string
+      services: IServicesContent
+      careers: ICareersContent
+    }
+  }>
+}
+
+interface IIndexPage {
+  data: {
+    allHomeYaml: IHomeContent
+  }
+}
+
+const IndexPage: React.FC<IIndexPage> = ({ data }) => {
+  const content = data.allHomeYaml.edges[0].node
+
+  return (
+    <Layout>
+      <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+
+      <Top headline={content.headline} />
+      <RecentProjects />
+      <Services {...content.services} />
+      <Theme theme="dark">
+        <FromTheLabs />
+      </Theme>
+      <Careers {...content.careers} />
+    </Layout>
+  )
+}
 
 export default IndexPage
+
+export const query = graphql`
+  query HomepageQuery {
+    allHomeYaml {
+      edges {
+        node {
+          headline
+          services {
+            title
+            text
+            cta
+            link
+            columns {
+              title
+              items
+            }
+          }
+          careers {
+            title
+            text
+            cta
+            link
+            photos {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid_noBase64
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

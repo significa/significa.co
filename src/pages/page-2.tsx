@@ -1,37 +1,21 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
+import Layout from '../Layout'
 import SEO from '../components/SEO'
-import { ThemeConsumer, theme } from '../theme'
-
-const darkTheme = {
-  ...theme,
-  colors: {
-    ...theme.colors,
-    background: '#141618',
-    foreground: '#FFFFFF',
-  },
-}
 
 const SecondPage = () => (
-  <ThemeConsumer>
-    {({ updateTheme }) => {
-      const setDarkTheme = () => updateTheme(darkTheme)
-      const setLightTheme = () => updateTheme(theme)
-
-      return (
-        <>
-          <SEO title="Page two" />
-          <h1>Hi from the second page</h1>
-          <p>Welcome to page 2</p>
-          <Link to="/">Go back to the homepage</Link>
-          <br />
-          <button onClick={setDarkTheme}>Set dark theme</button>
-          <button onClick={setLightTheme}>Set light theme</button>
-        </>
-      )
-    }}
-  </ThemeConsumer>
+  <Layout theme="dark">
+    <SEO title="Page two" />
+    <h1>Hi from the second page</h1>
+    <p>Welcome to page 2</p>
+    <p>
+      <Link to="/">Go back to the homepage</Link>
+    </p>
+    <p>
+      <Link to="/page-3/">Page 3</Link>
+    </p>
+  </Layout>
 )
 
 export default SecondPage

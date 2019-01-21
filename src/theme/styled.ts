@@ -1,5 +1,6 @@
 import * as sc from 'styled-components'
-import { ITheme } from './types'
+
+import { IFullTheme } from './types'
 
 /** Custom Styled components with theme interface (to export) */
 const {
@@ -8,7 +9,7 @@ const {
   createGlobalStyle,
   keyframes,
   ThemeProvider: StyledThemeProvider,
-} = sc as sc.ThemedStyledComponentsModule<ITheme>
+} = sc as sc.ThemedStyledComponentsModule<IFullTheme>
 
 export { css, createGlobalStyle, keyframes, StyledThemeProvider }
 

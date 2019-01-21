@@ -1,44 +1,24 @@
 import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
 
 import { Content } from './styled'
 
-import { ThemeProvider } from '../theme'
+import { Provider, colorArgumentType } from '@theme'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 interface ILayoutProps {
   children: React.ReactNode
+  theme?: colorArgumentType
 }
 
-const Layout = ({ children }: ILayoutProps) => {
+const Layout: React.FC<ILayoutProps> = ({ theme, children }) => {
   return (
-    <StaticQuery
-      query={layoutQuery}
-      render={data => (
-        <ThemeProvider>
-          <Header siteTitle={data.site.siteMetadata.title} />
-          <Content>
-            {children}
-            <footer>
-              © {new Date().getFullYear()}, Built with
-              {` `}
-              <a href="https://www.gatsbyjs.org">Gatsby</a>
-            </footer>
-          </Content>
-        </ThemeProvider>
-      )}
-    />
+    <Provider theme={theme}>
+      <Header />
+      <Content>{children}</Content>
+      <Footer />
+    </Provider>
   )
 }
 
 export default Layout
-
-const layoutQuery = graphql`
-  query SiteTitleQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

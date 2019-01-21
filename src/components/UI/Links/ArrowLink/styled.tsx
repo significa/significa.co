@@ -1,10 +1,12 @@
+import React from 'react'
 import styled, { css } from '@theme'
-import { Link as GatsbyLink, GatsbyLinkProps } from 'gatsby'
+import { Link as GatsbyLink } from 'gatsby'
 import { Arrow as ArrowIcon } from './Arrow'
 
-interface ILink extends GatsbyLinkProps<any> {
+interface ILink {
   highlight?: boolean
   reverse?: boolean
+  to: string
 }
 
 export const Arrow = styled(ArrowIcon)`
@@ -13,7 +15,11 @@ export const Arrow = styled(ArrowIcon)`
   transition: transform ${({ theme }) => theme.transitions.cubic()};
 `
 
-export const Link = styled(GatsbyLink)`
+const ExtractedPropsLink = ({ highlight, reverse, to, ...rest }: ILink) => (
+  <GatsbyLink to={to} {...rest} />
+)
+
+export const Link = styled(ExtractedPropsLink)`
   display: inline-flex;
   align-items: center;
 

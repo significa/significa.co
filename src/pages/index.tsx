@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
+import { Theme } from '@theme'
 
 import Layout from '../Layout'
 import SEO from '../components/SEO'
@@ -8,7 +9,6 @@ import SEO from '../components/SEO'
 import { Top, Services, Careers } from '../components/Home/'
 import { RecentProjects } from '../components/RecentProjects'
 import { FromTheLabs } from '../components/FromTheLabs'
-import { Theme } from '@theme'
 
 export interface IServicesContent {
   title: string

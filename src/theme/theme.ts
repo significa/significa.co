@@ -6,7 +6,7 @@ export const colors: IColors = {
   lightBlack: '#202324',
   grey: '#C4C8CC',
   darkGrey: '#8A9399',
-  lightGrey: '#F5F6F7',
+  lightGrey: '#EDF0F2',
   white: '#FFFFFF',
   red: '#FF5050',
   alphaWhite: {

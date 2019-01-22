@@ -1,5 +1,6 @@
 import styled from '@theme'
 import { Small } from '../../UI/Typography'
+import { Link } from '../../UI/Links'
 
 export const Title = styled(Small).attrs({ as: 'h4' })`
   margin-bottom: 2em;
@@ -13,6 +14,7 @@ export const Wrapper = styled.div`
     display: grid;
     grid-template: auto auto / 1fr 1fr;
 
+    grid-column-gap: 3em;
     grid-row-gap: 3em;
     grid-auto-flow: column;
 
@@ -44,4 +46,8 @@ export const Row = styled.div`
   a:not(:last-child) {
     margin-right: 1em;
   }
+`
+
+export const FooterLink = styled(Link)`
+  text-decoration: none;
 `

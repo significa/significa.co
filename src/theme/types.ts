@@ -17,14 +17,9 @@ export interface IColorsTheme {
   highlight: string
   background: string
   foreground: string
-  secondary: string
   medium: string
   subtle: string
   error: string
-  alpha: {
-    foreground: { [key: number]: string }
-    background: { [key: number]: string }
-  }
 }
 
 export interface IFullTheme {

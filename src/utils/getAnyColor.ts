@@ -9,8 +9,7 @@ export const getAnyColor = ({
   color,
   theme: { colors },
 }: IgetAnyColor): string => {
-  // alpha is an object and may cause some problems
-  if (!color || color === 'alpha') {
+  if (!color) {
     return colors.foreground
   }
 

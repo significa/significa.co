@@ -1,9 +1,7 @@
 import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 
-import { Link } from '../../UI/Links'
-
-import { Wrapper, Title, Column, Row } from './styled'
+import { Wrapper, Title, Column, Row, FooterLink } from './styled'
 import Social from '../Social'
 
 interface IItemType {
@@ -35,9 +33,9 @@ class FooterNav extends React.Component<{}, {}> {
 
   renderItems = (items: IItemType[]) => {
     return items.map(({ label, link }, i) => (
-      <Link key={i} to={link}>
+      <FooterLink key={i} to={link}>
         {label}
-      </Link>
+      </FooterLink>
     ))
   }
 

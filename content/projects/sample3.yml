@@ -5,7 +5,6 @@ date: 2019/01/03
 title: Rocket.Chat
 tagline: Open Source Team Communication
 description: New technologies and ways of thinking that have changed the world. The digitalization is the reason  why i belive in potatoes.
-shortDescription: New technologies and ways of thinking that have changed the world.
 
 # Images
 hero: ./sample3/big-wide-image.jpg
@@ -13,10 +12,8 @@ featured: ./sample3/transparent-image.png
 thumbnail: ./sample3/riad.png
 
 # Settings
-slug: project-name-2
-background: '#0154FF'
-foreground: '#FFFFFF'
-highlight: '#FFCC33'
+heroTheme: light
+mainTheme: light
 
 # Info
 client: Client name

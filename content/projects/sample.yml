@@ -4,19 +4,49 @@ date: 2019/01/01
 # Main info
 title: Oopsie User App
 tagline: Your favorite food one click away
-description: New technologies and ways of thinking that have changed the world. The digitalization is the reason  why i belive in potatoes.
-shortDescription: New technologies and ways of thinking that have changed the world.
+description: |
+  Oopsie is a hassle-free, online takeaway ordering platform that connects you with neighboring restaurants. With Oopsie, you may order and pay for takeaway with a few simple steps. With real time order status tracking there will be no wasted time on queuing up, complemented with seamless transaction - simply grab & go when your food is ready!
 
 # Images
-hero: ./sample/big-wide-image.jpg
+hero: ./sample/oopsie-hero@2x.png
 featured: ./sample/transparent-image.png
 thumbnail: ./sample/triangle.png
 
 # Settings
-slug: project-name
-background: '#131F39' #Dark blue
-foreground: '#FFFFFF' #White
-highlight: '#FFCC33' #Yellow
+heroTheme: oopsie-orange
+mainTheme: oopsie-light
+themes:
+  - name: oopsie-orange
+    background: '#FAD6A5'
+    foreground: '#15191F'
+    highlight: '#FF9500'
+    medium: '#8D98A5'
+    subtle: 'rgba(255,255,255,0.2)'
+    error: '#FF5050'
+
+  - name: oopsie-purple
+    background: '#705BD0'
+    foreground: '#FFFFF'
+    highlight: '#FFFFFF'
+    medium: '#FFFFFF'
+    subtle: 'rgba(255,255,255,0.2)'
+    error: '#FF5050'
+
+  - name: oopsie-light
+    background: '#FFFFFF'
+    foreground: '#111314'
+    highlight: '#FF9500'
+    medium: '#111314'
+    subtle: 'rgba(255,255,255,0.2)'
+    error: '#FF5050'
+
+  - name: oopsie-dark
+    background: '#111314'
+    foreground: '#FFFFFF'
+    highlight: '#FFFFFF'
+    medium: '#FFFFFF'
+    subtle: 'rgba(255,255,255,0.2)'
+    error: '#FF5050'
 
 # Info
 client: Client name
@@ -40,7 +70,7 @@ links:
 # Sections
 sections:
   - type: text
-    style: light #default. light | dark | color
+    theme: oopsie-orange
     layout: boxed #default. boxed | wide | full
     #title: It can have an optional title
     content: In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark.

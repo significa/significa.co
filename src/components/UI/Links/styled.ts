@@ -9,6 +9,7 @@ export const baseStyle = css`
   font-size: 1em;
   line-height: 1;
   color: ${themeGet('colors.foreground', 'inherit')};
+  text-decoration: underline;
 
   transition: ${({ theme }) => `color ${theme.transitions.ease()}`};
 
@@ -42,6 +43,7 @@ export const AnchorLink = styled.a`
 
 export const NavLink = styled(Link)`
   padding: 0.75em 0;
+  text-decoration: none;
 
   &:before {
     content: '';

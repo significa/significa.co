@@ -1,7 +1,6 @@
 import styled from '@theme'
 
-import { ArrowLink as BaseArrowLink } from '../UI/Links/ArrowLink'
-import { Text } from '../UI/Typography'
+import { ArrowLink as BaseArrowLink, Text } from '../UI/'
 
 export const ListItem = styled.li`
   position: relative;

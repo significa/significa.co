@@ -1,6 +1,5 @@
 import styled from '@theme'
-import { Small } from '../../UI/Typography'
-import { Link } from '../../UI/Links'
+import { Small, Link } from '../../UI/'
 
 export const Title = styled(Small).attrs({ as: 'h4' })`
   margin-bottom: 2em;

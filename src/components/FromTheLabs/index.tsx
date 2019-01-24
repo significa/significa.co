@@ -1,8 +1,7 @@
 import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
 
-import { RightContent } from '../UI/RightContent'
-import { Big } from '../UI/Typography'
+import { RightContent, Big } from '../UI/'
 import { Dribbble } from './Dribbble'
 import { Github } from './Github'
 import { Medium } from './Medium'
@@ -93,4 +92,4 @@ const fromTheLabsQuery = graphql`
   }
 `
 
-export { FromTheLabs }
+export default FromTheLabs

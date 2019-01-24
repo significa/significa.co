@@ -1,6 +1,6 @@
 import React from 'react'
-import { NavLink, Link as StyledLink, AnchorLink } from './styled'
-import { ExternalLink } from './ExternalLink'
+import { Link as StyledLink, AnchorLink } from './styled'
+import ExternalLink from '../ExternalLink'
 
 interface ILinkProps {
   to: string
@@ -34,4 +34,4 @@ const Link: React.FC<ILinkProps> = ({ to, children, ...rest }) => {
   )
 }
 
-export { Link, NavLink }
+export default Link

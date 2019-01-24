@@ -15,4 +15,4 @@ const ArrowLink: React.FC<IArrowLink> = props => (
   </Link>
 )
 
-export { ArrowLink }
+export default ArrowLink

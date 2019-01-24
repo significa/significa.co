@@ -1,5 +1,5 @@
 import styled from '@theme'
-import { Container as BaseContainer } from '../UI/Layout'
+import { Container as BaseContainer } from '../UI/'
 import { Segg as BaseSegg } from '../UI/Branding'
 
 export const Footer = styled.footer`

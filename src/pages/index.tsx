@@ -7,8 +7,8 @@ import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
 import { Top, Services, Careers } from '../components/Home/'
-import { RecentProjects } from '../components/RecentProjects'
-import { FromTheLabs } from '../components/FromTheLabs'
+import RecentProjects from '../components/RecentProjects'
+import FromTheLabs from '../components/FromTheLabs'
 
 export interface IServicesContent {
   title: string

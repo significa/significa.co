@@ -4,7 +4,6 @@ import { Link, Arrow } from './styled'
 
 export interface IArrowLink {
   to: string
-  children: React.ReactNode
   highlight?: boolean
   reverse?: boolean
 }

@@ -2,9 +2,9 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
 
-import styled, { IColorsTheme, Theme } from '@theme'
+import { IColorsTheme, Theme } from '@theme'
 
-import Layout from '../Layout'
+import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import { Hero } from '../components/Projects/Hero'
 import { Meta } from '../components/Projects/Meta'
@@ -40,35 +40,30 @@ interface IProject {
   }
 }
 
-const ProjectWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.background};
-`
-
 const Project = ({ data }: IProject) => {
   const { projectsYaml: content } = data
 
   return (
     <Layout
-      footerWhite
-      theme={getProjectTheme(content.heroTheme, content.themes)}
+      theme={getProjectTheme(content.mainTheme, content.themes)}
+      headerTheme={getProjectTheme(content.heroTheme, content.themes)}
+      footerTheme="light"
     >
       <SEO title={content.title} description={content.description} />
-      <Hero
-        title={content.title}
-        tagline={content.tagline}
-        fluid={content.hero.childImageSharp.fluid}
-      />
-      <Theme theme={getProjectTheme(content.mainTheme, content.themes)}>
-        <ProjectWrapper>
-          <Meta
-            description={content.description}
-            client={content.client}
-            services={content.services}
-            deliverables={content.deliverables}
-            links={content.links}
-          />
-        </ProjectWrapper>
+      <Theme theme={getProjectTheme(content.heroTheme, content.themes)}>
+        <Hero
+          title={content.title}
+          tagline={content.tagline}
+          fluid={content.hero.childImageSharp.fluid}
+        />
       </Theme>
+      <Meta
+        description={content.description}
+        client={content.client}
+        services={content.services}
+        deliverables={content.deliverables}
+        links={content.links}
+      />
     </Layout>
   )
 }

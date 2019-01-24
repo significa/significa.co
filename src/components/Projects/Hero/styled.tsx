@@ -7,6 +7,8 @@ import { ArrowLink as BaseArrowLink } from '../../UI/Links/ArrowLink'
 
 export const Section = styled.section`
   position: relative;
+
+  background-color: ${({ theme }) => theme.colors.background};
 `
 
 export const Container = styled(BaseContainer)`
@@ -22,6 +24,7 @@ export const Container = styled(BaseContainer)`
 export const ProjectInfo = styled.div`
   margin-top: 10em;
   margin-bottom: 17em;
+  z-index: 1;
 
   @media (max-width: 64em) {
     margin-top: 7em;
@@ -40,7 +43,7 @@ export const Img = styled(BaseImg)`
   right: 0;
   bottom: 0;
   left: 10vw;
-  z-index: -1;
+  z-index: 0;
 
   @media (max-width: 48em) {
     position: relative !important;

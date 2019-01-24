@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
 import { Theme } from '@theme'
 
-import Layout from '../Layout'
+import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
 import { Top, Services, Careers } from '../components/Home/'

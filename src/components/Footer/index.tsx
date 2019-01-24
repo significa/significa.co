@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { Link } from '../UI/Links'
-import { Small } from '../UI/Typography'
+import { Small, Link } from '../UI/'
 
 import * as S from './styled'
 import FooterNav from './FooterNav'

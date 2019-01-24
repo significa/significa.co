@@ -13,4 +13,4 @@ const ExternalLink: React.FC<IExternalLink> = ({ children, ...rest }) => (
   </StyledExternalLink>
 )
 
-export { ExternalLink }
+export default ExternalLink

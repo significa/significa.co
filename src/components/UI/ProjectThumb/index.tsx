@@ -33,4 +33,4 @@ const ProjectThumb: React.FC<IProjectThumb> = ({
   </S.Link>
 )
 
-export { ProjectThumb }
+export default ProjectThumb

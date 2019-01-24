@@ -1,9 +1,11 @@
 import styled from '@theme'
 import BaseImg from 'gatsby-image'
 
-import { Container as BaseContainer } from '../../UI/Layout'
-import { Huge as BaseHuge } from '../../UI/Typography'
-import { ArrowLink as BaseArrowLink } from '../../UI/Links/ArrowLink'
+import {
+  Container as BaseContainer,
+  Huge as BaseHuge,
+  ArrowLink as BaseArrowLink,
+} from '../../UI/'
 
 export const Section = styled.section`
   position: relative;

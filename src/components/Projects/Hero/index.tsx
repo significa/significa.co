@@ -1,7 +1,7 @@
 import React from 'react'
 import { FluidObject } from 'gatsby-image'
 
-import { Big } from '../../UI/Typography'
+import { Big } from '../../UI/'
 
 import * as S from './styled'
 
@@ -28,4 +28,4 @@ const Hero: React.FC<IHero> = ({ title, tagline, fluid }) => {
   )
 }
 
-export { Hero }
+export default Hero

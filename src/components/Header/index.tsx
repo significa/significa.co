@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Logo } from '../UI/Branding'
+import { Logo } from '../UI/'
 
 import * as S from './styled'
 import Navigation from './Navigation'

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { colorType } from '../../../utils/getColor'
-import { Link } from '../Links'
+import { Link } from '../Links/'
 
 import * as S from './styled'
 
@@ -38,4 +38,4 @@ class List extends React.Component<IList> {
   }
 }
 
-export { List }
+export default List

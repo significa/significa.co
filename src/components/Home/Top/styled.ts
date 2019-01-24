@@ -1,7 +1,6 @@
 import styled from '@theme'
 
-import { Container as BaseContainer } from '../../UI/Layout'
-import { Huge as BaseHuge } from '../../UI/Typography'
+import { Container as BaseContainer, Huge as BaseHuge } from '../../UI/'
 
 export const Container = styled(BaseContainer)`
   margin: 7.5em auto;

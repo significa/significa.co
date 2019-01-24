@@ -6,8 +6,7 @@ import { IColorsTheme, Theme } from '@theme'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { Hero } from '../components/Projects/Hero'
-import { Meta } from '../components/Projects/Meta'
+import { Meta, Hero } from '../components/Projects/'
 
 import { getProjectTheme } from '../utils/getProjectTheme'
 

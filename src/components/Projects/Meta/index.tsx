@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { Text, Big } from '../../UI/Typography'
-import { List } from '../../UI/List'
+import { Text, Big, List } from '../../UI/'
 
 import { textByLine } from '../../../utils/textByLine'
 
@@ -62,4 +61,4 @@ const Meta: React.FC<IMeta> = ({
   )
 }
 
-export { Meta }
+export default Meta

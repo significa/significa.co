@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
-import { ProjectThumb } from '../UI/ProjectThumb'
+import { ProjectThumb } from '../UI/'
 
 import * as S from './styled'
 
@@ -75,4 +75,4 @@ const recentProjectsQuery = graphql`
   }
 `
 
-export { RecentProjects }
+export default RecentProjects

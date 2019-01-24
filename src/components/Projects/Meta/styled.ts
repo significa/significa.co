@@ -1,7 +1,6 @@
 import styled from '@theme'
 
-import { Container as BaseContainer } from '../../UI/Layout'
-import { Big as BaseBig } from '../../UI/Typography'
+import { Container as BaseContainer, Big as BaseBig } from '../../UI/'
 
 export const Container = styled(BaseContainer).attrs({ as: 'section' })`
   padding-top: 10em;

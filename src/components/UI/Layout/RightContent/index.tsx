@@ -20,4 +20,4 @@ const RightContent: React.FC<IRightContent> = ({ title, children }) => {
   )
 }
 
-export { RightContent }
+export default RightContent

@@ -1,7 +1,7 @@
 import styled from '@theme'
 import { Link } from 'gatsby'
 
-import { Container as BaseContainer } from '../UI/Layout'
+import { Container as BaseContainer } from '../UI/'
 
 export const Wrapper = styled.header`
   background-color: ${({ theme }) => theme.colors.background};

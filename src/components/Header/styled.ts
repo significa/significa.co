@@ -17,6 +17,7 @@ export const Wrapper = styled.header`
     width: 100vw;
     height: 50vh;
     top: -50vh;
+    left: 0;
     background-color: ${({ theme }) => theme.colors.background};
   }
 `

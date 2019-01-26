@@ -1,43 +1,14 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
 
-import { IColorsTheme, Theme } from '@theme'
+import { Theme } from '@theme'
+
+import { getProjectTheme } from '../utils/getProjectTheme'
+import { IProject } from './types'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { Meta, Hero } from '../components/Projects/'
-
-import { getProjectTheme } from '../utils/getProjectTheme'
-
-interface ITheme extends IColorsTheme {
-  name: string
-}
-
-interface IProject {
-  data: {
-    projectsYaml: {
-      title: string
-      tagline: string
-      description: string
-      hero: {
-        childImageSharp: {
-          fluid: FluidObject
-        }
-      }
-      heroTheme: string
-      mainTheme: string
-      themes?: ITheme[]
-      client?: string
-      services?: string[]
-      deliverables?: string[]
-      links?: Array<{
-        link: string
-        linkText: string
-      }>
-    }
-  }
-}
+import { Meta, Hero, Section } from '../components/Projects/'
 
 const Project = ({ data }: IProject) => {
   const { projectsYaml: content } = data
@@ -63,6 +34,13 @@ const Project = ({ data }: IProject) => {
         deliverables={content.deliverables}
         links={content.links}
       />
+      {content.sections.map((section, i) => (
+        <Section
+          key={i}
+          section={section}
+          theme={getProjectTheme(section.theme, content.themes)}
+        />
+      ))}
     </Layout>
   )
 }
@@ -99,6 +77,61 @@ export const query = graphql`
       links {
         link
         linkText
+      }
+      sections {
+        type
+        layout
+        theme
+        content {
+          image {
+            childImageSharp {
+              fluid(maxWidth: 3000) {
+                ...GatsbyImageSharpFluid_noBase64
+              }
+            }
+          }
+          caption
+          title
+          text
+          link {
+            url
+            text
+          }
+          video {
+            publicURL
+          }
+          autoplay
+          loop
+          items {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 3000) {
+                  ...GatsbyImageSharpFluid_noBase64
+                }
+              }
+            }
+            video {
+              publicURL
+            }
+          }
+          a {
+            childImageSharp {
+              fluid(maxWidth: 3000) {
+                ...GatsbyImageSharpFluid_noBase64
+              }
+            }
+          }
+          b {
+            childImageSharp {
+              fluid(maxWidth: 3000) {
+                ...GatsbyImageSharpFluid_noBase64
+              }
+            }
+          }
+          author
+          sticky
+          invert
+        }
       }
     }
   }

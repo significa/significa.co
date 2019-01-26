@@ -68,9 +68,101 @@ links:
     linkText: App Store
 
 # Sections
+
 sections:
+  # Grid: small | normal | medium | large | full
+  # extraMargin: none | top | bottom | both
+
+  # Default grid values
+  #
+  # text: small
+  # image: normal
+  # video: normal
+  # gallery: normal
+  # comparison: normal
+  # slideshow: normal
+  # testimonials: normal
+  # sticky: medium
+  # waterfall: large
+
+  # Settings for each section
+  # - type: type
+  #   theme: theme
+  #   layout: layout
+  #   extraMargin: margin
+
   - type: text
-    theme: oopsie-orange
-    layout: boxed #default. boxed | wide | full
-    #title: It can have an optional title
-    content: In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark.
+    content:
+      title: This is the title
+      text: |
+        We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
+      link:
+        url: https://google.com
+        text: Go to google
+
+  - type: image
+    theme: oopsie-purple
+    layout: x-large
+    extraMargin: both
+    content:
+      image: sample/coupons.png
+      caption: This is a caption
+
+  - type: video
+    layout: medium
+    extraMargin: both
+    content:
+      video: sample/video.mp4
+      autoplay: true
+      loop: true
+
+  - type: gallery
+    layout: medium
+    extraMargin: both
+    content:
+      caption: This is a caption for the whole gallery
+      items:
+        - image: sample/coupons.png
+          width: 1/2
+        - video: sample/video.mp4
+          width: 1/2
+        - image: sample/restaurant.png
+          width: 1
+
+  - type: comparison
+    content:
+      a: sample/restaurant.png
+      b: sample/restaurant.png
+      caption: this is some text
+
+  - type: slideshow
+    content:
+      caption: this is some text
+      items:
+        - image: sample/restaurant.png
+        - image: sample/restaurant.png
+        - image: sample/restaurant.png
+        - image: sample/restaurant.png
+
+  - type: waterfall # two columns slightly misaligned
+    content:
+      items:
+        - image: sample/iphone.png
+        - image: sample/iphone.png
+
+  - type: testimonial
+    theme: dark
+    content:
+      text: I could see you guys really spent a lot of thinking on it, something extra.
+      author: Pedro Teixeira, MBA
+      link:
+        text: Read interview
+        url: https://google.com
+
+  - type: sticky
+    content:
+      sticky: true
+      invert: false
+      text: This is the text
+      title: This is the title
+      image: sample/tall.png

@@ -36,7 +36,5 @@ links:
 # Sections
 sections:
   - type: text
-    style: light #default. light | dark | color
-    layout: boxed #default. boxed | wide | full
-    #title: It can have an optional title
-    content: In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark.
+    content:
+      text: This is text

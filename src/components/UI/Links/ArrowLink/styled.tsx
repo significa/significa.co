@@ -38,12 +38,12 @@ export const Link = styled(ExtractedPropsLink)`
 
   @media (hover: hover) {
     &:hover ${Arrow} {
-      transform: ${(p: ILink) =>
+      transform: ${p =>
         p.reverse ? `rotate(180deg) translateX(0.25em)` : `translateX(0.25em)`};
     }
   }
 
-  ${(p: ILink) =>
+  ${p =>
     !p.highlight &&
     css`
       @media (hover: hover) {
@@ -57,7 +57,7 @@ export const Link = styled(ExtractedPropsLink)`
       }
     `}
 
-  ${(p: ILink) =>
+  ${p =>
     p.highlight &&
     css`
       color: ${({ theme }) => theme.colors.highlight};
@@ -67,7 +67,7 @@ export const Link = styled(ExtractedPropsLink)`
       }
     `}
 
-  ${(p: ILink) =>
+  ${p =>
     p.reverse &&
     css`
       flex-direction: row-reverse;

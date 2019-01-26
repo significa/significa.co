@@ -52,6 +52,14 @@ export const Img = styled(BaseImg)`
     width: 150%;
     left: -50%;
   }
+
+  /** On very large screens we need to hack a bit into the image **/
+  @media (min-width: 100em) {
+    img {
+      left: 15vw !important;
+      width: calc(100% - 15vw) !important;
+    }
+  }
 `
 
 export const Title = styled(BaseHuge)`

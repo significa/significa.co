@@ -42,19 +42,18 @@ export interface IVideo {
 }
 
 // Gallery
-type WidthType = number | string // can be 1, 1/2, etc.
-
-interface IGalleryImage {
-  width: WidthType
+export interface IGalleryImage {
+  span: number
   image: IImageObject
 }
 
-interface IGalleryVideo {
-  width: WidthType
-  video?: IVideoObject
+export interface IGalleryVideo {
+  span: number
+  video: IVideoObject
 }
 
 export interface IGallery {
+  columns: number
   items: Array<IGalleryImage | IGalleryVideo>
   caption?: string
 }
@@ -128,7 +127,7 @@ export interface ISection {
   type: sectionTypes
   theme: string
   layout?: 'small' | 'normal' | 'medium' | 'large' | 'full'
-  extraMargin?: 'top' | 'bottom' | 'both'
+  margin?: 'none' | 'top' | 'bottom' | 'both'
   content: SectionContent
 }
 

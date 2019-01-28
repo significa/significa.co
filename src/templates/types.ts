@@ -21,6 +21,10 @@ interface IVideoObject {
   publicURL: string
 }
 
+export type layoutTypes = 'small' | 'normal' | 'medium' | 'large' | 'full'
+
+export type marginTypes = 'none' | 'top' | 'bottom' | 'both'
+
 // Text
 export interface IText {
   title?: string
@@ -126,8 +130,8 @@ export type SectionContent =
 export interface ISection {
   type: sectionTypes
   theme: string
-  layout?: 'small' | 'normal' | 'medium' | 'large' | 'full'
-  margin?: 'none' | 'top' | 'bottom' | 'both'
+  layout?: layoutTypes
+  margin?: marginTypes
   content: SectionContent
 }
 

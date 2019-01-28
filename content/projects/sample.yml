@@ -92,6 +92,7 @@ sections:
   #   margin: margin
 
   - type: text
+    theme: dark
     content:
       title: This is the title
       text: |
@@ -105,7 +106,7 @@ sections:
     layout: x-large
     margin: both
     content:
-      image: sample/coupons.png
+      image: sample/restaurant.png
       caption: This is a caption
 
   - type: video

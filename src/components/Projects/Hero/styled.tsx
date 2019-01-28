@@ -46,6 +46,7 @@ export const Img = styled(BaseImg)`
   bottom: 0;
   left: 10vw;
   z-index: 0;
+  pointer-events: none;
 
   @media (max-width: 48em) {
     position: relative !important;

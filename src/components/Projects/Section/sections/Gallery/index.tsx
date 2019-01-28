@@ -17,17 +17,12 @@ const Gallery: React.FC<IGallery> = ({ items, caption }) => (
         const videoItem = item as IGalleryVideo
 
         return (
-          <div
-            key={i}
-            style={{
-              gridColumn: `auto / span ${item.span}`,
-            }}
-          >
+          <S.Item key={i} span={item.span}>
             {imageItem.image && (
               <Img fluid={imageItem.image.childImageSharp.fluid} />
             )}
             {videoItem.video && <div>{videoItem.video.publicURL}</div>}
-          </div>
+          </S.Item>
         )
       })}
     </S.Wrapper>

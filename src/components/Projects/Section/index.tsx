@@ -7,6 +7,9 @@ import { ISection, sectionTypes } from '../../../templates/types'
 import * as S from './styled'
 import * as Sections from './sections'
 
+import { Container } from '../../UI'
+import ConditionalWrap from '../../utils/ConditionalWrap'
+
 type SectionsMap = { [K in sectionTypes]: React.ComponentType<any> }
 
 interface ISectionProps {
@@ -18,14 +21,17 @@ const Section = ({ theme, section }: ISectionProps) => {
   const SectionComponent =
     (Sections as SectionsMap)[section.type] || Sections.text
 
-  return section.theme ? (
-    <Theme theme={theme}>
+  return (
+    <ConditionalWrap
+      condition={!!section.theme}
+      wrap={children => <Theme theme={theme}>{children}</Theme>}
+    >
       <S.SectionWrapper>
-        <SectionComponent {...section.content} />
+        <Container>
+          <SectionComponent {...section.content} />
+        </Container>
       </S.SectionWrapper>
-    </Theme>
-  ) : (
-    <SectionComponent {...section.content} />
+    </ConditionalWrap>
   )
 }
 

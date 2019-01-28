@@ -71,7 +71,7 @@ links:
 
 sections:
   # Grid: small | normal | medium | large | full
-  # extraMargin: none | top | bottom | both
+  # margin: none | top | bottom | both
 
   # Default grid values
   #
@@ -89,7 +89,7 @@ sections:
   # - type: type
   #   theme: theme
   #   layout: layout
-  #   extraMargin: margin
+  #   margin: margin
 
   - type: text
     content:
@@ -103,14 +103,14 @@ sections:
   - type: image
     theme: oopsie-purple
     layout: x-large
-    extraMargin: both
+    margin: both
     content:
       image: sample/coupons.png
       caption: This is a caption
 
   - type: video
     layout: medium
-    extraMargin: both
+    margin: both
     content:
       video: sample/video.mp4
       autoplay: true
@@ -118,16 +118,18 @@ sections:
 
   - type: gallery
     layout: medium
-    extraMargin: both
+    margin: both
     content:
       caption: This is a caption for the whole gallery
       items:
         - image: sample/coupons.png
-          width: 1/2
-        - video: sample/video.mp4
-          width: 1/2
+          span: 1
+        - image: sample/coupons.png
+          span: 1
         - image: sample/restaurant.png
-          width: 1
+          span: 2
+        - video: sample/video.mp4
+          span: 2
 
   - type: comparison
     content:

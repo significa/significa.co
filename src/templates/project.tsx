@@ -82,6 +82,7 @@ export const query = graphql`
         type
         layout
         theme
+        margin
         content {
           image {
             childImageSharp {
@@ -103,6 +104,7 @@ export const query = graphql`
           autoplay
           loop
           items {
+            span
             image {
               childImageSharp {
                 fluid(maxWidth: 3000) {

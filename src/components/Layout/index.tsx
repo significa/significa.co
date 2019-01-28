@@ -3,6 +3,7 @@ import React from 'react'
 import { Provider, Theme, colorArgumentType } from '@theme'
 import Header from '../Header'
 import Footer from '../Footer'
+import ConditionalWrap from '../utils/ConditionalWrap'
 
 interface ILayoutProps {
   children: React.ReactNode
@@ -19,21 +20,19 @@ const Layout: React.FC<ILayoutProps> = ({
 }) => {
   return (
     <Provider theme={theme}>
-      {headerTheme ? (
-        <Theme theme={headerTheme}>
-          <Header />
-        </Theme>
-      ) : (
+      <ConditionalWrap
+        condition={!!headerTheme}
+        wrap={c => <Theme theme={headerTheme as colorArgumentType}>{c}</Theme>}
+      >
         <Header />
-      )}
+      </ConditionalWrap>
       {children}
-      {footerTheme ? (
-        <Theme theme={footerTheme}>
-          <Footer />
-        </Theme>
-      ) : (
+      <ConditionalWrap
+        condition={!!footerTheme}
+        wrap={c => <Theme theme={footerTheme as colorArgumentType}>{c}</Theme>}
+      >
         <Footer />
-      )}
+      </ConditionalWrap>
     </Provider>
   )
 }

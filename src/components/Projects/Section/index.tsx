@@ -9,6 +9,7 @@ import * as Sections from './sections'
 
 import { Container } from '../../UI'
 import ConditionalWrap from '../../utils/ConditionalWrap'
+import { getProjectSectionWidth } from '../../../utils/getProjectSectionWidth'
 
 type SectionsMap = { [K in sectionTypes]: React.ComponentType<any> }
 
@@ -17,22 +18,38 @@ interface ISectionProps {
   theme: IColorsTheme
 }
 
-const Section = ({ theme, section }: ISectionProps) => {
-  const SectionComponent =
-    (Sections as SectionsMap)[section.type] || Sections.text
+class Section extends React.Component<ISectionProps> {
+  getMaxWidth = (): { maxWidth: string; padding?: number } => {
+    const { section } = this.props
 
-  return (
-    <ConditionalWrap
-      condition={!!section.theme}
-      wrap={children => <Theme theme={theme}>{children}</Theme>}
-    >
-      <S.SectionWrapper>
-        <Container>
-          <SectionComponent {...section.content} />
-        </Container>
-      </S.SectionWrapper>
-    </ConditionalWrap>
-  )
+    const style = {
+      maxWidth: getProjectSectionWidth(section.type, section.layout),
+    }
+
+    return section.layout && section.layout === 'full'
+      ? { ...style, padding: 0 }
+      : style
+  }
+
+  render() {
+    const { theme, section } = this.props
+
+    const SectionComponent =
+      (Sections as SectionsMap)[section.type] || Sections.text
+
+    return (
+      <ConditionalWrap
+        condition={!!section.theme}
+        wrap={children => <Theme theme={theme}>{children}</Theme>}
+      >
+        <S.SectionWrapper margin={section.margin}>
+          <Container style={this.getMaxWidth()}>
+            <SectionComponent {...section.content} />
+          </Container>
+        </S.SectionWrapper>
+      </ConditionalWrap>
+    )
+  }
 }
 
 export default Section

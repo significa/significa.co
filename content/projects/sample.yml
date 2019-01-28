@@ -124,13 +124,25 @@ sections:
       caption: This is a caption for the whole gallery
       items:
         - image: sample/coupons.png
-          span: 1
+          span:
+            normal: 1
+            tablet: 1
+            mobile: 2
         - image: sample/coupons.png
-          span: 1
+          span:
+            normal: 1
+            tablet: 1
+            mobile: 2
         - image: sample/restaurant.png
-          span: 2
+          span:
+            normal: 2
+            tablet: 2
+            mobile: 2
         - video: sample/video.mp4
-          span: 2
+          span:
+            normal: 2
+            tablet: 2
+            mobile: 2
 
   - type: comparison
     content:

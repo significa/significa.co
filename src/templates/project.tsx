@@ -104,7 +104,11 @@ export const query = graphql`
           autoplay
           loop
           items {
-            span
+            span {
+              normal
+              tablet
+              mobile
+            }
             image {
               childImageSharp {
                 fluid(maxWidth: 3000) {

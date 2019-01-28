@@ -25,6 +25,12 @@ export type layoutTypes = 'small' | 'normal' | 'medium' | 'large' | 'full'
 
 export type marginTypes = 'none' | 'top' | 'bottom' | 'both'
 
+export interface ISpanTypes {
+  normal: number
+  tablet: number
+  mobile: number
+}
+
 // Text
 export interface IText {
   title?: string
@@ -47,12 +53,12 @@ export interface IVideo {
 
 // Gallery
 export interface IGalleryImage {
-  span: number
+  span: ISpanTypes
   image: IImageObject
 }
 
 export interface IGalleryVideo {
-  span: number
+  span: ISpanTypes
   video: IVideoObject
 }
 

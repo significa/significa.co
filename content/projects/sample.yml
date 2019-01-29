@@ -103,13 +103,14 @@ sections:
 
   - type: image
     theme: oopsie-purple
-    layout: x-large
+    layout: large
     margin: both
     content:
       image: sample/restaurant.png
       caption: This is a caption
 
   - type: video
+    theme: oopsie-orange
     layout: medium
     margin: both
     content:
@@ -118,7 +119,6 @@ sections:
       loop: true
 
   - type: gallery
-    layout: medium
     margin: both
     content:
       caption: This is a caption for the whole gallery
@@ -140,8 +140,13 @@ sections:
             mobile: 2
         - video: sample/video.mp4
           span:
-            normal: 2
-            tablet: 2
+            normal: 1
+            tablet: 1
+            mobile: 2
+        - video: sample/video.mp4
+          span:
+            normal: 1
+            tablet: 1
             mobile: 2
 
   - type: comparison
@@ -177,7 +182,18 @@ sections:
   - type: sticky
     content:
       sticky: true
-      invert: false
-      text: This is the text
+      invert: true
       title: This is the title
       image: sample/tall.png
+      text: |
+        In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark. In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark.
+
+  - type: sticky
+    theme: dark
+    content:
+      sticky: true
+      invert: false
+      title: This is the title
+      video: sample/ketchup.mov
+      text: |
+        In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark. In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark.

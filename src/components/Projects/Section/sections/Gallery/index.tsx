@@ -21,7 +21,12 @@ const Gallery: React.FC<IGallery> = ({ items, caption }) => (
             {imageItem.image && (
               <Img fluid={imageItem.image.childImageSharp.fluid} />
             )}
-            {videoItem.video && <div>{videoItem.video.publicURL}</div>}
+            {videoItem.video && (
+              <video width="100%" autoPlay loop muted controls={false}>
+                <source src={videoItem.video.publicURL} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
           </S.Item>
         )
       })}

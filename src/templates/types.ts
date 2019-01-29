@@ -49,6 +49,8 @@ export interface IVideo {
   video: IVideoObject
   autoplay?: boolean
   loop?: boolean
+  controls?: boolean
+  muted?: boolean
 }
 
 // Gallery
@@ -101,11 +103,11 @@ interface IStickyBase {
   title?: string
 }
 
-interface IStickyVideo extends IStickyBase {
+export interface IStickyVideo extends IStickyBase {
   video: IVideoObject
 }
 
-interface IStickyImage extends IStickyBase {
+export interface IStickyImage extends IStickyBase {
   image: IImageObject
 }
 

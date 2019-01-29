@@ -35,7 +35,15 @@ export const Item = styled.div`
 `
 
 export const Caption = styled(Small).attrs({ as: 'figcaption' })`
-  margin-top: 1.5em;
+  margin-top: 3em;
   color: ${({ theme }) => theme.colors.medium};
   text-align: center;
+
+  @media (max-width: 48em) {
+    margin-top: 2em;
+  }
+
+  @media (max-width: 32em) {
+    margin-top: 1em;
+  }
 `

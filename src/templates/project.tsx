@@ -103,6 +103,8 @@ export const query = graphql`
           }
           autoplay
           loop
+          controls
+          muted
           items {
             span {
               normal

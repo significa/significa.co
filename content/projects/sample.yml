@@ -165,6 +165,9 @@ sections:
       caption: this is some text
 
   - type: slideshow
+    theme: oopsie-dark
+    margin: both
+    layout: large
     content:
       caption: this is some text
       items:

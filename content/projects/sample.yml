@@ -26,7 +26,7 @@ themes:
 
   - name: oopsie-purple
     background: '#705BD0'
-    foreground: '#FFFFF'
+    foreground: '#FFFFFF'
     highlight: '#FFFFFF'
     medium: '#FFFFFF'
     subtle: 'rgba(255,255,255,0.2)'
@@ -117,6 +117,15 @@ sections:
       video: sample/video.mp4
       autoplay: true
       loop: true
+      controls: true
+      muted: true
+
+  - type: highlight
+    theme: dark
+    content:
+      text: |
+        Designing such a product was a tremendous rewarding experience for the entire team.
+        We love how it all turned up and it was amazing.
 
   - type: gallery
     margin: both
@@ -171,7 +180,7 @@ sections:
         - image: sample/iphone.png
 
   - type: testimonial
-    theme: dark
+    theme: oopsie-purple
     content:
       text: I could see you guys really spent a lot of thinking on it, something extra.
       author: Pedro Teixeira, MBA

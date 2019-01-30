@@ -65,7 +65,6 @@ export interface IGalleryVideo {
 }
 
 export interface IGallery {
-  columns: number
   items: Array<IGalleryImage | IGalleryVideo>
   caption?: string
 }
@@ -113,6 +112,11 @@ export interface IStickyImage extends IStickyBase {
 
 export type ISticky = IStickyVideo | IStickyImage
 
+// Highlight
+export interface IHighlight {
+  text: string
+}
+
 // All of them
 export type sectionTypes =
   | 'text'
@@ -124,6 +128,7 @@ export type sectionTypes =
   | 'waterfall'
   | 'testimonial'
   | 'sticky'
+  | 'highlight'
 export type SectionContent =
   | IText
   | IImage
@@ -134,6 +139,7 @@ export type SectionContent =
   | IWaterfall
   | ITestimonial
   | ISticky
+  | IHighlight
 
 export interface ISection {
   type: sectionTypes

@@ -48,28 +48,109 @@ const Project = ({ data }: IProject) => {
 export default Project
 
 export const query = graphql`
+  fragment Theme on themes_2 {
+    name
+    background
+    foreground
+    highlight
+    medium
+    subtle
+    error
+  }
+
+  fragment Image on File {
+    childImageSharp {
+      fluid(maxWidth: 3000) {
+        ...GatsbyImageSharpFluid_noBase64
+      }
+    }
+  }
+
+  fragment AllSectionsContent on content_5 {
+    # Image
+
+    image {
+      ...Image
+    }
+    caption
+
+    # Text
+
+    title
+    text
+    link {
+      url
+      text
+    }
+
+    # Video
+
+    video {
+      publicURL
+    }
+    autoplay
+    loop
+    controls
+    muted
+
+    # Gallery / Slider / Slideshow (not 'video') / waterfall
+
+    #caption
+    items {
+      span {
+        normal
+        tablet
+        mobile
+      }
+      image {
+        ...Image
+      }
+      video {
+        publicURL
+      }
+    }
+
+    # Comparison
+
+    #caption
+    a {
+      ...Image
+    }
+    b {
+      ...Image
+    }
+
+    # Testimonial
+
+    #text
+    #link
+    author
+
+    # Sticky
+
+    sticky
+    invert
+    #title
+    #image/video
+    #text
+
+    # Highlight
+
+    #text
+  }
+
   query($slug: String!) {
     projectsYaml(fields: { slug: { eq: $slug } }) {
       title
       tagline
       description
       hero {
-        childImageSharp {
-          fluid(maxWidth: 3000) {
-            ...GatsbyImageSharpFluid_noBase64
-          }
-        }
+        ...Image
       }
       heroTheme
       mainTheme
       themes {
-        name
-        background
-        foreground
-        highlight
-        medium
-        subtle
-        error
+        ...Theme
       }
       client
       services
@@ -84,61 +165,7 @@ export const query = graphql`
         theme
         margin
         content {
-          image {
-            childImageSharp {
-              fluid(maxWidth: 3000) {
-                ...GatsbyImageSharpFluid_noBase64
-              }
-            }
-          }
-          caption
-          title
-          text
-          link {
-            url
-            text
-          }
-          video {
-            publicURL
-          }
-          autoplay
-          loop
-          controls
-          muted
-          items {
-            span {
-              normal
-              tablet
-              mobile
-            }
-            image {
-              childImageSharp {
-                fluid(maxWidth: 3000) {
-                  ...GatsbyImageSharpFluid_noBase64
-                }
-              }
-            }
-            video {
-              publicURL
-            }
-          }
-          a {
-            childImageSharp {
-              fluid(maxWidth: 3000) {
-                ...GatsbyImageSharpFluid_noBase64
-              }
-            }
-          }
-          b {
-            childImageSharp {
-              fluid(maxWidth: 3000) {
-                ...GatsbyImageSharpFluid_noBase64
-              }
-            }
-          }
-          author
-          sticky
-          invert
+          ...AllSectionsContent
         }
       }
     }

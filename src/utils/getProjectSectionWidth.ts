@@ -18,6 +18,7 @@ const fallbackValues: { [K in sectionTypes]: layoutTypes } = {
   text: 'small',
   video: 'normal',
   waterfall: 'large',
+  highlight: 'normal',
 }
 
 const getProjectSectionWidth = (type: sectionTypes, layout?: layoutTypes) => {

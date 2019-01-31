@@ -160,9 +160,8 @@ sections:
 
   - type: comparison
     content:
-      a: sample/restaurant.png
+      a: sample/restaurant-bw.png
       b: sample/restaurant.png
-      caption: this is some text
 
   - type: slideshow
     theme: oopsie-dark

@@ -1,5 +1,7 @@
 import styled from '@theme'
+
 import { Small } from '../../../../UI'
+import DoubleArrow from './DoubleArrow'
 
 export const Wrapper = styled.div`
   padding: 5em 0;
@@ -51,6 +53,10 @@ export const DragHandle = styled.div`
   top: 50%;
   /** Left is given inline **/
   transform: translate(-50%, -50%);
+`
+
+export const Icon = styled(DoubleArrow)`
+  pointer-events: none;
 `
 
 export const Line = styled.div`

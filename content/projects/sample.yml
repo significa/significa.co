@@ -159,6 +159,7 @@ sections:
             mobile: 2
 
   - type: comparison
+    layout: large
     content:
       a: sample/restaurant-bw.png
       b: sample/restaurant.png

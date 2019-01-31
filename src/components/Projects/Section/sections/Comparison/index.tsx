@@ -3,8 +3,6 @@ import Img from 'gatsby-image'
 
 import { IComparison } from '../../../../../templates/types'
 
-import DoubleArrow from './DoubleArrow'
-
 import * as S from './styled'
 
 class Comparison extends React.Component<IComparison> {
@@ -21,6 +19,7 @@ class Comparison extends React.Component<IComparison> {
     window.addEventListener('touchmove', this.onDrag)
     window.addEventListener('mouseup', this.removeListeners)
     window.addEventListener('touchend', this.removeListeners)
+    window.addEventListener('dragend', this.removeListeners)
   }
 
   removeListeners = () => {
@@ -28,6 +27,7 @@ class Comparison extends React.Component<IComparison> {
     window.removeEventListener('touchmove', this.onDrag)
     window.removeEventListener('mouseup', this.removeListeners)
     window.removeEventListener('touchend', this.removeListeners)
+    window.removeEventListener('dragend', this.removeListeners)
   }
 
   onDrag = (e: MouseEvent | TouchEvent) => {
@@ -60,7 +60,7 @@ class Comparison extends React.Component<IComparison> {
               onMouseDown={this.startCapture}
               onTouchStart={this.startCapture}
             >
-              <DoubleArrow />
+              <S.Icon />
             </S.DragHandle>
           </S.Controls>
 

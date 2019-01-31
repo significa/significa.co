@@ -15,7 +15,12 @@ class Slideshow extends React.Component<ISlideshow, ISlideShowState> {
   state = { index: 0 }
 
   handleNextSlide = () => {
-    this.setState(state => ({ index: state.index + 1 }))
+    const { items } = this.props
+
+    this.setState(state => ({
+      index:
+        state.index === items.length - 1 ? items.length - 1 : state.index + 1,
+    }))
   }
 
   handlePrevSlide = () => {

@@ -180,6 +180,10 @@ sections:
     content:
       items:
         - image: sample/iphone.png
+        - image: sample/tall.png
+        - image: sample/tall.png
+        - image: sample/coupons.png
+        - image: sample/restaurant.png
         - image: sample/iphone.png
 
   - type: testimonial

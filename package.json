@@ -31,6 +31,7 @@
     "gatsby-transformer-sharp": "^2.1.12",
     "gatsby-transformer-yaml": "^2.1.7",
     "react": "^16.6.3",
+    "react-columns": "^1.2.0",
     "react-dom": "^16.6.3",
     "react-helmet": "^5.2.0",
     "styled-components": "^4.1.3"

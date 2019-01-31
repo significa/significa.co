@@ -47,6 +47,10 @@ describe('Get theme by name from project themes', () => {
     expect(getProjectTheme('project-light')).toEqual(defaultTheme)
   })
 
+  it('returns default dark theme if requested and no themes', () => {
+    expect(getProjectTheme('dark')).toEqual(darkTheme)
+  })
+
   it('returns light theme', () => {
     expect(getProjectTheme('light', themes)).toEqual(defaultTheme)
   })

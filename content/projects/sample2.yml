@@ -7,13 +7,21 @@ tagline: The quickest & easiest way to accept Bitcoin
 description: New technologies and ways of thinking that have changed the world. The digitalization is the reason  why i belive in potatoes.
 
 # Images
-hero: ./sample2/big-wide-image.jpg
-featured: ./sample2/transparent-image.png
-thumbnail: ./sample2/red-wall.png
+hero: sample2/oopsie-hero.png
+featured: sample2/transparent-image.png
+thumbnail: sample2/red-wall.png
 
 # Settings
-heroTheme: dark
+heroTheme: oopsie-orange
 mainTheme: light
+themes:
+  - name: oopsie-orange
+    background: '#FAD6A5'
+    foreground: '#15191F'
+    highlight: '#FF9500'
+    medium: '#8D98A5'
+    subtle: 'rgba(255,255,255,0.2)'
+    error: '#FF5050'
 
 # Info
 client: Client name

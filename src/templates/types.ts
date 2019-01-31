@@ -1,23 +1,17 @@
 import { FluidObject } from 'gatsby-image'
 
-import { IColorsTheme } from '@theme'
-
-interface ITheme extends IColorsTheme {
-  name: string
-}
-
-interface ILinkObject {
+export interface ILinkObject {
   url: string
   text: string
 }
 
-interface IImageObject {
+export interface IImageObject {
   childImageSharp: {
     fluid: FluidObject
   }
 }
 
-interface IVideoObject {
+export interface IVideoObject {
   publicURL: string
 }
 
@@ -147,26 +141,4 @@ export interface ISection {
   layout?: layoutTypes
   margin?: marginTypes
   content: SectionContent
-}
-
-export interface IProject {
-  data: {
-    projectsYaml: {
-      title: string
-      tagline: string
-      description: string
-      hero: IImageObject
-      heroTheme: string
-      mainTheme: string
-      themes?: ITheme[]
-      client?: string
-      services?: string[]
-      deliverables?: string[]
-      links?: Array<{
-        link: string
-        linkText: string
-      }>
-      sections: ISection[]
-    }
-  }
 }

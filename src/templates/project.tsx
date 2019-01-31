@@ -1,16 +1,54 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import { Theme } from '@theme'
+import { Theme, IColorsTheme } from '@theme'
 
 import { getProjectTheme } from '../utils/getProjectTheme'
-import { IProject } from './types'
+import { IImageObject, ISection } from './types'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { Meta, Hero, Section } from '../components/Projects/'
+import { Meta, Hero, Section, Next } from '../components/Projects/'
 
-const Project = ({ data }: IProject) => {
+interface ITheme extends IColorsTheme {
+  name: string
+}
+
+export interface IProject {
+  pageContext: {
+    next: {
+      title: string
+      tagline: string
+      hero: IImageObject
+      heroTheme: string
+      themes?: ITheme[]
+      fields: {
+        slug: string
+      }
+    }
+  }
+  data: {
+    projectsYaml: {
+      title: string
+      tagline: string
+      description: string
+      hero: IImageObject
+      heroTheme: string
+      mainTheme: string
+      themes?: ITheme[]
+      client?: string
+      services?: string[]
+      deliverables?: string[]
+      links?: Array<{
+        link: string
+        linkText: string
+      }>
+      sections: ISection[]
+    }
+  }
+}
+
+const Project = ({ data, pageContext: { next } }: IProject) => {
   const { projectsYaml: content } = data
 
   return (
@@ -41,6 +79,14 @@ const Project = ({ data }: IProject) => {
           theme={getProjectTheme(section.theme, content.themes)}
         />
       ))}
+      <Theme theme={getProjectTheme(next.heroTheme, next.themes)}>
+        <Next
+          title={next.title}
+          tagline={next.tagline}
+          fluid={next.hero.childImageSharp.fluid}
+          link={next.fields.slug}
+        />
+      </Theme>
     </Layout>
   )
 }
@@ -48,7 +94,7 @@ const Project = ({ data }: IProject) => {
 export default Project
 
 export const query = graphql`
-  fragment Theme on themes_2 {
+  fragment Theme on themes_3 {
     name
     background
     foreground

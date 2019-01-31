@@ -8,9 +8,9 @@ description: |
   Oopsie is a hassle-free, online takeaway ordering platform that connects you with neighboring restaurants. With Oopsie, you may order and pay for takeaway with a few simple steps. With real time order status tracking there will be no wasted time on queuing up, complemented with seamless transaction - simply grab & go when your food is ready!
 
 # Images
-hero: ./sample/oopsie-hero@2x.png
-featured: ./sample/transparent-image.png
-thumbnail: ./sample/triangle.png
+hero: sample/oopsie-hero@2x.png
+featured: sample/transparent-image.png
+thumbnail: sample/triangle.png
 
 # Settings
 heroTheme: oopsie-orange
@@ -192,6 +192,7 @@ sections:
         url: https://google.com
 
   - type: sticky
+    theme: dark
     content:
       sticky: true
       invert: true
@@ -201,7 +202,6 @@ sections:
         In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark. In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark.
 
   - type: sticky
-    theme: dark
     content:
       sticky: true
       invert: false

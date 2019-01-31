@@ -6,6 +6,17 @@ import { IWaterfall } from '../../../../../templates/types'
 
 import * as S from './styled'
 
+/**
+ * THIS SECTION NEEDS TO BE REDONE!
+ *
+ * We shouldn't rely on external packages for this
+ * (expect maybe for snuggle that's not `external` per-se)
+ *
+ * - Remove `react-columns`
+ * - Remove definition from '/src/modules.d.ts`
+ * - Write some quality code
+ */
+
 const Waterfall = (props: IWaterfall) => {
   const columns = [
     {

@@ -42,9 +42,31 @@ exports.createPages = ({ graphql, actions }) => {
 
   return graphql(`
     {
-      allProjectsYaml {
+      allProjectsYaml(sort: { fields: date }) {
         edges {
           node {
+            title
+            tagline
+            hero {
+              childImageSharp {
+                fluid(maxWidth: 3000) {
+                  aspectRatio
+                  src
+                  srcSet
+                  sizes
+                }
+              }
+            }
+            heroTheme
+            themes {
+              name
+              background
+              foreground
+              highlight
+              medium
+              subtle
+              error
+            }
             fields {
               slug
             }
@@ -53,12 +75,20 @@ exports.createPages = ({ graphql, actions }) => {
       }
     }
   `).then(result => {
-    result.data.allProjectsYaml.edges.forEach(({ node }) => {
+    const projects = result.data.allProjectsYaml.edges
+
+    projects.forEach(({ node }, index) => {
+      const next =
+        index === projects.length - 1
+          ? projects[0].node
+          : projects[index + 1].node
+
       createPage({
         path: node.fields.slug,
         component: path.resolve(`./src/templates/project.tsx`),
         context: {
           slug: node.fields.slug,
+          next,
         },
       })
     })

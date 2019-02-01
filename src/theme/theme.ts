@@ -29,42 +29,27 @@ export const lightTheme: IColorsTheme = {
   highlight: colors.significa,
   background: colors.white,
   foreground: colors.black,
-  secondary: colors.lightBlack,
   medium: colors.grey,
   subtle: colors.lightGrey,
   error: colors.red,
-  alpha: {
-    background: colors.alphaWhite,
-    foreground: colors.alphaBlack,
-  },
 }
 
 export const darkTheme: IColorsTheme = {
   highlight: colors.darkGrey,
   background: colors.black,
   foreground: colors.white,
-  secondary: colors.lightGrey,
   medium: colors.darkGrey,
   subtle: colors.lightBlack,
   error: colors.red,
-  alpha: {
-    background: colors.alphaBlack,
-    foreground: colors.alphaWhite,
-  },
 }
 
 export const colorTheme: IColorsTheme = {
   highlight: colors.white,
   background: colors.significa,
   foreground: colors.white,
-  secondary: colors.alphaWhite[80],
   medium: colors.alphaWhite[50],
   subtle: colors.alphaWhite[10],
   error: colors.white,
-  alpha: {
-    background: colors.alphaBlack,
-    foreground: colors.alphaWhite,
-  },
 }
 
 const theme: IFullTheme = {

@@ -1,6 +1,6 @@
 import styled from '@theme'
 
-import { Container as BaseContainer } from '../UI/Layout'
+import { Container as BaseContainer } from '../UI/'
 
 export const Container = styled(BaseContainer).attrs({ as: 'section' })`
   display: grid;

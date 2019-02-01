@@ -5,7 +5,6 @@ date: 2019/01/03
 title: Rocket.Chat
 tagline: Open Source Team Communication
 description: New technologies and ways of thinking that have changed the world. The digitalization is the reason  why i belive in potatoes.
-shortDescription: New technologies and ways of thinking that have changed the world.
 
 # Images
 hero: ./sample3/big-wide-image.jpg
@@ -13,10 +12,8 @@ featured: ./sample3/transparent-image.png
 thumbnail: ./sample3/riad.png
 
 # Settings
-slug: project-name-2
-background: '#0154FF'
-foreground: '#FFFFFF'
-highlight: '#FFCC33'
+heroTheme: dark
+mainTheme: light
 
 # Info
 client: Client name
@@ -38,7 +35,5 @@ links:
 # Sections
 sections:
   - type: text
-    style: light #default. light | dark | color
-    layout: boxed #default. boxed | wide | full
-    #title: It can have an optional title
-    content: In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark.
+    content:
+      text: This is text

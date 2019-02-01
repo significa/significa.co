@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
-import { ProjectThumb } from '../UI/ProjectThumb'
+import { ProjectThumb } from '../UI/'
 
 import * as S from './styled'
 
@@ -9,10 +9,12 @@ interface IRecentProjectsData {
   allProjectsYaml: {
     edges: Array<{
       node: {
+        fields: {
+          slug: string
+        }
         id: string
         title: string
         tagline: string
-        slug: string
         services: string[]
         thumbnail: {
           childImageSharp: {
@@ -37,7 +39,7 @@ const RecentProjects = () => (
               key={project.id}
               title={project.title}
               tagline={project.tagline}
-              to={`/projects/${project.slug}`}
+              to={project.fields.slug}
               fluid={project.thumbnail.childImageSharp.fluid}
               services={project.services}
             />
@@ -53,10 +55,12 @@ const recentProjectsQuery = graphql`
     allProjectsYaml(limit: 3, sort: { fields: date }) {
       edges {
         node {
+          fields {
+            slug
+          }
           id
           title
           tagline
-          slug
           services
           thumbnail {
             childImageSharp {
@@ -71,4 +75,4 @@ const recentProjectsQuery = graphql`
   }
 `
 
-export { RecentProjects }
+export default RecentProjects

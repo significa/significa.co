@@ -1,6 +1,6 @@
 import styled from '@theme'
 import { ExternalIcon as Icon } from './ExternalIcon'
-import { baseStyle } from '../styled'
+import { baseStyle } from '../common'
 
 export const ExternalIcon = styled(Icon)`
   position: absolute;

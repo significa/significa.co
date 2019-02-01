@@ -5,18 +5,23 @@ date: 2019/01/02
 title: OpenNode
 tagline: The quickest & easiest way to accept Bitcoin
 description: New technologies and ways of thinking that have changed the world. The digitalization is the reason  why i belive in potatoes.
-shortDescription: New technologies and ways of thinking that have changed the world.
 
 # Images
-hero: ./sample2/big-wide-image.jpg
+hero: ./sample2/oopsie-hero.png
 featured: ./sample2/transparent-image.png
 thumbnail: ./sample2/red-wall.png
 
 # Settings
-slug: project-name-2
-background: '#0154FF'
-foreground: '#FFFFFF'
-highlight: '#FFCC33'
+heroTheme: oopsie-orange
+mainTheme: light
+themes:
+  - name: oopsie-orange
+    background: '#FAD6A5'
+    foreground: '#15191F'
+    highlight: '#FF9500'
+    medium: '#8D98A5'
+    subtle: 'rgba(255,255,255,0.2)'
+    error: '#FF5050'
 
 # Info
 client: Client name
@@ -39,7 +44,5 @@ links:
 # Sections
 sections:
   - type: text
-    style: light #default. light | dark | color
-    layout: boxed #default. boxed | wide | full
-    #title: It can have an optional title
-    content: In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark.
+    content:
+      text: This is text

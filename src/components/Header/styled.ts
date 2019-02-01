@@ -1,16 +1,31 @@
 import styled from '@theme'
 import { Link } from 'gatsby'
 
-export const Wrapper = styled.header`
-  padding-top: 3em;
+import { Container as BaseContainer } from '../UI/'
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+export const Wrapper = styled.header`
+  background-color: ${({ theme }) => theme.colors.background};
+  padding-top: 3em;
 
   @media (max-width: 48em) {
     padding-top: 2em;
   }
+
+  &:after {
+    content: '';
+    position: fixed;
+    width: 100vw;
+    height: 50vh;
+    top: -50vh;
+    left: 0;
+    background-color: ${({ theme }) => theme.colors.background};
+  }
+`
+
+export const Container = styled(BaseContainer)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 export const LogoLink = styled(Link)`

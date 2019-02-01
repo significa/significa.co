@@ -1,9 +1,21 @@
 import styled from '@theme'
-import { Container as BaseContainer } from '../UI/Layout'
+import { Container as BaseContainer } from '../UI/'
 import { Segg as BaseSegg } from '../UI/Branding'
 
 export const Footer = styled.footer`
   padding: 2.5em 0 7.5em;
+  background-color: ${({ theme }) => theme.colors.background};
+
+  /** Footer can have different bg color than background.
+      Use pseudo-element to hide color change on elastic scroll **/
+  &:after {
+    content: '';
+    position: fixed;
+    width: 100vw;
+    height: 50vh;
+    bottom: -50vh;
+    background-color: ${({ theme }) => theme.colors.background};
+  }
 `
 
 export const Container = styled(BaseContainer)`

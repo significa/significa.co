@@ -4,7 +4,8 @@ import { ISpanTypes } from '../../../../../templates/types'
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-auto-columns: 1fr;
+  grid-template-columns: ${(p: { columns: number }) =>
+    `repeat(${p.columns}, 1fr)`};
   grid-gap: 3em;
 
   @media (max-width: 48em) {

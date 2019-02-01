@@ -9,9 +9,9 @@ import {
 
 import * as S from './styled'
 
-const Gallery: React.FC<IGallery> = ({ items, caption }) => (
+const Gallery: React.FC<IGallery> = ({ items, columns, caption }) => (
   <>
-    <S.Wrapper>
+    <S.Wrapper columns={columns}>
       {items.map((item, i) => {
         const imageItem = item as IGalleryImage
         const videoItem = item as IGalleryVideo

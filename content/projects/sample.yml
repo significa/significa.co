@@ -131,7 +131,6 @@ sections:
     margin: both
     content:
       caption: This is a caption for the whole gallery
-      columns: 2
       items:
         - image: ./sample/coupons.png
           span:

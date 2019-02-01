@@ -1,0 +1,250 @@
+# Date for order
+date: 2020/01/01
+
+# Main info
+title: Oopsie User App
+tagline: Your favorite food one click away
+description: |
+  Oopsie is a hassle-free, online takeaway ordering platform that connects you with neighboring restaurants, in Hong Kong. You order and pay for takeaway with a few simple steps, tracking in real time the status of your order. Simply grab & go when your food is ready!
+
+# Images
+hero: ./oopsie/0-cover.png
+featured: ./sample/transparent-image.png
+thumbnail: ./sample/triangle.png
+
+# Settings
+heroTheme: oopsie-orange
+mainTheme: oopsie-light
+themes:
+  - name: oopsie-orange
+    background: '#FAD6A5'
+    foreground: '#15191F'
+    highlight: '#FF9500'
+    medium: '#8D98A5'
+    subtle: 'rgba(255,255,255,0.2)'
+    error: '#FF5050'
+
+  - name: oopsie-purple
+    background: '#705BD0'
+    foreground: '#FFFFFF'
+    highlight: '#FFFFFF'
+    medium: '#FFFFFF'
+    subtle: 'rgba(255,255,255,0.2)'
+    error: '#FF5050'
+
+  - name: oopsie-light
+    background: '#FFFFFF'
+    foreground: '#111314'
+    highlight: '#FF9500'
+    medium: '#111314'
+    subtle: 'rgba(255,255,255,0.2)'
+    error: '#FF5050'
+
+  - name: oopsie-dark
+    background: '#111314'
+    foreground: '#FFFFFF'
+    highlight: '#FFFFFF'
+    medium: '#FFFFFF'
+    subtle: 'rgba(255,255,255,0.2)'
+    error: '#FF5050'
+
+# Info
+client: Catech Labs
+services:
+  - Business Analysis
+  - Product Management
+  - Consultancy
+  - UI/UX
+  - Branding
+  - Development
+  - Illustration
+  - Video
+deliverables:
+  - Logo
+  - Brand Guidelines
+  - iOS User App
+  - iOS Restaurant App
+  - Android User App
+  - Web Backoffice
+  - Backend
+  - Website
+  - Marketing Assets
+  - Business Reports
+  - Videos
+links:
+  - link: https://play.google.com/store/apps/details?id=com.theoopsieapp.user.app
+    linkText: Play Store
+  - link: https://itunes.apple.com/hk/app/oopsie/id1314892605
+    linkText: App Store
+  - link: https://oopsie.hk/
+    linkText: Website
+
+# Sections
+
+sections:
+  # Grid: small | normal | medium | large | full
+  # margin: none | top | bottom | both
+
+  # Default grid values
+  #
+  # text: small
+  # image: normal
+  # video: normal
+  # gallery: normal
+  # comparison: normal
+  # slideshow: normal
+  # testimonials: normal
+  # sticky: medium
+  # waterfall: large
+
+  # Settings for each section
+  # - type: type
+  #   theme: theme
+  #   layout: layout
+  #   margin: margin
+
+  - type: image
+    theme: oopsie-light
+    layout: large
+    margin: both
+    content:
+      image: ./oopsie/1-oopsie-characters.png
+      
+  
+  - type: text
+    theme: oopsie-light
+    content:
+      title: Market Research
+      text: |
+        We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
+
+
+  - type: image
+    theme: oopsie-light
+    layout: normal
+    margin: both
+    content:
+      image: ./oopsie/2-market-research.png
+
+
+  - type: text
+    theme: oopsie-light
+    content:
+      text: |
+        We visited many local Restaurants, got into their kitchens, interviewed their staff and managers. We understood from inside out how they operate and how they deal with take aways. A true privilege that gave us an opportunity to do something different for the industry. We would reduce queues on restaurant doors while keeping their revenue stream and allowing their customers to skip those endless queues.
+
+  - type: gallery
+    margin: both
+    content:
+      collumns: 8
+      items:
+        - image: ./oopsie/3-market-research.png
+          span:
+            normal: 2
+            tablet: 2 
+            mobile: 2
+        - image: ./oopsie/4-market-research.png
+          span:
+            normal: 2
+            tablet: 2
+            mobile: 2
+
+  - type: text
+    theme: oopsie-light
+    content:
+      title: Core Product Decisions
+      text: |
+        With wireframes (low-fi simplified designs that allow you to get a full scope of the entire app), we tackled app specific flows and went deep into interactions without compromising core product decisions from the get go.
+
+  - type: image
+    theme: oopsie-light
+    layout: full
+    margin: both
+    content:
+      image: ./oopsie/5-wireframes.png
+
+  - type: text
+    theme: oopsie-light
+    content:
+      text: |
+        This allowed us to separate the nice-to-have from the must-have, getting closer and closer to creating an MVP — a Minimum Viable Product. For Oopsie, this meant excluding delivery and focusing exclusively on users picking up their food directly from restaurants.
+
+  - type: image
+    theme: oopsie-light
+    layout: normal
+    margin: both
+    content:
+      image: ./oopsie/6-whiteboard.png
+
+  - type: text
+    theme: oopsie-light
+    content:
+      text: |
+        With these decisions, Oopsie begun to take shape and the app started to become a reality. For an in-depth look at this meticulous process have a read on a series of articles written by Rui Sereno, partner at Significa, involved directly on every decision with the client.
+
+  - type: image
+    theme: oopsie-light
+    layout: normal
+    margin: both
+    content:
+      image: ./oopsie/7-evolution.png
+      caption: The evolution of the Oopsie app (previously named Ketchup)
+
+  - type: text
+    theme: oopsie-light
+    content:
+      title: Oopsie Branding
+      text: |
+        With such a fierce competition from the food delivery industry, the Oopsie brand needed to stand out from the crowd. With that in mind, we set out to create a recognisable brand with a modern logo and a unique set of characters.
+      link:
+        url: https://google.com
+        text: View Oopsie Branding Case Study
+
+  - type: image
+    theme: oopsie-light
+    layout: full
+    margin: both
+    content:
+      image: ./oopsie/8-oopsie-characters.png
+
+  - type: text
+    theme: oopsie-light
+    content:
+      title: The Oopsie App
+      text: |
+        Designed natively & avaliable for both iOS and Android, the Oopsie app allows users to focus entirely on food. Where to get it, when to get it, and most importantly, what to get. With only a few clicks, the users should be able to find their favorite restaurants and order their favourite food. 
+
+  - type: image
+    theme: oopsie-light
+    layout: full
+    margin: both
+    content:
+      image: ./oopsie/9-oopsie-app.png
+
+  - type: text
+    theme: oopsie-light
+    content:
+      text: |
+        Immediately, when the users open the app, they can start browsing restaurants. Over time, analytics told us that users like to order frequently from the same restaurants. For convenience sake, we highlighted the users’ last orders and their favorite restaurants directly on the home tab. 
+  
+  - type: image
+    theme: oopsie-light
+    layout: normal
+    margin: both
+    content:
+      image: ./oopsie/9a-video.png
+
+  - type: text
+    theme: oopsie-light
+    content:
+      text: |
+        As the most likely of scenarios, it made sense to preset the pickup time for “now” and the location for “nearby”.  With a few clicks and without the user losing context users can quickly change the pickup settings.  Content slides down so that users can focus entirely on their decision. Done? The content slides back up with the updated list of restaurants. 
+
+  - type: image
+    theme: oopsie-light
+    layout: normal
+    margin: both
+    content:
+      image: ./oopsie/10-old.png
+      caption: In earlier versions users would pin down their location on a map, unable to set up a specific pickup time or order ahead.
+ 

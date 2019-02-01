@@ -142,6 +142,7 @@ export const query = graphql`
     # Gallery / Slider / Slideshow (not 'video') / waterfall
 
     #caption
+    columns
     items {
       span {
         normal

@@ -1,5 +1,5 @@
 # Date for order
-date: 2020/01/01
+date: 2019/02/02
 
 # Main info
 title: Oopsie User App
@@ -9,8 +9,8 @@ description: |
 
 # Images
 hero: ./oopsie/0-cover.png
-featured: ./sample/transparent-image.png
-thumbnail: ./sample/triangle.png
+featured: ./oopsie/0-featured.png
+thumbnail: ./oopsie/0-thumbnail.png
 
 # Settings
 heroTheme: oopsie-orange
@@ -196,9 +196,6 @@ sections:
       title: Oopsie Branding
       text: |
         With such a fierce competition from the food delivery industry, the Oopsie brand needed to stand out from the crowd. With that in mind, we set out to create a recognisable brand with a modern logo and a unique set of characters.
-      link:
-        url: https://google.com
-        text: View Oopsie Branding Case Study
 
   - type: image
     theme: oopsie-light
@@ -278,7 +275,6 @@ sections:
   - type: sticky
     theme: oopsie-light
     content:
-      sticky: false
       invert: true
       title: Select Restaurant
       image: ./oopsie/13-restaurants.png
@@ -288,8 +284,6 @@ sections:
   - type: sticky
     theme: oopsie-light
     content:
-      sticky: false
-      invert: false
       title: Select Dish
       image: ./oopsie/14-dish.png
       text: |
@@ -298,7 +292,6 @@ sections:
   - type: sticky
     theme: oopsie-light
     content:
-      sticky: false
       invert: true
       title: Proceed to Checkout
       image: ./oopsie/15-cart.png
@@ -349,9 +342,6 @@ sections:
       title: Your Food is being prepared!
       text: |
         The reverse side of the Oopsie coin. When the user places an order, restaurants receive it immediately in their own iOS Restaurant app for iPad. A seamless integration that is the core of the Oopsie ecosystem.
-      link:
-        url: https://google.com
-        text: View Oopsie for Restaurants case study
 
   - type: image
     theme: oopsie-dark
@@ -364,7 +354,6 @@ sections:
     theme: oopsie-light
     margin: top
     content:
-      sticky: false
       invert: true
       title: Track your order!
       image: ./oopsie/19-current-order.png
@@ -391,8 +380,7 @@ sections:
     content:
       title: Designing in 中文
       text: |
-        The reverse side of the Oopsie coin. When the user places an order, restaurants receive it immediately in their own iOS Restaurant app for iPad. A seamless integration that is the core of the Oopsie ecosystem.
-
+        An extra step of our deisgn flow to ensure the user interface of the app worked seamlessly when translated to traditional chinese. Without understanding the language, we focused entirely on text legibility and hierarchy to validate the entire user flow.
   - type: image
     theme: oopsie-light
     layout: full
@@ -406,6 +394,3 @@ sections:
     content:
       text: I was surprised by the amount of meat and cheese that you eat everyday.
       author: Thomas Hung, Founder & CEO of Oopsie
-      link:
-        text: Read interview
-        url: https://google.com

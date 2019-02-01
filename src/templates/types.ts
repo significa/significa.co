@@ -59,6 +59,7 @@ export interface IGalleryVideo {
 }
 
 export interface IGallery {
+  columns: number
   items: Array<IGalleryImage | IGalleryVideo>
   caption?: string
 }

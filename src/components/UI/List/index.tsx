@@ -1,22 +1,36 @@
 import React from 'react'
 
 import { colorType } from '../../../utils/getColor'
+import { Link } from '../Links/'
 
-import { Ul, Li } from './styled'
+import * as S from './styled'
+
+type ItemType =
+  | string
+  | {
+      link: string
+      linkText: string
+    }
 
 interface IList {
-  items: string[]
+  items: ItemType[]
   color?: colorType
 }
 
-const List: React.FC<IList> = ({ items, color }) => (
-  <Ul>
-    {items.map((item: string, index: number) => (
-      <Li color={color} key={index}>
-        {item}
-      </Li>
-    ))}
-  </Ul>
-)
+const List: React.FC<IList> = ({ items, color }) => {
+  return (
+    <S.Ul>
+      {items.map((item: ItemType, index: number) => (
+        <S.Li color={color} key={index}>
+          {typeof item === 'string' ? (
+            item
+          ) : (
+            <Link to={item.link}>{item.linkText}</Link>
+          )}
+        </S.Li>
+      ))}
+    </S.Ul>
+  )
+}
 
-export { List }
+export default List

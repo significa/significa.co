@@ -2,7 +2,7 @@ import React from 'react'
 import Img from 'gatsby-image'
 
 import { ICareersContent } from '../../../pages'
-import { ArrowLink } from '../../UI/Links/ArrowLink'
+import { ArrowLink } from '../../UI/'
 
 import * as S from './styled'
 
@@ -35,4 +35,4 @@ const Careers: React.FC<ICareersContent> = ({
   </>
 )
 
-export { Careers }
+export default Careers

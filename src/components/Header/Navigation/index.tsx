@@ -2,7 +2,7 @@ import React, { RefObject } from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 
 import * as S from './styled'
-import { NavLink } from '../../UI/Links'
+import { NavLink } from '../../UI/'
 
 interface ILinkType {
   node: {

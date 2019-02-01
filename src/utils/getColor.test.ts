@@ -24,12 +24,6 @@ describe('Get color util', () => {
     )
   })
 
-  it('returns secondary', () => {
-    expect(getColor({ color: 'secondary', theme })).toEqual(
-      theme.colors.secondary
-    )
-  })
-
   it('returns medium', () => {
     expect(getColor({ color: 'medium', theme })).toEqual(theme.colors.medium)
   })

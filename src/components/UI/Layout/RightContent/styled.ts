@@ -1,7 +1,7 @@
 import styled from '@theme'
 
-import { Container as BaseContainer } from '../Layout'
-import { Title as BaseTitle } from '../Typography'
+import { Container as BaseContainer } from '../'
+import { Title as BaseTitle } from '../../Typography'
 
 export const Wrapper = styled.section`
   padding: 10em 0;

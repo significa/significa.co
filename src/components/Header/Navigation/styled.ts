@@ -1,6 +1,6 @@
 import styled, { css } from '@theme'
 
-import { NavLink } from '../../UI/Links'
+import { NavLink } from '../../UI/'
 
 export const Wrapper = styled.div`
   position: relative;

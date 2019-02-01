@@ -1,9 +1,7 @@
 import React from 'react'
 
 import { IServicesContent } from '../../../pages'
-import { Big } from '../../UI/Typography'
-import { List } from '../../UI/List'
-import { ArrowLink } from '../../UI/Links/ArrowLink'
+import { Big, List, ArrowLink } from '../../UI/'
 import { textByLine } from '../../../utils/textByLine'
 
 import * as S from './styled'
@@ -40,4 +38,4 @@ const Services: React.FC<IServicesContent> = ({
   </S.Container>
 )
 
-export { Services }
+export default Services

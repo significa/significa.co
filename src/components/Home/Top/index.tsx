@@ -12,4 +12,4 @@ const Top: React.FC<ITop> = ({ headline }) => (
   </S.Container>
 )
 
-export { Top }
+export default Top

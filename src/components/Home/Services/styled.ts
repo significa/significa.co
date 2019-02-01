@@ -1,7 +1,10 @@
 import styled from '@theme'
 
-import { Container as BaseContainer } from '../../UI/Layout'
-import { Title as BaseTitle, Big as BaseBig } from '../../UI/Typography'
+import {
+  Container as BaseContainer,
+  Title as BaseTitle,
+  Big as BaseBig,
+} from '../../UI/'
 
 export const Container = styled(BaseContainer).attrs({ as: 'section' })`
   margin: 12.5em auto;

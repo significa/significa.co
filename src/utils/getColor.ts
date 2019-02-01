@@ -1,6 +1,6 @@
 import { IFullTheme, IColorsTheme } from '@theme'
 
-export type colorType = Exclude<keyof IColorsTheme, 'alpha'>
+export type colorType = keyof IColorsTheme
 
 interface IgetColor {
   color?: colorType
@@ -8,7 +8,6 @@ interface IgetColor {
 }
 
 export const getColor = ({ color, theme: { colors } }: IgetColor): string => {
-  // alpha is not allowed for typography
   if (!color) {
     return colors.foreground
   }

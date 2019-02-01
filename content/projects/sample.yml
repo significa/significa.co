@@ -8,9 +8,9 @@ description: |
   Oopsie is a hassle-free, online takeaway ordering platform that connects you with neighboring restaurants. With Oopsie, you may order and pay for takeaway with a few simple steps. With real time order status tracking there will be no wasted time on queuing up, complemented with seamless transaction - simply grab & go when your food is ready!
 
 # Images
-hero: sample/oopsie-hero@2x.png
-featured: sample/transparent-image.png
-thumbnail: sample/triangle.png
+hero: ./sample/oopsie-hero@2x.png
+featured: ./sample/transparent-image.png
+thumbnail: ./sample/triangle.png
 
 # Settings
 heroTheme: oopsie-orange
@@ -106,7 +106,7 @@ sections:
     layout: large
     margin: both
     content:
-      image: sample/restaurant.png
+      image: ./sample/restaurant.png
       caption: This is a caption
 
   - type: video
@@ -132,17 +132,17 @@ sections:
     content:
       caption: This is a caption for the whole gallery
       items:
-        - image: sample/coupons.png
+        - image: ./sample/coupons.png
           span:
             normal: 1
             tablet: 1
             mobile: 2
-        - image: sample/coupons.png
+        - image: ./sample/coupons.png
           span:
             normal: 1
             tablet: 1
             mobile: 2
-        - image: sample/restaurant.png
+        - image: ./sample/restaurant.png
           span:
             normal: 2
             tablet: 2
@@ -171,20 +171,20 @@ sections:
     content:
       caption: this is some text
       items:
-        - image: sample/restaurant.png
-        - image: sample/restaurant.png
-        - image: sample/restaurant.png
-        - image: sample/restaurant.png
+        - image: ./sample/restaurant.png
+        - image: ./sample/restaurant.png
+        - image: ./sample/restaurant.png
+        - image: ./sample/restaurant.png
 
   - type: waterfall # two columns slightly misaligned
     content:
       items:
-        - image: sample/iphone.png
-        - image: sample/tall.png
-        - image: sample/tall.png
-        - image: sample/coupons.png
-        - image: sample/restaurant.png
-        - image: sample/iphone.png
+        - image: ./sample/iphone.png
+        - image: ./sample/tall.png
+        - image: ./sample/tall.png
+        - image: ./sample/coupons.png
+        - image: ./sample/restaurant.png
+        - image: ./sample/iphone.png
 
   - type: testimonial
     theme: oopsie-purple
@@ -201,7 +201,7 @@ sections:
       sticky: true
       invert: true
       title: This is the title
-      image: sample/tall.png
+      image: ./sample/tall.png
       text: |
         In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark. In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark.
 

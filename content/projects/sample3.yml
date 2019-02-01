@@ -7,9 +7,9 @@ tagline: Open Source Team Communication
 description: New technologies and ways of thinking that have changed the world. The digitalization is the reason  why i belive in potatoes.
 
 # Images
-hero: sample3/big-wide-image.jpg
-featured: sample3/transparent-image.png
-thumbnail: sample3/riad.png
+hero: ./sample3/big-wide-image.jpg
+featured: ./sample3/transparent-image.png
+thumbnail: ./sample3/riad.png
 
 # Settings
 heroTheme: dark

@@ -1,0 +1,271 @@
+# Date for order
+date: 2019/02/01
+
+# Main info
+title: Opennode.co
+tagline: Bitcoin, for everyday.
+description: |
+  OpenNode offers a platform that consists of an easy to use eCommerce and retail plug-in solution, payment infrastructure API’s for developers, and the fastest payment processor to allow for brand new payment models and instantaneous settlements.
+
+# Images
+hero: ./opennode/1-cover.png
+featured: ./opennode/2-featured.png
+thumbnail: ./opennode/3-wireframes.png
+
+# Settings
+heroTheme: opennode-light-grey
+mainTheme: opennode-light
+themes:
+  - name: opennode-light-orange
+    background: '#FFEBD1'
+    foreground: '#1D2229'
+    highlight: '#4896F0'
+    medium: '#1D2229'
+    subtle: 'rgba(255,255,255,0.2)'
+    error: '#1D2229'
+
+  - name: opennode-orange
+    background: '#FABE70'
+    foreground: '#1D2229'
+    highlight: '#4896F0'
+    medium: '#1D2229'
+    subtle: 'rgba(255,255,255,0.2)'
+    error: '#1D2229'
+
+  - name: opennode-light
+    background: '#FFFFFF'
+    foreground: '#1D2229'
+    highlight: '#4896F0'
+    medium: '#1D2229'
+    subtle: 'rgba(255,255,255,0.2)'
+    error: '#1D2229'
+
+
+  - name: opennode-light-grey
+    background: '#EDF1F5'
+    foreground: '#1D2229'
+    highlight: '#4896F0'
+    medium: '#1D2229'
+    subtle: 'rgba(255,255,255,0.2)'
+    error: '#1D2229'
+
+
+# Info
+client: OpenNode, Lda
+services:
+  - Brand guidelines
+  - UX/UI
+  - Front-End
+  - Illustrations
+deliverables:
+  - Identity Guidelines
+  - Web App
+  - Website
+  - Illustrations
+links:
+  - link: https://opennode.co/
+    linkText: Live site
+  - link: https://www.awwwards.com/sites/opennode
+    linkText: Awwwards mention
+
+sections:
+  # Grid: small | normal | medium | large | full
+  # margin: none | top | bottom | both
+
+  # Default grid values
+  #
+  # text: small
+  # image: normal
+  # video: normal
+  # gallery: normal
+  # comparison: normal
+  # slideshow: normal
+  # testimonials: normal
+  # sticky: medium
+  # waterfall: large
+
+  # Settings for each section
+  # - type: type
+  #   theme: theme
+  #   layout: layout
+  #   margin: margin
+
+  - type: image
+    theme: opennode-light
+    layout: full
+    margin: both
+    content:
+      image: ./opennode/2-featured.png
+
+  - type: text
+    theme: opennode-light
+    content:
+      title: Initial process
+      text: |
+        Normally, for every design project we do at Significa that includes a platform and its own marketing website, we prefer to tackle the website afterwards as it’s easier to sell the product after you get to know it. This time, we started with the website and that meant we had to think ahead. We did all the wireframes for the website having into account just the scope of the platform.
+
+  - type: image
+    theme: opennode-light
+    layout: large
+    margin: both
+    content:
+      image: ./opennode/3-wireframes.png
+
+  - type: text
+    theme: opennode-light
+    content:
+      title: Initial process
+      text: |
+        Normally, for every design project we do at Significa that includes a platform and its own marketing website, we prefer to tackle the website afterwards as it’s easier to sell the product after you get to know it. This time, we started with the website and that meant we had to think ahead. We did all the wireframes for the website having into account just the scope of the platform.
+
+  - type: image
+    theme: opennode-light
+    layout: medium
+    margin: both
+    content:
+      image: ./opennode/4-colors.png
+
+  - type: image
+    theme: opennode-light
+    layout: normal
+    margin: both
+    content:
+      image: ./opennode/5-typography.png
+     
+  - type: text
+    theme: opennode-light
+    content:
+      title: Illustrations, first iterations
+      text: |
+        For OpenNode we wanted to represent a new era where payments and technology go hand in hand. As OpenNode is for (every kind) of people we wanted to represent them making various types of payment.
+  
+  - type: gallery
+    margin: both
+    content:
+      collumns: 8
+      items:
+        - image: ./opennode/6-illustration.png
+          span:
+            normal: 4
+            tablet: 1
+            mobile: 2
+        - image: ./opennode/6-illustration.png
+          span:
+            normal: 2
+            tablet: 1
+            mobile: 2
+        - image: ./opennode/7-illustration.png
+          span:
+            normal: 2
+            tablet: 1
+            mobile: 2
+        - image: ./opennode/8-illustration.png
+          span:
+            normal: 2
+            tablet: 2
+            mobile: 2
+        - image: ./opennode/9-illustration.png
+          span:
+            normal: 2
+            tablet: 1
+            mobile: 2
+    
+  - type: text
+    theme: opennode-light
+    content:
+      title: Illustrations, first iterations
+      text: |
+        For OpenNode we wanted to represent a new era where payments and technology go hand in hand. As OpenNode is for (every kind) of people we wanted to represent them making various types of payment.
+
+  - type: waterfall # two columns slightly misaligned
+    content:
+      items:
+        - image: ./opennode/10-illustration.png
+        - image: ./opennode/11-illustration.png
+        - image: ./opennode/12-illustration.png
+        - image: ./opennode/13-illustration.png
+        - image: ./opennode/14-illustration.png
+        - image: ./opennode/15-illustration.png
+
+  - type: text
+    theme: opennode-light
+    content:
+      title: Icons set
+      text: |
+        Two very distinct set of icons were designed for OpenNode. The first, a more standard set of line icons, has the sole purpose of triggering actions that help with all of the app’s navigation.
+          
+  - type: image
+    theme: opennode-light
+    layout: normal
+    margin: both
+    content:
+      image: ./opennode/16-icons.png
+
+  - type: text
+    theme: opennode-light
+    content:
+      text: |
+        The second, is a set of illustrations used to represent features.
+          
+  - type: image
+    theme: opennode-light
+    layout: normal
+    margin: both
+    content:
+      image: ./opennode/17-icons.png
+        
+  - type: text
+    theme: opennode-light
+    content:
+      title: Ta-da!
+      text: |
+        The full website was successfully finished. Want to see for yourself? We are proud to say that www.opennode.co is now live!
+          
+  - type: image
+    theme: opennode-light
+    layout: full
+    margin: both
+    content:
+      image: ./opennode/18-final_website.png
+      
+  - type: waterfall # two columns slightly misaligned
+    content:
+      items:
+        - image: ./opennode/19-website-about.png
+        - image: ./opennode/21-website-industries.png
+        - image: ./opennode/20-website-pricing.png
+  
+  - type: text
+    theme: opennode-light
+    content:
+      text: |
+        For a futuristic project, an awesome mobile experience. Half the pixels, 100% of the experience!
+          
+  - type: image
+    theme: opennode-light
+    layout: full
+    margin: both
+    content:
+      image: ./opennode/22-website-mobile.png
+
+  - type: text
+    theme: opennode-orange
+    margin: top
+    content:
+      title: The platform
+      text: |
+        Simplicity was the key word. When we talk about an web app for users that will use it everyday we need to keep it simple. Intuitive flow, almost automatic, so the user can fulfil the purpose of the app: get paid.
+
+  - type: image
+    theme: opennode-orange
+    layout: medium
+    margin: bottom
+    content:
+      image: ./opennode/23-platform.png
+        
+  - type: image
+    theme: opennode-light
+    layout: small
+    margin: both
+    content:
+      image: ./opennode/24-gettingstarted.png

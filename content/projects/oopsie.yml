@@ -43,7 +43,7 @@ themes:
   - name: oopsie-dark
     background: '#111314'
     foreground: '#FFFFFF'
-    highlight: '#FFFFFF'
+    highlight: '#FF9500'
     medium: '#FFFFFF'
     subtle: 'rgba(255,255,255,0.2)'
     error: '#FF5050'
@@ -106,7 +106,7 @@ sections:
   - type: image
     theme: oopsie-light
     layout: large
-    margin: both
+    margin: bottom
     content:
       image: ./oopsie/1-oopsie-characters.png
       
@@ -136,17 +136,17 @@ sections:
   - type: gallery
     margin: both
     content:
-      collumns: 8
+      columns: 8
       items:
         - image: ./oopsie/3-market-research.png
           span:
-            normal: 2
-            tablet: 2 
+            normal: 4
+            tablet: 1
             mobile: 2
         - image: ./oopsie/4-market-research.png
           span:
-            normal: 2
-            tablet: 2
+            normal: 4
+            tablet: 1
             mobile: 2
 
   - type: text
@@ -248,3 +248,164 @@ sections:
       image: ./oopsie/10-old.png
       caption: In earlier versions users would pin down their location on a map, unable to set up a specific pickup time or order ahead.
  
+  - type: text
+    theme: oopsie-light
+    content:
+      text: |
+        If the users want to get a birds-eye-view of the restaurants avaliable in a certain area, they can use Oopsie’s map feature to see which ones are more convenient for pickup. At a glance, due to a clever choice of color, users can immediately understand which restaurants are open nearby or on the way to their destination.
+
+  - type: image
+    theme: oopsie-light
+    layout: full
+    margin: both
+    content:
+      image: ./oopsie/11-map.png
+
+  - type: text
+    theme: oopsie-light
+    content:
+      title: Authentication
+      text: |
+        The Oopsie app and the service it provides relies heavily on direct contact between restaurants and users. That is why we opted for a mandatory signup with a phone number. Not only is it an immediate way to validate an account, it’s also a very convenient way for restaurants to contact users directly with urgent order updates.  
+
+  - type: image
+    theme: oopsie-light
+    layout: large
+    margin: both
+    content:
+      image: ./oopsie/12-authentication.png
+
+  - type: sticky
+    theme: oopsie-light
+    content:
+      sticky: false
+      invert: true
+      title: Select Restaurant
+      image: ./oopsie/13-restaurants.png
+      text: |
+        The user is in, but how do we make him stay? First impressions matter, so we created a place where restaurants can have some real appetizing photographs of both their food and their facilities. Information is always within eye reach, so that users can, at a glance, quickly scan the important information. This meant replacing the native placement of the restaurant name on the header with the order pickup time.
+      
+  - type: sticky
+    theme: oopsie-light
+    content:
+      sticky: false
+      invert: false
+      title: Select Dish
+      image: ./oopsie/14-dish.png
+      text: |
+        In the asian cuisine not every dish is alike and there are hundreds of different possible variables to choose from. For extraordinary circumstances we needed an extraordinary feature. Craving some cart noodles? Tailor it to your taste by adding as much sausage as you want with our clever & intuitve counter flow! Just tap to add!
+
+  - type: sticky
+    theme: oopsie-light
+    content:
+      sticky: false
+      invert: true
+      title: Proceed to Checkout
+      image: ./oopsie/15-cart.png
+      text: |
+        Always within reach, users can review and edit their cart, see how much they are going to pay, and quickly proceed to checkout. An extra oportunity to add some extra Cart Noodles! 
+
+  - type: text
+    theme: oopsie-light
+    content:
+      title: Confirm your order!
+      text: |
+        Just like the cart, but unlike the cart. Here it’s all about reviewing your order, adding special notes and selecting your preferred payment method. Oh did I mention you can add coupons for an extra discount?
+
+  - type: gallery
+    margin: both
+    content:
+      columns: 8
+      items:
+        - image: ./oopsie/16-checkout.png
+          span:
+            normal: 4
+            tablet: 1
+            mobile: 2
+        - image: ./oopsie/16a-coupons.png
+          span:
+            normal: 4
+            tablet: 1
+            mobile: 2
+
+  - type: text
+    theme: oopsie-light
+    content:
+      text: |
+        Copouns can be offered by restaurants, or earned by signing up to Oopsie and referring it to friends. But how could we make them fun? With such a powerful branding behind the app, this was the perfect place to add the excentric and colorful Oopsies!
+
+  - type: image
+    theme: oopsie-light
+    layout: medium
+    margin: both
+    content:
+      image: ./oopsie/17-coupons.png
+
+
+  - type: text
+    theme: oopsie-dark
+    margin: top
+    content:
+      title: Your Food is being prepared!
+      text: |
+        The reverse side of the Oopsie coin. When the user places an order, restaurants receive it immediately in their own iOS Restaurant app for iPad. A seamless integration that is the core of the Oopsie ecosystem.
+      link:
+        url: https://google.com
+        text: View Oopsie for Restaurants case study
+
+  - type: image
+    theme: oopsie-dark
+    layout: large
+    margin: bottom
+    content:
+      image: ./oopsie/18-restaurant-app.png
+
+  - type: sticky
+    theme: oopsie-light
+    margin: top
+    content:
+      sticky: false
+      invert: true
+      title: Track your order!
+      image: ./oopsie/19-current-order.png
+      text: |
+        Communicated by Restaurants, the status of your order can be tracked in real time. When it’s ready for pickup, upon reaching the restaurant, users can pop open their order number and the pickup code to accelerate the handover process.
+
+  - type: text
+    theme: oopsie-light
+    content:
+      title: Activiy & Order History
+      text: |
+        Think of it as the notification board for Oopsie. Users get notified when an order status changes or on any announcement from the Oopsie team. For some nostalgic overdose, users can check back on their order history and reorder their favorite food.
+
+  - type: image
+    theme: oopsie-light
+    layout: full
+    margin: top
+    content:
+      image: ./oopsie/20-activity.png
+
+  - type: text
+    theme: oopsie-light
+    margin: top
+    content:
+      title: Designing in 中文
+      text: |
+        The reverse side of the Oopsie coin. When the user places an order, restaurants receive it immediately in their own iOS Restaurant app for iPad. A seamless integration that is the core of the Oopsie ecosystem.
+
+  - type: image
+    theme: oopsie-light
+    layout: full
+    margin:
+    content:
+      image: ./oopsie/21-chinese.jpg
+
+  - type: testimonial
+    theme: oopsie-purple
+    margin: both
+    content:
+      text: I was surprised by the amount of meat and cheese that you eat everyday.
+      author: Thomas Hung, Founder & CEO of Oopsie
+      link:
+        text: Read interview
+        url: https://google.com

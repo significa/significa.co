@@ -49,6 +49,14 @@ themes:
     subtle: 'rgba(255,255,255,0.2)'
     error: '#1D2229'
 
+  - name: opennode-dark
+    background: '#1D2229'
+    foreground: '#ffffff'
+    highlight: '#4896F0'
+    medium: '#ffffff'
+    subtle: 'rgba(255,255,255,0.05)'
+    error: '#ffffff'
+
 
 # Info
 client: OpenNode, Lda
@@ -142,31 +150,26 @@ sections:
   - type: gallery
     margin: both
     content:
-      collumns: 8
+      columns: 8
       items:
         - image: ./opennode/6-illustration.png
           span:
             normal: 4
             tablet: 1
             mobile: 2
-        - image: ./opennode/6-illustration.png
-          span:
-            normal: 2
-            tablet: 1
-            mobile: 2
         - image: ./opennode/7-illustration.png
           span:
-            normal: 2
+            normal: 4
             tablet: 1
             mobile: 2
         - image: ./opennode/8-illustration.png
           span:
-            normal: 2
+            normal: 4
             tablet: 2
             mobile: 2
         - image: ./opennode/9-illustration.png
           span:
-            normal: 2
+            normal: 4
             tablet: 1
             mobile: 2
     
@@ -216,17 +219,25 @@ sections:
         
   - type: text
     theme: opennode-light
+    margin: bottom
     content:
       title: Ta-da!
       text: |
-        The full website was successfully finished. Want to see for yourself? We are proud to say that www.opennode.co is now live!
+        The full website was successfully finished. Want to see for yourself? We are proud to say that oppennode.co is now live!
+      link:
+        url: https://www.opennode.co
+        text: View live website
           
-  - type: image
-    theme: opennode-light
-    layout: full
+  - type: video
+    theme: opennode-light-orange
+    layout: medium
     margin: both
     content:
-      image: ./opennode/18-final_website.png
+      video: ./opennode/18-final_website.mp4
+      autoplay: true
+      loop: true
+      controls: false
+      muted: true
       
   - type: waterfall # two columns slightly misaligned
     content:
@@ -265,7 +276,69 @@ sections:
         
   - type: image
     theme: opennode-light
-    layout: small
+    layout: normal
     margin: both
     content:
       image: ./opennode/24-gettingstarted.png
+
+  - type: text
+    theme: opennode-light
+    content:
+      title: It’s so easy that it’s hard to explain.
+      text: |
+        Instant exchanges, quick invoice, microtransactiosn and withdrawals are some of the most important actions on the OpenNode platform. As the target were people working in coffee houses or shops everything needed to be done quickly, but with ease. Clear and straight forward flows. So easy that it’s hard to explain.
+
+  - type: image
+    theme: opennode-light
+    layout: full
+    margin: both
+    content:
+      image: ./opennode/25-platform-screens.png
+  
+  - type: text
+    theme: opennode-light
+    content:
+      title: Join me in the dark side
+      text: |
+        Toggle dark mode in the profile settings and give your eyes a rest at night.
+
+  - type: comparison
+    layout: normal
+    content:
+      a: ./opennode/25-platform-light.png
+      b: ./opennode/26-platform-dark.png
+
+  - type: text
+    theme: opennode-light
+    content:
+      title: Accessible everywhere
+      text: |
+        Big screen or small, the OpenNode platform looks good on all your devices.
+  
+  - type: image
+    theme: opennode-light
+    layout: full
+    margin: both
+    content:
+      image: ./opennode/27-platform-mobile.png
+
+  - type: text
+    theme: opennode-light
+    content:
+      title: Components
+      text: |
+        We belive in a well structured component based system that can effortlessly bridge the design and development process. A single source of truth that serves as the backbone of OpenNode.
+          
+  - type: image
+    theme: opennode-light
+    layout: full
+    margin: top
+    content:
+      image: ./opennode/28-platform-component.png
+  
+  - type: testimonial
+    theme: opennode-dark
+    margin: both
+    content:
+      text: I could see you guys really spent a lot of thinking on it, something extra.
+      author: Afnan R. — CEO of OpenNode

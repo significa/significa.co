@@ -16,6 +16,8 @@ export const Section = styled.section`
 export const Container = styled(BaseContainer)`
   padding-top: 7em;
   padding-bottom: 7em;
+  position: relative;
+  z-index: 1;
 
   @media (max-width: 48em) {
     padding-top: 3em;

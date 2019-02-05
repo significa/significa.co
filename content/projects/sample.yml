@@ -130,6 +130,7 @@ sections:
   - type: gallery
     margin: both
     content:
+      columns: 2
       caption: This is a caption for the whole gallery
       items:
         - image: ./sample/coupons.png

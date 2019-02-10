@@ -2,7 +2,7 @@ import React from 'react'
 import Img from 'gatsby-image'
 import Columns from 'react-columns'
 
-import { IWaterfall } from '../../../../../templates/types'
+import { IWaterfall } from '../../types'
 
 import * as S from './styled'
 

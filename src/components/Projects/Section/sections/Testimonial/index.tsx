@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ITestimonial } from '../../../../../templates/types'
+import { ITestimonial } from '../../types'
 import { textByLine } from '../../../../../utils/textByLine'
 
 import { Title, Text, ArrowLink } from '../../../../UI'

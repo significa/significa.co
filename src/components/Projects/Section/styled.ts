@@ -1,5 +1,5 @@
 import styled, { css } from '@theme'
-import { marginTypes } from '../../../templates/types'
+import { marginTypes } from './types'
 
 const getMargins = (p: { margin?: marginTypes }) => {
   if (p.margin && p.margin !== 'none') {

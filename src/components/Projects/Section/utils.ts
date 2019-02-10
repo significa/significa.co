@@ -1,4 +1,4 @@
-import { layoutTypes, sectionTypes } from '../templates/types'
+import { layoutTypes, sectionTypes } from './types'
 
 const widths: { [K in layoutTypes]: string } = {
   small: '38.4375em',
@@ -8,7 +8,7 @@ const widths: { [K in layoutTypes]: string } = {
   full: '100%',
 }
 
-const fallbackValues: { [K in sectionTypes]: layoutTypes } = {
+const defaultValues: { [K in sectionTypes]: layoutTypes } = {
   comparison: 'normal',
   gallery: 'normal',
   image: 'normal',
@@ -26,7 +26,7 @@ const getProjectSectionWidth = (type: sectionTypes, layout?: layoutTypes) => {
     return widths[layout]
   }
 
-  return widths[fallbackValues[type]]
+  return widths[defaultValues[type]]
 }
 
 export { getProjectSectionWidth }

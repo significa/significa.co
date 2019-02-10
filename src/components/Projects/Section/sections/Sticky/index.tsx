@@ -1,11 +1,7 @@
 import React from 'react'
 import Img from 'gatsby-image'
 
-import {
-  ISticky,
-  IStickyImage,
-  IStickyVideo,
-} from '../../../../../templates/types'
+import { ISticky, IStickyImage, IStickyVideo } from '../../types'
 
 import * as S from './styled'
 import { textByLine } from '../../../../../utils/textByLine'

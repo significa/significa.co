@@ -1,7 +1,7 @@
 import React from 'react'
 import Img from 'gatsby-image'
 
-import { ISlideshow } from '../../../../../templates/types'
+import { ISlideshow } from '../../types'
 
 import Arrow from './Arrow'
 

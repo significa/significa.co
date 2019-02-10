@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { IText } from '../../../../../templates/types'
+import { IText } from '../../types'
 
 import * as S from './styled'
 import { textByLine } from '../../../../../utils/textByLine'

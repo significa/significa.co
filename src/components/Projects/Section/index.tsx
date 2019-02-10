@@ -2,14 +2,14 @@ import React from 'react'
 
 import { IColorsTheme, Theme } from '@theme'
 
-import { ISection, sectionTypes } from '../../../templates/types'
+import { ISection, sectionTypes } from './types'
 
 import * as S from './styled'
 import * as Sections from './sections'
 
 import { Container } from '../../UI'
 import ConditionalWrap from '../../utils/ConditionalWrap'
-import { getProjectSectionWidth } from '../../../utils/getProjectSectionWidth'
+import { getProjectSectionWidth } from './utils'
 
 type SectionsMap = { [K in sectionTypes]: React.ComponentType<any> }
 

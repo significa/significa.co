@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { textByLine } from '../../../../../utils/textByLine'
-import { IHighlight } from '../../../../../templates/types'
+import { IHighlight } from '../../types'
 
 import { Big } from '../../../../UI'
 

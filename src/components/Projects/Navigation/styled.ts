@@ -104,7 +104,10 @@ export const ButtonLine = styled.span`
   }
 `
 
-export const NavigationButton = styled.button<{ visible: boolean }>`
+export const NavigationButton = styled.button<{
+  visible: boolean
+  isButtonVisible: boolean
+}>`
   position: fixed;
   left: 1rem;
   bottom: 1rem;
@@ -122,6 +125,9 @@ export const NavigationButton = styled.button<{ visible: boolean }>`
   outline: none;
   box-shadow: none;
   appearance: none;
+
+  opacity: ${p => (p.isButtonVisible ? 1 : 0)};
+  transition: opacity ${({ theme }) => theme.transitions.ease()};
 
   /** Really white **/
   background-color: white;

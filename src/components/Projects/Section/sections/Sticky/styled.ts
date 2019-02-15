@@ -67,5 +67,5 @@ export const MediaContainer = styled.div`
 `
 
 export const Title = styled(BaseTitle)`
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 `

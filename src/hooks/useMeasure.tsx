@@ -1,0 +1,40 @@
+import { useRef, useState, useEffect } from 'react'
+import ResizeObserver from 'resize-observer-polyfill'
+
+interface ISizeState {
+  left: number
+  top: number
+  right: number
+  bottom: number
+  width: number
+  height: number
+  x: number
+  y: number
+}
+
+export default function useMeasure() {
+  const ref = useRef<HTMLElement>(null)
+  const [bounds, set] = useState<ISizeState>({
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
+    width: 0,
+    height: 0,
+    x: 0,
+    y: 0,
+  })
+  const ro = new ResizeObserver(([entry]) => {
+    set(entry.contentRect)
+  })
+
+  useEffect(() => {
+    if (ref.current) {
+      ro.observe(ref.current)
+    }
+
+    return ro.disconnect
+  }, [])
+
+  return [ref, bounds]
+}

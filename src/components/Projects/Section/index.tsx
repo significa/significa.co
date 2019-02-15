@@ -16,6 +16,7 @@ type SectionsMap = { [K in sectionTypes]: React.ComponentType<any> }
 interface ISectionProps {
   section: ISection
   theme: IColorsTheme
+  sectionLabel?: string
 }
 
 class Section extends React.Component<ISectionProps> {
@@ -32,7 +33,7 @@ class Section extends React.Component<ISectionProps> {
   }
 
   render() {
-    const { theme, section } = this.props
+    const { theme, section, sectionLabel } = this.props
 
     const SectionComponent =
       (Sections as SectionsMap)[section.type] || Sections.text
@@ -44,7 +45,10 @@ class Section extends React.Component<ISectionProps> {
       >
         <S.SectionWrapper margin={section.margin}>
           <Container style={this.getMaxWidth()}>
-            <SectionComponent {...section.content} />
+            <SectionComponent
+              {...section.content}
+              sectionLabel={sectionLabel}
+            />
           </Container>
         </S.SectionWrapper>
       </ConditionalWrap>

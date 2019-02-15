@@ -8,12 +8,29 @@ import { IImageObject, ISection } from '../components/Projects/Section/types'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { Meta, Hero, Section, Next, Chapter } from '../components/Projects/'
+import {
+  Meta,
+  Hero,
+  Section,
+  Next,
+  Chapter,
+  Navigation,
+} from '../components/Projects/'
 import ConditionalWrap from '../components/utils/ConditionalWrap'
 
 interface ITheme extends IColorsTheme {
   name: string
 }
+
+export type ContentType = Array<{
+  title?: string
+  theme?: string
+  showTitle?: boolean
+  content: Array<{
+    title?: string
+    sections: ISection[]
+  }>
+}>
 
 export interface IProject {
   pageContext: {
@@ -36,6 +53,7 @@ export interface IProject {
       hero: IImageObject
       heroTheme: string
       mainTheme: string
+      navigationTheme: string
       themes?: ITheme[]
       client?: string
       services?: string[]
@@ -44,15 +62,7 @@ export interface IProject {
         link: string
         linkText: string
       }>
-      content: Array<{
-        title?: string
-        theme?: string
-        showTitle?: boolean
-        content: Array<{
-          title?: string
-          sections: ISection[]
-        }>
-      }>
+      content: ContentType
     }
   }
 }
@@ -67,6 +77,25 @@ const Project = ({ data, pageContext: { next } }: IProject) => {
       footerTheme="light"
     >
       <SEO title={projectsYaml.title} description={projectsYaml.description} />
+
+      {/* Project navigation */}
+      <ConditionalWrap
+        condition={!!projectsYaml.navigationTheme}
+        wrap={children => (
+          <Theme
+            theme={getProjectTheme(
+              projectsYaml.navigationTheme as string,
+              projectsYaml.themes
+            )}
+          >
+            {children}
+          </Theme>
+        )}
+      >
+        <Navigation content={projectsYaml.content} />
+      </ConditionalWrap>
+
+      {/* Hero */}
       <Theme
         theme={getProjectTheme(projectsYaml.heroTheme, projectsYaml.themes)}
       >
@@ -76,6 +105,8 @@ const Project = ({ data, pageContext: { next } }: IProject) => {
           fluid={projectsYaml.hero.childImageSharp.fluid}
         />
       </Theme>
+
+      {/* Project description */}
       <Meta
         description={projectsYaml.description}
         client={projectsYaml.client}
@@ -83,16 +114,11 @@ const Project = ({ data, pageContext: { next } }: IProject) => {
         deliverables={projectsYaml.deliverables}
         links={projectsYaml.links}
       />
-      {projectsYaml.content.map((chapter, i) => {
-        const sections: ISection[] = chapter.content.reduce(
-          (acc: ISection[], s) => {
-            return [...acc, ...s.sections]
-          },
-          []
-        )
 
+      {/* Chapters, blocks and sections */}
+      {projectsYaml.content.map((chapter, chapterIndex) => {
         return (
-          <React.Fragment key={i}>
+          <React.Fragment key={chapterIndex}>
             {chapter.showTitle && chapter.title && (
               <ConditionalWrap
                 condition={!!chapter.theme}
@@ -110,18 +136,23 @@ const Project = ({ data, pageContext: { next } }: IProject) => {
                 <Chapter title={chapter.title} />
               </ConditionalWrap>
             )}
-            {sections.map((section, k) => {
-              return (
-                <Section
-                  key={k}
-                  section={section}
-                  theme={getProjectTheme(section.theme, projectsYaml.themes)}
-                />
-              )
+            {chapter.content.map(block => {
+              return block.sections.map((section, sectionIndex) => {
+                return (
+                  <Section
+                    key={sectionIndex}
+                    section={section}
+                    theme={getProjectTheme(section.theme, projectsYaml.themes)}
+                    sectionLabel={block.title}
+                  />
+                )
+              })
             })}
           </React.Fragment>
         )
       })}
+
+      {/* Next  project */}
       <Theme theme={getProjectTheme(next.heroTheme, next.themes)}>
         <Next
           title={next.title}
@@ -155,6 +186,7 @@ export const query = graphql`
       }
       heroTheme
       mainTheme
+      navigationTheme
       themes {
         name
         background
@@ -176,6 +208,7 @@ export const query = graphql`
         theme
         showTitle
         content {
+          title
           sections {
             type
             layout

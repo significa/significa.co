@@ -15,6 +15,7 @@ thumbnail: ./sample/triangle.png
 # Settings
 heroTheme: oopsie-orange
 mainTheme: oopsie-light
+navigationTheme: oopsie-light
 themes:
   - name: oopsie-orange
     background: '#FAD6A5'
@@ -200,3 +201,44 @@ content:
               video: sample/ketchup.mov
               text: |
                 In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark. In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark.
+
+  - title: Chapter 2
+    content:
+      # Section
+      - title: Branding
+        sections:
+          # Sections
+          - type: text
+            content:
+              title: Logo
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
+          - type: text
+            content:
+              title: Colors
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
+          - type: text
+            content:
+              title: Typography
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
+
+      - title: February 2019
+        sections:
+          # Sections
+          - type: text
+            content:
+              title: Something new
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
+          - type: text
+            content:
+              title: Another one
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
+          - type: text
+            content:
+              title: This is the last
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.

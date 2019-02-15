@@ -29,16 +29,16 @@ themes:
     background: '#705BD0'
     foreground: '#FFFFFF'
     highlight: '#FFFFFF'
-    medium: '#FFFFFF'
-    subtle: 'rgba(255,255,255,0.2)'
+    medium: 'rgba(255,255,255,0.4)'
+    subtle: 'rgba(255,255,255,0.1)'
     error: '#FF5050'
 
   - name: oopsie-light
     background: '#FFFFFF'
     foreground: '#111314'
     highlight: '#FF9500'
-    medium: '#111314'
-    subtle: 'rgba(255,255,255,0.2)'
+    medium: 'rgba(0,0,0,0.2)'
+    subtle: 'rgba(0,0,0,0.05)'
     error: '#FF5050'
 
   - name: oopsie-dark
@@ -106,6 +106,13 @@ content:
               loop: true
               controls: true
               muted: true
+
+          - type: text
+            theme: dark
+            content:
+              title: Gallery of photos
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
 
           - type: highlight
             theme: dark

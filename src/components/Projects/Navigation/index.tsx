@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { useTrail, animated } from 'react-spring'
+import { useTrail } from 'react-spring'
 import { theme } from '@theme'
 
 import { ContentType } from '../../../templates/project'
@@ -34,32 +34,35 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
       tension: 3000,
       friction: 100,
       easing: t => {
-        return t * t * t * t
+        return t * t * t
       },
     },
+    x: visible ? 0 : -0.5,
     opacity: visible ? 1 : 0,
-    x: visible ? 0 : -0.75,
-    from: { opacity: 0, x: -0.75 },
+    from: { x: -0.5, opacity: 0 },
   })
 
   return (
     <S.ProjectNavigation>
       <ul>
-        {trail.map(({ x, ...rest }: any, index: number) => (
-          <animated.li
+        {trail.map(({ x, opacity }: any, index: number) => (
+          <NavigationItem
             key={index}
             style={{
-              ...rest,
+              opacity,
               transform: x.interpolate(
                 (value: number) => `translateX(${value}em)`
               ),
             }}
-          >
-            <NavigationItem item={items[index]} />
-          </animated.li>
+            item={items[index]}
+          />
         ))}
       </ul>
-      <button onClick={toggleNav}>Toggle nav</button>
+      <S.NavigationButton onClick={toggleNav} visible={visible}>
+        <S.ButtonLine />
+        <S.ButtonLine />
+        <S.ButtonLine />
+      </S.NavigationButton>
     </S.ProjectNavigation>
   )
 }

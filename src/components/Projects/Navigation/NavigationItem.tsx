@@ -3,6 +3,8 @@ import React from 'react'
 import { titleToID } from '../../../utils/titleToID'
 import { navigateToSection } from '../utils'
 
+import * as S from './styled'
+
 export interface IItem {
   type: 'chapter' | 'block' | 'section'
   text: string
@@ -10,22 +12,26 @@ export interface IItem {
 
 interface INavigationItem {
   item: IItem
+  style: object
 }
 
-const NavigationItem: React.FC<INavigationItem> = ({ item }) => {
+const NavigationItem: React.FC<INavigationItem> = ({ item, style }) => {
   switch (item.type) {
     case 'chapter':
-      return <h1>{item.text}</h1>
+      return <S.ChapterTitle style={style}>{item.text}</S.ChapterTitle>
     case 'block':
-      return <h2>{item.text}</h2>
+      return <S.BlockTitle style={style}>{item.text}</S.BlockTitle>
     case 'section':
       return (
-        <a
+        <S.SectionLink
+          style={style}
           href={`#${titleToID(item.text)}`}
-          onClick={e => navigateToSection(e, titleToID(item.text))}
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+            navigateToSection(e, titleToID(item.text))
+          }
         >
           {item.text}
-        </a>
+        </S.SectionLink>
       )
     default:
       return null

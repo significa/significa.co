@@ -4,7 +4,9 @@ import { animated } from 'react-spring'
 export const ProjectNavigation = styled.nav`
   box-sizing: border-box;
   position: fixed;
-  z-index: 10;
+  z-index: -1;
+
+  overflow: auto;
 
   top: 0;
   left: 0;
@@ -103,6 +105,13 @@ export const ButtonLine = styled.span`
 `
 
 export const NavigationButton = styled.button<{ visible: boolean }>`
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 10;
+
+  box-sizing: border-box;
+
   width: 2rem;
   height: 2rem;
 
@@ -116,10 +125,6 @@ export const NavigationButton = styled.button<{ visible: boolean }>`
 
   /** Really white **/
   background-color: white;
-
-  position: fixed;
-  left: 1rem;
-  bottom: 1rem;
 
   &:hover ${ButtonLine} {
     &:nth-child(1) {

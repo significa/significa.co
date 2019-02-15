@@ -16,13 +16,20 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
   const [visible, setVisible] = useState<boolean>(false)
   const toggleNav = useCallback(() => setVisible(!visible), [visible])
 
+  const toggleBody = () => {
+    document.body.style.width = '100vw'
+    document.body.style.transition = `margin-left ${theme.transitions.cubic()}`
+    document.body.style.marginLeft = visible ? '18em' : `0`
+  }
+
+  // Move body
   useEffect(() => {
-    document.body.style.transition = `padding-left ${theme.transitions.cubic()}`
-    document.body.style.paddingLeft = visible ? '18em' : `0`
+    toggleBody()
 
     return () => {
+      document.body.style.width = 'auto'
       document.body.style.transition = `none`
-      document.body.style.paddingLeft = '0'
+      document.body.style.marginLeft = '0'
     }
   }, [visible])
 
@@ -43,9 +50,9 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
   })
 
   return (
-    <S.ProjectNavigation>
-      <ul>
-        {trail.map(({ x, opacity }: any, index: number) => (
+    <>
+      <S.ProjectNavigation>
+        {trail.map(({ x, opacity }: { [key: string]: any }, index: number) => (
           <NavigationItem
             key={index}
             style={{
@@ -57,13 +64,13 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
             item={items[index]}
           />
         ))}
-      </ul>
+      </S.ProjectNavigation>
       <S.NavigationButton onClick={toggleNav} visible={visible}>
         <S.ButtonLine />
         <S.ButtonLine />
         <S.ButtonLine />
       </S.NavigationButton>
-    </S.ProjectNavigation>
+    </>
   )
 }
 

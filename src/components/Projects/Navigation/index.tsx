@@ -14,6 +14,7 @@ interface INavigation {
 
 const Navigation: React.FC<INavigation> = ({ content }) => {
   const [visible, setVisible] = useState<boolean>(false)
+  const [isButtonVisible, setButtonVisible] = useState<boolean>(false)
   const toggleNav = useCallback(() => setVisible(!visible), [visible])
 
   const toggleBody = () => {
@@ -32,6 +33,25 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
       document.body.style.marginLeft = '0'
     }
   }, [visible])
+
+  // Only show button closer to the bottom
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [visible, isButtonVisible])
+
+  const handleScroll = () => {
+    if (window.scrollY > 500) {
+      setButtonVisible(true)
+    } else {
+      setButtonVisible(false)
+
+      if (visible) {
+        setVisible(false)
+      }
+    }
+  }
 
   const items = createNavigationItems(content)
 
@@ -65,7 +85,11 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
           />
         ))}
       </S.ProjectNavigation>
-      <S.NavigationButton onClick={toggleNav} visible={visible}>
+      <S.NavigationButton
+        onClick={toggleNav}
+        visible={visible}
+        isButtonVisible={isButtonVisible}
+      >
         <S.ButtonLine />
         <S.ButtonLine />
         <S.ButtonLine />

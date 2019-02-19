@@ -14,15 +14,15 @@ thumbnail: ./sample/triangle.png
 
 # Settings
 heroTheme: oopsie-orange
-mainTheme: oopsie-light
-navigationTheme: oopsie-light
+mainTheme: oopsie-dark
+navigationTheme: oopsie-orange
 themes:
   - name: oopsie-orange
     background: '#FAD6A5'
     foreground: '#15191F'
     highlight: '#FF9500'
-    medium: '#8D98A5'
-    subtle: 'rgba(255,255,255,0.2)'
+    medium: 'rgba(0,0,0,0.4)'
+    subtle: 'rgba(0,0,0,0.05)'
     error: '#FF5050'
 
   - name: oopsie-purple
@@ -37,7 +37,7 @@ themes:
     background: '#FFFFFF'
     foreground: '#111314'
     highlight: '#FF9500'
-    medium: 'rgba(0,0,0,0.2)'
+    medium: 'rgba(0,0,0,0.4)'
     subtle: 'rgba(0,0,0,0.05)'
     error: '#FF5050'
 
@@ -70,9 +70,9 @@ links:
 
 content:
   # Chapter
-  - title: Chapter 1
+  - title: A mãe do Pedro
     theme: oopsie-light
-    showTitle: false
+    showTitle: true
     content:
       # Section
       - title: Styleguide

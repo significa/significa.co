@@ -1,12 +1,19 @@
 import styled, { css } from '@theme'
 import { animated } from 'react-spring'
 
-export const ProjectNavigation = styled.nav`
+const Z_INDEXES = {
+  overlay: 98,
+  drawer: 99,
+  button: 100,
+}
+
+export const AnimatedDrawer = styled(animated.nav)`
   box-sizing: border-box;
   position: fixed;
-  z-index: -1;
+  z-index: ${Z_INDEXES.drawer};
 
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 
   top: 0;
   left: 0;
@@ -18,7 +25,21 @@ export const ProjectNavigation = styled.nav`
   padding: 4em;
 `
 
-export const ChapterTitle = styled(animated.h3)`
+export const AnimatedOverlay = styled(animated.div)`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  z-index: ${Z_INDEXES.overlay};
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  cursor: zoom-out;
+`
+
+export const AnimatedChapterTitle = styled(animated.h3)`
   font-size: 1.2em;
   font-family: ${({ theme }) => theme.fonts.serif};
   line-height: 1.375;
@@ -30,11 +51,11 @@ export const ChapterTitle = styled(animated.h3)`
   margin-bottom: 1rem;
 
   &:not(:first-of-type) {
-    margin-top: 1.5rem;
+    margin-top: 2.5rem;
   }
 `
 
-export const BlockTitle = styled(animated.h4)`
+export const AnimatedBlockTitle = styled(animated.h4)`
   font-size: 0.75em;
   line-height: 1.428;
   letter-spacing: 0;
@@ -48,7 +69,7 @@ export const BlockTitle = styled(animated.h4)`
   color: ${({ theme }) => theme.colors.medium};
 `
 
-export const SectionLink = styled(animated.a)`
+export const AnimatedSectionLink = styled(animated.a)`
   font-size: 0.875em;
   line-height: 1.428;
   letter-spacing: 0;
@@ -109,14 +130,15 @@ export const NavigationButton = styled.button<{
   position: fixed;
   left: 1rem;
   bottom: 1rem;
-  z-index: 10;
+
+  z-index: ${Z_INDEXES.button};
 
   box-sizing: border-box;
 
   width: 2rem;
   height: 2rem;
 
-  border-radius: 1rem;
+  border-radius: 0.125rem;
   cursor: pointer;
 
   border: none;

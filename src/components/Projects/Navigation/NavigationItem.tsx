@@ -13,25 +13,37 @@ export interface IItem {
 interface INavigationItem {
   item: IItem
   style: object
+  setVisible: (visible: boolean) => void
 }
 
-const NavigationItem: React.FC<INavigationItem> = ({ item, style }) => {
+const NavigationItem: React.FC<INavigationItem> = ({
+  item,
+  style,
+  setVisible,
+}) => {
   switch (item.type) {
     case 'chapter':
-      return <S.ChapterTitle style={style}>{item.text}</S.ChapterTitle>
+      return (
+        <S.AnimatedChapterTitle style={style}>
+          {item.text}
+        </S.AnimatedChapterTitle>
+      )
     case 'block':
-      return <S.BlockTitle style={style}>{item.text}</S.BlockTitle>
+      return (
+        <S.AnimatedBlockTitle style={style}>{item.text}</S.AnimatedBlockTitle>
+      )
     case 'section':
       return (
-        <S.SectionLink
+        <S.AnimatedSectionLink
           style={style}
           href={`#${titleToID(item.text)}`}
-          onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
             navigateToSection(e, titleToID(item.text))
-          }
+            setVisible(false)
+          }}
         >
           {item.text}
-        </S.SectionLink>
+        </S.AnimatedSectionLink>
       )
     default:
       return null

@@ -1,3 +1,4 @@
+import React from 'react'
 import styled, { css } from '@theme'
 import { animated } from 'react-spring'
 
@@ -123,9 +124,12 @@ export const ButtonLine = styled.span`
   }
 `
 
-export const NavigationButton = styled.button<{
+// Had to import React, make this file .tsx and manually extract
+// the `visible` prop so it doesn't get passed down to the DOM
+export const AnimatedNavButton = styled(({ visible, ...rest }) => (
+  <animated.button {...rest} />
+))<{
   visible: boolean
-  isButtonVisible: boolean
 }>`
   position: fixed;
   left: 1rem;
@@ -145,9 +149,6 @@ export const NavigationButton = styled.button<{
   outline: none;
   box-shadow: none;
   appearance: none;
-
-  opacity: ${p => (p.isButtonVisible ? 1 : 0)};
-  transition: opacity ${({ theme }) => theme.transitions.ease()};
 
   /** Really white **/
   background-color: white;

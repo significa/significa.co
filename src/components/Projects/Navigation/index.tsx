@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react'
-import { useTrail, useSpring, useTransition, useChain } from 'react-spring'
+import React, { useState, useCallback, useEffect } from 'react'
+import { useTrail, useSpring, useTransition } from 'react-spring'
 
 import { ContentType } from '../../../templates/project'
 
@@ -36,68 +36,70 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
   }
 
   // Animations
-  const overlayTransitions = useTransition(visible, null, {
+  const transition = {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-  })
-  const drawerSpringRef = useRef(null)
+  }
+  const overlayTransitions = useTransition(visible, null, transition)
+  const buttonTransitions = useTransition(isButtonVisible, null, transition)
+
   const drawerSpring = useSpring({
     transform: visible ? 'translateX(0)' : 'translateX(-100%)',
     config: {
       tension: 500,
       friction: 50,
     },
-    ref: drawerSpringRef,
   })
 
   const items = createNavigationItems(content)
-  const trailRef = useRef(null)
-  const trail = useTrail(items.length, {
+  const itemsTrail = useTrail(items.length, {
     config: {
-      mass: 1,
-      tension: 1500,
-      friction: 80,
-      easing: t => {
-        return t * t * t
-      },
+      tension: 2500,
+      friction: 100,
     },
+    delay: 100,
     x: visible ? 0 : -0.5,
     opacity: visible ? 1 : 0,
     from: { x: -0.5, opacity: 0 },
-    ref: trailRef,
   })
-
-  useChain([trailRef, drawerSpringRef])
 
   return (
     <>
       {/* Button */}
-      <S.NavigationButton
-        onClick={toggleNav}
-        visible={visible}
-        isButtonVisible={isButtonVisible}
-      >
-        <S.ButtonLine />
-        <S.ButtonLine />
-        <S.ButtonLine />
-      </S.NavigationButton>
+      {buttonTransitions.map(
+        ({ item, key, props }) =>
+          item && (
+            <S.AnimatedNavButton
+              key={key}
+              style={props}
+              onClick={toggleNav}
+              visible={visible}
+            >
+              <S.ButtonLine />
+              <S.ButtonLine />
+              <S.ButtonLine />
+            </S.AnimatedNavButton>
+          )
+      )}
 
       {/* Drawer */}
       <S.AnimatedDrawer style={drawerSpring}>
-        {trail.map(({ x, opacity }: { [key: string]: any }, index: number) => (
-          <NavigationItem
-            key={index}
-            style={{
-              opacity,
-              transform: x.interpolate(
-                (value: number) => `translateX(${value}em)`
-              ),
-            }}
-            item={items[index]}
-            setVisible={setVisible}
-          />
-        ))}
+        {itemsTrail.map(
+          ({ x, opacity }: { [key: string]: any }, index: number) => (
+            <NavigationItem
+              key={index}
+              style={{
+                opacity,
+                transform: x.interpolate(
+                  (value: number) => `translateX(${value}em)`
+                ),
+              }}
+              item={items[index]}
+              setVisible={setVisible}
+            />
+          )
+        )}
       </S.AnimatedDrawer>
 
       {/* Overlay */}

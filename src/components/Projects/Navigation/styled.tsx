@@ -153,6 +153,14 @@ export const AnimatedNavButton = styled(({ visible, ...rest }) => (
   /** Really white **/
   background-color: white;
 
+  @media (max-width: 48em) {
+    transition: box-shadow ${({ theme }) => theme.transitions.cubic()};
+    box-shadow: ${p =>
+      p.visible
+        ? '0px 0px 0px rgba(0, 0, 0, 0)'
+        : '0px 1px 2px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.1)'};
+  }
+
   &:hover ${ButtonLine} {
     &:nth-child(1) {
       width: 1rem;

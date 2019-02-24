@@ -95,72 +95,77 @@ const Project = ({ data, pageContext: { next } }: IProject) => {
         <Navigation content={projectsYaml.content} />
       </ConditionalWrap>
 
-      {/* Hero */}
-      <Theme
-        theme={getProjectTheme(projectsYaml.heroTheme, projectsYaml.themes)}
-      >
-        <Hero
-          title={projectsYaml.title}
-          tagline={projectsYaml.tagline}
-          fluid={projectsYaml.hero.childImageSharp.fluid}
+      <div>
+        {/* Hero */}
+        <Theme
+          theme={getProjectTheme(projectsYaml.heroTheme, projectsYaml.themes)}
+        >
+          <Hero
+            title={projectsYaml.title}
+            tagline={projectsYaml.tagline}
+            fluid={projectsYaml.hero.childImageSharp.fluid}
+          />
+        </Theme>
+
+        {/* Project description */}
+        <Meta
+          description={projectsYaml.description}
+          client={projectsYaml.client}
+          services={projectsYaml.services}
+          deliverables={projectsYaml.deliverables}
+          links={projectsYaml.links}
         />
-      </Theme>
 
-      {/* Project description */}
-      <Meta
-        description={projectsYaml.description}
-        client={projectsYaml.client}
-        services={projectsYaml.services}
-        deliverables={projectsYaml.deliverables}
-        links={projectsYaml.links}
-      />
+        {/* Chapters, blocks and sections */}
+        {projectsYaml.content.map((chapter, chapterIndex) => {
+          return (
+            <React.Fragment key={chapterIndex}>
+              {chapter.showTitle && chapter.title && (
+                <ConditionalWrap
+                  condition={!!chapter.theme}
+                  wrap={children => (
+                    <Theme
+                      theme={getProjectTheme(
+                        chapter.theme as string,
+                        projectsYaml.themes
+                      )}
+                    >
+                      {children}
+                    </Theme>
+                  )}
+                >
+                  <Chapter title={chapter.title} />
+                </ConditionalWrap>
+              )}
+              {chapter.content.map(block => {
+                return block.sections.map((section, sectionIndex) => {
+                  return (
+                    <Section
+                      key={sectionIndex}
+                      section={section}
+                      theme={getProjectTheme(
+                        section.theme,
+                        projectsYaml.themes
+                      )}
+                      sectionLabel={block.title}
+                    />
+                  )
+                })
+              })}
+            </React.Fragment>
+          )
+        })}
 
-      {/* Chapters, blocks and sections */}
-      {projectsYaml.content.map((chapter, chapterIndex) => {
-        return (
-          <React.Fragment key={chapterIndex}>
-            {chapter.showTitle && chapter.title && (
-              <ConditionalWrap
-                condition={!!chapter.theme}
-                wrap={children => (
-                  <Theme
-                    theme={getProjectTheme(
-                      chapter.theme as string,
-                      projectsYaml.themes
-                    )}
-                  >
-                    {children}
-                  </Theme>
-                )}
-              >
-                <Chapter title={chapter.title} />
-              </ConditionalWrap>
-            )}
-            {chapter.content.map(block => {
-              return block.sections.map((section, sectionIndex) => {
-                return (
-                  <Section
-                    key={sectionIndex}
-                    section={section}
-                    theme={getProjectTheme(section.theme, projectsYaml.themes)}
-                    sectionLabel={block.title}
-                  />
-                )
-              })
-            })}
-          </React.Fragment>
-        )
-      })}
-
-      {/* Next  project */}
-      <Theme theme={getProjectTheme(next.heroTheme, next.themes)}>
-        <Next
-          title={next.title}
-          tagline={next.tagline}
-          fluid={next.hero.childImageSharp.fluid}
-          link={next.fields.slug}
-        />
-      </Theme>
+        {/* Next  project */}
+        <Theme theme={getProjectTheme(next.heroTheme, next.themes)}>
+          <Next
+            title={next.title}
+            tagline={next.tagline}
+            fluid={next.hero.childImageSharp.fluid}
+            link={next.fields.slug}
+          />
+        </Theme>
+      </div>
     </Layout>
   )
 }

@@ -9,45 +9,33 @@ import { colorArgumentType } from '@theme/types'
 
 import Theme from './Theme'
 import GlobalStyle from '../style/GlobalStyle'
-import { ThemeContextProvider } from '../context'
+import ThemeContext from '../context'
 
 import { mergeThemeWithColors } from '@theme/utils'
 
 interface IProviderProps {
   children: React.ReactNode
-  theme: colorArgumentType
+  theme?: colorArgumentType
 }
 
-interface IProviderState {
-  colors: colorArgumentType
-}
+const Provider: React.FC<IProviderProps> = ({ children, theme = 'light' }) => {
+  const [colors, setTheme] = React.useState<colorArgumentType>(theme)
 
-class Provider extends React.Component<IProviderProps, IProviderState> {
-  static defaultProps = { theme: 'light' }
+  const updateTheme = (c: colorArgumentType): void => setTheme(c)
 
-  constructor(props: IProviderProps) {
-    super(props)
-
-    this.state = { colors: props.theme }
-  }
-
-  updateTheme = (colors: colorArgumentType): void => this.setState({ colors })
-
-  render() {
-    return (
-      <ThemeContextProvider
-        value={{
-          theme: mergeThemeWithColors(this.state.colors),
-          updateTheme: this.updateTheme,
-        }}
-      >
-        <Theme theme={this.state.colors}>
-          <GlobalStyle />
-          {this.props.children}
-        </Theme>
-      </ThemeContextProvider>
-    )
-  }
+  return (
+    <ThemeContext.Provider
+      value={{
+        theme: mergeThemeWithColors(colors),
+        updateTheme,
+      }}
+    >
+      <Theme theme={colors}>
+        <GlobalStyle />
+        {children}
+      </Theme>
+    </ThemeContext.Provider>
+  )
 }
 
 export default Provider

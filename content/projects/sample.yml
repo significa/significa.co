@@ -72,7 +72,7 @@ content:
   # Chapter
   - title: A mãe do Pedro
     theme: oopsie-light
-    showTitle: true
+    showTitle: false
     content:
       # Section
       - title: Styleguide

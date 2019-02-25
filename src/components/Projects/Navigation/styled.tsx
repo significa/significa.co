@@ -24,6 +24,10 @@ export const AnimatedDrawer = styled(animated.nav)`
   width: 18em;
 
   padding: 4em;
+
+  @media (max-width: 32em) {
+    padding: 3em;
+  }
 `
 
 export const AnimatedOverlay = styled(animated.div)`
@@ -68,6 +72,11 @@ export const AnimatedBlockTitle = styled(animated.h4)`
   margin-top: 1rem;
 
   color: ${({ theme }) => theme.colors.medium};
+
+  @media (max-width: 32em) {
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+  }
 `
 
 export const AnimatedSectionLink = styled(animated.a)`
@@ -81,12 +90,12 @@ export const AnimatedSectionLink = styled(animated.a)`
   display: block;
   transition: color ${({ theme }) => theme.transitions.ease()};
 
-  &:not(:first-of-type) {
-    padding-top: 0.125rem;
-  }
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
 
-  &:not(:last-of-type) {
-    padding-bottom: 0.125rem;
+  @media (max-width: 32em) {
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
   }
 
   &:hover {
@@ -142,7 +151,7 @@ export const AnimatedNavButton = styled(({ visible, ...rest }) => (
   width: 2rem;
   height: 2rem;
 
-  border-radius: 0.125rem;
+  border-radius: 0.25rem;
   cursor: pointer;
 
   border: none;
@@ -159,6 +168,11 @@ export const AnimatedNavButton = styled(({ visible, ...rest }) => (
       p.visible
         ? '0px 0px 0px rgba(0, 0, 0, 0)'
         : '0px 1px 2px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.1)'};
+  }
+
+  @media (max-width: 32em) {
+    left: 0.5rem;
+    bottom: 0.5rem;
   }
 
   &:hover ${ButtonLine} {

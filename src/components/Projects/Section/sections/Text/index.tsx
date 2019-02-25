@@ -13,15 +13,17 @@ interface ITextProps extends IText {
 }
 
 const Text = (props: ITextProps) => {
+  const id = props.title ? titleToID(props.title) : undefined
+
   return (
-    <S.Wrapper {...(props.title ? { id: titleToID(props.title) } : {})}>
+    <S.Wrapper id={id}>
       {props.title && props.sectionLabel && (
         <S.Label>{props.sectionLabel}</S.Label>
       )}
       {props.title && (
         <S.TitleWrapper
-          href={`#${titleToID(props.title)}`}
-          onClick={e => navigateToSection(e, titleToID(props.title as string))}
+          href={`#${id}`}
+          onClick={e => navigateToSection(e, id as string)}
         >
           <S.AnchorIcon />
           <S.Title>{props.title}</S.Title>

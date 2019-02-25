@@ -1,4 +1,5 @@
 import styled from '@theme'
+import PaddedWrapper from '../common/PaddedWrapper'
 
 import {
   Title as BaseTitle,
@@ -8,9 +9,7 @@ import {
 } from '../../../../UI'
 import Anchor from './Anchor'
 
-export const Wrapper = styled.div`
-  padding: 5em 0;
-`
+export { PaddedWrapper as Wrapper }
 
 export const AnchorIcon = styled(Anchor)`
   position: absolute;

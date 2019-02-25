@@ -16,8 +16,8 @@ const getMargins = (p: { margin?: marginTypes }) => {
       }
 
       @media (max-width: 32em) {
-        padding-top: ${hasTop ? '2em' : 0};
-        padding-bottom: ${hasBottom ? '2em' : 0};
+        padding-top: ${hasTop ? '3em' : 0};
+        padding-bottom: ${hasBottom ? '3em' : 0};
       }
     `
   }

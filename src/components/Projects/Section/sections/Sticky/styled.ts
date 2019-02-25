@@ -39,6 +39,7 @@ export const TextContainer = styled.div`
 
   @media (max-width: 32em) {
     max-width: 100%;
+    min-width: auto;
   }
 `
 
@@ -65,6 +66,7 @@ export const MediaContainer = styled.div`
 
   @media (max-width: 32em) {
     max-width: 100%;
+    min-width: auto;
   }
 `
 

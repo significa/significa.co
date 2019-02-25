@@ -26,11 +26,22 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
   }, [visible, isButtonVisible])
 
   const handleScroll = () => {
-    if (window.scrollY > 500 && !isButtonVisible) {
+    const totalHeight = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    )
+    const shouldShow =
+      window.scrollY > 800 &&
+      window.scrollY < totalHeight - window.innerHeight - 800
+
+    if (shouldShow && !isButtonVisible) {
       return setButtonVisible(true)
     }
 
-    if (window.scrollY <= 500 && isButtonVisible) {
+    if (!shouldShow && isButtonVisible) {
       return setButtonVisible(false)
     }
   }

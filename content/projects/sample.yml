@@ -94,7 +94,6 @@ content:
             margin: both
             content:
               image: ./sample/restaurant.png
-              caption: This is a caption
 
           - type: video
             theme: oopsie-orange
@@ -120,6 +119,13 @@ content:
               text: |
                 Designing such a product was a tremendous rewarding experience for the entire team.
                 We love how it all turned up and it was amazing.
+
+          - type: text
+            theme: dark
+            content:
+              title: Gallery of photos 2
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
 
           - type: gallery
             margin: both

@@ -1,10 +1,10 @@
 import styled from '@theme'
 
+import PaddedWrapper from '../common/PaddedWrapper'
+
 import Icon from './QuoteIcon'
 
-export const Wrapper = styled.div`
-  padding: 5em 0;
-`
+export { PaddedWrapper as Wrapper }
 
 export const Quote = styled(Icon)`
   margin-bottom: 3em;

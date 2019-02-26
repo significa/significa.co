@@ -1,9 +1,10 @@
 import styled, { css } from '@theme'
 
+import PaddedWrapper from '../common/PaddedWrapper'
+
 import { Title as BaseTitle } from '../../../../UI'
 
-export const Wrapper = styled.div<{ inverted?: boolean }>`
-  padding: 5em 0;
+export const Wrapper = styled(PaddedWrapper)<{ inverted?: boolean }>`
   margin: 0 -1.5em;
 
   display: flex;
@@ -12,6 +13,7 @@ export const Wrapper = styled.div<{ inverted?: boolean }>`
 
   @media (max-width: 48em) {
     flex-direction: column;
+    align-items: center;
     margin: -1.5em 0;
   }
 
@@ -37,6 +39,7 @@ export const TextContainer = styled.div`
 
   @media (max-width: 32em) {
     max-width: 100%;
+    min-width: auto;
   }
 `
 
@@ -63,9 +66,10 @@ export const MediaContainer = styled.div`
 
   @media (max-width: 32em) {
     max-width: 100%;
+    min-width: auto;
   }
 `
 
 export const Title = styled(BaseTitle)`
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 `

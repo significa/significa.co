@@ -76,6 +76,7 @@ export const AnimatedBlockTitle = styled(animated.h4)`
   @media (max-width: 32em) {
     margin-bottom: 0.5rem;
     margin-top: 1.5rem;
+    font-size: 0.875em;
   }
 `
 
@@ -96,6 +97,7 @@ export const AnimatedSectionLink = styled(animated.a)`
   @media (max-width: 32em) {
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
+    font-size: 1em;
   }
 
   &:hover {

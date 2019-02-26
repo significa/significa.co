@@ -1,6 +1,6 @@
 import styled, { css } from '@theme'
 import { Small } from '../../../../UI'
-import { ISpanTypes } from '../../../../../templates/types'
+import { ISpanTypes } from '../../types'
 
 export const Wrapper = styled.div`
   display: grid;

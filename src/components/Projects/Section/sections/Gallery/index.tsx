@@ -1,11 +1,7 @@
 import React from 'react'
 import Img from 'gatsby-image'
 
-import {
-  IGallery,
-  IGalleryImage,
-  IGalleryVideo,
-} from '../../../../../templates/types'
+import { IGallery, IGalleryImage, IGalleryVideo } from '../../types'
 
 import * as S from './styled'
 

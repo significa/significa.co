@@ -16,7 +16,7 @@ export const Container = styled.div`
   }
 
   @media (max-width: 32em) {
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
   }
 `

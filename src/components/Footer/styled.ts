@@ -6,6 +6,14 @@ export const Footer = styled.footer`
   padding: 2.5em 0 7.5em;
   background-color: ${({ theme }) => theme.colors.background};
 
+  @media (max-width: 48em) {
+    padding-bottom: 5em;
+  }
+
+  @media (max-width: 32em) {
+    padding-bottom: 3em;
+  }
+
   /** Footer can have different bg color than background.
       Use pseudo-element to hide color change on elastic scroll **/
   &:after {

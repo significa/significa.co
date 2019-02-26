@@ -1,16 +1,8 @@
 import styled from '@theme'
 
-export const Wrapper = styled.div`
-  padding-top: 5em;
+import PaddedWrapper from '../common/PaddedWrapper'
 
-  @media (max-width: 48em) {
-    margin-bottom: 2em;
-  }
-
-  @media (max-width: 32em) {
-    margin-bottom: 4em;
-  }
-
+export const Wrapper = styled(PaddedWrapper)`
   /** TODO: Remove when choosing another approach other than react-columns */
   /** Targetting each  column */
   & > div > div {

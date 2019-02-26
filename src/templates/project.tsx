@@ -178,6 +178,9 @@ export const query = graphql`
       fluid(maxWidth: 3000) {
         ...GatsbyImageSharpFluid_noBase64
       }
+      resize {
+        height
+      }
     }
   }
 

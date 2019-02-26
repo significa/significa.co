@@ -1,69 +1,63 @@
 import styled from '@theme'
 
-import PaddedWrapper from '../common/PaddedWrapper'
+export const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
-export const Wrapper = styled(PaddedWrapper)`
-  /** TODO: Remove when choosing another approach other than react-columns */
-  /** Targetting each  column */
-  & > div > div {
-    margin-left: -5em !important;
-    margin-right: -5em !important;
+  grid-column-gap: 10em;
 
-    & > div {
-      padding-left: 5em !important;
-      padding-right: 5em !important;
+  @media (max-width: 64em) {
+    grid-column-gap: 5em;
+  }
 
-      &:nth-child(2) {
-        padding-top: 10em;
-      }
-    }
+  @media (max-width: 48em) {
+    grid-column-gap: 3em;
+  }
 
-    @media (max-width: 64em) {
-      margin-left: -3em !important;
-      margin-right: -3em !important;
-
-      & > div {
-        padding-left: 3em !important;
-        padding-right: 3em !important;
-
-        &:nth-child(2) {
-          padding-top: 5em;
-        }
-      }
-    }
-
-    @media (max-width: 48em) {
-      margin-left: -1em !important;
-      margin-right: -1em !important;
-
-      & > div {
-        padding-left: 1em !important;
-        padding-right: 1em !important;
-
-        &:nth-child(2) {
-          padding-top: 3em;
-        }
-      }
-    }
-
-    @media (max-width: 48em) {
-      & > div {
-        &:nth-child(2) {
-          padding-top: 0;
-        }
-      }
-    }
+  @media (max-width: 32em) {
+    grid-template-columns: 1fr;
+    grid-column-gap: 0;
   }
 `
 
-export const ImgHolder = styled.div`
+const getGridRowStart = (
+  index: number,
+  start: number | string
+): number | string => {
+  // first item always starts at 1
+  if (index === 0) {
+    return 1
+  }
+
+  // We only care about the second item
+  if (index === 1) {
+    return start
+  }
+
+  return 'auto'
+}
+
+export const ImgHolder = styled.div<{ index: number; rowSpan: number }>`
   margin-bottom: 5em;
+
+  grid-row-end: span ${p => p.rowSpan};
+  grid-row-start: ${p => getGridRowStart(p.index, 16)};
+
+  @media (max-width: 64em) {
+    margin-bottom: 3em;
+
+    grid-row-start: ${p => getGridRowStart(p.index, 12)};
+  }
 
   @media (max-width: 48em) {
     margin-bottom: 3em;
+
+    grid-row-start: ${p => getGridRowStart(p.index, 8)};
   }
 
   @media (max-width: 32em) {
     margin-bottom: 1em;
+
+    grid-row-start: ${p => getGridRowStart(p.index, 'auto')};
   }
 `

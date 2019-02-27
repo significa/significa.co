@@ -12,7 +12,10 @@ interface ISizeState {
   y: number
 }
 
-export default function useMeasure(ref: RefObject<HTMLElement>) {
+export default function useMeasure(
+  ref: RefObject<HTMLElement>,
+  query?: string
+) {
   const [bounds, set] = useState<ISizeState>({
     left: 0,
     top: 0,
@@ -29,7 +32,15 @@ export default function useMeasure(ref: RefObject<HTMLElement>) {
 
   useEffect(() => {
     if (ref.current) {
-      ro.observe(ref.current)
+      if (query) {
+        const target = ref.current.querySelector(query)
+
+        if (target) {
+          ro.observe(target)
+        }
+      } else {
+        ro.observe(ref.current)
+      }
     }
 
     return ro.disconnect

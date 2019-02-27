@@ -1,0 +1,260 @@
+# Date for order
+date: 2019/01/01
+
+# Main info
+title: OpenNode
+tagline: The easiest way to accept bitcoin!
+description: |
+  Oopsie is a hassle-free, online takeaway ordering platform that connects you with neighboring restaurants. With Oopsie, you may order and pay for takeaway with a few simple steps. With real time order status tracking there will be no wasted time on queuing up, complemented with seamless transaction - simply grab & go when your food is ready!
+
+# Images
+hero: ./sample4/oopsie-hero@2x.png
+featured: ./sample4/transparent-image.png
+thumbnail: ./sample4/opennode.png
+
+# Settings
+heroTheme: oopsie-orange
+mainTheme: oopsie-light
+navigationTheme: oopsie-light
+themes:
+  - name: oopsie-orange
+    background: '#FAD6A5'
+    foreground: '#15191F'
+    highlight: '#FF9500'
+    medium: 'rgba(0,0,0,0.4)'
+    subtle: 'rgba(0,0,0,0.05)'
+    error: '#FF5050'
+
+  - name: oopsie-purple
+    background: '#705BD0'
+    foreground: '#FFFFFF'
+    highlight: '#FFFFFF'
+    medium: 'rgba(255,255,255,0.4)'
+    subtle: 'rgba(255,255,255,0.1)'
+    error: '#FF5050'
+
+  - name: oopsie-light
+    background: '#FFFFFF'
+    foreground: '#111314'
+    highlight: '#FF9500'
+    medium: 'rgba(0,0,0,0.4)'
+    subtle: 'rgba(0,0,0,0.05)'
+    error: '#FF5050'
+
+  - name: oopsie-dark
+    background: '#111314'
+    foreground: '#FFFFFF'
+    highlight: '#FFFFFF'
+    medium: '#FFFFFF'
+    subtle: 'rgba(255,255,255,0.2)'
+    error: '#FF5050'
+
+# Info
+client: Client name
+services:
+  - Product management
+  - UI/UX
+  - Development
+  - Illustration
+deliverables:
+  - Logo
+  - Identity Guidelines
+  - Stationary
+  - Illustrations
+links:
+  - link: https://google.com/
+    linkText: Live site
+  - link: https://google.com/
+    linkText: App Store
+
+content:
+  # Chapter
+  - title: A mãe do Pedro
+    theme: oopsie-light
+    showTitle: false
+    content:
+      # Section
+      - title: Styleguide
+        sections:
+          # Sections
+          - type: text
+            theme: dark
+            content:
+              title: This is the title
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
+              link:
+                url: https://google.com
+                text: Go to google
+
+          - type: image
+            theme: oopsie-purple
+            layout: large
+            margin: both
+            content:
+              image: ./sample/restaurant.png
+
+          - type: video
+            theme: oopsie-orange
+            layout: medium
+            margin: both
+            content:
+              video: sample/video.mp4
+              autoplay: true
+              loop: true
+              controls: true
+              muted: true
+
+          - type: text
+            theme: dark
+            content:
+              title: Gallery of photos
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
+
+          - type: highlight
+            theme: dark
+            content:
+              text: |
+                Designing such a product was a tremendous rewarding experience for the entire team.
+                We love how it all turned up and it was amazing.
+
+          - type: text
+            theme: dark
+            content:
+              title: Gallery of photos 2
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
+
+          - type: gallery
+            margin: both
+            content:
+              columns: 2
+              caption: This is a caption for the whole gallery
+              items:
+                - image: ./sample/coupons.png
+                  span:
+                    normal: 1
+                    tablet: 1
+                    mobile: 2
+                - image: ./sample/coupons.png
+                  span:
+                    normal: 1
+                    tablet: 1
+                    mobile: 2
+                - image: ./sample/restaurant.png
+                  span:
+                    normal: 2
+                    tablet: 2
+                    mobile: 2
+                - video: sample/video.mp4
+                  span:
+                    normal: 1
+                    tablet: 1
+                    mobile: 2
+                - video: sample/video.mp4
+                  span:
+                    normal: 1
+                    tablet: 1
+                    mobile: 2
+
+          - type: comparison
+            layout: large
+            content:
+              a: sample/restaurant-bw.png
+              b: sample/restaurant.png
+
+          - type: slideshow
+            theme: oopsie-dark
+            margin: both
+            layout: large
+            content:
+              caption: this is some text
+              items:
+                - image: ./sample/restaurant.png
+                - image: ./sample/restaurant.png
+                - image: ./sample/restaurant.png
+                - image: ./sample/restaurant.png
+
+          - type: text
+            content:
+              title: Waterfall
+              text: Lorem ipsum
+
+          - type: waterfall # two columns slightly misaligned
+            content:
+              items:
+                - image: ./sample/tall.png
+                - image: ./sample/coupons.png
+                - image: ./sample/tall.png
+                - image: ./sample/restaurant.png
+                - image: ./sample/iphone.png
+
+          - type: testimonial
+            theme: oopsie-purple
+            content:
+              text: I could see you guys really spent a lot of thinking on it, something extra.
+              author: Pedro Teixeira, MBA
+              link:
+                text: Read interview
+                url: https://google.com
+
+          - type: sticky
+            theme: dark
+            content:
+              sticky: true
+              invert: true
+              title: This is the title
+              image: ./sample/tall.png
+              text: |
+                In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark. In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark.
+
+          - type: sticky
+            content:
+              sticky: true
+              invert: false
+              title: This is the title
+              video: sample/ketchup.mov
+              text: |
+                In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark. In company where the future leads the way, we had look back into the past to rethink their logo and make it prepared for the present. We worked in the two main assets in Woschalb’s identity, their symbol and their wordmark.
+
+  - title: Chapter 2
+    content:
+      # Section
+      - title: Branding
+        sections:
+          # Sections
+          - type: text
+            content:
+              title: Logo
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
+          - type: text
+            content:
+              title: Colors
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
+          - type: text
+            content:
+              title: Typography
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
+
+      - title: February 2019
+        sections:
+          # Sections
+          - type: text
+            content:
+              title: Something new
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
+          - type: text
+            content:
+              title: Another one
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.
+          - type: text
+            content:
+              title: This is the last
+              text: |
+                We travelled halfway across the world to Hong Kong, to better understand their ways. The city is packed, traffic is jamming everywhere, restaurants are crowded with people, enormous queues exiting the main door. Very often people just quickly grab something, go back to the office, have lunch at their own desk and swiftly get back to work. A unique lifestyle that had a drastic impact on the core features of the Oopsie App.

@@ -16,7 +16,7 @@ const ThumbHolder: React.FC<{}> = ({ children }) => {
   const rowSpan = Math.ceil(height / 4)
 
   return (
-    <S.Holder ref={ref} rowSpan={rowSpan}>
+    <S.Holder ref={ref} rowAmount={rowSpan}>
       {children}
     </S.Holder>
   )

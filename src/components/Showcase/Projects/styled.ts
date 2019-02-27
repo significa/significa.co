@@ -25,8 +25,8 @@ export const Container = styled(BaseContainer)`
   }
 `
 
-export const Holder = styled.div<{ rowSpan: number }>`
-  grid-row-end: span ${p => p.rowSpan};
+export const Holder = styled.div<{ rowAmount: number }>`
+  grid-row-end: span ${p => p.rowAmount};
 
   margin-bottom: 5rem;
 

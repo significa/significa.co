@@ -8,6 +8,9 @@ export interface ILinkObject {
 export interface IImageObject {
   childImageSharp: {
     fluid: FluidObject
+    resize: {
+      height: number
+    }
   }
 }
 

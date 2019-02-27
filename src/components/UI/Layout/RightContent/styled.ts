@@ -7,6 +7,14 @@ export const Wrapper = styled.section`
   padding: 10em 0;
 
   background-color: ${({ theme }) => theme.colors.background};
+
+  @media (max-width: 48em) {
+    padding: 7em 0;
+  }
+
+  @media (max-width: 32em) {
+    padding: 5em 0;
+  }
 `
 
 export const Container = styled(BaseContainer)`

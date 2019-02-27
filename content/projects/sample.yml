@@ -177,13 +177,17 @@ content:
                 - image: ./sample/restaurant.png
                 - image: ./sample/restaurant.png
 
+          - type: text
+            content:
+              title: Waterfall
+              text: Lorem ipsum
+
           - type: waterfall # two columns slightly misaligned
             content:
               items:
-                - image: ./sample/iphone.png
-                - image: ./sample/tall.png
                 - image: ./sample/tall.png
                 - image: ./sample/coupons.png
+                - image: ./sample/tall.png
                 - image: ./sample/restaurant.png
                 - image: ./sample/iphone.png
 

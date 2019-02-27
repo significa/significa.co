@@ -17,6 +17,10 @@ export const Container = styled(BaseContainer).attrs({ as: 'section' })`
     grid-column-gap: 0;
     grid-row-gap: 3em;
   }
+
+  @media (max-width: 32em) {
+    margin: 5em auto;
+  }
 `
 
 export const Left = styled.div`

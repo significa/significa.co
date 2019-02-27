@@ -11,9 +11,9 @@ export const Container = styled(BaseContainer).attrs({ as: 'section' })`
     grid-template: auto / repeat(2, 1fr);
 
     /** Hide last one **/
-    /* & > *:last-child {
+    & > *:last-child {
       display: none;
-    } */
+    }
   }
 
   @media (max-width: 32em) {

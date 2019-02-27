@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useState, useEffect, RefObject } from 'react'
 import ResizeObserver from 'resize-observer-polyfill'
 
 interface ISizeState {
@@ -12,8 +12,7 @@ interface ISizeState {
   y: number
 }
 
-export default function useMeasure() {
-  const ref = useRef<HTMLElement>(null)
+export default function useMeasure(ref: RefObject<HTMLElement>) {
   const [bounds, set] = useState<ISizeState>({
     left: 0,
     top: 0,
@@ -36,5 +35,5 @@ export default function useMeasure() {
     return ro.disconnect
   }, [])
 
-  return [ref, bounds]
+  return bounds
 }

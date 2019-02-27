@@ -5,6 +5,7 @@ import { FluidObject } from 'gatsby-image'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import { Projects } from '../components/Showcase'
+import { CallToAction } from '../components/UI'
 
 export interface IProject {
   node: {
@@ -48,6 +49,8 @@ const Showcase: React.FC<IShowcase> = ({ data }) => {
       <SEO title={data.showcaseYaml.seo.title} />
 
       <Projects projects={data.allProjectsYaml.edges} />
+
+      <CallToAction {...data.showcaseYaml.cta} />
     </Layout>
   )
 }

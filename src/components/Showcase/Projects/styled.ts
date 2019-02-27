@@ -3,7 +3,8 @@ import styled from '@theme'
 import { Container as BaseContainer } from '../../UI/'
 
 export const Container = styled(BaseContainer)`
-  margin: 7.5rem auto 2.5rem; /** Bottom = margin minus Holder margin bottom **/
+  margin: 7.5rem auto;
+  margin-bottom: -5rem; /** offset holder bottom margin **/
 
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -13,7 +14,8 @@ export const Container = styled(BaseContainer)`
   grid-column-gap: 5rem;
 
   @media (max-width: 64em) {
-    margin: 6rem auto 3rem;
+    margin-top: 6rem;
+    margin-bottom: -3rem; /** offset holder bottom margin **/
 
     grid-column-gap: 3rem;
   }

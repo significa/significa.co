@@ -9,7 +9,9 @@ const Footer: React.FC<{}> = () => (
   <S.Footer>
     <S.Container>
       <S.Left>
-        <S.Segg />
+        <Link to="/">
+          <S.Segg />
+        </Link>
         <Small>
           <Link to="/legal">Legal</Link>&nbsp;©&nbsp;{new Date().getFullYear()}
         </Small>

@@ -23,6 +23,8 @@ export const Big = styled(BaseBig)`
 `
 
 export const Link = styled(BaseLink)`
+  display: block;
+
   @media (hover: hover) {
     &:hover ${Img} {
       transform: scale(1.05);

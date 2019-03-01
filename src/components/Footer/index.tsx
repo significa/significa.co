@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Small, Link } from '../UI/'
+import { Small, Link, Segg } from '../UI/'
 
 import * as S from './styled'
 import FooterNav from './FooterNav'
@@ -9,7 +9,9 @@ const Footer: React.FC<{}> = () => (
   <S.Footer>
     <S.Container>
       <S.Left>
-        <S.Segg />
+        <S.LogoLink to="/">
+          <Segg />
+        </S.LogoLink>
         <Small>
           <Link to="/legal">Legal</Link>&nbsp;©&nbsp;{new Date().getFullYear()}
         </Small>

@@ -6,42 +6,57 @@ fromTheLabs:
 tags:
   - label: Articles
     tag: article
+  - label: Tutorial
+    tag: tutorial
   - label: Repositories
     tag: repo
   - label: Freebies
     tag: freebie
 
 content:
-  - title: Article Title — Something crazy would be here about this article
-    image: article.jpg
+  - title: Article Title
+    tagline: Something crazy would be here about this article
+    image: ./images/moinho.png
     more: Article on Medium
     source: medium
     tag: article
     link: https://blog.significa.pt/on-creating-synergies-60cce7486296
 
-  - title: On creating synergies — Sharing without compromising our identity.
-    image: synergies.jpg
+  - title: On creating synergies
+    tagline: Sharing without compromising our identity.
+    image: ./images/umbrella.png
     more: Article on Medium
     source: medium
     tag: article
     link: https://blog.significa.pt/on-creating-synergies-60cce7486296
 
-  - title: Freebie Title — Something cool that can  really describe the article here
-    image: freebie.jpg
+  - title: How a new office improved our productivity
+    tagline: Something cool here
+    image: ./images/sunset.png
+    more: Article on Medium
+    source: medium
+    tag: article
+    link: https://blog.significa.pt/on-creating-synergies-60cce7486296
+
+  - title: i18n with Gatsby
+    tagline: Taking advantage of Gatsby nodes to add internationalisation to a Gatsby project.
+    image: ./images/i18n.png
+    more: Tutorial on Medium
+    source: medium
+    tag: tutorial
+    link: https://blog.significa.pt/i18n-with-gatsby-528607b4da81
+
+  - title: Freebie Title
+    tagline: Something cool that can  really describe the article here
+    image: ./images/synergies.png
     more: Dribbble freebie
     source: dribbble
     tag: freebie
     link: https://google.com/
 
-  - title: i18n with Gatsby — Taking advantage of Gatsby nodes to add internationalisation to a Gatsby project.
-    image: i18n.jpg
-    more: Tutorial on Medium
-    source: medium
-    tag: article
-    link: https://blog.significa.pt/i18n-with-gatsby-528607b4da81
-
-  - title: React Snuggle - Snuggle your components really tight
-    image: snuggle.jpg
+  - title: React Snuggle
+    tagline: Snuggle your components really tight
+    image: ./images/snuggle.png
     more: Open-source on github
     source: github
     tag: repo

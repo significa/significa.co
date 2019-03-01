@@ -1,18 +1,15 @@
 import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
 
-import { RightContent, Big } from '../UI/'
-import { Dribbble } from './Dribbble'
-import { Github } from './Github'
-import { Medium } from './Medium'
+import { RightContent, Big, LabsIcon, LabsSourceType } from '../UI/'
 
 import * as S from './styled'
 
 interface IItem {
   title: string
-  image: string
+  tagline: string
   more: string
-  source: string
+  source: LabsSourceType
   tag: string
   link: string
 }
@@ -28,48 +25,38 @@ interface IFromTheLabsQuery {
   }
 }
 
-const icons: { [key: string]: any } = {
-  dribbble: Dribbble,
-  github: Github,
-  medium: Medium,
-}
-
-class FromTheLabs extends React.Component {
-  renderIcon = (source: string) => {
-    const Icon = icons[source.toLowerCase()]
-
-    return Icon ? (
-      <S.IconHolder>
-        <Icon />
-      </S.IconHolder>
-    ) : null
-  }
-
-  render() {
-    return (
-      <StaticQuery
-        query={fromTheLabsQuery}
-        render={({ labsYaml: { fromTheLabs, content } }: IFromTheLabsQuery) => (
-          <RightContent title={fromTheLabs.title}>
-            <ul>
-              {content.slice(0, 3).map((item, i) => (
-                <S.ListItem key={i}>
-                  <S.Link href={item.link}>
-                    {this.renderIcon(item.source)}
-                    <Big>{item.title}</Big>
-                    <S.More>{item.more}</S.More>
-                  </S.Link>
-                </S.ListItem>
-              ))}
-            </ul>
-            <S.ArrowLink highlight to={fromTheLabs.link}>
-              {fromTheLabs.cta}
-            </S.ArrowLink>
-          </RightContent>
-        )}
-      />
-    )
-  }
+const FromTheLabs: React.FC<{}> = () => {
+  return (
+    <StaticQuery
+      query={fromTheLabsQuery}
+      render={({ labsYaml: { fromTheLabs, content } }: IFromTheLabsQuery) => (
+        <RightContent title={fromTheLabs.title}>
+          <ul>
+            {content.slice(0, 3).map((item, i) => (
+              <S.ListItem key={i}>
+                <S.Link href={item.link}>
+                  {item.source && (
+                    <S.IconHolder>
+                      <LabsIcon
+                        source={item.source.toLowerCase() as LabsSourceType}
+                      />
+                    </S.IconHolder>
+                  )}
+                  <Big>
+                    {item.title} &mdash; {item.tagline}
+                  </Big>
+                  <S.More>{item.more}</S.More>
+                </S.Link>
+              </S.ListItem>
+            ))}
+          </ul>
+          <S.ArrowLink highlight to={fromTheLabs.link}>
+            {fromTheLabs.cta}
+          </S.ArrowLink>
+        </RightContent>
+      )}
+    />
+  )
 }
 
 const fromTheLabsQuery = graphql`
@@ -82,7 +69,7 @@ const fromTheLabsQuery = graphql`
       }
       content {
         title
-        image
+        tagline
         more
         source
         tag

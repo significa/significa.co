@@ -26,10 +26,10 @@ interface ILabsIcon {
   color?: boolean
 }
 
-const LabsIcon: React.FC<ILabsIcon> = ({ source, color }) => {
+const LabsIcon: React.FC<ILabsIcon> = ({ source, color, ...props }) => {
   const Icon = color ? colorIcons[source] : icons[source]
 
-  return <Icon />
+  return <Icon {...props} />
 }
 
 export default LabsIcon

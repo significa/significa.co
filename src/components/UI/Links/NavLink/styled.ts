@@ -29,9 +29,11 @@ export const NavLink = styled(Link)`
   }
 
   @media (max-width: 48em) {
-    &:hover {
-      &:before {
-        width: 0;
+    @media (hover: hover) {
+      &:hover {
+        &:before {
+          width: 0;
+        }
       }
     }
   }

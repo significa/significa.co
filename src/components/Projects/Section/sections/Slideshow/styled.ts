@@ -56,9 +56,11 @@ export const ArrowContainer = styled.button`
     transition: opacity ${({ theme }) => theme.transitions.ease()};
   }
 
-  &:hover {
-    &:before {
-      opacity: 0.3;
+  @media (hover: hover) {
+    &:hover {
+      &:before {
+        opacity: 0.3;
+      }
     }
   }
 `

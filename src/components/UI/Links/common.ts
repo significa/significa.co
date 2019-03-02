@@ -18,8 +18,10 @@ export const baseStyle = css`
   }
 
   @media (max-width: 48em) {
-    &:hover {
-      color: inherit;
+    @media (hover: hover) {
+      &:hover {
+        color: inherit;
+      }
     }
   }
 `

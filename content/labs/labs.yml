@@ -57,7 +57,7 @@ content:
   - title: React Snuggle
     tagline: Snuggle your components really tight
     image: ./images/snuggle.png
-    more: Open-source on github
+    more: Open-source on Github
     source: github
     tag: repo
     link: https://github.com/Significa/react-snuggle/

@@ -100,8 +100,10 @@ export const AnimatedSectionLink = styled(animated.a)`
     font-size: 1em;
   }
 
-  &:hover {
-    color: ${({ theme }) => theme.colors.highlight};
+  @media (hover: hover) {
+    &:hover {
+      color: ${({ theme }) => theme.colors.highlight};
+    }
   }
 `
 
@@ -177,17 +179,19 @@ export const AnimatedNavButton = styled(({ visible, ...rest }) => (
     bottom: 0.5rem;
   }
 
-  &:hover ${ButtonLine} {
-    &:nth-child(1) {
-      width: 1rem;
-    }
+  @media (hover: hover) {
+    &:hover ${ButtonLine} {
+      &:nth-child(1) {
+        width: 1rem;
+      }
 
-    &:nth-child(2) {
-      width: 1rem;
-    }
+      &:nth-child(2) {
+        width: 1rem;
+      }
 
-    &:nth-child(3) {
-      width: 1rem;
+      &:nth-child(3) {
+        width: 1rem;
+      }
     }
   }
 

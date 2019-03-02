@@ -19,6 +19,10 @@ export const Container = styled(BaseContainer)`
   @media (max-width: 48em) {
     display: block;
   }
+
+  @media (max-width: 32em) {
+    display: none;
+  }
 `
 
 export const Holder = styled.div<{ rowAmount: number }>`

@@ -2,28 +2,33 @@ import React from 'react'
 import { FluidObject } from 'gatsby-image'
 
 import ContentThumb from '../ContentThumb'
+import LabsIcon from '../LabsIcon'
+import { LabsSourceType } from '../LabsIcon/types'
 
-interface IProjectThumb {
+interface ILabsThumb {
   title: string
   tagline: string
   to: string
   fluid: FluidObject
-  services: string[]
+  more: string
+  source: LabsSourceType
 }
 
-const ProjectThumb: React.FC<IProjectThumb> = ({
+const LabsThumb: React.FC<ILabsThumb> = ({
   to,
   fluid,
   title,
   tagline,
-  services,
+  more,
+  source,
 }) => (
   <ContentThumb
     to={to}
     fluid={fluid}
     title={`${title} — ${tagline}`}
-    text={services.join(', ')}
+    text={more}
+    renderIcon={() => <LabsIcon source={source} color />}
   />
 )
 
-export default ProjectThumb
+export default LabsThumb

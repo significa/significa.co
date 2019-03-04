@@ -31,9 +31,11 @@ export const TitleWrapper = styled.a`
   display: inline-block;
   margin-bottom: 0.5rem;
 
-  &:hover {
-    ${AnchorIcon} {
-      opacity: 1;
+  @media (hover: hover) {
+    &:hover {
+      ${AnchorIcon} {
+        opacity: 1;
+      }
     }
   }
 `

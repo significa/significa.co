@@ -43,7 +43,9 @@ export default function useMeasure(
       }
     }
 
-    return ro.disconnect
+    return () => {
+      ro.disconnect()
+    }
   }, [])
 
   return bounds

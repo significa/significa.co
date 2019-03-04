@@ -17,4 +17,4 @@ const Github = (props: any) => (
   </Svg>
 )
 
-export { Github }
+export default Github

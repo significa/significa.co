@@ -3,7 +3,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - npm ci --production
+      - npm i
       - ./.make_credentials.sh
 
   build:

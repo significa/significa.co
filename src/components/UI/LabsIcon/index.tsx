@@ -9,13 +9,13 @@ import GithubColor from './color/Github'
 
 import { LabsSourceType } from './types'
 
-const icons: { [key: string]: any } = {
+const icons: { [key in LabsSourceType]: React.ReactNode } = {
   dribbble: Dribbble,
   github: Github,
   medium: Medium,
 }
 
-const colorIcons: { [key: string]: any } = {
+const colorIcons: { [key in LabsSourceType]: any } = {
   dribbble: DribbbleColor,
   github: GithubColor,
   medium: MediumColor,

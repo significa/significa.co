@@ -1,5 +1,3 @@
-const siteAddress = new URL(`https://significa.co`);
-
 module.exports = {
   siteMetadata: {
     title: 'Significa',
@@ -43,18 +41,18 @@ module.exports = {
     {
       resolve: `gatsby-plugin-s3`,
       options: {
-          bucketName: process.env.BUCKET_NAME,
-          region: `eu-west-1`,
-          protocol: siteAddress.protocol.slice(0, -1),
-          hostname: siteAddress.hostname,
+        bucketName: process.env.BUCKET_NAME || `fallback`,
+        region: `eu-west-1`,
+        protocol: `https`,
+        hostname: `significa.co`,
       },
     },
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
-        siteUrl: siteAddress.href.slice(0, -1),
-      }
-    }
+        siteUrl: `https://significa.co`,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',

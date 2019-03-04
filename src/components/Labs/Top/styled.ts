@@ -18,12 +18,6 @@ export const LabsTopWrapper = styled.section`
 
 export const Huge = styled(BaseHuge)`
   margin-bottom: 0.5rem;
-
-  /* @media (max-width: 32em) {
-    font-size: 2em;
-    line-height: 1.25;
-    letter-spacing: 0;
-  } */
 `
 
 export const Big = styled(BaseBig)``

@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - npm ci
+      - ./.make_credentials.sh
+
+  build:
+    commands:
+      - npm run build
+
+  post-build:
+    commands:
+      # Only taking care of deploy previews for now
+      - AWS_PROFILE=staging BUCKET_NAME=staging.significa.co/$(echo $CODEBUILD_WEBHOOK_TRIGGER | tr / -) npm run deploy && aws cloudfront create-invalidation --distribution-id $STAGING_CLOUDFRONT --paths \"/*\""
+
+artifacts:
+  base-directory: public
+  files:
+    - '**/*'
+  discard-paths: no
+
+cache:
+  paths:
+    - .cache/*
+    - node_modules/*
+    - public/*

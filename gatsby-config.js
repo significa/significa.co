@@ -1,3 +1,5 @@
+const siteAddress = new URL(`https://significa.co`);
+
 module.exports = {
   siteMetadata: {
     title: 'Significa',
@@ -38,6 +40,21 @@ module.exports = {
         icon: 'src/assets/images/icon.png', // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+          bucketName: process.env.BUCKET_NAME,
+          region: `eu-west-1`,
+          protocol: siteAddress.protocol.slice(0, -1),
+          hostname: siteAddress.hostname,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: siteAddress.href.slice(0, -1),
+      }
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',

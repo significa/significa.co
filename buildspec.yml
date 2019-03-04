@@ -13,7 +13,7 @@ phases:
   post_build:
     commands:
       # Only taking care of deploy previews for now
-      - AWS_PROFILE=staging BUCKET_NAME=staging.significa.co/$(echo $CODEBUILD_WEBHOOK_TRIGGER | tr / -) npm run deploy && aws cloudfront create-invalidation --distribution-id $STAGING_CLOUDFRONT --paths "/*"
+      - aws s3 sync --delete public --profile staging "s3://staging.significa.co/previews/$(echo $CODEBUILD_WEBHOOK_TRIGGER | tr / -)"
 
 artifacts:
   base-directory: public

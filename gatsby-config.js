@@ -41,7 +41,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-s3`,
       options: {
-        bucketName: process.env.BUCKET_NAME || `fallback`,
+        bucketName: `significa.co`,
         region: `eu-west-1`,
         protocol: `https`,
         hostname: `significa.co`,

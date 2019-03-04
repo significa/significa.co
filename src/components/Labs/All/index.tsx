@@ -25,10 +25,10 @@ const All: React.FC<IAll> = ({ content, tags }) => {
         <S.Filter active={!filter} onClick={() => setFilter(null)}>
           All
         </S.Filter>
-        {tags.map((tag, i) => {
+        {tags.map(tag => {
           return (
             <S.Filter
-              key={i}
+              key={tag.tag}
               active={filter === tag.tag}
               onClick={() => setFilter(tag.tag)}
             >
@@ -38,9 +38,9 @@ const All: React.FC<IAll> = ({ content, tags }) => {
         })}
       </S.Sidebar>
       <div>
-        {items.map((item, i) => {
+        {items.map(item => {
           return (
-            <S.ItemLink key={i} href={item.link}>
+            <S.ItemLink key={`${item.title}-${item.tagline}`} href={item.link}>
               <S.ImgHolder>
                 <S.LabsIcon source={item.source} color />
                 <S.Img fluid={item.image.childImageSharp.fluid} />

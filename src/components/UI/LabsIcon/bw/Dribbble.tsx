@@ -17,4 +17,4 @@ const Dribbble = (props: any) => (
   </Svg>
 )
 
-export { Dribbble }
+export default Dribbble

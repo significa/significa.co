@@ -17,4 +17,4 @@ const Medium = (props: any) => (
   </Svg>
 )
 
-export { Medium }
+export default Medium

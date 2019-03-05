@@ -14,6 +14,7 @@ phases:
     commands:
       # Only taking care of deploy previews for now
       - aws s3 sync --delete public --profile staging "s3://staging.significa.co/previews/$(echo $CODEBUILD_WEBHOOK_TRIGGER | tr / -)"
+      - echo https://$(echo $CODEBUILD_WEBHOOK_TRIGGER | tr / -).staging.significa.co/
 
 artifacts:
   base-directory: public

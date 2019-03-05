@@ -1,0 +1,32 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - npm i
+      - ./.make_credentials.sh
+
+  build:
+    commands:
+      - npm run build
+
+  post_build:
+    commands:
+      - |
+        if [ "$CODEBUILD_WEBHOOK_HEAD_REF" == "refs/heads/master" ]; then
+          AWS_PROFILE=production npm run deploy && aws cloudfront create-invalidation --distribution-id $PRODUCTION_CLOUDFRONT --paths '/*' --profile production
+        else
+          aws s3 sync --delete public --profile staging "s3://significa.io/previews/$(echo $CODEBUILD_WEBHOOK_TRIGGER | tr / -)"
+        fi
+
+artifacts:
+  base-directory: public
+  files:
+    - '**/*'
+  discard-paths: no
+
+cache:
+  paths:
+    - .cache/*
+    - node_modules/*
+    - public/*

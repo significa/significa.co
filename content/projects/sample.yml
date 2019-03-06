@@ -18,7 +18,7 @@ mainTheme: oopsie-light
 navigationTheme: oopsie-light
 themes:
   - name: oopsie-orange
-    background: '#FAD6A5'
+    background: '#FAD6A1'
     foreground: '#15191F'
     highlight: '#FF9500'
     medium: 'rgba(0,0,0,0.4)'

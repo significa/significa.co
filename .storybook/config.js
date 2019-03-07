@@ -1,5 +1,12 @@
-import { configure } from '@storybook/react'
+import { addParameters, configure } from '@storybook/react'
+import { themes } from '@storybook/theming'
 import decorators from './decorators'
+
+addParameters({
+  options: {
+    theme: themes.dark,
+  },
+})
 
 decorators()
 

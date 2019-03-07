@@ -22,15 +22,15 @@ themes:
     foreground: '#242424'
     highlight: '#FF5050'
     medium: 'rgba(0,0,0,0.4)'
-    subtle: 'rgba(0,0,0,0.05)'
+    subtle: '#b2b2b2'
     error: '#FF5050'
 
   - name: mishmash-light
     background: '#FFFFFF'
     foreground: '#242424'
     highlight: '#ff5050'
-    medium: 'rgba(255,255,255,0.4)'
-    subtle: 'rgba(255,255,255,0.1)'
+    medium: '#999999'
+    subtle: '#b2b2b2'
     error: '#FF5050'
 
 # Info
@@ -47,7 +47,6 @@ links:
 content:
   # Chapter
   - title: Website
-    theme: mishmash-grey
     showTitle: false
     content:
       # Section
@@ -74,7 +73,6 @@ content:
               image: ./mishmash/4-Mishmash-Homepage.png
 
           - type: video
-            theme: oopsie-orange
             layout: large
             margin: both
             content:
@@ -86,7 +84,7 @@ content:
 
           - type: text
             content:
-              title: Mobile? Amazing too!
+              title: Mobile Home Page
               text: |
                The same attention to detail was kept to ensure a great mobile experience for newcomers and returners alike. Encapsuled by the phone's screen, every mishmash product is allowed to shine.
 
@@ -104,6 +102,7 @@ content:
 
           - type: image
             layout: large
+            margin: both
             content:
               image: ./mishmash/7-Mishmash-Shop.png
 
@@ -121,7 +120,7 @@ content:
 
           - type: text
             content:
-              title: Shop mishmash on the go!
+              title: Shop on the go
               text: |
                Browse, filter and appreciate every little detail of each mishmash product while you are on the move.
 
@@ -157,27 +156,45 @@ content:
 
           - type: image
             layout: large
-            margin: bottom
+            margin: both
             content:
               image: ./mishmash/12-Mishmash-Blog.png
 
           - type: image
             layout: large
-            margin: bottom
+            margin: both
             content:
               image: ./mishmash/13-Mishmash-BlogMobile.png
 
+      - title: Styleguide
+        sections:
+
           - type: text
             content:
-              title: Color Palette & Typography
+              title: Color Palette
               text: |
-                So the user can focus entirely on what trully matters — the products on sale, we used a greyscale palette on white background, using color only when extremely necessary. Used as part of the Mishmash brand, the Circular font was already deeply embeded in its DNA. Used in three different weights — Book, Medium e Bold.       
+                So the user can focus entirely on what trully matters — the products on sale, we used a greyscale palette on white background, using color only when extremely necessary. 
 
           - type: image
             layout: large
             margin: both
             content:
               image: ./mishmash/14-Mishmash-Colors.jpg  
+
+          - type: text
+            content:
+              title: Typography
+              text: |
+                Used as part of the Mishmash brand, the Circular font was already deeply embeded in its DNA. Used in three different weights — Book, Medium e Bold.
+
+          - type: image
+            layout: large
+            margin: both
+            content:
+              image: ./mishmash/16-MishMash-Typography.jpg 
+
+
+
 
           - type: text
             content:

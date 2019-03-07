@@ -9,8 +9,8 @@ description: |
 
 # Images
 hero: ./mishmash/2-Mishmash-MainImage.png
-featured: ./sample/transparent-image.png
-thumbnail: ./sample/triangle.png
+featured: ./mishmash/1-Mishmash-CoverImage.png
+thumbnail: ./mishmash/1-Mishmash-CoverImage.png
 
 # Settings
 heroTheme: mishmash-grey

@@ -2,7 +2,7 @@
 date: 2017/05/01
 
 # Main info
-title: Mailcube MacOS App
+title: Mailcube macOS App
 tagline: You'll love email again
 description: |
   An email client to give you more time and peace of mind, capable to turn email from foe to friend again. Even though many of us have declared email dead, it's up to all of us to breathe new life into it. Let's face it, you're not going to stop using email, so, instead, why not work on the relationship?
@@ -42,7 +42,7 @@ services:
   - Development
 
 deliverables:
-  - MacOS app
+  - macOS app
   - Website
   - Logo
 links:
@@ -158,7 +158,7 @@ content:
             content:
               title: Typography
               text: |
-               Mailcube is being developed for MacOS and it’s main purpose is not only to organize information but to display it, so it was essential for the text to have unmatched legibility, clarity, and consistency. To achieve that we used Apple’s system font, San Francisco UI Text.
+               Mailcube is being developed for macOS and it’s main purpose is not only to organize information but to display it, so it was essential for the text to have unmatched legibility, clarity, and consistency. To achieve that we used Apple’s system font, San Francisco UI Text.
 
           - type: image
             layout: medium

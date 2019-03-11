@@ -149,8 +149,6 @@ content:
 
           - type: text
             content:
-              #nao da para tirar este titulo e neste não há titulo
-              title: Sem título
               text: |
                 When you’re done, you’ll see your CO² Balance which, as you may expect, is very negative. But it doens’t have to be. That is the grand purpose of the Reforestum app — Create enough forest to offset your footprint.
 
@@ -190,9 +188,7 @@ content:
 
           - type: text
             content:
-              #nao da para tirar este titulo e neste não há titulo
               title: Manage Your Forest
-              showTitle: false
               text: |
                 Keep track and manage your forest in real time. Every detail about your forest in one place. Keep track of how much carbon its capturing and have access to a detailed gallery. Want more? Enlarge it!
 

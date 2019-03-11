@@ -57,13 +57,13 @@ content:
         showTitle: false
         sections:
           # Sections
-          
+
           - type: image
             layout: medium
             margin: bottom
             content:
               image: ./reforestum/3-Reforestum-ShowOf01.jpg
-              
+
           - type: image
             layout: medium
             margin: both
@@ -108,7 +108,7 @@ content:
   # Chapter
   - title: StyleGuide
     showTitle: false
-    content:     
+    content:
       # Section
       - title: Typography
         showTitle: false
@@ -116,7 +116,7 @@ content:
           # Sections
           - type: text
             content:
-              title: Apercu — An extensive and usable family.
+              title: Apercu — An extensive and usable family
               text: |
                 Apercu was the right choice for a complex platform that needs to keep the friendly and bold personality that resonates with Reforestum’s beautiful and ambicious mission.
 
@@ -129,7 +129,7 @@ content:
   # Chapter
   - title: Design
     showTitle: false
-    content:     
+    content:
       # Section
       - title: WebApp
         showTitle: false
@@ -149,8 +149,6 @@ content:
 
           - type: text
             content:
-            #nao da para tirar este titulo e neste não há titulo
-              title: Sem título
               text: |
                 When you’re done, you’ll see your CO² Balance which, as you may expect, is very negative. But it doens’t have to be. That is the grand purpose of the Reforestum app — Create enough forest to offset your footprint.
 
@@ -187,12 +185,10 @@ content:
             margin: both
             content:
               image: ./reforestum/13-Reforestum-Positive.jpg
-            
+
           - type: text
             content:
-            #nao da para tirar este titulo e neste não há titulo
               title: Manage Your Forest
-              showTitle: false
               text: |
                 Keep track and manage your forest in real time. Every detail about your forest in one place. Keep track of how much carbon its capturing and have access to a detailed gallery. Want more? Enlarge it!
 
@@ -237,8 +233,6 @@ content:
 
           - type: text
             content:
-            #nao da para tirar este titulo e neste não há titulo
-              title: Sem título
               text: |
                 Green was the obvious choice for color, as it illustrates the positive relevance of nature. As a contrast, to deliver any negative message, the color orange was used as a warning, quickly stating that something needs change.
 
@@ -271,5 +265,3 @@ content:
             margin: both
             content:
               image: ./reforestum/21-Reforestum-Footer.jpg
-
-                

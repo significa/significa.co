@@ -13,8 +13,12 @@ export const createNavigationItems = (content: ContentType): IItem[] => {
       }
 
       block.sections.forEach(section => {
-        if (section.type === 'text' && 'title' in section.content) {
-          acc.push({ type: 'section', text: section.content.title as string })
+        if (
+          section.type === 'text' &&
+          'title' in section.content &&
+          typeof section.content.title === 'string'
+        ) {
+          acc.push({ type: 'section', text: section.content.title })
         }
       })
     })

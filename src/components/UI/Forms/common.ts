@@ -19,8 +19,8 @@ export const baseInputStyle = css`
   border-radius: 0;
   box-shadow: none;
   outline: none;
-  appearence: none;
-  -webkit-appearence: none;
+  appearance: none;
+  -webkit-appearance: none;
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.subtle};
   padding: 0.25rem 0;

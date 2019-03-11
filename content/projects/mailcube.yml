@@ -2,7 +2,7 @@
 date: 2017/05/01
 
 # Main info
-title: Mailcube MacOs App
+title: Mailcube MacOS App
 tagline: You'll love email again
 description: |
   An email client to give you more time and peace of mind, capable to turn email from foe to friend again. Even though many of us have declared email dead, it's up to all of us to breathe new life into it. Let's face it, you're not going to stop using email, so, instead, why not work on the relationship?
@@ -39,9 +39,10 @@ services:
   - UI/UX
   - Branding
   - Illustration
+  - Development
 
 deliverables:
-  - MacOs app
+  - MacOS app
   - Website
   - Logo
 links:

@@ -51,7 +51,7 @@ links:
 
 content:
   # Chapter
-  - title: The APP
+  - title: The App
     showTitle: false
     content:
       # Section
@@ -147,7 +147,10 @@ content:
             margin: both
             content:
               image: ./mailcube/11-Mailcube-Design.png
-
+  # Chapter
+  - title: Styleguide
+    showTitle: false
+    content:
       # Section
       - title: StyleGuide
         showTitle: false

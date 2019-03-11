@@ -106,8 +106,8 @@ export const ClearButton = styled.button`
   border-radius: 0;
   outline: none;
   box-shadow: 0;
-  appearence: none;
-  -webkit-appearence: none;
+  appearance: none;
+  -webkit-appearance: none;
   padding: 0;
   margin: 0;
 

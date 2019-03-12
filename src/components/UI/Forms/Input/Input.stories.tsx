@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, text } from '@storybook/addon-knobs'
+import { text } from '@storybook/addon-knobs'
 
 import Input from './'
 
@@ -13,7 +13,7 @@ storiesOf('Forms/Input', module)
 
   .add('Error', () => (
     <Input
-      hasError
+      error="Some error"
       label="Your name"
       placeholder="Please type your name"
       value="Pedro"
@@ -22,7 +22,7 @@ storiesOf('Forms/Input', module)
 
   .add('Configurable', () => (
     <Input
-      hasError={boolean('Has errors?', false)}
+      hasError={text('Error?', '')}
       label={text('Label', 'The label')}
       placeholder={text('Label', 'The placeholder')}
       value={text('Value', 'The value')}

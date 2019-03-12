@@ -2,11 +2,16 @@ import React from 'react'
 
 import * as S from './styled'
 
-const ArrowLink: React.FC<any> = props => (
+interface IButton {
+  pending?: boolean
+  [key: string]: any
+}
+
+const Button: React.FC<IButton> = ({ pending, ...props }) => (
   <S.Button {...props}>
     {props.children}
-    <S.Arrow />
+    {pending ? <S.Loader /> : <S.Arrow />}
   </S.Button>
 )
 
-export default ArrowLink
+export default Button

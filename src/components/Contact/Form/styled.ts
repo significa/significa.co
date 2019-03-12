@@ -24,11 +24,18 @@ export const Button = styled(BaseButton)``
 
 export const FileInput = styled(BaseFileInput)``
 
+interface IWrapper {
+  isSubmitting: boolean
+}
 export const Wrapper = styled(Container)`
   max-width: 30em;
 
   margin-top: 3em;
   margin-bottom: 3em;
+
+  transition: opacity ${({ theme }) => theme.transitions.ease()};
+  pointer-events: ${({ isSubmitting }: IWrapper) =>
+    isSubmitting ? 'none' : 'default'};
 `
 
 export const ActionsWrapper = styled.div`

@@ -18,8 +18,12 @@ storiesOf('Forms/File Input', module)
   ))
 
   .add('Error', () => (
-    // tslint:disable-next-line: no-console
-    <FileInput label="Add attachment" onSelect={console.log} hasError />
+    <FileInput
+      label="Add attachment"
+      // tslint:disable-next-line: no-console
+      onSelect={console.log}
+      error="Some error"
+    />
   ))
 
   .add('Configurable', () => (
@@ -27,7 +31,7 @@ storiesOf('Forms/File Input', module)
       label={text('Label', 'Label text')}
       // tslint:disable-next-line: no-console
       onSelect={console.log}
-      hasError={boolean('Has error?', false)}
+      error={text('Error', '')}
       uploading={boolean('Uploading?', false)}
     />
   ))

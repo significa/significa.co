@@ -2,11 +2,13 @@ import React, { useState, useRef } from 'react'
 
 import * as S from './styled'
 
+import Error from '../Error'
+
 interface IFileInput {
   label: string
   onSelect: (file: File) => void
   uploading?: boolean
-  hasError?: boolean
+  error?: string
   className?: string
 }
 
@@ -20,7 +22,7 @@ const FileInput = ({
   label,
   onSelect,
   uploading,
-  hasError,
+  error,
   className,
   ...props
 }: IFileInput) => {
@@ -44,31 +46,34 @@ const FileInput = ({
   }
 
   return (
-    <S.Wrapper className={className}>
-      <label>
-        <S.Input
-          {...props}
-          onChange={e => {
-            if (e.target.files && e.target.files.length > 0) {
-              handleSelect(e.target.files)
-            }
-          }}
-          ref={ref}
-        />
-        <S.Button hasError={hasError}>
-          <S.Clip hasError={hasError} />
-          {file || label}
-        </S.Button>
-      </label>
+    <div>
+      <S.Wrapper className={className}>
+        <label>
+          <S.Input
+            {...props}
+            onChange={e => {
+              if (e.target.files && e.target.files.length > 0) {
+                handleSelect(e.target.files)
+              }
+            }}
+            ref={ref}
+          />
+          <S.Button hasError={!!error}>
+            <S.Clip hasError={!!error} />
+            {file || label}
+          </S.Button>
+        </label>
 
-      {file && (
-        <S.ClearButton onClick={clear}>
-          <S.Clear />
-        </S.ClearButton>
-      )}
+        {file && (
+          <S.ClearButton onClick={clear}>
+            <S.Clear />
+          </S.ClearButton>
+        )}
 
-      {uploading && <S.Uploading />}
-    </S.Wrapper>
+        {uploading && <S.Uploading />}
+      </S.Wrapper>
+      {error && <Error>{error}</Error>}
+    </div>
   )
 }
 

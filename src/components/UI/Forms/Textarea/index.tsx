@@ -1,11 +1,13 @@
 import React, { useRef, useEffect, useCallback } from 'react'
 
 import Label from '../Label'
+import Error from '../Error'
+
 import * as S from './styled'
 
 interface IInput {
   label: string
-  hasError?: boolean
+  error?: string
   className?: string
   [key: string]: any // TODO: Check how to extend input element
 }
@@ -19,7 +21,7 @@ const resize = (el: HTMLTextAreaElement | null, baseHeight: number) => {
 
 const Textarea: React.FC<IInput> = ({
   label,
-  hasError,
+  error,
   className,
   ...inputProps
 }) => {
@@ -49,14 +51,15 @@ const Textarea: React.FC<IInput> = ({
   )
 
   return (
-    <Label hasError={hasError} className={className}>
+    <Label hasError={!!error} className={className}>
       {label}
       <S.Textarea
-        hasError={hasError}
+        hasError={!!error}
         ref={ref}
         {...inputProps}
         onChange={handleOnChange}
       />
+      {error && <Error>{error}</Error>}
     </Label>
   )
 }

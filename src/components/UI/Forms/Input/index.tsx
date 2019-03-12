@@ -1,25 +1,28 @@
 import React from 'react'
 
 import Label from '../Label'
+import Error from '../Error'
+
 import * as S from './styled'
 
 interface IInput {
   label: string
-  hasError?: boolean
+  error?: string
   className?: string
   [key: string]: any // TODO: Check how to extend input element
 }
 
 const Input: React.FC<IInput> = ({
   label,
-  hasError,
+  error,
   className,
   ...inputProps
 }) => {
   return (
-    <Label hasError={hasError} className={className}>
+    <Label hasError={!!error} className={className}>
       {label}
-      <S.Input hasError={hasError} {...inputProps} />
+      <S.Input hasError={!!error} {...inputProps} />
+      {error && <Error>{error}</Error>}
     </Label>
   )
 }

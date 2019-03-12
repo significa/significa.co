@@ -8,6 +8,8 @@ interface ILabel {
 }
 
 export const Label = styled(BaseLabel)`
+  display: inline-block;
+  width: 100%;
   transition: color ${({ theme }) => theme.transitions.ease()};
   color: ${({ hasError, theme }: ILabel) =>
     hasError ? theme.colors.error : theme.colors.foreground};

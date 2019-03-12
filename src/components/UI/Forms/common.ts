@@ -35,6 +35,13 @@ export const baseInputStyle = css`
   &:active,
   &:focus {
     border-color: ${({ theme }) => theme.colors.foreground};
+
+    ${(p: IInputProps) =>
+      p.hasError &&
+      css`
+        color: ${({ theme }) => theme.colors.error};
+        border-color: ${({ theme }) => theme.colors.error};
+      `}
   }
 
   ${(p: IInputProps) =>

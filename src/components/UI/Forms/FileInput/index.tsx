@@ -7,6 +7,7 @@ interface IFileInput {
   onSelect: (file: File) => void
   uploading?: boolean
   hasError?: boolean
+  className?: string
 }
 
 /**
@@ -20,6 +21,7 @@ const FileInput = ({
   onSelect,
   uploading,
   hasError,
+  className,
   ...props
 }: IFileInput) => {
   const ref = useRef<HTMLInputElement>(null)
@@ -42,7 +44,7 @@ const FileInput = ({
   }
 
   return (
-    <S.Wrapper>
+    <S.Wrapper className={className}>
       <label>
         <S.Input
           {...props}

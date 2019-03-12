@@ -19,6 +19,7 @@ export const Button = styled.button`
   -webkit-appearance: none;
   text-decoration: none;
   cursor: pointer;
+  outline: none;
 
   display: inline-flex;
   align-items: center;
@@ -31,5 +32,10 @@ export const Button = styled.button`
 
   &:hover ${Arrow} {
     transform: translateX(0.25em);
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
   }
 `

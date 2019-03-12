@@ -49,11 +49,11 @@ links:
 
 content:
   # Chapter
-  - title: Process
+  - title: Snipsl App
     showTitle: false
     content:
       # Section
-      - title: The App
+      - title: Design
         sections:
           # Sections
           
@@ -145,7 +145,7 @@ content:
 
           - type: text
             content:
-              title: Interacting with the Author
+              title: Author Interaction
               text: One of the selling points of Snipsl, is the constant interaction between the author and their loyal readers. As the story unfolds, the readers can vote in story driven polls that can influence the outcome of the story, and share their thoughts on the latest chapter, directly to the author.
 
           - type: image
@@ -166,7 +166,7 @@ content:
 
           - type: text
             content:
-              title: Reading Experience
+              title: Reading
               text: As the most important section of the app, the reading experience needed to be flawless — a smooth experience that takes nothing away from you enjoying the story. With zero distractions, the user can customize it to match his reading preferences. He can change font size, screen’s luminosity, opt for a non serif font and, most important of all, change the viewing mode from light to dark.
 
           - type: video
@@ -178,6 +178,10 @@ content:
               loop: true
               controls: false
               muted: true   
+
+      # Section
+      - title: Brand
+        sections:
 
           - type: text
             content:
@@ -239,7 +243,7 @@ content:
 
           - type: text
             content:
-              title: Creating the SNIPSL brand
+              title: Branding
               text: When creating a brand specifically for an app, you aim to create a visual iconic element whose sole purpose is to stand out with millions of other app icons in the various stores. With this in mind, we also wanted to create a brand that was true to Snipsl’s own identity. That is why we designed an icon that visually represented Snipsl’s main feature — the reader’s voice and opinion to help shape a story as it’s being simultaneously created by the author.
 
           - type: image

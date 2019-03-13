@@ -15,7 +15,7 @@ interface ITouched {
 interface IUseForm {
   initialValues: IValue
   validate: (values: IValue) => IError
-  handleSubmit: (values: IValue) => Promise<IError>
+  handleSubmit: (values: IValue) => Promise<any> // TODO: Typing
 }
 interface IForm {
   handleSubmit: (e: SubmitEvent) => void

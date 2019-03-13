@@ -17,20 +17,24 @@ storiesOf('Forms/File Input', module)
     <FileInput label="Add attachment" onSelect={console.log} uploading />
   ))
 
-  .add('Error', () => (
+  .add('On clear', () => (
     <FileInput
       label="Add attachment"
       // tslint:disable-next-line: no-console
-      onSelect={console.log}
-      error="Some error"
+      onClear={() => console.log('cleared')}
+      uploading
     />
   ))
+
+  .add('Error', () => <FileInput label="Add attachment" error="Some error" />)
 
   .add('Configurable', () => (
     <FileInput
       label={text('Label', 'Label text')}
       // tslint:disable-next-line: no-console
       onSelect={console.log}
+      // tslint:disable-next-line: no-console
+      onClear={() => console.log('cleared')}
       error={text('Error', '')}
       uploading={boolean('Uploading?', false)}
     />

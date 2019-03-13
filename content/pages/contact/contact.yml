@@ -4,8 +4,8 @@ seo:
 title: |
   Hello there!
   How can we help you?
-subtitle: Hate contact forms? Say
-# Subtitle will have mail in the end
+subtitle: Hate contact forms? Say {link}
+# {link} will be replaced by the mail
 mail: hello@significa.pt
 
 errors:

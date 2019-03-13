@@ -100,7 +100,16 @@ const Form: React.FC<IContactForm> = ({ contactYaml: data }) => {
           <S.Title key={key}>{line}</S.Title>
         ))}
         <S.Text>
-          {data.subtitle} <Link to={`mailto:${data.mail}`}>{data.mail}</Link>
+          {/* We need to find {link} in data.subtitle */}
+          {data.subtitle.split(/({link})/gi).map((piece, i) =>
+            piece === '{link}' ? (
+              <Link key={i} to={`mailto:${data.mail}`}>
+                {data.mail}
+              </Link>
+            ) : (
+              <React.Fragment key={i}>{piece}</React.Fragment>
+            )
+          )}
         </S.Text>
       </S.Top>
 

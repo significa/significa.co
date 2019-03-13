@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import axios from 'axios'
 
 const GENERIC_ERROR = 'Could not upload your file. Please try again.'
 const SIZE_ERROR =
@@ -10,12 +11,12 @@ const useFileUpload = () => {
   const [fileUrl, setFileUrl] = useState('')
   const [error, setError] = useState('')
 
-  // const controller = new AbortController()
-  // const signal = controller.signal
+  const CancelToken = axios.CancelToken
+  const source = CancelToken.source()
 
   const cancelUpload = () => {
-    // TODO: AbortController Not really working as expected
-    // controller.abort()
+    // TODO: NOT WORKING!
+    source.cancel()
     setPending(false)
   }
 
@@ -32,22 +33,21 @@ const useFileUpload = () => {
       new Date().toISOString().replace(/[.:TZ]/g, '_') + file.name
 
     try {
-      const urlRes = await fetch(
+      const {
+        data: { url },
+      } = await axios.post(
         'https://4soji24nad.execute-api.eu-west-1.amazonaws.com/v1/upload-url',
-        {
-          method: 'post',
-          body: JSON.stringify({ object_key: fullName }),
-        }
+        { object_key: fullName }
       )
-      const { url } = await urlRes.json()
 
-      const res = await fetch(url, {
+      const res = await axios.request({
+        url,
         method: 'put',
         headers: {
           'Content-Type': file.type,
         },
-        body: file,
-        // signal,
+        data: file,
+        cancelToken: source.token,
       })
 
       if (res.status === 200) {

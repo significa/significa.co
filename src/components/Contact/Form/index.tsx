@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 import * as S from './styled'
 
@@ -47,13 +48,11 @@ const Form: React.FC<{}> = () => {
     const body = fileUrl
       ? { ...values, type: 'enquiry', attachment }
       : { ...values, type: 'enquiry' }
-    return fetch(
-      'https://4soji24nad.execute-api.eu-west-1.amazonaws.com/v1/new',
-      {
-        method: 'post',
-        body: JSON.stringify(body),
-      }
-    )
+    return axios
+      .post(
+        'https://4soji24nad.execute-api.eu-west-1.amazonaws.com/v1/new',
+        body
+      )
       .then(() => {
         setSubmitted(true)
       })

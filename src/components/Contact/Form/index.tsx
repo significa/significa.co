@@ -66,7 +66,7 @@ const Form: React.FC<{}> = () => {
   // FileUpload
   const {
     upload,
-    cancelUpload,
+    cancel,
     pending: filePending,
     fileUrl,
     error: fileError,
@@ -119,7 +119,7 @@ const Form: React.FC<{}> = () => {
           <S.FileInput
             label="Attachment"
             onSelect={upload}
-            onClear={cancelUpload}
+            onClear={cancel}
             uploading={filePending}
             error={fileError}
           />

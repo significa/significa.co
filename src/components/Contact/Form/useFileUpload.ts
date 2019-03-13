@@ -14,10 +14,18 @@ const useFileUpload = () => {
   // const CancelToken = axios.CancelToken
   // const source = CancelToken.source()
 
-  const cancelUpload = () => {
-    // TODO: NOT WORKING!
-    // source.cancel()
-    setPending(false)
+  const cancel = () => {
+    if (pending) {
+      setPending(false)
+      // TODO: NOT WORKING!
+      // source.cancel()
+    }
+    if (error) {
+      setError('')
+    }
+    if (fileUrl) {
+      setFileUrl('')
+    }
   }
 
   const upload = async (file: File) => {
@@ -69,7 +77,7 @@ const useFileUpload = () => {
 
   return {
     upload,
-    cancelUpload,
+    cancel,
     pending,
     error,
     fileUrl,

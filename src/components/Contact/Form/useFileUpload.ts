@@ -10,12 +10,12 @@ const useFileUpload = () => {
   const [fileUrl, setFileUrl] = useState('')
   const [error, setError] = useState('')
 
-  const controller = new AbortController()
-  const signal = controller.signal
+  // const controller = new AbortController()
+  // const signal = controller.signal
 
   const cancelUpload = () => {
-    // TODO: Not really working as expected
-    controller.abort()
+    // TODO: AbortController Not really working as expected
+    // controller.abort()
     setPending(false)
   }
 
@@ -47,7 +47,7 @@ const useFileUpload = () => {
           'Content-Type': file.type,
         },
         body: file,
-        signal,
+        // signal,
       })
 
       if (res.status === 200) {

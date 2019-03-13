@@ -20,9 +20,13 @@ export const Textarea = styled(BaseTextarea)`
   }
 `
 
-export const Button = styled(BaseButton)``
+export const Button = styled(BaseButton)`
+  min-height: 1.5rem;
+`
 
-export const FileInput = styled(BaseFileInput)``
+export const FileInput = styled(BaseFileInput)`
+  min-height: 1.5rem;
+`
 
 interface IWrapper {
   isSubmitting: boolean
@@ -40,6 +44,6 @@ export const Wrapper = styled(Container)`
 
 export const ActionsWrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 `

@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import * as S from './styled'
 
 import useForm from '../../../hooks/useForm'
+import useFileUpload from './useFileUpload'
 
 const MAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
@@ -13,8 +14,15 @@ const initialValues = {
   message: '',
 }
 
-const validate = (values: { [key: string]: string | number | boolean }) => {
-  const errors: { [key: string]: string } = {}
+interface IValue {
+  [key: string]: string | number | boolean
+}
+interface IError {
+  [key: string]: string
+}
+
+const validate = (values: IValue) => {
+  const errors: IError = {}
 
   if (!values.name) {
     errors.name = "Jaqen H'ghar?"
@@ -31,20 +39,55 @@ const validate = (values: { [key: string]: string | number | boolean }) => {
   return errors
 }
 
-const handleSubmit = () => {
-  return new Promise<{ [key: string]: string }>((_, reject) => {
-    return setTimeout(() => reject({ name: 'name taken' }), 3000)
-  })
-}
-
 const Form: React.FC<{}> = () => {
-  const [form, fields] = useForm({ initialValues, validate, handleSubmit })
+  // Main status state
+  const [submitted, setSubmitted] = useState(false)
 
-  // tslint:disable-next-line: no-console
-  const handleFileSelect = (file: File) => console.log(file)
+  const handleSubmit = (values: IValue, attachment: string) => {
+    const body = fileUrl
+      ? { ...values, type: 'enquiry', attachment }
+      : { ...values, type: 'enquiry' }
+    return fetch(
+      'https://4soji24nad.execute-api.eu-west-1.amazonaws.com/v1/new',
+      {
+        method: 'post',
+        body: JSON.stringify(body),
+      }
+    )
+      .then(() => {
+        setSubmitted(true)
+      })
+      .catch(() => {
+        return {
+          // TODO: better message?
+          global: 'Oh noes! Something went wrong',
+        }
+      })
+  }
+  // FileUpload
+  const {
+    upload,
+    cancelUpload,
+    pending: filePending,
+    fileUrl,
+    error: fileError,
+  } = useFileUpload()
+  // Form
+  const [form, fields] = useForm({
+    initialValues,
+    validate,
+    handleSubmit: values => handleSubmit(values, fileUrl),
+  })
+
+  if (submitted) {
+    return <div>Thanks mate. We will be in touch.</div>
+  }
 
   return (
     <S.Wrapper isSubmitting={form.isSubmitting}>
+      {/* TODO: Proper error handling */}
+      {form.errors.global && <p>{form.errors.global}</p>}
+
       <form onSubmit={form.handleSubmit}>
         <S.Input
           name="name"
@@ -63,8 +106,8 @@ const Form: React.FC<{}> = () => {
         />
         <S.Input
           name="budget"
-          label="Budget"
-          placeholder="Do you have a fixed budget? (optional)"
+          label="Budget (optional)"
+          placeholder="Do you have a fixed budget?"
           {...fields.budget}
         />
         <S.Textarea
@@ -74,8 +117,17 @@ const Form: React.FC<{}> = () => {
           {...fields.message}
         />
         <S.ActionsWrapper>
-          <S.FileInput label="Attachment" onSelect={handleFileSelect} />
-          <S.Button disabled={!form.valid} pending={form.isSubmitting}>
+          <S.FileInput
+            label="Attachment"
+            onSelect={upload}
+            onClear={cancelUpload}
+            uploading={filePending}
+            error={fileError}
+          />
+          <S.Button
+            disabled={!form.valid || filePending}
+            pending={form.isSubmitting}
+          >
             Send
           </S.Button>
         </S.ActionsWrapper>

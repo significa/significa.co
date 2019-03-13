@@ -6,7 +6,8 @@ import Error from '../Error'
 
 interface IFileInput {
   label: string
-  onSelect: (file: File) => void
+  onSelect?: (file: File) => void
+  onClear?: () => void
   uploading?: boolean
   error?: string
   className?: string
@@ -21,6 +22,7 @@ interface IFileInput {
 const FileInput = ({
   label,
   onSelect,
+  onClear,
   uploading,
   error,
   className,
@@ -34,11 +36,16 @@ const FileInput = ({
       ref.current.value = ''
       setFile('')
     }
+    if (typeof onClear === 'function') {
+      onClear()
+    }
   }
 
   const handleSelect = (files: FileList) => {
     setFile(files[0].name)
-    onSelect(files[0])
+    if (typeof onSelect === 'function') {
+      onSelect(files[0])
+    }
 
     if (ref.current) {
       ref.current.blur()

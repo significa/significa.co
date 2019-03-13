@@ -24,7 +24,7 @@ interface IButton {
   theme: IFullTheme
 }
 
-export const Button = styled.a.attrs({ ariaRole: 'button' })`
+export const Button = styled.a`
   cursor: pointer;
   text-decoration: none;
   outline: none;

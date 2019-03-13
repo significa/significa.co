@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
+import { StaticQuery, graphql } from 'gatsby'
 import axios from 'axios'
 
-import { MAIL_REGEX, URLS, MESSAGES } from './constants'
+import { MAIL_REGEX, URLS } from './constants'
 
 import * as S from './styled'
 
 import useForm from '../../../hooks/useForm'
 import useFileUpload from './useFileUpload'
+import { textByLine } from '../../../utils/textByLine'
+import { Link } from '../../UI'
+import Success from './Success'
 
 interface IValues {
   [key: string]: string | number | boolean
@@ -15,7 +19,7 @@ interface IErrors {
   [key: string]: string
 }
 
-const Form: React.FC<{}> = () => {
+const Form: React.FC<IContactForm> = ({ contactYaml: data }) => {
   // Main status state
   const [submitted, setSubmitted] = useState(false)
 
@@ -26,7 +30,12 @@ const Form: React.FC<{}> = () => {
     pending: filePending,
     fileUrl,
     error: fileError,
-  } = useFileUpload()
+  } = useFileUpload({
+    errors: {
+      upload: data.errors.uploadError,
+      fileSize: data.errors.uploadSizeError,
+    },
+  })
 
   // Form
   const [form, fields] = useForm({
@@ -51,7 +60,7 @@ const Form: React.FC<{}> = () => {
         setSubmitted(true)
       })
       .catch(() => {
-        return { global: MESSAGES.global }
+        return { global: data.errors.global }
       })
   }
 
@@ -60,20 +69,20 @@ const Form: React.FC<{}> = () => {
     const errors: IErrors = {}
 
     if (!values.name) {
-      errors.name = MESSAGES.nameRequired
+      errors.name = data.errors.nameRequired
     }
 
     if (!values.email) {
-      errors.email = MESSAGES.emailRequired
+      errors.email = data.errors.emailRequired
     } else if (
       typeof values.email === 'string' &&
       !MAIL_REGEX.test(values.email)
     ) {
-      errors.email = MESSAGES.emailInvalid
+      errors.email = data.errors.emailInvalid
     }
 
     if (!values.message) {
-      errors.message = MESSAGES.messageRequired
+      errors.message = data.errors.messageRequired
     }
 
     return errors
@@ -81,42 +90,50 @@ const Form: React.FC<{}> = () => {
 
   // Render
   if (submitted) {
-    return <div>Thanks mate. We will be in touch.</div>
+    return <Success goBack={() => setSubmitted(false)} />
   }
 
   return (
     <S.Wrapper isSubmitting={form.isSubmitting}>
-      {/* TODO: Proper error handling */}
-      {form.errors.global && <p>{form.errors.global}</p>}
+      <S.Top>
+        {textByLine(data.title).map((line, key) => (
+          <S.Title key={key}>{line}</S.Title>
+        ))}
+        <S.Text>
+          {data.subtitle} <Link to={`mailto:${data.mail}`}>{data.mail}</Link>
+        </S.Text>
+      </S.Top>
+
+      {form.errors.global && <S.Error>{form.errors.global}</S.Error>}
 
       <form onSubmit={form.handleSubmit}>
         <S.Input
           {...fields.name}
-          label="Your name"
-          placeholder="How should we call you?"
+          label={data.form.name.label}
+          placeholder={data.form.name.placeholder}
           error={form.touched.name && form.errors.name}
         />
         <S.Input
           {...fields.email}
           type="email"
-          label="Your email"
-          placeholder="Your email address"
+          label={data.form.email.label}
+          placeholder={data.form.email.placeholder}
           error={form.touched.email && form.errors.email}
         />
         <S.Input
           {...fields.budget}
-          label="Budget (optional)"
-          placeholder="Do you have a fixed budget?"
+          label={data.form.budget.label}
+          placeholder={data.form.budget.placeholder}
         />
         <S.Textarea
           {...fields.message}
-          label="Your message"
-          placeholder="What's on your mind?"
+          label={data.form.message.label}
+          placeholder={data.form.message.placeholder}
           error={form.touched.message && form.errors.message}
         />
         <S.ActionsWrapper>
           <S.FileInput
-            label="Attachment"
+            label={data.form.attachment.label}
             onSelect={upload}
             onClear={cancel}
             uploading={filePending}
@@ -126,7 +143,7 @@ const Form: React.FC<{}> = () => {
             disabled={!form.valid || filePending}
             pending={form.isSubmitting}
           >
-            Send
+            {data.form.submit.label}
           </S.Button>
         </S.ActionsWrapper>
       </form>
@@ -134,4 +151,109 @@ const Form: React.FC<{}> = () => {
   )
 }
 
-export default Form
+/** Graphql from here until the bottom */
+
+interface IContactForm {
+  contactYaml: {
+    title: string
+    subtitle: string
+    mail: string
+
+    errors: {
+      global: string
+      nameRequired: string
+      emailRequired: string
+      emailInvalid: string
+      messageRequired: string
+      uploadError: string
+      uploadSizeError: string
+    }
+
+    form: {
+      name: {
+        label: string
+        placeholder: string
+      }
+      email: {
+        label: string
+        placeholder: string
+      }
+      budget: {
+        label: string
+        placeholder: string
+      }
+      message: {
+        label: string
+        placeholder: string
+      }
+      attachment: {
+        label: string
+      }
+      submit: {
+        label: string
+      }
+    }
+  }
+}
+
+const ConnectedForm = () => {
+  return (
+    <StaticQuery
+      query={contactFormQuery}
+      render={(data: IContactForm) => <Form {...data} />}
+    />
+  )
+}
+
+const contactFormQuery = graphql`
+  query ContactFormQuery {
+    contactYaml {
+      title
+      subtitle
+      mail
+
+      errors {
+        global
+        nameRequired
+        emailRequired
+        emailInvalid
+        messageRequired
+        uploadError
+        uploadSizeError
+      }
+
+      form {
+        name {
+          label
+          placeholder
+        }
+        email {
+          label
+          placeholder
+        }
+        budget {
+          label
+          placeholder
+        }
+        message {
+          label
+          placeholder
+        }
+        attachment {
+          label
+        }
+        submit {
+          label
+        }
+      }
+
+      success {
+        title
+        subtitle
+        back
+      }
+    }
+  }
+`
+
+export default ConnectedForm

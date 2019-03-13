@@ -6,6 +6,7 @@ export interface IArrowLink {
   to: string
   highlight?: boolean
   reverse?: boolean
+  onClick?: () => void
 }
 
 const ArrowLink: React.FC<IArrowLink> = props => (

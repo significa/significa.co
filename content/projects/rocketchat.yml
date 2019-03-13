@@ -251,6 +251,24 @@ content:
             content:
               image: ./rocketchat/20-RocketChat-Grid.png
 
+          - type: video
+            theme: rocketchat-grey
+            layout: large
+            margin: both
+            content:
+              video: ./rocketchat/28-RocketChat-MobileAnimation.mp4
+              autoplay: true
+              loop: true
+              controls: false
+              muted: true
+
+          - type: image
+            theme: rocketchat-grey
+            layout: medium
+            margin: both
+            content:
+              image: ./rocketchat/29-RocketChat-MobileSection.png
+
           - type: text
             theme: rocketchat-grey
             content:

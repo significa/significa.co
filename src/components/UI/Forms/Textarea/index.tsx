@@ -5,7 +5,7 @@ import Error from '../Error'
 
 import * as S from './styled'
 
-interface IInput {
+interface ITextarea {
   label: string
   error?: string
   className?: string
@@ -19,7 +19,7 @@ const resize = (el: HTMLTextAreaElement | null, baseHeight: number) => {
   }
 }
 
-const Textarea: React.FC<IInput> = ({
+const Textarea: React.FC<ITextarea> = ({
   label,
   error,
   className,

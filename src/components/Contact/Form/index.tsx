@@ -15,18 +15,18 @@ const initialValues = {
   message: '',
 }
 
-interface IValue {
+interface IValues {
   [key: string]: string | number | boolean
 }
-interface IError {
+interface IErrors {
   [key: string]: string
 }
 
-const validate = (values: IValue) => {
-  const errors: IError = {}
+const validate = (values: IValues) => {
+  const errors: IErrors = {}
 
   if (!values.name) {
-    errors.name = "Jaqen H'ghar?"
+    errors.name = "Jaqen H'ghar? Please type your name or make something up."
   }
 
   if (!values.email) {
@@ -35,8 +35,14 @@ const validate = (values: IValue) => {
     typeof values.email === 'string' &&
     !MAIL_REGEX.test(values.email)
   ) {
-    errors.email = "This doesn't feel right..."
+    errors.email = "This doesn't feel right... Please check your address"
   }
+
+  if (!values.message) {
+    errors.message =
+      'Dont feel like writing? You can check our alternative contacts below.'
+  }
+
   return errors
 }
 
@@ -44,7 +50,7 @@ const Form: React.FC<{}> = () => {
   // Main status state
   const [submitted, setSubmitted] = useState(false)
 
-  const handleSubmit = (values: IValue, attachment: string) => {
+  const handleSubmit = (values: IValues, attachment: string) => {
     const body = fileUrl
       ? { ...values, type: 'enquiry', attachment }
       : { ...values, type: 'enquiry' }
@@ -89,31 +95,28 @@ const Form: React.FC<{}> = () => {
 
       <form onSubmit={form.handleSubmit}>
         <S.Input
-          name="name"
+          {...fields.name}
           label="Your name"
           placeholder="How should we call you?"
           error={form.touched.name && form.errors.name}
-          {...fields.name}
         />
         <S.Input
+          {...fields.email}
           type="email"
-          name="email"
           label="Your email"
           placeholder="Your email address"
           error={form.touched.email && form.errors.email}
-          {...fields.email}
         />
         <S.Input
-          name="budget"
+          {...fields.budget}
           label="Budget (optional)"
           placeholder="Do you have a fixed budget?"
-          {...fields.budget}
         />
         <S.Textarea
-          name="message"
+          {...fields.message}
           label="Your message"
           placeholder="What's on your mind?"
-          {...fields.message}
+          error={form.touched.message && form.errors.message}
         />
         <S.ActionsWrapper>
           <S.FileInput

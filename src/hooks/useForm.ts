@@ -101,6 +101,7 @@ const useForm = ({ initialValues, validate, handleSubmit }: IUseForm) => {
     return {
       ...acc,
       [key]: {
+        name: key,
         value: values[key] || '',
         onChange: (e: InputEvent) => handleOnChange(e, key),
         onBlur: (e: InputEvent) => handleOnBlur(e, key),

@@ -14,7 +14,7 @@ interface ITouched {
 }
 interface IUseForm {
   initialValues: IValue
-  validate: (values: IValue) => IError
+  validate?: (values: IValue) => IError
   handleSubmit: (values: IValue) => Promise<any> // TODO: Typing
 }
 interface IForm {
@@ -36,7 +36,7 @@ interface IFields {
 const useForm = ({ initialValues, validate, handleSubmit }: IUseForm) => {
   const [values, setValues] = useState(initialValues)
   const [touched, setTouched] = useState({})
-  const [errors, setErrors] = useState(validate(values))
+  const [errors, setErrors] = useState(validate ? validate(values) : {})
   const [isSubmitting, setSubmitting] = useState(false)
   const valid = !Object.keys(errors).length
 
@@ -54,6 +54,10 @@ const useForm = ({ initialValues, validate, handleSubmit }: IUseForm) => {
   }
 
   const handleValidation = (valuesToBeValidated: IValue) => {
+    if (!validate) {
+      return
+    }
+
     setErrors(validate(valuesToBeValidated))
   }
 

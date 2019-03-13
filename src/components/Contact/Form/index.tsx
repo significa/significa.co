@@ -1,19 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
+import { MAIL_REGEX, URLS, MESSAGES } from './constants'
+
 import * as S from './styled'
 
 import useForm from '../../../hooks/useForm'
 import useFileUpload from './useFileUpload'
-
-const MAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
-const initialValues = {
-  name: '',
-  email: '',
-  budget: '',
-  message: '',
-}
 
 interface IValues {
   [key: string]: string | number | boolean
@@ -22,53 +15,10 @@ interface IErrors {
   [key: string]: string
 }
 
-const validate = (values: IValues) => {
-  const errors: IErrors = {}
-
-  if (!values.name) {
-    errors.name = "Jaqen H'ghar? Please type your name or make something up."
-  }
-
-  if (!values.email) {
-    errors.email = "It's hard to get back to you without an address."
-  } else if (
-    typeof values.email === 'string' &&
-    !MAIL_REGEX.test(values.email)
-  ) {
-    errors.email = "This doesn't feel right... Please check your address"
-  }
-
-  if (!values.message) {
-    errors.message =
-      'Dont feel like writing? You can check our alternative contacts below.'
-  }
-
-  return errors
-}
-
 const Form: React.FC<{}> = () => {
   // Main status state
   const [submitted, setSubmitted] = useState(false)
 
-  const handleSubmit = (values: IValues, attachment: string) => {
-    const body = fileUrl
-      ? { ...values, type: 'enquiry', attachment }
-      : { ...values, type: 'enquiry' }
-    return axios
-      .post(
-        'https://4soji24nad.execute-api.eu-west-1.amazonaws.com/v1/new',
-        body
-      )
-      .then(() => {
-        setSubmitted(true)
-      })
-      .catch(() => {
-        return {
-          // TODO: better message?
-          global: 'Oh noes! Something went wrong',
-        }
-      })
-  }
   // FileUpload
   const {
     upload,
@@ -77,13 +27,59 @@ const Form: React.FC<{}> = () => {
     fileUrl,
     error: fileError,
   } = useFileUpload()
+
   // Form
   const [form, fields] = useForm({
-    initialValues,
+    initialValues: {
+      name: '',
+      email: '',
+      budget: '',
+      message: '',
+    },
     validate,
     handleSubmit: values => handleSubmit(values, fileUrl),
   })
 
+  // HandleSubmit
+  function handleSubmit(values: IValues, attachment: string) {
+    const body = fileUrl
+      ? { ...values, type: 'enquiry', attachment }
+      : { ...values, type: 'enquiry' }
+    return axios
+      .post(URLS.submit, body)
+      .then(() => {
+        setSubmitted(true)
+      })
+      .catch(() => {
+        return { global: MESSAGES.global }
+      })
+  }
+
+  // Validate
+  function validate(values: IValues) {
+    const errors: IErrors = {}
+
+    if (!values.name) {
+      errors.name = MESSAGES.nameRequired
+    }
+
+    if (!values.email) {
+      errors.email = MESSAGES.emailRequired
+    } else if (
+      typeof values.email === 'string' &&
+      !MAIL_REGEX.test(values.email)
+    ) {
+      errors.email = MESSAGES.emailInvalid
+    }
+
+    if (!values.message) {
+      errors.message = MESSAGES.messageRequired
+    }
+
+    return errors
+  }
+
+  // Render
   if (submitted) {
     return <div>Thanks mate. We will be in touch.</div>
   }

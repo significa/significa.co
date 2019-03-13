@@ -1,0 +1,45 @@
+seo:
+  title: Say hello
+
+title: |
+  Hello there!
+  How can we help you?
+subtitle: Hate contact forms? Say
+# Subtitle will have mail in the end
+mail: hello@significa.pt
+
+errors:
+  global: Oh noes! Something went wrong. Please try again later or contact us via our other contacts below.
+  nameRequired: Jaqen H'ghar? Please type your name or make something up.
+  emailRequired: It's hard to get back to you without an address.
+  emailInvalid: This doesn't feel right... Please check your address.
+  messageRequired: Dont feel like writing? You can check our alternative contacts below.
+  uploadError: Could not upload your file. Please try again.
+  uploadSizeError: File too big to handle. Maybe sending a shareable link in the message?
+
+form:
+  name:
+    label: Your name
+    placeholder: How should we call you?
+  email:
+    label: Your email
+    placeholder: Your email address
+  budget:
+    label: Budget (optional)
+    placeholder: Do you have a fixed budget?
+  message:
+    label: Your message
+    placeholder: What's on your mind?
+  attachment:
+    label: Attachment
+  submit:
+    label: Send
+
+success:
+  title: |
+    Thank you!
+    We'll be in touch shortly.
+  subtitle: |
+    You should have received an email just now. 
+    If not, please go back and check the inputed email address!
+  back: Back to form

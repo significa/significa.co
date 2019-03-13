@@ -1,9 +1,18 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-import { URLS, MAX_FILE_SIZE, MESSAGES } from './constants'
+import { URLS, MAX_FILE_SIZE } from './constants'
 
-const useFileUpload = () => {
+interface IUseFileUpload {
+  errors: {
+    upload: string
+    fileSize: string
+  }
+}
+
+const useFileUpload = ({
+  errors: { upload: uploadError, fileSize: fileSizeError },
+}: IUseFileUpload) => {
   const [pending, setPending] = useState(false)
   const [fileUrl, setFileUrl] = useState('')
   const [error, setError] = useState('')
@@ -24,7 +33,7 @@ const useFileUpload = () => {
     const fileSize: number = parseInt((file.size / 1024 / 1024).toFixed(4), 10) // MB
 
     if (fileSize > MAX_FILE_SIZE) {
-      return setError(MESSAGES.uploadSizeError)
+      return setError(fileSizeError)
     }
 
     setPending(true)
@@ -49,14 +58,14 @@ const useFileUpload = () => {
             if (res.status === 200) {
               setFileUrl(`${URLS.bucketRoot}${fullName}`)
             } else {
-              setError(MESSAGES.uploadError)
+              setError(uploadError)
             }
 
             setPending(false)
           })
       })
       .catch(() => {
-        setError(MESSAGES.uploadError)
+        setError(uploadError)
         setPending(false)
       })
   }

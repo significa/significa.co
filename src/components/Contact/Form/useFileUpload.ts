@@ -11,12 +11,12 @@ const useFileUpload = () => {
   const [fileUrl, setFileUrl] = useState('')
   const [error, setError] = useState('')
 
-  const CancelToken = axios.CancelToken
-  const source = CancelToken.source()
+  // const CancelToken = axios.CancelToken
+  // const source = CancelToken.source()
 
   const cancelUpload = () => {
     // TODO: NOT WORKING!
-    source.cancel()
+    // source.cancel()
     setPending(false)
   }
 
@@ -28,41 +28,43 @@ const useFileUpload = () => {
     }
 
     setPending(true)
+    setError('')
 
     const fullName =
       new Date().toISOString().replace(/[.:TZ]/g, '_') + file.name
 
-    try {
-      const {
-        data: { url },
-      } = await axios.post(
+    return axios
+      .post(
         'https://4soji24nad.execute-api.eu-west-1.amazonaws.com/v1/upload-url',
         { object_key: fullName }
       )
+      .then(({ data: { url } }) => {
+        return axios
+          .request({
+            url,
+            method: 'put',
+            headers: {
+              'Content-Type': file.type,
+            },
+            data: file,
+            // cancelToken: source.token,
+          })
+          .then(res => {
+            if (res.status === 200) {
+              setFileUrl(
+                `https://s3-eu-west-1.amazonaws.com/significa-site-uploads/${fullName}`
+              )
+            } else {
+              setError(GENERIC_ERROR)
+            }
 
-      const res = await axios.request({
-        url,
-        method: 'put',
-        headers: {
-          'Content-Type': file.type,
-        },
-        data: file,
-        cancelToken: source.token,
+            setPending(false)
+          })
       })
-
-      if (res.status === 200) {
-        setFileUrl(
-          `https://s3-eu-west-1.amazonaws.com/significa-site-uploads/${fullName}`
-        )
-      } else {
+      .catch(() => {
         setError(GENERIC_ERROR)
-      }
-
-      setPending(false)
-    } catch (error) {
-      setError(GENERIC_ERROR)
-      setPending(false)
-    }
+        setPending(false)
+      })
   }
 
   return {

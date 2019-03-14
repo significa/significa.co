@@ -1,0 +1,151 @@
+date: 2016/05/01
+
+# Main info
+title: GroHappy Web App
+tagline: Online introspective Journey
+description: |
+  Employees expect a brilliant, digital experience that many tools fail to live up to. From conception to execution we created an online introspective journey that gives users engaging tools to think proactively about how they want to grow, and how they can add value to their current business.
+
+# Images
+hero: ./grohappy/MainImage.png
+featured: ./grohappy/cover.jpg
+thumbnail: ./grohappy/cover.jpg
+
+# Settings
+heroTheme: grohappy-grey
+mainTheme: grohappy-light
+navigationTheme: grohappy-light
+themes:
+  - name: grohappy-grey
+    background: '#f8fafe'
+    foreground: '#516077'
+    highlight: '#ffb3b3'
+    medium: 'rgba(0,0,0,0.4)'
+    subtle: '#b2b2b2'
+    error: '#FF5050'
+
+  - name: grohappy-light
+    background: '#FFFFFF'
+    foreground: '#516077'
+    highlight: '#ffb3b3'
+    medium: '#999999'
+    subtle: '#b2b2b2'
+    error: '#FF5050'
+
+# Info
+client: GroHappy
+services:
+  - User Testing
+  - React JS
+  - Python
+  - Illustration
+deliverables:
+  - User Testing
+  - Business Analysis
+  - Platform
+  - Backoffice
+links:
+  - link: https://app.grohappy.co.uk/login?next=%2Fcheckins
+    linkText: App
+
+content:
+  # Chapter
+  - title: GroHappy
+    showTitle: false
+    content:
+      # Section
+      - title: Web App
+        sections:
+          # Sections
+          
+          - type: image
+            layout: medium
+            margin: bottom
+            content:
+              image: ./grohappy/1_mobile.jpg
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./grohappy/2_best.jpg
+
+          - type: text
+            content:
+              title: Online Journey
+              text: You can start your online Journey with six different kinds of reflections (introspective questionnaires), that will help you get clear on how you want to grow both personally and professionally.
+
+
+          - type: video
+            theme: oopsie-orange
+            layout: medium
+            margin: both
+            content:
+              video: ./grohappy/3_mobile.mp4
+              autoplay: true
+              loop: true
+              controls: false
+              muted: true
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./grohappy/3_journey.jpg
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./grohappy/5_questions.png
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./grohappy/6_complete.png
+
+          - type: text
+            content:
+              title: Reflections
+              text: To represent each of these reflections we hand picked a scale of six different colors that are visible in all of their currosponding elements and illustrations.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./grohappy/7_colors.jpg
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./grohappy/8_sketches.jpg
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./grohappy/9_illustrations.jpg
+
+          - type: text
+            content:
+              title: Experiences
+              text: By analysing your answers in the refleciton questionnaires, the lovely people at GroHappy will suggest a handfull of life Experiences that will help you grow. They can range from watching a simple TED talk video on youtube or completing a challenging course.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./grohappy/10_hover.jpg
+
+          - type: text
+            content:
+              title: Insights
+              text: Check out your Insights to get a snap shot of how you're growing. You'll build these up as you complete the reflections and use them as a guideline on what values to improve.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./grohappy/12_cards.png

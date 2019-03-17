@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
-import { Form } from '../components/Contact'
+import { Form, Contacts } from '../components/Contact'
 
 interface IContent {
   data: {
@@ -21,6 +21,7 @@ const Contact: React.FC<IContent> = ({ data }) => {
     <Layout>
       <SEO title={data.contactYaml.seo.title} />
       <Form />
+      <Contacts />
     </Layout>
   )
 }

@@ -42,7 +42,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   return graphql(`
     {
-      allProjectsYaml(sort: { fields: date }) {
+      allProjectsYaml(sort: { fields: date }, filter: { published: { ne: false } }) {
         edges {
           node {
             title

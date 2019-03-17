@@ -71,7 +71,10 @@ export const query = graphql`
       }
     }
 
-    allProjectsYaml(sort: { fields: date }) {
+    allProjectsYaml(
+      sort: { fields: date }
+      filter: { published: { ne: false } }
+    ) {
       edges {
         node {
           fields {

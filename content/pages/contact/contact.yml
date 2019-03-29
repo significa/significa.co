@@ -33,6 +33,12 @@ matters:
   more: |
     We all have the urge to do something more and make a dent in some of the world's most pressing issues.
     In every project we keep it real and adapt to budget but, on these special cases, we're willing to go the extra mile to make sure your project gets what it deserves.
+  photos:
+    center: ./center@2x.png
+    topLeft: ./top-left@2x.png
+    topRight: ./top-right@2x.png
+    bottomLeft: ./bottom-left@2x.png
+    bottomRight: ./bottom-right@2x.png
 
 errors:
   global: Oh noes! Something went wrong. Please try again later or contact us via our other contacts below.

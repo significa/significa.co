@@ -24,8 +24,13 @@ export const Wrapper = styled(Container)`
     isSubmitting ? 'none' : 'default'};
 
   @media (max-width: 48em) {
+    margin-top: 7.5em;
+    margin-bottom: 7.5em;
+  }
+
+  @media (max-width: 32em) {
     margin-top: 5em;
-    margin-bottom: 7em;
+    margin-bottom: 5em;
   }
 `
 

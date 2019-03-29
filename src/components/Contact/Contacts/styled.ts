@@ -6,6 +6,21 @@ import { AnyStyledComponent } from 'styled-components'
 export const Wrapper = styled(Container)`
   margin-top: 12.5rem;
   margin-bottom: 12.5rem;
+
+  @media (max-width: 64em) {
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+  }
+
+  @media (max-width: 48em) {
+    margin-top: 7.5rem;
+    margin-bottom: 7.5rem;
+  }
+
+  @media (max-width: 32em) {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
 `
 
 export const Title = styled(BaseTitle)`

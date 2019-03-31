@@ -52,7 +52,11 @@ const RecentProjects = () => (
 
 const recentProjectsQuery = graphql`
   query RecentProjectsQuery {
-    allProjectsYaml(limit: 3, sort: { fields: date }) {
+    allProjectsYaml(
+      limit: 3
+      sort: { fields: date }
+      filter: { published: { ne: false } }
+    ) {
       edges {
         node {
           fields {

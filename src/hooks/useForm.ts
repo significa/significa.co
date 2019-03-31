@@ -1,5 +1,7 @@
 import { useState, FormEvent } from 'react'
 
+// TODO: This typings need to be drastically improved
+
 type InputEvent = FormEvent<HTMLInputElement | HTMLTextAreaElement>
 type SubmitEvent = FormEvent<HTMLFormElement>
 type Value = string | number | boolean
@@ -15,7 +17,7 @@ interface ITouched {
 interface IUseForm {
   initialValues: IValue
   validate?: (values: IValue) => IError
-  handleSubmit: (values: IValue) => Promise<any> // TODO: Typing
+  handleSubmit: (values: IValue) => Promise<any>
 }
 interface IForm {
   handleSubmit: (e: SubmitEvent) => void

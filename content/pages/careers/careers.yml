@@ -1,0 +1,13 @@
+seo:
+  title: Careers
+
+hero:
+  # TODO: REDO COPY!
+  title: |
+    Let's move forward.
+    Together.
+  images:
+    - ./careers-top-1@2x.png
+    - ./careers-top-2@2x.png
+    - ./careers-top-3@2x.png
+    - ./careers-top-4@2x.png

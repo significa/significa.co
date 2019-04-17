@@ -2,6 +2,10 @@ import styled from '@theme'
 
 import { ArrowLink as BaseArrowLink, Text } from '../UI/'
 
+export const Wrapper = styled.div`
+  background-color: ${({ theme }) => theme.colors.background};
+`
+
 export const ListItem = styled.li`
   position: relative;
   padding-bottom: 2em;

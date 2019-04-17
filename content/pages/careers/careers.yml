@@ -51,26 +51,54 @@ about:
     - image: ./careers-middle-6@2x.jpg
       alt: A day at Significa
 
-  perks:
-    title: Perky perks.
+perks:
+  title: Perky perks.
 
-    list:
-      - title: Health Insurance
-        text: We’re all different. We’re all equal. We build bridges.
-        image:
+  list:
+    - title: Health Insurance
+      text: We’re all different. We’re all equal. We build bridges.
+      image: ./perky-health.svg
 
-    images:
-      - image: ./careers-bottom-1@2x.jpg
-        alt: A day at Significa
+    - title: Unlimited learning stipend
+      text: We’re all different. We’re all equal. We build bridges.
+      image: ./perky-learning.svg
 
-      - image: ./careers-bottom-2@2x.jpg
-        alt: A day at Significa
+    - title: Daily Food Allowance
+      text: We’re all different. We’re all equal. We build bridges.
+      image: ./perky-food.svg
 
-      - image: ./careers-bottom-3@2x.jpg
-        alt: A day at Significa
+    - title: In-house Arcade
+      text: We’re all different. We’re all equal. We build bridges.
+      image: ./perky-game.svg
 
-      - image: ./careers-bottom-4@2x.jpg
-        alt: A day at Significa
+    - title: Fresh Fruit & Soup
+      text: We’re all different. We’re all equal. We build bridges.
+      image: ./perky-fruit.svg
 
-      - image: ./careers-bottom-5@2x.jpg
-        alt: A day at Significa
+    - title: Annual company retreat
+      text: We’re all different. We’re all equal. We build bridges.
+      image: ./perky-cachaca-anual.svg
+
+    - title: Every equipment you need
+      text: We’re all different. We’re all equal. We build bridges.
+      image: ./perky-equipment.svg
+
+    - title: Flexible hours & location
+      text: We’re all different. We’re all equal. We build bridges.
+      image: ./perky-flexible.svg
+
+  images:
+    - image: ./careers-bottom-1@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-bottom-2@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-bottom-3@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-bottom-4@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-bottom-5@2x.jpg
+      alt: A day at Significa

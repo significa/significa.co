@@ -18,6 +18,18 @@ export const GalleryWrapper = styled.div`
 
   display: flex;
   max-height: 32rem;
+
+  @media (max-width: 64em) {
+    display: grid;
+    grid-template: auto / repeat(2, 1fr);
+    grid-column-gap: 3em;
+    max-height: none;
+  }
+
+  @media (max-width: 32em) {
+    grid-row-gap: 1.5em;
+    grid-template: auto / 1fr;
+  }
 `
 
 export const GalleryImage = styled(Img)<{ width: number; height: number }>`
@@ -30,5 +42,20 @@ export const GalleryImage = styled(Img)<{ width: number; height: number }>`
 
   &:nth-child(3) {
     margin-top: 0;
+  }
+
+  @media (max-width: 64em) {
+    &:nth-child(n + 3) {
+      display: none;
+    }
+
+    margin-top: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  @media (max-width: 32em) {
+    width: auto;
+    height: auto;
   }
 `

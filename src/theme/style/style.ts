@@ -7,6 +7,7 @@ export default css`
 
     color: ${({ theme }) => theme.colors.foreground};
     background-color: ${({ theme }) => theme.colors.background};
+    transition: background ${({ theme }) => theme.transitions.ease()};
   }
 
   *,

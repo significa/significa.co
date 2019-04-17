@@ -5,7 +5,13 @@ import { Container, ArrowLink as BaseArrowLink } from '../../UI'
 import { Big, Text } from '../../UI/Typography'
 
 export const Wrapper = styled(Container)`
-  padding-top: 10rem;
+  position: relative;
+  z-index: 2;
+
+  @media (max-width: 64em) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 `
 
 export const ArrowLink = styled(BaseArrowLink)``
@@ -38,6 +44,19 @@ export const Gallery = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  @media (max-width: 64em) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    display: grid;
+    grid-template: auto / repeat(2, 1fr);
+    grid-column-gap: 3em;
+  }
+
+  @media (max-width: 32em) {
+    grid-row-gap: 1.5em;
+    grid-template: auto / 1fr;
+  }
 `
 
 export const GalleryImage = styled(Img)<{ width: number; height: number }>`
@@ -54,5 +73,21 @@ export const GalleryImage = styled(Img)<{ width: number; height: number }>`
 
   &:nth-child(-n + 3) {
     align-self: flex-end;
+  }
+
+  @media (max-width: 64em) {
+    &:first-child,
+    &:nth-child(n + 4) {
+      display: none;
+    }
+
+    margin-bottom: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  @media (max-width: 32em) {
+    width: auto;
+    height: auto;
   }
 `

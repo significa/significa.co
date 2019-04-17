@@ -3,9 +3,12 @@ import Img from 'gatsby-image'
 
 import { Container, Display as BaseDisplay } from '../../UI'
 
+export const PageContainer = styled.div`
+  overflow: hidden;
+`
+
 export const Wrapper = styled(Container)`
   padding-top: 10rem;
-  overflow: hidden;
 `
 
 export const Display = styled(BaseDisplay)``
@@ -15,11 +18,9 @@ export const GalleryWrapper = styled.div`
 
   display: flex;
   max-height: 32rem;
-
-  overflow: visible;
 `
 
-export const GalleryImage = styled(Img)`
+export const GalleryImage = styled(Img)<{ width: number; height: number }>`
   margin-top: 6rem;
   margin-right: 5rem;
   flex-shrink: 0;

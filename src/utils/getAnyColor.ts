@@ -1,6 +1,6 @@
 import { IFullTheme, IColorsTheme } from '@theme'
 
-interface IgetAnyColor {
+interface IGetAnyColor {
   color?: string
   theme: IFullTheme
 }
@@ -8,7 +8,7 @@ interface IgetAnyColor {
 export const getAnyColor = ({
   color,
   theme: { colors },
-}: IgetAnyColor): string => {
+}: IGetAnyColor): string => {
   if (!color) {
     return colors.foreground
   }

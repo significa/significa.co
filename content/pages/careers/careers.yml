@@ -7,7 +7,70 @@ hero:
     Let's move forward.
     Together.
   images:
-    - ./careers-top-1@2x.png
-    - ./careers-top-2@2x.png
-    - ./careers-top-3@2x.png
-    - ./careers-top-4@2x.png
+    - ./careers-top-1@2x.jpg
+    - ./careers-top-2@2x.jpg
+    - ./careers-top-3@2x.jpg
+    - ./careers-top-4@2x.jpg
+
+about:
+  title: What defines us
+
+  sections:
+    - title: Macro Management
+      text: We’re all different. We’re all equal. We build bridges, not walls. Then something more about macro management.
+
+    - title: Friendly workplace
+      text: We’re all different. We’re all equal. We build bridges, not walls. Then something more about macro management.
+
+    - title: Horizontal Hierarchy
+      text: We’re all different. We’re all equal. We build bridges, not walls. Then something more about macro management.
+
+    - title: T-shaped People
+      text: We’re all different. We’re all equal. We build bridges, not walls. Then something more about macro management.
+
+  cta:
+    link: /about
+    linkText: More on us
+
+  images:
+    - image: ./careers-middle-1@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-middle-2@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-middle-3@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-middle-4@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-middle-5@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-middle-6@2x.jpg
+      alt: A day at Significa
+
+  perks:
+    title: Perky perks.
+
+    list:
+      - title: Health Insurance
+        text: We’re all different. We’re all equal. We build bridges.
+        image:
+
+    images:
+      - image: ./careers-bottom-1@2x.jpg
+        alt: A day at Significa
+
+      - image: ./careers-bottom-2@2x.jpg
+        alt: A day at Significa
+
+      - image: ./careers-bottom-3@2x.jpg
+        alt: A day at Significa
+
+      - image: ./careers-bottom-4@2x.jpg
+        alt: A day at Significa
+
+      - image: ./careers-bottom-5@2x.jpg
+        alt: A day at Significa

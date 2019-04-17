@@ -11,6 +11,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "dev": "npm run develop",
     "start": "npm run develop",
     "format": "prettier --write \"src/**/*.tsx\"",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",

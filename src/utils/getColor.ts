@@ -2,12 +2,12 @@ import { IFullTheme, IColorsTheme } from '@theme'
 
 export type colorType = keyof IColorsTheme
 
-interface IgetColor {
+interface IGetColor {
   color?: colorType
   theme: IFullTheme
 }
 
-export const getColor = ({ color, theme: { colors } }: IgetColor): string => {
+export const getColor = ({ color, theme: { colors } }: IGetColor): string => {
   if (!color) {
     return colors.foreground
   }

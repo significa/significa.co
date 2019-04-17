@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { css } from '@theme'
 
 import { Container as BaseContainer } from '../'
 import { Title as BaseTitle } from '../../Typography'
@@ -28,28 +28,64 @@ export const Container = styled(BaseContainer)`
   }
 `
 
-export const Left = styled.div`
-  grid-column: 1 / 6;
+export const Left = styled.div<{ amountColumn: number }>`
+  ${({ amountColumn }) => {
+    if (amountColumn === 2) {
+      return css`
+        grid-column: 1 / 6;
 
-  @media (max-width: 64em) {
-    grid-column: 1 / 5;
-  }
+        @media (max-width: 64em) {
+          grid-column: 1 / 5;
+        }
 
-  @media (max-width: 48em) {
-    grid-column: 1 / -1;
-  }
+        @media (max-width: 48em) {
+          grid-column: 1 / -1;
+        }
+      `
+    }
+
+    if (amountColumn === 3) {
+      return css`
+        grid-column: 1 / 5;
+
+        @media (max-width: 48em) {
+          grid-column: 1 / -1;
+        }
+      `
+    }
+
+    return null
+  }}
 `
 
-export const Right = styled.div`
-  grid-column: 6 / 12;
+export const Right = styled.div<{ amountColumn: number }>`
+  ${({ amountColumn }) => {
+    if (amountColumn === 2) {
+      return css`
+        grid-column: 6 / 12;
 
-  @media (max-width: 64em) {
-    grid-column: 5 / 13;
-  }
+        @media (max-width: 64em) {
+          grid-column: 5 / 13;
+        }
 
-  @media (max-width: 48em) {
-    grid-column: 1 / -1;
-  }
+        @media (max-width: 48em) {
+          grid-column: 1 / -1;
+        }
+      `
+    }
+
+    if (amountColumn === 3) {
+      return css`
+        grid-column: 5 / 13;
+
+        @media (max-width: 48em) {
+          grid-column: 1 / -1;
+        }
+      `
+    }
+
+    return null
+  }}
 `
 
 export const Title = styled(BaseTitle)`

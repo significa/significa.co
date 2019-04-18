@@ -31,24 +31,22 @@ const Hero: React.FC = () => {
     },
   }: ICareersHero = useStaticQuery(careersHeroQuery)
 
+  const renderGallery = ({ childImageSharp }: IGallery, i: number) => (
+    <S.GalleryImage
+      key={i}
+      fluid={childImageSharp.fluid}
+      width={childImageSharp.original.width / 2}
+      height={childImageSharp.original.height / 2}
+    />
+  )
+
   return (
     <S.PageContainer>
       <S.Wrapper>
         {textByLine(title).map((line, i) => (
           <S.Display key={i}>{line}</S.Display>
         ))}
-        <S.GalleryWrapper>
-          {images.map(
-            ({ childImageSharp: { fluid, original } }: IGallery, i: number) => (
-              <S.GalleryImage
-                key={i}
-                fluid={fluid}
-                width={original.width / 2}
-                height={original.height / 2}
-              />
-            )
-          )}
-        </S.GalleryWrapper>
+        <S.GalleryWrapper>{images.map(renderGallery)}</S.GalleryWrapper>
       </S.Wrapper>
     </S.PageContainer>
   )

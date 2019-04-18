@@ -2,10 +2,7 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
 
-import { ThemeContext } from '@theme'
-
 import { RightContent } from '../../UI/Layout'
-import useIntersection from '../../../hooks/useIntersection'
 import * as S from './styled'
 import ADayAtSignifica from './ADayAtSignifica'
 import Circle from './Circle'
@@ -39,17 +36,6 @@ interface ICareersPerks {
 }
 
 const Perks: React.FC = () => {
-  const { updateTheme } = React.useContext(ThemeContext)
-  const { observerEntry, elRef } = useIntersection({ rootMargin: '-30%' })
-
-  React.useEffect(() => {
-    if (observerEntry && observerEntry.isIntersecting) {
-      updateTheme('light')
-    } else {
-      updateTheme('dark')
-    }
-  }, [observerEntry])
-
   const {
     careersYaml: { perks },
   }: ICareersPerks = useStaticQuery(careersPerksQuery)
@@ -68,7 +54,7 @@ const Perks: React.FC = () => {
   )
 
   const renderPeeks = ({ title, text, image }: ISection) => (
-    <div>
+    <div key={title}>
       <img src={image.publicURL} alt={title} />
       <S.SectionTitle>{title}</S.SectionTitle>
       <S.SectionText>{text}</S.SectionText>
@@ -76,12 +62,15 @@ const Perks: React.FC = () => {
   )
 
   return (
-    <S.Wrapper ref={elRef}>
+    <S.Wrapper>
       <S.Title>
-        <S.HandleSvg>
+        <S.HandleCircle>
           <Circle />
-        </S.HandleSvg>
-        <ADayAtSignifica />
+        </S.HandleCircle>
+
+        <S.HandleLogo>
+          <ADayAtSignifica />
+        </S.HandleLogo>
       </S.Title>
 
       <S.Gallery>{perks.images.map(renderImages)}</S.Gallery>

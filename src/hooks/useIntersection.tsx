@@ -13,7 +13,7 @@ interface IReturn {
 
 export default (options: IOpts): IReturn => {
   const [observerEntry, setEntry] = React.useState()
-  const elRef = React.useRef()
+  const elRef = React.useRef<any>()
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(

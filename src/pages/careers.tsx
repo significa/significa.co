@@ -1,5 +1,11 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import styled from '@theme'
+
+const BackgroundTransition = styled.div`
+  background: inherit;
+  transition: background ${({ theme }) => theme.transitions.ease()};
+`
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
@@ -19,10 +25,12 @@ interface ICareers {
 const Contact: React.FC<ICareers> = ({ data }) => {
   return (
     <Layout theme="dark" footerTheme="light">
-      <SEO title={data.careersYaml.seo.title} />
-      <Hero />
-      <About />
-      <Perks />
+      <BackgroundTransition>
+        <SEO title={data.careersYaml.seo.title} />
+        <Hero />
+        <About />
+        <Perks />
+      </BackgroundTransition>
     </Layout>
   )
 }

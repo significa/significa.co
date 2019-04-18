@@ -24,7 +24,7 @@ export default () => {
         (window.pageYOffset || document.documentElement.scrollTop) * 1.12)
 
     const length = mylineRef.getTotalLength()
-    const scrollpercentWithMax = scrollpercent >= 1 ? 1 : scrollpercent
+    const scrollpercentWithMax = Math.min(scrollpercent, 1)
     const draw = length * scrollpercentWithMax
     const endPoint = mylineRef.getPointAtLength(draw)
 

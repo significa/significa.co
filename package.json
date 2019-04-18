@@ -36,7 +36,6 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0",
-    "react-hook-intersection-observer": "^0.1.0",
     "react-spring": "^8.0.15",
     "resize-observer-polyfill": "^1.5.1",
     "styled-components": "^4.1.3"

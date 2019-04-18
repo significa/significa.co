@@ -56,13 +56,13 @@ const Perks: React.FC = () => {
   const renderPeeks = ({ title, text, image }: ISection) => (
     <div key={title}>
       <img src={image.publicURL} alt={title} />
-      <S.SectionTitle>{title}</S.SectionTitle>
+      <S.SectionTitle as="h4">{title}</S.SectionTitle>
       <S.SectionText>{text}</S.SectionText>
     </div>
   )
 
   return (
-    <S.Wrapper>
+    <S.Wrapper id="perky-perks">
       <S.Title>
         <S.HandleCircle>
           <Circle />

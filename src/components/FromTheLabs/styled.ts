@@ -3,6 +3,8 @@ import styled from '@theme'
 import { ArrowLink as BaseArrowLink, Text } from '../UI/'
 
 export const Wrapper = styled.div`
+  border-top: 1px solid ${({ theme }) => theme.colors.background};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.background};
   background-color: ${({ theme }) => theme.colors.background};
 `
 

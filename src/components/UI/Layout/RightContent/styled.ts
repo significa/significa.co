@@ -4,14 +4,14 @@ import { Container as BaseContainer } from '../'
 import { Title as BaseTitle } from '../../Typography'
 
 export const Wrapper = styled.section`
-  padding: 10em 0;
+  margin: 10em 0;
 
   @media (max-width: 48em) {
-    padding: 7em 0;
+    margin: 7em 0;
   }
 
   @media (max-width: 32em) {
-    padding: 5em 0;
+    margin: 5em 0;
   }
 `
 

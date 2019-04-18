@@ -39,7 +39,7 @@ const About: React.FC = () => {
 
   const renderSection = ({ title, text }: ISection) => (
     <div key={title}>
-      <S.SectionTitle>{title}</S.SectionTitle>
+      <S.SectionTitle as="h4">{title}</S.SectionTitle>
       <S.SectionText>{text}</S.SectionText>
     </div>
   )

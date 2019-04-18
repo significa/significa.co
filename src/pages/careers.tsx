@@ -10,7 +10,7 @@ const BackgroundTransition = styled.div`
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
-import { Hero, About, Perks } from '../components/Careers'
+import { Hero, About, Perks, Positions } from '../components/Careers'
 
 interface ICareers {
   data: {
@@ -30,6 +30,7 @@ const Contact: React.FC<ICareers> = ({ data }) => {
         <Hero />
         <About />
         <Perks />
+        <Positions />
       </BackgroundTransition>
     </Layout>
   )

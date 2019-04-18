@@ -1,13 +1,17 @@
 import React from 'react'
 
+import { ThemeContext } from '@theme'
+
 export default () => {
-  const myline = React.useRef()
-  const circle = React.useRef()
+  const myline = React.useRef<SVGPathElement>(null)
+  const circle = React.useRef<SVGCircleElement>(null)
   const [lineStyle, setLineStyle] = React.useState(0)
   const [lineLength, setLineLength] = React.useState(0)
+  const [shouldAnimate, setShouldAnimate] = React.useState(true)
+  const { updateTheme } = React.useContext(ThemeContext)
 
   const handleLineStyle = () => {
-    if (!myline || !myline.current || !circle || !circle.current) {
+    if (!shouldAnimate) {
       return null
     }
 
@@ -16,37 +20,42 @@ export default () => {
 
     const scrollpercent =
       document.documentElement.scrollTop /
-      (mylineRef.getBoundingClientRect().top + window.pageYOffset ||
-        document.documentElement.scrollTop +
-          window.innerHeight +
-          window.innerHeight * 0.35)
+      (mylineRef.getBoundingClientRect().top +
+        (window.pageYOffset || document.documentElement.scrollTop) * 1.12)
 
     const length = mylineRef.getTotalLength()
     const scrollpercentWithMax = scrollpercent >= 1 ? 1 : scrollpercent
     const draw = length * scrollpercentWithMax
+    const endPoint = mylineRef.getPointAtLength(draw)
 
     setLineLength(length)
     setLineStyle(length - draw)
 
-    const endPoint = mylineRef.getPointAtLength(draw)
-    circleRef.setAttribute('cx', endPoint.x)
-    circleRef.setAttribute('cy', endPoint.y)
+    circleRef.setAttribute('cx', String(endPoint.x))
+    circleRef.setAttribute('cy', String(endPoint.y))
+
+    if (scrollpercentWithMax === 1) {
+      updateTheme('light')
+      return setShouldAnimate(false)
+    }
+
+    return null
   }
 
   React.useEffect(() => {
     window.addEventListener('scroll', handleLineStyle)
 
     return () => window.removeEventListener('scroll', handleLineStyle)
-  }, [])
+  }, [shouldAnimate])
 
   return (
-    <svg width="834px" height="814px" viewBox="0 0 834 814">
+    <svg width="834px" height="900px" viewBox="0 0 834 900">
       <g fill="none" fillRule="evenodd">
         <circle
           ref={circle}
-          cx="10"
-          cy="10"
-          r="10"
+          cx="13"
+          cy="12"
+          r="13"
           stroke="none"
           fill="currentColor"
           x="0"

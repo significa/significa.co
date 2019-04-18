@@ -10,27 +10,59 @@ export const Wrapper = styled(Container)`
   @media (max-width: 64em) {
     padding-left: 0;
     padding-right: 0;
+    margin-top: 3em;
   }
 `
 
-export const HandleSvg = styled.div``
+export const HandleCircle = styled.div`
+  position: absolute;
+  bottom: 71%;
+  left: -5.15%;
+  width: 100%;
 
-export const Title = styled(Big)`
-  position: relative;
+  @media (max-width: 86em) {
+    display: none;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 10%;
+    background: linear-gradient(
+      90deg,
+      ${({ theme }) => theme.colors.background} 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+`
+
+export const HandleLogo = styled.div`
+  text-align: center;
 
   svg {
-    width: 100%;
+    width: 1200px;
+    display: inline-block;
+
+    @media (max-width: 86em) {
+      width: 100%;
+    }
+  }
+`
+
+export const Title = styled.div`
+  position: relative;
+
+  @media (max-width: 64em) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   path {
     transition: strokeColor ${({ theme }) => theme.transitions.ease()};
-  }
-
-  ${HandleSvg} {
-    position: absolute;
-    bottom: 100%;
-    left: -21.4%;
-    width: 100%;
   }
 `
 
@@ -43,6 +75,7 @@ export const Gallery = styled.div`
   @media (max-width: 64em) {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+    margin-top: 1em;
   }
 `
 

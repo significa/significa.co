@@ -30,7 +30,7 @@ interface ICareers {
 
 const Contact: React.FC<ICareers> = ({ data }) => {
   return (
-    <Layout theme="dark" footerTheme="light">
+    <Layout theme="light">
       <BackgroundTransition>
         <SEO title={data.careersYaml.seo.title} />
         <Hero />

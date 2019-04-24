@@ -37,24 +37,33 @@ export const Day = styled.div`
     content: '';
     display: block;
     position: absolute;
-    top: 0;
-    left: 0;
+
+    z-index: 1;
+
+    top: -15px;
+    left: -20px;
+
     width: 20%;
     height: 10%;
+
     background: linear-gradient(
       90deg,
       ${({ theme }) => theme.colors.background} 0%,
       rgba(255, 255, 255, 0) 100%
     );
   }
+`
 
-  svg {
-    width: 100%;
+export const Svg = styled.svg`
+  transform: translate3d(0, 0, 0);
+  width: 100%;
+  overflow: visible;
+  opacity: ${({ isVisible }: { isVisible: boolean }) => (isVisible ? 1 : 0)};
+  transition: opacity ${({ theme }) => theme.transitions.ease()};
 
-    circle,
-    path {
-      transition: all ${({ theme }) => theme.transitions.ease('50ms')};
-    }
+  circle,
+  path {
+    transition: all ${({ theme }) => theme.transitions.ease('50ms')};
   }
 `
 

@@ -32,26 +32,6 @@ export const Day = styled.div`
   bottom: 71%;
   left: -5.15%;
   width: 100%;
-
-  &:after {
-    content: '';
-    display: block;
-    position: absolute;
-
-    z-index: 1;
-
-    top: -15px;
-    left: -20px;
-
-    width: 20%;
-    height: 10%;
-
-    background: linear-gradient(
-      90deg,
-      ${({ theme }) => theme.colors.background} 0%,
-      rgba(255, 255, 255, 0) 100%
-    );
-  }
 `
 
 export const Svg = styled.svg`

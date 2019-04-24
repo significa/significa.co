@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { css } from '@theme'
 import Img from 'gatsby-image'
 
 import { Container } from '../../UI'
@@ -34,17 +34,58 @@ export const Day = styled.div`
   width: 100%;
 `
 
+export const Toggle = styled.g`
+  cursor: pointer;
+
+  rect {
+    opacity: 0;
+    transition: opacity ${({ theme }) => theme.transitions.ease()};
+  }
+`
+
+export const Path = styled.g``
+
+export const Sun = styled.circle``
+
+export const Logo = styled.path``
+
+interface ISvgProps {
+  isVisible: boolean
+  animationEnded: boolean
+}
+
 export const Svg = styled.svg`
   transform: translate3d(0, 0, 0);
   width: 100%;
   overflow: visible;
-  opacity: ${({ isVisible }: { isVisible: boolean }) => (isVisible ? 1 : 0)};
+  opacity: ${({ isVisible }: ISvgProps) => (isVisible ? 1 : 0)};
   transition: opacity ${({ theme }) => theme.transitions.ease()};
+  pointer-events: ${({ animationEnded }: ISvgProps) =>
+    animationEnded ? 'default' : 'none'};
 
-  circle,
-  path {
+  ${Sun},
+  ${Path},
+  ${Logo} {
     transition: all ${({ theme }) => theme.transitions.ease('50ms')};
   }
+
+  ${({ animationEnded }) =>
+    animationEnded &&
+    css`
+      ${Toggle} {
+        rect {
+          opacity: 0.1;
+        }
+      }
+
+      ${Path} {
+        display: none;
+      }
+
+      ${Sun} {
+        transition: cx ${({ theme }) => theme.transitions.ease()};
+      }
+    `}
 `
 
 export const GalleryImage = styled(Img)<{ width: number; height: number }>`
@@ -65,7 +106,7 @@ export const TopGallery = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 
-  margin-bottom: 10vw;
+  padding-bottom: 15vw;
 
   ${GalleryImage} {
     &:nth-child(-n + 3) {
@@ -94,6 +135,8 @@ export const BottomGallery = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  padding-top: 5vw;
 
   ${GalleryImage} {
     &:nth-child(-n + 2) {

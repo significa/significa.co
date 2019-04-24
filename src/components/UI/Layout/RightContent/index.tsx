@@ -5,7 +5,7 @@ import * as S from './styled'
 interface IRightContent {
   title: string
   children: React.ReactNode
-  amountColumn?: number
+  amountColumn?: 2 | 3 | 4
 }
 
 const RightContent: React.FC<IRightContent> = ({

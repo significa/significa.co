@@ -10,16 +10,24 @@ export const PositionItem = styled.div`
     padding-bottom: 2em;
     margin-bottom: 2em;
   }
+`
 
-  img {
-    margin-left: 0.7em;
-    position: relative;
-    top: 2px;
-  }
+export const CompanyImage = styled.img`
+  margin-left: 0.7em;
+  position: relative;
+  top: 2px;
 `
 
 export const PositionLink = styled(ArrowLink)`
   position: relative;
+
+  transition: opacity ${({ theme }) => theme.transitions.ease()};
+
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.6;
+    }
+  }
 
   svg {
     position: absolute;

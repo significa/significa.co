@@ -4,13 +4,19 @@ import styled from '@theme'
 
 const BackgroundTransition = styled.div`
   background: inherit;
-  transition: background ${({ theme }) => theme.transitions.ease()};
+  transition: background ${({ theme }) => theme.transitions.ease('400ms')};
 `
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
-import { Hero, About, Perks, Positions } from '../components/Careers'
+import {
+  Hero,
+  About,
+  ADayAtSignifica,
+  Perks,
+  Positions,
+} from '../components/Careers'
 
 interface ICareers {
   data: {
@@ -29,6 +35,7 @@ const Contact: React.FC<ICareers> = ({ data }) => {
         <SEO title={data.careersYaml.seo.title} />
         <Hero />
         <About />
+        <ADayAtSignifica />
         <Perks />
         <Positions />
       </BackgroundTransition>

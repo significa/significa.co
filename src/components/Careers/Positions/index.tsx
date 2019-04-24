@@ -1,7 +1,6 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
-import { Container } from '../../UI'
 import { RightContent } from '../../UI/Layout'
 import { Big, Text } from '../../UI/Typography'
 import * as S from './styled'
@@ -39,7 +38,9 @@ const Item = ({ position, tagline, company, slug }: IPosition) => {
       <S.PositionItem>
         <Big as="h4">
           {position}
-          {company === 'Coletiv' && <img src={coletivSrc} alt="Coletiv" />}
+          {company === 'Coletiv' && (
+            <S.CompanyImage src={coletivSrc} alt="Coletiv" />
+          )}
         </Big>
         <Text>{tagline}</Text>
       </S.PositionItem>
@@ -54,16 +55,14 @@ const Positions = () => {
   }: IPositions = useStaticQuery(careersPositionsQuery)
 
   return (
-    <Container id="positions">
-      <RightContent title={positions.title}>
-        {edges.map(({ node: { frontmatter, fields } }) => {
-          const mergedProps = { ...frontmatter, ...fields }
-          return <Item {...mergedProps} key={frontmatter.position} />
-        })}
+    <RightContent title={positions.title}>
+      {edges.map(({ node: { frontmatter, fields } }) => {
+        const mergedProps = { ...frontmatter, ...fields }
+        return <Item {...mergedProps} key={frontmatter.position} />
+      })}
 
-        <Item {...positions.defaultPosition} slug="/careers/#self-apply" />
-      </RightContent>
-    </Container>
+      <Item {...positions.defaultPosition} slug="/contact" />
+    </RightContent>
   )
 }
 

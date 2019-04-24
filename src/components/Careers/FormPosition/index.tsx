@@ -4,12 +4,13 @@ import axios from 'axios'
 import { Theme } from '@theme'
 
 import { MAIL_REGEX, URLS } from '../../../constants'
-
-import * as S from './styled'
 import useForm from '../../../hooks/useForm'
 import useFileUpload from '../../../hooks/useFileUpload'
+
 import { RightContent } from '../../UI/Layout'
 import Success from './Success'
+
+import * as S from './styled'
 
 interface IValues {
   [key: string]: string | number | boolean

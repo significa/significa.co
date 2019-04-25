@@ -14,7 +14,8 @@ export const Wrapper = styled(Container)`
 export const Display = styled(BaseDisplay)``
 
 export const GalleryWrapper = styled(Container)`
-  padding: 3.75rem 0;
+  padding-top: 4em;
+  padding-bottom: 4em;
 
   display: flex;
   max-height: 32rem;
@@ -64,7 +65,7 @@ export const GalleryImage = styled(Img)<{ width: number; height: number }>`
   }
 
   @media (max-width: 32em) {
-    width: auto;
+    width: 100%;
     height: auto;
   }
 `

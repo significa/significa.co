@@ -29,21 +29,22 @@ const Perks: React.FC = () => {
     careersYaml: { adayatsignifica },
   }: ICareersPerks = useStaticQuery(careersADayAtSignificaQuery)
 
+  const renderImage = (
+    { image: { childImageSharp }, alt }: IGallery,
+    i: number
+  ) => (
+    <S.GalleryImage
+      key={i}
+      alt={alt}
+      width={childImageSharp.original.width / 2}
+      height={childImageSharp.original.height / 2}
+      fluid={childImageSharp.fluid}
+    />
+  )
+
   return (
     <S.Wrapper>
-      <S.TopGallery>
-        {adayatsignifica.top.map(
-          ({ image: { childImageSharp }, alt }: IGallery, i: number) => (
-            <S.GalleryImage
-              key={i}
-              alt={alt}
-              width={childImageSharp.original.width / 2}
-              height={childImageSharp.original.height / 2}
-              fluid={childImageSharp.fluid}
-            />
-          )
-        )}
-      </S.TopGallery>
+      <S.TopGallery>{adayatsignifica.top.map(renderImage)}</S.TopGallery>
 
       <S.DayWrapper>
         <S.Day>
@@ -52,17 +53,7 @@ const Perks: React.FC = () => {
       </S.DayWrapper>
 
       <S.BottomGallery>
-        {adayatsignifica.bottom.map(
-          ({ image: { childImageSharp }, alt }: IGallery, i: number) => (
-            <S.GalleryImage
-              key={i}
-              alt={alt}
-              width={childImageSharp.original.width}
-              height={childImageSharp.original.height}
-              fluid={childImageSharp.fluid}
-            />
-          )
-        )}
+        {adayatsignifica.bottom.map(renderImage)}
       </S.BottomGallery>
     </S.Wrapper>
   )

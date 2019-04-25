@@ -11,6 +11,7 @@ export default css`
       url(${GraphikWoff}) format('woff');
     font-weight: normal;
     font-style: normal;
+    font-stretch: normal;
   }
 
   @font-face {

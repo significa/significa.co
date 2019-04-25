@@ -7,6 +7,8 @@ export default css`
 
     color: ${({ theme }) => theme.colors.foreground};
     background-color: ${({ theme }) => theme.colors.background};
+
+    font-feature-settings: 'liga', 'kern';
   }
 
   *,

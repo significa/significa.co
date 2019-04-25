@@ -4,23 +4,28 @@ import { ThemeContext } from '@theme'
 
 import * as S from './styled'
 
+type ThemeType = 'light' | 'dark'
+
+const SUN_START_RADIUS = 5
+const SUN_END_RADIUS = 13
+
 export default () => {
+  const { updateTheme } = React.useContext(ThemeContext)
+
+  // Refs for the sun and sun path
   const pathRef = React.useRef<SVGPathElement>(null)
   const circleRef = React.useRef<SVGCircleElement>(null)
 
-  const [currentTheme, setCurrentTheme] = React.useState<'light' | 'dark'>(
-    'light'
-  )
-  const [shouldShow, setShouldShow] = React.useState(false)
+  const [currentTheme, setCurrentTheme] = React.useState<ThemeType>('light')
   const [shouldAnimate, setShouldAnimate] = React.useState(true)
 
-  const { updateTheme } = React.useContext(ThemeContext)
-
+  // When our local state theme changes, we need to update the theme context
   React.useEffect(() => {
     updateTheme(currentTheme)
   }, [currentTheme])
 
-  const handleToggle = () => {
+  // Toggle handler to change between themes
+  const handleToggle = React.useCallback(() => {
     if (!circleRef.current) {
       return null
     }
@@ -33,9 +38,10 @@ export default () => {
       String(isNightNow ? circleX + 22 : circleX - 22)
     )
     return setCurrentTheme(isNightNow ? 'light' : 'dark')
-  }
+  }, [currentTheme])
 
-  const handleScroll = () => {
+  //
+  const handleScroll = React.useCallback(() => {
     if (!pathRef.current || !circleRef.current) {
       return null
     }
@@ -58,12 +64,13 @@ export default () => {
       pathLength - pathPercentage
     ).toString()
 
+    const radiusDiff = SUN_END_RADIUS - SUN_START_RADIUS
+    circleRef.current.setAttribute(
+      'r',
+      String(SUN_START_RADIUS + pathPercentageInView * radiusDiff)
+    )
     circleRef.current.setAttribute('cx', String(circleCoordinates.x))
     circleRef.current.setAttribute('cy', String(circleCoordinates.y))
-
-    if (percentage > 0 && !shouldShow) {
-      setShouldShow(true)
-    }
 
     if (pathPercentageInView >= 1) {
       setCurrentTheme('dark')
@@ -71,8 +78,9 @@ export default () => {
     }
 
     return null
-  }
+  }, [shouldAnimate])
 
+  // Add a scroll listener to make the sun move
   React.useEffect(() => {
     if (shouldAnimate) {
       window.addEventListener('scroll', handleScroll)
@@ -83,7 +91,6 @@ export default () => {
 
   return (
     <S.Svg
-      isVisible={shouldShow}
       animationEnded={!shouldAnimate}
       width={1306}
       height={1013}
@@ -112,14 +119,7 @@ export default () => {
           mask="url(#dash-mask)"
         />
 
-        <circle
-          r="4"
-          stroke="currentColor"
-          fill="none"
-          strokeWidth="2"
-          cy="0"
-          cx="-13"
-        />
+        <S.LittleCircle r="3" strokeWidth="2" cy="0" cx="-9" />
       </S.Path>
 
       <S.Toggle onClick={handleToggle}>
@@ -137,7 +137,7 @@ export default () => {
           ref={circleRef}
           cx="0"
           cy="0"
-          r="13"
+          r={SUN_START_RADIUS}
           stroke="none"
           fill="currentColor"
           x="0"

@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
 
 import * as S from './styled'
-import ADay from './ADay'
+import SunAndLogo from './SunAndLogo'
 
 interface IGallery {
   alt: string
@@ -47,7 +47,7 @@ const Perks: React.FC = () => {
 
       <S.DayWrapper>
         <S.Day>
-          <ADay />
+          <SunAndLogo />
         </S.Day>
       </S.DayWrapper>
 

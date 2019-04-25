@@ -2,6 +2,8 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
 
+import useMeasure from '../../../hooks/useMeasure'
+
 import * as S from './styled'
 import SunAndLogo from './SunAndLogo'
 
@@ -28,24 +30,35 @@ const Perks: React.FC = () => {
     careersYaml: { adayatsignifica },
   }: ICareersPerks = useStaticQuery(careersADayAtSignificaQuery)
 
+  const outerRef = React.useRef<HTMLDivElement>(null)
+  const { width } = useMeasure(outerRef)
+
   return (
-    <S.Wrapper>
-      <S.TopGallery>
-        {adayatsignifica.top.map(({ image: { childImageSharp }, alt }, i) => {
-          return <S.TopImage key={i} alt={alt} fluid={childImageSharp.fluid} />
-        })}
-      </S.TopGallery>
+    <div ref={outerRef}>
+      <S.Wrapper>
+        <S.RelativeWrapper>
+          <S.TopGallery>
+            {adayatsignifica.top.map(
+              ({ image: { childImageSharp }, alt }, i) => {
+                return (
+                  <S.TopImage key={i} alt={alt} fluid={childImageSharp.fluid} />
+                )
+              }
+            )}
+          </S.TopGallery>
 
-      {/* <S.DayWrapper>
-        <S.Day>
-          <SunAndLogo />
-        </S.Day>
-      </S.DayWrapper> */}
+          {width >= 768 && (
+            <S.Day>
+              <SunAndLogo />
+            </S.Day>
+          )}
+        </S.RelativeWrapper>
 
-      {/* <S.BottomGallery>
-        {adayatsignifica.bottom.map(renderImage)}
-      </S.BottomGallery> */}
-    </S.Wrapper>
+        {/* <S.BottomGallery>
+          {adayatsignifica.bottom.map(renderImage)}
+        </S.BottomGallery> */}
+      </S.Wrapper>
+    </div>
   )
 }
 

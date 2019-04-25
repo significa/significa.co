@@ -25,3 +25,7 @@ export const onRouteUpdate = ({ location: { hash } }) => {
     })
   }
 }
+
+export const shouldUpdateScroll = () => {
+  return false
+}

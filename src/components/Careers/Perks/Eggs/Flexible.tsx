@@ -22,21 +22,11 @@ const Flexible = () => (
         fill="currentColor"
       />
       <path
-        fill="currentColor"
-        opacity={0.05}
-        d="M56.98 67.824H34.24v-4.73h25.172"
-      />
-      <path
         stroke="currentColor"
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
         d="M56.98 67.824H34.24v-4.73h24.172"
-      />
-      <path
-        fill="currentColor"
-        opacity={0.05}
-        d="M70.932 31.645h49.216l-15.175 36.178H56.98z"
       />
       <path
         stroke="currentColor"

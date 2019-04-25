@@ -14,6 +14,7 @@ export const Wrapper = styled(Container)`
 export const RelativeWrapper = styled.div`
   position: relative;
   padding-bottom: 20vw;
+  margin-bottom: 10vw;
 
   @media (max-width: 48em) {
     padding-bottom: 0;
@@ -28,9 +29,9 @@ export const Day = styled.div`
   width: 100%;
 `
 
-export const TopGallery = styled.div`
+const Gallery = styled.div`
   display: grid;
-  grid-template: 4fr 5fr / repeat(8, 1fr);
+  grid-template: repeat(2, 1fr) / repeat(8, 1fr);
   grid-gap: 5em;
 
   @media (max-width: 64em) {
@@ -45,6 +46,12 @@ export const TopGallery = styled.div`
     grid-template-columns: 1fr;
   }
 `
+
+export const TopGallery = styled(Gallery)`
+  grid-template: 4fr 5fr / repeat(8, 1fr);
+`
+
+export const BottomGallery = styled(Gallery)``
 
 export const TopImage = styled(Img)`
   &:nth-child(1) {
@@ -127,5 +134,30 @@ export const TopImage = styled(Img)`
     &:nth-child(2n) {
       display: none;
     }
+  }
+`
+
+export const BottomImage = styled(Img)`
+  &:nth-child(1) {
+    margin-top: 5em;
+    grid-column-end: span 3;
+  }
+
+  &:nth-child(2) {
+    grid-column-end: span 3;
+  }
+
+  &:nth-child(3) {
+    margin-top: 5em;
+    grid-column-end: span 2;
+  }
+
+  &:nth-child(4) {
+    margin-bottom: 5em;
+    grid-column: 2 / span 3;
+  }
+
+  &:nth-child(5) {
+    grid-column-end: span 3;
   }
 `

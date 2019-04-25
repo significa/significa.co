@@ -54,9 +54,21 @@ const Perks: React.FC = () => {
           )}
         </S.RelativeWrapper>
 
-        {/* <S.BottomGallery>
-          {adayatsignifica.bottom.map(renderImage)}
-        </S.BottomGallery> */}
+        {width >= 768 && (
+          <S.BottomGallery>
+            {adayatsignifica.bottom.map(
+              ({ image: { childImageSharp }, alt }, i) => {
+                return (
+                  <S.BottomImage
+                    key={i}
+                    alt={alt}
+                    fluid={childImageSharp.fluid}
+                  />
+                )
+              }
+            )}
+          </S.BottomGallery>
+        )}
       </S.Wrapper>
     </div>
   )
@@ -80,11 +92,7 @@ const careersADayAtSignificaQuery = graphql`
           alt
           image {
             childImageSharp {
-              original {
-                width
-                height
-              }
-              fluid(maxWidth: 400) {
+              fluid(maxWidth: 500) {
                 ...GatsbyImageSharpFluid_noBase64
               }
             }

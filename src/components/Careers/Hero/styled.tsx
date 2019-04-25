@@ -19,7 +19,8 @@ export const GalleryWrapper = styled(Container)`
   display: flex;
   max-height: 32rem;
 
-  @media (min-width: 100em) {
+  /* Center top images in  very large screens */
+  @media (min-width: 120em) {
     max-width: none;
     justify-content: center;
   }

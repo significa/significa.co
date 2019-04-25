@@ -10,7 +10,6 @@ interface IGallery {
   image: {
     childImageSharp: {
       fluid: FluidObject
-      original: { width: number; height: number }
     }
   }
 }
@@ -29,32 +28,23 @@ const Perks: React.FC = () => {
     careersYaml: { adayatsignifica },
   }: ICareersPerks = useStaticQuery(careersADayAtSignificaQuery)
 
-  const renderImage = (
-    { image: { childImageSharp }, alt }: IGallery,
-    i: number
-  ) => (
-    <S.GalleryImage
-      key={i}
-      alt={alt}
-      width={childImageSharp.original.width / 2}
-      height={childImageSharp.original.height / 2}
-      fluid={childImageSharp.fluid}
-    />
-  )
-
   return (
     <S.Wrapper>
-      <S.TopGallery>{adayatsignifica.top.map(renderImage)}</S.TopGallery>
+      <S.TopGallery>
+        {adayatsignifica.top.map(({ image: { childImageSharp }, alt }, i) => {
+          return <S.TopImage key={i} alt={alt} fluid={childImageSharp.fluid} />
+        })}
+      </S.TopGallery>
 
-      <S.DayWrapper>
+      {/* <S.DayWrapper>
         <S.Day>
           <SunAndLogo />
         </S.Day>
-      </S.DayWrapper>
+      </S.DayWrapper> */}
 
-      <S.BottomGallery>
+      {/* <S.BottomGallery>
         {adayatsignifica.bottom.map(renderImage)}
-      </S.BottomGallery>
+      </S.BottomGallery> */}
     </S.Wrapper>
   )
 }
@@ -67,11 +57,7 @@ const careersADayAtSignificaQuery = graphql`
           alt
           image {
             childImageSharp {
-              original {
-                width
-                height
-              }
-              fluid(maxWidth: 400) {
+              fluid(maxWidth: 500) {
                 ...GatsbyImageSharpFluid_noBase64
               }
             }

@@ -40,7 +40,6 @@ export default () => {
     return setCurrentTheme(isNightNow ? 'light' : 'dark')
   }, [currentTheme])
 
-  //
   const handleScroll = React.useCallback(() => {
     if (!pathRef.current || !circleRef.current) {
       return null
@@ -83,6 +82,7 @@ export default () => {
   // Add a scroll listener to make the sun move
   React.useEffect(() => {
     if (shouldAnimate) {
+      handleScroll()
       window.addEventListener('scroll', handleScroll)
     }
 

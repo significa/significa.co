@@ -13,11 +13,16 @@ export const Wrapper = styled(Container)`
 
 export const Display = styled(BaseDisplay)``
 
-export const GalleryWrapper = styled.div`
-  margin: 3.75rem 0;
+export const GalleryWrapper = styled(Container)`
+  padding: 3.75rem 0;
 
   display: flex;
   max-height: 32rem;
+
+  @media (min-width: 100em) {
+    max-width: none;
+    justify-content: center;
+  }
 
   @media (max-width: 64em) {
     display: grid;
@@ -34,8 +39,11 @@ export const GalleryWrapper = styled.div`
 
 export const GalleryImage = styled(Img)<{ width: number; height: number }>`
   margin-top: 6rem;
-  margin-right: 5rem;
   flex-shrink: 0;
+
+  &:not(:last-child) {
+    margin-right: 5rem;
+  }
 
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;

@@ -46,8 +46,9 @@ const Hero: React.FC = () => {
         {textByLine(title).map((line, i) => (
           <S.Display key={i}>{line}</S.Display>
         ))}
-        <S.GalleryWrapper>{images.map(renderGallery)}</S.GalleryWrapper>
       </S.Wrapper>
+
+      <S.GalleryWrapper>{images.map(renderGallery)}</S.GalleryWrapper>
     </S.PageContainer>
   )
 }

@@ -45,7 +45,8 @@ export const Svg = styled.svg`
       }
 
       ${Sun} {
-        transition: cx ${({ theme }) => theme.transitions.ease()};
+        transition: cx ${({ theme }) => theme.transitions.cubic()};
+        transition-delay: 100ms;
       }
     `}
 `

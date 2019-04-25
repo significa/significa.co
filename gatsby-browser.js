@@ -16,16 +16,12 @@
 //   return <Layout {...props}>{element}</Layout>
 // }
 
-export const onRouteUpdate = ({ location: { hash } }) => {
-  if (hash) {
-    window.setTimeout(() => {
-      const el = document.querySelector(hash)
-      if (el) return window.scrollTo(0, el.offsetTop)
-      return false
-    })
-  }
-}
-
-export const shouldUpdateScroll = () => {
-  return false
-}
+// export const onRouteUpdate = ({ location: { hash } }) => {
+//   if (hash) {
+//     window.setTimeout(() => {
+//       const el = document.querySelector(hash)
+//       if (el) return window.scrollTo(0, el.offsetTop)
+//       return false
+//     })
+//   }
+// }

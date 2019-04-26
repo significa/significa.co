@@ -17,7 +17,7 @@ export const Huge = styled.h1`
   letter-spacing: 0;
 `
 
-export const Display = styled.h2`
+export const displayStyle = css`
   ${baseStyle};
 
   font-family: ${themeGet('fonts.serif', 'serif')};
@@ -25,6 +25,10 @@ export const Display = styled.h2`
   font-size: 2.5em;
   line-height: 1.2;
   letter-spacing: 0;
+`
+
+export const Display = styled.h2`
+  ${displayStyle};
 `
 
 export const Title = styled.h3`
@@ -37,7 +41,7 @@ export const Title = styled.h3`
   letter-spacing: 0;
 `
 
-export const Big = styled.p`
+export const bigStyle = css`
   ${baseStyle};
 
   font-size: 1.25em;
@@ -45,12 +49,20 @@ export const Big = styled.p`
   letter-spacing: 0;
 `
 
-export const Text = styled.p`
+export const Big = styled.p`
+  ${bigStyle}
+`
+
+export const textStyle = css`
   ${baseStyle};
 
   font-size: 1em;
   line-height: 1.375;
   letter-spacing: 0;
+`
+
+export const Text = styled.p`
+  ${textStyle}
 `
 
 export const Label = styled.label`

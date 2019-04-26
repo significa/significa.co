@@ -94,7 +94,7 @@ export const Uploading = styled.div`
 
   pointer-events: none;
 
-  background: tranparent;
+  background: none;
   border-top-color: transparent;
 
   transition: opacity ${({ theme }) => theme.transitions.ease()};
@@ -111,7 +111,7 @@ export const ClearButton = styled.button`
   -webkit-appearance: none;
   padding: 0;
   margin: 0;
-  background: tranparent;
+  background: none;
 
   ${commonCircleStyle};
   transform: translate(100%, -50%);

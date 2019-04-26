@@ -1,11 +1,11 @@
 import { IFullTheme } from '@theme'
 
-interface IindexTheme extends IFullTheme {
+interface IIndexTheme extends IFullTheme {
   [key: string]: any
 }
 
 export const get = (
-  theme: IindexTheme,
+  theme: IIndexTheme,
   path: string
 ): string | number | null => {
   const result = path.split('.').reduce((acc, key) => {
@@ -21,10 +21,10 @@ export const get = (
     : null
 }
 
-interface Iprops {
+interface IProps {
   theme: IFullTheme
 }
 
 export const themeGet = (path: string, fallback: string | number) => (
-  props: Iprops
+  props: IProps
 ): string | number => get(props.theme, path) || fallback

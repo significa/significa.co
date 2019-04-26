@@ -1,1 +1,12 @@
-export { Huge, Display, Title, Big, Text, Label, Small } from './styled'
+export {
+  Huge,
+  Display,
+  displayStyle,
+  Title,
+  Big,
+  bigStyle,
+  Text,
+  textStyle,
+  Label,
+  Small,
+} from './styled'

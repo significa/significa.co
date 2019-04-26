@@ -2,10 +2,15 @@ import styled from '@theme'
 
 import { ArrowLink as BaseArrowLink, Text } from '../UI/'
 
+export const Wrapper = styled.div`
+  border-top: 1px solid ${({ theme }) => theme.colors.background};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.background};
+`
+
 export const ListItem = styled.li`
   position: relative;
   padding-bottom: 2em;
-
   border-bottom: 1px solid ${({ theme }) => theme.colors.subtle};
 
   &:not(:last-child) {

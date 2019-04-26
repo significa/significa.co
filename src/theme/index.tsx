@@ -1,6 +1,6 @@
 import styled, { css, createGlobalStyle, keyframes } from './styled'
 import theme, { lightTheme, darkTheme, colorTheme, colors } from './theme'
-import { ThemeContextConsumer } from './context'
+import ThemeContext from './context'
 import Provider from './components/Provider'
 import Theme from './components/Theme'
 import { colorArgumentType, IFullTheme, IColorsTheme } from './types'
@@ -13,7 +13,7 @@ export {
   colorTheme,
   colors,
   /** Context */
-  ThemeContextConsumer,
+  ThemeContext,
   /** Components */
   Provider,
   Theme,

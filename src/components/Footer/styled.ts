@@ -1,10 +1,19 @@
+import { Link } from 'gatsby'
+
 import styled from '@theme'
 import { Container as BaseContainer } from '../UI/'
-import { Segg as BaseSegg } from '../UI/Branding'
 
 export const Footer = styled.footer`
   padding: 2.5em 0 7.5em;
   background-color: ${({ theme }) => theme.colors.background};
+
+  @media (max-width: 48em) {
+    padding-bottom: 5em;
+  }
+
+  @media (max-width: 32em) {
+    padding-bottom: 3em;
+  }
 
   /** Footer can have different bg color than background.
       Use pseudo-element to hide color change on elastic scroll **/
@@ -42,13 +51,16 @@ export const Container = styled(BaseContainer)`
 
 export const Left = styled.div`
   grid-area: l;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `
 
 export const Right = styled.div`
   grid-area: r;
 `
 
-export const Segg = styled(BaseSegg)`
-  display: block;
+export const LogoLink = styled(Link)`
   margin-bottom: 2em;
 `

@@ -39,7 +39,7 @@ export const darkTheme: IColorsTheme = {
   background: colors.black,
   foreground: colors.white,
   medium: colors.darkGrey,
-  subtle: colors.lightBlack,
+  subtle: colors.alphaWhite[10],
   error: colors.red,
 }
 

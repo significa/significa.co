@@ -1,5 +1,5 @@
 const path = require('path')
-module.exports = (baseConfig, env, config) => {
+module.exports = ({ config }) => {
   /** Typescript */
   config.module.rules.push({
     test: /\.(ts|tsx)$/,

@@ -1,11 +1,11 @@
 import styled from '@theme'
 
+import PaddedWrapper from '../common/PaddedWrapper'
+
 import { Small } from '../../../../UI'
 import DoubleArrow from './DoubleArrow'
 
-export const Wrapper = styled.div`
-  padding: 5em 0;
-`
+export { PaddedWrapper as Wrapper }
 
 export const Container = styled.div`
   position: relative;

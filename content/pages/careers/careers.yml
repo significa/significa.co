@@ -1,0 +1,186 @@
+seo:
+  title: Careers
+
+hero:
+  # TODO: REDO COPY!
+  title: |
+    Drop by for some eggs.
+    Anytime.
+  images:
+    - ./careers-top-1@2x.jpg
+    - ./careers-top-2@2x.jpg
+    - ./careers-top-3@2x.jpg
+    - ./careers-top-4@2x.jpg
+
+about:
+  title: What defines us
+
+  sections:
+    - title: Macro Management
+      text: We value your independence and give you freedom to be creative at your own (s)pace.
+
+    - title: Friendly workplace
+      text: An exciting and peaceful environment that can hopefully feel like home.
+
+    - title: Horizontal Hierarchy
+      text: Your decisions are essential as we empower teamwork and collaboration.
+
+    - title: T-shaped People
+      text: An interdisciplinary creative team ready for any challenge.
+
+  cta:
+    link: /about
+    linkText: More on us
+
+  images:
+    - image: ./careers-middle-1@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-middle-2@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-middle-3@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-middle-4@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-middle-5@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-middle-6@2x.jpg
+      alt: A day at Significa
+
+adayatsignifica:
+  top:
+    - image: ./careers-middle-1@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-middle-2@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-middle-3@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-middle-4@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-middle-5@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-middle-6@2x.jpg
+      alt: A day at Significa
+  bottom:
+    - image: ./careers-bottom-1@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-bottom-2@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-bottom-3@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-bottom-4@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-bottom-5@2x.jpg
+      alt: A day at Significa
+
+perks:
+  title: Perky perks.
+
+  list:
+    - title: Fresh Fruit & Soup
+      text: An apple a day keeps the doctor away. We have apples.
+      egg: fruit
+
+    - title: Health Insurance
+      text: Out of apples? We have health insurance for you and your kids.
+      egg: health
+
+    - title: Unlimited learning stipend
+      text: Courses, conferences or anything to help your little grey cells.
+      egg: learning
+
+    - title: Daily Food Allowance
+      text: No one can work with an empty stomach! Right?
+      egg: food
+
+    - title: In-house Arcade
+      text: Get ready for some lunch time friendly rivalries!
+      egg: arcade
+
+    - title: Annual company retreat
+      text: We sing, we dance, we bond. Then we’ll do it again next year.
+      egg: retreat
+
+    - title: Every equipment you need
+      text: Unless it’s a lazer beam gun, we’ve got you covered!
+      egg: equipment
+
+    - title: Flexible hours & location
+      text: You’re accountable for your work. That’s pretty much it!
+      egg: flexible
+
+  images:
+    - image: ./careers-bottom-1@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-bottom-2@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-bottom-3@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-bottom-4@2x.jpg
+      alt: A day at Significa
+
+    - image: ./careers-bottom-5@2x.jpg
+      alt: A day at Significa
+
+positions:
+  title: |
+    Are you a good fit?
+    Check our open positions!
+
+  defaultPosition:
+    position: Nothing for you here?
+    tagline: Anyway, if you think you could still be a good fit, feel free to self apply.
+
+  errors:
+    global: Oh noes! Something went wrong. Please try again or contact us via another channel.
+    nameRequired: Please type your name or make something up.
+    emailRequired: It's hard to get back to you without an address.
+    emailInvalid: This doesn't feel right... Please check your address.
+    messageRequired: Dont feel like writing?
+    uploadError: Could not upload your file. Please try again.
+    uploadSizeError: File too big to handle. Maybe sending a shareable link in the message?
+
+  form:
+    title: Application form
+
+    name:
+      label: Your name
+      placeholder: How should we call you?
+    email:
+      label: Your email
+      placeholder: Your email address
+    portfolio:
+      label: Portfolio link
+      placeholder: https://yourportfolio.com/
+    message:
+      label: Your message
+      placeholder: About you (300 characters max)
+    attachment:
+      label: Attach cv / portfolio
+    submit:
+      label: Apply
+
+  success:
+    title: |
+      Thank you!
+      We'll be in touch shortly.
+    subtitle: |
+      You should have received an email just now. 
+      If not, please go back and check the inputed email address!
+    back: Back to careers

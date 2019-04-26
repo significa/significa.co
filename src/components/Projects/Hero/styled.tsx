@@ -26,6 +26,7 @@ export const Container = styled(BaseContainer)`
 export const ProjectInfo = styled.div`
   margin-top: 10em;
   margin-bottom: 17em;
+  position: relative;
   z-index: 1;
 
   @media (max-width: 64em) {

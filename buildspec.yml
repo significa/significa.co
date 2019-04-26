@@ -1,0 +1,35 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - curl -s -o mime.types "https://svn.apache.org/viewvc/httpd/httpd/trunk/docs/conf/mime.types?view=co"
+      - sudo mv mime.types /etc/
+      - npm i
+      - ./.make_credentials.sh
+
+  build:
+    commands:
+      - npm run build
+
+  post_build:
+    commands:
+      - |
+        if test "$CODEBUILD_WEBHOOK_HEAD_REF" = "refs/heads/master"; then
+          AWS_PROFILE=production npm run deploy && aws cloudfront create-invalidation --distribution-id $PRODUCTION_CLOUDFRONT --paths '/*' --profile production
+        else
+          aws s3 sync --delete public --profile staging "s3://significa.io/previews/$(echo $CODEBUILD_WEBHOOK_TRIGGER | tr / -)" && aws cloudfront create-invalidation --distribution-id $STAGING_CLOUDFRONT --paths "/previews/$(echo $CODEBUILD_WEBHOOK_TRIGGER | tr / -)/*" --profile staging
+        fi
+
+artifacts:
+  base-directory: public
+  files:
+    - '**/*'
+  discard-paths: no
+
+cache:
+  paths:
+    - .cache/**/*
+    - node_modules/**/*
+    - public/**/*
+    - /usr/local/lib/node_modules/**/*

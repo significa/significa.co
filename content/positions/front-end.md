@@ -1,6 +1,7 @@
 ---
 position: Front End Developer
 tagline: You're a multi-talented resourceful ReactJS developer with a keen eye for pretty always meaningful pixels
+company: significa
 ---
 
 # You're a passionate developer with an eye for design.

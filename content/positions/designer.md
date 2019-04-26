@@ -1,6 +1,7 @@
 ---
 position: Interface Designer
 tagline: You have a love of interactive design solutions, from UX and typography to illustration and photograph
+company: significa
 ---
 
 # You're a talented Interface Designer.

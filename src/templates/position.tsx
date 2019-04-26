@@ -9,11 +9,12 @@ import { ColetivSmall, AdamantSmall, Big } from '../components/UI'
 import * as S from './position.styled'
 
 type CompanyType = 'coletiv' | 'adamant'
+type AllCompaniesType = CompanyType | 'significa'
 
 interface ITemplate {
   data: {
     markdownRemark: {
-      frontmatter: { position: string; company?: CompanyType }
+      frontmatter: { position: string; company: AllCompaniesType }
       html: string
     }
   }
@@ -44,7 +45,7 @@ const PositionTemplate: React.FC<ITemplate> = ({
       <S.Wrapper>
         <S.TitleWrapper>
           <Big>{position}</Big>
-          {company && renderCompany(company)}
+          {company && company !== 'significa' && renderCompany(company)}
         </S.TitleWrapper>
         <S.Content dangerouslySetInnerHTML={{ __html: html }} />
       </S.Wrapper>

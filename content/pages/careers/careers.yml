@@ -145,7 +145,7 @@ positions:
 
   defaultPosition:
     position: Nothing for you here?
-    tagline: If you think you could be a good fit for any other role, feel free to self apply.
+    tagline: Anyway, if you think you could still be a good fit, feel free to self apply.
 
   errors:
     global: Oh noes! Something went wrong. Please try again or contact us via another channel.

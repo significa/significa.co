@@ -13,7 +13,11 @@ export const TitleWrapper = styled.div`
   align-items: center;
 
   margin-top: 5rem;
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
+
+  @media (max-width: 32em) {
+    margin-top: 3rem;
+  }
 
   svg {
     margin-top: 2px;
@@ -31,8 +35,12 @@ export const Content = styled.div`
 
   h2 {
     ${bigStyle}
-    margin-top: 10rem;
+    margin-top: 5rem;
     margin-bottom: 0.75rem;
+
+    @media (max-width: 32em) {
+      margin-top: 3rem;
+    }
   }
 
   p {

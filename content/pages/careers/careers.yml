@@ -145,7 +145,7 @@ positions:
 
   defaultPosition:
     position: Nothing for you here?
-    tagline: Self apply. Here can & will say something cool about this open position. Because of potatoes.
+    tagline: If you think you could be a good fit for any other role, feel free to self apply.
 
   errors:
     global: Oh noes! Something went wrong. Please try again or contact us via another channel.

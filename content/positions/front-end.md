@@ -1,19 +1,19 @@
 ---
 position: Front End Developer
-tagline: Emphasis in backend architecture and deployment and then something more here.
+tagline: You're a multi-talented resourceful ReactJS developer with a keen eye for pretty always meaningful pixels
 ---
 
 # You're a passionate developer with an eye for design.
 
-Our ideal candidate has an excellent eye for detail, pragmatic approach and an absolute commitment to making sure features are well implemented and bug free. We make all of our decisions based on experiments and testing, so you should be excited by taking a data-led approach to development.
+We're looking for a great developer to join our existing ReactJS team and work alongside young & talented designers.
 
-## About you
+## The Candidate
 
 Our ideal candidate has an excellent eye for detail, pragmatic approach and an absolute commitment to making sure features are well implemented and bug free. We make all of our decisions based on experiments and testing, so you should be excited by taking a data-led approach to development.
 
 ## The Role
 
-Web Developers at Significa are front-end experts. They should be fluent in HTML, CSS and Javascript to improve the core flows of our products. As a startup team, we are extremely focused on fast iterations and high productivity.
+Web Developers at Significa are front-end experts. They should be fluent in HTML, CSS, Javascript and ReactJS to improve the core flows of our products. As a startup team, we are extremely focused on fast iterations and high productivity.
 
 ## The Responsabilities
 

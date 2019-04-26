@@ -4,8 +4,8 @@ seo:
 hero:
   # TODO: REDO COPY!
   title: |
-    Let's move forward.
-    Together.
+    Drop by for some eggs.
+    Anytime.
   images:
     - ./careers-top-1@2x.jpg
     - ./careers-top-2@2x.jpg
@@ -17,16 +17,16 @@ about:
 
   sections:
     - title: Macro Management
-      text: We’re all different. We’re all equal. We build bridges, not walls. Then something more about macro management.
+      text: We value your independence and give you freedom to be creative at your own (s)pace.
 
     - title: Friendly workplace
-      text: We’re all different. We’re all equal. We build bridges, not walls. Then something more about macro management.
+      text: An exciting and peaceful environment that can hopefully feel like home.
 
     - title: Horizontal Hierarchy
-      text: We’re all different. We’re all equal. We build bridges, not walls. Then something more about macro management.
+      text: Your decisions are essential as we empower teamwork and collaboration.
 
     - title: T-shaped People
-      text: We’re all different. We’re all equal. We build bridges, not walls. Then something more about macro management.
+      text: An interdisciplinary creative team ready for any challenge.
 
   cta:
     link: /about
@@ -90,36 +90,36 @@ perks:
   title: Perky perks.
 
   list:
+    - title: Fresh Fruit & Soup
+      text: An apple a day keeps the doctor away. We have apples.
+      egg: fruit
+
     - title: Health Insurance
-      text: We’re all different. We’re all equal. We build bridges.
+      text: Out of apples? We have health insurance for you and your kids.
       egg: health
 
     - title: Unlimited learning stipend
-      text: We’re all different. We’re all equal. We build bridges.
+      text: Courses, conferences or anything to help your little grey cells.
       egg: learning
 
     - title: Daily Food Allowance
-      text: We’re all different. We’re all equal. We build bridges.
+      text: No one can work with an empty stomach! Right?
       egg: food
 
     - title: In-house Arcade
-      text: We’re all different. We’re all equal. We build bridges.
+      text: Get ready for some lunch time friendly rivalries!
       egg: arcade
 
-    - title: Fresh Fruit & Soup
-      text: We’re all different. We’re all equal. We build bridges.
-      egg: fruit
-
     - title: Annual company retreat
-      text: We’re all different. We’re all equal. We build bridges.
+      text: We sing, we dance, we bond. Then we’ll do it again next year.
       egg: retreat
 
     - title: Every equipment you need
-      text: We’re all different. We’re all equal. We build bridges.
+      text: Unless it’s a lazer beam gun, we’ve got you covered!
       egg: equipment
 
     - title: Flexible hours & location
-      text: We’re all different. We’re all equal. We build bridges.
+      text: You’re accountable for your work. That’s pretty much it!
       egg: flexible
 
   images:

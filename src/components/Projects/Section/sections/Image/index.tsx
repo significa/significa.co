@@ -1,7 +1,7 @@
 import React from 'react'
 import Img from 'gatsby-image'
 
-import { IImage } from '../../../../../templates/types'
+import { IImage } from '../../types'
 
 import * as S from './styled'
 

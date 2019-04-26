@@ -1,0 +1,267 @@
+# Date for order
+date: 2017/05/01
+
+# Main info
+title: Mailcube macOS App
+tagline: You'll love email again
+description: |
+  An email client to give you more time and peace of mind, capable to turn email from foe to friend again. Even though many of us have declared email dead, it's up to all of us to breathe new life into it. Let's face it, you're not going to stop using email, so, instead, why not work on the relationship?
+
+# Images
+hero: ./mailcube/2-Mailcube-MainImage.png
+featured: ./mailcube/1-Mailcube-CoverImage.png
+thumbnail: ./mailcube/1-Mailcube-CoverImage.png
+
+# Settings
+heroTheme: mailcube-dark
+mainTheme: mailcube-light
+navigationTheme: mailcube-light
+themes:
+  - name: mailcube-light
+    background: '#ffffff'
+    foreground: '#2a2a2c'
+    highlight: '#fa624b'
+    medium: '#9aabb8'
+    subtle: '#fa624b'
+    error: '#FF5050'
+
+  - name: mailcube-dark
+    background: '#2C2F34'
+    foreground: '#ffffff'
+    highlight: '#fa624b'
+    medium: '#fa624b'
+    subtle: '#fff'
+    error: '#FF5050'
+
+# Info
+client: Mailcube
+services:
+  - UI/UX
+  - Branding
+  - Illustration
+  - Development
+
+deliverables:
+  - macOS app
+  - Website
+  - Logo
+links:
+  - link: https://mailcube.com/
+    linkText: Website
+
+content:
+  # Chapter
+  - title: The App
+    showTitle: false
+    content:
+      # Section
+      - title: Features
+        showTitle: false
+        sections:
+          # Sections
+          
+          - type: image
+            layout: medium
+            margin: bottom
+            content:
+              image: ./mailcube/3-Mailcube-ShowOf.png
+
+          - type: text
+            content:
+              title: Faces
+              text: |
+                With Mailcube you can browse your inbox using faces. Each face filters the next. You can add and reorder them to better suit your needs. This is one of the core elements that makes Mailcube unique and an excellent tool to organize your emails.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/4-Mailcube-Faces01.png
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/5-Mailcube-Faces02.png
+
+          - type: text
+            title: Faces
+            content:
+              text: |
+               There are 5 types of faces. Messages, contacts, attachements, calendar and tags. These can all be rearranged to filter the next face. For example, if you have contacts on your left and select one them, all of the faces on the right will only display content relative to that contact.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/6-Mailcube-Faces03.png
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/7-Mailcube-Faces04.png
+
+          - type: text
+            content:
+              text: |
+               In every email client there are numerous permutations of the same information. Take email for example, it can be unread, read, have an attachment, have a subject, been forwarded, etc. All of these possible combinations had to be designed for in order to keep the user accurately in sync with his email workflow.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/8-Mailcube-Faces05.png
+
+          - type: text
+            content:
+              title: Cubes & Contexts
+              text: |
+               Notifications will only appear if the message fits inside the context.This way you can easily separate your work life from your personal, allowing you to increase your productivity at work or dedicate time to your family without having work to interfere. Drag messages to a cube to organize your mail. If the user adds a person or a tag, all their messages will fit inside that cube.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/9-Mailcube-Cubes01.png
+
+          - type: text
+            content:
+              text: |
+               If you are inside your Home Context, you can have various cubes such as bills, vacations, purchases and within each of these cubes you will have a set of contacts and messages that are specific to that cube.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/10-Mailcube-Cubes02.png
+
+          - type: text
+            content:
+              title: Design on a grid
+              text: |
+               When you create such a complex platform it is essential to stick to an incremental grid. In this case we used multiples of 8 pixel structure ensuring that any element we created would work alongside the others.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/11-Mailcube-Design.png
+  # Chapter
+  - title: Styleguide
+    showTitle: false
+    content:
+      # Section
+      - title: StyleGuide
+        showTitle: false
+        sections:
+          # Sections
+
+          - type: text
+            content:
+              title: Typography
+              text: |
+               Mailcube is being developed for macOS and it’s main purpose is not only to organize information but to display it, so it was essential for the text to have unmatched legibility, clarity, and consistency. To achieve that we used Apple’s system font, San Francisco UI Text.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/12-Mailcube-Typography.png
+
+          - type: text
+            content:
+              title: Color Palette
+              text: |
+               To focus the user’s attention on the contents of each new email, it was essential to use neutral tones of black white and grey, using only red for notifications and blue for selected elements.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/13-Mailcube-Color.png
+
+          - type: text
+            content:
+              title: Iconography
+              text: |
+               Constructed on a grid, Mailcube's icon family was created to solve every need of the email platform.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/14-Mailcube-Iconography.png
+      # Section
+      - title: Branding
+        showTitle: false
+        sections:
+          # Sections
+
+          - type: text
+            content:
+              title: Creating a Brand
+              text: |
+               The Mailcube brand was created with the junction of three elements. First the cube which is the foundation of the brand itself, then a clock that represents email time saving, plus the envelope that represents the product itself, email.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/15-Mailcube-Logo01.png
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/16-Mailcube-Logo02.png
+
+          - type: text
+            content:
+              text: |
+               Using an altered version of the Neris font, the mailcube lettering lives harmoniously with the glyph, creating a very balanced logotype that works very well in both digital and graphic platforms.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/17-Mailcube-Logo03.png
+
+          - type: text
+            content:
+              title: Website
+              text: |
+               The Landing Page was the last piece of the puzzle, as it was created as an online brochure of Mailcube’s core features, capturing the user’s attention and allowing them to download the app.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/18-Mailcube-LandingPage.png
+
+          - type: text
+            content:
+              text: |
+               For the Contact section of the website we found a creative way to display the form. We created a dynamic and interactive contact form in an email composer format of the app.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/19-Mailcube-LandingPage02.png
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./mailcube/20-Mailcube-illustration.png
+
+          - type: testimonial
+            theme: mailcube-dark
+            content:
+              text: You guys also care about Mailcube, you are proactive, you guys discuss the product with us, you give us your insights and strategy.
+              author: Ademar Aguiar, Co-Founder
+              link:
+                text: Read interview
+                url: https://blog.significa.pt/mailcube-interview-with-co-founder-2ed0b0dd209a
+

@@ -3,13 +3,13 @@ import React from 'react'
 import { addDecorator } from '@storybook/react'
 import { withKnobs } from '@storybook/addon-knobs'
 
-import { Provider, ThemeContextConsumer, colorTheme } from '@theme'
+import { Provider, ThemeContext, colorTheme } from '@theme'
 
 export default () => {
   addDecorator(withKnobs)
 
   addDecorator(story => (
-    <ThemeContextConsumer>
+    <ThemeContext.Consumer>
       {({ updateTheme }) => {
         const updateToLight = () => updateTheme('light')
         const updateToDark = () => updateTheme('dark')
@@ -32,7 +32,7 @@ export default () => {
           </div>
         )
       }}
-    </ThemeContextConsumer>
+    </ThemeContext.Consumer>
   ))
 
   addDecorator(story => <Provider>{story()}</Provider>)

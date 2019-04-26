@@ -1,0 +1,267 @@
+# Date for order
+date: 2018/05/01
+
+# Main info
+title: Reforestum Web App
+tagline: Create & Manage your Forest
+description: |
+  Reforestum allows you to create and manage your own forest. Designed and developed by us, this is a platform that measures the carbon footprint of your daily activities, offering you the possibility to become carbon neutral. We all have our own carbon footprint. You can’t avoid it but you can counter it.
+
+# Images
+hero: ./reforestum/2-Reforestum-MainImage.png
+featured: ./reforestum/1-Reforestum-CoverImage.png
+thumbnail: ./reforestum/1-Reforestum-CoverImage.png
+
+# Settings
+heroTheme: reforestum-green
+mainTheme: reforestum-light
+navigationTheme: reforestum-light
+themes:
+  - name: reforestum-light
+    background: '#ffffff'
+    foreground: '#304351'
+    highlight: '#37b877'
+    medium: '#9aabb8'
+    subtle: '#37b877'
+    error: '#FF5050'
+
+  - name: reforestum-green
+    background: '#2ca86a'
+    foreground: '#ffffff'
+    highlight: '#15433b'
+    medium: '#37b877'
+    subtle: '#37b877'
+    error: '#FF5050'
+
+# Info
+client: reforestum
+services:
+  - UI/UX
+  - Development
+  - Illustration
+
+deliverables:
+  - Website
+  - Web app
+links:
+  - link: https://reforestum.com/
+    linkText: Website
+
+content:
+  # Chapter
+  - title: Website
+    showTitle: false
+    content:
+      # Section
+      - title: Process
+        showTitle: false
+        sections:
+          # Sections
+
+          - type: image
+            layout: medium
+            margin: bottom
+            content:
+              image: ./reforestum/3-Reforestum-ShowOf01.jpg
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./reforestum/4-Reforestum-ShowOf02.jpg
+
+          - type: text
+            content:
+              title: Simple user flow
+              text: |
+                With such a complex structure with infinite permutations there was only one way to ensure simplicity. A clear yet detailed sitemap of the entire platform.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./reforestum/5-Reforestum-Fow.jpg
+
+          - type: text
+            content:
+              title: Wireframes
+              text: |
+                To validate the flow and to guarantee a realistic user testing experience we designed the entire platform using wireframes.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./reforestum/6-Reforestum-Wireframes.jpg
+
+          - type: text
+            content:
+              title: Reducing Complexity
+              text: |
+                We not only reduced steps in the app’s core feature but we also made it more versatile and exciting for the user to create his or her forest.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./reforestum/7-Reforestum-Compare.jpg
+  # Chapter
+  - title: StyleGuide
+    showTitle: false
+    content:
+      # Section
+      - title: Typography
+        showTitle: false
+        sections:
+          # Sections
+          - type: text
+            content:
+              title: Apercu — An extensive and usable family
+              text: |
+                Apercu was the right choice for a complex platform that needs to keep the friendly and bold personality that resonates with Reforestum’s beautiful and ambicious mission.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./reforestum/8-Reforestum-Typography.jpg
+
+  # Chapter
+  - title: Design
+    showTitle: false
+    content:
+      # Section
+      - title: WebApp
+        showTitle: false
+        sections:
+          # Sections
+          - type: text
+            content:
+              title: Your Carbon Sources
+              text: |
+                Calculate your carbon footprint by adding your CO² Sources. You can go into meticulous detail by selecting your car’s egine, model, or distance traveled.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./reforestum/9-Reforestum-AddSources.jpg
+
+          - type: text
+            content:
+              text: |
+                When you’re done, you’ll see your CO² Balance which, as you may expect, is very negative. But it doens’t have to be. That is the grand purpose of the Reforestum app — Create enough forest to offset your footprint.
+
+          - type: video
+            layout: medium
+            margin: both
+            content:
+              video: reforestum/11-Reforestum-SourceAnimation.mp4
+              autoplay: true
+              loop: true
+              controls: false
+              muted: true
+
+          - type: text
+            content:
+              title: Create a Forest
+              text: |
+                Become a forest owner and offset your footprint by selecting from Reforestum’s catalogue of forests located all over the world.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./reforestum/12-Reforestum-Create.jpg
+
+          - type: text
+            content:
+              title: Be Carbon Neutral
+              text: |
+                Become a forest owner and offset your footprint by selecting from Reforestum’s catalogue of forests located all over the world.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./reforestum/13-Reforestum-Positive.jpg
+
+          - type: text
+            content:
+              title: Manage Your Forest
+              text: |
+                Keep track and manage your forest in real time. Every detail about your forest in one place. Keep track of how much carbon its capturing and have access to a detailed gallery. Want more? Enlarge it!
+
+          - type: image
+            layout: medium
+            margin: bottom
+            content:
+              image: ./reforestum/14-Reforestum-Map.jpg
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./reforestum/15-Reforestum-MyForest.jpg
+
+          - type: video
+            layout: medium
+            margin: both
+            content:
+              video: ./reforestum/16-Reforestum-Mobile.mp4
+              autoplay: true
+              loop: true
+              controls: false
+              muted: true
+
+      # Section
+      - title: Illustrations
+        showTitle: false
+        sections:
+          # Sections
+          - type: text
+            content:
+              title: Illustrating Nature
+              text: |
+                To achieve a friendly yet serious style, we created a photographic composition and painted over it with a textured brush using Adobe Photoshop.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./reforestum/17-Reforestum-Illustrations01.jpg
+
+          - type: text
+            content:
+              text: |
+                Green was the obvious choice for color, as it illustrates the positive relevance of nature. As a contrast, to deliver any negative message, the color orange was used as a warning, quickly stating that something needs change.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./reforestum/18-Reforestum-Illustrations02.jpg
+
+          - type: text
+            content:
+              title: Iconography
+              text: |
+                Using the same illustration style, we created a family of icons to represent the CO² sources. Created to represent each of the various species of trees avaliable in the forests.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./reforestum/19-Reforestum-icons01.jpg
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./reforestum/20-Reforestum-Icons02.jpg
+
+          - type: image
+            layout: large
+            margin: both
+            content:
+              image: ./reforestum/21-Reforestum-Footer.jpg

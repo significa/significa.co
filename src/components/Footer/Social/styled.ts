@@ -5,7 +5,10 @@ export const SocialLink = styled.a.attrs({
   rel: 'noopener noreferrer',
 })`
   transition: opacity ${({ theme }) => theme.transitions.ease()};
-  &:hover {
-    opacity: 0.8;
+
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.8;
+    }
   }
 `

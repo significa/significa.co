@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { IVideo } from '../../../../../templates/types'
+import { IVideo } from '../../types'
 
 const Video = (props: IVideo) => {
   return (

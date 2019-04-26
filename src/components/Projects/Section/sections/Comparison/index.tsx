@@ -1,82 +1,72 @@
-import React from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import Img from 'gatsby-image'
 
-import { IComparison } from '../../../../../templates/types'
+import { IComparison } from '../../types'
 
 import * as S from './styled'
 
-class Comparison extends React.Component<IComparison> {
-  container = React.createRef<HTMLDivElement>()
+const Comparison: React.FC<IComparison> = ({ a, b, caption }) => {
+  const container = useRef<HTMLDivElement>(null)
 
-  state = { visible: 50 }
+  const [visible, setVisible] = useState(50)
 
-  componentWillUnmount() {
-    this.removeListeners()
+  useEffect(() => {
+    return removeListeners
+  }, [])
+
+  const startCapture = () => {
+    window.addEventListener('mousemove', onDrag)
+    window.addEventListener('touchmove', onDrag)
+    window.addEventListener('mouseup', removeListeners)
+    window.addEventListener('touchend', removeListeners)
+    window.addEventListener('dragend', removeListeners)
   }
 
-  startCapture = () => {
-    window.addEventListener('mousemove', this.onDrag)
-    window.addEventListener('touchmove', this.onDrag)
-    window.addEventListener('mouseup', this.removeListeners)
-    window.addEventListener('touchend', this.removeListeners)
-    window.addEventListener('dragend', this.removeListeners)
+  const removeListeners = () => {
+    window.removeEventListener('mousemove', onDrag)
+    window.removeEventListener('touchmove', onDrag)
+    window.removeEventListener('mouseup', removeListeners)
+    window.removeEventListener('touchend', removeListeners)
+    window.removeEventListener('dragend', removeListeners)
   }
 
-  removeListeners = () => {
-    window.removeEventListener('mousemove', this.onDrag)
-    window.removeEventListener('touchmove', this.onDrag)
-    window.removeEventListener('mouseup', this.removeListeners)
-    window.removeEventListener('touchend', this.removeListeners)
-    window.removeEventListener('dragend', this.removeListeners)
-  }
+  const onDrag = (e: MouseEvent | TouchEvent) => {
+    if (container.current) {
+      const { left, width } = container.current.getBoundingClientRect()
+      const x: number = 'touches' in e ? e.touches[0].clientX : e.clientX
+      const relativeX: number = x - left
+      const target: number = (relativeX * 100) / width
 
-  onDrag = (e: MouseEvent | TouchEvent) => {
-    if (!this.container.current) {
-      return null
+      setVisible(Math.min(Math.max(target, 0), 100))
     }
-
-    const {
-      left: containerLeft,
-      width: containerWidth,
-    } = this.container.current.getBoundingClientRect()
-    const x: number = 'touches' in e ? e.touches[0].clientX : e.clientX
-    const relativeX: number = x - containerLeft
-    const target: number = (relativeX * 100) / containerWidth
-
-    return target >= 0 && target <= 100
-      ? this.setState({ visible: target })
-      : null
   }
 
-  render() {
-    const { a, b, caption } = this.props
-    return (
-      <S.Wrapper>
-        <S.Container ref={this.container}>
-          <S.Controls>
-            <S.Line style={{ left: `${this.state.visible}%` }} />
-            <S.DragHandle
-              style={{ left: `${this.state.visible}%` }}
-              onMouseDown={this.startCapture}
-              onTouchStart={this.startCapture}
-            >
-              <S.Icon />
-            </S.DragHandle>
-          </S.Controls>
+  return (
+    <S.Wrapper>
+      <S.Container ref={container}>
+        <S.Controls>
+          <S.Line style={{ left: `${visible}%` }} />
+          <S.DragHandle
+            style={{ left: `${visible}%` }}
+            onMouseDown={startCapture}
+            onTouchStart={startCapture}
+          >
+            <S.Icon />
+          </S.DragHandle>
+        </S.Controls>
 
-          <Img fluid={a.childImageSharp.fluid} />
-          <S.TopImage>
-            <Img
-              fluid={b.childImageSharp.fluid}
-              style={{ height: '100%', width: `${this.state.visible}%` }}
-            />
-          </S.TopImage>
-        </S.Container>
+        <Img fluid={a.childImageSharp.fluid} />
+        <S.TopImage>
+          <Img
+            fluid={b.childImageSharp.fluid}
+            style={{ height: '100%', width: `${visible}%` }}
+          />
+        </S.TopImage>
+      </S.Container>
 
-        {caption && <S.Caption>{caption}</S.Caption>}
-      </S.Wrapper>
-    )
-  }
+      {caption && <S.Caption>{caption}</S.Caption>}
+    </S.Wrapper>
+  )
 }
 
 export default Comparison

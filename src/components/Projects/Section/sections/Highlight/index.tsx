@@ -1,19 +1,19 @@
 import React from 'react'
 
 import { textByLine } from '../../../../../utils/textByLine'
-import { IHighlight } from '../../../../../templates/types'
+import { IHighlight } from '../../types'
 
 import { Big } from '../../../../UI'
 
-import * as S from './styled'
+import PaddedWrapper from '../common/PaddedWrapper'
 
 const Highlight = (props: IHighlight) => {
   return (
-    <S.Wrapper>
+    <PaddedWrapper>
       {textByLine(props.text).map((line, i) => (
         <Big key={i}>{line}</Big>
       ))}
-    </S.Wrapper>
+    </PaddedWrapper>
   )
 }
 

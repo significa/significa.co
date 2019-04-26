@@ -33,7 +33,9 @@ export const LogoLink = styled(Link)`
   /* Small optical compensation */
   margin-top: 0.25em;
 
-  &:hover {
-    opacity: 0.8;
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.8;
+    }
   }
 `

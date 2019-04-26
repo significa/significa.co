@@ -23,16 +23,32 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
+
   if (node.internal.type === 'ProjectsYaml') {
     const slug = createFilePath({
       node,
       getNode,
       basePath: 'projects',
     })
+
     createNodeField({
       node,
       name: 'slug',
       value: `/showcase${slug}`,
+    })
+  }
+
+  if (node.internal.type === 'MarkdownRemark') {
+    const slug = createFilePath({
+      node,
+      getNode,
+      basePath: 'careers',
+    }).replace('/positions', '')
+
+    createNodeField({
+      node,
+      name: 'slug',
+      value: `/careers${slug}`,
     })
   }
 }
@@ -42,7 +58,10 @@ exports.createPages = ({ graphql, actions }) => {
 
   return graphql(`
     {
-      allProjectsYaml(sort: { fields: date }) {
+      allProjectsYaml(
+        sort: { fields: date }
+        filter: { published: { ne: false } }
+      ) {
         edges {
           node {
             title
@@ -73,9 +92,25 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
+
+      allMarkdownRemark(filter: { frontmatter: { position: { ne: null } } }) {
+        edges {
+          node {
+            frontmatter {
+              position
+              tagline
+              company
+            }
+            fields {
+              slug
+            }
+          }
+        }
+      }
     }
   `).then(result => {
     const projects = result.data.allProjectsYaml.edges
+    const positions = result.data.allMarkdownRemark.edges
 
     projects.forEach(({ node }, index) => {
       const next =
@@ -89,6 +124,16 @@ exports.createPages = ({ graphql, actions }) => {
         context: {
           slug: node.fields.slug,
           next,
+        },
+      })
+    })
+
+    positions.forEach(({ node }, index) => {
+      createPage({
+        path: node.fields.slug,
+        component: path.resolve(`./src/templates/position.tsx`),
+        context: {
+          slug: node.fields.slug,
         },
       })
     })

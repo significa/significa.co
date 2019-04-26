@@ -25,7 +25,15 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-transformer-yaml',
-    'gatsby-plugin-sharp',
+    `gatsby-transformer-remark`,
+    {
+      resolve: 'gatsby-plugin-sharp',
+      options: {
+        useMozJpeg: true,
+        stripMetadata: true,
+        defaultQuality: 90,
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -36,6 +44,21 @@ module.exports = {
         theme_color: '#0154FF',
         display: 'minimal-ui',
         icon: 'src/assets/images/icon.png', // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+        bucketName: `significa.co`,
+        region: `eu-west-1`,
+        protocol: `https`,
+        hostname: `significa.co`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://significa.co`,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

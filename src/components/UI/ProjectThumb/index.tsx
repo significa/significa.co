@@ -1,9 +1,7 @@
 import React from 'react'
 import { FluidObject } from 'gatsby-image'
 
-import { Text } from '../Typography'
-
-import * as S from './styled'
+import ContentThumb from '../ContentThumb'
 
 interface IProjectThumb {
   title: string
@@ -20,17 +18,12 @@ const ProjectThumb: React.FC<IProjectThumb> = ({
   tagline,
   services,
 }) => (
-  <S.Link to={to}>
-    <S.ImgWrapper>
-      <S.Img fluid={fluid} />
-    </S.ImgWrapper>
-    <S.Meta>
-      <S.Big>
-        {title} &mdash; {tagline}
-      </S.Big>
-      <Text>{services.join(', ')}</Text>
-    </S.Meta>
-  </S.Link>
+  <ContentThumb
+    to={to}
+    fluid={fluid}
+    title={`${title} — ${tagline}`}
+    text={services.join(', ')}
+  />
 )
 
 export default ProjectThumb

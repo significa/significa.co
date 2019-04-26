@@ -10,8 +10,18 @@
  */
 
 // import React from 'react'
-// import Layout from './src/layout'
+// import Layout from './src/components/Layout/'
 
 // export const wrapPageElement = ({ element, props }) => {
 //   return <Layout {...props}>{element}</Layout>
+// }
+
+// export const onRouteUpdate = ({ location: { hash } }) => {
+//   if (hash) {
+//     window.setTimeout(() => {
+//       const el = document.querySelector(hash)
+//       if (el) return window.scrollTo(0, el.offsetTop)
+//       return false
+//     })
+//   }
 // }

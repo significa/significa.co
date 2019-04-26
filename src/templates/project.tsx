@@ -4,15 +4,33 @@ import { graphql } from 'gatsby'
 import { Theme, IColorsTheme } from '@theme'
 
 import { getProjectTheme } from '../utils/getProjectTheme'
-import { IImageObject, ISection } from './types'
+import { IImageObject, ISection } from '../components/Projects/Section/types'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { Meta, Hero, Section, Next } from '../components/Projects/'
+import {
+  Meta,
+  Hero,
+  Section,
+  Next,
+  Chapter,
+  Navigation,
+} from '../components/Projects/'
+import ConditionalWrap from '../components/utils/ConditionalWrap'
 
 interface ITheme extends IColorsTheme {
   name: string
 }
+
+export type ContentType = Array<{
+  title?: string
+  theme?: string
+  showTitle?: boolean
+  content: Array<{
+    title?: string
+    sections: ISection[]
+  }>
+}>
 
 export interface IProject {
   pageContext: {
@@ -35,6 +53,7 @@ export interface IProject {
       hero: IImageObject
       heroTheme: string
       mainTheme: string
+      navigationTheme: string
       themes?: ITheme[]
       client?: string
       services?: string[]
@@ -43,50 +62,109 @@ export interface IProject {
         link: string
         linkText: string
       }>
-      sections: ISection[]
+      content: ContentType
     }
   }
 }
 
 const Project = ({ data, pageContext: { next } }: IProject) => {
-  const { projectsYaml: content } = data
+  const { projectsYaml } = data
 
   return (
     <Layout
-      theme={getProjectTheme(content.mainTheme, content.themes)}
-      headerTheme={getProjectTheme(content.heroTheme, content.themes)}
+      theme={getProjectTheme(projectsYaml.mainTheme, projectsYaml.themes)}
+      headerTheme={getProjectTheme(projectsYaml.heroTheme, projectsYaml.themes)}
       footerTheme="light"
     >
-      <SEO title={content.title} description={content.description} />
-      <Theme theme={getProjectTheme(content.heroTheme, content.themes)}>
-        <Hero
-          title={content.title}
-          tagline={content.tagline}
-          fluid={content.hero.childImageSharp.fluid}
+      <SEO title={projectsYaml.title} description={projectsYaml.description} />
+
+      {/* Project navigation */}
+      <ConditionalWrap
+        condition={!!projectsYaml.navigationTheme}
+        wrap={children => (
+          <Theme
+            theme={getProjectTheme(
+              projectsYaml.navigationTheme as string,
+              projectsYaml.themes
+            )}
+          >
+            {children}
+          </Theme>
+        )}
+      >
+        <Navigation content={projectsYaml.content} />
+      </ConditionalWrap>
+
+      <div>
+        {/* Hero */}
+        <Theme
+          theme={getProjectTheme(projectsYaml.heroTheme, projectsYaml.themes)}
+        >
+          <Hero
+            title={projectsYaml.title}
+            tagline={projectsYaml.tagline}
+            fluid={projectsYaml.hero.childImageSharp.fluid}
+          />
+        </Theme>
+
+        {/* Project description */}
+        <Meta
+          description={projectsYaml.description}
+          client={projectsYaml.client}
+          services={projectsYaml.services}
+          deliverables={projectsYaml.deliverables}
+          links={projectsYaml.links}
         />
-      </Theme>
-      <Meta
-        description={content.description}
-        client={content.client}
-        services={content.services}
-        deliverables={content.deliverables}
-        links={content.links}
-      />
-      {content.sections.map((section, i) => (
-        <Section
-          key={i}
-          section={section}
-          theme={getProjectTheme(section.theme, content.themes)}
-        />
-      ))}
-      <Theme theme={getProjectTheme(next.heroTheme, next.themes)}>
-        <Next
-          title={next.title}
-          tagline={next.tagline}
-          fluid={next.hero.childImageSharp.fluid}
-          link={next.fields.slug}
-        />
-      </Theme>
+
+        {/* Chapters, blocks and sections */}
+        {projectsYaml.content.map((chapter, chapterIndex) => {
+          return (
+            <React.Fragment key={chapterIndex}>
+              {chapter.showTitle && chapter.title && (
+                <ConditionalWrap
+                  condition={!!chapter.theme}
+                  wrap={children => (
+                    <Theme
+                      theme={getProjectTheme(
+                        chapter.theme as string,
+                        projectsYaml.themes
+                      )}
+                    >
+                      {children}
+                    </Theme>
+                  )}
+                >
+                  <Chapter title={chapter.title} />
+                </ConditionalWrap>
+              )}
+              {chapter.content.map(block => {
+                return block.sections.map((section, sectionIndex) => {
+                  return (
+                    <Section
+                      key={sectionIndex}
+                      section={section}
+                      theme={getProjectTheme(
+                        section.theme,
+                        projectsYaml.themes
+                      )}
+                      sectionLabel={block.title}
+                    />
+                  )
+                })
+              })}
+            </React.Fragment>
+          )
+        })}
+
+        {/* Next  project */}
+        <Theme theme={getProjectTheme(next.heroTheme, next.themes)}>
+          <Next
+            title={next.title}
+            tagline={next.tagline}
+            link={next.fields.slug}
+          />
+        </Theme>
+      </div>
     </Layout>
   )
 }
@@ -94,96 +172,15 @@ const Project = ({ data, pageContext: { next } }: IProject) => {
 export default Project
 
 export const query = graphql`
-  fragment Theme on themes_3 {
-    name
-    background
-    foreground
-    highlight
-    medium
-    subtle
-    error
-  }
-
   fragment Image on File {
     childImageSharp {
       fluid(maxWidth: 3000) {
         ...GatsbyImageSharpFluid_noBase64
       }
-    }
-  }
-
-  fragment AllSectionsContent on content_5 {
-    # Image
-
-    image {
-      ...Image
-    }
-    caption
-
-    # Text
-
-    title
-    text
-    link {
-      url
-      text
-    }
-
-    # Video
-
-    video {
-      publicURL
-    }
-    autoplay
-    loop
-    controls
-    muted
-
-    # Gallery / Slider / Slideshow (not 'video') / waterfall
-
-    #caption
-    columns
-    items {
-      span {
-        normal
-        tablet
-        mobile
-      }
-      image {
-        ...Image
-      }
-      video {
-        publicURL
+      resize {
+        height
       }
     }
-
-    # Comparison
-
-    #caption
-    a {
-      ...Image
-    }
-    b {
-      ...Image
-    }
-
-    # Testimonial
-
-    #text
-    #link
-    author
-
-    # Sticky
-
-    sticky
-    invert
-    #title
-    #image/video
-    #text
-
-    # Highlight
-
-    #text
   }
 
   query($slug: String!) {
@@ -196,8 +193,15 @@ export const query = graphql`
       }
       heroTheme
       mainTheme
+      navigationTheme
       themes {
-        ...Theme
+        name
+        background
+        foreground
+        highlight
+        medium
+        subtle
+        error
       }
       client
       services
@@ -206,13 +210,91 @@ export const query = graphql`
         link
         linkText
       }
-      sections {
-        type
-        layout
+      content {
+        title
         theme
-        margin
+        showTitle
         content {
-          ...AllSectionsContent
+          title
+          sections {
+            type
+            layout
+            theme
+            margin
+            content {
+              # Image
+
+              image {
+                ...Image
+              }
+              caption
+
+              # Text
+
+              title
+              text
+              link {
+                url
+                text
+              }
+
+              # Video
+
+              video {
+                publicURL
+              }
+              autoplay
+              loop
+              controls
+              muted
+
+              # Gallery / Slider / Slideshow (not 'video') / waterfall
+
+              #caption
+              columns
+              items {
+                span {
+                  normal
+                  tablet
+                  mobile
+                }
+                image {
+                  ...Image
+                }
+                video {
+                  publicURL
+                }
+              }
+
+              # Comparison
+
+              #caption
+              a {
+                ...Image
+              }
+              b {
+                ...Image
+              }
+
+              # Testimonial
+
+              #text
+              #link
+              author
+
+              # Sticky
+
+              sticky
+              invert
+              #title
+              #image/video
+              #text
+
+              # Highlight
+
+              #text
+            }
+          }
         }
       }
     }

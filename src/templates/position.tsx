@@ -2,36 +2,53 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
-import * as S from '../components/Careers/pageStyled'
 import SEO from '../components/SEO'
 import { FormPosition } from '../components/Careers'
-import coletivSrc from '../assets/images/coletiv.svg'
+import { ColetivSmall, AdamantSmall, Big } from '../components/UI'
+
+import * as S from './position.styled'
+
+type CompanyType = 'coletiv' | 'adamant'
 
 interface ITemplate {
   data: {
     markdownRemark: {
-      frontmatter: { position: string; company: string }
+      frontmatter: { position: string; company?: CompanyType }
       html: string
     }
   }
 }
 
+const renderCompany = (company: CompanyType) => {
+  const logoComponents: { [K in CompanyType]: React.FC<any> } = {
+    coletiv: ColetivSmall,
+    adamant: AdamantSmall,
+  }
+
+  const ImageComponent = logoComponents[company]
+
+  return <ImageComponent />
+}
+
 const PositionTemplate: React.FC<ITemplate> = ({
-  data: { markdownRemark },
+  data: {
+    markdownRemark: {
+      html,
+      frontmatter: { position, company },
+    },
+  },
 }) => {
   return (
     <Layout footerTheme="dark">
-      <SEO title={markdownRemark.frontmatter.position} />
+      <SEO title={position} />
       <S.Wrapper>
-        <S.Big>
-          {markdownRemark.frontmatter.position}
-          {markdownRemark.frontmatter.company === 'Coletiv' && (
-            <img src={coletivSrc} alt="Coletiv" />
-          )}
-        </S.Big>
-        <S.Content dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
+        <S.TitleWrapper>
+          <Big>{position}</Big>
+          {company && renderCompany(company)}
+        </S.TitleWrapper>
+        <S.Content dangerouslySetInnerHTML={{ __html: html }} />
       </S.Wrapper>
-      <FormPosition position={markdownRemark.frontmatter.position} />
+      <FormPosition position={position} />
     </Layout>
   )
 }

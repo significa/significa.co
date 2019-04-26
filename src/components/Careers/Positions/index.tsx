@@ -1,15 +1,16 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
-import { RightContent } from '../../UI/Layout'
-import { Big, Text } from '../../UI/Typography'
+import { RightContent, Big, AdamantSmall, ColetivSmall } from '../../UI/'
+
 import * as S from './styled'
-import coletivSrc from '../../../assets/images/coletiv.svg'
+
+type CompanyType = 'coletiv' | 'adamant'
 
 interface IPosition {
   position: string
   tagline: string
-  company?: string
+  company?: CompanyType
   slug: string
 }
 
@@ -32,19 +33,28 @@ interface IPositions {
   }
 }
 
-const Item = ({ position, tagline, company, slug }: IPosition) => {
+const renderCompany = (company: CompanyType) => {
+  const logoComponents: { [K in CompanyType]: React.FC<any> } = {
+    coletiv: ColetivSmall,
+    adamant: AdamantSmall,
+  }
+
+  const ImageComponent = logoComponents[company]
+
+  return <ImageComponent />
+}
+
+const Item = ({ position, tagline, company, slug, ...props }: IPosition) => {
   return (
-    <S.PositionLink to={slug}>
-      <S.PositionItem>
-        <Big as="h4">
-          {position}
-          {company === 'Coletiv' && (
-            <S.CompanyImage src={coletivSrc} alt="Coletiv" />
-          )}
-        </Big>
-        <Text>{tagline}</Text>
-      </S.PositionItem>
-    </S.PositionLink>
+    <S.ListItem {...props}>
+      <S.Link to={slug}>
+        <S.TitleWrapper>
+          <Big as="h4">{position}</Big>
+          {company && renderCompany(company)}
+        </S.TitleWrapper>
+        <S.More>{tagline}</S.More>
+      </S.Link>
+    </S.ListItem>
   )
 }
 
@@ -56,12 +66,14 @@ const Positions = () => {
 
   return (
     <RightContent title={positions.title}>
-      {edges.map(({ node: { frontmatter, fields } }) => {
-        const mergedProps = { ...frontmatter, ...fields }
-        return <Item {...mergedProps} key={frontmatter.position} />
-      })}
+      <ul>
+        {edges.map(({ node: { frontmatter, fields } }, i) => {
+          const mergedProps = { ...frontmatter, ...fields }
+          return <Item {...mergedProps} key={i} />
+        })}
 
-      <Item {...positions.defaultPosition} slug="/contact" />
+        <Item {...positions.defaultPosition} slug="/contact" />
+      </ul>
     </RightContent>
   )
 }

@@ -14,8 +14,8 @@ export const ListItem = styled.li`
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.subtle};
 
-  &:not(:last-child) {
-    margin-bottom: 2em;
+  &:not(:first-child) {
+    padding-top: 2em;
   }
 `
 

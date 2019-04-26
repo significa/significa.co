@@ -33,16 +33,14 @@ const About: React.FC = () => {
   )
 
   return (
-    <S.Wrapper>
-      <RightContent amountColumn={3} title={about.title}>
-        <>
-          <S.SectionWrapper>
-            {about.sections.map(renderSection)}
-          </S.SectionWrapper>
-          <S.ArrowLink to={about.cta.link}>{about.cta.linkText}</S.ArrowLink>
-        </>
-      </RightContent>
-    </S.Wrapper>
+    <RightContent amountColumn={3} title={about.title}>
+      <>
+        <S.SectionWrapper>{about.sections.map(renderSection)}</S.SectionWrapper>
+        <S.ArrowLink highlight to={about.cta.link}>
+          {about.cta.linkText}
+        </S.ArrowLink>
+      </>
+    </RightContent>
   )
 }
 

@@ -43,6 +43,7 @@ const Gallery = styled.div`
   }
 
   @media (max-width: 32em) {
+    grid-gap: 1.5em;
     grid-template-columns: 1fr;
   }
 `

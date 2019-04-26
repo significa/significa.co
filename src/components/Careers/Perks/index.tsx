@@ -45,11 +45,11 @@ const Perks: React.FC = () => {
   }
 
   const renderPerks = ({ title, text, egg }: ISection) => (
-    <div key={title}>
+    <S.Item key={title}>
       {renderEgg(egg)}
-      <S.SectionTitle as="h4">{title}</S.SectionTitle>
-      <S.SectionText>{text}</S.SectionText>
-    </div>
+      <S.ItemTitle as="h4">{title}</S.ItemTitle>
+      <S.ItemText>{text}</S.ItemText>
+    </S.Item>
   )
 
   return (

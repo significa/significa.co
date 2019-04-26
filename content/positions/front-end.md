@@ -1,7 +1,6 @@
 ---
 position: Front End Developer
 tagline: Emphasis in backend architecture and deployment and then something more here.
-company: Significa
 ---
 
 # You're a passionate developer with an eye for design.

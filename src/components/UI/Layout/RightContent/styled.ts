@@ -22,7 +22,7 @@ export const Container = styled(BaseContainer)`
 
   @media (max-width: 48em) {
     grid-column-gap: 0;
-    grid-row-gap: 5em;
+    grid-row-gap: 3em;
   }
 `
 

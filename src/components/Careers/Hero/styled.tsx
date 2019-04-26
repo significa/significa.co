@@ -8,15 +8,18 @@ export const PageContainer = styled.div`
 `
 
 export const Wrapper = styled(Container)`
-  padding-top: 10rem;
+  margin-top: 7.5rem;
+  margin-bottom: 7.5em;
+
+  @media (max-width: 32em) {
+    margin-top: 5em;
+    margin-bottom: 5em;
+  }
 `
 
 export const Display = styled(BaseDisplay)``
 
 export const GalleryWrapper = styled(Container)`
-  padding-top: 4em;
-  padding-bottom: 4em;
-
   display: flex;
   max-height: 32rem;
 

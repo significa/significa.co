@@ -2,16 +2,6 @@ import styled from '@theme'
 
 import { ArrowLink as BaseArrowLink, Big, Text } from '../../UI'
 
-export const Wrapper = styled.div`
-  position: relative;
-  z-index: 2;
-
-  @media (max-width: 64em) {
-    padding-left: 0;
-    padding-right: 0;
-  }
-`
-
 export const ArrowLink = styled(BaseArrowLink)``
 
 export const SectionWrapper = styled.div`
@@ -36,4 +26,8 @@ export const SectionTitle = styled(Big)`
 
 export const SectionText = styled(Text)`
   margin-bottom: 3em;
+
+  @media (max-width: 32em) {
+    margin-bottom: 2em;
+  }
 `

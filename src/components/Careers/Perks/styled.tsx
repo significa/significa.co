@@ -39,6 +39,12 @@ export const Section = styled.div`
       margin-bottom: 1em;
       height: 130px;
     }
+
+    @media (max-width: 32em) {
+      svg {
+        margin-bottom: 0;
+      }
+    }
   }
 
   &:after {
@@ -47,10 +53,14 @@ export const Section = styled.div`
   }
 `
 
-export const SectionTitle = styled(Big)`
+export const Item = styled.div`
+  &:not(:last-child) {
+    margin-bottom: 3em;
+  }
+`
+
+export const ItemTitle = styled(Big)`
   margin-bottom: 0.5rem;
 `
 
-export const SectionText = styled(Text)`
-  margin-bottom: 3em;
-`
+export const ItemText = styled(Text)``

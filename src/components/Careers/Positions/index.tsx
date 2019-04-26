@@ -6,11 +6,12 @@ import { RightContent, Big, AdamantSmall, ColetivSmall } from '../../UI/'
 import * as S from './styled'
 
 type CompanyType = 'coletiv' | 'adamant'
+type AllCompaniesType = CompanyType | 'significa'
 
 interface IPosition {
   position: string
   tagline: string
-  company?: CompanyType
+  company: AllCompaniesType
   slug: string
 }
 
@@ -50,7 +51,7 @@ const Item = ({ position, tagline, company, slug, ...props }: IPosition) => {
       <S.Link to={slug}>
         <S.TitleWrapper>
           <Big as="h4">{position}</Big>
-          {company && renderCompany(company)}
+          {company && company !== 'significa' && renderCompany(company)}
         </S.TitleWrapper>
         <S.More>{tagline}</S.More>
       </S.Link>

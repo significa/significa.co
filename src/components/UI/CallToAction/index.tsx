@@ -20,7 +20,9 @@ const CallToAction: React.FC<ICallToAction> = ({
     <S.CallToActionWrapper>
       <S.Display>{title}</S.Display>
       <S.Big>{text}</S.Big>
-      <ArrowLink to={link}>{linkText}</ArrowLink>
+      <ArrowLink highlight to={link}>
+        {linkText}
+      </ArrowLink>
     </S.CallToActionWrapper>
   )
 }

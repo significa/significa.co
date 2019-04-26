@@ -11,11 +11,10 @@ export const Wrapper = styled.div`
 export const ListItem = styled.li`
   position: relative;
   padding-bottom: 2em;
-
   border-bottom: 1px solid ${({ theme }) => theme.colors.subtle};
 
-  &:not(:first-child) {
-    padding-top: 2em;
+  &:not(:last-child) {
+    margin-bottom: 2em;
   }
 `
 

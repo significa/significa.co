@@ -25,12 +25,13 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-transformer-yaml',
+    `gatsby-transformer-remark`,
     {
       resolve: 'gatsby-plugin-sharp',
       options: {
         useMozJpeg: true,
         stripMetadata: true,
-        defaultQuality: 100,
+        defaultQuality: 90,
       },
     },
     {

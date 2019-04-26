@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-import { URLS, MAX_FILE_SIZE } from './constants'
+import { URLS, MAX_FILE_SIZE } from '../constants'
 
 interface IUseFileUpload {
   errors: {
@@ -40,7 +40,8 @@ const useFileUpload = ({
     setError('')
 
     const fullName =
-      new Date().toISOString().replace(/[.:TZ]/g, '_') + file.name
+      new Date().toISOString().replace(/[.:TZ]/g, '_') +
+      file.name.replace(/ /g, '-')
 
     return axios
       .post(URLS.getUrl, { object_key: fullName })

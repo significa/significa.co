@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import axios from 'axios'
 
-import { MAIL_REGEX, URLS } from './constants'
+import { MAIL_REGEX, URLS } from '../../../constants'
 
 import * as S from './styled'
 
 import useForm from '../../../hooks/useForm'
-import useFileUpload from './useFileUpload'
+import useFileUpload from '../../../hooks/useFileUpload'
 import { textByLine } from '../../../utils/textByLine'
 import { Link } from '../../UI'
 import Success from './Success'

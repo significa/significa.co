@@ -1,19 +1,17 @@
-import styled from '@theme'
+import styled, { css } from '@theme'
 
 import { Container as BaseContainer } from '../'
 import { Title as BaseTitle } from '../../Typography'
 
 export const Wrapper = styled.section`
-  padding: 10em 0;
-
-  background-color: ${({ theme }) => theme.colors.background};
+  margin: 10em 0;
 
   @media (max-width: 48em) {
-    padding: 7em 0;
+    margin: 7em 0;
   }
 
   @media (max-width: 32em) {
-    padding: 5em 0;
+    margin: 5em 0;
   }
 `
 
@@ -24,32 +22,88 @@ export const Container = styled(BaseContainer)`
 
   @media (max-width: 48em) {
     grid-column-gap: 0;
-    grid-row-gap: 5em;
+    grid-row-gap: 3em;
   }
 `
 
-export const Left = styled.div`
-  grid-column: 1 / 6;
+export const Left = styled.div<{ amountColumn: number }>`
+  ${({ amountColumn }) => {
+    if (amountColumn === 2) {
+      return css`
+        grid-column: 1 / 6;
 
-  @media (max-width: 64em) {
-    grid-column: 1 / 5;
-  }
+        @media (max-width: 64em) {
+          grid-column: 1 / 5;
+        }
 
-  @media (max-width: 48em) {
-    grid-column: 1 / -1;
-  }
+        @media (max-width: 48em) {
+          grid-column: 1 / -1;
+        }
+      `
+    }
+
+    if (amountColumn === 3) {
+      return css`
+        grid-column: 1 / 5;
+
+        @media (max-width: 48em) {
+          grid-column: 1 / -1;
+        }
+      `
+    }
+
+    if (amountColumn === 4) {
+      return css`
+        grid-column: 1 / 4;
+
+        @media (max-width: 48em) {
+          grid-column: 1 / -1;
+        }
+      `
+    }
+
+    return null
+  }}
 `
 
-export const Right = styled.div`
-  grid-column: 6 / 12;
+export const Right = styled.div<{ amountColumn: number }>`
+  ${({ amountColumn }) => {
+    if (amountColumn === 2) {
+      return css`
+        grid-column: 6 / 12;
 
-  @media (max-width: 64em) {
-    grid-column: 5 / 13;
-  }
+        @media (max-width: 64em) {
+          grid-column: 5 / 13;
+        }
 
-  @media (max-width: 48em) {
-    grid-column: 1 / -1;
-  }
+        @media (max-width: 48em) {
+          grid-column: 1 / -1;
+        }
+      `
+    }
+
+    if (amountColumn === 3) {
+      return css`
+        grid-column: 5 / 13;
+
+        @media (max-width: 48em) {
+          grid-column: 1 / -1;
+        }
+      `
+    }
+
+    if (amountColumn === 4) {
+      return css`
+        grid-column: 4 / 13;
+
+        @media (max-width: 48em) {
+          grid-column: 1 / -1;
+        }
+      `
+    }
+
+    return null
+  }}
 `
 
 export const Title = styled(BaseTitle)`

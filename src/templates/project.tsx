@@ -161,7 +161,6 @@ const Project = ({ data, pageContext: { next } }: IProject) => {
           <Next
             title={next.title}
             tagline={next.tagline}
-            fluid={next.hero.childImageSharp.fluid}
             link={next.fields.slug}
           />
         </Theme>

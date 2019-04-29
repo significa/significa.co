@@ -1,0 +1,64 @@
+seo:
+  title: Services
+
+hero:
+  title: A design-led agency focused on Product Development.
+  text: |
+    At Significa we take on products from inception to launch, from business model to people's pocket, from wireframe to continuous deployment. 
+    We pride ourselves in loving what we do as we take on complex problems and come up with elegant and simple solutions.
+  services:
+    - title: Strategy
+      items:
+        - UX Research
+        - Business Strategy
+        - Brand Strategy
+        - Product Strategy
+        - Product Management
+        - Project Management
+    - title: Product Design
+      items:
+        - User Experience
+        - User Interface
+        - Brand Development
+        - Illustration
+        - Motion & Video
+    - title: Software Development
+      items:
+        - Front-end Engineering
+        - Web-app Development
+        - Native app Development
+        - Development Operations
+        - Backend Development
+
+strategy:
+  title: Strategy
+  text: |
+    No one understands your business better than you, so, before starting anything, we get to know you. We make sure no stone is left unturned and no question is left unanswered so that, in the end, everyone is in the same page with a clear route on what's our goals and what's expected.
+
+design:
+  title: Product Design
+  text: |
+    We do shiny & beautiful things. We know emotions are a big part of everyone's experience & we don't take them for granted. You know that first impact when you're using something you really like and go like "oh, I love this!"? That's what we're aiming for.
+
+development:
+  title: Software Development
+  text: |
+    There's an obsession with detail when it comes to developing what's envisioned and that’s why we’ve adopted some of the industry's best practices for Code Review & Quality Assurance. Everyone is kept up-to-date all the time with continuous deployment, regardless of technology or medium. React is our true workhorse and our unquestionable tool of choice to develop almost anything.
+
+network:
+  title: Our Network
+  text: We’ve partnered up with some amazing people to bring tech-led and security-led ways of thinking into Significa's melting pot.
+  companies:
+    - name: coletiv
+      title: Software Development
+      text: Coletiv crafts software tailored to your needs. With a transparent and well defined development process.
+    - name: adamant
+      title: Cyber Security
+      # TODO: COPY
+      text: Coletiv crafts software tailored to your needs. With a transparent and well defined development.
+
+cta:
+  title: Have a project of your own?
+  text: Small or big, we've got you covered!
+  link: /contact
+  linkText: Get in touch!

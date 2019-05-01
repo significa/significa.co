@@ -2,15 +2,16 @@ seo:
   title: Careers
 
 hero:
-  # TODO: REDO COPY!
+
   title: |
     Drop by for some eggs.
     Anytime.
   images:
-    - ./careers-top-1@2x.jpg
-    - ./careers-top-2@2x.jpg
-    - ./careers-top-3@2x.jpg
-    - ./careers-top-4@2x.jpg
+    - ./careers-top-1@2x.png
+    - ./careers-top-2@2x.png
+    - ./careers-top-3@2x.png
+
+    - ./careers-top-4@2x.png
 
 about:
   title: What defines us
@@ -36,19 +37,19 @@ about:
     - image: ./careers-middle-1@2x.jpg
       alt: A day at Significa
 
-    - image: ./careers-middle-2@2x.jpg
+    - image: ./careers-middle-2@2x.png
       alt: A day at Significa
 
-    - image: ./careers-middle-3@2x.jpg
+    - image: ./careers-middle-3@2x.png
       alt: A day at Significa
 
-    - image: ./careers-middle-4@2x.jpg
+    - image: ./careers-middle-4@2x.png
       alt: A day at Significa
 
-    - image: ./careers-middle-5@2x.jpg
+    - image: ./careers-middle-5@2x.png
       alt: A day at Significa
 
-    - image: ./careers-middle-6@2x.jpg
+    - image: ./careers-middle-6@2x.png
       alt: A day at Significa
 
 adayatsignifica:
@@ -56,35 +57,38 @@ adayatsignifica:
     - image: ./careers-middle-1@2x.jpg
       alt: A day at Significa
 
-    - image: ./careers-middle-2@2x.jpg
+    - image: ./careers-middle-2@2x.png
       alt: A day at Significa
 
-    - image: ./careers-middle-3@2x.jpg
+    - image: ./careers-middle-3@2x.png
       alt: A day at Significa
 
-    - image: ./careers-middle-4@2x.jpg
+    - image: ./careers-middle-4@2x.png
       alt: A day at Significa
 
-    - image: ./careers-middle-5@2x.jpg
+    - image: ./careers-middle-5@2x.png
       alt: A day at Significa
 
-    - image: ./careers-middle-6@2x.jpg
+    - image: ./careers-middle-6@2x.png
       alt: A day at Significa
+
   bottom:
-    - image: ./careers-bottom-1@2x.jpg
+    - image: ./careers-bottom-1@2x.png
       alt: A day at Significa
 
-    - image: ./careers-bottom-2@2x.jpg
+    - image: ./careers-bottom-2@2x.png
       alt: A day at Significa
 
-    - image: ./careers-bottom-3@2x.jpg
+    - image: ./careers-bottom-3@2x.png
       alt: A day at Significa
 
-    - image: ./careers-bottom-4@2x.jpg
+    - image: ./careers-bottom-4@2x.png
       alt: A day at Significa
 
-    - image: ./careers-bottom-5@2x.jpg
+    - image: ./careers-bottom-5@2x.png
       alt: A day at Significa
+  
+  
 
 perks:
   title: Perky perks.

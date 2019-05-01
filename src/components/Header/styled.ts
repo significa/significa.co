@@ -1,11 +1,14 @@
 import styled from '@theme'
 import { Link } from 'gatsby'
+import Headroom from 'react-headroom'
 
 import { Container as BaseContainer } from '../UI/'
 
 export const Wrapper = styled.header`
   background-color: ${({ theme }) => theme.colors.background};
   padding-top: 3em;
+  padding-bottom: 1em;
+  transition: padding ${({ theme: { transitions } }) => transitions.ease()};
 
   @media (max-width: 48em) {
     padding-top: 2em;
@@ -19,6 +22,14 @@ export const Wrapper = styled.header`
     top: -50vh;
     left: 0;
     background-color: ${({ theme }) => theme.colors.background};
+  }
+`
+
+export const Header = styled(Headroom)`
+  .headroom--pinned {
+    ${Wrapper} {
+      padding-top: 1em;
+    }
   }
 `
 

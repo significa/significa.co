@@ -22,6 +22,7 @@
     "deploy": "gatsby-plugin-s3 deploy --yes"
   },
   "dependencies": {
+    "@types/react-headroom": "^2.2.1",
     "axios": "^0.18.0",
     "gatsby": "^2.1.33",
     "gatsby-image": "^2.0.33",
@@ -36,6 +37,7 @@
     "gatsby-transformer-yaml": "^2.1.10",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-headroom": "^2.2.8",
     "react-helmet": "^5.2.0",
     "react-spring": "^8.0.15",
     "resize-observer-polyfill": "^1.5.1",

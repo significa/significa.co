@@ -2,7 +2,7 @@
 date: 2017/05/01
 
 # Main info
-title: Mailcube macOS App
+title: Mailcube
 tagline: You'll love email again
 description: |
   An email client to give you more time and peace of mind, capable to turn email from foe to friend again. Even though many of us have declared email dead, it's up to all of us to breathe new life into it. Let's face it, you're not going to stop using email, so, instead, why not work on the relationship?
@@ -30,7 +30,7 @@ themes:
     foreground: '#ffffff'
     highlight: '#fa624b'
     medium: '#fa624b'
-    subtle: '#fff'
+    subtle: '#444444'
     error: '#FF5050'
 
 # Info
@@ -147,6 +147,18 @@ content:
             margin: both
             content:
               image: ./mailcube/11-Mailcube-Design.png
+
+          - type: testimonial
+            theme: mailcube-dark
+            margin: both
+            content:
+              text: You guys also care about Mailcube, you are proactive, you guys discuss the product with us, you give us your insights and strategy.
+              author: Ademar Aguiar, Co-Founder
+              link:
+                text: Read interview
+                url: https://blog.significa.pt/mailcube-interview-with-co-founder-2ed0b0dd209a
+
+
   # Chapter
   - title: Styleguide
     showTitle: false
@@ -158,6 +170,7 @@ content:
           # Sections
 
           - type: text
+            margin: top
             content:
               title: Typography
               text: |
@@ -256,12 +269,4 @@ content:
             content:
               image: ./mailcube/20-Mailcube-illustration.png
 
-          - type: testimonial
-            theme: mailcube-dark
-            content:
-              text: You guys also care about Mailcube, you are proactive, you guys discuss the product with us, you give us your insights and strategy.
-              author: Ademar Aguiar, Co-Founder
-              link:
-                text: Read interview
-                url: https://blog.significa.pt/mailcube-interview-with-co-founder-2ed0b0dd209a
 

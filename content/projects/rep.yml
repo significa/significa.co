@@ -1,16 +1,15 @@
 date: 2016/05/01
 
 # Main info
-title: rep.org.uk
-tagline: Made to change your future
+title: REP
+tagline: Relative Educational Performance
 description: |
   How well did you really do at school? With the belief that everyone should have the same chances, rep. asked us to create a website that allows you to find out how you really performed relative to your classmates.
 
 # Images
-hero: ./rep/2-Rep-MainImage.png
-featured: ./rep/1-Rep-CoverImage.png
-thumbnail: ./rep/1-Rep-CoverImage.png
-
+hero: ./rep/1-Rep-Mainimage.png
+featured: ./rep/cover--rep.png
+thumbnail: ./rep/cover--rep.png
 # Settings
 heroTheme: rep-grey
 mainTheme: rep-light
@@ -35,10 +34,8 @@ themes:
 # Info
 client: PiC
 services:
-  - Content & I.A.
   - Strategy
-  - Web Design
-  - UX & UI
+  - UI/UX
   - Illustration
   - Development
 deliverables:
@@ -202,12 +199,3 @@ content:
             margin: both
             content:
               image: ./rep/17-Rep-FinalResult.png
-
-          - type: testimonial
-            theme: rep-grey
-            content:
-              text: I could see you guys really spent a lot of thinking on it, something extra.
-              author: Pedro Teixeira, MBA
-              link:
-                text: Read interview
-                url: https://google.com

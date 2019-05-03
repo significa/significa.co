@@ -5,17 +5,19 @@ import { Logo } from '../UI/'
 import * as S from './styled'
 import Navigation from './Navigation'
 
-const Header: React.FC<{}> = () => {
+const Header: React.FC = () => {
   return (
-    <S.Wrapper>
-      <S.Container>
-        <S.LogoLink to="/">
-          <Logo />
-        </S.LogoLink>
+    <S.Header upTolerance={50}>
+      <S.Wrapper>
+        <S.Container>
+          <S.LogoLink to="/">
+            <Logo />
+          </S.LogoLink>
 
-        <Navigation />
-      </S.Container>
-    </S.Wrapper>
+          <Navigation />
+        </S.Container>
+      </S.Wrapper>
+    </S.Header>
   )
 }
 

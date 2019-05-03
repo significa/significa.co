@@ -37,15 +37,19 @@ export const ServicesWrapper = styled(Container)`
 
   flex-wrap: wrap;
 
+  @media (max-width: 64em) {
+    margin-bottom: 8em;
+  }
+
   @media (max-width: 48em) {
     max-width: 38em;
 
     margin-top: 0;
-    margin-bottom: 7.5em;
+    margin-bottom: 3em;
   }
 
   @media (max-width: 32em) {
-    margin-bottom: 5em;
+    margin-bottom: 3em;
   }
 `
 

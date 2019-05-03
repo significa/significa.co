@@ -247,6 +247,7 @@ export const Grid = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
+  height: 100%;
 
   ${gridStyle};
 
@@ -265,9 +266,9 @@ export const Grid = styled.div`
 export const GridColumn = styled.div`
   height: 100%;
   background-image: ${({ theme }) =>
-    `linear-gradient(180deg, ${theme.colors.background} 0%, rgba(${hexToRgb(
+    `linear-gradient(rgba(${hexToRgb(
       theme.colors.medium
-    )}, 0.1) 25%)`};
+    )}, 0) 0%, rgba(${hexToRgb(theme.colors.medium)}, 0.1) 25%)`};
 
   @media (max-width: 64em) {
     &:nth-last-child(1),

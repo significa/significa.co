@@ -1,23 +1,23 @@
 date: 2016/05/01
 
 # Main info
-title: GroHappy Web App
-tagline: Online introspective Journey
+title: GroHappy
+tagline: Online Introspective Journey
 description: |
   Employees expect a brilliant, digital experience that many tools fail to live up to. From conception to execution we created an online introspective journey that gives users engaging tools to think proactively about how they want to grow, and how they can add value to their current business.
 
 # Images
 hero: ./grohappy/MainImage.png
-featured: ./grohappy/cover.jpg
-thumbnail: ./grohappy/cover.jpg
+featured: ./grohappy/cover-grohappy.png
+thumbnail: ./grohappy/cover-grohappy.png
 
 # Settings
-heroTheme: grohappy-grey
+heroTheme: grohappy-pink
 mainTheme: grohappy-light
 navigationTheme: grohappy-light
 themes:
-  - name: grohappy-grey
-    background: '#f8fafe'
+  - name: grohappy-pink
+    background: '#ffe8de'
     foreground: '#516077'
     highlight: '#ffb3b3'
     medium: 'rgba(0,0,0,0.4)'
@@ -35,7 +35,7 @@ themes:
 # Info
 client: GroHappy
 services:
-  - User Testing
+  - UI/UX
   - React JS
   - Python
   - Illustration
@@ -145,7 +145,7 @@ content:
               text: Check out your Insights to get a snap shot of how you're growing. You'll build these up as you complete the reflections and use them as a guideline on what values to improve.
 
           - type: image
-            layout: medium
+            layout: full
             margin: both
             content:
-              image: ./grohappy/12_cards.png
+              image: ./grohappy/12__cards.png

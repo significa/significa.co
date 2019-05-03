@@ -32,7 +32,7 @@ export const ServicesWrapper = styled(Container)`
   display: flex;
   justify-content: space-between;
 
-  margin-top: 2em;
+  margin-top: 3em;
   margin-bottom: 12.5em;
 
   flex-wrap: wrap;

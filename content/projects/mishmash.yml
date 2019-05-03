@@ -2,7 +2,7 @@
 date: 2018/01/02
 
 # Main info
-title: Mishmash Website
+title: Mishmash
 tagline: A minimal office supply brand
 description: |
   mishmash keeps looking for new ways to design office supplies, contrasting a clear taste for the minimal with an elaborate and meticulous choice of materials. This is a detailed showcase on how we designed their website. 
@@ -162,14 +162,23 @@ content:
 
           - type: image
             layout: large
-            margin: both
+            margin: bottom
             content:
               image: ./mishmash/13-Mishmash-BlogMobile.png
+
+
+          - type: testimonial
+            theme: dark
+            margin: both
+            content:
+              text: The website defined the way that people look at our products.
+              author: Beatriz Barros, Founder
 
       - title: Styleguide
         sections:
 
           - type: text
+            margin: top
             content:
               title: Color Palette
               text: |
@@ -208,11 +217,6 @@ content:
             content:
               image: ./mishmash/15-Mishmash-Icons.jpg  
 
-          - type: testimonial
-            theme: dark
-            margin: both
-            content:
-              text: The website defined the way that people look at our products.
-              author: Beatriz Barros, Founder
+          
 
                     

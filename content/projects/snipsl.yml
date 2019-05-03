@@ -1,7 +1,7 @@
 date: 2016/05/01
 
 # Main info
-title: Snipsl Mobile App
+title: Snipsl
 tagline: Directly into your pocket
 description: |
   Snipsl — where authors can publish directly into your pocket. With the middleman out of the way, the app needs to be intuitive for both the author and the reader alike, allowing for constant interaction between the two, as the reader’s opinion can influence the outcome of the story.
@@ -170,7 +170,7 @@ content:
               text: As the most important section of the app, the reading experience needed to be flawless — a smooth experience that takes nothing away from you enjoying the story. With zero distractions, the user can customize it to match his reading preferences. He can change font size, screen’s luminosity, opt for a non serif font and, most important of all, change the viewing mode from light to dark.
 
           - type: video
-            layout: small
+            layout: medium
             margin: both
             content:
               video: ./snipsl/12-Snipsl-LightDark.mp4
@@ -227,7 +227,7 @@ content:
 
           - type: video
             layout: medium
-            margin: both
+            margin: bottom
             content:
               video: ./snipsl/17-Snipsl-categorioes.mp4
               autoplay: true
@@ -237,7 +237,7 @@ content:
 
           - type: image
             layout: medium
-            margin: both
+            margin: bottom
             content:
               image: ./snipsl/18-Snipsl-categorioes.png
 

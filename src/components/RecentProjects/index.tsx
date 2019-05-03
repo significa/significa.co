@@ -54,7 +54,7 @@ const recentProjectsQuery = graphql`
   query RecentProjectsQuery {
     allProjectsYaml(
       limit: 3
-      sort: { fields: date }
+      sort: { fields: date, order: DESC }
       filter: { published: { ne: false } }
     ) {
       edges {

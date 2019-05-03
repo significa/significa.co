@@ -43,7 +43,7 @@ design:
 development:
   title: Software Development
   text: |
-    There's an obsession with detail when it comes to developing what's envisioned and that’s why we’ve adopted some of the industry's best practices for Code Review & Quality Assurance. Everyone is kept up-to-date all the time with continuous deployment, regardless of technology or medium. React is our true workhorse and our unquestionable tool of choice to develop almost anything.
+    There's an obsession with detail when it comes to developing what's envisioned and that’s why we’ve adopted some of the industry's best practices for Code Review, Quality Assurance & Continuous Deployment. React is our true workhorse and our unquestionable tool of choice to develop almost anything.
 
 network:
   title: Our Network
@@ -51,11 +51,14 @@ network:
   companies:
     - name: coletiv
       title: Software Development
-      text: Coletiv crafts software tailored to your needs. With a transparent and well defined development process.
+      text: Coletiv crafts software tailored to your needs with a transparent and industry-tested development process.
+      url: https://coletiv.com/
+      prettyUrl: coletiv.com
     - name: adamant
       title: Cyber Security
-      # TODO: COPY
-      text: Coletiv crafts software tailored to your needs. With a transparent and well defined development.
+      text: Adamant focuses 100% on cyber and information security, keeping up with the rapid evolution of this field.
+      url: https://adamantsec.com/
+      prettyUrl: adamantsec.com
 
 cta:
   title: Have a project of your own?

@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
-import { Hero } from '../components/Services'
+import { Hero, Sections, Network } from '../components/Services'
 import { CallToAction } from '../components/UI'
 
 interface IContent {
@@ -32,6 +32,8 @@ const Contact: React.FC<IContent> = ({
     <Layout>
       <SEO title={seo.title} />
       <Hero />
+      <Sections />
+      <Network />
       <CallToAction
         title={cta.title}
         text={cta.text}

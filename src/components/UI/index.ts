@@ -5,8 +5,20 @@ export { default as List } from './List'
 export { default as ContentThumb } from './ContentThumb'
 export { default as ProjectThumb } from './ProjectThumb'
 export { default as LabsThumb } from './LabsThumb'
-export { Huge, Display, Title, Big, Text, Label, Small, displayStyle, bigStyle, textStyle } from './Typography'
+export {
+  Huge,
+  Display,
+  Title,
+  Big,
+  Text,
+  Label,
+  Small,
+  displayStyle,
+  bigStyle,
+  textStyle,
+} from './Typography'
 export { default as CallToAction } from './CallToAction'
 export { default as LabsIcon } from './LabsIcon'
 export { LabsSourceType } from './LabsIcon/types'
 export { Button, FileInput, Input, Textarea } from './Forms'
+export { Markdown } from './Markdown'

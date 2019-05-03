@@ -59,7 +59,7 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(`
     {
       allProjectsYaml(
-        sort: { fields: date }
+        sort: { fields: date, order: DESC }
         filter: { published: { ne: false } }
       ) {
         edges {

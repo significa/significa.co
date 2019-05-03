@@ -46,7 +46,7 @@ const Meta: React.FC<IMeta> = ({
         )}
         {deliverables && (
           <div>
-            <S.Title>Services</S.Title>
+            <S.Title>Deliverables</S.Title>
             <List items={deliverables} />
           </div>
         )}

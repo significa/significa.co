@@ -57,7 +57,7 @@ export const textStyle = css`
   ${baseStyle};
 
   font-size: 1em;
-  line-height: 1.375;
+  line-height: 1.5;
   letter-spacing: 0;
 `
 

@@ -154,7 +154,6 @@ Cookies we use at Significa:
 
 - Google Analytics: \_ga, \_gid. Used to distinguish users. Expire in 24 months and is renewed if and when the user comes back to our website. [Click here for an overview of privacy at Google](https://www.google.com/analytics/learn/privacy.html).
 - Crisp chatbot: Used to distinguish users. Expire in 6 months and is renewed if and when the user comes back to our website and loads the chatbot. [Click here for an overview of privacy at Crisp](https://crisp.chat/en/privacy/).
-- Mixpanel: mp\_\*. Used to distinguish users. Expires in 12 months and is renewed if and when the user comes back to our website. [Click here for an overview of privacy at Mixpanel](https://mixpanel.com/legal/privacy-policy/).
 
 Please note that third parties (including, for example, advertising networks and providers of external services like web traffic analysis services) may also use cookies, over which we have no control. These cookies are likely to be analytical/performance cookies or targeting cookies.
 

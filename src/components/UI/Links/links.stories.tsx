@@ -18,7 +18,7 @@ storiesOf('UI/Links', module)
   ))
 
   .add('Link (rest)', () => (
-    <Link to="mailto:pedro@significa.pt">
+    <Link to="mailto:pedro@significa.co">
       Normal (should use normal anchor)
     </Link>
   ))

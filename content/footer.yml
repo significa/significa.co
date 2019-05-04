@@ -1,8 +1,8 @@
 - title: Say
   type: column
   items:
-    - label: hello@significa.pt
-      link: mailto:hello@significa.pt
+    - label: hello@significa.co
+      link: mailto:hello@significa.co
     - label: (+351) 226 001 751
       link: tel:00351226001751
 
@@ -15,8 +15,6 @@
       link: /showcase
     - label: Services
       link: /services
-    - label: About
-      link: /about
     - label: Careers
       link: /careers
     - label: Labs

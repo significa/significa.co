@@ -59,7 +59,7 @@ content:
         showTitle: false
         sections:
           # Sections
-          
+
           - type: image
             layout: medium
             margin: bottom
@@ -88,7 +88,7 @@ content:
             title: Faces
             content:
               text: |
-               There are 5 types of faces. Messages, contacts, attachements, calendar and tags. These can all be rearranged to filter the next face. For example, if you have contacts on your left and select one them, all of the faces on the right will only display content relative to that contact.
+                There are 5 types of faces. Messages, contacts, attachements, calendar and tags. These can all be rearranged to filter the next face. For example, if you have contacts on your left and select one them, all of the faces on the right will only display content relative to that contact.
 
           - type: image
             layout: medium
@@ -105,7 +105,7 @@ content:
           - type: text
             content:
               text: |
-               In every email client there are numerous permutations of the same information. Take email for example, it can be unread, read, have an attachment, have a subject, been forwarded, etc. All of these possible combinations had to be designed for in order to keep the user accurately in sync with his email workflow.
+                In every email client there are numerous permutations of the same information. Take email for example, it can be unread, read, have an attachment, have a subject, been forwarded, etc. All of these possible combinations had to be designed for in order to keep the user accurately in sync with his email workflow.
 
           - type: image
             layout: medium
@@ -117,7 +117,7 @@ content:
             content:
               title: Cubes & Contexts
               text: |
-               Notifications will only appear if the message fits inside the context.This way you can easily separate your work life from your personal, allowing you to increase your productivity at work or dedicate time to your family without having work to interfere. Drag messages to a cube to organize your mail. If the user adds a person or a tag, all their messages will fit inside that cube.
+                Notifications will only appear if the message fits inside the context.This way you can easily separate your work life from your personal, allowing you to increase your productivity at work or dedicate time to your family without having work to interfere. Drag messages to a cube to organize your mail. If the user adds a person or a tag, all their messages will fit inside that cube.
 
           - type: image
             layout: medium
@@ -128,7 +128,7 @@ content:
           - type: text
             content:
               text: |
-               If you are inside your Home Context, you can have various cubes such as bills, vacations, purchases and within each of these cubes you will have a set of contacts and messages that are specific to that cube.
+                If you are inside your Home Context, you can have various cubes such as bills, vacations, purchases and within each of these cubes you will have a set of contacts and messages that are specific to that cube.
 
           - type: image
             layout: medium
@@ -140,7 +140,7 @@ content:
             content:
               title: Design on a grid
               text: |
-               When you create such a complex platform it is essential to stick to an incremental grid. In this case we used multiples of 8 pixel structure ensuring that any element we created would work alongside the others.
+                When you create such a complex platform it is essential to stick to an incremental grid. In this case we used multiples of 8 pixel structure ensuring that any element we created would work alongside the others.
 
           - type: image
             layout: medium
@@ -156,8 +156,7 @@ content:
               author: Ademar Aguiar, Co-Founder
               link:
                 text: Read interview
-                url: https://blog.significa.pt/mailcube-interview-with-co-founder-2ed0b0dd209a
-
+                url: https://blog.significa.co/mailcube-interview-with-co-founder-2ed0b0dd209a
 
   # Chapter
   - title: Styleguide
@@ -174,7 +173,7 @@ content:
             content:
               title: Typography
               text: |
-               Mailcube is being developed for macOS and it’s main purpose is not only to organize information but to display it, so it was essential for the text to have unmatched legibility, clarity, and consistency. To achieve that we used Apple’s system font, San Francisco UI Text.
+                Mailcube is being developed for macOS and it’s main purpose is not only to organize information but to display it, so it was essential for the text to have unmatched legibility, clarity, and consistency. To achieve that we used Apple’s system font, San Francisco UI Text.
 
           - type: image
             layout: medium
@@ -186,7 +185,7 @@ content:
             content:
               title: Color Palette
               text: |
-               To focus the user’s attention on the contents of each new email, it was essential to use neutral tones of black white and grey, using only red for notifications and blue for selected elements.
+                To focus the user’s attention on the contents of each new email, it was essential to use neutral tones of black white and grey, using only red for notifications and blue for selected elements.
 
           - type: image
             layout: medium
@@ -198,7 +197,7 @@ content:
             content:
               title: Iconography
               text: |
-               Constructed on a grid, Mailcube's icon family was created to solve every need of the email platform.
+                Constructed on a grid, Mailcube's icon family was created to solve every need of the email platform.
 
           - type: image
             layout: medium
@@ -215,7 +214,7 @@ content:
             content:
               title: Creating a Brand
               text: |
-               The Mailcube brand was created with the junction of three elements. First the cube which is the foundation of the brand itself, then a clock that represents email time saving, plus the envelope that represents the product itself, email.
+                The Mailcube brand was created with the junction of three elements. First the cube which is the foundation of the brand itself, then a clock that represents email time saving, plus the envelope that represents the product itself, email.
 
           - type: image
             layout: medium
@@ -232,7 +231,7 @@ content:
           - type: text
             content:
               text: |
-               Using an altered version of the Neris font, the mailcube lettering lives harmoniously with the glyph, creating a very balanced logotype that works very well in both digital and graphic platforms.
+                Using an altered version of the Neris font, the mailcube lettering lives harmoniously with the glyph, creating a very balanced logotype that works very well in both digital and graphic platforms.
 
           - type: image
             layout: medium
@@ -244,7 +243,7 @@ content:
             content:
               title: Website
               text: |
-               The Landing Page was the last piece of the puzzle, as it was created as an online brochure of Mailcube’s core features, capturing the user’s attention and allowing them to download the app.
+                The Landing Page was the last piece of the puzzle, as it was created as an online brochure of Mailcube’s core features, capturing the user’s attention and allowing them to download the app.
 
           - type: image
             layout: medium
@@ -255,7 +254,7 @@ content:
           - type: text
             content:
               text: |
-               For the Contact section of the website we found a creative way to display the form. We created a dynamic and interactive contact form in an email composer format of the app.
+                For the Contact section of the website we found a creative way to display the form. We created a dynamic and interactive contact form in an email composer format of the app.
 
           - type: image
             layout: medium
@@ -268,5 +267,3 @@ content:
             margin: both
             content:
               image: ./mailcube/20-Mailcube-illustration.png
-
-

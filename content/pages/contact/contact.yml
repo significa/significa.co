@@ -6,21 +6,21 @@ title: |
   How can we help you?
 subtitle: Hate contact forms? Say {link}
 # {link} will be replaced by the mail
-mail: hello@significa.pt
+mail: hello@significa.co
 
 contacts:
   title: General contacts
   columns:
     - title: Say
-      mail: hello@significa.pt
+      mail: hello@significa.co
       phone: (+351) 226 001 751
 
     - title: New business
-      mail: rui@significa.pt
+      mail: rui@significa.co
       phone: (+351) 226 001 751
 
     - title: Marketing
-      mail: marketing@significa.pt
+      mail: marketing@significa.co
       phone: (+351) 919 361 612
 
     - title: Porto Office

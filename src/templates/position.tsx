@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import { FormPosition } from '../components/Careers'
-import { ColetivSmall, AdamantSmall, Big } from '../components/UI'
+import { ColetivSmall, AdamantSmall, Big, Markdown } from '../components/UI'
 
 import * as S from './position.styled'
 
@@ -47,7 +47,7 @@ const PositionTemplate: React.FC<ITemplate> = ({
           <Big>{position}</Big>
           {company && company !== 'significa' && renderCompany(company)}
         </S.TitleWrapper>
-        <S.Content dangerouslySetInnerHTML={{ __html: html }} />
+        <Markdown dangerouslySetInnerHTML={{ __html: html }} />
       </S.Wrapper>
       <FormPosition position={position} />
     </Layout>

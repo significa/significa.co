@@ -1,6 +1,6 @@
 import styled from '@theme'
 
-import { Container, displayStyle, bigStyle, textStyle } from '../components/UI/'
+import { Container } from '../components/UI/'
 
 export const Wrapper = styled(Container)`
   margin-top: 5rem;
@@ -23,36 +23,5 @@ export const TitleWrapper = styled.div`
     margin-top: 2px;
     color: ${({ theme }) => theme.colors.foreground};
     margin-left: 0.75rem;
-  }
-`
-
-export const Content = styled.div`
-  h1 {
-    ${displayStyle}
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
-  }
-
-  h2 {
-    ${bigStyle}
-    margin-top: 5rem;
-    margin-bottom: 0.75rem;
-
-    @media (max-width: 32em) {
-      margin-top: 3rem;
-    }
-  }
-
-  p {
-    ${textStyle}
-  }
-
-  ul {
-    padding-left: 1em;
-  }
-
-  li {
-    ${textStyle}
-    list-style: disc;
   }
 `

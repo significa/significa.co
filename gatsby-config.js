@@ -61,6 +61,14 @@ module.exports = {
         siteUrl: `https://significa.co`,
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-67282841-1',
+        anonymize: true,
+        respectDNT: true,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',

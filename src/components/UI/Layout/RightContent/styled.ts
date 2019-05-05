@@ -1,4 +1,4 @@
-import styled, { css } from '@theme'
+import styled, { css, media } from '@theme'
 
 import { Container as BaseContainer } from '../'
 import { Title as BaseTitle } from '../../Typography'
@@ -6,11 +6,11 @@ import { Title as BaseTitle } from '../../Typography'
 export const Wrapper = styled.section`
   margin: 10em 0;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     margin: 7em 0;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     margin: 5em 0;
   }
 `
@@ -20,7 +20,7 @@ export const Container = styled(BaseContainer)`
   grid-template-columns: repeat(12, 1fr);
   grid-column-gap: 3em;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     grid-column-gap: 0;
     grid-row-gap: 3em;
   }
@@ -32,11 +32,11 @@ export const Left = styled.div<{ amountColumn: number }>`
       return css`
         grid-column: 1 / 6;
 
-        @media (max-width: 64em) {
+        ${media.large} {
           grid-column: 1 / 5;
         }
 
-        @media (max-width: 48em) {
+        ${media.medium} {
           grid-column: 1 / -1;
         }
       `
@@ -46,7 +46,7 @@ export const Left = styled.div<{ amountColumn: number }>`
       return css`
         grid-column: 1 / 5;
 
-        @media (max-width: 48em) {
+        ${media.medium} {
           grid-column: 1 / -1;
         }
       `
@@ -56,7 +56,7 @@ export const Left = styled.div<{ amountColumn: number }>`
       return css`
         grid-column: 1 / 4;
 
-        @media (max-width: 48em) {
+        ${media.medium} {
           grid-column: 1 / -1;
         }
       `
@@ -72,11 +72,11 @@ export const Right = styled.div<{ amountColumn: number }>`
       return css`
         grid-column: 6 / 12;
 
-        @media (max-width: 64em) {
+        ${media.large} {
           grid-column: 5 / 13;
         }
 
-        @media (max-width: 48em) {
+        ${media.medium} {
           grid-column: 1 / -1;
         }
       `
@@ -86,7 +86,7 @@ export const Right = styled.div<{ amountColumn: number }>`
       return css`
         grid-column: 5 / 13;
 
-        @media (max-width: 48em) {
+        ${media.medium} {
           grid-column: 1 / -1;
         }
       `
@@ -96,7 +96,7 @@ export const Right = styled.div<{ amountColumn: number }>`
       return css`
         grid-column: 4 / 13;
 
-        @media (max-width: 48em) {
+        ${media.medium} {
           grid-column: 1 / -1;
         }
       `

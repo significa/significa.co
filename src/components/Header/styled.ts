@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import { Link } from 'gatsby'
 import Headroom from 'react-headroom'
 
@@ -10,7 +10,7 @@ export const Wrapper = styled.header`
   padding-bottom: 1em;
   transition: padding ${({ theme: { transitions } }) => transitions.ease()};
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     padding-top: 2em;
   }
 
@@ -51,7 +51,7 @@ export const LogoLink = styled(Link)`
   /* Small optical compensation */
   margin-top: 0.25em;
 
-  @media (hover: hover) {
+  ${media.hover} {
     &:hover {
       opacity: 0.8;
     }

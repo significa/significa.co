@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import { displayStyle, bigStyle, textStyle } from '../Typography'
 
 interface IMarkdownProps {
@@ -27,7 +27,7 @@ export const Markdown = styled.div`
     margin-top: 5rem;
     margin-bottom: 0.75rem;
 
-    @media (max-width: 32em) {
+    ${media.small} {
       margin-top: 3rem;
     }
   }
@@ -35,7 +35,7 @@ export const Markdown = styled.div`
   h3 {
     margin-top: 3rem;
 
-    @media (max-width: 32em) {
+    ${media.small} {
       margin-top: 1rem;
     }
   }

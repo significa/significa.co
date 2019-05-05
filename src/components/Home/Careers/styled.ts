@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import {
   Container as BaseContainer,
   Title as BaseTitle,
@@ -12,13 +12,13 @@ export const Container = styled(BaseContainer).attrs({ as: 'section' })`
   grid-template-columns: repeat(12, 1fr);
   grid-column-gap: 3em;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     margin: 7em auto;
     grid-column-gap: 0;
     grid-row-gap: 3em;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     margin: 5em auto;
   }
 `
@@ -26,11 +26,11 @@ export const Container = styled(BaseContainer).attrs({ as: 'section' })`
 export const Left = styled.div`
   grid-column: 1 / 6;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     grid-column: 1 / 5;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     grid-column: 1 / -1;
   }
 `
@@ -38,11 +38,11 @@ export const Left = styled.div`
 export const Right = styled.div`
   grid-column: 6 / 12;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     grid-column: 5 / 13;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     grid-column: 1 / -1;
   }
 `
@@ -64,7 +64,7 @@ export const Photos = styled.div`
   grid-template: auto / repeat(3, 1fr);
   grid-column-gap: 3em;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     grid-template: auto / repeat(2, 1fr);
     /** Hide last image **/
     & > *:last-child {
@@ -72,11 +72,11 @@ export const Photos = styled.div`
     }
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     margin-top: 7em;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     margin-top: 3em;
     grid-template: auto / auto;
     grid-row-gap: 1em;

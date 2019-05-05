@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import { Container as BaseContainer } from '../UI/'
 
@@ -7,7 +7,7 @@ export const Container = styled(BaseContainer).attrs({ as: 'section' })`
   grid-template: auto / repeat(3, 1fr);
   grid-column-gap: 3rem;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     grid-template: auto / repeat(2, 1fr);
 
     /** Hide last one **/
@@ -16,7 +16,7 @@ export const Container = styled(BaseContainer).attrs({ as: 'section' })`
     }
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     grid-template: auto / 1fr;
     grid-column-gap: 0;
     grid-row-gap: 3em;

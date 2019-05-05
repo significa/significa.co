@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import {
   Container as BaseContainer,
@@ -18,7 +18,7 @@ export const Container = styled(BaseContainer).attrs({ as: 'section' })`
     '. . c c c c c c c c c .'
     '. . . . . b b b b b b .';
 
-  @media (max-width: 64em) {
+  ${media.large} {
     margin: 10em auto;
     grid-template-areas:
       't t t t x x x x x x x x'
@@ -26,7 +26,7 @@ export const Container = styled(BaseContainer).attrs({ as: 'section' })`
       '. . . . b b b b b b b b';
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     margin: 7em auto;
     grid-row-gap: 3em;
     grid-template-rows: repeat(4, auto);
@@ -54,7 +54,7 @@ export const Columns = styled.div`
   grid-template: auto / repeat(3, 1fr);
   grid-column-gap: 3em;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     grid-template-columns: repeat(1, auto);
     grid-row-gap: 2em;
   }

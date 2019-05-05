@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from '@theme'
+import styled, { css, media } from '@theme'
 import { animated } from 'react-spring'
 
 const Z_INDEXES = {
@@ -25,7 +25,7 @@ export const AnimatedDrawer = styled(animated.nav)`
 
   padding: 4em;
 
-  @media (max-width: 32em) {
+  ${media.small} {
     padding: 3em;
   }
 `
@@ -73,7 +73,7 @@ export const AnimatedBlockTitle = styled(animated.h4)`
 
   color: ${({ theme }) => theme.colors.medium};
 
-  @media (max-width: 32em) {
+  ${media.small} {
     margin-bottom: 0.5rem;
     margin-top: 1.5rem;
     font-size: 0.875em;
@@ -94,13 +94,13 @@ export const AnimatedSectionLink = styled(animated.a)`
   padding-top: 0.125rem;
   padding-bottom: 0.125rem;
 
-  @media (max-width: 32em) {
+  ${media.small} {
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
     font-size: 1em;
   }
 
-  @media (hover: hover) {
+  ${media.hover} {
     &:hover {
       color: ${({ theme }) => theme.colors.highlight};
     }
@@ -166,7 +166,7 @@ export const AnimatedNavButton = styled(({ visible, ...rest }) => (
   /** Really white **/
   background-color: white;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     transition: box-shadow ${({ theme }) => theme.transitions.cubic()};
     box-shadow: ${p =>
       p.visible
@@ -174,12 +174,12 @@ export const AnimatedNavButton = styled(({ visible, ...rest }) => (
         : '0px 1px 2px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.1)'};
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     left: 0.5rem;
     bottom: 0.5rem;
   }
 
-  @media (hover: hover) {
+  ${media.hover} {
     &:hover ${ButtonLine} {
       &:nth-child(1) {
         width: 1rem;

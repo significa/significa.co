@@ -1,17 +1,17 @@
 import { Link } from 'gatsby'
+import styled, { media } from '@theme'
 
-import styled from '@theme'
 import { Container as BaseContainer } from '../UI/'
 
 export const Footer = styled.footer`
   padding: 2.5em 0 7.5em;
   background-color: ${({ theme }) => theme.colors.background};
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     padding-bottom: 5em;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     padding-bottom: 3em;
   }
 
@@ -34,12 +34,12 @@ export const Container = styled(BaseContainer)`
   grid-column-gap: 3em;
   grid-template-areas: 'l l l l r r r r r r r r';
 
-  @media (max-width: 64em) {
+  ${media.large} {
     grid-column-gap: 2em;
     grid-template-areas: 'l l r r r r r r r r r r';
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     grid-template-rows: auto 1fr;
     grid-column-gap: 0;
     grid-row-gap: 2em;

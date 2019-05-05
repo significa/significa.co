@@ -1,4 +1,4 @@
-import styled, { css, IFullTheme } from '@theme'
+import styled, { css, media, IFullTheme } from '@theme'
 
 import { hexToRgb } from '../../../../utils/hexToRgb'
 
@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
 
   min-height: 30em;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     min-height: 25em;
   }
 `
@@ -26,11 +26,11 @@ export const TextContent = styled.div`
   font-family: monospace;
   line-height: 1.5;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     padding: 2rem;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     padding: 1.5rem;
   }
 `
@@ -69,22 +69,27 @@ export const BottomButton = styled.span`
       color: ${theme.colors.highlight};
     `}
 
-  @media (max-width: 64em) {
-    &:last-child,
-    &:nth-last-child(2),
-    &:nth-last-child(3) {
+  ${media.largest} {
+    &:last-child {
       display: none;
     }
   }
 
-  @media (max-width: 64em) {
-    &:nth-last-child(2),
+  ${media.large} {
+    &:nth-last-child(2) {
+      display: none;
+    }
+  }
+
+  ${media.medium} {
+    &:last-child,
     &:nth-last-child(3) {
       display: inline;
     }
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
+    &:last-child,
     &:nth-last-child(2),
     &:nth-last-child(3) {
       display: none;
@@ -98,15 +103,7 @@ export const Divider = styled.span`
   background-color: ${({ theme }) =>
     `rgba(${hexToRgb(theme.colors.medium)}, 0.4)`};
 
-  @media (max-width: 64em) {
-    display: none;
-  }
-
-  @media (max-width: 48em) {
-    display: block;
-  }
-
-  @media (max-width: 32em) {
+  ${media.small} {
     display: none;
   }
 `

@@ -1,5 +1,5 @@
 import Image from 'gatsby-image'
-import styled from '@theme'
+import styled, { media } from '@theme'
 import {
   Container as BaseContainer,
   Big as BaseBig,
@@ -13,7 +13,7 @@ export const Wrapper = styled(BaseContainer)`
 
   display: flex;
 
-  @media (max-width: 32em) {
+  ${media.small} {
     margin-top: 0;
     margin-bottom: 5em;
   }
@@ -28,11 +28,11 @@ export const Sidebar = styled.nav`
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     max-width: 12em;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     display: none;
   }
 `
@@ -49,7 +49,7 @@ export const Filter = styled(BaseBig).attrs({ as: 'a', role: 'button' })<{
     active ? theme.colors.foreground : theme.colors.medium};
   transition: color ${({ theme }) => theme.transitions.ease()};
 
-  @media (hover: hover) {
+  ${media.hover} {
     &:hover {
       color: ${({ theme }) => theme.colors.foreground};
     }
@@ -68,7 +68,7 @@ export const ItemLink = styled.a.attrs({
   display: flex;
   transition: opacity ${({ theme }) => theme.transitions.ease()};
 
-  @media (hover: hover) {
+  ${media.hover} {
     &:hover {
       opacity: 0.6;
     }
@@ -78,7 +78,7 @@ export const ItemLink = styled.a.attrs({
     margin-bottom: 2em;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     flex-direction: column;
   }
 `
@@ -96,7 +96,7 @@ export const LabsIcon = styled(Icon)`
 
   z-index: 10;
 
-  @media (max-width: 32em) {
+  ${media.small} {
     display: block;
   }
 `
@@ -110,11 +110,11 @@ export const Img = styled(Image)`
 
   border-radius: 2px;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     min-width: 8em;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     width: 100%;
     height: auto;
   }

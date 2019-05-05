@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import { Small, Link } from '../../UI/'
 
 export const Title = styled(Small).attrs({ as: 'h4' })`
@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     display: grid;
     grid-template: auto auto / 1fr 1fr;
 
@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
     margin-bottom: 2em;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     display: grid;
     grid-template: auto / 1fr;
     grid-auto-flow: row;

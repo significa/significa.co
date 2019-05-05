@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import Img from 'gatsby-image'
 
 import { Container, Display as BaseDisplay } from '../../UI'
@@ -11,7 +11,7 @@ export const Wrapper = styled(Container)`
   margin-top: 7.5rem;
   margin-bottom: 7.5em;
 
-  @media (max-width: 32em) {
+  ${media.small} {
     margin-top: 5em;
     margin-bottom: 5em;
   }
@@ -24,19 +24,19 @@ export const GalleryWrapper = styled(Container)`
   max-height: 32rem;
 
   /* Center top images in  very large screens */
-  @media (min-width: 120em) {
+  ${media.xxlarge} {
     max-width: none;
     justify-content: center;
   }
 
-  @media (max-width: 64em) {
+  ${media.large} {
     display: grid;
     grid-template: auto / repeat(2, 1fr);
     grid-column-gap: 3em;
     max-height: none;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     grid-row-gap: 1.5em;
     grid-template: auto / 1fr;
   }
@@ -57,7 +57,7 @@ export const GalleryImage = styled(Img)<{ width: number; height: number }>`
     margin-top: 0;
   }
 
-  @media (max-width: 64em) {
+  ${media.large} {
     &:nth-child(n + 3) {
       display: none;
     }
@@ -67,7 +67,7 @@ export const GalleryImage = styled(Img)<{ width: number; height: number }>`
     width: 100%;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     width: 100%;
     height: auto;
   }

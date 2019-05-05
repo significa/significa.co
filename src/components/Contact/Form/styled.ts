@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import {
   Container,
@@ -23,12 +23,12 @@ export const Wrapper = styled(Container)`
   pointer-events: ${({ isSubmitting }: IWrapper) =>
     isSubmitting ? 'none' : 'default'};
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     margin-top: 7.5em;
     margin-bottom: 7.5em;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     margin-top: 5em;
     margin-bottom: 5em;
   }

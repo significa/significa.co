@@ -1,4 +1,4 @@
-import { css } from '@theme'
+import { css, media } from '@theme'
 import { themeGet } from '../../../utils/themeGet'
 
 export const baseStyle = css`
@@ -11,14 +11,14 @@ export const baseStyle = css`
 
   transition: ${({ theme }) => `color ${theme.transitions.ease()}`};
 
-  @media (hover: hover) {
+  ${media.hover} {
     &:hover {
       color: ${themeGet('colors.highlight', 'inherit')};
     }
   }
 
-  @media (max-width: 48em) {
-    @media (hover: hover) {
+  ${media.medium} {
+    ${media.hover} {
       &:hover {
         color: inherit;
       }

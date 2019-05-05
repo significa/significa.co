@@ -29,6 +29,7 @@ export const Header = styled(Headroom)`
   background-color: ${({ theme }) => theme.colors.background};
 
   .headroom {
+    transform: translate3d(0, 0, 0);
     z-index: 999 !important;
   }
   .headroom--pinned {

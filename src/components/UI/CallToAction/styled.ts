@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import { Display as BaseDisplay, Big as BaseBig } from '../'
 
@@ -10,11 +10,11 @@ export const CallToActionWrapper = styled.section`
 
   text-align: center;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     padding: 8rem 2rem 7rem;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     padding: 6.5rem 1rem 6rem;
   }
 `
@@ -22,7 +22,7 @@ export const CallToActionWrapper = styled.section`
 export const Display = styled(BaseDisplay)`
   margin-bottom: 0.5rem;
 
-  @media (max-width: 32em) {
+  ${media.small} {
     font-size: 2em;
     line-height: 1.25;
     letter-spacing: 0;

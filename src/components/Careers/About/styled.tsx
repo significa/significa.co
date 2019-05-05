@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import { ArrowLink as BaseArrowLink, Big, Text } from '../../UI'
 
@@ -14,7 +14,7 @@ export const Section = styled.div`
   width: 50%;
   padding-right: 3em;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     width: 100%;
     padding-right: 0;
   }
@@ -27,7 +27,7 @@ export const SectionTitle = styled(Big)`
 export const SectionText = styled(Text)`
   margin-bottom: 3em;
 
-  @media (max-width: 32em) {
+  ${media.small} {
     margin-bottom: 2em;
   }
 `

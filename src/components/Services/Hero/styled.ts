@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import { Container, Display, Big } from '../../UI'
 
@@ -7,11 +7,11 @@ export const TopWrapper = styled(Container)`
 
   margin-top: 7.5em;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     margin-top: 7.5em;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     margin-top: 5em;
   }
 `
@@ -37,18 +37,18 @@ export const ServicesWrapper = styled(Container)`
 
   flex-wrap: wrap;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     margin-bottom: 8em;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     max-width: 38em;
 
     margin-top: 0;
     margin-bottom: 3em;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     margin-bottom: 3em;
   }
 `
@@ -56,11 +56,11 @@ export const ServicesWrapper = styled(Container)`
 export const ServiceItem = styled.div`
   margin-top: 3rem;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     width: 50%;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     width: 100%;
   }
 `
@@ -79,7 +79,7 @@ export const ArrowImg = styled.img`
 
   pointer-events: none;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     display: none;
   }
 `

@@ -1,4 +1,4 @@
-import styled, { css } from '@theme'
+import styled, { css, media } from '@theme'
 
 import { NavLink } from '../../UI/'
 
@@ -67,7 +67,7 @@ export const Hamburguer = styled.button`
       }
     `}
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     display: block;
   }
 `
@@ -82,7 +82,7 @@ export const NavWrapper = styled.nav`
   grid-auto-flow: column;
   grid-gap: 2em;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     position: absolute;
     z-index: 100;
     overflow: hidden;

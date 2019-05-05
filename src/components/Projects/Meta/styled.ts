@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import { Container as BaseContainer, Big as BaseBig } from '../../UI/'
 
@@ -11,7 +11,7 @@ export const Container = styled(BaseContainer).attrs({ as: 'section' })`
   grid-column-gap: 3em;
   grid-row-gap: 10em;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     padding-top: 5em;
     padding-bottom: 5em;
 
@@ -23,15 +23,15 @@ export const Container = styled(BaseContainer).attrs({ as: 'section' })`
 export const Top = styled.div`
   grid-column: 4 / 10;
 
-  @media (max-width: 80em) {
+  ${media.largest} {
     grid-column: 3 / 11;
   }
 
-  @media (max-width: 64em) {
+  ${media.large} {
     grid-column: 2 / 12;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     grid-column: 1 / -1;
     grid-column-gap: 0;
   }
@@ -44,11 +44,11 @@ export const Bottom = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 3em;
 
-  @media (max-width: 80em) {
+  ${media.largest} {
     grid-column: 2 / 12;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     grid-column: 1 / -1;
     grid-template: auto auto / repeat(2, 1fr);
     grid-row-gap: 3em;
@@ -56,7 +56,7 @@ export const Bottom = styled.div`
     grid-column-gap: 3em;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     grid-template: repeat(4, auto) / 1fr;
     grid-column-gap: 0;
   }

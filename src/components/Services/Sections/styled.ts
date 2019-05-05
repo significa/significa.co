@@ -1,4 +1,4 @@
-import styled, { css } from '@theme'
+import styled, { css, media } from '@theme'
 
 import { Title as BaseTitle, Big } from '../../UI'
 
@@ -11,16 +11,16 @@ const gridStyle = css`
   grid-template-columns: repeat(12, 1fr);
   grid-column-gap: 3vw;
 
-  @media (min-width: 100em) {
+  ${media.xlarge} {
     grid-column-gap: 3rem;
   }
 
-  @media (max-width: 64em) {
+  ${media.large} {
     grid-template-columns: repeat(8, 1fr);
     grid-column-gap: 3.5em;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     display: flex;
     flex-direction: column-reverse;
     max-width: 38em;
@@ -39,11 +39,11 @@ export const Content = styled.div`
 
   padding: 7.5em 0;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     padding: 5em 0;
   }
 
-  @media (max-width: 64em) {
+  ${media.large} {
     padding: 3em 0;
   }
 `
@@ -61,7 +61,7 @@ export const ColumnContent = styled.div`
 export const LeftGraphics = styled(ColumnContent)`
   grid-column: 1 / 6;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     grid-column: 1 / 5;
   }
 `
@@ -69,11 +69,11 @@ export const LeftGraphics = styled(ColumnContent)`
 export const DesignGraphics = styled(ColumnContent)`
   grid-column: 8 / 11;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     grid-column: 5 / 8;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     order: -1;
 
     max-width: 60vw;
@@ -83,11 +83,11 @@ export const DesignGraphics = styled(ColumnContent)`
 export const LeftText = styled(ColumnContent)`
   grid-column: 2 / 7;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     grid-column: 1 / 5;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     margin-bottom: 3em;
   }
 `
@@ -95,11 +95,11 @@ export const LeftText = styled(ColumnContent)`
 export const RightText = styled(ColumnContent)`
   grid-column: 7 / 12;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     grid-column: 5 / 9;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     margin-bottom: 3em;
   }
 `
@@ -251,14 +251,14 @@ export const Grid = styled.div`
 
   ${gridStyle};
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 
     top: -5em;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     grid-template-columns: repeat(2, 1fr);
   }
 `
@@ -270,7 +270,7 @@ export const GridColumn = styled.div`
       theme.colors.medium
     )}, 0) 0%, rgba(${hexToRgb(theme.colors.medium)}, 0.1) 25%)`};
 
-  @media (max-width: 64em) {
+  ${media.large} {
     &:nth-last-child(1),
     &:nth-last-child(2),
     &:nth-last-child(3),
@@ -279,7 +279,7 @@ export const GridColumn = styled.div`
     }
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     display: none;
 
     &:first-child,
@@ -290,7 +290,7 @@ export const GridColumn = styled.div`
     }
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     &:nth-child(3),
     &:nth-child(4) {
       display: none;

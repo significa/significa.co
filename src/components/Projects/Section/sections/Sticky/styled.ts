@@ -1,4 +1,4 @@
-import styled, { css } from '@theme'
+import styled, { css, media } from '@theme'
 
 import PaddedWrapper from '../common/PaddedWrapper'
 
@@ -11,13 +11,13 @@ export const Wrapper = styled(PaddedWrapper)<{ inverted?: boolean }>`
   flex-direction: ${p => (p.inverted ? 'row-reverse' : 'row')};
   justify-content: space-between;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     flex-direction: column;
     align-items: center;
     margin: -1.5em 0;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     display: block;
     margin: 0;
   }
@@ -30,14 +30,14 @@ export const TextContainer = styled.div`
   max-width: 47%;
   width: 100%;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     padding: 0;
     max-width: 75%;
     min-width: 20em;
     margin: 1.5em 0;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     max-width: 100%;
     min-width: auto;
   }
@@ -58,13 +58,13 @@ export const MediaContainer = styled.div`
   max-width: 37%;
   width: 100%;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     max-width: 50%;
     min-width: 20em;
     margin: 1.5em 0;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     max-width: 100%;
     min-width: auto;
   }

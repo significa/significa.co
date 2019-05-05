@@ -1,4 +1,4 @@
-import styled, { css } from '@theme'
+import styled, { css, media } from '@theme'
 import { marginTypes } from './types'
 
 const getMargins = (p: { margin?: marginTypes }) => {
@@ -10,12 +10,12 @@ const getMargins = (p: { margin?: marginTypes }) => {
       padding-top: ${hasTop ? '5em' : 0};
       padding-bottom: ${hasBottom ? '5em' : 0};
 
-      @media (max-width: 48em) {
+      ${media.medium} {
         padding-top: ${hasTop ? '4em' : 0};
         padding-bottom: ${hasBottom ? '4em' : 0};
       }
 
-      @media (max-width: 32em) {
+      ${media.small} {
         padding-top: ${hasTop ? '3em' : 0};
         padding-bottom: ${hasBottom ? '3em' : 0};
       }

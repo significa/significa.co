@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import { themeGet } from '../../../../utils/themeGet'
 
@@ -20,7 +20,7 @@ export const NavLink = styled(Link)`
     transition: ${({ theme }) => `width ${theme.transitions.cubic()}`};
   }
 
-  @media (hover: hover) {
+  ${media.hover} {
     &:hover {
       &:before {
         width: 100%;
@@ -28,8 +28,8 @@ export const NavLink = styled(Link)`
     }
   }
 
-  @media (max-width: 48em) {
-    @media (hover: hover) {
+  ${media.medium} {
+    ${media.hover} {
       &:hover {
         &:before {
           width: 0;

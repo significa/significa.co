@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from '@theme'
+import styled, { css, media } from '@theme'
 import { Link as GatsbyLink } from 'gatsby'
 import { Arrow as ArrowIcon } from './Arrow'
 
@@ -36,7 +36,7 @@ export const Link = styled(ExtractedPropsLink)`
     transition: stroke ${({ theme }) => theme.transitions.ease()};
   }
 
-  @media (hover: hover) {
+  ${media.hover} {
     &:hover ${Arrow} {
       transform: ${p =>
         p.reverse ? `rotate(180deg) translateX(0.25em)` : `translateX(0.25em)`};
@@ -46,7 +46,7 @@ export const Link = styled(ExtractedPropsLink)`
   ${p =>
     !p.highlight &&
     css`
-      @media (hover: hover) {
+      ${media.hover} {
         &:hover {
           color: ${({ theme }) => theme.colors.highlight};
 

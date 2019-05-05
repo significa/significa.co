@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import PaddedWrapper from '../common/PaddedWrapper'
 
 import {
@@ -21,7 +21,7 @@ export const AnchorIcon = styled(Anchor)`
 
   transition: opacity ${({ theme }) => theme.transitions.ease()};
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     display: none;
   }
 `
@@ -31,7 +31,7 @@ export const TitleWrapper = styled.a`
   display: inline-block;
   margin-bottom: 0.5rem;
 
-  @media (hover: hover) {
+  ${media.hover} {
     &:hover {
       ${AnchorIcon} {
         opacity: 1;

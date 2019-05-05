@@ -1,13 +1,13 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 const PaddedWrapper = styled.div`
   padding: 5em 0;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     padding: 4em 0;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     padding: 3em 0;
   }
 `

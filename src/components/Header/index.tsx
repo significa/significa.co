@@ -10,7 +10,7 @@ const Header: React.FC = () => {
     <S.Header upTolerance={50}>
       <S.Wrapper>
         <S.Container>
-          <S.LogoLink to="/">
+          <S.LogoLink to="/" title="Go to homepage">
             <Logo />
           </S.LogoLink>
 

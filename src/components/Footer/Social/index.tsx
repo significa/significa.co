@@ -22,7 +22,11 @@ interface ISocial {
 }
 
 const Social: React.FC<ISocial> = ({ type, link }) => {
-  return <SocialLink href={link}>{map[type] || null}</SocialLink>
+  return (
+    <SocialLink href={link} title={`Go to ${map[type]}`}>
+      {map[type] || null}
+    </SocialLink>
+  )
 }
 
 export default Social

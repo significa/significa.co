@@ -65,7 +65,7 @@ const careersHeroQuery = graphql`
               height
             }
             fluid(maxWidth: 400) {
-              ...GatsbyImageSharpFluid_noBase64
+              ...GatsbyImageSharpFluid_withWebp_noBase64
             }
           }
         }

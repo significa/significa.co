@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import Img from 'gatsby-image'
 
 import { Container } from '../../UI'
@@ -6,7 +6,7 @@ import { Container } from '../../UI'
 export const Wrapper = styled(Container)`
   margin-top: 12em;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     margin-top: 3em;
   }
 `
@@ -16,7 +16,7 @@ export const RelativeWrapper = styled.div`
   padding-bottom: 20vw;
   margin-bottom: 10vw;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     padding-bottom: 0;
   }
 `
@@ -34,15 +34,15 @@ const Gallery = styled.div`
   grid-template: repeat(2, 1fr) / repeat(8, 1fr);
   grid-gap: 5em;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     grid-gap: 2em;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     grid-template: repeat(2, 15em) / repeat(2, 1fr);
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     grid-gap: 1.5em;
     grid-template-columns: 1fr;
   }
@@ -84,7 +84,7 @@ export const TopImage = styled(Img)`
     margin-bottom: 10em;
   }
 
-  @media (max-width: 64em) {
+  ${media.large} {
     &:nth-child(1) {
       margin-left: 2em;
       margin-top: 3em;
@@ -103,7 +103,7 @@ export const TopImage = styled(Img)`
     }
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     &:nth-child(1n) {
       margin: 0;
       grid-column-end: span 1;
@@ -127,7 +127,7 @@ export const TopImage = styled(Img)`
     }
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     &:nth-child(1n) {
       margin: 0;
     }

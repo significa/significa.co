@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import { Huge as BaseHuge, Big as BaseBig } from '../../UI'
 
@@ -7,11 +7,11 @@ export const LabsTopWrapper = styled.section`
 
   text-align: center;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     padding: 8rem 2rem;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     padding: 6rem 1rem;
   }
 `

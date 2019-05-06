@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import { ArrowLink as BaseArrowLink, Text } from '../UI/'
 
@@ -25,7 +25,7 @@ export const Link = styled.a.attrs({
   display: block;
   transition: opacity ${({ theme }) => theme.transitions.ease()};
 
-  @media (hover: hover) {
+  ${media.hover} {
     &:hover {
       opacity: 0.6;
     }
@@ -46,7 +46,7 @@ export const IconHolder = styled.div`
   top: 0.25em;
   left: -2em;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     position: relative;
     left: auto;
     top: auto;

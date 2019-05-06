@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 export const Wrapper = styled.div`
   display: grid;
@@ -6,15 +6,15 @@ export const Wrapper = styled.div`
 
   grid-column-gap: 10em;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     grid-column-gap: 5em;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     grid-column-gap: 3em;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     grid-template-columns: 1fr;
     grid-column-gap: 0;
   }
@@ -43,19 +43,19 @@ export const ImgHolder = styled.div<{ index: number; rowSpan: number }>`
   grid-row-end: span ${p => p.rowSpan};
   grid-row-start: ${p => getGridRowStart(p.index, 16)};
 
-  @media (max-width: 64em) {
+  ${media.large} {
     margin-bottom: 3em;
 
     grid-row-start: ${p => getGridRowStart(p.index, 12)};
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     margin-bottom: 3em;
 
     grid-row-start: ${p => getGridRowStart(p.index, 8)};
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     margin-bottom: 1em;
 
     grid-row-start: ${p => getGridRowStart(p.index, 'auto')};

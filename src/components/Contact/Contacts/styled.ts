@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import { Container, Title as BaseTitle, Text as BaseText, Big } from '../../UI'
 import { AnyStyledComponent } from 'styled-components'
@@ -7,17 +7,17 @@ export const Wrapper = styled(Container)`
   margin-top: 12.5rem;
   margin-bottom: 12.5rem;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     margin-top: 10rem;
     margin-bottom: 10rem;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     margin-top: 7.5rem;
     margin-bottom: 7.5rem;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     margin-top: 5rem;
     margin-bottom: 5rem;
   }
@@ -47,7 +47,7 @@ export const PhoneLink: AnyStyledComponent = styled(Big).attrs({ as: 'a' })`
 
   transition: opacity ${({ theme }) => theme.transitions.ease()};
 
-  @media (hover: hover) {
+  ${media.hover} {
     &:hover {
       opacity: 0.6;
     }

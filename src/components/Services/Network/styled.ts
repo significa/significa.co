@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import { Title as BaseTitle, Big, Link as BaseLink } from '../../UI'
 
@@ -7,15 +7,15 @@ export const Wrapper = styled.div`
   padding: 8em 0 10em;
   text-align: center;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     padding: 5em 0;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     padding: 3em 0;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     padding: 2em 0;
   }
 `
@@ -24,7 +24,7 @@ export const TextContent = styled.div`
   max-width: 40em;
   margin: 0 auto;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     max-width: 32em;
   }
 `
@@ -45,11 +45,11 @@ export const CardHolder = styled.div`
 
   margin-top: 3rem;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     grid-auto-flow: row;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     grid-gap: 2em;
   }
 `

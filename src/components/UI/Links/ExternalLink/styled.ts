@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import { ExternalIcon as Icon } from './ExternalIcon'
 import { baseStyle } from '../common'
 
@@ -24,7 +24,7 @@ export const ExternalLink = styled.a.attrs({
   position: relative;
   ${baseStyle}
 
-  @media (hover: hover) {
+  ${media.hover} {
     &:hover {
       ${ExternalIcon} {
         transform: translate(calc(100% + 0.25em), calc(-50% - 0.25em));

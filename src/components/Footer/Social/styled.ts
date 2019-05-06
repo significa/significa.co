@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 export const SocialLink = styled.a.attrs({
   target: '_blank',
@@ -6,7 +6,7 @@ export const SocialLink = styled.a.attrs({
 })`
   transition: opacity ${({ theme }) => theme.transitions.ease()};
 
-  @media (hover: hover) {
+  ${media.hover} {
     &:hover {
       opacity: 0.8;
     }

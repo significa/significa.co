@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import BaseImg from 'gatsby-image'
 
 import {
@@ -17,7 +17,7 @@ export const Container = styled(BaseContainer)`
   padding-top: 7em;
   padding-bottom: 7em;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     padding-top: 3em;
     padding-bottom: 3em;
   }
@@ -29,12 +29,12 @@ export const ProjectInfo = styled.div`
   position: relative;
   z-index: 1;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     margin-top: 7em;
     margin-bottom: 14em;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     margin-top: 3em;
     margin-bottom: 0;
   }
@@ -49,14 +49,14 @@ export const Img = styled(BaseImg)`
   z-index: 0;
   pointer-events: none;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     position: relative !important;
     width: 150%;
     left: -50%;
   }
 
   /** On very large screens we need to hack a bit into the image **/
-  @media (min-width: 100em) {
+  ${media.xlarge} {
     img {
       left: 15vw !important;
       width: calc(100% - 15vw) !important;
@@ -65,7 +65,7 @@ export const Img = styled(BaseImg)`
 `
 
 export const Title = styled(BaseHuge)`
-  @media (max-width: 48em) {
+  ${media.medium} {
     margin-bottom: 0.25em;
 
     font-size: 2.5em;
@@ -75,7 +75,7 @@ export const Title = styled(BaseHuge)`
 `
 
 export const ArrowLink = styled(BaseArrowLink)`
-  @media (max-width: 48em) {
+  ${media.medium} {
     display: none;
   }
 `

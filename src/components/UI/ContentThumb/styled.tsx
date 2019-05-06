@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from '@theme'
+import styled, { media } from '@theme'
 import { Link as BaseLink } from 'gatsby'
 import BaseImg from 'gatsby-image'
 
@@ -59,7 +59,7 @@ const DetectLink: React.FC<{ to: string }> = ({ to, ...props }) => {
 export const Link = styled(DetectLink)`
   display: block;
 
-  @media (hover: hover) {
+  ${media.hover} {
     &:hover ${Img} {
       transform: scale(1.05);
     }

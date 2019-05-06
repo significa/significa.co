@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import { Container } from '../components/UI/'
 
@@ -15,7 +15,7 @@ export const TitleWrapper = styled.div`
   margin-top: 5rem;
   margin-bottom: 5rem;
 
-  @media (max-width: 32em) {
+  ${media.small} {
     margin-top: 3rem;
   }
 

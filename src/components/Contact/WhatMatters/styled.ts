@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import Img from 'gatsby-image'
 import { Container as BaseContainer, Display, Big as BaseBig } from '../../UI'
 
@@ -7,15 +7,15 @@ export const Wrapper = styled.section`
 
   padding: 12.5rem 0;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     padding: 10rem 0;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     padding: 7.5rem 0;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     padding: 5rem 0;
   }
 `
@@ -43,11 +43,11 @@ export const MoreWrapper = styled.div`
   grid-template-columns: repeat(12, 1fr);
   grid-column-gap: 3em;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     display: block;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     margin-top: 5em;
   }
 `
@@ -59,7 +59,7 @@ export const MoreContent = styled(BaseBig)`
     margin-bottom: 1.5rem;
   }
 
-  @media (max-width: 64em) {
+  ${media.large} {
     grid-column: 3 / -1;
   }
 `
@@ -70,12 +70,12 @@ export const ImagesGrid = styled.div`
   grid-column-gap: 3rem;
   grid-template: repeat(2, 1fr) / repeat(3, 1fr);
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     grid-template-columns: repeat(2, 1fr);
     grid-row-gap: 3rem;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     display: none;
   }
 `
@@ -83,7 +83,7 @@ export const ImagesGrid = styled.div`
 export const TopLeftImage = styled(Img)`
   margin-top: 3rem;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     margin: 0;
   }
 `
@@ -97,12 +97,12 @@ export const TopRightImage = styled(Img)`
   margin-top: 5rem;
   margin-right: 10rem;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     margin-right: 3rem;
     margin-top: 3rem;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     display: none;
   }
 `
@@ -112,12 +112,12 @@ export const BottomLeftImage = styled(Img)`
   margin-bottom: 5rem;
   margin-left: 7.5rem;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     margin-left: 3rem;
     margin-bottom: 3rem;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     display: none;
   }
 `
@@ -125,7 +125,7 @@ export const BottomLeftImage = styled(Img)`
 export const BottomRightImage = styled(Img)`
   margin-bottom: 3rem;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     margin: 0;
   }
 `

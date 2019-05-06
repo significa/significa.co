@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import { Container as BaseContainer } from '../../UI/'
 
 export const Container = styled(BaseContainer)`
@@ -9,18 +9,18 @@ export const Container = styled(BaseContainer)`
 
   grid-column-gap: 5rem;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     grid-template-columns: 1fr 1fr;
     margin-bottom: -3rem;
 
     grid-column-gap: 3rem;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     display: block;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     display: none;
   }
 `
@@ -30,11 +30,11 @@ export const Holder = styled.div<{ rowAmount: number }>`
 
   margin-bottom: 5rem;
 
-  @media (max-width: 64em) {
+  ${media.large} {
     margin-bottom: 3rem;
   }
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     grid-row-end: auto;
   }
 `

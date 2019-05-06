@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import { themeGet } from '../../../../utils/themeGet'
 
 export const Container = styled.div`
@@ -10,12 +10,12 @@ export const Container = styled.div`
   padding-left: 3em;
   padding-right: 3em;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     padding-left: 2em;
     padding-right: 2em;
   }
 
-  @media (max-width: 32em) {
+  ${media.small} {
     padding-left: 1.5em;
     padding-right: 1.5em;
   }

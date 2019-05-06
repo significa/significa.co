@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 export const Wrapper = styled.div`
   position: relative;
@@ -56,7 +56,7 @@ export const ArrowContainer = styled.button`
     transition: opacity ${({ theme }) => theme.transitions.ease()};
   }
 
-  @media (hover: hover) {
+  ${media.hover} {
     &:hover {
       &:before {
         opacity: 0.3;

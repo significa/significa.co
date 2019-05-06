@@ -4,6 +4,7 @@ import ThemeContext from './context'
 import Provider from './components/Provider'
 import Theme from './components/Theme'
 import { colorArgumentType, IFullTheme, IColorsTheme } from './types'
+import { media } from './breakpoints'
 
 export {
   /** Theme related exports (colors, etc.) */
@@ -12,6 +13,7 @@ export {
   darkTheme,
   colorTheme,
   colors,
+  media,
   /** Context */
   ThemeContext,
   /** Components */

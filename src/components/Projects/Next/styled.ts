@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import BaseImg from 'gatsby-image'
 
 import {
@@ -19,7 +19,7 @@ export const Container = styled(BaseContainer)`
   position: relative;
   z-index: 1;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     padding-top: 3em;
     padding-bottom: 3em;
   }
@@ -34,7 +34,7 @@ export const Img = styled(BaseImg)`
   z-index: 0;
   pointer-events: none;
 
-  @media (max-width: 48em) {
+  ${media.medium} {
     display: none;
   }
 `

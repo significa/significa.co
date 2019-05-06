@@ -95,6 +95,10 @@ const SEO: React.FC<ISEOProps> = ({
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          ref: 'dns-prefetch',
+          href: 'https://client.relay.crisp.chat',
+        },
       ]
         .concat(
           keywords.length > 0

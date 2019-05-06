@@ -9,7 +9,7 @@ const Footer: React.FC<{}> = () => (
   <S.Footer>
     <S.Container>
       <S.Left>
-        <S.LogoLink to="/">
+        <S.LogoLink to="/" title="Go to homepage">
           <Segg />
         </S.LogoLink>
         <Small>

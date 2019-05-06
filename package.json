@@ -3,7 +3,9 @@
   "private": true,
   "description": "Significa's website",
   "version": "0.1.0",
+  "title": "Significa Design",
   "author": "Significa <hello@significa.co>",
+  "siteUrl": "https://significa.co",
   "keywords": [
     "gatsby"
   ],
@@ -30,7 +32,9 @@
     "gatsby-plugin-manifest": "^2.0.24",
     "gatsby-plugin-offline": "^2.0.25",
     "gatsby-plugin-react-helmet": "^3.0.9",
+    "gatsby-plugin-robots-txt": "^1.4.0",
     "gatsby-plugin-sharp": "^2.0.28",
+    "gatsby-plugin-sitemap": "^2.1.0",
     "gatsby-plugin-typescript": "^2.0.11",
     "gatsby-source-filesystem": "^2.0.26",
     "gatsby-transformer-remark": "^2.3.8",

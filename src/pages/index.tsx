@@ -54,7 +54,7 @@ const IndexPage: React.FC<IIndexPage> = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+      <SEO />
 
       <Top headline={content.headline} />
       <RecentProjects />

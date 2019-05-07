@@ -95,11 +95,11 @@ const SEO: React.FC<ISEOProps> = ({
           name: `twitter:description`,
           content: metaDescription,
         },
-        {
-          ref: 'dns-prefetch',
-          href: 'https://client.relay.crisp.chat',
-        },
+        { rel: 'dns-prefetch', href: 'https://client.relay.crisp.chat' },
+        { rel: 'dns-prefetch', href: 'https://marketingplatform.google.com' },
+        { rel: 'dns-prefetch', href: 'https://www.google.com' },
       ]
+
         .concat(
           keywords.length > 0
             ? {

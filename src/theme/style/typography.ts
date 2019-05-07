@@ -12,6 +12,7 @@ export default css`
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
+    font-display: auto;
   }
 
   @font-face {
@@ -20,5 +21,6 @@ export default css`
       url(${ActaDeckWoff}) format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: auto;
   }
 `

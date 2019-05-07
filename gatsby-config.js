@@ -1,14 +1,36 @@
+const pkg = require('./package.json')
+
 module.exports = {
   siteMetadata: {
-    title: 'Significa',
-    description:
-      'Significa is a digital agency focused on user centric interfaces',
+    title: pkg.title,
+    description: pkg.description,
     author: '@significadesign',
+    keywords: pkg.keywords,
+    siteUrl: pkg.siteUrl,
   },
   plugins: [
+    // SEO things
+    'gatsby-plugin-react-helmet',
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: pkg.siteUrl,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-67282841-1',
+        anonymize: true,
+        respectDNT: true,
+      },
+    },
+    // End SEO
     'gatsby-plugin-typescript',
     'gatsby-plugin-styled-components',
-    'gatsby-plugin-react-helmet',
+
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -55,22 +77,6 @@ module.exports = {
         hostname: `significa.co`,
       },
     },
-    {
-      resolve: `gatsby-plugin-canonical-urls`,
-      options: {
-        siteUrl: `https://significa.co`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: 'UA-67282841-1',
-        anonymize: true,
-        respectDNT: true,
-      },
-    },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
+    'gatsby-plugin-offline',
   ],
 }

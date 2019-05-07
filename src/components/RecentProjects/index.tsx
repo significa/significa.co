@@ -69,7 +69,7 @@ const recentProjectsQuery = graphql`
           thumbnail {
             childImageSharp {
               fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_noBase64
+                ...GatsbyImageSharpFluid_withWebp_noBase64
               }
             }
           }

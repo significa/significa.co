@@ -77,6 +77,5 @@ module.exports = {
         hostname: `significa.co`,
       },
     },
-    'gatsby-plugin-offline',
   ],
 }

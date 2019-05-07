@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import opengraphImage from '../../assets/images/opengraph.png'
-import twitterImage from '../../assets/images/twitter.png'
+import twitterImage from '../../assets/images/twittercard.png'
 
 type MetaProps =
   | { name: string; content: any; property?: undefined }

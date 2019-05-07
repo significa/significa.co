@@ -1,18 +1,24 @@
 {
   "name": "significa-website",
   "private": true,
-  "description": "Significa's website",
+  "description": "A digital design-led agency focused on product development.",
   "version": "0.1.0",
   "title": "Significa",
   "author": "Significa <hello@significa.co>",
   "siteUrl": "https://significa.co",
   "keywords": [
-    "gatsby"
+    "design",
+    "development",
+    "strategy",
+    "agency",
+    "interface",
+    "digital",
+    "product"
   ],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "gatsby develop --host 0.0.0.0",
     "dev": "npm run develop",
     "start": "npm run develop",
     "format": "prettier --write \"src/**/*.tsx\"",

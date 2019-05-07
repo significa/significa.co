@@ -3,9 +3,9 @@ import styled, { css, media } from '@theme'
 import { animated } from 'react-spring'
 
 const Z_INDEXES = {
-  overlay: 98,
-  drawer: 99,
-  button: 100,
+  overlay: 999,
+  drawer: 1000,
+  button: 1001,
 }
 
 export const AnimatedDrawer = styled(animated.nav)`

@@ -2,7 +2,8 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import sourceImageShare from '../../assets/images/share.png'
+import opengraphImage from '../../assets/images/opengraph.png'
+import twitterImage from '../../assets/images/twitter.png'
 
 type MetaProps =
   | { name: string; content: any; property?: undefined }
@@ -45,7 +46,6 @@ const SEO: React.FC<ISEOProps> = ({
   const titleTemplate = title
     ? `%s | ${site.siteMetadata.title}`
     : site.siteMetadata.title
-  const imageShare = image || sourceImageShare
 
   return (
     <Helmet
@@ -73,7 +73,7 @@ const SEO: React.FC<ISEOProps> = ({
         },
         {
           property: `og:image`,
-          content: imageShare,
+          content: image || opengraphImage,
         },
         {
           name: `twitter:card`,
@@ -81,7 +81,7 @@ const SEO: React.FC<ISEOProps> = ({
         },
         {
           name: `twitter:image`,
-          content: imageShare,
+          content: image || twitterImage,
         },
         {
           name: `twitter:creator`,

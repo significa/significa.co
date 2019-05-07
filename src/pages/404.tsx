@@ -1,14 +1,30 @@
 import React from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
 
 import SEO from '../components/SEO'
 import Layout from '../components/Layout'
+import NotFound from '../components/NotFound'
 
-const NotFoundPage = () => (
-  <Layout>
-    <SEO title="404: Not found" />
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </Layout>
-)
+const NotFoundPage = () => {
+  const { notFoundYaml } = useStaticQuery(query)
+
+  return (
+    <Layout theme="dark">
+      <SEO title={notFoundYaml.seo.title} />
+
+      <NotFound />
+    </Layout>
+  )
+}
 
 export default NotFoundPage
+
+const query = graphql`
+  {
+    notFoundYaml {
+      seo {
+        title
+      }
+    }
+  }
+`

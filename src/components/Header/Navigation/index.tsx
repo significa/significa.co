@@ -65,7 +65,11 @@ class Navigation extends React.Component<{}, INavigationState> {
             )
           }}
         />
-        <S.Hamburguer show={this.state.mobileMenu} onClick={this.toggleMenu} />
+        <S.Hamburguer
+          aria-expanded={this.state.mobileMenu}
+          show={this.state.mobileMenu}
+          onClick={this.toggleMenu}
+        />
       </S.Wrapper>
     )
   }

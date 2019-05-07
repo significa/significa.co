@@ -49,4 +49,9 @@ export const Row = styled.div`
 
 export const FooterLink = styled(Link)`
   text-decoration: none;
+
+  ${media.small} {
+    padding: 0 !important;
+    line-height: 3;
+  }
 `

@@ -73,6 +73,8 @@ exports.createPages = ({ graphql, actions }) => {
                   src
                   srcSet
                   sizes
+                  srcWebp
+                  srcSetWebp
                 }
               }
             }

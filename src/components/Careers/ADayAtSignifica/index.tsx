@@ -83,7 +83,7 @@ const careersADayAtSignificaQuery = graphql`
           image {
             childImageSharp {
               fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_noBase64
+                ...GatsbyImageSharpFluid_withWebp_noBase64
               }
             }
           }
@@ -93,7 +93,7 @@ const careersADayAtSignificaQuery = graphql`
           image {
             childImageSharp {
               fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_noBase64
+                ...GatsbyImageSharpFluid_withWebp_noBase64
               }
             }
           }

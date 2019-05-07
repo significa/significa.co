@@ -175,7 +175,7 @@ export const query = graphql`
   fragment Image on File {
     childImageSharp {
       fluid(maxWidth: 3000) {
-        ...GatsbyImageSharpFluid_noBase64
+        ...GatsbyImageSharpFluid_withWebp_noBase64
       }
       resize {
         height

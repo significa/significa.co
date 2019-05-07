@@ -98,35 +98,35 @@ const whatMattersQuery = graphql`
           center {
             childImageSharp {
               fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_noBase64
+                ...GatsbyImageSharpFluid_withWebp_noBase64
               }
             }
           }
           topLeft {
             childImageSharp {
               fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_noBase64
+                ...GatsbyImageSharpFluid_withWebp_noBase64
               }
             }
           }
           topRight {
             childImageSharp {
               fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_noBase64
+                ...GatsbyImageSharpFluid_withWebp_noBase64
               }
             }
           }
           bottomLeft {
             childImageSharp {
               fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_noBase64
+                ...GatsbyImageSharpFluid_withWebp_noBase64
               }
             }
           }
           bottomRight {
             childImageSharp {
               fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_noBase64
+                ...GatsbyImageSharpFluid_withWebp_noBase64
               }
             }
           }

@@ -2,9 +2,6 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import opengraphImage from '../../assets/images/opengraph.png'
-import twitterImage from '../../assets/images/twittercard.png'
-
 type MetaProps =
   | { name: string; content: any; property?: undefined }
   | { property: string; content: any; name?: undefined }
@@ -19,6 +16,13 @@ interface ISEOProps {
   titleTemplate?: string
 }
 
+interface INodeImage {
+  node: {
+    resize: { originalName: string }
+    original: { src: string }
+  }
+}
+
 const SEO: React.FC<ISEOProps> = ({
   description,
   lang = 'en',
@@ -28,7 +32,7 @@ const SEO: React.FC<ISEOProps> = ({
   image,
   titleTemplate,
 }) => {
-  const { site } = useStaticQuery(
+  const { site, allImageSharp } = useStaticQuery(
     graphql`
       query {
         site {
@@ -40,9 +44,33 @@ const SEO: React.FC<ISEOProps> = ({
             siteUrl
           }
         }
+        allImageSharp(
+          filter: { original: { src: { regex: "/twittercard|opengraph/" } } }
+        ) {
+          edges {
+            node {
+              resize {
+                originalName
+              }
+              original {
+                src
+              }
+            }
+          }
+        }
       }
     `
   )
+
+  const {
+    twittercard: twittercardImage,
+    opengraph: opengraphImage,
+  } = allImageSharp.edges.reduce((prev: {}, { node }: INodeImage) => {
+    const name = node.resize.originalName.replace('.png', '')
+    const value = node.original.src
+
+    return { ...prev, [name]: value }
+  }, {})
 
   const { siteUrl } = site.siteMetadata
   const metaDescription = description || site.siteMetadata.description
@@ -85,7 +113,7 @@ const SEO: React.FC<ISEOProps> = ({
         },
         {
           name: `twitter:image`,
-          content: `${siteUrl}${image || twitterImage}`,
+          content: `${siteUrl}${image || twittercardImage}`,
         },
         {
           name: `twitter:creator`,

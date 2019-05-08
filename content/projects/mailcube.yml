@@ -1,6 +1,10 @@
 # Date for order
 date: 2017/05/01
 
+seo:
+  title: Mailcube by Significa
+  description: Mailcube is an email client to give you more time and peace of mind, capable to turn email from foe to friend again.
+
 # Main info
 title: Mailcube
 tagline: You'll love email again

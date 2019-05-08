@@ -47,10 +47,17 @@ export interface IProject {
   }
   data: {
     projectsYaml: {
+      seo: {
+        title: string
+        description: string
+      }
       title: string
       tagline: string
       description: string
       hero: IImageObject
+      shareImage: {
+        childImageSharp: { resize: { src: string } }
+      }
       heroTheme: string
       mainTheme: string
       navigationTheme: string
@@ -76,7 +83,12 @@ const Project = ({ data, pageContext: { next } }: IProject) => {
       headerTheme={getProjectTheme(projectsYaml.heroTheme, projectsYaml.themes)}
       footerTheme="light"
     >
-      <SEO title={projectsYaml.title} description={projectsYaml.description} />
+      <SEO
+        title={projectsYaml.seo.title}
+        description={projectsYaml.seo.description}
+        titleTemplate="%s"
+        image={projectsYaml.shareImage.childImageSharp.resize.src}
+      />
 
       {/* Project navigation */}
       <ConditionalWrap
@@ -185,11 +197,22 @@ export const query = graphql`
 
   query($slug: String!) {
     projectsYaml(fields: { slug: { eq: $slug } }) {
+      seo {
+        title
+        description
+      }
       title
       tagline
       description
       hero {
         ...Image
+      }
+      shareImage: hero {
+        childImageSharp {
+          resize(width: 1200, height: 600) {
+            src
+          }
+        }
       }
       heroTheme
       mainTheme

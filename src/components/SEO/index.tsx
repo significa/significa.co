@@ -2,8 +2,6 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import sourceImageShare from '../../assets/images/share.png'
-
 type MetaProps =
   | { name: string; content: any; property?: undefined }
   | { property: string; content: any; name?: undefined }
@@ -15,6 +13,14 @@ interface ISEOProps {
   keywords?: string[]
   title?: string
   image?: string
+  titleTemplate?: string
+}
+
+interface INodeImage {
+  node: {
+    resize: { originalName: string }
+    original: { src: string }
+  }
 }
 
 const SEO: React.FC<ISEOProps> = ({
@@ -24,8 +30,9 @@ const SEO: React.FC<ISEOProps> = ({
   keywords = [],
   title,
   image,
+  titleTemplate,
 }) => {
-  const { site } = useStaticQuery(
+  const { site, allImageSharp } = useStaticQuery(
     graphql`
       query {
         site {
@@ -34,18 +41,43 @@ const SEO: React.FC<ISEOProps> = ({
             description
             author
             keywords
+            siteUrl
+          }
+        }
+        allImageSharp(
+          filter: { original: { src: { regex: "/twittercard|opengraph/" } } }
+        ) {
+          edges {
+            node {
+              resize {
+                originalName
+              }
+              original {
+                src
+              }
+            }
           }
         }
       }
     `
   )
 
+  const {
+    twittercard: twittercardImage,
+    opengraph: opengraphImage,
+  } = allImageSharp.edges.reduce((prev: {}, { node }: INodeImage) => {
+    const name = node.resize.originalName.replace('.png', '')
+    const value = node.original.src
+
+    return { ...prev, [name]: value }
+  }, {})
+
+  const { siteUrl } = site.siteMetadata
   const metaDescription = description || site.siteMetadata.description
   const currentTitle = title || site.siteMetadata.title
-  const titleTemplate = title
-    ? `%s | ${site.siteMetadata.title}`
+  const defaultTitleTemplate = title
+    ? `${site.siteMetadata.title} %s`
     : site.siteMetadata.title
-  const imageShare = image || sourceImageShare
 
   return (
     <Helmet
@@ -53,7 +85,7 @@ const SEO: React.FC<ISEOProps> = ({
         lang,
       }}
       title={currentTitle}
-      titleTemplate={titleTemplate}
+      titleTemplate={titleTemplate || defaultTitleTemplate}
       meta={[
         {
           name: `description`,
@@ -73,7 +105,7 @@ const SEO: React.FC<ISEOProps> = ({
         },
         {
           property: `og:image`,
-          content: imageShare,
+          content: `${siteUrl}${image || opengraphImage}`,
         },
         {
           name: `twitter:card`,
@@ -81,7 +113,7 @@ const SEO: React.FC<ISEOProps> = ({
         },
         {
           name: `twitter:image`,
-          content: imageShare,
+          content: `${siteUrl}${image || twittercardImage}`,
         },
         {
           name: `twitter:creator`,

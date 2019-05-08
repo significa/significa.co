@@ -1,6 +1,10 @@
 # Date for order
 date: 2018/06/01
 
+seo:
+  title: Rocket.Chat by Significa
+  description: Rocket.Chat is free, unlimited and open source as it replaces email & Slack as the ultimate team chat software solution
+
 # Main info
 title: Rocket.Chat
 tagline: Open Source Team Communication
@@ -50,7 +54,7 @@ services:
 deliverables:
   - Web App
   - Mobile Apps
-  - Website 
+  - Website
   - Illustration
 links:
   - link: https://rocket.chat/
@@ -65,13 +69,13 @@ content:
       - title: StyleGuide
         sections:
           # Sections
-          
+
           - type: image
             layout: medium
             margin: bottom
             content:
               image: ./rocketchat/3-RocketChat-Devices.png
-          
+
           - type: text
             content:
               title: Open Source Community
@@ -144,7 +148,6 @@ content:
       # Section
       - title: UI Components
         sections:
-
           - type: text
             content:
               title: Buttons & DropDownn
@@ -207,7 +210,6 @@ content:
       # Section
       - title: The App
         sections:
-
           - type: text
             margin: top
             content:
@@ -304,7 +306,6 @@ content:
       # Section
       - title: Design
         sections:
-
           - type: text
             margin: top
             theme: rocketchat-blue

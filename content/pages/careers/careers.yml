@@ -1,8 +1,8 @@
 seo:
   title: Careers
+  description: Significa is hiring! Join our team of talented designers & developers.
 
 hero:
-
   title: |
     Drop by for some eggs.
     Anytime.
@@ -87,8 +87,6 @@ adayatsignifica:
 
     - image: ./careers-bottom-5@2x.png
       alt: A day at Significa
-  
-  
 
 perks:
   title: Perky perks.

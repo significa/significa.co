@@ -29,6 +29,7 @@ interface IShowcase {
     showcaseYaml: {
       seo: {
         title: string
+        description: string
       }
       cta: {
         title: string
@@ -46,7 +47,10 @@ interface IShowcase {
 const Showcase: React.FC<IShowcase> = ({ data }) => {
   return (
     <Layout>
-      <SEO title={data.showcaseYaml.seo.title} />
+      <SEO
+        title={data.showcaseYaml.seo.title}
+        description={data.showcaseYaml.seo.description}
+      />
 
       <Projects projects={data.allProjectsYaml.edges} />
 
@@ -62,6 +66,7 @@ export const query = graphql`
     showcaseYaml {
       seo {
         title
+        description
       }
       cta {
         title

@@ -1,5 +1,9 @@
 date: 2016/05/01
 
+seo:
+  title: GroHappy by Significa
+  description: GroHappy is an online introspective journey.
+
 # Main info
 title: GroHappy
 tagline: Online Introspective Journey
@@ -57,7 +61,7 @@ content:
       - title: Web App
         sections:
           # Sections
-          
+
           - type: image
             layout: medium
             margin: bottom
@@ -74,7 +78,6 @@ content:
             content:
               title: Online Journey
               text: You can start your online Journey with six different kinds of reflections (introspective questionnaires), that will help you get clear on how you want to grow both personally and professionally.
-
 
           - type: video
             theme: oopsie-orange

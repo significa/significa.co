@@ -56,7 +56,7 @@ export const Big = styled.p`
 export const textStyle = css`
   ${baseStyle};
 
-  font-size: 1em;
+  font-size: 1.125em;
   line-height: 1.5;
   letter-spacing: 0;
 `

@@ -23,10 +23,6 @@ export const Title = styled(BaseTitle)`
 `
 
 export const Display = styled(BaseDisplay)`
-  ${media.small} {
-    font-size: 1.5rem;
-  }
-
   button {
     padding: 0;
     background: none;
@@ -38,6 +34,12 @@ export const Display = styled(BaseDisplay)`
     outline: none;
     display: inline-block;
   }
+
+  ${media.medium} {
+    &:not(:first-of-type) {
+      display: none;
+    }
+  }
 `
 
 export const Link = styled(ArrowLink)`
@@ -46,11 +48,11 @@ export const Link = styled(ArrowLink)`
 
 export const Video = styled.video`
   z-index: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  top: 2rem;
+  left: 8rem;
+  width: 35rem;
+
   opacity: 0.2;
   object-fit: cover;
 

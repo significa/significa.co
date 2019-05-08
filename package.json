@@ -12,7 +12,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "gatsby develop --host 0.0.0.0",
     "dev": "npm run develop",
     "start": "npm run develop",
     "format": "prettier --write \"src/**/*.tsx\"",

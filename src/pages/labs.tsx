@@ -26,6 +26,7 @@ interface ILabs {
     labsPageYaml: {
       seo: {
         title: string
+        description: string
       }
       title: string
       subtitle: string
@@ -43,7 +44,10 @@ interface ILabs {
 const Labs: React.FC<ILabs> = ({ data }) => {
   return (
     <Layout theme="dark">
-      <SEO title={data.labsPageYaml.seo.title} />
+      <SEO
+        title={data.labsPageYaml.seo.title}
+        description={data.labsPageYaml.seo.description}
+      />
 
       <Top
         title={data.labsPageYaml.title}
@@ -64,6 +68,7 @@ export const query = graphql`
     labsPageYaml {
       seo {
         title
+        description
       }
       title
       subtitle

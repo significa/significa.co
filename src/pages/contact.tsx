@@ -11,6 +11,7 @@ interface IContent {
     contactYaml: {
       seo: {
         title: string
+        description: string
       }
     }
   }
@@ -19,7 +20,10 @@ interface IContent {
 const Contact: React.FC<IContent> = ({ data }) => {
   return (
     <Layout>
-      <SEO title={data.contactYaml.seo.title} />
+      <SEO
+        title={data.contactYaml.seo.title}
+        description={data.contactYaml.seo.description}
+      />
       <Form />
       <WhatMatters />
       <Contacts />
@@ -34,6 +38,7 @@ export const query = graphql`
     contactYaml {
       seo {
         title
+        description
       }
     }
   }

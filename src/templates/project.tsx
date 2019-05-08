@@ -55,6 +55,9 @@ export interface IProject {
       tagline: string
       description: string
       hero: IImageObject
+      shareImage: {
+        childImageSharp: { resize: { src: string } }
+      }
       heroTheme: string
       mainTheme: string
       navigationTheme: string
@@ -84,6 +87,7 @@ const Project = ({ data, pageContext: { next } }: IProject) => {
         title={projectsYaml.seo.title}
         description={projectsYaml.seo.description}
         titleTemplate="%s"
+        image={projectsYaml.shareImage.childImageSharp.resize.src}
       />
 
       {/* Project navigation */}
@@ -202,6 +206,13 @@ export const query = graphql`
       description
       hero {
         ...Image
+      }
+      shareImage: hero {
+        childImageSharp {
+          resize(width: 1200, height: 600) {
+            src
+          }
+        }
       }
       heroTheme
       mainTheme

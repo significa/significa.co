@@ -6,18 +6,22 @@ import sourceSong from '../../assets/404.mp4'
 
 const NotFound = () => {
   const { notFoundYaml } = useStaticQuery(query)
-  const [play, setPlay] = React.useState(false)
+  const [playing, setPlaying] = React.useState(false)
   const videoRef = React.useRef<HTMLVideoElement>(null)
 
-  React.useEffect(() => {
-    if (videoRef.current) {
-      if (play) {
-        videoRef.current.play()
-      } else {
-        videoRef.current.pause()
-      }
+  const handleClick = () => {
+    if (!videoRef.current) {
+      return
     }
-  }, [play])
+
+    if (playing) {
+      videoRef.current.pause()
+    } else {
+      videoRef.current.play()
+    }
+
+    setPlaying(!playing)
+  }
 
   return (
     <S.Container>
@@ -27,8 +31,8 @@ const NotFound = () => {
 
         <S.Display>
           {notFoundYaml.prePlay}{' '}
-          <button onClick={() => setPlay(!play)}>
-            {!play ? notFoundYaml.play : notFoundYaml.stop}
+          <button onClick={handleClick}>
+            {!playing ? notFoundYaml.play : notFoundYaml.stop}
           </button>
         </S.Display>
 

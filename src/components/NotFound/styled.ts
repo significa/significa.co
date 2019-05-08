@@ -10,7 +10,14 @@ import {
 export const Container = styled(BaseContainer).attrs({ as: 'section' })`
   min-height: 50vh;
   padding: 10vh;
+  position: relative;
 `
+
+export const Content = styled.div`
+  z-index: 2;
+  position: relative;
+`
+
 export const Title = styled(BaseTitle)`
   margin-bottom: 0.5em;
 `
@@ -38,5 +45,16 @@ export const Link = styled(ArrowLink)`
 `
 
 export const Video = styled.video`
-  display: none;
+  z-index: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  object-fit: cover;
+
+  ${media.medium} {
+    display: none;
+  }
 `

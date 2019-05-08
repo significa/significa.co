@@ -21,19 +21,21 @@ const NotFound = () => {
 
   return (
     <S.Container>
-      <S.Title>{notFoundYaml.title}</S.Title>
-      <S.Display>{notFoundYaml.text}</S.Display>
+      <S.Content>
+        <S.Title>{notFoundYaml.title}</S.Title>
+        <S.Display>{notFoundYaml.text}</S.Display>
 
-      <S.Display>
-        {notFoundYaml.prePlay}{' '}
-        <button onClick={() => setPlay(!play)}>
-          {!play ? notFoundYaml.play : notFoundYaml.stop}
-        </button>
-      </S.Display>
+        <S.Display>
+          {notFoundYaml.prePlay}{' '}
+          <button onClick={() => setPlay(!play)}>
+            {!play ? notFoundYaml.play : notFoundYaml.stop}
+          </button>
+        </S.Display>
 
-      <S.Link reverse to="/">
-        {notFoundYaml.linkText}
-      </S.Link>
+        <S.Link reverse to="/">
+          {notFoundYaml.linkText}
+        </S.Link>
+      </S.Content>
 
       <S.Video ref={videoRef}>
         <source src={sourceSong} type="video/mp4" />

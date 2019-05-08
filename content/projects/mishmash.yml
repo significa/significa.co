@@ -1,6 +1,10 @@
 # Date for order
 date: 2018/01/02
 
+seo:
+  title: Mishmash by Signfica
+  description: Mishmash is a minimal office supply brand.
+
 # Main info
 title: Mishmash
 tagline: A minimal office supply brand
@@ -53,19 +57,19 @@ content:
       - title: Design
         sections:
           # Sections
-          
+
           - type: image
             layout: large
             margin: bottom
             content:
               image: ./mishmash/3-Mishmash-ShowOf.jpg
-          
+
           - type: text
             content:
               title: Homepage
               text: |
                 The doorway to the world of mishmash. Here we must engage the user and make sure he loves every mishmash product as much as we do. The precision of their products was matched by a precise grid that takes over and defines the entire design.
-              
+
           - type: image
             layout: large
             margin: both
@@ -86,7 +90,7 @@ content:
             content:
               title: Mobile Home Page
               text: |
-               The same attention to detail was kept to ensure a great mobile experience for newcomers and returners alike. Encapsuled by the phone's screen, every mishmash product is allowed to shine.
+                The same attention to detail was kept to ensure a great mobile experience for newcomers and returners alike. Encapsuled by the phone's screen, every mishmash product is allowed to shine.
 
           - type: image
             layout: large
@@ -98,7 +102,7 @@ content:
             content:
               title: Shop
               text: |
-               Sort & filter every product and find the one that is right for you. You can sort by price and filter by color or size. With that, every focus is placed on the products where you can quickly decide which one is right for you.
+                Sort & filter every product and find the one that is right for you. You can sort by price and filter by color or size. With that, every focus is placed on the products where you can quickly decide which one is right for you.
 
           - type: image
             layout: large
@@ -110,19 +114,19 @@ content:
             content:
               title: Product Page
               text: |
-               Explore every little detail, with a high quality gallery, product specs, and reviews by your favourite bloggers. "Added to cart."
+                Explore every little detail, with a high quality gallery, product specs, and reviews by your favourite bloggers. "Added to cart."
 
           - type: image
             layout: large
             margin: both
             content:
-              image: ./mishmash/8-Mishmash-ProductPage.png 
+              image: ./mishmash/8-Mishmash-ProductPage.png
 
           - type: text
             content:
               title: Shop on the go
               text: |
-               Browse, filter and appreciate every little detail of each mishmash product while you are on the move.
+                Browse, filter and appreciate every little detail of each mishmash product while you are on the move.
 
           - type: image
             layout: large
@@ -134,7 +138,7 @@ content:
             content:
               title: Cart & Checkout
               text: |
-               You probably fell in love with the product so why not fall in love with the entire checkout process? Also, why wait until you’re home to buy one of mishmash’s unique notebooks? You can do it anywhere!
+                You probably fell in love with the product so why not fall in love with the entire checkout process? Also, why wait until you’re home to buy one of mishmash’s unique notebooks? You can do it anywhere!
 
           - type: image
             layout: large
@@ -152,7 +156,7 @@ content:
             content:
               title: Blog
               text: |
-               Let's say that mishmash is part of your life. But so are many other things. The blog is all about the things you love, even when travelling!
+                Let's say that mishmash is part of your life. But so are many other things. The blog is all about the things you love, even when travelling!
 
           - type: image
             layout: large
@@ -166,7 +170,6 @@ content:
             content:
               image: ./mishmash/13-Mishmash-BlogMobile.png
 
-
           - type: testimonial
             theme: dark
             margin: both
@@ -176,7 +179,6 @@ content:
 
       - title: Styleguide
         sections:
-
           - type: text
             margin: top
             content:
@@ -188,7 +190,7 @@ content:
             layout: large
             margin: both
             content:
-              image: ./mishmash/14-Mishmash-Colors.jpg  
+              image: ./mishmash/14-Mishmash-Colors.jpg
 
           - type: text
             content:
@@ -200,10 +202,7 @@ content:
             layout: large
             margin: both
             content:
-              image: ./mishmash/16-MishMash-Typography.jpg 
-
-
-
+              image: ./mishmash/16-MishMash-Typography.jpg
 
           - type: text
             content:
@@ -215,8 +214,4 @@ content:
             layout: large
             margin: both
             content:
-              image: ./mishmash/15-Mishmash-Icons.jpg  
-
-          
-
-                    
+              image: ./mishmash/15-Mishmash-Icons.jpg

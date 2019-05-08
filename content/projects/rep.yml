@@ -1,5 +1,9 @@
 date: 2016/05/01
 
+seo:
+  title: REP by Significa
+  description: Find out with REP how well you performed at school relative to your classmates.
+
 # Main info
 title: REP
 tagline: Relative Educational Performance
@@ -57,7 +61,7 @@ content:
       - title: Process
         sections:
           # Sections
-          
+
           - type: image
             layout: medium
             margin: bottom
@@ -155,8 +159,8 @@ content:
               autoplay: true
               loop: true
               controls: false
-              muted: true   
-              
+              muted: true
+
           - type: text
             content:
               title: AB Testing — Version B
@@ -170,7 +174,7 @@ content:
               autoplay: true
               loop: true
               controls: false
-              muted: true           
+              muted: true
 
           - type: image
             layout: medium

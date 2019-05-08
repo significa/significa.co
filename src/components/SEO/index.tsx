@@ -16,6 +16,7 @@ interface ISEOProps {
   keywords?: string[]
   title?: string
   image?: string
+  titleTemplate?: string
 }
 
 const SEO: React.FC<ISEOProps> = ({
@@ -25,6 +26,7 @@ const SEO: React.FC<ISEOProps> = ({
   keywords = [],
   title,
   image,
+  titleTemplate,
 }) => {
   const { site } = useStaticQuery(
     graphql`
@@ -35,16 +37,18 @@ const SEO: React.FC<ISEOProps> = ({
             description
             author
             keywords
+            siteUrl
           }
         }
       }
     `
   )
 
+  const { siteUrl } = site.siteMetadata
   const metaDescription = description || site.siteMetadata.description
   const currentTitle = title || site.siteMetadata.title
-  const titleTemplate = title
-    ? `%s | ${site.siteMetadata.title}`
+  const defaultTitleTemplate = title
+    ? `${site.siteMetadata.title} %s`
     : site.siteMetadata.title
 
   return (
@@ -53,7 +57,7 @@ const SEO: React.FC<ISEOProps> = ({
         lang,
       }}
       title={currentTitle}
-      titleTemplate={titleTemplate}
+      titleTemplate={titleTemplate || defaultTitleTemplate}
       meta={[
         {
           name: `description`,
@@ -73,7 +77,7 @@ const SEO: React.FC<ISEOProps> = ({
         },
         {
           property: `og:image`,
-          content: image || opengraphImage,
+          content: `${siteUrl}${image || opengraphImage}`,
         },
         {
           name: `twitter:card`,
@@ -81,7 +85,7 @@ const SEO: React.FC<ISEOProps> = ({
         },
         {
           name: `twitter:image`,
-          content: image || twitterImage,
+          content: `${siteUrl}${image || twitterImage}`,
         },
         {
           name: `twitter:creator`,

@@ -1,5 +1,9 @@
 date: 2016/05/01
 
+seo:
+  title: Snipsl by Significa
+  description: Snipsl, where authors can publish directly into your pocket.
+
 # Main info
 title: Snipsl
 tagline: Directly into your pocket
@@ -56,7 +60,7 @@ content:
       - title: Design
         sections:
           # Sections
-          
+
           - type: image
             layout: medium
             margin: bottom
@@ -98,7 +102,7 @@ content:
               autoplay: true
               loop: true
               controls: false
-              muted: true   
+              muted: true
 
           - type: text
             content:
@@ -108,7 +112,7 @@ content:
           - type: text
             content:
               text: |
-               When designing Snipsl for IOS, some options were also instantly automatic as part of Apple’s iOS Human Interface Guidelines: Add a back button to navigate; Have a constant app bar; Use IOS native San Francisco typeface; Make the shadows more subtle and uniform; Use 1px stroke icons; As some of theses changes had a great impact on the look and feel of the app, creating interesting challenges bringing not only problems but various solutions.
+                When designing Snipsl for IOS, some options were also instantly automatic as part of Apple’s iOS Human Interface Guidelines: Add a back button to navigate; Have a constant app bar; Use IOS native San Francisco typeface; Make the shadows more subtle and uniform; Use 1px stroke icons; As some of theses changes had a great impact on the look and feel of the app, creating interesting challenges bringing not only problems but various solutions.
 
           - type: highlight
             content:
@@ -162,7 +166,7 @@ content:
               autoplay: true
               loop: true
               controls: false
-              muted: true   
+              muted: true
 
           - type: text
             content:
@@ -177,12 +181,11 @@ content:
               autoplay: true
               loop: true
               controls: false
-              muted: true   
+              muted: true
 
       # Section
       - title: Brand
         sections:
-
           - type: text
             content:
               title: Illustrations
@@ -233,7 +236,7 @@ content:
               autoplay: true
               loop: true
               controls: false
-              muted: true   
+              muted: true
 
           - type: image
             layout: medium

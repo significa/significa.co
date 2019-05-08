@@ -1,6 +1,10 @@
 # Date for order
 date: 2018/05/01
 
+seo:
+  title: Reforestum by Significa
+  description: Reforestum allows you to create and manage your own forest without leaving home.
+
 # Main info
 title: Reforestum
 tagline: Create your Own Forest

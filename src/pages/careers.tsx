@@ -23,6 +23,7 @@ interface ICareers {
     careersYaml: {
       seo: {
         title: string
+        description: string
       }
     }
   }
@@ -32,7 +33,10 @@ const Contact: React.FC<ICareers> = ({ data }) => {
   return (
     <Layout theme="light">
       <BackgroundTransition>
-        <SEO title={data.careersYaml.seo.title} />
+        <SEO
+          title={data.careersYaml.seo.title}
+          description={data.careersYaml.seo.description}
+        />
         <Hero />
         <About />
         <ADayAtSignifica />
@@ -50,6 +54,7 @@ export const query = graphql`
     careersYaml {
       seo {
         title
+        description
       }
     }
   }

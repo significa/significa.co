@@ -12,6 +12,7 @@ interface IContent {
     servicesYaml: {
       seo: {
         title: string
+        description: string
       }
       cta: {
         title: string
@@ -30,7 +31,7 @@ const Contact: React.FC<IContent> = ({
 }) => {
   return (
     <Layout>
-      <SEO title={seo.title} />
+      <SEO title={seo.title} description={seo.description} />
       <Hero />
       <Sections />
       <Network />
@@ -51,6 +52,7 @@ export const query = graphql`
     servicesYaml {
       seo {
         title
+        description
       }
       cta {
         title

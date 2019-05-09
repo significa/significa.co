@@ -1,13 +1,16 @@
 seo:
-  title: About Significa
+  title: About
   description: Every little secret about your favourite designers and developers.
 
 hero:
   title: Design-led and user-centric strategies can impact people’s life.
   photos:
-    - about-1.png
-    - about-2.png
-    - about-3.png
+    - image: about-1.png
+      alt: Office 1
+    - image: about-2.png
+      alt: Office 2
+    - image: about-3.png
+      alt: Office 3
 
 content:
   title: Tools should adapt to the user, not the other way around.
@@ -19,6 +22,21 @@ communication:
   image: ./about-4.png
   title: We’re global
   text: Solid communication, iteration and prototyping allows us to work alongside clients from all around the world. We have a big office in Porto, Portugal that allows us to host project workshops, brainstorming sessions and work side by side with you and your team. Just like being neighbours, you can drop by for some eggs, anytime. We also travel regularly to do the exact same thing with the added bonus of getting to know new places!
+
+  cities:
+    - BCN
+    - PAR
+    - HKG
+    - VLL
+    - LIS
+    - LON
+    - TUL
+    - DUS
+    - ORD
+    - BKK
+    - SYD
+    - HAM
+    - FLN
 
 careers:
   title: Life here, in the heart of Porto.

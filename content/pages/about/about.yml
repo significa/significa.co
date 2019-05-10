@@ -58,6 +58,78 @@ team:
   title: An omelette is made of eggs.
   text: Ours has {team_count}.
 
+  list:
+    - name: Ana Moreno
+      role: Design Intern
+
+    - name: André Resendes
+      role: Creative Director
+
+    - name: André Silva
+      role: iOS Developer
+      company: coletiv
+
+    - name: António Valente
+      role: Android Developer
+      company: coletiv
+
+    - name: Catarina Silva
+      role: Office Manager
+
+    - name: Daniel Almeida
+      role: iOS Developer
+      company: coletiv
+
+    - name: Danilo Woznica
+      role: Developer
+
+    - name: David Magalhães
+      role: Backend Developer
+      company: coletiv
+
+    - name: Frederico Jesus
+      role: Illustrator / Motion
+
+    - name: Filipe Almeida
+      role: Lead Designer
+
+    - name: Isabel Sá
+      role: Developer
+
+    - name: Luís Catarino
+      role: Adamant CEO
+      company: adamant
+
+    - name: Mariana Gomes
+      role: Designer
+
+    - name: Mário Rodrigues
+      role: Designer
+
+    - name: Márcio Pinto
+      role: Fron End Developer
+
+    - name: Nuno Marinho
+      role: Backend Developer
+      company: coletiv
+
+    - name: Pedro Brandão
+      role: Founder
+
+    - name: Pedro Teixeira
+      role: Designer
+
+    - name: Pedro ???????
+      role: Developer
+      company: coletiv
+
+    - name: Rui Sereno
+      role: Operations
+
+    - name: Tiago Duarte
+      role: Coletiv CEO
+      company: coletiv
+
 cta:
   title: From inception to launch.
   text: Get to know our process a little better.

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import Img, { FluidObject } from 'gatsby-image'
 

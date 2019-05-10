@@ -16,7 +16,7 @@ const GlobalMap = () => {
     },
   } = useStaticQuery(query)
 
-  const initialState = new Array(7).fill(' ').map((e: string, index) => {
+  const initialState = new Array(7).fill(' ').map((_, index) => {
     if (index === 3) {
       return '>'
     }

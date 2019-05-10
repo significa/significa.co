@@ -34,7 +34,7 @@ export const Title = styled(BaseTitle)``
 export const Text = styled(BaseText)``
 
 export const MapWrapper = styled.div`
-  padding: 6em 0;
+  padding-top: 6em;
   position: relative;
 
   svg {

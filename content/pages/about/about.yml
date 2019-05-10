@@ -47,9 +47,12 @@ careers:
   link: /careers
   linkText: More on Careers
   photos:
-    - about-5.png
-    - about-6.png
-    - about-7.png
+    - image: about-5.png
+      alt: Office 5
+    - image: about-6.png
+      alt: Office 6
+    - image: about-7.png
+      alt: Office 7
 
 team:
   title: An omelette is made of eggs.

@@ -3,8 +3,8 @@ import Img, { FluidObject } from 'gatsby-image'
 import { graphql, useStaticQuery } from 'gatsby'
 
 import { Theme } from '@theme'
-
 import * as S from './styled'
+import GlobalMap from './globalMap'
 
 interface IGlobal {
   aboutYaml: {
@@ -38,6 +38,8 @@ const Global = () => {
             <S.Title>{data.title}</S.Title>
             <S.Text>{data.text}</S.Text>
           </S.Header>
+
+          <GlobalMap />
         </S.Container>
       </S.Wrapper>
     </Theme>
@@ -59,7 +61,6 @@ export const query = graphql`
         }
         title
         text
-        cities
       }
     }
   }

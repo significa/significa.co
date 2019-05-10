@@ -4,7 +4,7 @@ import { FluidObject } from 'gatsby-image'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { Top } from '../components/About'
+import { Top, Content } from '../components/About'
 
 interface IAbout {
   data: {
@@ -36,10 +36,8 @@ const Contact: React.FC<IAbout> = ({ data }) => {
         description={data.aboutYaml.seo.description}
       />
 
-      <Top
-        title={data.aboutYaml.hero.title}
-        photos={data.aboutYaml.hero.photos}
-      />
+      <Top />
+      <Content />
     </Layout>
   )
 }
@@ -52,19 +50,6 @@ export const query = graphql`
       seo {
         title
         description
-      }
-      hero {
-        title
-        photos {
-          alt
-          image {
-            childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
-              }
-            }
-          }
-        }
       }
     }
   }

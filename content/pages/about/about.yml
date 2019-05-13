@@ -60,73 +60,94 @@ team:
 
   list:
     - name: Ana Moreno
+      photo: ./team/download.jpg
       role: Design Intern
 
     - name: André Resendes
+      photo: ./team/download.jpg
       role: Creative Director
 
     - name: André Silva
+      photo: ./team/download.jpg
       role: iOS Developer
       company: coletiv
 
     - name: António Valente
+      photo: ./team/download.jpg
       role: Android Developer
       company: coletiv
 
     - name: Catarina Silva
+      photo: ./team/download.jpg
       role: Office Manager
 
     - name: Daniel Almeida
+      photo: ./team/download.jpg
       role: iOS Developer
       company: coletiv
 
     - name: Danilo Woznica
+      photo: ./team/download.jpg
       role: Developer
 
     - name: David Magalhães
+      photo: ./team/download.jpg
       role: Backend Developer
       company: coletiv
 
     - name: Frederico Jesus
+      photo: ./team/download.jpg
       role: Illustrator / Motion
 
     - name: Filipe Almeida
+      photo: ./team/download.jpg
       role: Lead Designer
 
     - name: Isabel Sá
+      photo: ./team/download.jpg
       role: Developer
 
     - name: Luís Catarino
+      photo: ./team/download.jpg
       role: Adamant CEO
       company: adamant
 
     - name: Mariana Gomes
+      photo: ./team/download.jpg
       role: Designer
 
     - name: Mário Rodrigues
+      photo: ./team/download.jpg
       role: Designer
 
     - name: Márcio Pinto
+      photo: ./team/download.jpg
       role: Fron End Developer
 
     - name: Nuno Marinho
+      photo: ./team/download.jpg
       role: Backend Developer
       company: coletiv
 
     - name: Pedro Brandão
+      photo: ./team/download.jpg
       role: Founder
 
     - name: Pedro Teixeira
+      photo: ./team/download.jpg
       role: Designer
 
-    - name: Pedro ???????
+    - name: Pedro Costa
+      photo: ./team/download.jpg
       role: Developer
       company: coletiv
 
     - name: Rui Sereno
+      photo: ./team/download.jpg
       role: Operations
 
     - name: Tiago Duarte
+      photo: ./team/download.jpg
       role: Coletiv CEO
       company: coletiv
 

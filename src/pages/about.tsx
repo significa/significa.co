@@ -4,7 +4,14 @@ import { FluidObject } from 'gatsby-image'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { Top, Content, Global, Careers, Team } from '../components/About'
+import {
+  Top,
+  Content,
+  Global,
+  Careers,
+  Team,
+  Services,
+} from '../components/About'
 
 interface IAbout {
   data: {
@@ -41,6 +48,7 @@ const Contact: React.FC<IAbout> = ({ data }) => {
       <Global />
       <Careers />
       <Team />
+      <Services />
     </Layout>
   )
 }

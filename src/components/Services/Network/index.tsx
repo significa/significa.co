@@ -2,15 +2,9 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
 import { Theme } from '@theme'
-
 import { Container, Text } from '../../UI'
-
-import Coletiv from './Coletiv'
-import Adamant from './Adamant'
-
+import CompanyLogo, { CompanyType } from '../../utils/renderCompanyLogo'
 import * as S from './styled'
-
-type CompanyType = 'coletiv' | 'adamant'
 
 interface IServicesNetworkContent {
   servicesYaml: {
@@ -28,11 +22,6 @@ interface IServicesNetworkContent {
   }
 }
 
-const companies: { [key in CompanyType]: React.FC<{}> } = {
-  coletiv: Coletiv,
-  adamant: Adamant,
-}
-
 const Network = () => {
   const {
     servicesYaml: { network: data },
@@ -48,11 +37,10 @@ const Network = () => {
           </S.TextContent>
           <S.CardHolder>
             {data.companies.map((company, i) => {
-              const CompanyLogo = companies[company.name]
               return (
                 <S.Card key={i}>
                   <S.LogoHolder>
-                    <CompanyLogo />
+                    <CompanyLogo company={company.name} />
                   </S.LogoHolder>
                   <S.CardTitle>{company.title}</S.CardTitle>
                   <Text>{company.text}</Text>

@@ -14,6 +14,10 @@ export const Container = styled(BaseContainer)`
   padding-bottom: 7.5em;
   margin-top: 25%;
 
+  ${media.medium} {
+    padding-bottom: 0;
+  }
+
   ${media.xlarge} {
     margin-top: 15%;
   }
@@ -37,7 +41,7 @@ export const MapWrapper = styled.div`
   padding-top: 6em;
   position: relative;
 
-  svg {
+  img {
     width: 100%;
   }
 `
@@ -50,6 +54,7 @@ export const BasePanel = styled.div`
   background: ${colors.lightBlack};
   padding: 0.5em;
   border-radius: 6px;
+  display: inline-flex;
 
   &:after {
     content: '';
@@ -66,10 +71,10 @@ export const Panel = styled.div`
   display: inline-flex;
   background: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.foreground};
-  font-size: 5em;
+  font-size: calc(1.7em + (26 - 14) * ((100vw - 200px) / (1600 - 200)));
   font-weight: bold;
-  min-width: 5rem;
-  min-height: 6.5rem;
+  min-width: calc(1.7em + (26 - 14) * ((100vw - 200px) / (1600 - 200)));
+  min-height: calc(1.7em + (26 - 14) * ((100vw - 200px) / (1600 - 200)));
   border-radius: 2px;
 
   &:not(:last-child) {
@@ -81,6 +86,10 @@ export const Panel = styled.div`
   }
 
   &:nth-child(4) {
+    ${media.medium} {
+      display: none;
+    }
+
     span {
       position: relative;
       top: -0.04em;

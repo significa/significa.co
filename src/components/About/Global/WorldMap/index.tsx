@@ -9,7 +9,7 @@ interface IPanel {
   old: string
 }
 
-const TIME_LETTER = 150
+const TIME_LETTER = 120
 const TIME_RANDOM_CITY = 6000
 
 const template = (city: string) => `OPO>${city}`
@@ -132,7 +132,6 @@ export const query = graphql`
 `
 
 const char = [
-  '>',
   'A',
   'B',
   'C',

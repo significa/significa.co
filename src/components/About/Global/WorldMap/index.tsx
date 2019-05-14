@@ -9,7 +9,7 @@ const TIME_RANDOM_CITY = 5000
 
 const template = (city: string) => `OPO>${city}`
 
-const Map = () => {
+const WorldMap = () => {
   const {
     aboutYaml: {
       global: { cities },
@@ -68,7 +68,7 @@ const Map = () => {
 
   return (
     <S.MapWrapper>
-      <S.Map src={worldMapSource} alt="World map" />
+      <S.MapImg src={worldMapSource} alt="World map" />
 
       <S.BasePanel>
         {splitFlap.map((l, index) => (
@@ -81,7 +81,7 @@ const Map = () => {
   )
 }
 
-export default Map
+export default WorldMap
 
 export const query = graphql`
   query AboutMapQuery {

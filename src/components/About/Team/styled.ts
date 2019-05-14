@@ -6,12 +6,18 @@ import {
   Container as BaseContainer,
 } from '../../UI'
 
-export const Header = styled(BaseContainer)`
+export const TeamWrapper = styled(BaseContainer)`
   text-align: center;
-  padding: 7.5em 0 0;
+  padding-top: 7em;
+
+  ${media.medium} {
+    padding-top: 3em;
+  }
 `
 
-export const Title = styled(BaseTitle)``
+export const Title = styled(BaseTitle)`
+  margin-bottom: 0.5rem;
+`
 
 export const Text = styled(BaseText)``
 
@@ -19,11 +25,20 @@ export const TeamList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 6.25em;
+
+  margin-top: 7em;
+
+  ${media.medium} {
+    margin-top: 3em;
+  }
+
+  ${media.small} {
+    flex-direction: column;
+  }
 `
 
 export const TeamItem = styled.li`
-  margin-bottom: 3.5em;
+  margin: 0 0.5em 3.5em;
   min-width: calc((100% / 4) - 3em);
 
   ${media.small} {

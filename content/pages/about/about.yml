@@ -60,96 +60,80 @@ team:
 
   list:
     - name: Ana Moreno
-      photo: ./team/download.jpg
-      role: Design Intern
+      role: Designer
 
     - name: André Resendes
-      photo: ./team/download.jpg
       role: Creative Director
 
     - name: André Silva
-      photo: ./team/download.jpg
       role: iOS Developer
       company: coletiv
 
     - name: António Valente
-      photo: ./team/download.jpg
       role: Android Developer
       company: coletiv
 
     - name: Catarina Silva
-      photo: ./team/download.jpg
       role: Office Manager
 
     - name: Daniel Almeida
-      photo: ./team/download.jpg
-      role: iOS Developer
+      role: Product Manager / iOS
       company: coletiv
 
-    - name: Danilo Woznica
-      photo: ./team/download.jpg
+    - name: Danilo Woznika
       role: Developer
 
     - name: David Magalhães
-      photo: ./team/download.jpg
       role: Backend Developer
       company: coletiv
 
     - name: Frederico Jesus
-      photo: ./team/download.jpg
       role: Illustrator / Motion
 
     - name: Filipe Almeida
-      photo: ./team/download.jpg
-      role: Lead Designer
+      role: Product Designer
 
     - name: Isabel Sá
-      photo: ./team/download.jpg
-      role: Developer
+      role: Front-end Developer
 
-    - name: Luís Catarino
-      photo: ./team/download.jpg
-      role: Adamant CEO
-      company: adamant
+    - name: Lisa Cosme
+      role: Design Intern
 
     - name: Mariana Gomes
-      photo: ./team/download.jpg
-      role: Designer
+      role: Product Manager / Designer
 
     - name: Mário Rodrigues
-      photo: ./team/download.jpg
-      role: Designer
+      role: Product Designer
 
     - name: Márcio Pinto
-      photo: ./team/download.jpg
-      role: Fron End Developer
+      role: Front-end Developer
 
-    - name: Nuno Marinho
-      photo: ./team/download.jpg
+    - name: Nuno Marino
       role: Backend Developer
       company: coletiv
 
     - name: Pedro Brandão
-      photo: ./team/download.jpg
-      role: Founder
+      role: Founder / CEO
 
     - name: Pedro Teixeira
-      photo: ./team/download.jpg
       role: Designer
 
     - name: Pedro Costa
-      photo: ./team/download.jpg
-      role: Developer
+      role: Backend Developer
       company: coletiv
+
+    - name: Robbie Hilado
+      role: Developer
 
     - name: Rui Sereno
-      photo: ./team/download.jpg
-      role: Operations
+      role: Business Development
 
     - name: Tiago Duarte
-      photo: ./team/download.jpg
       role: Coletiv CEO
       company: coletiv
+
+    - name: Vitor Dino
+      role: Developer
 
 cta:
   title: From inception to launch.

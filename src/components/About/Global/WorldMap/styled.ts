@@ -15,7 +15,7 @@ export const MapWrapper = styled.div`
   }
 `
 
-export const Map = styled.img`
+export const MapImg = styled.img`
   width: 100%;
 `
 

@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 import { Theme } from '@theme'
 import * as S from './styled'
-import Map from './Map'
+import WorldMap from './WorldMap'
 
 interface IGlobal {
   aboutYaml: {
@@ -41,7 +41,7 @@ const Global = () => {
             <S.Text>{data.text}</S.Text>
           </S.TextContent>
 
-          <Map />
+          <WorldMap />
         </S.Container>
       </S.Wrapper>
     </Theme>

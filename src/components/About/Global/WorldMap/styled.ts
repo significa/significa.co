@@ -64,7 +64,7 @@ export const Panel = styled.div`
     width: 100%;
     border: 1px solid ${colors.lightBlack};
     position: absolute;
-    top: calc(50% + 3px);
+    top: calc(50% + 1px);
     z-index: 99;
   }
 
@@ -73,8 +73,8 @@ export const Panel = styled.div`
   }
 
   &:nth-child(4) {
-    span {
-      margin-top: -0.04em;
+    div > div {
+      margin-top: -0.05em;
     }
   }
 

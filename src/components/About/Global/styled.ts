@@ -1,4 +1,5 @@
-import styled, { media, colors } from '@theme'
+import styled, { media } from '@theme'
+import Image from 'gatsby-image'
 
 import {
   Text as BaseText,
@@ -7,92 +8,48 @@ import {
 } from '../../UI'
 
 export const Wrapper = styled.div`
-  background: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.background};
 `
 
-export const Container = styled(BaseContainer)`
-  padding-bottom: 7.5em;
-  margin-top: 25%;
+export const Container = styled(BaseContainer)``
 
-  ${media.medium} {
-    padding-bottom: 0;
-  }
-
-  ${media.xlarge} {
-    margin-top: 15%;
-  }
-`
-
-export const Header = styled.div`
+export const TextContent = styled.div`
   max-width: 38rem;
   margin: 0 auto;
+  margin-top: 10em;
+
+  ${media.medium} {
+    margin-top: 7em;
+  }
+
+  ${media.small} {
+    margin-top: 5em;
+  }
 `
 
-export const Image = styled.div`
-  padding-bottom: calc(12em - 25%);
-  transform: translateY(-50%);
-`
-
-export const Title = styled(BaseTitle)``
-
-export const Text = styled(BaseText)``
-
-export const MapWrapper = styled.div`
-  padding-top: 6em;
+export const ImageContainer = styled.div`
   position: relative;
 
-  img {
-    width: 100%;
-  }
-`
-
-export const BasePanel = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: ${colors.lightBlack};
-  padding: 0.5em;
-  border-radius: 6px;
-  display: inline-flex;
-
-  &:after {
+  &:before {
     content: '';
-    width: 100%;
     display: block;
     position: absolute;
-    top: 50%;
     left: 0;
-    border-bottom: 3px solid ${colors.lightBlack};
+    height: 50%;
+    width: 100vw;
+    top: -1px;
+    background-color: ${({ theme }) => theme.colors.foreground};
   }
 `
 
-export const Panel = styled.div`
-  display: inline-flex;
-  background: ${({ theme }) => theme.colors.background};
-  color: ${({ theme }) => theme.colors.foreground};
-  font-size: calc(1.7em + (26 - 14) * ((100vw - 200px) / (1600 - 200)));
-  font-weight: bold;
-  min-width: calc(1.7em + (26 - 14) * ((100vw - 200px) / (1600 - 200)));
-  min-height: calc(1.7em + (26 - 14) * ((100vw - 200px) / (1600 - 200)));
-  border-radius: 2px;
-
-  &:not(:last-child) {
-    margin-right: 0.5rem;
-  }
-
-  span {
-    margin: auto;
-  }
-
-  &:nth-child(4) {
-    ${media.medium} {
-      display: none;
-    }
-
-    span {
-      position: relative;
-      top: -0.04em;
-    }
-  }
+export const ImageHolder = styled(BaseContainer)`
+  position: relative;
 `
+
+export const Img = styled(Image)``
+
+export const Title = styled(BaseTitle)`
+  margin-bottom: 0.5em;
+`
+
+export const Text = styled(BaseText)``

@@ -1,10 +1,10 @@
 import React from 'react'
-import Img, { FluidObject } from 'gatsby-image'
+import { FluidObject } from 'gatsby-image'
 import { graphql, useStaticQuery } from 'gatsby'
 
 import { Theme } from '@theme'
 import * as S from './styled'
-import GlobalMap from './globalMap'
+import Map from './Map'
 
 interface IGlobal {
   aboutYaml: {
@@ -29,17 +29,19 @@ const Global = () => {
   return (
     <Theme theme="dark">
       <S.Wrapper>
-        <S.Container>
-          <S.Image>
-            <Img alt={data.title} fluid={data.image.childImageSharp.fluid} />
-          </S.Image>
+        <S.ImageContainer>
+          <S.ImageHolder>
+            <S.Img alt={data.title} fluid={data.image.childImageSharp.fluid} />
+          </S.ImageHolder>
+        </S.ImageContainer>
 
-          <S.Header>
+        <S.Container>
+          <S.TextContent>
             <S.Title>{data.title}</S.Title>
             <S.Text>{data.text}</S.Text>
-          </S.Header>
+          </S.TextContent>
 
-          <GlobalMap />
+          <Map />
         </S.Container>
       </S.Wrapper>
     </Theme>

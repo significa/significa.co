@@ -1,9 +1,10 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
-import styled from '@theme'
-import { RightContent, Text as BaseText } from '../../UI'
+import { RightContent } from '../../UI'
 import { textByLine } from '../../../utils/textByLine'
+
+import * as S from './styled'
 
 interface IContent {
   aboutYaml: {
@@ -14,10 +15,6 @@ interface IContent {
   }
 }
 
-const Text = styled(BaseText)`
-  margin-bottom: 1em;
-`
-
 const Content = () => {
   const {
     aboutYaml: { content },
@@ -26,7 +23,7 @@ const Content = () => {
   return (
     <RightContent title={content.title}>
       {textByLine(content.text).map(e => (
-        <Text key={e}>{e}</Text>
+        <S.Text key={e}>{e}</S.Text>
       ))}
     </RightContent>
   )

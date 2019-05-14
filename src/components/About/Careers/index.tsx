@@ -44,9 +44,9 @@ const Careers = () => {
 
         <S.Gallery>
           {careers.photos.map(({ image, alt }) => (
-            <div key={alt}>
+            <S.ImgHolder key={alt}>
               <Img alt={alt} fluid={image.childImageSharp.fluid} />
-            </div>
+            </S.ImgHolder>
           ))}
         </S.Gallery>
       </S.Wrapper>

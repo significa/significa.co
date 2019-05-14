@@ -1,15 +1,15 @@
 import * as React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
-import worldMapSource from '../../../assets/world-map.svg'
+import worldMapSource from './world-map.svg'
 import * as S from './styled'
 
-const TIME_LETTER = 100
-const TIME_RANDOM_CITY = 6000
+const TIME_LETTER = 50
+const TIME_RANDOM_CITY = 5000
 
 const template = (city: string) => `OPO>${city}`
 
-const GlobalMap = () => {
+const Map = () => {
   const {
     aboutYaml: {
       global: { cities },
@@ -23,7 +23,9 @@ const GlobalMap = () => {
 
     return char[Math.floor(Math.random() * char.length)]
   })
-  const [currentCity, setCurrentCity] = React.useState(template(cities[0]))
+  const [currentCity, setCurrentCity] = React.useState(
+    template(cities[Math.floor(Math.random() * cities.length)])
+  )
   const [splitFlap, setSplitFlap] = React.useState(initialState)
 
   // Pass throught all letters
@@ -66,7 +68,7 @@ const GlobalMap = () => {
 
   return (
     <S.MapWrapper>
-      <img src={worldMapSource} alt="World map" />
+      <S.Map src={worldMapSource} alt="World map" />
 
       <S.BasePanel>
         {splitFlap.map((l, index) => (
@@ -79,10 +81,10 @@ const GlobalMap = () => {
   )
 }
 
-export default GlobalMap
+export default Map
 
 export const query = graphql`
-  query AboutGlobalMapQuery {
+  query AboutMapQuery {
     aboutYaml {
       global {
         cities

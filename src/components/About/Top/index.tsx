@@ -28,13 +28,13 @@ const Top = () => {
   return (
     <>
       <S.TopWrapper>
-        <S.Huge>{data.title}</S.Huge>
+        <S.Display>{data.title}</S.Display>
       </S.TopWrapper>
       <S.Gallery>
         {data.photos.map(({ image, alt }) => (
-          <div key={alt}>
+          <S.ImgHolder key={alt}>
             <Img alt={alt} fluid={image.childImageSharp.fluid} />
-          </div>
+          </S.ImgHolder>
         ))}
       </S.Gallery>
     </>

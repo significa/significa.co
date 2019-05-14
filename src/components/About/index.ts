@@ -1,0 +1,6 @@
+export { default as Top } from './Top'
+export { default as Content } from './Content'
+export { default as Global } from './Global'
+export { default as Careers } from './Careers'
+export { default as Team } from './Team'
+export { default as Services } from './Services'

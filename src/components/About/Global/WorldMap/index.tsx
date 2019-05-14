@@ -16,17 +16,19 @@ const WorldMap = () => {
     },
   } = useStaticQuery(query)
 
-  const initialState = new Array(7).fill(' ').map((_, index) => {
-    if (index === 3) {
-      return '>'
-    }
+  const initialState = () =>
+    new Array(7).fill(' ').map((_, index) => {
+      if (index === 3) {
+        return '>'
+      }
 
-    return char[Math.floor(Math.random() * char.length)]
-  })
+      return char[Math.floor(Math.random() * char.length)]
+    })
+
   const [currentCity, setCurrentCity] = React.useState(
     template(cities[Math.floor(Math.random() * cities.length)])
   )
-  const [splitFlap, setSplitFlap] = React.useState(initialState)
+  const [splitFlap, setSplitFlap] = React.useState(initialState())
 
   // Pass throught all letters
   const flipPanel = (curr: string[]) => {
@@ -48,7 +50,7 @@ const WorldMap = () => {
   const randomCity = () => {
     const city = cities[Math.floor(Math.random() * cities.length)]
     setCurrentCity(template(city))
-    setSplitFlap(initialState)
+    setSplitFlap(initialState())
   }
 
   // Call to update the letters

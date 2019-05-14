@@ -112,6 +112,10 @@ team:
       role: Backend Developer
       company: coletiv
 
+    - name: Miguel Ramos
+      role: intern
+      company: adamant
+
     - name: Pedro Brandão
       role: Founder / CEO
 
@@ -121,9 +125,6 @@ team:
     - name: Pedro Costa
       role: Backend Developer
       company: coletiv
-
-    - name: Robbie Hilado
-      role: Developer
 
     - name: Rui Sereno
       role: Business Development

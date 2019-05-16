@@ -2,7 +2,7 @@ import styled, { css, media } from '@theme'
 
 import PaddedWrapper from '../common/PaddedWrapper'
 
-import { Title as BaseTitle } from '../../../../UI'
+import { Title as BaseTitle, Label as BaseLabel } from '../../../../UI'
 
 export const Wrapper = styled(PaddedWrapper)<{ inverted?: boolean }>`
   margin: 0 -1.5em;
@@ -72,4 +72,10 @@ export const MediaContainer = styled.div`
 
 export const Title = styled(BaseTitle)`
   margin-bottom: 0.5rem;
+`
+
+export const Label = styled(BaseLabel).attrs({ as: 'small' })`
+  display: block;
+  color: ${({ theme }) => theme.colors.medium};
+  margin-bottom: 0.75em;
 `

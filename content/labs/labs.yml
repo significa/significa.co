@@ -37,9 +37,9 @@ content:
     source: medium
     tag: tutorial
     link: https://medium.com/significa/i18n-with-gatsby-528607b4da81
-  
+
   - title: Kicking-off Oopsie
-    tagline: How it became our longest running project. 
+    tagline: How it became our longest running project.
     image: ./images/oopsie.jpeg
     more: Article on Medium
     source: medium
@@ -70,4 +70,10 @@ content:
     tag: freebie
     link: https://dribbble.com/shots/4122610-Iconset-Freebie
 
-  
+  - title: CSS Only slider
+    tagline: Create a responsive card slider using CSS and HTML only
+    image: ./images/blog-css.png
+    more: Tutorial on Medium
+    source: medium
+    tag: tutorial
+    link: https://medium.com/significa/css-only-slider-71727effff0b

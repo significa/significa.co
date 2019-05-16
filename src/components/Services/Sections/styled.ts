@@ -119,6 +119,8 @@ export const Image = styled.img`
 
 // Development box
 export const DevelopmentBox = styled(LeftGraphics)`
+  overflow: scroll;
+
   pre {
     width: 100%;
     font-size: 0.85rem;

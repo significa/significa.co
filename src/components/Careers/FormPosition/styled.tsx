@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import {
   Input as BaseInput,
@@ -30,10 +30,22 @@ export const Error = styled(BaseText)`
   margin-bottom: 2rem;
 `
 
+export const Button = styled(BaseButton)`
+  min-height: 1.5rem;
+`
+
 export const ActionsWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+
+  ${media.small} {
+    display: block;
+
+    ${Button} {
+      margin-top: 2em;
+    }
+  }
 `
 
 export const Input = styled(BaseInput)`
@@ -46,10 +58,6 @@ export const Textarea = styled(BaseTextarea)`
   &:not(:last-child) {
     margin-bottom: 2rem;
   }
-`
-
-export const Button = styled(BaseButton)`
-  min-height: 1.5rem;
 `
 
 export const FileInput = styled(BaseFileInput)`

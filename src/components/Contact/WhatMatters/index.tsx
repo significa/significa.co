@@ -12,6 +12,7 @@ interface IWhatMatters {
       title: string
       text: string
       more: string
+      interested: string
       photos: {
         center: {
           childImageSharp: {
@@ -71,6 +72,7 @@ const WhatMatters: React.FC<IWhatMatters> = ({
             {textByLine(data.more).map((line, i) => (
               <S.MoreContent key={i}>{line}</S.MoreContent>
             ))}
+            <S.MoreContent>{data.interested}</S.MoreContent>
           </S.MoreWrapper>
         </S.Container>
       </S.Wrapper>
@@ -94,6 +96,7 @@ const whatMattersQuery = graphql`
         title
         text
         more
+        interested
         photos {
           center {
             childImageSharp {

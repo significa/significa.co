@@ -1,0 +1,418 @@
+date: 2019/01/01
+
+seo:
+  title: Opennode by Significa
+  description: The easiest way to accept bitcoin.
+
+# Main info
+title: Opennode.co
+tagline: Bitcoin, for everyday.
+description: |
+  OpenNode is an easy to use eCommerce and retail plug-in solution, payment infrastructure API for developers, and the fastest payment processor to allow for brand new payment models and instantaneous settlements.
+# Images
+hero: ./opennode/1-cover.png
+featured: ./opennode/cover-opennode.png
+thumbnail: ./opennode/cover-opennode.png
+
+# Settings
+heroTheme: opennode-grey
+mainTheme: opennode-light
+navigationTheme: opennode-dark
+themes:
+  - name: opennode-grey
+    background: '#EDF1F5'
+    foreground: '#1D2229'
+    highlight: '#2A97F7'
+    medium: 'rgba(0,0,0,0.4)'
+    subtle: '#4A4E53'
+    error: '#FF5050'
+
+  - name: opennode-light
+    background: '#FFFFFF'
+    foreground: '#1D2229'
+    highlight: '#2A97F7'
+    medium: '#999999'
+    subtle: '#4A4E53'
+    error: '#FF5050'
+
+  - name: opennode-dark
+    background: '#1D222A'
+    foreground: '#ffffff'
+    highlight: '#2A97F7'
+    medium: '#999999'
+    subtle: '#4A4E53'
+    error: '#FF5050'
+
+# Info
+client: OpenNode, Lda
+services:
+  - UI/UX
+  - Front End
+  - Illustration
+deliverables:
+  - Website
+  - Web App
+  - Illustrations
+links:
+  - link: https://www.opennode.co/
+    linkText: Website
+  - link: https://www.awwwards.com/sites/opennode
+    linkText: Awwwards
+
+content:
+  # Chapter
+  - title:
+    showTitle: false
+    content:
+      # Section
+      - title:
+        sections:
+          # Sections
+
+          - type: image
+            layout: medium
+            margin: bottom
+            content:
+              image: ./opennode/2-showoff.jpg
+
+    # Chapter
+  - title: Initial process
+    showTitle: true
+    theme: opennode-dark
+    content:
+      # Section
+      - title: Styleguide
+        sections:
+          # Sections
+
+          - type: text
+            margin: top
+            content:
+              title: Colours
+              text: Our main colour palette relies heavily on the contrast between dark and vibrant colours. We defined specific colours for certain states and an orange as a connection point to Bitcoin, with blue as the main colour used for highlights and calls to action. For the backgrounds we used lighter versions of the main ones.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./opennode/3-colours.jpg
+
+          - type: text
+            content:
+              title: Typography
+              text: Two different platforms, two different fonts. Vaud for that bold modern personality of the website. San Francisco, as the system font for MacOS, is optimized to give you unmatched legibility, consistency and performance on the Web App.
+
+          - type: gallery
+            margin: both
+            content:
+              columns: 2
+              items:
+                - image: ./opennode/4-fonts1.jpg
+                  span:
+                    normal: 1
+                    tablet: 1
+                    mobile: 2
+                - image: ./opennode/4-fonts2.png
+                  span:
+                    normal: 1
+                    tablet: 1
+                    mobile: 2
+
+          - type: text
+            content:
+              title: First Illustrations
+              text: For the illustrations we tested multiple alternatives and styles. On the first iteration the concept was intimately related to people on a parallel dimension, using devices and other elements that were relatable to the product, and on the second we focused on 3D styled elements.
+
+          - type: gallery
+            margin: both
+            content:
+              columns: 2
+              items:
+                - image: ./opennode/5-illustration1.jpg
+                  span:
+                    normal: 1
+                    tablet: 1
+                    mobile: 2
+                - image: ./opennode/5-illustration2.jpg
+                  span:
+                    normal: 1
+                    tablet: 1
+                    mobile: 2
+                - image: ./opennode/5-illustration3.jpg
+                  span:
+                    normal: 1
+                    tablet: 2
+                    mobile: 2
+                - image: ./opennode/5-illustration4.jpg
+                  span:
+                    normal: 1
+                    tablet: 2
+                    mobile: 2
+
+          - type: text
+            content:
+              title: Final Illustrations
+              text: Sometimes even when we are happy with the results, if it doesn’t feel right for the project, we go back to the drawing board! After some brainstorming, and few sketches we decided to take some risks.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./opennode/6-finalillustration.jpg
+
+          - type: text
+            content:
+              title: Icon sets
+              text: Just like the fonts, two different platforms, two different iconsets. For the platform we created a line icon set that would support the navigation items and actions.
+
+          - type: image
+            layout: normal
+            margin: both
+            content:
+              image: ./opennode/7-iconset.jpg
+
+          - type: text
+            content:
+              text: On the website, a set of illustrations that represent each of the platform's core features.
+
+          - type: image
+            layout: normal
+            margin: both
+            content:
+              image: ./opennode/8-iconset.jpg
+
+    # Chapter
+  - title: Website
+    showTitle: true
+    theme: opennode-dark
+    content:
+      # Section
+      - title: Website
+        sections:
+          # Sections
+
+          - type: text
+            margin: both
+            content:
+              title: Wireframes
+              text: Our obejctive was to represent the future way of making payments, portray the product story and show its features clearly and effectively and create a website that grabs the user’s full attention. So before creating "pretty pixels" we began by defining structure and content.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./opennode/9-wireframes.jpg
+
+          - type: text
+            content:
+              title: Website Launch
+              text: The website opennode.co was launched to showcase the platform’s beta version! A single source of truth to explain the platform’s core features!
+
+          - type: image
+            layout: full
+            content:
+              image: ./opennode/10-website.png
+
+          - type: image
+            layout: full
+            content:
+              image: ./opennode/11-website.jpg
+
+          - type: image
+            layout: full
+            margin: bottom
+            content:
+              image: ./opennode/12-website.jpg
+
+          - type: text
+            content:
+              title: Mobile
+              text: Even as a product for the future, we must not forget today's devices. We took that to heart and had special care when we designing the responsive version. Function was key when adapting the experience for on-the-go.
+
+          - type: image
+            layout: full
+            margin: both
+            content:
+              image: ./opennode/13-website-mobile.jpg
+
+    # Chapter
+  - title: Platform
+    showTitle: true
+    theme: opennode-dark
+    content:
+      # Section
+      - title: Platform
+        sections:
+          # Sections
+
+          - type: text
+            margin: both
+            content:
+              title: Redesign
+              text: After analysing all functionalities, flows and the user feedback from the already existing version of Openndode, it was clear that we needed to create a brand new design language to create a consistent, intuitive and pleasurable platform.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./opennode/14-platform.jpg
+
+          - type: text
+            content:
+              title: The Flow
+              text: In order to reduce complexity it was important to define priorities to achieve a platform that had a more intuitive user flows. We tried to understand which actions and elements had greater importance and relevance and which were the user's functional and behavioural expectations.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./opennode/15-map.jpg
+
+          - type: text
+            content:
+              title: Components
+              text: We created a design system that served as a visual guideline for consistency on the entire platform. We also kept detailed documentation that we updated regularly throughout the design process as single source of truth that ensured efficiency in our workflow.
+
+          - type: image
+            layout: full
+            margin: both
+            content:
+              image: ./opennode/16-components.jpg
+
+          - type: text
+            content:
+              title: Onboarding
+              text: Not every change we made was a visual one! Even though we were building a brand new Web App we couldn’t disregard older Opennode users. For usability sake we needed to guarantee that ALL users knew where every main action was and how to execute them. To achieve this we created an onboarding tour that allows users to get a sense of the entire platform, just like we normally do when visiting a new city.
+
+          - type: video
+            layout: large
+            margin: both
+            content:
+              video: ./opennode/17-onboarding.mp4
+              autoplay: true
+              loop: true
+              controls: false
+              muted: true
+
+          - type: text
+            content:
+              title: Getting Started
+              text: Creating an account with Opennode is FREE and extremely simple. Name, email and password is all we need. But in order for users to experience the platform's full potential they need to add a few things to their profiles. To simplify users' lives we created a checklist, so they could figure out which steps need completion in order to fully experience Opennode.
+
+          - type: image
+            layout: normal
+            margin: both
+            content:
+              image: ./opennode/18-checklist.jpg
+
+          - type: text
+            content:
+              title: Instant Exchange
+              text: The old version’s instant exchange was creating some confusion amongst users.Two very relevant but different actions had the same visual treatment and were next to each other. To solve this we moved the instant exchange button and placed it between currencies.
+
+          - type: video
+            layout: large
+            margin: both
+            content:
+              video: ./opennode/19-actions.mp4
+              autoplay: true
+              loop: true
+              controls: false
+              muted: true
+
+          - type: text
+            content:
+              title: New Page vs Modal
+              text: One of the biggest experience flaws of the old version of Opennode was the abusive use of modals. Every action opened a modal which didn’t allow for much leverage on secondary actions and extra details. That’s why we opted to open a new page as a consequence of every core action, allowing the user to focus entirely on his actions with step navigation always within reach with the use of breadcrumbs. Modals become more secondary and are now only used to view details.
+
+          - type: video
+            layout: large
+            margin: both
+            content:
+              video: ./opennode/20-bitcoinwithdrawal.mp4
+              autoplay: true
+              loop: true
+              controls: false
+              muted: true
+
+          - type: text
+            content:
+              title: Modals
+              text: With modals now being used for details, we still had to manage the way they display information. We opted to show only the essential information from the get go, allowing the user to extend it only when extremely necessary with a “show more” button.
+
+          - type: video
+            layout: large
+            margin: both
+            content:
+              video: ./opennode/21-modal.mp4
+              autoplay: true
+              loop: true
+              controls: false
+              muted: true
+
+          - type: text
+            content:
+              title: The “Grid system”
+              text: We created a grid that was indepent of the sidebar, allowing the user to focus on a more organised content. To enforce this idea, every action the user has to take is always placed on a small and specific area, highlighted below.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./opennode/22-grid.jpg
+
+          - type: text
+            content:
+              title: Retail Process
+              text: There are two ends to the retail process, the opennode user (the retailer) and the client. The process itself is very simple, the user creates an invoice for the purchased products and the client selects the preferred payment method.
+
+          - type: image
+            layout: full
+            margin: both
+            content:
+              image: ./opennode/23-retail.jpg
+
+          - type: text
+            content:
+              title: Mobile
+              text: Built like a native app, the platform adapts to the device. For retailers, the process is mostly done on a tablet or on a mobile, and that’s where the platform really shines.
+
+          - type: image
+            layout: full
+            margin: both
+            content:
+              image: ./opennode/24-mobile.jpg
+
+          - type: text
+            content:
+              title: Mobile Grids
+              text: Using the same 4-columns section of the desktop grid, everything feels right at home in this responsive version. The same components in the same place, with the same size, adapting only to the limitation of the screen.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./opennode/25-mobile-grid.png
+
+          - type: text
+            content:
+              title: Mobile Navigation
+              text: On the desktop version of the platform, the sidebar serves it’s navigation purpose by giving the user quick access to the platform’s core pages. On mobile, to allow the user the same level of practicality, we transformed the sidebar into a top menu for easy finger access.
+
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./opennode/26-mobile-nav.jpg
+
+          - type: text
+            content:
+              title: Dark Mode
+              text: For all the Opennode users that use the platform mainly at night, it was essential to create a dark mode. It not only lets the user focus more on the platform’s content but also isn’t too tiring on the eyes.
+
+          - type: comparison
+            layout: medium
+            margin: bottom
+            content:
+              a: opennode/27-comparison-dark.png
+              b: opennode/27-comparison-white.png

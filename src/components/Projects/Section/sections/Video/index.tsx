@@ -6,6 +6,7 @@ const Video = (props: IVideo) => {
   return (
     <video
       width="100%"
+      playsInline
       {...(props.autoplay ? { autoPlay: true } : {})}
       {...(props.loop ? { loop: true } : {})}
       {...(props.controls === false ? {} : { controls: true })}

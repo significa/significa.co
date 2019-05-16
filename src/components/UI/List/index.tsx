@@ -15,11 +15,12 @@ type ItemType =
 interface IList {
   items: ItemType[]
   color?: colorType
+  className?: string
 }
 
-const List: React.FC<IList> = ({ items, color }) => {
+const List: React.FC<IList> = ({ items, color, className }) => {
   return (
-    <S.Ul>
+    <S.Ul className={className}>
       {items.map((item: ItemType, index: number) => (
         <S.Li color={color} key={index}>
           {typeof item === 'string' ? (

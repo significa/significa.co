@@ -36,7 +36,7 @@ export const ImageContainer = styled.div`
     position: absolute;
     left: 0;
     height: 50%;
-    width: 100vw;
+    width: 100%;
     top: -1px;
     background-color: ${({ theme }) => theme.colors.foreground};
   }

@@ -37,6 +37,15 @@ global:
     - SYD
     - HAM
     - FLN
+    - SFO
+    - BER
+    - LAX
+    - AMS
+    - BSB
+    - ZRH
+    - LAS
+    - OTP
+    - ONT
 
 careers:
   title: Life here, in the heart of Porto.
@@ -99,6 +108,10 @@ team:
     - name: Lisa Cosme
       role: Design Intern
 
+    - name: Luís Catarino
+      role: Adamant CEO
+      company: adamant
+
     - name: Mariana Gomes
       role: Product Manager / Designer
 
@@ -113,7 +126,7 @@ team:
       company: coletiv
 
     - name: Miguel Ramos
-      role: intern
+      role: Cyber Security Intern
       company: adamant
 
     - name: Pedro Brandão

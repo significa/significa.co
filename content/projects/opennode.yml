@@ -44,7 +44,7 @@ themes:
     error: '#FF5050'
 
 # Info
-client: OpenNode, Lda
+client: OpenNode, Inc.
 services:
   - UI/UX
   - Front End
@@ -78,6 +78,7 @@ content:
     # Chapter
   - title: Initial process
     showTitle: true
+    margin: none
     theme: opennode-dark
     content:
       # Section

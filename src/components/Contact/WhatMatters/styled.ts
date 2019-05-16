@@ -1,4 +1,4 @@
-import styled, { media, css } from '@theme'
+import styled, { media } from '@theme'
 import Img from 'gatsby-image'
 import {
   Container as BaseContainer,

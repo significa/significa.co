@@ -6,7 +6,6 @@ import { Theme } from '@theme'
 import { RightContent } from '../../UI'
 import { textByLine } from '../../../utils/textByLine'
 import * as S from './styled'
-import { ArrowLink } from '../../UI/Links'
 
 interface ICareers {
   aboutYaml: {
@@ -39,7 +38,7 @@ const Careers = () => {
           {textByLine(careers.text).map(e => (
             <S.Text key={e}>{e}</S.Text>
           ))}
-          <ArrowLink to={careers.link}>{careers.linkText}</ArrowLink>
+          <S.ArrowLink to={careers.link}>{careers.linkText}</S.ArrowLink>
         </RightContent>
 
         <S.Gallery>

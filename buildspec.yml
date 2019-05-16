@@ -11,7 +11,6 @@ phases:
   build:
     commands:
       - npm run build
-      - echo "https://api.github.com/repos/significa/significa.co/issues/$(echo ${CODEBUILD_WEBHOOK_TRIGGER#pr/})/comments"
 
   post_build:
     commands:

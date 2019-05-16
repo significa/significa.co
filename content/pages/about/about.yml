@@ -71,7 +71,7 @@ team:
     - name: Ana Moreno
       role: Designer
 
-    - name: André Resendes
+    - name: André Furtado
       role: Creative Director
 
     - name: André Silva
@@ -93,17 +93,17 @@ team:
       role: Developer
 
     - name: David Magalhães
-      role: Backend Developer
+      role: Developer
       company: coletiv
 
     - name: Frederico Jesus
       role: Illustrator / Motion
 
     - name: Filipe Almeida
-      role: Product Designer
+      role: Designer
 
     - name: Isabel Sá
-      role: Front-end Developer
+      role: Developer
 
     - name: Lisa Cosme
       role: Design Intern
@@ -116,13 +116,13 @@ team:
       role: Product Manager / Designer
 
     - name: Mário Rodrigues
-      role: Product Designer
+      role: Designer
 
     - name: Márcio Pinto
-      role: Front-end Developer
+      role: Developer
 
-    - name: Nuno Marino
-      role: Backend Developer
+    - name: Nuno Marinho
+      role: Developer
       company: coletiv
 
     - name: Miguel Ramos
@@ -136,7 +136,7 @@ team:
       role: Designer
 
     - name: Pedro Costa
-      role: Backend Developer
+      role: Developer
       company: coletiv
 
     - name: Rui Sereno

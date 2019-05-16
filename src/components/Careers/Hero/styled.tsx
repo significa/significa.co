@@ -14,6 +14,10 @@ export const Wrapper = styled(Container)`
   ${media.small} {
     margin-top: 5em;
     margin-bottom: 5em;
+
+    > * {
+      display: inline;
+    }
   }
 `
 

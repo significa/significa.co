@@ -5,7 +5,7 @@ seo:
   description: A non-profit born at the intersection of blockchain and collective intelligence.
 
 # Main info
-title: AKASHA 
+title: AKASHA
 tagline: Blockchain & collective intelligence.
 description: |
   AKASHA Foundation is a non-profit born at the intersection of blockchain and collective intelligence. They nurture projects helping individuals unlock their potential through open systems  that expand our collective minds at local and global scales.
@@ -88,8 +88,8 @@ content:
             margin: top
             content:
               title: Culture & Purpose
-              text: AKASHA's voice and tone projects reflects who they are. Their brand must personify the values they have identified as critical to their purpose and culture. 
-          
+              text: AKASHA's voice and tone projects reflects who they are. Their brand must personify the values they have identified as critical to their purpose and culture.
+
           - type: image
             layout: small
             margin: bottom
@@ -99,8 +99,8 @@ content:
           - type: text
             content:
               title: Colours
-              text: Colour helps every brand to distinguish itself by adding consistency in all forms of communication, media and products. We use color in all expressions of the AKASHA brand, from illustrations to simple elements. Our palette uses colours to bring the personality of our brand used in logical ways throughout all communications products to guide the user and highlight every important point. 
-        
+              text: Colour helps every brand to distinguish itself by adding consistency in all forms of communication, media and products. We use color in all expressions of the AKASHA brand, from illustrations to simple elements. Our palette uses colours to bring the personality of our brand used in logical ways throughout all communications products to guide the user and highlight every important point.
+
           - type: image
             layout: normal
             margin: both
@@ -110,14 +110,13 @@ content:
           - type: text
             content:
               title: Typography
-              text: Meet our brand typeface, Averta Standard! It’s a geometric sans serif family with a simplistic, yet appealing, personality. The purely geometric rounds and open apertures manage to express an unmoderated, straightforward tone resulting in a modernist, neutral and friendly typeface. 
-        
+              text: Meet our brand typeface, Averta Standard! It’s a geometric sans serif family with a simplistic, yet appealing, personality. The purely geometric rounds and open apertures manage to express an unmoderated, straightforward tone resulting in a modernist, neutral and friendly typeface.
+
           - type: image
             layout: normal
             margin: both
             content:
               image: ./akasha/5-font.png
-
 
     # Chapter
   - title: Illustrations
@@ -184,8 +183,8 @@ content:
             margin: both
             content:
               title: Wireframes
-              text: With the number of projects and the research group growing came the necessity of creating a new website that could clearly show the community what AKASHA was developing. Quick(er) to do and easy to analyse, wireframes are our favourite way of defining structure and content without compromising the design. 
-          
+              text: With the number of projects and the research group growing came the necessity of creating a new website that could clearly show the community what AKASHA was developing. Quick(er) to do and easy to analyse, wireframes are our favourite way of defining structure and content without compromising the design.
+
           - type: image
             layout: medium
             margin: top
@@ -197,7 +196,7 @@ content:
             content:
               title: Website
               text: This new website marks a new step for AKASHA Foundation. We aimed for a friendly, coherent and strong brand that’s present in every design decision, from each individual design element to more complex layers, such as illustrations.
-          
+
           - type: image
             layout: medium
             margin: both
@@ -208,7 +207,7 @@ content:
             margin: both
             content:
               text: The new website shows the multiple subjects that AKASHA’s team is working on at the moment. As one of the best ways to share progress with the community, the AKASHA Blog became the go-to platform to track the progress and direction of the Foundation’s projects.
-          
+
           - type: image
             layout: medium
             margin: both
@@ -219,7 +218,7 @@ content:
             margin: both
             content:
               text: Got lost in space? Grab on to the nearest UFO to find your way home.
-          
+
           - type: image
             layout: medium
             margin: both
@@ -248,10 +247,11 @@ content:
               text: With so much content, we need to implement a search tool to help with the users find what they are looking for. By text and categories, the user can find the latest projects from the AKASHA foundation or find the newest article on the blog.
 
           - type: image
-            layout: full
+            layout: medium
+            theme: akasha-grey
             margin: both
             content:
-              image: ./akasha/16-search.png
+              image: ./akasha/16-search.jpg
 
       # Section
       - title: Mobile
@@ -263,7 +263,7 @@ content:
             content:
               title: Responsive
               text: So that the users of today can embrace the technlogy of tomorrow, it needs to be reachable on-the-go. That’s why the AKASHA Foundation website is full responsive.
-          
+
           - type: image
             layout: large
             margin: top
@@ -275,5 +275,3 @@ content:
             margin: both
             content:
               image: ./akasha/18-blog.png
-
-          

@@ -72,7 +72,7 @@ const SEO: React.FC<ISEOProps> = ({
     return { ...prev, [name]: value }
   }, {})
 
-  const { siteUrl } = site.siteMetadata
+  const { siteUrl, author } = site.siteMetadata
   const metaDescription = description || site.siteMetadata.description
   const currentTitle = title || site.siteMetadata.title
   const defaultTitleTemplate = title
@@ -92,6 +92,14 @@ const SEO: React.FC<ISEOProps> = ({
           content: metaDescription,
         },
         {
+          property: `og:url`,
+          content: siteUrl,
+        },
+        {
+          property: `og:site_name`,
+          content: currentTitle,
+        },
+        {
           property: `og:title`,
           content: currentTitle,
         },
@@ -109,15 +117,19 @@ const SEO: React.FC<ISEOProps> = ({
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `twitter:image`,
           content: `${siteUrl}${image || twittercardImage}`,
         },
         {
+          name: `twitter:site`,
+          content: author,
+        },
+        {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: author,
         },
         {
           name: `twitter:title`,

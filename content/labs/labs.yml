@@ -14,45 +14,45 @@ tags:
     tag: freebie
 
 content:
-  - title: Article Title
-    tagline: Something crazy would be here about this article
-    image: ./images/moinho.png
-    more: Article on Medium
-    source: medium
-    tag: article
-    link: https://blog.significa.co/on-creating-synergies-60cce7486296
-
   - title: On creating synergies
     tagline: Sharing without compromising our identity.
-    image: ./images/umbrella.png
+    image: ./images/synergies.png
     more: Article on Medium
     source: medium
     tag: article
-    link: https://blog.significa.co/on-creating-synergies-60cce7486296
+    link: https://blog.significa.pt/on-creating-synergies-60cce7486296
 
-  - title: How a new office improved our productivity
-    tagline: Something cool here
-    image: ./images/sunset.png
-    more: Article on Medium
+  - title: Advanced blog system in Gatsby
+    tagline: Create a complete blog from scratch
+    image: ./images/blog-gatsby.png
+    more: Tutorial on Medium
     source: medium
     tag: article
-    link: https://blog.significa.co/on-creating-synergies-60cce7486296
+    link: https://blog.significa.pt/advanced-blog-system-in-gatsby-16e0cd6b85ad
 
   - title: i18n with Gatsby
-    tagline: Taking advantage of Gatsby nodes to add internationalisation to a Gatsby project.
+    tagline: The advantage of Gatsby nodes to add internationalisation to a Gatsby project.
     image: ./images/i18n.png
     more: Tutorial on Medium
     source: medium
     tag: tutorial
-    link: https://blog.significa.co/i18n-with-gatsby-528607b4da81
+    link: https://medium.com/significa/i18n-with-gatsby-528607b4da81
+  
+  - title: Kicking-off Oopsie
+    tagline: How it became our longest running project. 
+    image: ./images/oopsie.jpeg
+    more: Article on Medium
+    source: medium
+    tag: article
+    link: https://blog.significa.pt/episode-1-kicking-off-oopsie-213458a73063
 
-  - title: Freebie Title
-    tagline: Something cool that can  really describe the article here
-    image: ./images/synergies.png
-    more: Dribbble freebie
-    source: dribbble
-    tag: freebie
-    link: https://google.com/
+  - title: Dark UI
+    tagline: Why, When & Where?
+    image: ./images/blog-dark.png
+    more: Article on Medium
+    source: medium
+    tag: article
+    link: https://blog.significa.pt/dark-ui-why-when-where-987775229b9e
 
   - title: React Snuggle
     tagline: Snuggle your components really tight
@@ -61,3 +61,13 @@ content:
     source: github
     tag: repo
     link: https://github.com/Significa/react-snuggle/
+
+  - title: Rocket.Chat Iconset
+    tagline: Lined Icon family for Sketch
+    image: ./images/blog-iconset.png
+    more: Dribbble freebie
+    source: dribbble
+    tag: freebie
+    link: https://dribbble.com/shots/4122610-Iconset-Freebie
+
+  

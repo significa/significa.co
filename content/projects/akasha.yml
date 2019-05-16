@@ -275,3 +275,26 @@ content:
             margin: both
             content:
               image: ./akasha/18-blog.png
+
+    # Chapter
+  - title: The App
+    margin: bottom
+    showTitle: true
+    theme: akasha-dark
+    content:
+      # Section
+      - title: Coming Soon
+        sections:
+          # Sections
+          - type: text
+            margin: both
+            content:
+              title: The AKASHA App
+              text: |
+                The AKASHA app is synonymous with the establishment of the AKASHA Foundation back in the days when they described their work as an experiment — they’re big fans of learning by doing. Stay tuned as we add more on the app in the coming weeks.
+
+          - type: image
+            layout: large
+            margin: bottom
+            content:
+              image: ./akasha/19-app.png

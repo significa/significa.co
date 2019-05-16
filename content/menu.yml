@@ -7,11 +7,11 @@
 - label: Services
   link: /services
 
-- label: Labs
-  link: /labs
-
 - label: Careers
   link: /careers
+
+- label: Labs
+  link: /labs
 
 - label: Contact
   link: /contact

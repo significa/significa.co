@@ -8,11 +8,11 @@ seo:
 title: Opennode.co
 tagline: Bitcoin, for everyday.
 description: |
-    OpenNode is an easy to use eCommerce and retail plug-in solution, payment infrastructure API for developers, and the fastest payment processor to allow for brand new payment models and instantaneous settlements.
+  OpenNode is an easy to use eCommerce and retail plug-in solution, payment infrastructure API for developers, and the fastest payment processor to allow for brand new payment models and instantaneous settlements.
 # Images
 hero: ./opennode/1-cover.png
-featured: ./grohappy/cover-grohappy.png
-thumbnail: ./grohappy/cover-grohappy.png
+featured: ./opennode/cover-opennode.png
+thumbnail: ./opennode/cover-opennode.png
 
 # Settings
 heroTheme: opennode-grey
@@ -61,20 +61,19 @@ links:
 
 content:
   # Chapter
-  - title: 
+  - title:
     showTitle: false
     content:
       # Section
-      - title: 
+      - title:
         sections:
-          
           # Sections
 
           - type: image
             layout: medium
             margin: bottom
             content:
-              image: ./opennode/2-showoff.png
+              image: ./opennode/2-showoff.jpg
 
     # Chapter
   - title: Initial process
@@ -84,7 +83,6 @@ content:
       # Section
       - title: Styleguide
         sections:
-          
           # Sections
 
           - type: text
@@ -97,7 +95,7 @@ content:
             layout: medium
             margin: both
             content:
-              image: ./opennode/3-colours.png
+              image: ./opennode/3-colours.jpg
 
           - type: text
             content:
@@ -109,7 +107,7 @@ content:
             content:
               columns: 2
               items:
-                - image: ./opennode/4-fonts1.png
+                - image: ./opennode/4-fonts1.jpg
                   span:
                     normal: 1
                     tablet: 1
@@ -130,22 +128,22 @@ content:
             content:
               columns: 2
               items:
-                - image: ./opennode/5-illustration1.png
+                - image: ./opennode/5-illustration1.jpg
                   span:
                     normal: 1
                     tablet: 1
                     mobile: 2
-                - image: ./opennode/5-illustration2.png
+                - image: ./opennode/5-illustration2.jpg
                   span:
                     normal: 1
                     tablet: 1
                     mobile: 2
-                - image: ./opennode/5-illustration3.png
+                - image: ./opennode/5-illustration3.jpg
                   span:
                     normal: 1
                     tablet: 2
                     mobile: 2
-                - image: ./opennode/5-illustration4.png
+                - image: ./opennode/5-illustration4.jpg
                   span:
                     normal: 1
                     tablet: 2
@@ -160,7 +158,7 @@ content:
             layout: medium
             margin: both
             content:
-              image: ./opennode/6-finalillustration.png
+              image: ./opennode/6-finalillustration.jpg
 
           - type: text
             content:
@@ -171,7 +169,7 @@ content:
             layout: normal
             margin: both
             content:
-              image: ./opennode/7-iconset.png
+              image: ./opennode/7-iconset.jpg
 
           - type: text
             content:
@@ -181,7 +179,7 @@ content:
             layout: normal
             margin: both
             content:
-              image: ./opennode/8-iconset.png
+              image: ./opennode/8-iconset.jpg
 
     # Chapter
   - title: Website
@@ -191,7 +189,6 @@ content:
       # Section
       - title: Website
         sections:
-          
           # Sections
 
           - type: text
@@ -204,7 +201,7 @@ content:
             layout: medium
             margin: both
             content:
-              image: ./opennode/9-wireframes.png
+              image: ./opennode/9-wireframes.jpg
 
           - type: text
             content:
@@ -213,20 +210,19 @@ content:
 
           - type: image
             layout: full
-            margin: both
             content:
               image: ./opennode/10-website.png
 
           - type: image
             layout: full
             content:
-              image: ./opennode/11-website.png
+              image: ./opennode/11-website.jpg
 
           - type: image
             layout: full
             margin: bottom
             content:
-              image: ./opennode/12-website.png
+              image: ./opennode/12-website.jpg
 
           - type: text
             content:
@@ -237,8 +233,7 @@ content:
             layout: full
             margin: both
             content:
-              image: ./opennode/13-website-mobile.png
-
+              image: ./opennode/13-website-mobile.jpg
 
     # Chapter
   - title: Platform
@@ -248,7 +243,6 @@ content:
       # Section
       - title: Platform
         sections:
-          
           # Sections
 
           - type: text
@@ -256,89 +250,105 @@ content:
             content:
               title: Redesign
               text: After analysing all functionalities, flows and the user feedback from the already existing version of Openndode, it was clear that we needed to create a brand new design language to create a consistent, intuitive and pleasurable platform.
-          
+
           - type: image
             layout: medium
             margin: both
             content:
-              image: ./opennode/14-platform.png
+              image: ./opennode/14-platform.jpg
 
           - type: text
             content:
               title: The Flow
               text: In order to reduce complexity it was important to define priorities to achieve a platform that had a more intuitive user flows. We tried to understand which actions and elements had greater importance and relevance and which were the user's functional and behavioural expectations.
-          
+
           - type: image
             layout: medium
             margin: both
             content:
-              image: ./opennode/15-map.png
+              image: ./opennode/15-map.jpg
 
           - type: text
             content:
               title: Components
               text: We created a design system that served as a visual guideline for consistency on the entire platform. We also kept detailed documentation that we updated regularly throughout the design process as single source of truth that ensured efficiency in our workflow.
-          
+
           - type: image
             layout: full
             margin: both
             content:
-              image: ./opennode/16-components.png
+              image: ./opennode/16-components.jpg
 
           - type: text
             content:
               title: Onboarding
               text: Not every change we made was a visual one! Even though we were building a brand new Web App we couldn’t disregard older Opennode users. For usability sake we needed to guarantee that ALL users knew where every main action was and how to execute them. To achieve this we created an onboarding tour that allows users to get a sense of the entire platform, just like we normally do when visiting a new city.
-          
-          - type: image
-            layout: medium
+
+          - type: video
+            layout: large
             margin: both
             content:
-              image: ./opennode/17-onboarding.png
+              video: ./opennode/17-onboarding.mp4
+              autoplay: true
+              loop: true
+              controls: false
+              muted: true
 
           - type: text
             content:
               title: Getting Started
               text: Creating an account with Opennode is FREE and extremely simple. Name, email and password is all we need. But in order for users to experience the platform's full potential they need to add a few things to their profiles. To simplify users' lives we created a checklist, so they could figure out which steps need completion in order to fully experience Opennode.
-          
+
           - type: image
             layout: normal
             margin: both
             content:
-              image: ./opennode/18-checklist.png
+              image: ./opennode/18-checklist.jpg
 
           - type: text
             content:
               title: Instant Exchange
               text: The old version’s instant exchange was creating some confusion amongst users.Two very relevant but different actions had the same visual treatment and were next to each other. To solve this we moved the instant exchange button and placed it between currencies.
 
-          - type: image
-            layout: medium
+          - type: video
+            layout: large
             margin: both
             content:
-              image: ./opennode/19-actions.png
+              video: ./opennode/19-actions.mp4
+              autoplay: true
+              loop: true
+              controls: false
+              muted: true
 
           - type: text
             content:
               title: New Page vs Modal
               text: One of the biggest experience flaws of the old version of Opennode was the abusive use of modals. Every action opened a modal which didn’t allow for much leverage on secondary actions and extra details. That’s why we opted to open a new page as a consequence of every core action, allowing the user to focus entirely on his actions with step navigation always within reach with the use of breadcrumbs. Modals become more secondary and are now only used to view details.
 
-          - type: image
-            layout: medium
+          - type: video
+            layout: large
             margin: both
             content:
-              image: ./opennode/20-bitcoinwithdrawal.png
+              video: ./opennode/20-bitcoinwithdrawal.mp4
+              autoplay: true
+              loop: true
+              controls: false
+              muted: true
 
           - type: text
             content:
               title: Modals
               text: With modals now being used for details, we still had to manage the way they display information. We opted to show only the essential information from the get go, allowing the user to extend it only when extremely necessary with a “show more” button.
 
-          - type: image
-            layout: medium
+          - type: video
+            layout: large
             margin: both
             content:
-              image: ./opennode/21-modal.png
+              video: ./opennode/21-modal.mp4
+              autoplay: true
+              loop: true
+              controls: false
+              muted: true
 
           - type: text
             content:
@@ -349,7 +359,7 @@ content:
             layout: medium
             margin: both
             content:
-              image: ./opennode/22-grid.png
+              image: ./opennode/22-grid.jpg
 
           - type: text
             content:
@@ -357,10 +367,10 @@ content:
               text: There are two ends to the retail process, the opennode user (the retailer) and the client. The process itself is very simple, the user creates an invoice for the purchased products and the client selects the preferred payment method.
 
           - type: image
-            layout: medium
+            layout: full
             margin: both
             content:
-              image: ./opennode/23-retail.png
+              image: ./opennode/23-retail.jpg
 
           - type: text
             content:
@@ -371,8 +381,7 @@ content:
             layout: full
             margin: both
             content:
-              image: ./opennode/24-mobile.png
-
+              image: ./opennode/24-mobile.jpg
 
           - type: text
             content:
@@ -388,35 +397,22 @@ content:
           - type: text
             content:
               title: Mobile Navigation
-              text: On the desktop version of the platform, the sidebar serves it’s navigation purpose by giving the user quick access to the platform’s core pages. On mobile, to allow the user the same level of practicality, we transformed the sidebar into a top menu for easy finger access. 
+              text: On the desktop version of the platform, the sidebar serves it’s navigation purpose by giving the user quick access to the platform’s core pages. On mobile, to allow the user the same level of practicality, we transformed the sidebar into a top menu for easy finger access.
 
           - type: image
             layout: medium
             margin: both
             content:
-              image: ./opennode/26-mobile-nav.png
+              image: ./opennode/26-mobile-nav.jpg
 
           - type: text
             content:
               title: Dark Mode
               text: For all the Opennode users that use the platform mainly at night, it was essential to create a dark mode. It not only lets the user focus more on the platform’s content but also isn’t too tiring on the eyes.
-          
+
           - type: comparison
             layout: medium
             margin: bottom
             content:
               a: opennode/27-comparison-dark.png
               b: opennode/27-comparison-white.png
-
-          - type: testimonial
-            theme: opennode-dark
-            margin: both
-            content:
-              text: The website defined the way that people look at our products.
-              author: Beatriz Barros, Founder
-
-
-
-
-
-        

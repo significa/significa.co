@@ -78,6 +78,7 @@ content:
     # Chapter
   - title: Initial process
     showTitle: true
+    margin: none
     theme: opennode-dark
     content:
       # Section

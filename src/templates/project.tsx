@@ -4,7 +4,11 @@ import { graphql } from 'gatsby'
 import { Theme, IColorsTheme } from '@theme'
 
 import { getProjectTheme } from '../utils/getProjectTheme'
-import { IImageObject, ISection } from '../components/Projects/Section/types'
+import {
+  IImageObject,
+  ISection,
+  marginTypes,
+} from '../components/Projects/Section/types'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
@@ -26,6 +30,7 @@ export type ContentType = Array<{
   title?: string
   theme?: string
   showTitle?: boolean
+  margin?: marginTypes
   content: Array<{
     title?: string
     sections: ISection[]
@@ -146,7 +151,7 @@ const Project = ({ data, pageContext: { next } }: IProject) => {
                     </Theme>
                   )}
                 >
-                  <Chapter title={chapter.title} />
+                  <Chapter title={chapter.title} margin={chapter.margin} />
                 </ConditionalWrap>
               )}
               {chapter.content.map(block => {
@@ -237,6 +242,7 @@ export const query = graphql`
         title
         theme
         showTitle
+        margin
         content {
           title
           sections {

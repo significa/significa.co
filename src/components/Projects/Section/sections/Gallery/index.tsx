@@ -18,7 +18,14 @@ const Gallery: React.FC<IGallery> = ({ items, columns, caption }) => (
               <Img fluid={imageItem.image.childImageSharp.fluid} />
             )}
             {videoItem.video && (
-              <video width="100%" autoPlay loop muted controls={false}>
+              <video
+                width="100%"
+                autoPlay
+                playsInline
+                loop
+                muted
+                controls={false}
+              >
                 <source src={videoItem.video.publicURL} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>

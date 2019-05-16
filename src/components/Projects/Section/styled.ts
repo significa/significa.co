@@ -1,7 +1,7 @@
 import styled, { css, media } from '@theme'
 import { marginTypes } from './types'
 
-const getMargins = (p: { margin?: marginTypes }) => {
+export const getMargins = (p: { margin?: marginTypes }) => {
   if (p.margin && p.margin !== 'none') {
     const hasTop = p.margin === 'top' || p.margin === 'both'
     const hasBottom = p.margin === 'bottom' || p.margin === 'both'

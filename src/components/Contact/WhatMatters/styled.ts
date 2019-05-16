@@ -47,8 +47,12 @@ export const MoreWrapper = styled.div`
   display: block;
   max-width: 38em;
 
-  ${media.small} {
+  ${media.medium} {
     margin-top: 5em;
+  }
+
+  ${media.small} {
+    margin-top: 3em;
   }
 `
 
@@ -69,12 +73,15 @@ export const ImagesGrid = styled.div`
   grid-template: repeat(2, 1fr) / repeat(3, 1fr);
 
   ${media.medium} {
+    margin-top: 5rem;
     grid-template-columns: repeat(2, 1fr);
     grid-row-gap: 3rem;
   }
 
   ${media.small} {
-    display: none;
+    margin-top: 3rem;
+    grid-template-columns: 1fr;
+    grid-row-gap: 0;
   }
 `
 
@@ -83,6 +90,10 @@ export const TopLeftImage = styled(Img)`
 
   ${media.medium} {
     margin: 0;
+  }
+
+  ${media.small} {
+    display: none;
   }
 `
 
@@ -125,5 +136,9 @@ export const BottomRightImage = styled(Img)`
 
   ${media.medium} {
     margin: 0;
+  }
+
+  ${media.small} {
+    display: none;
   }
 `

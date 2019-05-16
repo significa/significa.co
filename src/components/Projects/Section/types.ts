@@ -97,6 +97,7 @@ interface IStickyBase {
   sticky: boolean
   invert: boolean
   text: string
+  sectionLabel: string
   title?: string
 }
 

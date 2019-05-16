@@ -8,7 +8,7 @@ export const SocialLink = styled.a.attrs({
 
   ${media.hover} {
     &:hover {
-      opacity: 0.8;
+      opacity: 0.7;
     }
   }
 `

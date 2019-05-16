@@ -15,6 +15,9 @@ const Sticky = (props: ISticky) => {
     <S.Wrapper inverted={props.invert}>
       <S.TextContainer>
         <S.TextSticky sticky={props.sticky}>
+          {props.title && props.sectionLabel && (
+            <S.Label>{props.sectionLabel}</S.Label>
+          )}
           {props.title && <S.Title>{props.title}</S.Title>}
           {textByLine(props.text).map((line, i) => (
             <Text key={i}>{line}</Text>
@@ -26,7 +29,7 @@ const Sticky = (props: ISticky) => {
           <Img fluid={imageItem.image.childImageSharp.fluid} />
         )}
         {videoItem.video && (
-          <video width="100%" autoPlay loop muted controls={false}>
+          <video width="100%" autoPlay playsInline loop muted controls={false}>
             <source src={videoItem.video.publicURL} type="video/mp4" />
             Your browser does not support the video tag.
           </video>

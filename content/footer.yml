@@ -11,6 +11,8 @@
   items:
     - label: Home
       link: /
+    - label: About
+      link: /about
     - label: Showcase
       link: /showcase
     - label: Services

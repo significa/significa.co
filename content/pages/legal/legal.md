@@ -36,8 +36,8 @@ The independent authority that upholds information rights in the public interest
 Significa, Lda.  
 Registered address: Casa do Soto, 4540- 226 Burgo, Arouca, Portugal  
 Company VAT Number PT513884556  
-Email: office@significa.co  
-Website: https://significa.co
+Email: [office@significa.co](mailto:office@significa.co)
+Website: [https://significa.co](https://significa.co)
 
 ### Information we may collect from you
 
@@ -137,14 +137,14 @@ Other reasons Significa may share your personal information with a third party �
 Significa will respect your legal rights to your data. Below are the rights that you have under law, and what Significa does to protect those rights:
 
 - The right to be informed: Significa is publishing this Privacy Policy to keep you informed as to what we do with your personal information. We strive to be transparent about how we use your data.
-- The right to access: You have the right to access your information. Please contact Significa’s Data Protection Officer at office@significa.com if you wish to access the personal information Significa holds about you.
-- The right to rectification: If the information Significa holds about you is inaccurate or not complete, you have the right to ask us to rectify it. If that data has been passed to a third party with your consent or for legal reasons, then we must also ask them to rectify the data. Please contact our Data Protection Officer if you need us to rectify your information: office@significa.co.
-- The right to erasure: This is sometimes called ‘the right to be forgotten’. If you want Significa to erase all your personal data and we do not have a legal reason to continue to process and hold it, please contact our Data Protection Officer: office@significa.co
-- The right to restrict processing: You have the right to ask Significa to restrict how we process your data. This means we are permitted to store the data but not further process it. We keep just enough data to make sure we respect your request in the future. If you want Us to restrict processing of your data, please contact our Data Protection Officer: office@significa.co
-- The right to data portability: Significa must allow you to obtain and reuse your personal data for your own purposes across services in a safe and secure way without this affecting the usability of your data. Please contact our Data Protection Officer if you want information on how to port your data elsewhere: office@significa.co. This right only applies to personal data that you have provided to us as the Data Controller. The data must be held by us by consent or for the performance of a contract.
-- The right to object: You have the right to object to Significa processing your data even if it is based on our legitimate interests, the exercise of official authority, direct marketing (including data aggregation), and processing for the purposeless of statistics. If you wish to object please contact our Data Protection Officer: office@significa.co
-- The right to withdraw consent: If you have given us your consent to process your data but change your mind later, you have the right to withdraw your consent at any time, and Significa must stop processing your data. If you want to withdraw your consent, please contact our Data Protection Officer: office@significa.co
-- The right to complain to a Supervisory Authority: You have the right to complain to the CNPD if you feel that Significa has not responded to your requests to solve a problem. You can find their contact details here: https://www.cnpd.pt
+- The right to access: You have the right to access your information. Please contact Significa’s Data Protection Officer at [office@significa.co](mailto:office@significa.co) if you wish to access the personal information Significa holds about you.
+- The right to rectification: If the information Significa holds about you is inaccurate or not complete, you have the right to ask us to rectify it. If that data has been passed to a third party with your consent or for legal reasons, then we must also ask them to rectify the data. Please contact our Data Protection Officer if you need us to rectify your information: [office@significa.co](mailto:office@significa.co).
+- The right to erasure: This is sometimes called ‘the right to be forgotten’. If you want Significa to erase all your personal data and we do not have a legal reason to continue to process and hold it, please contact our Data Protection Officer: [office@significa.co](mailto:office@significa.co)
+- The right to restrict processing: You have the right to ask Significa to restrict how we process your data. This means we are permitted to store the data but not further process it. We keep just enough data to make sure we respect your request in the future. If you want Us to restrict processing of your data, please contact our Data Protection Officer: [office@significa.co](mailto:office@significa.co)
+- The right to data portability: Significa must allow you to obtain and reuse your personal data for your own purposes across services in a safe and secure way without this affecting the usability of your data. Please contact our Data Protection Officer if you want information on how to port your data elsewhere: [office@significa.co](mailto:office@significa.co). This right only applies to personal data that you have provided to us as the Data Controller. The data must be held by us by consent or for the performance of a contract.
+- The right to object: You have the right to object to Significa processing your data even if it is based on our legitimate interests, the exercise of official authority, direct marketing (including data aggregation), and processing for the purposeless of statistics. If you wish to object please contact our Data Protection Officer: [office@significa.co](mailto:office@significa.co)
+- The right to withdraw consent: If you have given us your consent to process your data but change your mind later, you have the right to withdraw your consent at any time, and Significa must stop processing your data. If you want to withdraw your consent, please contact our Data Protection Officer: [office@significa.co](mailto:office@significa.co)
+- The right to complain to a Supervisory Authority: You have the right to complain to the CNPD if you feel that Significa has not responded to your requests to solve a problem. You can find their contact details here: [https://www.cnpd.pt](https://www.cnpd.pt)
 
 ### Cookies
 
@@ -179,7 +179,8 @@ Safari (Mac Only):
 
 The term "Do Not Track" refers to a HTTP header offered by certain web browsers to request that websites refrain from tracking the user. We take action when possible in response to Do Not Track requests.
 
-For further information regarding cookies, please visit www.allaboutcookies.org.
+For further information regarding cookies, please visit
+[www.allaboutcookies.org](www.allaboutcookies.org)
 
 ### Links to Other Websites
 

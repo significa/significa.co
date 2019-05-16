@@ -1,6 +1,11 @@
 import styled, { media } from '@theme'
 import Img from 'gatsby-image'
-import { Container as BaseContainer, Display, Big as BaseBig } from '../../UI'
+import {
+  Container as BaseContainer,
+  Display,
+  Big as BaseBig,
+  List as BaseList,
+} from '../../UI'
 
 export const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.background};
@@ -38,14 +43,9 @@ export const SubText = styled(BaseBig)`
 `
 
 export const MoreWrapper = styled.div`
-  margin-top: 7.5rem;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-column-gap: 3em;
-
-  ${media.medium} {
-    display: block;
-  }
+  margin: 7.5rem auto 0;
+  display: block;
+  max-width: 38em;
 
   ${media.small} {
     margin-top: 5em;
@@ -53,15 +53,13 @@ export const MoreWrapper = styled.div`
 `
 
 export const MoreContent = styled(BaseBig)`
-  grid-column: 5 / 11;
-
   &:not(:last-of-type) {
     margin-bottom: 1.5rem;
   }
+`
 
-  ${media.large} {
-    grid-column: 3 / -1;
-  }
+export const List = styled(BaseList)`
+  margin-top: 1rem;
 `
 
 export const ImagesGrid = styled.div`

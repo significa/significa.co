@@ -34,7 +34,7 @@ about:
     linkText: More on us
 
   images:
-    - image: ./careers-middle-1@2x.jpg
+    - image: ./careers-middle-1@2x.png
       alt: A day at Significa
 
     - image: ./careers-middle-2@2x.png
@@ -54,7 +54,7 @@ about:
 
 adayatsignifica:
   top:
-    - image: ./careers-middle-1@2x.jpg
+    - image: ./careers-middle-1@2x.png
       alt: A day at Significa
 
     - image: ./careers-middle-2@2x.png
@@ -125,19 +125,19 @@ perks:
       egg: flexible
 
   images:
-    - image: ./careers-bottom-1@2x.jpg
+    - image: ./careers-bottom-1@2x.png
       alt: A day at Significa
 
-    - image: ./careers-bottom-2@2x.jpg
+    - image: ./careers-bottom-2@2x.png
       alt: A day at Significa
 
-    - image: ./careers-bottom-3@2x.jpg
+    - image: ./careers-bottom-3@2x.png
       alt: A day at Significa
 
-    - image: ./careers-bottom-4@2x.jpg
+    - image: ./careers-bottom-4@2x.png
       alt: A day at Significa
 
-    - image: ./careers-bottom-5@2x.jpg
+    - image: ./careers-bottom-5@2x.png
       alt: A day at Significa
 
 positions:

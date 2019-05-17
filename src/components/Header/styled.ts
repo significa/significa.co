@@ -48,7 +48,7 @@ export const Container = styled(BaseContainer)`
 `
 
 export const LogoLink = styled(Link)`
-  transition: ${({ theme }) => theme.transitions.ease('opacity')};
+  transition: ${({ theme }) => theme.transitions.ease()};
   /* Small optical compensation */
   margin-top: 0.25em;
 

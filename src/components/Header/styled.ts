@@ -8,7 +8,7 @@ export const Wrapper = styled.header`
   background-color: ${({ theme }) => theme.colors.background};
   padding-top: 3em;
   padding-bottom: 1em;
-  transition: opacity ${({ theme: { transitions } }) => transitions.ease()};
+  transition: padding ${({ theme: { transitions } }) => transitions.ease()};
 
   ${media.medium} {
     padding-top: 2em;
@@ -48,7 +48,7 @@ export const Container = styled(BaseContainer)`
 `
 
 export const LogoLink = styled(Link)`
-  transition: ${({ theme }) => theme.transitions.ease()};
+  transition: opacity ${({ theme }) => theme.transitions.ease()};
   /* Small optical compensation */
   margin-top: 0.25em;
 

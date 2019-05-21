@@ -111,6 +111,11 @@ export interface IStickyImage extends IStickyBase {
 
 export type ISticky = IStickyVideo | IStickyImage
 
+// Embed
+export interface IEmbed {
+  code: string
+}
+
 // Highlight
 export interface IHighlight {
   text: string
@@ -128,6 +133,7 @@ export type sectionTypes =
   | 'testimonial'
   | 'sticky'
   | 'highlight'
+  | 'embed'
 export type SectionContent =
   | IText
   | IImage
@@ -139,6 +145,7 @@ export type SectionContent =
   | ITestimonial
   | ISticky
   | IHighlight
+  | IEmbed
 
 export interface ISection {
   type: sectionTypes

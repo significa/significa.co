@@ -322,6 +322,9 @@ export const query = graphql`
               # Highlight
 
               #text
+
+              # Embed
+              code
             }
           }
         }

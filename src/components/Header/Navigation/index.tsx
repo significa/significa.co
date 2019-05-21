@@ -22,7 +22,10 @@ interface INavigationState {
   mobileMenu: boolean
 }
 
-class Navigation extends React.Component<{}, INavigationState> {
+class Navigation extends React.Component<
+  { forceClose: boolean },
+  INavigationState
+> {
   menuWrapperRef: RefObject<HTMLElement> = React.createRef()
 
   state = { mobileMenu: false }
@@ -44,6 +47,12 @@ class Navigation extends React.Component<{}, INavigationState> {
     }
 
     return 0
+  }
+
+  componentDidUpdate() {
+    if (this.props.forceClose) {
+      this.setState({ mobileMenu: false })
+    }
   }
 
   render() {

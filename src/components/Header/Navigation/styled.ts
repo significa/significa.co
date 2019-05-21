@@ -2,9 +2,7 @@ import styled, { css, media } from '@theme'
 
 import { NavLink } from '../../UI/'
 
-export const Wrapper = styled.div`
-  position: relative;
-`
+export const Wrapper = styled.div``
 
 interface IHambuguer {
   show: boolean
@@ -86,14 +84,15 @@ export const NavWrapper = styled.nav`
     position: absolute;
     z-index: 100;
     overflow: hidden;
-    background-color: ${({ theme }) => theme.colors.foreground};
+    background-color: ${({ theme }) => theme.colors.background};
 
-    top: ${(p: INavWrapper) => (p.show ? 'calc(100% + 1em)' : '100%')};
+    top: ${(p: INavWrapper) => (p.show ? 'calc(100%)' : '100%')};
     max-height: ${(p: INavWrapper) =>
       p.show ? `${p.itemsHeight / 16}em` : '0em'};
     right: 0;
+    left: 0;
 
-    padding: 0 3em;
+    padding: 0 1.9em;
 
     display: flex;
     flex-direction: column;
@@ -102,14 +101,12 @@ export const NavWrapper = styled.nav`
     transition: top ${({ theme }) => theme.transitions.cubic()},
       max-height ${({ theme }) => theme.transitions.cubic()};
 
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 2px 2px rgba(0, 0, 0, 0.02);
+
     ${NavLink} {
       font-size: 1.25em;
       line-height: 1;
-      color: ${({ theme }) => theme.colors.background};
-
-      &:first-child {
-        padding-top: 3rem;
-      }
+      color: ${({ theme }) => theme.colors.foreground};
 
       &:last-child {
         padding-bottom: 3rem;

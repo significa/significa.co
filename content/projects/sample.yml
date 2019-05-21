@@ -108,6 +108,10 @@ content:
               controls: true
               muted: true
 
+          - type: embed
+            content:
+              code: '<iframe src="https://player.vimeo.com/video/333541450" width="640" height="270" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>'
+
           - type: text
             theme: dark
             content:

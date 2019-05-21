@@ -133,6 +133,7 @@ export type sectionTypes =
   | 'testimonial'
   | 'sticky'
   | 'highlight'
+  | 'embed'
 export type SectionContent =
   | IText
   | IImage
@@ -144,6 +145,7 @@ export type SectionContent =
   | ITestimonial
   | ISticky
   | IHighlight
+  | IEmbed
 
 export interface ISection {
   type: sectionTypes

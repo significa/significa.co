@@ -2,7 +2,22 @@ import styled, { css, media } from '@theme'
 
 import { NavLink } from '../../UI/'
 
-export const Wrapper = styled.div``
+export const Wrapper = styled.div`
+  ${media.medium} {
+    /* Dirty hack to hide the top shadow of the mobile menu */
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      z-index: 101;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 10px;
+      background-color: ${({ theme }) => theme.colors.background};
+    }
+  }
+`
 
 interface IHambuguer {
   show: boolean
@@ -99,9 +114,13 @@ export const NavWrapper = styled.nav`
     text-align: right;
 
     transition: top ${({ theme }) => theme.transitions.cubic()},
-      max-height ${({ theme }) => theme.transitions.cubic()};
+      max-height ${({ theme }) => theme.transitions.cubic()},
+      box-shadow ${({ theme }) => theme.transitions.cubic()};
 
-    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.01), 0 3px 2px rgba(0, 0, 0, 0.02);
+    box-shadow: ${(p: INavWrapper) =>
+      p.show
+        ? '0 1px 2px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.05)'
+        : '0 0 rgba(0,0,0,0)'};
 
     ${NavLink} {
       font-size: 1.25em;

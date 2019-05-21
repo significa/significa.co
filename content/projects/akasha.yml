@@ -17,7 +17,7 @@ thumbnail: ./akasha/12-showoff.png
 # Settings
 heroTheme: akasha-grey
 mainTheme: akasha-light
-navigationTheme: akasha-dark
+navigationTheme: akasha-light
 themes:
   - name: akasha-grey
     background: '#E6EAED'
@@ -50,8 +50,8 @@ services:
   - Front End
   - Illustration
 deliverables:
-  - Website
   - Web App
+  - Website
   - Illustrations
 links:
   - link: https://akasha.org/
@@ -77,7 +77,7 @@ content:
   - title: Style Guidelines
     margin: both
     showTitle: true
-    theme: akasha-dark
+    theme: akasha-grey
     content:
       # Section
       - title: Styleguide

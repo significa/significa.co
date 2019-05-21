@@ -3,7 +3,6 @@ import styled from '@theme'
 export const Wrapper = styled.div`
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
-  padding-top: 25px;
   height: 0;
 
   iframe {

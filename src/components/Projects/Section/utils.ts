@@ -19,6 +19,7 @@ const defaultValues: { [K in sectionTypes]: layoutTypes } = {
   video: 'normal',
   waterfall: 'large',
   highlight: 'normal',
+  embed: 'normal',
 }
 
 const getProjectSectionWidth = (type: sectionTypes, layout?: layoutTypes) => {

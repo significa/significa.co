@@ -101,7 +101,7 @@ export const NavWrapper = styled.nav`
     transition: top ${({ theme }) => theme.transitions.cubic()},
       max-height ${({ theme }) => theme.transitions.cubic()};
 
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 2px 2px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.01), 0 3px 2px rgba(0, 0, 0, 0.02);
 
     ${NavLink} {
       font-size: 1.25em;

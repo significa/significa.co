@@ -111,6 +111,11 @@ export interface IStickyImage extends IStickyBase {
 
 export type ISticky = IStickyVideo | IStickyImage
 
+// Embed
+export interface IEmbed {
+  code: string
+}
+
 // Highlight
 export interface IHighlight {
   text: string

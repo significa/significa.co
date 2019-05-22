@@ -20,7 +20,6 @@ const Video = (props: IVideo) => {
       </video>
       {props.caption && <S.Caption>{props.caption}</S.Caption>}
     </React.Fragment>
-
   )
 }
 

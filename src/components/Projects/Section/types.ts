@@ -43,6 +43,7 @@ export interface IImage {
 
 // Video
 export interface IVideo {
+  caption?: string
   video: IVideoObject
   autoplay?: boolean
   loop?: boolean

@@ -42,6 +42,7 @@ const RecentProjects = () => (
               to={project.fields.slug}
               fluid={project.thumbnail.childImageSharp.fluid}
               services={project.services}
+              limitServices
             />
           ))}
         </S.Container>

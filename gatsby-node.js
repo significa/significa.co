@@ -54,7 +54,35 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 }
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
+
+  createRedirect({
+    fromPath: '/studio',
+    toPath: '/about',
+    isPermanent: true,
+    redirectInBrowser: true,
+  })
+
+  createRedirect({
+    fromPath: '/enquiry',
+    toPath: '/contact',
+    isPermanent: true,
+    redirectInBrowser: true,
+  })
+
+  createRedirect({
+    fromPath: '/work',
+    toPath: '/showcase',
+    isPermanent: true,
+    redirectInBrowser: true,
+  })
+
+  createRedirect({
+    fromPath: '/labs/css-only-slider',
+    toPath: '/labs',
+    isPermanent: true,
+    redirectInBrowser: true,
+  })
 
   return graphql(`
     {

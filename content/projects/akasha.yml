@@ -6,7 +6,7 @@ seo:
 
 # Main info
 title: AKASHA
-tagline: Blockchain & collective intelligence.
+tagline: Open systems to expand our collective mind
 description: |
   AKASHA Foundation is a non-profit born at the intersection of blockchain and collective intelligence. They nurture projects helping individuals unlock their potential through open systems  that expand our collective minds at local and global scales.
 # Images
@@ -43,6 +43,14 @@ themes:
     subtle: '#4A4E53'
     error: '#FF5050'
 
+  - name: akasha-background
+    background: '#F8F8F8'
+    foreground: '#000C20'
+    highlight: '#007BFF'
+    medium: '#999999'
+    subtle: '#4A4E53'
+    error: '#FF5050'
+
 # Info
 client: AKASHA Foundation
 services:
@@ -54,6 +62,8 @@ deliverables:
   - Website
   - Illustrations
 links:
+  - link: https://beta.akasha.world
+    linkText: AKASHA Dapp
   - link: https://akasha.org/
     linkText: Website
 
@@ -73,12 +83,30 @@ content:
             content:
               image: ./akasha/2-illustration.png
 
-  # Chapter
-  - title: Style Guidelines
+# Chapter
+  - title: Decentralized App
     margin: both
     showTitle: true
     theme: akasha-grey
     content:
+
+     # Section
+      - title: Wireframes
+        sections:
+          # Sections
+
+          - type: text
+            margin: top
+            content:
+              title: Initial Process
+              text: The AKASHA Dapp is a next generation social media network powered by Ethereum and embedded into a content addressing protocol known as the interplanetary File System. AKASHA challenged us to understand the app’s architecture and shape the app’s user interface and experience. To better understand the app’s flows and to ensure we didn’t compromise any core product decisions, we started to create low-fi greyscale wireframes. 
+
+          - type: image
+            layout: large
+            margin: both
+            content:
+              image: ./akasha/Dapp-05-wireframes.jpg
+
       # Section
       - title: Styleguide
         sections:
@@ -87,14 +115,161 @@ content:
           - type: text
             margin: top
             content:
+              title: Colours
+              text: Once the app's structure was defined, we set out to create a practical user centered styleguide. We used colours for hover effects, highlight, disabled negative, and positive states.
+
+          - type: image
+            layout: normal
+            margin: both
+            content:
+              image: ./akasha/Dapp-01-Colours.png
+
+          - type: text
+            margin: top
+            content:
+              title: Iconography
+              text: "Icons are visual representations of commands, files, directories, or common actions and are used to provide visual context and enhance usability. Icons are auto-scaled to provide three additional sizes: small (16px), medium (20px), large (24px), reducing the visual complexity of elements in tiny sizes."
+
+          - type: image
+            layout: normal
+            margin: both
+            content:
+              image: ./akasha/Dapp-02-Icons.png
+
+          - type: text
+            margin: top
+            content:
+              title: Components
+              text: Spacing can be applied using either margin or padding. Both margin and padding share the same predefined scale, multiples of 8.
+
+          - type: image
+            layout: normal
+            margin: both
+            content:
+              image: ./akasha/Dapp-03-constrains.png
+
+          - type: text
+            margin: none
+            content:
+              text: Consistent use of a grid system provides the foundation for harmoniously and consistently positioning elements on screen. Designing on the grid helps create an experience that facilitates understanding and brings order to the page.
+
+          - type: comparison
+            layout: medium
+            margin: none
+            content:
+              a: ./akasha/Dapp-04-dark.png
+              b: ./akasha/Dapp-04-light.png
+
+      # Section
+      - title: Web App
+        sections:
+          # Sections
+
+          - type: text
+            margin: top
+            content:
+              title: Dashboard
+              text: In today’s blockchain realm, AKASHA is a social and technological experiment enabling our collective memory, feelings and ideas to echo freely throughout humanity’s existence. According to Mihai Alisie, the co-founder of Ethereum and founder of AKASHA, "the user view when navigating content is now thought as a modular and customizable dashboard. The "boards" allow the users to organize various topics while "columns" can take the shape of a stream from the people you follow, a particular tag or a specific person."
+              
+          - type: image
+            layout: medium
+            margin: both
+            content:
+              image: ./akasha/Dapp-06-dashboard.png
+
+          - type: text
+            margin: none
+            content:
+              text: To present the app’s main flows and features at the DevCon3 conference, we recorded a video on how to add a new column to the board, see an entry and on how to leave a comment on an entry.
+
+          - type: video
+            layout: medium
+            margin: both
+            content:
+              caption: Prototype created to present the Dapp at the DevCon3 conference, featuring the app’s main features.
+              video: ./akasha/Akasha-Prototype.mp4
+              autoplay: true
+              loop: true
+              controls: false
+              muted: true
+
+          - type: text
+            theme: akasha-background
+            margin: top
+            content:
+              title: New Entry
+              text: The user can write his own articles directly on the dapp’s editor where he can save it as a draft or publish them as soon as it’s ready. On the right panel he has access to the publishing options where he can set the type of license, cover image and a preview excerpt for his entry.
+
+          - type: image
+            theme: akasha-background
+            layout: medium
+            margin: none
+            content:
+              image: ./akasha/Dapp-07-newentry.png
+
+          - type: text
+            theme: akasha-background
+            margin: none
+            content:
+              text: As soon as the entry is published, users on the network can vote, comment and share.
+
+          - type: image
+            theme: akasha-background
+            layout: medium
+            margin: bottom
+            content:
+              image: ./akasha/Dapp-08-entry.png
+
+          - type: text
+            margin: top
+            content:
+              title: Dark Theme
+              text:  To allow for better readability at night or for sheer preference, the user can use the AKASHA dapp on dark mode. We designed every component in both a light and dark theme, ensuring legibility and more coherence. A great example of this is the user’s overview page, where he or she has access to statistics of his actions and consequent individual score.
+
+          - type: image
+            layout: full
+            margin: both
+            content:
+              image: ./akasha/Dapp-09-darkmode.jpg
+
+          - type: text
+            margin: none
+            content:
+              text: Every project has its own challenges and particularities. In this case, developing an app that works as a peer to peer social network, it was our concern to keep the user always informed on the ongoing actions, with the constant feedback, always visible.
+
+          - type: image
+            layout: normal
+            margin: both
+            content:
+              image: ./akasha/Dapp-10-darkcomments.jpg
+
+  # Chapter
+  - title: Website
+    margin: top
+    showTitle: true
+    theme: akasha-grey
+    content:
+      # Section
+      - title: Motivations
+        sections:
+          # Sections
+
+          - type: text
+            margin: top
+            content:
               title: Culture & Purpose
-              text: AKASHA's voice and tone projects reflects who they are. Their brand must personify the values they have identified as critical to their purpose and culture.
+              text: AKASHA's voice and tone projects reflects who they are. Their brand must personify the values they have identified as critical to their purpose and culture. To reflect this we designed and developed a website that not only showcases the dapp but also the brand's other projects. 
 
           - type: image
             layout: small
-            margin: bottom
+            margin: none
             content:
               image: ./akasha/3-illustration.png
+
+      # Section
+      - title: Styleguide
+        sections:
+          # Sections
 
           - type: text
             content:
@@ -108,6 +283,7 @@ content:
               image: ./akasha/4-colours.png
 
           - type: text
+            margin: top
             content:
               title: Typography
               text: Meet our brand typeface, Averta Standard! It’s a geometric sans serif family with a simplistic, yet appealing, personality. The purely geometric rounds and open apertures manage to express an unmoderated, straightforward tone resulting in a modernist, neutral and friendly typeface.
@@ -118,12 +294,6 @@ content:
             content:
               image: ./akasha/5-font.png
 
-    # Chapter
-  - title: Illustrations
-    margin: both
-    showTitle: true
-    theme: akasha-dark
-    content:
       # Section
       - title: Illustrations
         sections:
@@ -154,7 +324,7 @@ content:
             layout: full
             margin: both
             content:
-              image: ./akasha/8-mobile.png
+              image: ./akasha/8-mobile.jpg
 
           - type: image
             layout: mediums
@@ -162,46 +332,34 @@ content:
             content:
               image: ./akasha/9-dekstop.png
 
-          - type: image
-            layout: small
-            margin: top
-            content:
-              image: ./akasha/10-illustration.png
-
-  # Chapter
-  - title: Website
-    margin: bottom
-    showTitle: true
-    theme: akasha-dark
-    content:
       # Section
-      - title: Desktop
+      - title: Website
         sections:
           # Sections
 
           - type: text
-            margin: both
+            margin: top
             content:
               title: Wireframes
               text: With the number of projects and the research group growing came the necessity of creating a new website that could clearly show the community what AKASHA was developing. Quick(er) to do and easy to analyse, wireframes are our favourite way of defining structure and content without compromising the design.
 
           - type: image
             layout: medium
-            margin: top
+            margin: both
             content:
               image: ./akasha/11-wireframes.png
 
           - type: text
-            margin: both
+            margin: top
             content:
-              title: Website
+              title: akasha.org
               text: This new website marks a new step for AKASHA Foundation. We aimed for a friendly, coherent and strong brand that’s present in every design decision, from each individual design element to more complex layers, such as illustrations.
 
           - type: image
             layout: medium
             margin: both
             content:
-              image: ./akasha/12-showoff.png
+              image: ./akasha/akashaorg.jpg
 
           - type: text
             margin: both
@@ -215,7 +373,7 @@ content:
               image: ./akasha/13-blog.png
 
           - type: text
-            margin: both
+            margin: none
             content:
               text: Got lost in space? Grab on to the nearest UFO to find your way home.
 
@@ -226,9 +384,9 @@ content:
               image: ./akasha/14-404.png
 
           - type: text
-            margin: both
+            margin: top
             content:
-              title: Glossary
+              title: Features 💬🔎
               text: Technically speaking, the Glossary was a big challenge to implement. It needs to analyse all of the website’s content and list all the specialist words and phrases so that everyone who joins the community can better understand AKASHA’s communication.
 
           - type: video
@@ -242,7 +400,7 @@ content:
               muted: true
 
           - type: text
-            margin: both
+            margin: bottom
             content:
               text: With so much content, we need to implement a search tool to help with the users find what they are looking for. By text and categories, the user can find the latest projects from the AKASHA foundation or find the newest article on the blog.
 
@@ -253,15 +411,10 @@ content:
             content:
               image: ./akasha/16-search.jpg
 
-      # Section
-      - title: Mobile
-        sections:
-          # Sections
-
           - type: text
-            margin: both
+            margin: top
             content:
-              title: Responsive
+              title: Mobile
               text: So that the users of today can embrace the technlogy of tomorrow, it needs to be reachable on-the-go. That’s why the AKASHA Foundation website is full responsive.
 
           - type: image
@@ -276,25 +429,19 @@ content:
             content:
               image: ./akasha/18-blog.png
 
-    # Chapter
-  - title: The App
-    margin: bottom
-    showTitle: true
-    theme: akasha-dark
-    content:
-      # Section
-      - title: Coming Soon
+       # Section
+      - title: Coming soon
         sections:
           # Sections
+
           - type: text
             margin: both
             content:
-              title: The AKASHA App
-              text: |
-                The AKASHA app is synonymous with the establishment of the AKASHA Foundation back in the days when they described their work as an experiment — they’re big fans of learning by doing. Stay tuned as we add more on the app in the coming weeks.
+              title: Work in progress
+              text: Together with AKASHA we are preparing exciting new projects! Keep in touch to know more!
 
           - type: image
-            layout: large
-            margin: bottom
+            layout: small
+            margin: none
             content:
-              image: ./akasha/19-app.png
+              image: ./akasha/Akasha-Email confirm.png

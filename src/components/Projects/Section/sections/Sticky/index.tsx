@@ -14,7 +14,7 @@ const Sticky = (props: ISticky) => {
   const id = props.title ? titleToID(props.title) : undefined
 
   return (
-    <S.Wrapper inverted={props.invert}>
+    <S.Wrapper inverted={props.invert} id={id}>
       <S.TextContainer>
         <S.TextSticky sticky={props.sticky}>
           {props.title && props.sectionLabel && (

@@ -11,12 +11,12 @@
   items:
     - label: Home
       link: /
-    - label: About
-      link: /about
     - label: Showcase
       link: /showcase
     - label: Services
       link: /services
+    - label: About
+      link: /about
     - label: Careers
       link: /careers
     - label: Labs

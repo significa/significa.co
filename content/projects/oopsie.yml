@@ -16,11 +16,11 @@ featured: ./oopsie/0-thumbnail.png
 thumbnail: ./oopsie/0-thumbnail.png
 
 # Settings
-heroTheme: oopsie-grey
+heroTheme: oopsie-light-orange
 mainTheme: oopsie-light
 navigationTheme: oopsie-light
 themes:
-  - name: oopsie-grey
+  - name: oopsie-light-orange
     background: '#FAD6A5'
     foreground: '#141920'
     highlight: '#f38d00'

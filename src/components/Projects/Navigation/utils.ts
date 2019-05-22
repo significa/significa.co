@@ -14,7 +14,7 @@ export const createNavigationItems = (content: ContentType): IItem[] => {
 
       block.sections.forEach(section => {
         if (
-          section.type === 'text' &&
+          (section.type === 'text' || section.type === 'sticky') &&
           'title' in section.content &&
           typeof section.content.title === 'string'
         ) {

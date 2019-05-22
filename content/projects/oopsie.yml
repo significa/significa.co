@@ -21,9 +21,9 @@ mainTheme: oopsie-light
 navigationTheme: oopsie-light
 themes:
   - name: oopsie-grey
-    background: '#8D98A5'
-    foreground: '#ffffff'
-    highlight: '#FF9500'
+    background: '#FAD6A5'
+    foreground: '#141920'
+    highlight: '#f38d00'
     medium: 'rgba(0,0,0,0.4)'
     subtle: '#b2b2b2'
     error: '#FF5050'
@@ -340,7 +340,7 @@ content:
               title: Coupons
               image: ./oopsie/22-coupons.png
               text: |
-                Oh did I mention you can now add coupons for an extra discount?Coupons can be offered by restaurants, or earned by signing up to Oopsie and referring it to friends.
+                Oh did I mention you can now add coupons for an extra discount? Coupons can be offered by restaurants, or earned by signing up to Oopsie and referring it to friends.
 
           - type: image
             layout: medium

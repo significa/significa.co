@@ -1,8 +1,23 @@
 import styled, { css, media } from '@theme'
 
 import PaddedWrapper from '../common/PaddedWrapper'
-
 import { Title as BaseTitle, Label as BaseLabel } from '../../../../UI'
+import Anchor from './Anchor'
+
+export const AnchorIcon = styled(Anchor)`
+  position: absolute;
+
+  top: calc(50% - 0.3em);
+  left: -2em;
+  transform: translateY(-50%);
+  opacity: 0;
+
+  transition: opacity ${({ theme }) => theme.transitions.ease()};
+
+  ${media.medium} {
+    display: none;
+  }
+`
 
 export const Wrapper = styled(PaddedWrapper)<{ inverted?: boolean }>`
   margin: 0 -1.5em;
@@ -20,6 +35,20 @@ export const Wrapper = styled(PaddedWrapper)<{ inverted?: boolean }>`
   ${media.small} {
     display: block;
     margin: 0;
+  }
+`
+
+export const TitleWrapper = styled.a`
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+
+  ${media.hover} {
+    &:hover {
+      ${AnchorIcon} {
+        opacity: 1;
+      }
+    }
   }
 `
 

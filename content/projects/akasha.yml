@@ -1,4 +1,4 @@
-date: 2019/12/01
+date: 2018/12/01
 
 seo:
   title: AKASHA by Significa
@@ -83,14 +83,13 @@ content:
             content:
               image: ./akasha/2-illustration.png
 
-# Chapter
+  # Chapter
   - title: Decentralized App
     margin: both
     showTitle: true
     theme: akasha-grey
     content:
-
-     # Section
+      # Section
       - title: Wireframes
         sections:
           # Sections
@@ -99,7 +98,7 @@ content:
             margin: top
             content:
               title: Initial Process
-              text: The AKASHA Dapp is a next generation social media network powered by Ethereum and embedded into a content addressing protocol known as the interplanetary File System. AKASHA challenged us to understand the app’s architecture and shape the app’s user interface and experience. To better understand the app’s flows and to ensure we didn’t compromise any core product decisions, we started to create low-fi greyscale wireframes. 
+              text: The AKASHA Dapp is a next generation social media network powered by Ethereum and embedded into a content addressing protocol known as the interplanetary File System. AKASHA challenged us to understand the app’s architecture and shape the app’s user interface and experience. To better understand the app’s flows and to ensure we didn’t compromise any core product decisions, we started to create low-fi greyscale wireframes.
 
           - type: image
             layout: large
@@ -128,7 +127,7 @@ content:
             margin: top
             content:
               title: Iconography
-              text: "Icons are visual representations of commands, files, directories, or common actions and are used to provide visual context and enhance usability. Icons are auto-scaled to provide three additional sizes: small (16px), medium (20px), large (24px), reducing the visual complexity of elements in tiny sizes."
+              text: 'Icons are visual representations of commands, files, directories, or common actions and are used to provide visual context and enhance usability. Icons are auto-scaled to provide three additional sizes: small (16px), medium (20px), large (24px), reducing the visual complexity of elements in tiny sizes.'
 
           - type: image
             layout: normal
@@ -170,7 +169,7 @@ content:
             content:
               title: Dashboard
               text: In today’s blockchain realm, AKASHA is a social and technological experiment enabling our collective memory, feelings and ideas to echo freely throughout humanity’s existence. According to Mihai Alisie, the co-founder of Ethereum and founder of AKASHA, "the user view when navigating content is now thought as a modular and customizable dashboard. The "boards" allow the users to organize various topics while "columns" can take the shape of a stream from the people you follow, a particular tag or a specific person."
-              
+
           - type: image
             layout: medium
             margin: both
@@ -224,7 +223,7 @@ content:
             margin: top
             content:
               title: Dark Theme
-              text:  To allow for better readability at night or for sheer preference, the user can use the AKASHA dapp on dark mode. We designed every component in both a light and dark theme, ensuring legibility and more coherence. A great example of this is the user’s overview page, where he or she has access to statistics of his actions and consequent individual score.
+              text: To allow for better readability at night or for sheer preference, the user can use the AKASHA dapp on dark mode. We designed every component in both a light and dark theme, ensuring legibility and more coherence. A great example of this is the user’s overview page, where he or she has access to statistics of his actions and consequent individual score.
 
           - type: image
             layout: full
@@ -258,7 +257,7 @@ content:
             margin: top
             content:
               title: Culture & Purpose
-              text: AKASHA's voice and tone projects reflects who they are. Their brand must personify the values they have identified as critical to their purpose and culture. To reflect this we designed and developed a website that not only showcases the dapp but also the brand's other projects. 
+              text: AKASHA's voice and tone projects reflects who they are. Their brand must personify the values they have identified as critical to their purpose and culture. To reflect this we designed and developed a website that not only showcases the dapp but also the brand's other projects.
 
           - type: image
             layout: small
@@ -429,7 +428,7 @@ content:
             content:
               image: ./akasha/18-blog.png
 
-       # Section
+        # Section
       - title: Coming soon
         sections:
           # Sections

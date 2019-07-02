@@ -23,7 +23,6 @@ Web Developers at Significa are front-end experts. They should be fluent in HTML
 - Translate mock-ups into fully functioning websites;
 - Be able to deploy cross platform products;
 - Be participant in our open and collaborative culture.
-- Job Requirements.
 
 ## Job Requirements
 

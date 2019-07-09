@@ -16,7 +16,7 @@ Our ideal candidate has an excellent eye for detail, pragmatic approach and an a
 
 Web Developers at Significa are front-end experts. They should be fluent in HTML, CSS, Javascript and ReactJS to improve the core flows of our products. As a startup team, we are extremely focused on fast iterations and high productivity.
 
-## The Responsabilities
+## The Responsibilities
 
 - 2+ years experience as a Web Developer;
 - Write modular and well-tested front-end code;

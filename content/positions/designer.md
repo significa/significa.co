@@ -16,7 +16,7 @@ Our ideal candidate has an excellent eye for detail, pragmatic approach and an a
 
 Your core role will be in combining your knowledge in UX and expertise polishing beautiful pixels with the goals of our clients to deliver amazing experiences.
 
-## The Responsabilities
+## The Responsibilities
 
 Our guiding principle is that by helping the users we help our clients. As a designer in our team you’ll be a key part of the idea generation process. You’ll work with developers, product owners ans copywriters. We work at a fast pace environment and you should be able to keep up with quick iterations and swift decisions.
 

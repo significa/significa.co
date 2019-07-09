@@ -1,19 +1,33 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
+import { IColorsTheme } from '@theme'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { Projects } from '../components/Showcase'
+import { Projects, Highlight } from '../components/Showcase'
 import { CallToAction } from '../components/UI'
+
+interface ITheme extends IColorsTheme {
+  name: string
+}
 
 export interface IProject {
   node: {
     fields: {
       slug: string
     }
+    seo: {
+      description: string
+    }
     id: string
     title: string
+    highlight?: boolean
+    highlightTextColumnOn?: 'left' | 'right'
+    heroTheme: string
+    mainTheme: string
+    navigationTheme: string
+    themes?: ITheme[]
     tagline: string
     services: string[]
     thumbnail: {
@@ -44,7 +58,26 @@ interface IShowcase {
   }
 }
 
+interface IData {
+  projects: IProject[]
+  featurePost?: IProject
+}
+
 const Showcase: React.FC<IShowcase> = ({ data }) => {
+  const { projects, featurePost }: IData = data.allProjectsYaml.edges.reduce<
+    IData
+  >(
+    (prev, curr: IProject) => {
+      if (curr.node.highlight) {
+        prev!.featurePost! = curr
+      } else {
+        prev.projects.push(curr)
+      }
+      return prev
+    },
+    { projects: [], featurePost: undefined }
+  )
+
   return (
     <Layout>
       <SEO
@@ -52,7 +85,9 @@ const Showcase: React.FC<IShowcase> = ({ data }) => {
         description={data.showcaseYaml.seo.description}
       />
 
-      <Projects projects={data.allProjectsYaml.edges} />
+      {featurePost && <Highlight project={featurePost} />}
+
+      <Projects projects={projects} />
 
       <CallToAction {...data.showcaseYaml.cta} />
     </Layout>
@@ -85,8 +120,26 @@ export const query = graphql`
           fields {
             slug
           }
+          seo {
+            description
+          }
           id
           title
+          tagline
+          highlight
+          highlightTextColumnOn
+          heroTheme
+          mainTheme
+          navigationTheme
+          themes {
+            name
+            background
+            foreground
+            highlight
+            medium
+            subtle
+            error
+          }
           tagline
           services
           thumbnail {

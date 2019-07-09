@@ -18,6 +18,8 @@ thumbnail: ./sample/triangle.png
 heroTheme: oopsie-orange
 mainTheme: oopsie-light
 navigationTheme: oopsie-light
+highlight: false
+highlightTextColumnOn: "left" # "right"
 themes:
   - name: oopsie-orange
     background: '#FAD6A5'

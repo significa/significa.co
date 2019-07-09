@@ -14,6 +14,22 @@ tags:
     tag: freebie
 
 content:
+  - title: Automating releases for UI Kits
+    tagline: How to automate release logs and builds for your style guides.
+    image: ./images/ui-kits.png
+    more: Article on Medium
+    source: medium
+    tag: article
+    link: https://medium.com/significa/automation-for-ui-kits-f506f79b0fe9
+
+  - title: An iceberg sank the Titanic. 
+    tagline: But what’s that got to do with text hierarchy?
+    image: ./images/titanic.png
+    more: Article on Medium
+    source: medium
+    tag: article
+    link: https://medium.com/significa/an-iceberg-sank-the-titanic-but-whats-that-got-to-do-with-text-hierarchy-416e68a606ab
+
   - title: On creating synergies
     tagline: Sharing without compromising our identity.
     image: ./images/synergies.png

@@ -415,5 +415,5 @@ content:
             layout: medium
             margin: bottom
             content:
-              a: opennode/27-comparison-dark.png
-              b: opennode/27-comparison-white.png
+              a: ./comparison-dark.png
+              b: ./comparison-white.png

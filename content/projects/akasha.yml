@@ -156,8 +156,8 @@ content:
             layout: medium
             margin: none
             content:
-              a: ./akasha/Dapp-04-dark.png
-              b: ./akasha/Dapp-04-light.png
+              a: ./akasha/comparison-dark.png
+              b: ./akasha/comparison-light.png
 
       # Section
       - title: Web App

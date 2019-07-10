@@ -7,7 +7,6 @@ export {
   bigStyle,
   Text,
   textStyle,
-  SmallText,
   Label,
   Small,
 } from './styled'

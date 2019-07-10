@@ -86,10 +86,10 @@ export const Title = styled(T.Big)`
   margin-bottom: 1rem;
 `
 
-export const Description = styled(T.SmallText)`
+export const Description = styled(T.Text)`
   margin-bottom: 2rem;
 `
 
-export const Text = styled(T.SmallText)`
+export const Text = styled(T.Text)`
   margin-bottom: .5rem;
 `

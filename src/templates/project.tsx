@@ -55,6 +55,9 @@ export interface IProject {
       seo: {
         title: string
         description: string
+        image: {
+          publicURL: string
+        }
       }
       title: string
       tagline: string
@@ -92,7 +95,7 @@ const Project = ({ data, pageContext: { next } }: IProject) => {
         title={projectsYaml.seo.title}
         description={projectsYaml.seo.description}
         titleTemplate="%s"
-        image={projectsYaml.shareImage.childImageSharp.resize.src}
+        image={projectsYaml.seo.image.publicURL}
       />
 
       {/* Project navigation */}
@@ -205,19 +208,15 @@ export const query = graphql`
       seo {
         title
         description
+        image {
+          publicURL
+        }
       }
       title
       tagline
       description
       hero {
         ...Image
-      }
-      shareImage: hero {
-        childImageSharp {
-          resize(width: 1200, height: 600) {
-            src
-          }
-        }
       }
       heroTheme
       mainTheme

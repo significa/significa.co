@@ -4,6 +4,7 @@ date: 2018/06/01
 seo:
   title: Rocket.Chat by Significa
   description: Rocket.Chat is free, unlimited and open source as it replaces email & Slack as the ultimate team chat software solution
+  image: ./rocketchat/opengraph.png
 
 # Main info
 title: Rocket.Chat

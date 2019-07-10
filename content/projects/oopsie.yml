@@ -19,8 +19,6 @@ thumbnail: ./oopsie/0-thumbnail.png
 heroTheme: oopsie-light-orange
 mainTheme: oopsie-light
 navigationTheme: oopsie-light
-highlight: true
-highlightTextColumnOn: "left" 
 themes:
   - name: oopsie-light-orange
     background: '#FAD6A5'

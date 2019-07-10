@@ -19,6 +19,9 @@ thumbnail: ./snipsl/1-Snipsl-CoverImage.png
 heroTheme: snipsl-blue
 mainTheme: snipsl-light
 navigationTheme: snipsl-light
+highlight: true
+highlightTextColumnOn: "left" 
+
 themes:
   - name: snipsl-blue
     background: '#0076ff'

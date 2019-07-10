@@ -65,11 +65,25 @@ export const Text = styled.p`
   ${textStyle}
 `
 
+
+export const smallTextStyle = css`
+  ${baseStyle};
+
+  font-size: 1em;
+  line-height: 1.3;
+  letter-spacing: 0;
+`
+
+
+export const SmallText = styled.p`
+  ${smallTextStyle}
+`
+
 export const Label = styled.label`
   ${baseStyle};
 
   font-size: 0.875em;
-  line-height: 1;
+  line-height: 1.3;
   letter-spacing: 0;
 `
 

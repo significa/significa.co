@@ -8,6 +8,9 @@ title: Oopsie User App
 tagline: Your favorite food one click away
 description: |
   Oopsie is a hassle-free, online takeaway ordering platform that connects you with neighboring restaurants. With Oopsie, you may order and pay for takeaway with a few simple steps. With real time order status tracking there will be no wasted time on queuing up, complemented with seamless transaction - simply grab & go when your food is ready!
+seo: 
+  title: ""
+  description: ""
 
 # Images
 hero: ./sample/oopsie-hero@2x.png
@@ -77,6 +80,7 @@ content:
   - title: A mãe do Pedro
     theme: oopsie-light
     showTitle: false
+    margin: ""
     content:
       # Section
       - title: Styleguide

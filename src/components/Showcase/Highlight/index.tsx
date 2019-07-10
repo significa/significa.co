@@ -1,6 +1,6 @@
 import React from 'react'
 import { Theme } from '@theme'
-import { Link } from 'gatsby'
+import Img from 'gatsby-image'
 
 import * as S from './styled'
 import { getProjectTheme } from '../../../utils/getProjectTheme'
@@ -20,32 +20,30 @@ const Highlight: React.FC<IHighlight> = ({ project }) => {
     fields,
     highlightTextColumnOn = 'left',
   } = project.node
-  const contentOnLeft = highlightTextColumnOn === 'left'
-
-  const imageElement = (
-    <S.Image fluid={project.node.thumbnail.childImageSharp.fluid} />
-  )
-  const contentElement = (
-    <S.Content>
-      <div>
-        <S.Big>{`${title} — ${tagline}`}</S.Big>
-        <S.Description>{seo.description}</S.Description>
-        <S.Text>Services</S.Text>
-        <T.Label>{services.join(', ')}</T.Label>
-      </div>
-    </S.Content>
-  )
-
-  const renderContent = () =>
-    contentOnLeft
-      ? [contentElement, imageElement]
-      : [imageElement, contentElement]
 
   return (
     <Theme theme={getProjectTheme(project.node.heroTheme, project.node.themes)}>
-      <Link to={fields.slug}>
-        <S.Container>{renderContent()}</S.Container>
-      </Link>
+      <S.Container>
+        <S.Content
+          to={fields.slug}
+          textOnRight={highlightTextColumnOn !== 'left'}
+        >
+          <S.InnerContent>
+            <S.SectionTag>Featured</S.SectionTag>
+            <S.Title>{`${title} — ${tagline}`}</S.Title>
+            <S.Description>{seo.description}</S.Description>
+            <S.Text>Services</S.Text>
+            <T.Label>{services.join(', ')}</T.Label>
+          </S.InnerContent>
+        </S.Content>
+
+        <S.Image
+          to={fields.slug}
+          imageOnRight={highlightTextColumnOn === 'left'}
+        >
+          <Img fluid={project.node.hero.childImageSharp.fluid} />
+        </S.Image>
+      </S.Container>
     </Theme>
   )
 }

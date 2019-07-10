@@ -30,6 +30,11 @@ export interface IProject {
     themes?: ITheme[]
     tagline: string
     services: string[]
+    hero: {
+      childImageSharp: {
+        fluid: FluidObject
+      }
+    }
     thumbnail: {
       childImageSharp: {
         fluid: FluidObject
@@ -142,6 +147,13 @@ export const query = graphql`
           }
           tagline
           services
+          hero {
+            childImageSharp {
+              fluid(maxWidth: 1500) {
+                ...GatsbyImageSharpFluid_withWebp_noBase64
+              }
+            }
+          }
           thumbnail {
             childImageSharp {
               fluid(maxWidth: 1500) {

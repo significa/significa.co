@@ -28,9 +28,6 @@ module.exports = {
       },
     },
     // End SEO
-    'gatsby-plugin-typescript',
-    'gatsby-plugin-styled-components',
-
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -45,8 +42,10 @@ module.exports = {
         path: `${__dirname}/content`,
       },
     },
-    'gatsby-transformer-sharp',
     'gatsby-transformer-yaml',
+    'gatsby-plugin-typescript',
+    'gatsby-plugin-styled-components',
+    'gatsby-transformer-sharp',
     `gatsby-transformer-remark`,
     {
       resolve: 'gatsby-plugin-sharp',

@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
+import { Location } from '@reach/router'
 
 type MetaProps =
   | { name: string; content: any; property?: undefined }
@@ -80,80 +81,89 @@ const SEO: React.FC<ISEOProps> = ({
     : site.siteMetadata.title
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={currentTitle}
-      titleTemplate={titleTemplate || defaultTitleTemplate}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:url`,
-          content: siteUrl,
-        },
-        {
-          property: `og:site_name`,
-          content: currentTitle,
-        },
-        {
-          property: `og:title`,
-          content: currentTitle,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          property: `og:image`,
-          content: `${siteUrl}${image || opengraphImage}`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary_large_image`,
-        },
-        {
-          name: `twitter:image`,
-          content: `${siteUrl}${image || twittercardImage}`,
-        },
-        {
-          name: `twitter:site`,
-          content: author,
-        },
-        {
-          name: `twitter:creator`,
-          content: author,
-        },
-        {
-          name: `twitter:title`,
-          content: currentTitle,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-        { rel: 'dns-prefetch', href: 'https://client.relay.crisp.chat' },
-        { rel: 'dns-prefetch', href: 'https://marketingplatform.google.com' },
-        { rel: 'dns-prefetch', href: 'https://www.google.com' },
-      ]
+    <Location>
+      {({ location }) => {
+        return (
+          <Helmet
+            htmlAttributes={{
+              lang,
+            }}
+            title={currentTitle}
+            titleTemplate={titleTemplate || defaultTitleTemplate}
+            meta={[
+              {
+                name: `description`,
+                content: metaDescription,
+              },
+              {
+                property: `og:url`,
+                content: `${siteUrl}${location.pathname}`,
+              },
+              {
+                property: `og:site_name`,
+                content: currentTitle,
+              },
+              {
+                property: `og:title`,
+                content: currentTitle,
+              },
+              {
+                property: `og:description`,
+                content: metaDescription,
+              },
+              {
+                property: `og:type`,
+                content: `website`,
+              },
+              {
+                property: `og:image`,
+                content: `${siteUrl}${image || opengraphImage}`,
+              },
+              {
+                name: `twitter:card`,
+                content: `summary_large_image`,
+              },
+              {
+                name: `twitter:image`,
+                content: `${siteUrl}${image || twittercardImage}`,
+              },
+              {
+                name: `twitter:site`,
+                content: author,
+              },
+              {
+                name: `twitter:creator`,
+                content: author,
+              },
+              {
+                name: `twitter:title`,
+                content: currentTitle,
+              },
+              {
+                name: `twitter:description`,
+                content: metaDescription,
+              },
+              { rel: 'dns-prefetch', href: 'https://client.relay.crisp.chat' },
+              {
+                rel: 'dns-prefetch',
+                href: 'https://marketingplatform.google.com',
+              },
+              { rel: 'dns-prefetch', href: 'https://www.google.com' },
+            ]
 
-        .concat(
-          keywords.length > 0
-            ? {
-                name: `keywords`,
-                content: keywords.join(`, `),
-              }
-            : []
+              .concat(
+                keywords.length > 0
+                  ? {
+                      name: `keywords`,
+                      content: keywords.join(`, `),
+                    }
+                  : []
+              )
+              .concat(meta)}
+          />
         )
-        .concat(meta)}
-    />
+      }}
+    </Location>
   )
 }
 

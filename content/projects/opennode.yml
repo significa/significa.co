@@ -104,21 +104,21 @@ content:
               title: Typography
               text: Two different platforms, two different fonts. Vaud for that bold modern personality of the website. San Francisco, as the system font for MacOS, is optimized to give you unmatched legibility, consistency and performance on the Web App.
 
-          - type: gallery
-            margin: both
-            content:
-              columns: 2
-              items:
-                - image: ./opennode/4-fonts1.jpg
-                  span:
-                    normal: 1
-                    tablet: 1
-                    mobile: 2
-                - image: ./opennode/4-fonts2.png
-                  span:
-                    normal: 1
-                    tablet: 1
-                    mobile: 2
+          # - type: gallery
+          #   margin: both
+          #   content:
+          #     columns: 2
+          #     items:
+          #       - image: ./opennode/4-fonts1.jpg
+          #         span:
+          #           normal: 1
+          #           tablet: 1
+          #           mobile: 2
+          #       - image: ./opennode/4-fonts2.png
+          #         span:
+          #           normal: 1
+          #           tablet: 1
+          #           mobile: 2
 
           - type: text
             content:

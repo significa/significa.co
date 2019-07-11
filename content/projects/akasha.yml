@@ -3,6 +3,7 @@ date: 2018/12/01
 seo:
   title: AKASHA by Significa
   description: A non-profit born at the intersection of blockchain and collective intelligence.
+  image: ./akasha/opengraph.png
 
 # Main info
 title: AKASHA
@@ -152,12 +153,12 @@ content:
             content:
               text: Consistent use of a grid system provides the foundation for harmoniously and consistently positioning elements on screen. Designing on the grid helps create an experience that facilitates understanding and brings order to the page.
 
-          - type: comparison
-            layout: medium
-            margin: none
-            content:
-              a: ./akasha/Dapp-04-dark.png
-              b: ./akasha/Dapp-04-light.png
+          # - type: comparison
+          #   layout: medium
+          #   margin: none
+          #   content:
+          #     a: ./akasha/comparison-dark.png
+          #     b: ./akasha/comparison-light.png
 
       # Section
       - title: Web App

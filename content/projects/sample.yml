@@ -160,12 +160,12 @@ content:
                     normal: 2
                     tablet: 2
                     mobile: 2
-                - video: sample/video.mp4
+                - video: ./sample/video.mp4
                   span:
                     normal: 1
                     tablet: 1
                     mobile: 2
-                - video: sample/video.mp4
+                - video: ./sample/video.mp4
                   span:
                     normal: 1
                     tablet: 1
@@ -174,8 +174,8 @@ content:
           - type: comparison
             layout: large
             content:
-              a: sample/restaurant-bw.png
-              b: sample/restaurant.png
+              a: ./sample/restaurant-bw.png
+              b: ./sample/restaurant.png
 
           - type: slideshow
             theme: oopsie-dark

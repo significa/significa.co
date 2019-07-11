@@ -3,6 +3,7 @@ date: 2019/01/01
 seo:
   title: Opennode by Significa
   description: The easiest way to accept bitcoin.
+  image: ./opennode/opengraph.png
 
 # Main info
 title: Opennode.co
@@ -411,9 +412,9 @@ content:
               title: Dark Mode
               text: For all the Opennode users that use the platform mainly at night, it was essential to create a dark mode. It not only lets the user focus more on the platform’s content but also isn’t too tiring on the eyes.
 
-          - type: comparison
-            layout: medium
-            margin: bottom
-            content:
-              a: opennode/27-comparison-dark.png
-              b: opennode/27-comparison-white.png
+          # - type: comparison
+          #   layout: medium
+          #   margin: bottom
+          #   content:
+          #     a: ./comparison-dark.png
+          #     b: ./comparison-white.png

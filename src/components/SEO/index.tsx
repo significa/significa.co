@@ -65,7 +65,7 @@ const SEO: React.FC<ISEOProps> = ({
 
   const {
     twittercard: twittercardImage,
-    opengraph: opengraphImage,
+    opengraphDefault: opengraphImage,
   } = allImageSharp.edges.reduce((prev: {}, { node }: INodeImage) => {
     const name = node.resize.originalName.replace('.png', '')
     const value = node.original.src

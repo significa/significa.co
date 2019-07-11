@@ -29,7 +29,5 @@ artifacts:
 
 cache:
   paths:
-    - .cache/**/*
     - node_modules/**/*
-    - public/**/*
     - /usr/local/lib/node_modules/**/*

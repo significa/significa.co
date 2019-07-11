@@ -412,9 +412,9 @@ content:
               title: Dark Mode
               text: For all the Opennode users that use the platform mainly at night, it was essential to create a dark mode. It not only lets the user focus more on the platform’s content but also isn’t too tiring on the eyes.
 
-          # - type: comparison
-          #   layout: medium
-          #   margin: bottom
-          #   content:
-          #     a: ./comparison-dark.png
-          #     b: ./comparison-white.png
+          - type: comparison
+            layout: medium
+            margin: bottom
+            content:
+              a: ./comparison-dark.png
+              b: ./comparison-white.png

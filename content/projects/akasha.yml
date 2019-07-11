@@ -153,12 +153,12 @@ content:
             content:
               text: Consistent use of a grid system provides the foundation for harmoniously and consistently positioning elements on screen. Designing on the grid helps create an experience that facilitates understanding and brings order to the page.
 
-          # - type: comparison
-          #   layout: medium
-          #   margin: none
-          #   content:
-          #     a: ./akasha/comparison-dark.png
-          #     b: ./akasha/comparison-light.png
+          - type: comparison
+            layout: medium
+            margin: none
+            content:
+              a: ./akasha/comparison-dark.png
+              b: ./akasha/comparison-light.png
 
       # Section
       - title: Web App

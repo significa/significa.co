@@ -8,7 +8,11 @@ import { textByLine } from '../../../../../utils/textByLine'
 import { titleToID } from '../../../../../utils/titleToID'
 import { Text } from '../../../../UI'
 
-const Sticky = (props: ISticky) => {
+type InnerProps = ISticky & {
+  sectionLabel: string
+}
+
+const Sticky = (props: InnerProps) => {
   const imageItem = props as IStickyImage
   const videoItem = props as IStickyVideo
   const id = props.title ? titleToID(props.title) : undefined

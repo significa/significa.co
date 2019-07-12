@@ -41,10 +41,6 @@ const Comparison: React.FC<IComparison> = ({ a, b, caption }) => {
     }
   }
 
-  if (!a && !b) {
-    return null
-  }
-
   return (
     <S.Wrapper>
       <S.Container ref={container}>
@@ -58,7 +54,7 @@ const Comparison: React.FC<IComparison> = ({ a, b, caption }) => {
             <S.Icon />
           </S.DragHandle>
         </S.Controls>
-        <Img fluid={a.childImageSharp.fluid} />}
+        <Img fluid={a.childImageSharp.fluid} />
         <S.TopImage>
           <Img
             fluid={b.childImageSharp.fluid}

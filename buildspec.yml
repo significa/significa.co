@@ -14,7 +14,8 @@ phases:
 
   post_build:
     commands:
-      - if [ -z "$CODEBUILD_BUILD_SUCCEEDING" ]; then echo "Build Failing"; exit 1; else echo "CODEBUILD_BUILD_SUCCEEDING=$CODEBUILD_BUILD_SUCCEEDING"; fi
+      - bash -c "if [ /"$CODEBUILD_BUILD_SUCCEEDING/" == /"0/" ]; then exit 1; fi"
+      - echo Build stage successfully completed
       - |
         if test "$CODEBUILD_WEBHOOK_HEAD_REF" = "refs/heads/master"; then
           AWS_PROFILE=production npm run deploy && aws cloudfront create-invalidation --distribution-id $PRODUCTION_CLOUDFRONT --paths '/*' --profile production

@@ -63,9 +63,9 @@ const PositionTemplate: React.FC<ITemplate> = ({
 export default PositionTemplate
 
 export const query = graphql`
-  query($uid: String!) {
+  query($uid: String!, $lang: String!) {
     prismic {
-      position(lang: "en-gb", uid: $uid) {
+      position(lang: $lang, uid: $uid) {
         company
         text
         title

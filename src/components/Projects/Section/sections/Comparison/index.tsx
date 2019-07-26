@@ -1,11 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react'
 import Img from 'gatsby-image'
 
-import { IComparison } from '../../types'
+import { ComparisonType } from '../../types'
 
 import * as S from './styled'
 
-const Comparison: React.FC<IComparison> = ({ a, b, caption }) => {
+const Comparison: React.FC<ComparisonType> = ({
+  comparison: { caption, image_a, image_aSharp, image_b, image_bSharp },
+}) => {
   const container = useRef<HTMLDivElement>(null)
 
   const [visible, setVisible] = useState(50)
@@ -54,10 +56,11 @@ const Comparison: React.FC<IComparison> = ({ a, b, caption }) => {
             <S.Icon />
           </S.DragHandle>
         </S.Controls>
-        <Img fluid={a.childImageSharp.fluid} />
+        <Img fluid={image_aSharp.childImageSharp.fluid} alt={image_a.alt} />
         <S.TopImage>
           <Img
-            fluid={b.childImageSharp.fluid}
+            fluid={image_bSharp.childImageSharp.fluid}
+            alt={image_b.alt}
             style={{ height: '100%', width: `${visible}%` }}
           />
         </S.TopImage>

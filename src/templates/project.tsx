@@ -1,187 +1,93 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { Theme } from '@theme'
 
-import { Theme, IColorsTheme } from '@theme'
-
+import linkResolver from '../utils/linkResolver'
 import { getProjectTheme } from '../utils/getProjectTheme'
-import {
-  IImageObject,
-  ISection,
-  marginTypes,
-} from '../components/Projects/Section/types'
+import { IProject } from './project.types'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import {
-  Meta,
-  Hero,
-  Section,
-  Next,
-  Chapter,
-  Navigation,
-} from '../components/Projects/'
-import ConditionalWrap from '../components/utils/ConditionalWrap'
+import { Meta, Hero, Section, Next } from '../components/Projects'
 
-interface ITheme extends IColorsTheme {
-  name: string
-}
-
-export type ContentType = Array<{
-  title?: string
-  theme?: string
-  showTitle?: boolean
-  margin?: marginTypes
-  content: Array<{
-    title?: string
-    sections: ISection[]
-  }>
-}>
-
-export interface IProject {
-  pageContext: {
-    next: {
-      title: string
-      tagline: string
-      hero: IImageObject
-      heroTheme: string
-      themes?: ITheme[]
-      fields: {
-        slug: string
-      }
-    }
-  }
+interface IProjectProps {
   data: {
-    projectsYaml: {
-      seo: {
-        title: string
-        description: string
-        image: {
-          publicURL: string
-        }
-      }
-      title: string
-      tagline: string
-      description: string
-      hero: IImageObject
-      shareImage: {
-        childImageSharp: { resize: { src: string } }
-      }
-      heroTheme: string
-      mainTheme: string
-      navigationTheme: string
-      themes?: ITheme[]
-      client?: string
-      services?: string[]
-      deliverables?: string[]
-      links?: Array<{
-        link: string
-        linkText: string
-      }>
-      content: ContentType
+    prismic: {
+      project: IProject
     }
   }
 }
 
-const Project = ({ data, pageContext: { next } }: IProject) => {
-  const { projectsYaml } = data
+const TestPage = ({ data }: IProjectProps) => {
+  const { project } = data.prismic
+  // Someplace to save the section name
+  const sectionName = React.useRef('')
 
   return (
     <Layout
-      theme={getProjectTheme(projectsYaml.mainTheme, projectsYaml.themes)}
-      headerTheme={getProjectTheme(projectsYaml.heroTheme, projectsYaml.themes)}
+      theme={getProjectTheme(project.main_theme, project.themes)}
+      headerTheme={getProjectTheme(project.hero_theme, project.themes)}
       footerTheme="light"
     >
       <SEO
-        title={projectsYaml.seo.title}
-        description={projectsYaml.seo.description}
+        title={project.seo_title}
+        description={project.seo_description}
         titleTemplate="%s"
-        image={projectsYaml.seo.image.publicURL}
+        image={project.seo_og_image.url}
       />
-
-      {/* Project navigation */}
-      <ConditionalWrap
-        condition={!!projectsYaml.navigationTheme}
-        wrap={children => (
-          <Theme
-            theme={getProjectTheme(
-              projectsYaml.navigationTheme as string,
-              projectsYaml.themes
-            )}
-          >
-            {children}
-          </Theme>
-        )}
-      >
-        <Navigation content={projectsYaml.content} />
-      </ConditionalWrap>
 
       <div>
         {/* Hero */}
-        <Theme
-          theme={getProjectTheme(projectsYaml.heroTheme, projectsYaml.themes)}
-        >
+        <Theme theme={getProjectTheme(project.hero_theme, project.themes)}>
           <Hero
-            title={projectsYaml.title}
-            tagline={projectsYaml.tagline}
-            fluid={projectsYaml.hero.childImageSharp.fluid}
+            title={project.project_title}
+            tagline={project.tagline}
+            fluid={project.hero_imageSharp.childImageSharp.fluid}
           />
         </Theme>
 
         {/* Project description */}
         <Meta
-          description={projectsYaml.description}
-          client={projectsYaml.client}
-          services={projectsYaml.services}
-          deliverables={projectsYaml.deliverables}
-          links={projectsYaml.links}
+          description={project.description}
+          client={project.client}
+          services={project.services.map((s: { service: string }) => s.service)}
+          deliverables={project.deliverables.map(
+            (d: { deliverable: string }) => d.deliverable
+          )}
+          links={project.links.map(
+            (l: { link: { url: string }; link_text: string }) => ({
+              link: l.link.url,
+              linkText: l.link_text,
+            })
+          )}
         />
+        {/* Content */}
+        {project.body.map((section, i) => {
+          if (section.type === 'section' && section.section) {
+            sectionName.current = section.section.title
+          }
 
-        {/* Chapters, blocks and sections */}
-        {projectsYaml.content.map((chapter, chapterIndex) => {
           return (
-            <React.Fragment key={chapterIndex}>
-              {chapter.showTitle && chapter.title && (
-                <ConditionalWrap
-                  condition={!!chapter.theme}
-                  wrap={children => (
-                    <Theme
-                      theme={getProjectTheme(
-                        chapter.theme as string,
-                        projectsYaml.themes
-                      )}
-                    >
-                      {children}
-                    </Theme>
-                  )}
-                >
-                  <Chapter title={chapter.title} margin={chapter.margin} />
-                </ConditionalWrap>
-              )}
-              {chapter.content.map(block => {
-                return block.sections.map((section, sectionIndex) => {
-                  return (
-                    <Section
-                      key={sectionIndex}
-                      section={section}
-                      theme={getProjectTheme(
-                        section.theme,
-                        projectsYaml.themes
-                      )}
-                      sectionLabel={block.title}
-                    />
-                  )
-                })
-              })}
-            </React.Fragment>
+            <Section
+              key={i}
+              section={section}
+              sectionLabel={sectionName.current}
+              themes={project.themes}
+            />
           )
         })}
 
         {/* Next  project */}
-        <Theme theme={getProjectTheme(next.heroTheme, next.themes)}>
+        <Theme
+          theme={getProjectTheme(
+            project.next_project.hero_theme,
+            project.next_project.themes
+          )}
+        >
           <Next
-            title={next.title}
-            tagline={next.tagline}
-            link={next.fields.slug}
+            title={project.next_project.project_title}
+            tagline={project.next_project.tagline}
+            link={linkResolver(project.next_project._meta)}
           />
         </Theme>
       </div>
@@ -189,144 +95,13 @@ const Project = ({ data, pageContext: { next } }: IProject) => {
   )
 }
 
-export default Project
+export default TestPage
 
 export const query = graphql`
-  fragment Image on File {
-    childImageSharp {
-      fluid(maxWidth: 3000) {
-        ...GatsbyImageSharpFluid_withWebp_noBase64
-      }
-      resize {
-        height
-      }
-    }
-  }
-
-  query($slug: String!) {
-    projectsYaml(fields: { slug: { eq: $slug } }) {
-      seo {
-        title
-        description
-        image {
-          publicURL
-        }
-      }
-      title
-      tagline
-      description
-      hero {
-        ...Image
-      }
-      heroTheme
-      mainTheme
-      navigationTheme
-      themes {
-        name
-        background
-        foreground
-        highlight
-        medium
-        subtle
-        error
-      }
-      client
-      services
-      deliverables
-      links {
-        link
-        linkText
-      }
-      content {
-        title
-        theme
-        showTitle
-        margin
-        content {
-          title
-          sections {
-            type
-            layout
-            theme
-            margin
-            content {
-              # Image
-
-              image {
-                ...Image
-              }
-              caption
-
-              # Text
-
-              title
-              text
-              link {
-                url
-                text
-              }
-
-              # Video
-
-              video {
-                publicURL
-              }
-              autoplay
-              loop
-              controls
-              muted
-
-              # Gallery / Slider / Slideshow (not 'video') / waterfall
-
-              #caption
-              columns
-              items {
-                span {
-                  normal
-                  tablet
-                  mobile
-                }
-                image {
-                  ...Image
-                }
-                video {
-                  publicURL
-                }
-              }
-
-              # Comparison
-
-              #caption
-              a {
-                ...Image
-              }
-              b {
-                ...Image
-              }
-
-              # Testimonial
-
-              #text
-              #link
-              author
-
-              # Sticky
-
-              sticky
-              invert
-              #title
-              #image/video
-              #text
-
-              # Highlight
-
-              #text
-
-              # Embed
-              code
-            }
-          }
-        }
+  query($uid: String!) {
+    prismic {
+      project(lang: "en-gb", uid: $uid) {
+        ...ProjectFragment
       }
     }
   }

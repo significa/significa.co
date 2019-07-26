@@ -4,25 +4,30 @@ import { FluidObject } from 'gatsby-image'
 import { ProjectThumb } from '../UI/'
 
 import * as S from './styled'
+import linkResolver from '../../utils/linkResolver'
 
 interface IRecentProjectsData {
-  allProjectsYaml: {
-    edges: Array<{
-      node: {
-        fields: {
-          slug: string
-        }
-        id: string
-        title: string
-        tagline: string
-        services: string[]
-        thumbnail: {
-          childImageSharp: {
-            fluid: FluidObject
+  prismic: {
+    allProjects: {
+      edges: Array<{
+        node: {
+          _meta: {
+            uid: string
+            type: string
+          }
+          project_title: string
+          tagline: string
+          services: Array<{
+            service: string
+          }>
+          thumb_imageSharp: {
+            childImageSharp: {
+              fluid: FluidObject
+            }
           }
         }
-      }
-    }>
+      }>
+    }
   }
 }
 
@@ -30,18 +35,18 @@ const RecentProjects = () => (
   <StaticQuery
     query={recentProjectsQuery}
     render={(data: IRecentProjectsData) => {
-      const { edges: projects } = data.allProjectsYaml
+      const { edges: projects } = data.prismic.allProjects
 
       return (
         <S.Container>
           {projects.map(({ node: project }) => (
             <ProjectThumb
-              key={project.id}
-              title={project.title}
+              key={project._meta.uid}
+              title={project.project_title}
               tagline={project.tagline}
-              to={project.fields.slug}
-              fluid={project.thumbnail.childImageSharp.fluid}
-              services={project.services}
+              to={linkResolver(project._meta)}
+              fluid={project.thumb_imageSharp.childImageSharp.fluid}
+              services={project.services.map(s => s.service)}
               limitServices
             />
           ))}
@@ -53,24 +58,25 @@ const RecentProjects = () => (
 
 const recentProjectsQuery = graphql`
   query RecentProjectsQuery {
-    allProjectsYaml(
-      limit: 3
-      sort: { fields: date, order: DESC }
-      filter: { published: { ne: false } }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          id
-          title
-          tagline
-          services
-          thumbnail {
-            childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
+    prismic {
+      allProjects(sortBy: meta_firstPublicationDate_DESC, first: 3) {
+        edges {
+          node {
+            _meta {
+              uid
+              type
+            }
+            project_title
+            tagline
+            services {
+              service
+            }
+            thumb_image
+            thumb_imageSharp {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid_withWebp_noBase64
+                }
               }
             }
           }

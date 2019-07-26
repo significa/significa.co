@@ -8,7 +8,7 @@ import { IProject } from './project.types'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { Meta, Hero, Section, Next } from '../components/Projects'
+import { Meta, Hero, Section, Next, Navigation } from '../components/Projects'
 
 interface IProjectProps {
   data: {
@@ -61,6 +61,10 @@ const TestPage = ({ data }: IProjectProps) => {
             })
           )}
         />
+
+        {/* Content */}
+        <Navigation content={project.body} />
+
         {/* Content */}
         {project.body.map((section, i) => {
           if (section.type === 'section' && section.section) {

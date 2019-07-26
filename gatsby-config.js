@@ -46,13 +46,9 @@ module.exports = {
       resolve: 'gatsby-source-prismic-graphql',
       options: {
         repositoryName: 'significa',
+        defaultLang: 'en-gb',
         previews: true,
         path: '/preview',
-        linkResolver: function(doc) {
-          if (doc.type === 'project') return '/showcase/' + doc.uid
-
-          return '/'
-        },
         pages: [
           {
             type: 'Project',
@@ -63,7 +59,7 @@ module.exports = {
           {
             type: 'Position',
             match: '/careers/:uid',
-            path: '/career-preview',
+            path: '/position-preview',
             component: require.resolve('./src/templates/position.tsx'),
           },
         ],

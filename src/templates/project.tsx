@@ -102,9 +102,9 @@ const TestPage = ({ data }: IProjectProps) => {
 export default TestPage
 
 export const query = graphql`
-  query($uid: String!) {
+  query($uid: String!, $lang: String!) {
     prismic {
-      project(lang: "en-gb", uid: $uid) {
+      project(lang: $lang, uid: $uid) {
         ...ProjectFragment
       }
     }

@@ -60,6 +60,12 @@ module.exports = {
             path: '/project-preview',
             component: require.resolve('./src/templates/project.tsx'),
           },
+          {
+            type: 'Position',
+            match: '/careers/:uid',
+            path: '/career-preview',
+            component: require.resolve('./src/templates/position.tsx'),
+          },
         ],
       },
     },

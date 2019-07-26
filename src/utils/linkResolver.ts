@@ -3,5 +3,9 @@ export default (doc: { type: string; uid: string }): string => {
     return `/showcase/${doc.uid}`
   }
 
+  if (doc.type === 'position') {
+    return `/careers/${doc.uid}`
+  }
+
   return '/'
 }

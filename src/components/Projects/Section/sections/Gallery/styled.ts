@@ -1,6 +1,5 @@
 import styled, { css, media } from '@theme'
 import { Small } from '../../../../UI'
-import { ISpanTypes } from '../../types'
 
 export const Wrapper = styled.div`
   display: grid;
@@ -17,9 +16,11 @@ export const Wrapper = styled.div`
   }
 `
 
-const getSpan = (p: { span: ISpanTypes }) => {
+const getSpan = (p: {
+  span: { desktop: number; tablet: number; mobile: number }
+}) => {
   return css`
-    grid-column: auto / span ${p.span.normal};
+    grid-column: auto / span ${p.span.desktop};
 
     ${media.medium} {
       grid-column: auto / span ${p.span.tablet};

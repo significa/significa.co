@@ -24,20 +24,6 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
 
-  if (node.internal.type === 'ProjectsYaml') {
-    const slug = createFilePath({
-      node,
-      getNode,
-      basePath: 'projects',
-    })
-
-    createNodeField({
-      node,
-      name: 'slug',
-      value: `/showcase${slug}`,
-    })
-  }
-
   if (node.internal.type === 'MarkdownRemark') {
     const slug = createFilePath({
       node,
@@ -86,43 +72,6 @@ exports.createPages = ({ graphql, actions }) => {
 
   return graphql(`
     {
-      allProjectsYaml(
-        sort: { fields: date, order: DESC }
-        filter: { published: { ne: false } }
-      ) {
-        edges {
-          node {
-            title
-            tagline
-            hero {
-              childImageSharp {
-                fluid(maxWidth: 3000) {
-                  aspectRatio
-                  src
-                  srcSet
-                  sizes
-                  srcWebp
-                  srcSetWebp
-                }
-              }
-            }
-            heroTheme
-            themes {
-              name
-              background
-              foreground
-              highlight
-              medium
-              subtle
-              error
-            }
-            fields {
-              slug
-            }
-          }
-        }
-      }
-
       allMarkdownRemark(filter: { frontmatter: { position: { ne: null } } }) {
         edges {
           node {
@@ -139,24 +88,7 @@ exports.createPages = ({ graphql, actions }) => {
       }
     }
   `).then(result => {
-    const projects = result.data.allProjectsYaml.edges
     const positions = result.data.allMarkdownRemark.edges
-
-    projects.forEach(({ node }, index) => {
-      const next =
-        index === projects.length - 1
-          ? projects[0].node
-          : projects[index + 1].node
-
-      createPage({
-        path: node.fields.slug,
-        component: path.resolve(`./src/templates/project.tsx`),
-        context: {
-          slug: node.fields.slug,
-          next,
-        },
-      })
-    })
 
     positions.forEach(({ node }, index) => {
       createPage({

@@ -1,24 +1,24 @@
 import React from 'react'
 
-import { IVideo } from '../../types'
+import { VideoType } from '../../types'
 
 import * as S from './styled'
 
-const Video = (props: IVideo) => {
+const Video = ({ video }: VideoType) => {
   return (
     <React.Fragment>
       <video
         width="100%"
         playsInline
-        {...(props.autoplay ? { autoPlay: true } : {})}
-        {...(props.loop ? { loop: true } : {})}
-        {...(props.controls === false ? {} : { controls: true })}
-        {...(props.muted === false ? {} : { muted: true })}
+        {...(video.autoplay === 'true' ? { autoPlay: true } : {})}
+        {...(video.loop === 'true' ? { loop: true } : {})}
+        {...(video.controls === 'false' ? {} : { controls: true })}
+        {...(video.mute === 'false' ? {} : { muted: true })}
       >
-        <source src={props.video.publicURL} type="video/mp4" />
+        <source src={video.video.url} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      {props.caption && <S.Caption>{props.caption}</S.Caption>}
+      {video.caption && <S.Caption>{video.caption}</S.Caption>}
     </React.Fragment>
   )
 }

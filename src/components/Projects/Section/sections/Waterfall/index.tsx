@@ -1,20 +1,24 @@
 import React from 'react'
 import Img from 'gatsby-image'
 
-import { IWaterfall } from '../../types'
+import { WaterfallType } from '../../types'
 
 import * as S from './styled'
 
-const Waterfall = (props: IWaterfall) => {
+const Waterfall = (props: WaterfallType) => {
   return (
     <S.Wrapper>
-      {props.items.map((item, i) => {
-        const { height } = item.image.childImageSharp.resize
+      {props.waterfall_images.map((item, i) => {
+        const { height } = item.imageSharp.childImageSharp.resize
         const rowSpan = Math.ceil(height / 10)
 
         return (
           <S.ImgHolder key={i} index={i} rowSpan={rowSpan}>
-            <Img key={i} fluid={item.image.childImageSharp.fluid} />
+            <Img
+              key={i}
+              fluid={item.imageSharp.childImageSharp.fluid}
+              alt={item.image.alt}
+            />
           </S.ImgHolder>
         )
       })}

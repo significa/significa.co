@@ -2,7 +2,7 @@ import React from 'react'
 
 import { IColorsTheme, Theme } from '@theme'
 
-import { ISection, sectionTypes } from './types'
+import { SectionsType, SectionBase, completeLayoutTypes } from './types'
 
 import * as S from './styled'
 import * as Sections from './sections'
@@ -10,50 +10,81 @@ import * as Sections from './sections'
 import { Container } from '../../UI'
 import ConditionalWrap from '../../utils/ConditionalWrap'
 import { getProjectSectionWidth } from './utils'
-
-type SectionsMap = { [K in sectionTypes]: React.ComponentType<any> }
+import { getProjectTheme } from '../../../utils/getProjectTheme'
 
 interface ISectionProps {
-  section: ISection
-  theme: IColorsTheme
+  section: SectionsType
   sectionLabel?: string
+  themes: Array<IColorsTheme & { name: string }>
 }
 
-class Section extends React.Component<ISectionProps> {
-  getMaxWidth = (): { maxWidth: string; padding?: number } => {
-    const { section } = this.props
+type SectionMapType = {
+  [key in SectionsType['type']]: React.ComponentType<any> | null
+}
 
-    const style = {
-      maxWidth: getProjectSectionWidth(section.type, section.layout),
-    }
+const sectionMap: SectionMapType = {
+  chapter: Sections.Chapter,
+  section: null,
+  text: Sections.Text,
+  image: Sections.Image,
+  video: Sections.Video,
+  image_gallery: Sections.Gallery,
+  comparison: Sections.Comparison,
+  slideshow: Sections.Slideshow,
+  waterfall: Sections.Waterfall,
+  testimonial: Sections.Testimonial,
+  embed: Sections.Embed,
+  highlight: Sections.Highlight,
+  sticky_image: Sections.Sticky,
+  sticky_video: Sections.Sticky,
+}
 
-    return section.layout && section.layout === 'full'
-      ? { ...style, padding: 0 }
-      : style
+const getMaxWidth = (
+  type: SectionsType['type'],
+  layout: completeLayoutTypes
+) => {
+  const style = {
+    maxWidth: getProjectSectionWidth(type, layout),
   }
 
-  render() {
-    const { theme, section, sectionLabel } = this.props
+  return layout && layout === 'full' ? { ...style, padding: 0 } : style
+}
 
-    const SectionComponent =
-      (Sections as SectionsMap)[section.type] || Sections.text
+const Section: React.FC<ISectionProps> = ({
+  section,
+  sectionLabel,
+  themes,
+}) => {
+  /**
+   * We have `theme`, `layout` and `margin` on a section named after type
+   * e.g.: Text section has a `text` key with this information inside
+   */
+  const sectionMainContent: SectionBase = (section as any)[section.type]
 
-    return (
-      <ConditionalWrap
-        condition={!!section.theme}
-        wrap={children => <Theme theme={theme}>{children}</Theme>}
-      >
-        <S.SectionWrapper margin={section.margin}>
-          <Container style={this.getMaxWidth()}>
-            <SectionComponent
-              {...section.content}
-              sectionLabel={sectionLabel}
-            />
-          </Container>
-        </S.SectionWrapper>
-      </ConditionalWrap>
-    )
+  const SectionComponent = sectionMap[section.type]
+
+  if (!SectionComponent) {
+    return null
   }
+
+  return (
+    <ConditionalWrap
+      condition={!!sectionMainContent.theme}
+      wrap={children => (
+        <Theme
+          theme={getProjectTheme(sectionMainContent.theme as string, themes)}
+        >
+          {children}
+        </Theme>
+      )}
+    >
+      <S.SectionWrapper margin={sectionMainContent.margin}>
+        <Container style={getMaxWidth(section.type, sectionMainContent.layout)}>
+          <SectionComponent {...section} sectionLabel={sectionLabel} />
+        </Container>
+      </S.SectionWrapper>
+    </ConditionalWrap>
+  )
 }
 
 export default Section

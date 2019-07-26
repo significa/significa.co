@@ -1,40 +1,46 @@
 import React, { useState } from 'react'
 import Img from 'gatsby-image'
 
-import { ISlideshow } from '../../types'
+import { SlideshowType } from '../../types'
 
 import Arrow from './Arrow'
 
 import * as S from './styled'
 
-const Slideshow: React.FC<ISlideshow> = ({ items }) => {
+const Slideshow: React.FC<SlideshowType> = ({ slideshow_images }) => {
   const [index, setIndex] = useState(0)
 
   const handleNextSlide = () => {
-    setIndex(index === items.length - 1 ? items.length - 1 : index + 1)
+    setIndex(
+      index === slideshow_images.length - 1
+        ? slideshow_images.length - 1
+        : index + 1
+    )
   }
 
   const handlePrevSlide = () => {
     setIndex(index <= 0 ? 0 : index - 1)
   }
 
-  const translate = (index % items.length) * (100 / items.length)
+  const translate =
+    (index % slideshow_images.length) * (100 / slideshow_images.length)
 
   return (
     <S.Wrapper>
       <S.SlideWrapper>
         <S.SlideInner
           style={{
-            width: items.length * 100 + '%',
+            width: slideshow_images.length * 100 + '%',
             transform: `translateX(${-translate}%)`,
           }}
         >
-          {items.map((item, i) => {
+          {slideshow_images.map((item, i) => {
             return (
               <Img
                 style={{ width: '100%' }}
                 key={i}
-                fluid={item.image.childImageSharp.fluid}
+                fluid={item.imageSharp.childImageSharp.fluid}
+                alt={item.image.alt}
               />
             )
           })}

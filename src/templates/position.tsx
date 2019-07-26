@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
+import { RichText } from 'prismic-reactjs'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
@@ -7,23 +8,27 @@ import { FormPosition } from '../components/Careers'
 import { ColetivSmall, AdamantSmall, Big, Markdown } from '../components/UI'
 
 import * as S from './position.styled'
+import linkResolver from '../utils/linkResolver'
 
-type CompanyType = 'coletiv' | 'adamant'
-type AllCompaniesType = CompanyType | 'significa'
+type CompanyType = 'Coletiv' | 'Adamant'
+type AllCompaniesType = CompanyType | 'Significa'
 
 interface ITemplate {
   data: {
-    markdownRemark: {
-      frontmatter: { position: string; company: AllCompaniesType }
-      html: string
+    prismic: {
+      position: {
+        company: AllCompaniesType
+        text: Array<{ type: string; text: string; spans: [] }>
+        title: string
+      }
     }
   }
 }
 
 const renderCompany = (company: CompanyType) => {
   const logoComponents: { [K in CompanyType]: React.FC<any> } = {
-    coletiv: ColetivSmall,
-    adamant: AdamantSmall,
+    Coletiv: ColetivSmall,
+    Adamant: AdamantSmall,
   }
 
   const ImageComponent = logoComponents[company]
@@ -33,23 +38,24 @@ const renderCompany = (company: CompanyType) => {
 
 const PositionTemplate: React.FC<ITemplate> = ({
   data: {
-    markdownRemark: {
-      html,
-      frontmatter: { position, company },
-    },
+    prismic: { position },
   },
 }) => {
   return (
     <Layout footerTheme="dark">
-      <SEO title={position} />
+      <SEO title={position.title} />
       <S.Wrapper>
         <S.TitleWrapper>
-          <Big>{position}</Big>
-          {company && company !== 'significa' && renderCompany(company)}
+          <Big>{position.title}</Big>
+          {position.company &&
+            position.company !== 'Significa' &&
+            renderCompany(position.company)}
         </S.TitleWrapper>
-        <Markdown dangerouslySetInnerHTML={{ __html: html }} />
+        <Markdown>
+          <RichText render={position.text} linkResolver={linkResolver} />
+        </Markdown>
       </S.Wrapper>
-      <FormPosition position={position} />
+      <FormPosition position={position.title} />
     </Layout>
   )
 }
@@ -57,13 +63,13 @@ const PositionTemplate: React.FC<ITemplate> = ({
 export default PositionTemplate
 
 export const query = graphql`
-  query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      frontmatter {
-        position
+  query($uid: String!) {
+    prismic {
+      position(lang: "en-gb", uid: $uid) {
         company
+        text
+        title
       }
-      html
     }
   }
 `

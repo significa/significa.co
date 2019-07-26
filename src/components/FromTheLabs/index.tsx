@@ -17,7 +17,7 @@ interface IItem {
 }
 
 interface IFromTheLabsQuery {
-  labsYaml: {
+  labsPageYaml: {
     fromTheLabs: {
       title: string
       cta: string
@@ -38,7 +38,7 @@ const FromTheLabs: React.FC<{}> = () => {
     <StaticQuery
       query={fromTheLabsQuery}
       render={({
-        labsYaml: { fromTheLabs },
+        labsPageYaml: { fromTheLabs },
         prismic: {
           allLab_entrys: { edges },
         },
@@ -78,7 +78,7 @@ const FromTheLabs: React.FC<{}> = () => {
 
 const fromTheLabsQuery = graphql`
   query FromTheLabsQuery {
-    labsYaml {
+    labsPageYaml {
       fromTheLabs {
         title
         cta

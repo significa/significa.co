@@ -10,6 +10,7 @@ interface ILabsThumb {
   tagline: string
   to: string
   fluid: FluidObject
+  alt?: string
   more: string
   source: LabsSourceType
 }
@@ -17,6 +18,7 @@ interface ILabsThumb {
 const LabsThumb: React.FC<ILabsThumb> = ({
   to,
   fluid,
+  alt,
   title,
   tagline,
   more,
@@ -25,6 +27,7 @@ const LabsThumb: React.FC<ILabsThumb> = ({
   <ContentThumb
     to={to}
     fluid={fluid}
+    alt={alt}
     title={`${title} — ${tagline}`}
     text={more}
     renderIcon={() => <LabsIcon source={source} color />}

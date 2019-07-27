@@ -20,6 +20,11 @@ interface IProjectProps {
 
 const TestPage = ({ data }: IProjectProps) => {
   const { project } = data.prismic
+
+  if (!project) {
+    return null
+  }
+
   // Someplace to save the section name
   const sectionName = React.useRef('')
 

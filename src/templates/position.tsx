@@ -41,6 +41,10 @@ const PositionTemplate: React.FC<ITemplate> = ({
     prismic: { position },
   },
 }) => {
+  if (!position) {
+    return null
+  }
+
   return (
     <Layout footerTheme="dark">
       <SEO title={position.title} />

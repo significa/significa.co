@@ -6,6 +6,7 @@ import * as S from './styled'
 import { IProject } from '../../../pages/showcase'
 import useMeasure from '../../../hooks/useMeasure'
 import linkResolver from '../../../utils/linkResolver'
+import getThumbBgColor from '../../../utils/getThumbBgColor'
 
 interface IProjects {
   projects: IProject[]
@@ -34,6 +35,10 @@ const Projects: React.FC<IProjects> = ({ projects }) => {
             to={linkResolver(project._meta)}
             fluid={project.thumb_imageSharp.childImageSharp.fluid}
             services={project.services.map(s => s.service)}
+            backgroundColor={getThumbBgColor(
+              project.hero_theme,
+              project.themes
+            )}
           />
         </ThumbHolder>
       ))}

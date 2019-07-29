@@ -5,6 +5,7 @@ import { ProjectThumb } from '../../UI'
 import * as S from './styled'
 import { IProject } from '../../../pages/showcase'
 import useMeasure from '../../../hooks/useMeasure'
+import linkResolver from '../../../utils/linkResolver'
 
 interface IProjects {
   projects: IProject[]
@@ -26,13 +27,13 @@ const Projects: React.FC<IProjects> = ({ projects }) => {
   return (
     <S.Container>
       {projects.map(({ node: project }) => (
-        <ThumbHolder key={project.id}>
+        <ThumbHolder key={project._meta.uid}>
           <ProjectThumb
-            title={project.title}
+            title={project.project_title}
             tagline={project.tagline}
-            to={project.fields.slug}
-            fluid={project.thumbnail.childImageSharp.fluid}
-            services={project.services}
+            to={linkResolver(project._meta)}
+            fluid={project.thumb_imageSharp.childImageSharp.fluid}
+            services={project.services.map(s => s.service)}
           />
         </ThumbHolder>
       ))}

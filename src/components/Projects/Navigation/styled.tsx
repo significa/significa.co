@@ -23,7 +23,7 @@ export const AnimatedDrawer = styled(animated.nav)`
   height: 100vh;
   width: 18em;
 
-  padding: 4em;
+  padding: 3em;
 
   ${media.small} {
     padding: 3em;

@@ -9,6 +9,7 @@ interface IThumb {
   title: string
   to: string
   fluid: FluidObject
+  alt?: string
   text: string
   renderIcon?: () => React.ReactNode
 }
@@ -16,6 +17,7 @@ interface IThumb {
 const ContentThumb: React.FC<IThumb> = ({
   to,
   fluid,
+  alt,
   title,
   text,
   renderIcon,
@@ -25,7 +27,7 @@ const ContentThumb: React.FC<IThumb> = ({
       {typeof renderIcon === 'function' && (
         <S.IconHolder>{renderIcon()}</S.IconHolder>
       )}
-      <S.Img fluid={fluid} />
+      <S.Img fluid={fluid} alt={alt} />
     </S.ImgWrapper>
     <S.Meta>
       <S.Big>{title}</S.Big>

@@ -1,30 +1,33 @@
 import React from 'react'
 
-import { ITestimonial } from '../../types'
+import { TestimonialType } from '../../types'
 import { textByLine } from '../../../../../utils/textByLine'
 
 import { Title, Text, ArrowLink, Link } from '../../../../UI'
 
 import * as S from './styled'
 
-const Testimonial = (props: ITestimonial) => {
+const Testimonial = ({
+  testimonial: { author, link, link_to, text },
+}: TestimonialType) => {
   return (
     <S.Wrapper>
       <S.Quote />
-      {textByLine(props.text).map((line, i) => (
+      {textByLine(text).map((line, i) => (
         <Title as="p" key={i}>
           {line}
         </Title>
       ))}
       <S.Meta>
-        <Text>{props.author}</Text>
-        {props.link &&
-          (/^\/(?!\/)/.test(props.link.url) ? (
-            <ArrowLink highlight to={props.link.url}>
-              {props.link.text}
+        <Text>{author}</Text>
+        {link &&
+          link_to &&
+          (/^\/(?!\/)/.test(link_to) ? (
+            <ArrowLink highlight to={link_to}>
+              {link}
             </ArrowLink>
           ) : (
-            <Link to={props.link.url}>{props.link.text}</Link>
+            <Link to={link_to}>{link}</Link>
           ))}
       </S.Meta>
     </S.Wrapper>

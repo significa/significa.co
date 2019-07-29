@@ -6,18 +6,28 @@ import { Big } from '../../UI'
 import * as S from './styled'
 
 interface IAll {
-  content: ILabType[]
-  tags: Array<{
-    label: string
-    tag: string
-  }>
+  content: Array<{ node: ILabType }>
 }
 
 type FilterState = string | null
 
-const All: React.FC<IAll> = ({ content, tags }) => {
+const All: React.FC<IAll> = ({ content }) => {
+  const tags = content.reduce((acc: string[], item: { node: ILabType }) => {
+    item.node.tags.forEach(tag => {
+      if (acc.indexOf(tag.tag) < 0) {
+        acc.push(tag.tag)
+      }
+    })
+
+    return acc
+  }, [])
   const [filter, setFilter] = useState<FilterState>(null)
-  const items = !filter ? content : content.filter(c => c.tag === filter)
+  const items = !filter
+    ? content
+    : content.filter(c => {
+        const itemTags = c.node.tags.map(tag => tag.tag)
+        return itemTags.indexOf(filter) >= 0
+      })
 
   return (
     <S.Wrapper>
@@ -28,11 +38,11 @@ const All: React.FC<IAll> = ({ content, tags }) => {
         {tags.map(tag => {
           return (
             <S.Filter
-              key={tag.tag}
-              active={filter === tag.tag}
-              onClick={() => setFilter(tag.tag)}
+              key={tag}
+              active={filter === tag}
+              onClick={() => setFilter(tag)}
             >
-              {tag.label}
+              {tag}
             </S.Filter>
           )
         })}
@@ -40,16 +50,22 @@ const All: React.FC<IAll> = ({ content, tags }) => {
       <div>
         {items.map(item => {
           return (
-            <S.ItemLink key={`${item.title}-${item.tagline}`} href={item.link}>
+            <S.ItemLink
+              key={`${item.node.title}-${item.node.tagline}`}
+              href={item.node.link}
+            >
               <S.ImgHolder>
-                <S.LabsIcon source={item.source} color />
-                <S.Img fluid={item.image.childImageSharp.fluid} />
+                <S.LabsIcon source={item.node.source} color />
+                <S.Img
+                  fluid={item.node.imageSharp.childImageSharp.fluid}
+                  alt={item.node.image.alt}
+                />
               </S.ImgHolder>
               <S.ContentHolder>
                 <Big>
-                  {item.title} &mdash; {item.tagline}
+                  {item.node.title} &mdash; {item.node.tagline}
                 </Big>
-                <S.More>{item.more}</S.More>
+                <S.More>{item.node.link_text}</S.More>
               </S.ContentHolder>
             </S.ItemLink>
           )

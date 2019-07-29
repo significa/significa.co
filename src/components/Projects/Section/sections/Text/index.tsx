@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { IText } from '../../types'
+import { TextType } from '../../types'
 
 import * as S from './styled'
 import { textByLine } from '../../../../../utils/textByLine'
@@ -8,37 +8,36 @@ import { Text as TypographyText } from '../../../../UI'
 import { titleToID } from '../../../../../utils/titleToID'
 import { navigateToSection } from '../../../utils'
 
-interface ITextProps extends IText {
+interface ITextProps extends TextType {
   sectionLabel?: string
 }
 
-const Text = (props: ITextProps) => {
-  const id = props.title ? titleToID(props.title) : undefined
+const Text = ({ text, sectionLabel }: ITextProps) => {
+  const id = text.title ? titleToID(text.title) : undefined
 
   return (
     <S.Wrapper id={id}>
-      {props.title && props.sectionLabel && (
-        <S.Label>{props.sectionLabel}</S.Label>
-      )}
-      {props.title && (
+      {text.title && sectionLabel && <S.Label>{sectionLabel}</S.Label>}
+      {text.title && (
         <S.TitleWrapper
           href={`#${id}`}
           onClick={e => navigateToSection(e, id as string)}
         >
           <S.AnchorIcon />
-          <S.Title>{props.title}</S.Title>
+          <S.Title>{text.title}</S.Title>
         </S.TitleWrapper>
       )}
-      {textByLine(props.text).map((line, i) => (
+      {textByLine(text.text).map((line, i) => (
         <TypographyText key={i}>{line}</TypographyText>
       ))}
-      {props.link &&
-        (/^\/(?!\/)/.test(props.link.url) ? (
-          <S.ArrowLink highlight to={props.link.url}>
-            {props.link.text}
+      {text.link &&
+        text.link_to &&
+        (/^\/(?!\/)/.test(text.link_to) ? (
+          <S.ArrowLink highlight to={text.link_to}>
+            {text.link}
           </S.ArrowLink>
         ) : (
-          <S.Link to={props.link.url}>{props.link.text}</S.Link>
+          <S.Link to={text.link_to}>{text.link}</S.Link>
         ))}
     </S.Wrapper>
   )

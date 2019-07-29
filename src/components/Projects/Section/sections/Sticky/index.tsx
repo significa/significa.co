@@ -1,52 +1,65 @@
 import React from 'react'
 import Img from 'gatsby-image'
 
-import { ISticky, IStickyImage, IStickyVideo } from '../../types'
+import { StickyImageType, StickyVideoType } from '../../types'
 import { navigateToSection } from '../../../utils'
 import * as S from './styled'
 import { textByLine } from '../../../../../utils/textByLine'
 import { titleToID } from '../../../../../utils/titleToID'
 import { Text } from '../../../../UI'
 
-type InnerProps = ISticky & {
+type StickySection = StickyImageType | StickyVideoType
+
+type StickyProps = StickySection & {
   sectionLabel: string
 }
 
-const Sticky = (props: InnerProps) => {
-  const imageItem = props as IStickyImage
-  const videoItem = props as IStickyVideo
-  const id = props.title ? titleToID(props.title) : undefined
+const getSection = (section: StickySection) => {
+  if ('sticky_image' in section) {
+    return section.sticky_image
+  }
+
+  return section.sticky_video
+}
+
+const Sticky = (props: StickyProps) => {
+  const section = getSection(props)
+
+  const id = section.title ? titleToID(section.title) : undefined
 
   return (
-    <S.Wrapper inverted={props.invert} id={id}>
+    <S.Wrapper inverted={section.invert === 'true'} id={id}>
       <S.TextContainer>
-        <S.TextSticky sticky={props.sticky}>
-          {props.title && props.sectionLabel && (
+        <S.TextSticky sticky={section.is_sticky === 'true'}>
+          {section.title && props.sectionLabel && (
             <S.Label>{props.sectionLabel}</S.Label>
           )}
 
-          {props.title && (
+          {section.title && (
             <S.TitleWrapper
               href={`#${id}`}
               onClick={e => navigateToSection(e, id as string)}
             >
               <S.AnchorIcon />
-              <S.Title>{props.title}</S.Title>
+              <S.Title>{section.title}</S.Title>
             </S.TitleWrapper>
           )}
 
-          {textByLine(props.text).map((line, i) => (
+          {textByLine(section.text).map((line, i) => (
             <Text key={i}>{line}</Text>
           ))}
         </S.TextSticky>
       </S.TextContainer>
       <S.MediaContainer>
-        {imageItem.image && (
-          <Img fluid={imageItem.image.childImageSharp.fluid} />
+        {'image' in section && (
+          <Img
+            fluid={section.imageSharp.childImageSharp.fluid}
+            alt={section.image.alt}
+          />
         )}
-        {videoItem.video && (
+        {'video' in section && (
           <video width="100%" autoPlay playsInline loop muted controls={false}>
-            <source src={videoItem.video.publicURL} type="video/mp4" />
+            <source src={section.video.url} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         )}

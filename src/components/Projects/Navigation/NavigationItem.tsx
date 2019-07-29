@@ -3,17 +3,44 @@ import React from 'react'
 import { titleToID } from '../../../utils/titleToID'
 import { navigateToSection } from '../utils'
 
+import {
+  ChapterType,
+  SectionType,
+  TextType,
+  StickyImageType,
+  StickyVideoType,
+} from '../Section/types'
+
 import * as S from './styled'
 
-export interface IItem {
-  type: 'chapter' | 'block' | 'section'
-  text: string
-}
+export type PossibleTypes =
+  | ChapterType
+  | SectionType
+  | TextType
+  | StickyImageType
+  | StickyVideoType
 
 interface INavigationItem {
-  item: IItem
+  item: PossibleTypes
   style: object
   setVisible: (visible: boolean) => void
+}
+
+const getItemText = (item: PossibleTypes) => {
+  switch (item.type) {
+    case 'chapter':
+      return item.chapter.title
+    case 'section':
+      return item.section.title
+    case 'text':
+      return item.text.title
+    case 'sticky_image':
+      return item.sticky_image.title
+    case 'sticky_video':
+      return item.sticky_video.title
+    default:
+      throw new Error('Unexpected type received')
+  }
 }
 
 const NavigationItem: React.FC<INavigationItem> = ({
@@ -25,28 +52,35 @@ const NavigationItem: React.FC<INavigationItem> = ({
     case 'chapter':
       return (
         <S.AnimatedChapterTitle style={style}>
-          {item.text}
+          {getItemText(item)}
         </S.AnimatedChapterTitle>
-      )
-    case 'block':
-      return (
-        <S.AnimatedBlockTitle style={style}>{item.text}</S.AnimatedBlockTitle>
       )
     case 'section':
       return (
+        <S.AnimatedBlockTitle style={style}>
+          {getItemText(item)}
+        </S.AnimatedBlockTitle>
+      )
+    default: {
+      const title = getItemText(item)
+
+      if (!title) {
+        return null
+      }
+
+      return (
         <S.AnimatedSectionLink
           style={style}
-          href={`#${titleToID(item.text)}`}
+          href={`#${titleToID(title)}`}
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-            navigateToSection(e, titleToID(item.text))
+            navigateToSection(e, titleToID(title))
             setVisible(false)
           }}
         >
-          {item.text}
+          {getItemText(item)}
         </S.AnimatedSectionLink>
       )
-    default:
-      return null
+    }
   }
 }
 

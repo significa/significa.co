@@ -9,14 +9,14 @@ import { CallToAction } from '../components/UI'
 
 export interface IProject {
   node: {
-    fields: {
-      slug: string
+    _meta: {
+      uid: string
+      type: string
     }
-    id: string
-    title: string
+    project_title: string
     tagline: string
-    services: string[]
-    thumbnail: {
+    services: Array<{ service: string }>
+    thumb_imageSharp: {
       childImageSharp: {
         fluid: FluidObject
       }
@@ -38,8 +38,10 @@ interface IShowcase {
         linkText: string
       }
     }
-    allProjectsYaml: {
-      edges: IProject[]
+    prismic: {
+      allProjects: {
+        edges: IProject[]
+      }
     }
   }
 }
@@ -52,7 +54,7 @@ const Showcase: React.FC<IShowcase> = ({ data }) => {
         description={data.showcaseYaml.seo.description}
       />
 
-      <Projects projects={data.allProjectsYaml.edges} />
+      <Projects projects={data.prismic.allProjects.edges} />
 
       <CallToAction {...data.showcaseYaml.cta} />
     </Layout>
@@ -76,23 +78,25 @@ export const query = graphql`
       }
     }
 
-    allProjectsYaml(
-      sort: { fields: date, order: DESC }
-      filter: { published: { ne: false } }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          id
-          title
-          tagline
-          services
-          thumbnail {
-            childImageSharp {
-              fluid(maxWidth: 1500) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
+    prismic {
+      allProjects(sortBy: meta_firstPublicationDate_DESC) {
+        edges {
+          node {
+            _meta {
+              uid
+              type
+            }
+            project_title
+            tagline
+            services {
+              service
+            }
+            thumb_image
+            thumb_imageSharp {
+              childImageSharp {
+                fluid(maxWidth: 1500) {
+                  ...GatsbyImageSharpFluid_withWebp_noBase64
+                }
               }
             }
           }

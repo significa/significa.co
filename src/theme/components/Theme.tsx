@@ -9,7 +9,7 @@ import { colorArgumentType } from '../types'
 
 import { StyledThemeProvider } from '../styled'
 
-import { mergeThemeWithColors } from '@theme/utils'
+import { mergeThemeWithColors } from '../utils'
 
 interface IThemeProps {
   theme: colorArgumentType

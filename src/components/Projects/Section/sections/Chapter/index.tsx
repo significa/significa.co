@@ -5,16 +5,16 @@ import { Display } from '../../../../UI'
 
 import { ChapterType } from '../../types'
 
-const Chapter: React.FC<ChapterType> = ({ chapter: { title, showTitle } }) => {
-  if (showTitle === "Don't show title") {
-    return null
+const Chapter: React.FC<ChapterType> = ({ chapter: { title, show_title } }) => {
+  if (show_title === 'true') {
+    return (
+      <S.Wrapper>
+        <Display>{title}</Display>
+      </S.Wrapper>
+    )
   }
 
-  return (
-    <S.Wrapper>
-      <Display>{title}</Display>
-    </S.Wrapper>
-  )
+  return null
 }
 
 export default Chapter

@@ -38,7 +38,7 @@ export const ImageContainer = styled.div`
     height: 50%;
     width: 100%;
     top: -1px;
-    background-color: ${({ theme }) => theme.colors.foreground};
+    background-color: white;
   }
 `
 

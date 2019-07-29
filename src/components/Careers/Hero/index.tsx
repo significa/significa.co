@@ -44,9 +44,9 @@ const Hero: React.FC = () => {
     <S.PageContainer>
       <S.Wrapper>
         {textByLine(title).map((line, i) => (
-          <>
-            <S.Display key={i}>{line}</S.Display>{' '}
-          </>
+          <React.Fragment key={i}>
+            <S.Display>{line}</S.Display>{' '}
+          </React.Fragment>
         ))}
       </S.Wrapper>
 

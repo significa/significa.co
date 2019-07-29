@@ -52,7 +52,7 @@ network:
   companies:
     - name: coletiv
       title: Software Development
-      text: Coletiv crafts software tailored to your needs with a transparent and industry-tested development process.
+      text: Crafts software tailored to your needs with a transparent and industry-tested development process.
       url: https://coletiv.com/
       prettyUrl: coletiv.com
     - name: adamant

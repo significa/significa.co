@@ -3,7 +3,7 @@ seo:
   description: Every little secret about your favourite designers and developers.
 
 hero:
-  title: Design-led and user-centric strategies can impact people’s life.
+  title: Design-led strategies that impact people’s life.
   photos:
     - image: about-1.png
       alt: Office 1
@@ -50,8 +50,7 @@ global:
 careers:
   title: Life here, in the heart of Porto.
   text: |
-    We spend a great deal of our days at work, so why not make it interesting? With a friendly and laid back environment you get all the perks to ensure a creative and productive day.
-    Want to find out more about what's it like working here? Take a look at our careers page.
+    We spend a great deal of our days at work, so why not make it interesting? With a friendly and laid back environment you get all the perks to ensure a creative and productive day. Want to find out more about what's it like working here? Take a look at our careers page.
 
   link: /careers
   linkText: More on Careers
@@ -104,9 +103,9 @@ team:
 
     - name: Isabel Sá
       role: Designer / Developer
-      
+
     - name: Joaquim Rosa
-      role: Developer  
+      role: Developer
 
     - name: Lisa Cosme
       role: Designer
@@ -150,7 +149,7 @@ team:
       company: coletiv
 
     - name: Vitor Dino
-      role: Developer   
+      role: Developer
 
 cta:
   title: From inception to launch.

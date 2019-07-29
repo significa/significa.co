@@ -25,7 +25,7 @@ export const Link = styled(ExtractedPropsLink)`
 
   position: relative;
 
-  font-size: 1em;
+  font-size: 1.125rem;
   line-height: 1;
 
   color: ${({ theme }) => theme.colors.foreground};

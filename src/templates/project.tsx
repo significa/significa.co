@@ -9,6 +9,7 @@ import { IProject } from './project.types'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import { Meta, Hero, Section, Next, Navigation } from '../components/Projects'
+import ConditionalWrap from '../components/utils/ConditionalWrap'
 
 interface IProjectProps {
   data: {
@@ -18,7 +19,7 @@ interface IProjectProps {
   }
 }
 
-const TestPage = ({ data }: IProjectProps) => {
+const ProjectPage = ({ data }: IProjectProps) => {
   const { project } = data.prismic
 
   if (!project) {
@@ -67,8 +68,19 @@ const TestPage = ({ data }: IProjectProps) => {
           )}
         />
 
-        {/* Content */}
-        <Navigation content={project.body} />
+        {/* Navigation */}
+        <ConditionalWrap
+          condition={!!project.navigation_theme}
+          wrap={children => (
+            <Theme
+              theme={getProjectTheme(project.navigation_theme, project.themes)}
+            >
+              {children}
+            </Theme>
+          )}
+        >
+          <Navigation content={project.body} />
+        </ConditionalWrap>
 
         {/* Content */}
         {project.body.map((section, i) => {
@@ -104,7 +116,7 @@ const TestPage = ({ data }: IProjectProps) => {
   )
 }
 
-export default TestPage
+export default ProjectPage
 
 export const query = graphql`
   query($uid: String!, $lang: String!) {

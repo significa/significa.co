@@ -15,6 +15,7 @@ export const ProjectFragment = graphql`
   fragment ProjectFragment on PRISMIC_Project {
     # Themes
     main_theme
+    navigation_theme
     hero_theme
     themes {
       name

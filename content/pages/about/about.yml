@@ -104,6 +104,9 @@ team:
 
     - name: Isabel Sá
       role: Designer / Developer
+      
+    - name: Joaquim Rosa
+      role: Developer  
 
     - name: Lisa Cosme
       role: Designer
@@ -147,7 +150,7 @@ team:
       company: coletiv
 
     - name: Vitor Dino
-      role: Developer
+      role: Developer   
 
 cta:
   title: From inception to launch.

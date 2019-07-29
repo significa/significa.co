@@ -33,7 +33,8 @@ export const BlurImg = styled(BaseImg)`
   z-index: -1;
 
   filter: blur(10px) brightness(90%);
-  opacity: 0.3;
+  backdrop-filter: blur(10px);
+  opacity: 0.4;
 
   transition: all ${({ theme }) => theme.transitions.cubic('0.7s')};
 `

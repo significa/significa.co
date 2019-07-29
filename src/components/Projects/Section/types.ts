@@ -28,7 +28,7 @@ export interface SectionBase {
 export interface ChapterType {
   type: 'chapter'
   chapter: {
-    showTitle: 'Show title' | "Don't show title"
+    show_title: StringBoolean
     title: string
     theme: StringOrNull
   }

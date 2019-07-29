@@ -24,13 +24,13 @@ const Team = () => {
     aboutYaml: { team },
   }: ITeam = useStaticQuery(query)
 
-  const amountProletariat = team.list.length
+  const amountTeamMembers = team.list.length
 
   return (
     <S.TeamWrapper>
       <S.Title>{team.title}</S.Title>
       <S.Text>
-        {team.text.replace('{team_count}', String(amountProletariat))}
+        {team.text.replace('{team_count}', String(amountTeamMembers))}
       </S.Text>
 
       <S.TeamList>

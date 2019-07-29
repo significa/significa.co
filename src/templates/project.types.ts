@@ -18,6 +18,7 @@ interface ImageObject {
 export interface IProject {
   main_theme: string
   hero_theme: string
+  navigation_theme: string
   themes: Theme[]
 
   seo_title: string

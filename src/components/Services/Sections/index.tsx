@@ -63,8 +63,8 @@ const Sections = () => {
             </S.LeftGraphics>
             <S.RightText>
               <S.Title>{data.strategy.title}</S.Title>
-              {textByLine(data.strategy.text).map((line, i) => {
-                return <S.Text key={i}>{line}</S.Text>
+              {textByLine(data.strategy.text).map(line => {
+                return <S.Text key={line}>{line}</S.Text>
               })}
             </S.RightText>
           </S.Content>
@@ -78,8 +78,8 @@ const Sections = () => {
             <S.DesignColumnContent>
               <S.Title>{data.design.title}</S.Title>
               <S.RelativeWrapper>
-                {textByLine(data.design.text).map((line, i) => {
-                  return <S.Text key={i}>{line}</S.Text>
+                {textByLine(data.design.text).map(line => {
+                  return <S.Text key={line}>{line}</S.Text>
                 })}
                 <ElementSelected />
               </S.RelativeWrapper>
@@ -135,8 +135,8 @@ const Sections = () => {
               </S.DevelopmentBox>
               <S.RightText>
                 <S.Title>{data.development.title}</S.Title>
-                {textByLine(data.development.text).map((line, i) => {
-                  return <S.Text key={i}>{line}</S.Text>
+                {textByLine(data.development.text).map(line => {
+                  return <S.Text key={line}>{line}</S.Text>
                 })}
               </S.RightText>
             </S.Content>

@@ -31,14 +31,14 @@ const Hero = () => {
     <>
       <S.TopWrapper>
         <S.Title>{hero.title}</S.Title>
-        {textByLine(hero.text).map((line, i) => {
-          return <S.Text key={i}>{line}</S.Text>
+        {textByLine(hero.text).map(line => {
+          return <S.Text key={line}>{line}</S.Text>
         })}
       </S.TopWrapper>
       <S.ServicesWrapper>
-        {hero.services.map((service, i) => {
+        {hero.services.map(service => {
           return (
-            <S.ServiceItem key={i}>
+            <S.ServiceItem key={service.title}>
               <S.ListTitle>{service.title}</S.ListTitle>
               <List items={service.items} />
             </S.ServiceItem>

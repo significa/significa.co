@@ -27,8 +27,8 @@ const Meta: React.FC<IMeta> = ({
   return (
     <S.Container>
       <S.Top>
-        {textByLine(description).map((line, i) => (
-          <Big key={i}>{line}</Big>
+        {textByLine(description).map(line => (
+          <Big key={line}>{line}</Big>
         ))}
       </S.Top>
       <S.Bottom>

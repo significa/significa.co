@@ -23,8 +23,8 @@ const Services: React.FC<IServicesContent> = ({
       ))}
     </S.TextContent>
     <S.Columns>
-      {columns.map((column, i) => (
-        <div key={i}>
+      {columns.map(column => (
+        <div key={column.title}>
           <S.Big>{column.title}</S.Big>
           <List items={column.items} />
         </div>

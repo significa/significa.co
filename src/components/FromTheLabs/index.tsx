@@ -46,8 +46,8 @@ const FromTheLabs: React.FC<{}> = () => {
         <S.Wrapper>
           <RightContent title={fromTheLabs.title}>
             <ul>
-              {edges.map((item, i) => (
-                <S.ListItem key={i}>
+              {edges.map(item => (
+                <S.ListItem key={item.node.link}>
                   <S.Link href={item.node.link}>
                     {item.node.source && (
                       <S.IconHolder>

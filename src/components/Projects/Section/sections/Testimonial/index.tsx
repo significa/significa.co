@@ -13,8 +13,8 @@ const Testimonial = ({
   return (
     <S.Wrapper>
       <S.Quote />
-      {textByLine(text).map((line, i) => (
-        <Title as="p" key={i}>
+      {textByLine(text).map(line => (
+        <Title as="p" key={line}>
           {line}
         </Title>
       ))}

@@ -38,7 +38,7 @@ const Slideshow: React.FC<SlideshowType> = ({ slideshow_images }) => {
             return (
               <Img
                 style={{ width: '100%' }}
-                key={i}
+                key={`${item.image.alt}-${i}`}
                 fluid={item.imageSharp.childImageSharp.fluid}
                 alt={item.image.alt}
               />

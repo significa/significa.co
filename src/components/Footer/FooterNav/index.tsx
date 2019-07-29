@@ -26,14 +26,14 @@ interface INavFooterQuery {
 
 class FooterNav extends React.Component<{}, {}> {
   renderSocialItems = (items: IItemType[]) => {
-    return items.map(({ label, link }, i) => (
-      <Social key={i} type={label} link={link} />
+    return items.map(({ label, link }) => (
+      <Social key={link} type={label} link={link} />
     ))
   }
 
   renderItems = (items: IItemType[]) => {
-    return items.map(({ label, link }, i) => (
-      <FooterLink key={i} to={link}>
+    return items.map(({ label, link }) => (
+      <FooterLink key={label} to={link}>
         {label}
       </FooterLink>
     ))

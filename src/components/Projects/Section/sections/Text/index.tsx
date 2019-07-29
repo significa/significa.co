@@ -27,8 +27,8 @@ const Text = ({ text, sectionLabel }: ITextProps) => {
           <S.Title>{text.title}</S.Title>
         </S.TitleWrapper>
       )}
-      {textByLine(text.text).map((line, i) => (
-        <TypographyText key={i}>{line}</TypographyText>
+      {textByLine(text.text).map(line => (
+        <TypographyText key={line}>{line}</TypographyText>
       ))}
       {text.link &&
         text.link_to &&

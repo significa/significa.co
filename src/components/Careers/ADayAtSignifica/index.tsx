@@ -41,7 +41,11 @@ const Perks: React.FC = () => {
             {adayatsignifica.top.map(
               ({ image: { childImageSharp }, alt }, i) => {
                 return (
-                  <S.TopImage key={i} alt={alt} fluid={childImageSharp.fluid} />
+                  <S.TopImage
+                    key={`${alt}-${i}`}
+                    alt={alt}
+                    fluid={childImageSharp.fluid}
+                  />
                 )
               }
             )}
@@ -60,7 +64,7 @@ const Perks: React.FC = () => {
               ({ image: { childImageSharp }, alt }, i) => {
                 return (
                   <S.BottomImage
-                    key={i}
+                    key={`${alt}-${i}`}
                     alt={alt}
                     fluid={childImageSharp.fluid}
                   />

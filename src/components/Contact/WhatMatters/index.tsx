@@ -69,8 +69,8 @@ const WhatMatters: React.FC<IWhatMatters> = ({
           </S.ImagesGrid>
 
           <S.MoreWrapper>
-            {textByLine(data.more).map((line, i) => (
-              <S.MoreContent key={i}>{line}</S.MoreContent>
+            {textByLine(data.more).map(line => (
+              <S.MoreContent key={line}>{line}</S.MoreContent>
             ))}
             <S.MoreContent>{data.interested}</S.MoreContent>
           </S.MoreWrapper>

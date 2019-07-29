@@ -45,8 +45,8 @@ const Sticky = (props: StickyProps) => {
             </S.TitleWrapper>
           )}
 
-          {textByLine(section.text).map((line, i) => (
-            <Text key={i}>{line}</Text>
+          {textByLine(section.text).map(line => (
+            <Text key={line}>{line}</Text>
           ))}
         </S.TextSticky>
       </S.TextContainer>

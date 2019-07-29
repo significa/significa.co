@@ -25,9 +25,9 @@ const Contacts: React.FC<IGeneralContacts> = ({
     <S.Wrapper>
       <S.Title>{contacts.title}</S.Title>
       <S.Columns>
-        {contacts.columns.map((column, index) => {
+        {contacts.columns.map(column => {
           return (
-            <div key={index}>
+            <div key={column.title}>
               <S.ColumnTitle>{column.title}</S.ColumnTitle>
               {column.mail && (
                 <S.MailLink href={`mailto:${column.mail}`}>

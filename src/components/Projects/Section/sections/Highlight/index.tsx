@@ -10,8 +10,8 @@ import PaddedWrapper from '../common/PaddedWrapper'
 const Highlight = ({ highlight: { text } }: HighlightType) => {
   return (
     <PaddedWrapper>
-      {textByLine(text).map((line, i) => (
-        <Big key={i}>{line}</Big>
+      {textByLine(text).map(line => (
+        <Big key={line}>{line}</Big>
       ))}
     </PaddedWrapper>
   )

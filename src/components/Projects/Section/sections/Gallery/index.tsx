@@ -11,7 +11,7 @@ const Gallery: React.FC<GalleryType> = props => (
       {props.image_gallery_images.map((image, i) => {
         return (
           <S.Item
-            key={i}
+            key={`${image.image.alt}-${i}`}
             span={{
               desktop: image.span,
               tablet: image.span_tablet,

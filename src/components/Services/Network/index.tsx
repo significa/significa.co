@@ -36,9 +36,9 @@ const Network = () => {
             <S.Text>{data.text}</S.Text>
           </S.TextContent>
           <S.CardHolder>
-            {data.companies.map((company, i) => {
+            {data.companies.map(company => {
               return (
-                <S.Card key={i}>
+                <S.Card key={company.name}>
                   <S.LogoHolder>
                     <CompanyLogo company={company.name} />
                   </S.LogoHolder>

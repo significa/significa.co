@@ -82,14 +82,14 @@ const Positions = () => {
   return (
     <RightContent title={positions.title}>
       <ul>
-        {edges.map(({ node }, i) => {
+        {edges.map(({ node }) => {
           return (
             <Item
               doc={node._meta}
               position={node.title}
               tagline={node.tagline}
               company={node.company}
-              key={i}
+              key={node.title}
             />
           )
         })}

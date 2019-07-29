@@ -26,8 +26,8 @@ const ThumbHolder: React.FC<{}> = ({ children }) => {
 const Highlights: React.FC<IHighlights> = ({ content }) => {
   return (
     <S.Container>
-      {[...content].splice(0, 6).map((item, i) => (
-        <ThumbHolder key={i}>
+      {[...content].splice(0, 6).map(item => (
+        <ThumbHolder key={item.node.link}>
           <LabsThumb
             to={item.node.link}
             title={item.node.title}

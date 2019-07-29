@@ -13,9 +13,12 @@ const Waterfall = (props: WaterfallType) => {
         const rowSpan = Math.ceil(height / 10)
 
         return (
-          <S.ImgHolder key={i} index={i} rowSpan={rowSpan}>
+          <S.ImgHolder
+            key={`${item.image.alt}-${i}`}
+            index={i}
+            rowSpan={rowSpan}
+          >
             <Img
-              key={i}
               fluid={item.imageSharp.childImageSharp.fluid}
               alt={item.image.alt}
             />

@@ -5,6 +5,7 @@ import { ProjectThumb } from '../UI/'
 
 import * as S from './styled'
 import linkResolver from '../../utils/linkResolver'
+import getThumbBgColor from '../../utils/getThumbBgColor'
 
 interface IRecentProjectsData {
   prismic: {
@@ -15,6 +16,8 @@ interface IRecentProjectsData {
             uid: string
             type: string
           }
+          hero_theme: string
+          themes: Array<{ name: string; background: string }>
           project_title: string
           tagline: string
           services: Array<{
@@ -48,6 +51,10 @@ const RecentProjects = () => (
               fluid={project.thumb_imageSharp.childImageSharp.fluid}
               services={project.services.map(s => s.service)}
               limitServices
+              backgroundColor={getThumbBgColor(
+                project.hero_theme,
+                project.themes
+              )}
             />
           ))}
         </S.Container>
@@ -65,6 +72,11 @@ const recentProjectsQuery = graphql`
             _meta {
               uid
               type
+            }
+            hero_theme
+            themes {
+              name
+              background
             }
             project_title
             tagline

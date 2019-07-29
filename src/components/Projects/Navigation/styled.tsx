@@ -46,7 +46,6 @@ export const AnimatedOverlay = styled(animated.div)`
 
 export const AnimatedChapterTitle = styled(animated.h3)`
   font-size: 1.2em;
-  font-family: ${({ theme }) => theme.fonts.serif};
   line-height: 1.375;
   letter-spacing: 0;
   font-weight: 400;

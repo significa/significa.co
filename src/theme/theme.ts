@@ -56,9 +56,8 @@ const theme: IFullTheme = {
   colors: lightTheme,
   space: [2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48, 80, 120, 160, 200],
   fonts: {
-    serif: "'Acta', 'Times New Roman', Times, serif",
     sans:
-      "'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+      "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
   },
   maxWidth: '80em',
   transitions: {

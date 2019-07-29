@@ -7,7 +7,6 @@ import { Big as BaseBig } from '../Typography'
 
 export const ImgWrapper = styled.div`
   will-change: transform;
-  overflow: visible;
 
   position: relative;
 `
@@ -41,6 +40,8 @@ export const BlurImg = styled(BaseImg)`
 
 export const Meta = styled.div`
   transition: opacity ${({ theme }) => theme.transitions.ease()};
+
+  will-change: opacity;
 `
 
 export const Big = styled(BaseBig)`

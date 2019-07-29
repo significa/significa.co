@@ -121,6 +121,7 @@ export const Img = styled(Image)`
 `
 
 export const ContentHolder = styled.div`
+  flex: 1;
   padding-bottom: 2em;
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.subtle};

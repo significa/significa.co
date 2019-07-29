@@ -6,22 +6,30 @@ import { RightContent, Big, LabsIcon, LabsSourceType } from '../UI/'
 import * as S from './styled'
 
 interface IItem {
-  title: string
-  tagline: string
-  more: string
-  source: LabsSourceType
-  tag: string
   link: string
+  link_text: string
+  source: LabsSourceType
+  tagline: string
+  title: string
+  tags: Array<{
+    tag: string
+  }>
 }
 
 interface IFromTheLabsQuery {
-  labsYaml: {
+  labsPageYaml: {
     fromTheLabs: {
       title: string
       cta: string
       link: string
     }
-    content: IItem[]
+  }
+  prismic: {
+    allLab_entrys: {
+      edges: Array<{
+        node: IItem
+      }>
+    }
   }
 }
 
@@ -29,24 +37,31 @@ const FromTheLabs: React.FC<{}> = () => {
   return (
     <StaticQuery
       query={fromTheLabsQuery}
-      render={({ labsYaml: { fromTheLabs, content } }: IFromTheLabsQuery) => (
+      render={({
+        labsPageYaml: { fromTheLabs },
+        prismic: {
+          allLab_entrys: { edges },
+        },
+      }: IFromTheLabsQuery) => (
         <S.Wrapper>
           <RightContent title={fromTheLabs.title}>
             <ul>
-              {content.slice(0, 3).map((item, i) => (
+              {edges.map((item, i) => (
                 <S.ListItem key={i}>
-                  <S.Link href={item.link}>
-                    {item.source && (
+                  <S.Link href={item.node.link}>
+                    {item.node.source && (
                       <S.IconHolder>
                         <LabsIcon
-                          source={item.source.toLowerCase() as LabsSourceType}
+                          source={
+                            item.node.source.toLowerCase() as LabsSourceType
+                          }
                         />
                       </S.IconHolder>
                     )}
                     <Big>
-                      {item.title} &mdash; {item.tagline}
+                      {item.node.title} &mdash; {item.node.tagline}
                     </Big>
-                    <S.More>{item.more}</S.More>
+                    <S.More>{item.node.link_text}</S.More>
                   </S.Link>
                 </S.ListItem>
               ))}
@@ -63,19 +78,28 @@ const FromTheLabs: React.FC<{}> = () => {
 
 const fromTheLabsQuery = graphql`
   query FromTheLabsQuery {
-    labsYaml {
+    labsPageYaml {
       fromTheLabs {
         title
         cta
         link
       }
-      content {
-        title
-        tagline
-        more
-        source
-        tag
-        link
+    }
+
+    prismic {
+      allLab_entrys(sortBy: meta_firstPublicationDate_DESC, first: 3) {
+        edges {
+          node {
+            link
+            link_text
+            source
+            tagline
+            title
+            tags {
+              tag
+            }
+          }
+        }
       }
     }
   }

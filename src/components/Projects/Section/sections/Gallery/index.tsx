@@ -1,40 +1,34 @@
 import React from 'react'
 import Img from 'gatsby-image'
 
-import { IGallery, IGalleryImage, IGalleryVideo } from '../../types'
+import { GalleryType } from '../../types'
 
 import * as S from './styled'
 
-const Gallery: React.FC<IGallery> = ({ items, columns, caption }) => (
+const Gallery: React.FC<GalleryType> = props => (
   <>
-    <S.Wrapper columns={columns}>
-      {items.map((item, i) => {
-        const imageItem = item as IGalleryImage
-        const videoItem = item as IGalleryVideo
-
+    <S.Wrapper columns={props.image_gallery.columns}>
+      {props.image_gallery_images.map((image, i) => {
         return (
-          <S.Item key={i} span={item.span}>
-            {imageItem.image && (
-              <Img fluid={imageItem.image.childImageSharp.fluid} />
-            )}
-            {videoItem.video && (
-              <video
-                width="100%"
-                autoPlay
-                playsInline
-                loop
-                muted
-                controls={false}
-              >
-                <source src={videoItem.video.publicURL} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            )}
+          <S.Item
+            key={i}
+            span={{
+              desktop: image.span,
+              tablet: image.span_tablet,
+              mobile: image.span_mobile,
+            }}
+          >
+            <Img
+              fluid={image.imageSharp.childImageSharp.fluid}
+              alt={image.image.alt}
+            />
           </S.Item>
         )
       })}
     </S.Wrapper>
-    {caption && <S.Caption>{caption}</S.Caption>}
+    {props.image_gallery.caption && (
+      <S.Caption>{props.image_gallery.caption}</S.Caption>
+    )}
   </>
 )
 

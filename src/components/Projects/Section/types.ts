@@ -1,11 +1,6 @@
 import { FluidObject } from 'gatsby-image'
 
-export interface ILinkObject {
-  url: string
-  text: string
-}
-
-export interface IImageObject {
+interface ImageObject {
   childImageSharp: {
     fluid: FluidObject
     resize: {
@@ -14,143 +9,194 @@ export interface IImageObject {
   }
 }
 
-export interface IVideoObject {
-  publicURL: string
-}
-
 export type layoutTypes = 'small' | 'normal' | 'medium' | 'large' | 'full'
+
+export type completeLayoutTypes = 'auto' & layoutTypes
 
 export type marginTypes = 'none' | 'top' | 'bottom' | 'both'
 
-export interface ISpanTypes {
-  normal: number
-  tablet: number
-  mobile: number
+type StringOrNull = string | null
+
+type StringBoolean = 'true' | 'false'
+
+export interface SectionBase {
+  layout: completeLayoutTypes
+  margin: marginTypes
+  theme: StringOrNull
 }
 
-// Text
-export interface IText {
-  title?: string
-  text: string
-  link?: ILinkObject
+export interface ChapterType {
+  type: 'chapter'
+  chapter: {
+    show_title: StringBoolean
+    title: string
+    theme: StringOrNull
+  }
 }
 
-// Image
-export interface IImage {
-  image: IImageObject
-  caption?: string
+export interface SectionType {
+  type: 'section'
+  section: {
+    title: string
+  }
 }
 
-// Video
-export interface IVideo {
-  caption?: string
-  video: IVideoObject
-  autoplay?: boolean
-  loop?: boolean
-  controls?: boolean
-  muted?: boolean
+export interface TextType {
+  type: 'text'
+  text: SectionBase & {
+    title: StringOrNull
+    text: string
+    link?: StringOrNull
+    link_to?: StringOrNull
+  }
 }
 
-// Gallery
-export interface IGalleryImage {
-  span: ISpanTypes
-  image: IImageObject
+export interface ImageType {
+  type: 'image'
+  image: SectionBase & {
+    image: {
+      alt: StringOrNull
+    }
+    imageSharp: ImageObject
+    caption: StringOrNull
+  }
 }
 
-export interface IGalleryVideo {
-  span: ISpanTypes
-  video: IVideoObject
+export interface VideoType {
+  type: 'video'
+  video: SectionBase & {
+    autoplay: StringBoolean
+    caption: StringBoolean
+    controls: StringBoolean
+    loop: StringBoolean
+    mute: StringBoolean
+    video: {
+      url: string
+    }
+  }
 }
 
-export interface IGallery {
-  columns: number
-  items: Array<IGalleryImage | IGalleryVideo>
-  caption?: string
+export interface GalleryType {
+  type: 'image_gallery'
+  image_gallery: SectionBase & {
+    caption: StringOrNull
+    columns: number
+  }
+  image_gallery_images: Array<{
+    image: {
+      alt: string
+    }
+    imageSharp: ImageObject
+    span: number
+    span_tablet: number
+    span_mobile: number
+  }>
 }
 
-// Comparison
-export interface IComparison {
-  a: IImageObject
-  b: IImageObject
-  caption?: string
+export interface ComparisonType {
+  type: 'comparison'
+  comparison: SectionBase & {
+    caption: StringOrNull
+    image_a: {
+      alt: string
+    }
+    image_aSharp: ImageObject
+    image_b: {
+      alt: string
+    }
+    image_bSharp: ImageObject
+  }
 }
 
-// Slideshow
-export interface ISlideshow {
-  caption?: string
-  items: Array<{ image: IImageObject }>
+export interface SlideshowType {
+  type: 'slideshow'
+  slideshow: SectionBase & {
+    caption: StringOrNull
+  }
+  slideshow_images: Array<{
+    image: {
+      alt: string
+    }
+    imageSharp: ImageObject
+  }>
 }
 
-// Waterfall
-export interface IWaterfall {
-  items: Array<{ image: IImageObject }>
+export interface WaterfallType {
+  type: 'waterfall'
+  waterfall: SectionBase
+  waterfall_images: Array<{
+    image: {
+      alt: string
+    }
+    imageSharp: ImageObject
+  }>
 }
 
-// Testimonial
-export interface ITestimonial {
-  text: string
-  author: string
-  link?: ILinkObject
+export interface TestimonialType {
+  type: 'testimonial'
+  testimonial: SectionBase & {
+    author: string
+    text: string
+    link: StringOrNull
+    link_to: StringOrNull
+  }
 }
 
-// Sticky
-interface IStickyBase {
-  sticky: boolean
-  invert: boolean
-  text: string
-  title?: string
+export interface EmbedType {
+  type: 'embed'
+  embed: SectionBase & {
+    code: {
+      html: string
+    }
+  }
 }
 
-export interface IStickyVideo extends IStickyBase {
-  video: IVideoObject
+export interface HighlightType {
+  type: 'highlight'
+  highlight: SectionBase & {
+    text: string
+  }
 }
 
-export interface IStickyImage extends IStickyBase {
-  image: IImageObject
+export interface StickyImageType {
+  type: 'sticky_image'
+  sticky_image: SectionBase & {
+    invert: StringBoolean
+    is_sticky: StringBoolean
+    text: string
+    title: StringOrNull
+    image: {
+      alt: string
+    }
+    imageSharp: ImageObject
+  }
 }
 
-export type ISticky = IStickyVideo | IStickyImage
-
-// Embed
-export interface IEmbed {
-  code: string
+export interface StickyVideoType {
+  type: 'sticky_video'
+  sticky_video: SectionBase & {
+    invert: StringBoolean
+    is_sticky: StringBoolean
+    text: string
+    title: StringOrNull
+    video: {
+      url: string
+    }
+  }
 }
 
-// Highlight
-export interface IHighlight {
-  text: string
-}
-
-// All of them
-export type sectionTypes =
-  | 'text'
-  | 'image'
-  | 'video'
-  | 'gallery'
-  | 'comparison'
-  | 'slideshow'
-  | 'waterfall'
-  | 'testimonial'
-  | 'sticky'
-  | 'highlight'
-  | 'embed'
-export type SectionContent =
-  | IText
-  | IImage
-  | IVideo
-  | IGallery
-  | IComparison
-  | ISlideshow
-  | IWaterfall
-  | ITestimonial
-  | ISticky
-  | IHighlight
-  | IEmbed
-
-export interface ISection {
-  type: sectionTypes
-  theme: string
-  layout?: layoutTypes
-  margin?: marginTypes
-  content: SectionContent
-}
+export type SectionsType =
+  | ChapterType
+  | SectionType
+  | TextType
+  | ImageType
+  | VideoType
+  | GalleryType
+  | ComparisonType
+  | SlideshowType
+  | WaterfallType
+  | TestimonialType
+  | EmbedType
+  | HighlightType
+  | StickyImageType
+  | StickyVideoType

@@ -42,6 +42,29 @@ module.exports = {
         path: `${__dirname}/content`,
       },
     },
+    {
+      resolve: 'gatsby-source-prismic-graphql',
+      options: {
+        repositoryName: 'significa',
+        defaultLang: 'en-gb',
+        previews: true,
+        path: '/preview',
+        pages: [
+          {
+            type: 'Project',
+            match: '/showcase/:uid',
+            path: '/project-preview',
+            component: require.resolve('./src/templates/project.tsx'),
+          },
+          {
+            type: 'Position',
+            match: '/careers/:uid',
+            path: '/position-preview',
+            component: require.resolve('./src/templates/position.tsx'),
+          },
+        ],
+      },
+    },
     'gatsby-transformer-yaml',
     'gatsby-plugin-typescript',
     'gatsby-plugin-styled-components',

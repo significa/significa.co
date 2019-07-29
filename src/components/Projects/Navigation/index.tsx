@@ -1,15 +1,14 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { useTrail, useSpring, useTransition } from 'react-spring'
 
-import { ContentType } from '../../../templates/project'
+import { SectionsType } from '../Section/types'
 
 import * as S from './styled'
-import { createNavigationItems } from './utils'
-import NavigationItem from './NavigationItem'
+import NavigationItem, { PossibleTypes } from './NavigationItem'
 import useBodyLock from '../../../hooks/useBodyLock'
 
 interface INavigation {
-  content: ContentType
+  content: SectionsType[]
 }
 
 const Navigation: React.FC<INavigation> = ({ content }) => {
@@ -63,7 +62,16 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
     },
   })
 
-  const items = createNavigationItems(content)
+  const items = content.filter(section => {
+    const wantedTypes = [
+      'chapter',
+      'section',
+      'text',
+      'sticky_image',
+      'sticky_video',
+    ]
+    return wantedTypes.indexOf(section.type) >= 0
+  })
   const itemsTrail = useTrail(items.length, {
     config: {
       tension: 2500,
@@ -106,7 +114,7 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
                   (value: number) => `translateX(${value}em)`
                 ),
               }}
-              item={items[index]}
+              item={items[index] as PossibleTypes}
               setVisible={setVisible}
             />
           )

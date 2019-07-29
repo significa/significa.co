@@ -1,4 +1,4 @@
-import { layoutTypes, sectionTypes } from './types'
+import { layoutTypes, SectionsType, completeLayoutTypes } from './types'
 
 const widths: { [K in layoutTypes]: string } = {
   small: '38.4375em',
@@ -8,22 +8,28 @@ const widths: { [K in layoutTypes]: string } = {
   full: '100%',
 }
 
-const defaultValues: { [K in sectionTypes]: layoutTypes } = {
-  comparison: 'normal',
-  gallery: 'normal',
-  image: 'normal',
-  slideshow: 'normal',
-  sticky: 'medium',
-  testimonial: 'normal',
+const defaultValues: { [key in SectionsType['type']]: layoutTypes } = {
+  chapter: 'full',
+  section: 'full',
   text: 'small',
+  image: 'normal',
+  image_gallery: 'normal',
+  comparison: 'normal',
+  slideshow: 'normal',
   video: 'normal',
   waterfall: 'large',
+  testimonial: 'normal',
   highlight: 'normal',
   embed: 'normal',
+  sticky_image: 'medium',
+  sticky_video: 'medium',
 }
 
-const getProjectSectionWidth = (type: sectionTypes, layout?: layoutTypes) => {
-  if (layout) {
+const getProjectSectionWidth = (
+  type: SectionsType['type'],
+  layout: completeLayoutTypes
+) => {
+  if (layout !== 'auto') {
     return widths[layout]
   }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { css, media } from '@theme'
 import { animated } from 'react-spring'
+import { motion } from 'framer-motion'
 
 const Z_INDEXES = {
   overlay: 999,
@@ -139,7 +140,7 @@ export const ButtonLine = styled.span`
 // Had to import React, make this file .tsx and manually extract
 // the `visible` prop so it doesn't get passed down to the DOM
 export const AnimatedNavButton = styled(({ visible, ...rest }) => (
-  <animated.button {...rest} />
+  <motion.button {...rest} />
 ))<{
   visible: boolean
 }>`

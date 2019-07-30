@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { useTrail, useSpring, useTransition } from 'react-spring'
+import { AnimatePresence } from 'framer-motion'
 
 import { SectionsType } from '../Section/types'
 
@@ -52,7 +53,6 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
     leave: { opacity: 0 },
   }
   const overlayTransitions = useTransition(visible, null, transition)
-  const buttonTransitions = useTransition(isButtonVisible, null, transition)
 
   const drawerSpring = useSpring({
     transform: visible ? 'translateX(0)' : 'translateX(-100%)',
@@ -86,21 +86,22 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
   return (
     <>
       {/* Button */}
-      {buttonTransitions.map(
-        ({ item, key, props }) =>
-          item && (
-            <S.AnimatedNavButton
-              key={key}
-              style={props}
-              onClick={toggleNav}
-              visible={visible}
-            >
-              <S.ButtonLine />
-              <S.ButtonLine />
-              <S.ButtonLine />
-            </S.AnimatedNavButton>
-          )
-      )}
+      <AnimatePresence>
+        {isButtonVisible && (
+          <S.AnimatedNavButton
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ ease: 'easeInOut', duration: 0.2 }}
+            onClick={toggleNav}
+            visible={visible}
+          >
+            <S.ButtonLine />
+            <S.ButtonLine />
+            <S.ButtonLine />
+          </S.AnimatedNavButton>
+        )}
+      </AnimatePresence>
 
       {/* Drawer */}
       <S.AnimatedDrawer style={drawerSpring}>

@@ -127,10 +127,6 @@ team:
       role: Developer
       company: coletiv
 
-    - name: Miguel Ramos
-      role: Cyber Security Intern
-      company: adamant
-
     - name: Pedro Brandão
       role: Founder / CEO
 
@@ -147,9 +143,6 @@ team:
     - name: Tiago Duarte
       role: Coletiv CEO
       company: coletiv
-
-    - name: Vitor Dino
-      role: Developer
 
 cta:
   title: From inception to launch.

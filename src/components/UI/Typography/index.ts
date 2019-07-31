@@ -3,6 +3,7 @@ export {
   Display,
   displayStyle,
   Title,
+  SmallTitle,
   Big,
   bigStyle,
   Text,

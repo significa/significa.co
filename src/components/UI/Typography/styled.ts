@@ -40,6 +40,14 @@ export const Title = styled.h3`
   letter-spacing: 0;
 `
 
+export const SmallTitle = styled.h4`
+  ${baseStyle};
+
+  font-size: 1.5em;
+  line-height: 1.3;
+  letter-spacing: 0;
+`
+
 export const bigStyle = css`
   ${baseStyle};
 

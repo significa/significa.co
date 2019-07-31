@@ -15,7 +15,7 @@ export const CallToActionWrapper = styled.section`
   }
 
   ${media.small} {
-    padding: 6.5rem 1rem 6rem;
+    padding: 6.5rem 1.5rem 6rem;
   }
 `
 

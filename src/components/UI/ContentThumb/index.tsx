@@ -12,6 +12,8 @@ interface IThumb {
   alt?: string
   text: string
   renderIcon?: () => React.ReactNode
+  showShadow?: boolean
+  backgroundColor?: string
 }
 
 const ContentThumb: React.FC<IThumb> = ({
@@ -21,19 +23,28 @@ const ContentThumb: React.FC<IThumb> = ({
   title,
   text,
   renderIcon,
-}) => (
-  <S.Link to={to}>
-    <S.ImgWrapper>
-      {typeof renderIcon === 'function' && (
-        <S.IconHolder>{renderIcon()}</S.IconHolder>
-      )}
-      <S.Img fluid={fluid} alt={alt} />
-    </S.ImgWrapper>
-    <S.Meta>
-      <S.Big>{title}</S.Big>
-      <Text>{text}</Text>
-    </S.Meta>
-  </S.Link>
-)
+  showShadow,
+  backgroundColor,
+}) => {
+  const bgColorProps = backgroundColor ? { backgroundColor } : {}
+
+  return (
+    <S.Link to={to}>
+      <S.ImgWrapper>
+        {typeof renderIcon === 'function' && (
+          <S.IconHolder>{renderIcon()}</S.IconHolder>
+        )}
+        <S.Img fluid={fluid} alt={alt} {...bgColorProps} />
+        {showShadow && (
+          <S.BlurImg fluid={fluid} alt={alt} style={{ position: 'absolute' }} />
+        )}
+      </S.ImgWrapper>
+      <S.Meta>
+        <S.Big>{title}</S.Big>
+        <Text>{text}</Text>
+      </S.Meta>
+    </S.Link>
+  )
+}
 
 export default ContentThumb

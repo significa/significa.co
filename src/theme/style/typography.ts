@@ -1,25 +1,24 @@
 import { css } from '../styled'
-import GraphikWoff from './fonts/Graphik-Regular.woff'
-import GraphikWoff2 from './fonts/Graphik-Regular.woff2'
-import ActaDeckWoff from './fonts/ActaDeck-Book.woff'
-import ActaDeckWoff2 from './fonts/ActaDeck-Book.woff2'
+import InterRegularWoff from './fonts/Inter-Regular.woff'
+import InterRegularWoff2 from './fonts/Inter-Regular.woff2'
+import InterLightWoff from './fonts/Inter-Light.woff'
+import InterLightWoff2 from './fonts/Inter-Light.woff2'
 
 export default css`
   @font-face {
-    font-family: 'Graphik';
-    src: url(${GraphikWoff2}) format('woff2'),
-      url(${GraphikWoff}) format('woff');
+    font-family: 'Inter';
+    src: url(${InterRegularWoff2}) format('woff2'),
+      url(${InterRegularWoff}) format('woff');
     font-weight: normal;
     font-style: normal;
-    font-stretch: normal;
     font-display: auto;
   }
 
   @font-face {
-    font-family: 'Acta';
-    src: url(${ActaDeckWoff2}) format('woff2'),
-      url(${ActaDeckWoff}) format('woff');
-    font-weight: normal;
+    font-family: 'Inter';
+    src: url(${InterLightWoff2}) format('woff2'),
+      url(${InterLightWoff}) format('woff');
+    font-weight: 300;
     font-style: normal;
     font-display: auto;
   }

@@ -10,6 +10,7 @@ interface IProjectThumb {
   fluid: FluidObject
   services: string[]
   limitServices?: boolean
+  backgroundColor?: string
 }
 
 const ProjectThumb: React.FC<IProjectThumb> = ({
@@ -19,11 +20,14 @@ const ProjectThumb: React.FC<IProjectThumb> = ({
   tagline,
   services,
   limitServices,
+  backgroundColor,
 }) => (
   <ContentThumb
     to={to}
     fluid={fluid}
     title={`${title} — ${tagline}`}
+    showShadow
+    backgroundColor={backgroundColor}
     text={
       limitServices && services.length > 5
         ? services.slice(0, 3).join(', ') + ` & ${services.length - 3} others`

@@ -3,8 +3,7 @@ import styled, { media } from '@theme'
 import { Container, Display as BaseDisplay } from '../../UI'
 
 export const TopWrapper = styled(Container)`
-  text-align: center;
-  max-width: 38em;
+  text-align: left;
 
   margin-top: 7.5rem;
   margin-bottom: 7.5em;
@@ -17,6 +16,7 @@ export const TopWrapper = styled(Container)`
 
 export const Display = styled(BaseDisplay)`
   margin-bottom: 0.5rem;
+  max-width: 32rem;
 `
 
 export const Gallery = styled(Container)`

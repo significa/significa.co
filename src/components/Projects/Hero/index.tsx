@@ -23,7 +23,7 @@ const Hero: React.FC<IHero> = ({ title, tagline, fluid }) => {
           Back to showcase
         </S.ArrowLink>
       </S.Container>
-      <S.Img fluid={fluid} />
+      <S.Img fluid={fluid} loading="eager" />
     </S.Section>
   )
 }

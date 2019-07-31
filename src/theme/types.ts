@@ -26,7 +26,6 @@ export interface IFullTheme {
   colors: IColorsTheme
   space: number[]
   fonts: {
-    serif: string
     sans: string
   }
   maxWidth: string

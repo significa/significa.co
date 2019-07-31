@@ -22,8 +22,8 @@ export type PossibleTypes =
 
 interface INavigationItem {
   item: PossibleTypes
-  style: object
-  setVisible: (visible: boolean) => void
+  toggleVisible: () => void
+  [key: string]: any
 }
 
 const getItemText = (item: PossibleTypes) => {
@@ -45,19 +45,19 @@ const getItemText = (item: PossibleTypes) => {
 
 const NavigationItem: React.FC<INavigationItem> = ({
   item,
-  style,
-  setVisible,
+  toggleVisible,
+  ...props
 }) => {
   switch (item.type) {
     case 'chapter':
       return (
-        <S.AnimatedChapterTitle style={style}>
+        <S.AnimatedChapterTitle {...props}>
           {getItemText(item)}
         </S.AnimatedChapterTitle>
       )
     case 'section':
       return (
-        <S.AnimatedBlockTitle style={style}>
+        <S.AnimatedBlockTitle {...props}>
           {getItemText(item)}
         </S.AnimatedBlockTitle>
       )
@@ -70,11 +70,11 @@ const NavigationItem: React.FC<INavigationItem> = ({
 
       return (
         <S.AnimatedSectionLink
-          style={style}
+          {...props}
           href={`#${titleToID(title)}`}
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
             navigateToSection(e, titleToID(title))
-            setVisible(false)
+            toggleVisible()
           }}
         >
           {getItemText(item)}

@@ -4,7 +4,7 @@ import { themeGet } from '../../../utils/themeGet'
 export const baseStyle = css`
   position: relative;
 
-  font-size: 1em;
+  font-size: 1.125rem;
   line-height: 1;
   color: ${themeGet('colors.foreground', 'inherit')};
   text-decoration: underline;

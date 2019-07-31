@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css, media } from '@theme'
-import { animated } from 'react-spring'
+import { motion } from 'framer-motion'
 
 const Z_INDEXES = {
   overlay: 999,
@@ -8,7 +8,7 @@ const Z_INDEXES = {
   button: 1001,
 }
 
-export const AnimatedDrawer = styled(animated.nav)`
+export const AnimatedDrawer = styled(motion.nav)`
   box-sizing: border-box;
   position: fixed;
   z-index: ${Z_INDEXES.drawer};
@@ -21,16 +21,16 @@ export const AnimatedDrawer = styled(animated.nav)`
 
   background-color: ${({ theme }) => theme.colors.background};
   height: 100vh;
-  width: 18em;
+  width: 20em;
 
-  padding: 3em;
+  padding: 3em 4em;
 
   ${media.small} {
     padding: 3em;
   }
 `
 
-export const AnimatedOverlay = styled(animated.div)`
+export const AnimatedOverlay = styled(motion.div)`
   position: fixed;
   top: 0;
   right: 0;
@@ -44,9 +44,8 @@ export const AnimatedOverlay = styled(animated.div)`
   cursor: zoom-out;
 `
 
-export const AnimatedChapterTitle = styled(animated.h3)`
+export const AnimatedChapterTitle = styled(motion.h3)`
   font-size: 1.2em;
-  font-family: ${({ theme }) => theme.fonts.serif};
   line-height: 1.375;
   letter-spacing: 0;
   font-weight: 400;
@@ -60,7 +59,7 @@ export const AnimatedChapterTitle = styled(animated.h3)`
   }
 `
 
-export const AnimatedBlockTitle = styled(animated.h4)`
+export const AnimatedBlockTitle = styled(motion.h4)`
   font-size: 0.75em;
   line-height: 1.428;
   letter-spacing: 0;
@@ -80,7 +79,7 @@ export const AnimatedBlockTitle = styled(animated.h4)`
   }
 `
 
-export const AnimatedSectionLink = styled(animated.a)`
+export const AnimatedSectionLink = styled(motion.a)`
   font-size: 0.875em;
   line-height: 1.428;
   letter-spacing: 0;
@@ -140,7 +139,7 @@ export const ButtonLine = styled.span`
 // Had to import React, make this file .tsx and manually extract
 // the `visible` prop so it doesn't get passed down to the DOM
 export const AnimatedNavButton = styled(({ visible, ...rest }) => (
-  <animated.button {...rest} />
+  <motion.button {...rest} />
 ))<{
   visible: boolean
 }>`

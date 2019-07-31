@@ -13,6 +13,8 @@ export interface IProject {
       uid: string
       type: string
     }
+    hero_theme: string
+    themes: Array<{ name: string; background: string }>
     project_title: string
     tagline: string
     services: Array<{ service: string }>
@@ -85,6 +87,11 @@ export const query = graphql`
             _meta {
               uid
               type
+            }
+            hero_theme
+            themes {
+              name
+              background
             }
             project_title
             tagline

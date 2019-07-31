@@ -7,7 +7,6 @@ import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
 import { Top, Services, Careers } from '../components/Home/'
-import RecentProjects from '../components/RecentProjects'
 import FromTheLabs from '../components/FromTheLabs'
 
 export interface IServicesContent {
@@ -34,30 +33,26 @@ export interface ICareersContent {
 }
 
 interface IHomeContent {
-  edges: Array<{
-    node: {
-      headline: string
-      services: IServicesContent
-      careers: ICareersContent
-    }
-  }>
+  headline: string
+  tagline: string
+  services: IServicesContent
+  careers: ICareersContent
 }
 
 interface IIndexPage {
   data: {
-    allHomeYaml: IHomeContent
+    homeYaml: IHomeContent
   }
 }
 
 const IndexPage: React.FC<IIndexPage> = ({ data }) => {
-  const content = data.allHomeYaml.edges[0].node
+  const content = data.homeYaml
 
   return (
     <Layout>
       <SEO />
 
-      <Top headline={content.headline} />
-      <RecentProjects />
+      <Top headline={content.headline} tagline={content.tagline} />
       <Services {...content.services} />
       <Theme theme="dark">
         <FromTheLabs />
@@ -71,31 +66,28 @@ export default IndexPage
 
 export const query = graphql`
   query HomepageQuery {
-    allHomeYaml {
-      edges {
-        node {
-          headline
-          services {
-            title
-            text
-            cta
-            link
-            columns {
-              title
-              items
-            }
-          }
-          careers {
-            title
-            text
-            cta
-            link
-            photos {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid_withWebp_noBase64
-                }
-              }
+    homeYaml {
+      headline
+      tagline
+      services {
+        title
+        text
+        cta
+        link
+        columns {
+          title
+          items
+        }
+      }
+      careers {
+        title
+        text
+        cta
+        link
+        photos {
+          childImageSharp {
+            fluid(maxWidth: 500) {
+              ...GatsbyImageSharpFluid_withWebp_noBase64
             }
           }
         }

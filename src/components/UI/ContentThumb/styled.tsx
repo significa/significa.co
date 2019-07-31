@@ -7,7 +7,6 @@ import { Big as BaseBig } from '../Typography'
 
 export const ImgWrapper = styled.div`
   will-change: transform;
-  overflow: hidden;
 
   position: relative;
 `
@@ -24,8 +23,26 @@ export const Img = styled(BaseImg)`
   transition: transform ${({ theme }) => theme.transitions.cubic('0.7s')};
 `
 
+export const BlurImg = styled(BaseImg)`
+  width: 95%;
+  left: calc(5% / 2);
+
+  height: 100%;
+  top: 1rem;
+
+  z-index: -1;
+
+  filter: blur(10px) brightness(90%);
+  backdrop-filter: blur(10px);
+  opacity: 0.4;
+
+  transition: all ${({ theme }) => theme.transitions.cubic('0.7s')};
+`
+
 export const Meta = styled.div`
   transition: opacity ${({ theme }) => theme.transitions.ease()};
+
+  will-change: opacity;
 `
 
 export const Big = styled(BaseBig)`
@@ -61,7 +78,14 @@ export const Link = styled(DetectLink)`
 
   ${media.hover} {
     &:hover ${Img} {
-      transform: scale(1.05);
+      transform: scale(1.03);
+    }
+
+    &:hover ${BlurImg} {
+      width: 92%;
+      left: calc(8% / 2);
+
+      top: 0.75rem;
     }
 
     &:hover ${Meta} {

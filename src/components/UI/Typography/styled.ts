@@ -1,6 +1,5 @@
 import styled, { css } from '@theme'
 import { getColor } from '../../../utils/getColor'
-import { themeGet } from '../../../utils/themeGet'
 
 const baseStyle = css`
   color: ${getColor};
@@ -10,7 +9,7 @@ const baseStyle = css`
 export const Huge = styled.h1`
   ${baseStyle};
 
-  font-family: ${themeGet('fonts.serif', 'serif')};
+  font-weight: 300;
 
   font-size: 3em;
   line-height: 1.1666;
@@ -20,7 +19,7 @@ export const Huge = styled.h1`
 export const displayStyle = css`
   ${baseStyle};
 
-  font-family: ${themeGet('fonts.serif', 'serif')};
+  font-weight: 300;
 
   font-size: 2.5em;
   line-height: 1.2;
@@ -34,10 +33,18 @@ export const Display = styled.h2`
 export const Title = styled.h3`
   ${baseStyle};
 
-  font-family: ${themeGet('fonts.serif', 'serif')};
+  font-weight: 300;
 
   font-size: 2em;
   line-height: 1.25;
+  letter-spacing: 0;
+`
+
+export const SmallTitle = styled.h4`
+  ${baseStyle};
+
+  font-size: 1.5em;
+  line-height: 1.3;
   letter-spacing: 0;
 `
 

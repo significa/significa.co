@@ -1,10 +1,10 @@
-headline: Your “go-to” digital agency
+headline: Your go-to digital agency
+tagline: Significa is a digital design-led agency mainly focused on Product Development.
 
 services:
-  title: Making products meaningful
+  title: We build digital products
   text: |
-    Significa is a digital agency focused mostly on user-interfaces. 
-    Having a design-led approach to what we do defines what we are. We take on products from inception to launch, from business model to people's pocket, from wireframe to continuous deployment.
+    Having a design-led approach to what we do defines who we are. We take on products from inception to launch, from business model to people's pocket, from wireframe to continuous deployment.
   columns:
     - title: Strategy
       items:
@@ -31,10 +31,10 @@ services:
 
 careers:
   title: |
-    Drop by for some eggs.
-    Anytime.
+    Drop by,
+    we're hiring.
   text: |
-    We offer defiance of the status quo as we create thrilling new projects with an open-minded, open-hearted team. 
+    We are an open-minded, open-hearted team that loves the thrill of creating exciting new projects.
     Drop us a line if you’re passionate and talented to do everything you set your mind to.
   cta: View careers
   link: /careers

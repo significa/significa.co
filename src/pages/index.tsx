@@ -7,7 +7,6 @@ import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
 import { Top, Services, Careers } from '../components/Home/'
-import RecentProjects from '../components/RecentProjects'
 import FromTheLabs from '../components/FromTheLabs'
 
 export interface IServicesContent {
@@ -37,6 +36,7 @@ interface IHomeContent {
   edges: Array<{
     node: {
       headline: string
+      tagline: string
       services: IServicesContent
       careers: ICareersContent
     }
@@ -56,8 +56,7 @@ const IndexPage: React.FC<IIndexPage> = ({ data }) => {
     <Layout>
       <SEO />
 
-      <Top headline={content.headline} />
-      <RecentProjects />
+      <Top headline={content.headline} tagline={content.tagline} />
       <Services {...content.services} />
       <Theme theme="dark">
         <FromTheLabs />
@@ -75,6 +74,7 @@ export const query = graphql`
       edges {
         node {
           headline
+          tagline
           services {
             title
             text

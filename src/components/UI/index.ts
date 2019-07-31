@@ -9,6 +9,7 @@ export {
   Huge,
   Display,
   Title,
+  SmallTitle,
   Big,
   Text,
   Label,

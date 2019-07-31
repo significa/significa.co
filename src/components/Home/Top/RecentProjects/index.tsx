@@ -1,11 +1,13 @@
 import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
-import { ProjectThumb } from '../UI/'
+import { motion } from 'framer-motion'
+
+import { ProjectThumb } from '../../../UI'
 
 import * as S from './styled'
-import linkResolver from '../../utils/linkResolver'
-import getThumbBgColor from '../../utils/getThumbBgColor'
+import linkResolver from '../../../../utils/linkResolver'
+import getThumbBgColor from '../../../../utils/getThumbBgColor'
 
 interface IRecentProjectsData {
   prismic: {
@@ -42,20 +44,26 @@ const RecentProjects = () => (
 
       return (
         <S.Container>
-          {projects.map(({ node: project }) => (
-            <ProjectThumb
+          {projects.map(({ node: project }, i) => (
+            <motion.div
               key={project._meta.uid}
-              title={project.project_title}
-              tagline={project.tagline}
-              to={linkResolver(project._meta)}
-              fluid={project.thumb_imageSharp.childImageSharp.fluid}
-              services={project.services.map(s => s.service)}
-              limitServices
-              backgroundColor={getThumbBgColor(
-                project.hero_theme,
-                project.themes
-              )}
-            />
+              animate={{ y: 0, opacity: 1 }}
+              initial={{ y: 50, opacity: 0 }}
+              transition={{ delay: i * 0.1 + 0.5 }}
+            >
+              <ProjectThumb
+                title={project.project_title}
+                tagline={project.tagline}
+                to={linkResolver(project._meta)}
+                fluid={project.thumb_imageSharp.childImageSharp.fluid}
+                services={project.services.map(s => s.service)}
+                limitServices
+                backgroundColor={getThumbBgColor(
+                  project.hero_theme,
+                  project.themes
+                )}
+              />
+            </motion.div>
           ))}
         </S.Container>
       )

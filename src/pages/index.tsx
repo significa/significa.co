@@ -33,24 +33,20 @@ export interface ICareersContent {
 }
 
 interface IHomeContent {
-  edges: Array<{
-    node: {
-      headline: string
-      tagline: string
-      services: IServicesContent
-      careers: ICareersContent
-    }
-  }>
+  headline: string
+  tagline: string
+  services: IServicesContent
+  careers: ICareersContent
 }
 
 interface IIndexPage {
   data: {
-    allHomeYaml: IHomeContent
+    homeYaml: IHomeContent
   }
 }
 
 const IndexPage: React.FC<IIndexPage> = ({ data }) => {
-  const content = data.allHomeYaml.edges[0].node
+  const content = data.homeYaml
 
   return (
     <Layout>
@@ -70,32 +66,28 @@ export default IndexPage
 
 export const query = graphql`
   query HomepageQuery {
-    allHomeYaml {
-      edges {
-        node {
-          headline
-          tagline
-          services {
-            title
-            text
-            cta
-            link
-            columns {
-              title
-              items
-            }
-          }
-          careers {
-            title
-            text
-            cta
-            link
-            photos {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid_withWebp_noBase64
-                }
-              }
+    homeYaml {
+      headline
+      tagline
+      services {
+        title
+        text
+        cta
+        link
+        columns {
+          title
+          items
+        }
+      }
+      careers {
+        title
+        text
+        cta
+        link
+        photos {
+          childImageSharp {
+            fluid(maxWidth: 500) {
+              ...GatsbyImageSharpFluid_withWebp_noBase64
             }
           }
         }

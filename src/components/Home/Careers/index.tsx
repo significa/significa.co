@@ -1,6 +1,8 @@
 import React from 'react'
 import Img from 'gatsby-image'
 
+import { textByLine } from '../../../utils/textByLine'
+
 import { ICareersContent } from '../../../pages'
 import { ArrowLink } from '../../UI/'
 
@@ -16,7 +18,16 @@ const Careers: React.FC<ICareersContent> = ({
   <>
     <S.Container>
       <S.Left>
-        <S.Title>{title}</S.Title>
+        <S.Title>
+          {textByLine(title).map(l => {
+            return (
+              <React.Fragment key={l}>
+                {l}
+                <br />
+              </React.Fragment>
+            )
+          })}
+        </S.Title>
       </S.Left>
       <S.Right>
         <S.Big>{text}</S.Big>

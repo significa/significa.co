@@ -1,6 +1,5 @@
-import React, { useState, useCallback, useEffect } from 'react'
-import { useTrail, useSpring, useTransition } from 'react-spring'
-import { AnimatePresence } from 'framer-motion'
+import React, { useState, useEffect } from 'react'
+import { AnimatePresence, useCycle } from 'framer-motion'
 
 import { SectionsType } from '../Section/types'
 
@@ -12,10 +11,15 @@ interface INavigation {
   content: SectionsType[]
 }
 
+const SPRING_TRANSITION = {
+  type: 'spring',
+  stiffness: 300,
+  damping: 35,
+}
+
 const Navigation: React.FC<INavigation> = ({ content }) => {
-  const [visible, setVisible] = useState<boolean>(false)
+  const [visible, toggleVisible] = useCycle(false, true)
   const [isButtonVisible, setButtonVisible] = useState<boolean>(false)
-  const toggleNav = useCallback(() => setVisible(!visible), [visible])
   useBodyLock(visible)
 
   // Only show button closer to the bottom
@@ -46,22 +50,6 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
     }
   }
 
-  // Animations
-  const transition = {
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-  }
-  const overlayTransitions = useTransition(visible, null, transition)
-
-  const drawerSpring = useSpring({
-    transform: visible ? 'translateX(0)' : 'translateX(-100%)',
-    config: {
-      tension: 500,
-      friction: 50,
-    },
-  })
-
   const items = content.filter(section => {
     const wantedTypes = [
       'chapter',
@@ -71,16 +59,6 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
       'sticky_video',
     ]
     return wantedTypes.indexOf(section.type) >= 0
-  })
-  const itemsTrail = useTrail(items.length, {
-    config: {
-      tension: 2500,
-      friction: 100,
-    },
-    delay: 100,
-    x: visible ? 0 : -0.5,
-    opacity: visible ? 1 : 0,
-    from: { x: -0.5, opacity: 0 },
   })
 
   return (
@@ -93,7 +71,7 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ ease: 'easeInOut', duration: 0.2 }}
-            onClick={toggleNav}
+            onClick={toggleVisible}
             visible={visible}
           >
             <S.ButtonLine />
@@ -104,35 +82,49 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
       </AnimatePresence>
 
       {/* Drawer */}
-      <S.AnimatedDrawer style={drawerSpring}>
-        {itemsTrail.map(
-          ({ x, opacity }: { [key: string]: any }, index: number) => (
-            <NavigationItem
-              key={index}
-              style={{
-                opacity,
-                transform: x.interpolate(
-                  (value: number) => `translateX(${value}em)`
-                ),
-              }}
-              item={items[index] as PossibleTypes}
-              setVisible={setVisible}
-            />
-          )
-        )}
+      <S.AnimatedDrawer
+        initial={false}
+        animate={visible ? 'open' : 'closed'}
+        variants={{
+          open: {
+            x: 0,
+            transition: {
+              ...SPRING_TRANSITION,
+              staggerChildren: 0.02,
+              delayChildren: 0.1,
+            },
+          },
+          closed: {
+            x: '-20em',
+            transition: SPRING_TRANSITION,
+          },
+        }}
+      >
+        {items.map((item, index: number) => (
+          <NavigationItem
+            key={index}
+            item={item as PossibleTypes}
+            toggleVisible={toggleVisible}
+            variants={{
+              open: { x: 0, opacity: 1 },
+              closed: { x: -20, opacity: 0 },
+            }}
+          />
+        ))}
       </S.AnimatedDrawer>
 
       {/* Overlay */}
-      {overlayTransitions.map(
-        ({ item, key, props }) =>
-          item && (
-            <S.AnimatedOverlay
-              key={key}
-              style={props}
-              onClick={() => setVisible(false)}
-            />
-          )
-      )}
+      <AnimatePresence>
+        {visible && (
+          <S.AnimatedOverlay
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ ease: 'easeInOut', duration: 0.2 }}
+            onClick={() => toggleVisible()}
+          />
+        )}
+      </AnimatePresence>
     </>
   )
 }

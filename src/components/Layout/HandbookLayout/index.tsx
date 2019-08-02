@@ -2,7 +2,7 @@ import React from 'react'
 
 import Layout from '..'
 
-import Navigation from '../../Handbook/Navigation'
+import { Navigation } from '../../Handbook/'
 
 import * as S from './styled'
 

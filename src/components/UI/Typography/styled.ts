@@ -30,7 +30,7 @@ export const Display = styled.h2`
   ${displayStyle};
 `
 
-export const Title = styled.h3`
+export const titleStyle = css`
   ${baseStyle};
 
   font-weight: 300;
@@ -40,12 +40,20 @@ export const Title = styled.h3`
   letter-spacing: 0;
 `
 
-export const SmallTitle = styled.h4`
+export const Title = styled.h3`
+  ${titleStyle};
+`
+
+export const smallTitleStyle = css`
   ${baseStyle};
 
   font-size: 1.5em;
   line-height: 1.3;
   letter-spacing: 0;
+`
+
+export const SmallTitle = styled.h4`
+  ${smallTitleStyle};
 `
 
 export const bigStyle = css`
@@ -72,12 +80,16 @@ export const Text = styled.p`
   ${textStyle}
 `
 
-export const Label = styled.label`
+export const labelStyle = css`
   ${baseStyle};
 
   font-size: 0.875em;
   line-height: 1;
   letter-spacing: 0;
+`
+
+export const Label = styled.label`
+  ${labelStyle}
 `
 
 export const Small = styled.small`

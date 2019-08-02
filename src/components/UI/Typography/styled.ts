@@ -83,7 +83,7 @@ export const Text = styled.p`
 export const labelStyle = css`
   ${baseStyle};
 
-  font-size: 0.875em;
+  font-size: 0.875rem;
   line-height: 1;
   letter-spacing: 0;
 `

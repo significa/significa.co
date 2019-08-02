@@ -22,11 +22,13 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({
     <S.Wrapper>
       {prevChapter && (
         <S.Box to={linkResolver(prevChapter.chapter._meta)}>
-          <S.Prev>Previous</S.Prev>
-          <S.LinkHolder>
-            <S.LeftArrow />
-            <S.Title>{prevChapter.chapter.title}</S.Title>
-          </S.LinkHolder>
+          <S.Header>
+            <S.Prev>Previous</S.Prev>
+            <S.LinkHolder>
+              <S.LeftArrow />
+              <S.Title>{prevChapter.chapter.title}</S.Title>
+            </S.LinkHolder>
+          </S.Header>
           <S.ImgHolder>
             <S.Image
               src={prevChapter.chapter.image.url}
@@ -38,11 +40,13 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({
 
       {nextChapter && (
         <S.Box to={linkResolver(nextChapter.chapter._meta)}>
-          <S.Next>Next</S.Next>
-          <S.LinkHolder>
-            <S.Title>{nextChapter.chapter.title}</S.Title>
-            <S.RightArrow />
-          </S.LinkHolder>
+          <S.Header>
+            <S.Next>Next</S.Next>
+            <S.LinkHolder>
+              <S.Title>{nextChapter.chapter.title}</S.Title>
+              <S.RightArrow />
+            </S.LinkHolder>
+          </S.Header>
           <S.ImgHolder>
             <S.Image
               src={nextChapter.chapter.image.url}

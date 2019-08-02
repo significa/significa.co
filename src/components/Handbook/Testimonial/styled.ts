@@ -3,8 +3,9 @@ import { ArrowLink } from '../../UI'
 import { titleStyle, textStyle, labelStyle } from '../../UI/Typography/styled'
 
 export const Wrapper = styled.div`
-  margin: 5rem 0;
+  margin-top: 5rem;
   padding: 3rem;
+  border-radius: 2px;
   background-color: ${(p: { backgroundColor: string }) => p.backgroundColor};
 
   color: white;
@@ -77,6 +78,7 @@ export const Position = styled.p`
 export const Link = styled(ArrowLink)`
   color: white;
   white-space: nowrap;
+  margin-top: 1rem;
 
   &:hover {
     color: white;

@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
+import scrollToId from '../../../../utils/scrollToId'
 import { titleToID } from '../../../../utils/titleToID'
 import { ContentType } from '../'
 
@@ -85,8 +86,11 @@ const SubMenu = ({ path, headings, isActive }: SubMenuProps) => {
             <li key={i}>
               <S.Link
                 isActive={active === id}
-                to={`${path}#${id}`}
                 extraMargin={heading.type === 'heading3'}
+                href={`${path}#${id}`}
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                  scrollToId(e, id)
+                }}
               >
                 {heading.text}
               </S.Link>

@@ -1,10 +1,11 @@
 import styled from '@theme'
-import { displayStyle, textStyle } from '../../UI'
 import {
+  displayStyle,
+  textStyle,
   titleStyle,
   smallTitleStyle,
   labelStyle,
-} from '../../UI/Typography/styled'
+} from '../../UI'
 import { liBaseStyle } from '../../UI/List/styled'
 
 export const Renderer = styled.div`

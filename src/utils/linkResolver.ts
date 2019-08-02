@@ -7,5 +7,9 @@ export default (doc: { type: string; uid: string }): string => {
     return `/careers/${doc.uid}`
   }
 
+  if (doc.type === 'handbook_chapter') {
+    return `/handbook/${doc.uid}`
+  }
+
   return '/'
 }

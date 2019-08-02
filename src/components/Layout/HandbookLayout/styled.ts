@@ -11,18 +11,18 @@ export const Wrapper = styled(Container)`
 
 export const NavHolder = styled.aside`
   top: 0;
-  padding-top: 3rem;
+  padding: 5rem 0;
   position: sticky;
 
-  flex: 1;
-  max-width: 14rem;
-  max-height: calc(100vh - 3rem);
+  width: 14rem;
+  flex-shrink: 0;
+  max-height: calc(100vh - 5rem);
 
   overflow-y: auto;
 `
 
 export const Main = styled.main`
-  flex: 1;
-  margin-top: 3rem;
-  margin-left: 3rem;
+  width: 100%;
+  margin-top: 5rem;
+  padding-left: 3rem;
 `

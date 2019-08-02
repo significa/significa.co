@@ -32,7 +32,7 @@ export const Link = styled(ExtractedPropsLink)`
   transition: color ${({ theme }) => theme.transitions.ease()};
 
   ${Arrow} g {
-    stroke: ${({ theme }) => theme.colors.foreground};
+    stroke: currentColor;
     transition: stroke ${({ theme }) => theme.transitions.ease()};
   }
 
@@ -51,7 +51,7 @@ export const Link = styled(ExtractedPropsLink)`
           color: ${({ theme }) => theme.colors.highlight};
 
           ${Arrow} g {
-            stroke: ${({ theme }) => theme.colors.highlight};
+            stroke: currentColor;
           }
         }
       }
@@ -63,7 +63,7 @@ export const Link = styled(ExtractedPropsLink)`
       color: ${({ theme }) => theme.colors.highlight};
 
       ${Arrow} g {
-        stroke: ${({ theme }) => theme.colors.highlight};
+        stroke: currentColor;
       }
     `}
 

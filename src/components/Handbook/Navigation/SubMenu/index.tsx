@@ -68,7 +68,7 @@ const SubMenu = ({ path, headings, isActive }: SubMenuProps) => {
 
   return (
     <motion.div
-      style={{ overflow: 'hidden' }}
+      style={{ overflow: 'hidden', maxHeight: 0 }}
       variants={variants}
       custom={ulRef}
       animate={isActive ? 'open' : 'closed'}

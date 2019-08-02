@@ -7,7 +7,13 @@ import linkResolver from '../utils/linkResolver'
 import { titleToID } from '../utils/titleToID'
 
 import HandbookLayout from '../components/Layout/HandbookLayout/'
-import { Content, Testimonial, Cover, Image } from '../components/Handbook/'
+import {
+  Content,
+  Testimonial,
+  Cover,
+  Image,
+  BottomNavigation,
+} from '../components/Handbook/'
 
 export interface Testimonial {
   name: string
@@ -47,10 +53,31 @@ export interface Chapter {
   }>
 }
 
+export interface NavigationChapter {
+  chapter: {
+    _meta: {
+      uid: string
+      type: string
+    }
+    title: string
+    image: {
+      alt: string
+      url: string
+    }
+  }
+}
+
 interface HandbookChapterPageProps {
   data: {
     prismic: {
       handbook_chapter: Chapter
+      allHandbooks: {
+        edges: Array<{
+          node: {
+            contents: NavigationChapter[]
+          }
+        }>
+      }
     }
   }
   pageContext: {
@@ -60,10 +87,23 @@ interface HandbookChapterPageProps {
 
 const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
   data: {
-    prismic: { handbook_chapter: chapter },
+    prismic: { handbook_chapter: chapter, allHandbooks },
   },
   pageContext: { uid },
 }) => {
+  let prevChapter
+  let nextChapter
+  const allChapters = allHandbooks.edges[0].node.contents
+
+  const currIndex = [...allChapters].findIndex(c => c.chapter._meta.uid === uid)
+  if (currIndex > 0) {
+    prevChapter = allChapters[currIndex - 1]
+  }
+
+  if (currIndex < allChapters.length - 1) {
+    nextChapter = allChapters[currIndex + 1]
+  }
+
   return (
     <HandbookLayout currentPage={uid}>
       <Cover chapter={chapter} />
@@ -98,7 +138,13 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
                   }
 
                   if (type === 'image') {
-                    return <Image key={i} url={element.url} alt={element.alt} />
+                    return (
+                      <Image
+                        key={element.url}
+                        url={element.url}
+                        alt={element.alt}
+                      />
+                    )
                   }
 
                   return null
@@ -114,6 +160,8 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
 
         return null
       })}
+
+      <BottomNavigation prevChapter={prevChapter} nextChapter={nextChapter} />
     </HandbookLayout>
   )
 }
@@ -155,6 +203,25 @@ export const query = graphql`
                     uid
                     type
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      allHandbooks {
+        edges {
+          node {
+            contents {
+              chapter {
+                ... on PRISMIC_Handbook_chapter {
+                  title
+                  _meta {
+                    uid
+                    type
+                  }
+                  image
                 }
               }
             }

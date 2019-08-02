@@ -1,6 +1,10 @@
 import styled from '@theme'
 import { displayStyle, textStyle } from '../../UI'
-import { titleStyle, smallTitleStyle } from '../../UI/Typography/styled'
+import {
+  titleStyle,
+  smallTitleStyle,
+  labelStyle,
+} from '../../UI/Typography/styled'
 import { liBaseStyle } from '../../UI/List/styled'
 
 export const Renderer = styled.div`
@@ -10,23 +14,45 @@ export const Renderer = styled.div`
     max-width: 38.5rem;
   }
 
+  figure {
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+  }
+
   img {
     width: 100%;
     height: auto;
+
+    border-radius: 2px;
+  }
+
+  figcaption {
+    ${labelStyle};
+
+    margin-top: 1rem;
+    text-align: center;
   }
 
   h2 {
     ${displayStyle}
 
-    margin-top: 7.5rem;
+    padding-top: 7.5rem;
     margin-bottom: 1.25rem;
+  }
+
+  figure + h2 {
+    padding-top: 4.5rem;
   }
 
   h3 {
     ${titleStyle}
 
-    margin-top: 5rem;
+    padding-top: 5rem;
     margin-bottom: 1.25rem;
+  }
+
+  figure + h3 {
+    padding-top: 1.5rem;
   }
 
   h4 {

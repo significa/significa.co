@@ -1,14 +1,8 @@
-import React from 'react'
 import styled, { css } from '@theme'
-import { Link as GatsbyLink } from 'gatsby'
 
 import { linkStyle } from '../styled'
 
-const SaneGatsbyLink = ({ extraMargin, isActive, ...rest }: any) => {
-  return <GatsbyLink {...rest} />
-}
-
-export const Link = styled(SaneGatsbyLink)<{
+export const Link = styled.a<{
   extraMargin: boolean
   isActive: boolean
 }>`

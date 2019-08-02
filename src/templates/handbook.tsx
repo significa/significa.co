@@ -1,12 +1,13 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { FluidObject } from 'gatsby-image'
 import { RichText } from 'prismic-reactjs'
 
 import linkResolver from '../utils/linkResolver'
 import { titleToID } from '../utils/titleToID'
 
 import HandbookLayout from '../components/Layout/HandbookLayout/'
-import { Content, Testimonial } from '../components/Handbook/'
+import { Content, Testimonial, Cover, Image } from '../components/Handbook/'
 
 export interface Testimonial {
   name: string
@@ -24,18 +25,32 @@ export interface Testimonial {
   }
 }
 
+export interface Chapter {
+  title: string
+  description: string
+  image: {
+    alt: string
+  }
+  imageSharp: {
+    childImageSharp: {
+      fluid: FluidObject
+      resize: {
+        height: number
+      }
+    }
+  }
+  body: Array<{
+    content?: {
+      content: any
+    }
+    testimonial?: Testimonial
+  }>
+}
+
 interface HandbookChapterPageProps {
   data: {
     prismic: {
-      handbook_chapter: {
-        title: string
-        body: Array<{
-          content?: {
-            content: any
-          }
-          testimonial?: Testimonial
-        }>
-      }
+      handbook_chapter: Chapter
     }
   }
   pageContext: {
@@ -51,6 +66,7 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
 }) => {
   return (
     <HandbookLayout currentPage={uid}>
+      <Cover chapter={chapter} />
       {chapter.body.map((chunk, i) => {
         if (chunk.content) {
           return (
@@ -81,6 +97,10 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
                     )
                   }
 
+                  if (type === 'image') {
+                    return <Image key={i} url={element.url} alt={element.alt} />
+                  }
+
                   return null
                 }}
               />
@@ -107,6 +127,13 @@ export const query = graphql`
         title
         description
         image
+        imageSharp {
+          childImageSharp {
+            fluid(maxWidth: 1000) {
+              ...GatsbyImageSharpFluid_withWebp_noBase64
+            }
+          }
+        }
         body {
           ... on PRISMIC_Handbook_chapterBodyContent {
             content: primary {

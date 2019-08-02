@@ -13,7 +13,7 @@ interface ITop {
 const SPRING_TRANSITION = {
   type: 'spring',
   damping: 20,
-  stiffness: 300,
+  stiffness: 100,
 }
 
 const Top: React.FC<ITop> = ({ headline, tagline }) => (

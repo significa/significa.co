@@ -49,7 +49,12 @@ const RecentProjects = () => (
               key={project._meta.uid}
               animate={{ y: 0, opacity: 1 }}
               initial={{ y: 50, opacity: 0 }}
-              transition={{ delay: i * 0.1 + 0.5 }}
+              transition={{
+                type: 'spring',
+                damping: 20,
+                stiffness: 100,
+                delay: (i + 1) / 10,
+              }}
             >
               <ProjectThumb
                 title={project.project_title}

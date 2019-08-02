@@ -62,6 +62,12 @@ module.exports = {
             path: '/position-preview',
             component: require.resolve('./src/templates/position.tsx'),
           },
+          {
+            type: 'Handbook_chapter',
+            match: '/handbook/:uid',
+            path: '/handbook-preview',
+            component: require.resolve('./src/templates/handbook.tsx'),
+          },
         ],
       },
     },

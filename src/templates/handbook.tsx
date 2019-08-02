@@ -92,6 +92,10 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
   },
   pageContext: { uid },
 }) => {
+  if (!chapter) {
+    return null
+  }
+
   let prevChapter
   let nextChapter
   const allChapters = allHandbooks.edges[0].node.contents

@@ -13,6 +13,7 @@ import {
   Cover,
   Image,
   BottomNavigation,
+  CustomComponentParser,
 } from '../components/Handbook/'
 
 export interface Testimonial {
@@ -145,6 +146,20 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
                         alt={element.alt}
                       />
                     )
+                  }
+
+                  if (type === 'paragraph') {
+                    const shouldCatch = /\[side-note|\[abbr|\[box/gim.test(
+                      element.text
+                    )
+                    if (shouldCatch) {
+                      return (
+                        <CustomComponentParser
+                          key={element.text}
+                          element={element}
+                        />
+                      )
+                    }
                   }
 
                   return null

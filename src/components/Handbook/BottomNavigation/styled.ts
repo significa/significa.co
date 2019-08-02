@@ -15,6 +15,10 @@ export const Wrapper = styled.footer`
   margin-bottom: 7.5rem;
 `
 
+export const Header = styled.div`
+  transition: opacity ${({ theme }) => theme.transitions.ease()};
+`
+
 export const LeftArrow = styled(ArrowIcon)`
   transform: rotate(180deg);
   transition: transform ${({ theme }) => theme.transitions.cubic()};
@@ -83,7 +87,9 @@ export const Box = styled(Link)`
   }
 
   &:hover {
-    color: ${({ theme }) => theme.colors.highlight};
+    ${Header} {
+      opacity: 0.6;
+    }
 
     ${RightArrow} {
       transform: translateX(0.5rem);

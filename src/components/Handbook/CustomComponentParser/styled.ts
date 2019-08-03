@@ -40,6 +40,7 @@ export const Tooltip = styled.span`
 
   opacity: 0;
 
+  white-space: normal;
   line-height: 1.5;
 
   position: absolute;

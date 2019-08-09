@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import { labelStyle } from '../../UI'
 
 export const Title = styled.span`
@@ -76,10 +76,12 @@ export const Abbr = styled.abbr`
   background-color: #fdf5e4;
   border-bottom: 1px dashed #f9db99;
 
-  &:hover ${Tooltip} {
-    pointer-events: auto;
-    opacity: 1;
+  ${media.hover} {
+    &:hover ${Tooltip} {
+      pointer-events: auto;
+      opacity: 1;
 
-    transform: translateY(0rem) translateX(-50%);
+      transform: translateY(0rem) translateX(-50%);
+    }
   }
 `

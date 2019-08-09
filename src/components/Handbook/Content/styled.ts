@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import {
   displayStyle,
   textStyle,
@@ -118,5 +118,17 @@ export const Renderer = styled.div`
 
     background-color: ${({ theme }) => theme.colors.foreground};
     color: ${({ theme }) => theme.colors.background};
+  }
+
+  a {
+    color: ${({ theme }) => theme.colors.highlight};
+
+    transition: opacity ${({ theme }) => theme.transitions.ease()};
+
+    ${media.hover} {
+      &:hover {
+        opacity: 0.6;
+      }
+    }
   }
 `

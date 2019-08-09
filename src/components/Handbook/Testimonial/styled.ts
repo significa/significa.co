@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import { ArrowLink, titleStyle, textStyle, labelStyle } from '../../UI'
 
 export const Wrapper = styled.div`
@@ -79,7 +79,9 @@ export const Link = styled(ArrowLink)`
   white-space: nowrap;
   margin-top: 1rem;
 
-  &:hover {
-    color: white;
+  ${media.hover} {
+    &:hover {
+      color: white;
+    }
   }
 `

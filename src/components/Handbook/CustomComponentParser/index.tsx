@@ -31,6 +31,10 @@ const breakLines = (text: string) => {
   })
 }
 
+const renderText = (text: string) => {
+  return breakLines(text.replace(/^[\r\n]+|[\r\n]+$/gim, ''))
+}
+
 const CustomComponentParser: React.FC<CustomComponentParserProps> = ({
   element,
 }) => {
@@ -46,7 +50,7 @@ const CustomComponentParser: React.FC<CustomComponentParserProps> = ({
     return (
       <S.SidenoteWrapper>
         <S.Title>🗒 Side Note</S.Title>
-        <S.Text>{breakLines(text.replace(/^[\r\n]+|[\r\n]+$/gim, ''))}</S.Text>
+        <S.Text>{renderText(text)}</S.Text>
       </S.SidenoteWrapper>
     )
   }
@@ -63,9 +67,7 @@ const CustomComponentParser: React.FC<CustomComponentParserProps> = ({
       return (
         <S.Box>
           <S.Title>{title}</S.Title>
-          <S.Text>
-            {breakLines(text.replace(/^[\r\n]+|[\r\n]+$/gim, ''))}
-          </S.Text>
+          <S.Text>{renderText(text)}</S.Text>
         </S.Box>
       )
     }
@@ -74,24 +76,46 @@ const CustomComponentParser: React.FC<CustomComponentParserProps> = ({
   }
 
   if (/\[abbr/gim.test(element.text)) {
-    const content = /([^<]+)?\[abbr text="([^<]+)"\]([^<]+)\[\/abbr\]([^<]+)?/gim.exec(
-      element.text
+    const parts: string[][][] = element.text
+      .split('[abbr text="')
+      .map(text => text.split('"]').map(t => t.split('[/abbr]')))
+
+    return (
+      <p>
+        {parts.map((chunk, i) => {
+          // abbr found
+          if (chunk.length === 2) {
+            /**
+             * If an abbr was found, we will get an array like this:
+             * [
+             *   ['Tooltip content for abbr'],
+             *   ['abbr text', 'remaining text']
+             * ]
+             */
+            const [tooltipContentArray, textContentArr] = chunk
+            const [abbr, rest] = textContentArr
+
+            return (
+              <React.Fragment key={i}>
+                <S.Abbr>
+                  <span>{abbr}</span>
+                  <S.Tooltip>
+                    {renderText(tooltipContentArray.toString())}
+                  </S.Tooltip>
+                </S.Abbr>
+                {renderText(rest)}
+              </React.Fragment>
+            )
+          }
+
+          return (
+            <React.Fragment key={i}>
+              {renderText(chunk.toString())}
+            </React.Fragment>
+          )
+        })}
+      </p>
     )
-
-    if (content && content.length > 0) {
-      const [, before, abbr, inside, after] = content
-
-      return (
-        <p>
-          {before && breakLines(before.replace(/^[\r\n]+|[\r\n]+$/gim, ''))}
-          <S.Abbr>
-            <span>{inside}</span>
-            <S.Tooltip>{abbr}</S.Tooltip>
-          </S.Abbr>
-          {after && breakLines(after.replace(/^[\r\n]+|[\r\n]+$/gim, ''))}
-        </p>
-      )
-    }
   }
 
   return null

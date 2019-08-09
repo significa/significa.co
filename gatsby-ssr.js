@@ -1,8 +1,3 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
- */
 import React from 'react'
 
 const CRISP_ID = '1d94ab70-6906-4198-a006-16144d4c8065'

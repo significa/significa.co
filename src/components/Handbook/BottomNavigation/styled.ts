@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 import { Link } from 'gatsby'
 
 import { labelStyle, Text } from '../../UI'
@@ -86,17 +86,19 @@ export const Box = styled(Link)`
     margin-right: 0;
   }
 
-  &:hover {
-    ${Header} {
-      opacity: 0.6;
-    }
+  ${media.hover} {
+    &:hover {
+      ${Header} {
+        opacity: 0.6;
+      }
 
-    ${RightArrow} {
-      transform: translateX(0.5rem);
-    }
+      ${RightArrow} {
+        transform: translateX(0.5rem);
+      }
 
-    ${LeftArrow} {
-      transform: rotate(180deg) translateX(0.5rem);
+      ${LeftArrow} {
+        transform: rotate(180deg) translateX(0.5rem);
+      }
     }
   }
 `

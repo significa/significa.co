@@ -1,6 +1,21 @@
-import styled, { css } from '@theme'
+import styled, { css, media } from '@theme'
 import { Link } from 'gatsby'
 import { motion } from 'framer-motion'
+
+import { Label } from '../../UI'
+
+export const Wrapper = styled.div`
+  margin-bottom: 5rem;
+`
+
+export const CategoryLabel = styled(Label)`
+  display: block;
+  color: ${({ theme }) => theme.colors.secondary};
+
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  margin-left: 1rem;
+`
 
 export const linkStyle = css`
   font-size: 1rem;
@@ -14,10 +29,12 @@ export const MainLink = styled(Link)`
   display: flex;
   align-items: center;
 
-  padding: 0.75rem 0;
+  padding: 0.6rem 0;
 
-  &:hover {
-    color: ${({ theme }) => theme.colors.highlight};
+  ${media.hover} {
+    &:hover {
+      color: ${({ theme }) => theme.colors.highlight};
+    }
   }
 `
 

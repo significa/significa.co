@@ -5,8 +5,6 @@ import { Container } from '../../UI'
 export const Wrapper = styled(Container)`
   display: flex;
   align-items: flex-start;
-
-  margin-top: 3rem;
 `
 
 export const NavHolder = styled.aside`

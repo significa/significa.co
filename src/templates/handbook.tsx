@@ -7,6 +7,7 @@ import linkResolver from '../utils/linkResolver'
 import { titleToID } from '../utils/titleToID'
 
 import HandbookLayout from '../components/Layout/HandbookLayout/'
+import SEO from '../components/SEO'
 import {
   Content,
   Testimonial,
@@ -111,6 +112,8 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
 
   return (
     <HandbookLayout currentPage={uid}>
+      <SEO title={chapter.title} description={chapter.description} />
+
       <Cover chapter={chapter} />
       {chapter.body.map((chunk, i) => {
         if (chunk.content) {

@@ -1,5 +1,7 @@
 import styled, { media } from '@theme'
-import { labelStyle } from '../../UI'
+import { Link as GatsbyLink } from 'gatsby'
+import { labelStyle, Text as BaseText } from '../../UI'
+import ArrowIcon from '../common/Arrow'
 
 export const Title = styled.span`
   ${labelStyle}
@@ -8,9 +10,37 @@ export const Title = styled.span`
   line-height: 1.5;
 `
 
-export const Text = styled.span`
+export const SmallText = styled.span`
   ${labelStyle}
+  color: inherit;
   line-height: 1.5;
+`
+
+export const Text = styled(BaseText)`
+  margin-bottom: 0 !important;
+`
+
+export const RightArrow = styled(ArrowIcon)`
+  margin-left: 0.5rem;
+  transform: scale(0.8);
+  transition: transform ${({ theme }) => theme.transitions.cubic()};
+`
+
+export const Link = styled(GatsbyLink)`
+  display: flex;
+  align-items: center;
+
+  opacity: 1 !important;
+
+  color: ${({ theme }) => theme.colors.highlight};
+
+  ${media.hover} {
+    &:hover {
+      ${RightArrow} {
+        transform: scale(0.8) translateX(0.5rem);
+      }
+    }
+  }
 `
 
 /* Sidenote */
@@ -28,10 +58,29 @@ export const SidenoteWrapper = styled.aside`
 
 /* Box */
 export const Box = styled.div`
+  box-sizing: border-box;
   padding: 1rem 1.125rem;
 
   background-color: #f8f2f0;
   border-left: 1px solid #e8d5cd;
+
+  margin-bottom: 2rem;
+
+  & + h2 {
+    margin-top: -2rem;
+  }
+`
+
+/* Highlight */
+export const Highlight = styled(Box)`
+  background-color: #f5f8ff;
+  border-left: 1px solid #0154ff;
+`
+
+/* Link */
+export const LinkBox = styled(Box)`
+  background-color: #f6f7f7;
+  border-left: 1px solid #dfe0e0;
 `
 
 /* Tooltip */

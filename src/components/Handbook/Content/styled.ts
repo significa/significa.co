@@ -16,8 +16,13 @@ export const Renderer = styled.div`
   }
 
   figure {
-    margin-top: 3.5rem;
     margin-bottom: 3.5rem;
+  }
+
+  p + figure,
+  ul + figure,
+  ol + figure {
+    margin-top: 3.5rem;
   }
 
   img {

@@ -4,7 +4,7 @@ import { FluidObject } from 'gatsby-image'
 
 import Layout from '../components/Layout/'
 import SEO from '../components/SEO'
-import { Top, Featured } from '../components/Handbook/MainPage'
+import { Top, Featured, Category } from '../components/Handbook/MainPage'
 
 interface HandbookPageProps {
   data: {
@@ -54,9 +54,13 @@ interface HandbookData {
   description: string
   side_note: string
   featured: ChapterWithImage[]
-  body: {
+  body: Array<{
+    primary: {
+      category_description: string
+      category_title: string
+    }
     fields: Chapter[]
-  }
+  }>
 }
 
 const HandbookPage = ({ data }: HandbookPageProps) => {
@@ -73,6 +77,17 @@ const HandbookPage = ({ data }: HandbookPageProps) => {
       />
 
       <Featured featured={content.featured} />
+
+      {content.body.map((category, i) => {
+        return (
+          <Category
+            key={i}
+            title={category.primary.category_title}
+            description={category.primary.category_description}
+            chapters={category.fields}
+          />
+        )
+      })}
     </Layout>
   )
 }
@@ -113,6 +128,10 @@ export const query = graphql`
 
             body {
               ... on PRISMIC_HandbookBodyCategory {
+                primary {
+                  category_description
+                  category_title
+                }
                 fields {
                   chapter_link_text
                   chapter_link_description

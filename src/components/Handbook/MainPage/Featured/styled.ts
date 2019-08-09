@@ -11,6 +11,8 @@ export const Wrapper = styled(Container)`
   grid-template-columns: 1fr 1fr;
   grid-gap: 3rem;
 
+  margin-bottom: 5rem;
+
   ${media.large} {
     grid-template-columns: 1fr;
   }

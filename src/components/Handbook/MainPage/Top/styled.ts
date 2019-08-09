@@ -11,7 +11,7 @@ export const Wrapper = styled(Container)`
 
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
 
   ${media.small} {
     margin-top: 5em;

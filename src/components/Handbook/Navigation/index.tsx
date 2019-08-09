@@ -103,6 +103,11 @@ const Navigation: React.FC<{ currentPage?: string }> = ({ currentPage }) => {
 
   return (
     <S.Wrapper>
+      <ul>
+        <li>
+          <S.MainLink to={'/handbook'}>Handbook</S.MainLink>
+        </li>
+      </ul>
       {featured.length > 0 && <ul>{featured.map(mapChapters)}</ul>}
       {categories.map(({ primary: category, fields: chapters }, i) => {
         return (

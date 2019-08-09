@@ -1,6 +1,7 @@
 import React from 'react'
 
 import * as S from './styled'
+import linkResolver from '../../../utils/linkResolver'
 
 interface CustomComponentParserProps {
   element: {
@@ -10,6 +11,15 @@ interface CustomComponentParserProps {
       start: number
       end: number
       type: string
+      data?: {
+        id: string
+        isBroken: boolean
+        lang: string
+        link_type: string
+        slug: string
+        type: string
+        uid: string
+      }
     }>
   }
 }
@@ -50,7 +60,7 @@ const CustomComponentParser: React.FC<CustomComponentParserProps> = ({
     return (
       <S.SidenoteWrapper>
         <S.Title>🗒 Side Note</S.Title>
-        <S.Text>{renderText(text)}</S.Text>
+        <S.SmallText>{renderText(text)}</S.SmallText>
       </S.SidenoteWrapper>
     )
   }
@@ -67,7 +77,7 @@ const CustomComponentParser: React.FC<CustomComponentParserProps> = ({
       return (
         <S.Box>
           <S.Title>{title}</S.Title>
-          <S.Text>{renderText(text)}</S.Text>
+          <S.SmallText>{renderText(text)}</S.SmallText>
         </S.Box>
       )
     }
@@ -75,6 +85,51 @@ const CustomComponentParser: React.FC<CustomComponentParserProps> = ({
     return null
   }
 
+  // Highlight
+  if (/\[highlight/gim.test(element.text)) {
+    let text = element.text
+    const content = /\[highlight\]([^<]+)\[\/highlight\]/gim.exec(element.text)
+
+    if (content && content.length > 0) {
+      text = content[1]
+    }
+
+    return (
+      <S.Highlight>
+        <S.Text>{renderText(text)}</S.Text>
+      </S.Highlight>
+    )
+  }
+
+  // Link
+  if (/\[link/gim.test(element.text)) {
+    const content = /\[link text="([^<]+)"\]([^<]+)\[\/link\]/gim.exec(
+      element.text
+    )
+
+    if (
+      content &&
+      content.length > 0 &&
+      element.spans.length > 0 &&
+      element.spans[0].data
+    ) {
+      const [, title, text] = content
+
+      return (
+        <S.LinkBox>
+          <S.Title>{title}</S.Title>
+          <S.Link to={linkResolver(element.spans[0].data)}>
+            <S.SmallText>{renderText(text)}</S.SmallText>
+            <S.RightArrow />
+          </S.Link>
+        </S.LinkBox>
+      )
+    }
+
+    return null
+  }
+
+  // Abbr
   if (/\[abbr/gim.test(element.text)) {
     const parts: string[][][] = element.text
       .split('[abbr text="')

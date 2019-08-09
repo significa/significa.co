@@ -37,6 +37,7 @@ export const Box = styled.div`
 /* Tooltip */
 export const Tooltip = styled.span`
   ${labelStyle};
+  pointer-events: none;
 
   opacity: 0;
 
@@ -76,6 +77,7 @@ export const Abbr = styled.abbr`
   border-bottom: 1px dashed #f9db99;
 
   &:hover ${Tooltip} {
+    pointer-events: auto;
     opacity: 1;
 
     transform: translateY(0rem) translateX(-50%);

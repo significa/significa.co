@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 
 import { labelStyle, Text } from '../../UI'
 
-import ArrowIcon from './Arrow'
+import ArrowIcon from '../common/Arrow'
 
 export const Wrapper = styled.footer`
   /* Same as ../Content/styled */

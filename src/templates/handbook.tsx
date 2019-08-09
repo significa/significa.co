@@ -76,7 +76,10 @@ interface HandbookChapterPageProps {
       allHandbooks: {
         edges: Array<{
           node: {
-            contents: NavigationChapter[]
+            featured: NavigationChapter[]
+            body: Array<{
+              fields: NavigationChapter[]
+            }>
           }
         }>
       }
@@ -99,7 +102,12 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
 
   let prevChapter
   let nextChapter
-  const allChapters = allHandbooks.edges[0].node.contents
+  // Featured chapters
+  const allChapters = allHandbooks.edges[0].node.featured
+  // Add all chapters from each group
+  allHandbooks.edges[0].node.body.forEach(group => {
+    allChapters.push(...group.fields)
+  })
 
   const currIndex = [...allChapters].findIndex(c => c.chapter._meta.uid === uid)
   if (currIndex > 0) {
@@ -235,15 +243,31 @@ export const query = graphql`
       allHandbooks {
         edges {
           node {
-            contents {
+            featured {
               chapter {
                 ... on PRISMIC_Handbook_chapter {
                   title
+                  image
                   _meta {
                     uid
                     type
                   }
-                  image
+                }
+              }
+            }
+            body {
+              ... on PRISMIC_HandbookBodyCategory {
+                fields {
+                  chapter {
+                    ... on PRISMIC_Handbook_chapter {
+                      title
+                      image
+                      _meta {
+                        uid
+                        type
+                      }
+                    }
+                  }
                 }
               }
             }

@@ -22,7 +22,7 @@ type Body = Array<{
   }
 }>
 
-type Contents = Array<{
+interface Chapter {
   chapter: {
     _meta: {
       type: string
@@ -31,7 +31,26 @@ type Contents = Array<{
     title: string
     body: Body
   }
-}>
+}
+
+interface Content {
+  featured: Chapter[]
+  body: Array<{
+    primary: {
+      category_title: string
+      category_description: string
+    }
+    fields: Chapter[]
+  }>
+}
+
+interface Data {
+  prismic: {
+    allHandbooks: {
+      edges: Array<{ node: Content }>
+    }
+  }
+}
 
 const flatChapterHeadings = (body: Body) => {
   return body.reduce((acc: ContentType[], b) => {
@@ -47,44 +66,55 @@ const flatChapterHeadings = (body: Body) => {
 }
 
 const Navigation: React.FC<{ currentPage?: string }> = ({ currentPage }) => {
-  const { contents }: { contents: Contents } = useStaticQuery(
-    query
-  ).prismic.allHandbooks.edges[0].node
+  const data: Data = useStaticQuery(query)
+  const { body: categories, featured } = data.prismic.allHandbooks.edges[0].node
+
+  const mapChapters = ({ chapter }: Chapter) => {
+    const headings = flatChapterHeadings(chapter.body)
+
+    return (
+      <li key={chapter._meta.uid}>
+        <S.MainLink to={linkResolver(chapter._meta)}>
+          <S.AnimatedArrowHolder
+            variants={{
+              open: {
+                transform: `rotate(90deg)`,
+              },
+              closed: {
+                transform: `rotate(0deg)`,
+              },
+            }}
+            animate={currentPage === chapter._meta.uid ? 'open' : 'closed'}
+          >
+            <Arrow />
+          </S.AnimatedArrowHolder>
+          {chapter.title}
+        </S.MainLink>
+        {headings.length > 0 && (
+          <SubMenu
+            path={linkResolver(chapter._meta)}
+            headings={headings}
+            isActive={currentPage === chapter._meta.uid}
+          />
+        )}
+      </li>
+    )
+  }
 
   return (
-    <ul>
-      {contents.map(({ chapter }) => {
-        const headings = flatChapterHeadings(chapter.body)
-
+    <S.Wrapper>
+      {featured.length > 0 && <ul>{featured.map(mapChapters)}</ul>}
+      {categories.map(({ primary: category, fields: chapters }, i) => {
         return (
-          <li key={chapter._meta.uid}>
-            <S.MainLink to={linkResolver(chapter._meta)}>
-              <S.AnimatedArrowHolder
-                variants={{
-                  open: {
-                    transform: `rotate(90deg)`,
-                  },
-                  closed: {
-                    transform: `rotate(0deg)`,
-                  },
-                }}
-                animate={currentPage === chapter._meta.uid ? 'open' : 'closed'}
-              >
-                <Arrow />
-              </S.AnimatedArrowHolder>
-              {chapter.title}
-            </S.MainLink>
-            {headings.length > 0 && (
-              <SubMenu
-                path={linkResolver(chapter._meta)}
-                headings={headings}
-                isActive={currentPage === chapter._meta.uid}
-              />
+          <React.Fragment key={i}>
+            {category.category_title && (
+              <S.CategoryLabel>{category.category_title}</S.CategoryLabel>
             )}
-          </li>
+            <ul>{chapters.map(mapChapters)}</ul>
+          </React.Fragment>
         )
       })}
-    </ul>
+    </S.Wrapper>
   )
 }
 
@@ -96,19 +126,46 @@ const query = graphql`
       allHandbooks {
         edges {
           node {
-            contents {
+            featured {
               chapter {
                 ... on PRISMIC_Handbook_chapter {
                   title
                   _meta {
-                    type
                     uid
+                    type
                   }
                   body {
                     ... on PRISMIC_Handbook_chapterBodyContent {
                       label
                       primary {
                         content
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            body {
+              ... on PRISMIC_HandbookBodyCategory {
+                primary {
+                  category_title
+                  category_description
+                }
+                fields {
+                  chapter {
+                    ... on PRISMIC_Handbook_chapter {
+                      title
+                      _meta {
+                        uid
+                        type
+                      }
+                      body {
+                        ... on PRISMIC_Handbook_chapterBodyContent {
+                          label
+                          primary {
+                            content
+                          }
+                        }
                       }
                     }
                   }

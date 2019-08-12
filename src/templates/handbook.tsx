@@ -164,7 +164,7 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
                   }
 
                   if (type === 'paragraph') {
-                    const shouldCatch = /\[side-note|\[abbr|\[box|\[highlight|\[link|/gim.test(
+                    const shouldCatch = /\[side-note|\[abbr|\[box|\[highlight|\[link/gim.test(
                       element.text
                     )
                     if (shouldCatch) {

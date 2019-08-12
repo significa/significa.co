@@ -10,6 +10,16 @@ export const Wrapper = styled.div`
   color: white;
 
   display: flex;
+
+  ${media.medium} {
+    flex-direction: column;
+  }
+
+  ${media.small} {
+    width: 100%;
+    padding: 1.5rem;
+    box-sizing: border-box;
+  }
 `
 
 export const Left = styled.div`
@@ -18,6 +28,15 @@ export const Left = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+
+  ${media.medium} {
+    order: 2;
+    margin-top: 3rem;
+  }
+
+  ${media.small} {
+    margin-top: 1.5rem;
+  }
 `
 
 export const Quote = styled.blockquote`
@@ -28,6 +47,10 @@ export const Quote = styled.blockquote`
   margin-left: 4rem;
 
   flex: 3;
+
+  ${media.medium} {
+    margin: 0;
+  }
 `
 
 export const PhotoHolder = styled.div`
@@ -56,6 +79,14 @@ export const Info = styled.div`
   display: flex;
 
   align-items: center;
+
+  ${media.medium} {
+    margin-bottom: 3rem;
+  }
+
+  ${media.small} {
+    margin-bottom: 1.5rem;
+  }
 `
 
 export const Name = styled.p`

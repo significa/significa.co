@@ -98,6 +98,7 @@ export const Renderer = styled.div`
 
   ol {
     counter-reset: li;
+    margin-left: 1.5rem;
   }
 
   ol li {

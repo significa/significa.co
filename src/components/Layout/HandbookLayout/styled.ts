@@ -17,7 +17,7 @@ export const NavHolder = styled.aside<{ isOpen: boolean }>`
   flex-shrink: 0;
   height: 100vh;
 
-  overflow-y: auto
+  overflow-y: auto;
 
   ${media.large} {
     position: fixed;

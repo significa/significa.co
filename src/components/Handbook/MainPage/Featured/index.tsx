@@ -26,7 +26,10 @@ const Featured = ({ featured }: FeaturedProps) => {
                   <S.RightArrow />
                 </S.LinkHolder>
               </S.Content>
-              <S.Image fluid={chapter.imageSharp.childImageSharp.fluid} />
+              <S.Image
+                fluid={chapter.imageSharp.childImageSharp.fluid}
+                alt={chapter.image.alt}
+              />
             </S.BoxLink>
           )
         }

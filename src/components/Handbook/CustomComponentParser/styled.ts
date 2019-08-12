@@ -54,6 +54,17 @@ export const SidenoteWrapper = styled.aside`
   background: #fdf8ed;
   color: ${({ theme }) => theme.colors.foreground};
   border-left: 2px solid #fbeed2;
+
+  ${media.large} {
+    box-sizing: border-box;
+    width: 16rem;
+  }
+
+  ${media.medium} {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
 `
 
 /* Box */

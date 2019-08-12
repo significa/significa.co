@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import { Container } from '../../UI'
 
@@ -16,11 +16,19 @@ export const NavHolder = styled.aside`
   flex-shrink: 0;
   max-height: calc(100vh - 5rem);
 
-  overflow-y: auto;
+  overflow-y: auto
+
+  ${media.large} {
+    display: none;
+  }
 `
 
 export const Main = styled.main`
   width: 100%;
   margin-top: 5rem;
   padding-left: 3rem;
+
+  ${media.large} {
+    padding-left: 0;
+  }
 `

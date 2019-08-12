@@ -21,7 +21,7 @@ export const Renderer = styled.div`
     ${media.medium} {
       width: 100%;
       max-width: 100%;
-      padding-right: 0px;
+      padding-right: 0;
     }
   }
 

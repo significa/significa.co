@@ -73,12 +73,7 @@ module.exports = {
     },
     'gatsby-transformer-yaml',
     'gatsby-plugin-typescript',
-    {
-      resolve: 'gatsby-plugin-styled-components',
-      options: {
-        displayName: true,
-      },
-    },
+    'gatsby-plugin-styled-components',
     'gatsby-transformer-sharp',
     `gatsby-transformer-remark`,
     {

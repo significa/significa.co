@@ -25,31 +25,33 @@ export const NavHolder = styled.aside<{ isOpen: boolean }>`
 
     left: 0;
 
-    background-color: rgb(255, 255, 255);
+    background-color: ${({ theme }) => theme.colors.background};
     overflow: auto;
 
     height: 100vh;
     width: 22em;
     padding: 3em 3rem 3rem 4em;
-    transform: translatex(-22em);
+    transform: translatex(-100%);
     transition: transform ${({ theme }) => theme.transitions.cubic()};
 
-    ${({ isOpen }) => isOpen && css`
-      transform: translatex(0);
-    `}
+    ${({ isOpen }) =>
+      isOpen &&
+      css`
+        transform: translatex(0);
+      `}
   }
 `
 
 export const NavOverlay = styled.div<{ isOpen: boolean }>`
   display: none;
 
-  ${media.large} { 
+  ${media.large} {
     display: block;
     position: fixed;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
@@ -60,10 +62,12 @@ export const NavOverlay = styled.div<{ isOpen: boolean }>`
 
     transition: opacity 0.3s ease-in;
 
-    ${({ isOpen }) => isOpen && css`
-      pointer-events: auto;
-      opacity: 1;
-    `}
+    ${({ isOpen }) =>
+      isOpen &&
+      css`
+        pointer-events: auto;
+        opacity: 1;
+      `}
   }
 `
 
@@ -77,25 +81,22 @@ export const ButtonLine = styled.span`
 
   transform: rotate(0deg);
   transition: width ${({ theme }) => theme.transitions.cubic()},
-  opacity ${({ theme }) => theme.transitions.ease()},
-  transform ${({ theme }) => theme.transitions.cubic()};
+    opacity ${({ theme }) => theme.transitions.ease()},
+    transform ${({ theme }) => theme.transitions.cubic()};
 
   &:nth-child(1) {
     width: 0.85rem;
     top: 0.75rem;
-
   }
 
   &:nth-child(2) {
     width: 1rem;
     top: 1rem;
-
   }
 
   &:nth-child(3) {
     width: 0.8rem;
     top: 1.25rem;
-
   }
 `
 
@@ -134,29 +135,31 @@ export const Hamburger = styled.button<{ isOpen: boolean }>`
       }
     }
 
-    ${({ isOpen }) => isOpen && css`
-      box-shadow: rgba(0, 0, 0, 0) 0px 1px 2px, rgba(0, 0, 0, 0) 0px 2px 4px;
+    ${({ isOpen }) =>
+      isOpen &&
+      css`
+        box-shadow: rgba(0, 0, 0, 0) 0px 1px 2px, rgba(0, 0, 0, 0) 0px 2px 4px;
 
-      ${ButtonLine} {
-        &:nth-child(1) {
-          width: 1rem;
-          transform: rotate(45deg);
-          top: 1rem;
-        }
+        ${ButtonLine} {
+          &:nth-child(1) {
+            width: 1rem;
+            transform: rotate(45deg);
+            top: 1rem;
+          }
 
-        &:nth-child(2) {
-          width: 1rem;
-          transform: rotate(135deg);
-          opacity: 0;
-        }
+          &:nth-child(2) {
+            width: 1rem;
+            transform: rotate(135deg);
+            opacity: 0;
+          }
 
-        &:nth-child(3) {
-          width: 1rem;
-          transform: rotate(135deg);
-          top: 1rem;
+          &:nth-child(3) {
+            width: 1rem;
+            transform: rotate(135deg);
+            top: 1rem;
+          }
         }
-      }
-    `}
+      `}
   }
 `
 

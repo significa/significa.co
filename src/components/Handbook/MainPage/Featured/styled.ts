@@ -105,7 +105,7 @@ export const BoxLink = styled(Link)`
 
   ${media.largest} {
     flex-direction: column;
-    padding-bottom: 0px;
+    padding-bottom: 0;
   }
 
   ${media.medium} {

@@ -61,7 +61,7 @@ export const LinkHolder = styled.div`
   align-items: center;
 
   ${media.small} {
-    margin-bottom: 0%;
+    margin-bottom: 0;
   }
 `
 

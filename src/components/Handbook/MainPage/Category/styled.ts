@@ -56,24 +56,22 @@ export const RightArrow = styled(ArrowIcon)`
 `
 
 export const BoxLink = styled(Link)`
-  background-color: ${({ theme }) => theme.colors.subtle};
+  border: 1px solid ${({ theme }) => theme.colors.subtle};
   color: ${({ theme }) => theme.colors.foreground};
+  background-color: ${({ theme }) => theme.colors.background};
 
   padding: 1.25rem;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  & > * {
-    transition: opacity ${({ theme }) => theme.transitions.ease()};
-  }
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  transition: box-shadow ${({ theme }) => theme.transitions.cubic()};
 
   ${media.hover} {
     &:hover {
-      & > * {
-        opacity: 0.6;
-      }
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1),
+        0px 8px 16px rgba(0, 0, 0, 0.1);
 
       ${RightArrow} {
         transform: translateX(0.5rem);

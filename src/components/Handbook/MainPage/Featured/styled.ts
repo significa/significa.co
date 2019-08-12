@@ -27,8 +27,6 @@ export const Content = styled.div`
   ${media.medium} {
     max-width: 100%;
   }
-
-  transition: opacity ${({ theme }) => theme.transitions.ease()};
 `
 
 export const Title = styled(BaseTitle)`
@@ -86,13 +84,17 @@ export const BoxLink = styled(Link)`
   position: relative;
   box-sizing: border-box;
 
-  background-color: ${({ theme }) => theme.colors.subtle};
+  border: 1px solid ${({ theme }) => theme.colors.subtle};
   color: ${({ theme }) => theme.colors.foreground};
+  background-color: ${({ theme }) => theme.colors.background};
 
   border-radius: 2px;
 
   padding: 2rem;
   margin-bottom: 5rem;
+
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  transition: box-shadow ${({ theme }) => theme.transitions.cubic()};
 
   ${media.medium} {
     flex-direction: column;
@@ -100,9 +102,8 @@ export const BoxLink = styled(Link)`
 
   ${media.hover} {
     &:hover {
-      ${Content} {
-        opacity: 0.6;
-      }
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1),
+        0px 8px 16px rgba(0, 0, 0, 0.1);
 
       ${RightArrow} {
         transform: translateX(0.5rem);

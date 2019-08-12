@@ -15,9 +15,7 @@ export const Wrapper = styled.footer`
   margin-bottom: 7.5rem;
 `
 
-export const Header = styled.div`
-  transition: opacity ${({ theme }) => theme.transitions.ease()};
-`
+export const Header = styled.div``
 
 export const LeftArrow = styled(ArrowIcon)`
   transform: rotate(180deg);
@@ -65,13 +63,17 @@ export const Box = styled(Link)`
   box-sizing: border-box;
   width: calc(50% - 1rem);
 
-  background-color: ${({ theme }) => theme.colors.subtle};
+  border: 1px solid ${({ theme }) => theme.colors.subtle};
   color: ${({ theme }) => theme.colors.foreground};
+  background-color: ${({ theme }) => theme.colors.background};
 
   border-radius: 2px;
 
   padding: 1.25rem;
   margin-bottom: 7.5rem;
+
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  transition: box-shadow ${({ theme }) => theme.transitions.cubic()};
 
   &:first-child {
     margin-right: 1rem;
@@ -88,9 +90,8 @@ export const Box = styled(Link)`
 
   ${media.hover} {
     &:hover {
-      ${Header} {
-        opacity: 0.6;
-      }
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1),
+        0px 8px 16px rgba(0, 0, 0, 0.1);
 
       ${RightArrow} {
         transform: translateX(0.5rem);

@@ -11,8 +11,18 @@ import { liBaseStyle } from '../../UI/List/styled'
 export const Renderer = styled.div`
   position: relative;
 
-  * {
+  & > * {
     max-width: 38.5rem;
+    width: calc(100% - 16rem);
+    box-sizing: border-box;
+
+    padding-right: 3rem;
+
+    ${media.medium} {
+      width: 100%;
+      max-width: 100%;
+      padding-right: 0;
+    }
   }
 
   figure {
@@ -44,6 +54,10 @@ export const Renderer = styled.div`
 
     padding-top: 7.5rem;
     margin-bottom: 1.25rem;
+
+    ${media.small} {
+      padding-top: 5rem;
+    }
   }
 
   figure + h2 {
@@ -84,6 +98,7 @@ export const Renderer = styled.div`
 
   ol {
     counter-reset: li;
+    margin-left: 1.5rem;
   }
 
   ol li {

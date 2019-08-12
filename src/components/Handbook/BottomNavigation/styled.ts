@@ -13,6 +13,17 @@ export const Wrapper = styled.footer`
 
   margin-top: 7.5rem;
   margin-bottom: 7.5rem;
+
+  ${media.medium} {
+    max-width: 100%;
+  }
+
+  ${media.small} {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+
+    flex-direction: column;
+  }
 `
 
 export const Header = styled.div``
@@ -48,6 +59,10 @@ export const LinkHolder = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  ${media.small} {
+    margin-bottom: 0;
+  }
 `
 
 export const ImgHolder = styled.div``
@@ -56,6 +71,10 @@ export const Image = styled.img`
   width: 100%;
 
   margin-bottom: -7.5rem;
+
+  ${media.small} {
+    display: none;
+  }
 `
 
 export const Box = styled(Link)`
@@ -77,10 +96,18 @@ export const Box = styled(Link)`
 
   &:first-child {
     margin-right: 1rem;
+
+    ${media.small} {
+      margin-right: 0;
+    }
   }
 
   &:last-child {
     margin-left: 1rem;
+
+    ${media.small} {
+      margin-left: 0;
+    }
   }
 
   &:only-child {
@@ -102,4 +129,11 @@ export const Box = styled(Link)`
       }
     }
   }
+
+  ${media.small} {
+    width: 100%;
+
+    margin-bottom: 1.5rem;
+  }
+  
 `

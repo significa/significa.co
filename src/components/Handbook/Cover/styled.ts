@@ -1,26 +1,46 @@
-import styled, { keyframes } from '@theme'
+import styled, { keyframes, media } from '@theme'
 import Img from 'gatsby-image'
 
 import { Display, Big, Small } from '../../UI'
 
 export const Wrapper = styled.div`
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: -3rem;
+
+  ${media.medium} {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
 `
 
 export const Image = styled(Img)`
-  position: absolute !important;
-  right: 0;
-  top: 0;
+  position: relative;
 
   max-width: 22rem;
   width: 100%;
   height: auto;
+
+  margin-left: 3rem;
+  margin-right: -2rem;
+
+  ${media.medium} {
+    margin: 0;
+  }
 `
 
 export const Holder = styled.div`
   margin-top: 1rem;
   max-width: 32rem;
   margin-bottom: 5rem;
+
+  ${media.medium} {
+    margin-bottom: 3rem;
+  }
 `
 
 export const PreTitle = styled(Small)`
@@ -69,5 +89,9 @@ export const Mouse = styled.div`
     background-color: ${({ theme }) => theme.colors.foreground};
 
     animation: ${goDown} 1s cubic-bezier(0.2, 1, 0.2, 1) infinite alternate;
+  }
+
+  ${media.medium} {
+    display: none;
   }
 `

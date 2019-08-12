@@ -28,7 +28,6 @@ const HandbookLayout: React.FC<{ currentPage?: string }> = ({
   children,
   currentPage,
 }) => {
-
   return (
     <Layout>
       <S.Wrapper>

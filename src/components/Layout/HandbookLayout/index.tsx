@@ -6,6 +6,22 @@ import { Navigation } from '../../Handbook/'
 
 import * as S from './styled'
 
+const NavigationHolder: React.FC<{}> = ({ children }) => {
+  const [isOpen, setIsOpen] = React.useState(false)
+
+  return (
+    <>
+      <S.NavOverlay isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
+      <S.NavHolder isOpen={isOpen}>{children}</S.NavHolder>
+      <S.Hamburger isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+        <S.ButtonLine />
+        <S.ButtonLine />
+        <S.ButtonLine />
+      </S.Hamburger>
+    </>
+  )
+}
+
 const HandbookLayout: React.FC<{ currentPage?: string }> = ({
   children,
   currentPage,
@@ -13,9 +29,9 @@ const HandbookLayout: React.FC<{ currentPage?: string }> = ({
   return (
     <Layout>
       <S.Wrapper>
-        <S.NavHolder>
+        <NavigationHolder>
           <Navigation currentPage={currentPage} />
-        </S.NavHolder>
+        </NavigationHolder>
         <S.Main>{children}</S.Main>
       </S.Wrapper>
     </Layout>

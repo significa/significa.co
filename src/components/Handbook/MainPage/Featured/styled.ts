@@ -13,8 +13,13 @@ export const Wrapper = styled(Container)`
 
   margin-bottom: 5rem;
 
-  ${media.large} {
+  ${media.medium} {
     grid-template-columns: 1fr;
+    grid-gap: 2rem;
+  }
+
+  ${media.small} {
+    grid-gap: 1.5rem;
   }
 `
 
@@ -24,8 +29,12 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  ${media.medium} {
+  ${media.largest} {
     max-width: 100%;
+  }
+
+  ${media.medium} {
+    max-width: 75%;
   }
 `
 
@@ -60,22 +69,20 @@ export const Image = styled(Img)`
   top: 2rem;
 
   ${media.largest} {
-    width: 50%;
-    right: -3rem;
-  }
-
-  ${media.large} {
-    right: 2rem;
-  }
-
-  ${media.medium} {
     position: relative !important;
     right: auto;
     top: auto;
+
     width: 100%;
+    max-width: 15rem;
+    height: auto;
 
     margin-top: 3rem;
-    margin-bottom: -7rem;
+    margin-bottom: -4.5rem;
+  }
+
+  ${media.medium} {
+    display: none;
   }
 `
 
@@ -96,8 +103,14 @@ export const BoxLink = styled(Link)`
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   transition: box-shadow ${({ theme }) => theme.transitions.cubic()};
 
-  ${media.medium} {
+  ${media.largest} {
     flex-direction: column;
+    padding-bottom: 0;
+  }
+
+  ${media.medium} {
+    padding-bottom: 2rem;
+    margin-bottom: 0;
   }
 
   ${media.hover} {

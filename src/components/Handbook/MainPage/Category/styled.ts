@@ -21,6 +21,10 @@ export const Header = styled.div`
   margin-bottom: 3.5rem;
 
   ${media.large} {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  ${media.medium} {
     grid-template-columns: 1fr;
   }
 `
@@ -42,6 +46,14 @@ export const BoxesHolder = styled.ul`
   grid-gap: 3rem;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   grid-template-rows: auto 1fr;
+
+  ${media.medium} {
+    grid-gap: 2rem;
+  }
+
+  ${media.small} {
+    grid-gap: 1.5rem;
+  }
 `
 
 export const LinkHolder = styled.div`

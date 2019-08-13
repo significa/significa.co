@@ -17,6 +17,7 @@ export interface IColorsTheme {
   highlight: string
   background: string
   foreground: string
+  secondary: string
   medium: string
   subtle: string
   error: string

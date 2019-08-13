@@ -33,9 +33,11 @@ const SubMenu = ({ path, headings, isActive }: SubMenuProps) => {
   // Fetch IDs from DOM when mounting
   React.useEffect(() => {
     headings.forEach(heading => {
-      const target = document.querySelector(`#${titleToID(heading.text)}`)
-      if (target && target instanceof HTMLHeadingElement) {
-        domList.current.push(target)
+      if (heading.text) {
+        const target = document.querySelector(`#${titleToID(heading.text)}`)
+        if (target && target instanceof HTMLHeadingElement) {
+          domList.current.push(target)
+        }
       }
     })
   }, [])

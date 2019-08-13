@@ -66,7 +66,7 @@ export const Image = styled(Img)`
 
   width: 40%;
   right: 0;
-  top: 2rem;
+  top: 3rem;
 
   ${media.largest} {
     position: relative !important;
@@ -100,8 +100,7 @@ export const BoxLink = styled(Link)`
   padding: 2rem;
   margin-bottom: 5rem;
 
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-  transition: box-shadow ${({ theme }) => theme.transitions.cubic()};
+  transition: background-color ${({ theme }) => theme.transitions.ease()};
 
   ${media.largest} {
     flex-direction: column;
@@ -115,8 +114,7 @@ export const BoxLink = styled(Link)`
 
   ${media.hover} {
     &:hover {
-      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1),
-        0px 8px 16px rgba(0, 0, 0, 0.1);
+      background-color: ${({ theme }) => theme.colors.subtle};
 
       ${RightArrow} {
         transform: translateX(0.5rem);

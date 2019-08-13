@@ -21,7 +21,7 @@ const Testimonial: React.FC<{ testimonial: TestimonialType }> = ({
             <S.Position>{testimonial.position}</S.Position>
           </div>
         </S.Info>
-        {testimonial.link._meta && (
+        {testimonial.link && testimonial.link._meta && (
           <S.Link to={linkResolver(testimonial.link._meta)}>
             {testimonial.link_text}
           </S.Link>

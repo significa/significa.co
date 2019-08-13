@@ -118,6 +118,10 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
     nextChapter = allChapters[currIndex + 1]
   }
 
+  if (currIndex === allChapters.length - 1) {
+    nextChapter = undefined
+  }
+
   return (
     <HandbookLayout currentPage={uid}>
       <SEO title={chapter.title} description={chapter.description} />

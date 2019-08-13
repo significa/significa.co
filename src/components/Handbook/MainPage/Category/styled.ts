@@ -77,13 +77,11 @@ export const BoxLink = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-  transition: box-shadow ${({ theme }) => theme.transitions.cubic()};
+  transition: background-color ${({ theme }) => theme.transitions.ease()};
 
   ${media.hover} {
     &:hover {
-      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1),
-        0px 8px 16px rgba(0, 0, 0, 0.1);
+      background-color: ${({ theme }) => theme.colors.subtle};
 
       ${RightArrow} {
         transform: translateX(0.5rem);

@@ -26,6 +26,23 @@ export const RightArrow = styled(ArrowIcon)`
   transition: transform ${({ theme }) => theme.transitions.cubic()};
 `
 
+export const ExternalLink = styled.a`
+  display: flex;
+  align-items: center;
+
+  opacity: 1 !important;
+
+  color: ${({ theme }) => theme.colors.highlight};
+
+  ${media.hover} {
+    &:hover {
+      ${RightArrow} {
+        transform: scale(0.8) translateX(0.5rem);
+      }
+    }
+  }
+`
+
 export const Link = styled(GatsbyLink)`
   display: flex;
   align-items: center;

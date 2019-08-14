@@ -19,6 +19,7 @@ interface CustomComponentParserProps {
         slug: string
         type: string
         uid: string
+        url?: string
       }
     }>
   }
@@ -114,14 +115,26 @@ const CustomComponentParser: React.FC<CustomComponentParserProps> = ({
       element.spans[0].data
     ) {
       const [, title, text] = content
+      const link = element.spans[0].data
 
       return (
         <S.LinkBox>
           <S.Title>{title}</S.Title>
-          <S.Link to={linkResolver(element.spans[0].data)}>
-            <S.SmallText>{renderText(text)}</S.SmallText>
-            <S.RightArrow />
-          </S.Link>
+          {link.link_type === 'Web' || link.link_type === 'Media' ? (
+            <S.ExternalLink
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <S.SmallText>{renderText(text)}</S.SmallText>
+              <S.RightArrow />
+            </S.ExternalLink>
+          ) : (
+            <S.Link to={linkResolver(element.spans[0].data)}>
+              <S.SmallText>{renderText(text)}</S.SmallText>
+              <S.RightArrow />
+            </S.Link>
+          )}
         </S.LinkBox>
       )
     }

@@ -130,7 +130,7 @@ const CustomComponentParser: React.FC<CustomComponentParserProps> = ({
               <S.RightArrow />
             </S.ExternalLink>
           ) : (
-            <S.Link to={linkResolver(element.spans[0].data)}>
+            <S.Link to={linkResolver(link)}>
               <S.SmallText>{renderText(text)}</S.SmallText>
               <S.RightArrow />
             </S.Link>

@@ -10,7 +10,7 @@ export const Link = styled.a<{
 
   display: block;
   padding: 0.4rem 0;
-  padding-left: ${({ extraMargin }) => (extraMargin ? '3rem' : '2rem')};
+  padding-left: ${({ extraMargin }) => (extraMargin ? '2.5rem' : '1.5rem')};
   border-left: 1px solid ${({ theme }) => theme.colors.subtle};
   line-height: 1.35em;
 

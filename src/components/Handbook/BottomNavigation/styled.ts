@@ -7,20 +7,26 @@ import ArrowIcon from '../common/Arrow'
 
 export const Wrapper = styled.footer`
   /* Same as ../Content/styled */
-  max-width: 38.5rem;
+  width: calc(100% - 20rem);
+  max-width: 42rem;
 
   display: flex;
 
   margin-top: 7.5rem;
   margin-bottom: 7.5rem;
 
+  ${media.large} {
+    width: calc(100% - 18rem);
+  }
+
   ${media.medium} {
+    width: 100%;
     max-width: 100%;
   }
 
   ${media.small} {
     margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
 
     flex-direction: column;
   }
@@ -98,6 +104,7 @@ export const Box = styled(Link)`
 
     ${media.small} {
       margin-right: 0;
+      order: 2;
     }
   }
 

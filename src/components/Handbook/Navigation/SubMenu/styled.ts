@@ -7,10 +7,11 @@ export const Link = styled.a<{
   isActive: boolean
 }>`
   ${linkStyle};
+  font-size: 0.875rem;
 
   display: block;
-  padding: 0.4rem 0;
-  padding-left: ${({ extraMargin }) => (extraMargin ? '2.5rem' : '1.5rem')};
+  padding: 0.35rem 0;
+  padding-left: ${({ extraMargin }) => (extraMargin ? '3rem' : '2rem')};
   border-left: 1px solid ${({ theme }) => theme.colors.subtle};
   line-height: 1.35em;
 

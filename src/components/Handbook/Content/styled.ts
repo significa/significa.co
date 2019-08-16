@@ -12,6 +12,9 @@ export const Renderer = styled.div`
   position: relative;
 
   & > *:not(aside) {
+    /* Due to conflicting CSS, Side Notes were having width issues.
+    To prevent it, we must use :not(aside)
+    Aside refer to Handbook Sidenotes  */
     width: calc(100% - 20rem);
     max-width: 42rem; 
 

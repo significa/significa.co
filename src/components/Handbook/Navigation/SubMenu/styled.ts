@@ -13,7 +13,7 @@ export const Link = styled.a<{
   padding: 0.35rem 0;
   padding-left: ${({ extraMargin }) => (extraMargin ? '3rem' : '2rem')};
   border-left: 1px solid ${({ theme }) => theme.colors.subtle};
-  line-height: 1.35em;
+  line-height: 1.4;
 
   ${media.hover} {
     &:hover {

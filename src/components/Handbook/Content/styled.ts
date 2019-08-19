@@ -12,11 +12,14 @@ export const Renderer = styled.div`
   position: relative;
 
   & > * {
-    max-width: 38.5rem;
     width: calc(100% - 16rem);
     box-sizing: border-box;
 
     padding-right: 3rem;
+
+    ${media.small} {
+      max-width: calc(100% - 38.5rem);
+    }
 
     ${media.medium} {
       width: 100%;

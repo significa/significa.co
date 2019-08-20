@@ -10,12 +10,14 @@ export const Wrapper = styled(Container)`
 export const NavHolder = styled.aside<{ isOpen: boolean }>`
   top: 0;
   padding: 5rem 0;
+  padding-right: 3rem;
   position: sticky;
   box-sizing: border-box;
 
-  width: 14rem;
+  width: 18rem;
   flex-shrink: 0;
   height: 100vh;
+
 
   overflow-y: auto;
 
@@ -31,6 +33,7 @@ export const NavHolder = styled.aside<{ isOpen: boolean }>`
     height: 100vh;
     width: 22em;
     padding: 3em 3rem 3rem 4em;
+    margin-right: 0;
     transform: translatex(-100%);
     transition: transform ${({ theme }) => theme.transitions.cubic()};
 

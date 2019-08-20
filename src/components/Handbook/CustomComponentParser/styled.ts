@@ -65,8 +65,8 @@ export const SidenoteWrapper = styled.aside`
   position: absolute;
   right: 0;
 
-  padding: 1rem 1.125rem;
   width: 16rem;
+  padding: 1rem 1.125rem;
 
   background: #fdf8ed;
   color: ${({ theme }) => theme.colors.foreground};
@@ -80,6 +80,7 @@ export const SidenoteWrapper = styled.aside`
   ${media.medium} {
     position: relative;
     width: 100%;
+    max-width: 100%;
     margin-bottom: 1.5rem;
   }
 `

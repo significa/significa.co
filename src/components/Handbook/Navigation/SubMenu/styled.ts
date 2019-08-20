@@ -9,12 +9,10 @@ export const Link = styled.a<{
   ${linkStyle};
 
   display: block;
-  padding: 0.5rem 0;
+  padding: 0.35rem 0;
   padding-left: ${({ extraMargin }) => (extraMargin ? '3rem' : '2rem')};
   border-left: 1px solid ${({ theme }) => theme.colors.subtle};
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.4;
 
   ${media.hover} {
     &:hover {

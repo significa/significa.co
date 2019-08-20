@@ -11,12 +11,18 @@ import { liBaseStyle } from '../../UI/List/styled'
 export const Renderer = styled.div`
   position: relative;
 
-  & > * {
-    max-width: 38.5rem;
-    width: calc(100% - 16rem);
+  & > *:not(aside) {
+    /* Due to conflicting CSS, Side Notes were having width issues.
+    To prevent it, we must use :not(aside)
+    Aside refers to Handbook Sidenotes which is available at Handbook/CustomComponentParser/styled.ts  */
+    width: calc(100% - 20rem);
+    max-width: 42rem; 
+
     box-sizing: border-box;
 
-    padding-right: 3rem;
+    ${media.large} {
+      width: calc(100% - 18rem);
+    }
 
     ${media.medium} {
       width: 100%;
@@ -56,7 +62,7 @@ export const Renderer = styled.div`
     margin-bottom: 1.25rem;
 
     ${media.small} {
-      padding-top: 5rem;
+      padding-top: 4rem;
     }
   }
 
@@ -69,6 +75,10 @@ export const Renderer = styled.div`
 
     padding-top: 5rem;
     margin-bottom: 1.25rem;
+
+    ${media.small} {
+      padding-top: 2.5rem;
+    }
   }
 
   figure + h3 {
@@ -80,6 +90,10 @@ export const Renderer = styled.div`
 
     margin-top: 2.5rem;
     margin-bottom: 0.75rem;
+
+    ${media.small} {
+      margin-top: 2rem;
+    }
   }
 
   p,

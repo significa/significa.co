@@ -76,7 +76,7 @@ export const ImgHolder = styled.div``
 export const Image = styled.img`
   width: 100%;
 
-  margin-bottom: -7.5rem;
+  margin-bottom: -7rem;
 
   ${media.small} {
     display: none;

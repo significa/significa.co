@@ -7,7 +7,6 @@ export const Link = styled.a<{
   isActive: boolean
 }>`
   ${linkStyle};
-  font-size: 0.875rem;
 
   display: block;
   padding: 0.35rem 0;

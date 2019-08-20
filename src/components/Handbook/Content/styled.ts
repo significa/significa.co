@@ -14,7 +14,7 @@ export const Renderer = styled.div`
   & > *:not(aside) {
     /* Due to conflicting CSS, Side Notes were having width issues.
     To prevent it, we must use :not(aside)
-    Aside refer to Handbook Sidenotes  */
+    Aside refers to Handbook Sidenotes which is available at Handbook/CustomComponentParser/styled.ts  */
     width: calc(100% - 20rem);
     max-width: 42rem; 
 

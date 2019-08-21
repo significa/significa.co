@@ -17,7 +17,7 @@ phases:
       - bash -c "if [ /"$CODEBUILD_BUILD_SUCCEEDING/" == /"0/" ]; then exit 1; fi"
       - echo Build stage successfully completed
       - |
-        if test "$CODEBUILD_WEBHOOK_HEAD_REF" = "refs/heads/master"; then
+        if test "$CODEBUILD_WEBHOOK_HEAD_REF" = "refs/heads/master" || test "$CODEBUILD_SOURCE_VERSION" = "refs/heads/master"; then
           AWS_PROFILE=production npm run deploy && aws cloudfront create-invalidation --distribution-id $PRODUCTION_CLOUDFRONT --paths '/*' --profile production
         else
           aws s3 sync --delete public --profile staging "s3://significa.io/previews/$(echo $CODEBUILD_WEBHOOK_TRIGGER | tr / -)" && aws cloudfront create-invalidation --distribution-id $STAGING_CLOUDFRONT --paths "/previews/$(echo $CODEBUILD_WEBHOOK_TRIGGER | tr / -)/*" --profile staging && curl -X "POST" "https://api.github.com/repos/significa/significa.co/issues/$(echo ${CODEBUILD_WEBHOOK_TRIGGER#pr/})/comments" -H "Authorization: token $(echo $GITHUB_TOKEN)" -H "Content-Type: application/json; charset=utf-8" -d "{\"body\": \"Deploy preview ready! https://$(echo $CODEBUILD_WEBHOOK_TRIGGER | tr / -).significa.io/\"}"

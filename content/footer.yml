@@ -17,6 +17,8 @@
       link: /services
     - label: About
       link: /about
+    - label: Handbook
+      link: /handbook
     - label: Careers
       link: /careers
     - label: Labs

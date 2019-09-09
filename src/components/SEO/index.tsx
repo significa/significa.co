@@ -80,6 +80,9 @@ const SEO: React.FC<ISEOProps> = ({
     ? `${site.siteMetadata.title} %s`
     : site.siteMetadata.title
 
+  const ogImage = image || opengraphImage
+  const twitterImage = image || twittercardImage
+
   return (
     <Location>
       {({ location }) => {
@@ -117,7 +120,10 @@ const SEO: React.FC<ISEOProps> = ({
               },
               {
                 property: `og:image`,
-                content: `${siteUrl}${image || opengraphImage}`,
+                content:
+                  ogImage.indexOf('https://') === -1
+                    ? `${siteUrl}${ogImage}`
+                    : ogImage,
               },
               {
                 name: `twitter:card`,
@@ -125,7 +131,10 @@ const SEO: React.FC<ISEOProps> = ({
               },
               {
                 name: `twitter:image`,
-                content: `${siteUrl}${image || twittercardImage}`,
+                content:
+                  twitterImage.indexOf('https://') === -1
+                    ? `${siteUrl}${twitterImage}`
+                    : twitterImage,
               },
               {
                 name: `twitter:site`,

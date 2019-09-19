@@ -85,7 +85,7 @@ const WorldMap = () => {
       <S.MapImg src={worldMapSource} alt="World map" />
 
       <S.BasePanel>
-        {splitFlap.map(({ current, old }, index) => (
+        {splitFlap.map(({ current }, index) => (
           <S.Panel key={`${current}-${index}`}>
             <S.HalfPanel position="top">
               <div>{current}</div>

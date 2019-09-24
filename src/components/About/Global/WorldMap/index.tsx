@@ -9,7 +9,7 @@ interface IPanel {
   old: string
 }
 
-const TIME_LETTER = 120
+const TIME_LETTER = 100
 const TIME_RANDOM_CITY = 6000
 
 const template = (city: string) => `OPO>${city}`
@@ -37,7 +37,7 @@ const WorldMap = () => {
   )
 
   //
-  // Pass throught all letters
+  // Pass through all letters
   //
   const flipPanel = (curr: IPanel[]) => {
     const splittedCity = currentCity.split('')
@@ -85,33 +85,11 @@ const WorldMap = () => {
       <S.MapImg src={worldMapSource} alt="World map" />
 
       <S.BasePanel>
-        {splitFlap.map(({ current, old }, index) => (
+        {splitFlap.map(({ current }, index) => (
           <S.Panel key={`${current}-${index}`}>
             <S.HalfPanel position="top">
               <div>{current}</div>
             </S.HalfPanel>
-            <S.HalfPanel position="bottom">
-              <div>{old}</div>
-            </S.HalfPanel>
-
-            {current !== old && (
-              <>
-                <S.HalfFlipPanel
-                  time={TIME_LETTER}
-                  direction="out"
-                  position="top"
-                >
-                  <div>{old}</div>
-                </S.HalfFlipPanel>
-                <S.HalfFlipPanel
-                  time={TIME_LETTER}
-                  direction="in"
-                  position="bottom"
-                >
-                  <div>{current}</div>
-                </S.HalfFlipPanel>
-              </>
-            )}
           </S.Panel>
         ))}
       </S.BasePanel>

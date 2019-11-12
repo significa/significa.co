@@ -23,6 +23,6 @@ Make a new build to `/public` folder
 npm run build
 ```
  
----
+--- 
 
 Built with [Gatsby](https://www.gatsbyjs.org/).

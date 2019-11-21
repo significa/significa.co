@@ -11,5 +11,13 @@ export default (doc: { type: string; uid: string }): string => {
     return `/handbook/${doc.uid}`
   }
 
+  if (doc.type === 'blog_post') {
+    return `/blog/${doc.uid}`
+  }
+
+  if (doc.type === 'blog_author') {
+    return `/blog/author/${doc.uid}`
+  }
+
   return '/'
 }

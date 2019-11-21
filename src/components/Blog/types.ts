@@ -1,6 +1,4 @@
-import { FluidObject } from 'gatsby-image'
-
-type DocumentImage = {
+interface DocumentImage {
   dimensions: {
     width: number
     height: number
@@ -9,7 +7,7 @@ type DocumentImage = {
   url: string
 }
 
-export type AuthorSocial = {
+export interface AuthorSocial {
   link: string
   options:
     | 'Behance'
@@ -21,15 +19,22 @@ export type AuthorSocial = {
 }
 
 export interface Author {
-  id: string
+  _meta: {
+    uid: string
+    type: string
+  }
   name: string
   position: string
   profile_pic: DocumentImage
-  social_links: Array<AuthorSocial>
+  social_links: AuthorSocial[]
 }
 
 export interface BlogPost {
-  id: string
+  _meta: {
+    uid: string
+    type: string
+  }
+
   meta_title: string
   meta_description: string
   meta_image_share: string

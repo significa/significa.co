@@ -4,8 +4,8 @@ import { RichText } from 'prismic-reactjs'
 
 import Layout from '../components/Layout'
 import { BlogPost } from '../components/Blog/types'
-import slugify from '../utils/slugify'
 import formatDate from '../utils/formatDate'
+import linkResolver from '../utils/linkResolver'
 
 interface Prop {
   data: {
@@ -17,7 +17,7 @@ interface Prop {
   }
 }
 
-const BlogAuthor: React.FC<Prop> = ({ data, ...props }) => {
+const BlogAuthor: React.FC<Prop> = ({ data }) => {
   const posts = data.prismic.allBlog_posts.edges
 
   return (
@@ -26,17 +26,17 @@ const BlogAuthor: React.FC<Prop> = ({ data, ...props }) => {
         {posts.map(({ node }) => {
           return (
             <article key={node.title}>
-              <Link to={`/blog/${slugify(node.title)}`}>
+              <Link to={linkResolver(node._meta)}>
                 <img width="300px" src={node.hero.url} alt={node.hero.alt} />
                 <h2>{node.title}</h2>
                 <RichText render={node.description} />
                 <p>{formatDate(node.date)}</p>
               </Link>
-              <Link to={`/blog/category/${slugify(node.category)}`}>
+              <Link to={`/blog/category/(node.category)}`}>
                 <p>{node.category}</p>
               </Link>
 
-              <Link to={`/blog/author/${slugify(node.author.name)}`}>
+              <Link to={linkResolver(node.author._meta)}>
                 <img
                   width="300px"
                   src={node.author.profile_pic.url}
@@ -59,8 +59,16 @@ export const query = graphql`
       allBlog_posts(where: { author_slug_fulltext: $uid }) {
         edges {
           node {
+            _meta {
+              uid
+              type
+            }
             author {
               ... on PRISMIC_Blog_author {
+                _meta {
+                  uid
+                  type
+                }
                 name
                 profile_pic
               }

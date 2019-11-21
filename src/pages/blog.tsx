@@ -6,7 +6,7 @@ import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import { BlogPost } from '../components/Blog/types'
 import formatDate from '../utils/formatDate'
-import slugify from '../utils/slugify'
+import linkResolver from '../utils/linkResolver'
 
 interface Prop {
   data: {
@@ -46,17 +46,17 @@ const BlogIndex: React.FC<Prop> = ({ data }) => {
         {posts.map(({ node }) => {
           return (
             <article key={node.title}>
-              <Link to={`/blog/${slugify(node.title)}`}>
+              <Link to={linkResolver(node._meta)}>
                 <img width="300px" src={node.hero.url} alt={node.hero.alt} />
                 <h2>{node.title}</h2>
                 <RichText render={node.description} />
                 <p>{formatDate(node.date)}</p>
               </Link>
-              <Link to={`/blog/category/${slugify(node.category)}`}>
+              <Link to={`/blog/category/`}>
                 <p>{node.category}</p>
               </Link>
 
-              <Link to={`/blog/author/${slugify(node.author.name)}`}>
+              <Link to={linkResolver(node.author._meta)}>
                 <img
                   width="300px"
                   src={node.author.profile_pic.url}
@@ -73,9 +73,9 @@ const BlogIndex: React.FC<Prop> = ({ data }) => {
       <aside>
         <h2>We talk about</h2>
 
-        {Object.keys(categories).map(item => {
+        {Object.keys(categories).map((item, index) => {
           return (
-            <p>
+            <p key={index}>
               {item} {categories[item].counter} articles related
             </p>
           )
@@ -93,8 +93,16 @@ export const query = graphql`
       allBlog_posts {
         edges {
           node {
+            _meta {
+              uid
+              type
+            }
             author {
               ... on PRISMIC_Blog_author {
+                _meta {
+                  uid
+                  type
+                }
                 name
                 profile_pic
               }

@@ -1,12 +1,12 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
-import { RichText } from 'prismic-reactjs'
+import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import { BlogPost } from '../components/Blog/types'
-import formatDate from '../utils/formatDate'
-import linkResolver from '../utils/linkResolver'
+import BlogList from '../components/Blog/List/List'
+
+import { Container } from '../components/UI'
 
 interface Prop {
   data: {
@@ -42,45 +42,23 @@ const BlogIndex: React.FC<Prop> = ({ data }) => {
     <Layout theme="light">
       <SEO title="Blog" />
 
-      <section>
-        {posts.map(({ node }) => {
-          return (
-            <article key={node.title}>
-              <Link to={linkResolver(node._meta)}>
-                <img width="300px" src={node.hero.url} alt={node.hero.alt} />
-                <h2>{node.title}</h2>
-                <RichText render={node.description} />
-                <p>{formatDate(node.date)}</p>
-              </Link>
-              <Link to={`/blog/category/`}>
-                <p>{node.category}</p>
-              </Link>
+      <Container>
+        <section>
+          <BlogList posts={posts} />
+        </section>
 
-              <Link to={linkResolver(node.author._meta)}>
-                <img
-                  width="300px"
-                  src={node.author.profile_pic.url}
-                  alt={node.author.profile_pic.alt}
-                />
+        <aside>
+          <h2>We talk about</h2>
 
-                <p>{node.author.name}</p>
-              </Link>
-            </article>
-          )
-        })}
-      </section>
-
-      <aside>
-        <h2>We talk about</h2>
-
-        {Object.keys(categories).map((item, index) => {
-          return (
-            <p key={index}>
-              {item} {categories[item].counter} articles related
-            </p>
-          )
-        })}
-      </aside>
+          {Object.keys(categories).map((item, index) => {
+            return (
+              <p key={index}>
+                {item} {categories[item].counter} articles related
+              </p>
+            )
+          })}
+        </aside>
+      </Container>
     </Layout>
   )
 }

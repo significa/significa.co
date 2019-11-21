@@ -1,11 +1,9 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
-import { RichText } from 'prismic-reactjs'
+import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import { BlogPost } from '../components/Blog/types'
-import formatDate from '../utils/formatDate'
-import linkResolver from '../utils/linkResolver'
+import BlogList from '../components/Blog/List/List'
 
 interface Prop {
   data: {
@@ -23,31 +21,7 @@ const BlogAuthor: React.FC<Prop> = ({ data }) => {
   return (
     <Layout>
       <section>
-        {posts.map(({ node }) => {
-          return (
-            <article key={node.title}>
-              <Link to={linkResolver(node._meta)}>
-                <img width="300px" src={node.hero.url} alt={node.hero.alt} />
-                <h2>{node.title}</h2>
-                <RichText render={node.description} />
-                <p>{formatDate(node.date)}</p>
-              </Link>
-              <Link to={`/blog/category/(node.category)}`}>
-                <p>{node.category}</p>
-              </Link>
-
-              <Link to={linkResolver(node.author._meta)}>
-                <img
-                  width="300px"
-                  src={node.author.profile_pic.url}
-                  alt={node.author.profile_pic.alt}
-                />
-
-                <p>{node.author.name}</p>
-              </Link>
-            </article>
-          )
-        })}
+        <BlogList posts={posts} />
       </section>
     </Layout>
   )

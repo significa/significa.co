@@ -49,6 +49,7 @@ module.exports = {
         defaultLang: 'en-gb',
         previews: true,
         path: '/preview',
+        sharpKeys: [/image|photo|picture|hero|profile_pic/],
         pages: [
           {
             type: 'Project',

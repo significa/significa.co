@@ -1,11 +1,4 @@
-interface DocumentImage {
-  dimensions: {
-    width: number
-    height: number
-  }
-  alt: string
-  url: string
-}
+import { FluidObject } from 'gatsby-image'
 
 export interface AuthorSocial {
   link: string
@@ -25,7 +18,12 @@ export interface Author {
   }
   name: string
   position: string
-  profile_pic: DocumentImage
+  profile_pic: { alt: string; url: string }
+  profile_picSharp: {
+    childImageSharp: {
+      fluid: FluidObject
+    }
+  }
   social_links: AuthorSocial[]
 }
 
@@ -37,16 +35,27 @@ export interface BlogPost {
 
   meta_title: string
   meta_description: string
-  meta_image_share: string
+  meta_image_shareSharp: {
+    childImageSharp: {
+      fixed: {
+        src: string
+      }
+    }
+  }
   date: string
 
   title: string
-  description: string
+  teaser: string
   author: Author
   category: string
 
   tags: string[]
-  hero: DocumentImage
+  hero: { alt: string; url: string }
+  heroSharp: {
+    childImageSharp: {
+      fluid: FluidObject
+    }
+  }
 
   content: string
 }

@@ -88,7 +88,7 @@ export const query = graphql`
             category
             date
             title
-            description
+            teaser
             hero
             meta_image_shareSharp {
               childImageSharp {

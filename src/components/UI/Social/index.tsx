@@ -21,9 +21,9 @@ interface ISocial {
   link: string
 }
 
-const Social: React.FC<ISocial> = ({ type, link }) => {
+const Social: React.FC<ISocial> = ({ type, link, ...props }) => {
   return (
-    <SocialLink href={link} title={`Go to ${type}`}>
+    <SocialLink href={link} title={`Go to ${type}`} {...props}>
       {map[type] || null}
     </SocialLink>
   )

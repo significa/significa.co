@@ -2,7 +2,7 @@ import { FluidObject } from 'gatsby-image'
 
 export interface AuthorSocial {
   link: string
-  options:
+  social:
     | 'Behance'
     | 'Github'
     | 'Dribbble'
@@ -49,7 +49,7 @@ export interface BlogPost {
   author: Author
   category: string
 
-  tags: string[]
+  tags: Array<{ tag: string }>
   hero: { alt: string; url: string }
   heroSharp: {
     childImageSharp: {

@@ -50,9 +50,29 @@ const BlogPostPage: React.FC<Prop> = ({ data }) => {
 
         <S.Content>
           <RichText render={content.content} htmlSerializer={syntaxHighlight} />
-
-          <AuthorBox author={content.author} />
         </S.Content>
+
+        <S.Footer>
+          {content.tags.map(({ tag }) => (
+            <S.Tag key={tag}>{tag}</S.Tag>
+          ))}
+
+          <S.AuthorSection>
+            <AuthorBox author={content.author} />
+
+            <S.Socials>
+              {content.author.social_links.map(({ social, link }) => {
+                return (
+                  <S.SocialLink
+                    key={link}
+                    type={social.toLowerCase()}
+                    link={link}
+                  />
+                )
+              })}
+            </S.Socials>
+          </S.AuthorSection>
+        </S.Footer>
       </Container>
     </Layout>
   )
@@ -66,6 +86,11 @@ export const query = graphql`
           ... on PRISMIC_Blog_author {
             name
             profile_pic
+            position
+            social_links {
+              link
+              social
+            }
             profile_picSharp {
               childImageSharp {
                 fluid {
@@ -73,8 +98,10 @@ export const query = graphql`
                 }
               }
             }
-            position
           }
+        }
+        tags {
+          tag
         }
         title
         category

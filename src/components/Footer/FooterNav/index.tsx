@@ -2,7 +2,7 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 
 import { Wrapper, Title, Column, Row, FooterLink } from './styled'
-import Social from '../Social'
+import Social from '../../UI/Social'
 
 interface IItemType {
   label: string

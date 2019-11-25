@@ -26,6 +26,7 @@ export const colors: IColors = {
 }
 
 export const lightTheme: IColorsTheme = {
+  brand: colors.significa,
   highlight: colors.significa,
   background: colors.white,
   foreground: colors.black,
@@ -36,6 +37,7 @@ export const lightTheme: IColorsTheme = {
 }
 
 export const darkTheme: IColorsTheme = {
+  brand: colors.significa,
   highlight: colors.darkGrey,
   background: colors.black,
   foreground: colors.lightGrey,
@@ -46,6 +48,7 @@ export const darkTheme: IColorsTheme = {
 }
 
 export const colorTheme: IColorsTheme = {
+  brand: colors.significa,
   highlight: colors.white,
   background: colors.significa,
   foreground: colors.white,

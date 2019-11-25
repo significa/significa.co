@@ -1,5 +1,4 @@
 const path = require('path')
-const { createFilePath } = require(`gatsby-source-filesystem`)
 
 /** Creating alias in webpack config */
 exports.onCreateWebpackConfig = ({ actions }) => {

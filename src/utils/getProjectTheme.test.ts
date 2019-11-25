@@ -2,6 +2,7 @@ import { lightTheme as defaultTheme, darkTheme } from '@theme'
 import { getProjectTheme } from './getProjectTheme'
 
 const themeLight = {
+  brand: '#0154FF',
   background: '#FFFFFF',
   foreground: '#111314',
   highlight: '#FF9500',
@@ -12,6 +13,7 @@ const themeLight = {
 }
 
 const themeDark = {
+  brand: '#0154FF',
   background: '#111314',
   foreground: '#FFFFFF',
   highlight: '#FFFFFF',

@@ -19,6 +19,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop --host 0.0.0.0",
+    "clean": "gatsby clean",
     "dev": "npm run develop",
     "start": "npm run develop",
     "format": "prettier --write \"src/**/*.tsx\"",
@@ -71,7 +72,7 @@
     "gatsby-plugin-typescript": "^2.1.2",
     "gatsby-source-filesystem": "^2.1.9",
     "gatsby-source-prismic-graphql": "^3.4.0-beta.1",
-    "gatsby-transformer-remark": "^2.6.12",
+    "gatsby-transformer-remark": "^2.6.37",
     "gatsby-transformer-sharp": "^2.2.6",
     "gatsby-transformer-yaml": "^2.2.4",
     "husky": "^3.0.3",

@@ -5,6 +5,8 @@ import Dribbble from './Dribbble'
 import Github from './Github'
 import Instagram from './Instagram'
 import Medium from './Medium'
+import Mail from './Mail'
+import Website from './Website'
 
 import { SocialLink } from './styled'
 
@@ -14,6 +16,8 @@ const map: { [key: string]: any } = {
   github: <Github />,
   instagram: <Instagram />,
   medium: <Medium />,
+  'professional email': <Mail />,
+  'personal website': <Website />,
 }
 
 interface ISocial {

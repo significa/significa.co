@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import {
   Display as DisplayBase,
@@ -29,6 +29,13 @@ export const Description = styled(TextBase)`
 `
 
 export const ImageHero = styled.div`
+  ${media.medium} {
+    margin-left: -1.5em;
+    margin-right: -1.5em;
+    margin-top: 2em;
+    margin-bottom: 4em;
+  }
+
   margin-top: 6.6em;
   margin-bottom: 6em;
 
@@ -66,8 +73,12 @@ export const Content = styled.div`
   h3,
   h4 {
     ${titleStyle};
-    margin-top: 3.2em;
     margin-bottom: 0.5em;
+    margin-top: 3.2em;
+
+    ${media.medium} {
+      margin-top: 2.2em;
+    }
   }
 
   a {
@@ -78,6 +89,19 @@ export const Content = styled.div`
     margin-left: -6em !important;
     margin-right: -6em !important;
     margin-bottom: 2em !important;
+
+    ${media.large} {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+  }
+
+  code {
+    background: rgb(226, 228, 230);
+    color: rgb(39, 40, 34);
+    padding: 0.2em 0.4em;
+    border-radius: 0.2em;
+    font-size: 0.9em;
   }
 `
 
@@ -91,7 +115,10 @@ export const Tag = styled(Small)`
   border: 1px solid ${({ theme: { colors } }) => colors.subtle};
   margin-right: 0.7em;
   padding: 0.2em 0.5em;
+  margin-bottom: 0.7em;
 `
+
+export const Socials = styled.div``
 
 export const AuthorSection = styled.div`
   margin-top: 3.2em;
@@ -100,9 +127,16 @@ export const AuthorSection = styled.div`
 
   display: flex;
   justify-content: space-between;
-`
 
-export const Socials = styled.div``
+  ${media.medium} {
+    display: block;
+
+    ${Socials} {
+      margin-left: calc(40px + 1em - 1.3em);
+      margin-top: 2em;
+    }
+  }
+`
 
 export const SocialLink = styled(SocialBase)`
   width: 20px;

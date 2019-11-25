@@ -28,6 +28,30 @@ const htmlSerializer = (type: string, element: any) => {
     )
   }
 
+  if (type === 'paragraph') {
+    const regexExp = /(`.*?`)/gim
+    const shouldCatch = regexExp.test(element.text)
+
+    if (shouldCatch) {
+      const elements = element.text.split(regexExp)
+      const formatted = elements.reduce(
+        (acc: React.ReactNode[], curr: string) => {
+          if (regexExp.test(curr)) {
+            const strCleaned = curr.replace(/`/gm, '')
+            acc.push(<code>{strCleaned}</code>)
+          } else {
+            acc.push(curr)
+          }
+
+          return acc
+        },
+        []
+      )
+
+      return <p>{formatted}</p>
+    }
+  }
+
   return null
 }
 

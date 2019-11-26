@@ -40,7 +40,7 @@ export default BlogIndex
 export const query = graphql`
   query BlogIndexQuery {
     prismic {
-      allBlog_posts {
+      allBlog_posts(sortBy: date_DESC) {
         edges {
           node {
             _meta {

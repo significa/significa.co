@@ -33,16 +33,15 @@ const Hero: React.FC<{ post: BlogPost }> = ({ post }) => {
 
         <S.Column>
           <S.Detail>
-            <AuthorBox compact author={post.author} />
-
-            <S.Label color="secondary">
+            <AuthorBox compact author={post.author}>
+              {/* render as children */}
               <span>·</span>
               <Link to={linkResolver(categoryMeta)}>
                 <p>{post.category}</p>
               </Link>
               <span>·</span>
               {formatDate(post.date)}
-            </S.Label>
+            </AuthorBox>
           </S.Detail>
 
           <ArrowLink to={postLink}>Read more</ArrowLink>

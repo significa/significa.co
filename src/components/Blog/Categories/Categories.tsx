@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql, Link, useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 import slugify from '@sindresorhus/slugify'
 
 import { BlogPost } from '../types'

@@ -24,7 +24,9 @@ export const ImageBox = styled.div<{ size: Size }>`
   overflow: hidden;
   margin-right: 1em;
 
+  .gatsby-image-wrapper,
   img {
+    height: 100%;
     width: 100%;
   }
 `
@@ -34,5 +36,14 @@ export const Text = styled(TextBase)`
 `
 
 export const Label = styled(LabelBase)`
+  display: flex;
   line-height: 1.4;
+
+  span {
+    margin: 0 0.3em;
+  }
+
+  a {
+    color: inherit;
+  }
 `

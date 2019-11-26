@@ -1,6 +1,6 @@
 import styled from '@theme'
 
-import { SmallTitle, Label as LabeBase } from '../../UI'
+import { SmallTitle, Text } from '../../UI'
 
 export const Article = styled.article`
   margin-top: 3.9em;
@@ -40,23 +40,11 @@ export const Column = styled.div`
 
 export const Title = styled(SmallTitle)``
 
-export const Description = styled(LabeBase)`
+export const Description = styled(Text)`
   padding-top: 0.2em;
 `
 
 export const Detail = styled.div`
   display: flex;
   align-items: center;
-`
-
-export const Label = styled(LabeBase)`
-  display: flex;
-
-  span {
-    margin: 0 0.3em;
-  }
-
-  a {
-    color: inherit;
-  }
 `

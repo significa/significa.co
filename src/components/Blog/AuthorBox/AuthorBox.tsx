@@ -7,6 +7,7 @@ import * as S from './styled'
 const AuthorBox: React.FC<{ author: Author; compact?: boolean }> = ({
   author,
   compact = false,
+  children,
 }) => {
   return (
     <S.Wrap>
@@ -20,7 +21,10 @@ const AuthorBox: React.FC<{ author: Author; compact?: boolean }> = ({
       <div>
         {compact ? (
           <>
-            <S.Label color="secondary">{author.name}</S.Label>
+            <S.Label as="p" color="secondary">
+              {author.name}
+              {children}
+            </S.Label>
           </>
         ) : (
           <>

@@ -5,7 +5,7 @@ import { Logo } from '../UI/'
 import * as S from './styled'
 import Navigation from './Navigation'
 
-const Header: React.FC = () => {
+const Header: React.FC = ({ children }) => {
   const [shouldClose, setShouldClose] = React.useState(false)
 
   // reset state
@@ -26,6 +26,8 @@ const Header: React.FC = () => {
           <Navigation forceClose={shouldClose} />
         </S.Container>
       </S.Wrapper>
+
+      {children}
     </S.Header>
   )
 }

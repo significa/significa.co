@@ -5,8 +5,9 @@ import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import { BlogPost } from '../components/Blog/types'
 import BlogList from '../components/Blog/List/List'
-
 import { Container } from '../components/UI'
+import CategoriesTab from '../components/Blog/Categories/Categories'
+import Hero from '../components/Blog/Hero/Hero'
 
 interface Prop {
   data: {
@@ -18,46 +19,17 @@ interface Prop {
   }
 }
 
-interface CategoryCounter {
-  [key: string]: {
-    counter: number
-    icon: string
-  }
-}
-
 const BlogIndex: React.FC<Prop> = ({ data }) => {
   const posts = data.prismic.allBlog_posts.edges
-  const categories: CategoryCounter = posts.reduce(
-    (acc: CategoryCounter, curr) => {
-      const categoryName = curr.node.category
-      const defaultShape = { counter: 0 }
-      const rest = acc[categoryName] || defaultShape
-
-      return { ...acc, [categoryName]: { ...rest, counter: rest.counter + 1 } }
-    },
-    {}
-  )
+  const [heroPost, ...allPosts] = posts
 
   return (
-    <Layout theme="light">
+    <Layout theme="light" renderHeaderChildren={<CategoriesTab />}>
       <SEO title="Blog" />
 
       <Container>
-        <section>
-          <BlogList posts={posts} />
-        </section>
-
-        <aside>
-          <h2>We talk about</h2>
-
-          {Object.keys(categories).map((item, index) => {
-            return (
-              <p key={index}>
-                {item} {categories[item].counter} articles related
-              </p>
-            )
-          })}
-        </aside>
+        <Hero post={heroPost.node} />
+        <BlogList posts={allPosts} />
       </Container>
     </Layout>
   )
@@ -83,6 +55,13 @@ export const query = graphql`
                 }
                 name
                 profile_pic
+                profile_picSharp {
+                  childImageSharp {
+                    fluid {
+                      ...GatsbyImageSharpFluid_withWebp_noBase64
+                    }
+                  }
+                }
               }
             }
             category

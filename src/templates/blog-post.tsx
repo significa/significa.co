@@ -84,13 +84,17 @@ export const query = graphql`
       blog_post(uid: $uid, lang: $lang) {
         author {
           ... on PRISMIC_Blog_author {
+            _meta {
+              uid
+              type
+            }
             name
-            profile_pic
             position
             social_links {
               link
               social
             }
+            profile_pic
             profile_picSharp {
               childImageSharp {
                 fluid {

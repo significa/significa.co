@@ -19,5 +19,9 @@ export default (doc: { type: string; uid: string }): string => {
     return `/blog/author/${doc.uid}`
   }
 
+  if (doc.type === 'blog_category') {
+    return `/blog/category/${doc.uid}`
+  }
+
   return '/'
 }

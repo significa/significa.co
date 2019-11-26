@@ -7,7 +7,6 @@ import { BlogPost } from '../components/Blog/types'
 import BlogList from '../components/Blog/List/List'
 import { Container } from '../components/UI'
 import CategoriesTab from '../components/Blog/Categories/Categories'
-import Hero from '../components/Blog/Hero/Hero'
 
 interface Prop {
   data: {
@@ -21,15 +20,13 @@ interface Prop {
 
 const BlogIndex: React.FC<Prop> = ({ data }) => {
   const posts = data.prismic.allBlog_posts.edges
-  const [heroPost, ...allPosts] = posts
 
   return (
     <Layout theme="light" renderHeaderChildren={<CategoriesTab />}>
       <SEO title="Blog" />
 
       <Container>
-        <Hero post={heroPost.node} />
-        <BlogList posts={allPosts} />
+        <BlogList posts={posts} />
       </Container>
     </Layout>
   )
@@ -38,9 +35,9 @@ const BlogIndex: React.FC<Prop> = ({ data }) => {
 export default BlogIndex
 
 export const query = graphql`
-  query BlogIndexQuery {
+  query BlogCategoryQuery($uid: String!) {
     prismic {
-      allBlog_posts {
+      allBlog_posts(sortBy: date_DESC, where: { category: $uid }) {
         edges {
           node {
             _meta {

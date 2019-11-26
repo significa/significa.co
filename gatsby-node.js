@@ -47,7 +47,7 @@ exports.createPages = ({ graphql, actions }) => {
   /**
    * Blog
    */
-  const categoryTemplate = path.resolve(`./src/pages/blog.tsx`)
+  const categoryTemplate = path.resolve(`./src/templates/blog-category.tsx`)
 
   return graphql(`
     {

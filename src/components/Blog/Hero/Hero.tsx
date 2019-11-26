@@ -36,9 +36,7 @@ const Hero: React.FC<{ post: BlogPost }> = ({ post }) => {
             <AuthorBox compact author={post.author}>
               {/* render as children */}
               <span>·</span>
-              <Link to={linkResolver(categoryMeta)}>
-                <p>{post.category}</p>
-              </Link>
+              <Link to={linkResolver(categoryMeta)}>{post.category}</Link>
               <span>·</span>
               {formatDate(post.date)}
             </AuthorBox>

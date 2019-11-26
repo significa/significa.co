@@ -4,9 +4,11 @@ import { SmallTitle, Text } from '../../UI'
 
 export const Article = styled.article`
   margin-top: 3.9em;
+  margin-bottom: -3.9em;
 
   a {
     color: inherit;
+    display: block;
   }
 `
 

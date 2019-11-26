@@ -22,7 +22,7 @@ const BlogIndex: React.FC<Prop> = ({ data }) => {
   const posts = data.prismic.allBlog_posts.edges
 
   return (
-    <Layout theme="light" renderHeaderChildren={<CategoriesTab />}>
+    <Layout theme="light" renderHeaderChildren={<CategoriesTab />} isBlogPage>
       <SEO title="Blog" />
 
       <Container>

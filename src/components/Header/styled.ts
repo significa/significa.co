@@ -58,3 +58,9 @@ export const LogoLink = styled(Link)`
     }
   }
 `
+
+export const LogoBlog = styled.img`
+  width: 2.6em;
+  margin-left: 1em;
+  transform: translateY(-0.35em);
+`

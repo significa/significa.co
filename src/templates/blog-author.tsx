@@ -19,7 +19,7 @@ const BlogAuthor: React.FC<Prop> = ({ data }) => {
   const posts = data.prismic.allBlog_posts.edges
 
   return (
-    <Layout>
+    <Layout isBlogPage>
       <section>
         <BlogList posts={posts} />
       </section>

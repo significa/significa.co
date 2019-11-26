@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { RichText } from 'prismic-reactjs'
 import Image from 'gatsby-image'
+import slugify from '@sindresorhus/slugify'
 
 import Layout from '../components/Layout'
 import { BlogPost } from '../components/Blog/types'
@@ -10,8 +11,9 @@ import { Container, Label } from '../components/UI'
 import AuthorBox from '../components/Blog/AuthorBox/AuthorBox'
 import SEO from '../components/SEO'
 import syntaxHighlight from '../utils/syntaxHighlight'
-
 import * as S from './blog-post.styled'
+import Breadcrumbs from '../components/Blog/Breadcrumbs/Breadcrumbs'
+import linkResolver from '../utils/linkResolver'
 
 interface Prop {
   data: { prismic: { blog_post: BlogPost } }
@@ -19,9 +21,20 @@ interface Prop {
 
 const BlogPostPage: React.FC<Prop> = ({ data }) => {
   const content = data.prismic.blog_post
+  const slugifyCategory = slugify(content.category)
+  const categoryMeta = { type: 'blog_category', uid: slugifyCategory }
+
+  const breadcrumbPaths = [
+    { text: 'Blog', link: '/blog' },
+    { text: content.category, link: linkResolver(categoryMeta) },
+    { text: content.title, link: linkResolver(content._meta) },
+  ]
 
   return (
-    <Layout>
+    <Layout
+      isBlogPage
+      renderHeaderChildren={<Breadcrumbs paths={breadcrumbPaths} />}
+    >
       <SEO
         title={content.meta_title}
         description={content.meta_description}
@@ -42,6 +55,7 @@ const BlogPostPage: React.FC<Prop> = ({ data }) => {
 
         <S.ImageHero as="figure">
           <Image
+            critical
             fluid={content.heroSharp.childImageSharp.fluid}
             alt={content.hero.alt}
           />
@@ -103,6 +117,10 @@ export const query = graphql`
               }
             }
           }
+        }
+        _meta {
+          uid
+          type
         }
         tags {
           tag

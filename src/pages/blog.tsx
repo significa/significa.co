@@ -24,7 +24,7 @@ const BlogIndex: React.FC<Prop> = ({ data }) => {
   const [heroPost, ...allPosts] = posts
 
   return (
-    <Layout theme="light" renderHeaderChildren={<CategoriesTab />}>
+    <Layout theme="light" isBlogPage renderHeaderChildren={<CategoriesTab />}>
       <SEO title="Blog" />
 
       <Container>
@@ -40,7 +40,7 @@ export default BlogIndex
 export const query = graphql`
   query BlogIndexQuery {
     prismic {
-      allBlog_posts {
+      allBlog_posts(sortBy: date_DESC) {
         edges {
           node {
             _meta {

@@ -4,8 +4,12 @@ import { Logo } from '../UI/'
 
 import * as S from './styled'
 import Navigation from './Navigation'
+import imageBlog from '../../assets/images/blog-logo.png'
 
-const Header: React.FC = ({ children }) => {
+const Header: React.FC<{ isBlogPage?: boolean }> = ({
+  children,
+  isBlogPage,
+}) => {
   const [shouldClose, setShouldClose] = React.useState(false)
 
   // reset state
@@ -19,9 +23,15 @@ const Header: React.FC = ({ children }) => {
     <S.Header upTolerance={50} onUnpin={() => setShouldClose(true)}>
       <S.Wrapper>
         <S.Container>
-          <S.LogoLink to="/" title="Go to homepage">
-            <Logo />
-          </S.LogoLink>
+          <div>
+            <S.LogoLink to="/" title="Go to homepage">
+              <Logo />
+            </S.LogoLink>
+
+            {isBlogPage && (
+              <S.LogoBlog src={imageBlog} alt="Significa's blog" />
+            )}
+          </div>
 
           <Navigation forceClose={shouldClose} />
         </S.Container>

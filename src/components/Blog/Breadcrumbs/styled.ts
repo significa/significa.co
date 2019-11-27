@@ -6,6 +6,9 @@ import { Link } from 'gatsby'
 export const Wrapper = styled.div`
   border-bottom: 1px solid ${({ theme: { colors } }) => colors.subtle};
   background: ${({ theme: { colors } }) => colors.background};
+  white-space: nowrap;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 `
 
 export const Item = styled(Text).attrs({ as: Link })<{ to: string }>`
@@ -15,7 +18,7 @@ export const Item = styled(Text).attrs({ as: Link })<{ to: string }>`
   color: ${({ theme: { colors } }) => colors.secondary};
   transition: color ${({ theme }) => theme.transitions.ease()};
 
-  &:not([aria-current='page']):after {
+  &:not(:last-child):after {
     content: '';
     display: inline-block;
     width: 7px;
@@ -23,13 +26,17 @@ export const Item = styled(Text).attrs({ as: Link })<{ to: string }>`
     border-top: 2px solid ${({ theme: { colors } }) => colors.secondary}50;
     border-right: 2px solid ${({ theme: { colors } }) => colors.secondary}50;
 
-    margin-left: 0.4em;
-    margin-right: 0.9em;
+    margin-left: 0.3em;
+    margin-right: 0.7em;
     transform: rotate(45deg) translateY(-2px);
   }
 
   &:hover,
-  &[aria-current='page'] {
+  &:last-child {
     color: ${({ theme: { colors } }) => colors.foreground};
+  }
+
+  &:last-child {
+    margin-right: 1em;
   }
 `

@@ -50,6 +50,9 @@ export const ImageHero = styled.div`
   }
 `
 
+const DEFAULT_MARGIN = `3em`
+const DEFAULT_NEGATIVE_OFFSET = `6em`
+
 export const Content = styled.div`
   max-width: 38em;
   margin: 0 auto;
@@ -85,9 +88,49 @@ export const Content = styled.div`
     color: ${({ theme: { colors } }) => colors.brand};
   }
 
+  .block-img {
+    margin-left: -${DEFAULT_NEGATIVE_OFFSET};
+    margin-right: -${DEFAULT_NEGATIVE_OFFSET};
+    margin-bottom: ${DEFAULT_MARGIN};
+
+    ${media.large} {
+      margin-left: -1.5em;
+      margin-right: -1.5em;
+    }
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  .embed {
+    position: relative;
+    padding-bottom: 80%;
+    padding-top: 25px;
+    height: 0;
+
+    margin-bottom: ${DEFAULT_MARGIN};
+    margin-left: -${DEFAULT_NEGATIVE_OFFSET};
+    margin-right: -${DEFAULT_NEGATIVE_OFFSET};
+
+    ${media.large} {
+      padding-bottom: 56%;
+      margin-left: -1.5em;
+      margin-right: -1.5em;
+    }
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   pre {
-    margin-left: -6em !important;
-    margin-right: -6em !important;
+    margin-left: -${DEFAULT_NEGATIVE_OFFSET} !important;
+    margin-right: -${DEFAULT_NEGATIVE_OFFSET} !important;
     margin-bottom: 2em !important;
 
     ${media.large} {

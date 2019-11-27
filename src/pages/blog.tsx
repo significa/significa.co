@@ -29,7 +29,15 @@ const BlogIndex: React.FC<Prop> = ({ data }) => {
 
       <Container>
         <Hero post={heroPost.node} />
-        <BlogList posts={allPosts} />
+        <BlogList
+          posts={[
+            ...allPosts,
+            ...allPosts,
+            ...allPosts.reverse(),
+            ...allPosts.reverse(),
+            ...allPosts,
+          ]}
+        />
       </Container>
     </Layout>
   )

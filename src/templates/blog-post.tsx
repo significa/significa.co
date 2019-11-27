@@ -60,7 +60,7 @@ const BlogPostPage: React.FC<Prop> = ({ data }) => {
 
         <S.ImageHero as="figure">
           <Image
-            critical
+            loading="eager"
             fluid={content.heroSharp.childImageSharp.fluid}
             alt={content.hero.alt}
           />

@@ -1,12 +1,13 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 export const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   margin-top: 3.9em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
-  > * {
-    width: calc((100% / 2) - 2.2rem);
+  grid-column-gap: 3rem;
+
+  ${media.small} {
+    grid-template-columns: 1fr;
   }
 `

@@ -1,10 +1,18 @@
-import styled from '@theme'
+import styled, { media } from '@theme'
 
 import { SmallTitle, Text } from '../../UI'
 
 export const Article = styled.article`
   margin-top: 3.9em;
   margin-bottom: -3.9em;
+
+  margin-left: 0;
+  margin-right: 0;
+
+  ${media.small} {
+    margin-left: -1.5em;
+    margin-right: -1.5em;
+  }
 
   a {
     color: inherit;
@@ -18,6 +26,10 @@ export const Image = styled.div`
   overflow: hidden;
   padding-top: 33%;
 
+  ${media.small} {
+    padding-top: 60%;
+  }
+
   background-size: cover;
   background-position: center;
 `
@@ -29,6 +41,17 @@ export const Content = styled.div`
   max-width: 66%;
 
   transform: translateY(-50%);
+
+  ${media.small} {
+    max-width: 100%;
+
+    padding-top: 1.5em;
+    padding-right: 1.5em;
+    padding-left: 1.5em;
+
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+  }
 `
 
 export const Column = styled.div`
@@ -37,6 +60,14 @@ export const Column = styled.div`
 
   > * {
     width: 50%;
+  }
+
+  ${media.small} {
+    display: block;
+
+    > * {
+      width: 100%;
+    }
   }
 `
 
@@ -49,4 +80,9 @@ export const Description = styled(Text)`
 export const Detail = styled.div`
   display: flex;
   align-items: center;
+
+  ${media.small} {
+    display: block;
+    margin-bottom: 2em;
+  }
 `

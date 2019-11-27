@@ -24,5 +24,5 @@ npm run build
 ```
  
 ---
- 
+
 Built with [Gatsby](https://www.gatsbyjs.org/).

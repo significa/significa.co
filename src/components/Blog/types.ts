@@ -18,6 +18,7 @@ export interface Author {
   }
   name: string
   position: string
+  description: string
   profile_pic: { alt: string; url: string }
   profile_picSharp: {
     childImageSharp: {

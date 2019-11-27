@@ -1,3 +1,4 @@
+import Image from 'gatsby-image'
 import styled, { media } from '@theme'
 
 import {
@@ -161,37 +162,56 @@ export const Tag = styled(Small)`
   margin-bottom: 0.7em;
 `
 
-export const Socials = styled.div``
+export const AuthorSocials = styled.div``
 
-export const AuthorSection = styled.div`
-  margin-top: 3.2em;
-  padding-top: 1.2em;
-  border-top: 1px solid ${({ theme: { colors } }) => colors.subtle};
-
-  display: flex;
-  justify-content: space-between;
-
-  ${media.medium} {
-    display: block;
-
-    ${Socials} {
-      margin-left: calc(40px + 1em - 1.3em);
-      margin-top: 2em;
-    }
-  }
-`
-
-export const SocialLink = styled(SocialBase)`
+export const AuthorSocialLink = styled(SocialBase)`
   width: 20px;
   height: 20px;
-  margin-left: 1.3em;
   display: inline-block;
   overflow: hidden;
   opacity: 1;
 
-  vertical-align: top;
+  align-items: center;
+  justify-content: center;
+  display: inline-flex;
+
+  &:not(:first-child) {
+    margin-left: 1.3em;
+  }
 
   &:hover {
     opacity: 0.7;
   }
+`
+
+export const AuthorSection = styled.div`
+  margin-top: 3.2em;
+  padding-top: 3.2em;
+  border-top: 1px solid ${({ theme: { colors } }) => colors.subtle};
+`
+
+export const AuthorSectionDetails = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.2em;
+
+  ${media.medium} {
+    display: block;
+
+    ${AuthorSocials} {
+      margin-top: 1.1em;
+    }
+  }
+`
+
+export const AuthorName = styled(TextBase)`
+  color: ${({ theme: { colors } }) => colors.secondary};
+
+  span {
+    color: ${({ theme: { colors } }) => colors.foreground};
+  }
+`
+
+export const AuthorImage = styled(Image)`
+  margin-bottom: 2.2em;
 `

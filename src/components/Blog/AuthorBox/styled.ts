@@ -10,7 +10,7 @@ type Size = 'small' | 'regular'
 
 const setFontSizeBase = ({ size }: { size: Size }) => {
   if (size === 'small') {
-    return '.55rem'
+    return '.47rem'
   }
 
   return '1rem'
@@ -18,16 +18,19 @@ const setFontSizeBase = ({ size }: { size: Size }) => {
 
 export const ImageBox = styled.div<{ size: Size }>`
   font-size: ${setFontSizeBase};
-  width: 2.2em;
-  height: 2.2em;
-  border-radius: 2.2em;
+  width: 100%;
+  min-width: 2.5em;
+  max-width: 2.5em;
+  min-height: 2.5em;
+  max-height: 2.5em;
+  border-radius: 2.5em;
   overflow: hidden;
   margin-right: 1em;
 
   .gatsby-image-wrapper,
   img {
-    height: 100%;
-    width: 100%;
+    min-height: 100%;
+    min-width: 100%;
   }
 `
 

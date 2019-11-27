@@ -41,6 +41,8 @@ class FooterNav extends React.Component<{}, {}> {
 
   renderColumns = (columns: IColumnType[]) => {
     return columns.map(({ node: { id, title, type, items } }) => {
+      const howManyColumns = Number((items.length / 8 + 1).toFixed())
+
       return type === 'social' ? (
         <div key={id}>
           <Title>{title}</Title>
@@ -49,7 +51,9 @@ class FooterNav extends React.Component<{}, {}> {
       ) : (
         <div key={id}>
           <Title>{title}</Title>
-          <Column>{this.renderItems(items)}</Column>
+          <Column howManyColumns={howManyColumns}>
+            {this.renderItems(items)}
+          </Column>
         </div>
       )
     })

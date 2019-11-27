@@ -9,6 +9,10 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
 
+  > div {
+    min-width: 20%;
+  }
+
   ${media.medium} {
     display: grid;
     grid-template: auto auto / 1fr 1fr;
@@ -27,14 +31,16 @@ export const Wrapper = styled.div`
   }
 `
 
-export const Column = styled.div`
+export const Column = styled.div<{ howManyColumns: number }>`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
+  flex-wrap: wrap;
 
   a {
     display: inline-block;
     padding: 0.5em 0;
+    min-width: calc(100% / ${({ howManyColumns }) => howManyColumns});
   }
 `
 

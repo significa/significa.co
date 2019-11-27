@@ -32,7 +32,7 @@ export const Container = styled(BaseContainer)`
 
   grid-template-columns: repeat(12, 1fr);
   grid-column-gap: 3em;
-  grid-template-areas: 'l l l l r r r r r r r r';
+  grid-template-areas: 'l l l r r r r r r r r r';
 
   ${media.large} {
     grid-column-gap: 2em;

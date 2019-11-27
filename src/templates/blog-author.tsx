@@ -44,7 +44,19 @@ export const query = graphql`
                   type
                 }
                 name
+                position
+                social_links {
+                  link
+                  social
+                }
                 profile_pic
+                profile_picSharp {
+                  childImageSharp {
+                    fluid {
+                      ...GatsbyImageSharpFluid_withWebp_noBase64
+                    }
+                  }
+                }
               }
             }
             category

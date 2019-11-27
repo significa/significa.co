@@ -21,6 +21,11 @@ interface Prop {
 
 const BlogPostPage: React.FC<Prop> = ({ data }) => {
   const content = data.prismic.blog_post
+
+  if (!content) {
+    return null
+  }
+
   const slugifyCategory = slugify(content.category)
   const categoryMeta = { type: 'blog_category', uid: slugifyCategory }
 

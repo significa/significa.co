@@ -4,7 +4,7 @@ import slugify from '@sindresorhus/slugify'
 
 import { BlogPost } from '../types'
 import linkResolver from '../../../utils/linkResolver'
-import { Container } from '../../UI'
+
 import * as S from './styled'
 
 type CategoryList = Array<{
@@ -45,7 +45,7 @@ const CategoriesTab: React.FC = () => {
 
   return (
     <S.Wrapper as="aside">
-      <Container>
+      <S.Container>
         <S.Item to="/blog">Blog</S.Item>
 
         {categories.map((item, index) => {
@@ -55,7 +55,7 @@ const CategoriesTab: React.FC = () => {
             </S.Item>
           )
         })}
-      </Container>
+      </S.Container>
     </S.Wrapper>
   )
 }

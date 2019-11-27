@@ -1,14 +1,29 @@
+import { Link } from 'gatsby'
 import styled from '@theme'
 
-import { Text } from '../../UI'
-import { Link } from 'gatsby'
+import { Text, Container as BaseContainer } from '../../UI'
 
 export const Wrapper = styled.div`
-  border-bottom: 1px solid ${({ theme: { colors } }) => colors.subtle};
   background: ${({ theme: { colors } }) => colors.background};
   white-space: nowrap;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+
+  &:after {
+    content: '';
+    display: block;
+    border-bottom: 1px solid ${({ theme: { colors } }) => colors.subtle};
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+`
+
+export const Container = styled(BaseContainer)`
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1px;
 `
 
 export const Item = styled(Text).attrs({ as: Link })<{ to: string }>`

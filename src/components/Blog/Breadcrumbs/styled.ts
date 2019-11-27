@@ -4,11 +4,20 @@ import { Text } from '../../UI'
 import { Link } from 'gatsby'
 
 export const Wrapper = styled.div`
-  border-bottom: 1px solid ${({ theme: { colors } }) => colors.subtle};
   background: ${({ theme: { colors } }) => colors.background};
   white-space: nowrap;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+
+  &:after {
+    content: '';
+    display: block;
+    border-bottom: 1px solid ${({ theme: { colors } }) => colors.subtle};
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    right: 0;
+  }
 `
 
 export const Item = styled(Text).attrs({ as: Link })<{ to: string }>`

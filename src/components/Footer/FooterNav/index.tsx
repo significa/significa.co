@@ -1,8 +1,8 @@
 import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 
-import { Wrapper, Title, Column, Row, FooterLink } from './styled'
-import Social from '../../UI/Social'
+import * as S from './styled'
+import { Small, Link, Segg, Social } from '../../UI/'
 
 interface IItemType {
   label: string
@@ -33,27 +33,44 @@ class FooterNav extends React.Component<{}, {}> {
 
   renderItems = (items: IItemType[]) => {
     return items.map(({ label, link }, i) => (
-      <FooterLink key={i} to={link}>
+      <S.FooterLink key={i} to={link}>
         {label}
-      </FooterLink>
+      </S.FooterLink>
     ))
   }
 
   renderColumns = (columns: IColumnType[]) => {
     return columns.map(({ node: { id, title, type, items } }) => {
-      const howManyColumns = Number((items.length / 8 + 1).toFixed())
+      if (title === 'Contact') {
+        return (
+          <div key={id}>
+            <S.LogoLink to="/" title="Go to homepage">
+              <Segg />
+            </S.LogoLink>
 
-      return type === 'social' ? (
+            <S.ContactColumn>{this.renderItems(items)}</S.ContactColumn>
+
+            <Small>
+              <Link to="/legal">Legal</Link>&nbsp;©&nbsp;
+              {new Date().getFullYear()}
+            </Small>
+          </div>
+        )
+      }
+
+      if (type === 'social') {
+        return (
+          <div key={id}>
+            <S.Title>{title}</S.Title>
+            <S.Row>{this.renderSocialItems(items)}</S.Row>
+          </div>
+        )
+      }
+
+      return (
         <div key={id}>
-          <Title>{title}</Title>
-          <Row>{this.renderSocialItems(items)}</Row>
-        </div>
-      ) : (
-        <div key={id}>
-          <Title>{title}</Title>
-          <Column howManyColumns={howManyColumns}>
-            {this.renderItems(items)}
-          </Column>
+          <S.Title>{title}</S.Title>
+          <S.Column>{this.renderItems(items)}</S.Column>
         </div>
       )
     })
@@ -61,15 +78,13 @@ class FooterNav extends React.Component<{}, {}> {
 
   render() {
     return (
-      <Wrapper>
-        <StaticQuery
-          query={footerNavQuery}
-          render={(data: INavFooterQuery) => {
-            const { edges: columns } = data.allFooterYaml
-            return this.renderColumns(columns)
-          }}
-        />
-      </Wrapper>
+      <StaticQuery
+        query={footerNavQuery}
+        render={(data: INavFooterQuery) => {
+          const { edges: columns } = data.allFooterYaml
+          return this.renderColumns(columns)
+        }}
+      />
     )
   }
 }

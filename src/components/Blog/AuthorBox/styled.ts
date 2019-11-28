@@ -48,5 +48,10 @@ export const Label = styled(LabelBase)`
 
   a {
     color: inherit;
+    transition: color ${({ theme }) => theme.transitions.ease()};
+
+    &:hover {
+      color: ${({ theme: { colors } }) => colors.foreground};
+    }
   }
 `

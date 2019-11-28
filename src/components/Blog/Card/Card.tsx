@@ -16,26 +16,28 @@ const Card: React.FC<{ post: BlogPost }> = ({ post }) => {
 
   return (
     <S.Article>
-      <Link to={postLink}>
-        <S.Image>
-          <img src={post.hero.url} alt={post.hero.alt} />
-        </S.Image>
-      </Link>
-
-      <S.Content>
-        <Link to={linkResolver(post._meta)}>
-          <S.Title as="h2">{post.title}</S.Title>
-          <S.Description as="p">{post.teaser}</S.Description>
+      <S.HoverHint>
+        <Link to={postLink}>
+          <S.Image>
+            <img src={post.hero.url} alt={post.hero.alt} />
+          </S.Image>
         </Link>
 
-        <AuthorBox compact author={post.author}>
-          {/* render as children */}
-          <span>·</span>
-          <Link to={linkResolver(categoryMeta)}>{post.category}</Link>
-          <span>·</span>
-          {formatDate(post.date)}
-        </AuthorBox>
-      </S.Content>
+        <S.Content>
+          <Link to={linkResolver(post._meta)}>
+            <S.Title as="h2">{post.title}</S.Title>
+            <S.Description as="p">{post.teaser}</S.Description>
+          </Link>
+        </S.Content>
+      </S.HoverHint>
+
+      <AuthorBox compact author={post.author}>
+        {/* render as children */}
+        <span>·</span>
+        <Link to={linkResolver(categoryMeta)}>{post.category}</Link>
+        <span>·</span>
+        {formatDate(post.date)}
+      </AuthorBox>
     </S.Article>
   )
 }

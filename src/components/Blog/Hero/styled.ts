@@ -2,36 +2,25 @@ import styled, { media } from '@theme'
 
 import { SmallTitle, Text } from '../../UI'
 
-export const Article = styled.article`
-  margin-top: 3.9em;
-  margin-bottom: -3.9em;
-
-  margin-left: 0;
-  margin-right: 0;
-
-  ${media.small} {
-    margin-left: -1.5em;
-    margin-right: -1.5em;
-  }
-
-  a {
-    color: inherit;
-    display: block;
-  }
-`
-
 export const Image = styled.div`
   position: relative;
   height: 0;
   overflow: hidden;
   padding-top: 33%;
 
+  background-size: 100%;
+  background-position: center;
+  transition: all ${({ theme }) => theme.transitions.ease()};
+
   ${media.small} {
     padding-top: 60%;
   }
 
-  background-size: cover;
-  background-position: center;
+  ${media.hover} {
+    &:hover {
+      background-size: 101%;
+    }
+  }
 `
 
 export const Content = styled.div`
@@ -84,5 +73,23 @@ export const Detail = styled.div`
   ${media.small} {
     display: block;
     margin-bottom: 2em;
+  }
+`
+
+export const Article = styled.article`
+  margin-top: 3.9em;
+  margin-bottom: -3.9em;
+
+  margin-left: 0;
+  margin-right: 0;
+
+  ${media.small} {
+    margin-left: -1.5em;
+    margin-right: -1.5em;
+  }
+
+  a {
+    color: inherit;
+    display: block;
   }
 `

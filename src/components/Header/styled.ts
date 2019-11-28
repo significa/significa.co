@@ -59,8 +59,16 @@ export const LogoLink = styled(Link)`
   }
 `
 
-export const LogoBlog = styled.img`
-  width: 2.6em;
+export const WrapperLogoBlog = styled.div`
+  position: relative;
+  height: 100%;
+  display: inline-block;
   margin-left: 1em;
-  transform: translateY(-0.35em);
+`
+
+export const LogoBlog = styled.img`
+  height: 2.2em;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 `

@@ -1,23 +1,39 @@
-var getMailParams = ({ name, email }) => {
-  var message =
-    'Hello ' +
-    name +
-    ',\n' +
-    'Thank you for reaching out! We will get back to you soon!\n' +
-    'In the meantime, why not check out our Handbook?\n' +
-    'https://significa.co/handbook\n' +
+var getMailParams = ({ name, email, type }) => {
+  var isCareerContact = type === 'career'
+
+  var generalMessage =
+    'Thanks for reaching out!\n' +
+    'Somebody at our office will get back to you as soon as possible.\n' +
     '\n' +
-    'Have a super day,\n' +
-    'Significa'
+    'While you wait, check out our Handbook (https://significa.co/handbook/) and get acquainted with how we do things around here.\n' +
+    'We have a lot of content there so feel free to explore as you please.\n' +
+    '\n' +
+    'Speak soon,\n' +
+    'Significa\n'
+
+  var applicationFormMessage =
+    'Your application is in safe hands.\n' +
+    'Somebody from our team will be reviewing your application as soon as possible. We won’t leave you hanging so either way you will hear from us.\n' +
+    '\n' +
+    'While you wait, check out our Playbook (https://significa.co/handbook/playbook) and get a sneak peek inside our office!\n' +
+    'We have a lot of content there so feel free to explore as you please.\n' +
+    '\n' +
+    'Have a great day,\n' +
+    'Significa\n'
 
   var params = {
     Destination: { ToAddresses: [name + ' <' + email + '>'] },
     Message: {
       Body: {
-        Text: { Data: message, Charset: 'UTF-8' },
+        Text: {
+          Data: isCareerContact ? applicationFormMessage : generalMessage,
+          Charset: 'UTF-8',
+        },
       },
       Subject: {
-        Data: 'Hello from Significa',
+        Data: isCareerContact
+          ? 'Your application was received at Significa'
+          : 'Your message was delivered at Significa',
         Charset: 'UTF-8',
       },
     },

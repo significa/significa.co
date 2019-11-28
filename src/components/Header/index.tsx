@@ -5,13 +5,14 @@ import { Logo } from '../UI/'
 import * as S from './styled'
 import Navigation from './Navigation'
 
+// Context to set a random logo on blog
 const Context = React.createContext<number | null>(null)
 
 export const Provider: React.FC = ({ children }) => {
   const [indexBlogLogo, setIndexBlogLogo] = React.useState<number | null>(null)
 
   React.useEffect(() => {
-    setIndexBlogLogo(Math.floor(Math.random() * 13) + 1)
+    setIndexBlogLogo(Math.floor(Math.random() * 12) + 1)
   }, [])
 
   return <Context.Provider value={indexBlogLogo}>{children}</Context.Provider>

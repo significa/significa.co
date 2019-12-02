@@ -1,4 +1,3 @@
-import Image from 'gatsby-image'
 import styled, { media } from '@theme'
 
 import {
@@ -9,8 +8,6 @@ import {
   titleStyle,
   Small,
 } from '../components/UI'
-
-import SocialBase from '../components/UI/Social'
 
 export const Header = styled.header`
   max-width: 38em;
@@ -85,6 +82,10 @@ export const Content = styled.div`
     }
   }
 
+  strong {
+    font-weight: bold;
+  }
+
   a {
     color: ${({ theme: { colors } }) => colors.brand};
   }
@@ -93,6 +94,7 @@ export const Content = styled.div`
     margin-left: -${DEFAULT_NEGATIVE_OFFSET};
     margin-right: -${DEFAULT_NEGATIVE_OFFSET};
     margin-bottom: ${DEFAULT_MARGIN};
+    margin-top: ${DEFAULT_MARGIN};
 
     ${media.large} {
       margin-left: -1.5em;
@@ -152,6 +154,10 @@ export const Content = styled.div`
 export const Footer = styled.footer`
   max-width: 38em;
   margin: 1.3em auto 6.6em;
+
+  ${media.small} {
+    margin: 1.3em auto 3.6em;
+  }
 `
 
 export const Tag = styled(Small)`
@@ -162,56 +168,8 @@ export const Tag = styled(Small)`
   margin-bottom: 0.7em;
 `
 
-export const AuthorSocials = styled.div``
-
-export const AuthorSocialLink = styled(SocialBase)`
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  overflow: hidden;
-  opacity: 1;
-
-  align-items: center;
-  justify-content: center;
-  display: inline-flex;
-
-  &:not(:first-child) {
-    margin-left: 1.3em;
-  }
-
-  &:hover {
-    opacity: 0.7;
-  }
-`
-
 export const AuthorSection = styled.div`
   margin-top: 3.2em;
   padding-top: 3.2em;
   border-top: 1px solid ${({ theme: { colors } }) => colors.subtle};
-`
-
-export const AuthorSectionDetails = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 2.2em;
-
-  ${media.medium} {
-    display: block;
-
-    ${AuthorSocials} {
-      margin-top: 1.1em;
-    }
-  }
-`
-
-export const AuthorName = styled(TextBase)`
-  color: ${({ theme: { colors } }) => colors.secondary};
-
-  span {
-    color: ${({ theme: { colors } }) => colors.foreground};
-  }
-`
-
-export const AuthorImage = styled(Image)`
-  margin-bottom: 2.2em;
 `

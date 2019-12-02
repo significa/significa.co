@@ -8,6 +8,7 @@ import css from 'react-syntax-highlighter/dist/esm/languages/prism/css'
 import bash from 'react-syntax-highlighter/dist/esm/languages/prism/bash'
 import markdown from 'react-syntax-highlighter/dist/esm/languages/prism/markdown'
 import graphql from 'react-syntax-highlighter/dist/esm/languages/prism/graphql'
+import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss'
 
 import syntaxHighlightTheme from './syntaxHighlightTheme'
 
@@ -18,6 +19,7 @@ SyntaxHighlighter.registerLanguage('css', css)
 SyntaxHighlighter.registerLanguage('bash', bash)
 SyntaxHighlighter.registerLanguage('markdown', markdown)
 SyntaxHighlighter.registerLanguage('graphql', graphql)
+SyntaxHighlighter.registerLanguage('scss', scss)
 
 const htmlSerializer = (type: string, element: any) => {
   if (type === 'preformatted') {

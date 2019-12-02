@@ -14,6 +14,7 @@ import syntaxHighlight from '../utils/syntaxHighlight'
 import * as S from './blog-post.styled'
 import Breadcrumbs from '../components/Blog/Breadcrumbs/Breadcrumbs'
 import linkResolver from '../utils/linkResolver'
+import AuthorSection from '../components/Blog/AuthorSection/AuthorSection'
 
 interface Prop {
   data: { prismic: { blog_post: BlogPost } }
@@ -77,39 +78,7 @@ const BlogPostPage: React.FC<Prop> = ({ data }) => {
           ))}
 
           <S.AuthorSection>
-            <S.Label as="p" color="secondary">
-              Written by
-            </S.Label>
-
-            <S.AuthorSectionDetails>
-              <div>
-                <S.AuthorName>
-                  <span>{content.author.name}</span> · {content.author.position}{' '}
-                  @ Significa
-                </S.AuthorName>
-              </div>
-
-              <S.AuthorSocials>
-                {content.author.social_links.map(({ social, link }) => {
-                  return (
-                    <S.AuthorSocialLink
-                      key={link}
-                      type={social.toLowerCase()}
-                      link={link}
-                    />
-                  )
-                })}
-              </S.AuthorSocials>
-            </S.AuthorSectionDetails>
-
-            <S.AuthorImage
-              fluid={content.author.profile_picSharp.childImageSharp.fluid}
-              alt={content.author.profile_pic.alt}
-            />
-
-            <S.Content>
-              <RichText render={content.author.description} />
-            </S.Content>
+            <AuthorSection content={content.author} />
           </S.AuthorSection>
         </S.Footer>
       </Container>

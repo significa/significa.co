@@ -14,7 +14,10 @@ const monthNames: string[] = [
 ]
 
 export default (str: string) => {
-  const date = new Date(str)
+  // Safari requires an specific format date, like DD/MM/YYYY
+  const fixDate = str.split('T')[0].replace(/-/gm, '/')
+
+  const date = new Date(fixDate)
   const monthIndex = date.getMonth()
   const year = date.getFullYear()
 

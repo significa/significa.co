@@ -1,6 +1,6 @@
 import styled from '@theme'
 
-import { Text as TextBase, Label as LabelBase } from '../../UI'
+import { Label as LabelBase, Small } from '../../UI'
 
 export const Wrap = styled.div`
   display: flex;
@@ -34,8 +34,9 @@ export const ImageBox = styled.div<{ size: Size }>`
   }
 `
 
-export const Text = styled(TextBase)`
-  line-height: 1.2;
+export const Text = styled(Small)`
+  line-height: 1.4;
+  display: block;
 `
 
 export const Label = styled(LabelBase)`

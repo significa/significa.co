@@ -3,7 +3,7 @@ import styled, { media } from '@theme'
 import { SmallTitle, Text } from '../../UI'
 
 export const Article = styled.article`
-  margin-bottom: 3.5em;
+  margin-bottom: 4em;
 `
 
 export const Image = styled.div`
@@ -23,7 +23,7 @@ export const Title = styled(SmallTitle)`
 `
 
 export const Description = styled(Text)`
-  margin: 0.7em 0 0.9em;
+  margin: 0.4em 0 0.9em;
   transition: opacity ${({ theme }) => theme.transitions.ease()};
 `
 

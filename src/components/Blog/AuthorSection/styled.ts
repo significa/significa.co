@@ -52,6 +52,7 @@ export const Socials = styled.div`
 
   ${media.small} {
     margin-top: 1.3em;
+    margin-left: calc(-1em - 3.6em);
   }
 `
 

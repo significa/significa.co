@@ -22,23 +22,23 @@ const AuthorSection: React.FC<{ content: Author }> = ({ content }) => {
               {content.position} @ Significa
             </S.Description>
           </div>
-
-          <S.Socials>
-            {content.social_links.map(({ social, link }) => {
-              return (
-                <S.SocialLink
-                  key={link}
-                  type={social.toLowerCase()}
-                  link={link}
-                />
-              )
-            })}
-          </S.Socials>
         </S.Header>
 
         <S.FormatContent>
           <RichText render={content.description} />
         </S.FormatContent>
+
+        <S.Socials>
+          {content.social_links.map(({ social, link }) => {
+            return (
+              <S.SocialLink
+                key={link}
+                type={social.toLowerCase()}
+                link={link}
+              />
+            )
+          })}
+        </S.Socials>
       </S.Content>
     </S.Wrapper>
   )

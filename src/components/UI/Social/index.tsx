@@ -7,6 +7,8 @@ import Instagram from './Instagram'
 import Medium from './Medium'
 import Mail from './Mail'
 import Website from './Website'
+import LinkedIn from './LinkedIn'
+import Twitter from './Twitter'
 
 import { SocialLink } from './styled'
 
@@ -18,6 +20,8 @@ const map: { [key: string]: any } = {
   medium: <Medium />,
   'professional email': <Mail />,
   'personal website': <Website />,
+  linkedin: <LinkedIn />,
+  twitter: <Twitter />,
 }
 
 interface ISocial {

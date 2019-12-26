@@ -92,9 +92,9 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-sharp',
       options: {
-        useMozJpeg: true,
+        useMozJpeg: process.env.NODE_ENV === 'production',
         stripMetadata: true,
-        defaultQuality: 100,
+        defaultQuality: process.env.NODE_ENV === 'production' ? 100 : 50,
       },
     },
     {

@@ -116,7 +116,7 @@ export const HalfPanel = styled.div<{ position: string }>`
 
     return css`
       position: ${isTop ? 'absolute' : 'relative'};
-      background: ${isTop ? theme.colors.background : "transparent"};
+      background: ${isTop ? theme.colors.background : 'transparent'};
       overflow: hidden;
       width: 100%;
       text-align: center;

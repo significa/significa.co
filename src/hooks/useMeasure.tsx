@@ -44,7 +44,9 @@ export default function useMeasure(
       ro.observe(ref.current)
     }
     return () => {
-      window.cancelAnimationFrame(animationFrameId!)
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId)
+      }
       ro.disconnect()
     }
   }, [query, ref])

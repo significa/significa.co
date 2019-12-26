@@ -67,8 +67,8 @@ const theme: IFullTheme = {
   },
   maxWidth: '80em',
   transitions: {
-    ease: (time: string = '200ms') => `${time} ease-in-out`,
-    cubic: (time: string = '500ms') => `${time} cubic-bezier(0.2, 1, 0.2, 1)`,
+    ease: (time = '200ms') => `${time} ease-in-out`,
+    cubic: (time = '500ms') => `${time} cubic-bezier(0.2, 1, 0.2, 1)`,
   },
 }
 

@@ -16,7 +16,7 @@ export const Renderer = styled.div`
     To prevent it, we must use :not(aside)
     Aside refers to Handbook Sidenotes which is available at Handbook/CustomComponentParser/styled.ts  */
     width: calc(100% - 20rem);
-    max-width: 42rem; 
+    max-width: 42rem;
 
     box-sizing: border-box;
 

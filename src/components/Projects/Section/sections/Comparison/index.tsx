@@ -12,10 +12,6 @@ const Comparison: React.FC<ComparisonType> = ({
 
   const [visible, setVisible] = useState(50)
 
-  useEffect(() => {
-    return removeListeners
-  }, [])
-
   const startCapture = () => {
     window.addEventListener('mousemove', onDrag)
     window.addEventListener('touchmove', onDrag)
@@ -24,13 +20,17 @@ const Comparison: React.FC<ComparisonType> = ({
     window.addEventListener('dragend', removeListeners)
   }
 
-  const removeListeners = () => {
+  const removeListeners = React.useCallback(() => {
     window.removeEventListener('mousemove', onDrag)
     window.removeEventListener('touchmove', onDrag)
     window.removeEventListener('mouseup', removeListeners)
     window.removeEventListener('touchend', removeListeners)
     window.removeEventListener('dragend', removeListeners)
-  }
+  }, [])
+
+  useEffect(() => {
+    return removeListeners
+  }, [removeListeners])
 
   const onDrag = (e: MouseEvent | TouchEvent) => {
     if (container.current) {

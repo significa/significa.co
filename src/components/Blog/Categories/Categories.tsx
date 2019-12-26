@@ -35,7 +35,7 @@ const CategoriesTab: React.FC = () => {
         name: curr.node.category,
         _meta: {
           type: 'blog_category',
-          uid: slugify(curr.node.category)!,
+          uid: slugify(curr.node.category),
         },
       })
     }

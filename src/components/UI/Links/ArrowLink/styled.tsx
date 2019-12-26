@@ -15,7 +15,7 @@ export const Arrow = styled(ArrowIcon)`
   transition: transform ${({ theme }) => theme.transitions.cubic()};
 `
 
-const ExtractedPropsLink = ({ highlight, reverse, to, ...rest }: ILink) => (
+const ExtractedPropsLink = ({ to, ...rest }: ILink) => (
   <GatsbyLink to={to} {...rest} />
 )
 

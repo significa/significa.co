@@ -47,7 +47,7 @@ const Textarea: React.FC<ITextarea> = ({
       inputProps.onChange(e)
       resize(ref.current, baseHeight.current)
     },
-    [inputProps.onChange]
+    [inputProps]
   )
 
   return (

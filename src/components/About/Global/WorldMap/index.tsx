@@ -39,29 +39,32 @@ const WorldMap = () => {
   //
   // Pass through all letters
   //
-  const flipPanel = (curr: IPanel[]) => {
-    const splittedCity = currentCity.split('')
-    const newSorted = curr.map(({ current }, index) => {
-      if (current === splittedCity[index]) {
-        return { current, old: current }
-      }
+  const flipPanel = React.useCallback(
+    (curr: IPanel[]) => {
+      const splittedCity = currentCity.split('')
+      const newSorted = curr.map(({ current }, index) => {
+        if (current === splittedCity[index]) {
+          return { current, old: current }
+        }
 
-      const indexChart = (char.indexOf(current) + 1) % char.length
+        const indexChart = (char.indexOf(current) + 1) % char.length
 
-      return { current: char[indexChart], old: current }
-    })
+        return { current: char[indexChart], old: current }
+      })
 
-    return setSplitFlap(newSorted)
-  }
+      return setSplitFlap(newSorted)
+    },
+    [currentCity]
+  )
 
   //
   // Random city
   //
-  const randomCity = () => {
+  const randomCity = React.useCallback(() => {
     const city = cities[Math.floor(Math.random() * cities.length)]
     setCurrentCity(template(city))
     setSplitFlap(initialState())
-  }
+  }, [cities])
 
   //
   // Call to update the letters
@@ -70,7 +73,7 @@ const WorldMap = () => {
     const interval = setTimeout(() => flipPanel(splitFlap), TIME_LETTER)
 
     return () => clearInterval(interval)
-  }, [currentCity, splitFlap])
+  }, [currentCity, flipPanel, splitFlap])
 
   // Init
   React.useEffect(() => {
@@ -78,7 +81,7 @@ const WorldMap = () => {
     const interval = setInterval(randomCity, TIME_RANDOM_CITY)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [randomCity])
 
   return (
     <S.MapWrapper>

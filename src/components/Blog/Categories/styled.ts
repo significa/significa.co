@@ -1,5 +1,5 @@
 import { Link } from 'gatsby'
-import styled from '@theme'
+import styled from 'styled-components'
 
 import { Text, Container as BaseContainer } from '../../UI'
 

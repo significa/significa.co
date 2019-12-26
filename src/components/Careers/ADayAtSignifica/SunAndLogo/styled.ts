@@ -1,4 +1,4 @@
-import styled, { css } from '@theme'
+import styled, { css } from 'styled-components'
 
 export const Toggle = styled.g`
   cursor: pointer;

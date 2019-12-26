@@ -1,4 +1,4 @@
-import styled, { css } from '@theme'
+import styled, { css } from 'styled-components'
 import { Text } from '../Typography'
 import { getColor } from '../../../utils/getColor'
 

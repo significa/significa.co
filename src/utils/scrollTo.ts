@@ -14,7 +14,7 @@ export const getDistanceToTop = (element: HTMLElement) =>
 
 export default (
   to: number | HTMLElement,
-  duration: number = 300,
+  duration = 300,
   callback?: () => void
 ) => {
   const start = window.pageYOffset

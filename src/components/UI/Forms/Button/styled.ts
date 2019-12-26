@@ -1,4 +1,4 @@
-import styled, { keyframes } from '@theme'
+import styled, { keyframes } from 'styled-components'
 
 import ArrowIcon from './Arrow'
 

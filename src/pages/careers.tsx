@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import styled from '@theme'
+import styled from 'styled-components'
 
 const BackgroundTransition = styled.div`
   background: inherit;

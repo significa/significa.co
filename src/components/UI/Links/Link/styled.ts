@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled from 'styled-components'
 import { Link as GatsbyLink } from 'gatsby'
 
 import { themeGet } from '../../../../utils/themeGet'

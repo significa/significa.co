@@ -1,5 +1,5 @@
-import styled, { media, colors } from '@theme'
-import { css } from 'styled-components'
+import styled, { css } from 'styled-components'
+import { media, colors } from '@theme'
 
 export const MapWrapper = styled.div`
   padding-top: 4em;
@@ -116,7 +116,7 @@ export const HalfPanel = styled.div<{ position: string }>`
 
     return css`
       position: ${isTop ? 'absolute' : 'relative'};
-      background: ${isTop ? theme.colors.background : "transparent"};
+      background: ${isTop ? theme.colors.background : 'transparent'};
       overflow: hidden;
       width: 100%;
       text-align: center;

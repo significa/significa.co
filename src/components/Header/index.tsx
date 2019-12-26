@@ -18,46 +18,47 @@ export const Provider: React.FC = ({ children }) => {
   return <Context.Provider value={indexBlogLogo}>{children}</Context.Provider>
 }
 
-const Header: React.FC<{ isBlogPage?: boolean }> = React.memo(
-  ({ children, isBlogPage }) => {
-    const indexBlogLogo = React.useContext(Context)
+const Header: React.FC<{ isBlogPage?: boolean; children: React.ReactNode }> = ({
+  children,
+  isBlogPage,
+}) => {
+  const indexBlogLogo = React.useContext(Context)
 
-    const [shouldClose, setShouldClose] = React.useState(false)
+  const [shouldClose, setShouldClose] = React.useState(false)
 
-    // reset state
-    React.useEffect(() => {
-      if (shouldClose) {
-        setShouldClose(false)
-      }
-    }, [shouldClose])
+  // reset state
+  React.useEffect(() => {
+    if (shouldClose) {
+      setShouldClose(false)
+    }
+  }, [shouldClose])
 
-    return (
-      <S.Header upTolerance={50} onUnpin={() => setShouldClose(true)}>
-        <S.Wrapper>
-          <S.Container>
-            <div>
-              <S.LogoLink to="/" title="Go to homepage">
-                <Logo />
-              </S.LogoLink>
+  return (
+    <S.Header upTolerance={50} onUnpin={() => setShouldClose(true)}>
+      <S.Wrapper>
+        <S.Container>
+          <div>
+            <S.LogoLink to="/" title="Go to homepage">
+              <Logo />
+            </S.LogoLink>
 
-              {indexBlogLogo && isBlogPage && (
-                <S.WrapperLogoBlog>
-                  <S.LogoBlog
-                    src={`/blog-logos/${indexBlogLogo}.png`}
-                    alt="Significa's blog"
-                  />
-                </S.WrapperLogoBlog>
-              )}
-            </div>
+            {indexBlogLogo && isBlogPage && (
+              <S.WrapperLogoBlog>
+                <S.LogoBlog
+                  src={`/blog-logos/${indexBlogLogo}.png`}
+                  alt="Significa's blog"
+                />
+              </S.WrapperLogoBlog>
+            )}
+          </div>
 
-            <Navigation forceClose={shouldClose} />
-          </S.Container>
-        </S.Wrapper>
+          <Navigation forceClose={shouldClose} />
+        </S.Container>
+      </S.Wrapper>
 
-        {children}
-      </S.Header>
-    )
-  }
-)
+      {children}
+    </S.Header>
+  )
+}
 
-export default Header
+export default React.memo(Header)

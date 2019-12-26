@@ -40,7 +40,7 @@ const SubMenu = ({ path, headings, isActive }: SubMenuProps) => {
         }
       }
     })
-  }, [])
+  }, [headings])
 
   // Add event listener to scroll to change currently active heading
   const onScroll = () => {

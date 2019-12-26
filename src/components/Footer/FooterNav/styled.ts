@@ -1,4 +1,5 @@
-import styled, { media } from '@theme'
+import styled from 'styled-components'
+import { media } from '@theme'
 import { Small, Link } from '../../UI/'
 import { Link as BaseLink } from 'gatsby'
 

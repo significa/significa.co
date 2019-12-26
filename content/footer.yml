@@ -1,4 +1,4 @@
-- title: Say
+- title: Contact # Do not change this title, because it's hard-coded
   type: column
   items:
     - label: hello@significa.co
@@ -6,25 +6,29 @@
     - label: (+351) 226 001 751
       link: tel:00351226001751
 
-- title: Links
+- title: Who we are
   type: column
   items:
-    - label: Home
-      link: /
+    - label: About
+      link: /about
+    - label: Careers
+      link: /careers
+    - label: Contact
+      link: /contact
+
+- title: Things we do
+  type: column
+  items:
     - label: Showcase
       link: /showcase
     - label: Services
       link: /services
-    - label: About
-      link: /about
     - label: Handbook
       link: /handbook
-    - label: Careers
-      link: /careers
-    - label: Labs
-      link: /labs
-    - label: Contact
-      link: /contact
+    - label: Blog
+      link: /blog
+    # - label: Labs
+    #   link: /labs
 
 - title: Network
   type: column

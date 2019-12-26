@@ -49,6 +49,7 @@ module.exports = {
         defaultLang: 'en-gb',
         previews: true,
         path: '/preview',
+        sharpKeys: [/image|photo|picture|hero|profile_pic/],
         pages: [
           {
             type: 'Project',
@@ -68,6 +69,18 @@ module.exports = {
             path: '/handbook-preview',
             component: require.resolve('./src/templates/handbook.tsx'),
           },
+          {
+            type: 'Blog_post',
+            match: '/blog/:uid',
+            path: '/blog-post',
+            component: require.resolve('./src/templates/blog-post.tsx'),
+          },
+          {
+            type: 'Blog_author',
+            match: '/blog/author/:uid',
+            path: '/blog-post-author',
+            component: require.resolve('./src/templates/blog-author.tsx'),
+          },
         ],
       },
     },
@@ -79,9 +92,9 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-sharp',
       options: {
-        useMozJpeg: true,
+        useMozJpeg: process.env.NODE_ENV === 'production',
         stripMetadata: true,
-        defaultQuality: 100,
+        defaultQuality: process.env.NODE_ENV === 'production' ? 100 : 50,
       },
     },
     {

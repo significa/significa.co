@@ -7,7 +7,6 @@ import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx'
 
 import { Theme } from '@theme'
 
-import codeColor from './codeColor'
 import toolboxImg from './toolbox.png'
 import pickerImg from './picker.png'
 
@@ -16,6 +15,7 @@ import { textByLine } from '../../../utils/textByLine'
 import * as S from './styled'
 import StrategyMarkdown from './StrategyMarkdown'
 import { Container } from '../../UI'
+import syntaxHighlight from '../../../utils/syntaxHighlight'
 
 SyntaxHighlighter.registerLanguage('jsx', jsx)
 
@@ -103,8 +103,9 @@ const Sections = () => {
           <Container>
             <S.Content>
               <S.DevelopmentBox>
-                <SyntaxHighlighter language="jsx" style={codeColor}>
-                  {prettier.format(
+                {syntaxHighlight('preformatted', {
+                  label: 'jsx',
+                  text: prettier.format(
                     `
                     import React from 'react'
 
@@ -130,8 +131,8 @@ const Sections = () => {
                       parser: 'typescript',
                       plugins: [prettierTS],
                     }
-                  )}
-                </SyntaxHighlighter>
+                  ),
+                })}
               </S.DevelopmentBox>
               <S.RightText>
                 <S.Title>{data.development.title}</S.Title>

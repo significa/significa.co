@@ -73,20 +73,8 @@ team:
     - name: André Furtado
       role: Creative Director
 
-    - name: André Silva
-      role: iOS Developer
-      company: coletiv
-
-    - name: António Valente
-      role: Android Developer
-      company: coletiv
-
     - name: Catarina Silva
       role: Office Manager
-
-    - name: Daniel Almeida
-      role: Product Manager / iOS
-      company: coletiv
 
     - name: Danilo Woznica
       role: Developer
@@ -101,14 +89,13 @@ team:
       role: Designer / Developer
 
     - name: Joaquim Rosa
-      role: Developer
+      role: Front-end Developer
+
+    - name: João Ribeiro
+      role: Front-end Developer
 
     - name: Lisa Cosme
       role: Designer
-
-    - name: Luís Catarino
-      role: Adamant CEO
-      company: adamant
 
     - name: Mariana Gomes
       role: Product Manager / Designer
@@ -119,26 +106,17 @@ team:
     - name: Márcio Pinto
       role: Developer
 
-    - name: Nuno Marinho
-      role: Developer
-      company: coletiv
-
     - name: Pedro Brandão
       role: Founder / CEO
 
     - name: Pedro Teixeira
       role: Designer
 
-    - name: Pedro Costa
-      role: Developer
-      company: coletiv
-
     - name: Rui Sereno
       role: Business Development
 
-    - name: Tiago Duarte
-      role: Coletiv CEO
-      company: coletiv
+    - name: Teresa Vilar Araújo
+      role: Designer
 
 cta:
   title: From inception to launch.

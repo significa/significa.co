@@ -40,16 +40,6 @@ export const ArrowLink = styled(BaseArrowLink)`
   margin-top: 3em;
 `
 
-export const IconHolder = styled.div`
-  position: absolute;
-
-  top: 0.25em;
-  left: -2em;
-
-  ${media.large} {
-    position: relative;
-    left: auto;
-    top: auto;
-    margin-bottom: 1em;
-  }
+export const Author = styled.div`
+  margin-top: 1em;
 `

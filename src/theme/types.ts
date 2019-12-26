@@ -14,6 +14,7 @@ export interface IColors {
 }
 
 export interface IColorsTheme {
+  brand: string
   highlight: string
   background: string
   foreground: string

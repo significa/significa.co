@@ -26,6 +26,7 @@ export const colors: IColors = {
 }
 
 export const lightTheme: IColorsTheme = {
+  brand: colors.significa,
   highlight: colors.significa,
   background: colors.white,
   foreground: colors.black,
@@ -36,16 +37,18 @@ export const lightTheme: IColorsTheme = {
 }
 
 export const darkTheme: IColorsTheme = {
+  brand: colors.significa,
   highlight: colors.darkGrey,
   background: colors.black,
   foreground: colors.lightGrey,
-  secondary: colors.lightGrey,
+  secondary: colors.darkGrey,
   medium: colors.darkGrey,
   subtle: colors.alphaWhite[10],
   error: colors.red,
 }
 
 export const colorTheme: IColorsTheme = {
+  brand: colors.significa,
   highlight: colors.white,
   background: colors.significa,
   foreground: colors.white,

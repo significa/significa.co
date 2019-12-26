@@ -1,4 +1,3 @@
-import { Link } from 'gatsby'
 import styled, { media } from '@theme'
 
 import { Container as BaseContainer } from '../UI/'
@@ -28,39 +27,37 @@ export const Footer = styled.footer`
 `
 
 export const Container = styled(BaseContainer)`
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
 
-  grid-template-columns: repeat(12, 1fr);
-  grid-column-gap: 3em;
-  grid-template-areas: 'l l l l r r r r r r r r';
+  > * {
+    flex: 1;
+    margin-bottom: 6em;
 
-  ${media.large} {
-    grid-column-gap: 2em;
-    grid-template-areas: 'l l r r r r r r r r r r';
+    &:first-child {
+      min-width: calc(((100% / 12)) * 4.2);
+    }
   }
 
   ${media.medium} {
-    grid-template-rows: auto 1fr;
-    grid-column-gap: 0;
-    grid-row-gap: 2em;
-    grid-template-areas:
-      'r r r r r r r r r r r r'
-      'l l l l l l l l l l l l';
+    > * {
+      flex: 1;
+      min-width: auto;
+
+      &:first-child {
+        min-width: 100%;
+      }
+    }
   }
-`
 
-export const Left = styled.div`
-  grid-area: l;
+  ${media.small} {
+    > * {
+      flex: 1;
+      min-width: 100%;
 
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`
-
-export const Right = styled.div`
-  grid-area: r;
-`
-
-export const LogoLink = styled(Link)`
-  margin-bottom: 2em;
+      &:first-child {
+        min-width: 100%;
+      }
+    }
+  }
 `

@@ -28,14 +28,6 @@ export const baseInputStyle = css`
   transition: border-color ${({ theme }) => theme.transitions.ease()},
     color ${({ theme }) => theme.transitions.ease()};
 
-  &:-webkit-autofill,
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus,
-  &:-webkit-autofill:active {
-    color: ${({ theme }) => theme.colors.foreground} !important;
-    transition: all 5000s ease-in-out 0s;
-  }
-
   &::placeholder {
     color: ${({ theme }) => theme.colors.medium};
   }

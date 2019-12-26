@@ -7,7 +7,7 @@ import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
 import { Top, Services, Careers } from '../components/Home/'
-import FromTheLabs from '../components/FromTheLabs'
+import FromTheBlog from '../components/FromTheBlog'
 
 export interface IServicesContent {
   title: string
@@ -55,7 +55,7 @@ const IndexPage: React.FC<IIndexPage> = ({ data }) => {
       <Top headline={content.headline} tagline={content.tagline} />
       <Services {...content.services} />
       <Theme theme="dark">
-        <FromTheLabs />
+        <FromTheBlog />
       </Theme>
       <Careers {...content.careers} />
     </Layout>

@@ -19,7 +19,7 @@ jobs:
       - name: Cache public
         uses: actions/cache@v1
         with:
-          path: ~/public
+          path: public
           key: ${{ runner.os }}-public-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-public-
@@ -27,7 +27,7 @@ jobs:
       - name: Cache gatsby cache
         uses: actions/cache@v1
         with:
-          path: ~/.cache
+          path: .cache
           key: ${{ runner.os }}-cache-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-cache-

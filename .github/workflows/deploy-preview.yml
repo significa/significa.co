@@ -28,7 +28,7 @@ jobs:
         with:
           args: --delete
         env:
-          AWS_S3_BUCKET: significa.io
+          AWS_S3_BUCKET: significa.dev
           AWS_ACCESS_KEY_ID: ${{ secrets.DEPLOY_PREVIEW_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.DEPLOY_PREVIEW_SECRET }}
           AWS_REGION: 'us-west-1'

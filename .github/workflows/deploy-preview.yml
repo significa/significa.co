@@ -8,7 +8,29 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: ./.github/actions/cache
+      - name: Cache npm
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Cache public
+        uses: actions/cache@v1
+        with:
+          path: ~/public
+          key: ${{ runner.os }}-public-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-public-
+
+      - name: Cache gatsby cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cache-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-cache-
 
       - name: Install
         run: npm ci
@@ -28,3 +50,11 @@ jobs:
           AWS_REGION: 'us-west-1'
           SOURCE_DIR: 'public'
           DEST_DIR: preview/${{ github.event.number }}
+
+      - name: Deploy message
+        if: success()
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: Deploy preview ready! https://significa.dev/preview/${{ github.event.number }}

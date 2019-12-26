@@ -1,5 +1,4 @@
 FROM python:3.7-alpine
-USER node
 
 # https://github.com/aws/aws-cli/blob/master/CHANGELOG.rst
 ENV AWSCLI_VERSION='1.16.265'

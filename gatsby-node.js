@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
 const slugify = require('@sindresorhus/slugify')
 
@@ -68,7 +69,7 @@ exports.createPages = ({ graphql, actions }) => {
 
     const categories = result.data.prismic.allBlog_posts.edges
 
-    categories.forEach((post, index) => {
+    categories.forEach(post => {
       const slugifyCategory = slugify(post.node.category)
 
       createPage({

@@ -1,0 +1,9 @@
+name: 'S3 Download'
+description: 'Download an AWS S3 to a directory'
+author: pbrandone
+runs:
+  using: docker
+  image: Dockerfile
+branding:
+  icon: download
+  color: green

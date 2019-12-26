@@ -1,0 +1,42 @@
+name: Deploy
+
+on: [push, pull_request]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Find PR number
+        uses: jwalton/gh-find-current-pr@v1
+        id: findPR
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build
+        if: success() && steps.findPR.outputs.number
+        run: PATH_PREFIX=preview/${PR} npm run build -- --prefix-paths
+        env:
+          PR: ${{ steps.findPR.outputs.pr }}
+
+      - name: Deploy
+        if: success() && steps.findPR.outputs.number
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --delete
+        env:
+          AWS_S3_BUCKET: significa.io
+          AWS_ACCESS_KEY_ID: ${{ secrets.DEPLOY_PREVIEW_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.DEPLOY_PREVIEW_SECRET }}
+          AWS_REGION: 'us-west-1'
+          SOURCE_DIR: 'public'
+          DEST_DIR: preview/${PR}

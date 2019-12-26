@@ -30,7 +30,7 @@ jobs:
 
       - name: Build
         run: PATH_PREFIX=preview/${{ github.event.number }} npm run build -- --prefix-paths
-        if: success() | failure()
+        if: success() || failure()
 
       - name: Deploy
         if: success()

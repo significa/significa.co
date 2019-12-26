@@ -20,11 +20,17 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/public
+          key: ${{ runner.os }}-public-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-public-
 
       - name: Cache gatsby cache
         uses: actions/cache@v1
         with:
           path: ~/.cache
+          key: ${{ runner.os }}-cache-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-cache-
 
       - name: Install
         run: npm ci

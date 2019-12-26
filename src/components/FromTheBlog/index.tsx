@@ -29,10 +29,10 @@ interface IFromTheBlogQuery {
   }
 }
 
-const FromTheLabs: React.FC<{}> = () => {
+const FromTheBlog: React.FC<{}> = () => {
   return (
     <StaticQuery
-      query={fromTheLabsQuery}
+      query={fromTheBlogQuery}
       render={({
         homeYaml: { fromTheBlog },
         prismic: {
@@ -84,7 +84,7 @@ const FromTheLabs: React.FC<{}> = () => {
   )
 }
 
-const fromTheLabsQuery = graphql`
+const fromTheBlogQuery = graphql`
   query FromTheBlogQuery {
     homeYaml {
       fromTheBlog {
@@ -138,4 +138,4 @@ const fromTheLabsQuery = graphql`
   }
 `
 
-export default FromTheLabs
+export default FromTheBlog

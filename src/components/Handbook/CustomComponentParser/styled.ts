@@ -1,4 +1,5 @@
-import styled, { media } from '@theme'
+import styled from 'styled-components'
+import { media } from '@theme'
 import { Link as GatsbyLink } from 'gatsby'
 import { labelStyle, Text as BaseText } from '../../UI'
 import ArrowIcon from '../common/Arrow'

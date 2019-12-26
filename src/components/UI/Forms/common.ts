@@ -1,4 +1,4 @@
-import { css } from '@theme'
+import { css } from 'styled-components'
 
 interface IInputProps {
   hasError?: boolean

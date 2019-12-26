@@ -1,4 +1,5 @@
-import styled, { media } from '@theme'
+import styled from 'styled-components'
+import { media } from '@theme'
 
 const PaddedWrapper = styled.div`
   padding: 5em 0;

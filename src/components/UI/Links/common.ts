@@ -1,4 +1,5 @@
-import { css, media } from '@theme'
+import { css } from 'styled-components'
+import { media } from '@theme'
 import { themeGet } from '../../../utils/themeGet'
 
 export const baseStyle = css`

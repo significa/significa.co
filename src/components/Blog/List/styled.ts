@@ -1,4 +1,5 @@
-import styled, { media } from '@theme'
+import styled from 'styled-components'
+import { media } from '@theme'
 
 export const Container = styled.div`
   margin-top: 3.9em;

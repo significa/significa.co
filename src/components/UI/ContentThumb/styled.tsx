@@ -1,5 +1,6 @@
 import React from 'react'
-import styled, { media } from '@theme'
+import styled from 'styled-components'
+import { media } from '@theme'
 import { Link as BaseLink } from 'gatsby'
 import BaseImg from 'gatsby-image'
 

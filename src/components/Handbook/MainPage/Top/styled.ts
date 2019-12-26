@@ -1,4 +1,5 @@
-import styled, { media } from '@theme'
+import styled from 'styled-components'
+import { media } from '@theme'
 import { Container, Display, Small } from '../../../UI'
 
 import { SidenoteWrapper } from '../../CustomComponentParser/styled'

@@ -1,4 +1,5 @@
-import styled, { media } from '@theme'
+import styled from 'styled-components'
+import { media } from '@theme'
 
 export const SocialLink = styled.a.attrs({
   target: '_blank',

@@ -1,4 +1,4 @@
-import styled, { css } from '@theme'
+import styled, { css } from 'styled-components'
 import { getColor } from '../../../utils/getColor'
 
 const baseStyle = css`

@@ -1,5 +1,6 @@
 import React from 'react'
-import styled, { css, media } from '@theme'
+import styled, { css } from 'styled-components'
+import { media } from '@theme'
 import { motion } from 'framer-motion'
 
 const Z_INDEXES = {

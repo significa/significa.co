@@ -1,4 +1,5 @@
-import styled, { IFullTheme } from '@theme'
+import styled from 'styled-components'
+import { IFullTheme } from '@theme'
 
 import { Label as BaseLabel } from '../../Typography'
 

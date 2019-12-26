@@ -16,14 +16,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Cache public
-        uses: actions/cache@v1
-        with:
-          path: public
-          key: ${{ runner.os }}-public-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-public-
-
       - name: Install
         run: npm ci
 
@@ -38,6 +30,7 @@ jobs:
 
       - name: Build
         run: PATH_PREFIX=preview/${{ github.event.number }} npm run build -- --prefix-paths
+        if: always()
 
       - name: Deploy
         if: success()

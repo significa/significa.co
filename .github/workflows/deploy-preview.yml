@@ -8,29 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Cache npm
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Cache public
-        uses: actions/cache@v1
-        with:
-          path: ~/public
-          key: ${{ runner.os }}-public-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-public-
-
-      - name: Cache gatsby cache
-        uses: actions/cache@v1
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-cache-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-cache-
+      - uses: ./.github/actions/cache
 
       - name: Install
         run: npm ci

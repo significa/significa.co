@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy Preview
 
 on: [push, pull_request]
 

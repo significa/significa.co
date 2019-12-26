@@ -1,6 +1,6 @@
 name: Deploy Preview
 
-on: [push, pull_request]
+on: pull_request
 
 jobs:
   deploy:
@@ -16,20 +16,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Find PR number
-        uses: jwalton/gh-find-current-pr@v1
-        id: findPR
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install
+        run: npm ci
 
       - name: Build
-        if: success() && steps.findPR.outputs.number
-        run: PATH_PREFIX=preview/${PR} npm run build -- --prefix-paths
-        env:
-          PR: ${{ steps.findPR.outputs.pr }}
+        run: PATH_PREFIX=preview/${{ github.event.number }} npm run build -- --prefix-paths
 
       - name: Deploy
-        if: success() && steps.findPR.outputs.number
+        if: success()
         uses: jakejarvis/s3-sync-action@master
         with:
           args: --delete
@@ -39,4 +33,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.DEPLOY_PREVIEW_SECRET }}
           AWS_REGION: 'us-west-1'
           SOURCE_DIR: 'public'
-          DEST_DIR: preview/${PR}
+          DEST_DIR: preview/${{ github.event.number }}

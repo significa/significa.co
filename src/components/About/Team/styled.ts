@@ -34,15 +34,3 @@ export const TeamList = styled.ul`
 `
 
 export const TeamItem = styled.li``
-
-export const TeamImage = styled.div`
-  margin-bottom: 1em;
-  position: relative;
-`
-
-export const CompanyLogo = styled.div`
-  position: absolute;
-  right: 1em;
-  top: 1em;
-  color: #fff;
-`

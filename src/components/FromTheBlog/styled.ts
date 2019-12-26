@@ -19,10 +19,7 @@ export const ListItem = styled.li`
   }
 `
 
-export const Link = styled.a.attrs({
-  target: '_blank',
-  rel: 'noopener noreferrer',
-})`
+export const Link = styled.a`
   display: block;
   transition: opacity ${({ theme }) => theme.transitions.ease()};
 

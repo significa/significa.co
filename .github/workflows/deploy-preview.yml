@@ -24,16 +24,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-public-
 
-      - name: Cache gatsby cache
-        uses: actions/cache@v1
-        with:
-          path: .cache
-          key: ${{ runner.os }}-cache-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-cache-
-
       - name: Install
         run: npm ci
+
+      - name: Download public folder
+        uses: ./.github/actions/s3-download
+        env:
+          AWS_S3_PATH: s3://significa.dev/preview/${{ github.event.number }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.DEPLOY_PREVIEW_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.DEPLOY_PREVIEW_SECRET }}
+          AWS_REGION: 'us-west-1'
 
       - name: Build
         run: PATH_PREFIX=preview/${{ github.event.number }} npm run build -- --prefix-paths

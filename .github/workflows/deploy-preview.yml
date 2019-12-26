@@ -52,6 +52,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           msg: |
-            Deploy preview ready! 🚀
+            Deploy preview ready!
             https://significa.dev/preview/${{ github.event.number }}
             built from ${{ github.sha }}

@@ -35,4 +35,4 @@ EOF
 
 sh -c "aws s3 cp ${AWS_S3_PATH} ${DEST_DIR} \
               --recursive $*"
-sh -c "sudo chmod -R 777 ${DEST_DIR}"
+sh -c "chmod -R 777 ${DEST_DIR}"

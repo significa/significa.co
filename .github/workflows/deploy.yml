@@ -22,12 +22,25 @@ jobs:
       - name: Install
         run: npm ci
 
+      - name: Download public folder
+        uses: ./.github/actions/s3-download
+        env:
+          AWS_S3_PATH: s3://significa.co/
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-west-1'
+          DEST_DIR: 'public'
+
       - name: Build
         run: npm run build
+        if: success() || failure()
 
       - name: Deploy
         if: success()
         run: npm run deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Cloudfront invalidation
         if: success()

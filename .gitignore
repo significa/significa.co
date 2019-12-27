@@ -68,3 +68,9 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+# functions
+build
+build.zip
+build.tar
+build.tar.gz

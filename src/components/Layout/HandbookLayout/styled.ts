@@ -1,4 +1,5 @@
-import styled, { css, media } from '@theme'
+import styled, { css } from 'styled-components'
+import { media } from '@theme'
 
 import { Container } from '../../UI'
 
@@ -17,7 +18,6 @@ export const NavHolder = styled.aside<{ isOpen: boolean }>`
   width: 18rem;
   flex-shrink: 0;
   height: 100vh;
-
 
   overflow-y: auto;
 

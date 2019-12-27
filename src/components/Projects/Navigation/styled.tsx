@@ -1,5 +1,6 @@
 import React from 'react'
-import styled, { css, media } from '@theme'
+import styled, { css } from 'styled-components'
+import { media } from '@theme'
 import { motion } from 'framer-motion'
 
 const Z_INDEXES = {
@@ -138,9 +139,7 @@ export const ButtonLine = styled.span`
 
 // Had to import React, make this file .tsx and manually extract
 // the `visible` prop so it doesn't get passed down to the DOM
-export const AnimatedNavButton = styled(({ visible, ...rest }) => (
-  <motion.button {...rest} />
-))<{
+export const AnimatedNavButton = styled(props => <motion.button {...props} />)<{
   visible: boolean
 }>`
   position: fixed;

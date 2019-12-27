@@ -4,10 +4,9 @@
  */
 
 import React from 'react'
+import { ThemeProvider } from 'styled-components'
 
 import { colorArgumentType } from '../types'
-
-import { StyledThemeProvider } from '../styled'
 
 import { mergeThemeWithColors } from '../utils'
 
@@ -17,9 +16,9 @@ interface IThemeProps {
 }
 
 const Theme: React.FC<IThemeProps> = ({ theme, children }) => (
-  <StyledThemeProvider theme={mergeThemeWithColors(theme)}>
+  <ThemeProvider theme={mergeThemeWithColors(theme)}>
     <>{children}</>
-  </StyledThemeProvider>
+  </ThemeProvider>
 )
 
 export default Theme

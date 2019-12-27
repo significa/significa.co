@@ -1,4 +1,4 @@
-import { css } from '../styled'
+import { css } from 'styled-components'
 import InterRegularWoff from './fonts/Inter-Regular.woff'
 import InterRegularWoff2 from './fonts/Inter-Regular.woff2'
 import InterLightWoff from './fonts/Inter-Light.woff'

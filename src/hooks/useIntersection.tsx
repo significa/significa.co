@@ -26,7 +26,7 @@ export default (options: IOpts): IReturn => {
     }
 
     return () => observer.disconnect()
-  }, [elRef])
+  }, [elRef, options])
 
   return { observerEntry, elRef }
 }

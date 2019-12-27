@@ -1,4 +1,5 @@
-import styled, { media } from '@theme'
+import styled from 'styled-components'
+import { media } from '@theme'
 import { Link } from 'gatsby'
 import Headroom from 'react-headroom'
 
@@ -57,4 +58,18 @@ export const LogoLink = styled(Link)`
       opacity: 0.8;
     }
   }
+`
+
+export const WrapperLogoBlog = styled.div`
+  position: relative;
+  height: 100%;
+  display: inline-block;
+  margin-left: 1em;
+`
+
+export const LogoBlog = styled.img`
+  height: 2.2em;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 `

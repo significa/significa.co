@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const slugify = require('@sindresorhus/slugify')
 
 /** Creating alias in webpack config */
 exports.onCreateWebpackConfig = ({ actions }) => {
@@ -42,5 +43,42 @@ exports.createPages = ({ graphql, actions }) => {
     toPath: '/labs',
     isPermanent: true,
     redirectInBrowser: true,
+  })
+
+  /**
+   * Blog
+   */
+  const categoryTemplate = path.resolve(`./src/templates/blog-category.tsx`)
+
+  return graphql(`
+    {
+      prismic {
+        allBlog_posts {
+          edges {
+            node {
+              category
+            }
+          }
+        }
+      }
+    }
+  `).then(result => {
+    if (result.errors) {
+      console.error(result.errors)
+    }
+
+    const categories = result.data.prismic.allBlog_posts.edges
+
+    categories.forEach(post => {
+      const slugifyCategory = slugify(post.node.category)
+
+      createPage({
+        path: `/blog/category/${slugifyCategory}`,
+        component: categoryTemplate,
+        context: {
+          uid: post.node.category,
+        },
+      })
+    })
   })
 }

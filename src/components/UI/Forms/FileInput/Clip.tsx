@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from '@theme'
+import styled from 'styled-components'
 
 const Svg = styled.svg`
   g {

@@ -1,4 +1,4 @@
-import styled, { css } from '@theme'
+import styled, { css } from 'styled-components'
 import { getColor } from '../../../utils/getColor'
 
 const baseStyle = css`
@@ -84,7 +84,7 @@ export const labelStyle = css`
   ${baseStyle};
 
   font-size: 0.875rem;
-  line-height: 1;
+  line-height: 1.3;
   letter-spacing: 0;
 `
 

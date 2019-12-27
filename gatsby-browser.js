@@ -9,12 +9,12 @@
  * being re-rendered in any path, wrap each page with the layout
  */
 
-// import React from 'react'
-// import Layout from './src/components/Layout/'
+import React from 'react'
+import { Provider } from './src/components/Header'
 
-// export const wrapPageElement = ({ element, props }) => {
-//   return <Layout {...props}>{element}</Layout>
-// }
+export const wrapPageElement = ({ element, props }) => {
+  return <Provider {...props}>{element}</Provider>
+}
 
 // export const onRouteUpdate = ({ location: { hash } }) => {
 //   if (hash) {

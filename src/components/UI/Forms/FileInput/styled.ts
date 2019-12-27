@@ -1,4 +1,5 @@
-import styled, { keyframes, css, IFullTheme } from '@theme'
+import styled, { keyframes, css } from 'styled-components'
+import { IFullTheme } from '@theme'
 
 import ClipIcon from './Clip'
 import ClearIcon from './Clear'

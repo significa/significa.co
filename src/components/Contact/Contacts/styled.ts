@@ -1,4 +1,5 @@
-import styled, { media } from '@theme'
+import styled from 'styled-components'
+import { media } from '@theme'
 
 import { Container, Title as BaseTitle, Text as BaseText, Big } from '../../UI'
 import { AnyStyledComponent } from 'styled-components'

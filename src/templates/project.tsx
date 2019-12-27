@@ -22,12 +22,12 @@ interface IProjectProps {
 const ProjectPage = ({ data }: IProjectProps) => {
   const { project } = data.prismic
 
+  // Someplace to save the section name
+  const sectionName = React.useRef<string>('')
+
   if (!project) {
     return null
   }
-
-  // Someplace to save the section name
-  const sectionName = React.useRef('')
 
   return (
     <Layout

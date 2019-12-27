@@ -1,5 +1,6 @@
-import styled, { keyframes, media } from '@theme'
+import styled, { keyframes } from 'styled-components'
 import Img from 'gatsby-image'
+import { media } from '@theme'
 
 import { Display, Big, Small } from '../../UI'
 

@@ -29,6 +29,11 @@ services:
   cta: View services
   link: /services
 
+fromTheBlog:
+  title: What's new on Significa Blog
+  cta: Open Blog
+  link: /blog
+
 careers:
   title: |
     Drop by,

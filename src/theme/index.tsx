@@ -1,4 +1,3 @@
-import styled, { css, createGlobalStyle, keyframes } from './styled'
 import theme, { lightTheme, darkTheme, colorTheme, colors } from './theme'
 import ThemeContext from './context'
 import Provider from './components/Provider'
@@ -19,15 +18,8 @@ export {
   /** Components */
   Provider,
   Theme,
-  /** Styled component exports */
-  css,
-  createGlobalStyle,
-  keyframes,
   /** Types */
   colorArgumentType,
   IColorsTheme,
   IFullTheme,
 }
-
-/** Default export is our version of styled from styled-components */
-export default styled

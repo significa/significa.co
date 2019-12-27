@@ -2,6 +2,8 @@ import { mergeThemeWithColors } from './utils'
 
 import theme, { darkTheme } from './theme'
 
+import { colorArgumentType } from '.'
+
 describe('Merge theme with colors', () => {
   it('returns light theme when receiving "light"', () => {
     expect(mergeThemeWithColors('light')).toEqual(theme)
@@ -21,7 +23,6 @@ describe('Merge theme with colors', () => {
   })
 
   it('returns default theme when receiving unknown argument', () => {
-    // @ts-ignore
-    expect(mergeThemeWithColors('foo')).toEqual(theme)
+    expect(mergeThemeWithColors('foo' as colorArgumentType)).toEqual(theme)
   })
 })

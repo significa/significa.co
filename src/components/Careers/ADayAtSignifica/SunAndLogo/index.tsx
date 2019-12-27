@@ -9,7 +9,7 @@ type ThemeType = 'light' | 'dark'
 const SUN_START_RADIUS = 5
 const SUN_END_RADIUS = 13
 
-export default () => {
+const SunAndLogo = () => {
   const { updateTheme } = React.useContext(ThemeContext)
 
   // Refs for the sun and sun path
@@ -22,7 +22,7 @@ export default () => {
   // When our local state theme changes, we need to update the theme context
   React.useEffect(() => {
     updateTheme(currentTheme)
-  }, [currentTheme])
+  }, [currentTheme, updateTheme])
 
   // Toggle handler to change between themes
   const handleToggle = React.useCallback(() => {
@@ -77,7 +77,7 @@ export default () => {
     }
 
     return null
-  }, [shouldAnimate])
+  }, [])
 
   // Add a scroll listener to make the sun move
   React.useEffect(() => {
@@ -87,7 +87,7 @@ export default () => {
     }
 
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [shouldAnimate])
+  }, [handleScroll, shouldAnimate])
 
   return (
     <S.Svg
@@ -152,3 +152,5 @@ export default () => {
     </S.Svg>
   )
 }
+
+export default SunAndLogo

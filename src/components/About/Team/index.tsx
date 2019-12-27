@@ -3,7 +3,6 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 import * as S from './styled'
 import * as T from '../../UI/Typography'
-import { CompanyType } from '../../utils/renderCompanyLogo'
 
 interface ITeam {
   aboutYaml: {
@@ -12,7 +11,6 @@ interface ITeam {
       text: string
       list: Array<{
         name: string
-        company: CompanyType
         role: string
       }>
     }
@@ -36,14 +34,6 @@ const Team = () => {
       <S.TeamList>
         {team.list.map(e => (
           <S.TeamItem key={e.name}>
-            {/* <S.TeamImage>
-              <Img fluid={e.photo.childImageSharp.fluid} alt={e.name} />
-
-              <S.CompanyLogo>
-                {e.company && <CompanyLogo company={e.company} />}
-              </S.CompanyLogo>
-            </S.TeamImage> */}
-
             <T.Text>{e.name}</T.Text>
             <T.Label>{e.role}</T.Label>
           </S.TeamItem>
@@ -64,7 +54,6 @@ export const query = graphql`
         list {
           name
           role
-          company
         }
       }
     }

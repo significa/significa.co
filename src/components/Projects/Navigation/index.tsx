@@ -22,14 +22,7 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
   const [isButtonVisible, setButtonVisible] = useState<boolean>(false)
   useBodyLock(visible)
 
-  // Only show button closer to the bottom
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [visible, isButtonVisible])
-
-  const handleScroll = () => {
+  const handleScroll = React.useCallback(() => {
     const totalHeight = Math.max(
       document.body.scrollHeight,
       document.body.offsetHeight,
@@ -48,7 +41,14 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
     if (!shouldShow && isButtonVisible) {
       return setButtonVisible(false)
     }
-  }
+  }, [isButtonVisible])
+
+  // Only show button closer to the bottom
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [visible, isButtonVisible, handleScroll])
 
   const items = content.filter(section => {
     const wantedTypes = [

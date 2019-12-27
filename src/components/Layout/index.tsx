@@ -10,6 +10,8 @@ interface ILayoutProps {
   theme?: colorArgumentType
   headerTheme?: colorArgumentType
   footerTheme?: colorArgumentType
+  renderHeaderChildren?: React.ReactNode
+  isBlogPage?: boolean
 }
 
 const Layout: React.FC<ILayoutProps> = ({
@@ -17,6 +19,8 @@ const Layout: React.FC<ILayoutProps> = ({
   headerTheme,
   footerTheme,
   children,
+  renderHeaderChildren,
+  isBlogPage,
 }) => {
   return (
     <Provider theme={theme}>
@@ -24,7 +28,7 @@ const Layout: React.FC<ILayoutProps> = ({
         condition={!!headerTheme}
         wrap={c => <Theme theme={headerTheme as colorArgumentType}>{c}</Theme>}
       >
-        <Header />
+        <Header isBlogPage={isBlogPage}>{renderHeaderChildren}</Header>
       </ConditionalWrap>
       {children}
       <ConditionalWrap

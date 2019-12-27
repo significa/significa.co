@@ -1,5 +1,6 @@
 import Image from 'gatsby-image'
-import styled, { media } from '@theme'
+import styled from 'styled-components'
+import { media } from '@theme'
 import {
   Container as BaseContainer,
   Big as BaseBig,

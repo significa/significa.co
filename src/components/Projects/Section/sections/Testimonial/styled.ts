@@ -1,4 +1,4 @@
-import styled from '@theme'
+import styled from 'styled-components'
 
 import PaddedWrapper from '../common/PaddedWrapper'
 

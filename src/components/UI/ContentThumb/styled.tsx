@@ -22,6 +22,14 @@ export const IconHolder = styled.div`
 
 export const Img = styled(BaseImg)`
   transition: transform ${({ theme }) => theme.transitions.cubic('0.7s')};
+
+  /* The blurred image is hidden in firefox, so we use this shadow as fallback */
+  @supports (-moz-appearance: none) {
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.014),
+      0 6.7px 5.3px rgba(0, 0, 0, 0.02), 0 12.5px 10px rgba(0, 0, 0, 0.025),
+      0 22.3px 17.9px rgba(0, 0, 0, 0.03), 0 41.8px 33.4px rgba(0, 0, 0, 0.036),
+      0 100px 80px rgba(0, 0, 0, 0.05);
+  }
 `
 
 export const BlurImg = styled(BaseImg)`
@@ -40,6 +48,13 @@ export const BlurImg = styled(BaseImg)`
 
   img {
     backdrop-filter: blur(10px);
+  }
+
+  /* Firefox performance is terrible when using filter and transition */
+  @supports (-moz-appearance: none) {
+    & {
+      display: none;
+    }
   }
 `
 

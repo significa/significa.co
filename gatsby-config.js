@@ -49,7 +49,7 @@ module.exports = {
       options: {
         repositoryName: 'significa',
         defaultLang: 'en-gb',
-        previews: true,
+        previews: process.env.NODE_ENV !== 'production',
         path: '/preview',
         sharpKeys: [/image|photo|picture|hero|profile_pic/],
         pages: [
@@ -74,13 +74,13 @@ module.exports = {
           {
             type: 'Blog_post',
             match: '/blog/:uid',
-            path: '/blog-post',
+            path: '/blog-post-preview',
             component: require.resolve('./src/templates/blog-post.tsx'),
           },
           {
             type: 'Blog_author',
             match: '/blog/author/:uid',
-            path: '/blog-post-author',
+            path: '/blog-author-preview',
             component: require.resolve('./src/templates/blog-author.tsx'),
           },
         ],

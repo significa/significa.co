@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /**
  * Implement Gatsby's Browser APIs in this file.
  *
@@ -11,22 +12,12 @@
 
 import React from 'react'
 import { Provider } from './src/components/Header'
+import { registerLinkResolver } from 'gatsby-source-prismic-graphql'
+
+import linkResolver from './src/utils/linkResolver'
+
+registerLinkResolver(linkResolver)
 
 export const wrapPageElement = ({ element, props }) => {
   return <Provider {...props}>{element}</Provider>
 }
-
-// export const onRouteUpdate = ({ location: { hash } }) => {
-//   if (hash) {
-//     window.setTimeout(() => {
-//       const el = document.querySelector(hash)
-//       if (el) return window.scrollTo(0, el.offsetTop)
-//       return false
-//     })
-//   }
-// }
-
-const { registerLinkResolver } = require('gatsby-source-prismic-graphql')
-const { linkResolver } = require('./src/utils/linkResolver')
-
-registerLinkResolver(linkResolver)

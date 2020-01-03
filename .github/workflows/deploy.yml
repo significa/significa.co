@@ -32,7 +32,7 @@ jobs:
           DEST_DIR: 'public'
 
       - name: Build
-        run: npm run build
+        run: PRISMIC_ACCESS_TOKEN=${{ secrets.PRISMIC_ACCESS_TOKEN }} npm run build
         if: success() || failure()
 
       - name: Deploy

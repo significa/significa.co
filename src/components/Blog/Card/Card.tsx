@@ -31,7 +31,7 @@ const Card: React.FC<{ post: BlogPost }> = ({ post }) => {
         </S.Content>
       </S.HoverHint>
 
-      <AuthorBox compact author={post.data.author.document[0].data}>
+      <AuthorBox compact author={post.data.author.document.data}>
         {/* render as children */}
         <span>·</span>
         <Link to={linkResolver(categoryMeta)}>{post.data.category}</Link>

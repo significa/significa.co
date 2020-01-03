@@ -8,7 +8,7 @@ const AuthorSection: React.FC<{ content: Author }> = ({ content }) => {
     <S.Wrapper>
       {content.profile_pic && (
         <S.Image
-          fluid={content.profile_pic.localFile.childImageSharp.fluid}
+          fluid={content.profile_pic.fluid}
           alt={content.profile_pic.alt}
         />
       )}

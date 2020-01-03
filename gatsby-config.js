@@ -105,7 +105,7 @@ module.exports = {
         },
         lang: '*',
         shouldDownloadImage: () => {
-          return true
+          return false
         },
       },
     },

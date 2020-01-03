@@ -54,12 +54,8 @@ export const query = graphql`
                     profile_pic {
                       alt
                       url
-                      localFile {
-                        childImageSharp {
-                          fluid {
-                            ...GatsbyImageSharpFluid_withWebp_noBase64
-                          }
-                        }
+                      fluid {
+                        ...GatsbyPrismicImageFluid_noBase64
                       }
                     }
                   }
@@ -73,12 +69,8 @@ export const query = graphql`
             hero {
               alt
               url
-              localFile {
-                childImageSharp {
-                  fluid {
-                    ...GatsbyImageSharpFluid_withWebp_noBase64
-                  }
-                }
+              fluid {
+                ...GatsbyPrismicImageFluid_noBase64
               }
             }
           }

@@ -44,9 +44,7 @@ const BlogPostPage: React.FC<Prop> = ({ data }) => {
       <SEO
         title={content.data.meta_title}
         description={content.data.meta_description}
-        image={
-          content.data.meta_image_share.localFile.childImageSharp.fixed.src
-        }
+        image={content.data.meta_image_share.fixed.src}
       />
 
       <Container as="article">
@@ -58,13 +56,13 @@ const BlogPostPage: React.FC<Prop> = ({ data }) => {
           <S.Title as="h1">{content.data.title}</S.Title>
           <S.Description as="h2">{content.data.teaser}</S.Description>
 
-          <AuthorBox author={content.data.author.document[0].data} />
+          <AuthorBox author={content.data.author.document.data} />
         </S.Header>
 
         <S.ImageHero as="figure">
           <Image
             loading="eager"
-            fluid={content.data.hero.localFile.childImageSharp.fluid}
+            fluid={content.data.hero.fluid}
             alt={content.data.hero.alt}
           />
           <Label as="figcaption">{content.data.hero.alt}</Label>
@@ -83,7 +81,7 @@ const BlogPostPage: React.FC<Prop> = ({ data }) => {
           ))}
 
           <S.AuthorSection>
-            <AuthorSection content={content.data.author.document[0].data} />
+            <AuthorSection content={content.data.author.document.data} />
           </S.AuthorSection>
         </S.Footer>
       </Container>
@@ -118,12 +116,8 @@ export const query = graphql`
                 profile_pic {
                   alt
                   url
-                  localFile {
-                    childImageSharp {
-                      fluid {
-                        ...GatsbyImageSharpFluid_withWebp_noBase64
-                      }
-                    }
+                  fluid {
+                    ...GatsbyPrismicImageFluid_noBase64
                   }
                 }
               }
@@ -142,47 +136,19 @@ export const query = graphql`
         hero {
           alt
           url
-          localFile {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
-              }
-            }
+          fluid {
+            ...GatsbyPrismicImageFluid_noBase64
           }
         }
         meta_title
         meta_description
         content {
           html
-          raw {
-            label
-            type
-            text
-            url
-            alt
-            dimensions {
-              width
-              height
-            }
-            spans {
-              start
-              end
-              type
-              data {
-                link_type
-                url
-                target
-              }
-            }
-          }
+          raw
         }
         meta_image_share {
-          localFile {
-            childImageSharp {
-              fixed(width: 1200, height: 600) {
-                src
-              }
-            }
+          fixed(width: 1200, height: 600) {
+            src
           }
         }
       }

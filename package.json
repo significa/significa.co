@@ -41,7 +41,7 @@
     "framer-motion": "^1.7.0",
     "gatsby": "^2.18.17",
     "gatsby-image": "^2.2.37",
-    "gatsby-source-prismic": "^2.3.0-alpha.3",
+    "gatsby-source-prismic": "^3.0.0-beta.19",
     "prettier": "^1.19.1",
     "prism-react-renderer": "^1.0.2",
     "prismic-reactjs": "^1.1.2",

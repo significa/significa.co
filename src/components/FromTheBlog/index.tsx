@@ -57,7 +57,7 @@ const FromTheBlog: React.FC<{}> = () => {
                       <S.Author>
                         <AuthorBox
                           compact
-                          author={post.data.author.document[0].data}
+                          author={post.data.author.document.data}
                         >
                           {/* render as children */}
                           <span>·</span>
@@ -114,12 +114,8 @@ const fromTheBlogQuery = graphql`
                   data {
                     name
                     profile_pic {
-                      localFile {
-                        childImageSharp {
-                          fluid {
-                            ...GatsbyImageSharpFluid_withWebp_noBase64
-                          }
-                        }
+                      fluid {
+                        ...GatsbyPrismicImageFluid_noBase64
                       }
                     }
                   }

@@ -84,7 +84,7 @@ export const Content = styled.div`
   }
 
   strong {
-    font-weight: bold;
+    font-weight: 500;
   }
 
   a {

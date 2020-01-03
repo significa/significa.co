@@ -20,11 +20,7 @@ export interface Author {
   profile_pic: {
     alt: string
     url: string
-    localFile: {
-      childImageSharp: {
-        fluid: FluidObject
-      }
-    }
+    fluid: FluidObject
   }
   social_links: AuthorSocial[]
 }
@@ -39,12 +35,8 @@ export interface BlogPost {
     meta_image_share: {
       alt: string
       url: string
-      localFile: {
-        childImageSharp: {
-          fixed: {
-            src: string
-          }
-        }
+      fixed: {
+        src: string
       }
     }
 
@@ -54,9 +46,9 @@ export interface BlogPost {
     teaser: string
     author: {
       url: string
-      document: Array<{
+      document: {
         data: Author
-      }>
+      }
     }
     category: string
 
@@ -64,11 +56,7 @@ export interface BlogPost {
     hero: {
       alt: string
       url: string
-      localFile: {
-        childImageSharp: {
-          fluid: FluidObject
-        }
-      }
+      fluid: FluidObject
     }
 
     content: {

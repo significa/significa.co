@@ -51,12 +51,8 @@ export const query = graphql`
                       social
                     }
                     profile_pic {
-                      localFile {
-                        childImageSharp {
-                          fluid {
-                            ...GatsbyImageSharpFluid_withWebp_noBase64
-                          }
-                        }
+                      fluid {
+                        ...GatsbyPrismicImageFluid_noBase64
                       }
                     }
                   }
@@ -71,21 +67,13 @@ export const query = graphql`
             hero {
               alt
               url
-              localFile {
-                childImageSharp {
-                  fluid {
-                    ...GatsbyImageSharpFluid_withWebp_noBase64
-                  }
-                }
+              fluid {
+                ...GatsbyPrismicImageFluid_noBase64
               }
             }
             meta_image_share {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 500) {
-                    ...GatsbyImageSharpFluid_withWebp_noBase64
-                  }
-                }
+              fluid(maxWidth: 500) {
+                ...GatsbyPrismicImageFluid_noBase64
               }
             }
           }

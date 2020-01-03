@@ -6,15 +6,6 @@ type Theme = IColorsTheme & {
   name: string
 }
 
-interface ImageObject {
-  childImageSharp: {
-    fluid: FluidObject
-    resize: {
-      height: number
-    }
-  }
-}
-
 export interface IProject {
   main_theme: string
   hero_theme: string
@@ -29,7 +20,9 @@ export interface IProject {
 
   project_title: string
   tagline: string
-  hero_imageSharp: ImageObject
+  hero_image: {
+    fluid: FluidObject
+  }
 
   description: string
   client: string
@@ -38,13 +31,14 @@ export interface IProject {
   links: Array<{ link_text: string; link: { url: string } }>
 
   next_project: {
-    hero_theme: string
-    themes: Theme[]
-    project_title: string
-    tagline: string
-    _meta: {
-      type: string
-      uid: string
+    document: {
+      url: string
+      data: {
+        hero_theme: string
+        themes: Theme[]
+        project_title: string
+        tagline: string
+      }
     }
   }
 

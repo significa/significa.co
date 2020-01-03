@@ -49,7 +49,6 @@
     "react-dom": "^16.12.0",
     "react-headroom": "^3.0.0",
     "react-helmet": "^5.2.0",
-    "react-syntax-highlighter": "^12.2.1",
     "resize-observer-polyfill": "^1.5.1",
     "styled-components": "^4.4.1"
   },
@@ -83,7 +82,6 @@
     "gatsby-plugin-styled-components": "^3.1.16",
     "gatsby-plugin-typescript": "^2.1.23",
     "gatsby-source-filesystem": "^2.1.43",
-    "gatsby-source-prismic-graphql": "^3.4.0-beta.1",
     "gatsby-transformer-remark": "^2.6.45",
     "gatsby-transformer-sharp": "^2.3.9",
     "gatsby-transformer-yaml": "^2.2.20",

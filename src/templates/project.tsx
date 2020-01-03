@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Theme } from '@theme'
 
-import linkResolver from '../utils/linkResolver'
 import { getProjectTheme } from '../utils/getProjectTheme'
 import { IProject } from './project.types'
 
@@ -13,14 +12,14 @@ import ConditionalWrap from '../components/utils/ConditionalWrap'
 
 interface IProjectProps {
   data: {
-    prismic: {
-      project: IProject
+    prismicProject: {
+      data: IProject
     }
   }
 }
 
 const ProjectPage = ({ data }: IProjectProps) => {
-  const { project } = data.prismic
+  const { data: project } = data.prismicProject
 
   // Someplace to save the section name
   const sectionName = React.useRef<string>('')
@@ -48,7 +47,7 @@ const ProjectPage = ({ data }: IProjectProps) => {
           <Hero
             title={project.project_title}
             tagline={project.tagline}
-            fluid={project.hero_imageSharp.childImageSharp.fluid}
+            fluid={project.hero_image.fluid}
           />
         </Theme>
 
@@ -84,8 +83,8 @@ const ProjectPage = ({ data }: IProjectProps) => {
 
         {/* Content */}
         {project.body.map((section, i) => {
-          if (section.type === 'section' && section.section) {
-            sectionName.current = section.section.title
+          if (section.slice_type === 'section') {
+            sectionName.current = section.primary.title
           }
 
           return (
@@ -101,14 +100,14 @@ const ProjectPage = ({ data }: IProjectProps) => {
         {/* Next  project */}
         <Theme
           theme={getProjectTheme(
-            project.next_project.hero_theme,
-            project.next_project.themes
+            project.next_project.document.data.hero_theme,
+            project.next_project.document.data.themes
           )}
         >
           <Next
-            title={project.next_project.project_title}
-            tagline={project.next_project.tagline}
-            link={linkResolver(project.next_project._meta)}
+            title={project.next_project.document.data.project_title}
+            tagline={project.next_project.document.data.tagline}
+            link={project.next_project.document.url}
           />
         </Theme>
       </div>
@@ -119,10 +118,58 @@ const ProjectPage = ({ data }: IProjectProps) => {
 export default ProjectPage
 
 export const query = graphql`
-  query($uid: String!, $lang: String!) {
-    prismic {
-      project(lang: $lang, uid: $uid) {
-        ...ProjectFragment
+  query($uid: String!) {
+    prismicProject(uid: { eq: $uid }) {
+      data {
+        ...ProjectThemes
+        ...ProjectSEO
+        ...ProjectHero
+        ...ProjectMeta
+        ...NextProject
+        body {
+          ... on PrismicProjectBodyChapter {
+            ...BodyChapter
+          }
+          ... on PrismicProjectBodySection {
+            ...BodySection
+          }
+          ... on PrismicProjectBodyText {
+            ...BodyText
+          }
+          ... on PrismicProjectBodyImage {
+            ...BodyImage
+          }
+          ... on PrismicProjectBodyVideo {
+            ...BodyVideo
+          }
+          ... on PrismicProjectBodyImageGallery {
+            ...BodyImageGallery
+          }
+          ... on PrismicProjectBodyComparison {
+            ...BodyComparison
+          }
+          ... on PrismicProjectBodySlideshow {
+            ...BodySlideshow
+          }
+          ... on PrismicProjectBodyWaterfall {
+            ...BodyWaterfall
+          }
+          ... on PrismicProjectBodyTestimonial {
+            ...BodyTestimonial
+          }
+          ... on PrismicProjectBodyEmbed {
+            ...BodyEmbed
+          }
+          ... on PrismicProjectBodyHighlight {
+            ...BodyHighlight
+          }
+          ... on PrismicProjectBodyStickyImage {
+            ...BodyStickyImage
+          }
+          ... on PrismicProjectBodyStickyVideo {
+            ...BodyStickyVideo
+          }
+        }
       }
     }
   }

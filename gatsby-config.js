@@ -48,47 +48,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-prismic-graphql',
-      options: {
-        repositoryName: 'significa',
-        defaultLang: 'en-gb',
-        previews: false,
-        sharpKeys: [/image|photo|picture|hero|profile_pic/],
-        pages: [
-          {
-            type: 'Project',
-            match: '/showcase/:uid',
-            path: '/project-preview',
-            component: require.resolve('./src/templates/project.tsx'),
-          },
-          // {
-          //   type: 'Position',
-          //   match: '/careers/:uid',
-          //   path: '/position-preview',
-          //   component: require.resolve('./src/templates/position.tsx'),
-          // },
-          // {
-          //   type: 'Handbook_chapter',
-          //   match: '/handbook/:uid',
-          //   path: '/handbook-preview',
-          //   component: require.resolve('./src/templates/handbook.tsx'),
-          // },
-          // {
-          //   type: 'Blog_post',
-          //   match: '/blog/:uid',
-          //   path: '/blog-post-preview',
-          //   component: require.resolve('./src/templates/blog-post.tsx'),
-          // },
-          // {
-          //   type: 'Blog_author',
-          //   match: '/blog/author/:uid',
-          //   path: '/blog-author-preview',
-          //   component: require.resolve('./src/templates/blog-author.tsx'),
-          // },
-        ],
-      },
-    },
-    {
       resolve: 'gatsby-source-prismic',
       options: {
         repositoryName: 'significa',
@@ -114,14 +73,7 @@ module.exports = {
     'gatsby-plugin-styled-components',
     'gatsby-transformer-sharp',
     `gatsby-transformer-remark`,
-    {
-      resolve: 'gatsby-plugin-sharp',
-      options: {
-        useMozJpeg: process.env.NODE_ENV === 'production',
-        stripMetadata: true,
-        defaultQuality: process.env.NODE_ENV === 'production' ? 100 : 50,
-      },
-    },
+    'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

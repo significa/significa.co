@@ -12,7 +12,7 @@ interface ITextProps extends TextType {
   sectionLabel?: string
 }
 
-const Text = ({ text, sectionLabel }: ITextProps) => {
+const Text = ({ primary: text, sectionLabel }: ITextProps) => {
   const id = text.title ? titleToID(text.title) : undefined
 
   return (

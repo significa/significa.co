@@ -27,17 +27,13 @@ interface INavigationItem {
 }
 
 const getItemText = (item: PossibleTypes) => {
-  switch (item.type) {
+  switch (item.slice_type) {
     case 'chapter':
-      return item.chapter.title
     case 'section':
-      return item.section.title
     case 'text':
-      return item.text.title
     case 'sticky_image':
-      return item.sticky_image.title
     case 'sticky_video':
-      return item.sticky_video.title
+      return item.primary.title
     default:
       throw new Error('Unexpected type received')
   }
@@ -48,7 +44,7 @@ const NavigationItem: React.FC<INavigationItem> = ({
   toggleVisible,
   ...props
 }) => {
-  switch (item.type) {
+  switch (item.slice_type) {
     case 'chapter':
       return (
         <S.AnimatedChapterTitle {...props}>

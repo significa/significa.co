@@ -49,6 +49,26 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 
   /**
+   * Projects
+   */
+  const projects = await graphql(`
+    {
+      allPrismicProject {
+        nodes {
+          uid
+        }
+      }
+    }
+  `)
+  projects.data.allPrismicProject.nodes.forEach(({ uid }) => {
+    createPage({
+      path: `/showcase/${uid}`,
+      component: path.resolve('./src/templates/project.tsx'),
+      context: { uid },
+    })
+  })
+
+  /**
    * Handbook
    */
   const chapters = await graphql(`

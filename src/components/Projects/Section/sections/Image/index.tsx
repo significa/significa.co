@@ -5,11 +5,11 @@ import { ImageType } from '../../types'
 
 import * as S from './styled'
 
-const Image = ({ image: { image, imageSharp, caption } }: ImageType) => {
+const Image = ({ primary: { image, caption } }: ImageType) => {
   const altProps = image.alt ? { alt: image.alt } : {}
   return (
     <figure>
-      <Img fluid={imageSharp.childImageSharp.fluid} {...altProps} />
+      <Img fluid={image.fluid} {...altProps} />
       {caption && <S.Caption>{caption}</S.Caption>}
     </figure>
   )

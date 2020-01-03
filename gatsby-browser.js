@@ -12,11 +12,6 @@
 
 import React from 'react'
 import { Provider } from './src/components/Header'
-import { registerLinkResolver } from 'gatsby-source-prismic-graphql'
-
-import linkResolver from './src/utils/linkResolver'
-
-registerLinkResolver(linkResolver)
 
 export const wrapPageElement = ({ element, props }) => {
   return <Provider {...props}>{element}</Provider>

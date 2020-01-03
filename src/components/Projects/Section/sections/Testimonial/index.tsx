@@ -8,7 +8,7 @@ import { Title, Text, ArrowLink, Link } from '../../../../UI'
 import * as S from './styled'
 
 const Testimonial = ({
-  testimonial: { author, link, link_to, text },
+  primary: { author, link, link_to, text },
 }: TestimonialType) => {
   return (
     <S.Wrapper>

@@ -4,7 +4,7 @@ import { VideoType } from '../../types'
 
 import * as S from './styled'
 
-const Video = ({ video }: VideoType) => {
+const Video = ({ primary: video }: VideoType) => {
   return (
     <React.Fragment>
       <video

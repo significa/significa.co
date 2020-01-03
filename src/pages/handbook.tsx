@@ -8,12 +8,10 @@ import { Top, Featured, Category } from '../components/Handbook/MainPage'
 
 interface HandbookPageProps {
   data: {
-    prismic: {
-      allHandbooks: {
-        edges: Array<{
-          node: HandbookData
-        }>
-      }
+    allPrismicHandbook: {
+      nodes: Array<{
+        data: HandbookData
+      }>
     }
   }
 }
@@ -23,27 +21,28 @@ interface ChapterBase {
   chapter_link_description: string
 }
 
-interface ChapterContentBase {
-  _meta: {
-    uid: string
-    type: string
-  }
-  title: string
-}
-
 export type Chapter = ChapterBase & {
-  chapter: ChapterContentBase
+  chapter: {
+    url: string
+    document: {
+      data: {
+        title: string
+      }
+    }
+  }
 }
 
 export type ChapterWithImage = ChapterBase & {
-  chapter: ChapterContentBase & {
-    image: {
-      alt: string
-      url: string
-    }
-    imageSharp: {
-      childImageSharp: {
-        fluid: FluidObject
+  chapter: {
+    url: string
+    document: {
+      data: {
+        title: string
+        image: {
+          alt: string
+          url: string
+          fluid: FluidObject
+        }
       }
     }
   }
@@ -59,12 +58,12 @@ interface HandbookData {
       category_description: string
       category_title: string
     }
-    fields: Chapter[]
+    items: Chapter[]
   }>
 }
 
 const HandbookPage = ({ data }: HandbookPageProps) => {
-  const content = data.prismic.allHandbooks.edges[0].node
+  const content = data.allPrismicHandbook.nodes[0].data
 
   return (
     <Layout>
@@ -84,7 +83,7 @@ const HandbookPage = ({ data }: HandbookPageProps) => {
             key={i}
             title={category.primary.category_title}
             description={category.primary.category_description}
-            chapters={category.fields}
+            chapters={category.items}
           />
         )
       })}
@@ -96,52 +95,52 @@ export default HandbookPage
 
 export const query = graphql`
   query HandbookPage {
-    prismic {
-      allHandbooks {
-        edges {
-          node {
-            title
-            description
-            side_note
+    allPrismicHandbook {
+      nodes {
+        data {
+          title
+          description
+          side_note
 
-            featured {
-              chapter_link_text
-              chapter_link_description
-              chapter {
-                ... on PRISMIC_Handbook_chapter {
-                  _meta {
-                    uid
-                    type
-                  }
-                  title
-                  image
-                  imageSharp {
-                    childImageSharp {
+          featured {
+            chapter_link_text
+            chapter_link_description
+
+            chapter {
+              url
+              document {
+                ... on PrismicHandbookChapter {
+                  data {
+                    title
+                    image {
+                      alt
+                      url
                       fluid(maxWidth: 600) {
-                        ...GatsbyImageSharpFluid_withWebp_noBase64
+                        ...GatsbyPrismicImageFluid_noBase64
                       }
                     }
                   }
                 }
               }
             }
+          }
+          body {
+            ... on PrismicHandbookBodyCategory {
+              primary {
+                category_title
+                category_description
+              }
+              items {
+                chapter_link_text
+                chapter_link_description
 
-            body {
-              ... on PRISMIC_HandbookBodyCategory {
-                primary {
-                  category_description
-                  category_title
-                }
-                fields {
-                  chapter_link_text
-                  chapter_link_description
-                  chapter {
-                    ... on PRISMIC_Handbook_chapter {
-                      _meta {
-                        uid
-                        type
+                chapter {
+                  url
+                  document {
+                    ... on PrismicHandbookChapter {
+                      data {
+                        title
                       }
-                      title
                     }
                   }
                 }

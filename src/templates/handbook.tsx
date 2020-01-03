@@ -26,10 +26,13 @@ export interface Testimonial {
   quote: string
   link_text: string
   link: {
-    _meta?: {
-      uid: string
-      type: string
-    }
+    url: string
+  }
+}
+
+export interface Content {
+  content: {
+    raw: object[]
   }
 }
 
@@ -38,51 +41,47 @@ export interface Chapter {
   description: string
   image: {
     alt: string
-  }
-  imageSharp: {
-    childImageSharp: {
-      fluid: FluidObject
-      resize: {
-        height: number
-      }
-    }
+    fluid: FluidObject
+    // resize not available
+    // resize: {
+    //   height: number
+    // }
   }
   body: Array<{
-    content?: {
-      content: any
-    }
-    testimonial?: Testimonial
+    primary: Content | Testimonial
   }>
 }
 
 export interface NavigationChapter {
   chapter: {
-    _meta: {
-      uid: string
-      type: string
-    }
-    title: string
-    image: {
-      alt: string
+    document: {
       url: string
+      uid: string
+      data: {
+        title: string
+        image: {
+          alt: string
+          url: string
+        }
+      }
     }
   }
 }
 
 interface HandbookChapterPageProps {
   data: {
-    prismic: {
-      handbook_chapter: Chapter
-      allHandbooks: {
-        edges: Array<{
-          node: {
-            featured: NavigationChapter[]
-            body: Array<{
-              fields: NavigationChapter[]
-            }>
-          }
-        }>
-      }
+    prismicHandbookChapter: {
+      data: Chapter
+    }
+    allPrismicHandbook: {
+      nodes: Array<{
+        data: {
+          featured: NavigationChapter[]
+          body: Array<{
+            items: NavigationChapter[]
+          }>
+        }
+      }>
     }
   }
   pageContext: {
@@ -91,25 +90,25 @@ interface HandbookChapterPageProps {
 }
 
 const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
-  data: {
-    prismic: { handbook_chapter: chapter, allHandbooks },
-  },
+  data: { prismicHandbookChapter, allPrismicHandbook },
   pageContext: { uid },
 }) => {
-  if (!chapter) {
+  if (!prismicHandbookChapter) {
     return null
   }
 
   let prevChapter
   let nextChapter
   // Featured chapters
-  const allChapters = allHandbooks.edges[0].node.featured
+  const allChapters = allPrismicHandbook.nodes[0].data.featured
   // Add all chapters from each group
-  allHandbooks.edges[0].node.body.forEach(group => {
-    allChapters.push(...group.fields)
+  allPrismicHandbook.nodes[0].data.body.forEach(group => {
+    allChapters.push(...group.items)
   })
 
-  const currIndex = [...allChapters].findIndex(c => c.chapter._meta.uid === uid)
+  const currIndex = [...allChapters].findIndex(
+    c => c.chapter.document.uid === uid
+  )
   if (currIndex > 0) {
     prevChapter = allChapters[currIndex - 1]
   }
@@ -124,15 +123,18 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
 
   return (
     <HandbookLayout currentPage={uid}>
-      <SEO title={chapter.title} description={chapter.description} />
+      <SEO
+        title={prismicHandbookChapter.data.title}
+        description={prismicHandbookChapter.data.description}
+      />
 
-      <Cover chapter={chapter} />
-      {chapter.body.map((chunk, i) => {
-        if (chunk.content) {
+      <Cover chapter={prismicHandbookChapter.data} />
+      {prismicHandbookChapter.data.body.map((chunk, i) => {
+        if ('content' in chunk.primary) {
           return (
             <Content key={i}>
               <RichText
-                render={chunk.content.content}
+                render={chunk.primary.content.raw}
                 linkResolver={linkResolver}
                 htmlSerializer={(type: string, element: any) => {
                   if (type === 'heading2') {
@@ -188,8 +190,8 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
           )
         }
 
-        if (chunk.testimonial) {
-          return <Testimonial key={i} testimonial={chunk.testimonial} />
+        if ('quote' in chunk.primary) {
+          return <Testimonial key={i} testimonial={chunk.primary} />
         }
 
         return null
@@ -203,75 +205,78 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
 export default HandbookChapterPage
 
 export const query = graphql`
-  query HandbookChapter($uid: String!, $lang: String!) {
-    prismic {
-      handbook_chapter(lang: $lang, uid: $uid) {
+  fragment ChapterHandbookTemplate on PrismicLinkType {
+    document {
+      ... on PrismicHandbookChapter {
+        uid
+        url
+        data {
+          title
+          image {
+            alt
+            url
+          }
+        }
+      }
+    }
+  }
+
+  query HandbookChapter($uid: String!) {
+    prismicHandbookChapter(uid: { eq: $uid }) {
+      data {
         title
         description
-        image
-        imageSharp {
-          childImageSharp {
-            fluid(maxWidth: 1000) {
-              ...GatsbyImageSharpFluid_withWebp_noBase64
-            }
+        image {
+          alt
+          fluid(maxWidth: 1000) {
+            ...GatsbyPrismicImageFluid_noBase64
           }
         }
         body {
-          ... on PRISMIC_Handbook_chapterBodyContent {
-            content: primary {
-              content
+          ... on PrismicHandbookChapterBodyContent {
+            primary {
+              content {
+                raw
+              }
             }
           }
-          ... on PRISMIC_Handbook_chapterBodyTestimonial {
-            testimonial: primary {
+          ... on PrismicHandbookChapterBodyTestimonial {
+            primary {
               name
               position
               background_color
-              photo
-              logo
+              photo {
+                alt
+                url
+              }
+              logo {
+                alt
+                url
+              }
               quote
               link_text
               link {
-                ... on PRISMIC_Project {
-                  _meta {
-                    uid
-                    type
-                  }
-                }
+                url
               }
             }
           }
         }
       }
+    }
 
-      allHandbooks {
-        edges {
-          node {
-            featured {
-              chapter {
-                ... on PRISMIC_Handbook_chapter {
-                  title
-                  image
-                  _meta {
-                    uid
-                    type
-                  }
-                }
-              }
+    allPrismicHandbook {
+      nodes {
+        data {
+          featured {
+            chapter {
+              ...ChapterHandbookTemplate
             }
-            body {
-              ... on PRISMIC_HandbookBodyCategory {
-                fields {
-                  chapter {
-                    ... on PRISMIC_Handbook_chapter {
-                      title
-                      image
-                      _meta {
-                        uid
-                        type
-                      }
-                    }
-                  }
+          }
+          body {
+            ... on PrismicHandbookBodyCategory {
+              items {
+                chapter {
+                  ...ChapterHandbookTemplate
                 }
               }
             }

@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { NavigationChapter } from '../../../templates/handbook'
-import linkResolver from '../../../utils/linkResolver'
 
 import * as S from './styled'
 
@@ -21,36 +20,36 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({
   return (
     <S.Wrapper>
       {prevChapter && (
-        <S.Box to={linkResolver(prevChapter.chapter._meta)}>
+        <S.Box to={prevChapter.chapter.document.url}>
           <S.Header>
             <S.Prev>Previous</S.Prev>
             <S.LinkHolder>
               <S.LeftArrow />
-              <S.Title>{prevChapter.chapter.title}</S.Title>
+              <S.Title>{prevChapter.chapter.document.data.title}</S.Title>
             </S.LinkHolder>
           </S.Header>
           <S.ImgHolder>
             <S.Image
-              src={prevChapter.chapter.image.url}
-              alt={prevChapter.chapter.image.alt}
+              src={prevChapter.chapter.document.data.image.url}
+              alt={prevChapter.chapter.document.data.image.alt}
             />
           </S.ImgHolder>
         </S.Box>
       )}
 
       {nextChapter && (
-        <S.Box to={linkResolver(nextChapter.chapter._meta)}>
+        <S.Box to={nextChapter.chapter.document.url}>
           <S.Header>
             <S.Next>Next</S.Next>
             <S.LinkHolder>
-              <S.Title>{nextChapter.chapter.title}</S.Title>
+              <S.Title>{nextChapter.chapter.document.data.title}</S.Title>
               <S.RightArrow />
             </S.LinkHolder>
           </S.Header>
           <S.ImgHolder>
             <S.Image
-              src={nextChapter.chapter.image.url}
-              alt={nextChapter.chapter.image.alt}
+              src={nextChapter.chapter.document.data.image.url}
+              alt={nextChapter.chapter.document.data.image.alt}
             />
           </S.ImgHolder>
         </S.Box>

@@ -8,7 +8,7 @@ import useMeasure from '../../../hooks/useMeasure'
 import * as S from './styled'
 
 interface IHighlights {
-  content: Array<{ node: ILabType }>
+  content: Array<{ node: { data: ILabType } }>
 }
 
 const ThumbHolder: React.FC<{}> = ({ children }) => {
@@ -29,13 +29,13 @@ const Highlights: React.FC<IHighlights> = ({ content }) => {
       {[...content].splice(0, 6).map((item, i) => (
         <ThumbHolder key={i}>
           <LabsThumb
-            to={item.node.link}
-            title={item.node.title}
-            tagline={item.node.tagline}
-            fluid={item.node.imageSharp.childImageSharp.fluid}
-            alt={item.node.image.alt}
-            more={item.node.link_text}
-            source={item.node.source}
+            to={item.node.data.link}
+            title={item.node.data.title}
+            tagline={item.node.data.tagline}
+            fluid={item.node.data.image.fluid}
+            alt={item.node.data.image.alt}
+            more={item.node.data.link_text}
+            source={item.node.data.source}
           />
         </ThumbHolder>
       ))}

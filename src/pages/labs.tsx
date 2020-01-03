@@ -12,11 +12,7 @@ export interface ILabType {
   tagline: string
   image: {
     alt: string
-  }
-  imageSharp: {
-    childImageSharp: {
-      fluid: FluidObject
-    }
+    fluid: FluidObject
   }
   source: LabsSourceType
   tags: Array<{ tag: string }>
@@ -34,12 +30,12 @@ interface ILabs {
       title: string
       subtitle: string
     }
-    prismic: {
-      allLab_entrys: {
-        edges: Array<{
-          node: ILabType
-        }>
-      }
+    allPrismicLabEntry: {
+      edges: Array<{
+        node: {
+          data: ILabType
+        }
+      }>
     }
   }
 }
@@ -57,9 +53,9 @@ const Labs: React.FC<ILabs> = ({ data }) => {
         subtitle={data.labsPageYaml.subtitle}
       />
 
-      <Highlights content={data.prismic.allLab_entrys.edges} />
+      <Highlights content={data.allPrismicLabEntry.edges} />
 
-      <All content={data.prismic.allLab_entrys.edges} />
+      <All content={data.allPrismicLabEntry.edges} />
     </Layout>
   )
 }
@@ -68,18 +64,10 @@ export default Labs
 
 export const query = graphql`
   query LabsQuery {
-    prismic {
-      allLab_entrys(sortBy: meta_firstPublicationDate_DESC) {
-        edges {
-          node {
-            image
-            imageSharp {
-              childImageSharp {
-                fluid(maxWidth: 1000) {
-                  ...GatsbyImageSharpFluid_withWebp_noBase64
-                }
-              }
-            }
+    allPrismicLabEntry(sort: { order: DESC, fields: first_publication_date }) {
+      edges {
+        node {
+          data {
             link
             link_text
             source
@@ -87,6 +75,11 @@ export const query = graphql`
             title
             tags {
               tag
+            }
+            image {
+              fluid(maxWidth: 1000) {
+                ...GatsbyPrismicImageFluid_noBase64
+              }
             }
           }
         }

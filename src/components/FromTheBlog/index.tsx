@@ -20,12 +20,10 @@ interface IFromTheBlogQuery {
       link: string
     }
   }
-  prismic: {
-    allBlog_posts: {
-      edges: Array<{
-        node: BlogPost
-      }>
-    }
+  allPrismicBlogPost: {
+    edges: Array<{
+      node: BlogPost
+    }>
   }
 }
 
@@ -35,38 +33,39 @@ const FromTheBlog: React.FC<{}> = () => {
       query={fromTheBlogQuery}
       render={({
         homeYaml: { fromTheBlog },
-        prismic: {
-          allBlog_posts: { edges },
-        },
+        allPrismicBlogPost: { edges },
       }: IFromTheBlogQuery) => {
         return (
           <S.Wrapper>
             <RightContent title={fromTheBlog.title}>
               <ul>
                 {edges.map(({ node: post }, i) => {
-                  const slugifyCategory = slugify(post.category)
+                  const slugifyCategory = slugify(post.data.category)
                   const categoryMeta = {
                     type: 'blog_category',
                     uid: slugifyCategory,
                   }
 
-                  const postLink = linkResolver(post._meta)
+                  const postLink = linkResolver(post)
 
                   return (
                     <S.ListItem key={i}>
                       <S.Link href={postLink}>
-                        <Big>{post.title}</Big>
-                        <S.More>{post.teaser}</S.More>
+                        <Big>{post.data.title}</Big>
+                        <S.More>{post.data.teaser}</S.More>
                       </S.Link>
                       <S.Author>
-                        <AuthorBox compact author={post.author}>
+                        <AuthorBox
+                          compact
+                          author={post.data.author.document[0].data}
+                        >
                           {/* render as children */}
                           <span>·</span>
                           <Link to={linkResolver(categoryMeta)}>
-                            {post.category}
+                            {post.data.category}
                           </Link>
                           <span>·</span>
-                          {formatDate(post.date)}
+                          {formatDate(post.data.date)}
                         </AuthorBox>
                       </S.Author>
                     </S.ListItem>
@@ -94,40 +93,36 @@ const fromTheBlogQuery = graphql`
       }
     }
 
-    prismic {
-      allBlog_posts(first: 3, sortBy: date_DESC) {
-        edges {
-          node {
-            _meta {
-              uid
-              type
-            }
-            author {
-              ... on PRISMIC_Blog_author {
-                _meta {
-                  uid
-                  type
-                }
-                name
-                profile_pic
-                profile_picSharp {
-                  childImageSharp {
-                    fluid {
-                      ...GatsbyImageSharpFluid_withWebp_noBase64
-                    }
-                  }
-                }
-              }
-            }
-            category
-            date
+    allPrismicBlogPost(limit: 3, sort: { fields: data___date, order: DESC }) {
+      edges {
+        node {
+          uid
+          type
+
+          data {
             title
             teaser
-            hero
-            meta_image_shareSharp {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid_withWebp_noBase64
+            category
+            date
+
+            author {
+              document {
+                ... on PrismicBlogAuthor {
+                  uid
+                  type
+
+                  data {
+                    name
+                    profile_pic {
+                      localFile {
+                        childImageSharp {
+                          fluid {
+                            ...GatsbyImageSharpFluid_withWebp_noBase64
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }

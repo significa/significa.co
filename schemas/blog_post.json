@@ -1,0 +1,116 @@
+{
+  "Meta": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "UID",
+        "placeholder": "UID (will be used as URL)"
+      }
+    },
+    "meta_title": {
+      "type": "Text",
+      "config": {
+        "label": "Meta title"
+      }
+    },
+    "meta_description": {
+      "type": "Text",
+      "config": {
+        "label": "Meta description"
+      }
+    },
+    "meta_image_share": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Meta image share"
+      }
+    }
+  },
+  "Post settings": {
+    "category": {
+      "type": "Select",
+      "config": {
+        "options": ["Development", "Design", "Interviews", "Strategy"],
+        "label": "Category"
+      }
+    },
+    "date": {
+      "type": "Timestamp",
+      "config": {
+        "label": "Date"
+      }
+    },
+    "title": {
+      "type": "Text",
+      "config": {
+        "label": "Title",
+        "useAsTitle": true
+      }
+    },
+    "teaser": {
+      "type": "Text",
+      "config": {
+        "label": "Description"
+      }
+    },
+    "author": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["blog_author"],
+        "label": "Author"
+      }
+    },
+    "author_slug": {
+      "type": "Text",
+      "config": {
+        "label": "Author slug",
+        "placeholder": "Same used on author document"
+      }
+    },
+    "tags": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "tag": {
+            "type": "Text",
+            "config": {
+              "label": "tag"
+            }
+          }
+        },
+        "label": "Tags"
+      }
+    },
+    "hero": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Hero"
+      }
+    }
+  },
+  "Content": {
+    "content": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "allowTargetBlank": true,
+        "label": "Content",
+        "labels": [
+          "markup",
+          "javascript",
+          "css",
+          "jsx",
+          "bash",
+          "markdown",
+          "graphql",
+          "scss"
+        ]
+      }
+    }
+  }
+}

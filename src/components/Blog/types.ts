@@ -12,51 +12,68 @@ export interface AuthorSocial {
 }
 
 export interface Author {
-  _meta: {
-    uid: string
-    type: string
-  }
   name: string
   position: string
-  description: string
-  profile_pic: { alt: string; url: string }
-  profile_picSharp: {
-    childImageSharp: {
-      fluid: FluidObject
+  description: {
+    html: string
+  }
+  profile_pic: {
+    alt: string
+    url: string
+    localFile: {
+      childImageSharp: {
+        fluid: FluidObject
+      }
     }
   }
   social_links: AuthorSocial[]
 }
 
 export interface BlogPost {
-  _meta: {
-    uid: string
-    type: string
-  }
+  uid: string
+  type: string
 
-  meta_title: string
-  meta_description: string
-  meta_image_shareSharp: {
-    childImageSharp: {
-      fixed: {
-        src: string
+  data: {
+    meta_title: string
+    meta_description: string
+    meta_image_share: {
+      alt: string
+      url: string
+      localFile: {
+        childImageSharp: {
+          fixed: {
+            src: string
+          }
+        }
       }
     }
-  }
-  date: string
 
-  title: string
-  teaser: string
-  author: Author
-  category: string
+    date: string
 
-  tags: Array<{ tag: string }>
-  hero: { alt: string; url: string }
-  heroSharp: {
-    childImageSharp: {
-      fluid: FluidObject
+    title: string
+    teaser: string
+    author: {
+      url: string
+      document: Array<{
+        data: Author
+      }>
+    }
+    category: string
+
+    tags: Array<{ tag: string }>
+    hero: {
+      alt: string
+      url: string
+      localFile: {
+        childImageSharp: {
+          fluid: FluidObject
+        }
+      }
+    }
+
+    content: {
+      html: string
+      raw: object
     }
   }
-
-  content: string
 }

@@ -1,3 +1,5 @@
+// TODO: Page not ready
+
 import React from 'react'
 import { graphql } from 'gatsby'
 
@@ -7,16 +9,14 @@ import BlogList from '../components/Blog/List/List'
 
 interface Prop {
   data: {
-    prismic: {
-      allBlog_posts: {
-        edges: Array<{ node: BlogPost }>
-      }
+    allPrismicBlogPost: {
+      edges: Array<{ node: BlogPost }>
     }
   }
 }
 
 const BlogAuthor: React.FC<Prop> = ({ data }) => {
-  const posts = data.prismic.allBlog_posts.edges
+  const posts = data.allPrismicBlogPost.edges
 
   return (
     <Layout isBlogPage>
@@ -29,45 +29,62 @@ const BlogAuthor: React.FC<Prop> = ({ data }) => {
 
 export const query = graphql`
   query BlogAuthorQuery($uid: String!) {
-    prismic {
-      allBlog_posts(where: { author_slug_fulltext: $uid }) {
-        edges {
-          node {
-            _meta {
-              uid
-              type
-            }
+    allPrismicBlogPost(filter: { data: { author_slug: { eq: $uid } } }) {
+      edges {
+        node {
+          uid
+          type
+
+          data {
             author {
-              ... on PRISMIC_Blog_author {
-                _meta {
+              url
+              document {
+                ... on PrismicBlogAuthor {
                   uid
                   type
-                }
-                name
-                position
-                social_links {
-                  link
-                  social
-                }
-                profile_pic
-                profile_picSharp {
-                  childImageSharp {
-                    fluid {
-                      ...GatsbyImageSharpFluid_withWebp_noBase64
+
+                  data {
+                    name
+                    position
+                    social_links {
+                      link
+                      social
+                    }
+                    profile_pic {
+                      localFile {
+                        childImageSharp {
+                          fluid {
+                            ...GatsbyImageSharpFluid_withWebp_noBase64
+                          }
+                        }
+                      }
                     }
                   }
                 }
               }
             }
+
             category
             date
             title
             teaser
-            hero
-            meta_image_shareSharp {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid_withWebp_noBase64
+            hero {
+              alt
+              url
+              localFile {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid_withWebp_noBase64
+                  }
+                }
+              }
+            }
+            meta_image_share {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 500) {
+                    ...GatsbyImageSharpFluid_withWebp_noBase64
+                  }
                 }
               }
             }

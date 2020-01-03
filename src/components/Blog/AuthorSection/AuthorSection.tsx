@@ -1,15 +1,14 @@
 import React from 'react'
 import { Author } from '../types'
-import { RichText } from 'prismic-reactjs'
 
 import * as S from './styled'
 
 const AuthorSection: React.FC<{ content: Author }> = ({ content }) => {
   return (
     <S.Wrapper>
-      {content.profile_picSharp && (
+      {content.profile_pic && (
         <S.Image
-          fluid={content.profile_picSharp.childImageSharp.fluid}
+          fluid={content.profile_pic.localFile.childImageSharp.fluid}
           alt={content.profile_pic.alt}
         />
       )}
@@ -24,9 +23,9 @@ const AuthorSection: React.FC<{ content: Author }> = ({ content }) => {
           </div>
         </S.Header>
 
-        <S.FormatContent>
-          <RichText render={content.description} />
-        </S.FormatContent>
+        <S.FormatContent
+          dangerouslySetInnerHTML={{ __html: content.description.html }}
+        />
 
         <S.Socials>
           {content.social_links.map(({ social, link }) => {

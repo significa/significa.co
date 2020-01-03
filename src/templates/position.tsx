@@ -1,44 +1,29 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
-import { RichText } from 'prismic-reactjs'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import { FormPosition } from '../components/Careers'
-import { ColetivSmall, AdamantSmall, Big, Markdown } from '../components/UI'
+import { Big, Markdown } from '../components/UI'
 
 import * as S from './position.styled'
-import linkResolver from '../utils/linkResolver'
-
-type CompanyType = 'Coletiv' | 'Adamant'
-type AllCompaniesType = CompanyType | 'Significa'
 
 interface ITemplate {
   data: {
-    prismic: {
-      position: {
-        company: AllCompaniesType
-        text: Array<{ type: string; text: string; spans: [] }>
+    prismicPosition: {
+      data: {
         title: string
+        text: {
+          html: string
+        }
       }
     }
   }
 }
 
-const renderCompany = (company: CompanyType) => {
-  const logoComponents: { [K in CompanyType]: React.FC<any> } = {
-    Coletiv: ColetivSmall,
-    Adamant: AdamantSmall,
-  }
-
-  const ImageComponent = logoComponents[company]
-
-  return <ImageComponent />
-}
-
 const PositionTemplate: React.FC<ITemplate> = ({
   data: {
-    prismic: { position },
+    prismicPosition: { data: position },
   },
 }) => {
   if (!position) {
@@ -51,13 +36,8 @@ const PositionTemplate: React.FC<ITemplate> = ({
       <S.Wrapper>
         <S.TitleWrapper>
           <Big>{position.title}</Big>
-          {position.company &&
-            position.company !== 'Significa' &&
-            renderCompany(position.company)}
         </S.TitleWrapper>
-        <Markdown>
-          <RichText render={position.text} linkResolver={linkResolver} />
-        </Markdown>
+        <Markdown dangerouslySetInnerHTML={{ __html: position.text.html }} />
       </S.Wrapper>
       <FormPosition position={position.title} />
     </Layout>
@@ -67,11 +47,12 @@ const PositionTemplate: React.FC<ITemplate> = ({
 export default PositionTemplate
 
 export const query = graphql`
-  query($uid: String!, $lang: String!) {
-    prismic {
-      position(lang: $lang, uid: $uid) {
-        company
-        text
+  query($uid: String!) {
+    prismicPosition(uid: { eq: $uid }) {
+      data {
+        text {
+          html
+        }
         title
       }
     }

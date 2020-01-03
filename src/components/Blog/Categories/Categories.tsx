@@ -9,34 +9,29 @@ import * as S from './styled'
 
 type CategoryList = Array<{
   name: string
-  _meta: {
-    type: 'blog_category'
-    uid: string
-  }
+  type: 'blog_category'
+  uid: string
 }>
 
 interface Prop {
-  prismic: {
-    allBlog_posts: {
-      edges: Array<{ node: BlogPost }>
-    }
+  allPrismicBlogPost: {
+    edges: Array<{ node: BlogPost }>
   }
 }
 
 const CategoriesTab: React.FC = () => {
   const data = useStaticQuery<Prop>(query)
-  const posts = data.prismic.allBlog_posts.edges
+  const posts = data.allPrismicBlogPost.edges
 
   const categories: CategoryList = posts.reduce((acc: CategoryList, curr) => {
-    const alreadyIn = acc.findIndex(e => e.name === curr.node.category) !== -1
+    const alreadyIn =
+      acc.findIndex(e => e.name === curr.node.data.category) !== -1
 
     if (!alreadyIn) {
       acc.push({
-        name: curr.node.category,
-        _meta: {
-          type: 'blog_category',
-          uid: slugify(curr.node.category),
-        },
+        name: curr.node.data.category,
+        type: 'blog_category',
+        uid: slugify(curr.node.data.category),
       })
     }
 
@@ -50,7 +45,7 @@ const CategoriesTab: React.FC = () => {
 
         {categories.map((item, index) => {
           return (
-            <S.Item key={index} to={linkResolver(item._meta)}>
+            <S.Item key={index} to={linkResolver(item)}>
               {item.name}
             </S.Item>
           )
@@ -62,10 +57,10 @@ const CategoriesTab: React.FC = () => {
 
 export const query = graphql`
   query BlogCategoriesQuery {
-    prismic {
-      allBlog_posts {
-        edges {
-          node {
+    allPrismicBlogPost(sort: { fields: data___category, order: ASC }) {
+      edges {
+        node {
+          data {
             category
           }
         }

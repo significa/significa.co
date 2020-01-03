@@ -1,4 +1,5 @@
-export default (doc: { type: string; uid: string }): string => {
+// (doc: { type: string; uid: string }): string
+module.exports = doc => {
   if (doc.type === 'project') {
     return `/showcase/${doc.uid}`
   }

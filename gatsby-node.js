@@ -14,9 +14,12 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   })
 }
 
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions
 
+  /**
+   * Redirects
+   */
   createRedirect({
     fromPath: '/studio',
     toPath: '/about',
@@ -45,40 +48,90 @@ exports.createPages = ({ graphql, actions }) => {
     redirectInBrowser: true,
   })
 
+  /** Positions */
+  const positions = await graphql(`
+    {
+      allPrismicPosition {
+        edges {
+          node {
+            uid
+          }
+        }
+      }
+    }
+  `)
+  positions.data.allPrismicPosition.edges.forEach(({ node }) => {
+    createPage({
+      path: `/careers/${node.uid}`,
+      component: path.resolve(`./src/templates/position.tsx`),
+      context: {
+        uid: node.uid,
+      },
+    })
+  })
+
   /**
    * Blog
    */
-  const categoryTemplate = path.resolve(`./src/templates/blog-category.tsx`)
 
-  return graphql(`
+  // Posts
+  const posts = await graphql(`
     {
-      prismic {
-        allBlog_posts {
-          edges {
-            node {
+      allPrismicBlogPost {
+        edges {
+          node {
+            uid
+            data {
               category
             }
           }
         }
       }
     }
-  `).then(result => {
-    if (result.errors) {
-      console.error(result.errors)
-    }
-
-    const categories = result.data.prismic.allBlog_posts.edges
-
-    categories.forEach(post => {
-      const slugifyCategory = slugify(post.node.category)
-
-      createPage({
-        path: `/blog/category/${slugifyCategory}`,
-        component: categoryTemplate,
-        context: {
-          uid: post.node.category,
-        },
-      })
+  `)
+  posts.data.allPrismicBlogPost.edges.forEach(({ node }) => {
+    createPage({
+      path: `/blog/${node.uid}`,
+      component: path.resolve(`./src/templates/blog-post.tsx`),
+      context: {
+        uid: node.uid,
+      },
     })
   })
+
+  // categories
+  posts.data.allPrismicBlogPost.edges.forEach(({ node }) => {
+    const slugifyCategory = slugify(node.data.category)
+    createPage({
+      path: `/blog/category/${slugifyCategory}`,
+      component: path.resolve(`./src/templates/blog-category.tsx`),
+      context: {
+        category: node.data.category,
+      },
+    })
+  })
+
+  // Authors
+  // TODO: uncomment when templates/blog-author.tsx is ready
+
+  // const authors = await graphql(`
+  //   {
+  //     allPrismicBlogAuthor {
+  //       edges {
+  //         node {
+  //           uid
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
+  // authors.data.allPrismicBlogAuthor.edges.forEach(({ node }) => {
+  //   createPage({
+  //     path: `/blog/author/${node.uid}`,
+  //     component: path.resolve(`./src/templates/blog-author.tsx`),
+  //     context: {
+  //       uid: node.uid,
+  //     },
+  //   })
+  // })
 }

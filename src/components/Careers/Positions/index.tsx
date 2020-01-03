@@ -1,13 +1,10 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
-import { RightContent, Big, AdamantSmall, ColetivSmall } from '../../UI/'
+import { RightContent, Big } from '../../UI/'
 import linkResolver from '../../../utils/linkResolver'
 
 import * as S from './styled'
-
-type CompanyType = 'Coletiv' | 'Adamant'
-type AllCompaniesType = CompanyType | 'Significa'
 
 interface IPositions {
   careersYaml: {
@@ -19,53 +16,39 @@ interface IPositions {
       }
     }
   }
-  prismic: {
-    allPositions: {
-      edges: Array<{
-        node: {
-          company: AllCompaniesType
+  allPrismicPosition: {
+    edges: Array<{
+      node: {
+        type: string
+        uid: string
+        data: {
           tagline: string
           title: string
-          _meta: {
-            type: string
-            uid: string
-          }
         }
-      }>
-    }
+      }
+    }>
   }
 }
 
 interface ItemProps {
-  position: string
-  tagline: string
   doc: {
     uid: string
     type: string
+    data: {
+      tagline: string
+      title: string
+    }
   }
-  company: AllCompaniesType
 }
 
-const renderCompany = (company: CompanyType) => {
-  const logoComponents: { [K in CompanyType]: React.FC<any> } = {
-    Coletiv: ColetivSmall,
-    Adamant: AdamantSmall,
-  }
-
-  const ImageComponent = logoComponents[company]
-
-  return <ImageComponent />
-}
-
-const Item = ({ position, tagline, doc, company }: ItemProps) => {
+const Item = ({ doc }: ItemProps) => {
   return (
     <S.ListItem>
       <S.Link to={linkResolver(doc)}>
         <S.TitleWrapper>
-          <Big as="h4">{position}</Big>
-          {company && company !== 'Significa' && renderCompany(company)}
+          <Big as="h4">{doc.data.title}</Big>
         </S.TitleWrapper>
-        <S.More>{tagline}</S.More>
+        <S.More>{doc.data.tagline}</S.More>
       </S.Link>
     </S.ListItem>
   )
@@ -74,24 +57,14 @@ const Item = ({ position, tagline, doc, company }: ItemProps) => {
 const Positions = () => {
   const {
     careersYaml: { positions },
-    prismic: {
-      allPositions: { edges },
-    },
+    allPrismicPosition: { edges },
   }: IPositions = useStaticQuery(careersPositionsQuery)
 
   return (
     <RightContent title={positions.title}>
       <ul>
         {edges.map(({ node }, i) => {
-          return (
-            <Item
-              doc={node._meta}
-              position={node.title}
-              tagline={node.tagline}
-              company={node.company}
-              key={i}
-            />
-          )
+          return <Item doc={node} key={i} />
         })}
 
         <S.ListItem>
@@ -118,17 +91,14 @@ const careersPositionsQuery = graphql`
         }
       }
     }
-    prismic {
-      allPositions {
-        edges {
-          node {
-            company
+    allPrismicPosition {
+      edges {
+        node {
+          type
+          uid
+          data {
             tagline
             title
-            _meta {
-              type
-              uid
-            }
           }
         }
       }

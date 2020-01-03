@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const pkg = require('./package.json')
+const linkResolver = require('./src/utils/linkResolver')
+
+require('dotenv').config()
 
 module.exports = {
   pathPrefix: process.env.PATH_PREFIX,
@@ -49,8 +52,7 @@ module.exports = {
       options: {
         repositoryName: 'significa',
         defaultLang: 'en-gb',
-        previews: process.env.NODE_ENV !== 'production',
-        path: '/preview',
+        previews: false,
         sharpKeys: [/image|photo|picture|hero|profile_pic/],
         pages: [
           {
@@ -59,31 +61,52 @@ module.exports = {
             path: '/project-preview',
             component: require.resolve('./src/templates/project.tsx'),
           },
-          {
-            type: 'Position',
-            match: '/careers/:uid',
-            path: '/position-preview',
-            component: require.resolve('./src/templates/position.tsx'),
-          },
+          // {
+          //   type: 'Position',
+          //   match: '/careers/:uid',
+          //   path: '/position-preview',
+          //   component: require.resolve('./src/templates/position.tsx'),
+          // },
           {
             type: 'Handbook_chapter',
             match: '/handbook/:uid',
             path: '/handbook-preview',
             component: require.resolve('./src/templates/handbook.tsx'),
           },
-          {
-            type: 'Blog_post',
-            match: '/blog/:uid',
-            path: '/blog-post-preview',
-            component: require.resolve('./src/templates/blog-post.tsx'),
-          },
-          {
-            type: 'Blog_author',
-            match: '/blog/author/:uid',
-            path: '/blog-author-preview',
-            component: require.resolve('./src/templates/blog-author.tsx'),
-          },
+          // {
+          //   type: 'Blog_post',
+          //   match: '/blog/:uid',
+          //   path: '/blog-post-preview',
+          //   component: require.resolve('./src/templates/blog-post.tsx'),
+          // },
+          // {
+          //   type: 'Blog_author',
+          //   match: '/blog/author/:uid',
+          //   path: '/blog-author-preview',
+          //   component: require.resolve('./src/templates/blog-author.tsx'),
+          // },
         ],
+      },
+    },
+    {
+      resolve: 'gatsby-source-prismic',
+      options: {
+        repositoryName: 'significa',
+        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+        linkResolver: () => linkResolver,
+        schemas: {
+          blog_author: require('./schemas/blog_author.json'),
+          blog_post: require('./schemas/blog_post.json'),
+          handbook_chapter: require('./schemas/handbook_chapter.json'),
+          handbook: require('./schemas/handbook.json'),
+          lab_entry: require('./schemas/lab_entry.json'),
+          position: require('./schemas/position.json'),
+          project: require('./schemas/project.json'),
+        },
+        lang: '*',
+        shouldDownloadImage: () => {
+          return true
+        },
       },
     },
     'gatsby-transformer-yaml',

@@ -1,0 +1,63 @@
+{
+  "Main": {
+    "title": {
+      "type": "Text",
+      "config": {
+        "label": "Title",
+        "placeholder": "Title"
+      }
+    },
+    "tagline": {
+      "type": "Text",
+      "config": {
+        "label": "Tagline",
+        "placeholder": "Tagline"
+      }
+    },
+    "image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Image"
+      }
+    },
+    "source": {
+      "type": "Select",
+      "config": {
+        "options": ["medium", "github", "dribbble"],
+        "label": "Source",
+        "placeholder": "Select source"
+      }
+    },
+    "link": {
+      "type": "Text",
+      "config": {
+        "label": "Link",
+        "placeholder": "Link (URL)"
+      }
+    },
+    "link_text": {
+      "type": "Text",
+      "config": {
+        "label": "Link Text",
+        "placeholder": "Article on Medium"
+      }
+    },
+    "tags": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "tag": {
+            "type": "Text",
+            "config": {
+              "label": "Tag",
+              "placeholder": "Tag"
+            }
+          }
+        },
+        "label": "Tags"
+      }
+    }
+  }
+}

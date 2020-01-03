@@ -24,7 +24,7 @@ const BlogList: React.FC<{ posts: Array<{ node: BlogPost }> }> = ({
     <S.Container as="section">
       {posts.map(({ node }) => {
         return (
-          <ThumbHolder key={node._meta.uid}>
+          <ThumbHolder key={node.uid}>
             <Card post={node} />
           </ThumbHolder>
         )

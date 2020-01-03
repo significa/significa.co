@@ -17,23 +17,23 @@ import linkResolver from '../utils/linkResolver'
 import AuthorSection from '../components/Blog/AuthorSection/AuthorSection'
 
 interface Prop {
-  data: { prismic: { blog_post: BlogPost } }
+  data: { prismicBlogPost: BlogPost }
 }
 
 const BlogPostPage: React.FC<Prop> = ({ data }) => {
-  const content = data.prismic.blog_post
+  const content = data.prismicBlogPost
 
   if (!content) {
     return null
   }
 
-  const slugifyCategory = slugify(content.category)
+  const slugifyCategory = slugify(content.data.category)
   const categoryMeta = { type: 'blog_category', uid: slugifyCategory }
 
   const breadcrumbPaths = [
     { text: 'Blog', link: '/blog' },
-    { text: content.category, link: linkResolver(categoryMeta) },
-    { text: content.title, link: linkResolver(content._meta) },
+    { text: content.data.category, link: linkResolver(categoryMeta) },
+    { text: content.data.title, link: linkResolver(content) },
   ]
 
   return (
@@ -42,43 +42,48 @@ const BlogPostPage: React.FC<Prop> = ({ data }) => {
       renderHeaderChildren={<Breadcrumbs paths={breadcrumbPaths} />}
     >
       <SEO
-        title={content.meta_title}
-        description={content.meta_description}
-        image={content.meta_image_shareSharp.childImageSharp.fixed.src}
+        title={content.data.meta_title}
+        description={content.data.meta_description}
+        image={
+          content.data.meta_image_share.localFile.childImageSharp.fixed.src
+        }
       />
 
       <Container as="article">
         <S.Header>
           <S.Label as="p" color="secondary">
-            {content.category} · {formatDate(content.date)}
+            {content.data.category} · {formatDate(content.data.date)}
           </S.Label>
 
-          <S.Title as="h1">{content.title}</S.Title>
-          <S.Description as="h2">{content.teaser}</S.Description>
+          <S.Title as="h1">{content.data.title}</S.Title>
+          <S.Description as="h2">{content.data.teaser}</S.Description>
 
-          <AuthorBox author={content.author} />
+          <AuthorBox author={content.data.author.document[0].data} />
         </S.Header>
 
         <S.ImageHero as="figure">
           <Image
             loading="eager"
-            fluid={content.heroSharp.childImageSharp.fluid}
-            alt={content.hero.alt}
+            fluid={content.data.hero.localFile.childImageSharp.fluid}
+            alt={content.data.hero.alt}
           />
-          <Label as="figcaption">{content.hero.alt}</Label>
+          <Label as="figcaption">{content.data.hero.alt}</Label>
         </S.ImageHero>
 
         <S.Content>
-          <RichText render={content.content} htmlSerializer={syntaxHighlight} />
+          <RichText
+            render={content.data.content.raw}
+            htmlSerializer={syntaxHighlight}
+          />
         </S.Content>
 
         <S.Footer>
-          {content.tags.map(({ tag }) => (
+          {content.data.tags.map(({ tag }) => (
             <S.Tag key={tag}>{tag}</S.Tag>
           ))}
 
           <S.AuthorSection>
-            <AuthorSection content={content.author} />
+            <AuthorSection content={content.data.author.document[0].data} />
           </S.AuthorSection>
         </S.Footer>
       </Container>
@@ -87,36 +92,45 @@ const BlogPostPage: React.FC<Prop> = ({ data }) => {
 }
 
 export const query = graphql`
-  query($uid: String!, $lang: String!) {
-    prismic {
-      blog_post(uid: $uid, lang: $lang) {
+  query($uid: String!) {
+    prismicBlogPost(uid: { eq: $uid }) {
+      uid
+      type
+
+      data {
         author {
-          ... on PRISMIC_Blog_author {
-            _meta {
+          url
+          document {
+            ... on PrismicBlogAuthor {
               uid
               type
-            }
-            name
-            position
-            description
-            social_links {
-              link
-              social
-            }
-            profile_pic
-            profile_picSharp {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid_withWebp_noBase64
+
+              data {
+                name
+                position
+                description {
+                  html
+                }
+                social_links {
+                  link
+                  social
+                }
+                profile_pic {
+                  alt
+                  url
+                  localFile {
+                    childImageSharp {
+                      fluid {
+                        ...GatsbyImageSharpFluid_withWebp_noBase64
+                      }
+                    }
+                  }
                 }
               }
             }
           }
         }
-        _meta {
-          uid
-          type
-        }
+
         tags {
           tag
         }
@@ -125,25 +139,52 @@ export const query = graphql`
         date
         title
         teaser
-        hero
-        heroSharp {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid_withWebp_noBase64
+        hero {
+          alt
+          url
+          localFile {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid_withWebp_noBase64
+              }
             }
           }
         }
         meta_title
         meta_description
-        content
-        meta_image_shareSharp {
-          childImageSharp {
-            fixed(width: 1200, height: 600) {
-              src
+        content {
+          html
+          raw {
+            label
+            type
+            text
+            url
+            alt
+            dimensions {
+              width
+              height
+            }
+            spans {
+              start
+              end
+              type
+              data {
+                link_type
+                url
+                target
+              }
             }
           }
         }
-        meta_image_share
+        meta_image_share {
+          localFile {
+            childImageSharp {
+              fixed(width: 1200, height: 600) {
+                src
+              }
+            }
+          }
+        }
       }
     }
   }

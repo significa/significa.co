@@ -8,10 +8,6 @@ import { Content as ContentFromBlog } from '../../../templates/blog-post.styled'
 
 export const Wrapper = styled.div`
   display: flex;
-
-  ${media.small} {
-    /* display: block; */
-  }
 `
 
 export const Content = styled.div`

@@ -4,5 +4,4 @@ declare module 'prettier/parser-typescript'
 
 declare module 'prismic-reactjs'
 
-declare module 'react-syntax-highlighter'
-declare module 'react-syntax-highlighter/dist/esm/languages/prism/*'
+declare module 'gatsby-source-prismic'

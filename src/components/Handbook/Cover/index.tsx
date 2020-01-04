@@ -13,7 +13,11 @@ const Cover: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
         <S.Description>{chapter.description}</S.Description>
         <S.Mouse />
       </S.Holder>
-      <S.Image fluid={chapter.image.fluid} alt={chapter.image.alt} />
+      <S.Image
+        src={chapter.image.url}
+        fluid={chapter.image.fluid}
+        alt={chapter.image.alt}
+      />
     </S.Wrapper>
   )
 }

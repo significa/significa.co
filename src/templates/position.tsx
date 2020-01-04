@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
+import { mergePrismicPreviewData } from 'gatsby-source-prismic'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
@@ -21,11 +22,16 @@ interface ITemplate {
   }
 }
 
-const PositionTemplate: React.FC<ITemplate> = ({
-  data: {
-    prismicPosition: { data: position },
-  },
-}) => {
+const PositionTemplate: React.FC<ITemplate> = ({ data: staticData }) => {
+  const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
+
+  const data: ITemplate['data'] = mergePrismicPreviewData({
+    staticData,
+    previewData: preview,
+  })
+
+  const position = data.prismicPosition.data
+
   if (!position) {
     return null
   }

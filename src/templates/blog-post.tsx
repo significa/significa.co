@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import { RichText } from 'prismic-reactjs'
 import Image from 'gatsby-image'
 import slugify from '@sindresorhus/slugify'
+import { mergePrismicPreviewData } from 'gatsby-source-prismic'
 
 import Layout from '../components/Layout'
 import { BlogPost } from '../components/Blog/types'
@@ -20,7 +21,14 @@ interface Prop {
   data: { prismicBlogPost: BlogPost }
 }
 
-const BlogPostPage: React.FC<Prop> = ({ data }) => {
+const BlogPostPage: React.FC<Prop> = ({ data: staticData }) => {
+  const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
+
+  const data: Prop['data'] = mergePrismicPreviewData({
+    staticData,
+    previewData: preview,
+  })
+
   const content = data.prismicBlogPost
 
   if (!content) {

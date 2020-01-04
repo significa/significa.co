@@ -1,5 +1,6 @@
 import React from 'react'
-import Img from 'gatsby-image'
+
+import PrismicImage from '../../../../PrismicImage'
 
 import { ImageType } from '../../types'
 
@@ -9,7 +10,7 @@ const Image = ({ primary: { image, caption } }: ImageType) => {
   const altProps = image.alt ? { alt: image.alt } : {}
   return (
     <figure>
-      <Img fluid={image.fluid} {...altProps} />
+      <PrismicImage fluid={image.fluid} src={image.url} {...altProps} />
       {caption && <S.Caption>{caption}</S.Caption>}
     </figure>
   )

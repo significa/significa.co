@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
-import Img from 'gatsby-image'
+
+import Img from '../../../../PrismicImage'
 
 import { ComparisonType } from '../../types'
 
@@ -56,10 +57,11 @@ const Comparison: React.FC<ComparisonType> = ({
             <S.Icon />
           </S.DragHandle>
         </S.Controls>
-        <Img fluid={image_a.fluid} alt={image_a.alt} />
+        <Img src={image_a.url} fluid={image_a.fluid} alt={image_a.alt} />
         <S.TopImage>
           <Img
             fluid={image_b.fluid}
+            src={image_b.url}
             alt={image_b.alt}
             style={{ height: '100%', width: `${visible}%` }}
           />

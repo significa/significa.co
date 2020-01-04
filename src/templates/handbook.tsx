@@ -44,10 +44,6 @@ export interface Chapter {
     alt: string
     url?: string
     fluid: FluidObject
-    // resize not available
-    // resize: {
-    //   height: number
-    // }
   }
   body: Array<{
     primary: Content | Testimonial

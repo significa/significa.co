@@ -102,8 +102,6 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
     previewData: preview,
   })
 
-  console.log('DATA', data)
-
   const { prismicHandbookChapter, allPrismicHandbook } = data
 
   if (!prismicHandbookChapter) {

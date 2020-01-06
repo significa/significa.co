@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { media } from '@theme'
-import Img from 'gatsby-image'
+
+import Img from '../../PrismicImage'
 
 import SocialBase from '../../UI/Social'
 import { Title as BaseTitle, Text } from '../../UI'

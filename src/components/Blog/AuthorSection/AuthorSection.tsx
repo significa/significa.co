@@ -9,6 +9,7 @@ const AuthorSection: React.FC<{ content: Author }> = ({ content }) => {
       {content.profile_pic && (
         <S.Image
           fluid={content.profile_pic.fluid}
+          src={content.profile_pic.url}
           alt={content.profile_pic.alt}
         />
       )}

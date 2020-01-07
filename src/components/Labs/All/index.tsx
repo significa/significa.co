@@ -65,10 +65,11 @@ const All: React.FC<IAll> = ({ content }) => {
                 />
               </S.ImgHolder>
               <S.ContentHolder>
-                <Big>
-                  {item.node.data.title} &mdash; {item.node.data.tagline}
-                </Big>
-                <S.More>{item.node.data.link_text}</S.More>
+                <Big>{item.node.data.title}</Big>
+                <S.Tagline>{item.node.data.tagline}</S.Tagline>
+                <S.More>
+                  {item.node.data.tags.map(t => t.tag).join(', ')}
+                </S.More>
               </S.ContentHolder>
             </S.ItemLink>
           )

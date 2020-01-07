@@ -1,5 +1,6 @@
 import React from 'react'
-import Img from 'gatsby-image'
+
+import Img from '../../../../PrismicImage'
 
 import { GalleryType } from '../../types'
 
@@ -18,7 +19,11 @@ const Gallery: React.FC<GalleryType> = props => (
               mobile: image.span_mobile,
             }}
           >
-            <Img fluid={image.image.fluid} alt={image.image.alt} />
+            <Img
+              src={image.image.url}
+              fluid={image.image.fluid}
+              alt={image.image.alt}
+            />
           </S.Item>
         )
       })}

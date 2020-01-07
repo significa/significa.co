@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { Theme } from '@theme'
+import { mergePrismicPreviewData } from 'gatsby-source-prismic'
 
 import { getProjectTheme } from '../utils/getProjectTheme'
 import { IProject } from './project.types'
@@ -18,7 +19,14 @@ interface IProjectProps {
   }
 }
 
-const ProjectPage = ({ data }: IProjectProps) => {
+const ProjectPage = ({ data: staticData }: IProjectProps) => {
+  const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
+
+  const data: IProjectProps['data'] = mergePrismicPreviewData({
+    staticData,
+    previewData: preview,
+  })
+
   const { data: project } = data.prismicProject
 
   // Someplace to save the section name
@@ -48,6 +56,7 @@ const ProjectPage = ({ data }: IProjectProps) => {
             title={project.project_title}
             tagline={project.tagline}
             fluid={project.hero_image.fluid}
+            src={project.hero_image.url}
           />
         </Theme>
 

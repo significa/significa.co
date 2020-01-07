@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components'
-import Img from 'gatsby-image'
 import { media } from '@theme'
+
+import Img from '../../PrismicImage'
 
 import { Display, Big, Small } from '../../UI'
 

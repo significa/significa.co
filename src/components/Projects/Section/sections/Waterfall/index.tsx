@@ -1,5 +1,6 @@
 import React from 'react'
-import Img from 'gatsby-image'
+
+import Img from '../../../../PrismicImage'
 
 import { WaterfallType } from '../../types'
 
@@ -14,7 +15,12 @@ const Waterfall = (props: WaterfallType) => {
 
         return (
           <S.ImgHolder key={i} index={i} rowSpan={rowSpan}>
-            <Img key={i} fluid={item.image.fluid} alt={item.image.alt} />
+            <Img
+              key={i}
+              fluid={item.image.fluid}
+              alt={item.image.alt}
+              src={item.image.url}
+            />
           </S.ImgHolder>
         )
       })}

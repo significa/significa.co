@@ -1,8 +1,10 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { RichText } from 'prismic-reactjs'
-import Image from 'gatsby-image'
 import slugify from '@sindresorhus/slugify'
+import { mergePrismicPreviewData } from 'gatsby-source-prismic'
+
+import Image from '../components/PrismicImage'
 
 import Layout from '../components/Layout'
 import { BlogPost } from '../components/Blog/types'
@@ -20,7 +22,16 @@ interface Prop {
   data: { prismicBlogPost: BlogPost }
 }
 
-const BlogPostPage: React.FC<Prop> = ({ data }) => {
+const BlogPostPage: React.FC<Prop> = ({ data: staticData }) => {
+  const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
+
+  console.log(staticData.prismicBlogPost.data.hero)
+
+  const data: Prop['data'] = mergePrismicPreviewData({
+    staticData,
+    previewData: preview,
+  })
+
   const content = data.prismicBlogPost
 
   if (!content) {
@@ -44,7 +55,11 @@ const BlogPostPage: React.FC<Prop> = ({ data }) => {
       <SEO
         title={content.data.meta_title}
         description={content.data.meta_description}
-        image={content.data.meta_image_share.fixed.src}
+        image={
+          content.data.meta_image_share.fixed
+            ? content.data.meta_image_share.fixed.src
+            : content.data.meta_image_share.url
+        }
       />
 
       <Container as="article">
@@ -60,12 +75,17 @@ const BlogPostPage: React.FC<Prop> = ({ data }) => {
         </S.Header>
 
         <S.ImageHero as="figure">
-          <Image
-            loading="eager"
-            fluid={content.data.hero.fluid}
-            alt={content.data.hero.alt}
-          />
-          <Label as="figcaption">{content.data.hero.alt}</Label>
+          {(content.data.hero.fluid || content.data.hero.url) && (
+            <>
+              <Image
+                loading="eager"
+                fluid={content.data.hero.fluid}
+                src={content.data.hero.url}
+                alt={content.data.hero.alt}
+              />
+              <Label as="figcaption">{content.data.hero.alt}</Label>
+            </>
+          )}
         </S.ImageHero>
 
         <S.Content>
@@ -96,6 +116,34 @@ export const query = graphql`
       type
 
       data {
+        tags {
+          tag
+        }
+
+        title
+        category
+        date
+        title
+        teaser
+        hero {
+          alt
+          fluid {
+            ...GatsbyPrismicImageFluid_noBase64
+          }
+        }
+        meta_title
+        meta_description
+        content {
+          html
+          raw
+        }
+
+        meta_image_share {
+          fixed(width: 1200, height: 600) {
+            src
+          }
+        }
+
         author {
           url
           document {
@@ -115,40 +163,12 @@ export const query = graphql`
                 }
                 profile_pic {
                   alt
-                  url
                   fluid {
                     ...GatsbyPrismicImageFluid_noBase64
                   }
                 }
               }
             }
-          }
-        }
-
-        tags {
-          tag
-        }
-        title
-        category
-        date
-        title
-        teaser
-        hero {
-          alt
-          url
-          fluid {
-            ...GatsbyPrismicImageFluid_noBase64
-          }
-        }
-        meta_title
-        meta_description
-        content {
-          html
-          raw
-        }
-        meta_image_share {
-          fixed(width: 1200, height: 600) {
-            src
           }
         }
       }

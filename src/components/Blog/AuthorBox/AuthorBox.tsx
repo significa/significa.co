@@ -1,5 +1,6 @@
 import React from 'react'
-import Image from 'gatsby-image'
+
+import Image from '../../PrismicImage'
 
 import { Author } from '../types'
 import * as S from './styled'
@@ -15,6 +16,7 @@ const AuthorBox: React.FC<{ author: Author; compact?: boolean }> = ({
         <S.ImageBox size={compact ? 'small' : 'regular'}>
           <Image
             fluid={author.profile_pic.fluid}
+            src={author.profile_pic.url}
             alt={author.profile_pic.alt}
           />
         </S.ImageBox>

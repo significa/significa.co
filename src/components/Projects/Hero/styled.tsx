@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { media } from '@theme'
-import BaseImg from 'gatsby-image'
+
+import BaseImg from '../../PrismicImage'
 
 import {
   Container as BaseContainer,

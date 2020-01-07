@@ -46,6 +46,7 @@ export interface ImageType {
   slice_type: 'image'
   primary: SectionBase & {
     image: {
+      url?: string
       alt: StringOrNull
       fluid: FluidObject
     }
@@ -76,6 +77,7 @@ export interface GalleryType {
   items: Array<{
     image: {
       alt: string
+      url?: string
       fluid: FluidObject
     }
     span: number
@@ -90,10 +92,12 @@ export interface ComparisonType {
     caption: StringOrNull
     image_a: {
       alt: string
+      url?: string
       fluid: FluidObject
     }
     image_b: {
       alt: string
+      url?: string
       fluid: FluidObject
     }
   }
@@ -107,6 +111,7 @@ export interface SlideshowType {
   items: Array<{
     image: {
       alt: string
+      url?: string
       fluid: FluidObject
     }
   }>
@@ -121,6 +126,7 @@ export interface WaterfallType {
         height: number
       }
       alt: string
+      url?: string
       fluid: FluidObject
     }
   }>
@@ -161,6 +167,7 @@ export interface StickyImageType {
     title: StringOrNull
     image: {
       alt: string
+      url?: string
       fluid: FluidObject
     }
   }

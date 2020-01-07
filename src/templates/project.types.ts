@@ -22,6 +22,7 @@ export interface IProject {
   tagline: string
   hero_image: {
     fluid: FluidObject
+    url?: string
   }
 
   description: string

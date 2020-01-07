@@ -1,5 +1,6 @@
 import React from 'react'
-import Img from 'gatsby-image'
+
+import Img from '../../../../PrismicImage'
 
 import { StickyImageType, StickyVideoType } from '../../types'
 import { navigateToSection } from '../../../utils'
@@ -44,7 +45,11 @@ const Sticky = (props: StickyProps) => {
       </S.TextContainer>
       <S.MediaContainer>
         {'image' in section && (
-          <Img fluid={section.image.fluid} alt={section.image.alt} />
+          <Img
+            src={section.image.url}
+            fluid={section.image.fluid}
+            alt={section.image.alt}
+          />
         )}
         {'video' in section && (
           <video width="100%" autoPlay playsInline loop muted controls={false}>

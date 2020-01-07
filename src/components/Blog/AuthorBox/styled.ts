@@ -4,6 +4,7 @@ import { Label as LabelBase, Small } from '../../UI'
 
 export const Wrap = styled.div`
   display: flex;
+  align-items: center;
 `
 
 type Size = 'small' | 'regular'
@@ -29,8 +30,8 @@ export const ImageBox = styled.div<{ size: Size }>`
 
   .gatsby-image-wrapper,
   img {
-    min-height: 100%;
-    min-width: 100%;
+    height: 2.5em;
+    width: 2.5em;
   }
 `
 

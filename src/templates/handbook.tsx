@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
 import { RichText } from 'prismic-reactjs'
+import { mergePrismicPreviewData } from 'gatsby-source-prismic'
 
 import linkResolver from '../utils/linkResolver'
 import { titleToID } from '../utils/titleToID'
@@ -41,11 +42,8 @@ export interface Chapter {
   description: string
   image: {
     alt: string
+    url?: string
     fluid: FluidObject
-    // resize not available
-    // resize: {
-    //   height: number
-    // }
   }
   body: Array<{
     primary: Content | Testimonial
@@ -90,9 +88,18 @@ interface HandbookChapterPageProps {
 }
 
 const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
-  data: { prismicHandbookChapter, allPrismicHandbook },
+  data: staticData,
   pageContext: { uid },
 }) => {
+  const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
+
+  const data: HandbookChapterPageProps['data'] = mergePrismicPreviewData({
+    staticData,
+    previewData: preview,
+  })
+
+  const { prismicHandbookChapter, allPrismicHandbook } = data
+
   if (!prismicHandbookChapter) {
     return null
   }

@@ -7,7 +7,7 @@ type Props = GatsbyImageProps & {
   fluid?: FluidObject
   alt?: string
   className?: string
-  fallbackImgtyle?: CSSProperties
+  fallbackImgStyle?: CSSProperties
 }
 
 /**
@@ -20,7 +20,7 @@ const PrismicImage: React.FC<Props> = ({
   fluid,
   alt,
   className,
-  fallbackImgtyle = {},
+  fallbackImgStyle = {},
   ...props
 }) => {
   return src ? (
@@ -38,7 +38,7 @@ const PrismicImage: React.FC<Props> = ({
           style={{
             objectFit: 'cover',
             objectPosition: 'center center',
-            ...fallbackImgtyle,
+            ...fallbackImgStyle,
           }}
           alt={alt}
         />

@@ -30,7 +30,7 @@ const Hero: React.FC<IHero> = ({ title, tagline, fluid, src }) => {
         loading="eager"
         // When previewing Prismic content we fallback to
         // a standard img tag that needs some specific gatsby-image styles
-        fallbackImgtyle={
+        fallbackImgStyle={
           src
             ? {
                 position: 'absolute',

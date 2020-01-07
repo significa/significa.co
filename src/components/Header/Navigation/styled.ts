@@ -110,8 +110,7 @@ export const NavWrapper = styled.nav`
 
     padding: 0 1.9em;
 
-    display: flex;
-    flex-direction: column;
+    display: block;
     text-align: right;
 
     transition: top ${({ theme }) => theme.transitions.cubic()},
@@ -124,6 +123,7 @@ export const NavWrapper = styled.nav`
         : '0 0 rgba(0,0,0,0)'};
 
     ${NavLink} {
+      display: block;
       font-size: 1.25em;
       line-height: 1;
       color: ${({ theme }) => theme.colors.foreground};

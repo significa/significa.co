@@ -7,8 +7,8 @@ import * as S from './styled'
 
 const Gallery: React.FC<GalleryType> = props => (
   <>
-    <S.Wrapper columns={props.image_gallery.columns}>
-      {props.image_gallery_images.map((image, i) => {
+    <S.Wrapper columns={props.primary.columns}>
+      {props.items.map((image, i) => {
         return (
           <S.Item
             key={i}
@@ -18,17 +18,12 @@ const Gallery: React.FC<GalleryType> = props => (
               mobile: image.span_mobile,
             }}
           >
-            <Img
-              fluid={image.imageSharp.childImageSharp.fluid}
-              alt={image.image.alt}
-            />
+            <Img fluid={image.image.fluid} alt={image.image.alt} />
           </S.Item>
         )
       })}
     </S.Wrapper>
-    {props.image_gallery.caption && (
-      <S.Caption>{props.image_gallery.caption}</S.Caption>
-    )}
+    {props.primary.caption && <S.Caption>{props.primary.caption}</S.Caption>}
   </>
 )
 

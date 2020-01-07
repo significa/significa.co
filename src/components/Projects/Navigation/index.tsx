@@ -58,7 +58,7 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
       'sticky_image',
       'sticky_video',
     ]
-    return wantedTypes.indexOf(section.type) >= 0
+    return wantedTypes.indexOf(section.slice_type) >= 0
   })
 
   return (

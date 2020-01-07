@@ -1,0 +1,68 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "UID",
+        "placeholder": "UID (will be used as URL)"
+      }
+    },
+    "name": {
+      "type": "Text",
+      "config": {
+        "label": "Name"
+      }
+    },
+    "position": {
+      "type": "Text",
+      "config": {
+        "label": "Position"
+      }
+    },
+    "description": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "label": "Description"
+      }
+    },
+    "profile_pic": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Profile pic"
+      }
+    },
+    "social_links": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "link": {
+            "type": "Text",
+            "config": {
+              "label": "Link"
+            }
+          },
+          "social": {
+            "type": "Select",
+            "config": {
+              "options": [
+                "Behance",
+                "Github",
+                "Dribbble",
+                "Instagram",
+                "Professional email",
+                "Personal website",
+                "Twitter",
+                "LinkedIn"
+              ],
+              "label": "social"
+            }
+          }
+        },
+        "label": "Social links"
+      }
+    }
+  }
+}

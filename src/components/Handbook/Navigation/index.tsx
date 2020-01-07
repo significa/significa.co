@@ -1,8 +1,6 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
-import linkResolver from '../../../utils/linkResolver'
-
 import * as S from './styled'
 
 import Arrow from './Arrow'
@@ -16,20 +14,24 @@ export interface ContentType {
 
 type Body = Array<{
   __typename: string
-  // primary only exists if __typename is PRISMIC_Handbook_chapterBodyContent
+  // primary only exists if __typename is PrismicHandbookChapterBodyContent
   primary: {
-    content: ContentType[]
+    content: {
+      raw: ContentType[]
+    }
   }
 }>
 
 interface Chapter {
   chapter: {
-    _meta: {
-      type: string
+    document: {
       uid: string
+      url: string
+      data: {
+        title: string
+        body: Body
+      }
     }
-    title: string
-    body: Body
   }
 }
 
@@ -40,22 +42,20 @@ interface Content {
       category_title: string
       category_description: string
     }
-    fields: Chapter[]
+    items: Chapter[]
   }>
 }
 
 interface Data {
-  prismic: {
-    allHandbooks: {
-      edges: Array<{ node: Content }>
-    }
+  allPrismicHandbook: {
+    nodes: Array<{ data: Content }>
   }
 }
 
 const flatChapterHeadings = (body: Body) => {
   return body.reduce((acc: ContentType[], b) => {
-    if (b.__typename === 'PRISMIC_Handbook_chapterBodyContent') {
-      const justHeadings = b.primary.content.filter(
+    if (b.__typename === 'PrismicHandbookChapterBodyContent') {
+      const justHeadings = b.primary.content.raw.filter(
         c => c.type === 'heading2' || c.type === 'heading3'
       )
       acc.push(...justHeadings)
@@ -67,14 +67,14 @@ const flatChapterHeadings = (body: Body) => {
 
 const Navigation: React.FC<{ currentPage?: string }> = ({ currentPage }) => {
   const data: Data = useStaticQuery(query)
-  const { body: categories, featured } = data.prismic.allHandbooks.edges[0].node
+  const { body: categories, featured } = data.allPrismicHandbook.nodes[0].data
 
   const mapChapters = ({ chapter }: Chapter) => {
-    const headings = flatChapterHeadings(chapter.body)
+    const headings = flatChapterHeadings(chapter.document.data.body)
 
     return (
-      <li key={chapter._meta.uid}>
-        <S.MainLink to={linkResolver(chapter._meta)}>
+      <li key={chapter.document.uid}>
+        <S.MainLink to={chapter.document.url}>
           <S.AnimatedArrowHolder
             variants={{
               open: {
@@ -84,17 +84,17 @@ const Navigation: React.FC<{ currentPage?: string }> = ({ currentPage }) => {
                 transform: `rotate(0deg)`,
               },
             }}
-            animate={currentPage === chapter._meta.uid ? 'open' : 'closed'}
+            animate={currentPage === chapter.document.uid ? 'open' : 'closed'}
           >
             <Arrow />
           </S.AnimatedArrowHolder>
-          {chapter.title}
+          {chapter.document.data.title}
         </S.MainLink>
         {headings.length > 0 && (
           <SubMenu
-            path={linkResolver(chapter._meta)}
+            path={chapter.document.url}
             headings={headings}
-            isActive={currentPage === chapter._meta.uid}
+            isActive={currentPage === chapter.document.uid}
           />
         )}
       </li>
@@ -109,7 +109,7 @@ const Navigation: React.FC<{ currentPage?: string }> = ({ currentPage }) => {
         </li>
       </ul>
       {featured.length > 0 && <ul>{featured.map(mapChapters)}</ul>}
-      {categories.map(({ primary: category, fields: chapters }, i) => {
+      {categories.map(({ primary: category, items: chapters }, i) => {
         return (
           <React.Fragment key={i}>
             {category.category_title && (
@@ -126,54 +126,46 @@ const Navigation: React.FC<{ currentPage?: string }> = ({ currentPage }) => {
 export default Navigation
 
 const query = graphql`
-  query HandbookNavigation {
-    prismic {
-      allHandbooks {
-        edges {
-          node {
-            featured {
-              chapter {
-                ... on PRISMIC_Handbook_chapter {
-                  title
-                  _meta {
-                    uid
-                    type
-                  }
-                  body {
-                    ... on PRISMIC_Handbook_chapterBodyContent {
-                      label
-                      primary {
-                        content
-                      }
-                    }
-                  }
+  fragment NavigationChapter on PrismicLinkType {
+    document {
+      ... on PrismicHandbookChapter {
+        uid
+        url
+        data {
+          title
+          body {
+            __typename
+            ... on PrismicHandbookChapterBodyContent {
+              primary {
+                content {
+                  raw
                 }
               }
             }
-            body {
-              ... on PRISMIC_HandbookBodyCategory {
-                primary {
-                  category_title
-                  category_description
-                }
-                fields {
-                  chapter {
-                    ... on PRISMIC_Handbook_chapter {
-                      title
-                      _meta {
-                        uid
-                        type
-                      }
-                      body {
-                        ... on PRISMIC_Handbook_chapterBodyContent {
-                          label
-                          primary {
-                            content
-                          }
-                        }
-                      }
-                    }
-                  }
+          }
+        }
+      }
+    }
+  }
+
+  query HandbookNavigation {
+    allPrismicHandbook {
+      nodes {
+        data {
+          featured {
+            chapter {
+              ...NavigationChapter
+            }
+          }
+          body {
+            ... on PrismicHandbookBodyCategory {
+              primary {
+                category_title
+                category_description
+              }
+              items {
+                chapter {
+                  ...NavigationChapter
                 }
               }
             }

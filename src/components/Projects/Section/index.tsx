@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { IColorsTheme, Theme } from '@theme'
+import { IColorsTheme, Theme, lightTheme } from '@theme'
 
-import { SectionsType, SectionBase, completeLayoutTypes } from './types'
+import { SectionsType, completeLayoutTypes } from './types'
 
 import * as S from './styled'
 import * as Sections from './sections'
@@ -19,7 +19,7 @@ interface ISectionProps {
 }
 
 type SectionMapType = {
-  [key in SectionsType['type']]: React.ComponentType<any> | null
+  [key in SectionsType['slice_type']]: React.ComponentType<any> | null
 }
 
 const sectionMap: SectionMapType = {
@@ -40,7 +40,7 @@ const sectionMap: SectionMapType = {
 }
 
 const getMaxWidth = (
-  type: SectionsType['type'],
+  type: SectionsType['slice_type'],
   layout: completeLayoutTypes
 ) => {
   const style = {
@@ -55,13 +55,7 @@ const Section: React.FC<ISectionProps> = ({
   sectionLabel,
   themes,
 }) => {
-  /**
-   * We have `theme`, `layout` and `margin` on a section named after type
-   * e.g.: Text section has a `text` key with this information inside
-   */
-  const sectionMainContent: SectionBase = (section as any)[section.type]
-
-  const SectionComponent = sectionMap[section.type]
+  const SectionComponent = sectionMap[section.slice_type]
 
   if (!SectionComponent) {
     return null
@@ -69,17 +63,29 @@ const Section: React.FC<ISectionProps> = ({
 
   return (
     <ConditionalWrap
-      condition={!!sectionMainContent.theme}
+      condition={'theme' in section.primary ? !!section.primary.theme : false}
       wrap={children => (
         <Theme
-          theme={getProjectTheme(sectionMainContent.theme as string, themes)}
+          theme={
+            'theme' in section.primary
+              ? getProjectTheme(section.primary.theme as string, themes)
+              : lightTheme
+          }
         >
           {children}
         </Theme>
       )}
     >
-      <S.SectionWrapper margin={sectionMainContent.margin}>
-        <Container style={getMaxWidth(section.type, sectionMainContent.layout)}>
+      <S.SectionWrapper
+        margin={'margin' in section.primary ? section.primary.margin : 'none'}
+      >
+        <Container
+          style={
+            'layout' in section.primary
+              ? getMaxWidth(section.slice_type, section.primary.layout)
+              : {}
+          }
+        >
           <SectionComponent {...section} sectionLabel={sectionLabel} />
         </Container>
       </S.SectionWrapper>

@@ -11,16 +11,14 @@ import Hero from '../components/Blog/Hero/Hero'
 
 interface Prop {
   data: {
-    prismic: {
-      allBlog_posts: {
-        edges: Array<{ node: BlogPost }>
-      }
+    allPrismicBlogPost: {
+      edges: Array<{ node: BlogPost }>
     }
   }
 }
 
 const BlogIndex: React.FC<Prop> = ({ data }) => {
-  const posts = data.prismic.allBlog_posts.edges
+  const posts = data.allPrismicBlogPost.edges
   const [heroPost, ...allPosts] = posts
 
   return (
@@ -39,26 +37,26 @@ export default BlogIndex
 
 export const query = graphql`
   query BlogIndexQuery {
-    prismic {
-      allBlog_posts(sortBy: date_DESC) {
-        edges {
-          node {
-            _meta {
-              uid
-              type
-            }
+    allPrismicBlogPost(sort: { fields: data___date, order: DESC }) {
+      edges {
+        node {
+          uid
+          type
+          data {
             author {
-              ... on PRISMIC_Blog_author {
-                _meta {
+              url
+              document {
+                ... on PrismicBlogAuthor {
                   uid
                   type
-                }
-                name
-                profile_pic
-                profile_picSharp {
-                  childImageSharp {
-                    fluid {
-                      ...GatsbyImageSharpFluid_withWebp_noBase64
+                  data {
+                    name
+                    profile_pic {
+                      alt
+                      url
+                      fluid {
+                        ...GatsbyPrismicImageFluid_noBase64
+                      }
                     }
                   }
                 }
@@ -68,12 +66,11 @@ export const query = graphql`
             date
             title
             teaser
-            hero
-            meta_image_shareSharp {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid_withWebp_noBase64
-                }
+            hero {
+              alt
+              url
+              fluid {
+                ...GatsbyPrismicImageFluid_noBase64
               }
             }
           }

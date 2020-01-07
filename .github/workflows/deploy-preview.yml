@@ -29,7 +29,7 @@ jobs:
           DEST_DIR: 'public'
 
       - name: Build
-        run: PATH_PREFIX=preview/${{ github.event.number }} npm run build -- --prefix-paths
+        run: PRISMIC_ACCESS_TOKEN=${{ secrets.PRISMIC_ACCESS_TOKEN }} PATH_PREFIX=preview/${{ github.event.number }} npm run build -- --prefix-paths
         if: success() || failure()
 
       - name: Deploy

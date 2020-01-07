@@ -1,6 +1,5 @@
 import React from 'react'
 
-import linkResolver from '../../../utils/linkResolver'
 import { Testimonial as TestimonialType } from '../../../templates/handbook'
 
 import * as S from './styled'
@@ -21,10 +20,8 @@ const Testimonial: React.FC<{ testimonial: TestimonialType }> = ({
             <S.Position>{testimonial.position}</S.Position>
           </div>
         </S.Info>
-        {testimonial.link && testimonial.link._meta && (
-          <S.Link to={linkResolver(testimonial.link._meta)}>
-            {testimonial.link_text}
-          </S.Link>
+        {testimonial.link && testimonial.link.url && (
+          <S.Link to={testimonial.link.url}>{testimonial.link_text}</S.Link>
         )}
       </S.Left>
       <S.Quote>{testimonial.quote}</S.Quote>

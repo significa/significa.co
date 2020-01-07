@@ -1,32 +1,40 @@
 import React from 'react'
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
+import Highlight, { defaultProps, Language } from 'prism-react-renderer'
+import styled from 'styled-components'
+import theme from 'prism-react-renderer/themes/palenight'
 
-import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx'
-import markup from 'react-syntax-highlighter/dist/esm/languages/prism/markup'
-import javascript from 'react-syntax-highlighter/dist/esm/languages/prism/javascript'
-import css from 'react-syntax-highlighter/dist/esm/languages/prism/css'
-import bash from 'react-syntax-highlighter/dist/esm/languages/prism/bash'
-import markdown from 'react-syntax-highlighter/dist/esm/languages/prism/markdown'
-import graphql from 'react-syntax-highlighter/dist/esm/languages/prism/graphql'
-import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss'
+const LineNo = styled.span`
+  display: inline-block;
+  width: 2em;
+  user-select: none;
+  opacity: 0.3;
+`
 
-import syntaxHighlightTheme from './syntaxHighlightTheme'
-
-SyntaxHighlighter.registerLanguage('jsx', jsx)
-SyntaxHighlighter.registerLanguage('markup', markup)
-SyntaxHighlighter.registerLanguage('javascript', javascript)
-SyntaxHighlighter.registerLanguage('css', css)
-SyntaxHighlighter.registerLanguage('bash', bash)
-SyntaxHighlighter.registerLanguage('markdown', markdown)
-SyntaxHighlighter.registerLanguage('graphql', graphql)
-SyntaxHighlighter.registerLanguage('scss', scss)
-
-const htmlSerializer = (type: string, element: any) => {
+const htmlSerializer = (
+  type: string,
+  element: { label: Language; text: string }
+) => {
   if (type === 'preformatted') {
     return (
-      <SyntaxHighlighter language={element.label} style={syntaxHighlightTheme}>
-        {element.text}
-      </SyntaxHighlighter>
+      <Highlight
+        {...defaultProps}
+        code={element.text}
+        language={element.label}
+        theme={theme}
+      >
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <pre className={className} style={style}>
+            {tokens.map((line, i) => (
+              <div key={i} {...getLineProps({ line, key: i })}>
+                <LineNo>{i + 1}</LineNo>
+                {line.map((token, key) => (
+                  <span key={key} {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
+          </pre>
+        )}
+      </Highlight>
     )
   }
 

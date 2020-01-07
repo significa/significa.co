@@ -3,13 +3,12 @@ import React, { useRef } from 'react'
 import { ProjectThumb } from '../../UI'
 
 import * as S from './styled'
-import { IProject } from '../../../pages/showcase'
+import { Project } from '../../../pages/showcase'
 import useMeasure from '../../../hooks/useMeasure'
-import linkResolver from '../../../utils/linkResolver'
 import getThumbBgColor from '../../../utils/getThumbBgColor'
 
-interface IProjects {
-  projects: IProject[]
+interface Projects {
+  projects: Project[]
 }
 
 const ThumbHolder: React.FC<{}> = ({ children }) => {
@@ -24,20 +23,20 @@ const ThumbHolder: React.FC<{}> = ({ children }) => {
   )
 }
 
-const Projects: React.FC<IProjects> = ({ projects }) => {
+const Projects: React.FC<Projects> = ({ projects }) => {
   return (
     <S.Container>
-      {projects.map(({ node: project }) => (
-        <ThumbHolder key={project._meta.uid}>
+      {projects.map(project => (
+        <ThumbHolder key={project.uid}>
           <ProjectThumb
-            title={project.project_title}
-            tagline={project.tagline}
-            to={linkResolver(project._meta)}
-            fluid={project.thumb_imageSharp.childImageSharp.fluid}
-            services={project.services.map(s => s.service)}
+            title={project.data.project_title}
+            tagline={project.data.tagline}
+            to={project.url}
+            fluid={project.data.thumb_image.fluid}
+            services={project.data.services.map(s => s.service)}
             backgroundColor={getThumbBgColor(
-              project.hero_theme,
-              project.themes
+              project.data.hero_theme,
+              project.data.themes
             )}
           />
         </ThumbHolder>

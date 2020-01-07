@@ -1,0 +1,128 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "Slug",
+        "placeholder": "URL-friendly name"
+      }
+    },
+    "title": {
+      "type": "Text",
+      "config": {
+        "label": "Title",
+        "placeholder": "Title",
+        "useAsTitle": true
+      }
+    },
+    "description": {
+      "type": "Text",
+      "config": {
+        "label": "Description",
+        "placeholder": "Description"
+      }
+    },
+    "image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Image"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "choices": {
+          "content": {
+            "type": "Slice",
+            "fieldset": "Content",
+            "description": "Rich text",
+            "icon": "short_text",
+            "display": "list",
+            "non-repeat": {
+              "content": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, preformatted, heading2, heading3, heading4, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                  "label": "Content",
+                  "placeholder": "Add main content here"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "testimonial": {
+            "type": "Slice",
+            "fieldset": "Testimonial",
+            "description": "Someone's quote",
+            "icon": "format_quote",
+            "display": "list",
+            "non-repeat": {
+              "name": {
+                "type": "Text",
+                "config": {
+                  "label": "Name",
+                  "placeholder": "Person's name"
+                }
+              },
+              "position": {
+                "type": "Text",
+                "config": {
+                  "label": "Position",
+                  "placeholder": "Person's position"
+                }
+              },
+              "background_color": {
+                "type": "Text",
+                "config": {
+                  "label": "Background color",
+                  "placeholder": "Testimonial's background color"
+                }
+              },
+              "photo": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Photo"
+                }
+              },
+              "logo": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Logo"
+                }
+              },
+              "quote": {
+                "type": "Text",
+                "config": {
+                  "label": "Quote",
+                  "placeholder": "Person's testimonial"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link (optional)",
+                  "placeholder": "Link somewhere"
+                }
+              },
+              "link_text": {
+                "type": "Text",
+                "config": {
+                  "label": "Link text (optional)",
+                  "placeholder": "Link's text"
+                }
+              }
+            },
+            "repeat": {}
+          }
+        }
+      }
+    }
+  }
+}

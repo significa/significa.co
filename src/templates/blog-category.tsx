@@ -10,16 +10,14 @@ import CategoriesTab from '../components/Blog/Categories/Categories'
 
 interface Prop {
   data: {
-    prismic: {
-      allBlog_posts: {
-        edges: Array<{ node: BlogPost }>
-      }
+    allPrismicBlogPost: {
+      edges: Array<{ node: BlogPost }>
     }
   }
 }
 
 const BlogIndex: React.FC<Prop> = ({ data }) => {
-  const posts = data.prismic.allBlog_posts.edges
+  const posts = data.allPrismicBlogPost.edges
 
   return (
     <Layout theme="light" renderHeaderChildren={<CategoriesTab />} isBlogPage>
@@ -35,41 +33,49 @@ const BlogIndex: React.FC<Prop> = ({ data }) => {
 export default BlogIndex
 
 export const query = graphql`
-  query BlogCategoryQuery($uid: String!) {
-    prismic {
-      allBlog_posts(sortBy: date_DESC, where: { category: $uid }) {
-        edges {
-          node {
-            _meta {
-              uid
-              type
-            }
-            author {
-              ... on PRISMIC_Blog_author {
-                _meta {
-                  uid
-                  type
-                }
-                name
-                profile_pic
-                profile_picSharp {
-                  childImageSharp {
-                    fluid {
-                      ...GatsbyImageSharpFluid_withWebp_noBase64
-                    }
-                  }
-                }
-              }
-            }
+  query BlogCategoryQuery($category: String!) {
+    allPrismicBlogPost(
+      sort: { fields: data___date, order: DESC }
+      filter: { data: { category: { eq: $category } } }
+    ) {
+      edges {
+        node {
+          uid
+          type
+
+          data {
             category
             date
             title
             teaser
-            hero
-            meta_image_shareSharp {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid_withWebp_noBase64
+            hero {
+              alt
+              url
+              fluid {
+                ...GatsbyPrismicImageFluid_noBase64
+              }
+            }
+            meta_image_share {
+              fluid(maxWidth: 500) {
+                ...GatsbyPrismicImageFluid_noBase64
+              }
+            }
+
+            author {
+              url
+              document {
+                ... on PrismicBlogAuthor {
+                  uid
+                  type
+
+                  data {
+                    name
+                    profile_pic {
+                      fluid {
+                        ...GatsbyPrismicImageFluid_noBase64
+                      }
+                    }
+                  }
                 }
               }
             }

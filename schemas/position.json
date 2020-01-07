@@ -1,0 +1,43 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "UID",
+        "placeholder": "UID (will be used as URL)"
+      }
+    },
+    "title": {
+      "type": "Text",
+      "config": {
+        "label": "Title",
+        "placeholder": "Title",
+        "useAsTitle": true
+      }
+    },
+    "tagline": {
+      "type": "Text",
+      "config": {
+        "label": "Tagline",
+        "placeholder": "Tagline"
+      }
+    },
+    "company": {
+      "type": "Select",
+      "config": {
+        "options": ["Significa", "Coletiv", "Adamant"],
+        "default_value": "Significa",
+        "label": "Company",
+        "placeholder": "Company"
+      }
+    },
+    "text": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "label": "Text",
+        "placeholder": "Position text"
+      }
+    }
+  }
+}

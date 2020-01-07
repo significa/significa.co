@@ -6,26 +6,29 @@ import { Big } from '../../UI'
 import * as S from './styled'
 
 interface IAll {
-  content: Array<{ node: ILabType }>
+  content: Array<{ node: { data: ILabType } }>
 }
 
 type FilterState = string | null
 
 const All: React.FC<IAll> = ({ content }) => {
-  const tags = content.reduce((acc: string[], item: { node: ILabType }) => {
-    item.node.tags.forEach(tag => {
-      if (acc.indexOf(tag.tag) < 0) {
-        acc.push(tag.tag)
-      }
-    })
+  const tags = content.reduce(
+    (acc: string[], item: { node: { data: ILabType } }) => {
+      item.node.data.tags.forEach(tag => {
+        if (acc.indexOf(tag.tag) < 0) {
+          acc.push(tag.tag)
+        }
+      })
 
-    return acc
-  }, [])
+      return acc
+    },
+    []
+  )
   const [filter, setFilter] = useState<FilterState>(null)
   const items = !filter
     ? content
     : content.filter(c => {
-        const itemTags = c.node.tags.map(tag => tag.tag)
+        const itemTags = c.node.data.tags.map(tag => tag.tag)
         return itemTags.indexOf(filter) >= 0
       })
 
@@ -51,21 +54,21 @@ const All: React.FC<IAll> = ({ content }) => {
         {items.map(item => {
           return (
             <S.ItemLink
-              key={`${item.node.title}-${item.node.tagline}`}
-              href={item.node.link}
+              key={`${item.node.data.title}-${item.node.data.tagline}`}
+              href={item.node.data.link}
             >
               <S.ImgHolder>
-                <S.LabsIcon source={item.node.source} color />
+                <S.LabsIcon source={item.node.data.source} color />
                 <S.Img
-                  fluid={item.node.imageSharp.childImageSharp.fluid}
-                  alt={item.node.image.alt}
+                  fluid={item.node.data.image.fluid}
+                  alt={item.node.data.image.alt}
                 />
               </S.ImgHolder>
               <S.ContentHolder>
                 <Big>
-                  {item.node.title} &mdash; {item.node.tagline}
+                  {item.node.data.title} &mdash; {item.node.data.tagline}
                 </Big>
-                <S.More>{item.node.link_text}</S.More>
+                <S.More>{item.node.data.link_text}</S.More>
               </S.ContentHolder>
             </S.ItemLink>
           )

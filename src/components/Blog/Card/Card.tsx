@@ -9,34 +9,34 @@ import AuthorBox from '../AuthorBox/AuthorBox'
 import * as S from './styled'
 
 const Card: React.FC<{ post: BlogPost }> = ({ post }) => {
-  const slugifyCategory = slugify(post.category)
+  const slugifyCategory = slugify(post.data.category)
   const categoryMeta = { type: 'blog_category', uid: slugifyCategory }
 
-  const postLink = linkResolver(post._meta)
+  const postLink = linkResolver(post)
 
   return (
     <S.Article>
       <S.HoverHint>
         <Link to={postLink}>
           <S.Image>
-            <img src={post.hero.url} alt={post.hero.alt} />
+            <img src={post.data.hero.url} alt={post.data.hero.alt} />
           </S.Image>
         </Link>
 
         <S.Content>
-          <Link to={linkResolver(post._meta)}>
-            <S.Title as="h2">{post.title}</S.Title>
-            <S.Description as="p">{post.teaser}</S.Description>
+          <Link to={linkResolver(post)}>
+            <S.Title as="h2">{post.data.title}</S.Title>
+            <S.Description as="p">{post.data.teaser}</S.Description>
           </Link>
         </S.Content>
       </S.HoverHint>
 
-      <AuthorBox compact author={post.author}>
+      <AuthorBox compact author={post.data.author.document.data}>
         {/* render as children */}
         <span>·</span>
-        <Link to={linkResolver(categoryMeta)}>{post.category}</Link>
+        <Link to={linkResolver(categoryMeta)}>{post.data.category}</Link>
         <span>·</span>
-        {formatDate(post.date)}
+        {formatDate(post.data.date)}
       </AuthorBox>
     </S.Article>
   )

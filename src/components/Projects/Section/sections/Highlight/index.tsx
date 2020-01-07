@@ -7,7 +7,7 @@ import { Big } from '../../../../UI'
 
 import PaddedWrapper from '../common/PaddedWrapper'
 
-const Highlight = ({ highlight: { text } }: HighlightType) => {
+const Highlight = ({ primary: { text } }: HighlightType) => {
   return (
     <PaddedWrapper>
       {textByLine(text).map((line, i) => (

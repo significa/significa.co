@@ -7,26 +7,25 @@ import SEO from '../components/SEO'
 import { Projects } from '../components/Showcase'
 import { CallToAction } from '../components/UI'
 
-export interface IProject {
-  node: {
-    _meta: {
-      uid: string
-      type: string
-    }
+export interface Project {
+  url: string
+  uid: string
+  data: {
     hero_theme: string
     themes: Array<{ name: string; background: string }>
     project_title: string
     tagline: string
-    services: Array<{ service: string }>
-    thumb_imageSharp: {
-      childImageSharp: {
-        fluid: FluidObject
-      }
+    services: Array<{
+      service: string
+    }>
+    thumb_image: {
+      alt: string
+      fluid: FluidObject
     }
   }
 }
 
-interface IShowcase {
+interface Showcase {
   data: {
     showcaseYaml: {
       seo: {
@@ -40,15 +39,13 @@ interface IShowcase {
         linkText: string
       }
     }
-    prismic: {
-      allProjects: {
-        edges: IProject[]
-      }
+    allPrismicProject: {
+      nodes: Project[]
     }
   }
 }
 
-const Showcase: React.FC<IShowcase> = ({ data }) => {
+const Showcase: React.FC<Showcase> = ({ data }) => {
   return (
     <Layout>
       <SEO
@@ -56,7 +53,7 @@ const Showcase: React.FC<IShowcase> = ({ data }) => {
         description={data.showcaseYaml.seo.description}
       />
 
-      <Projects projects={data.prismic.allProjects.edges} />
+      <Projects projects={data.allPrismicProject.nodes} />
 
       <CallToAction {...data.showcaseYaml.cta} />
     </Layout>
@@ -80,31 +77,25 @@ export const query = graphql`
       }
     }
 
-    prismic {
-      allProjects(sortBy: meta_firstPublicationDate_DESC) {
-        edges {
-          node {
-            _meta {
-              uid
-              type
-            }
-            hero_theme
-            themes {
-              name
-              background
-            }
-            project_title
-            tagline
-            services {
-              service
-            }
-            thumb_image
-            thumb_imageSharp {
-              childImageSharp {
-                fluid(maxWidth: 1500) {
-                  ...GatsbyImageSharpFluid_withWebp_noBase64
-                }
-              }
+    allPrismicProject(sort: { fields: first_publication_date, order: DESC }) {
+      nodes {
+        url
+        uid
+        data {
+          hero_theme
+          themes {
+            name
+            background
+          }
+          project_title
+          tagline
+          services {
+            service
+          }
+          thumb_image {
+            alt
+            fluid(maxWidth: 1000) {
+              ...GatsbyPrismicImageFluid_noBase64
             }
           }
         }

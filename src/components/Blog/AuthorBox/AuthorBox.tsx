@@ -11,10 +11,10 @@ const AuthorBox: React.FC<{ author: Author; compact?: boolean }> = ({
 }) => {
   return (
     <S.Wrap>
-      {author.profile_picSharp && (
+      {author.profile_pic && (
         <S.ImageBox size={compact ? 'small' : 'regular'}>
           <Image
-            fluid={author.profile_picSharp.childImageSharp.fluid}
+            fluid={author.profile_pic.fluid}
             alt={author.profile_pic.alt}
           />
         </S.ImageBox>

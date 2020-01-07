@@ -1,14 +1,5 @@
 import { FluidObject } from 'gatsby-image'
 
-interface ImageObject {
-  childImageSharp: {
-    fluid: FluidObject
-    resize: {
-      height: number
-    }
-  }
-}
-
 export type layoutTypes = 'small' | 'normal' | 'medium' | 'large' | 'full'
 
 export type completeLayoutTypes = 'auto' & layoutTypes
@@ -26,24 +17,24 @@ export interface SectionBase {
 }
 
 export interface ChapterType {
-  type: 'chapter'
-  chapter: {
-    show_title: StringBoolean
-    title: string
+  slice_type: 'chapter'
+  primary: {
     theme: StringOrNull
+    title: string
+    show_title: StringBoolean
   }
 }
 
 export interface SectionType {
-  type: 'section'
-  section: {
+  slice_type: 'section'
+  primary: {
     title: string
   }
 }
 
 export interface TextType {
-  type: 'text'
-  text: SectionBase & {
+  slice_type: 'text'
+  primary: SectionBase & {
     title: StringOrNull
     text: string
     link?: StringOrNull
@@ -52,19 +43,19 @@ export interface TextType {
 }
 
 export interface ImageType {
-  type: 'image'
-  image: SectionBase & {
+  slice_type: 'image'
+  primary: SectionBase & {
     image: {
       alt: StringOrNull
+      fluid: FluidObject
     }
-    imageSharp: ImageObject
     caption: StringOrNull
   }
 }
 
 export interface VideoType {
-  type: 'video'
-  video: SectionBase & {
+  slice_type: 'video'
+  primary: SectionBase & {
     autoplay: StringBoolean
     caption: StringBoolean
     controls: StringBoolean
@@ -77,16 +68,16 @@ export interface VideoType {
 }
 
 export interface GalleryType {
-  type: 'image_gallery'
-  image_gallery: SectionBase & {
+  slice_type: 'image_gallery'
+  primary: SectionBase & {
     caption: StringOrNull
     columns: number
   }
-  image_gallery_images: Array<{
+  items: Array<{
     image: {
       alt: string
+      fluid: FluidObject
     }
-    imageSharp: ImageObject
     span: number
     span_tablet: number
     span_mobile: number
@@ -94,47 +85,50 @@ export interface GalleryType {
 }
 
 export interface ComparisonType {
-  type: 'comparison'
-  comparison: SectionBase & {
+  slice_type: 'comparison'
+  primary: SectionBase & {
     caption: StringOrNull
     image_a: {
       alt: string
+      fluid: FluidObject
     }
-    image_aSharp: ImageObject
     image_b: {
       alt: string
+      fluid: FluidObject
     }
-    image_bSharp: ImageObject
   }
 }
 
 export interface SlideshowType {
-  type: 'slideshow'
-  slideshow: SectionBase & {
+  slice_type: 'slideshow'
+  primary: SectionBase & {
     caption: StringOrNull
   }
-  slideshow_images: Array<{
+  items: Array<{
     image: {
       alt: string
+      fluid: FluidObject
     }
-    imageSharp: ImageObject
   }>
 }
 
 export interface WaterfallType {
-  type: 'waterfall'
-  waterfall: SectionBase
-  waterfall_images: Array<{
+  slice_type: 'waterfall'
+  primary: SectionBase
+  items: Array<{
     image: {
+      dimensions: {
+        height: number
+      }
       alt: string
+      fluid: FluidObject
     }
-    imageSharp: ImageObject
   }>
 }
 
 export interface TestimonialType {
-  type: 'testimonial'
-  testimonial: SectionBase & {
+  slice_type: 'testimonial'
+  primary: SectionBase & {
     author: string
     text: string
     link: StringOrNull
@@ -143,8 +137,8 @@ export interface TestimonialType {
 }
 
 export interface EmbedType {
-  type: 'embed'
-  embed: SectionBase & {
+  slice_type: 'embed'
+  primary: SectionBase & {
     code: {
       html: string
     }
@@ -152,29 +146,29 @@ export interface EmbedType {
 }
 
 export interface HighlightType {
-  type: 'highlight'
-  highlight: SectionBase & {
+  slice_type: 'highlight'
+  primary: SectionBase & {
     text: string
   }
 }
 
 export interface StickyImageType {
-  type: 'sticky_image'
-  sticky_image: SectionBase & {
+  slice_type: 'sticky_image'
+  primary: SectionBase & {
     invert: StringBoolean
     is_sticky: StringBoolean
     text: string
     title: StringOrNull
     image: {
       alt: string
+      fluid: FluidObject
     }
-    imageSharp: ImageObject
   }
 }
 
 export interface StickyVideoType {
-  type: 'sticky_video'
-  sticky_video: SectionBase & {
+  slice_type: 'sticky_video'
+  primary: SectionBase & {
     invert: StringBoolean
     is_sticky: StringBoolean
     text: string

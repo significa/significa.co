@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { ChapterWithImage } from '../../../../pages/handbook'
-import linkResolver from '../../../../utils/linkResolver'
 
 import * as S from './styled'
 
@@ -15,10 +14,10 @@ const Featured = ({ featured }: FeaturedProps) => {
       {featured.map(
         ({ chapter, chapter_link_description, chapter_link_text }, i) => {
           return (
-            <S.BoxLink to={linkResolver(chapter._meta)} key={i}>
+            <S.BoxLink to={chapter.url} key={i}>
               <S.Content>
                 <div>
-                  <S.Title>{chapter.title}</S.Title>
+                  <S.Title>{chapter.document.data.title}</S.Title>
                   <S.Text>{chapter_link_description}</S.Text>
                 </div>
                 <S.LinkHolder>
@@ -27,8 +26,8 @@ const Featured = ({ featured }: FeaturedProps) => {
                 </S.LinkHolder>
               </S.Content>
               <S.Image
-                fluid={chapter.imageSharp.childImageSharp.fluid}
-                alt={chapter.image.alt}
+                fluid={chapter.document.data.image.fluid}
+                alt={chapter.document.data.image.alt}
               />
             </S.BoxLink>
           )

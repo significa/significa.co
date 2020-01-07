@@ -6,7 +6,7 @@ import { ComparisonType } from '../../types'
 import * as S from './styled'
 
 const Comparison: React.FC<ComparisonType> = ({
-  comparison: { caption, image_a, image_aSharp, image_b, image_bSharp },
+  primary: { caption, image_a, image_b },
 }) => {
   const container = useRef<HTMLDivElement>(null)
 
@@ -56,10 +56,10 @@ const Comparison: React.FC<ComparisonType> = ({
             <S.Icon />
           </S.DragHandle>
         </S.Controls>
-        <Img fluid={image_aSharp.childImageSharp.fluid} alt={image_a.alt} />
+        <Img fluid={image_a.fluid} alt={image_a.alt} />
         <S.TopImage>
           <Img
-            fluid={image_bSharp.childImageSharp.fluid}
+            fluid={image_b.fluid}
             alt={image_b.alt}
             style={{ height: '100%', width: `${visible}%` }}
           />

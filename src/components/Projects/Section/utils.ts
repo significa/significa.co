@@ -8,7 +8,7 @@ const widths: { [K in layoutTypes]: string } = {
   full: '100%',
 }
 
-const defaultValues: { [key in SectionsType['type']]: layoutTypes } = {
+const defaultValues: { [key in SectionsType['slice_type']]: layoutTypes } = {
   chapter: 'full',
   section: 'full',
   text: 'small',
@@ -26,7 +26,7 @@ const defaultValues: { [key in SectionsType['type']]: layoutTypes } = {
 }
 
 const getProjectSectionWidth = (
-  type: SectionsType['type'],
+  type: SectionsType['slice_type'],
   layout: completeLayoutTypes
 ) => {
   if (layout !== 'auto') {

@@ -2,8 +2,6 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import prettier from 'prettier/standalone'
 import prettierTS from 'prettier/parser-typescript'
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
-import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx'
 
 import { Theme } from '@theme'
 
@@ -16,8 +14,6 @@ import * as S from './styled'
 import StrategyMarkdown from './StrategyMarkdown'
 import { Container } from '../../UI'
 import syntaxHighlight from '../../../utils/syntaxHighlight'
-
-SyntaxHighlighter.registerLanguage('jsx', jsx)
 
 interface IServicesSectionsContent {
   servicesYaml: {
@@ -122,8 +118,7 @@ const Sections = () => {
                       )
                     }
 
-                    export default Development
-                  `,
+                    export default Development`,
                     {
                       semi: false,
                       tabWidth: 2,

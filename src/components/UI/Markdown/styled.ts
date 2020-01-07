@@ -73,6 +73,10 @@ export const Markdown = styled.div`
     font-style: italic;
   }
 
+  strong {
+    font-weight: 500;
+  }
+
   hr {
     margin: 3em 0;
     border-top: 1px solid ${({ theme }) => theme.colors.subtle};

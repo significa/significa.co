@@ -1,0 +1,112 @@
+{
+  "Main": {
+    "title": {
+      "type": "Text",
+      "config": {
+        "label": "Title",
+        "placeholder": "Handbook's title"
+      }
+    },
+    "description": {
+      "type": "Text",
+      "config": {
+        "label": "Description",
+        "placeholder": "Handbook description"
+      }
+    },
+    "side_note": {
+      "type": "Text",
+      "config": {
+        "label": "Side Note",
+        "placeholder": "Handbook's side note"
+      }
+    },
+    "featured": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "chapter": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": ["handbook_chapter"],
+              "label": "Chapter",
+              "placeholder": "Select chapter"
+            }
+          },
+          "chapter_link_description": {
+            "type": "Text",
+            "config": {
+              "label": "Chapter Link Description",
+              "placeholder": "Chapter link description"
+            }
+          },
+          "chapter_link_text": {
+            "type": "Text",
+            "config": {
+              "label": "Chapter Link Text",
+              "placeholder": "Chapter link text"
+            }
+          }
+        },
+        "label": "Featured"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "choices": {
+          "category": {
+            "type": "Slice",
+            "fieldset": "Category",
+            "description": "Content category",
+            "icon": "import_contacts",
+            "display": "list",
+            "non-repeat": {
+              "category_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "Category's title"
+                }
+              },
+              "category_description": {
+                "type": "Text",
+                "config": {
+                  "label": "Category Description",
+                  "placeholder": "Category's description"
+                }
+              }
+            },
+            "repeat": {
+              "chapter": {
+                "type": "Link",
+                "config": {
+                  "select": "document",
+                  "customtypes": ["handbook_chapter"],
+                  "label": "Chapter",
+                  "placeholder": "Select a chapter to add to this category"
+                }
+              },
+              "chapter_link_description": {
+                "type": "Text",
+                "config": {
+                  "label": "Chapter Link Description",
+                  "placeholder": "Chapter link description"
+                }
+              },
+              "chapter_link_text": {
+                "type": "Text",
+                "config": {
+                  "label": "Chapter Link Text",
+                  "placeholder": "Chapter link text"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

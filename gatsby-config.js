@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const pkg = require('./package.json')
+const linkResolver = require('./src/utils/linkResolver')
+
+require('dotenv').config()
 
 module.exports = {
   pathPrefix: process.env.PATH_PREFIX,
@@ -45,45 +48,24 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-prismic-graphql',
+      resolve: 'gatsby-source-prismic',
       options: {
         repositoryName: 'significa',
-        defaultLang: 'en-gb',
-        previews: true,
-        path: '/preview',
-        sharpKeys: [/image|photo|picture|hero|profile_pic/],
-        pages: [
-          {
-            type: 'Project',
-            match: '/showcase/:uid',
-            path: '/project-preview',
-            component: require.resolve('./src/templates/project.tsx'),
-          },
-          {
-            type: 'Position',
-            match: '/careers/:uid',
-            path: '/position-preview',
-            component: require.resolve('./src/templates/position.tsx'),
-          },
-          {
-            type: 'Handbook_chapter',
-            match: '/handbook/:uid',
-            path: '/handbook-preview',
-            component: require.resolve('./src/templates/handbook.tsx'),
-          },
-          {
-            type: 'Blog_post',
-            match: '/blog/:uid',
-            path: '/blog-post',
-            component: require.resolve('./src/templates/blog-post.tsx'),
-          },
-          {
-            type: 'Blog_author',
-            match: '/blog/author/:uid',
-            path: '/blog-post-author',
-            component: require.resolve('./src/templates/blog-author.tsx'),
-          },
-        ],
+        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+        linkResolver: () => linkResolver,
+        schemas: {
+          blog_author: require('./schemas/blog_author.json'),
+          blog_post: require('./schemas/blog_post.json'),
+          handbook_chapter: require('./schemas/handbook_chapter.json'),
+          handbook: require('./schemas/handbook.json'),
+          lab_entry: require('./schemas/lab_entry.json'),
+          position: require('./schemas/position.json'),
+          project: require('./schemas/project.json'),
+        },
+        lang: '*',
+        shouldDownloadImage: () => {
+          return false
+        },
       },
     },
     'gatsby-transformer-yaml',
@@ -91,14 +73,7 @@ module.exports = {
     'gatsby-plugin-styled-components',
     'gatsby-transformer-sharp',
     `gatsby-transformer-remark`,
-    {
-      resolve: 'gatsby-plugin-sharp',
-      options: {
-        useMozJpeg: process.env.NODE_ENV === 'production',
-        stripMetadata: true,
-        defaultQuality: process.env.NODE_ENV === 'production' ? 100 : 50,
-      },
-    },
+    'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

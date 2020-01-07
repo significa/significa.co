@@ -14,16 +14,8 @@ type StickyProps = StickySection & {
   sectionLabel: string
 }
 
-const getSection = (section: StickySection) => {
-  if ('sticky_image' in section) {
-    return section.sticky_image
-  }
-
-  return section.sticky_video
-}
-
 const Sticky = (props: StickyProps) => {
-  const section = getSection(props)
+  const { primary: section } = props
 
   const id = section.title ? titleToID(section.title) : undefined
 
@@ -52,10 +44,7 @@ const Sticky = (props: StickyProps) => {
       </S.TextContainer>
       <S.MediaContainer>
         {'image' in section && (
-          <Img
-            fluid={section.imageSharp.childImageSharp.fluid}
-            alt={section.image.alt}
-          />
+          <Img fluid={section.image.fluid} alt={section.image.alt} />
         )}
         {'video' in section && (
           <video width="100%" autoPlay playsInline loop muted controls={false}>

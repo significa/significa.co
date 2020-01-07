@@ -5,6 +5,7 @@ import {
   Container as BaseContainer,
   Big as BaseBig,
   Text,
+  Small,
   LabsIcon as Icon,
 } from '../../UI/'
 
@@ -15,8 +16,7 @@ export const Wrapper = styled(BaseContainer)`
   display: flex;
 
   ${media.small} {
-    margin-top: 0;
-    margin-bottom: 5em;
+    margin: 5em auto;
   }
 `
 
@@ -89,16 +89,15 @@ export const ImgHolder = styled.div`
 `
 
 export const LabsIcon = styled(Icon)`
-  display: none;
-
   position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
+  top: 0.5rem;
+  left: 0.5rem;
 
   z-index: 10;
 
   ${media.small} {
-    display: block;
+    top: 0.75rem;
+    left: 0.75rem;
   }
 `
 
@@ -128,6 +127,12 @@ export const ContentHolder = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.subtle};
 `
 
-export const More = styled(Text)`
+export const Tagline = styled(Text)`
+  color: ${({ theme }) => theme.colors.medium};
+`
+
+export const More = styled(Small).attrs({ as: 'p' })`
   margin-top: 0.5em;
+
+  color: ${({ theme }) => theme.colors.medium};
 `

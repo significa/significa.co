@@ -4,7 +4,7 @@ import { media } from '@theme'
 import { Container as BaseContainer } from '../UI/'
 
 export const Footer = styled.footer`
-  padding: 2.5em 0 7.5em;
+  padding: 2.5em 0 5em;
   background-color: ${({ theme }) => theme.colors.background};
 
   ${media.medium} {
@@ -33,10 +33,14 @@ export const Container = styled(BaseContainer)`
 
   > * {
     flex: 1;
-    margin-bottom: 6em;
+    margin-bottom: 4em;
 
     &:first-child {
       min-width: calc(((100% / 12)) * 4.2);
+    }
+
+    &:last-child {
+      margin-bottom: 2em;
     }
   }
 

@@ -5,6 +5,8 @@ import { Logo } from '../UI/'
 import * as S from './styled'
 import Navigation from './Navigation'
 
+import logos from './logos'
+
 // Context to set a random logo on blog
 const Context = React.createContext<number | null>(null)
 
@@ -42,12 +44,9 @@ const Header: React.FC<{ isBlogPage?: boolean; children: React.ReactNode }> = ({
               <Logo />
             </S.LogoLink>
 
-            {indexBlogLogo && isBlogPage && (
+            {isBlogPage && indexBlogLogo && logos[indexBlogLogo] && (
               <S.WrapperLogoBlog>
-                <S.LogoBlog
-                  src={`/blog-logos/${indexBlogLogo}.png`}
-                  alt="Significa's blog"
-                />
+                <S.LogoBlog src={logos[indexBlogLogo]} alt="Significa's blog" />
               </S.WrapperLogoBlog>
             )}
           </div>

@@ -4,7 +4,7 @@ import { FluidObject } from 'gatsby-image'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { Top, Highlights, All } from '../components/Labs'
+import { Top, All } from '../components/Labs'
 import { LabsSourceType } from '../components/UI'
 
 export interface ILabType {
@@ -52,8 +52,6 @@ const Labs: React.FC<ILabs> = ({ data }) => {
         title={data.labsPageYaml.title}
         subtitle={data.labsPageYaml.subtitle}
       />
-
-      <Highlights content={data.allPrismicLabEntry.edges} />
 
       <All content={data.allPrismicLabEntry.edges} />
     </Layout>

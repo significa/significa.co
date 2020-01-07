@@ -27,8 +27,8 @@
       link: /handbook
     - label: Blog
       link: /blog
-    # - label: Labs
-    #   link: /labs
+    - label: Labs
+      link: /labs
 
 - title: Network
   type: column

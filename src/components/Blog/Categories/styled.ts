@@ -6,7 +6,8 @@ import { Text, Container as BaseContainer } from '../../UI'
 export const Wrapper = styled.div`
   background: ${({ theme: { colors } }) => colors.background};
   white-space: nowrap;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 
   &:after {

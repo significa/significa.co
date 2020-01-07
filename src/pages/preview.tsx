@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { navigate, useStaticQuery, graphql } from 'gatsby'
 import { usePrismicPreview } from 'gatsby-source-prismic'
 import { Location } from '@reach/router'
+import Helmet from 'react-helmet'
 import { Provider, lightTheme } from '@theme'
 
 import linkResolver from '../utils/linkResolver'
@@ -98,21 +99,26 @@ const PreviewPage: React.FC<{ location: Location }> = ({ location }) => {
   }
 
   return (
-    <Provider theme={lightTheme}>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100vw',
-          height: '100vh',
-        }}
-      >
-        <Segg />
-        <Text style={{ marginTop: '1em' }}>Hold on</Text>
-      </div>
-    </Provider>
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex" />
+      </Helmet>
+      <Provider theme={lightTheme}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100vw',
+            height: '100vh',
+          }}
+        >
+          <Segg />
+          <Text style={{ marginTop: '1em' }}>Hold on</Text>
+        </div>
+      </Provider>
+    </>
   )
 }
 

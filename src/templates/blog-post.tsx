@@ -25,8 +25,6 @@ interface Prop {
 const BlogPostPage: React.FC<Prop> = ({ data: staticData }) => {
   const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
 
-  console.log(staticData.prismicBlogPost.data.hero)
-
   const data: Prop['data'] = mergePrismicPreviewData({
     staticData,
     previewData: preview,

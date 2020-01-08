@@ -1,6 +1,7 @@
 name: Deploy to Production
 
 on:
+  repository_dispatch:
   push:
     branches:
       - master

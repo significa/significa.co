@@ -4,7 +4,7 @@
 
 This is the repo for [Significa's website](https://significa.co/), our very own presence on the web.
 
-![significa-significa-co](https://user-images.githubusercontent.com/17513388/71968850-8cfb7c80-31fd-11ea-830a-771f2d97be13.png)
+![cover](https://user-images.githubusercontent.com/17513388/71968850-8cfb7c80-31fd-11ea-830a-771f2d97be13.png)
 
 ## significa.co
 
@@ -72,4 +72,4 @@ npm run deploy
 
 check `package.json` on each function for more available scripts
 
-![dark@2x 3](https://user-images.githubusercontent.com/17513388/71971185-fc736b00-3201-11ea-9678-090b6b6a0b3f.png)
+[![Significa footer](https://user-images.githubusercontent.com/17513388/71971185-fc736b00-3201-11ea-9678-090b6b6a0b3f.png)](https://significa.co)

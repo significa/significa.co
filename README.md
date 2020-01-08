@@ -4,7 +4,7 @@
 
 This is the repo for [Significa's website](https://significa.co/), our very own presence on the web.
 
-![significa.co cover](https://user-images.githubusercontent.com/5202712/71517795-96085780-28a7-11ea-8a6b-ee9b402d6ac4.png)
+![significa-significa-co](https://user-images.githubusercontent.com/17513388/71968850-8cfb7c80-31fd-11ea-830a-771f2d97be13.png)
 
 ## significa.co
 

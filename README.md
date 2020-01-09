@@ -44,32 +44,6 @@ npm run validate
 
 ## Lambda functions
 
-### Prerequisites
-
-- Make sure you have [aws cli](https://aws.amazon.com/cli/) installed in your machine.
-- Run `aws configure` to setup a user with access to Significa's AWS
-- These lambdas' region is Ireland (`eu-west-1`)
-
-### Deploy new version
-
-To deploy a new lambda version you need to first navigate to the directory
-
-```
-cd functions/contact
-```
-
-install dependencies
-
-```
-npm install
-```
-
-and then run the script to build, zip and deploy
-
-```
-npm run deploy
-```
-
-check `package.json` on each function for more available scripts
+Available at [significa.co-functions](https://github.com/significa/significa.co-functions)
 
 [![Significa footer](https://user-images.githubusercontent.com/17513388/71971185-fc736b00-3201-11ea-9678-090b6b6a0b3f.png)](https://significa.co)

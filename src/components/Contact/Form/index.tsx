@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import axios from 'axios'
 
-import { MAIL_REGEX, URLS } from '../../../constants'
+import { MAIL_REGEX } from '../../../constants'
 
 import * as S from './styled'
 
@@ -55,7 +55,7 @@ const Form: React.FC<IContactForm> = ({ contactYaml: data }) => {
       ? { ...values, type: 'enquiry', attachment }
       : { ...values, type: 'enquiry' }
     return axios
-      .post(URLS.submit, body)
+      .post('https://api.significa.co/enquiry', body)
       .then(() => {
         setSubmitted(true)
       })

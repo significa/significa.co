@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-import { URLS, MAX_FILE_SIZE } from '../constants'
+import { MAX_FILE_SIZE } from '../constants'
 
 interface IUseFileUpload {
   errors: {
@@ -44,7 +44,10 @@ const useFileUpload = ({
       file.name.replace(/ /g, '-')
 
     return axios
-      .post(URLS.getUrl, { object_key: fullName })
+      .post('https://api.significa.co/request-upload-url', {
+        name: fullName,
+        type: file.type,
+      })
       .then(({ data: { url } }) => {
         return axios
           .request({
@@ -57,7 +60,7 @@ const useFileUpload = ({
           })
           .then(res => {
             if (res.status === 200) {
-              setFileUrl(`${URLS.bucketRoot}${fullName}`)
+              setFileUrl(url.split('?AWSAccessKeyId')[0])
             } else {
               setError(uploadError)
             }

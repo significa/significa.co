@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import axios from 'axios'
 import { Theme } from '@theme'
 
-import { MAIL_REGEX, URLS } from '../../../constants'
+import { MAIL_REGEX } from '../../../constants'
 import useForm from '../../../hooks/useForm'
 import useFileUpload from '../../../hooks/useFileUpload'
 
@@ -56,10 +56,10 @@ const Form: React.FC<{ position: string }> = ({ position }) => {
   // HandleSubmit
   function handleSubmit(values: IValues, attachment: string) {
     const body = fileUrl
-      ? { ...values, position, type: 'career', attachment }
-      : { ...values, position, type: 'career' }
+      ? { ...values, position, attachment }
+      : { ...values, position }
     return axios
-      .post(URLS.submit, body)
+      .post('https://api.significa.co/career', body)
       .then(() => {
         setSubmitted(true)
       })

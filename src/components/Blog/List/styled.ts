@@ -8,7 +8,7 @@ export const Container = styled.div`
 
   grid-column-gap: 3rem;
 
-  ${media.small} {
+  ${media.medium} {
     grid-template-columns: 1fr;
   }
 `

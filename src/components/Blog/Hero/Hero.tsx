@@ -18,7 +18,11 @@ const Hero: React.FC<{ post: BlogPost }> = ({ post }) => {
   return (
     <S.Article>
       <Link to={postLink}>
-        <S.Image style={{ backgroundImage: `url(${post.data.hero.url})` }} />
+        <S.Image
+          fluid={post.data.hero.fluid}
+          alt={post.data.title}
+          loading="eager"
+        />
       </Link>
 
       <S.Content>

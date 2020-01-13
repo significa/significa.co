@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+
 import slugify from '@sindresorhus/slugify'
 
 import { BlogPost } from '../types'
@@ -18,9 +19,10 @@ const Card: React.FC<{ post: BlogPost }> = ({ post }) => {
     <S.Article>
       <S.HoverHint>
         <Link to={postLink}>
-          <S.Image>
-            <img src={post.data.hero.url} alt={post.data.hero.alt} />
-          </S.Image>
+          <S.Image
+            fluid={post.data.hero.fluid}
+            alt={post.data.hero.alt}
+          ></S.Image>
         </Link>
 
         <S.Content>

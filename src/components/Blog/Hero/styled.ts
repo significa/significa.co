@@ -3,25 +3,8 @@ import { media } from '@theme'
 
 import { SmallTitle, Text } from '../../UI'
 
-export const Image = styled.div`
-  position: relative;
-  height: 0;
-  overflow: hidden;
-  padding-top: 33%;
-
-  background-size: 100%;
-  background-position: center;
-  transition: all ${({ theme }) => theme.transitions.ease()};
-
-  ${media.small} {
-    padding-top: 60%;
-  }
-
-  ${media.hover} {
-    &:hover {
-      background-size: 101%;
-    }
-  }
+export const Image = styled.img`
+  width: 100%;
 `
 
 export const Content = styled.div`
@@ -33,6 +16,7 @@ export const Content = styled.div`
   transform: translateY(-50%);
 
   ${media.small} {
+    transform: translateY(-40%);
     max-width: 100%;
 
     padding-top: 1.5em;

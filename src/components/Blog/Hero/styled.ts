@@ -16,7 +16,7 @@ export const Content = styled.div`
 
   transform: translateY(-50%);
 
-  ${media.small} {
+  ${media.medium} {
     transform: translateY(-40%);
     max-width: 100%;
 
@@ -37,7 +37,7 @@ export const Column = styled.div`
     width: 50%;
   }
 
-  ${media.small} {
+  ${media.large} {
     display: block;
 
     > * {
@@ -56,7 +56,7 @@ export const Detail = styled.div`
   display: flex;
   align-items: center;
 
-  ${media.small} {
+  ${media.large} {
     display: block;
     margin-bottom: 2em;
   }
@@ -69,7 +69,7 @@ export const Article = styled.article`
   margin-left: 0;
   margin-right: 0;
 
-  ${media.small} {
+  ${media.medium} {
     margin-left: -1.5em;
     margin-right: -1.5em;
   }

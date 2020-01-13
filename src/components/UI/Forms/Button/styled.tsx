@@ -1,8 +1,9 @@
+import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
-import ArrowIcon from './Arrow'
+import { Icon } from '../../'
 
-export const Arrow = styled(ArrowIcon)`
+export const Arrow = styled((p: any) => <Icon asset="arrow" {...p} />)`
   margin-left: 0.5em;
 
   transition: transform ${({ theme }) => theme.transitions.cubic()};

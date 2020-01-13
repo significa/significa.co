@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import linkResolver from '../../utils/linkResolver'
 import formatDate from '../../utils/formatDate'
 
-import { RightContent, Big } from '../UI/'
+import { RightContent, Big, Icon } from '../UI/'
 
 import * as S from './styled'
 
@@ -71,7 +71,9 @@ const FromTheBlog: React.FC<{}> = () => {
                         </AuthorBox>
                       </S.Author>
                     </div>
-                    <S.Arrow />
+                    <S.IconHolder>
+                      <Icon asset="arrow" />
+                    </S.IconHolder>
                   </S.Holder>
                 </S.Link>
               </S.ListItem>

@@ -7,7 +7,6 @@ import {
   Title as BaseTitle,
   Text as BaseText,
   Small as BaseSmall,
-  Arrow as ArrowIcon,
 } from '../../../UI'
 
 export const Wrapper = styled(Container)`
@@ -63,7 +62,7 @@ export const LinkHolder = styled.div`
   align-items: center;
 `
 
-export const RightArrow = styled(ArrowIcon)`
+export const IconHolder = styled.div`
   margin-left: 0.5rem;
   transition: transform ${({ theme }) => theme.transitions.cubic()};
 `
@@ -84,7 +83,7 @@ export const BoxLink = styled(Link)`
     &:hover {
       background-color: ${({ theme }) => theme.colors.subtle};
 
-      ${RightArrow} {
+      ${IconHolder} {
         transform: translateX(0.5rem);
       }
     }

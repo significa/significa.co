@@ -3,12 +3,7 @@ import { media } from '@theme'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 
-import {
-  Container,
-  Title as BaseTitle,
-  Text as BaseText,
-  Arrow as ArrowIcon,
-} from '../../../UI'
+import { Container, Title as BaseTitle, Text as BaseText } from '../../../UI'
 
 export const Wrapper = styled(Container)`
   display: grid;
@@ -59,7 +54,7 @@ export const LinkHolder = styled.div`
   align-items: center;
 `
 
-export const RightArrow = styled(ArrowIcon)`
+export const IconHolder = styled.div`
   margin-left: 0.5rem;
   transition: transform ${({ theme }) => theme.transitions.cubic()};
 `
@@ -120,7 +115,7 @@ export const BoxLink = styled(Link)`
     &:hover {
       background-color: ${({ theme }) => theme.colors.subtle};
 
-      ${RightArrow} {
+      ${IconHolder} {
         transform: translateX(0.5rem);
       }
     }

@@ -3,6 +3,7 @@ import React from 'react'
 import { ChapterWithImage } from '../../../../pages/handbook'
 
 import * as S from './styled'
+import { Icon } from '../../../UI'
 
 interface FeaturedProps {
   featured: ChapterWithImage[]
@@ -22,7 +23,9 @@ const Featured = ({ featured }: FeaturedProps) => {
                 </div>
                 <S.LinkHolder>
                   <S.LinkText>{chapter_link_text}</S.LinkText>
-                  <S.RightArrow />
+                  <S.IconHolder>
+                    <Icon asset="arrow" />
+                  </S.IconHolder>
                 </S.LinkHolder>
               </S.Content>
               <S.Image

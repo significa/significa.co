@@ -3,7 +3,7 @@ import React from 'react'
 import * as S from './styled'
 import { Chapter } from '../../../../pages/handbook'
 
-import { Text, Small } from '../../../UI'
+import { Text, Small, Icon } from '../../../UI'
 import { textByLine } from '../../../../utils/textByLine'
 
 interface CategoryProps {
@@ -34,7 +34,9 @@ const Category = ({ title, description, chapters }: CategoryProps) => {
                 </div>
                 <S.LinkHolder>
                   <Small>{chapter_link_text}</Small>
-                  <S.RightArrow />
+                  <S.IconHolder>
+                    <Icon asset="arrow" />
+                  </S.IconHolder>
                 </S.LinkHolder>
               </S.BoxLink>
             )

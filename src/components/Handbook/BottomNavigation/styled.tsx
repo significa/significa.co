@@ -1,8 +1,9 @@
+import React from 'react'
 import styled from 'styled-components'
 import { media } from '@theme'
 import { Link } from 'gatsby'
 
-import { labelStyle, Text, Arrow as ArrowIcon } from '../../UI'
+import { labelStyle, Text, Icon } from '../../UI'
 
 export const Wrapper = styled.footer`
   /* Same as ../Content/styled */
@@ -33,12 +34,12 @@ export const Wrapper = styled.footer`
 
 export const Header = styled.div``
 
-export const LeftArrow = styled(ArrowIcon)`
+export const LeftArrow = styled((p: any) => <Icon asset="arrow" {...p} />)`
   transform: rotate(180deg);
   transition: transform ${({ theme }) => theme.transitions.cubic()};
 `
 
-export const RightArrow = styled(ArrowIcon)`
+export const RightArrow = styled((p: any) => <Icon asset="arrow" {...p} />)`
   transition: transform ${({ theme }) => theme.transitions.cubic()};
 `
 

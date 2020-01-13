@@ -3,8 +3,8 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 import * as S from './styled'
 
-import Arrow from './Arrow'
 import SubMenu from './SubMenu'
+import { Icon } from '../../UI'
 
 export interface ContentType {
   type: string
@@ -86,7 +86,7 @@ const Navigation: React.FC<{ currentPage?: string }> = ({ currentPage }) => {
             }}
             animate={currentPage === chapter.document.uid ? 'open' : 'closed'}
           >
-            <Arrow />
+            <Icon asset="chevron" />
           </S.AnimatedArrowHolder>
           {chapter.document.data.title}
         </S.MainLink>

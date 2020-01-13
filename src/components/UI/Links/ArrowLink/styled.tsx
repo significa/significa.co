@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { media } from '@theme'
 import { Link as GatsbyLink } from 'gatsby'
-import { Arrow as ArrowIcon } from './Arrow'
+import { Icon } from '../../'
 
 interface ILink {
   highlight?: boolean
@@ -10,7 +10,7 @@ interface ILink {
   to: string
 }
 
-export const Arrow = styled(ArrowIcon)`
+export const Arrow = styled((p: any) => <Icon asset="arrow" {...p} />)`
   margin-left: 0.5em;
 
   transition: transform ${({ theme }) => theme.transitions.cubic()};

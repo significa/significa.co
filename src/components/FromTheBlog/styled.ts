@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import { media } from '@theme'
 
-import { ArrowLink as BaseArrowLink, Arrow as BaseArrow } from '../UI/'
+import { ArrowLink as BaseArrowLink } from '../UI/'
 
-export const Arrow = styled(BaseArrow)`
+export const IconHolder = styled.div`
   transition: transform ${({ theme }) => theme.transitions.cubic()};
 `
 
@@ -38,7 +38,7 @@ export const Link = styled.a`
     &:hover {
       opacity: 0.6;
 
-      ${Arrow} {
+      ${IconHolder} {
         transform: translateX(0.5em);
       }
     }

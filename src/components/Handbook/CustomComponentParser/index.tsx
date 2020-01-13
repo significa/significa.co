@@ -2,6 +2,7 @@ import React from 'react'
 
 import * as S from './styled'
 import linkResolver from '../../../utils/linkResolver'
+import { Icon } from '../../UI'
 
 interface CustomComponentParserProps {
   element: {
@@ -127,12 +128,16 @@ const CustomComponentParser: React.FC<CustomComponentParserProps> = ({
               rel="noopener noreferrer"
             >
               <S.SmallText>{renderText(text)}</S.SmallText>
-              <S.RightArrow asset="arrow" />
+              <S.IconHolder>
+                <Icon asset="arrow" />
+              </S.IconHolder>
             </S.ExternalLink>
           ) : (
             <S.Link to={linkResolver(link)}>
               <S.SmallText>{renderText(text)}</S.SmallText>
-              <S.RightArrow asset="arrow" />
+              <S.IconHolder>
+                <Icon asset="arrow" />
+              </S.IconHolder>
             </S.Link>
           )}
         </S.LinkBox>

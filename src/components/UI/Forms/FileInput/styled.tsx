@@ -1,8 +1,8 @@
+import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import { IFullTheme } from '@theme'
 
-import ClipIcon from './Clip'
-import ClearIcon from './Clear'
+import Icon from '../../Icon'
 
 export const Wrapper = styled.div`
   display: inline-flex;
@@ -57,7 +57,7 @@ interface IClip {
   theme: IFullTheme
 }
 
-export const Clip = styled(ClipIcon)`
+export const Clip = styled((p: IClip) => <Icon asset="clip" {...p} />)`
   margin-right: 0.5rem;
 
   g {
@@ -138,4 +138,4 @@ export const ClearButton = styled.button`
   }
 `
 
-export const Clear = styled(ClearIcon)``
+export const Clear = styled((p: any) => <Icon asset="clear" {...p} />)``

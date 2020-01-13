@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { media } from '@theme'
 import { Link as GatsbyLink } from 'gatsby'
-import { labelStyle, Text as BaseText, Arrow as ArrowIcon } from '../../UI'
+import { labelStyle, Text as BaseText } from '../../UI'
 
 export const Title = styled.span`
   ${labelStyle}
@@ -20,7 +20,7 @@ export const Text = styled(BaseText)`
   margin-bottom: 0 !important;
 `
 
-export const RightArrow = styled(ArrowIcon)`
+export const IconHolder = styled.div`
   margin-left: 0.5rem;
   transform: scale(0.8);
   transition: transform ${({ theme }) => theme.transitions.cubic()};
@@ -36,7 +36,7 @@ export const ExternalLink = styled.a`
 
   ${media.hover} {
     &:hover {
-      ${RightArrow} {
+      ${IconHolder} {
         transform: scale(0.8) translateX(0.5rem);
       }
     }
@@ -53,7 +53,7 @@ export const Link = styled(GatsbyLink)`
 
   ${media.hover} {
     &:hover {
-      ${RightArrow} {
+      ${IconHolder} {
         transform: scale(0.8) translateX(0.5rem);
       }
     }

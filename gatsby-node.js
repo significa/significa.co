@@ -1,17 +1,32 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
 const slugify = require('@sindresorhus/slugify')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 /** Creating alias in webpack config */
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
-    resolve: {
-      alias: {
-        '@theme': path.resolve(__dirname, 'src/theme'),
+exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
+  const config = getConfig()
+
+  config.module.rules.unshift({
+    test: /\.svg$/,
+    use: [
+      {
+        loader: '@svgr/webpack',
+        options: {
+          replaceAttrValues: { '#000': 'currentColor' },
+        },
       },
-      extensions: ['.ts', '.tsx'],
-    },
+    ],
   })
+
+  config.resolve.alias = {
+    ...config.resolve.alias,
+    '@theme': path.resolve(__dirname, 'src/theme'),
+  }
+
+  config.resolve.plugins.push(new TsconfigPathsPlugin())
+
+  actions.replaceWebpackConfig(config)
 }
 
 exports.createPages = async ({ graphql, actions }) => {

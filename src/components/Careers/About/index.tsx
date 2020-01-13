@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
-import { RightContent } from '../../UI/Layout'
+import { RightContent, Spacer } from '../../UI/Layout'
 
 import * as S from './styled'
 
@@ -33,14 +33,18 @@ const About: React.FC = () => {
   )
 
   return (
-    <RightContent amountColumn={3} title={about.title}>
-      <>
-        <S.SectionWrapper>{about.sections.map(renderSection)}</S.SectionWrapper>
-        <S.ArrowLink highlight to={about.cta.link}>
-          {about.cta.linkText}
-        </S.ArrowLink>
-      </>
-    </RightContent>
+    <Spacer spacing={{ bottom: [0, 0, 0] }}>
+      <RightContent amountColumn={3} title={about.title}>
+        <>
+          <S.SectionWrapper>
+            {about.sections.map(renderSection)}
+          </S.SectionWrapper>
+          <S.ArrowLink highlight to={about.cta.link}>
+            {about.cta.linkText}
+          </S.ArrowLink>
+        </>
+      </RightContent>
+    </Spacer>
   )
 }
 

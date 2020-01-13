@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 import * as S from './styled'
 
-interface ITop {
+type Data = {
   aboutYaml: {
     hero: {
       title: string
@@ -23,7 +23,7 @@ interface ITop {
 const Top = () => {
   const {
     aboutYaml: { hero: data },
-  }: ITop = useStaticQuery(query)
+  } = useStaticQuery<Data>(query)
 
   return (
     <>

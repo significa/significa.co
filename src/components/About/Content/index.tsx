@@ -1,12 +1,12 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
-import { RightContent } from '../../UI'
+import { RightContent, Spacer } from '../../UI'
 import { textByLine } from '../../../utils/textByLine'
 
 import * as S from './styled'
 
-interface IContent {
+type Data = {
   aboutYaml: {
     content: {
       title: string
@@ -18,14 +18,16 @@ interface IContent {
 const Content = () => {
   const {
     aboutYaml: { content },
-  }: IContent = useStaticQuery(query)
+  } = useStaticQuery<Data>(query)
 
   return (
-    <RightContent title={content.title}>
-      {textByLine(content.text).map(e => (
-        <S.Text key={e}>{e}</S.Text>
-      ))}
-    </RightContent>
+    <Spacer>
+      <RightContent title={content.title}>
+        {textByLine(content.text).map(e => (
+          <S.Text key={e}>{e}</S.Text>
+        ))}
+      </RightContent>
+    </Spacer>
   )
 }
 

@@ -1,6 +1,5 @@
 import React from 'react'
-import { graphql, StaticQuery, Link } from 'gatsby'
-import slugify from '@sindresorhus/slugify'
+import { graphql, useStaticQuery } from 'gatsby'
 
 import linkResolver from '../../utils/linkResolver'
 import formatDate from '../../utils/formatDate'
@@ -9,87 +8,90 @@ import { RightContent, Big } from '../UI/'
 
 import * as S from './styled'
 
-import { BlogPost } from '../Blog/types'
 import AuthorBox from '../Blog/AuthorBox/AuthorBox'
+import { Author } from '../Blog/types'
 
-interface IFromTheBlogQuery {
-  homeYaml: {
+type Data = {
+  partialsYaml: {
     fromTheBlog: {
       title: string
       cta: string
-      link: string
     }
   }
   allPrismicBlogPost: {
     edges: Array<{
-      node: BlogPost
+      node: {
+        uid: string
+        type: string
+
+        data: {
+          title: string
+          category: string
+          date: string
+          author: {
+            document: {
+              data: Pick<Author, 'name' | 'profile_pic'>
+            }
+          }
+        }
+      }
     }>
   }
 }
 
 const FromTheBlog: React.FC<{}> = () => {
+  const {
+    partialsYaml: { fromTheBlog },
+    allPrismicBlogPost: { edges },
+  } = useStaticQuery<Data>(fromTheBlogQuery)
+
   return (
-    <StaticQuery
-      query={fromTheBlogQuery}
-      render={({
-        homeYaml: { fromTheBlog },
-        allPrismicBlogPost: { edges },
-      }: IFromTheBlogQuery) => {
-        return (
-          <S.Wrapper>
-            <RightContent title={fromTheBlog.title}>
-              <ul>
-                {edges.map(({ node: post }, i) => {
-                  const slugifyCategory = slugify(post.data.category)
-                  const categoryMeta = {
-                    type: 'blog_category',
-                    uid: slugifyCategory,
-                  }
+    <S.Wrapper>
+      <RightContent title={fromTheBlog.title}>
+        <ul>
+          {edges.map(({ node: post }, i) => {
+            const postLink = linkResolver(post)
 
-                  const postLink = linkResolver(post)
+            return (
+              <S.ListItem key={i}>
+                <S.Link href={postLink}>
+                  <S.Holder>
+                    <div>
+                      <Big>{post.data.title}</Big>
 
-                  return (
-                    <S.ListItem key={i}>
-                      <S.Link href={postLink}>
-                        <Big>{post.data.title}</Big>
-                        <S.More>{post.data.teaser}</S.More>
-                      </S.Link>
                       <S.Author>
                         <AuthorBox
                           compact
                           author={post.data.author.document.data}
                         >
-                          {/* render as children */}
                           <span>·</span>
-                          <Link to={linkResolver(categoryMeta)}>
-                            {post.data.category}
-                          </Link>
+                          {post.data.category}
                           <span>·</span>
                           {formatDate(post.data.date)}
                         </AuthorBox>
                       </S.Author>
-                    </S.ListItem>
-                  )
-                })}
-              </ul>
-              <S.ArrowLink highlight to={fromTheBlog.link}>
-                {fromTheBlog.cta}
-              </S.ArrowLink>
-            </RightContent>
-          </S.Wrapper>
-        )
-      }}
-    />
+                    </div>
+                    <S.Arrow />
+                  </S.Holder>
+                </S.Link>
+              </S.ListItem>
+            )
+          })}
+        </ul>
+        <S.ArrowLink highlight to={'/blog'}>
+          {fromTheBlog.cta}
+        </S.ArrowLink>
+      </RightContent>
+    </S.Wrapper>
   )
 }
 
 const fromTheBlogQuery = graphql`
   query FromTheBlogQuery {
-    homeYaml {
+    partialsYaml {
       fromTheBlog {
         title
         cta
-        link
       }
     }
 
@@ -101,16 +103,12 @@ const fromTheBlogQuery = graphql`
 
           data {
             title
-            teaser
             category
             date
 
             author {
               document {
                 ... on PrismicBlogAuthor {
-                  uid
-                  type
-
                   data {
                     name
                     profile_pic {

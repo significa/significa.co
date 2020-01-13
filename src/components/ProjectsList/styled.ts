@@ -1,21 +1,22 @@
 import styled from 'styled-components'
 import { media } from '@theme'
 
-import { Container as BaseContainer } from '../../UI/'
+import { Container as BaseContainer } from '../UI'
 
-export const Container = styled(BaseContainer)`
-  margin: 7.5rem auto;
+export const Container = styled(BaseContainer).attrs({ as: 'section' })`
   margin-bottom: -5rem; /** offset holder bottom margin **/
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: ${({ columns }: { columns: number }) =>
+    `repeat(${columns}, 1fr)`};
 
   /** we're using only column gap to make it easier to change the 
-  vertical margin on responsive and still keep the masonry effect **/
+vertical margin on responsive and still keep the masonry effect **/
   grid-column-gap: 5rem;
 
   ${media.large} {
-    margin-top: 6rem;
+    grid-template-columns: ${({ columns }: { columns: number }) =>
+      `repeat(${Math.min(columns, 2)}, 1fr)`};
     margin-bottom: -3rem; /** offset holder bottom margin **/
 
     grid-column-gap: 3rem;

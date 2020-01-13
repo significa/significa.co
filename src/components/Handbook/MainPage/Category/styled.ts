@@ -7,8 +7,8 @@ import {
   Title as BaseTitle,
   Text as BaseText,
   Small as BaseSmall,
+  Arrow as ArrowIcon,
 } from '../../../UI'
-import ArrowIcon from '../../common/Arrow'
 
 export const Wrapper = styled(Container)`
   margin-bottom: 5rem;

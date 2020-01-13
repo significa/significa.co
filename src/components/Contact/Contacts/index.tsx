@@ -1,9 +1,9 @@
 import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 
 import * as S from './styled'
 
-interface IGeneralContacts {
+type Data = {
   contactYaml: {
     contacts: {
       title: string
@@ -18,9 +18,11 @@ interface IGeneralContacts {
   }
 }
 
-const Contacts: React.FC<IGeneralContacts> = ({
-  contactYaml: { contacts },
-}) => {
+const Contacts: React.FC = () => {
+  const {
+    contactYaml: { contacts },
+  } = useStaticQuery<Data>(generalContactsQuery)
+
   return (
     <S.Wrapper>
       <S.Title>{contacts.title}</S.Title>
@@ -51,15 +53,6 @@ const Contacts: React.FC<IGeneralContacts> = ({
   )
 }
 
-const ConnectedContacts = () => {
-  return (
-    <StaticQuery
-      query={generalContactsQuery}
-      render={(data: IGeneralContacts) => <Contacts {...data} />}
-    />
-  )
-}
-
 const generalContactsQuery = graphql`
   query GeneralContactsQuery {
     contactYaml {
@@ -77,4 +70,4 @@ const generalContactsQuery = graphql`
   }
 `
 
-export default ConnectedContacts
+export default Contacts

@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
-import { RightContent, Big } from '../../UI/'
+import { RightContent, Big, Spacer } from '../../UI/'
 import linkResolver from '../../../utils/linkResolver'
 
 import * as S from './styled'
@@ -61,22 +61,24 @@ const Positions = () => {
   }: IPositions = useStaticQuery(careersPositionsQuery)
 
   return (
-    <RightContent title={positions.title}>
-      <ul>
-        {edges.map(({ node }, i) => {
-          return <Item doc={node} key={i} />
-        })}
+    <Spacer>
+      <RightContent title={positions.title}>
+        <ul>
+          {edges.map(({ node }, i) => {
+            return <Item doc={node} key={i} />
+          })}
 
-        <S.ListItem>
-          <S.Link to={'/contact'}>
-            <S.TitleWrapper>
-              <Big as="h4">{positions.defaultPosition.position}</Big>
-            </S.TitleWrapper>
-            <S.More>{positions.defaultPosition.tagline}</S.More>
-          </S.Link>
-        </S.ListItem>
-      </ul>
-    </RightContent>
+          <S.ListItem>
+            <S.Link to={'/contact'}>
+              <S.TitleWrapper>
+                <Big as="h4">{positions.defaultPosition.position}</Big>
+              </S.TitleWrapper>
+              <S.More>{positions.defaultPosition.tagline}</S.More>
+            </S.Link>
+          </S.ListItem>
+        </ul>
+      </RightContent>
+    </Spacer>
   )
 }
 

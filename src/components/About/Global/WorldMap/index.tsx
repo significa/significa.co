@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import worldMapSource from './world-map.svg'
 import * as S from './styled'
 
-interface IPanel {
+type Panel = {
   current: string
   old: string
 }
@@ -40,7 +40,7 @@ const WorldMap = () => {
   // Pass through all letters
   //
   const flipPanel = React.useCallback(
-    (curr: IPanel[]) => {
+    (curr: Panel[]) => {
       const splittedCity = currentCity.split('')
       const newSorted = curr.map(({ current }, index) => {
         if (current === splittedCity[index]) {

@@ -1,12 +1,12 @@
 import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
 import { Theme } from '@theme'
 
 import * as S from './styled'
 import { textByLine } from '../../../utils/textByLine'
 
-interface IWhatMatters {
+type Data = {
   contactYaml: {
     matters: {
       title: string
@@ -44,9 +44,10 @@ interface IWhatMatters {
   }
 }
 
-const WhatMatters: React.FC<IWhatMatters> = ({
-  contactYaml: { matters: data },
-}) => {
+const WhatMatters: React.FC = () => {
+  const {
+    contactYaml: { matters: data },
+  } = useStaticQuery<Data>(whatMattersQuery)
   return (
     <Theme theme="dark">
       <S.Wrapper>
@@ -77,15 +78,6 @@ const WhatMatters: React.FC<IWhatMatters> = ({
         </S.Container>
       </S.Wrapper>
     </Theme>
-  )
-}
-
-const ConnectedWhatMatters = () => {
-  return (
-    <StaticQuery
-      query={whatMattersQuery}
-      render={(data: IWhatMatters) => <WhatMatters {...data} />}
-    />
   )
 }
 
@@ -139,4 +131,4 @@ const whatMattersQuery = graphql`
   }
 `
 
-export default ConnectedWhatMatters
+export default WhatMatters

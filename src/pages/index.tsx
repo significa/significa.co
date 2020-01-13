@@ -1,63 +1,67 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
-import { Theme } from '@theme'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
-import { Top, Services, Careers } from '../components/Home/'
+import { Top, MoreProjects } from '../components/Home/'
 import FromTheBlog from '../components/FromTheBlog'
+import ProjectsList from '../components/ProjectsList'
+import CallToAction from '../components/CallToAction/CallToAction'
 
-export interface IServicesContent {
+export type ServiceType = {
   title: string
-  text: string
-  cta: string
   link: string
-  columns: Array<{
-    title: string
-    items: string[]
-  }>
-}
-
-export interface ICareersContent {
-  title: string
-  text: string
-  cta: string
-  link: string
-  photos: Array<{
+  image: {
     childImageSharp: {
       fluid: FluidObject
     }
-  }>
-}
-
-interface IHomeContent {
-  headline: string
-  tagline: string
-  services: IServicesContent
-  careers: ICareersContent
-}
-
-interface IIndexPage {
-  data: {
-    homeYaml: IHomeContent
   }
 }
 
-const IndexPage: React.FC<IIndexPage> = ({ data }) => {
-  const content = data.homeYaml
+interface HomePageProps {
+  data: {
+    homeYaml: {
+      top: string[]
+      showcase: {
+        text: string
+        cta: string
+      }
+      services: {
+        title: string
+        text: string
+        cta: string
+        design: ServiceType
+        development: ServiceType
+        product: ServiceType
+      }
+      about: {
+        title: string
+        text: string
+        cta: string
+        images: Array<{
+          childImageSharp: {
+            fluid: FluidObject
+          }
+        }>
+      }
+    }
+  }
+}
 
+const IndexPage: React.FC<HomePageProps> = ({ data }) => {
   return (
     <Layout>
       <SEO />
-
-      <Top headline={content.headline} tagline={content.tagline} />
-      <Services {...content.services} />
-      <Theme theme="dark">
-        <FromTheBlog />
-      </Theme>
-      <Careers {...content.careers} />
+      <Top top={data.homeYaml.top} />
+      <ProjectsList limit={2} delay={data.homeYaml.top.length * 0.1} />
+      <MoreProjects
+        text={data.homeYaml.showcase.text}
+        cta={data.homeYaml.showcase.cta}
+      />
+      <FromTheBlog />
+      <CallToAction />
     </Layout>
   )
 }
@@ -67,24 +71,57 @@ export default IndexPage
 export const query = graphql`
   query HomepageQuery {
     homeYaml {
-      headline
-      tagline
+      top
+
+      showcase {
+        text
+        cta
+      }
+
       services {
         title
         text
         cta
-        link
-        columns {
+        design {
           title
-          items
+          link
+          image {
+            childImageSharp {
+              fluid(maxWidth: 500) {
+                ...GatsbyImageSharpFluid_withWebp_noBase64
+              }
+            }
+          }
+        }
+        development {
+          title
+          link
+          image {
+            childImageSharp {
+              fluid(maxWidth: 500) {
+                ...GatsbyImageSharpFluid_withWebp_noBase64
+              }
+            }
+          }
+        }
+        product {
+          title
+          link
+          image {
+            childImageSharp {
+              fluid(maxWidth: 500) {
+                ...GatsbyImageSharpFluid_withWebp_noBase64
+              }
+            }
+          }
         }
       }
-      careers {
+
+      about {
         title
         text
         cta
-        link
-        photos {
+        images {
           childImageSharp {
             fluid(maxWidth: 500) {
               ...GatsbyImageSharpFluid_withWebp_noBase64

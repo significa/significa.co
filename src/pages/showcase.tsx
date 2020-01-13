@@ -1,29 +1,12 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
+import styled from 'styled-components'
+import { media } from '@theme'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { Projects } from '../components/Showcase'
-import { CallToAction } from '../components/UI'
-
-export interface Project {
-  url: string
-  uid: string
-  data: {
-    hero_theme: string
-    themes: Array<{ name: string; background: string }>
-    project_title: string
-    tagline: string
-    services: Array<{
-      service: string
-    }>
-    thumb_image: {
-      alt: string
-      fluid: FluidObject
-    }
-  }
-}
+import CallToAction from '../components/CallToAction/CallToAction'
+import ProjectsList from '../components/ProjectsList'
 
 interface Showcase {
   data: {
@@ -32,18 +15,17 @@ interface Showcase {
         title: string
         description: string
       }
-      cta: {
-        title: string
-        text: string
-        link: string
-        linkText: string
-      }
-    }
-    allPrismicProject: {
-      nodes: Project[]
     }
   }
 }
+
+const ProjectsHolder = styled.div`
+  margin-top: 7.5rem;
+
+  ${media.large} {
+    margin-top: 5rem;
+  }
+`
 
 const Showcase: React.FC<Showcase> = ({ data }) => {
   return (
@@ -53,9 +35,11 @@ const Showcase: React.FC<Showcase> = ({ data }) => {
         description={data.showcaseYaml.seo.description}
       />
 
-      <Projects projects={data.allPrismicProject.nodes} />
+      <ProjectsHolder>
+        <ProjectsList />
+      </ProjectsHolder>
 
-      <CallToAction {...data.showcaseYaml.cta} />
+      <CallToAction />
     </Layout>
   )
 }
@@ -68,37 +52,6 @@ export const query = graphql`
       seo {
         title
         description
-      }
-      cta {
-        title
-        text
-        link
-        linkText
-      }
-    }
-
-    allPrismicProject(sort: { fields: first_publication_date, order: DESC }) {
-      nodes {
-        url
-        uid
-        data {
-          hero_theme
-          themes {
-            name
-            background
-          }
-          project_title
-          tagline
-          services {
-            service
-          }
-          thumb_image {
-            alt
-            fluid(maxWidth: 1000) {
-              ...GatsbyPrismicImageFluid_noBase64
-            }
-          }
-        }
       }
     }
   }

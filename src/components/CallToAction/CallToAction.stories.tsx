@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import CallToAction from './'
+import CallToAction from './CallToAction'
 
 storiesOf('UI/Call to action', module)
   .addDecorator(story => <div style={{ padding: '2em' }}>{story()}</div>)

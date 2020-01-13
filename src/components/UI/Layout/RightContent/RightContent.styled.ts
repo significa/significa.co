@@ -1,20 +1,8 @@
 import styled, { css } from 'styled-components'
 import { media } from '@theme'
 
-import { Container as BaseContainer } from '../'
+import { Container as BaseContainer } from '..'
 import { Title as BaseTitle } from '../../Typography'
-
-export const Wrapper = styled.section`
-  margin: 10em 0;
-
-  ${media.medium} {
-    margin: 7em 0;
-  }
-
-  ${media.small} {
-    margin: 5em 0;
-  }
-`
 
 export const Container = styled(BaseContainer)`
   display: grid;
@@ -109,4 +97,5 @@ export const Right = styled.div<{ amountColumn: number }>`
 
 export const Title = styled(BaseTitle)`
   max-width: 10em;
+  line-height: 1.3;
 `

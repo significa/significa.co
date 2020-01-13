@@ -6,7 +6,7 @@ import { Theme } from '@theme'
 import * as S from './styled'
 import WorldMap from './WorldMap'
 
-interface IGlobal {
+type Data = {
   aboutYaml: {
     global: {
       title: string
@@ -24,7 +24,7 @@ interface IGlobal {
 const Global = () => {
   const {
     aboutYaml: { global: data },
-  }: IGlobal = useStaticQuery(query)
+  } = useStaticQuery<Data>(query)
 
   return (
     <Theme theme="dark">

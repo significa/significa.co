@@ -5,7 +5,7 @@ import Image from '../../PrismicImage'
 import { Author } from '../types'
 import * as S from './styled'
 
-const AuthorBox: React.FC<{ author: Author; compact?: boolean }> = ({
+const AuthorBox: React.FC<{ author: Partial<Author>; compact?: boolean }> = ({
   author,
   compact = false,
   children,

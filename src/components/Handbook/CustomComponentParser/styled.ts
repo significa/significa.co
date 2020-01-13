@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import { media } from '@theme'
 import { Link as GatsbyLink } from 'gatsby'
-import { labelStyle, Text as BaseText } from '../../UI'
-import ArrowIcon from '../common/Arrow'
+import { labelStyle, Text as BaseText, Arrow as ArrowIcon } from '../../UI'
 
 export const Title = styled.span`
   ${labelStyle}

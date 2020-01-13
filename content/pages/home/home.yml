@@ -1,49 +1,40 @@
-headline: Your go-to digital agency
-tagline: Significa is a digital design-led agency mainly focused on Product Development.
+top:
+  - Think.
+  - Design.
+  - Develop.
+  - Launch.
+  - Repeat.
+
+showcase:
+  text: We have plenty more projects at our showcase
+  cta: Take a look
 
 services:
-  title: We build digital products
+  title: Design-led, end-to-end digital products.
   text: |
-    Having a design-led approach to what we do defines who we are. We take on products from inception to launch, from business model to people's pocket, from wireframe to continuous deployment.
-  columns:
-    - title: Strategy
-      items:
-        - UX research
-        - Business strategy
-        - Brand strategy
-        - Product strategy
-        - Product management
-    - title: Product design
-      items:
-        - User experience
-        - User interface
-        - Brand development
-        - Illustration
-        - Motion & Video
-    - title: Development
-      items:
-        - Front-end engineering
-        - Web-app development
-        - Native app development
-        - Development operations
-  cta: View services
-  link: /services
+    We know your time is scarce and life is hectic, so the bottom line is: we think, design, develop, manage and launch digital products. This is it!
+  cta: There's more in Services
+  design:
+    title: Design
+    link: /services/design
+    image: ./design@2x.png
+  development:
+    title: Development
+    link: /services/development
+    image: ./development@2x.png
+  product:
+    title: Product Development
+    link: /services/product
+    image: ./product@2x.png
 
-fromTheBlog:
-  title: What's new on Significa Blog
-  cta: Open Blog
-  link: /blog
-
-careers:
-  title: |
-    Drop by,
-    we're hiring.
+about:
+  title: Values, mission, clients, us
   text: |
-    We are an open-minded, open-hearted team that loves the thrill of creating exciting new projects.
-    Drop us a line if you’re passionate and talented to do everything you set your mind to.
-  cta: View careers
-  link: /careers
-  photos:
-    - home-1.png
-    - home-2.png
-    - home-3.png
+    Describing ourselves is tough-job! We thought a lot about it but we're still not satisfied enough. 
+    In the end, we're just a Team, made of very fine people, giving our best to build exceptional products, having great fun while doing it, and creating great bonds along the way. 
+    That's indeed what we stand for!
+  cta: Take a deep dive
+  images:
+    - ./home-1@2x.png
+    - ./home-2@2x.png
+    - ./home-3@2x.png

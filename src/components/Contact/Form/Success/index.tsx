@@ -1,14 +1,14 @@
 import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 
 import * as S from './styled'
 import { textByLine } from '../../../../utils/textByLine'
 
-interface ISuccessProps {
+type Props = {
   goBack: () => void
 }
 
-interface ISuccessData {
+type Data = {
   contactYaml: {
     success: {
       title: string
@@ -18,27 +18,22 @@ interface ISuccessData {
   }
 }
 
-const Success = ({ goBack }: ISuccessProps) => {
-  return (
-    <StaticQuery
-      query={contactFormSuccessQuery}
-      render={(data: ISuccessData) => {
-        return (
-          <S.Wrapper>
-            {textByLine(data.contactYaml.success.title).map((line, key) => (
-              <S.Title key={key}>{line}</S.Title>
-            ))}
-            {textByLine(data.contactYaml.success.subtitle).map((line, key) => (
-              <S.Text key={key}>{line}</S.Text>
-            ))}
+const Success: React.FC<Props> = ({ goBack }) => {
+  const data = useStaticQuery<Data>(contactFormSuccessQuery)
 
-            <S.Button onClick={goBack} to="/contact">
-              {data.contactYaml.success.back}
-            </S.Button>
-          </S.Wrapper>
-        )
-      }}
-    />
+  return (
+    <S.Wrapper>
+      {textByLine(data.contactYaml.success.title).map((line, key) => (
+        <S.Title key={key}>{line}</S.Title>
+      ))}
+      {textByLine(data.contactYaml.success.subtitle).map((line, key) => (
+        <S.Text key={key}>{line}</S.Text>
+      ))}
+
+      <S.Button onClick={goBack} to="/contact">
+        {data.contactYaml.success.back}
+      </S.Button>
+    </S.Wrapper>
   )
 }
 

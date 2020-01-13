@@ -7,7 +7,7 @@ import { MAIL_REGEX } from '../../../constants'
 import useForm from '../../../hooks/useForm'
 import useFileUpload from '../../../hooks/useFileUpload'
 
-import { RightContent } from '../../UI/Layout'
+import { RightContent, Spacer } from '../../UI/Layout'
 import Success from './Success'
 
 import * as S from './styled'
@@ -95,55 +95,57 @@ const Form: React.FC<{ position: string }> = ({ position }) => {
   return (
     <Theme theme="dark">
       <S.Wrapper isSubmitting={form.isSubmitting}>
-        {submitted ? (
-          <Success goBack={() => setSubmitted(false)} />
-        ) : (
-          <RightContent title={data.form.title}>
-            {form.errors.global && <S.Error>{form.errors.global}</S.Error>}
+        <Spacer>
+          {submitted ? (
+            <Success goBack={() => setSubmitted(false)} />
+          ) : (
+            <RightContent title={data.form.title}>
+              {form.errors.global && <S.Error>{form.errors.global}</S.Error>}
 
-            <form onSubmit={form.handleSubmit}>
-              <S.Input
-                {...fields.name}
-                label={data.form.name.label}
-                placeholder={data.form.name.placeholder}
-                error={form.touched.name && form.errors.name}
-              />
-              <S.Input
-                {...fields.email}
-                type="email"
-                label={data.form.email.label}
-                placeholder={data.form.email.placeholder}
-                error={form.touched.email && form.errors.email}
-              />
-              <S.Input
-                {...fields.portfolio}
-                label={data.form.portfolio.label}
-                placeholder={data.form.portfolio.placeholder}
-              />
-              <S.Textarea
-                {...fields.message}
-                label={data.form.message.label}
-                placeholder={data.form.message.placeholder}
-                error={form.touched.message && form.errors.message}
-              />
-              <S.ActionsWrapper>
-                <S.FileInput
-                  label={data.form.attachment.label}
-                  onSelect={upload}
-                  onClear={cancel}
-                  uploading={filePending}
-                  error={fileError}
+              <form onSubmit={form.handleSubmit}>
+                <S.Input
+                  {...fields.name}
+                  label={data.form.name.label}
+                  placeholder={data.form.name.placeholder}
+                  error={form.touched.name && form.errors.name}
                 />
-                <S.Button
-                  disabled={!form.valid || filePending}
-                  pending={form.isSubmitting}
-                >
-                  {data.form.submit.label}
-                </S.Button>
-              </S.ActionsWrapper>
-            </form>
-          </RightContent>
-        )}
+                <S.Input
+                  {...fields.email}
+                  type="email"
+                  label={data.form.email.label}
+                  placeholder={data.form.email.placeholder}
+                  error={form.touched.email && form.errors.email}
+                />
+                <S.Input
+                  {...fields.portfolio}
+                  label={data.form.portfolio.label}
+                  placeholder={data.form.portfolio.placeholder}
+                />
+                <S.Textarea
+                  {...fields.message}
+                  label={data.form.message.label}
+                  placeholder={data.form.message.placeholder}
+                  error={form.touched.message && form.errors.message}
+                />
+                <S.ActionsWrapper>
+                  <S.FileInput
+                    label={data.form.attachment.label}
+                    onSelect={upload}
+                    onClear={cancel}
+                    uploading={filePending}
+                    error={fileError}
+                  />
+                  <S.Button
+                    disabled={!form.valid || filePending}
+                    pending={form.isSubmitting}
+                  >
+                    {data.form.submit.label}
+                  </S.Button>
+                </S.ActionsWrapper>
+              </form>
+            </RightContent>
+          )}
+        </Spacer>
       </S.Wrapper>
     </Theme>
   )

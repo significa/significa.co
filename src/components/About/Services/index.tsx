@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
-import { CallToAction } from '../../UI'
+import CallToAction from '../../CallToAction/CallToAction'
 
 const Services = () => {
   const { aboutYaml } = useStaticQuery(query)

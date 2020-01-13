@@ -3,11 +3,11 @@ import { graphql, useStaticQuery } from 'gatsby'
 import Img, { FluidObject } from 'gatsby-image'
 
 import { Theme } from '@theme'
-import { RightContent } from '../../UI'
+import { RightContent, Spacer } from '../../UI'
 import { textByLine } from '../../../utils/textByLine'
 import * as S from './styled'
 
-interface ICareers {
+type Data = {
   aboutYaml: {
     careers: {
       title: string
@@ -29,17 +29,19 @@ interface ICareers {
 const Careers = () => {
   const {
     aboutYaml: { careers },
-  }: ICareers = useStaticQuery(query)
+  } = useStaticQuery<Data>(query)
 
   return (
     <Theme theme="dark">
       <S.Wrapper>
-        <RightContent title={careers.title}>
-          {textByLine(careers.text).map(e => (
-            <S.Text key={e}>{e}</S.Text>
-          ))}
-          <S.ArrowLink to={careers.link}>{careers.linkText}</S.ArrowLink>
-        </RightContent>
+        <Spacer>
+          <RightContent title={careers.title}>
+            {textByLine(careers.text).map(e => (
+              <S.Text key={e}>{e}</S.Text>
+            ))}
+            <S.ArrowLink to={careers.link}>{careers.linkText}</S.ArrowLink>
+          </RightContent>
+        </Spacer>
 
         <S.Gallery>
           {careers.photos.map(({ image, alt }) => (

@@ -1,12 +1,22 @@
 import styled from 'styled-components'
 import { media } from '@theme'
 
-import { ArrowLink as BaseArrowLink, Text } from '../UI/'
+import { ArrowLink as BaseArrowLink, Arrow as BaseArrow } from '../UI/'
+
+export const Arrow = styled(BaseArrow)`
+  transition: transform ${({ theme }) => theme.transitions.cubic()};
+`
 
 export const Wrapper = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.background};
   border-bottom: 1px solid ${({ theme }) => theme.colors.background};
   background-color: ${({ theme }) => theme.colors.background};
+`
+
+export const Holder = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 export const ListItem = styled.li`
@@ -21,17 +31,18 @@ export const ListItem = styled.li`
 
 export const Link = styled.a`
   display: block;
+  color: ${({ theme }) => theme.colors.foreground};
   transition: opacity ${({ theme }) => theme.transitions.ease()};
 
   ${media.hover} {
     &:hover {
       opacity: 0.6;
+
+      ${Arrow} {
+        transform: translateX(0.5em);
+      }
     }
   }
-`
-
-export const More = styled(Text)`
-  margin-top: 0.5em;
 `
 
 export const ArrowLink = styled(BaseArrowLink)`

@@ -3,9 +3,12 @@ import { media } from '@theme'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 
-import { Container, Title as BaseTitle, Text as BaseText } from '../../../UI'
-
-import ArrowIcon from '../../common/Arrow'
+import {
+  Container,
+  Title as BaseTitle,
+  Text as BaseText,
+  Arrow as ArrowIcon,
+} from '../../../UI'
 
 export const Wrapper = styled(Container)`
   display: grid;

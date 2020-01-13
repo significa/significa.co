@@ -1,87 +1,67 @@
-import React, { RefObject } from 'react'
-import { StaticQuery, graphql } from 'gatsby'
+import React, { useState, useRef, useEffect } from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
 
 import * as S from './styled'
 import { NavLink } from '../../UI/'
 
-interface ILinkType {
-  node: {
-    id: string
-    label: string
-    link: string
-  }
-}
-
-interface INavigationQuery {
+type Data = {
   allMenuYaml: {
-    edges: ILinkType[]
+    edges: Array<{
+      node: {
+        id: string
+        label: string
+        link: string
+      }
+    }>
   }
 }
 
-interface INavigationState {
-  mobileMenu: boolean
+type Props = {
+  forceClose: boolean
 }
 
-class Navigation extends React.Component<
-  { forceClose: boolean },
-  INavigationState
-> {
-  menuWrapperRef: RefObject<HTMLElement> = React.createRef()
+const Navigation: React.FC<Props> = ({ forceClose }) => {
+  const [mobileMenu, setMobileMenu] = useState<boolean>(false)
+  const menuWrapperRef = useRef<HTMLElement>(null)
+  const data = useStaticQuery<Data>(navigationQuery)
+  const { edges: items } = data.allMenuYaml
 
-  state = { mobileMenu: false }
+  useEffect(() => {
+    if (forceClose && mobileMenu) {
+      setMobileMenu(false)
+    }
+  }, [forceClose, mobileMenu, setMobileMenu])
 
-  toggleMenu = () => this.setState(state => ({ mobileMenu: !state.mobileMenu }))
-
-  renderLinks = (items: ILinkType[]) =>
-    items.map(({ node: { label, link, id } }) => (
-      <NavLink to={link} key={id}>
-        {label}
-      </NavLink>
-    ))
-
-  getItemsHeight = (): number => {
-    if (this.menuWrapperRef.current) {
+  const getItemsHeight = (): number => {
+    if (menuWrapperRef.current) {
       return Array.prototype.slice
-        .call(this.menuWrapperRef.current.childNodes)
+        .call(menuWrapperRef.current.childNodes)
         .reduce((acc, child) => acc + child.offsetHeight, 0)
     }
 
     return 0
   }
 
-  componentDidUpdate() {
-    if (this.props.forceClose) {
-      this.setState({ mobileMenu: false })
-    }
-  }
-
-  render() {
-    return (
-      <S.Wrapper>
-        <StaticQuery
-          query={navigationQuery}
-          render={(data: INavigationQuery) => {
-            const { edges: items } = data.allMenuYaml
-
-            return (
-              <S.NavWrapper
-                show={this.state.mobileMenu}
-                itemsHeight={this.getItemsHeight()}
-                ref={this.menuWrapperRef}
-              >
-                {this.renderLinks(items)}
-              </S.NavWrapper>
-            )
-          }}
-        />
-        <S.Hamburguer
-          aria-expanded={this.state.mobileMenu}
-          show={this.state.mobileMenu}
-          onClick={this.toggleMenu}
-        />
-      </S.Wrapper>
-    )
-  }
+  return (
+    <S.Wrapper>
+      <S.NavWrapper
+        show={mobileMenu}
+        itemsHeight={getItemsHeight()}
+        ref={menuWrapperRef}
+      >
+        {items.map(({ node: { label, link, id } }) => (
+          <NavLink to={link} key={id}>
+            {label}
+          </NavLink>
+        ))}
+      </S.NavWrapper>
+      <S.Hamburguer
+        aria-expanded={mobileMenu}
+        show={mobileMenu}
+        onClick={() => setMobileMenu(!mobileMenu)}
+      />
+    </S.Wrapper>
+  )
 }
 
 const navigationQuery = graphql`

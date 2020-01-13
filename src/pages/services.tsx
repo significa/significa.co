@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
 import { Hero, Sections, Network } from '../components/Services'
-import { CallToAction } from '../components/UI'
+import CallToAction from '../components/CallToAction/CallToAction'
 
 interface IContent {
   data: {
@@ -14,19 +14,13 @@ interface IContent {
         title: string
         description: string
       }
-      cta: {
-        title: string
-        text: string
-        link: string
-        linkText: string
-      }
     }
   }
 }
 
 const Contact: React.FC<IContent> = ({
   data: {
-    servicesYaml: { seo, cta },
+    servicesYaml: { seo },
   },
 }) => {
   return (
@@ -35,12 +29,7 @@ const Contact: React.FC<IContent> = ({
       <Hero />
       <Sections />
       <Network />
-      <CallToAction
-        title={cta.title}
-        text={cta.text}
-        link={cta.link}
-        linkText={cta.linkText}
-      />
+      <CallToAction />
     </Layout>
   )
 }
@@ -53,12 +42,6 @@ export const query = graphql`
       seo {
         title
         description
-      }
-      cta {
-        title
-        text
-        link
-        linkText
       }
     }
   }

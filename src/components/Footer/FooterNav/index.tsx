@@ -1,92 +1,88 @@
 import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 
 import * as S from './styled'
 import { Small, Link, Segg, Social } from '../../UI/'
 
-interface IItemType {
+type Item = {
   label: string
   link: string
 }
 
-interface IColumnType {
+type Column = {
   node: {
     id: string
     title: string
     type: 'column' | 'social'
-    items: IItemType[]
+    items: Item[]
   }
 }
 
-interface INavFooterQuery {
+type Data = {
   allFooterYaml: {
-    edges: IColumnType[]
+    edges: Column[]
   }
 }
 
-class FooterNav extends React.Component<{}, {}> {
-  renderSocialItems = (items: IItemType[]) => {
-    return items.map(({ label, link }, i) => (
-      <Social key={i} type={label} link={link} />
-    ))
-  }
+const FooterNav: React.FC = () => {
+  const data = useStaticQuery<Data>(footerNavQuery)
 
-  renderItems = (items: IItemType[]) => {
-    return items.map(({ label, link }, i) => (
-      <S.FooterLink key={i} to={link}>
-        {label}
-      </S.FooterLink>
-    ))
-  }
+  const { edges: columns } = data.allFooterYaml
 
-  renderColumns = (columns: IColumnType[]) => {
-    return columns.map(({ node: { id, title, type, items } }) => {
-      if (title === 'Contact') {
-        return (
-          <div key={id}>
-            <S.LogoLink to="/" title="Go to homepage">
-              <Segg />
-            </S.LogoLink>
+  return (
+    <>
+      {columns.map(({ node: { id, title, type, items } }) => {
+        if (title === 'Contact') {
+          return (
+            <div key={id}>
+              <S.LogoLink to="/" title="Go to homepage">
+                <Segg />
+              </S.LogoLink>
 
-            <S.ContactColumn>{this.renderItems(items)}</S.ContactColumn>
+              <S.ContactColumn>
+                {items.map(({ label, link }, i) => (
+                  <S.FooterLink key={i} to={link}>
+                    {label}
+                  </S.FooterLink>
+                ))}
+              </S.ContactColumn>
 
-            <Small>
-              <Link to="/legal">Legal</Link>&nbsp;©&nbsp;
-              {new Date().getFullYear()}
-            </Small>
-          </div>
-        )
-      }
+              <Small>
+                <Link to="/legal">Legal</Link>&nbsp;©&nbsp;
+                {new Date().getFullYear()}
+              </Small>
+            </div>
+          )
+        }
 
-      if (type === 'social') {
+        if (type === 'social') {
+          return (
+            <div key={id}>
+              <S.Title>{title}</S.Title>
+              <S.Row>
+                {items.map(({ label, link }, i) => (
+                  <Social key={i} type={label} link={link} />
+                ))}
+              </S.Row>
+            </div>
+          )
+        }
+
         return (
           <div key={id}>
             <S.Title>{title}</S.Title>
-            <S.Row>{this.renderSocialItems(items)}</S.Row>
+            <S.Column>
+              {items.map(({ label, link }, i) => (
+                <S.FooterLink key={i} to={link}>
+                  {label}
+                </S.FooterLink>
+              ))}
+            </S.Column>
           </div>
         )
-      }
-
-      return (
-        <div key={id}>
-          <S.Title>{title}</S.Title>
-          <S.Column>{this.renderItems(items)}</S.Column>
-        </div>
-      )
-    })
-  }
-
-  render() {
-    return (
-      <StaticQuery
-        query={footerNavQuery}
-        render={(data: INavFooterQuery) => {
-          const { edges: columns } = data.allFooterYaml
-          return this.renderColumns(columns)
-        }}
-      />
-    )
-  }
+      })}
+    </>
+  )
 }
 
 const footerNavQuery = graphql`

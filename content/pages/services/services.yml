@@ -60,9 +60,3 @@ network:
       text: Adamant focuses 100% on cyber and information security, keeping up with the rapid evolution of this field.
       url: https://adamantsec.com/
       prettyUrl: adamantsec.com
-
-cta:
-  title: Have a project of your own?
-  text: Small or big, we've got you covered!
-  link: /contact
-  linkText: Get in touch!

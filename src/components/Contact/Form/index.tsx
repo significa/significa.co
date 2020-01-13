@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StaticQuery, graphql } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 import axios from 'axios'
 
 import { MAIL_REGEX } from '../../../constants'
@@ -12,14 +12,58 @@ import { textByLine } from '../../../utils/textByLine'
 import { Link } from '../../UI'
 import Success from './Success'
 
-interface IValues {
+type Data = {
+  contactYaml: {
+    title: string
+    subtitle: string
+    mail: string
+
+    errors: {
+      global: string
+      nameRequired: string
+      emailRequired: string
+      emailInvalid: string
+      messageRequired: string
+      uploadError: string
+      uploadSizeError: string
+    }
+
+    form: {
+      name: {
+        label: string
+        placeholder: string
+      }
+      email: {
+        label: string
+        placeholder: string
+      }
+      budget: {
+        label: string
+        placeholder: string
+      }
+      message: {
+        label: string
+        placeholder: string
+      }
+      attachment: {
+        label: string
+      }
+      submit: {
+        label: string
+      }
+    }
+  }
+}
+
+type Values = {
   [key: string]: string | number | boolean
 }
-interface IErrors {
+type Errors = {
   [key: string]: string
 }
 
-const Form: React.FC<IContactForm> = ({ contactYaml: data }) => {
+const Form: React.FC = () => {
+  const { contactYaml: data } = useStaticQuery<Data>(contactFormQuery)
   // Main status state
   const [submitted, setSubmitted] = useState(false)
 
@@ -50,7 +94,7 @@ const Form: React.FC<IContactForm> = ({ contactYaml: data }) => {
   })
 
   // HandleSubmit
-  function handleSubmit(values: IValues, attachment: string) {
+  function handleSubmit(values: Values, attachment: string) {
     const body = fileUrl
       ? { ...values, type: 'enquiry', attachment }
       : { ...values, type: 'enquiry' }
@@ -65,8 +109,8 @@ const Form: React.FC<IContactForm> = ({ contactYaml: data }) => {
   }
 
   // Validate
-  function validate(values: IValues) {
-    const errors: IErrors = {}
+  function validate(values: Values) {
+    const errors: Errors = {}
 
     if (!values.name) {
       errors.name = data.errors.nameRequired
@@ -160,60 +204,6 @@ const Form: React.FC<IContactForm> = ({ contactYaml: data }) => {
   )
 }
 
-/** Graphql from here until the bottom */
-
-interface IContactForm {
-  contactYaml: {
-    title: string
-    subtitle: string
-    mail: string
-
-    errors: {
-      global: string
-      nameRequired: string
-      emailRequired: string
-      emailInvalid: string
-      messageRequired: string
-      uploadError: string
-      uploadSizeError: string
-    }
-
-    form: {
-      name: {
-        label: string
-        placeholder: string
-      }
-      email: {
-        label: string
-        placeholder: string
-      }
-      budget: {
-        label: string
-        placeholder: string
-      }
-      message: {
-        label: string
-        placeholder: string
-      }
-      attachment: {
-        label: string
-      }
-      submit: {
-        label: string
-      }
-    }
-  }
-}
-
-const ConnectedForm = () => {
-  return (
-    <StaticQuery
-      query={contactFormQuery}
-      render={(data: IContactForm) => <Form {...data} />}
-    />
-  )
-}
-
 const contactFormQuery = graphql`
   query ContactFormQuery {
     contactYaml {
@@ -265,4 +255,4 @@ const contactFormQuery = graphql`
   }
 `
 
-export default ConnectedForm
+export default Form

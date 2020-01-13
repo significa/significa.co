@@ -127,12 +127,12 @@ const CustomComponentParser: React.FC<CustomComponentParserProps> = ({
               rel="noopener noreferrer"
             >
               <S.SmallText>{renderText(text)}</S.SmallText>
-              <S.RightArrow />
+              <S.RightArrow asset="arrow" />
             </S.ExternalLink>
           ) : (
             <S.Link to={linkResolver(link)}>
               <S.SmallText>{renderText(text)}</S.SmallText>
-              <S.RightArrow />
+              <S.RightArrow asset="arrow" />
             </S.Link>
           )}
         </S.LinkBox>

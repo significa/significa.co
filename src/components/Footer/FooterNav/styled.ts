@@ -43,4 +43,5 @@ export const FooterLink = styled(Link)`
 
 export const LogoLink = styled(BaseLink)`
   margin-bottom: 2em;
+  display: block;
 `

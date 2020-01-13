@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import * as S from './styled'
 import * as T from '../../UI/Typography'
 
-interface ITeam {
+type Data = {
   aboutYaml: {
     team: {
       title: string
@@ -20,7 +20,7 @@ interface ITeam {
 const Team = () => {
   const {
     aboutYaml: { team },
-  }: ITeam = useStaticQuery(query)
+  } = useStaticQuery<Data>(query)
 
   const amountTeamMembers = team.list.length
 

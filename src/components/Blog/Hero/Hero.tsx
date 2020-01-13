@@ -18,7 +18,11 @@ const Hero: React.FC<{ post: BlogPost }> = ({ post }) => {
   return (
     <S.Article>
       <Link to={postLink}>
-        <S.Image src={post.data.hero.url} alt={post.data.title} />
+        <S.Image
+          fluid={post.data.hero.fluid}
+          alt={post.data.title}
+          loading="eager"
+        />
       </Link>
 
       <S.Content>

@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import Img from 'gatsby-image'
+
 import { media } from '@theme'
 
 import { SmallTitle, Text } from '../../UI'
@@ -7,15 +9,13 @@ export const Article = styled.article`
   margin-bottom: 4em;
 `
 
-export const Image = styled.div`
+export const Image = styled(Img)`
   margin-bottom: 1.3em;
   overflow: hidden;
 
   img {
-    transition: all ${({ theme }) => theme.transitions.ease()};
-    width: 100%;
-    display: block;
-    will-change: transform;
+    /* Gatsby Image has a inline transition rule */
+    transition: all ${({ theme }) => theme.transitions.ease()} !important;
   }
 `
 

@@ -1,7 +1,8 @@
 import { AnimatePresence, useCycle } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 
-import useBodyLock from '../../../hooks/useBodyLock'
+import useBodyLock from 'hooks/useBodyLock'
+
 import { SectionsType } from '../Section/types'
 import NavigationItem, { PossibleTypes } from './NavigationItem'
 import * as S from './styled'

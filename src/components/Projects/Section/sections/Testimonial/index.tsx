@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { textByLine } from '../../../../../utils/textByLine'
-import { ArrowLink, Link, Text, Title } from '../../../../UI'
+import { ArrowLink, Link, Text, Title } from 'components/UI'
+import { textByLine } from 'utils/textByLine'
+
 import { TestimonialType } from '../../types'
 import * as S from './styled'
 

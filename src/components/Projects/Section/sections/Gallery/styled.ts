@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components'
 
 import { media } from '@theme'
-
-import { Small } from '../../../../UI'
+import { Small } from 'components/UI'
 
 export const Wrapper = styled.div`
   display: grid;

@@ -2,7 +2,8 @@ import slugify from '@sindresorhus/slugify'
 import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 
-import linkResolver from '../../../utils/linkResolver'
+import linkResolver from 'utils/linkResolver'
+
 import { BlogPost } from '../types'
 import * as S from './styled'
 

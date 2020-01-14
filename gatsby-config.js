@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+require('ts-node').register()
+
 const pkg = require('./package.json')
 const linkResolver = require('./src/utils/linkResolver')
 

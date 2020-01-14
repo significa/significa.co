@@ -1,8 +1,9 @@
 import React from 'react'
 
-import { textByLine } from '../../../../../utils/textByLine'
-import { titleToID } from '../../../../../utils/titleToID'
-import { Text as TypographyText } from '../../../../UI'
+import { Text as TypographyText } from 'components/UI'
+import { textByLine } from 'utils/textByLine'
+import { titleToID } from 'utils/titleToID'
+
 import { navigateToSection } from '../../../utils'
 import { TextType } from '../../types'
 import * as S from './styled'

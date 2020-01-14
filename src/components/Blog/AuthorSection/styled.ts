@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 
 import { media } from '@theme'
-
-import { Content as ContentFromBlog } from '../../../templates/blog-post.styled'
-import Img from '../../PrismicImage'
-import { Text, Title as BaseTitle } from '../../UI'
-import SocialBase from '../../UI/Social'
+import Img from 'components/PrismicImage'
+import { Text, Title as BaseTitle } from 'components/UI'
+import SocialBase from 'components/UI/Social'
+import { Content as ContentFromBlog } from 'templates/blog-post.styled'
 
 export const Wrapper = styled.div`
   display: flex;

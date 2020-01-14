@@ -1,6 +1,7 @@
 import React from 'react'
 
-import linkResolver from '../../../utils/linkResolver'
+import linkResolver from 'utils/linkResolver'
+
 import { Icon } from '../../UI'
 import * as S from './styled'
 

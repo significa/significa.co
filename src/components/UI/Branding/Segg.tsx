@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { getAnyColor } from '../../../utils/getAnyColor'
+import { getAnyColor } from 'utils/getAnyColor'
 
 interface ISegg {
   color?: string

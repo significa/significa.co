@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components'
 
 import { IFullTheme, media } from '@theme'
-
-import { hexToRgb } from '../../../../utils/hexToRgb'
+import { hexToRgb } from 'utils/hexToRgb'
 
 export const Wrapper = styled.div`
   display: flex;

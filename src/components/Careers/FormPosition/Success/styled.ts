@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 import { media } from '@theme'
-
-import { ArrowLink, Container, Display, Text as BaseText } from '../../../UI'
+import { ArrowLink, Container, Display, Text as BaseText } from 'components/UI'
 
 export const Wrapper = styled(Container)`
   max-width: 38em;

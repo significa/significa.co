@@ -3,10 +3,10 @@ import { graphql, useStaticQuery } from 'gatsby'
 import React, { useState } from 'react'
 
 import { Theme } from '@theme'
+import useFileUpload from 'hooks/useFileUpload'
+import useForm from 'hooks/useForm'
+import { MAIL_REGEX } from 'utils/mailRegex'
 
-import { MAIL_REGEX } from '../../../constants'
-import useFileUpload from '../../../hooks/useFileUpload'
-import useForm from '../../../hooks/useForm'
 import { RightContent, Spacer } from '../../UI/Layout'
 import * as S from './styled'
 import Success from './Success'

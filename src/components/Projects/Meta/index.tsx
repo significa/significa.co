@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { textByLine } from '../../../utils/textByLine'
-import { Big, List, Text } from '../../UI/'
+import { Big, List, Text } from 'components/UI/'
+import { textByLine } from 'utils/textByLine'
+
 import * as S from './styled'
 
 interface IMeta {

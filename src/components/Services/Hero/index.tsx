@@ -1,7 +1,8 @@
 import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 
-import { textByLine } from '../../../utils/textByLine'
+import { textByLine } from 'utils/textByLine'
+
 import { List } from '../../UI'
 import arrowSketch from './arrowsketch.svg'
 import * as S from './styled'

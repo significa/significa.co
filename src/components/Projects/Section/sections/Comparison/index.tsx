@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import Img from '../../../../PrismicImage'
+import Img from 'components/PrismicImage'
+
 import { ComparisonType } from '../../types'
 import * as S from './styled'
 

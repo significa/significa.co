@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Small } from '../../../../UI'
+import { Small } from 'components/UI'
 
 export const Caption = styled(Small).attrs({ as: 'figcaption' })`
   margin-top: 1.5em;

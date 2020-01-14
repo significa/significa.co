@@ -1,7 +1,8 @@
 import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 
-import linkResolver from '../../../utils/linkResolver'
+import linkResolver from 'utils/linkResolver'
+
 import { Big, RightContent, Spacer } from '../../UI/'
 import * as S from './styled'
 

@@ -1,6 +1,7 @@
 import React from 'react'
 
-import PrismicImage from '../../../../PrismicImage'
+import PrismicImage from 'components/PrismicImage'
+
 import { ImageType } from '../../types'
 import * as S from './styled'
 

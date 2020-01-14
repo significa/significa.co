@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 
-import { ILabType } from '../../../pages/labs'
-import { Big } from '../../UI'
+import { Big } from 'components/UI'
+import { ILabType } from 'pages/labs'
+
 import * as S from './styled'
 
 interface IAll {

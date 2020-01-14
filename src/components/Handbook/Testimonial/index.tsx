@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { Testimonial as TestimonialType } from '../../../templates/handbook'
+import { Testimonial as TestimonialType } from 'templates/handbook'
+
 import * as S from './styled'
 
 const Testimonial: React.FC<{ testimonial: TestimonialType }> = ({

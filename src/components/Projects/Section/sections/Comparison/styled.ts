@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-import { Small } from '../../../../UI'
+import { Small } from 'components/UI'
+
 import PaddedWrapper from '../common/PaddedWrapper'
 import DoubleArrow from './DoubleArrow'
 

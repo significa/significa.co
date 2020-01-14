@@ -1,6 +1,7 @@
 import React from 'react'
 
-import Img from '../../../../PrismicImage'
+import Img from 'components/PrismicImage'
+
 import { GalleryType } from '../../types'
 import * as S from './styled'
 

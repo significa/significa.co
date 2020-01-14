@@ -3,8 +3,8 @@ import { FluidObject } from 'gatsby-image'
 import React from 'react'
 
 import { Theme } from '@theme'
+import { textByLine } from 'utils/textByLine'
 
-import { textByLine } from '../../../utils/textByLine'
 import * as S from './styled'
 
 type Data = {

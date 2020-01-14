@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { titleToID } from '../../../utils/titleToID'
+import { titleToID } from 'utils/titleToID'
+
 import {
   ChapterType,
   SectionType,

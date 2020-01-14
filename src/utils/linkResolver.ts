@@ -1,5 +1,4 @@
-// (doc: { type: string; uid: string }): string
-module.exports = doc => {
+module.exports = (doc: { type: string; uid: string }): string => {
   if (doc.type === 'project') {
     return `/showcase/${doc.uid}`
   }

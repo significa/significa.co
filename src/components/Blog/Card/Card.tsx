@@ -2,8 +2,9 @@ import slugify from '@sindresorhus/slugify'
 import { Link } from 'gatsby'
 import React from 'react'
 
-import formatDate from '../../../utils/formatDate'
-import linkResolver from '../../../utils/linkResolver'
+import formatDate from 'utils/formatDate'
+import linkResolver from 'utils/linkResolver'
+
 import AuthorBox from '../AuthorBox/AuthorBox'
 import { BlogPost } from '../types'
 import * as S from './styled'

@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 
-import useMeasure from '../../../hooks/useMeasure'
+import useMeasure from 'hooks/useMeasure'
+
 import Card from '../Card/Card'
 import { BlogPost } from '../types'
 import * as S from './styled'

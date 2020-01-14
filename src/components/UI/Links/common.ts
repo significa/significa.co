@@ -1,8 +1,7 @@
 import { css } from 'styled-components'
 
 import { media } from '@theme'
-
-import { themeGet } from '../../../utils/themeGet'
+import { themeGet } from 'utils/themeGet'
 
 export const baseStyle = css`
   position: relative;

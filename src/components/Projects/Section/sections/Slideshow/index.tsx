@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
-import Img from '../../../../PrismicImage'
+import Img from 'components/PrismicImage'
+
 import { SlideshowType } from '../../types'
 import Arrow from './Arrow'
 import * as S from './styled'

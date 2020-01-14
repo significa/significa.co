@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
 import { media } from '@theme'
-
 import {
   ArrowLink as BaseArrowLink,
   Label as BaseLabel,
   Link as BaseLink,
   Title as BaseTitle,
-} from '../../../../UI'
+} from 'components/UI'
+
 import PaddedWrapper from '../common/PaddedWrapper'
 import Anchor from './Anchor'
 

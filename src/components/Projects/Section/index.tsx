@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { IColorsTheme, lightTheme, Theme } from '@theme'
+import { getProjectTheme } from 'utils/getProjectTheme'
 
-import { getProjectTheme } from '../../../utils/getProjectTheme'
 import { Container } from '../../UI'
 import ConditionalWrap from '../../utils/ConditionalWrap'
 import * as Sections from './sections'

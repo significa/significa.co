@@ -3,8 +3,7 @@ import Img from 'gatsby-image'
 import styled from 'styled-components'
 
 import { media } from '@theme'
-
-import { Container, Text as BaseText, Title as BaseTitle } from '../../../UI'
+import { Container, Text as BaseText, Title as BaseTitle } from 'components/UI'
 
 export const Wrapper = styled(Container)`
   display: grid;

@@ -2,7 +2,8 @@ import { graphql, useStaticQuery } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
 import React from 'react'
 
-import useMeasure from '../../../hooks/useMeasure'
+import useMeasure from 'hooks/useMeasure'
+
 import * as S from './styled'
 import SunAndLogo from './SunAndLogo'
 

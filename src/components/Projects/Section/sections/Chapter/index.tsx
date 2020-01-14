@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { Display } from '../../../../UI'
+import { Display } from 'components/UI'
+
 import { ChapterType } from '../../types'
 import * as S from './styled'
 

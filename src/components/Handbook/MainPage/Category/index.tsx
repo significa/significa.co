@@ -1,8 +1,9 @@
 import React from 'react'
 
-import { Chapter } from '../../../../pages/handbook'
-import { textByLine } from '../../../../utils/textByLine'
-import { Icon, Small, Text } from '../../../UI'
+import { Icon, Small, Text } from 'components/UI'
+import { Chapter } from 'pages/handbook'
+import { textByLine } from 'utils/textByLine'
+
 import * as S from './styled'
 
 interface CategoryProps {

@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 import { media } from '@theme'
+import { themeGet } from 'utils/themeGet'
 
 import { Link } from '../'
-import { themeGet } from '../../../../utils/themeGet'
 
 export const NavLink = styled(Link)`
   padding: 0.75em 0;

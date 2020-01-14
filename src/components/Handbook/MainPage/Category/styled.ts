@@ -2,13 +2,12 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 import { media } from '@theme'
-
 import {
   Container,
   Small as BaseSmall,
   Text as BaseText,
   Title as BaseTitle,
-} from '../../../UI'
+} from 'components/UI'
 
 export const Wrapper = styled(Container)`
   margin-bottom: 5rem;

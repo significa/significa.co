@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 import { media } from '@theme'
-
-import { themeGet } from '../../../../utils/themeGet'
+import { themeGet } from 'utils/themeGet'
 
 export const Container = styled.div`
   margin-left: auto;

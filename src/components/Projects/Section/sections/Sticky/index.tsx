@@ -1,9 +1,10 @@
 import React from 'react'
 
-import { textByLine } from '../../../../../utils/textByLine'
-import { titleToID } from '../../../../../utils/titleToID'
-import Img from '../../../../PrismicImage'
-import { Text } from '../../../../UI'
+import Img from 'components/PrismicImage'
+import { Text } from 'components/UI'
+import { textByLine } from 'utils/textByLine'
+import { titleToID } from 'utils/titleToID'
+
 import { navigateToSection } from '../../../utils'
 import { StickyImageType, StickyVideoType } from '../../types'
 import * as S from './styled'

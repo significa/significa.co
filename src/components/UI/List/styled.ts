@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 
-import { getColor } from '../../../utils/getColor'
+import { getColor } from 'utils/getColor'
+
 import { Text } from '../Typography'
 
 export const Ul = styled.ul``

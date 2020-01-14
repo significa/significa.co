@@ -1,4 +1,4 @@
-import { IColorsTheme, lightTheme, darkTheme } from '@theme'
+import { darkTheme, IColorsTheme, lightTheme } from '@theme'
 
 interface ITheme extends IColorsTheme {
   name: string

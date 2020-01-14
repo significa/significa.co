@@ -1,9 +1,9 @@
 import React, { useRef } from 'react'
 
-import { BlogPost } from '../types'
-import Card from '../Card/Card'
-import * as S from './styled'
 import useMeasure from '../../../hooks/useMeasure'
+import Card from '../Card/Card'
+import { BlogPost } from '../types'
+import * as S from './styled'
 
 const ThumbHolder: React.FC<{}> = ({ children }) => {
   const ref = useRef<HTMLDivElement>(null)

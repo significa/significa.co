@@ -1,8 +1,8 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
 
-import * as S from './styled'
 import { textByLine } from '../../../../utils/textByLine'
+import * as S from './styled'
 
 type Props = {
   goBack: () => void

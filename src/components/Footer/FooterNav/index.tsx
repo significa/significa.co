@@ -1,8 +1,8 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
 
+import { Link, Segg, Small, Social } from '../../UI/'
 import * as S from './styled'
-import { Small, Link, Segg, Social } from '../../UI/'
 
 type Item = {
   label: string

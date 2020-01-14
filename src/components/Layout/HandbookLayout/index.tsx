@@ -1,9 +1,7 @@
 import React from 'react'
 
 import Layout from '..'
-
 import { Navigation } from '../../Handbook/'
-
 import * as S from './styled'
 
 const NavigationHolder: React.FC<{}> = ({ children }) => {

@@ -1,8 +1,8 @@
+import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 
-import * as S from './CallToAction.styled'
 import { ArrowLink } from '../UI'
-import { useStaticQuery, graphql } from 'gatsby'
+import * as S from './CallToAction.styled'
 
 interface ICallToAction {
   title?: string

@@ -1,7 +1,8 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
 
-import { Container, Display, Big } from '../../UI'
+import { Big, Container, Display } from '../../UI'
 
 export const TopWrapper = styled(Container)`
   max-width: 38em;

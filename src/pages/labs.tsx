@@ -1,10 +1,10 @@
-import React from 'react'
 import { graphql } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
+import React from 'react'
 
+import { All, Top } from '../components/Labs'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { Top, All } from '../components/Labs'
 import { LabsSourceType } from '../components/UI'
 
 export interface ILabType {

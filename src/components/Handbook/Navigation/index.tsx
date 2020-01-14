@@ -1,10 +1,9 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
 
-import * as S from './styled'
-
-import SubMenu from './SubMenu'
 import { Icon } from '../../UI'
+import * as S from './styled'
+import SubMenu from './SubMenu'
 
 export interface ContentType {
   type: string

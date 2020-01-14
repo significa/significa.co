@@ -1,8 +1,7 @@
 import React from 'react'
 
-import Label from '../Label'
 import Error from '../Error'
-
+import Label from '../Label'
 import * as S from './styled'
 
 interface IInput {

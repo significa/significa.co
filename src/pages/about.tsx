@@ -1,17 +1,17 @@
-import React from 'react'
 import { graphql } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
+import React from 'react'
 
-import Layout from '../components/Layout'
-import SEO from '../components/SEO'
 import {
-  Top,
+  Careers,
   Content,
   Global,
-  Careers,
-  Team,
   Services,
+  Team,
+  Top,
 } from '../components/About'
+import Layout from '../components/Layout'
+import SEO from '../components/SEO'
 
 interface IAbout {
   data: {

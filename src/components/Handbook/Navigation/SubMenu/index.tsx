@@ -1,10 +1,9 @@
-import React from 'react'
 import { motion } from 'framer-motion'
+import React from 'react'
 
+import { ContentType } from '../'
 import scrollToId from '../../../../utils/scrollToId'
 import { titleToID } from '../../../../utils/titleToID'
-import { ContentType } from '../'
-
 import * as S from './styled'
 
 interface SubMenuProps {

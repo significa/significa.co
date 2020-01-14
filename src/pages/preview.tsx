@@ -1,18 +1,17 @@
-import React, { useEffect } from 'react'
-import { navigate, useStaticQuery, graphql } from 'gatsby'
-import { usePrismicPreview } from 'gatsby-source-prismic'
 import { Location } from '@reach/router'
+import { graphql, navigate, useStaticQuery } from 'gatsby'
+import { usePrismicPreview } from 'gatsby-source-prismic'
+import React, { useEffect } from 'react'
 import Helmet from 'react-helmet'
-import { Provider, lightTheme } from '@theme'
 
-import linkResolver from '../utils/linkResolver'
+import { lightTheme, Provider } from '@theme'
 
 import { Segg, Text } from '../components/UI'
-
-import PositionPage from '../templates/position'
-import ProjectPage from '../templates/project'
 import BlogPostPage from '../templates/blog-post'
 import HandbookPage from '../templates/handbook'
+import PositionPage from '../templates/position'
+import ProjectPage from '../templates/project'
+import linkResolver from '../utils/linkResolver'
 
 declare global {
   interface Window {

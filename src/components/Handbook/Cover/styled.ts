@@ -1,9 +1,9 @@
 import styled, { keyframes } from 'styled-components'
+
 import { media } from '@theme'
 
 import Img from '../../PrismicImage'
-
-import { Display, Big, Small } from '../../UI'
+import { Big, Display, Small } from '../../UI'
 
 export const Wrapper = styled.div`
   position: relative;

@@ -1,6 +1,8 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
-import { displayStyle, bigStyle, textStyle } from '../Typography'
+
+import { bigStyle, displayStyle, textStyle } from '../Typography'
 
 interface IMarkdownProps {
   narrow?: boolean

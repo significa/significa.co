@@ -1,10 +1,11 @@
-import * as React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import Img, { FluidObject } from 'gatsby-image'
+import * as React from 'react'
 
 import { Theme } from '@theme'
+import { textByLine } from 'utils/textByLine'
+
 import { RightContent, Spacer } from '../../UI'
-import { textByLine } from '../../../utils/textByLine'
 import * as S from './styled'
 
 type Data = {

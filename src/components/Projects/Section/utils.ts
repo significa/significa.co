@@ -1,4 +1,4 @@
-import { layoutTypes, SectionsType, completeLayoutTypes } from './types'
+import { completeLayoutTypes, layoutTypes, SectionsType } from './types'
 
 const widths: { [K in layoutTypes]: string } = {
   small: '38.4375em',

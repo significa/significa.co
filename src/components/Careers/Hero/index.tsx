@@ -1,9 +1,8 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
+import React from 'react'
 
 import { textByLine } from '../../../utils/textByLine'
-
 import * as S from './styled'
 
 interface IGallery {

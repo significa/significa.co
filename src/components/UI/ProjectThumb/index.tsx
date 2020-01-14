@@ -1,5 +1,5 @@
-import React from 'react'
 import { FluidObject } from 'gatsby-image'
+import React from 'react'
 
 import ContentThumb from '../ContentThumb'
 

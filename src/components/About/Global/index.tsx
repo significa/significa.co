@@ -1,8 +1,9 @@
-import React from 'react'
-import { FluidObject } from 'gatsby-image'
 import { graphql, useStaticQuery } from 'gatsby'
+import { FluidObject } from 'gatsby-image'
+import React from 'react'
 
 import { Theme } from '@theme'
+
 import * as S from './styled'
 import WorldMap from './WorldMap'
 

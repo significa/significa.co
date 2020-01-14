@@ -1,13 +1,12 @@
-import React from 'react'
+import { motion } from 'framer-motion'
 import { graphql, useStaticQuery } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
-import { motion } from 'framer-motion'
+import React from 'react'
 
-import { ProjectThumb } from '../UI'
-
-import * as S from './styled'
-import getThumbBgColor from '../../utils/getThumbBgColor'
 import useMeasure from '../../hooks/useMeasure'
+import getThumbBgColor from '../../utils/getThumbBgColor'
+import { ProjectThumb } from '../UI'
+import * as S from './styled'
 
 type ProjectsListData = {
   allPrismicProject: {

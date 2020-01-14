@@ -1,7 +1,8 @@
+import { motion } from 'framer-motion'
 import React from 'react'
 import styled, { css } from 'styled-components'
+
 import { media } from '@theme'
-import { motion } from 'framer-motion'
 
 const Z_INDEXES = {
   overlay: 999,

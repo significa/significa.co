@@ -1,12 +1,13 @@
-import styled from 'styled-components'
-import { media } from '@theme'
 import { Link } from 'gatsby'
+import styled from 'styled-components'
+
+import { media } from '@theme'
 
 import {
   Container,
-  Title as BaseTitle,
-  Text as BaseText,
   Small as BaseSmall,
+  Text as BaseText,
+  Title as BaseTitle,
 } from '../../../UI'
 
 export const Wrapper = styled(Container)`

@@ -1,9 +1,7 @@
 import React from 'react'
 
 import Img from '../../../../PrismicImage'
-
 import { WaterfallType } from '../../types'
-
 import * as S from './styled'
 
 const Waterfall = (props: WaterfallType) => {

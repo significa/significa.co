@@ -1,5 +1,5 @@
+import Img, { FixedObject, FluidObject, GatsbyImageProps } from 'gatsby-image'
 import React, { CSSProperties } from 'react'
-import Img, { FluidObject, FixedObject, GatsbyImageProps } from 'gatsby-image'
 
 type Props = GatsbyImageProps & {
   src?: string

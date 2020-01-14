@@ -1,10 +1,11 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
 
 import {
+  Container as BaseContainer,
   Text as BaseText,
   Title as BaseTitle,
-  Container as BaseContainer,
 } from '../../UI'
 
 export const TeamWrapper = styled(BaseContainer)`

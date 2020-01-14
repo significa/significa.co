@@ -1,7 +1,6 @@
 import React from 'react'
 
 import Arrows from './Arrows'
-
 import * as S from './styled'
 
 interface IStrategyMarkdownProps {

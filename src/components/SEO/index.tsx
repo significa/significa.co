@@ -1,7 +1,7 @@
+import { Location } from '@reach/router'
+import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 import Helmet from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
-import { Location } from '@reach/router'
 
 type MetaProps =
   | { name: string; content: any; property?: undefined }

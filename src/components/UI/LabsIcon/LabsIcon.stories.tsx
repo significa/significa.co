@@ -1,6 +1,6 @@
-import React from 'react'
+import { boolean, select } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
-import { select, boolean } from '@storybook/addon-knobs'
+import React from 'react'
 
 import LabsIcon from './'
 import { LabsSourceType } from './types'

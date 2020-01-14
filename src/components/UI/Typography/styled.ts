@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+
 import { getColor } from '../../../utils/getColor'
 
 const baseStyle = css`

@@ -1,9 +1,7 @@
 import React from 'react'
 
 import PrismicImage from '../../../../PrismicImage'
-
 import { ImageType } from '../../types'
-
 import * as S from './styled'
 
 const Image = ({ primary: { image, caption } }: ImageType) => {

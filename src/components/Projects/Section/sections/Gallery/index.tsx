@@ -1,9 +1,7 @@
 import React from 'react'
 
 import Img from '../../../../PrismicImage'
-
 import { GalleryType } from '../../types'
-
 import * as S from './styled'
 
 const Gallery: React.FC<GalleryType> = props => (

@@ -1,9 +1,10 @@
+import { Link } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
-import { media } from '@theme'
-import { Link } from 'gatsby'
 
-import { labelStyle, Text, Icon } from '../../UI'
+import { media } from '@theme'
+
+import { Icon, labelStyle, Text } from '../../UI'
 
 export const Wrapper = styled.footer`
   /* Same as ../Content/styled */

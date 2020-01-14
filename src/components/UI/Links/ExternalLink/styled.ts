@@ -1,7 +1,9 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
-import { ExternalIcon as Icon } from './ExternalIcon'
+
 import { baseStyle } from '../common'
+import { ExternalIcon as Icon } from './ExternalIcon'
 
 export const ExternalIcon = styled(Icon)`
   position: absolute;

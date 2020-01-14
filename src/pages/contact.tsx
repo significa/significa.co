@@ -1,10 +1,9 @@
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
 
+import { Contacts, Form, WhatMatters } from '../components/Contact'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-
-import { Form, Contacts, WhatMatters } from '../components/Contact'
 
 interface IContent {
   data: {

@@ -1,8 +1,8 @@
+import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
 
-import * as S from './styled'
 import { textByLine } from '../../../../utils/textByLine'
+import * as S from './styled'
 
 interface ISuccessProps {
   goBack: () => void

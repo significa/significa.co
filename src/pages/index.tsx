@@ -1,14 +1,13 @@
-import React from 'react'
 import { graphql } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
+import React from 'react'
 
-import Layout from '../components/Layout'
-import SEO from '../components/SEO'
-
-import { Top, MoreProjects } from '../components/Home/'
-import FromTheBlog from '../components/FromTheBlog'
-import ProjectsList from '../components/ProjectsList'
 import CallToAction from '../components/CallToAction/CallToAction'
+import FromTheBlog from '../components/FromTheBlog'
+import { MoreProjects, Top } from '../components/Home/'
+import Layout from '../components/Layout'
+import ProjectsList from '../components/ProjectsList'
+import SEO from '../components/SEO'
 
 export type ServiceType = {
   title: string

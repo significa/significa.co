@@ -1,8 +1,8 @@
-import * as React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import * as React from 'react'
 
-import * as S from './styled'
 import * as T from '../../UI/Typography'
+import * as S from './styled'
 
 type Data = {
   aboutYaml: {

@@ -1,7 +1,8 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
 
-import { Display as BaseDisplay, Big as BaseBig } from '../UI'
+import { Big as BaseBig, Display as BaseDisplay } from '../UI'
 
 export const CallToActionWrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.background};

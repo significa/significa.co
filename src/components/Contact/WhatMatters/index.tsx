@@ -1,10 +1,11 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
+import React from 'react'
+
 import { Theme } from '@theme'
 
-import * as S from './styled'
 import { textByLine } from '../../../utils/textByLine'
+import * as S from './styled'
 
 type Data = {
   contactYaml: {

@@ -1,10 +1,11 @@
 import { css } from 'styled-components'
-import InterRegularWoff from './fonts/Inter-Regular.woff'
-import InterRegularWoff2 from './fonts/Inter-Regular.woff2'
-import InterMediumWoff from './fonts/Inter-Medium.woff'
-import InterMediumWoff2 from './fonts/Inter-Medium.woff2'
+
 import InterLightWoff from './fonts/Inter-Light.woff'
 import InterLightWoff2 from './fonts/Inter-Light.woff2'
+import InterMediumWoff from './fonts/Inter-Medium.woff'
+import InterMediumWoff2 from './fonts/Inter-Medium.woff2'
+import InterRegularWoff from './fonts/Inter-Regular.woff'
+import InterRegularWoff2 from './fonts/Inter-Regular.woff2'
 
 export default css`
   @font-face {

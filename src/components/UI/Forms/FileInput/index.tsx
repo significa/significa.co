@@ -1,8 +1,7 @@
-import React, { useState, useRef } from 'react'
-
-import * as S from './styled'
+import React, { useRef, useState } from 'react'
 
 import Error from '../Error'
+import * as S from './styled'
 
 interface IFileInput {
   label: string

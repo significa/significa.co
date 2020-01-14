@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import React, { useEffect, useRef, useState } from 'react'
 
-import * as S from './styled'
 import { NavLink } from '../../UI/'
+import * as S from './styled'
 
 type Data = {
   allMenuYaml: {

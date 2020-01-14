@@ -1,12 +1,12 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
 
 import BaseImg from '../../PrismicImage'
-
 import {
+  ArrowLink as BaseArrowLink,
   Container as BaseContainer,
   Huge as BaseHuge,
-  ArrowLink as BaseArrowLink,
 } from '../../UI/'
 
 export const Section = styled.section`

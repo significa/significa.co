@@ -1,6 +1,6 @@
-import React from 'react'
+import { color, select } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
-import { select, color } from '@storybook/addon-knobs'
+import React from 'react'
 
 import { Logo, Segg } from '.'
 

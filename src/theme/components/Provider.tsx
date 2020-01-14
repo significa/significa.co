@@ -5,13 +5,11 @@
 
 import React from 'react'
 
-import { colorArgumentType } from '../types'
-
-import Theme from './Theme'
-import GlobalStyle from '../style/GlobalStyle'
 import ThemeContext from '../context'
-
+import GlobalStyle from '../style/GlobalStyle'
+import { colorArgumentType } from '../types'
 import { mergeThemeWithColors } from '../utils'
+import Theme from './Theme'
 
 interface IProviderProps {
   children: React.ReactNode

@@ -1,4 +1,4 @@
-import { IFullTheme, IColorsTheme } from '@theme'
+import { IColorsTheme, IFullTheme } from '@theme'
 
 interface IGetAnyColor {
   color?: string

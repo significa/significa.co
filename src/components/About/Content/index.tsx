@@ -1,9 +1,8 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
 
-import { RightContent, Spacer } from '../../UI'
 import { textByLine } from '../../../utils/textByLine'
-
+import { RightContent, Spacer } from '../../UI'
 import * as S from './styled'
 
 type Data = {

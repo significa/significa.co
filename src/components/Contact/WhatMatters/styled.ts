@@ -1,10 +1,12 @@
-import styled from 'styled-components'
-import { media } from '@theme'
 import Img from 'gatsby-image'
+import styled from 'styled-components'
+
+import { media } from '@theme'
+
 import {
+  Big as BaseBig,
   Container as BaseContainer,
   Display,
-  Big as BaseBig,
   List as BaseList,
 } from '../../UI'
 

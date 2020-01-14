@@ -1,8 +1,6 @@
-import { mergeThemeWithColors } from './utils'
-
-import theme, { darkTheme } from './theme'
-
 import { colorArgumentType } from '.'
+import theme, { darkTheme } from './theme'
+import { mergeThemeWithColors } from './utils'
 
 describe('Merge theme with colors', () => {
   it('returns light theme when receiving "light"', () => {

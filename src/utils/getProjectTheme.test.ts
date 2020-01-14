@@ -1,4 +1,5 @@
-import { lightTheme as defaultTheme, darkTheme } from '@theme'
+import { darkTheme, lightTheme as defaultTheme } from '@theme'
+
 import { getProjectTheme } from './getProjectTheme'
 
 const themeLight = {

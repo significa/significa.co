@@ -1,7 +1,8 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
 
-import { Title as BaseTitle, Big, Link as BaseLink } from '../../UI'
+import { Big, Link as BaseLink, Title as BaseTitle } from '../../UI'
 
 export const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.background};

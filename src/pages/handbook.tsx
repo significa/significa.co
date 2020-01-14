@@ -1,10 +1,10 @@
-import React from 'react'
 import { graphql } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
+import React from 'react'
 
+import { Category, Featured, Top } from '../components/Handbook/MainPage'
 import Layout from '../components/Layout/'
 import SEO from '../components/SEO'
-import { Top, Featured, Category } from '../components/Handbook/MainPage'
 
 interface HandbookPageProps {
   data: {

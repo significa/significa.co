@@ -1,8 +1,8 @@
-import * as React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import * as React from 'react'
 
-import worldMapSource from './world-map.svg'
 import * as S from './styled'
+import worldMapSource from './world-map.svg'
 
 type Panel = {
   current: string

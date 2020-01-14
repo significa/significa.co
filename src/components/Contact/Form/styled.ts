@@ -1,14 +1,15 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
 
 import {
-  Container,
-  Input as BaseInput,
-  Textarea as BaseTextarea,
   Button as BaseButton,
-  FileInput as BaseFileInput,
+  Container,
   Display,
+  FileInput as BaseFileInput,
+  Input as BaseInput,
   Text as BaseText,
+  Textarea as BaseTextarea,
 } from '../../UI'
 
 interface IWrapper {

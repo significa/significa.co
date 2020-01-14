@@ -1,11 +1,12 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
 
 import {
   ArrowLink,
   Container as BaseContainer,
-  Title as BaseTitle,
   Display as BaseDisplay,
+  Title as BaseTitle,
 } from '../UI/'
 
 export const Container = styled(BaseContainer).attrs({ as: 'section' })`

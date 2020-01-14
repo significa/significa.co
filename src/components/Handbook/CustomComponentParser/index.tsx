@@ -1,8 +1,8 @@
 import React from 'react'
 
-import * as S from './styled'
 import linkResolver from '../../../utils/linkResolver'
 import { Icon } from '../../UI'
+import * as S from './styled'
 
 interface CustomComponentParserProps {
   element: {

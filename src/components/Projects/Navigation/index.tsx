@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
 import { AnimatePresence, useCycle } from 'framer-motion'
+import React, { useEffect, useState } from 'react'
 
-import { SectionsType } from '../Section/types'
-
-import * as S from './styled'
-import NavigationItem, { PossibleTypes } from './NavigationItem'
 import useBodyLock from '../../../hooks/useBodyLock'
+import { SectionsType } from '../Section/types'
+import NavigationItem, { PossibleTypes } from './NavigationItem'
+import * as S from './styled'
 
 interface INavigation {
   content: SectionsType[]

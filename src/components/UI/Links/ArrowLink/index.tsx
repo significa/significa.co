@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Link, Arrow } from './styled'
+import { Arrow, Link } from './styled'
 
 export interface IArrowLink {
   to: string

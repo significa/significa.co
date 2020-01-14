@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components'
+
 import { media } from '@theme'
 
+import { Label as BaseLabel, Title as BaseTitle } from '../../../../UI'
 import PaddedWrapper from '../common/PaddedWrapper'
-import { Title as BaseTitle, Label as BaseLabel } from '../../../../UI'
 import Anchor from './Anchor'
 
 export const AnchorIcon = styled(Anchor)`

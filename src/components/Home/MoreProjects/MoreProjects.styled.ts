@@ -1,7 +1,8 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
 
-import { Container, ArrowLink } from '../../UI'
+import { ArrowLink, Container } from '../../UI'
 
 export const Wrapper = styled(Container)``
 

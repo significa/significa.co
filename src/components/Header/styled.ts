@@ -1,7 +1,8 @@
-import styled from 'styled-components'
-import { media } from '@theme'
 import { Link } from 'gatsby'
 import Headroom from 'react-headroom'
+import styled from 'styled-components'
+
+import { media } from '@theme'
 
 import { Container as BaseContainer } from '../UI/'
 

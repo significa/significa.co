@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link as StyledLink, AnchorLink } from './styled'
+
 import ExternalLink from '../ExternalLink'
+import { AnchorLink, Link as StyledLink } from './styled'
 
 interface ILinkProps {
   to: string

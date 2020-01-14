@@ -1,9 +1,10 @@
-import styled from 'styled-components'
-import { media } from '@theme'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
+import styled from 'styled-components'
 
-import { Container, Title as BaseTitle, Text as BaseText } from '../../../UI'
+import { media } from '@theme'
+
+import { Container, Text as BaseText, Title as BaseTitle } from '../../../UI'
 
 export const Wrapper = styled(Container)`
   display: grid;

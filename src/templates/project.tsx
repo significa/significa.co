@@ -1,15 +1,15 @@
-import React from 'react'
 import { graphql } from 'gatsby'
-import { Theme } from '@theme'
 import { mergePrismicPreviewData } from 'gatsby-source-prismic'
+import React from 'react'
 
-import { getProjectTheme } from '../utils/getProjectTheme'
-import { IProject } from './project.types'
+import { Theme } from '@theme'
 
 import Layout from '../components/Layout'
+import { Hero, Meta, Navigation, Next, Section } from '../components/Projects'
 import SEO from '../components/SEO'
-import { Meta, Hero, Section, Next, Navigation } from '../components/Projects'
 import ConditionalWrap from '../components/utils/ConditionalWrap'
+import { getProjectTheme } from '../utils/getProjectTheme'
+import { IProject } from './project.types'
 
 interface IProjectProps {
   data: {

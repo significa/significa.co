@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react'
+import { FormEvent, useState } from 'react'
 
 // TODO: This typings need to be drastically improved
 

@@ -1,12 +1,14 @@
 import Image from 'gatsby-image'
 import styled from 'styled-components'
+
 import { media } from '@theme'
+
 import {
-  Container as BaseContainer,
   Big as BaseBig,
-  Text,
-  Small,
+  Container as BaseContainer,
   LabsIcon as Icon,
+  Small,
+  Text,
 } from '../../UI/'
 
 export const Wrapper = styled(BaseContainer)`

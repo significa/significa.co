@@ -1,8 +1,7 @@
-import React, { useRef, useEffect, useCallback } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 
-import Label from '../Label'
 import Error from '../Error'
-
+import Label from '../Label'
 import * as S from './styled'
 
 interface ITextarea {

@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { Chapter } from '../../../templates/handbook'
-
 import * as S from './styled'
 
 const Cover: React.FC<{ chapter: Chapter }> = ({ chapter }) => {

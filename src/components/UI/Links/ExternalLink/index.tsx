@@ -1,5 +1,6 @@
 import React from 'react'
-import { ExternalLink as StyledExternalLink, ExternalIcon } from './styled'
+
+import { ExternalIcon, ExternalLink as StyledExternalLink } from './styled'
 
 interface IExternalLink {
   children: React.ReactNode

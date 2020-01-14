@@ -1,6 +1,7 @@
-import styled from 'styled-components'
-import { media } from '@theme'
 import { Link as RouterLink } from 'gatsby'
+import styled from 'styled-components'
+
+import { media } from '@theme'
 
 import { Text } from '../../UI'
 

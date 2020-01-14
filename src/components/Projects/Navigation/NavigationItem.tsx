@@ -1,16 +1,14 @@
 import React from 'react'
 
 import { titleToID } from '../../../utils/titleToID'
-import { navigateToSection } from '../utils'
-
 import {
   ChapterType,
   SectionType,
-  TextType,
   StickyImageType,
   StickyVideoType,
+  TextType,
 } from '../Section/types'
-
+import { navigateToSection } from '../utils'
 import * as S from './styled'
 
 export type PossibleTypes =

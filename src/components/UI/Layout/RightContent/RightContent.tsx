@@ -1,7 +1,7 @@
 import React from 'react'
 
-import * as S from './RightContent.styled'
 import { textByLine } from '../../../../utils/textByLine'
+import * as S from './RightContent.styled'
 
 interface IRightContent {
   title: string

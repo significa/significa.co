@@ -1,7 +1,8 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
 
-import { Huge as BaseHuge, Big as BaseBig } from '../../UI'
+import { Big as BaseBig, Huge as BaseHuge } from '../../UI'
 
 export const LabsTopWrapper = styled.section`
   padding: 10rem 2rem 0;

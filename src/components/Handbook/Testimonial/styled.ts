@@ -1,6 +1,8 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
-import { ArrowLink, titleStyle, textStyle, labelStyle } from '../../UI'
+
+import { ArrowLink, labelStyle, textStyle, titleStyle } from '../../UI'
 
 export const Wrapper = styled.div`
   margin-top: 5rem;

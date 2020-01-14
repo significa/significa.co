@@ -1,11 +1,10 @@
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
 
+import CallToAction from '../components/CallToAction/CallToAction'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-
-import { Hero, Sections, Network } from '../components/Services'
-import CallToAction from '../components/CallToAction/CallToAction'
+import { Hero, Network, Sections } from '../components/Services'
 
 interface IContent {
   data: {

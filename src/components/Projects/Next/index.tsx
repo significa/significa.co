@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { Big } from '../../UI/'
-
 import * as S from './styled'
 
 interface INext {

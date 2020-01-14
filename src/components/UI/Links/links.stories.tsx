@@ -1,8 +1,8 @@
-import React from 'react'
+import { boolean, text } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
-import { text, boolean } from '@storybook/addon-knobs'
+import React from 'react'
 
-import { Link, NavLink, ArrowLink } from './'
+import { ArrowLink, Link, NavLink } from './'
 
 storiesOf('UI/Links', module)
   .addDecorator(story => <div style={{ padding: '2em' }}>{story()}</div>)

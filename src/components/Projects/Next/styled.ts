@@ -1,11 +1,12 @@
-import styled from 'styled-components'
-import { media } from '@theme'
 import BaseImg from 'gatsby-image'
+import styled from 'styled-components'
+
+import { media } from '@theme'
 
 import {
+  ArrowLink as BaseArrowLink,
   Container as BaseContainer,
   Display as BaseDisplay,
-  ArrowLink as BaseArrowLink,
 } from '../../UI/'
 
 export const Section = styled.section`

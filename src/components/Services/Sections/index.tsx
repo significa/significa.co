@@ -1,19 +1,17 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-import prettier from 'prettier/standalone'
-import prettierTS from 'prettier/parser-typescript'
+import React from 'react'
 
 import { Theme } from '@theme'
+import prettierTS from 'prettier/parser-typescript'
+import prettier from 'prettier/standalone'
 
-import toolboxImg from './toolbox.png'
-import pickerImg from './picker.png'
-
-import { textByLine } from '../../../utils/textByLine'
-
-import * as S from './styled'
-import StrategyMarkdown from './StrategyMarkdown'
-import { Container } from '../../UI'
 import syntaxHighlight from '../../../utils/syntaxHighlight'
+import { textByLine } from '../../../utils/textByLine'
+import { Container } from '../../UI'
+import pickerImg from './picker.png'
+import StrategyMarkdown from './StrategyMarkdown'
+import * as S from './styled'
+import toolboxImg from './toolbox.png'
 
 interface IServicesSectionsContent {
   servicesYaml: {

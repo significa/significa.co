@@ -1,5 +1,7 @@
 import { FluidObject } from 'gatsby-image'
+
 import { IColorsTheme } from '@theme'
+
 import { SectionsType } from '../components/Projects/Section/types'
 
 type Theme = IColorsTheme & {

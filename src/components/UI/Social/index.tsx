@@ -4,13 +4,12 @@ import Behance from './Behance'
 import Dribbble from './Dribbble'
 import Github from './Github'
 import Instagram from './Instagram'
-import Medium from './Medium'
-import Mail from './Mail'
-import Website from './Website'
 import LinkedIn from './LinkedIn'
-import Twitter from './Twitter'
-
+import Mail from './Mail'
+import Medium from './Medium'
 import { SocialLink } from './styled'
+import Twitter from './Twitter'
+import Website from './Website'
 
 const map: { [key: string]: any } = {
   behance: <Behance />,

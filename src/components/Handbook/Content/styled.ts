@@ -1,11 +1,13 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
+
 import {
   displayStyle,
+  labelStyle,
+  smallTitleStyle,
   textStyle,
   titleStyle,
-  smallTitleStyle,
-  labelStyle,
 } from '../../UI'
 import { liBaseStyle } from '../../UI/List/styled'
 

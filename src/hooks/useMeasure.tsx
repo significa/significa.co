@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, RefObject } from 'react'
+import { RefObject, useLayoutEffect, useState } from 'react'
 import ResizeObserver from 'resize-observer-polyfill'
 export interface DOMRectReadOnly {
   readonly x: number

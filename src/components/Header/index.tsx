@@ -1,11 +1,9 @@
 import React from 'react'
 
 import { Logo } from '../UI/'
-
-import * as S from './styled'
-import Navigation from './Navigation'
-
 import logos from './logos'
+import Navigation from './Navigation'
+import * as S from './styled'
 
 // Context to set a random logo on blog
 const Context = React.createContext<number | null>(null)

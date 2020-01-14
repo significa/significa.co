@@ -1,22 +1,21 @@
-import React from 'react'
 import { graphql } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
-import { RichText } from 'prismic-reactjs'
 import { mergePrismicPreviewData } from 'gatsby-source-prismic'
+import { RichText } from 'prismic-reactjs'
+import React from 'react'
 
-import linkResolver from '../utils/linkResolver'
-import { titleToID } from '../utils/titleToID'
-
+import {
+  BottomNavigation,
+  Content,
+  Cover,
+  CustomComponentParser,
+  Image,
+  Testimonial,
+} from '../components/Handbook/'
 import HandbookLayout from '../components/Layout/HandbookLayout/'
 import SEO from '../components/SEO'
-import {
-  Content,
-  Testimonial,
-  Cover,
-  Image,
-  BottomNavigation,
-  CustomComponentParser,
-} from '../components/Handbook/'
+import linkResolver from '../utils/linkResolver'
+import { titleToID } from '../utils/titleToID'
 
 export interface Testimonial {
   name: string

@@ -1,9 +1,9 @@
-import theme, { lightTheme, darkTheme, colorTheme, colors } from './theme'
-import ThemeContext from './context'
+import { media } from './breakpoints'
 import Provider from './components/Provider'
 import Theme from './components/Theme'
-import { colorArgumentType, IFullTheme, IColorsTheme } from './types'
-import { media } from './breakpoints'
+import ThemeContext from './context'
+import theme, { colors, colorTheme, darkTheme, lightTheme } from './theme'
+import { colorArgumentType, IColorsTheme, IFullTheme } from './types'
 
 export {
   /** Theme related exports (colors, etc.) */

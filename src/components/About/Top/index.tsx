@@ -1,6 +1,6 @@
-import React from 'react'
-import Img, { FluidObject } from 'gatsby-image'
 import { graphql, useStaticQuery } from 'gatsby'
+import Img, { FluidObject } from 'gatsby-image'
+import React from 'react'
 
 import * as S from './styled'
 

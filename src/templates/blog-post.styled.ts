@@ -1,13 +1,14 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
 
 import {
   Display as DisplayBase,
-  Text as TextBase,
   Label as LabelBase,
+  Small,
+  Text as TextBase,
   textStyle,
   titleStyle,
-  Small,
 } from '../components/UI'
 
 export const Header = styled.header`

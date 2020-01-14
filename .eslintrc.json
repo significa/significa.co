@@ -11,6 +11,18 @@
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-empty-interface": "off",
-    "@typescript-eslint/ban-ts-ignore": "off"
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "sort-exports/sort-exports": "off",
+    "simple-import-sort/sort": [
+      "error",
+      {
+        "groups": [
+          ["^\\u0000"],
+          ["^@?\\w"],
+          ["^@theme|^[a-z]{0,}\\/|^[^.]"],
+          ["^\\."]
+        ]
+      }
+    ]
   }
 }

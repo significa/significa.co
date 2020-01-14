@@ -1,12 +1,13 @@
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
 import styled from 'styled-components'
+
 import { media } from '@theme'
 
-import Layout from '../components/Layout'
-import SEO from '../components/SEO'
 import CallToAction from '../components/CallToAction/CallToAction'
+import Layout from '../components/Layout'
 import ProjectsList from '../components/ProjectsList'
+import SEO from '../components/SEO'
 
 interface Showcase {
   data: {

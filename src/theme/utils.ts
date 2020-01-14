@@ -1,6 +1,5 @@
-import theme, { lightTheme, darkTheme } from './theme'
-
-import { IFullTheme, colorArgumentType } from './types'
+import theme, { darkTheme, lightTheme } from './theme'
+import { colorArgumentType, IFullTheme } from './types'
 
 const themes = {
   light: { ...theme, colors: lightTheme },

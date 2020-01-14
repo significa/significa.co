@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
-import { media, colors } from '@theme'
+
+import { colors, media } from '@theme'
 
 export const MapWrapper = styled.div`
   padding-top: 4em;

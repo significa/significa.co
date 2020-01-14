@@ -1,8 +1,8 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
 
-import * as S from './styled'
 import sourceSong from '../../assets/404.mp4'
+import * as S from './styled'
 
 const NotFound = () => {
   const { notFoundYaml } = useStaticQuery(query)

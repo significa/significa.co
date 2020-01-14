@@ -1,7 +1,7 @@
 import React from 'react'
 
-import * as S from './styled'
 import { Container } from '../../UI'
+import * as S from './styled'
 
 interface Props {
   paths: Array<{ link: string; text: string }>

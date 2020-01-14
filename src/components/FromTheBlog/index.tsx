@@ -1,15 +1,12 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
 
-import linkResolver from '../../utils/linkResolver'
 import formatDate from '../../utils/formatDate'
-
-import { RightContent, Big, Icon } from '../UI/'
-
-import * as S from './styled'
-
+import linkResolver from '../../utils/linkResolver'
 import AuthorBox from '../Blog/AuthorBox/AuthorBox'
 import { Author } from '../Blog/types'
+import { Big, Icon, RightContent } from '../UI/'
+import * as S from './styled'
 
 type Data = {
   partialsYaml: {

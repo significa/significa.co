@@ -1,7 +1,6 @@
 import React from 'react'
 
 import Image from '../../PrismicImage'
-
 import { Author } from '../types'
 import * as S from './styled'
 

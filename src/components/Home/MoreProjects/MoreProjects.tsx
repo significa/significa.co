@@ -1,7 +1,7 @@
 import React from 'react'
 
-import * as S from './MoreProjects.styled'
 import { Big, Spacer } from '../../UI'
+import * as S from './MoreProjects.styled'
 
 type Props = {
   text: string

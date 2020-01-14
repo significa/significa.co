@@ -7,7 +7,6 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 
 import { colorArgumentType } from '../types'
-
 import { mergeThemeWithColors } from '../utils'
 
 interface IThemeProps {

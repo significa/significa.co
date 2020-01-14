@@ -1,4 +1,5 @@
 import { theme } from '@theme'
+
 import { themeGet } from './themeGet'
 
 describe('Theme getter util', () => {

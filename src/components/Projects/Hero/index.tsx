@@ -1,8 +1,7 @@
-import React from 'react'
 import { FluidObject } from 'gatsby-image'
+import React from 'react'
 
 import { Big } from '../../UI/'
-
 import * as S from './styled'
 
 interface IHero {

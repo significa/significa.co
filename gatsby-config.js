@@ -2,7 +2,7 @@
 require('ts-node').register()
 
 const pkg = require('./package.json')
-const linkResolver = require('./src/utils/linkResolver')
+const linkResolver = require('./src/utils/linkResolver').default
 
 require('dotenv').config()
 

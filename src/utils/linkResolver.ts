@@ -1,4 +1,4 @@
-module.exports = (doc: { type: string; uid: string }): string => {
+const linkResolver = (doc: { type: string; uid: string }): string => {
   if (doc.type === 'project') {
     return `/showcase/${doc.uid}`
   }
@@ -25,3 +25,5 @@ module.exports = (doc: { type: string; uid: string }): string => {
 
   return '/'
 }
+
+export default linkResolver

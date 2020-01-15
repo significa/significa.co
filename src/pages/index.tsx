@@ -4,7 +4,7 @@ import React from 'react'
 
 import CallToAction from '../components/CallToAction/CallToAction'
 import FromTheBlog from '../components/FromTheBlog'
-import { MoreProjects, Top } from '../components/Home/'
+import { MoreProjects, Services, Top } from '../components/Home/'
 import Layout from '../components/Layout'
 import ProjectsList from '../components/ProjectsList'
 import SEO from '../components/SEO'
@@ -19,6 +19,15 @@ export type ServiceType = {
   }
 }
 
+export type ServicesSection = {
+  title: string
+  text: string
+  cta: string
+  design: ServiceType
+  development: ServiceType
+  product: ServiceType
+}
+
 interface HomePageProps {
   data: {
     homeYaml: {
@@ -27,14 +36,7 @@ interface HomePageProps {
         text: string
         cta: string
       }
-      services: {
-        title: string
-        text: string
-        cta: string
-        design: ServiceType
-        development: ServiceType
-        product: ServiceType
-      }
+      services: ServicesSection
       about: {
         title: string
         text: string
@@ -59,6 +61,7 @@ const IndexPage: React.FC<HomePageProps> = ({ data }) => {
         text={data.homeYaml.showcase.text}
         cta={data.homeYaml.showcase.cta}
       />
+      <Services content={data.homeYaml.services} />
       <FromTheBlog />
       <CallToAction />
     </Layout>

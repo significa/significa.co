@@ -17,15 +17,15 @@ services:
   design:
     title: Design
     link: /services/design
-    image: ./design@2x.png
+    image: ./ID.png
   development:
     title: Development
     link: /services/development
-    image: ./development@2x.png
+    image: ./SD.png
   product:
     title: Product Development
     link: /services/product
-    image: ./product@2x.png
+    image: ./PM.png
 
 about:
   title: Values, mission, clients, us

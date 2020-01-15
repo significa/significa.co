@@ -1,5 +1,5 @@
-import { motion, useTransform, useViewportScroll } from 'framer-motion'
-import React from 'react'
+import { useTransform, useViewportScroll } from 'framer-motion'
+import React, { useCallback, useLayoutEffect } from 'react'
 
 import ServicesBox from 'components/ServicesBox/ServicesBox'
 import { ArrowLink, Spacer, Title } from 'components/UI'
@@ -23,36 +23,51 @@ const Services: React.FC<Props> = ({ content }) => {
     [center, center + windowHeight],
     [0, windowHeight / 2]
   )
-  const slowY = useTransform(scrollY, [center, center + windowHeight], [0, 100])
 
-  React.useLayoutEffect(() => {
+  const setSizes = useCallback(() => {
     if (ref.current) {
       setOffset(ref.current.offsetTop)
     }
     setWindowHeight(window.innerHeight)
   }, [])
 
+  useLayoutEffect(() => {
+    window.addEventListener('resize', setSizes)
+    setSizes()
+
+    return () => {
+      window.removeEventListener('resize', setSizes)
+    }
+  }, [setSizes])
+
   return (
     <Spacer variant="large" spacing={{ top: ['7em', '5em', '3em'] }}>
       <S.Wrapper>
-        <S.Column>
+        <S.TextContent>
           <S.TextHolder>
             <Title>{content.title}</Title>
             <S.Text>{content.text}</S.Text>
             <ArrowLink to="/services">{content.cta}</ArrowLink>
           </S.TextHolder>
-        </S.Column>
-        <S.MiddleColumn>
-          <motion.div ref={ref} style={{ y }}>
-            <ServicesBox
-              title={content.design.title}
-              link="/services/design"
-              fluid={content.design.image.childImageSharp.fluid}
-            />
-          </motion.div>
-        </S.MiddleColumn>
-        <S.RightColumn>
-          <motion.div style={{ y: slowY }}>
+        </S.TextContent>
+        <S.Boxes>
+          <S.BoxesLeft>
+            <S.AnimatedBox ref={ref} style={{ y }}>
+              <ServicesBox
+                title={content.design.title}
+                link="/services/design"
+                fluid={content.design.image.childImageSharp.fluid}
+              />
+            </S.AnimatedBox>
+            <S.StaticBox>
+              <ServicesBox
+                title={content.design.title}
+                link="/services/design"
+                fluid={content.design.image.childImageSharp.fluid}
+              />
+            </S.StaticBox>
+          </S.BoxesLeft>
+          <S.BoxesRight>
             <ServicesBox
               title={content.development.title}
               link="/services/development"
@@ -63,8 +78,8 @@ const Services: React.FC<Props> = ({ content }) => {
               link="/services/product"
               fluid={content.product.image.childImageSharp.fluid}
             />
-          </motion.div>
-        </S.RightColumn>
+          </S.BoxesRight>
+        </S.Boxes>
       </S.Wrapper>
     </Spacer>
   )

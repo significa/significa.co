@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { media } from '@theme'
 
-const MAGIC_NUMBER = '7.5rem'
+const MAGIC_NUMBER = '30%'
 
 export const IconHolder = styled.div`
   display: flex;
@@ -42,7 +42,7 @@ export const BoxLink = styled(Link)`
 
   padding: 1.5rem;
 
-  width: 20rem;
+  width: 100%;
 
   margin-bottom: ${MAGIC_NUMBER};
 

@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
 import { media } from '@theme'
@@ -9,7 +8,7 @@ export const Wrapper = styled(Container)`
 
   justify-content: space-between;
 
-  ${media.largest} {
+  ${media.large} {
     flex-direction: column;
   }
 `
@@ -22,12 +21,12 @@ export const TextHolder = styled.div`
   position: sticky;
   top: 7rem;
   padding-bottom: 14rem;
+  max-width: 27rem;
 
-  ${media.largest} {
+  ${media.large} {
     position: relative;
     top: 0;
     padding-bottom: 0;
-    max-width: 27rem;
   }
 `
 
@@ -40,12 +39,14 @@ export const Boxes = styled.div`
   display: flex;
   justify-content: flex-end;
 
-  flex: 2;
+  flex: 1;
 
-  ${media.largest} {
-    justify-content: center;
-
+  ${media.large} {
     margin-top: 7em;
+  }
+
+  ${media.medium} {
+    justify-content: flex-start;
   }
 `
 
@@ -53,37 +54,54 @@ export const BoxesLeft = styled.div`
   margin-top: 10rem;
   margin-right: 2rem;
 
-  ${media.largest} {
-    margin-right: 1.5rem;
-    margin-top: 0;
+  flex: 1;
+
+  ${media.large} {
+    display: none;
   }
 `
 
 export const BoxesRight = styled.div`
   margin-top: 20rem;
 
-  ${media.largest} {
+  flex: 1;
+
+  ${media.large} {
     margin-top: 0;
     display: flex;
+  }
 
-    & > *:first-child {
-      margin-right: 1.5rem;
+  ${media.medium} {
+    flex-direction: column;
+
+    max-width: 20rem;
+  }
+`
+
+export const BoxHolder = styled.div`
+  width: 100%;
+
+  ${media.large} {
+    margin: 0 1rem;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
     }
   }
-`
 
-export const AnimatedBox = styled(motion.div)`
-  display: block;
-
-  ${media.largest} {
-    display: none;
+  ${media.medium} {
+    margin: 0;
   }
 `
 
-export const StaticBox = styled.div`
+export const ShowOnSmall = styled(BoxHolder)`
   display: none;
 
-  ${media.largest} {
+  ${media.large} {
     display: block;
   }
 `

@@ -1,4 +1,4 @@
-import { useTransform, useViewportScroll } from 'framer-motion'
+import { motion, useTransform, useViewportScroll } from 'framer-motion'
 import React, { useCallback, useLayoutEffect } from 'react'
 
 import ServicesBox from 'components/ServicesBox/ServicesBox'
@@ -52,32 +52,36 @@ const Services: React.FC<Props> = ({ content }) => {
         </S.TextContent>
         <S.Boxes>
           <S.BoxesLeft>
-            <S.AnimatedBox ref={ref} style={{ y }}>
+            <motion.div ref={ref} style={{ y }}>
               <ServicesBox
                 title={content.design.title}
                 link="/services/design"
                 fluid={content.design.image.childImageSharp.fluid}
               />
-            </S.AnimatedBox>
-            <S.StaticBox>
-              <ServicesBox
-                title={content.design.title}
-                link="/services/design"
-                fluid={content.design.image.childImageSharp.fluid}
-              />
-            </S.StaticBox>
+            </motion.div>
           </S.BoxesLeft>
           <S.BoxesRight>
-            <ServicesBox
-              title={content.development.title}
-              link="/services/development"
-              fluid={content.development.image.childImageSharp.fluid}
-            />
-            <ServicesBox
-              title={content.product.title}
-              link="/services/product"
-              fluid={content.product.image.childImageSharp.fluid}
-            />
+            <S.ShowOnSmall>
+              <ServicesBox
+                title={content.design.title}
+                link="/services/design"
+                fluid={content.design.image.childImageSharp.fluid}
+              />
+            </S.ShowOnSmall>
+            <S.BoxHolder>
+              <ServicesBox
+                title={content.development.title}
+                link="/services/development"
+                fluid={content.development.image.childImageSharp.fluid}
+              />
+            </S.BoxHolder>
+            <S.BoxHolder>
+              <ServicesBox
+                title={content.product.title}
+                link="/services/product"
+                fluid={content.product.image.childImageSharp.fluid}
+              />
+            </S.BoxHolder>
           </S.BoxesRight>
         </S.Boxes>
       </S.Wrapper>

@@ -17,11 +17,11 @@ const Services: React.FC<Props> = ({ content }) => {
   const ref = React.useRef<HTMLDivElement | null>(null)
 
   const { scrollY } = useViewportScroll()
-  const center = offset - windowHeight / 2
+  const center = offset - windowHeight / 1.5
   const y = useTransform(
     scrollY,
-    [center, center + windowHeight],
-    [0, windowHeight / 2]
+    [center, center + windowHeight * 2],
+    [0, (windowHeight * 1.5) / 2]
   )
 
   const setSizes = useCallback(() => {

@@ -4,18 +4,31 @@ import React from 'react'
 
 import CallToAction from '../components/CallToAction/CallToAction'
 import FromTheBlog from '../components/FromTheBlog'
-import { MoreProjects, Services, Top } from '../components/Home/'
+import { About, MoreProjects, Services, Top } from '../components/Home/'
 import Layout from '../components/Layout'
 import ProjectsList from '../components/ProjectsList'
 import SEO from '../components/SEO'
 
+type Image = {
+  childImageSharp: {
+    fluid: FluidObject
+  }
+}
+
 export type ServiceType = {
   title: string
   link: string
-  image: {
-    childImageSharp: {
-      fluid: FluidObject
-    }
+  image: Image
+}
+
+export type AboutSection = {
+  title: string
+  text: string
+  cta: string
+  images: {
+    left1: Image
+    left2: Image
+    right1: Image
   }
 }
 
@@ -37,16 +50,7 @@ interface HomePageProps {
         cta: string
       }
       services: ServicesSection
-      about: {
-        title: string
-        text: string
-        cta: string
-        images: Array<{
-          childImageSharp: {
-            fluid: FluidObject
-          }
-        }>
-      }
+      about: AboutSection
     }
   }
 }
@@ -56,12 +60,13 @@ const IndexPage: React.FC<HomePageProps> = ({ data }) => {
     <Layout>
       <SEO />
       <Top top={data.homeYaml.top} />
-      <ProjectsList limit={2} delay={data.homeYaml.top.length * 0.1} />
+      <ProjectsList limit={4} delay={data.homeYaml.top.length * 0.1} />
       <MoreProjects
         text={data.homeYaml.showcase.text}
         cta={data.homeYaml.showcase.cta}
       />
       <Services content={data.homeYaml.services} />
+      <About content={data.homeYaml.about} />
       <FromTheBlog />
       <CallToAction />
     </Layout>
@@ -124,9 +129,25 @@ export const query = graphql`
         text
         cta
         images {
-          childImageSharp {
-            fluid(maxWidth: 500) {
-              ...GatsbyImageSharpFluid_withWebp_noBase64
+          left1 {
+            childImageSharp {
+              fluid(maxWidth: 500) {
+                ...GatsbyImageSharpFluid_withWebp_noBase64
+              }
+            }
+          }
+          left2 {
+            childImageSharp {
+              fluid(maxWidth: 500) {
+                ...GatsbyImageSharpFluid_withWebp_noBase64
+              }
+            }
+          }
+          right1 {
+            childImageSharp {
+              fluid(maxWidth: 500) {
+                ...GatsbyImageSharpFluid_withWebp_noBase64
+              }
             }
           }
         }

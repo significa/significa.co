@@ -9,8 +9,8 @@ interface TopProps {
 
 const SPRING_TRANSITION = {
   type: 'spring',
-  damping: 35,
-  stiffness: 800,
+  damping: 18,
+  stiffness: 200,
 }
 
 const container = {

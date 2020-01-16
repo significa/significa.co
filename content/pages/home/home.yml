@@ -35,6 +35,6 @@ about:
     That's indeed what we stand for!
   cta: Take a deep dive
   images:
-    - ./home-1@2x.png
-    - ./home-2@2x.png
-    - ./home-3@2x.png
+    left1: ./home-1@2x.png
+    left2: ./home-2@2x.png
+    right1: ./home-3@2x.png

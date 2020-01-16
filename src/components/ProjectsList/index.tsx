@@ -39,8 +39,8 @@ type ProjectsListProps = {
 
 const SPRING_TRANSITION = {
   type: 'spring',
-  damping: 20,
-  stiffness: 300,
+  damping: 18,
+  stiffness: 200,
 }
 
 const ThumbHolder: React.FC<{}> = ({ children }) => {
@@ -86,8 +86,8 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
             <motion.div
               key={project.uid}
               variants={{
-                hidden: { y: 50, opacity: 0, ...SPRING_TRANSITION },
-                show: { y: 0, opacity: 1, ...SPRING_TRANSITION },
+                hidden: { y: 75, opacity: 0, transition: SPRING_TRANSITION },
+                show: { y: 0, opacity: 1, transition: SPRING_TRANSITION },
               }}
             >
               <ProjectThumb

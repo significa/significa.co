@@ -31,8 +31,8 @@ export const TextHolder = styled.div`
 `
 
 export const Text = styled(BaseText)`
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
 `
 
 export const Boxes = styled.div`

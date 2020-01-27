@@ -4,3 +4,7 @@
   cta: View Cimple
   path: /showcase/cimple
   photo: ./wyndham.png
+  theme:
+    background: '#E8E1FA'
+    foreground: '#131415'
+    highlight: '#7E6EE6'

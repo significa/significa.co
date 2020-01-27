@@ -34,6 +34,8 @@ export const Link = styled(ExtractedPropsLink)`
   font-size: 1.125rem;
   line-height: 1;
 
+  white-space: nowrap;
+
   color: ${({ theme }) => theme.colors.foreground};
   transition: color ${({ theme }) => theme.transitions.ease()};
 

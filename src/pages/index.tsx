@@ -2,6 +2,9 @@ import { graphql } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
 import React from 'react'
 
+import Testimonial from 'components/Testimonial/Testimonial'
+import { Container, Spacer } from 'components/UI'
+
 import CallToAction from '../components/CallToAction/CallToAction'
 import FromTheBlog from '../components/FromTheBlog'
 import { About, MoreProjects, Services, Top } from '../components/Home/'
@@ -66,6 +69,11 @@ const IndexPage: React.FC<HomePageProps> = ({ data }) => {
         cta={data.homeYaml.showcase.cta}
       />
       <Services content={data.homeYaml.services} />
+      <Spacer variant="large" spacing={{ top: [0, 0, 0] }}>
+        <Container>
+          <Testimonial />
+        </Container>
+      </Spacer>
       <About content={data.homeYaml.about} />
       <FromTheBlog />
       <CallToAction />

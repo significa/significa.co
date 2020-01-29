@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { media } from '@theme'
-import { Container, Text as BaseText } from 'components/UI'
+import { Container, TitleAndText } from 'components/UI'
 
 export const Wrapper = styled(Container)`
   display: flex;
@@ -17,22 +17,16 @@ export const TextContent = styled.div`
   flex: 1;
 `
 
-export const TextHolder = styled.div`
+export const TextHolder = styled(TitleAndText)`
   position: sticky;
   top: 7rem;
   padding-bottom: 14rem;
-  max-width: 27rem;
 
   ${media.large} {
     position: relative;
     top: 0;
     padding-bottom: 0;
   }
-`
-
-export const Text = styled(BaseText)`
-  margin-top: 2rem;
-  margin-bottom: 3rem;
 `
 
 export const Boxes = styled.div`

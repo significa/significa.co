@@ -1,0 +1,89 @@
+- name: Ana Moreno
+  role: Designer
+  photo: ./anam.jpg
+  egg: ./anam_egg.jpg
+
+- name: António Pereira
+  role: Developer
+  photo: ./antoniop.jpg
+  egg: ./antoniop_egg.jpg
+
+- name: André Furtado
+  role: Creative Director
+  photo: ./andref.jpg
+  egg: ./andref_egg.jpg
+
+- name: Catarina Silva
+  role: Office Manager
+  photo: ./catarinas.jpg
+  egg: ./catarinas_egg.jpg
+
+- name: Danilo Woznica
+  role: Developer
+  photo: ./danilow.jpg
+  egg: ./danilow_egg.jpg
+
+- name: Frederico Jesus
+  role: Illustrator / Motion
+  photo: ./fredericoj.jpg
+  egg: ./fredericoj_egg.jpg
+
+- name: Filipe Almeida
+  role: Designer
+  photo: ./filipea.jpg
+  egg: ./filipea_egg.jpg
+
+- name: Isabel Sá
+  role: Designer / Developer
+  photo: ./isabels.jpg
+  egg: ./isabels_egg.jpg
+
+- name: Joaquim Rosa
+  role: Front-end Developer
+  photo: ./joaquimr.jpg
+  egg: ./joaquimr_egg.jpg
+
+- name: João Ribeiro
+  role: Front-end Developer
+  photo: ./joaor.jpg
+  egg: ./joaor_egg.jpg
+
+- name: Lisa Cosme
+  role: Designer
+  photo: ./lisac.jpg
+  egg: ./lisac_egg.jpg
+
+- name: Mariana Gomes
+  role: Product Manager / Designer
+  photo: ./marianag.jpg
+  egg: ./marianag_egg.jpg
+
+- name: Mário Rodrigues
+  role: Designer
+  photo: ./marior.jpg
+  egg: ./marior_egg.jpg
+
+- name: Márcio Pinto
+  role: Developer
+  photo: ./marciop.jpg
+  egg: ./marciop_egg.jpg
+
+- name: Pedro Brandão
+  role: Founder / CEO
+  photo: ./pedrob.jpg
+  egg: ./pedrob_egg.jpg
+
+- name: Pedro Teixeira
+  role: Designer
+  photo: ./pedrot.jpg
+  egg: ./pedrot_egg.jpg
+
+- name: Rui Sereno
+  role: Business Development
+  photo: ./ruis.jpg
+  egg: ./ruis_egg.jpg
+
+- name: Teresa Vilar Araújo
+  role: Designer
+  photo: ./teresav.jpg
+  egg: ./teresav_egg.jpg

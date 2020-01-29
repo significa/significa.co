@@ -2,6 +2,59 @@ seo:
   title: About
   description: Every little secret about your favourite designers and developers.
 
+top:
+  title: We are Significa
+  content: |
+    Now, what is Significa, you ask. Great question, sometimes we ask that too. 
+    In a nutshell, Significa is a group of people helping other people creating, improving and getting their product off the runway. Together. With strategy, design and development. But does it really sum things up? We believe not.
+    Ultimately, we believe in creating relationships, bonding with the people we collaborate with, them being companies or soon-to-be companies. We stand for helping them bond with their users too, through functionally beautiful digital experiences. 
+    We're all in this together with one common goal: to make things happen whilst leveraging our shared knowledge. We know more when we know together.
+  photos:
+    - image: about-1.png
+      alt: Significa Office 1
+    - image: about-2.png
+      alt: Significa Office 2
+    - image: about-3.png
+      alt: Significa Office 3
+
+services:
+  title: Making products happen
+  text: |
+    We do a lot of things, truly. But what matters is: we build and launch functional digital products while trying to make them look great in the process. And we're confident we do that pretty well too.
+  cta: There's more in services
+
+handbook:
+  title: |
+    Making it happen,
+    with(out) chaos
+  text: |
+    Dealing with so many projects, with so many people, demands a certain amount of chaos, and foolishness. And there is both! But there's also strong-structured processes in place.
+  subtext: |
+    There's more where these 2 come from.
+    A lot more, maybe too much.
+  cta: Read our handbook
+
+clients:
+  title: Pretentious? Nous?
+  text: We could say a lot of things! We do this! We do that! How great we are! But it would always sound pretentious. Instead, hear it from who really matters.
+  cta: Hear it from our clients
+
+people:
+  title: Alphabetically, the Team
+  text: An omelette is made of eggs.
+  subtext: |
+    We might have an egg for you
+    Find out about the open positions or self-apply if you see fit.
+  cta: I want to be an egg
+
+office:
+  title: Our home, away from home
+  text: We spent most of our awoke time at the office. It better be warm and plentiful in coffee. But most of all, laid-back and nuts!
+  subtitle: Meet the office in Porto
+  subtext: Renewed from an old, torn apart garage, former home to 31 collector cars, we've turned into an amazing, 600sqm office space.
+  cta: Visit us in Porto
+  link: https://goo.gl/maps/Jn4JQsMNVJEAy2yc6
+
 hero:
   title: Design-led strategies that impact people’s life.
   photos:

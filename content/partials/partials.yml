@@ -9,3 +9,17 @@ fromTheBlog:
     Blogging!
     We do some too.
   cta: More blogging
+
+services:
+  design:
+    title: Design
+    link: /services/design
+    image: ./ID@3x.png
+  development:
+    title: Development
+    link: /services/development
+    image: ./SD@3x.png
+  product:
+    title: Product
+    link: /services/product
+    image: ./PM@3x.png

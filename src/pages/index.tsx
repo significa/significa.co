@@ -18,12 +18,6 @@ type Image = {
   }
 }
 
-export type ServiceType = {
-  title: string
-  link: string
-  image: Image
-}
-
 export type AboutSection = {
   title: string
   text: string
@@ -39,9 +33,6 @@ export type ServicesSection = {
   title: string
   text: string
   cta: string
-  design: ServiceType
-  development: ServiceType
-  product: ServiceType
 }
 
 interface HomePageProps {
@@ -97,39 +88,6 @@ export const query = graphql`
         title
         text
         cta
-        design {
-          title
-          link
-          image {
-            childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
-              }
-            }
-          }
-        }
-        development {
-          title
-          link
-          image {
-            childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
-              }
-            }
-          }
-        }
-        product {
-          title
-          link
-          image {
-            childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
-              }
-            }
-          }
-        }
       }
 
       about {

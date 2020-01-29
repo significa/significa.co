@@ -1,8 +1,10 @@
 import { motion, useTransform, useViewportScroll } from 'framer-motion'
+import { graphql, useStaticQuery } from 'gatsby'
+import { FluidObject } from 'gatsby-image'
 import React, { useCallback, useLayoutEffect } from 'react'
 
 import ServicesBox from 'components/ServicesBox/ServicesBox'
-import { ArrowLink, Spacer, Title } from 'components/UI'
+import { Spacer } from 'components/UI'
 import { ServicesSection } from 'pages/index'
 
 import * as S from './Services.style'
@@ -11,7 +13,73 @@ type Props = {
   content: ServicesSection
 }
 
+type Image = {
+  childImageSharp: {
+    fluid: FluidObject
+  }
+}
+
+export type ServiceType = {
+  title: string
+  link: string
+  image: Image
+}
+
+type Data = {
+  partialsYaml: {
+    services: {
+      design: ServiceType
+      development: ServiceType
+      product: ServiceType
+    }
+  }
+}
+
 const Services: React.FC<Props> = ({ content }) => {
+  const {
+    partialsYaml: { services },
+  } = useStaticQuery<Data>(graphql`
+    query {
+      partialsYaml {
+        services {
+          design {
+            title
+            link
+            image {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid_withWebp_noBase64
+                }
+              }
+            }
+          }
+          development {
+            title
+            link
+            image {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid_withWebp_noBase64
+                }
+              }
+            }
+          }
+          product {
+            title
+            link
+            image {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid_withWebp_noBase64
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
   const [offset, setOffset] = React.useState<number>(0)
   const [windowHeight, setWindowHeight] = React.useState<number>(0)
   const ref = React.useRef<HTMLDivElement | null>(null)
@@ -44,42 +112,45 @@ const Services: React.FC<Props> = ({ content }) => {
     <Spacer variant="large" spacing={{ top: ['7em', '5em', '3em'] }}>
       <S.Wrapper>
         <S.TextContent>
-          <S.TextHolder>
-            <Title>{content.title}</Title>
-            <S.Text>{content.text}</S.Text>
-            <ArrowLink to="/services">{content.cta}</ArrowLink>
-          </S.TextHolder>
+          <S.TextHolder
+            title={content.title}
+            text={content.text}
+            cta={{
+              text: content.cta,
+              link: '/services',
+            }}
+          />
         </S.TextContent>
         <S.Boxes>
           <S.BoxesLeft>
             <motion.div ref={ref} style={{ y }}>
               <ServicesBox
-                title={content.design.title}
+                title={services.design.title}
                 link="/services/design"
-                fluid={content.design.image.childImageSharp.fluid}
+                fluid={services.design.image.childImageSharp.fluid}
               />
             </motion.div>
           </S.BoxesLeft>
           <S.BoxesRight>
             <S.ShowOnSmall>
               <ServicesBox
-                title={content.design.title}
+                title={services.design.title}
                 link="/services/design"
-                fluid={content.design.image.childImageSharp.fluid}
+                fluid={services.design.image.childImageSharp.fluid}
               />
             </S.ShowOnSmall>
             <S.BoxHolder>
               <ServicesBox
-                title={content.development.title}
+                title={services.development.title}
                 link="/services/development"
-                fluid={content.development.image.childImageSharp.fluid}
+                fluid={services.development.image.childImageSharp.fluid}
               />
             </S.BoxHolder>
             <S.BoxHolder>
               <ServicesBox
-                title={content.product.title}
+                title={services.product.title}
                 link="/services/product"
-                fluid={content.product.image.childImageSharp.fluid}
+                fluid={services.product.image.childImageSharp.fluid}
               />
             </S.BoxHolder>
           </S.BoxesRight>

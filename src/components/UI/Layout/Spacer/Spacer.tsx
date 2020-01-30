@@ -3,7 +3,7 @@ import React from 'react'
 import * as S from './Spacer.styled'
 
 type Measurement = string | number
-type SpaceType = 'small' | 'medium' | 'large'
+type SpaceType = 'xsmall' | 'small' | 'medium' | 'large'
 type Space = [Measurement, Measurement, Measurement] // [desktop, tablet, mobile]
 export type Spacing = { top: Space; bottom: Space }
 type Props = {
@@ -17,6 +17,10 @@ const Spacer: React.FC<Props> = ({
   children,
 }) => {
   const defaultSpacings: { [key in SpaceType]: Spacing } = {
+    xsmall: {
+      top: ['5em', '3em', '2em'],
+      bottom: ['5em', '3em', '2em'],
+    },
     small: {
       top: ['7em', '5em', '3em'],
       bottom: ['7em', '5em', '3em'],

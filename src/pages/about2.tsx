@@ -1,7 +1,9 @@
 import { graphql } from 'gatsby'
 import React from 'react'
+import styled from 'styled-components'
 
-import { Services, Top } from 'components/About2'
+import { Handbook, Services, Team, Top } from 'components/About2'
+import CallToAction from 'components/CallToAction/CallToAction'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
@@ -17,16 +19,27 @@ type AboutData = {
   }
 }
 
+const BackgroundTransition = styled.div`
+  background: inherit;
+  transition: background ${({ theme }) => theme.transitions.ease()};
+`
+
 const AboutPage: React.FC<AboutData> = ({ data }) => {
   return (
-    <Layout headerTheme="dark">
-      <SEO
-        title={data.aboutYaml.seo.title}
-        description={data.aboutYaml.seo.description}
-      />
+    <Layout theme="dark" transitionHeader>
+      <BackgroundTransition>
+        <SEO
+          title={data.aboutYaml.seo.title}
+          description={data.aboutYaml.seo.description}
+        />
 
-      <Top />
-      <Services />
+        <Top />
+        <Services />
+        <Handbook />
+        <Team />
+
+        <CallToAction />
+      </BackgroundTransition>
     </Layout>
   )
 }

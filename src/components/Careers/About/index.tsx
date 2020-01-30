@@ -33,7 +33,7 @@ const About: React.FC = () => {
 
   return (
     <Spacer spacing={{ bottom: [0, 0, 0] }}>
-      <RightContent amountColumn={3} title={about.title}>
+      <RightContent gridTemplate={['1fr 2fr', '1fr']} title={about.title}>
         <>
           <S.SectionWrapper>
             {about.sections.map(renderSection)}

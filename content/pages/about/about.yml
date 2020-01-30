@@ -28,10 +28,8 @@ handbook:
     Making it happen,
     with(out) chaos
   text: |
-    Dealing with so many projects, with so many people, demands a certain amount of chaos, and foolishness. And there is both! But there's also strong-structured processes in place.
-  subtext: |
-    There's more where these 2 come from.
-    A lot more, maybe too much.
+    Dealing with so many projects, with so many people, demands a certain amount of chaos, and foolishness. And there is both! But there's also strong-structured processes in place. 
+    There's more where these 2 come from (a lot more, maybe too much).
   cta: Read our handbook
 
 clients:
@@ -41,10 +39,8 @@ clients:
 
 people:
   title: Alphabetically, the Team
-  text: An omelette is made of eggs.
   subtext: |
-    We might have an egg for you
-    Find out about the open positions or self-apply if you see fit.
+    We might have an egg for you! Find out about the open positions or self-apply if you see fit.
   cta: I want to be an egg
 
 office:

@@ -53,7 +53,10 @@ const Perks: React.FC = () => {
 
   return (
     <S.Wrapper id="perky-perks">
-      <RightContent amountColumn={4} title={perks.title}>
+      <RightContent
+        gridTemplate={['1fr 4fr', '1fr 2fr', '1fr']}
+        title={perks.title}
+      >
         <S.Section>{perks.list.map(renderPerks)}</S.Section>
       </RightContent>
     </S.Wrapper>

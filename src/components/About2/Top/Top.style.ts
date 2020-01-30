@@ -4,12 +4,14 @@ import { media } from '@theme'
 import { Big as BaseText, Container, Title as BaseTitle } from 'components/UI'
 
 export const Wrapper = styled.section`
-  background-color: ${({ theme }) => theme.colors.background};
-
   margin-bottom: 10rem;
 
   ${media.small} {
     margin-bottom: 2rem;
+  }
+
+  svg path {
+    fill: ${({ theme }) => theme.colors.foreground};
   }
 `
 
@@ -37,7 +39,7 @@ export const EggShell = styled.div`
 `
 
 export const Content = styled(Container)`
-  padding-top: 100vh;
+  padding-top: 125vh;
 `
 
 export const Title = styled(BaseTitle)`

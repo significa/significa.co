@@ -2,7 +2,7 @@ import { graphql } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
 
-import { Handbook, Services, Team, Top } from 'components/About2'
+import { Handbook, Office, Services, Team, Top } from 'components/About2'
 import CallToAction from 'components/CallToAction/CallToAction'
 
 import Layout from '../components/Layout'
@@ -37,6 +37,8 @@ const AboutPage: React.FC<AboutData> = ({ data }) => {
         <Services />
         <Handbook />
         <Team />
+
+        <Office />
 
         <CallToAction />
       </BackgroundTransition>

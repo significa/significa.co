@@ -46,10 +46,15 @@ people:
 office:
   title: Our home, away from home
   text: We spent most of our awoke time at the office. It better be warm and plentiful in coffee. But most of all, laid-back and nuts!
-  subtitle: Meet the office in Porto
-  subtext: Renewed from an old, torn apart garage, former home to 31 collector cars, we've turned into an amazing, 600sqm office space.
+  subtext: Renewed from an old, torn apart garage (former home to 40-ish collector cars), we've turned it into an amazing, 600sqm office space.
   cta: Visit us in Porto
   link: https://goo.gl/maps/Jn4JQsMNVJEAy2yc6
+  photos:
+    topleft: ./top-left.png
+    bottomleft: ./bottom-left.png
+    center: ./center.png
+    topright: ./top-right.png
+    bottomright: ./bottom-right.png
 
 hero:
   title: Design-led strategies that impact people’s life.

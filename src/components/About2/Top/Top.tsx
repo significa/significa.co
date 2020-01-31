@@ -1,7 +1,7 @@
 import { motion, useTransform, useViewportScroll } from 'framer-motion'
 import { graphql, useStaticQuery } from 'gatsby'
 import Img, { FluidObject } from 'gatsby-image'
-import React, { useCallback, useEffect, useLayoutEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 
 import { ThemeContext } from '@theme'
 import { textByLine } from 'utils/textByLine'
@@ -29,6 +29,9 @@ type Data = {
 const Top = () => {
   const data = useStaticQuery<Data>(query)
   const [windowHeight, setWindowHeight] = React.useState<number>(1000)
+  useEffect(() => {
+    setWindowHeight(window.innerHeight)
+  }, [])
 
   // Theme transition
   const { updateTheme } = React.useContext(ThemeContext)
@@ -62,16 +65,12 @@ const Top = () => {
 
   // Egg animation
   const { scrollY } = useViewportScroll()
-  const scale = useTransform(scrollY, [0, windowHeight * 8], [1, 80])
+  const scale = useTransform(scrollY, [0, windowHeight * 2], [1, 20])
   const opacity = useTransform(
     scrollY,
     [0, windowHeight / 2, windowHeight / 1.5],
     [0, 0, 1]
   )
-
-  useLayoutEffect(() => {
-    setWindowHeight(window.innerHeight)
-  }, [])
 
   return (
     <S.Wrapper>

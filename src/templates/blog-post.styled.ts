@@ -6,6 +6,7 @@ import {
   Display as DisplayBase,
   Label as LabelBase,
   Small,
+  smallTitleStyle,
   Text as TextBase,
   textStyle,
   titleStyle,
@@ -72,15 +73,24 @@ export const Content = styled.div`
     margin-bottom: 0.5em;
   }
 
-  h2,
-  h3,
-  h4 {
+  h2 {
     ${titleStyle};
     margin-bottom: 0.5em;
     margin-top: 3.2em;
 
     ${media.medium} {
       margin-top: 2.2em;
+    }
+  }
+
+  h3,
+  h4 {
+    ${smallTitleStyle};
+    margin-bottom: 0.5em;
+    margin-top: 2em;
+
+    ${media.medium} {
+      margin-top: 1.5em;
     }
   }
 

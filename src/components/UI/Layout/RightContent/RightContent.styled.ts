@@ -1,99 +1,28 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { media } from '@theme'
 
 import { Container as BaseContainer } from '..'
 import { Title as BaseTitle } from '../../Typography'
 
-export const Container = styled(BaseContainer)`
+export const Container = styled(BaseContainer)<{
+  gridTemplate: [string, string?, string?]
+}>`
+  grid-template-columns: ${({ gridTemplate }) => gridTemplate[0]};
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
   grid-column-gap: 3em;
 
   ${media.medium} {
+    grid-template-columns: ${({ gridTemplate }) =>
+      gridTemplate[1] || gridTemplate[0]};
     grid-column-gap: 0;
     grid-row-gap: 3em;
   }
-`
 
-export const Left = styled.div<{ amountColumn: number }>`
-  ${({ amountColumn }) => {
-    if (amountColumn === 2) {
-      return css`
-        grid-column: 1 / 6;
-
-        ${media.large} {
-          grid-column: 1 / 5;
-        }
-
-        ${media.medium} {
-          grid-column: 1 / -1;
-        }
-      `
-    }
-
-    if (amountColumn === 3) {
-      return css`
-        grid-column: 1 / 5;
-
-        ${media.medium} {
-          grid-column: 1 / -1;
-        }
-      `
-    }
-
-    if (amountColumn === 4) {
-      return css`
-        grid-column: 1 / 4;
-
-        ${media.medium} {
-          grid-column: 1 / -1;
-        }
-      `
-    }
-
-    return null
-  }}
-`
-
-export const Right = styled.div<{ amountColumn: number }>`
-  ${({ amountColumn }) => {
-    if (amountColumn === 2) {
-      return css`
-        grid-column: 6 / 12;
-
-        ${media.large} {
-          grid-column: 5 / 13;
-        }
-
-        ${media.medium} {
-          grid-column: 1 / -1;
-        }
-      `
-    }
-
-    if (amountColumn === 3) {
-      return css`
-        grid-column: 5 / 13;
-
-        ${media.medium} {
-          grid-column: 1 / -1;
-        }
-      `
-    }
-
-    if (amountColumn === 4) {
-      return css`
-        grid-column: 4 / 13;
-
-        ${media.medium} {
-          grid-column: 1 / -1;
-        }
-      `
-    }
-
-    return null
-  }}
+  ${media.small} {
+    grid-template-columns: ${({ gridTemplate }) =>
+      gridTemplate[2] || gridTemplate[1] || gridTemplate[0]};
+  }
 `
 
 export const Title = styled(BaseTitle)`

@@ -1,9 +1,8 @@
 import Img from 'gatsby-image'
 import React from 'react'
 
-import { ArrowLink, Spacer } from 'components/UI'
+import { Spacer } from 'components/UI'
 import { AboutSection } from 'pages/index'
-import { textByLine } from 'utils/textByLine'
 
 import * as S from './About.style'
 
@@ -25,13 +24,12 @@ const About: React.FC<Props> = ({ content }) => {
           </S.ImagesRight>
         </S.Images>
 
-        <S.Content>
-          <S.Title>{content.title}</S.Title>
-          {textByLine(content.text).map((line, i) => (
-            <S.Text key={i}>{line}</S.Text>
-          ))}
-          <ArrowLink to="/about">{content.cta}</ArrowLink>
-        </S.Content>
+        <S.Content
+          maxWidth="30rem"
+          title={content.title}
+          text={content.text}
+          cta={{ text: content.cta, link: '/about ' }}
+        />
       </S.Wrapper>
     </Spacer>
   )

@@ -18,10 +18,11 @@ export const Provider: React.FC = ({ children }) => {
   return <Context.Provider value={indexBlogLogo}>{children}</Context.Provider>
 }
 
-const Header: React.FC<{ isBlogPage?: boolean; children: React.ReactNode }> = ({
-  children,
-  isBlogPage,
-}) => {
+const Header: React.FC<{
+  isBlogPage?: boolean
+  children: React.ReactNode
+  transitionHeader?: boolean
+}> = ({ children, isBlogPage, transitionHeader }) => {
   const indexBlogLogo = React.useContext(Context)
 
   const [shouldClose, setShouldClose] = React.useState(false)
@@ -35,7 +36,7 @@ const Header: React.FC<{ isBlogPage?: boolean; children: React.ReactNode }> = ({
 
   return (
     <S.Header upTolerance={50} onUnpin={() => setShouldClose(true)}>
-      <S.Wrapper>
+      <S.Wrapper transitionHeader={transitionHeader}>
         <S.Container>
           <div>
             <S.LogoLink to="/" title="Go to homepage">

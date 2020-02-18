@@ -1,62 +1,55 @@
 import { graphql } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
 import React from 'react'
+import styled from 'styled-components'
 
-import {
-  Careers,
-  Content,
-  Global,
-  Services,
-  Team,
-  Top,
-} from '../components/About'
+import { Handbook, Office, Services, Team, Top } from 'components/About'
+import CallToAction from 'components/CallToAction/CallToAction'
+
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
-interface IAbout {
+type AboutData = {
   data: {
     aboutYaml: {
       seo: {
         title: string
         description: string
       }
-      hero: {
-        title: string
-        photos: Array<{
-          alt: string
-          image: {
-            childImageSharp: {
-              fluid: FluidObject
-            }
-          }
-        }>
-      }
     }
   }
 }
 
-const Contact: React.FC<IAbout> = ({ data }) => {
-  return (
-    <Layout theme="light">
-      <SEO
-        title={data.aboutYaml.seo.title}
-        description={data.aboutYaml.seo.description}
-      />
+const BackgroundTransition = styled.div`
+  background: inherit;
+  transition: background ${({ theme }) => theme.transitions.ease()};
+`
 
-      <Top />
-      <Content />
-      <Global />
-      <Careers />
-      <Team />
-      <Services />
+const AboutPage: React.FC<AboutData> = ({ data }) => {
+  return (
+    <Layout theme="dark" transitionHeader>
+      <BackgroundTransition>
+        <SEO
+          title={data.aboutYaml.seo.title}
+          description={data.aboutYaml.seo.description}
+        />
+
+        <Top />
+        <Services />
+        <Handbook />
+        <Team />
+
+        <Office />
+
+        <CallToAction />
+      </BackgroundTransition>
     </Layout>
   )
 }
 
-export default Contact
+export default AboutPage
 
 export const query = graphql`
-  query AboutQuery {
+  query AboutPage {
     aboutYaml {
       seo {
         title

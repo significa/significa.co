@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { media } from '@theme'
-import { Container, Text as BaseText, Title as BaseTitle } from 'components/UI'
+import { Container, TitleAndText } from 'components/UI'
 
 export const Wrapper = styled(Container)`
   display: flex;
@@ -86,20 +86,6 @@ export const ImagesRight = styled.div`
   }
 `
 
-export const Content = styled.div`
-  max-width: 30rem;
-
+export const Content = styled(TitleAndText)`
   flex: 1;
-`
-
-export const Title = styled(BaseTitle)`
-  margin-bottom: 2rem;
-`
-
-export const Text = styled(BaseText)`
-  margin-bottom: 1rem;
-
-  &:last-of-type {
-    margin-bottom: 3rem;
-  }
 `

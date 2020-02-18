@@ -7,24 +7,24 @@ import * as S from './RightContent.styled'
 interface IRightContent {
   title: string
   children: React.ReactNode
-  amountColumn?: 2 | 3 | 4
+  gridTemplate?: [string, string?, string?]
   className?: string
 }
 
 const RightContent: React.FC<IRightContent> = ({
   title,
   children,
-  amountColumn = 2,
+  gridTemplate = ['2fr 3fr', '1fr', '1fr'],
   className,
 }) => {
   return (
-    <S.Container className={className}>
-      <S.Left amountColumn={amountColumn}>
+    <S.Container className={className} gridTemplate={gridTemplate}>
+      <div>
         {textByLine(title).map((l, i) => (
           <S.Title key={i}>{l}</S.Title>
         ))}
-      </S.Left>
-      <S.Right amountColumn={amountColumn}>{children}</S.Right>
+      </div>
+      <div>{children}</div>
     </S.Container>
   )
 }

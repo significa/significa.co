@@ -16,6 +16,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: Set deployment status
+        uses: pbrandone/create-status-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: pending
+          description: Preparing deploy preview
+          context: Deploy Preview URL
+
       - name: Install
         run: npm ci
 
@@ -44,4 +52,22 @@ jobs:
           msg: |
             Deploy preview ready!
             https://significa.dev/preview/${{ github.event.number }}
-            built from ${{ github.sha }}
+
+      - name: Set success deployment status
+        if: success()
+        uses: pbrandone/create-status-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: success
+          description: Deploy preview ready!
+          url: https://significa.dev/preview/${{ github.event.number }}
+          context: Deploy Preview URL
+
+      - name: Set failed deployment status
+        if: failure()
+        uses: pbrandone/create-status-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: failure
+          description: Failed to deploy preview
+          context: Deploy Preview URL

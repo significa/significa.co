@@ -84,6 +84,9 @@ team:
 
     - name: Filipe Almeida
       role: Designer
+    
+    - name: Guilherme Oliveira
+      role: Developer
 
     - name: Isabel Sá
       role: Designer / Developer

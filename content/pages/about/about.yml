@@ -67,6 +67,9 @@ team:
   text: Ours has {team_count}.
 
   list:
+    - name: Alec Norton
+      role: Project Manager
+
     - name: Ana Moreno
       role: Designer
 
@@ -82,8 +85,8 @@ team:
     - name: Frederico Jesus
       role: Illustrator / Motion
 
-    - name: Filipe Almeida
-      role: Designer
+    - name: Getúlio Strapazzon
+      role: Developer
 
     - name: Isabel Sá
       role: Designer / Developer

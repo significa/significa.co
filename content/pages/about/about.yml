@@ -84,6 +84,9 @@ team:
 
     - name: Getúlio Strapazzon
       role: Developer
+      
+    - name: Guilherme Oliveira
+      role: Developer
 
     - name: Isabel Sá
       role: Designer / Developer

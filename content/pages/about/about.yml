@@ -80,10 +80,10 @@ team:
       role: Office Manager
 
     - name: Daniel Costa
-      role: Developer
+      role: Back-end Developer
 
     - name: Danilo Woznica
-      role: Developer
+      role: Front-end Lead
 
     - name: Francisco Marques
       role: Developer
@@ -92,10 +92,10 @@ team:
       role: Illustrator / Motion
 
     - name: Getúlio Strapazzon
-      role: Developer
+      role: Front-end Developer
       
     - name: Guilherme Oliveira
-      role: Developer
+      role: Back-end Developer
 
     - name: Isabel Sá
       role: Designer / Developer
@@ -107,19 +107,19 @@ team:
       role: Front-end Developer
 
     - name: Joel Ferreira
-      role: Developer
+      role: Back-end Developer
 
     - name: Lisa Cosme
-      role: Designer
+      role: Interface Designer
 
     - name: Mariana Gomes
       role: Product Manager / Designer
 
     - name: Mário Rodrigues
-      role: Designer
+      role: Interface Designer
 
     - name: Márcio Pinto
-      role: Developer
+      role: Full-stack Developer
 
     - name: Pedro Brandão
       role: Founder / CEO
@@ -128,13 +128,13 @@ team:
       role: Front-end Developer
 
     - name: Pedro Teixeira
-      role: Designer
+      role: Interface Designer
 
     - name: Rui Sereno
       role: Business Development
 
     - name: Teresa Vilar Araújo
-      role: Designer
+      role: Interface Designer
 
 cta:
   title: From inception to launch.

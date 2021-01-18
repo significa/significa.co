@@ -87,13 +87,13 @@ team:
 
     - name: Francisco Marques
       role: Back-end Developer
-      
+
     - name: Frederico Jesus
       role: Illustrator / Motion
 
     - name: Getúlio Strapazzon
       role: Front-end Developer
-      
+
     - name: Guilherme Oliveira
       role: Back-end Developer
 
@@ -135,6 +135,9 @@ team:
 
     - name: Teresa Vilar Araújo
       role: Interface Designer
+
+    - name: Thomas Gouveia Lopes
+      role: Front-end Developer
 
 cta:
   title: From inception to launch.

@@ -1,5 +1,4 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { select, boolean } from '@storybook/addon-knobs'
 
 import LabsIcon from './'
@@ -7,18 +6,35 @@ import { LabsSourceType } from './types'
 
 const sources: LabsSourceType[] = ['medium', 'github', 'dribbble']
 
-storiesOf("UI/Labs' Icon", module)
-  .addDecorator(story => <div style={{ padding: '2em' }}>{story()}</div>)
+export default {
+  title: 'UI/Labs Icon',
+  decorators: [(story: any) => <div style={{ padding: '2em' }}>{story()}</div>],
+}
 
-  .add('Medium', () => <LabsIcon source="medium" />)
-  .add('Medium (color)', () => <LabsIcon source="medium" color />)
-  .add('Github', () => <LabsIcon source="github" />)
-  .add('Github (color)', () => <LabsIcon source="github" color />)
-  .add('Dribbble', () => <LabsIcon source="dribbble" />)
-  .add('Dribbble (color)', () => <LabsIcon source="dribbble" color />)
-  .add('All', () => (
-    <LabsIcon
-      source={select('Source', sources, sources[0]) as LabsSourceType}
-      color={boolean('Color', false)}
-    />
-  ))
+export const Medium = () => <LabsIcon source="medium" />
+
+export const MediumColor = () => <LabsIcon source="medium" color />
+MediumColor.story = {
+  name: 'Medium (color)',
+}
+
+export const Github = () => <LabsIcon source="github" />
+
+export const GithubColor = () => <LabsIcon source="github" color />
+MediumColor.story = {
+  name: 'Github (color)',
+}
+
+export const Dribbble = () => <LabsIcon source="dribbble" />
+
+export const DribbbleColor = () => <LabsIcon source="dribbble" color />
+MediumColor.story = {
+  name: 'Dribbble (color)',
+}
+
+export const All = () => (
+  <LabsIcon
+    source={select('Source', sources, sources[0]) as LabsSourceType}
+    color={boolean('Color', false)}
+  />
+)

@@ -14,33 +14,33 @@ addParameters({
 addDecorator(withKnobs)
 
 addDecorator(story => (
-  <ThemeContext.Consumer>
-    {({ updateTheme }) => {
-      const updateToLight = () => updateTheme('light')
-      const updateToDark = () => updateTheme('dark')
-      const updateToColor = () => updateTheme(colorTheme)
-
-      return (
-        <div
+  <Provider>
+    <ThemeContext.Consumer>
+      {({ updateTheme }) => {
+        const updateToLight = () => updateTheme('light')
+        const updateToDark = () => updateTheme('dark')
+        const updateToColor = () => updateTheme(colorTheme)
+        
+        return (
+          <div
           style={{
             display: 'flex',
             flexDirection: 'column',
             height: '100vh',
           }}
-        >
-          <div style={{ flexGrow: 1, flexShrink: 0 }}>{story()}</div>
-          <div style={{ display: 'flex', flexGrow: 0 }}>
-            <button onClick={updateToLight}>Light</button>
-            <button onClick={updateToDark}>Dark</button>
-            <button onClick={updateToColor}>Color</button>
+          >
+            <div style={{ flexGrow: 1, flexShrink: 0 }}>{story()}</div>
+            <div style={{ display: 'flex', flexGrow: 0 }}>
+              <button onClick={updateToLight}>Light</button>
+              <button onClick={updateToDark}>Dark</button>
+              <button onClick={updateToColor}>Color</button>
+            </div>
           </div>
-        </div>
-      )
-    }}
-  </ThemeContext.Consumer>
+        )
+      }}
+    </ThemeContext.Consumer>
+  </Provider>
 ))
-
-addDecorator(story => <Provider>{story()}</Provider>)
 
 
 // Gatsby's Link overrides:

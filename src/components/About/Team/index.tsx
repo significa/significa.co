@@ -24,6 +24,10 @@ const Team = () => {
 
   const amountTeamMembers = team.list.length
 
+  const orderTeamNameByAlphabet = team.list.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  )
+
   return (
     <S.TeamWrapper>
       <S.Title>{team.title}</S.Title>
@@ -32,7 +36,7 @@ const Team = () => {
       </S.Text>
 
       <S.TeamList>
-        {team.list.map(e => (
+        {orderTeamNameByAlphabet.map(e => (
           <S.TeamItem key={e.name}>
             <T.Text>{e.name}</T.Text>
             <T.Label>{e.role}</T.Label>

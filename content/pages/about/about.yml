@@ -76,11 +76,11 @@ team:
     - name: Catarina Silva
       role: Office Manager
 
+    - name: Cleyson Leal Braga
+      role: Front-end Developer
+
     - name: Daniel Costa
       role: Back-end Developer
-
-    - name: Danilo Woznica
-      role: Front-end Lead
 
     - name: Francisco Marques
       role: Back-end Developer

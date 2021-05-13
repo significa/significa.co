@@ -30,14 +30,6 @@
     - label: Labs
       link: /labs
 
-- title: Network
-  type: column
-  items:
-    - label: Coletiv
-      link: https://coletiv.com/
-    - label: Adamant
-      link: https://adamantsec.com/
-
 - title: Follow us
   type: social
   items:

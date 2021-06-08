@@ -1,48 +1,79 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { text, boolean } from '@storybook/addon-knobs'
 
 import { Link, NavLink, ArrowLink } from './'
 
-storiesOf('UI/Links', module)
-  .addDecorator(story => <div style={{ padding: '2em' }}>{story()}</div>)
+export default {
+  title: 'UI/Links',
+  decorators: [(story: any) => <div style={{ padding: '2em' }}>{story()}</div>],
+}
 
-  .add('NavLink', () => <NavLink to="/">Navigation Link</NavLink>)
+export const NavLinkStory = () => <NavLink to="/">Navigation Link</NavLink>
 
-  .add('Link (internal)', () => (
-    <Link to="/some-page">Internal (should use router)</Link>
-  ))
+NavLinkStory.story = {
+  name: 'NavLink',
+}
 
-  .add('Link (external)', () => (
-    <Link to="https://google.com/">External (should use normal anchor)</Link>
-  ))
+export const LinkInternal = () => (
+  <Link to="/some-page">Internal (should use router)</Link>
+)
 
-  .add('Link (rest)', () => (
-    <Link to="mailto:pedro@significa.co">
-      Normal (should use normal anchor)
-    </Link>
-  ))
+LinkInternal.story = {
+  name: 'Link (internal)',
+}
 
-  .add('ArrowLink', () => <ArrowLink to="/">Arrow Link</ArrowLink>)
+export const LinkExternal = () => (
+  <Link to="https://google.com/">External (should use normal anchor)</Link>
+)
 
-  .add('ArrowLink (highlight)', () => (
-    <ArrowLink to="/" highlight>
-      Arrow Link
-    </ArrowLink>
-  ))
+LinkExternal.story = {
+  name: 'Link (external)',
+}
 
-  .add('ArrowLink (reverse)', () => (
-    <ArrowLink to="/" reverse>
-      Arrow Link
-    </ArrowLink>
-  ))
+export const LinkRest = () => (
+  <Link to="mailto:pedro@significa.co">Normal (should use normal anchor)</Link>
+)
 
-  .add('ArrowLink (configurable)', () => (
-    <ArrowLink
-      to={text('To', '/')}
-      reverse={boolean('Reverse', false)}
-      highlight={boolean('Highlight', false)}
-    >
-      Arrow Link
-    </ArrowLink>
-  ))
+LinkRest.story = {
+  name: 'Link (rest)',
+}
+
+export const ArrowLinkStory = () => <ArrowLink to="/">Arrow Link</ArrowLink>
+
+ArrowLinkStory.story = {
+  name: 'ArrowLink',
+}
+
+export const ArrowLinkHighlight = () => (
+  <ArrowLink to="/" highlight>
+    Arrow Link
+  </ArrowLink>
+)
+
+ArrowLinkHighlight.story = {
+  name: 'ArrowLink (highlight)',
+}
+
+export const ArrowLinkReverse = () => (
+  <ArrowLink to="/" reverse>
+    Arrow Link
+  </ArrowLink>
+)
+
+ArrowLinkReverse.story = {
+  name: 'ArrowLink (reverse)',
+}
+
+export const ArrowLinkConfigurable = () => (
+  <ArrowLink
+    to={text('To', '/')}
+    reverse={boolean('Reverse', false)}
+    highlight={boolean('Highlight', false)}
+  >
+    Arrow Link
+  </ArrowLink>
+)
+
+ArrowLinkConfigurable.story = {
+  name: 'ArrowLink (configurable)',
+}

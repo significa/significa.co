@@ -1,11 +1,11 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import Label from './'
 
-storiesOf('Forms/Label', module)
-  .addDecorator(story => <div style={{ padding: '2em' }}>{story()}</div>)
+export default {
+  title: 'Forms/Label',
+  decorators: [(story: any) => <div style={{ padding: '2em' }}>{story()}</div>],
+}
 
-  .add('Regular', () => <Label>This is a label</Label>)
-
-  .add('Error', () => <Label hasError>Error label</Label>)
+export const Regular = () => <Label>This is a label</Label>
+export const Error = () => <Label hasError>Error label</Label>

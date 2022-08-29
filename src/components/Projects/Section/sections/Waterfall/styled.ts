@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
 
 export const Wrapper = styled.div`
@@ -41,24 +42,24 @@ const getGridRowStart = (
 export const ImgHolder = styled.div<{ index: number; rowSpan: number }>`
   margin-bottom: 5em;
 
-  grid-row-end: span ${p => p.rowSpan};
-  grid-row-start: ${p => getGridRowStart(p.index, 16)};
+  grid-row-end: span ${(p) => p.rowSpan};
+  grid-row-start: ${(p) => getGridRowStart(p.index, 16)};
 
   ${media.large} {
     margin-bottom: 3em;
 
-    grid-row-start: ${p => getGridRowStart(p.index, 12)};
+    grid-row-start: ${(p) => getGridRowStart(p.index, 12)};
   }
 
   ${media.medium} {
     margin-bottom: 3em;
 
-    grid-row-start: ${p => getGridRowStart(p.index, 8)};
+    grid-row-start: ${(p) => getGridRowStart(p.index, 8)};
   }
 
   ${media.small} {
     margin-bottom: 1em;
 
-    grid-row-start: ${p => getGridRowStart(p.index, 'auto')};
+    grid-row-start: ${(p) => getGridRowStart(p.index, 'auto')};
   }
 `

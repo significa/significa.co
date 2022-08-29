@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import axios from 'axios'
+import { useState } from 'react'
 
 import { MAX_FILE_SIZE } from '../constants'
 
@@ -58,7 +58,7 @@ const useFileUpload = ({
             },
             data: file,
           })
-          .then(res => {
+          .then((res) => {
             if (res.status === 200) {
               setFileUrl(url.split('?AWSAccessKeyId')[0])
             } else {

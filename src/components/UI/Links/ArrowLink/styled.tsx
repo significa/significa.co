@@ -1,7 +1,9 @@
+import { Link as GatsbyLink } from 'gatsby'
 import React from 'react'
 import styled, { css } from 'styled-components'
+
 import { media } from '@theme'
-import { Link as GatsbyLink } from 'gatsby'
+
 import { Arrow as ArrowIcon } from './Arrow'
 
 interface ILink {
@@ -42,12 +44,12 @@ export const Link = styled(ExtractedPropsLink)`
 
   ${media.hover} {
     &:hover ${Arrow} {
-      transform: ${p =>
+      transform: ${(p) =>
         p.reverse ? `rotate(180deg) translateX(0.25em)` : `translateX(0.25em)`};
     }
   }
 
-  ${p =>
+  ${(p) =>
     !p.highlight &&
     css`
       ${media.hover} {
@@ -61,7 +63,7 @@ export const Link = styled(ExtractedPropsLink)`
       }
     `}
 
-  ${p =>
+  ${(p) =>
     p.highlight &&
     css`
       color: ${({ theme }) => theme.colors.highlight};
@@ -71,7 +73,7 @@ export const Link = styled(ExtractedPropsLink)`
       }
     `}
 
-  ${p =>
+  ${(p) =>
     p.reverse &&
     css`
       flex-direction: row-reverse;

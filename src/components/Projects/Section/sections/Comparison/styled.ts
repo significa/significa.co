@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
-import PaddedWrapper from '../common/PaddedWrapper'
-
 import { Small } from '../../../../UI'
+import PaddedWrapper from '../common/PaddedWrapper'
 import DoubleArrow from './DoubleArrow'
 
 export { PaddedWrapper as Wrapper }

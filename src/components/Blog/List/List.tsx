@@ -1,11 +1,11 @@
-import React, { useRef } from 'react'
+import React, { ReactNode, useRef } from 'react'
 
-import { BlogPost } from '../types'
-import Card from '../Card/Card'
-import * as S from './styled'
 import useMeasure from '../../../hooks/useMeasure'
+import Card from '../Card/Card'
+import { BlogPost } from '../types'
+import * as S from './styled'
 
-const ThumbHolder: React.FC<{}> = ({ children }) => {
+const ThumbHolder: React.FC<{ children: ReactNode }> = ({ children }) => {
   const ref = useRef<HTMLDivElement>(null)
   const { height } = useMeasure(ref, 'article')
   const rowSpan = Math.ceil(height / 4)

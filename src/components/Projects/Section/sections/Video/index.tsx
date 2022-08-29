@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { VideoType } from '../../types'
-
 import * as S from './styled'
 
 const Video = ({ primary: video }: VideoType) => {

@@ -1,8 +1,7 @@
-import React from 'react'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
+import React from 'react'
 
 import { Big } from '../../UI/'
-
 import * as S from './styled'
 
 interface IHero {

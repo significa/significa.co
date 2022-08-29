@@ -1,6 +1,6 @@
 import React from 'react'
-import { Author } from '../types'
 
+import { Author } from '../types'
 import * as S from './styled'
 
 const AuthorSection: React.FC<{ content: Author }> = ({ content }) => {

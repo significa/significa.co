@@ -1,6 +1,8 @@
 import { GatsbyImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
+
 import { media } from '@theme'
+
 import {
   Container as BaseContainer,
   Big as BaseBig,

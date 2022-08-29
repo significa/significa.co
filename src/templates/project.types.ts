@@ -1,5 +1,7 @@
 import { IGatsbyImageData } from 'gatsby-plugin-image'
+
 import { IColorsTheme } from '@theme'
+
 import { SectionsType } from '../components/Projects/Section/types'
 
 type Theme = IColorsTheme & {

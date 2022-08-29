@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { ChapterWithImage } from '../../../../pages/handbook'
-
 import * as S from './styled'
 
 interface FeaturedProps {

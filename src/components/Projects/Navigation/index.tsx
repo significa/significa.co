@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
 import { AnimatePresence, useCycle } from 'framer-motion'
+import React, { useState, useEffect, useCallback } from 'react'
 
-import { SectionsType } from '../Section/types'
-
-import * as S from './styled'
-import NavigationItem, { PossibleTypes } from './NavigationItem'
 import useBodyLock from '../../../hooks/useBodyLock'
+import { SectionsType } from '../Section/types'
+import NavigationItem, { PossibleTypes } from './NavigationItem'
+import * as S from './styled'
 
 interface INavigation {
   content: SectionsType[]
@@ -22,7 +21,7 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
   const [isButtonVisible, setButtonVisible] = useState<boolean>(false)
   useBodyLock(visible)
 
-  const handleScroll = React.useCallback(() => {
+  const handleScroll = useCallback(() => {
     const totalHeight = Math.max(
       document.body.scrollHeight,
       document.body.offsetHeight,
@@ -50,7 +49,7 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [visible, isButtonVisible, handleScroll])
 
-  const items = content.filter(section => {
+  const items = content.filter((section, _index) => {
     const wantedTypes = [
       'chapter',
       'section',

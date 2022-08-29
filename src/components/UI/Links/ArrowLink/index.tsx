@@ -9,7 +9,7 @@ export interface IArrowLink {
   onClick?: () => void
 }
 
-const ArrowLink: React.FC<IArrowLink> = props => (
+const ArrowLink: React.FC<IArrowLink> = (props) => (
   <Link {...props}>
     {props.children}
     <Arrow />

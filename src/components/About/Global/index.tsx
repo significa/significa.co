@@ -1,10 +1,11 @@
-import React from 'react'
-import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { graphql, useStaticQuery } from 'gatsby'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+import React from 'react'
 
 import { Theme } from '@theme'
-import * as S from './styled'
+
 import WorldMap from './WorldMap'
+import * as S from './styled'
 
 interface IGlobal {
   aboutYaml: {

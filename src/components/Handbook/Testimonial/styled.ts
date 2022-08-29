@@ -1,5 +1,7 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
+
 import { ArrowLink, titleStyle, textStyle, labelStyle } from '../../UI'
 
 export const Wrapper = styled.div`

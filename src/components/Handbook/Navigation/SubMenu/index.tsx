@@ -1,10 +1,9 @@
-import React from 'react'
 import { motion } from 'framer-motion'
+import React, { useEffect, useRef, useState } from 'react'
 
-import scrollToId from '../../../../utils/scrollToId'
-import { titleToID } from '../../../../utils/titleToID'
 import { ContentType } from '../'
-
+import { scrollToId } from '../../../../utils/scrollToId'
+import { titleToID } from '../../../../utils/titleToID'
 import * as S from './styled'
 
 interface SubMenuProps {
@@ -25,14 +24,12 @@ const variants = {
 }
 
 const SubMenu = ({ path, headings, isActive }: SubMenuProps) => {
-  const [active, setActive] = React.useState<string>(
-    titleToID(headings[0].text)
-  )
-  const domList = React.useRef<HTMLHeadingElement[]>([])
+  const [active, setActive] = useState<string>(titleToID(headings[0].text))
+  const domList = useRef<HTMLHeadingElement[]>([])
 
   // Fetch IDs from DOM when mounting
-  React.useEffect(() => {
-    headings.forEach(heading => {
+  useEffect(() => {
+    headings.forEach((heading, _index) => {
       if (heading.text) {
         const target = document.querySelector(`#${titleToID(heading.text)}`)
         if (target && target instanceof HTMLHeadingElement) {
@@ -57,7 +54,7 @@ const SubMenu = ({ path, headings, isActive }: SubMenuProps) => {
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     onScroll()
     window.addEventListener('scroll', onScroll)
 
@@ -67,7 +64,7 @@ const SubMenu = ({ path, headings, isActive }: SubMenuProps) => {
   }, [])
 
   // Ul Ref to animate
-  const ulRef = React.useRef<HTMLUListElement>(null)
+  const ulRef = useRef<HTMLUListElement>(null)
 
   return (
     <motion.div

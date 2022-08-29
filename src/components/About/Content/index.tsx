@@ -1,9 +1,8 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
 
-import { RightContent } from '../../UI'
 import { textByLine } from '../../../utils/textByLine'
-
+import { RightContent } from '../../UI'
 import * as S from './styled'
 
 interface IContent {
@@ -22,7 +21,7 @@ const Content = () => {
 
   return (
     <RightContent title={content.title}>
-      {textByLine(content.text).map(e => (
+      {textByLine(content.text).map((e) => (
         <S.Text key={e}>{e}</S.Text>
       ))}
     </RightContent>

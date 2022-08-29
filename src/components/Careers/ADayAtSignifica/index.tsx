@@ -1,11 +1,10 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
+import React, { useRef } from 'react'
 
 import useMeasure from '../../../hooks/useMeasure'
-
-import * as S from './styled'
 import SunAndLogo from './SunAndLogo'
+import * as S from './styled'
 
 interface IGallery {
   alt: string
@@ -30,7 +29,7 @@ const Perks: React.FC = () => {
     careersYaml: { adayatsignifica },
   }: ICareersPerks = useStaticQuery(careersADayAtSignificaQuery)
 
-  const outerRef = React.useRef<HTMLDivElement>(null)
+  const outerRef = useRef<HTMLDivElement>(null)
   const { width } = useMeasure(outerRef)
 
   return (

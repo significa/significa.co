@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
-import { Text } from '../Typography'
+
 import { getColor } from '../../../utils/getColor'
+import { Text } from '../Typography'
 
 export const Ul = styled.ul``
 
@@ -20,7 +21,7 @@ export const Li = styled(Text).attrs({ as: 'li' })`
 
   &:before {
     content: '-';
-    color: ${props =>
+    color: ${(props) =>
       !props.color || props.color === 'foreground'
         ? props.theme.colors.highlight
         : getColor(props)};

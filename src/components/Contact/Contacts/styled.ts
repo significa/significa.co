@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import styled, { AnyStyledComponent } from 'styled-components'
+
 import { media } from '@theme'
 
 import { Container, Title as BaseTitle, Text as BaseText, Big } from '../../UI'
-import { AnyStyledComponent } from 'styled-components'
 
 export const Wrapper = styled(Container)`
   margin-top: 12.5rem;

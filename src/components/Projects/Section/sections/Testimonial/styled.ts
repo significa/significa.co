@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import PaddedWrapper from '../common/PaddedWrapper'
-
 import Icon from './QuoteIcon'
 
 export { PaddedWrapper as Wrapper }

@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 
 import Img from '../../../../PrismicImage'
-
 import { SlideshowType } from '../../types'
-
 import Arrow from './Arrow'
-
 import * as S from './styled'
 
 const Slideshow: React.FC<SlideshowType> = ({ items }) => {

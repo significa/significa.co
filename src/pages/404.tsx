@@ -1,9 +1,9 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
 
-import SEO from '../components/SEO'
 import Layout from '../components/Layout'
 import NotFound from '../components/NotFound'
+import SEO from '../components/SEO'
 
 const NotFoundPage = () => {
   const { notFoundYaml } = useStaticQuery(query)

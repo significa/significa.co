@@ -1,5 +1,4 @@
 import theme, { lightTheme, darkTheme } from './theme'
-
 import { IFullTheme, colorArgumentType } from './types'
 
 const themes = {

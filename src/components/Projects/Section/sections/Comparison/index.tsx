@@ -1,9 +1,7 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, useCallback } from 'react'
 
 import Img from '../../../../PrismicImage'
-
 import { ComparisonType } from '../../types'
-
 import * as S from './styled'
 
 const Comparison: React.FC<ComparisonType> = ({
@@ -21,7 +19,7 @@ const Comparison: React.FC<ComparisonType> = ({
     window.addEventListener('dragend', removeListeners)
   }
 
-  const removeListeners = React.useCallback(() => {
+  const removeListeners = useCallback(() => {
     window.removeEventListener('mousemove', onDrag)
     window.removeEventListener('touchmove', onDrag)
     window.removeEventListener('mouseup', removeListeners)
@@ -57,10 +55,10 @@ const Comparison: React.FC<ComparisonType> = ({
             <S.Icon />
           </S.DragHandle>
         </S.Controls>
-        <Img src={image_a.url} fluid={image_a.fluid} alt={image_a.alt} />
+        <Img src={image_a.url} image={image_a?.image} alt={image_a.alt} />
         <S.TopImage>
           <Img
-            fluid={image_b.fluid}
+            image={image_a?.image}
             src={image_b.url}
             alt={image_b.alt}
             style={{ height: '100%', width: `${visible}%` }}

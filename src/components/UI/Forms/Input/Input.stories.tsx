@@ -1,11 +1,11 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { text } from '@storybook/addon-knobs'
+import { storiesOf } from '@storybook/react'
+import React from 'react'
 
 import Input from './'
 
 storiesOf('Forms/Input', module)
-  .addDecorator(story => <div style={{ padding: '2em' }}>{story()}</div>)
+  .addDecorator((story) => <div style={{ padding: '2em' }}>{story()}</div>)
 
   .add('Regular', () => (
     <Input label="Your name" placeholder="Please type your name" />

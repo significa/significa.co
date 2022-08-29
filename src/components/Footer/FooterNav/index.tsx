@@ -1,8 +1,8 @@
-import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
+import React from 'react'
 
-import * as S from './styled'
 import { Small, Link, Segg, Social } from '../../UI/'
+import * as S from './styled'
 
 interface IItemType {
   label: string
@@ -24,7 +24,7 @@ interface INavFooterQuery {
   }
 }
 
-class FooterNav extends React.Component<{}, {}> {
+class FooterNav extends React.Component<Record<string, never>> {
   renderSocialItems = (items: IItemType[]) => {
     return items.map(({ label, link }, i) => (
       <Social key={i} type={label} link={link} />

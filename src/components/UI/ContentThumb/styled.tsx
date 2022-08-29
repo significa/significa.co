@@ -1,8 +1,9 @@
-import React from 'react'
-import styled from 'styled-components'
-import { media } from '@theme'
 import { Link as BaseLink } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
+import React from 'react'
+import styled from 'styled-components'
+
+import { media } from '@theme'
 
 import { Big as BaseBig } from '../Typography'
 

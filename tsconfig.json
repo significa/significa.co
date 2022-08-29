@@ -19,6 +19,7 @@
       "@theme/*": ["theme/*"]
     },
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    
   }
 }

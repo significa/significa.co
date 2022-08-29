@@ -1,8 +1,8 @@
-import * as React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import * as React from 'react'
 
-import * as S from './styled'
 import * as T from '../../UI/Typography'
+import * as S from './styled'
 
 interface ITeam {
   aboutYaml: {
@@ -36,7 +36,7 @@ const Team = () => {
       </S.Text>
 
       <S.TeamList>
-        {orderTeamNameByAlphabet.map(e => (
+        {orderTeamNameByAlphabet.map((e) => (
           <S.TeamItem key={e.name}>
             <T.Text>{e.name}</T.Text>
             <T.Label>{e.role}</T.Label>

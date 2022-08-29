@@ -1,14 +1,9 @@
-import React from 'react'
 import { graphql } from 'gatsby'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
-import { RichText } from 'prismic-reactjs'
 import { mergePrismicPreviewData } from 'gatsby-source-prismic'
+import { RichText } from 'prismic-reactjs'
+import React from 'react'
 
-import linkResolver from '../utils/linkResolver'
-import { titleToID } from '../utils/titleToID'
-
-import HandbookLayout from '../components/Layout/HandbookLayout/'
-import SEO from '../components/SEO'
 import {
   Content,
   Testimonial,
@@ -17,6 +12,10 @@ import {
   BottomNavigation,
   CustomComponentParser,
 } from '../components/Handbook/'
+import HandbookLayout from '../components/Layout/HandbookLayout/'
+import SEO from '../components/SEO'
+import linkResolver from '../utils/linkResolver'
+import { titleToID } from '../utils/titleToID'
 
 export interface Testimonial {
   name: string
@@ -111,12 +110,12 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
   // Featured chapters
   const allChapters = allPrismicHandbook.nodes[0].data.featured
   // Add all chapters from each group
-  allPrismicHandbook.nodes[0].data.body.forEach(group => {
+  allPrismicHandbook.nodes[0].data.body.forEach((group) => {
     allChapters.push(...group.items)
   })
 
   const currIndex = [...allChapters].findIndex(
-    c => c.chapter.document.uid === uid
+    (c) => c.chapter.document.uid === uid
   )
   if (currIndex > 0) {
     prevChapter = allChapters[currIndex - 1]
@@ -179,9 +178,10 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
                   }
 
                   if (type === 'paragraph') {
-                    const shouldCatch = /\[side-note|\[abbr|\[box|\[highlight|\[link/gim.test(
-                      element.text
-                    )
+                    const shouldCatch =
+                      /\[side-note|\[abbr|\[box|\[highlight|\[link/gim.test(
+                        element.text
+                      )
                     if (shouldCatch) {
                       return (
                         <CustomComponentParser

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
+
 import {
   Container as BaseContainer,
   Title as BaseTitle,

@@ -1,9 +1,8 @@
 import React from 'react'
 
-import { Big } from '../../../UI'
-
-import * as S from './styled'
 import { textByLine } from '../../../../utils/textByLine'
+import { Big } from '../../../UI'
+import * as S from './styled'
 
 interface TopProps {
   title: string

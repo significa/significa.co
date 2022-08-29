@@ -1,13 +1,13 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import React, { useRef, useState } from 'react'
 
-import * as S from './styled'
 import sourceSong from '../../assets/404.mp4'
+import * as S from './styled'
 
 const NotFound = () => {
   const { notFoundYaml } = useStaticQuery(query)
-  const [playing, setPlaying] = React.useState(false)
-  const videoRef = React.useRef<HTMLVideoElement>(null)
+  const [playing, setPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   const handleClick = () => {
     if (!videoRef.current) {

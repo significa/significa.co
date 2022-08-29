@@ -1,7 +1,9 @@
-import styled from 'styled-components'
-import { media } from '@theme'
-import { Small, Link } from '../../UI/'
 import { Link as BaseLink } from 'gatsby'
+import styled from 'styled-components'
+
+import { media } from '@theme'
+
+import { Small, Link } from '../../UI/'
 
 export const Title = styled(Small).attrs({ as: 'h4' })`
   margin-bottom: 2em;

@@ -1,4 +1,5 @@
 import { theme } from '@theme'
+
 import { getColor } from './getColor'
 
 describe('Get color util', () => {

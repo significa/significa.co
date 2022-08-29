@@ -1,7 +1,8 @@
-import styled, { css } from 'styled-components'
-import { media } from '@theme'
-import { Link } from 'gatsby'
 import { motion } from 'framer-motion'
+import { Link } from 'gatsby'
+import styled, { css } from 'styled-components'
+
+import { media } from '@theme'
 
 import { Label } from '../../UI'
 

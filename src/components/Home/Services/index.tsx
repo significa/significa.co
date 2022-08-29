@@ -1,9 +1,8 @@
 import React from 'react'
 
 import { IServicesContent } from '../../../pages'
-import { Big, List, ArrowLink } from '../../UI/'
 import { textByLine } from '../../../utils/textByLine'
-
+import { Big, List, ArrowLink } from '../../UI/'
 import * as S from './styled'
 
 const Services: React.FC<IServicesContent> = ({

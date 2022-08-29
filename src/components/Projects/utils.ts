@@ -1,4 +1,5 @@
 import React from 'react'
+
 import scrollTo from '../../utils/scrollTo'
 
 export const navigateToSection = (

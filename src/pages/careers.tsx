@@ -1,14 +1,11 @@
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
 import styled from 'styled-components'
 
 const BackgroundTransition = styled.div`
   background: inherit;
   transition: background ${({ theme }) => theme.transitions.ease('400ms')};
 `
-
-import Layout from '../components/Layout'
-import SEO from '../components/SEO'
 
 import {
   Hero,
@@ -17,6 +14,8 @@ import {
   Perks,
   Positions,
 } from '../components/Careers'
+import Layout from '../components/Layout'
+import SEO from '../components/SEO'
 
 interface ICareers {
   data: {

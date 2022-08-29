@@ -1,5 +1,6 @@
-import styled from 'styled-components'
 import { GatsbyImage } from 'gatsby-plugin-image'
+import styled from 'styled-components'
+
 import { media } from '@theme'
 
 import { SmallTitle, Text } from '../../UI'

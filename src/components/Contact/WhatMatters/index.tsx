@@ -1,10 +1,11 @@
-import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
+import React from 'react'
+
 import { Theme } from '@theme'
 
-import * as S from './styled'
 import { textByLine } from '../../../utils/textByLine'
+import * as S from './styled'
 
 interface IWhatMatters {
   contactYaml: {

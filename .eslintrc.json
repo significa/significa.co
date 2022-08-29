@@ -1,6 +1,5 @@
 {
   "extends": "@significa/eslint-config",
-  "plugins": ["jest"],
   "env": {
     "jest/globals": true
   },

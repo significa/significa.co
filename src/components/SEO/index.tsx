@@ -1,7 +1,9 @@
-import React from 'react'
-import Helmet from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
+/* eslint-disable prettier/prettier */
+/* Files falsely shows prettier errors */
 import { Location } from '@reach/router'
+import { useStaticQuery, graphql } from 'gatsby'
+import React from 'react'
+import { Helmet } from 'react-helmet'
 
 type MetaProps =
   | { name: string; content: any; property?: undefined }
@@ -66,12 +68,15 @@ const SEO: React.FC<ISEOProps> = ({
   const {
     twittercard: twittercardImage,
     opengraphDefault: opengraphImage,
-  } = allImageSharp.edges.reduce((prev: {}, { node }: INodeImage) => {
-    const name = node.resize.originalName.replace('.png', '')
-    const value = node.original.src
+  } = allImageSharp.edges.reduce(
+    (prev: Record<string, never>, { node }: INodeImage) => {
+      const name = node.resize.originalName.replace('.png', '')
+      const value = node.original.src
 
-    return { ...prev, [name]: value }
-  }, {})
+      return { ...prev, [name]: value }
+    },
+    {}
+  )
 
   const { siteUrl, author } = site.siteMetadata
   const metaDescription = description || site.siteMetadata.description

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import * as S from './styled'
 import linkResolver from '../../../utils/linkResolver'
+import * as S from './styled'
 
 interface CustomComponentParserProps {
   element: {
@@ -146,7 +146,7 @@ const CustomComponentParser: React.FC<CustomComponentParserProps> = ({
   if (/\[abbr/gim.test(element.text)) {
     const parts: string[][][] = element.text
       .split('[abbr text="')
-      .map(text => text.split('"]').map(t => t.split('[/abbr]')))
+      .map((text) => text.split('"]').map((t) => t.split('[/abbr]')))
 
     return (
       <p>

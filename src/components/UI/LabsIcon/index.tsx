@@ -1,12 +1,11 @@
 import React from 'react'
 
 import Dribbble from './bw/Dribbble'
-import Medium from './bw/Medium'
 import Github from './bw/Github'
+import Medium from './bw/Medium'
 import DribbbleColor from './color/Dribbble'
-import MediumColor from './color/Medium'
 import GithubColor from './color/Github'
-
+import MediumColor from './color/Medium'
 import { LabsSourceType } from './types'
 
 const icons: { [key in LabsSourceType]: React.ReactNode } = {

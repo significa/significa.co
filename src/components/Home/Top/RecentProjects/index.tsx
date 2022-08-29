@@ -1,12 +1,11 @@
-import React from 'react'
+import { motion } from 'framer-motion'
 import { graphql, StaticQuery } from 'gatsby'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
-import { motion } from 'framer-motion'
+import React from 'react'
 
-import { ProjectThumb } from '../../../UI'
-
-import * as S from './styled'
 import getThumbBgColor from '../../../../utils/getThumbBgColor'
+import { ProjectThumb } from '../../../UI'
+import * as S from './styled'
 
 interface IRecentProjectsData {
   allPrismicProject: {
@@ -54,7 +53,7 @@ const RecentProjects = () => (
                 // TODO: change alt to a proper one
                 alt="Project Thumb"
                 image={project.data.thumb_image.childImageSharp.gatsbyImageData}
-                services={project.data.services.map(s => s.service)}
+                services={project.data.services.map((s) => s.service)}
                 limitServices
                 backgroundColor={getThumbBgColor(
                   project.data.hero_theme,

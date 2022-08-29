@@ -1,6 +1,6 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { select } from '@storybook/addon-knobs'
+import { storiesOf } from '@storybook/react'
+import React from 'react'
 
 import List from '.'
 
@@ -17,7 +17,7 @@ const options = [
 const defaultValue = 'foreground'
 
 storiesOf('UI/List', module)
-  .addDecorator(story => <div style={{ padding: '2em' }}>{story()}</div>)
+  .addDecorator((story) => <div style={{ padding: '2em' }}>{story()}</div>)
 
   .add('List', () => (
     <List

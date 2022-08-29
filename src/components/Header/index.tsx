@@ -1,19 +1,24 @@
-import React from 'react'
+import React, {
+  createContext,
+  memo,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 import { Logo } from '../UI/'
-
-import * as S from './styled'
 import Navigation from './Navigation'
-
 import logos from './logos'
+import * as S from './styled'
 
 // Context to set a random logo on blog
-const Context = React.createContext<number | null>(null)
+const Context = createContext<number | null>(null)
 
-export const Provider: React.FC = ({ children }) => {
-  const [indexBlogLogo, setIndexBlogLogo] = React.useState<number | null>(null)
+export const Provider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [indexBlogLogo, setIndexBlogLogo] = useState<number | null>(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIndexBlogLogo(Math.floor(Math.random() * 12) + 1)
   }, [])
 
@@ -24,12 +29,12 @@ const Header: React.FC<{ isBlogPage?: boolean; children: React.ReactNode }> = ({
   children,
   isBlogPage,
 }) => {
-  const indexBlogLogo = React.useContext(Context)
+  const indexBlogLogo = useContext(Context)
 
-  const [shouldClose, setShouldClose] = React.useState(false)
+  const [shouldClose, setShouldClose] = useState(false)
 
   // reset state
-  React.useEffect(() => {
+  useEffect(() => {
     if (shouldClose) {
       setShouldClose(false)
     }
@@ -60,4 +65,4 @@ const Header: React.FC<{ isBlogPage?: boolean; children: React.ReactNode }> = ({
   )
 }
 
-export default React.memo(Header)
+export default memo(Header)

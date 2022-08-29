@@ -1,9 +1,8 @@
 import React from 'react'
 
-import * as S from './styled'
 import { Display } from '../../../../UI'
-
 import { ChapterType } from '../../types'
+import * as S from './styled'
 
 const Chapter: React.FC<ChapterType> = ({ primary: { title, show_title } }) => {
   if (show_title === 'true') {

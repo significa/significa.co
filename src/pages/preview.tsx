@@ -1,18 +1,17 @@
-import React, { useEffect } from 'react'
+import { Location } from '@reach/router'
 import { navigate, useStaticQuery, graphql } from 'gatsby'
 import { usePrismicPreview } from 'gatsby-source-prismic'
-import { Location } from '@reach/router'
-import Helmet from 'react-helmet'
+import React, { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet'
+
 import { Provider, lightTheme } from '@theme'
 
-import linkResolver from '../utils/linkResolver'
-
 import { Segg, Text } from '../components/UI'
-
-import PositionPage from '../templates/position'
-import ProjectPage from '../templates/project'
 import BlogPostPage from '../templates/blog-post'
 import HandbookPage from '../templates/handbook'
+import PositionPage from '../templates/position'
+import ProjectPage from '../templates/project'
+import linkResolver from '../utils/linkResolver'
 
 declare global {
   interface Window {
@@ -23,7 +22,7 @@ declare global {
 const UNPUBLISHED_ROUTE = '/unpublishedPreview'
 
 const PreviewPage: React.FC<{ location: Location }> = ({ location }) => {
-  const [data, setData] = React.useState<any>(null)
+  const [data, setData] = useState<any>(null)
 
   const { allSitePage } = useStaticQuery(
     graphql`

@@ -1,12 +1,11 @@
-import * as React from 'react'
 import { graphql } from 'gatsby'
 import { mergePrismicPreviewData } from 'gatsby-source-prismic'
+import * as React from 'react'
 
+import { FormPosition } from '../components/Careers'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { FormPosition } from '../components/Careers'
 import { Big, Markdown } from '../components/UI'
-
 import * as S from './position.styled'
 
 interface ITemplate {
@@ -53,7 +52,7 @@ const PositionTemplate: React.FC<ITemplate> = ({ data: staticData }) => {
 export default PositionTemplate
 
 export const query = graphql`
-  query($uid: String!) {
+  query ($uid: String!) {
     prismicPosition(uid: { eq: $uid }) {
       data {
         text {

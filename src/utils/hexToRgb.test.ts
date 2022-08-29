@@ -13,7 +13,7 @@ describe('Converting hex to rgb', () => {
     expect(hexToRgb(text)).toEqual(expected)
   })
 
-  it('returns short hex converted', () => {
+  it('retries returns short hex converted', () => {
     const text = '#AD4'
     const expected = '170, 221, 68'
     expect(hexToRgb(text)).toEqual(expected)

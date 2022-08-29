@@ -1,7 +1,8 @@
 import styled from 'styled-components'
-import { media } from '@theme'
-import { Container, Display, Small } from '../../../UI'
 
+import { media } from '@theme'
+
+import { Container, Display, Small } from '../../../UI'
 import { SidenoteWrapper } from '../../CustomComponentParser/styled'
 
 export const Wrapper = styled(Container)`

@@ -1,17 +1,16 @@
-import React, { useRef } from 'react'
+import React, { ReactNode, useRef } from 'react'
 
-import { ProjectThumb } from '../../UI'
-
-import * as S from './styled'
-import { Project } from '../../../pages/showcase'
 import useMeasure from '../../../hooks/useMeasure'
+import { Project } from '../../../pages/showcase'
 import getThumbBgColor from '../../../utils/getThumbBgColor'
+import { ProjectThumb } from '../../UI'
+import * as S from './styled'
 
 interface Projects {
   projects: Project[]
 }
 
-const ThumbHolder: React.FC<{}> = ({ children }) => {
+const ThumbHolder: React.FC<{ children?: ReactNode }> = ({ children }) => {
   const ref = useRef<HTMLDivElement>(null)
   const { height } = useMeasure(ref, 'a')
   const rowSpan = Math.ceil(height / 4)
@@ -26,14 +25,16 @@ const ThumbHolder: React.FC<{}> = ({ children }) => {
 const Projects: React.FC<Projects> = ({ projects }) => {
   return (
     <S.Container>
-      {projects.map(project => (
+      {projects.map((project, _index) => (
         <ThumbHolder key={project.uid}>
           <ProjectThumb
             title={project.data.project_title}
             tagline={project.data.tagline}
             to={project.url}
-            fluid={project.data.thumb_image.fluid}
-            services={project.data.services.map(s => s.service)}
+            //TODO: change alt to a proper one
+            alt="Project thumbnail"
+            image={project.data.thumb_image.childImageSharp.gatsbyImageData}
+            services={project.data.services.map((s, _index) => s.service)}
             backgroundColor={getThumbBgColor(
               project.data.hero_theme,
               project.data.themes

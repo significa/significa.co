@@ -1,15 +1,15 @@
-import React from 'react'
 import { graphql } from 'gatsby'
-import { Theme } from '@theme'
 import { mergePrismicPreviewData } from 'gatsby-source-prismic'
+import React, { useRef } from 'react'
 
-import { getProjectTheme } from '../utils/getProjectTheme'
-import { IProject } from './project.types'
+import { Theme } from '@theme'
 
 import Layout from '../components/Layout'
-import SEO from '../components/SEO'
 import { Meta, Hero, Section, Next, Navigation } from '../components/Projects'
+import SEO from '../components/SEO'
 import ConditionalWrap from '../components/utils/ConditionalWrap'
+import { getProjectTheme } from '../utils/getProjectTheme'
+import { IProject } from './project.types'
 
 interface IProjectProps {
   data: {
@@ -30,7 +30,7 @@ const ProjectPage = ({ data: staticData }: IProjectProps) => {
   const { data: project } = data.prismicProject
 
   // Someplace to save the section name
-  const sectionName = React.useRef<string>('')
+  const sectionName = useRef<string>('')
 
   if (!project) {
     return null
@@ -55,7 +55,7 @@ const ProjectPage = ({ data: staticData }: IProjectProps) => {
           <Hero
             title={project.project_title}
             tagline={project.tagline}
-            fluid={project.hero_image.fluid}
+            image={project.hero_image.childImageSharp.gatsbyImageData}
             src={project.hero_image.url}
           />
         </Theme>
@@ -79,7 +79,7 @@ const ProjectPage = ({ data: staticData }: IProjectProps) => {
         {/* Navigation */}
         <ConditionalWrap
           condition={!!project.navigation_theme}
-          wrap={children => (
+          wrap={(children: any) => (
             <Theme
               theme={getProjectTheme(project.navigation_theme, project.themes)}
             >
@@ -127,6 +127,7 @@ const ProjectPage = ({ data: staticData }: IProjectProps) => {
 export default ProjectPage
 
 export const query = graphql`
+  // eslint-disable-next-line prettier/prettier -- false error
   query($uid: String!) {
     prismicProject(uid: { eq: $uid }) {
       data {

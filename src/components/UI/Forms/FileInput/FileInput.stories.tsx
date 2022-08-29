@@ -1,11 +1,11 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { boolean, text } from '@storybook/addon-knobs'
+import { storiesOf } from '@storybook/react'
+import React from 'react'
 
 import FileInput from './'
 
 storiesOf('Forms/File Input', module)
-  .addDecorator(story => <div style={{ padding: '2em' }}>{story()}</div>)
+  .addDecorator((story) => <div style={{ padding: '2em' }}>{story()}</div>)
 
   .add('Regular', () => (
     // eslint-disable-next-line no-console

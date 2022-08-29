@@ -1,6 +1,6 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { select, color } from '@storybook/addon-knobs'
+import { storiesOf } from '@storybook/react'
+import React from 'react'
 
 import { Logo, Segg } from '.'
 
@@ -17,7 +17,7 @@ const options = [
 const defaultValue = 'foreground'
 
 storiesOf('UI/Logo', module)
-  .addDecorator(story => <div style={{ padding: '2em' }}>{story()}</div>)
+  .addDecorator((story) => <div style={{ padding: '2em' }}>{story()}</div>)
 
   .add('Logo', () => (
     <Logo color={select(label, options, defaultValue) as any} />

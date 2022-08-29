@@ -25,6 +25,7 @@ interface IProps {
   theme: IFullTheme
 }
 
-export const themeGet = (path: string, fallback: string | number) => (
-  props: IProps
-): string | number => get(props.theme, path) || fallback
+export const themeGet =
+  (path: string, fallback: string | number) =>
+  (props: IProps): string | number =>
+    get(props.theme, path) || fallback

@@ -1,7 +1,7 @@
+import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 import { Text } from '../../UI'
-import { Link } from 'gatsby'
 
 export const Wrapper = styled.div`
   background: ${({ theme: { colors } }) => colors.background};

@@ -1,6 +1,6 @@
-import React from 'react'
-import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import { graphql, useStaticQuery } from 'gatsby'
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
+import React from 'react'
 
 import * as S from './styled'
 

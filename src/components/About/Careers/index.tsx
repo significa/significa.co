@@ -1,10 +1,11 @@
-import * as React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
+import * as React from 'react'
 
 import { Theme } from '@theme'
-import { RightContent } from '../../UI'
+
 import { textByLine } from '../../../utils/textByLine'
+import { RightContent } from '../../UI'
 import * as S from './styled'
 
 interface ICareers {
@@ -35,7 +36,7 @@ const Careers = () => {
     <Theme theme="dark">
       <S.Wrapper>
         <RightContent title={careers.title}>
-          {textByLine(careers.text).map(e => (
+          {textByLine(careers.text).map((e) => (
             <S.Text key={e}>{e}</S.Text>
           ))}
           <S.ArrowLink to={careers.link}>{careers.linkText}</S.ArrowLink>

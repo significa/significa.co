@@ -1,8 +1,8 @@
-import React, { RefObject } from 'react'
 import { StaticQuery, graphql } from 'gatsby'
+import React, { RefObject } from 'react'
 
-import * as S from './styled'
 import { NavLink } from '../../UI/'
+import * as S from './styled'
 
 interface ILinkType {
   node: {
@@ -30,7 +30,8 @@ class Navigation extends React.Component<
 
   state = { mobileMenu: false }
 
-  toggleMenu = () => this.setState(state => ({ mobileMenu: !state.mobileMenu }))
+  toggleMenu = () =>
+    this.setState((state) => ({ mobileMenu: !state.mobileMenu }))
 
   renderLinks = (items: ILinkType[]) =>
     items.map(({ node: { label, link, id } }) => (

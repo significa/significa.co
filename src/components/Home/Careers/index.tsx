@@ -1,11 +1,9 @@
-import React from 'react'
 import { GatsbyImage } from 'gatsby-plugin-image'
-
-import { textByLine } from '../../../utils/textByLine'
+import React from 'react'
 
 import { ICareersContent } from '../../../pages'
+import { textByLine } from '../../../utils/textByLine'
 import { ArrowLink } from '../../UI/'
-
 import * as S from './styled'
 
 const Careers: React.FC<ICareersContent> = ({
@@ -19,7 +17,7 @@ const Careers: React.FC<ICareersContent> = ({
     <S.Container>
       <S.Left>
         <S.Title>
-          {textByLine(title).map(l => {
+          {textByLine(title).map((l) => {
             return (
               <React.Fragment key={l}>
                 {l}

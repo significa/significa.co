@@ -1,6 +1,6 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { select, text } from '@storybook/addon-knobs'
+import { storiesOf } from '@storybook/react'
+import React from 'react'
 
 import { Huge, Display, Title, Big, Text, Label, Small } from './'
 
@@ -17,7 +17,7 @@ const options = [
 const defaultValue = 'foreground'
 
 storiesOf('UI/Typography', module)
-  .addDecorator(story => <div style={{ padding: '2em' }}>{story()}</div>)
+  .addDecorator((story) => <div style={{ padding: '2em' }}>{story()}</div>)
 
   .add('Huge', () => (
     <Huge color={select(label, options, defaultValue) as any}>

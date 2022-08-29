@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components'
+
 import { media } from '@theme'
 
-import PaddedWrapper from '../common/PaddedWrapper'
 import { Title as BaseTitle, Label as BaseLabel } from '../../../../UI'
+import PaddedWrapper from '../common/PaddedWrapper'
 import Anchor from './Anchor'
 
 export const AnchorIcon = styled(Anchor)`
@@ -24,7 +25,7 @@ export const Wrapper = styled(PaddedWrapper)<{ inverted?: boolean }>`
   margin: 0 -1.5em;
 
   display: flex;
-  flex-direction: ${p => (p.inverted ? 'row-reverse' : 'row')};
+  flex-direction: ${(p) => (p.inverted ? 'row-reverse' : 'row')};
   justify-content: space-between;
 
   ${media.medium} {
@@ -74,7 +75,7 @@ export const TextContainer = styled.div`
 `
 
 export const TextSticky = styled.div<{ sticky?: boolean }>`
-  ${p =>
+  ${(p) =>
     p.sticky &&
     css`
       position: sticky;

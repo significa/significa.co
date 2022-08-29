@@ -1,6 +1,6 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
-import PaddedWrapper from '../common/PaddedWrapper'
 
 import {
   Title as BaseTitle,
@@ -8,6 +8,7 @@ import {
   Label as BaseLabel,
   Link as BaseLink,
 } from '../../../../UI'
+import PaddedWrapper from '../common/PaddedWrapper'
 import Anchor from './Anchor'
 
 export { PaddedWrapper as Wrapper }

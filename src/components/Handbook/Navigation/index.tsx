@@ -1,10 +1,9 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-
-import * as S from './styled'
+import React from 'react'
 
 import Arrow from './Arrow'
 import SubMenu from './SubMenu'
+import * as S from './styled'
 
 export interface ContentType {
   type: string
@@ -56,7 +55,7 @@ const flatChapterHeadings = (body: Body) => {
   return body.reduce((acc: ContentType[], b) => {
     if (b.__typename === 'PrismicHandbookChapterBodyContent') {
       const justHeadings = b.primary.content.raw.filter(
-        c => c.type === 'heading2' || c.type === 'heading3'
+        (c) => c.type === 'heading2' || c.type === 'heading3'
       )
       acc.push(...justHeadings)
     }

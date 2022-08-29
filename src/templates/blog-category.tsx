@@ -1,12 +1,12 @@
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
 
+import CategoriesTab from '../components/Blog/Categories/Categories'
+import BlogList from '../components/Blog/List/List'
+import { BlogPost } from '../components/Blog/types'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { BlogPost } from '../components/Blog/types'
-import BlogList from '../components/Blog/List/List'
 import { Container } from '../components/UI'
-import CategoriesTab from '../components/Blog/Categories/Categories'
 
 interface Prop {
   data: {

@@ -1,8 +1,7 @@
-import styled from 'styled-components'
 import { Link as GatsbyLink } from 'gatsby'
+import styled from 'styled-components'
 
 import { themeGet } from '../../../../utils/themeGet'
-
 import { baseStyle } from '../common'
 
 export const Link = styled(GatsbyLink).attrs({

@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react'
 
-import * as S from './styled'
-
 import Error from '../Error'
+import * as S from './styled'
 
 interface IFileInput {
   label: string
@@ -58,7 +57,7 @@ const FileInput = ({
         <label>
           <S.Input
             {...props}
-            onChange={e => {
+            onChange={(e) => {
               if (e.target.files && e.target.files.length > 0) {
                 handleSelect(e.target.files)
               }

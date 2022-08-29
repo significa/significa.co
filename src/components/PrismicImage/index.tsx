@@ -1,9 +1,9 @@
-import React, { CSSProperties } from 'react'
 import {
   GatsbyImage,
   GatsbyImageProps,
   IGatsbyImageData,
 } from 'gatsby-plugin-image'
+import React, { CSSProperties } from 'react'
 
 type Props = GatsbyImageProps & {
   src?: string
@@ -35,7 +35,6 @@ const PrismicImage: React.FC<Props> = ({
           width="100%"
           height="100%"
           src={src}
-          // @ts-ignore loading is a new attr that will be added eventually
           loading="lazy"
           style={{
             objectFit: 'cover',

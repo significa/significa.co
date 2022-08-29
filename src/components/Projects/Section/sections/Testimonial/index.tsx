@@ -1,10 +1,8 @@
 import React from 'react'
 
-import { TestimonialType } from '../../types'
 import { textByLine } from '../../../../../utils/textByLine'
-
 import { Title, Text, ArrowLink, Link } from '../../../../UI'
-
+import { TestimonialType } from '../../types'
 import * as S from './styled'
 
 const Testimonial = ({

@@ -1,22 +1,21 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { RichText } from 'prismic-reactjs'
 import slugify from '@sindresorhus/slugify'
+import { graphql } from 'gatsby'
 import { mergePrismicPreviewData } from 'gatsby-source-prismic'
+import { RichText } from 'prismic-reactjs'
+import React from 'react'
 
-import Image from '../components/PrismicImage'
-
-import Layout from '../components/Layout'
-import { BlogPost } from '../components/Blog/types'
-import formatDate from '../utils/formatDate'
-import { Container, Label } from '../components/UI'
 import AuthorBox from '../components/Blog/AuthorBox/AuthorBox'
+import AuthorSection from '../components/Blog/AuthorSection/AuthorSection'
+import Breadcrumbs from '../components/Blog/Breadcrumbs/Breadcrumbs'
+import { BlogPost } from '../components/Blog/types'
+import Layout from '../components/Layout'
+import Image from '../components/PrismicImage'
 import SEO from '../components/SEO'
+import { Container, Label } from '../components/UI'
+import formatDate from '../utils/formatDate'
+import linkResolver from '../utils/linkResolver'
 import syntaxHighlight from '../utils/syntaxHighlight'
 import * as S from './blog-post.styled'
-import Breadcrumbs from '../components/Blog/Breadcrumbs/Breadcrumbs'
-import linkResolver from '../utils/linkResolver'
-import AuthorSection from '../components/Blog/AuthorSection/AuthorSection'
 
 interface Prop {
   data: { prismicBlogPost: BlogPost }
@@ -108,7 +107,7 @@ const BlogPostPage: React.FC<Prop> = ({ data: staticData }) => {
 }
 
 export const query = graphql`
-  query($uid: String!) {
+  query ($uid: String!) {
     prismicBlogPost(uid: { eq: $uid }) {
       uid
       type

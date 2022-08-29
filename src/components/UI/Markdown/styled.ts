@@ -1,5 +1,7 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
+
 import { displayStyle, bigStyle, textStyle } from '../Typography'
 
 interface IMarkdownProps {
@@ -19,7 +21,7 @@ export const Markdown = styled.div`
   }
 
   a {
-    color: ${p => p.theme.colors.highlight};
+    color: ${(p) => p.theme.colors.highlight};
   }
 
   h2,

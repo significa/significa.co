@@ -1,6 +1,6 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { select, boolean } from '@storybook/addon-knobs'
+import { storiesOf } from '@storybook/react'
+import React from 'react'
 
 import LabsIcon from './'
 import { LabsSourceType } from './types'
@@ -8,7 +8,7 @@ import { LabsSourceType } from './types'
 const sources: LabsSourceType[] = ['medium', 'github', 'dribbble']
 
 storiesOf("UI/Labs' Icon", module)
-  .addDecorator(story => <div style={{ padding: '2em' }}>{story()}</div>)
+  .addDecorator((story) => <div style={{ padding: '2em' }}>{story()}</div>)
 
   .add('Medium', () => <LabsIcon source="medium" />)
   .add('Medium (color)', () => <LabsIcon source="medium" color />)

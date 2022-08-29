@@ -1,13 +1,11 @@
-import React from 'react'
+import React, { ReactNode, useState } from 'react'
 
 import Layout from '..'
-
 import { Navigation } from '../../Handbook/'
-
 import * as S from './styled'
 
-const NavigationHolder: React.FC<{}> = ({ children }) => {
-  const [isOpen, setIsOpen] = React.useState(false)
+const NavigationHolder: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
@@ -22,10 +20,10 @@ const NavigationHolder: React.FC<{}> = ({ children }) => {
   )
 }
 
-const HandbookLayout: React.FC<{ currentPage?: string }> = ({
-  children,
-  currentPage,
-}) => {
+const HandbookLayout: React.FC<{
+  currentPage?: string
+  children?: ReactNode
+}> = ({ children, currentPage }) => {
   return (
     <Layout>
       <S.Wrapper>

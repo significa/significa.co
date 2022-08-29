@@ -1,11 +1,11 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { text } from '@storybook/addon-knobs'
+import { storiesOf } from '@storybook/react'
+import React from 'react'
 
 import Textarea from './'
 
 storiesOf('Forms/Textarea', module)
-  .addDecorator(story => <div style={{ padding: '2em' }}>{story()}</div>)
+  .addDecorator((story) => <div style={{ padding: '2em' }}>{story()}</div>)
 
   .add('Regular', () => (
     <Textarea label="Your name" placeholder="Please type your name" />

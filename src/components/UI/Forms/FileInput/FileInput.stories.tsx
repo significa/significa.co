@@ -8,19 +8,19 @@ storiesOf('Forms/File Input', module)
   .addDecorator(story => <div style={{ padding: '2em' }}>{story()}</div>)
 
   .add('Regular', () => (
-    // tslint:disable-next-line: no-console
+    // eslint-disable-next-line no-console
     <FileInput label="Add attachment" onSelect={console.log} />
   ))
 
   .add('Uploading', () => (
-    // tslint:disable-next-line: no-console
+    // eslint-disable-next-line no-console
     <FileInput label="Add attachment" onSelect={console.log} uploading />
   ))
 
   .add('On clear', () => (
     <FileInput
       label="Add attachment"
-      // tslint:disable-next-line: no-console
+      // eslint-disable-next-line no-console
       onClear={() => console.log('cleared')}
       uploading
     />
@@ -31,9 +31,9 @@ storiesOf('Forms/File Input', module)
   .add('Configurable', () => (
     <FileInput
       label={text('Label', 'Label text')}
-      // tslint:disable-next-line: no-console
+      // eslint-disable-next-line no-console
       onSelect={console.log}
-      // tslint:disable-next-line: no-console
+      // eslint-disable-next-line no-console
       onClear={() => console.log('cleared')}
       error={text('Error', '')}
       uploading={boolean('Uploading?', false)}

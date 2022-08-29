@@ -1,5 +1,5 @@
 import React from 'react'
-import Img, { FluidObject } from 'gatsby-image'
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import { graphql, useStaticQuery } from 'gatsby'
 
 import * as S from './styled'
@@ -12,7 +12,7 @@ interface ITop {
         alt: string
         image: {
           childImageSharp: {
-            fluid: FluidObject
+            gatsbyImageData: IGatsbyImageData
           }
         }
       }>
@@ -33,7 +33,10 @@ const Top = () => {
       <S.Gallery>
         {data.photos.map(({ image, alt }) => (
           <S.ImgHolder key={alt}>
-            <Img alt={alt} fluid={image.childImageSharp.fluid} />
+            <GatsbyImage
+              image={image.childImageSharp.gatsbyImageData}
+              alt={alt}
+            />
           </S.ImgHolder>
         ))}
       </S.Gallery>
@@ -52,9 +55,7 @@ export const query = graphql`
           alt
           image {
             childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
-              }
+              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
             }
           }
         }

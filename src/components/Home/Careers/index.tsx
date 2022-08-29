@@ -1,5 +1,5 @@
 import React from 'react'
-import Img from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
 import { textByLine } from '../../../utils/textByLine'
 
@@ -38,7 +38,10 @@ const Careers: React.FC<ICareersContent> = ({
       <S.Photos>
         {photos.map((photo, i) => (
           <div key={i}>
-            <Img fluid={photo.childImageSharp.fluid} />
+            <GatsbyImage
+              image={photo.childImageSharp.gatsbyImageData}
+              alt={photo.alt}
+            />
           </div>
         ))}
       </S.Photos>

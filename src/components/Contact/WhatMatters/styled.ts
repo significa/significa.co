@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { media } from '@theme'
-import Img from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import {
   Container as BaseContainer,
   Display,
@@ -86,7 +86,7 @@ export const ImagesGrid = styled.div`
   }
 `
 
-export const TopLeftImage = styled(Img)`
+export const TopLeftImage = styled(GatsbyImage)`
   margin-top: 3rem;
 
   ${media.medium} {
@@ -98,11 +98,11 @@ export const TopLeftImage = styled(Img)`
   }
 `
 
-export const CenterImage = styled(Img)`
+export const CenterImage = styled(GatsbyImage)`
   grid-row-end: span 2;
 `
 
-export const TopRightImage = styled(Img)`
+export const TopRightImage = styled(GatsbyImage)`
   margin-bottom: 3rem;
   margin-top: 5rem;
   margin-right: 10rem;
@@ -117,7 +117,7 @@ export const TopRightImage = styled(Img)`
   }
 `
 
-export const BottomLeftImage = styled(Img)`
+export const BottomLeftImage = styled(GatsbyImage)`
   margin-top: 3rem;
   margin-bottom: 5rem;
   margin-left: 7.5rem;
@@ -132,7 +132,7 @@ export const BottomLeftImage = styled(Img)`
   }
 `
 
-export const BottomRightImage = styled(Img)`
+export const BottomRightImage = styled(GatsbyImage)`
   margin-bottom: 3rem;
 
   ${media.medium} {

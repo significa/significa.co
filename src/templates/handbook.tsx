@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { RichText } from 'prismic-reactjs'
 import { mergePrismicPreviewData } from 'gatsby-source-prismic'
 
@@ -43,7 +43,9 @@ export interface Chapter {
   image: {
     alt: string
     url?: string
-    fluid: FluidObject
+    childImageSharp: {
+      gatsbyImageData: IGatsbyImageData
+    }
   }
   body: Array<{
     primary: Content | Testimonial

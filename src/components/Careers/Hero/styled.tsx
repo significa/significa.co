@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { media } from '@theme'
-import Img from 'gatsby-image'
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
 import { Container, Display as BaseDisplay } from '../../UI'
 
@@ -47,7 +47,14 @@ export const GalleryWrapper = styled(Container)`
   }
 `
 
-export const GalleryImage = styled(Img)<{ width: number; height: number }>`
+type GalleryImageType = {
+  width: number
+  height: number
+  image: IGatsbyImageData
+  alt: string
+}
+
+export const GalleryImage = styled(GatsbyImage)<GalleryImageType>`
   margin-top: 6rem;
   flex-shrink: 0;
 

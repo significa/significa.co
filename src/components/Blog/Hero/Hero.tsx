@@ -19,7 +19,7 @@ const Hero: React.FC<{ post: BlogPost }> = ({ post }) => {
     <S.Article>
       <Link to={postLink}>
         <S.Image
-          fluid={post.data.hero.fluid}
+          image={post.data.hero.gatsbyImageData}
           alt={post.data.title}
           loading="eager"
         />

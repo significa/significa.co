@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { motion } from 'framer-motion'
 
 import { ProjectThumb } from '../../../UI'
@@ -23,7 +23,9 @@ interface IRecentProjectsData {
         }>
         thumb_image: {
           alt: string
-          fluid: FluidObject
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData
+          }
         }
       }
     }>
@@ -49,7 +51,9 @@ const RecentProjects = () => (
                 title={project.data.project_title}
                 tagline={project.data.tagline}
                 to={project.url}
-                fluid={project.data.thumb_image.fluid}
+                // TODO: change alt to a proper one
+                alt="Project Thumb"
+                image={project.data.thumb_image.childImageSharp.gatsbyImageData}
                 services={project.data.services.map(s => s.service)}
                 limitServices
                 backgroundColor={getThumbBgColor(
@@ -82,8 +86,8 @@ const recentProjectsQuery = graphql`
           }
           thumb_image {
             alt
-            fluid(maxWidth: 500) {
-              ...GatsbyPrismicImageFluid_noBase64
+            childImageSharp {
+              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
             }
           }
           project_title

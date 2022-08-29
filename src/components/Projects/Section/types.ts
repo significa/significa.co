@@ -1,4 +1,4 @@
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 export type layoutTypes = 'small' | 'normal' | 'medium' | 'large' | 'full'
 
@@ -48,7 +48,7 @@ export interface ImageType {
     image: {
       url?: string
       alt: StringOrNull
-      fluid: FluidObject
+      image: IGatsbyImageData
     }
     caption: StringOrNull
   }
@@ -78,7 +78,7 @@ export interface GalleryType {
     image: {
       alt: string
       url?: string
-      fluid: FluidObject
+      image: IGatsbyImageData
     }
     span: number
     span_tablet: number
@@ -93,12 +93,12 @@ export interface ComparisonType {
     image_a: {
       alt: string
       url?: string
-      fluid: FluidObject
+      image: IGatsbyImageData
     }
     image_b: {
       alt: string
       url?: string
-      fluid: FluidObject
+      image: IGatsbyImageData
     }
   }
 }
@@ -112,7 +112,7 @@ export interface SlideshowType {
     image: {
       alt: string
       url?: string
-      fluid: FluidObject
+      image: IGatsbyImageData
     }
   }>
 }
@@ -127,7 +127,7 @@ export interface WaterfallType {
       }
       alt: string
       url?: string
-      fluid: FluidObject
+      image: IGatsbyImageData
     }
   }>
 }
@@ -168,7 +168,7 @@ export interface StickyImageType {
     image: {
       alt: string
       url?: string
-      fluid: FluidObject
+      image: IGatsbyImageData
     }
   }
 }

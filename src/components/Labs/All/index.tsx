@@ -60,7 +60,7 @@ const All: React.FC<IAll> = ({ content }) => {
               <S.ImgHolder>
                 <S.LabsIcon source={item.node.data.source} color />
                 <S.Img
-                  fluid={item.node.data.image.fluid}
+                  image={item.node.data.image.childImageSharp.gatsbyImageData}
                   alt={item.node.data.image.alt}
                 />
               </S.ImgHolder>

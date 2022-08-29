@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
@@ -26,7 +26,7 @@ interface IAbout {
           alt: string
           image: {
             childImageSharp: {
-              fluid: FluidObject
+              gatsbyImageData: IGatsbyImageData
             }
           }
         }>

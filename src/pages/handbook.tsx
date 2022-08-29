@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 import Layout from '../components/Layout/'
 import SEO from '../components/SEO'
@@ -41,7 +41,9 @@ export type ChapterWithImage = ChapterBase & {
         image: {
           alt: string
           url: string
-          fluid: FluidObject
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData
+          }
         }
       }
     }

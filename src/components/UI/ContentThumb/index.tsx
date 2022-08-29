@@ -1,5 +1,5 @@
 import React from 'react'
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 import { Text } from '../Typography'
 
@@ -8,8 +8,8 @@ import * as S from './styled'
 interface IThumb {
   title: string
   to: string
-  fluid: FluidObject
-  alt?: string
+  image: IGatsbyImageData
+  alt: string
   text: string
   renderIcon?: () => React.ReactNode
   showShadow?: boolean
@@ -18,7 +18,7 @@ interface IThumb {
 
 const ContentThumb: React.FC<IThumb> = ({
   to,
-  fluid,
+  image,
   alt,
   title,
   text,
@@ -34,9 +34,9 @@ const ContentThumb: React.FC<IThumb> = ({
         {typeof renderIcon === 'function' && (
           <S.IconHolder>{renderIcon()}</S.IconHolder>
         )}
-        <S.Img fluid={fluid} alt={alt} {...bgColorProps} />
+        <S.Img image={image} alt={alt} {...bgColorProps} />
         {showShadow && (
-          <S.BlurImg fluid={fluid} alt={alt} style={{ position: 'absolute' }} />
+          <S.BlurImg image={image} alt={alt} style={{ position: 'absolute' }} />
         )}
       </S.ImgWrapper>
       <S.Meta>

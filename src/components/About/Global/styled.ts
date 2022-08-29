@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { media } from '@theme'
-import Image from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
 import {
   Text as BaseText,
@@ -47,7 +47,7 @@ export const ImageHolder = styled(BaseContainer)`
   position: relative;
 `
 
-export const Img = styled(Image)``
+export const Img = styled(GatsbyImage)``
 
 export const Title = styled(BaseTitle)`
   margin-bottom: 0.5em;

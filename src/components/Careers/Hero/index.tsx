@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 import { textByLine } from '../../../utils/textByLine'
 
@@ -8,7 +8,8 @@ import * as S from './styled'
 
 interface IGallery {
   childImageSharp: {
-    fluid: FluidObject
+    gatsbyImageData: IGatsbyImageData
+    alt: string
     original: {
       width: number
       height: number
@@ -34,7 +35,8 @@ const Hero: React.FC = () => {
   const renderGallery = ({ childImageSharp }: IGallery, i: number) => (
     <S.GalleryImage
       key={i}
-      fluid={childImageSharp.fluid}
+      alt="Gallery Image"
+      image={childImageSharp.gatsbyImageData}
       width={childImageSharp.original.width / 2}
       height={childImageSharp.original.height / 2}
     />
@@ -66,9 +68,7 @@ const careersHeroQuery = graphql`
               width
               height
             }
-            fluid(maxWidth: 400) {
-              ...GatsbyImageSharpFluid_withWebp_noBase64
-            }
+            gatsbyImageData(width: 400, placeholder: NONE, layout: CONSTRAINED)
           }
         }
       }

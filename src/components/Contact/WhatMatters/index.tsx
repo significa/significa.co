@@ -1,6 +1,6 @@
 import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { Theme } from '@theme'
 
 import * as S from './styled'
@@ -16,27 +16,27 @@ interface IWhatMatters {
       photos: {
         center: {
           childImageSharp: {
-            fluid: FluidObject
+            gatsbyImageData: IGatsbyImageData
           }
         }
         topLeft: {
           childImageSharp: {
-            fluid: FluidObject
+            gatsbyImageData: IGatsbyImageData
           }
         }
         topRight: {
           childImageSharp: {
-            fluid: FluidObject
+            gatsbyImageData: IGatsbyImageData
           }
         }
         bottomLeft: {
           childImageSharp: {
-            fluid: FluidObject
+            gatsbyImageData: IGatsbyImageData
           }
         }
         bottomRight: {
           childImageSharp: {
-            fluid: FluidObject
+            gatsbyImageData: IGatsbyImageData
           }
         }
       }
@@ -55,16 +55,30 @@ const WhatMatters: React.FC<IWhatMatters> = ({
           <S.SubText>{data.text}</S.SubText>
 
           <S.ImagesGrid>
-            <S.TopLeftImage fluid={data.photos.topLeft.childImageSharp.fluid} />
-            <S.CenterImage fluid={data.photos.center.childImageSharp.fluid} />
+            <S.TopLeftImage
+              // TODO: change alt to a proper value
+              alt="Image from image grid"
+              image={data.photos.topLeft.childImageSharp.gatsbyImageData}
+            />
+            <S.CenterImage
+              // TODO: change alt to a proper value
+              alt="Image from image grid"
+              image={data.photos.center.childImageSharp.gatsbyImageData}
+            />
             <S.TopRightImage
-              fluid={data.photos.topRight.childImageSharp.fluid}
+              // TODO: change alt to a proper value
+              alt="Image from image grid"
+              image={data.photos.topRight.childImageSharp.gatsbyImageData}
             />
             <S.BottomLeftImage
-              fluid={data.photos.bottomLeft.childImageSharp.fluid}
+              // TODO: change alt to a proper value
+              alt="Image from image grid"
+              image={data.photos.bottomLeft.childImageSharp.gatsbyImageData}
             />
             <S.BottomRightImage
-              fluid={data.photos.bottomRight.childImageSharp.fluid}
+              // TODO: change alt to a proper value
+              alt="Image from image grid"
+              image={data.photos.bottomRight.childImageSharp.gatsbyImageData}
             />
           </S.ImagesGrid>
 
@@ -100,37 +114,27 @@ const whatMattersQuery = graphql`
         photos {
           center {
             childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
-              }
+              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
             }
           }
           topLeft {
             childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
-              }
+              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
             }
           }
           topRight {
             childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
-              }
+              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
             }
           }
           bottomLeft {
             childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
-              }
+              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
             }
           }
           bottomRight {
             childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
-              }
+              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
             }
           }
         }

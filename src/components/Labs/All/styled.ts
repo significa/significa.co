@@ -1,4 +1,4 @@
-import Image from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
 import { media } from '@theme'
 import {
@@ -101,7 +101,7 @@ export const LabsIcon = styled(Icon)`
   }
 `
 
-export const Img = styled(Image)`
+export const Img = styled(GatsbyImage)`
   margin-right: 2em;
   margin-bottom: 2em;
 

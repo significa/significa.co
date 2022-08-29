@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { Theme } from '@theme'
 
 import Layout from '../components/Layout'
@@ -26,8 +26,9 @@ export interface ICareersContent {
   cta: string
   link: string
   photos: Array<{
+    alt: string
     childImageSharp: {
-      fluid: FluidObject
+      gatsbyImageData: IGatsbyImageData
     }
   }>
 }
@@ -86,9 +87,7 @@ export const query = graphql`
         link
         photos {
           childImageSharp {
-            fluid(maxWidth: 500) {
-              ...GatsbyImageSharpFluid_withWebp_noBase64
-            }
+            gatsbyImageData(width: 500, placeholder: NONE, layout: CONSTRAINED)
           }
         }
       }

@@ -2,7 +2,7 @@ import { IFullTheme, IColorsTheme } from '@theme'
 
 export type colorType = keyof IColorsTheme
 
-interface IGetColor {
+export interface IGetColor {
   color?: colorType
   theme: IFullTheme
 }

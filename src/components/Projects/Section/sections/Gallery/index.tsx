@@ -19,7 +19,7 @@ const Gallery: React.FC<GalleryType> = (props) => (
           >
             <Img
               src={image.image.url}
-              fluid={image.image.fluid}
+              image={image.image.childImageSharp.gatsbyImageData}
               alt={image.image.alt}
             />
           </S.Item>

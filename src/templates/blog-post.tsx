@@ -72,11 +72,11 @@ const BlogPostPage: React.FC<Prop> = ({ data: staticData }) => {
         </S.Header>
 
         <S.ImageHero as="figure">
-          {(content.data.hero.fluid || content.data.hero.url) && (
+          {(content.data.hero.childImageSharp || content.data.hero.url) && (
             <>
               <Image
                 loading="eager"
-                fluid={content.data.hero.fluid}
+                image={content.data.hero.childImageSharp.gatsbyImageData}
                 src={content.data.hero.url}
                 alt={content.data.hero.alt}
               />

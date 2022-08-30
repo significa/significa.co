@@ -7,12 +7,12 @@ interface IOpts {
 }
 
 interface IReturn {
-  observerEntry: IntersectionObserverEntry
+  observerEntry?: IntersectionObserverEntry
   elRef: React.MutableRefObject<any>
 }
 
 export default (options: IOpts): IReturn => {
-  const [observerEntry, setEntry] = useState()
+  const [observerEntry, setEntry] = useState<IntersectionObserverEntry>()
   const elRef = useRef<any>()
 
   useEffect(() => {

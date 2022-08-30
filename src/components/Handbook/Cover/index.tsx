@@ -14,7 +14,7 @@ const Cover: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
       </S.Holder>
       <S.Image
         src={chapter.image.url}
-        fluid={chapter.image.fluid}
+        image={chapter.image.childImageSharp.gatsbyImageData}
         alt={chapter.image.alt}
       />
     </S.Wrapper>

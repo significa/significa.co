@@ -17,7 +17,7 @@ export const Huge = styled.h1`
   letter-spacing: 0;
 `
 
-export const displayStyle = css`
+export const displayStyle = css<Record<never, never>>`
   ${baseStyle};
 
   font-weight: 300;
@@ -57,7 +57,7 @@ export const SmallTitle = styled.h4`
   ${smallTitleStyle};
 `
 
-export const bigStyle = css`
+export const bigStyle = css<Record<never, never>>`
   ${baseStyle};
 
   font-size: 1.25em;
@@ -69,7 +69,7 @@ export const Big = styled.p`
   ${bigStyle}
 `
 
-export const textStyle = css`
+export const textStyle = css<Record<never, never>>`
   ${baseStyle};
 
   font-size: 1.125em;
@@ -81,7 +81,7 @@ export const Text = styled.p`
   ${textStyle}
 `
 
-export const labelStyle = css`
+export const labelStyle = css<Record<never, never>>`
   ${baseStyle};
 
   font-size: 0.875rem;

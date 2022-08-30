@@ -19,7 +19,7 @@ const Card: React.FC<{ post: BlogPost }> = ({ post }) => {
       <S.HoverHint>
         <Link to={postLink}>
           <S.Image
-            fluid={post.data.hero.fluid}
+            image={post.data.hero.childImageSharp.gatsbyImageData}
             alt={post.data.hero.alt}
           ></S.Image>
         </Link>

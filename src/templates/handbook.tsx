@@ -110,7 +110,7 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
   // Featured chapters
   const allChapters = allPrismicHandbook.nodes[0].data.featured
   // Add all chapters from each group
-  allPrismicHandbook.nodes[0].data.body.forEach((group) => {
+  allPrismicHandbook.nodes[0].data.body.forEach((group, _index) => {
     allChapters.push(...group.items)
   })
 

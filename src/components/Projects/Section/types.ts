@@ -48,7 +48,9 @@ export interface ImageType {
     image: {
       url?: string
       alt: StringOrNull
-      image: IGatsbyImageData
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData
+      }
     }
     caption: StringOrNull
   }
@@ -78,7 +80,9 @@ export interface GalleryType {
     image: {
       alt: string
       url?: string
-      image: IGatsbyImageData
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData
+      }
     }
     span: number
     span_tablet: number
@@ -93,12 +97,16 @@ export interface ComparisonType {
     image_a: {
       alt: string
       url?: string
-      image: IGatsbyImageData
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData
+      }
     }
     image_b: {
       alt: string
       url?: string
-      image: IGatsbyImageData
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData
+      }
     }
   }
 }
@@ -112,7 +120,9 @@ export interface SlideshowType {
     image: {
       alt: string
       url?: string
-      image: IGatsbyImageData
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData
+      }
     }
   }>
 }
@@ -127,7 +137,9 @@ export interface WaterfallType {
       }
       alt: string
       url?: string
-      image: IGatsbyImageData
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData
+      }
     }
   }>
 }
@@ -168,7 +180,9 @@ export interface StickyImageType {
     image: {
       alt: string
       url?: string
-      image: IGatsbyImageData
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 import { Link as BaseLink } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 
 import { media } from '@theme'
@@ -70,7 +70,10 @@ export const Big = styled(BaseBig)`
   margin-bottom: 0.5em;
 `
 
-const DetectLink: React.FC<{ to: string }> = ({ to, ...props }) => {
+const DetectLink: React.FC<{ to: string; children?: ReactNode }> = ({
+  to,
+  ...props
+}) => {
   const internal = /^\/(?!\/)/.test(to)
   const external = /^http/.test(to)
 

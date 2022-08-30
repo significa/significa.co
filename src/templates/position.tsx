@@ -51,7 +51,7 @@ const PositionTemplate: React.FC<ITemplate> = ({ data }) => {
 export default PositionTemplate
 
 export const query = graphql`
-  query ($uid: String!) {
+  query($uid: String!) {
     prismicPosition(uid: { eq: $uid }) {
       data {
         text {

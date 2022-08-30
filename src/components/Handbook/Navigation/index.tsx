@@ -55,7 +55,7 @@ const flatChapterHeadings = (body: Body) => {
   return body.reduce((acc: ContentType[], b) => {
     if (b.__typename === 'PrismicHandbookChapterBodyContent') {
       const justHeadings = b.primary.content.raw.filter(
-        (c) => c.type === 'heading2' || c.type === 'heading3'
+        c => c.type === 'heading2' || c.type === 'heading3'
       )
       acc.push(...justHeadings)
     }

@@ -4,7 +4,7 @@ import Img from '../../../../PrismicImage'
 import { GalleryType } from '../../types'
 import * as S from './styled'
 
-const Gallery: React.FC<GalleryType> = (props) => (
+const Gallery: React.FC<GalleryType> = props => (
   <>
     <S.Wrapper columns={props.primary.columns}>
       {props.items.map((image, i) => {

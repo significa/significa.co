@@ -83,6 +83,7 @@ const DetectLink: React.FC<{ to: string; children?: ReactNode }> = ({
 
   if (external) {
     return (
+      // eslint-disable-next-line jsx-a11y/anchor-has-content
       <a
         href={to}
         role="button"

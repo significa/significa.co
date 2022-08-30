@@ -22,7 +22,7 @@ export const Li = styled(Text).attrs({ as: 'li' })`
   &:before {
     content: '-';
     // TODO: fix any type
-    color: ${(props) =>
+    color: ${props =>
       !props.color || props.color === 'foreground'
         ? props.theme.colors.highlight
         : getColor(props as any)};

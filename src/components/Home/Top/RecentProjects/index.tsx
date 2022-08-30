@@ -51,7 +51,7 @@ const RecentProjects = () => (
                 // TODO: change alt to a proper one
                 alt="Project Thumb"
                 image={project.data.thumb_image.gatsbyImageData}
-                services={project.data.services.map((s) => s.service)}
+                services={project.data.services.map(s => s.service)}
                 limitServices
                 backgroundColor={getThumbBgColor(
                   project.data.hero_theme,

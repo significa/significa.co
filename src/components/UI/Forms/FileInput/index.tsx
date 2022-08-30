@@ -57,7 +57,7 @@ const FileInput = ({
         <label>
           <S.Input
             {...props}
-            onChange={(e) => {
+            onChange={e => {
               if (e.target.files && e.target.files.length > 0) {
                 handleSelect(e.target.files)
               }

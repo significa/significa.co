@@ -49,7 +49,7 @@ const Form: React.FC<{ position: string }> = ({ position }) => {
       message: '',
     },
     validate,
-    handleSubmit: (values) => handleSubmit(values, fileUrl),
+    handleSubmit: values => handleSubmit(values, fileUrl),
   })
 
   // HandleSubmit

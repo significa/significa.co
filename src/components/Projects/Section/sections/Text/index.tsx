@@ -20,7 +20,7 @@ const Text = ({ primary: text, sectionLabel }: ITextProps) => {
       {text.title && (
         <S.TitleWrapper
           href={`#${id}`}
-          onClick={(e) => navigateToSection(e, id as string)}
+          onClick={e => navigateToSection(e, id as string)}
         >
           <S.AnchorIcon />
           <S.Title>{text.title}</S.Title>

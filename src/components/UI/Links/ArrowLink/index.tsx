@@ -10,7 +10,7 @@ export interface IArrowLink {
   children?: ReactNode
 }
 
-const ArrowLink: React.FC<IArrowLink> = (props) => (
+const ArrowLink: React.FC<IArrowLink> = props => (
   <Link {...props}>
     {props.children}
     <Arrow />

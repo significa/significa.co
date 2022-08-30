@@ -3,9 +3,7 @@ export const getWidthPercentage = (fraction: string): string => {
     return `100%`
   }
 
-  return `${
-    (parseInt(fraction.split('/')[0], 10) /
-      parseInt(fraction.split('/')[1], 10)) *
-    100
-  }%`
+  return `${(parseInt(fraction.split('/')[0], 10) /
+    parseInt(fraction.split('/')[1], 10)) *
+    100}%`
 }

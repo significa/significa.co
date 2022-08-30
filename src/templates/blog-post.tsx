@@ -106,7 +106,7 @@ const BlogPostPage: React.FC<Prop> = ({ data }) => {
 }
 
 export const query = graphql`
-  query ($uid: String!) {
+  query($uid: String!) {
     prismicBlogPost(uid: { eq: $uid }) {
       uid
       type

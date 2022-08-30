@@ -11,7 +11,7 @@ const Breadcrumbs: React.FC<Props> = ({ paths = [] }) => {
   return (
     <S.Wrapper>
       <Container>
-        {paths.map((path) => {
+        {paths.map(path => {
           return (
             <S.Item key={path.link} to={path.link}>
               {path.text}

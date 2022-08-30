@@ -146,7 +146,7 @@ const CustomComponentParser: React.FC<CustomComponentParserProps> = ({
   if (/\[abbr/gim.test(element.text)) {
     const parts: string[][][] = element.text
       .split('[abbr text="')
-      .map((text) => text.split('"]').map((t) => t.split('[/abbr]')))
+      .map(text => text.split('"]').map(t => t.split('[/abbr]')))
 
     return (
       <p>

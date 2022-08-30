@@ -17,7 +17,7 @@ const Careers: React.FC<ICareersContent> = ({
     <S.Container>
       <S.Left>
         <S.Title>
-          {textByLine(title).map((l) => {
+          {textByLine(title).map(l => {
             return (
               <React.Fragment key={l}>
                 {l}

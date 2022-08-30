@@ -140,9 +140,7 @@ export const ButtonLine = styled.span`
 
 // Had to import React, make this file .tsx and manually extract
 // the `visible` prop so it doesn't get passed down to the DOM
-export const AnimatedNavButton = styled((props) => (
-  <motion.button {...props} />
-))<{
+export const AnimatedNavButton = styled(props => <motion.button {...props} />)<{
   visible: boolean
 }>`
   position: fixed;
@@ -169,7 +167,7 @@ export const AnimatedNavButton = styled((props) => (
 
   ${media.medium} {
     transition: box-shadow ${({ theme }) => theme.transitions.cubic()};
-    box-shadow: ${(p) =>
+    box-shadow: ${p =>
       p.visible
         ? '0px 0px 0px rgba(0, 0, 0, 0)'
         : '0px 1px 2px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.1)'};
@@ -196,7 +194,7 @@ export const AnimatedNavButton = styled((props) => (
     }
   }
 
-  ${(p) =>
+  ${p =>
     p.visible &&
     css`
       & ${ButtonLine} {

@@ -62,7 +62,7 @@ const Section: React.FC<ISectionProps> = ({
   return (
     <ConditionalWrap
       condition={'theme' in section.primary ? !!section.primary.theme : false}
-      wrap={(children) => (
+      wrap={children => (
         <Theme
           theme={
             'theme' in section.primary

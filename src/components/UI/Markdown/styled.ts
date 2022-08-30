@@ -10,9 +10,9 @@ interface IMarkdownProps {
 }
 
 export const Markdown = styled.div<IMarkdownProps>`
-  max-width: ${(p) => (p.narrow ? '38em' : 'auto')};
-  margin: ${(p) => (p.narrow ? '0 auto' : '0')};
-  padding-bottom: ${(p) => (p.bottomSpace ? '5em' : '0')};
+  max-width: ${p => (p.narrow ? '38em' : 'auto')};
+  margin: ${p => (p.narrow ? '0 auto' : '0')};
+  padding-bottom: ${p => (p.bottomSpace ? '5em' : '0')};
 
   h1 {
     ${displayStyle}
@@ -21,7 +21,7 @@ export const Markdown = styled.div<IMarkdownProps>`
   }
 
   a {
-    color: ${(p) => p.theme.colors.highlight};
+    color: ${p => p.theme.colors.highlight};
   }
 
   h2,

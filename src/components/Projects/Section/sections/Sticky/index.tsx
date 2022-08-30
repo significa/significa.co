@@ -30,7 +30,7 @@ const Sticky = (props: StickyProps) => {
           {section.title && (
             <S.TitleWrapper
               href={`#${id}`}
-              onClick={(e) => navigateToSection(e, id as string)}
+              onClick={e => navigateToSection(e, id as string)}
             >
               <S.AnchorIcon />
               <S.Title>{section.title}</S.Title>

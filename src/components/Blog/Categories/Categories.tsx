@@ -24,7 +24,7 @@ const CategoriesTab: React.FC = () => {
 
   const categories: CategoryList = posts.reduce((acc: CategoryList, curr) => {
     const alreadyIn =
-      acc.findIndex((e) => e.name === curr.node.data.category) !== -1
+      acc.findIndex(e => e.name === curr.node.data.category) !== -1
 
     if (!alreadyIn) {
       acc.push({

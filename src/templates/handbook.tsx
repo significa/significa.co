@@ -112,7 +112,7 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
   })
 
   const currIndex = [...allChapters].findIndex(
-    (c) => c.chapter.document.uid === uid
+    c => c.chapter.document.uid === uid
   )
   if (currIndex > 0) {
     prevChapter = allChapters[currIndex - 1]
@@ -175,10 +175,9 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
                   }
 
                   if (type === 'paragraph') {
-                    const shouldCatch =
-                      /\[side-note|\[abbr|\[box|\[highlight|\[link/gim.test(
-                        element.text
-                      )
+                    const shouldCatch = /\[side-note|\[abbr|\[box|\[highlight|\[link/gim.test(
+                      element.text
+                    )
                     if (shouldCatch) {
                       return (
                         <CustomComponentParser

@@ -4,7 +4,7 @@ import React from 'react'
 import CallToAction from './'
 
 storiesOf('UI/Call to action', module)
-  .addDecorator((story) => <div style={{ padding: '2em' }}>{story()}</div>)
+  .addDecorator(story => <div style={{ padding: '2em' }}>{story()}</div>)
 
   .add('CallToAction', () => (
     <CallToAction

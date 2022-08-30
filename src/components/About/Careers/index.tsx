@@ -32,7 +32,7 @@ const Careers = () => {
     <Theme theme="dark">
       <S.Wrapper>
         <RightContent title={careers.title}>
-          {textByLine(careers.text).map((e) => (
+          {textByLine(careers.text).map(e => (
             <S.Text key={e}>{e}</S.Text>
           ))}
           <S.ArrowLink to={careers.link}>{careers.linkText}</S.ArrowLink>

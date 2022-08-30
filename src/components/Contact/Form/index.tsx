@@ -44,7 +44,7 @@ const Form: React.FC<IContactForm> = ({ contactYaml: data }) => {
       message: '',
     },
     validate,
-    handleSubmit: (values) => handleSubmit(values, fileUrl),
+    handleSubmit: values => handleSubmit(values, fileUrl),
   })
 
   // HandleSubmit

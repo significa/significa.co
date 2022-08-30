@@ -21,7 +21,7 @@ const Content = () => {
 
   return (
     <RightContent title={content.title}>
-      {textByLine(content.text).map((e) => (
+      {textByLine(content.text).map(e => (
         <S.Text key={e}>{e}</S.Text>
       ))}
     </RightContent>

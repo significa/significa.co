@@ -97,7 +97,7 @@ const useForm = ({ initialValues, validate, handleSubmit }: IUseForm) => {
       .then(() => {
         setSubmitting(false)
       })
-      .catch((submissionErrors) => {
+      .catch(submissionErrors => {
         setErrors({ ...errors, ...submissionErrors })
         setSubmitting(false)
       })

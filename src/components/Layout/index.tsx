@@ -27,18 +27,14 @@ const Layout: React.FC<ILayoutProps> = ({
     <Provider theme={theme}>
       <ConditionalWrap
         condition={!!headerTheme}
-        wrap={(c) => (
-          <Theme theme={headerTheme as colorArgumentType}>{c}</Theme>
-        )}
+        wrap={c => <Theme theme={headerTheme as colorArgumentType}>{c}</Theme>}
       >
         <Header isBlogPage={isBlogPage}>{renderHeaderChildren}</Header>
       </ConditionalWrap>
       {children}
       <ConditionalWrap
         condition={!!footerTheme}
-        wrap={(c) => (
-          <Theme theme={footerTheme as colorArgumentType}>{c}</Theme>
-        )}
+        wrap={c => <Theme theme={footerTheme as colorArgumentType}>{c}</Theme>}
       >
         <Footer />
       </ConditionalWrap>

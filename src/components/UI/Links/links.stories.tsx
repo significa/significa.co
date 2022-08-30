@@ -5,7 +5,7 @@ import React from 'react'
 import { Link, NavLink, ArrowLink } from './'
 
 storiesOf('UI/Links', module)
-  .addDecorator((story) => <div style={{ padding: '2em' }}>{story()}</div>)
+  .addDecorator(story => <div style={{ padding: '2em' }}>{story()}</div>)
 
   .add('NavLink', () => <NavLink to="/">Navigation Link</NavLink>)
 

@@ -13,7 +13,7 @@ type FilterState = string | null
 const All: React.FC<IAll> = ({ content }) => {
   const tags = content.reduce(
     (acc: string[], item: { node: { data: ILabType } }) => {
-      item.node.data.tags.forEach((tag) => {
+      item.node.data.tags.forEach(tag => {
         if (acc.indexOf(tag.tag) < 0) {
           acc.push(tag.tag)
         }
@@ -24,10 +24,14 @@ const All: React.FC<IAll> = ({ content }) => {
     []
   )
   const [filter, setFilter] = useState<FilterState>(null)
-  const filteredContent = content.filter((c) => {
-    const itemTags = c.node.data.tags.map((tag) => tag.tag)
+  const filteredContent = content.filter(c => {
+    const itemTags = c.node.data.tags.map(tag => tag.tag)
 
-    return itemTags.indexOf(filter) >= 0
+    if (filter) {
+      return itemTags.indexOf(filter) >= 0
+    }
+
+    return
   })
 
   const items = !filter ? content : filteredContent
@@ -38,7 +42,7 @@ const All: React.FC<IAll> = ({ content }) => {
         <S.Filter active={!filter} onClick={() => setFilter(null)}>
           All
         </S.Filter>
-        {tags.map((tag) => {
+        {tags.map(tag => {
           return (
             <S.Filter
               key={tag}
@@ -51,7 +55,7 @@ const All: React.FC<IAll> = ({ content }) => {
         })}
       </S.Sidebar>
       <div>
-        {items.map((item) => {
+        {items.map(item => {
           return (
             <S.ItemLink
               key={`${item.node.data.title}-${item.node.data.tagline}`}
@@ -68,7 +72,7 @@ const All: React.FC<IAll> = ({ content }) => {
                 <Big>{item.node.data.title}</Big>
                 <S.Tagline>{item.node.data.tagline}</S.Tagline>
                 <S.More>
-                  {item.node.data.tags.map((t) => t.tag).join(', ')}
+                  {item.node.data.tags.map(t => t.tag).join(', ')}
                 </S.More>
               </S.ContentHolder>
             </S.ItemLink>

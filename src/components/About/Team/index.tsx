@@ -36,7 +36,7 @@ const Team = () => {
       </S.Text>
 
       <S.TeamList>
-        {orderTeamNameByAlphabet.map((e) => (
+        {orderTeamNameByAlphabet.map(e => (
           <S.TeamItem key={e.name}>
             <T.Text>{e.name}</T.Text>
             <T.Label>{e.role}</T.Label>

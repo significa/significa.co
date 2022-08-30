@@ -32,7 +32,7 @@
     "prettier": "prettier \"./src/**/*.+(ts|tsx|js|jsx|json|yml|yaml|md|mdx)\"",
     "validate:prettier": "npm run prettier -- --check",
     "validate:ts": "tsc",
-    "validate": "npm run lint && npm run validate:prettier && npm run validate:ts"
+    "validate": "npm run lint && npm run format && npm run validate:prettier && npm run validate:ts"
   },
   "dependencies": {
     "@reach/router": "^1.2.1",

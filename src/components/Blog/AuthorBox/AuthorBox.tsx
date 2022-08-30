@@ -14,7 +14,7 @@ const AuthorBox: React.FC<{
       {author.profile_pic && (
         <S.ImageBox size={compact ? 'small' : 'regular'}>
           <Image
-            image={author.profile_pic.childImageSharp.gatsbyImageData}
+            image={author.profile_pic.gatsbyImageData}
             src={author.profile_pic.url}
             alt={author.profile_pic.alt}
           />

@@ -12,9 +12,7 @@ export interface ILabType {
   tagline: string
   image: {
     alt: string
-    childImageSharp: {
-      gatsbyImageData: IGatsbyImageData
-    }
+    gatsbyImageData: IGatsbyImageData
   }
   source: LabsSourceType
   tags: Array<{ tag: string }>

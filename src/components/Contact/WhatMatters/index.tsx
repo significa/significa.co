@@ -16,29 +16,19 @@ interface IWhatMatters {
       interested: string
       photos: {
         center: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData
-          }
+          gatsbyImageData: IGatsbyImageData
         }
         topLeft: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData
-          }
+          gatsbyImageData: IGatsbyImageData
         }
         topRight: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData
-          }
+          gatsbyImageData: IGatsbyImageData
         }
         bottomLeft: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData
-          }
+          gatsbyImageData: IGatsbyImageData
         }
         bottomRight: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData
-          }
+          gatsbyImageData: IGatsbyImageData
         }
       }
     }
@@ -59,27 +49,27 @@ const WhatMatters: React.FC<IWhatMatters> = ({
             <S.TopLeftImage
               // TODO: change alt to a proper value
               alt="Image from image grid"
-              image={data.photos.topLeft.childImageSharp.gatsbyImageData}
+              image={data.photos.topLeft.gatsbyImageData}
             />
             <S.CenterImage
               // TODO: change alt to a proper value
               alt="Image from image grid"
-              image={data.photos.center.childImageSharp.gatsbyImageData}
+              image={data.photos.center.gatsbyImageData}
             />
             <S.TopRightImage
               // TODO: change alt to a proper value
               alt="Image from image grid"
-              image={data.photos.topRight.childImageSharp.gatsbyImageData}
+              image={data.photos.topRight.gatsbyImageData}
             />
             <S.BottomLeftImage
               // TODO: change alt to a proper value
               alt="Image from image grid"
-              image={data.photos.bottomLeft.childImageSharp.gatsbyImageData}
+              image={data.photos.bottomLeft.gatsbyImageData}
             />
             <S.BottomRightImage
               // TODO: change alt to a proper value
               alt="Image from image grid"
-              image={data.photos.bottomRight.childImageSharp.gatsbyImageData}
+              image={data.photos.bottomRight.gatsbyImageData}
             />
           </S.ImagesGrid>
 

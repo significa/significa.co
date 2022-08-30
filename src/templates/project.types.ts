@@ -23,9 +23,7 @@ export interface IProject {
   project_title: string
   tagline: string
   hero_image: {
-    childImageSharp: {
-      gatsbyImageData: IGatsbyImageData
-    }
+    gatsbyImageData: IGatsbyImageData
     url?: string
   }
 

@@ -134,7 +134,7 @@ const query = graphql`
           title
           body {
             __typename
-            ... on PrismicHandbookChapterBodyContent {
+            ... on PrismicHandbookChapterDataBodyContent {
               primary {
                 content {
                   raw
@@ -157,7 +157,7 @@ const query = graphql`
             }
           }
           body {
-            ... on PrismicHandbookBodyCategory {
+            ... on PrismicHandbookDataBodyCategory {
               primary {
                 category_title
                 category_description

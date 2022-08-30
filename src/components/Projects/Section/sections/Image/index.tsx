@@ -8,7 +8,7 @@ const Image = ({ primary: { image, caption } }: ImageType) => {
   return (
     <figure>
       <PrismicImage
-        image={image.childImageSharp.gatsbyImageData}
+        image={image.gatsbyImageData}
         alt={image.alt || ''}
         src={image.url}
       />

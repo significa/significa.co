@@ -22,9 +22,7 @@ interface IRecentProjectsData {
         }>
         thumb_image: {
           alt: string
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData
-          }
+          gatsbyImageData: IGatsbyImageData
         }
       }
     }>
@@ -52,7 +50,7 @@ const RecentProjects = () => (
                 to={project.url}
                 // TODO: change alt to a proper one
                 alt="Project Thumb"
-                image={project.data.thumb_image.childImageSharp.gatsbyImageData}
+                image={project.data.thumb_image.gatsbyImageData}
                 services={project.data.services.map((s) => s.service)}
                 limitServices
                 backgroundColor={getThumbBgColor(
@@ -75,7 +73,6 @@ const recentProjectsQuery = graphql`
       limit: 3
     ) {
       nodes {
-        url
         uid
         data {
           hero_theme
@@ -85,9 +82,7 @@ const recentProjectsQuery = graphql`
           }
           thumb_image {
             alt
-            childImageSharp {
-              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
-            }
+            gatsbyImageData
           }
           project_title
           tagline

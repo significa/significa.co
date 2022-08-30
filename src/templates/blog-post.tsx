@@ -1,6 +1,5 @@
 import slugify from '@sindresorhus/slugify'
 import { graphql } from 'gatsby'
-import { mergePrismicPreviewData } from 'gatsby-source-prismic'
 import { RichText } from 'prismic-reactjs'
 import React from 'react'
 
@@ -21,13 +20,13 @@ interface Prop {
   data: { prismicBlogPost: BlogPost }
 }
 
-const BlogPostPage: React.FC<Prop> = ({ data: staticData }) => {
-  const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
+const BlogPostPage: React.FC<Prop> = ({ data }) => {
+  // const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
 
-  const data: Prop['data'] = mergePrismicPreviewData({
-    staticData,
-    previewData: preview,
-  })
+  // const data: Prop['data'] = mergePrismicPreviewData({
+  //   staticData,
+  //   previewData: preview,
+  // })
 
   const content = data.prismicBlogPost
 
@@ -72,11 +71,11 @@ const BlogPostPage: React.FC<Prop> = ({ data: staticData }) => {
         </S.Header>
 
         <S.ImageHero as="figure">
-          {(content.data.hero.childImageSharp || content.data.hero.url) && (
+          {content.data.hero && (
             <>
               <Image
                 loading="eager"
-                image={content.data.hero.childImageSharp.gatsbyImageData}
+                image={content.data.hero.gatsbyImageData}
                 src={content.data.hero.url}
                 alt={content.data.hero.alt}
               />

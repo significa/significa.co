@@ -57,12 +57,12 @@ const Comparison: React.FC<ComparisonType> = ({
         </S.Controls>
         <Img
           src={image_a.url}
-          image={image_a?.childImageSharp.gatsbyImageData}
+          image={image_a?.gatsbyImageData}
           alt={image_a.alt}
         />
         <S.TopImage>
           <Img
-            image={image_a?.childImageSharp.gatsbyImageData}
+            image={image_a?.gatsbyImageData}
             src={image_b.url}
             alt={image_b.alt}
             style={{ height: '100%', width: `${visible}%` }}

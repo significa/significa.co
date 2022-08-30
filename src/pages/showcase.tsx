@@ -20,9 +20,7 @@ export interface Project {
     }>
     thumb_image: {
       alt: string
-      childImageSharp: {
-        gatsbyImageData: IGatsbyImageData
-      }
+      gatsbyImageData: IGatsbyImageData
     }
   }
 }

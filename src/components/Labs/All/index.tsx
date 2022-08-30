@@ -24,12 +24,13 @@ const All: React.FC<IAll> = ({ content }) => {
     []
   )
   const [filter, setFilter] = useState<FilterState>(null)
-  const items = !filter
-    ? content
-    : content.filter((c) => {
-        const itemTags = c.node.data.tags.map((tag) => tag.tag)
-        return itemTags.indexOf(filter) >= 0
-      })
+  const filteredContent = content.filter((c) => {
+    const itemTags = c.node.data.tags.map((tag) => tag.tag)
+
+    return itemTags.indexOf(filter) >= 0
+  })
+
+  const items = !filter ? content : filteredContent
 
   return (
     <S.Wrapper>
@@ -59,7 +60,7 @@ const All: React.FC<IAll> = ({ content }) => {
               <S.ImgHolder>
                 <S.LabsIcon source={item.node.data.source} color />
                 <S.Img
-                  image={item.node.data.image.childImageSharp.gatsbyImageData}
+                  image={item.node.data.image.gatsbyImageData}
                   alt={item.node.data.image.alt}
                 />
               </S.ImgHolder>

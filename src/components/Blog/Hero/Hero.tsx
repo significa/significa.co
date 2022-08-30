@@ -19,7 +19,7 @@ const Hero: React.FC<{ post: BlogPost }> = ({ post }) => {
     <S.Article>
       <Link to={postLink}>
         <S.Image
-          image={post.data.hero.childImageSharp.gatsbyImageData}
+          image={post.data.hero.gatsbyImageData}
           alt={post.data.title}
           loading="eager"
         />

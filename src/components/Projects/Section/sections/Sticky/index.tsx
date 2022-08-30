@@ -46,7 +46,7 @@ const Sticky = (props: StickyProps) => {
         {'image' in section && (
           <Img
             src={section.image.url}
-            image={section.image.childImageSharp.gatsbyImageData}
+            image={section.image.gatsbyImageData}
             alt={section.image.alt}
           />
         )}

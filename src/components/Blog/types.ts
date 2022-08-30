@@ -20,9 +20,7 @@ export interface Author {
   profile_pic: {
     alt: string
     url: string
-    childImageSharp: {
-      gatsbyImageData: IGatsbyImageData
-    }
+    gatsbyImageData: IGatsbyImageData
   }
   social_links: AuthorSocial[]
 }
@@ -58,9 +56,7 @@ export interface BlogPost {
     hero: {
       alt: string
       url: string
-      childImageSharp: {
-        gatsbyImageData: IGatsbyImageData
-      }
+      gatsbyImageData: IGatsbyImageData
     }
 
     content: {

@@ -33,7 +33,7 @@ const Projects: React.FC<Projects> = ({ projects }) => {
             to={project.url}
             //TODO: change alt to a proper one
             alt="Project thumbnail"
-            image={project.data.thumb_image.childImageSharp.gatsbyImageData}
+            image={project.data.thumb_image.gatsbyImageData}
             services={project.data.services.map((s, _index) => s.service)}
             backgroundColor={getThumbBgColor(
               project.data.hero_theme,

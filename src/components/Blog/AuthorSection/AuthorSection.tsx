@@ -8,7 +8,7 @@ const AuthorSection: React.FC<{ content: Author }> = ({ content }) => {
     <S.Wrapper>
       {content.profile_pic && (
         <S.Image
-          image={content.profile_pic.childImageSharp.gatsbyImageData}
+          image={content.profile_pic.gatsbyImageData}
           src={content.profile_pic.url}
           alt={content.profile_pic.alt}
         />

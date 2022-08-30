@@ -10,11 +10,7 @@ interface ITop {
       title: string
       photos: Array<{
         alt: string
-        image: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData
-          }
-        }
+        image: { gatsbyImageData: IGatsbyImageData }
       }>
     }
   }
@@ -33,10 +29,7 @@ const Top = () => {
       <S.Gallery>
         {data.photos.map(({ image, alt }) => (
           <S.ImgHolder key={alt}>
-            <GatsbyImage
-              image={image.childImageSharp.gatsbyImageData}
-              alt={alt}
-            />
+            <GatsbyImage image={image.gatsbyImageData} alt={alt} />
           </S.ImgHolder>
         ))}
       </S.Gallery>

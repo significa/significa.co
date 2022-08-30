@@ -1,5 +1,4 @@
 import { graphql } from 'gatsby'
-import { mergePrismicPreviewData } from 'gatsby-source-prismic'
 import React, { useRef } from 'react'
 
 import { Theme } from '@theme'
@@ -19,13 +18,13 @@ interface IProjectProps {
   }
 }
 
-const ProjectPage = ({ data: staticData }: IProjectProps) => {
-  const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
+const ProjectPage = ({ data }: IProjectProps) => {
+  // const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
 
-  const data: IProjectProps['data'] = mergePrismicPreviewData({
-    staticData,
-    previewData: preview,
-  })
+  // const data: IProjectProps['data'] = mergePrismicPreviewData({
+  //   staticData,
+  //   previewData: preview,
+  // })
 
   const { data: project } = data.prismicProject
 
@@ -55,7 +54,7 @@ const ProjectPage = ({ data: staticData }: IProjectProps) => {
           <Hero
             title={project.project_title}
             tagline={project.tagline}
-            image={project.hero_image.childImageSharp.gatsbyImageData}
+            image={project.hero_image.gatsbyImageData}
             src={project.hero_image.url}
           />
         </Theme>
@@ -126,9 +125,9 @@ const ProjectPage = ({ data: staticData }: IProjectProps) => {
 
 export default ProjectPage
 
+// eslint-disable-next-line prettier/prettier -- false error
 export const query = graphql`
-  // eslint-disable-next-line prettier/prettier -- false error
-  query($uid: String!) {
+  query ($uid: String!) {
     prismicProject(uid: { eq: $uid }) {
       data {
         ...ProjectThemes
@@ -137,46 +136,46 @@ export const query = graphql`
         ...ProjectMeta
         ...NextProject
         body {
-          ... on PrismicProjectBodyChapter {
+          ... on PrismicProjectDataBodyChapter {
             ...BodyChapter
           }
-          ... on PrismicProjectBodySection {
+          ... on PrismicProjectDataBodySection {
             ...BodySection
           }
-          ... on PrismicProjectBodyText {
+          ... on PrismicProjectDataBodyText {
             ...BodyText
           }
-          ... on PrismicProjectBodyImage {
+          ... on PrismicProjectDataBodyImage {
             ...BodyImage
           }
-          ... on PrismicProjectBodyVideo {
+          ... on PrismicProjectDataBodyVideo {
             ...BodyVideo
           }
-          ... on PrismicProjectBodyImageGallery {
+          ... on PrismicProjectDataBodyImageGallery {
             ...BodyImageGallery
           }
-          ... on PrismicProjectBodyComparison {
+          ... on PrismicProjectDataBodyComparison {
             ...BodyComparison
           }
-          ... on PrismicProjectBodySlideshow {
+          ... on PrismicProjectDataBodySlideshow {
             ...BodySlideshow
           }
-          ... on PrismicProjectBodyWaterfall {
+          ... on PrismicProjectDataBodyWaterfall {
             ...BodyWaterfall
           }
-          ... on PrismicProjectBodyTestimonial {
+          ... on PrismicProjectDataBodyTestimonial {
             ...BodyTestimonial
           }
-          ... on PrismicProjectBodyEmbed {
+          ... on PrismicProjectDataBodyEmbed {
             ...BodyEmbed
           }
-          ... on PrismicProjectBodyHighlight {
+          ... on PrismicProjectDataBodyHighlight {
             ...BodyHighlight
           }
-          ... on PrismicProjectBodyStickyImage {
+          ... on PrismicProjectDataBodyStickyImage {
             ...BodyStickyImage
           }
-          ... on PrismicProjectBodyStickyVideo {
+          ... on PrismicProjectDataBodyStickyVideo {
             ...BodyStickyVideo
           }
         }

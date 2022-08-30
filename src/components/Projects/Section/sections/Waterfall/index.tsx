@@ -15,7 +15,7 @@ const Waterfall = (props: WaterfallType) => {
           <S.ImgHolder key={i} index={i} rowSpan={rowSpan}>
             <Img
               key={i}
-              image={item.image.childImageSharp.gatsbyImageData}
+              image={item.image.gatsbyImageData}
               alt={item.image.alt}
               src={item.image.url}
             />

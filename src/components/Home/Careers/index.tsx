@@ -36,10 +36,7 @@ const Careers: React.FC<ICareersContent> = ({
       <S.Photos>
         {photos.map((photo, i) => (
           <div key={i}>
-            <GatsbyImage
-              image={photo.childImageSharp.gatsbyImageData}
-              alt={photo.alt}
-            />
+            <GatsbyImage image={photo.gatsbyImageData} alt={photo.alt} />
           </div>
         ))}
       </S.Photos>

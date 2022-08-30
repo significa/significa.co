@@ -14,9 +14,7 @@ interface IGlobal {
       text: string
       cities: string[]
       image: {
-        childImageSharp: {
-          gatsbyImageData: IGatsbyImageData
-        }
+        gatsbyImageData: IGatsbyImageData
       }
     }
   }
@@ -32,10 +30,7 @@ const Global = () => {
       <S.Wrapper>
         <S.ImageContainer>
           <S.ImageHolder>
-            <S.Img
-              alt={data.title}
-              image={data.image.childImageSharp.gatsbyImageData}
-            />
+            <S.Img alt={data.title} image={data.image.gatsbyImageData} />
           </S.ImageHolder>
         </S.ImageContainer>
 

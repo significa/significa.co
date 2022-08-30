@@ -17,11 +17,7 @@ interface ICareers {
       linkText: string
       photos: Array<{
         alt: string
-        image: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData
-          }
-        }
+        image: { gatsbyImageData: IGatsbyImageData }
       }>
     }
   }
@@ -45,10 +41,7 @@ const Careers = () => {
         <S.Gallery>
           {careers.photos.map(({ image, alt }) => (
             <S.ImgHolder key={alt}>
-              <GatsbyImage
-                image={image.childImageSharp.gatsbyImageData}
-                alt={alt}
-              />
+              <GatsbyImage image={image.gatsbyImageData} alt={alt} />
             </S.ImgHolder>
           ))}
         </S.Gallery>

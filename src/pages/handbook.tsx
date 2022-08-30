@@ -41,9 +41,7 @@ export type ChapterWithImage = ChapterBase & {
         image: {
           alt: string
           url: string
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData
-          }
+          gatsbyImageData: IGatsbyImageData
         }
       }
     }
@@ -127,7 +125,7 @@ export const query = graphql`
             }
           }
           body {
-            ... on PrismicHandbookBodyCategory {
+            ... on PrismicHandbookDataBodyCategory {
               primary {
                 category_title
                 category_description

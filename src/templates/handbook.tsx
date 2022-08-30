@@ -1,6 +1,5 @@
 import { graphql } from 'gatsby'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
-import { mergePrismicPreviewData } from 'gatsby-source-prismic'
 import { RichText } from 'prismic-reactjs'
 import React from 'react'
 
@@ -42,9 +41,7 @@ export interface Chapter {
   image: {
     alt: string
     url?: string
-    childImageSharp: {
-      gatsbyImageData: IGatsbyImageData
-    }
+    gatsbyImageData: IGatsbyImageData
   }
   body: Array<{
     primary: Content | Testimonial
@@ -89,15 +86,15 @@ interface HandbookChapterPageProps {
 }
 
 const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
-  data: staticData,
+  data,
   pageContext: { uid },
 }) => {
-  const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
+  // const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
 
-  const data: HandbookChapterPageProps['data'] = mergePrismicPreviewData({
-    staticData,
-    previewData: preview,
-  })
+  // const data: HandbookChapterPageProps['data'] = mergePrismicPreviewData({
+  //   staticData,
+  //   previewData: preview,
+  // })
 
   const { prismicHandbookChapter, allPrismicHandbook } = data
 
@@ -242,14 +239,14 @@ export const query = graphql`
           }
         }
         body {
-          ... on PrismicHandbookChapterBodyContent {
+          ... on PrismicHandbookChapterDataBodyContent {
             primary {
               content {
                 raw
               }
             }
           }
-          ... on PrismicHandbookChapterBodyTestimonial {
+          ... on PrismicHandbookChapterDataBodyTestimonial {
             primary {
               name
               position
@@ -282,7 +279,7 @@ export const query = graphql`
             }
           }
           body {
-            ... on PrismicHandbookBodyCategory {
+            ... on PrismicHandbookDataBodyCategory {
               items {
                 chapter {
                   ...ChapterHandbookTemplate

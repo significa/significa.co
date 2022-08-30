@@ -32,7 +32,7 @@ const Slideshow: React.FC<SlideshowType> = ({ items }) => {
               <Img
                 style={{ width: '100%' }}
                 key={i}
-                image={item.image.childImageSharp.gatsbyImageData}
+                image={item.image.gatsbyImageData}
                 src={item.image.url}
                 alt={item.image.alt}
               />

@@ -89,13 +89,6 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
   data,
   pageContext: { uid },
 }) => {
-  // const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
-
-  // const data: HandbookChapterPageProps['data'] = mergePrismicPreviewData({
-  //   staticData,
-  //   previewData: preview,
-  // })
-
   const { prismicHandbookChapter, allPrismicHandbook } = data
 
   if (!prismicHandbookChapter) {

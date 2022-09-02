@@ -38,6 +38,7 @@
     "@reach/router": "^1.2.1",
     "@sindresorhus/slugify": "^0.9.1",
     "axios": "^0.21.4",
+    "babel-plugin-styled-components": "^2.0.7",
     "framer-motion": "^1.7.0",
     "gatsby": "^4.21.1",
     "gatsby-image": "^2.2.37",
@@ -50,7 +51,7 @@
     "react-headroom": "^3.0.0",
     "react-helmet": "^5.2.0",
     "resize-observer-polyfill": "^1.5.1",
-    "styled-components": "^4.4.1"
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",
@@ -79,7 +80,7 @@
     "gatsby-plugin-s3": "^0.3.8",
     "gatsby-plugin-sharp": "^4.21.0",
     "gatsby-plugin-sitemap": "^5.21.0",
-    "gatsby-plugin-styled-components": "^5.21.0",
+    "gatsby-plugin-styled-components": "^5.22.0",
     "gatsby-plugin-typescript": "^4.21.0",
     "gatsby-source-filesystem": "^4.21.1",
     "gatsby-source-prismic": "^5.2.9",

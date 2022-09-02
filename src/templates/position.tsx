@@ -21,13 +21,6 @@ interface ITemplate {
 }
 
 const PositionTemplate: React.FC<ITemplate> = ({ data }) => {
-  // const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
-
-  // const data: ITemplate['data'] = mergePrismicPreviewData({
-  //   staticData,
-  //   previewData: preview,
-  // })
-
   const position = data.prismicPosition.data
 
   if (!position) {

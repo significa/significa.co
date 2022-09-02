@@ -19,13 +19,6 @@ interface IProjectProps {
 }
 
 const ProjectPage = ({ data }: IProjectProps) => {
-  // const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
-
-  // const data: IProjectProps['data'] = mergePrismicPreviewData({
-  //   staticData,
-  //   previewData: preview,
-  // })
-
   const { data: project } = data.prismicProject
 
   // Someplace to save the section name

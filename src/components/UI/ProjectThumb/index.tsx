@@ -23,20 +23,22 @@ const ProjectThumb: React.FC<IProjectThumb> = ({
   services,
   limitServices,
   backgroundColor,
-}) => (
-  <ContentThumb
-    to={to}
-    alt={alt}
-    image={image}
-    title={`${title} — ${tagline}`}
-    showShadow
-    backgroundColor={backgroundColor}
-    text={
-      limitServices && services.length > 5
-        ? services.slice(0, 3).join(', ') + ` & ${services.length - 3} others`
-        : services.join(', ')
-    }
-  />
-)
+}) => {
+  return (
+    <ContentThumb
+      to={to}
+      alt={alt}
+      image={image}
+      title={`${title} — ${tagline}`}
+      showShadow
+      backgroundColor={backgroundColor}
+      text={
+        limitServices && services.length > 5
+          ? services.slice(0, 3).join(', ') + ` & ${services.length - 3} others`
+          : services.join(', ')
+      }
+    />
+  )
+}
 
 export default ProjectThumb

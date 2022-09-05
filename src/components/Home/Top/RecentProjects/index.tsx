@@ -37,29 +37,32 @@ const RecentProjects = () => (
 
       return (
         <S.Container>
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.uid}
-              animate={{ y: 0, opacity: 1 }}
-              initial={{ y: 50, opacity: 0 }}
-              transition={{ delay: i * 0.1 + 0.5 }}
-            >
-              <ProjectThumb
-                title={project.data.project_title}
-                tagline={project.data.tagline}
-                to={project.url}
-                // TODO: change alt to a proper one
-                alt="Project Thumb"
-                image={project.data.thumb_image.gatsbyImageData}
-                services={project.data.services.map(s => s.service)}
-                limitServices
-                backgroundColor={getThumbBgColor(
-                  project.data.hero_theme,
-                  project.data.themes
-                )}
-              />
-            </motion.div>
-          ))}
+          {projects.map((project, i) => {
+            return (
+              <motion.div
+                key={project.uid}
+                animate={{ y: 0, opacity: 1 }}
+                initial={{ y: 50, opacity: 0 }}
+                transition={{ delay: i * 0.1 + 0.5 }}
+              >
+                <ProjectThumb
+                  title={project.data.project_title}
+                  tagline={project.data.tagline}
+                  to={project.url}
+                  alt={
+                    project.data.thumb_image.alt || project.data.project_title
+                  }
+                  image={project.data.thumb_image.gatsbyImageData}
+                  services={project.data.services.map(s => s.service)}
+                  limitServices
+                  backgroundColor={getThumbBgColor(
+                    project.data.hero_theme,
+                    project.data.themes
+                  )}
+                />
+              </motion.div>
+            )
+          })}
         </S.Container>
       )
     }}
@@ -90,6 +93,7 @@ const recentProjectsQuery = graphql`
             service
           }
         }
+        url
       }
     }
   }

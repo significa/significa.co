@@ -85,7 +85,7 @@ export const query = graphql`
         link
         photos {
           childImageSharp {
-            gatsbyImageData(width: 500, placeholder: NONE, layout: CONSTRAINED)
+            gatsbyImageData
           }
         }
       }

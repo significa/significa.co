@@ -28,9 +28,8 @@ export const projectFragments = graphql`
     project_title
     tagline
     hero_image {
-      fluid(maxWidth: 3000) {
-        ...GatsbyPrismicImageFluid_noBase64
-      }
+      gatsbyImageData
+      alt
     }
   }
 

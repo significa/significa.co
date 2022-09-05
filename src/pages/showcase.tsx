@@ -94,9 +94,7 @@ export const query = graphql`
           }
           thumb_image {
             alt
-            fluid(maxWidth: 1000) {
-              ...GatsbyPrismicImageFluid_noBase64
-            }
+            gatsbyImageData
           }
         }
       }

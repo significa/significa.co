@@ -116,9 +116,7 @@ export const query = graphql`
         teaser
         hero {
           alt
-          fluid {
-            ...GatsbyPrismicImageFluid_noBase64
-          }
+          gatsbyImageData
         }
         meta_title
         meta_description
@@ -152,9 +150,7 @@ export const query = graphql`
                 }
                 profile_pic {
                   alt
-                  fluid {
-                    ...GatsbyPrismicImageFluid_noBase64
-                  }
+                  gatsbyImageData
                 }
               }
             }

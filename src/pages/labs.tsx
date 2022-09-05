@@ -75,7 +75,7 @@ export const query = graphql`
               tag
             }
             image {
-              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
+              gatsbyImageData
             }
           }
         }

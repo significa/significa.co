@@ -107,17 +107,18 @@ export const Img = styled(GatsbyImage)`
   margin-right: 2em;
   margin-bottom: 2em;
 
-  min-width: 10em;
+  width: 100%;
+  max-width: 10rem;
   height: 5.5em;
 
   border-radius: 2px;
 
   ${media.large} {
-    min-width: 8em;
+    max-width: 8em;
   }
 
   ${media.small} {
-    width: 100%;
+    max-width: 100%;
     height: auto;
   }
 `

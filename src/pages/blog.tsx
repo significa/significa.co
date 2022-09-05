@@ -54,9 +54,7 @@ export const query = graphql`
                     profile_pic {
                       alt
                       url
-                      fluid {
-                        ...GatsbyPrismicImageFluid_noBase64
-                      }
+                      gatsbyImageData
                     }
                   }
                 }
@@ -69,9 +67,7 @@ export const query = graphql`
             hero {
               alt
               url
-              fluid {
-                ...GatsbyPrismicImageFluid_noBase64
-              }
+              gatsbyImageData
             }
           }
         }

@@ -16,19 +16,19 @@ interface IWhatMatters {
       interested: string
       photos: {
         center: {
-          gatsbyImageData: IGatsbyImageData
+          childImageSharp: { gatsbyImageData: IGatsbyImageData }
         }
         topLeft: {
-          gatsbyImageData: IGatsbyImageData
+          childImageSharp: { gatsbyImageData: IGatsbyImageData }
         }
         topRight: {
-          gatsbyImageData: IGatsbyImageData
+          childImageSharp: { gatsbyImageData: IGatsbyImageData }
         }
         bottomLeft: {
-          gatsbyImageData: IGatsbyImageData
+          childImageSharp: { gatsbyImageData: IGatsbyImageData }
         }
         bottomRight: {
-          gatsbyImageData: IGatsbyImageData
+          childImageSharp: { gatsbyImageData: IGatsbyImageData }
         }
       }
     }
@@ -49,27 +49,27 @@ const WhatMatters: React.FC<IWhatMatters> = ({
             <S.TopLeftImage
               // TODO: change alt to a proper value
               alt="Image from image grid"
-              image={data.photos.topLeft.gatsbyImageData}
+              image={data.photos.topLeft.childImageSharp.gatsbyImageData}
             />
             <S.CenterImage
               // TODO: change alt to a proper value
               alt="Image from image grid"
-              image={data.photos.center.gatsbyImageData}
+              image={data.photos.center.childImageSharp.gatsbyImageData}
             />
             <S.TopRightImage
               // TODO: change alt to a proper value
               alt="Image from image grid"
-              image={data.photos.topRight.gatsbyImageData}
+              image={data.photos.topRight.childImageSharp.gatsbyImageData}
             />
             <S.BottomLeftImage
               // TODO: change alt to a proper value
               alt="Image from image grid"
-              image={data.photos.bottomLeft.gatsbyImageData}
+              image={data.photos.bottomLeft.childImageSharp.gatsbyImageData}
             />
             <S.BottomRightImage
               // TODO: change alt to a proper value
               alt="Image from image grid"
-              image={data.photos.bottomRight.gatsbyImageData}
+              image={data.photos.bottomRight.childImageSharp.gatsbyImageData}
             />
           </S.ImagesGrid>
 
@@ -105,27 +105,27 @@ const whatMattersQuery = graphql`
         photos {
           center {
             childImageSharp {
-              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
+              gatsbyImageData
             }
           }
           topLeft {
             childImageSharp {
-              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
+              gatsbyImageData
             }
           }
           topRight {
             childImageSharp {
-              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
+              gatsbyImageData
             }
           }
           bottomLeft {
             childImageSharp {
-              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
+              gatsbyImageData
             }
           }
           bottomRight {
             childImageSharp {
-              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
+              gatsbyImageData
             }
           }
         }

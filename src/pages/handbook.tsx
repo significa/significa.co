@@ -115,9 +115,7 @@ export const query = graphql`
                     image {
                       alt
                       url
-                      fluid(maxWidth: 600) {
-                        ...GatsbyPrismicImageFluid_noBase64
-                      }
+                      gatsbyImageData
                     }
                   }
                 }

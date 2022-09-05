@@ -213,6 +213,7 @@ export const query = graphql`
           image {
             alt
             url
+            gatsbyImageData
           }
         }
       }
@@ -226,9 +227,7 @@ export const query = graphql`
         description
         image {
           alt
-          fluid(maxWidth: 1000) {
-            ...GatsbyPrismicImageFluid_noBase64
-          }
+          gatsbyImageData
         }
         body {
           ... on PrismicHandbookChapterDataBodyContent {

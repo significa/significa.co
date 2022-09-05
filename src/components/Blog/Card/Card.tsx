@@ -21,7 +21,7 @@ const Card: React.FC<{ post: BlogPost }> = ({ post }) => {
           <S.Image
             image={post.data.hero.gatsbyImageData}
             alt={post.data.hero.alt}
-          ></S.Image>
+          />
         </Link>
 
         <S.Content>

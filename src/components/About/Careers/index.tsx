@@ -17,7 +17,7 @@ interface ICareers {
       linkText: string
       photos: Array<{
         alt: string
-        image: { gatsbyImageData: IGatsbyImageData }
+        image: { childImageSharp: { gatsbyImageData: IGatsbyImageData } }
       }>
     }
   }
@@ -41,7 +41,10 @@ const Careers = () => {
         <S.Gallery>
           {careers.photos.map(({ image, alt }) => (
             <S.ImgHolder key={alt}>
-              <GatsbyImage image={image.gatsbyImageData} alt={alt} />
+              <GatsbyImage
+                image={image.childImageSharp.gatsbyImageData}
+                alt={alt}
+              />
             </S.ImgHolder>
           ))}
         </S.Gallery>
@@ -64,7 +67,7 @@ export const query = graphql`
           alt
           image {
             childImageSharp {
-              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
+              gatsbyImageData
             }
           }
         }

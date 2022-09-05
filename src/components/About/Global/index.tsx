@@ -14,7 +14,7 @@ interface IGlobal {
       text: string
       cities: string[]
       image: {
-        gatsbyImageData: IGatsbyImageData
+        childImageSharp: { gatsbyImageData: IGatsbyImageData }
       }
     }
   }
@@ -30,7 +30,10 @@ const Global = () => {
       <S.Wrapper>
         <S.ImageContainer>
           <S.ImageHolder>
-            <S.Img alt={data.title} image={data.image.gatsbyImageData} />
+            <S.Img
+              alt={data.title}
+              image={data.image.childImageSharp.gatsbyImageData}
+            />
           </S.ImageHolder>
         </S.ImageContainer>
 
@@ -55,7 +58,7 @@ export const query = graphql`
       global {
         image {
           childImageSharp {
-            gatsbyImageData(placeholder: NONE, layout: FULL_WIDTH)
+            gatsbyImageData
           }
         }
         title

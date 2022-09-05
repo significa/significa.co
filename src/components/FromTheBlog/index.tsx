@@ -111,9 +111,8 @@ const fromTheBlogQuery = graphql`
                   data {
                     name
                     profile_pic {
-                      fluid {
-                        ...GatsbyPrismicImageFluid_noBase64
-                      }
+                      gatsbyImageData
+                      alt
                     }
                   }
                 }

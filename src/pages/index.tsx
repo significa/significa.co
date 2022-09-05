@@ -27,7 +27,7 @@ export interface ICareersContent {
   link: string
   photos: Array<{
     alt: string
-    gatsbyImageData: IGatsbyImageData
+    childImageSharp: { gatsbyImageData: IGatsbyImageData }
   }>
 }
 

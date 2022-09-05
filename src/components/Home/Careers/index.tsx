@@ -34,11 +34,16 @@ const Careers: React.FC<ICareersContent> = ({
         </ArrowLink>
       </S.Right>
       <S.Photos>
-        {photos.map((photo, i) => (
-          <div key={i}>
-            <GatsbyImage image={photo.gatsbyImageData} alt={photo.alt} />
-          </div>
-        ))}
+        {photos.map((photo, i) => {
+          return (
+            <div key={i}>
+              <GatsbyImage
+                image={photo.childImageSharp.gatsbyImageData}
+                alt={photo.alt}
+              />
+            </div>
+          )
+        })}
       </S.Photos>
     </S.Container>
   </>

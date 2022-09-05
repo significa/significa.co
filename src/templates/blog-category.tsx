@@ -51,14 +51,10 @@ export const query = graphql`
             hero {
               alt
               url
-              fluid {
-                ...GatsbyPrismicImageFluid_noBase64
-              }
+              gatsbyImageData
             }
             meta_image_share {
-              fluid(maxWidth: 500) {
-                ...GatsbyPrismicImageFluid_noBase64
-              }
+              gatsbyImageData
             }
 
             author {
@@ -71,9 +67,7 @@ export const query = graphql`
                   data {
                     name
                     profile_pic {
-                      fluid {
-                        ...GatsbyPrismicImageFluid_noBase64
-                      }
+                      gatsbyImageData
                     }
                   }
                 }

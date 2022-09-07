@@ -26,14 +26,6 @@ Make a new build to `/public` folder
 npm run build
 ```
 
-### Run storybook
-
-Start [storybook](https://storybook.js.org/) server to develop components in isolation
-
-```sh
-npm run storybook
-```
-
 ### Validate codebase
 
 Run prettier, eslint, typescript and jest to validate codebase

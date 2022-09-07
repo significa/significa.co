@@ -63,9 +63,6 @@ module.exports = {
           project: require('./schemas/project.json'),
         },
         lang: '*',
-        shouldDownloadImage: () => {
-          return false
-        },
       },
     },
     'gatsby-transformer-yaml',

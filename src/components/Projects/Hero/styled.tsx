@@ -1,8 +1,8 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
 
 import BaseImg from '../../PrismicImage'
-
 import {
   Container as BaseContainer,
   Huge as BaseHuge,

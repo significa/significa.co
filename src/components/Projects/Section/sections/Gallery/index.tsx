@@ -1,9 +1,7 @@
 import React from 'react'
 
 import Img from '../../../../PrismicImage'
-
 import { GalleryType } from '../../types'
-
 import * as S from './styled'
 
 const Gallery: React.FC<GalleryType> = props => (
@@ -21,7 +19,7 @@ const Gallery: React.FC<GalleryType> = props => (
           >
             <Img
               src={image.image.url}
-              fluid={image.image.fluid}
+              image={image.image.gatsbyImageData}
               alt={image.image.alt}
             />
           </S.Item>

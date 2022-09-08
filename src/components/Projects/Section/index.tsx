@@ -2,15 +2,13 @@ import React from 'react'
 
 import { IColorsTheme, Theme, lightTheme } from '@theme'
 
-import { SectionsType, completeLayoutTypes } from './types'
-
-import * as S from './styled'
-import * as Sections from './sections'
-
+import { getProjectTheme } from '../../../utils/getProjectTheme'
 import { Container } from '../../UI'
 import ConditionalWrap from '../../utils/ConditionalWrap'
+import * as Sections from './sections'
+import * as S from './styled'
+import { SectionsType, completeLayoutTypes } from './types'
 import { getProjectSectionWidth } from './utils'
-import { getProjectTheme } from '../../../utils/getProjectTheme'
 
 interface ISectionProps {
   section: SectionsType

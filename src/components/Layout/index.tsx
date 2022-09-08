@@ -1,8 +1,9 @@
 import React from 'react'
 
 import { Provider, Theme, colorArgumentType } from '@theme'
-import Header from '../Header'
+
 import Footer from '../Footer'
+import Header from '../Header'
 import ConditionalWrap from '../utils/ConditionalWrap'
 
 interface ILayoutProps {

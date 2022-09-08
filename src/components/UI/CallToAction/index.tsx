@@ -1,7 +1,7 @@
 import React from 'react'
 
-import * as S from './styled'
 import { ArrowLink } from '../'
+import * as S from './styled'
 
 interface ICallToAction {
   title: string

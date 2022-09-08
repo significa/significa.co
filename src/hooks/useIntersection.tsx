@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 interface IOpts {
   root?: Element
@@ -7,17 +7,17 @@ interface IOpts {
 }
 
 interface IReturn {
-  observerEntry: IntersectionObserverEntry
+  observerEntry?: IntersectionObserverEntry
   elRef: React.MutableRefObject<any>
 }
 
 export default (options: IOpts): IReturn => {
-  const [observerEntry, setEntry] = React.useState()
-  const elRef = React.useRef<any>()
+  const [observerEntry, setEntry] = useState<IntersectionObserverEntry>()
+  const elRef = useRef<any>()
 
-  React.useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver(
-      entries => setEntry(entries[0]),
+      (entries, _index) => setEntry(entries[0]),
       options
     )
 

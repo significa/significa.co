@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components'
+
 import { media } from '@theme'
 
-import { Title as BaseTitle, Big } from '../../UI'
-
 import { hexToRgb } from '../../../utils/hexToRgb'
+import { Title as BaseTitle, Big } from '../../UI'
 
 const TITLE_MARGIN_BOTTOM = '24px'
 

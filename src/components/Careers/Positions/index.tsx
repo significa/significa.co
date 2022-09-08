@@ -1,9 +1,8 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
 
-import { RightContent, Big } from '../../UI/'
 import linkResolver from '../../../utils/linkResolver'
-
+import { RightContent, Big } from '../../UI/'
 import * as S from './styled'
 
 interface IPositions {

@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { NavigationChapter } from '../../../templates/handbook'
-
 import * as S from './styled'
 
 interface BottomNavigationProps {

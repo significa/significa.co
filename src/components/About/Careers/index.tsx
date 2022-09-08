@@ -1,10 +1,11 @@
-import * as React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-import Img, { FluidObject } from 'gatsby-image'
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
+import * as React from 'react'
 
 import { Theme } from '@theme'
-import { RightContent } from '../../UI'
+
 import { textByLine } from '../../../utils/textByLine'
+import { RightContent } from '../../UI'
 import * as S from './styled'
 
 interface ICareers {
@@ -16,11 +17,7 @@ interface ICareers {
       linkText: string
       photos: Array<{
         alt: string
-        image: {
-          childImageSharp: {
-            fluid: FluidObject
-          }
-        }
+        image: { childImageSharp: { gatsbyImageData: IGatsbyImageData } }
       }>
     }
   }
@@ -44,7 +41,10 @@ const Careers = () => {
         <S.Gallery>
           {careers.photos.map(({ image, alt }) => (
             <S.ImgHolder key={alt}>
-              <Img alt={alt} fluid={image.childImageSharp.fluid} />
+              <GatsbyImage
+                image={image.childImageSharp.gatsbyImageData}
+                alt={alt}
+              />
             </S.ImgHolder>
           ))}
         </S.Gallery>
@@ -67,9 +67,7 @@ export const query = graphql`
           alt
           image {
             childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
-              }
+              gatsbyImageData
             }
           }
         }

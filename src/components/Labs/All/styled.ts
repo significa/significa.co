@@ -1,6 +1,8 @@
-import Image from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
+
 import { media } from '@theme'
+
 import {
   Container as BaseContainer,
   Big as BaseBig,
@@ -101,21 +103,22 @@ export const LabsIcon = styled(Icon)`
   }
 `
 
-export const Img = styled(Image)`
+export const Img = styled(GatsbyImage)`
   margin-right: 2em;
   margin-bottom: 2em;
 
-  min-width: 10em;
+  width: 100%;
+  max-width: 10rem;
   height: 5.5em;
 
   border-radius: 2px;
 
   ${media.large} {
-    min-width: 8em;
+    max-width: 8em;
   }
 
   ${media.small} {
-    width: 100%;
+    max-width: 100%;
     height: auto;
   }
 `

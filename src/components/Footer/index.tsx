@@ -1,9 +1,9 @@
 import React from 'react'
 
-import * as S from './styled'
 import FooterNav from './FooterNav'
+import * as S from './styled'
 
-const Footer: React.FC<{}> = () => (
+const Footer: React.FC<Record<string, never>> = () => (
   <S.Footer>
     <S.Container>
       <FooterNav />

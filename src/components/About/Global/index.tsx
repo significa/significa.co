@@ -1,10 +1,11 @@
-import React from 'react'
-import { FluidObject } from 'gatsby-image'
 import { graphql, useStaticQuery } from 'gatsby'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+import React from 'react'
 
 import { Theme } from '@theme'
-import * as S from './styled'
+
 import WorldMap from './WorldMap'
+import * as S from './styled'
 
 interface IGlobal {
   aboutYaml: {
@@ -13,9 +14,7 @@ interface IGlobal {
       text: string
       cities: string[]
       image: {
-        childImageSharp: {
-          fluid: FluidObject
-        }
+        childImageSharp: { gatsbyImageData: IGatsbyImageData }
       }
     }
   }
@@ -31,7 +30,10 @@ const Global = () => {
       <S.Wrapper>
         <S.ImageContainer>
           <S.ImageHolder>
-            <S.Img alt={data.title} fluid={data.image.childImageSharp.fluid} />
+            <S.Img
+              alt={data.title}
+              image={data.image.childImageSharp.gatsbyImageData}
+            />
           </S.ImageHolder>
         </S.ImageContainer>
 
@@ -56,9 +58,7 @@ export const query = graphql`
       global {
         image {
           childImageSharp {
-            fluid(maxWidth: 2000) {
-              ...GatsbyImageSharpFluid_withWebp_noBase64
-            }
+            gatsbyImageData
           }
         }
         title

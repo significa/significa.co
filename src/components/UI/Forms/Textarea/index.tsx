@@ -1,8 +1,7 @@
-import React, { useRef, useEffect, useCallback } from 'react'
+import React, { useRef, useEffect, useCallback, ChangeEvent } from 'react'
 
-import Label from '../Label'
 import Error from '../Error'
-
+import Label from '../Label'
 import * as S from './styled'
 
 interface ITextarea {
@@ -43,7 +42,7 @@ const Textarea: React.FC<ITextarea> = ({
 
   // Resize onChange, while still sending the event back via props
   const handleOnChange = useCallback(
-    e => {
+    (e: ChangeEvent<HTMLTextAreaElement>) => {
       inputProps.onChange(e)
       resize(ref.current, baseHeight.current)
     },
@@ -62,10 +61,6 @@ const Textarea: React.FC<ITextarea> = ({
       {error && <Error>{error}</Error>}
     </Label>
   )
-}
-
-Textarea.defaultProps = {
-  onChange: Function.prototype,
 }
 
 export default Textarea

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { AnimatePresence, useCycle } from 'framer-motion'
+import { useCycle } from 'framer-motion'
+import React, { useState, useEffect, useCallback } from 'react'
 
-import { SectionsType } from '../Section/types'
-
-import * as S from './styled'
-import NavigationItem, { PossibleTypes } from './NavigationItem'
+import { Animated } from '../../../components/UI'
 import useBodyLock from '../../../hooks/useBodyLock'
+import { SectionsType } from '../Section/types'
+import NavigationItem, { PossibleTypes } from './NavigationItem'
+import * as S from './styled'
 
 interface INavigation {
   content: SectionsType[]
@@ -22,7 +22,7 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
   const [isButtonVisible, setButtonVisible] = useState<boolean>(false)
   useBodyLock(visible)
 
-  const handleScroll = React.useCallback(() => {
+  const handleScroll = useCallback(() => {
     const totalHeight = Math.max(
       document.body.scrollHeight,
       document.body.offsetHeight,
@@ -50,7 +50,7 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [visible, isButtonVisible, handleScroll])
 
-  const items = content.filter(section => {
+  const items = content.filter((section, _index) => {
     const wantedTypes = [
       'chapter',
       'section',
@@ -64,9 +64,10 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
   return (
     <>
       {/* Button */}
-      <AnimatePresence>
+      <Animated>
         {isButtonVisible && (
           <S.AnimatedNavButton
+            key={'nav button'}
             animate={{ opacity: 1, y: 0 }}
             initial={{ opacity: 0, y: 20 }}
             exit={{ opacity: 0, y: 20 }}
@@ -79,7 +80,7 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
             <S.ButtonLine />
           </S.AnimatedNavButton>
         )}
-      </AnimatePresence>
+      </Animated>
 
       {/* Drawer */}
       <S.AnimatedDrawer
@@ -114,7 +115,7 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
       </S.AnimatedDrawer>
 
       {/* Overlay */}
-      <AnimatePresence>
+      <Animated>
         {visible && (
           <S.AnimatedOverlay
             animate={{ opacity: 1 }}
@@ -124,7 +125,7 @@ const Navigation: React.FC<INavigation> = ({ content }) => {
             onClick={() => toggleVisible()}
           />
         )}
-      </AnimatePresence>
+      </Animated>
     </>
   )
 }

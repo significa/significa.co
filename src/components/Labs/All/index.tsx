@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 
 import { ILabType } from '../../../pages/labs'
 import { Big } from '../../UI'
-
 import * as S from './styled'
 
 interface IAll {
@@ -25,12 +24,17 @@ const All: React.FC<IAll> = ({ content }) => {
     []
   )
   const [filter, setFilter] = useState<FilterState>(null)
-  const items = !filter
-    ? content
-    : content.filter(c => {
-        const itemTags = c.node.data.tags.map(tag => tag.tag)
-        return itemTags.indexOf(filter) >= 0
-      })
+  const filteredContent = content.filter(c => {
+    const itemTags = c.node.data.tags.map(tag => tag.tag)
+
+    if (filter) {
+      return itemTags.indexOf(filter) >= 0
+    }
+
+    return
+  })
+
+  const items = !filter ? content : filteredContent
 
   return (
     <S.Wrapper>
@@ -60,7 +64,7 @@ const All: React.FC<IAll> = ({ content }) => {
               <S.ImgHolder>
                 <S.LabsIcon source={item.node.data.source} color />
                 <S.Img
-                  fluid={item.node.data.image.fluid}
+                  image={item.node.data.image.gatsbyImageData}
                   alt={item.node.data.image.alt}
                 />
               </S.ImgHolder>

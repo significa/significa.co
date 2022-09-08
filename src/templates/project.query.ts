@@ -28,9 +28,8 @@ export const projectFragments = graphql`
     project_title
     tagline
     hero_image {
-      fluid(maxWidth: 3000) {
-        ...GatsbyPrismicImageFluid_noBase64
-      }
+      gatsbyImageData
+      alt
     }
   }
 
@@ -77,7 +76,7 @@ export const projectFragments = graphql`
 `
 
 export const sectionsFragments = graphql`
-  fragment BodyChapter on PrismicProjectBodyChapter {
+  fragment BodyChapter on PrismicProjectDataBodyChapter {
     slice_type
     primary {
       theme
@@ -86,14 +85,14 @@ export const sectionsFragments = graphql`
     }
   }
 
-  fragment BodySection on PrismicProjectBodySection {
+  fragment BodySection on PrismicProjectDataBodySection {
     slice_type
     primary {
       title
     }
   }
 
-  fragment BodyText on PrismicProjectBodyText {
+  fragment BodyText on PrismicProjectDataBodyText {
     slice_type
     primary {
       theme
@@ -106,7 +105,7 @@ export const sectionsFragments = graphql`
     }
   }
 
-  fragment BodyImage on PrismicProjectBodyImage {
+  fragment BodyImage on PrismicProjectDataBodyImage {
     slice_type
     primary {
       layout
@@ -116,14 +115,12 @@ export const sectionsFragments = graphql`
       caption
       image {
         alt
-        fluid(maxWidth: 2000) {
-          ...GatsbyPrismicImageFluid_noBase64
-        }
+        gatsbyImageData
       }
     }
   }
 
-  fragment BodyVideo on PrismicProjectBodyVideo {
+  fragment BodyVideo on PrismicProjectDataBodyVideo {
     slice_type
     primary {
       layout
@@ -142,7 +139,7 @@ export const sectionsFragments = graphql`
     }
   }
 
-  fragment BodyImageGallery on PrismicProjectBodyImageGallery {
+  fragment BodyImageGallery on PrismicProjectDataBodyImageGallery {
     slice_type
     primary {
       layout
@@ -158,14 +155,12 @@ export const sectionsFragments = graphql`
       span_mobile
       image {
         alt
-        fluid(maxWidth: 1200) {
-          ...GatsbyPrismicImageFluid_noBase64
-        }
+        gatsbyImageData
       }
     }
   }
 
-  fragment BodyComparison on PrismicProjectBodyComparison {
+  fragment BodyComparison on PrismicProjectDataBodyComparison {
     slice_type
     primary {
       layout
@@ -175,20 +170,16 @@ export const sectionsFragments = graphql`
       caption
       image_a {
         alt
-        fluid(maxWidth: 1200) {
-          ...GatsbyPrismicImageFluid_noBase64
-        }
+        gatsbyImageData
       }
       image_b {
         alt
-        fluid(maxWidth: 1200) {
-          ...GatsbyPrismicImageFluid_noBase64
-        }
+        gatsbyImageData
       }
     }
   }
 
-  fragment BodySlideshow on PrismicProjectBodySlideshow {
+  fragment BodySlideshow on PrismicProjectDataBodySlideshow {
     slice_type
     primary {
       layout
@@ -200,14 +191,12 @@ export const sectionsFragments = graphql`
     items {
       image {
         alt
-        fluid(maxWidth: 1200) {
-          ...GatsbyPrismicImageFluid_noBase64
-        }
+        gatsbyImageData
       }
     }
   }
 
-  fragment BodyWaterfall on PrismicProjectBodyWaterfall {
+  fragment BodyWaterfall on PrismicProjectDataBodyWaterfall {
     slice_type
     primary {
       layout
@@ -220,14 +209,12 @@ export const sectionsFragments = graphql`
           height
         }
         alt
-        fluid(maxWidth: 1200) {
-          ...GatsbyPrismicImageFluid_noBase64
-        }
+        gatsbyImageData
       }
     }
   }
 
-  fragment BodyTestimonial on PrismicProjectBodyTestimonial {
+  fragment BodyTestimonial on PrismicProjectDataBodyTestimonial {
     slice_type
     primary {
       layout
@@ -241,7 +228,7 @@ export const sectionsFragments = graphql`
     }
   }
 
-  fragment BodyEmbed on PrismicProjectBodyEmbed {
+  fragment BodyEmbed on PrismicProjectDataBodyEmbed {
     slice_type
     primary {
       layout
@@ -254,7 +241,7 @@ export const sectionsFragments = graphql`
     }
   }
 
-  fragment BodyHighlight on PrismicProjectBodyHighlight {
+  fragment BodyHighlight on PrismicProjectDataBodyHighlight {
     slice_type
     primary {
       layout
@@ -265,7 +252,7 @@ export const sectionsFragments = graphql`
     }
   }
 
-  fragment BodyStickyImage on PrismicProjectBodyStickyImage {
+  fragment BodyStickyImage on PrismicProjectDataBodyStickyImage {
     slice_type
     primary {
       layout
@@ -278,14 +265,12 @@ export const sectionsFragments = graphql`
       title
       image {
         alt
-        fluid(maxWidth: 1200) {
-          ...GatsbyPrismicImageFluid_noBase64
-        }
+        gatsbyImageData
       }
     }
   }
 
-  fragment BodyStickyVideo on PrismicProjectBodyStickyVideo {
+  fragment BodyStickyVideo on PrismicProjectDataBodyStickyVideo {
     slice_type
     primary {
       layout

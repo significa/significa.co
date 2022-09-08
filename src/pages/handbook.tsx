@@ -1,10 +1,10 @@
-import React from 'react'
 import { graphql } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+import React from 'react'
 
+import { Top, Featured, Category } from '../components/Handbook/MainPage'
 import Layout from '../components/Layout/'
 import SEO from '../components/SEO'
-import { Top, Featured, Category } from '../components/Handbook/MainPage'
 
 interface HandbookPageProps {
   data: {
@@ -41,7 +41,7 @@ export type ChapterWithImage = ChapterBase & {
         image: {
           alt: string
           url: string
-          fluid: FluidObject
+          gatsbyImageData: IGatsbyImageData
         }
       }
     }
@@ -115,9 +115,7 @@ export const query = graphql`
                     image {
                       alt
                       url
-                      fluid(maxWidth: 600) {
-                        ...GatsbyPrismicImageFluid_noBase64
-                      }
+                      gatsbyImageData
                     }
                   }
                 }
@@ -125,7 +123,7 @@ export const query = graphql`
             }
           }
           body {
-            ... on PrismicHandbookBodyCategory {
+            ... on PrismicHandbookDataBodyCategory {
               primary {
                 category_title
                 category_description

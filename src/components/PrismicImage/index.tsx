@@ -1,10 +1,13 @@
+import {
+  GatsbyImage,
+  GatsbyImageProps,
+  IGatsbyImageData,
+} from 'gatsby-plugin-image'
 import React, { CSSProperties } from 'react'
-import Img, { FluidObject, FixedObject, GatsbyImageProps } from 'gatsby-image'
 
 type Props = GatsbyImageProps & {
   src?: string
-  fixed?: FixedObject
-  fluid?: FluidObject
+  image?: IGatsbyImageData
   alt?: string
   className?: string
   fallbackImgStyle?: CSSProperties
@@ -16,8 +19,7 @@ type Props = GatsbyImageProps & {
  */
 const PrismicImage: React.FC<Props> = ({
   src,
-  fixed,
-  fluid,
+  image,
   alt,
   className,
   fallbackImgStyle = {},
@@ -33,7 +35,6 @@ const PrismicImage: React.FC<Props> = ({
           width="100%"
           height="100%"
           src={src}
-          // @ts-ignore loading is a new attr that will be added eventually
           loading="lazy"
           style={{
             objectFit: 'cover',
@@ -45,13 +46,7 @@ const PrismicImage: React.FC<Props> = ({
       </picture>
     </div>
   ) : (
-    <Img
-      className={className}
-      alt={alt}
-      fluid={fluid}
-      fixed={fixed}
-      {...props}
-    />
+    <GatsbyImage image={image} className={className} alt={alt} {...props} />
   )
 }
 

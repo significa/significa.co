@@ -1,6 +1,6 @@
 import React from 'react'
-import { Author } from '../types'
 
+import { Author } from '../types'
 import * as S from './styled'
 
 const AuthorSection: React.FC<{ content: Author }> = ({ content }) => {
@@ -8,7 +8,7 @@ const AuthorSection: React.FC<{ content: Author }> = ({ content }) => {
     <S.Wrapper>
       {content.profile_pic && (
         <S.Image
-          fluid={content.profile_pic.fluid}
+          image={content.profile_pic.gatsbyImageData}
           src={content.profile_pic.url}
           alt={content.profile_pic.alt}
         />

@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { ChapterWithImage } from '../../../../pages/handbook'
-
 import * as S from './styled'
 
 interface FeaturedProps {
@@ -26,7 +25,7 @@ const Featured = ({ featured }: FeaturedProps) => {
                 </S.LinkHolder>
               </S.Content>
               <S.Image
-                fluid={chapter.document.data.image.fluid}
+                image={chapter.document.data.image.gatsbyImageData}
                 alt={chapter.document.data.image.alt}
               />
             </S.BoxLink>

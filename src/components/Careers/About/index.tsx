@@ -1,8 +1,7 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
 
 import { RightContent } from '../../UI/Layout'
-
 import * as S from './styled'
 
 interface ISection {

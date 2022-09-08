@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { Chapter } from '../../../templates/handbook'
-
 import * as S from './styled'
 
 const Cover: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
@@ -15,7 +14,7 @@ const Cover: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
       </S.Holder>
       <S.Image
         src={chapter.image.url}
-        fluid={chapter.image.fluid}
+        image={chapter.image.gatsbyImageData}
         alt={chapter.image.alt}
       />
     </S.Wrapper>

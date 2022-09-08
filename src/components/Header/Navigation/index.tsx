@@ -1,8 +1,8 @@
-import React, { RefObject } from 'react'
 import { StaticQuery, graphql } from 'gatsby'
+import React, { RefObject } from 'react'
 
-import * as S from './styled'
 import { NavLink } from '../../UI/'
+import * as S from './styled'
 
 interface ILinkType {
   node: {

@@ -1,8 +1,7 @@
-import React from 'react'
 import { motion } from 'framer-motion'
+import React from 'react'
 
 import RecentProjects from './RecentProjects'
-
 import * as S from './styled'
 
 interface ITop {

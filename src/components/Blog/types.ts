@@ -1,4 +1,4 @@
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 export interface AuthorSocial {
   link: string
@@ -20,7 +20,7 @@ export interface Author {
   profile_pic: {
     alt: string
     url: string
-    fluid: FluidObject
+    gatsbyImageData: IGatsbyImageData
   }
   social_links: AuthorSocial[]
 }
@@ -56,7 +56,7 @@ export interface BlogPost {
     hero: {
       alt: string
       url: string
-      fluid: FluidObject
+      gatsbyImageData: IGatsbyImageData
     }
 
     content: {

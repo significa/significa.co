@@ -1,9 +1,9 @@
-import styled from 'styled-components'
-import { media } from '@theme'
 import { Link } from 'gatsby'
+import styled from 'styled-components'
+
+import { media } from '@theme'
 
 import { labelStyle, Text } from '../../UI'
-
 import ArrowIcon from '../common/Arrow'
 
 export const Wrapper = styled.footer`

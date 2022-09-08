@@ -1,8 +1,9 @@
 import styled, { keyframes, css } from 'styled-components'
+
 import { IFullTheme } from '@theme'
 
-import ClipIcon from './Clip'
 import ClearIcon from './Clear'
+import ClipIcon from './Clip'
 
 export const Wrapper = styled.div`
   display: inline-flex;

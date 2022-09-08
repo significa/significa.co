@@ -2,7 +2,6 @@ import React from 'react'
 
 import { colorType } from '../../../utils/getColor'
 import { Link } from '../Links/'
-
 import * as S from './styled'
 
 type ItemType =

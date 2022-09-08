@@ -52,7 +52,7 @@ module.exports = {
       options: {
         repositoryName: 'significa',
         accessToken: process.env.PRISMIC_ACCESS_TOKEN,
-        linkResolver: () => linkResolver,
+        linkResolver: (doc) => linkResolver(doc),
         schemas: {
           blog_author: require('./schemas/blog_author.json'),
           blog_post: require('./schemas/blog_post.json'),
@@ -63,9 +63,6 @@ module.exports = {
           project: require('./schemas/project.json'),
         },
         lang: '*',
-        shouldDownloadImage: () => {
-          return false
-        },
       },
     },
     'gatsby-transformer-yaml',
@@ -73,7 +70,8 @@ module.exports = {
     'gatsby-plugin-styled-components',
     'gatsby-transformer-sharp',
     `gatsby-transformer-remark`,
-    'gatsby-plugin-sharp',
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

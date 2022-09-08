@@ -1,10 +1,10 @@
-import React from 'react'
 import { graphql } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+import React from 'react'
 
+import { Top, All } from '../components/Labs'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { Top, All } from '../components/Labs'
 import { LabsSourceType } from '../components/UI'
 
 export interface ILabType {
@@ -12,7 +12,7 @@ export interface ILabType {
   tagline: string
   image: {
     alt: string
-    fluid: FluidObject
+    gatsbyImageData: IGatsbyImageData
   }
   source: LabsSourceType
   tags: Array<{ tag: string }>
@@ -75,9 +75,7 @@ export const query = graphql`
               tag
             }
             image {
-              fluid(maxWidth: 1000) {
-                ...GatsbyPrismicImageFluid_noBase64
-              }
+              gatsbyImageData
             }
           }
         }

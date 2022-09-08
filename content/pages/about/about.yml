@@ -67,35 +67,38 @@ team:
   text: Ours has {team_count}.
 
   list:
+    - name: Ana Fernandes
+      role: Project Manager
+
     - name: Alec Norton
       role: Project Manager
 
     - name: André Furtado
       role: Creative Director
 
+    - name: Caio Arias
+      role: Designer
+
     - name: Catarina Silva
       role: Office Manager
 
-    - name: Cleyson Leal Braga
-      role: Front-end Developer
+    - name: Elisa Sampaio
+      role: Designer
 
-    - name: Daniel Costa
-      role: Back-end Developer
+    - name: Estepheny Abreu
+      role: Designer
+    
+    - name: Filipe Almeida
+      role: Lead Designer
 
     - name: Francisco Marques
-      role: Back-end Developer
+      role: Lead Developer
 
     - name: Frederico Jesus
-      role: Illustrator / Motion
-
-    - name: Getúlio Strapazzon
-      role: Front-end Developer
+      role: Designer
 
     - name: Guilherme Oliveira
       role: Back-end Developer
-
-    - name: Isabel Sá
-      role: Designer / Developer
 
     - name: Joaquim Rosa
       role: Front-end Developer
@@ -106,29 +109,29 @@ team:
     - name: Joel Ferreira
       role: Back-end Developer
 
-    - name: Lisa Cosme
-      role: Interface Designer
+    - name: Manuel Melo
+      role: Designer
 
     - name: Mariana Gomes
       role: Product Manager / Designer
 
-    - name: Mário Rodrigues
-      role: Interface Designer
-
     - name: Márcio Pinto
       role: Full-stack Developer
+      
+    - name: Michelle Meinert
+      role: Front-End Developer
 
     - name: Pedro Brandão
       role: Founder / CEO
 
-    - name: Pedro Lisboa
-      role: Front-end Developer
-
-    - name: Pedro Teixeira
-      role: Interface Designer
-
     - name: Rui Ferreira
       role: Project Manager
+
+    - name: Ricardo Reis
+      role: Front-End Developer
+
+    - name: Rita Café
+      role: Designer
 
     - name: Rui Sereno
       role: Business Development

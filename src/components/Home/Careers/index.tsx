@@ -1,11 +1,9 @@
+import { GatsbyImage } from 'gatsby-plugin-image'
 import React from 'react'
-import Img from 'gatsby-image'
-
-import { textByLine } from '../../../utils/textByLine'
 
 import { ICareersContent } from '../../../pages'
+import { textByLine } from '../../../utils/textByLine'
 import { ArrowLink } from '../../UI/'
-
 import * as S from './styled'
 
 const Careers: React.FC<ICareersContent> = ({
@@ -36,11 +34,16 @@ const Careers: React.FC<ICareersContent> = ({
         </ArrowLink>
       </S.Right>
       <S.Photos>
-        {photos.map((photo, i) => (
-          <div key={i}>
-            <Img fluid={photo.childImageSharp.fluid} />
-          </div>
-        ))}
+        {photos.map((photo, i) => {
+          return (
+            <div key={i}>
+              <GatsbyImage
+                image={photo.childImageSharp.gatsbyImageData}
+                alt={photo.alt}
+              />
+            </div>
+          )
+        })}
       </S.Photos>
     </S.Container>
   </>

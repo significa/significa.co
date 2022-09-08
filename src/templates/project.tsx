@@ -1,15 +1,14 @@
-import React from 'react'
 import { graphql } from 'gatsby'
-import { Theme } from '@theme'
-import { mergePrismicPreviewData } from 'gatsby-source-prismic'
+import React, { useRef } from 'react'
 
-import { getProjectTheme } from '../utils/getProjectTheme'
-import { IProject } from './project.types'
+import { Theme } from '@theme'
 
 import Layout from '../components/Layout'
-import SEO from '../components/SEO'
 import { Meta, Hero, Section, Next, Navigation } from '../components/Projects'
+import SEO from '../components/SEO'
 import ConditionalWrap from '../components/utils/ConditionalWrap'
+import { getProjectTheme } from '../utils/getProjectTheme'
+import { IProject } from './project.types'
 
 interface IProjectProps {
   data: {
@@ -19,18 +18,11 @@ interface IProjectProps {
   }
 }
 
-const ProjectPage = ({ data: staticData }: IProjectProps) => {
-  const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
-
-  const data: IProjectProps['data'] = mergePrismicPreviewData({
-    staticData,
-    previewData: preview,
-  })
-
+const ProjectPage = ({ data }: IProjectProps) => {
   const { data: project } = data.prismicProject
 
   // Someplace to save the section name
-  const sectionName = React.useRef<string>('')
+  const sectionName = useRef<string>('')
 
   if (!project) {
     return null
@@ -55,7 +47,7 @@ const ProjectPage = ({ data: staticData }: IProjectProps) => {
           <Hero
             title={project.project_title}
             tagline={project.tagline}
-            fluid={project.hero_image.fluid}
+            image={project.hero_image.gatsbyImageData}
             src={project.hero_image.url}
           />
         </Theme>
@@ -79,7 +71,7 @@ const ProjectPage = ({ data: staticData }: IProjectProps) => {
         {/* Navigation */}
         <ConditionalWrap
           condition={!!project.navigation_theme}
-          wrap={children => (
+          wrap={(children: any) => (
             <Theme
               theme={getProjectTheme(project.navigation_theme, project.themes)}
             >
@@ -126,6 +118,7 @@ const ProjectPage = ({ data: staticData }: IProjectProps) => {
 
 export default ProjectPage
 
+// eslint-disable-next-line prettier/prettier -- false error
 export const query = graphql`
   query($uid: String!) {
     prismicProject(uid: { eq: $uid }) {
@@ -136,46 +129,46 @@ export const query = graphql`
         ...ProjectMeta
         ...NextProject
         body {
-          ... on PrismicProjectBodyChapter {
+          ... on PrismicProjectDataBodyChapter {
             ...BodyChapter
           }
-          ... on PrismicProjectBodySection {
+          ... on PrismicProjectDataBodySection {
             ...BodySection
           }
-          ... on PrismicProjectBodyText {
+          ... on PrismicProjectDataBodyText {
             ...BodyText
           }
-          ... on PrismicProjectBodyImage {
+          ... on PrismicProjectDataBodyImage {
             ...BodyImage
           }
-          ... on PrismicProjectBodyVideo {
+          ... on PrismicProjectDataBodyVideo {
             ...BodyVideo
           }
-          ... on PrismicProjectBodyImageGallery {
+          ... on PrismicProjectDataBodyImageGallery {
             ...BodyImageGallery
           }
-          ... on PrismicProjectBodyComparison {
+          ... on PrismicProjectDataBodyComparison {
             ...BodyComparison
           }
-          ... on PrismicProjectBodySlideshow {
+          ... on PrismicProjectDataBodySlideshow {
             ...BodySlideshow
           }
-          ... on PrismicProjectBodyWaterfall {
+          ... on PrismicProjectDataBodyWaterfall {
             ...BodyWaterfall
           }
-          ... on PrismicProjectBodyTestimonial {
+          ... on PrismicProjectDataBodyTestimonial {
             ...BodyTestimonial
           }
-          ... on PrismicProjectBodyEmbed {
+          ... on PrismicProjectDataBodyEmbed {
             ...BodyEmbed
           }
-          ... on PrismicProjectBodyHighlight {
+          ... on PrismicProjectDataBodyHighlight {
             ...BodyHighlight
           }
-          ... on PrismicProjectBodyStickyImage {
+          ... on PrismicProjectDataBodyStickyImage {
             ...BodyStickyImage
           }
-          ... on PrismicProjectBodyStickyVideo {
+          ... on PrismicProjectDataBodyStickyVideo {
             ...BodyStickyVideo
           }
         }

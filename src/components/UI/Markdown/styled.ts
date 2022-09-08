@@ -1,5 +1,7 @@
 import styled from 'styled-components'
+
 import { media } from '@theme'
+
 import { displayStyle, bigStyle, textStyle } from '../Typography'
 
 interface IMarkdownProps {
@@ -7,10 +9,10 @@ interface IMarkdownProps {
   bottomSpace?: boolean
 }
 
-export const Markdown = styled.div`
-  max-width: ${(p: IMarkdownProps) => (p.narrow ? '38em' : 'auto')};
-  margin: ${(p: IMarkdownProps) => (p.narrow ? '0 auto' : '0')};
-  padding-bottom: ${(p: IMarkdownProps) => (p.bottomSpace ? '5em' : '0')};
+export const Markdown = styled.div<IMarkdownProps>`
+  max-width: ${p => (p.narrow ? '38em' : 'auto')};
+  margin: ${p => (p.narrow ? '0 auto' : '0')};
+  padding-bottom: ${p => (p.bottomSpace ? '5em' : '0')};
 
   h1 {
     ${displayStyle}

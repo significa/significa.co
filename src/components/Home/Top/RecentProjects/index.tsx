@@ -1,12 +1,11 @@
-import React from 'react'
-import { graphql, StaticQuery } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
 import { motion } from 'framer-motion'
+import { graphql, StaticQuery } from 'gatsby'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+import React from 'react'
 
-import { ProjectThumb } from '../../../UI'
-
-import * as S from './styled'
 import getThumbBgColor from '../../../../utils/getThumbBgColor'
+import { ProjectThumb } from '../../../UI'
+import * as S from './styled'
 
 interface IRecentProjectsData {
   allPrismicProject: {
@@ -23,7 +22,7 @@ interface IRecentProjectsData {
         }>
         thumb_image: {
           alt: string
-          fluid: FluidObject
+          gatsbyImageData: IGatsbyImageData
         }
       }
     }>
@@ -38,27 +37,32 @@ const RecentProjects = () => (
 
       return (
         <S.Container>
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.uid}
-              animate={{ y: 0, opacity: 1 }}
-              initial={{ y: 50, opacity: 0 }}
-              transition={{ delay: i * 0.1 + 0.5 }}
-            >
-              <ProjectThumb
-                title={project.data.project_title}
-                tagline={project.data.tagline}
-                to={project.url}
-                fluid={project.data.thumb_image.fluid}
-                services={project.data.services.map(s => s.service)}
-                limitServices
-                backgroundColor={getThumbBgColor(
-                  project.data.hero_theme,
-                  project.data.themes
-                )}
-              />
-            </motion.div>
-          ))}
+          {projects.map((project, i) => {
+            return (
+              <motion.div
+                key={project.uid}
+                animate={{ y: 0, opacity: 1 }}
+                initial={{ y: 50, opacity: 0 }}
+                transition={{ delay: i * 0.1 + 0.5 }}
+              >
+                <ProjectThumb
+                  title={project.data.project_title}
+                  tagline={project.data.tagline}
+                  to={project.url}
+                  alt={
+                    project.data.thumb_image.alt || project.data.project_title
+                  }
+                  image={project.data.thumb_image.gatsbyImageData}
+                  services={project.data.services.map(s => s.service)}
+                  limitServices
+                  backgroundColor={getThumbBgColor(
+                    project.data.hero_theme,
+                    project.data.themes
+                  )}
+                />
+              </motion.div>
+            )
+          })}
         </S.Container>
       )
     }}
@@ -72,7 +76,6 @@ const recentProjectsQuery = graphql`
       limit: 3
     ) {
       nodes {
-        url
         uid
         data {
           hero_theme
@@ -82,9 +85,7 @@ const recentProjectsQuery = graphql`
           }
           thumb_image {
             alt
-            fluid(maxWidth: 500) {
-              ...GatsbyPrismicImageFluid_noBase64
-            }
+            gatsbyImageData
           }
           project_title
           tagline
@@ -92,6 +93,7 @@ const recentProjectsQuery = graphql`
             service
           }
         }
+        url
       }
     }
   }

@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { ExternalLink as StyledExternalLink, ExternalIcon } from './styled'
 
 interface IExternalLink {

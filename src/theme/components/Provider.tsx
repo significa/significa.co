@@ -3,15 +3,13 @@
  * It's meant to be used only once at the top of the site (e.g.: Layout).
  */
 
-import React from 'react'
+import React, { useState } from 'react'
 
-import { colorArgumentType } from '../types'
-
-import Theme from './Theme'
-import GlobalStyle from '../style/GlobalStyle'
 import ThemeContext from '../context'
-
+import GlobalStyle from '../style/GlobalStyle'
+import { colorArgumentType } from '../types'
 import { mergeThemeWithColors } from '../utils'
+import Theme from './Theme'
 
 interface IProviderProps {
   children: React.ReactNode
@@ -19,7 +17,7 @@ interface IProviderProps {
 }
 
 const Provider: React.FC<IProviderProps> = ({ children, theme = 'light' }) => {
-  const [colors, setTheme] = React.useState<colorArgumentType>(theme)
+  const [colors, setTheme] = useState<colorArgumentType>(theme)
 
   const updateTheme = (c: colorArgumentType): void => setTheme(c)
 

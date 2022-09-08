@@ -1,13 +1,13 @@
-import React from 'react'
 import { graphql } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+import React from 'react'
+
 import { Theme } from '@theme'
 
+import FromTheBlog from '../components/FromTheBlog'
+import { Top, Services, Careers } from '../components/Home/'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-
-import { Top, Services, Careers } from '../components/Home/'
-import FromTheBlog from '../components/FromTheBlog'
 
 export interface IServicesContent {
   title: string
@@ -26,9 +26,8 @@ export interface ICareersContent {
   cta: string
   link: string
   photos: Array<{
-    childImageSharp: {
-      fluid: FluidObject
-    }
+    alt: string
+    childImageSharp: { gatsbyImageData: IGatsbyImageData }
   }>
 }
 
@@ -86,9 +85,7 @@ export const query = graphql`
         link
         photos {
           childImageSharp {
-            fluid(maxWidth: 500) {
-              ...GatsbyImageSharpFluid_withWebp_noBase64
-            }
+            gatsbyImageData
           }
         }
       }

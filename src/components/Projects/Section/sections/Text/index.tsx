@@ -1,12 +1,11 @@
 import React from 'react'
 
-import { TextType } from '../../types'
-
-import * as S from './styled'
 import { textByLine } from '../../../../../utils/textByLine'
-import { Text as TypographyText } from '../../../../UI'
 import { titleToID } from '../../../../../utils/titleToID'
+import { Text as TypographyText } from '../../../../UI'
 import { navigateToSection } from '../../../utils'
+import { TextType } from '../../types'
+import * as S from './styled'
 
 interface ITextProps extends TextType {
   sectionLabel?: string

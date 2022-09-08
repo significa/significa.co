@@ -1,18 +1,17 @@
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 import React from 'react'
-import { FluidObject } from 'gatsby-image'
 
 import { Big } from '../../UI/'
-
 import * as S from './styled'
 
 interface IHero {
   title: string
   tagline: string
-  fluid: FluidObject
+  image: IGatsbyImageData
   src?: string
 }
 
-const Hero: React.FC<IHero> = ({ title, tagline, fluid, src }) => {
+const Hero: React.FC<IHero> = ({ title, tagline, image, src }) => {
   return (
     <S.Section>
       <S.Container>
@@ -25,8 +24,9 @@ const Hero: React.FC<IHero> = ({ title, tagline, fluid, src }) => {
         </S.ArrowLink>
       </S.Container>
       <S.Img
-        fluid={fluid}
-        src={src}
+        image={image}
+        // TODO: Change alt to proper one
+        alt="Hero"
         loading="eager"
         // When previewing Prismic content we fallback to
         // a standard img tag that needs some specific gatsby-image styles

@@ -1,7 +1,8 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
 
 import { Theme } from '@theme'
+
 import { Container, Text } from '../../UI'
 import CompanyLogo, { CompanyType } from '../../utils/renderCompanyLogo'
 import * as S from './styled'

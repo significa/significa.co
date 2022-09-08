@@ -1,10 +1,9 @@
-import React from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
 import slugify from '@sindresorhus/slugify'
+import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
 
-import { BlogPost } from '../types'
 import linkResolver from '../../../utils/linkResolver'
-
+import { BlogPost } from '../types'
 import * as S from './styled'
 
 type CategoryList = Array<{

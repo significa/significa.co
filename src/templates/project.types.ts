@@ -1,5 +1,7 @@
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+
 import { IColorsTheme } from '@theme'
+
 import { SectionsType } from '../components/Projects/Section/types'
 
 type Theme = IColorsTheme & {
@@ -21,7 +23,7 @@ export interface IProject {
   project_title: string
   tagline: string
   hero_image: {
-    fluid: FluidObject
+    gatsbyImageData: IGatsbyImageData
     url?: string
   }
 

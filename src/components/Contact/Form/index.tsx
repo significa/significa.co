@@ -1,16 +1,14 @@
-import React, { useState } from 'react'
-import { StaticQuery, graphql } from 'gatsby'
 import axios from 'axios'
+import { StaticQuery, graphql } from 'gatsby'
+import React, { useState } from 'react'
 
 import { MAIL_REGEX } from '../../../constants'
-
-import * as S from './styled'
-
-import useForm from '../../../hooks/useForm'
 import useFileUpload from '../../../hooks/useFileUpload'
+import useForm from '../../../hooks/useForm'
 import { textByLine } from '../../../utils/textByLine'
 import { Link } from '../../UI'
 import Success from './Success'
+import * as S from './styled'
 
 interface IValues {
   [key: string]: string | number | boolean

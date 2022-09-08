@@ -1,10 +1,10 @@
-import styled from 'styled-components'
-import { media } from '@theme'
 import { Link } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
+import styled from 'styled-components'
+
+import { media } from '@theme'
 
 import { Container, Title as BaseTitle, Text as BaseText } from '../../../UI'
-
 import ArrowIcon from '../../common/Arrow'
 
 export const Wrapper = styled(Container)`
@@ -61,7 +61,7 @@ export const RightArrow = styled(ArrowIcon)`
   transition: transform ${({ theme }) => theme.transitions.cubic()};
 `
 
-export const Image = styled(Img)`
+export const Image = styled(GatsbyImage)`
   position: absolute !important;
   max-width: 15rem;
 

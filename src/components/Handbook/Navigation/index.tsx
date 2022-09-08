@@ -1,10 +1,9 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-
-import * as S from './styled'
+import React from 'react'
 
 import Arrow from './Arrow'
 import SubMenu from './SubMenu'
+import * as S from './styled'
 
 export interface ContentType {
   type: string
@@ -135,7 +134,7 @@ const query = graphql`
           title
           body {
             __typename
-            ... on PrismicHandbookChapterBodyContent {
+            ... on PrismicHandbookChapterDataBodyContent {
               primary {
                 content {
                   raw
@@ -158,7 +157,7 @@ const query = graphql`
             }
           }
           body {
-            ... on PrismicHandbookBodyCategory {
+            ... on PrismicHandbookDataBodyCategory {
               primary {
                 category_title
                 category_description

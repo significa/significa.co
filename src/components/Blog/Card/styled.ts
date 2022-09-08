@@ -1,5 +1,5 @@
+import { GatsbyImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
-import Img from 'gatsby-image'
 
 import { media } from '@theme'
 
@@ -9,7 +9,7 @@ export const Article = styled.article`
   margin-bottom: 4em;
 `
 
-export const Image = styled(Img)`
+export const Image = styled(GatsbyImage)`
   margin-bottom: 1.3em;
   overflow: hidden;
 

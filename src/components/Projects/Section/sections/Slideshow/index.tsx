@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 
 import Img from '../../../../PrismicImage'
-
 import { SlideshowType } from '../../types'
-
 import Arrow from './Arrow'
-
 import * as S from './styled'
 
 const Slideshow: React.FC<SlideshowType> = ({ items }) => {
@@ -35,7 +32,7 @@ const Slideshow: React.FC<SlideshowType> = ({ items }) => {
               <Img
                 style={{ width: '100%' }}
                 key={i}
-                fluid={item.image.fluid}
+                image={item.image.gatsbyImageData}
                 src={item.image.url}
                 alt={item.image.alt}
               />

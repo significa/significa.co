@@ -1,4 +1,10 @@
-import React from 'react'
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 import { ThemeContext } from '@theme'
 
@@ -10,22 +16,22 @@ const SUN_START_RADIUS = 5
 const SUN_END_RADIUS = 13
 
 const SunAndLogo = () => {
-  const { updateTheme } = React.useContext(ThemeContext)
+  const { updateTheme } = useContext(ThemeContext)
 
   // Refs for the sun and sun path
-  const pathRef = React.useRef<SVGPathElement>(null)
-  const circleRef = React.useRef<SVGCircleElement>(null)
+  const pathRef = useRef<SVGPathElement>(null)
+  const circleRef = useRef<SVGCircleElement>(null)
 
-  const [currentTheme, setCurrentTheme] = React.useState<ThemeType>('light')
-  const [shouldAnimate, setShouldAnimate] = React.useState(true)
+  const [currentTheme, setCurrentTheme] = useState<ThemeType>('light')
+  const [shouldAnimate, setShouldAnimate] = useState(true)
 
   // When our local state theme changes, we need to update the theme context
-  React.useEffect(() => {
+  useEffect(() => {
     updateTheme(currentTheme)
   }, [currentTheme, updateTheme])
 
   // Toggle handler to change between themes
-  const handleToggle = React.useCallback(() => {
+  const handleToggle = useCallback(() => {
     if (!circleRef.current) {
       return null
     }
@@ -40,7 +46,7 @@ const SunAndLogo = () => {
     return setCurrentTheme(isNightNow ? 'light' : 'dark')
   }, [currentTheme])
 
-  const handleScroll = React.useCallback(() => {
+  const handleScroll = useCallback(() => {
     if (!pathRef.current || !circleRef.current) {
       return null
     }
@@ -80,7 +86,7 @@ const SunAndLogo = () => {
   }, [])
 
   // Add a scroll listener to make the sun move
-  React.useEffect(() => {
+  useEffect(() => {
     if (shouldAnimate) {
       handleScroll()
       window.addEventListener('scroll', handleScroll)

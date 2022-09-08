@@ -1,13 +1,13 @@
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
 
-import Layout from '../components/Layout'
-import SEO from '../components/SEO'
-import { BlogPost } from '../components/Blog/types'
-import BlogList from '../components/Blog/List/List'
-import { Container } from '../components/UI'
 import CategoriesTab from '../components/Blog/Categories/Categories'
 import Hero from '../components/Blog/Hero/Hero'
+import BlogList from '../components/Blog/List/List'
+import { BlogPost } from '../components/Blog/types'
+import Layout from '../components/Layout'
+import SEO from '../components/SEO'
+import { Container } from '../components/UI'
 
 interface Prop {
   data: {
@@ -54,9 +54,7 @@ export const query = graphql`
                     profile_pic {
                       alt
                       url
-                      fluid {
-                        ...GatsbyPrismicImageFluid_noBase64
-                      }
+                      gatsbyImageData
                     }
                   }
                 }
@@ -69,9 +67,7 @@ export const query = graphql`
             hero {
               alt
               url
-              fluid {
-                ...GatsbyPrismicImageFluid_noBase64
-              }
+              gatsbyImageData
             }
           }
         }

@@ -1,10 +1,9 @@
 import React from 'react'
 
-import * as S from './styled'
 import { Chapter } from '../../../../pages/handbook'
-
-import { Text, Small } from '../../../UI'
 import { textByLine } from '../../../../utils/textByLine'
+import { Text, Small } from '../../../UI'
+import * as S from './styled'
 
 interface CategoryProps {
   title: string

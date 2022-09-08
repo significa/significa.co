@@ -1,5 +1,5 @@
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 import React from 'react'
-import { FluidObject } from 'gatsby-image'
 
 import ContentThumb from '../ContentThumb'
 
@@ -7,7 +7,8 @@ interface IProjectThumb {
   title: string
   tagline: string
   to: string
-  fluid: FluidObject
+  alt: string
+  image: IGatsbyImageData
   services: string[]
   limitServices?: boolean
   backgroundColor?: string
@@ -15,25 +16,29 @@ interface IProjectThumb {
 
 const ProjectThumb: React.FC<IProjectThumb> = ({
   to,
-  fluid,
+  alt,
+  image,
   title,
   tagline,
   services,
   limitServices,
   backgroundColor,
-}) => (
-  <ContentThumb
-    to={to}
-    fluid={fluid}
-    title={`${title} — ${tagline}`}
-    showShadow
-    backgroundColor={backgroundColor}
-    text={
-      limitServices && services.length > 5
-        ? services.slice(0, 3).join(', ') + ` & ${services.length - 3} others`
-        : services.join(', ')
-    }
-  />
-)
+}) => {
+  return (
+    <ContentThumb
+      to={to}
+      alt={alt}
+      image={image}
+      title={`${title} — ${tagline}`}
+      showShadow
+      backgroundColor={backgroundColor}
+      text={
+        limitServices && services.length > 5
+          ? services.slice(0, 3).join(', ') + ` & ${services.length - 3} others`
+          : services.join(', ')
+      }
+    />
+  )
+}
 
 export default ProjectThumb

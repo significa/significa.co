@@ -1,14 +1,8 @@
-import React from 'react'
 import { graphql } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { RichText } from 'prismic-reactjs'
-import { mergePrismicPreviewData } from 'gatsby-source-prismic'
+import React from 'react'
 
-import linkResolver from '../utils/linkResolver'
-import { titleToID } from '../utils/titleToID'
-
-import HandbookLayout from '../components/Layout/HandbookLayout/'
-import SEO from '../components/SEO'
 import {
   Content,
   Testimonial,
@@ -17,6 +11,10 @@ import {
   BottomNavigation,
   CustomComponentParser,
 } from '../components/Handbook/'
+import HandbookLayout from '../components/Layout/HandbookLayout/'
+import SEO from '../components/SEO'
+import linkResolver from '../utils/linkResolver'
+import { titleToID } from '../utils/titleToID'
 
 export interface Testimonial {
   name: string
@@ -43,7 +41,7 @@ export interface Chapter {
   image: {
     alt: string
     url?: string
-    fluid: FluidObject
+    gatsbyImageData: IGatsbyImageData
   }
   body: Array<{
     primary: Content | Testimonial
@@ -88,16 +86,9 @@ interface HandbookChapterPageProps {
 }
 
 const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
-  data: staticData,
+  data,
   pageContext: { uid },
 }) => {
-  const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
-
-  const data: HandbookChapterPageProps['data'] = mergePrismicPreviewData({
-    staticData,
-    previewData: preview,
-  })
-
   const { prismicHandbookChapter, allPrismicHandbook } = data
 
   if (!prismicHandbookChapter) {
@@ -109,7 +100,7 @@ const HandbookChapterPage: React.FC<HandbookChapterPageProps> = ({
   // Featured chapters
   const allChapters = allPrismicHandbook.nodes[0].data.featured
   // Add all chapters from each group
-  allPrismicHandbook.nodes[0].data.body.forEach(group => {
+  allPrismicHandbook.nodes[0].data.body.forEach((group, _index) => {
     allChapters.push(...group.items)
   })
 
@@ -222,6 +213,7 @@ export const query = graphql`
           image {
             alt
             url
+            gatsbyImageData
           }
         }
       }
@@ -235,19 +227,17 @@ export const query = graphql`
         description
         image {
           alt
-          fluid(maxWidth: 1000) {
-            ...GatsbyPrismicImageFluid_noBase64
-          }
+          gatsbyImageData
         }
         body {
-          ... on PrismicHandbookChapterBodyContent {
+          ... on PrismicHandbookChapterDataBodyContent {
             primary {
               content {
                 raw
               }
             }
           }
-          ... on PrismicHandbookChapterBodyTestimonial {
+          ... on PrismicHandbookChapterDataBodyTestimonial {
             primary {
               name
               position
@@ -280,7 +270,7 @@ export const query = graphql`
             }
           }
           body {
-            ... on PrismicHandbookBodyCategory {
+            ... on PrismicHandbookDataBodyCategory {
               items {
                 chapter {
                   ...ChapterHandbookTemplate

@@ -1,8 +1,9 @@
-import React from 'react'
-import styled from 'styled-components'
-import { media } from '@theme'
 import { Link as BaseLink } from 'gatsby'
-import BaseImg from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
+import React, { ReactNode } from 'react'
+import styled from 'styled-components'
+
+import { media } from '@theme'
 
 import { Big as BaseBig } from '../Typography'
 
@@ -20,7 +21,7 @@ export const IconHolder = styled.div`
   z-index: 10;
 `
 
-export const Img = styled(BaseImg)`
+export const Img = styled(GatsbyImage)`
   transition: transform ${({ theme }) => theme.transitions.cubic('0.7s')};
 
   /* The blurred image is hidden in firefox, so we use this shadow as fallback */
@@ -32,7 +33,7 @@ export const Img = styled(BaseImg)`
   }
 `
 
-export const BlurImg = styled(BaseImg)`
+export const BlurImg = styled(GatsbyImage)`
   width: 95%;
   left: calc(5% / 2);
 
@@ -69,7 +70,10 @@ export const Big = styled(BaseBig)`
   margin-bottom: 0.5em;
 `
 
-const DetectLink: React.FC<{ to: string }> = ({ to, ...props }) => {
+const DetectLink: React.FC<{ to: string; children?: ReactNode }> = ({
+  to,
+  ...props
+}) => {
   const internal = /^\/(?!\/)/.test(to)
   const external = /^http/.test(to)
 
@@ -79,6 +83,7 @@ const DetectLink: React.FC<{ to: string }> = ({ to, ...props }) => {
 
   if (external) {
     return (
+      // eslint-disable-next-line jsx-a11y/anchor-has-content
       <a
         href={to}
         role="button"

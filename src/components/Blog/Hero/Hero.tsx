@@ -1,12 +1,12 @@
-import React from 'react'
-import { Link } from 'gatsby'
 import slugify from '@sindresorhus/slugify'
+import { Link } from 'gatsby'
+import React from 'react'
 
-import { BlogPost } from '../types'
 import formatDate from '../../../utils/formatDate'
 import linkResolver from '../../../utils/linkResolver'
-import AuthorBox from '../AuthorBox/AuthorBox'
 import { ArrowLink } from '../../UI'
+import AuthorBox from '../AuthorBox/AuthorBox'
+import { BlogPost } from '../types'
 import * as S from './styled'
 
 const Hero: React.FC<{ post: BlogPost }> = ({ post }) => {
@@ -19,7 +19,7 @@ const Hero: React.FC<{ post: BlogPost }> = ({ post }) => {
     <S.Article>
       <Link to={postLink}>
         <S.Image
-          fluid={post.data.hero.fluid}
+          image={post.data.hero.gatsbyImageData}
           alt={post.data.title}
           loading="eager"
         />

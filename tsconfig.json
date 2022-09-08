@@ -15,10 +15,14 @@
     "moduleResolution": "node",
     "baseUrl": "src",
     "paths": {
-      "@theme": ["theme"],
-      "@theme/*": ["theme/*"]
+      "@theme": [
+        "theme"
+      ],
+      "@theme/*": [
+        "theme/*"
+      ]
     },
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
   }
 }

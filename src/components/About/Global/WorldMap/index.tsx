@@ -1,8 +1,9 @@
-import * as React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import * as React from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
-import worldMapSource from './world-map.svg'
 import * as S from './styled'
+import worldMapSource from './world-map.svg'
 
 interface IPanel {
   current: string
@@ -31,15 +32,15 @@ const WorldMap = () => {
     },
   } = useStaticQuery(query)
 
-  const [splitFlap, setSplitFlap] = React.useState(initialState())
-  const [currentCity, setCurrentCity] = React.useState(
+  const [splitFlap, setSplitFlap] = useState(initialState())
+  const [currentCity, setCurrentCity] = useState(
     template(cities[Math.floor(Math.random() * cities.length)])
   )
 
   //
   // Pass through all letters
   //
-  const flipPanel = React.useCallback(
+  const flipPanel = useCallback(
     (curr: IPanel[]) => {
       const splittedCity = currentCity.split('')
       const newSorted = curr.map(({ current }, index) => {
@@ -60,7 +61,7 @@ const WorldMap = () => {
   //
   // Random city
   //
-  const randomCity = React.useCallback(() => {
+  const randomCity = useCallback(() => {
     const city = cities[Math.floor(Math.random() * cities.length)]
     setCurrentCity(template(city))
     setSplitFlap(initialState())
@@ -69,14 +70,14 @@ const WorldMap = () => {
   //
   // Call to update the letters
   //
-  React.useEffect(() => {
+  useEffect(() => {
     const interval = setTimeout(() => flipPanel(splitFlap), TIME_LETTER)
 
     return () => clearInterval(interval)
   }, [currentCity, flipPanel, splitFlap])
 
   // Init
-  React.useEffect(() => {
+  useEffect(() => {
     randomCity()
     const interval = setInterval(randomCity, TIME_RANDOM_CITY)
 

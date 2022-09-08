@@ -1,9 +1,7 @@
 import React from 'react'
 
 import Img from '../../../../PrismicImage'
-
 import { WaterfallType } from '../../types'
-
 import * as S from './styled'
 
 const Waterfall = (props: WaterfallType) => {
@@ -17,7 +15,7 @@ const Waterfall = (props: WaterfallType) => {
           <S.ImgHolder key={i} index={i} rowSpan={rowSpan}>
             <Img
               key={i}
-              fluid={item.image.fluid}
+              image={item.image.gatsbyImageData}
               alt={item.image.alt}
               src={item.image.url}
             />

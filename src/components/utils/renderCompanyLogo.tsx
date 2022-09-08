@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-import Coletiv from '../../assets/Coletiv'
 import Adamant from '../../assets/Adamant'
+import Coletiv from '../../assets/Coletiv'
 
 export type CompanyType = 'coletiv' | 'adamant'
 
-const companies: { [key in CompanyType]: React.FC<{}> } = {
+const companies: { [key in CompanyType]: React.FC<Record<string, never>> } = {
   coletiv: Coletiv,
   adamant: Adamant,
 }

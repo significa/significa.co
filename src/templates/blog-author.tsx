@@ -1,11 +1,11 @@
 // TODO: Page not ready
 
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
 
-import Layout from '../components/Layout'
-import { BlogPost } from '../components/Blog/types'
 import BlogList from '../components/Blog/List/List'
+import { BlogPost } from '../components/Blog/types'
+import Layout from '../components/Layout'
 
 interface Prop {
   data: {

@@ -1,6 +1,7 @@
+import { GatsbyImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
+
 import { media } from '@theme'
-import BaseImg from 'gatsby-image'
 
 import {
   Container as BaseContainer,
@@ -26,7 +27,7 @@ export const Container = styled(BaseContainer)`
   }
 `
 
-export const Img = styled(BaseImg)`
+export const Img = styled(GatsbyImage)`
   position: absolute !important; /** Gatsby adds the position relative as inline */
   top: 0;
   right: 0;

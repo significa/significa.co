@@ -1,6 +1,8 @@
 {
-  "extends": "@significa/eslint-config",
-  "plugins": ["jest"],
+  "extends": [
+    "@significa",
+    "@significa/eslint-config/react"
+  ],
   "env": {
     "jest/globals": true
   },
@@ -11,6 +13,9 @@
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-empty-interface": "off",
-    "@typescript-eslint/ban-ts-ignore": "off"
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "prettier/prettier": [
+      "off"
+    ]
   }
 }

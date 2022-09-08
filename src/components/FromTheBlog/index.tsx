@@ -1,16 +1,13 @@
-import React from 'react'
-import { graphql, StaticQuery, Link } from 'gatsby'
 import slugify from '@sindresorhus/slugify'
+import { graphql, StaticQuery, Link } from 'gatsby'
+import React from 'react'
 
-import linkResolver from '../../utils/linkResolver'
 import formatDate from '../../utils/formatDate'
-
-import { RightContent, Big } from '../UI/'
-
-import * as S from './styled'
-
-import { BlogPost } from '../Blog/types'
+import linkResolver from '../../utils/linkResolver'
 import AuthorBox from '../Blog/AuthorBox/AuthorBox'
+import { BlogPost } from '../Blog/types'
+import { RightContent, Big } from '../UI/'
+import * as S from './styled'
 
 interface IFromTheBlogQuery {
   homeYaml: {
@@ -27,7 +24,7 @@ interface IFromTheBlogQuery {
   }
 }
 
-const FromTheBlog: React.FC<{}> = () => {
+const FromTheBlog: React.FC<Record<string, never>> = () => {
   return (
     <StaticQuery
       query={fromTheBlogQuery}
@@ -114,9 +111,8 @@ const fromTheBlogQuery = graphql`
                   data {
                     name
                     profile_pic {
-                      fluid {
-                        ...GatsbyPrismicImageFluid_noBase64
-                      }
+                      gatsbyImageData
+                      alt
                     }
                   }
                 }

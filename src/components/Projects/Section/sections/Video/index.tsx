@@ -1,12 +1,12 @@
 import React from 'react'
 
 import { VideoType } from '../../types'
-
 import * as S from './styled'
 
 const Video = ({ primary: video }: VideoType) => {
   return (
     <React.Fragment>
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video
         width="100%"
         playsInline

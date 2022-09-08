@@ -1,13 +1,12 @@
 import React from 'react'
 
-import Img from '../../../../PrismicImage'
-
-import { StickyImageType, StickyVideoType } from '../../types'
-import { navigateToSection } from '../../../utils'
-import * as S from './styled'
 import { textByLine } from '../../../../../utils/textByLine'
 import { titleToID } from '../../../../../utils/titleToID'
+import Img from '../../../../PrismicImage'
 import { Text } from '../../../../UI'
+import { navigateToSection } from '../../../utils'
+import { StickyImageType, StickyVideoType } from '../../types'
+import * as S from './styled'
 
 type StickySection = StickyImageType | StickyVideoType
 
@@ -47,7 +46,7 @@ const Sticky = (props: StickyProps) => {
         {'image' in section && (
           <Img
             src={section.image.url}
-            fluid={section.image.fluid}
+            image={section.image.gatsbyImageData}
             alt={section.image.alt}
           />
         )}

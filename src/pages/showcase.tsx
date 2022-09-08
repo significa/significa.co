@@ -1,6 +1,6 @@
-import React from 'react'
 import { graphql } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+import React from 'react'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
@@ -20,7 +20,7 @@ export interface Project {
     }>
     thumb_image: {
       alt: string
-      fluid: FluidObject
+      gatsbyImageData: IGatsbyImageData
     }
   }
 }
@@ -94,9 +94,7 @@ export const query = graphql`
           }
           thumb_image {
             alt
-            fluid(maxWidth: 1000) {
-              ...GatsbyPrismicImageFluid_noBase64
-            }
+            gatsbyImageData
           }
         }
       }

@@ -1,17 +1,16 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+import React, { useRef } from 'react'
 
 import useMeasure from '../../../hooks/useMeasure'
-
-import * as S from './styled'
 import SunAndLogo from './SunAndLogo'
+import * as S from './styled'
 
 interface IGallery {
   alt: string
   image: {
     childImageSharp: {
-      fluid: FluidObject
+      gatsbyImageData: IGatsbyImageData
     }
   }
 }
@@ -30,7 +29,7 @@ const Perks: React.FC = () => {
     careersYaml: { adayatsignifica },
   }: ICareersPerks = useStaticQuery(careersADayAtSignificaQuery)
 
-  const outerRef = React.useRef<HTMLDivElement>(null)
+  const outerRef = useRef<HTMLDivElement>(null)
   const { width } = useMeasure(outerRef)
 
   return (
@@ -41,7 +40,11 @@ const Perks: React.FC = () => {
             {adayatsignifica.top.map(
               ({ image: { childImageSharp }, alt }, i) => {
                 return (
-                  <S.TopImage key={i} alt={alt} fluid={childImageSharp.fluid} />
+                  <S.TopImage
+                    key={i}
+                    alt={alt}
+                    image={childImageSharp.gatsbyImageData}
+                  />
                 )
               }
             )}
@@ -62,7 +65,7 @@ const Perks: React.FC = () => {
                   <S.BottomImage
                     key={i}
                     alt={alt}
-                    fluid={childImageSharp.fluid}
+                    image={childImageSharp.gatsbyImageData}
                   />
                 )
               }
@@ -82,9 +85,7 @@ const careersADayAtSignificaQuery = graphql`
           alt
           image {
             childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
-              }
+              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
             }
           }
         }
@@ -92,9 +93,7 @@ const careersADayAtSignificaQuery = graphql`
           alt
           image {
             childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
-              }
+              gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
             }
           }
         }

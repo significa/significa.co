@@ -1,6 +1,7 @@
+import { GatsbyImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
+
 import { media } from '@theme'
-import Img from 'gatsby-image'
 
 import { Container } from '../../UI'
 
@@ -55,7 +56,7 @@ export const TopGallery = styled(Gallery)`
 
 export const BottomGallery = styled(Gallery)``
 
-export const TopImage = styled(Img)`
+export const TopImage = styled(GatsbyImage)`
   &:nth-child(1) {
     margin-left: 5em;
     margin-top: 10em;
@@ -139,7 +140,7 @@ export const TopImage = styled(Img)`
   }
 `
 
-export const BottomImage = styled(Img)`
+export const BottomImage = styled(GatsbyImage)`
   &:nth-child(1) {
     margin-top: 5em;
     grid-column-end: span 3;

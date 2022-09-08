@@ -1,35 +1,26 @@
-import React from 'react'
+import slugify from '@sindresorhus/slugify'
 import { graphql } from 'gatsby'
 import { RichText } from 'prismic-reactjs'
-import slugify from '@sindresorhus/slugify'
-import { mergePrismicPreviewData } from 'gatsby-source-prismic'
+import React from 'react'
 
-import Image from '../components/PrismicImage'
-
-import Layout from '../components/Layout'
-import { BlogPost } from '../components/Blog/types'
-import formatDate from '../utils/formatDate'
-import { Container, Label } from '../components/UI'
 import AuthorBox from '../components/Blog/AuthorBox/AuthorBox'
+import AuthorSection from '../components/Blog/AuthorSection/AuthorSection'
+import Breadcrumbs from '../components/Blog/Breadcrumbs/Breadcrumbs'
+import { BlogPost } from '../components/Blog/types'
+import Layout from '../components/Layout'
+import Image from '../components/PrismicImage'
 import SEO from '../components/SEO'
+import { Container, Label } from '../components/UI'
+import formatDate from '../utils/formatDate'
+import linkResolver from '../utils/linkResolver'
 import syntaxHighlight from '../utils/syntaxHighlight'
 import * as S from './blog-post.styled'
-import Breadcrumbs from '../components/Blog/Breadcrumbs/Breadcrumbs'
-import linkResolver from '../utils/linkResolver'
-import AuthorSection from '../components/Blog/AuthorSection/AuthorSection'
 
 interface Prop {
   data: { prismicBlogPost: BlogPost }
 }
 
-const BlogPostPage: React.FC<Prop> = ({ data: staticData }) => {
-  const preview = typeof window !== 'undefined' && window.__PRISMIC_PREVIEW__
-
-  const data: Prop['data'] = mergePrismicPreviewData({
-    staticData,
-    previewData: preview,
-  })
-
+const BlogPostPage: React.FC<Prop> = ({ data }) => {
   const content = data.prismicBlogPost
 
   if (!content) {
@@ -73,11 +64,11 @@ const BlogPostPage: React.FC<Prop> = ({ data: staticData }) => {
         </S.Header>
 
         <S.ImageHero as="figure">
-          {(content.data.hero.fluid || content.data.hero.url) && (
+          {content.data.hero && (
             <>
               <Image
                 loading="eager"
-                fluid={content.data.hero.fluid}
+                image={content.data.hero.gatsbyImageData}
                 src={content.data.hero.url}
                 alt={content.data.hero.alt}
               />
@@ -125,9 +116,7 @@ export const query = graphql`
         teaser
         hero {
           alt
-          fluid {
-            ...GatsbyPrismicImageFluid_noBase64
-          }
+          gatsbyImageData
         }
         meta_title
         meta_description
@@ -161,9 +150,7 @@ export const query = graphql`
                 }
                 profile_pic {
                   alt
-                  fluid {
-                    ...GatsbyPrismicImageFluid_noBase64
-                  }
+                  gatsbyImageData
                 }
               }
             }

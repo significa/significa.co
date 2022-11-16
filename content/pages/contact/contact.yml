@@ -5,9 +5,11 @@ seo:
 title: |
   Hello there!
   How can we help you?
-subtitle: Hate contact forms? Say {link}
-# {link} will be replaced by the mail
-mail: hello@significa.co
+subtitle: |
+  If you want to apply for an open position,
+  please do so on our
+link: careers page
+page: /careers
 
 contacts:
   title: General contacts

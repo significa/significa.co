@@ -98,16 +98,22 @@ const Form: React.FC<IContactForm> = ({ contactYaml: data }) => {
           <S.Title key={key}>{line}</S.Title>
         ))}
         <S.Text>
-          {/* We need to find {link} in data.subtitle */}
-          {data.subtitle.split(/({link})/gi).map((piece, i) =>
-            piece === '{link}' ? (
-              <Link key={i} to={`mailto:${data.mail}`}>
-                {data.mail}
-              </Link>
-            ) : (
-              <React.Fragment key={i}>{piece}</React.Fragment>
+          {textByLine(data.subtitle).map((line, key) => {
+            const isSubtitleLastLine = key === textByLine(data.subtitle).length - 1
+            if (!isSubtitleLastLine) {
+              return (
+                <React.Fragment key={key}>{line}{<br />}</React.Fragment>
+              )
+            }
+
+            return (
+              <React.Fragment key={key}>{line}</React.Fragment>
             )
-          )}
+          })}
+          {' '}
+          <Link to={data.page}>
+            {data.link}
+          </Link>
         </S.Text>
       </S.Top>
 
@@ -164,7 +170,8 @@ interface IContactForm {
   contactYaml: {
     title: string
     subtitle: string
-    mail: string
+    page: string
+    link: string
 
     errors: {
       global: string
@@ -217,7 +224,8 @@ const contactFormQuery = graphql`
     contactYaml {
       title
       subtitle
-      mail
+      page
+      link
 
       errors {
         global

@@ -92,7 +92,7 @@ const Form: React.FC<{ position: string }> = ({ position }) => {
   }
 
   return (
-    <Theme theme="dark">
+    <Theme theme="light">
       <S.Wrapper isSubmitting={form.isSubmitting}>
         {submitted ? (
           <Success goBack={() => setSubmitted(false)} />

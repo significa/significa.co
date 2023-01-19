@@ -57,6 +57,7 @@ exports.createPages = async ({ graphql, actions }) => {
       allPrismicProject {
         nodes {
           uid
+          _previewable
         }
       }
     }
@@ -77,6 +78,7 @@ exports.createPages = async ({ graphql, actions }) => {
       allPrismicHandbookChapter {
         nodes {
           uid
+          _previewable
         }
       }
     }
@@ -97,6 +99,7 @@ exports.createPages = async ({ graphql, actions }) => {
       allPrismicPosition {
         nodes {
           uid
+          _previewable
         }
       }
     }
@@ -122,6 +125,7 @@ exports.createPages = async ({ graphql, actions }) => {
           data {
             category
           }
+          _previewable
         }
       }
     }

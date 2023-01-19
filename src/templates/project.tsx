@@ -1,24 +1,21 @@
 import { graphql } from 'gatsby'
+import { withPrismicPreview } from 'gatsby-plugin-prismic-previews'
 import React, { useRef } from 'react'
 
 import { Theme } from '@theme'
+import { SectionsType } from 'components/Projects/Section/types'
+
 
 import Layout from '../components/Layout'
 import { Meta, Hero, Section, Next, Navigation } from '../components/Projects'
 import SEO from '../components/SEO'
 import ConditionalWrap from '../components/utils/ConditionalWrap'
 import { getProjectTheme } from '../utils/getProjectTheme'
-import { IProject } from './project.types'
+import linkResolver from '../utils/linkResolver'
 
-interface IProjectProps {
-  data: {
-    prismicProject: {
-      data: IProject
-    }
-  }
-}
+// TODO: fix types on this page
 
-const ProjectPage = ({ data }: IProjectProps) => {
+const ProjectPage = ({ data }: any) => {
   const { data: project } = data.prismicProject
 
   // Someplace to save the section name
@@ -83,7 +80,7 @@ const ProjectPage = ({ data }: IProjectProps) => {
         </ConditionalWrap>
 
         {/* Content */}
-        {project.body.map((section, i) => {
+        {project.body.map((section: SectionsType, i: React.Key | null | undefined) => {
           if (section.slice_type === 'section') {
             sectionName.current = section.primary.title
           }
@@ -116,7 +113,12 @@ const ProjectPage = ({ data }: IProjectProps) => {
   )
 }
 
-export default ProjectPage
+
+export default withPrismicPreview(ProjectPage, [{
+  repositoryName: 'significa',
+  linkResolver,
+}])
+
 
 // eslint-disable-next-line prettier/prettier -- false error
 export const query = graphql`

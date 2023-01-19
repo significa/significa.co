@@ -16,7 +16,7 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
-    "**/node_modules": false
+    "**/node_modules": true
   }
   // Eventually I would like to turn this on
   // "typescript.preferences.importModuleSpecifier": "auto",

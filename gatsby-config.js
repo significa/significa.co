@@ -48,6 +48,14 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-prismic-previews',
+      options: {
+        repositoryName: 'significa',
+        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+        linkResolver: require('./src/utils/linkResolver'),
+      },
+    },
+    {
       resolve: 'gatsby-source-prismic',
       options: {
         repositoryName: 'significa',

@@ -10,9 +10,25 @@
  * being re-rendered in any path, wrap each page with the layout
  */
 
-import React from 'react'
+import * as React from 'react'
 import { Provider } from './src/components/Header'
+import {
+  PrismicPreviewProvider,
+} from 'gatsby-plugin-prismic-previews'
 
-export const wrapPageElement = ({ element, props }) => {
-  return <Provider {...props}>{element}</Provider>
-}
+import { linkResolver } from './src/utils/linkResolver'
+
+export const wrapRootElement = ({ element, props }) => (
+  <PrismicPreviewProvider
+    repositoryConfigs={[
+      {
+        repositoryName: 'significa',
+        linkResolver,
+      },
+    ]}
+  >
+    <Provider {...props}>
+    {element}
+    </Provider>
+  </PrismicPreviewProvider>
+)

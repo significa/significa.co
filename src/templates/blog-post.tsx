@@ -1,12 +1,12 @@
 import slugify from '@sindresorhus/slugify'
 import { graphql } from 'gatsby'
+import { withPrismicPreview } from 'gatsby-plugin-prismic-previews'
 import { RichText } from 'prismic-reactjs'
 import React from 'react'
 
 import AuthorBox from '../components/Blog/AuthorBox/AuthorBox'
 import AuthorSection from '../components/Blog/AuthorSection/AuthorSection'
 import Breadcrumbs from '../components/Blog/Breadcrumbs/Breadcrumbs'
-import { BlogPost } from '../components/Blog/types'
 import Layout from '../components/Layout'
 import Image from '../components/PrismicImage'
 import SEO from '../components/SEO'
@@ -16,11 +16,8 @@ import linkResolver from '../utils/linkResolver'
 import syntaxHighlight from '../utils/syntaxHighlight'
 import * as S from './blog-post.styled'
 
-interface Prop {
-  data: { prismicBlogPost: BlogPost }
-}
-
-const BlogPostPage: React.FC<Prop> = ({ data }) => {
+// TODO: fix types on this page
+const BlogPostPage = ({ data }: any) => {
   const content = data.prismicBlogPost
 
   if (!content) {
@@ -85,7 +82,7 @@ const BlogPostPage: React.FC<Prop> = ({ data }) => {
         </S.Content>
 
         <S.Footer>
-          {content.data.tags.map(({ tag }) => (
+          {content.data.tags.map(({ tag }: { tag: string }) => (
             <S.Tag key={tag}>{tag}</S.Tag>
           ))}
 
@@ -103,6 +100,7 @@ export const query = graphql`
     prismicBlogPost(uid: { eq: $uid }) {
       uid
       type
+      _previewable
 
       data {
         tags {
@@ -160,4 +158,7 @@ export const query = graphql`
     }
   }
 `
-export default BlogPostPage
+export default withPrismicPreview(BlogPostPage, [{
+  repositoryName: 'significa',
+  linkResolver,
+}])

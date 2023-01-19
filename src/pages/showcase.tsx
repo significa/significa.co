@@ -11,6 +11,7 @@ export interface Project {
   url: string
   uid: string
   data: {
+    listed: boolean
     hero_theme: string
     themes: Array<{ name: string; background: string }>
     project_title: string
@@ -46,6 +47,8 @@ interface Showcase {
 }
 
 const Showcase: React.FC<Showcase> = ({ data }) => {
+  const listedProjects = data.allPrismicProject.nodes.filter(node => node.data.listed)
+
   return (
     <Layout>
       <SEO
@@ -53,7 +56,7 @@ const Showcase: React.FC<Showcase> = ({ data }) => {
         description={data.showcaseYaml.seo.description}
       />
 
-      <Projects projects={data.allPrismicProject.nodes} />
+      <Projects projects={listedProjects} />
 
       <CallToAction {...data.showcaseYaml.cta} />
     </Layout>
@@ -82,6 +85,7 @@ export const query = graphql`
         url
         uid
         data {
+          listed
           hero_theme
           themes {
             name

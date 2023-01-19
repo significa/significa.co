@@ -1,14 +1,11 @@
-import { Location } from '@reach/router'
-import { navigate, useStaticQuery, graphql } from 'gatsby'
 import { withPrismicPreviewResolver } from 'gatsby-plugin-prismic-previews'
-import React, { useEffect } from 'react'
+import React from 'react'
 import Helmet from 'react-helmet'
 
 import { Provider, lightTheme } from '@theme'
 
-
 import { Segg, Text } from '../components/UI'
-import BlogPostPage, { BlogPostProp } from '../templates/blog-post'
+import BlogPostPage from '../templates/blog-post'
 import HandbookPage from '../templates/handbook'
 import PositionPage from '../templates/position'
 import ProjectPage from '../templates/project'
@@ -20,51 +17,8 @@ declare global {
   }
 }
 
-const UNPUBLISHED_ROUTE = '/unpublishedPreview'
-
-const PreviewPage: React.FC<{ data: unknown }> = ({ data }) => {
-  // const [data, setData] = React.useState<any>(null)
-
-  // const { allSitePage } = useStaticQuery(
-  //   graphql`
-  //     {
-  //       allSitePage {
-  //         nodes {
-  //           path
-  //         }
-  //       }
-  //     }
-  //   `
-  // )
-  // const allPagePaths = allSitePage.nodes.map(
-  //   ({ path }: { path: string }) => path
-  // )
-
-  // const pathResolver = () => (doc: any) => {
-  //   const url = linkResolver(doc)
-
-  //   if (allPagePaths.indexOf(url) >= 0) {
-  //     return url
-  //   } else {
-  //     return UNPUBLISHED_ROUTE
-  //   }
-  // }
-
-  // const { previewData, path } = usePrismicPreview(location, {
-  //   repositoryName: 'significa',
-  //   pathResolver,
-  // })
-
-  // useEffect(() => {
-  //   if (previewData && path) {
-  //     if (path === UNPUBLISHED_ROUTE) {
-  //       setData(previewData)
-  //     } else {
-  //       window.__PRISMIC_PREVIEW__ = previewData
-  //       navigate(path)
-  //     }
-  //   }
-  // }, [previewData, path])
+// TODO: fix types on this page
+const PreviewPage: React.FC<{ data: any }> = ({ data }) => {
 
   if (data) {
     if ('prismicPosition' in data) {

@@ -38,7 +38,7 @@
     "axios": "^0.27.2",
     "babel-plugin-styled-components": "^2.0.7",
     "framer-motion": "^1.11.1",
-    "gatsby": "^4.22.0",
+    "gatsby": "^4.25.4",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-image": "^2.22.0",
     "gatsby-plugin-prismic-previews": "^5.2.10",

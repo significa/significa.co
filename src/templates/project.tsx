@@ -1,13 +1,16 @@
 import { graphql } from 'gatsby'
+import { withPrismicPreview } from 'gatsby-plugin-prismic-previews'
 import React, { useRef } from 'react'
 
 import { Theme } from '@theme'
+
 
 import Layout from '../components/Layout'
 import { Meta, Hero, Section, Next, Navigation } from '../components/Projects'
 import SEO from '../components/SEO'
 import ConditionalWrap from '../components/utils/ConditionalWrap'
 import { getProjectTheme } from '../utils/getProjectTheme'
+import linkResolver from '../utils/linkResolver'
 import { IProject } from './project.types'
 
 interface IProjectProps {
@@ -116,7 +119,11 @@ const ProjectPage = ({ data }: IProjectProps) => {
   )
 }
 
-export default ProjectPage
+export default withPrismicPreview(ProjectPage, [{
+  repositoryName: 'significa',
+  linkResolver,
+}])
+
 
 // eslint-disable-next-line prettier/prettier -- false error
 export const query = graphql`

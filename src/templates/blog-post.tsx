@@ -1,5 +1,6 @@
 import slugify from '@sindresorhus/slugify'
 import { graphql } from 'gatsby'
+import { withPrismicPreview } from 'gatsby-plugin-prismic-previews'
 import { RichText } from 'prismic-reactjs'
 import React from 'react'
 
@@ -16,11 +17,11 @@ import linkResolver from '../utils/linkResolver'
 import syntaxHighlight from '../utils/syntaxHighlight'
 import * as S from './blog-post.styled'
 
-interface Prop {
+export interface BlogPostProp {
   data: { prismicBlogPost: BlogPost }
 }
 
-const BlogPostPage: React.FC<Prop> = ({ data }) => {
+const BlogPostPage: React.FC<BlogPostProp> = ({ data }) => {
   const content = data.prismicBlogPost
 
   if (!content) {
@@ -103,6 +104,7 @@ export const query = graphql`
     prismicBlogPost(uid: { eq: $uid }) {
       uid
       type
+      _previewable
 
       data {
         tags {
@@ -160,4 +162,7 @@ export const query = graphql`
     }
   }
 `
-export default BlogPostPage
+export default withPrismicPreview(BlogPostPage, [{
+  repositoryName: 'significa',
+  linkResolver,
+}])

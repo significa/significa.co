@@ -7,7 +7,7 @@ import BlogList from '../components/Blog/List/List'
 import { BlogPost } from '../components/Blog/types'
 import Layout from '../components/Layout'
 
-interface Prop {
+export interface BlogAuthorProp {
   data: {
     allPrismicBlogPost: {
       edges: Array<{ node: BlogPost }>
@@ -15,7 +15,7 @@ interface Prop {
   }
 }
 
-const BlogAuthor: React.FC<Prop> = ({ data }) => {
+const BlogAuthor: React.FC<BlogAuthorProp> = ({ data }) => {
   const posts = data.allPrismicBlogPost.edges
 
   return (

@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby'
+import { withPrismicUnpublishedPreview } from 'gatsby-plugin-prismic-previews'
 import React from 'react'
 
 import Layout from '../components/Layout'
@@ -17,7 +18,7 @@ const NotFoundPage = () => {
   )
 }
 
-export default NotFoundPage
+export default withPrismicUnpublishedPreview(NotFoundPage)
 
 const query = graphql`
   {

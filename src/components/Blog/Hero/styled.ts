@@ -47,7 +47,9 @@ export const Column = styled.div`
   }
 `
 
-export const Title = styled(SmallTitle)``
+export const Title = styled(SmallTitle)`
+  padding-right: 18px;
+`
 
 export const Description = styled(Text)`
   padding-top: 0.2em;
@@ -56,6 +58,7 @@ export const Description = styled(Text)`
 export const Detail = styled.div`
   display: flex;
   align-items: center;
+  padding-right: 18px;
 
   ${media.large} {
     display: block;

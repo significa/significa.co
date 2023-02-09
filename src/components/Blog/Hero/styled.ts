@@ -48,7 +48,11 @@ export const Column = styled.div`
 `
 
 export const Title = styled(SmallTitle)`
-  padding-right: 18px;
+  padding-right: 0;
+
+  ${media.large} {
+    padding-right: 16px;
+  }
 `
 
 export const Description = styled(Text)`
@@ -58,11 +62,12 @@ export const Description = styled(Text)`
 export const Detail = styled.div`
   display: flex;
   align-items: center;
-  padding-right: 18px;
+  padding-right: 0;
 
   ${media.large} {
     display: block;
     margin-bottom: 2em;
+    padding-right: 16px;
   }
 `
 

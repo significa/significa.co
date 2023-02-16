@@ -12,7 +12,7 @@ export interface AssetStoryblok {
 }
 
 export interface BlogPostStoryblok {
-  cover: AssetStoryblok;
+  cover?: AssetStoryblok;
   intro: string;
   author: StoryblokStory<TeamMemberStoryblok> | string;
   project?: StoryblokStory<ProjectStoryblok> | string;
@@ -28,6 +28,29 @@ export interface BlogPostStoryblok {
 export interface ClientStoryblok {
   _uid: string;
   component: 'client';
+  [k: string]: any;
+}
+
+export interface ColumnMediaStoryblok {
+  media: AssetStoryblok;
+  _uid: string;
+  component: 'column-media';
+  [k: string]: any;
+}
+
+export interface ColumnTextStoryblok {
+  content: any;
+  _uid: string;
+  component: 'column-text';
+  [k: string]: any;
+}
+
+export interface ComparisonStoryblok {
+  width?: '' | 'narrow' | 'medium' | 'wide';
+  image_a: AssetStoryblok;
+  image_b: AssetStoryblok;
+  _uid: string;
+  component: 'comparison';
   [k: string]: any;
 }
 
@@ -49,6 +72,35 @@ export interface HandbookStoryblok {
   seo_og_image?: AssetStoryblok;
   _uid: string;
   component: 'handbook';
+  [k: string]: any;
+}
+
+export interface ImageStoryblok {
+  width?: '' | 'narrow' | 'medium' | 'wide' | 'full';
+  image: AssetStoryblok;
+  expandable?: boolean;
+  _uid: string;
+  component: 'image';
+  [k: string]: any;
+}
+
+export type MultiassetStoryblok = {
+  alt?: string;
+  copyright?: string;
+  id: number;
+  filename: string;
+  name: string;
+  title?: string;
+  [k: string]: any;
+}[];
+
+export interface ImageGridStoryblok {
+  width?: '' | 'medium' | 'wide';
+  density?: '' | 'regular' | 'loose' | 'tight';
+  images: MultiassetStoryblok;
+  expandable?: boolean;
+  _uid: string;
+  component: 'image-grid';
   [k: string]: any;
 }
 
@@ -115,16 +167,6 @@ export interface LinkStoryblok {
   [k: string]: any;
 }
 
-export type MultiassetStoryblok = {
-  alt?: string;
-  copyright?: string;
-  id: number;
-  filename: string;
-  name: string;
-  title?: string;
-  [k: string]: any;
-}[];
-
 export interface ProjectStoryblok {
   cover?: AssetStoryblok;
   thumbnail: MultiassetStoryblok;
@@ -141,6 +183,27 @@ export interface ProjectStoryblok {
   seo_og_image?: AssetStoryblok;
   _uid: string;
   component: 'project';
+  [k: string]: any;
+}
+
+export interface RichtextBoxStoryblok {
+  layout?: '' | 'horizontal' | 'vertical';
+  title?: string;
+  text?: string;
+  link?: LinkStoryblok[];
+  image?: AssetStoryblok;
+  _uid: string;
+  component: 'richtext-box';
+  [k: string]: any;
+}
+
+export interface RichtextTestimonialStoryblok {
+  photo?: AssetStoryblok;
+  name: string;
+  position?: string;
+  testimonial: string;
+  _uid: string;
+  component: 'richtext-testimonial';
   [k: string]: any;
 }
 
@@ -169,12 +232,32 @@ export interface TeamMemberLinkStoryblok {
     | 'twitter'
     | 'dribbble'
     | 'github'
+    | 'behance'
     | 'readcv'
     | 'instagram'
     | 'facebook'
+    | 'linkedin'
     | 'other';
   link?: string;
   _uid: string;
   component: 'team-member-link';
+  [k: string]: any;
+}
+
+export interface TwoColumnsStoryblok {
+  columns: (ColumnMediaStoryblok | ColumnTextStoryblok)[];
+  _uid: string;
+  component: 'two-columns';
+  [k: string]: any;
+}
+
+export interface VideoStoryblok {
+  width?: '' | 'narrow' | 'medium' | 'wide' | 'full';
+  video: AssetStoryblok;
+  loop?: boolean;
+  autoplay?: boolean;
+  controls?: boolean;
+  _uid: string;
+  component: 'video';
   [k: string]: any;
 }

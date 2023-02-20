@@ -69,6 +69,11 @@ export const Content = styled.div`
     margin-left: 1.2em;
   }
 
+  ol {
+    list-style: decimal;
+    margin-left: 1.2em;
+  }
+
   li {
     margin-bottom: 0.5em;
   }
@@ -154,7 +159,11 @@ export const Content = styled.div`
     }
   }
 
-  code {
+  em {
+    font-style: italic;
+  }
+
+  code , .markup {
     background: rgb(226, 228, 230);
     color: rgb(39, 40, 34);
     padding: 0.2em 0.4em;

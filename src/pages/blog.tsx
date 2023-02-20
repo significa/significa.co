@@ -19,7 +19,8 @@ interface Prop {
 
 const BlogIndex: React.FC<Prop> = ({ data }) => {
   const posts = data.allPrismicBlogPost.edges
-  const [heroPost, ...allPosts] = posts
+  const listedPosts = posts.filter(post => post.node.data.listed)
+  const [heroPost, ...allPosts] = listedPosts
 
   return (
     <Layout theme="light" isBlogPage renderHeaderChildren={<CategoriesTab />}>
@@ -69,6 +70,7 @@ export const query = graphql`
               url
               gatsbyImageData
             }
+            listed
           }
         }
       }

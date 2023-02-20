@@ -3,12 +3,12 @@ import { IGatsbyImageData } from 'gatsby-plugin-image'
 export interface AuthorSocial {
   link: string
   social:
-    | 'Behance'
-    | 'Github'
-    | 'Dribbble'
-    | 'Instagram'
-    | 'Professional email'
-    | 'Personal website'
+  | 'Behance'
+  | 'Github'
+  | 'Dribbble'
+  | 'Instagram'
+  | 'Professional email'
+  | 'Personal website'
 }
 
 export interface Author {
@@ -32,6 +32,7 @@ export interface BlogPost {
   data: {
     meta_title: string
     meta_description: string
+    listed: boolean
     meta_image_share: {
       alt: string
       url: string

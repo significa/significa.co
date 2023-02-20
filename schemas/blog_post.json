@@ -19,6 +19,15 @@
         "label": "Meta description"
       }
     },
+    "listed": {
+      "type": "Boolean",
+      "config": {
+        "placeholder_false": "Not Listed",
+        "placeholder_true": "Listed",
+        "default_value": false,
+        "label": "Listed"
+      }
+    },
     "meta_image_share": {
       "type": "Image",
       "config": {
@@ -32,7 +41,12 @@
     "category": {
       "type": "Select",
       "config": {
-        "options": ["Development", "Design", "Interviews", "Strategy"],
+        "options": [
+          "Development",
+          "Design",
+          "Interviews",
+          "Strategy"
+        ],
         "label": "Category"
       }
     },
@@ -59,7 +73,9 @@
       "type": "Link",
       "config": {
         "select": "document",
-        "customtypes": ["blog_author"],
+        "customtypes": [
+          "blog_author"
+        ],
         "label": "Author"
       }
     },
@@ -97,7 +113,7 @@
     "content": {
       "type": "StructuredText",
       "config": {
-        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,o-list-item",
         "allowTargetBlank": true,
         "label": "Content",
         "labels": [
@@ -108,7 +124,8 @@
           "bash",
           "markdown",
           "graphql",
-          "scss"
+          "scss",
+          "yaml"
         ]
       }
     }

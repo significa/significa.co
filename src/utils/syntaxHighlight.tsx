@@ -12,8 +12,12 @@ const LineNo = styled.span`
 
 const htmlSerializer = (
   type: string,
-  element: { label: Language; text: string }
+  element: {
+    spans: any,
+    label: Language; text: string
+  }
 ) => {
+
   if (type === 'preformatted') {
     return (
       <Highlight
@@ -36,30 +40,6 @@ const htmlSerializer = (
         )}
       </Highlight>
     )
-  }
-
-  if (type === 'paragraph') {
-    const regexExp = /(`.*?`)/gim
-    const shouldCatch = regexExp.test(element.text)
-
-    if (shouldCatch) {
-      const elements = element.text.split(regexExp)
-      const formatted = elements.reduce(
-        (acc: React.ReactNode[], curr: string) => {
-          if (regexExp.test(curr)) {
-            const strCleaned = curr.replace(/`/gm, '')
-            acc.push(<code>{strCleaned}</code>)
-          } else {
-            acc.push(curr)
-          }
-
-          return acc
-        },
-        []
-      )
-
-      return <p>{formatted}</p>
-    }
   }
 
   return null

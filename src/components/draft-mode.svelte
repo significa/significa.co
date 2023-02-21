@@ -5,7 +5,7 @@
   const isDraft = $page.data.version === 'draft';
 </script>
 
-{#if isDraft}
+{#if isDraft && !dev}
   <div>
     <h4>Warning</h4>
     <p>You're viewing a <em>draft</em> version</p>

@@ -8,6 +8,11 @@ export default defineConfig({
     include: ['src/**/*.{test,spec}.{js,ts}']
   },
   server: {
-    https: true
+    https: true,
+    fs: {
+      // allow root path to allow including fonts.
+      // useful when developing locally with linked UI library.
+      allow: process.env.NODE_ENV === 'development' ? ['/'] : undefined
+    }
   }
 });

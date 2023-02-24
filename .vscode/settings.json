@@ -1,0 +1,4 @@
+{
+  "cssvar.files": ["src/**/*.css", "node_modules/@significa/svelte-ui/dist/**/*.css"],
+  "cssvar.ignore": []
+}

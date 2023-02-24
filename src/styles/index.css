@@ -1,1 +1,19 @@
+@import '@significa/svelte-ui/index.css';
+
 @import './normalize.css';
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+::selection {
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+}

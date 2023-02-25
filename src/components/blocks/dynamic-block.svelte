@@ -1,8 +1,12 @@
 <script lang="ts" context="module">
+  import Comparison from './comparison.svelte';
+  import ImageGrid from './image-grid.svelte';
   import Image from './image.svelte';
 
   const map = {
-    image: Image
+    image: Image,
+    comparison: Comparison,
+    'image-grid': ImageGrid
   };
 
   export type Blocks = keyof typeof map;

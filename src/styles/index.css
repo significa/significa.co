@@ -1,10 +1,11 @@
+@import './reset.css';
+
+@import '@significa/svelte-ui/fonts.css';
 @import '@significa/svelte-ui/index.css';
 
-@import './normalize.css';
-
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --container-max-width: 1440px;
+  --container-padding-inline: 16px;
 }
 
 body {

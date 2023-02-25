@@ -21,6 +21,7 @@
     "datasources": "svelte-kit sync && npx ts-node@latest --project ./node.tsconfig.json ./scripts/datasources.ts"
   },
   "devDependencies": {
+    "@csstools/postcss-global-data": "^1.0.3",
     "@storybook/addon-a11y": "^7.0.0-beta.49",
     "@storybook/addon-essentials": "^7.0.0-beta.49",
     "@storybook/addon-interactions": "^7.0.0-beta.49",

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import ExpandableImage from '$components/expandable-image.svelte';
+  import { open } from '$components/image-gallery.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { ImageStoryblok } from '$types/bloks';
@@ -7,24 +9,22 @@
 </script>
 
 {#if block?.image?.filename}
-  {@const { src, alt, width, height, title } = getImageAttributes(block.image)}
   <figure use:storyblokEditable={block}>
-    <img {src} {alt} {width} {height} />
-    {#if title}
-      <figcaption>{title}</figcaption>
+    <ExpandableImage
+      image={getImageAttributes(block.image)}
+      enabled={!!block.expandable}
+      on:expand={(e) => open([e.detail])}
+    />
+    {#if block?.image?.title}
+      <figcaption>{block.image.title}</figcaption>
     {/if}
   </figure>
 {/if}
 
 <style lang="postcss">
-  figure,
-  img {
+  figure {
     width: 100%;
     height: auto;
-  }
-
-  img {
-    border-radius: var(--border-radius-md);
   }
 
   figcaption {

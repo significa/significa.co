@@ -60,7 +60,7 @@
   ]}
 >
   <div class="line" />
-  <button bind:this={handle} class="handle">
+  <button aria-hidden="true" tabindex="-1" bind:this={handle} class="handle">
     <Icon icon="comparison" />
   </button>
   {#if block.image_a?.filename}

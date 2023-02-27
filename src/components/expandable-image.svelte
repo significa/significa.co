@@ -1,17 +1,18 @@
 <script lang="ts">
-  import type { ImageAttributes } from '$lib/utils/cms';
+  import { getImageAttributes } from '$lib/utils/cms';
+  import type { AssetStoryblok } from '$types/bloks';
   import { Icon } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import { createEventDispatcher } from 'svelte';
 
-  const dispatch = createEventDispatcher<{ expand: ImageAttributes }>();
+  const dispatch = createEventDispatcher<{ expand: AssetStoryblok }>();
 
-  export let image: ImageAttributes;
+  export let image: AssetStoryblok;
   export let enabled: boolean;
 </script>
 
 {#if image}
-  {@const { src, alt, width, height } = image}
+  {@const { src, alt, width, height } = getImageAttributes(image)}
   <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
   <div
     class={clsx('expandable-image', { enabled })}

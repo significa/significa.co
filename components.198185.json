@@ -4,7 +4,7 @@
       "name": "blog-post",
       "display_name": null,
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2023-02-16T11:11:53.022Z",
+      "updated_at": "2023-02-25T11:32:41.052Z",
       "id": 3442347,
       "schema": {
         "cover": {
@@ -74,6 +74,24 @@
           "component_group_whitelist": [
             "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
             "1ef77ef8-466a-4b74-a076-f4554004e128"
+          ],
+          "customize_toolbar": true,
+          "toolbar": [
+            "bold",
+            "italic",
+            "strike",
+            "underline",
+            "inlinecode",
+            "paragraph",
+            "h2",
+            "h3",
+            "list",
+            "olist",
+            "quote",
+            "hrule",
+            "link",
+            "blok",
+            "h1"
           ]
         }
       },
@@ -258,7 +276,7 @@
       "name": "handbook",
       "display_name": null,
       "created_at": "2023-02-15T13:50:12.113Z",
-      "updated_at": "2023-02-15T14:00:43.263Z",
+      "updated_at": "2023-02-25T11:33:07.878Z",
       "id": 3442773,
       "schema": {
         "cover": {
@@ -313,6 +331,24 @@
           "component_group_whitelist": [
             "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
             "1ef77ef8-466a-4b74-a076-f4554004e128"
+          ],
+          "customize_toolbar": true,
+          "toolbar": [
+            "bold",
+            "italic",
+            "strike",
+            "underline",
+            "inlinecode",
+            "paragraph",
+            "h2",
+            "h3",
+            "list",
+            "olist",
+            "quote",
+            "link",
+            "hrule",
+            "blok",
+            "h1"
           ]
         },
         "seo_title": {
@@ -346,7 +382,7 @@
       "name": "image",
       "display_name": null,
       "created_at": "2023-02-16T10:44:18.022Z",
-      "updated_at": "2023-02-16T10:46:28.356Z",
+      "updated_at": "2023-02-25T12:07:59.249Z",
       "id": 3446843,
       "schema": {
         "width": {
@@ -369,7 +405,7 @@
               "name": "wide"
             },
             {
-              "_uid": "4a81a1cd-4ccb-44dd-ac7e-d470ff81606c",
+              "_uid": "9f31e72a-4f9d-4281-8fb7-31af0c3b7eae",
               "value": "full",
               "name": "full"
             }
@@ -505,7 +541,7 @@
       "name": "project",
       "display_name": null,
       "created_at": "2023-02-15T13:07:44.621Z",
-      "updated_at": "2023-02-15T13:57:58.823Z",
+      "updated_at": "2023-02-25T11:33:15.972Z",
       "id": 3442356,
       "schema": {
         "cover": {
@@ -583,6 +619,24 @@
           "component_group_whitelist": [
             "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
             "1ef77ef8-466a-4b74-a076-f4554004e128"
+          ],
+          "customize_toolbar": true,
+          "toolbar": [
+            "bold",
+            "italic",
+            "strike",
+            "underline",
+            "inlinecode",
+            "paragraph",
+            "h2",
+            "h3",
+            "list",
+            "olist",
+            "quote",
+            "hrule",
+            "link",
+            "blok",
+            "h1"
           ]
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {
@@ -626,7 +680,7 @@
       "name": "richtext-box",
       "display_name": null,
       "created_at": "2023-02-16T10:59:09.847Z",
-      "updated_at": "2023-02-16T11:01:53.805Z",
+      "updated_at": "2023-02-21T10:40:21.176Z",
       "id": 3446937,
       "schema": {
         "layout": {
@@ -647,30 +701,30 @@
           ],
           "default_value": "horizontal"
         },
-        "title": {
-          "type": "text",
-          "pos": 1
+        "image": {
+          "type": "asset",
+          "pos": 1,
+          "filetypes": [
+            "images"
+          ]
         },
-        "text": {
+        "title": {
           "type": "text",
           "pos": 2
         },
+        "text": {
+          "type": "text",
+          "pos": 3
+        },
         "link": {
           "type": "bloks",
-          "pos": 3,
+          "pos": 4,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
             "link"
           ],
           "maximum": 1
-        },
-        "image": {
-          "type": "asset",
-          "pos": 4,
-          "filetypes": [
-            "images"
-          ]
         }
       },
       "image": null,
@@ -681,6 +735,58 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "richtext-box",
+      "component_group_uuid": "1ef77ef8-466a-4b74-a076-f4554004e128",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Rich Text"
+    },
+    {
+      "name": "richtext-code-block",
+      "display_name": null,
+      "created_at": "2023-02-24T17:31:53.338Z",
+      "updated_at": "2023-02-24T17:34:32.018Z",
+      "id": 3486021,
+      "schema": {
+        "language": {
+          "type": "option",
+          "pos": 0,
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "21f9eef8-79fa-4029-a6b8-9462d5c6175c",
+              "name": "typescript",
+              "value": "typescript"
+            },
+            {
+              "_uid": "ae4795e0-7645-4873-8a82-1980d806121b",
+              "value": "elixir",
+              "name": "elixir"
+            }
+          ]
+        },
+        "line_numbers": {
+          "type": "boolean",
+          "default_value": true,
+          "pos": 1
+        },
+        "highlighted_lines": {
+          "type": "text",
+          "pos": 2,
+          "description": "- A single number refers to the line with that number.\n- Ranges are denoted by two numbers, separated with a hyphen (-).\n- Multiple line numbers or ranges are separated by commas.\n- Whitespace is allowed anywhere and will be stripped off."
+        },
+        "code": {
+          "type": "textarea",
+          "pos": 3
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "richtext-code-block",
       "component_group_uuid": "1ef77ef8-466a-4b74-a076-f4554004e128",
       "color": null,
       "icon": null,
@@ -925,7 +1031,7 @@
       "name": "video",
       "display_name": null,
       "created_at": "2023-02-16T10:45:31.449Z",
-      "updated_at": "2023-02-16T10:47:20.425Z",
+      "updated_at": "2023-02-26T22:24:08.318Z",
       "id": 3446844,
       "schema": {
         "width": {
@@ -948,7 +1054,7 @@
               "name": "wide"
             },
             {
-              "_uid": "95b8cc16-1551-43db-a1e5-438b8a09d3ca",
+              "_uid": "37b7e980-d92c-4b9f-a090-df22248c0fcc",
               "value": "full",
               "name": "full"
             }

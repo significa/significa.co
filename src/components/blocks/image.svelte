@@ -11,7 +11,7 @@
 {#if block?.image?.filename}
   <figure use:storyblokEditable={block}>
     <ExpandableImage
-      image={getImageAttributes(block.image)}
+      image={block.image}
       enabled={!!block.expandable}
       on:expand={(e) => open([e.detail])}
     />

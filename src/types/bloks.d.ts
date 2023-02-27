@@ -188,12 +188,22 @@ export interface ProjectStoryblok {
 
 export interface RichtextBoxStoryblok {
   layout?: '' | 'horizontal' | 'vertical';
+  image?: AssetStoryblok;
   title?: string;
   text?: string;
   link?: LinkStoryblok[];
-  image?: AssetStoryblok;
   _uid: string;
   component: 'richtext-box';
+  [k: string]: any;
+}
+
+export interface RichtextCodeBlockStoryblok {
+  language?: '' | 'typescript' | 'elixir';
+  line_numbers?: boolean;
+  highlighted_lines?: string;
+  code?: string;
+  _uid: string;
+  component: 'richtext-code-block';
   [k: string]: any;
 }
 

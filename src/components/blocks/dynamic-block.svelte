@@ -7,7 +7,8 @@
     image: Image,
     comparison: Comparison,
     'image-grid': ImageGrid,
-    'richtext-code-block': RichTextCodeBlock
+    'richtext-code-block': RichTextCodeBlock,
+    'two-columns': TwoColumns
   };
 
   export type Blocks = keyof typeof map;
@@ -21,6 +22,7 @@
   import { dev } from '$app/environment';
   import type { ComponentType } from 'svelte';
   import RichTextCodeBlock from './rich-text-code-block.svelte';
+  import TwoColumns from './two-columns.svelte';
 
   export let block: { component: string };
 

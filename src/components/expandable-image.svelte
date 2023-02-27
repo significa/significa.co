@@ -7,6 +7,8 @@
 
   const dispatch = createEventDispatcher<{ expand: AssetStoryblok }>();
 
+  let className: string | undefined = undefined;
+  export { className as class };
   export let image: AssetStoryblok;
   export let enabled: boolean;
 </script>
@@ -15,7 +17,7 @@
   {@const { src, alt, width, height } = getImageAttributes(image)}
   <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
   <div
-    class={clsx('expandable-image', { enabled })}
+    class={clsx('expandable-image', { enabled }, className)}
     role={enabled ? 'button' : undefined}
     tabindex={enabled ? 0 : undefined}
     on:click={() => {

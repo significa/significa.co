@@ -2,7 +2,6 @@
   import ExpandableImage from '$components/expandable-image.svelte';
   import { open } from '$components/image-gallery.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
-  import { getImageAttributes } from '$lib/utils/cms';
   import type { ImageStoryblok } from '$types/bloks';
 
   export let block: ImageStoryblok;

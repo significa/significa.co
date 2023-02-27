@@ -33,6 +33,8 @@ export interface ClientStoryblok {
 
 export interface ColumnMediaStoryblok {
   media: AssetStoryblok;
+  sticky?: boolean;
+  expandable?: boolean;
   _uid: string;
   component: 'column-media';
   [k: string]: any;
@@ -204,7 +206,6 @@ export interface RichtextCodeBlockStoryblok {
     | 'javascript'
     | 'css'
     | 'typescript'
-    | 'tsx'
     | 'svelte'
     | 'elixir'
     | 'bash'
@@ -266,6 +267,7 @@ export interface TeamMemberLinkStoryblok {
 }
 
 export interface TwoColumnsStoryblok {
+  width?: '' | 'wide';
   columns: (ColumnMediaStoryblok | ColumnTextStoryblok)[];
   _uid: string;
   component: 'two-columns';

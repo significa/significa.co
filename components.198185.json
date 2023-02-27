@@ -132,16 +132,21 @@
       "name": "column-media",
       "display_name": null,
       "created_at": "2023-02-16T10:36:30.080Z",
-      "updated_at": "2023-02-16T11:03:28.196Z",
+      "updated_at": "2023-02-27T18:21:55.730Z",
       "id": 3446780,
       "schema": {
         "media": {
           "type": "asset",
           "filetypes": [
-            "images",
-            "videos"
+            "images"
           ],
           "required": true
+        },
+        "sticky": {
+          "type": "boolean"
+        },
+        "expandable": {
+          "type": "boolean"
         }
       },
       "image": null,
@@ -744,7 +749,7 @@
       "name": "richtext-code-block",
       "display_name": null,
       "created_at": "2023-02-24T17:31:53.338Z",
-      "updated_at": "2023-02-27T14:45:56.510Z",
+      "updated_at": "2023-02-27T14:56:51.271Z",
       "id": 3486021,
       "schema": {
         "language": {
@@ -771,11 +776,6 @@
               "_uid": "21f9eef8-79fa-4029-a6b8-9462d5c6175c",
               "name": "typescript",
               "value": "typescript"
-            },
-            {
-              "_uid": "ee4362d3-4b9a-4804-86b6-064eb0cb8f5d",
-              "value": "tsx",
-              "name": "tsx"
             },
             {
               "_uid": "c48c2f8a-6de6-4ea0-a8f5-0ed0a208348d",
@@ -1038,9 +1038,22 @@
       "name": "two-columns",
       "display_name": null,
       "created_at": "2023-02-16T10:36:21.986Z",
-      "updated_at": "2023-02-16T10:40:36.864Z",
+      "updated_at": "2023-02-27T18:20:42.225Z",
       "id": 3446779,
       "schema": {
+        "width": {
+          "type": "option",
+          "use_uuid": true,
+          "pos": 0,
+          "options": [
+            {
+              "_uid": "4bf5bcfc-393c-45b1-b2e1-56754e88541c",
+              "name": "wide",
+              "value": "wide"
+            }
+          ],
+          "default_value": "wide"
+        },
         "columns": {
           "type": "bloks",
           "restrict_type": "",
@@ -1051,7 +1064,8 @@
           ],
           "minimum": 2,
           "maximum": 2,
-          "required": true
+          "required": true,
+          "pos": 1
         }
       },
       "image": null,

@@ -40,6 +40,7 @@
   </ColumnContainer>
   {#if data.story.content.body}
     <RichText
+      class="blog-body"
       wrapper={ColumnContainer}
       doc={data.story.content.body}
       getBlockAttributes={(block) => {
@@ -95,5 +96,9 @@
     width: 100%;
     height: auto;
     border-radius: var(--border-radius-md);
+  }
+
+  :global(.blog-body) {
+    padding-block: 80px;
   }
 </style>

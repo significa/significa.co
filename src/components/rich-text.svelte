@@ -47,7 +47,6 @@
       {#each section.attrs.body as block}
         {@const blockAttributes = getBlockAttributes?.(block) || {}}
         <div
-          data-column-width={block.width}
           {...nodeAttributes}
           {...blockAttributes}
           class={clsx(
@@ -92,8 +91,8 @@
     }
   }
 
-  p + p {
-    margin-top: 1.5ch;
+  p:not(:last-child) {
+    margin-bottom: 1.5ch;
   }
 
   ul,
@@ -138,7 +137,7 @@
     padding: 16px;
     border-radius: var(--border-radius-md);
 
-    margin-block: 24px;
+    margin-block: 32px;
   }
 
   h2,

@@ -38,19 +38,14 @@
       <img data-column-width="full" class="cover" {src} {alt} {width} {height} />
     {/if}
     {#if data.story.content.body}
-      <div class="body">
-        <RichText
-          doc={data.story.content.body}
-          getBlockAttributes={(block) => {
-            if (block.component === 'richtext-code-block') {
-              return {
-                'data-column-width': 'medium'
-              };
-            }
-            return {};
-          }}
-        />
-      </div>
+      <RichText
+        doc={data.story.content.body}
+        getBlockAttributes={(block) => {
+          return {
+            'data-column-width': block.width
+          };
+        }}
+      />
     {/if}
   </ColumnContainer>
 {/key}
@@ -98,17 +93,5 @@
     width: 100%;
     height: auto;
     border-radius: var(--border-radius-md);
-  }
-
-  .body {
-    display: contents;
-
-    &:before,
-    &:after {
-      content: '';
-      display: block;
-      grid-column: 1 / -1;
-      height: 80px;
-    }
   }
 </style>

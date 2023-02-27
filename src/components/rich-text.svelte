@@ -47,6 +47,7 @@
       {#each section.attrs.body as block}
         {@const blockAttributes = getBlockAttributes?.(block) || {}}
         <div
+          data-column-width={block.width}
           {...nodeAttributes}
           {...blockAttributes}
           class={clsx(
@@ -55,7 +56,6 @@
             nodeAttributes.class,
             blockAttributes.class
           )}
-          data-column-width={block.width}
         >
           <DynamicBlock {block} />
         </div>

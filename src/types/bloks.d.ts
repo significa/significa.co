@@ -198,8 +198,19 @@ export interface RichtextBoxStoryblok {
 }
 
 export interface RichtextCodeBlockStoryblok {
-  language?: '' | 'typescript' | 'elixir';
+  language?:
+    | ''
+    | 'html'
+    | 'javascript'
+    | 'css'
+    | 'typescript'
+    | 'tsx'
+    | 'svelte'
+    | 'elixir'
+    | 'bash'
+    | 'clike';
   line_numbers?: boolean;
+  line_numbers_start?: number;
   highlighted_lines?: string;
   code?: string;
   _uid: string;

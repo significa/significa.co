@@ -6,7 +6,8 @@
   const map = {
     image: Image,
     comparison: Comparison,
-    'image-grid': ImageGrid
+    'image-grid': ImageGrid,
+    'richtext-code-block': RichTextCodeBlock
   };
 
   export type Blocks = keyof typeof map;
@@ -19,6 +20,7 @@
 <script lang="ts">
   import { dev } from '$app/environment';
   import type { ComponentType } from 'svelte';
+  import RichTextCodeBlock from './rich-text-code-block.svelte';
 
   export let block: { component: string };
 

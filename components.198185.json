@@ -744,7 +744,7 @@
       "name": "richtext-code-block",
       "display_name": null,
       "created_at": "2023-02-24T17:31:53.338Z",
-      "updated_at": "2023-02-24T17:34:32.018Z",
+      "updated_at": "2023-02-27T14:45:56.510Z",
       "id": 3486021,
       "schema": {
         "language": {
@@ -753,14 +753,49 @@
           "use_uuid": true,
           "options": [
             {
+              "_uid": "01edce3b-33b2-445f-b8a7-1af6c9ae99b9",
+              "value": "html",
+              "name": "html"
+            },
+            {
+              "_uid": "d4151cd8-a329-4e23-bb55-1f4fefa3536c",
+              "value": "javascript",
+              "name": "javascript"
+            },
+            {
+              "_uid": "17431de1-74ac-426f-8697-5fb458f8073f",
+              "value": "css",
+              "name": "css"
+            },
+            {
               "_uid": "21f9eef8-79fa-4029-a6b8-9462d5c6175c",
               "name": "typescript",
               "value": "typescript"
             },
             {
+              "_uid": "ee4362d3-4b9a-4804-86b6-064eb0cb8f5d",
+              "value": "tsx",
+              "name": "tsx"
+            },
+            {
+              "_uid": "c48c2f8a-6de6-4ea0-a8f5-0ed0a208348d",
+              "value": "svelte",
+              "name": "svelte"
+            },
+            {
               "_uid": "ae4795e0-7645-4873-8a82-1980d806121b",
               "value": "elixir",
               "name": "elixir"
+            },
+            {
+              "_uid": "5d1c8c32-ff4c-45f6-8c40-ac5997cc1479",
+              "value": "bash",
+              "name": "bash"
+            },
+            {
+              "_uid": "68fbe6f0-3799-47df-88a1-56f6e0834a5d",
+              "value": "clike",
+              "name": "c-like"
             }
           ]
         },
@@ -769,14 +804,19 @@
           "default_value": true,
           "pos": 1
         },
+        "line_numbers_start": {
+          "type": "number",
+          "pos": 2,
+          "default_value": "1"
+        },
         "highlighted_lines": {
           "type": "text",
-          "pos": 2,
+          "pos": 3,
           "description": "- A single number refers to the line with that number.\n- Ranges are denoted by two numbers, separated with a hyphen (-).\n- Multiple line numbers or ranges are separated by commas.\n- Whitespace is allowed anywhere and will be stripped off."
         },
         "code": {
           "type": "textarea",
-          "pos": 3
+          "pos": 4
         }
       },
       "image": null,

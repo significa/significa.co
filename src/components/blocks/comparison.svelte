@@ -5,6 +5,7 @@
   import { getImageAttributes } from '$lib/utils/cms';
   import type { ComparisonStoryblok } from '$types/bloks';
   import { Icon } from '@significa/svelte-ui';
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
 
   export let block: ComparisonStoryblok;
 
@@ -37,6 +38,7 @@
 />
 
 <div
+  use:storyblokEditable={block}
   data-theme="dark"
   bind:this={container}
   style="--comparison-visibility: {$visibility}%"

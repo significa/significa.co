@@ -16,6 +16,7 @@
 
 <style lang="postcss">
   :global(.rich-text-code-block) {
+    /* TODO: container queries */
     @media (--md) {
       margin-inline: -2rem;
     }

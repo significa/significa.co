@@ -27,6 +27,7 @@
 </script>
 
 <pre
+  tabindex="-1"
   bind:this={el}
   data-line={lineHighlight}
   class={clsx({ 'line-numbers': lineNumbers }, className)}

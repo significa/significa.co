@@ -37,17 +37,19 @@
       })}
       <img data-column-width="full" class="cover" {src} {alt} {width} {height} />
     {/if}
-    {#if data.story.content.body}
-      <RichText
-        doc={data.story.content.body}
-        getBlockAttributes={(block) => {
-          return {
-            'data-column-width': block.width
-          };
-        }}
-      />
-    {/if}
   </ColumnContainer>
+  {#if data.story.content.body}
+    <RichText
+      wrapper={ColumnContainer}
+      doc={data.story.content.body}
+      getBlockAttributes={(block) => {
+        return {
+          'data-column-width': block.width,
+          ...(block.component === 'richtext-code-block' ? { class: 'blog-code-block' } : {})
+        };
+      }}
+    />
+  {/if}
 {/key}
 
 <style lang="postcss">

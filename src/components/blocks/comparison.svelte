@@ -83,6 +83,11 @@
     border-radius: var(--border-radius-md);
   }
 
+  img {
+    width: 100%;
+    height: auto;
+  }
+
   .b {
     position: absolute;
 

@@ -92,8 +92,8 @@
     }
   }
 
-  p {
-    margin-bottom: 1.5ch;
+  p + p {
+    margin-top: 1.5ch;
   }
 
   ul,
@@ -168,7 +168,7 @@
   }
 
   .block {
-    margin-block: 16px;
+    margin-block: 40px;
   }
 
   hr {

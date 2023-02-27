@@ -129,44 +129,10 @@
       "component_group_name": "Configuration"
     },
     {
-      "name": "column-media",
-      "display_name": null,
-      "created_at": "2023-02-16T10:36:30.080Z",
-      "updated_at": "2023-02-27T18:21:55.730Z",
-      "id": 3446780,
-      "schema": {
-        "media": {
-          "type": "asset",
-          "filetypes": [
-            "images"
-          ],
-          "required": true
-        },
-        "sticky": {
-          "type": "boolean"
-        },
-        "expandable": {
-          "type": "boolean"
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": null,
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "column-media",
-      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
-      "color": null,
-      "icon": null,
-      "component_group_name": "Single"
-    },
-    {
-      "name": "column-text",
+      "name": "column",
       "display_name": null,
       "created_at": "2023-02-16T10:38:00.191Z",
-      "updated_at": "2023-02-16T10:38:52.314Z",
+      "updated_at": "2023-02-27T20:22:33.400Z",
       "id": 3446784,
       "schema": {
         "content": {
@@ -183,8 +149,18 @@
             "h2",
             "list",
             "olist",
-            "link"
+            "link",
+            "blok"
+          ],
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_group_whitelist": [
+            "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
+            "1ef77ef8-466a-4b74-a076-f4554004e128"
           ]
+        },
+        "sticky": {
+          "type": "boolean"
         }
       },
       "image": null,
@@ -194,7 +170,7 @@
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
-      "real_name": "column-text",
+      "real_name": "column",
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
@@ -1038,7 +1014,7 @@
       "name": "two-columns",
       "display_name": null,
       "created_at": "2023-02-16T10:36:21.986Z",
-      "updated_at": "2023-02-27T18:20:42.225Z",
+      "updated_at": "2023-02-27T20:21:59.525Z",
       "id": 3446779,
       "schema": {
         "width": {
@@ -1060,7 +1036,7 @@
           "restrict_components": true,
           "component_whitelist": [
             "column-media",
-            "column-text"
+            "column"
           ],
           "minimum": 2,
           "maximum": 2,

@@ -31,19 +31,11 @@ export interface ClientStoryblok {
   [k: string]: any;
 }
 
-export interface ColumnMediaStoryblok {
-  media: AssetStoryblok;
-  sticky?: boolean;
-  expandable?: boolean;
-  _uid: string;
-  component: 'column-media';
-  [k: string]: any;
-}
-
-export interface ColumnTextStoryblok {
+export interface ColumnStoryblok {
   content: any;
+  sticky?: boolean;
   _uid: string;
-  component: 'column-text';
+  component: 'column';
   [k: string]: any;
 }
 
@@ -268,7 +260,7 @@ export interface TeamMemberLinkStoryblok {
 
 export interface TwoColumnsStoryblok {
   width?: '' | 'wide';
-  columns: (ColumnMediaStoryblok | ColumnTextStoryblok)[];
+  columns: (ColumnMediaStoryblok | ColumnStoryblok)[];
   _uid: string;
   component: 'two-columns';
   [k: string]: any;

@@ -187,6 +187,14 @@
 
     & :global(.block) {
       margin-block: 40px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
 
     & :global(hr) {

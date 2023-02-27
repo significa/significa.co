@@ -1,6 +1,4 @@
 <script lang="ts">
-  import ExpandableImage from '$components/expandable-image.svelte';
-  import { open } from '$components/image-gallery.svelte';
   import RichText from '$components/rich-text.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import type { TwoColumnsStoryblok } from '$types/bloks';
@@ -21,16 +19,10 @@
 
 <div class="two-columns" use:storyblokEditable={block}>
   {#each block.columns as column}
-    {#if column.component === 'column-media'}
-      <ExpandableImage
-        class={clsx({ sticky: column.sticky })}
-        image={column.media}
-        enabled={!!column.expandable}
-        on:expand={(e) => open([e.detail])}
-      />
-    {:else if column.component === 'column-text'}
-      <RichText doc={column.content} />
-    {/if}
+    <RichText
+      class={clsx('two-column-rich-text', { sticky: column.sticky })}
+      doc={column.content}
+    />
   {/each}
 </div>
 

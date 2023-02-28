@@ -34,7 +34,7 @@
     bottom: 16px;
     left: 16px;
 
-    background-color: var(--color-background);
+    background-color: var(--color-background-panel);
     color: var(--color-foreground);
 
     padding: 16px;

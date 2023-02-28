@@ -10,7 +10,8 @@
     'richtext-code-block': RichTextCodeBlock,
     'two-columns': TwoColumns,
     'richtext-testimonial': RichTextTestimonial,
-    video: Video
+    video: Video,
+    'richtext-box': RichTextBox
   };
 
   export type Blocks = keyof typeof map;
@@ -27,6 +28,7 @@
   import TwoColumns from './two-columns.svelte';
   import RichTextTestimonial from './rich-text-testimonial.svelte';
   import Video from './video.svelte';
+  import RichTextBox from './rich-text-box.svelte';
 
   export let block: { component: string };
 

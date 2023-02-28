@@ -19,7 +19,6 @@
     <Button
       as="a"
       variant="secondary"
-      size="sm"
       data-sveltekit-preload-data="off"
       href="/exit-preview?return_to={encodeURIComponent($page.url.pathname)}"
     >

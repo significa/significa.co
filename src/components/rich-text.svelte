@@ -107,7 +107,6 @@
 
     & :global(a) {
       color: var(--color-foreground-accent);
-      font-weight: var(--font-weight-medium);
     }
 
     & :global(p):not(:last-child) {

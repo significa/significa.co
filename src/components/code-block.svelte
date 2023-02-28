@@ -41,17 +41,17 @@
   pre,
   code {
     --codeblock-padding: 20px;
-    --codeblock-color: #adbdb6;
-    --codeblock-background-color: #17302a;
-    --codeblock-color-variable: #ff6e3d;
-    --codeblock-color-function: #ffc300;
-    --codeblock-color-keyword: #e9d38b;
-    --codeblock-color-operator: rgba(255, 255, 255, 0.9);
-    --codeblock-color-string: rgba(255, 255, 255, 0.7);
-    --codeblock-color-property: rgba(255, 255, 255, 0.9);
-    --codeblock-color-punctuation: rgba(255, 255, 255, 0.5);
-    --codeblock-color-comment: rgba(255, 255, 255, 0.4);
-    --codeblock-color-line-number: rgba(255, 255, 255, 0.2);
+    --codeblock-color: hsl(48deg 40% 80%);
+    --codeblock-background-color: hsl(48deg 0% 15%);
+    --codeblock-color-variable: hsl(15deg 100% 62%);
+    --codeblock-color-function: hsl(48deg 100% 57%);
+    --codeblock-color-keyword: hsl(48deg 68% 73%);
+    --codeblock-color-operator: hsl(48deg 80% 95% / 0.9);
+    --codeblock-color-string: hsl(48deg 80% 95% / 0.7);
+    --codeblock-color-property: hsl(48deg 80% 95% / 0.9);
+    --codeblock-color-punctuation: hsl(48deg 80% 95% / 0.5);
+    --codeblock-color-comment: hsl(48deg 80% 95% / 0.4);
+    --codeblock-color-line-number: hsl(48deg 80% 95% / 0.2);
 
     font-family: var(--font-family-mono);
     font-size: var(--font-size-sm);

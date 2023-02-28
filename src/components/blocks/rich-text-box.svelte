@@ -32,7 +32,6 @@
 <style lang="postcss">
   .rich-text-box {
     background-color: var(--color-background-panel);
-    border: 1px solid var(--color-border);
     border-radius: var(--border-radius-3xl);
     overflow: hidden;
 
@@ -57,11 +56,11 @@
 
     & h4 {
       font-size: var(--font-size-lg);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     & p {
-      font-size: var(--font-size-md);
+      font-size: var(--font-size-lg);
     }
 
     .link {

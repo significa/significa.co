@@ -54,6 +54,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@significa/svelte-ui": "0.0.5",
     "@storyblok/js": "^2.0.15"
   }
 }

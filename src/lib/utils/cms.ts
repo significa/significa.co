@@ -1,4 +1,41 @@
-import type { AssetStoryblok } from '$types/bloks';
+import type { AssetStoryblok, MultilinkStoryblok } from '$types/bloks';
+import { sanitizeSlug } from './paths';
+
+export function getAnchorFromCmsLink(link: MultilinkStoryblok) {
+  const attributes: {
+    href?: string;
+    rel?: string;
+    target?: '_blank';
+  } = {};
+
+  switch (link.linktype) {
+    case 'story': {
+      if ('story' in link && link.story.full_slug) {
+        attributes.href = sanitizeSlug(link.story.full_slug);
+      } else if (link.cached_url) {
+        attributes.href = sanitizeSlug(link.cached_url);
+      }
+      break;
+    }
+    case 'email': {
+      attributes.href = `mailto:${link.email}`;
+      break;
+    }
+    default: {
+      const href = link.url || link.cached_url || undefined;
+      attributes.href = href;
+
+      if (href && href.startsWith('http')) {
+        attributes.target = '_blank';
+        attributes.rel = 'noopener noreferrer';
+      }
+
+      break;
+    }
+  }
+
+  return attributes;
+}
 
 const getStoryblokImageSize = (src: string) => {
   const width = src.split('/')[5].split('x')[0];

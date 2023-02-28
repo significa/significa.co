@@ -1,6 +1,6 @@
 <script lang="ts">
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
-  import { getImageAttributes } from '$lib/utils/cms';
+  import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import type { RichtextBoxStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
   import clsx from 'clsx';
@@ -20,8 +20,9 @@
     </div>
     {#if block.link?.length}
       {#each block.link as link}
+        {@const { href } = getAnchorFromCmsLink(link)}
         <div class="link">
-          <Button variant="secondary" icon="link" arrow>{link.label}</Button>
+          <Button as="a" {href} variant="secondary" icon="link" arrow>{link.label}</Button>
         </div>
       {/each}
     {/if}

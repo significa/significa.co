@@ -1,46 +1,74 @@
 <script lang="ts">
   import { dev } from '$app/environment';
   import { page } from '$app/stores';
+  import { Button, Icon } from '@significa/svelte-ui';
 
+  let dismissed = false;
   const isDraft = $page.data.version === 'draft';
 </script>
 
-{#if isDraft && !dev}
+{#if isDraft && !dev && !dismissed}
   <div>
-    <h4>Warning</h4>
+    <header>
+      <h4>Warning</h4>
+      <button on:click={() => (dismissed = true)}>
+        <Icon icon="close" />
+      </button>
+    </header>
     <p>You're viewing a <em>draft</em> version</p>
-    <a
+    <Button
+      as="a"
+      variant="secondary"
+      size="sm"
       data-sveltekit-preload-data="off"
       href="/exit-preview?return_to={encodeURIComponent($page.url.pathname)}"
     >
-      See published version
-    </a>
+      Published version
+    </Button>
   </div>
 {/if}
 
-<!-- TODO: style -->
 <style>
   div {
     position: fixed;
-    z-index: 999999999;
+    z-index: calc(var(--z-index-max) + 1);
     bottom: 16px;
     left: 16px;
 
-    background-color: black;
-    color: white;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
 
     padding: 16px;
+    border-radius: var(--border-radius-xl);
+    border: 1px solid var(--color-border);
 
     display: flex;
     flex-direction: column;
     align-items: stretch;
   }
 
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2px;
+  }
+
   h4 {
-    margin-bottom: 6px;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
   }
 
   p {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-sm);
     margin-bottom: 16px;
+  }
+
+  button {
+    all: unset;
+
+    cursor: pointer;
+    padding: 4px;
   }
 </style>

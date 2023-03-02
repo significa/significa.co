@@ -4,7 +4,7 @@ const parseAlphaColor = (color) => color?.replace('<alpha-value>', '1');
 module.exports = {
   content: [
     './src/**/*.{html,js,svelte,ts}',
-    './node_modules/@significa/svelte-ui/src/**/*.{html,js,svelte,ts}'
+    './node_modules/@significa/svelte-ui/**/*.{html,js,svelte,ts}'
   ],
   theme: {
     container: {

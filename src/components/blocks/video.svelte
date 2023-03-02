@@ -8,7 +8,7 @@
 {#if block.video?.filename}
   <!-- svelte-ignore a11y-media-has-caption -->
   <video
-    class="w-full h-auto rounded-lg"
+    class="not-rich-text my-6 md:my-10 w-full h-auto rounded-lg"
     use:storyblokEditable={block}
     muted
     src={block.video.filename}

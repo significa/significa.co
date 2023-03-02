@@ -6,6 +6,7 @@
 </script>
 
 <CodeBlock
+  class="not-rich-text my-8 md:my-12"
   code={block.code || ''}
   language={block.language || 'javascript'}
   lineNumbers={!!block.line_numbers}

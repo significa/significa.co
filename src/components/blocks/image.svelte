@@ -8,7 +8,7 @@
 </script>
 
 {#if block?.image?.filename}
-  <figure class="w-full h-auto" use:storyblokEditable={block}>
+  <figure class="not-rich-text my-6 md:my-10 w-full h-auto" use:storyblokEditable={block}>
     <ExpandableImage
       image={block.image}
       enabled={!!block.expandable}

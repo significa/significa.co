@@ -18,9 +18,7 @@
   <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
   <div
     class={clsx(
-      'w-full',
-      'rounded-md',
-      'overflow-hidden',
+      'w-full rounded-md overflow-hidden',
       enabled && 'group relative outline-none focus-visible:ring-4 transition-all',
       className
     )}

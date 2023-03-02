@@ -38,7 +38,7 @@
 />
 
 <div
-  class="relative overflow-hidden rounded-md"
+  class="not-rich-text my-6 md:my-10 relative overflow-hidden rounded-md"
   style="--comparison-visibility: {$visibility}%"
   use:storyblokEditable={block}
   data-theme="dark"

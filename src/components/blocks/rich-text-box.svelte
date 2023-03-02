@@ -11,7 +11,7 @@
 <div
   use:storyblokEditable={block}
   class={clsx(
-    'not-rich-text bg-background-panel rounded-2xl p-4',
+    'not-rich-text my-6 md:my-10 bg-background-panel rounded-2xl p-4',
     block.layout === 'horizontal' && 'flex gap-4 items-stretch'
   )}
 >

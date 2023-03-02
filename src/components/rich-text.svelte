@@ -9,28 +9,15 @@
 
   type $$Props = HTMLAttributes<HTMLDivElement> & {
     doc: ISbRichtext;
-    headingMap?: Record<string, 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'>;
     getAttributes?: (section: Section, block?: Block) => Partial<Record<string, string>>;
-    wrapper?: ConstructorOfATypedSvelteComponent;
     as?: string;
   };
 
   let className: $$Props['class'] = undefined;
   export { className as class };
   export let doc: $$Props['doc'];
-  export let headingMap: $$Props['headingMap'] = {};
   export let getAttributes: $$Props['getAttributes'] = () => ({});
   export let as: $$Props['as'] = 'div';
-
-  const defaultHeadingMap: typeof headingMap = {
-    1: 'h1',
-    2: 'h2',
-    3: 'h3',
-    4: 'h4',
-    5: 'h5',
-    6: 'h6'
-  };
-  const headings = { ...defaultHeadingMap, ...headingMap };
 
   const resolver = new RichTextResolver();
 </script>
@@ -44,7 +31,7 @@
       {:else if section.type === 'heading'}
         {@const attributes = getAttributes?.(section) || {}}
         {@const content = resolver.render(section)}
-        <svelte:element this={headings[section.attrs.level.toString()]} {...attributes}>
+        <svelte:element this={`h${[section.attrs.level.toString()]}`} {...attributes}>
           {@html content}
         </svelte:element>
       {:else if section.type === 'bullet_list'}

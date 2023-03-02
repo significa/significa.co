@@ -8,14 +8,16 @@
 </script>
 
 {#if isDraft && !dev && !dismissed}
-  <div>
-    <header>
-      <h4>Warning</h4>
+  <div
+    class="fixed z-50 bottom-4 left-4 bg-background-panel text-foreground p-4 rounded-xl border border-border flex flex-col items-stretch"
+  >
+    <header class="flex justify-between items-center mb-1.5">
+      <h4 class="text-base font-medium">Warning</h4>
       <button on:click={() => (dismissed = true)}>
         <Icon icon="close" />
       </button>
     </header>
-    <p>You're viewing a <em>draft</em> version</p>
+    <p class="text-base mb-4">You're viewing a <em>draft</em> version</p>
     <Button
       as="a"
       variant="secondary"
@@ -26,48 +28,3 @@
     </Button>
   </div>
 {/if}
-
-<style>
-  div {
-    position: fixed;
-    z-index: calc(var(--z-index-max) + 1);
-    bottom: 16px;
-    left: 16px;
-
-    background-color: var(--color-background-panel);
-    color: var(--color-foreground);
-
-    padding: 16px;
-    border-radius: var(--border-radius-xl);
-    border: 1px solid var(--color-border);
-
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2px;
-  }
-
-  h4 {
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-medium);
-  }
-
-  p {
-    font-size: var(--font-size-sm);
-    line-height: var(--line-height-sm);
-    margin-bottom: 16px;
-  }
-
-  button {
-    all: unset;
-
-    cursor: pointer;
-    padding: 4px;
-  }
-</style>

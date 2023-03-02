@@ -13,59 +13,26 @@
   };
 </script>
 
-<div use:storyblokEditable={block} class={clsx(block.density)}>
+<div
+  use:storyblokEditable={block}
+  class={clsx(
+    'not-rich-text my-10 lg:my-20 gap-x-4',
+    block.density === 'tight' && 'sm:columns-2 md:columns-3 md:gap-x-6 lg:columns-4',
+    block.density === 'regular' && 'sm:columns-2 lg:columns-3 lg:gap-x-6',
+    block.density === 'loose' && 'sm:columns-2 sm:gap-x-6 lg:gap-x-10'
+  )}
+>
   {#each block.images as image, i}
-    <ExpandableImage {image} enabled={!!block.expandable} on:expand={() => handleExpand(i)} />
+    <ExpandableImage
+      class={clsx(
+        'mb-4',
+        block.density === 'tight' && 'md:mb-6',
+        block.density === 'regular' && 'lg:mb-6',
+        block.density === 'loose' && 'sm:mb-6 lg:mb-10'
+      )}
+      {image}
+      enabled={!!block.expandable}
+      on:expand={() => handleExpand(i)}
+    />
   {/each}
 </div>
-
-<style lang="postcss">
-  div {
-    --column-count: 1;
-    --grid-margin: 16px;
-
-    column-count: var(--column-count);
-    column-gap: var(--grid-margin);
-
-    & > :global(*) {
-      margin-bottom: var(--grid-margin);
-    }
-
-    &.loose {
-      @media (--sm) {
-        --column-count: 2;
-        --column-gap: 24px;
-      }
-
-      @media (--lg) {
-        --column-gap: 40px;
-      }
-    }
-
-    &.regular {
-      @media (--sm) {
-        --column-count: 2;
-      }
-
-      @media (--lg) {
-        --column-count: 3;
-        --column-gap: 24px;
-      }
-    }
-
-    &.tight {
-      @media (--sm) {
-        --column-count: 2;
-      }
-
-      @media (--md) {
-        --column-count: 3;
-        --column-gap: 24px;
-      }
-
-      @media (--lg) {
-        --column-count: 4;
-      }
-    }
-  }
-</style>

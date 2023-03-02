@@ -3,6 +3,7 @@
 
   import DraftMode from '$components/draft-mode.svelte';
   import ImageGallery from '$components/image-gallery.svelte';
+  import TopNavigation from '$components/top-navigation.svelte';
 </script>
 
 <svelte:head>
@@ -12,4 +13,5 @@
 
 <DraftMode />
 <ImageGallery />
+<TopNavigation />
 <slot />

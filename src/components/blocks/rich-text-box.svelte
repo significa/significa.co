@@ -8,63 +8,37 @@
   export let block: RichtextBoxStoryblok;
 </script>
 
-<div use:storyblokEditable={block} class={clsx('rich-text-box', block.layout)}>
+<div
+  use:storyblokEditable={block}
+  class={clsx(
+    'not-rich-text my-6 md:my-10 bg-background-panel rounded-2xl p-4',
+    block.layout === 'horizontal' && 'flex gap-4 items-stretch'
+  )}
+>
   {#if block.image?.filename}
     {@const { src, alt } = getImageAttributes(block.image)}
-    <img {src} {alt} />
+    <div
+      class={clsx(
+        'flex-shrink-0',
+        block.layout === 'horizontal' && 'w-1/3',
+        block.layout === 'vertical' && 'mb-4'
+      )}
+    >
+      <img class="object-cover h-full rounded-md" {src} {alt} />
+    </div>
   {/if}
-  <div class="content">
-    <div>
-      <h4>{block.title}</h4>
-      <p>{block.text}</p>
+  <div class="flex flex-col">
+    <div class="flex-1">
+      <h4 class="text-xl font-semibold">{block.title}</h4>
+      <p class="text-xl mt-0.5">{block.text}</p>
     </div>
     {#if block.link?.length}
-      {#each block.link as link}
+      {#each block.link as { label, link }}
         {@const { href } = getAnchorFromCmsLink(link)}
-        <div class="link">
-          <Button as="a" {href} variant="secondary" icon="link" arrow>{link.label}</Button>
+        <div class="mt-4">
+          <Button as="a" {href} variant="secondary" arrow>{label}</Button>
         </div>
       {/each}
     {/if}
   </div>
 </div>
-
-<style lang="postcss">
-  .rich-text-box {
-    background-color: var(--color-background-panel);
-    border-radius: var(--border-radius-3xl);
-    overflow: hidden;
-
-    &.horizontal {
-      display: flex;
-
-      & img {
-        width: 30%;
-        object-fit: cover;
-      }
-    }
-
-    &.vertical {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    & .content {
-      padding: 16px;
-    }
-
-    & h4 {
-      font-size: var(--font-size-lg);
-      margin-bottom: 2px;
-    }
-
-    & p {
-      font-size: var(--font-size-lg);
-    }
-
-    .link {
-      margin-top: 16px;
-    }
-  }
-</style>

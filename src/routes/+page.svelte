@@ -4,7 +4,7 @@
 </script>
 
 <div>
-  <h1 class="text-5xl font-medium light:text-error dark:text-accent yellow:text-sunflower">
+  <h1 class="text-5xl font-medium text-error">
     {t('hello')} Significa
   </h1>
   <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
@@ -13,6 +13,6 @@
 
 <style lang="postcss">
   div {
-    margin: 20px;
+    margin: theme('spacing.4');
   }
 </style>

@@ -4,7 +4,7 @@
       "name": "blog-post",
       "display_name": null,
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2023-02-25T11:32:41.052Z",
+      "updated_at": "2023-03-02T17:04:01.447Z",
       "id": 3442347,
       "schema": {
         "cover": {
@@ -91,7 +91,7 @@
             "hrule",
             "link",
             "blok",
-            "h1"
+            "h4"
           ]
         }
       },
@@ -132,7 +132,7 @@
       "name": "column",
       "display_name": null,
       "created_at": "2023-02-16T10:38:00.191Z",
-      "updated_at": "2023-02-27T20:22:33.400Z",
+      "updated_at": "2023-03-02T17:04:33.780Z",
       "id": 3446784,
       "schema": {
         "content": {
@@ -150,7 +150,9 @@
             "list",
             "olist",
             "link",
-            "blok"
+            "blok",
+            "h3",
+            "h4"
           ],
           "restrict_type": "groups",
           "restrict_components": true,
@@ -257,7 +259,7 @@
       "name": "handbook",
       "display_name": null,
       "created_at": "2023-02-15T13:50:12.113Z",
-      "updated_at": "2023-02-25T11:33:07.878Z",
+      "updated_at": "2023-03-02T17:04:13.537Z",
       "id": 3442773,
       "schema": {
         "cover": {
@@ -322,14 +324,14 @@
             "inlinecode",
             "paragraph",
             "h2",
-            "h3",
             "list",
             "olist",
             "quote",
             "link",
             "hrule",
             "blok",
-            "h1"
+            "h3",
+            "h4"
           ]
         },
         "seo_title": {
@@ -522,7 +524,7 @@
       "name": "project",
       "display_name": null,
       "created_at": "2023-02-15T13:07:44.621Z",
-      "updated_at": "2023-02-25T11:33:15.972Z",
+      "updated_at": "2023-03-02T17:04:21.132Z",
       "id": 3442356,
       "schema": {
         "cover": {
@@ -617,7 +619,7 @@
             "hrule",
             "link",
             "blok",
-            "h1"
+            "h4"
           ]
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {

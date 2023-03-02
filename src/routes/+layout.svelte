@@ -1,6 +1,5 @@
 <script lang="ts">
   import '$styles/index.css';
-  import '@significa/svelte-ui/index.css';
 
   import DraftMode from '$components/draft-mode.svelte';
   import ImageGallery from '$components/image-gallery.svelte';

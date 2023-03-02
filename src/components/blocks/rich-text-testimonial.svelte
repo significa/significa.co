@@ -1,11 +1,12 @@
 <script lang="ts">
   import { getImageAttributes } from '$lib/utils/cms';
   import type { RichtextTestimonialStoryblok } from '$types/bloks';
+  import clsx from 'clsx';
 
   export let block: RichtextTestimonialStoryblok;
 </script>
 
-<div class="not-rich-text py-2 px-4 md:py-4 md:px-8 lg:py-10 lg:px-16">
+<div class={clsx('not-rich-text py-2 px-4 md:py-4 md:px-8 lg:py-10 lg:px-16', $$restProps.class)}>
   {#if block.testimonial}
     <p class="text-2xl font-semibold leading-tight">
       <span class="bg-border">{block.testimonial}</span>

@@ -1,12 +1,13 @@
 <script lang="ts">
   import CodeBlock from '$components/code-block.svelte';
   import type { RichtextCodeBlockStoryblok } from '$types/bloks';
+  import clsx from 'clsx';
 
   export let block: RichtextCodeBlockStoryblok;
 </script>
 
 <CodeBlock
-  class="not-rich-text my-8 md:my-12"
+  class={clsx('not-rich-text my-8 md:my-12', $$restProps.class)}
   code={block.code || ''}
   language={block.language || 'javascript'}
   lineNumbers={!!block.line_numbers}

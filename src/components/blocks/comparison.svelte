@@ -6,6 +6,7 @@
   import type { ComparisonStoryblok } from '$types/bloks';
   import { CircleButton } from '@significa/svelte-ui';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
+  import clsx from 'clsx';
 
   export let block: ComparisonStoryblok;
 
@@ -37,7 +38,7 @@
 />
 
 <div
-  class="not-rich-text my-6 md:my-10 relative overflow-hidden rounded-md"
+  class={clsx('not-rich-text my-6 md:my-10 relative overflow-hidden rounded-md', $$restProps.class)}
   style="--comparison-visibility: {$visibility}%"
   use:storyblokEditable={block}
   data-theme="dark"

@@ -8,7 +8,7 @@
 </script>
 
 <div
-  class="relative my-10 lg:my-20 grid lg:grid-cols-2 gap-10 items-start"
+  class={clsx('relative my-10 lg:my-20 grid lg:grid-cols-2 gap-10 items-start', $$restProps.class)}
   use:storyblokEditable={block}
 >
   {#each block.columns as column}

@@ -3,12 +3,16 @@
   import { open } from '$components/image-gallery.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import type { ImageStoryblok } from '$types/bloks';
+  import clsx from 'clsx';
 
   export let block: ImageStoryblok;
 </script>
 
 {#if block?.image?.filename}
-  <figure class="not-rich-text my-6 md:my-10 w-full h-auto" use:storyblokEditable={block}>
+  <figure
+    class={clsx('not-rich-text my-6 md:my-10 w-full h-auto', $$restProps.class)}
+    use:storyblokEditable={block}
+  >
     <ExpandableImage
       image={block.image}
       enabled={!!block.expandable}

@@ -19,7 +19,8 @@
     'not-rich-text my-10 lg:my-20 gap-x-4',
     block.density === 'tight' && 'sm:columns-2 md:columns-3 md:gap-x-6 lg:columns-4',
     block.density === 'regular' && 'sm:columns-2 lg:columns-3 lg:gap-x-6',
-    block.density === 'loose' && 'sm:columns-2 sm:gap-x-6 lg:gap-x-10'
+    block.density === 'loose' && 'sm:columns-2 sm:gap-x-6 lg:gap-x-10',
+    $$restProps.class
   )}
 >
   {#each block.images as image, i}

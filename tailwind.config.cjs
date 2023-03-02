@@ -14,9 +14,10 @@ module.exports = {
     typography: (theme) => ({
       DEFAULT: {
         css: {
-          color: 'inherit',
-          fontSize: theme('fontSize.xl'),
-          lineHeight: theme('lineHeight.normal'),
+          'p, ul, ol': {
+            fontSize: theme('fontSize.xl')[0],
+            lineHeight: theme('lineHeight.normal')
+          },
           p: {
             '&:not(:last-child)': {
               marginBottom: '1.5ch'
@@ -130,11 +131,11 @@ module.exports = {
             maskPosition: 'center center'
           },
           // margin clear
-          '> :first-child': {
-            marginTop: '0'
+          '& > *:first-child': {
+            marginTop: '0 !important'
           },
-          '> :last-child': {
-            marginBottom: '0'
+          '& > *:last-child': {
+            marginBottom: '0 !important'
           }
         }
       }

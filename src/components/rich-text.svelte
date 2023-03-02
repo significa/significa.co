@@ -49,9 +49,11 @@
       {:else if section.type === 'blok'}
         {#each section.attrs.body as block}
           {@const attributes = getAttributes?.(section, block) || {}}
-          <div {...attributes} class={clsx('block', `block-${block.component}`, attributes.class)}>
-            <DynamicBlock {block} />
-          </div>
+          <DynamicBlock
+            {block}
+            {...attributes}
+            class={clsx('block', `block-${block.component}`, attributes.class)}
+          />
         {/each}
       {/if}
     {/each}

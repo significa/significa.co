@@ -53,9 +53,9 @@
     --codeblock-color-comment: hsl(48deg 80% 95% / 0.4);
     --codeblock-color-line-number: hsl(48deg 80% 95% / 0.2);
 
-    font-family: var(--font-family-mono);
-    font-size: var(--font-size-sm);
-    line-height: 1.5;
+    font-family: theme('fontFamily.mono');
+    font-size: theme('fontSize.base');
+    line-height: theme('lineHeight.relaxed');
     text-shadow: none;
 
     color: var(--codeblock-color);
@@ -67,12 +67,16 @@
     word-break: normal;
     tab-size: 4;
     hyphens: none;
+  }
 
-    @media (--md) {
+  @media (--md) {
+    pre {
       --codeblock-padding: 32px;
     }
+  }
 
-    @media (--lg) {
+  @media (--lg) {
+    pre {
       --codeblock-padding: 40px;
     }
   }
@@ -80,7 +84,7 @@
   pre {
     padding: var(--codeblock-padding);
     background: var(--codeblock-background-color);
-    border-radius: var(--border-radius-lg);
+    border-radius: theme('borderRadius.lg');
     overflow: auto;
   }
 

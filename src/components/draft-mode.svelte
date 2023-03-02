@@ -27,7 +27,7 @@
   </div>
 {/if}
 
-<style>
+<!-- <style>
   div {
     position: fixed;
     z-index: calc(var(--z-index-max) + 1);
@@ -70,4 +70,4 @@
     cursor: pointer;
     padding: 4px;
   }
-</style>
+</style> -->

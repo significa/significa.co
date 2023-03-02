@@ -2,7 +2,7 @@
   <slot />
 </main>
 
-<style lang="postcss">
+<!-- <style lang="postcss">
   main {
     max-width: var(--container-max-width);
     margin-inline: auto;
@@ -35,4 +35,4 @@
       width: 100%;
     }
   }
-</style>
+</style> -->

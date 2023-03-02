@@ -12,7 +12,7 @@ export const load = (async ({ params, cookies, fetch }) => {
   try {
     const { data }: { data: { story?: ISbStoryData<BlogPostStoryblok> } } = await storyblok.get(
       `cdn/stories/blog/${params.slug}`,
-      { version }
+      { version, resolve_links: 'url' }
     );
 
     if (!data.story?.id) throw new Error();

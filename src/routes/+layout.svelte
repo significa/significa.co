@@ -1,8 +1,10 @@
 <script lang="ts">
   import '$styles/index.css';
+  import '@significa/svelte-ui/index.css';
 
   import DraftMode from '$components/draft-mode.svelte';
   import ImageGallery from '$components/image-gallery.svelte';
+  import TopNavigation from '$components/top-navigation.svelte';
 </script>
 
 <svelte:head>
@@ -12,4 +14,5 @@
 
 <DraftMode />
 <ImageGallery />
+<TopNavigation />
 <slot />

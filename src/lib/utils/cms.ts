@@ -1,14 +1,14 @@
 import type { AssetStoryblok, MultilinkStoryblok } from '$types/bloks';
 import { sanitizeSlug } from './paths';
 
-export function getAnchorFromCmsLink(link: MultilinkStoryblok) {
+export function getAnchorFromCmsLink(link: MultilinkStoryblok | undefined) {
   const attributes: {
     href?: string;
     rel?: string;
     target?: '_blank';
   } = {};
 
-  switch (link.linktype) {
+  switch (link?.linktype) {
     case 'story': {
       if ('story' in link && link.story.full_slug) {
         attributes.href = sanitizeSlug(link.story.full_slug);
@@ -22,7 +22,7 @@ export function getAnchorFromCmsLink(link: MultilinkStoryblok) {
       break;
     }
     default: {
-      const href = link.url || link.cached_url || undefined;
+      const href = link?.url || link?.cached_url || undefined;
       attributes.href = href;
 
       if (href && href.startsWith('http')) {

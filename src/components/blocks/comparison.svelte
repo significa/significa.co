@@ -38,10 +38,11 @@
 />
 
 <div
+  class="relative overflow-hidden rounded-md"
+  style="--comparison-visibility: {$visibility}%"
   use:storyblokEditable={block}
   data-theme="dark"
   bind:this={container}
-  style="--comparison-visibility: {$visibility}%"
   use:intersectionObserver={[
     ([e]) => {
       // move the handle to the middle when the element gets in the viewport
@@ -61,80 +62,31 @@
     { threshold: [1] }
   ]}
 >
-  <div class="line" />
-  <button aria-hidden="true" tabindex="-1" bind:this={handle} class="handle">
-    <Icon icon="comparison" />
+  <!-- line -->
+  <div
+    class="absolute z-10 top-0 left-[calc(var(--comparison-visibility)-2px)] h-full w-1 bg-black"
+  />
+  <button
+    aria-hidden="true"
+    tabindex="-1"
+    bind:this={handle}
+    class="cursor-ew-resize absolute z-20 top-1/2 -translate-x-1/2 -translate-y-1/2 left-[var(--comparison-visibility)] w-10 h-10 rounded-full bg-black text-white flex items-center justify-center shadow-md"
+  >
+    <Icon class="pointer-events-none" icon="comparison" />
   </button>
   {#if block.image_a?.filename}
     {@const { src, alt, width, height } = getImageAttributes(block.image_a)}
-    <img class="a" {src} {alt} {width} {height} />
+    <img class="w-full h-auto" {src} {alt} {width} {height} />
   {/if}
 
   {#if block.image_b?.filename}
     {@const { src, alt, width, height } = getImageAttributes(block.image_b)}
-    <img class="b" {src} {alt} {width} {height} />
+    <img
+      class="absolute overflow-hidden inset-0 h-full w-[var(--comparison-visibility)] object-cover object-left"
+      {src}
+      {alt}
+      {width}
+      {height}
+    />
   {/if}
 </div>
-
-<style lang="postcss">
-  div {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--border-radius-md);
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-  }
-
-  .b {
-    position: absolute;
-
-    overflow: hidden;
-    inset: 0;
-
-    height: 100%;
-    width: var(--comparison-visibility);
-    object-fit: cover;
-    object-position: left center;
-  }
-
-  .line {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: calc(var(--comparison-visibility) - 2px);
-    height: 100%;
-    width: 4px;
-    background-color: black;
-  }
-
-  .handle {
-    all: unset;
-    cursor: ew-resize;
-
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    left: var(--comparison-visibility);
-    transform: translate(-50%, -50%);
-
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: var(--border-radius-full);
-    background-color: var(--color-foreground);
-    color: var(--color-background);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    box-shadow: var(--box-shadow-md);
-
-    & :global(*) {
-      /* disable pointer events to guarantee that a click in the handle is catched by our listener */
-      pointer-events: none;
-    }
-  }
-</style>

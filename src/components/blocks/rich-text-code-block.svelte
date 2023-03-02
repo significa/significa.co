@@ -6,19 +6,9 @@
 </script>
 
 <CodeBlock
-  class="rich-text-code-block"
   code={block.code || ''}
   language={block.language || 'javascript'}
   lineNumbers={!!block.line_numbers}
   lineNumbersStartAt={block.line_numbers_start}
   lineHighlight={block.highlighted_lines}
 />
-
-<style lang="postcss">
-  :global(.rich-text-code-block) {
-    /* TODO: container queries */
-    @media (--md) {
-      margin-inline: -2rem;
-    }
-  }
-</style>

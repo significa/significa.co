@@ -1,20 +1,8 @@
-@import './reset.css';
-
-@import '@significa/svelte-ui/fonts.css';
-@import '@significa/svelte-ui/index.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --container-max-width: 1440px;
   --container-padding-inline: 16px;
-}
-
-body {
-  font-family: var(--font-family-sans);
-  background-color: var(--color-background);
-  color: var(--color-foreground);
-}
-
-::selection {
-  background-color: var(--color-foreground);
-  color: var(--color-background);
 }

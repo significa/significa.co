@@ -2,6 +2,7 @@
   import { getImageAttributes } from '$lib/utils/cms';
   import type { AssetStoryblok } from '$types/bloks';
   import { Icon } from '@significa/svelte-ui';
+  import clsx from 'clsx';
   import { writable } from 'svelte/store';
   import { fade, scale } from 'svelte/transition';
 
@@ -36,100 +37,48 @@
 
     if ($items.length > 1 && e.key === 'ArrowRight') next();
   };
+
+  const buttonClasses =
+    'absolute z-10 w-10 h-10 rounded-full bg-black text-white flex items-center justify-center';
 </script>
 
 <svelte:window on:keydown={onkeydown} />
 
 {#if $items.length}
-  <div transition:fade={{ duration: 200 }} on:click={close} on:keydown={onkeydown}>
-    <button class="close" on:click={close}>
+  <div
+    class="fixed z-50 inset-0 bg-[rgba(0,0,0,0.8)] flex items-center justify-center"
+    transition:fade={{ duration: 200 }}
+    on:click={close}
+    on:keydown={onkeydown}
+  >
+    <button class={clsx(buttonClasses, 'top-2 right-2')} on:click={close}>
       <Icon icon="close" />
     </button>
     {#if $items.length > 1}
-      <button class="previous" on:click|stopPropagation={prev}><Icon icon="chevron" /></button>
-      <button class="next" on:click|stopPropagation={next}><Icon icon="chevron" /></button>
+      <button
+        class={clsx(buttonClasses, 'top-1/2 -translate-y-1/2 left-2 rotate-180')}
+        on:click|stopPropagation={prev}><Icon icon="chevron" /></button
+      >
+      <button
+        class={clsx(buttonClasses, 'top-1/2 -translate-y-1/2 right-2')}
+        on:click|stopPropagation={next}><Icon icon="chevron" /></button
+      >
     {/if}
     {#each [$items[$active]] as image ($active)}
       {@const { src, alt, width, height, title } = getImageAttributes(image)}
-      <figure transition:scale={{ start: 0.9, duration: 200 }}>
-        <img {src} {alt} {width} {height} />
+      <figure
+        class="absolute w-[calc(100%-32px)] h-[calc(100%-32px)]"
+        transition:scale={{ start: 0.9, duration: 200 }}
+      >
+        <img class="w-full h-full object-contain" {src} {alt} {width} {height} />
         {#if title}
-          <figcaption>{title}</figcaption>
+          <figcaption
+            class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-[rgba(0,0,0,0.8)] p-1 rounded-2xs text-white text-xs"
+          >
+            {title}
+          </figcaption>
         {/if}
       </figure>
     {/each}
   </div>
 {/if}
-
-<style lang="postcss">
-  div {
-    position: fixed;
-    z-index: var(--z-index-max);
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  figure {
-    position: absolute;
-    width: calc(100% - 32px);
-    height: calc(100% - 32px);
-
-    & img {
-      width: 100%;
-      height: 100%;
-
-      object-fit: contain;
-    }
-
-    & figcaption {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(0, 0, 0, 0.8);
-      padding: 4px;
-      border-radius: var(--border-radius-2xs);
-      color: white;
-      font-size: var(--font-size-xs);
-    }
-  }
-
-  button {
-    all: unset;
-    cursor: pointer;
-
-    position: absolute;
-    z-index: 1;
-
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: var(--border-radius-full);
-    background-color: black;
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .close {
-    top: 10px;
-    right: 10px;
-  }
-
-  .previous {
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%) rotate(180deg);
-  }
-
-  .next {
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-  }
-</style>

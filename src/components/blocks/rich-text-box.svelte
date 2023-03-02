@@ -6,7 +6,6 @@
   import clsx from 'clsx';
 
   export let block: RichtextBoxStoryblok;
-  console.log(block);
 </script>
 
 <div

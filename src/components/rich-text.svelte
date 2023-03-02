@@ -23,11 +23,11 @@
   export let as: $$Props['as'] = 'div';
 
   const defaultHeadingMap: typeof headingMap = {
-    1: 'h2', // h1 is reserved for the page title
-    2: 'h3',
-    3: 'h4',
-    4: 'h5',
-    5: 'h6',
+    1: 'h1',
+    2: 'h2',
+    3: 'h3',
+    4: 'h4',
+    5: 'h5',
     6: 'h6'
   };
   const headings = { ...defaultHeadingMap, ...headingMap };
@@ -93,7 +93,7 @@
   /* Inline code */
   :global(.rich-text) :global(code):not(:where([class~='not-rich-text'] *, [class*='language-'])) {
     font-family: theme('fontFamily.mono');
-    font-size: theme('fontSize.base');
+    font-size: 0.8em;
     font-weight: theme('fontWeight.medium');
     padding: 2px 4px;
     border-radius: theme('borderRadius.xs');
@@ -171,7 +171,7 @@
   }
 
   :global(.rich-text) :global(h2):not(:where([class~='not-rich-text'] *, :first-child)) {
-    margin-top: 3ch;
+    margin-top: 3.5ch;
   }
 
   /* H3 */
@@ -182,7 +182,7 @@
   }
 
   :global(.rich-text) :global(h3):not(:where([class~='not-rich-text'] *, :first-child)) {
-    margin-top: 2.5ch;
+    margin-top: 3ch;
   }
 
   /* H4 */

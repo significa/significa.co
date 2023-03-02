@@ -15,7 +15,9 @@
       on:expand={(e) => open([e.detail])}
     />
     {#if block?.image?.title}
-      <figcaption class="text-sm text-foreground-secondary mt-2">{block.image.title}</figcaption>
+      <figcaption class="text-sm text-foreground-secondary mt-2 text-center">
+        {block.image.title}
+      </figcaption>
     {/if}
   </figure>
 {/if}

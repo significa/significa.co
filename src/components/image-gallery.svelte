@@ -20,11 +20,15 @@
 </script>
 
 <script lang="ts">
-  const prev = () => {
+  import { CircleButton } from '@significa/svelte-ui';
+
+  const prev = (e: MouseEvent | KeyboardEvent) => {
+    e.stopPropagation();
     active.update((value) => (value === 0 ? $items.length - 1 : value - 1));
   };
 
-  const next = () => {
+  const next = (e: MouseEvent | KeyboardEvent) => {
+    e.stopPropagation();
     active.update((value) => (value === $items.length - 1 ? 0 : value + 1));
   };
 
@@ -33,13 +37,10 @@
 
     if (e.key === 'Escape') close();
 
-    if ($items.length > 1 && e.key === 'ArrowLeft') prev();
+    if ($items.length > 1 && e.key === 'ArrowLeft') prev(e);
 
-    if ($items.length > 1 && e.key === 'ArrowRight') next();
+    if ($items.length > 1 && e.key === 'ArrowRight') next(e);
   };
-
-  const buttonClasses =
-    'absolute z-10 w-10 h-10 rounded-full bg-black text-white flex items-center justify-center';
 </script>
 
 <svelte:window on:keydown={onkeydown} />
@@ -51,18 +52,22 @@
     on:click={close}
     on:keydown={onkeydown}
   >
-    <button class={clsx(buttonClasses, 'top-2 right-2')} on:click={close}>
-      <Icon icon="close" />
-    </button>
+    <CircleButton
+      class="absolute z-10 bg-black text-white top-2 right-2"
+      on:click={close}
+      icon="close"
+    />
     {#if $items.length > 1}
-      <button
-        class={clsx(buttonClasses, 'top-1/2 -translate-y-1/2 left-2 rotate-180')}
-        on:click|stopPropagation={prev}><Icon icon="chevron" /></button
-      >
-      <button
-        class={clsx(buttonClasses, 'top-1/2 -translate-y-1/2 right-2')}
-        on:click|stopPropagation={next}><Icon icon="chevron" /></button
-      >
+      <CircleButton
+        class="absolute z-10 bg-black text-white top-1/2 -translate-y-1/2 left-2 rotate-180"
+        on:click={prev}
+        icon="chevron"
+      />
+      <CircleButton
+        class="absolute z-10 bg-black text-white top-1/2 -translate-y-1/2 right-2"
+        on:click={next}
+        icon="chevron"
+      />
     {/if}
     {#each [$items[$active]] as image ($active)}
       {@const { src, alt, width, height, title } = getImageAttributes(image)}

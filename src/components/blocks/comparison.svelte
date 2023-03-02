@@ -4,12 +4,11 @@
   import { intersectionObserver } from '$lib/actions/intersection-observer';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { ComparisonStoryblok } from '$types/bloks';
-  import { Icon } from '@significa/svelte-ui';
+  import { CircleButton } from '@significa/svelte-ui';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
 
   export let block: ComparisonStoryblok;
 
-  let handle: HTMLButtonElement;
   let container: HTMLDivElement;
   let dragging = false;
   // using a tweened instead of a value to have a smooth transition when moving it programatically (when the element gets in the viewport)
@@ -29,7 +28,7 @@
 
 <svelte:window
   on:mousedown={(e) => {
-    if (e.target === handle) {
+    if (e.target instanceof HTMLElement && e.target.classList.contains('comparison-handler')) {
       dragging = true;
     }
   }}
@@ -66,14 +65,11 @@
   <div
     class="absolute z-10 top-0 left-[calc(var(--comparison-visibility)-2px)] h-full w-1 bg-black"
   />
-  <button
+  <CircleButton
     aria-hidden="true"
-    tabindex="-1"
-    bind:this={handle}
-    class="cursor-ew-resize absolute z-20 top-1/2 -translate-x-1/2 -translate-y-1/2 left-[var(--comparison-visibility)] w-10 h-10 rounded-full bg-black text-white flex items-center justify-center shadow-md"
-  >
-    <Icon class="pointer-events-none" icon="comparison" />
-  </button>
+    class="comparison-handler cursor-ew-resize absolute z-20 top-1/2 -translate-x-1/2 -translate-y-1/2 left-[var(--comparison-visibility)] bg-black text-white transition-none hover:opacity-100"
+    icon="comparison"
+  />
   {#if block.image_a?.filename}
     {@const { src, alt, width, height } = getImageAttributes(block.image_a)}
     <img class="w-full h-auto" {src} {alt} {width} {height} />

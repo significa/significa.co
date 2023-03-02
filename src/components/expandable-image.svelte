@@ -1,7 +1,7 @@
 <script lang="ts">
   import { getImageAttributes } from '$lib/utils/cms';
   import type { AssetStoryblok } from '$types/bloks';
-  import { Icon } from '@significa/svelte-ui';
+  import { CircleButton } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import { createEventDispatcher } from 'svelte';
 
@@ -35,30 +35,10 @@
     }}
   >
     {#if enabled}
-      <div
-        class={clsx(
-          'absolute',
-          'z-10',
-          'top-2',
-          'right-2',
-
-          'w-10',
-          'h-10',
-          'rounded-full',
-          'bg-black',
-          'text-white',
-
-          'items-center',
-          'justify-center',
-
-          'hidden',
-
-          'group-hover:flex',
-          'group-focus-visible:flex'
-        )}
-      >
-        <Icon icon="expand" />
-      </div>
+      <CircleButton
+        class="absolute z-10 top-2 right-2 bg-black text-white hidden group-hover:flex group-focus-visible:flex"
+        icon="expand"
+      />
     {/if}
     <img class="w-full h-auto" {src} {alt} {width} {height} />
   </div>

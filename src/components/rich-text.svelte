@@ -25,22 +25,22 @@
 {#if doc.type === 'doc' && doc.content?.length}
   <svelte:element this={as} class={clsx('rich-text', className)}>
     {#each doc.content as section}
-      {#if section.type === 'paragraph'}
+      {#if section.type === 'paragraph' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}
         <p {...attributes}>{@html resolver.render(section)}</p>
-      {:else if section.type === 'heading'}
+      {:else if section.type === 'heading' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}
         {@const content = resolver.render(section)}
         <svelte:element this={`h${[section.attrs.level.toString()]}`} {...attributes}>
           {@html content}
         </svelte:element>
-      {:else if section.type === 'bullet_list'}
+      {:else if section.type === 'bullet_list' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}
         <ul {...attributes}>{@html resolver.render(section)}</ul>
-      {:else if section.type === 'ordered_list'}
+      {:else if section.type === 'ordered_list' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}
         <ol {...attributes}>{@html resolver.render(section)}</ol>
-      {:else if section.type === 'blockquote'}
+      {:else if section.type === 'blockquote' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}
         <blockquote {...attributes}>{@html resolver.render(section)}</blockquote>
       {:else if section.type === 'horizontal_rule'}

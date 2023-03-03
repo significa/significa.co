@@ -26,6 +26,7 @@ export interface BlogPostStoryblok {
 }
 
 export interface ClientStoryblok {
+  catech_labs?: string;
   _uid: string;
   component: 'client';
   [k: string]: any;
@@ -48,9 +49,21 @@ export interface ComparisonStoryblok {
   [k: string]: any;
 }
 
+export interface ContactsPageStoryblok {
+  _uid: string;
+  component: 'contacts-page';
+  [k: string]: any;
+}
+
 export interface DeliverableStoryblok {
   _uid: string;
   component: 'deliverable';
+  [k: string]: any;
+}
+
+export interface GetAQuotePageStoryblok {
+  _uid: string;
+  component: 'get-a-quote-page';
   [k: string]: any;
 }
 
@@ -161,6 +174,17 @@ export interface LinkStoryblok {
   [k: string]: any;
 }
 
+export interface PageStoryblok {
+  page?: (ContactsPageStoryblok | GetAQuotePageStoryblok | StaticPageStoryblok)[];
+  seo_title: string;
+  seo_description: string;
+  seo_og_image?: AssetStoryblok;
+  _uid: string;
+  component: 'page';
+  uuid?: string;
+  [k: string]: any;
+}
+
 export interface ProjectStoryblok {
   cover?: AssetStoryblok;
   thumbnail: MultiassetStoryblok;
@@ -221,9 +245,23 @@ export interface RichtextTestimonialStoryblok {
   [k: string]: any;
 }
 
+export interface RootStoryblok {
+  catech_labs?: string;
+  _uid: string;
+  component: 'root';
+  [k: string]: any;
+}
+
 export interface ServiceStoryblok {
   _uid: string;
   component: 'service';
+  [k: string]: any;
+}
+
+export interface StaticPageStoryblok {
+  body?: any;
+  _uid: string;
+  component: 'static-page';
   [k: string]: any;
 }
 

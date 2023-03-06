@@ -34,11 +34,11 @@
     {@const { alt, src, width, height } = getImageAttributes(story.content.cover, {
       size: [1440, 0]
     })}
-    <img class="rounded-md w-full h-auto" {src} {alt} {width} {height} />
+    <img class="max-w-6xl mx-auto rounded-md w-full h-auto" {src} {alt} {width} {height} />
   {/if}
   {#if story.content.body}
     <RichText
-      class="my-20"
+      class="my-10 md:my-15 lg:my-20"
       doc={story.content.body}
       getAttributes={(_, block) => ({
         class: `mx-auto ${richTextBlockWidths[block?.width || 'narrow']}`

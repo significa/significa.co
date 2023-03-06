@@ -1,10 +1,11 @@
+const path = require('path');
 const parseAlphaColor = (color) => color?.replace('<alpha-value>', '1');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './src/**/*.{html,js,svelte,ts}',
-    './node_modules/@significa/svelte-ui/**/*.{html,js,svelte,ts}'
+    path.join(path.dirname(require.resolve('@significa/svelte-ui')), '**/*.{html,js,svelte,ts}')
   ],
   theme: {
     container: {
@@ -166,6 +167,7 @@ module.exports = {
     }),
     require('@tailwindcss/typography')({
       className: 'rich-text'
-    })
+    }),
+    require('@tailwindcss/container-queries')
   ]
 };

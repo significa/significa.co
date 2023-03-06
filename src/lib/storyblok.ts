@@ -1,3 +1,4 @@
+import { browser } from '$app/environment';
 import { page } from '$app/stores';
 import type { PageStories } from '$components/pages/dynamic-page.svelte';
 import { env } from '$env/dynamic/public';
@@ -42,7 +43,7 @@ export const getServerSideSBVersion = (cookies: Cookies) => {
 };
 
 export const getClientSideSBVersion = () => {
-  return get(page).data.version;
+  return browser ? get(page).data.version : 'published';
 };
 
 export async function fetchStory(options: {

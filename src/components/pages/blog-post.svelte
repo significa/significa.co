@@ -6,11 +6,12 @@
   import { Tag } from '@significa/svelte-ui';
   import type { ISbStoryData } from '@storyblok/js';
   import RichText from '$components/rich-text.svelte';
+  import { drawerLinks } from '$lib/actions/drawer-links';
 
   export let story: ISbStoryData<BlogPostStoryblok>;
 </script>
 
-<div class="container">
+<div use:drawerLinks class="container">
   <header class="max-w-2xl mx-auto mt-8 mb-10">
     {#if story.first_published_at}
       <p class="text-base text-foreground-secondary font-medium">

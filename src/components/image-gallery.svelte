@@ -1,13 +1,11 @@
 <script context="module" lang="ts">
   import { getImageAttributes } from '$lib/utils/cms';
   import type { AssetStoryblok } from '$types/bloks';
-  import { Icon } from '@significa/svelte-ui';
-  import clsx from 'clsx';
   import { writable } from 'svelte/store';
   import { fade, scale } from 'svelte/transition';
 
   let active = writable(0);
-  const items = writable<AssetStoryblok[]>([]);
+  export const items = writable<AssetStoryblok[]>([]);
 
   export const open = (images: AssetStoryblok[]) => {
     items.set(images);

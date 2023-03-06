@@ -10,10 +10,3 @@ declare global {
 }
 
 export {};
-
-declare namespace svelte.JSX {
-  export interface HTMLAttributes {
-    // If you want to use on:beforeinstallprompt
-    onoutclick?: () => void;
-  }
-}

@@ -7,7 +7,13 @@ export const TranslationKeys = [
   'related-posts.title',
   'blog.title',
   'blog.load-more',
-  'blog.no-results'
+  'blog.no-results',
+  'project.published-in',
+  'recognitions',
+  'services',
+  'deliverables',
+  'links',
+  'project.team'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

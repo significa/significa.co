@@ -7,5 +7,11 @@
   "related-posts.title": "Related posts",
   "blog.title": "Blog",
   "blog.load-more": "Load more",
-  "blog.no-results": "No posts found"
+  "blog.no-results": "No posts found",
+  "project.published-in": "Published in {{year}}",
+  "recognitions": "Recognitions",
+  "services": "Services",
+  "deliverables": "Deliverables",
+  "links": "Links",
+  "project.team": "Team involved"
 }

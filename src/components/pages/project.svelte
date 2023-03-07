@@ -6,6 +6,7 @@
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import { Avatar, Icon, Link } from '@significa/svelte-ui';
   import { drawerLinks } from '$lib/actions/drawer-links';
+  import { t } from '$lib/i18n';
 
   export let story: ISbStoryData<ProjectStoryblok>;
 </script>
@@ -24,7 +25,9 @@
       <h2 class="text-5xl">{story.content.tagline}</h2>
       {#if story.first_published_at}
         <p class="mt-4 text-base font-medium text-foreground-secondary">
-          Published in {new Date(story.first_published_at).getFullYear()}
+          {t('project.published-in', {
+            year: new Date(story.first_published_at).getFullYear().toString()
+          })}
         </p>
       {/if}
     </div>
@@ -32,7 +35,9 @@
 
   {#if story.content.recognitions?.length}
     <div class="mx-auto max-w-2xl border-y border-border py-8">
-      <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">Recognitions</h4>
+      <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
+        {t('recognitions')}
+      </h4>
       <div class="grid grid-cols-1 gap-6 xs:grid-cols-2 md:grid-cols-3">
         {#each story.content.recognitions as recognition}
           <div class="col-span-1 flex items-center">
@@ -61,7 +66,7 @@
   {/if}
 
   <div class="mx-auto mt-8 mb-8 grid max-w-2xl grid-cols-1 gap-6 xs:grid-cols-2 md:grid-cols-3">
-    {#each [{ title: 'services', data: story.content.services }, { title: 'Deliverables', data: story.content.deliverables }, { title: 'Links', data: story.content.links }] as { title, data }}
+    {#each [{ title: t('services'), data: story.content.services }, { title: t('deliverables'), data: story.content.deliverables }, { title: t('links'), data: story.content.links }] as { title, data }}
       {#if data}
         <ul class="col-span-1">
           <h4 class="mb-2 text-xs uppercase tracking-wider text-foreground-secondary">{title}</h4>
@@ -89,7 +94,9 @@
 
   {#if story.content.team?.length}
     <div class="mx-auto max-w-2xl border-y border-border py-8">
-      <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">Team involved</h4>
+      <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
+        {t('project.team')}
+      </h4>
       <div class="flex flex-wrap gap-2">
         {#each story.content.team as member}
           {#if member.content?.photo?.filename}

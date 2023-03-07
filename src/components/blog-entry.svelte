@@ -17,7 +17,7 @@
     <Person
       name={post.content.author.name}
       position={post.content.author.content.position}
-      photo={post.content.author.content.photo}
+      photo={post.content.author.content?.photo}
     />
   </div>
   <div class="w-full max-w-2xl">

@@ -144,7 +144,11 @@ module.exports = {
         }
       }
     }),
-    extend: {}
+    extend: {
+      screens: {
+        xs: '480px'
+      }
+    }
   },
   plugins: [
     require('@significa/svelte-ui/tailwind')({

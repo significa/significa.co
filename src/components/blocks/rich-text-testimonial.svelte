@@ -12,5 +12,5 @@
       <span class="bg-border">{block.testimonial}</span>
     </p>
   {/if}
-  <Person class="mt-6" name={block.name} position={block.position} photo={block.photo} />
+  <Person class="mt-6" name={block.name} position={block.position} photo={block?.photo} />
 </div>

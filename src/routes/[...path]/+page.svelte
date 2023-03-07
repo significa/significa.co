@@ -5,7 +5,9 @@
 
   export let data: PageData;
 
-  startStoryblokBridge(data.page.story.id, (newStory) => (data.page.story = newStory));
+  startStoryblokBridge(data.page.story.id, (newStory) => {
+    data.page.story = newStory;
+  });
 </script>
 
 {#key data.page.story.uuid}

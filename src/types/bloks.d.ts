@@ -217,8 +217,18 @@ export interface ProjectStoryblok {
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
+  recognitions?: RecognitionStoryblok[];
   _uid: string;
   component: 'project';
+  [k: string]: any;
+}
+
+export interface RecognitionStoryblok {
+  label: string;
+  title: string;
+  image: AssetStoryblok;
+  _uid: string;
+  component: 'recognition';
   [k: string]: any;
 }
 

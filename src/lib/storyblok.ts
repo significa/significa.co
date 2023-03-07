@@ -22,7 +22,7 @@ import { HOME_SLUG, PREVIEW_COOKIE_KEY } from './constants';
 
 export const PAGE_PARAMS = {
   resolve_links: 'url',
-  resolve_relations: 'blog-post.author,blog-post.project'
+  resolve_relations: 'blog-post.author,blog-post.project,project.team'
 } as const;
 
 export const BLOG_PARAMS = {
@@ -73,7 +73,11 @@ export type BlogPostPage = ISbStoryData<
   }
 >;
 export type HandbookPage = ISbStoryData<HandbookStoryblok>;
-export type ProjectPage = ISbStoryData<ProjectStoryblok>;
+export type ProjectPage = ISbStoryData<
+  Omit<ProjectStoryblok, 'team'> & {
+    team: ISbStoryData<TeamMemberStoryblok>[];
+  }
+>;
 export type TeamMemberPage = ISbStoryData<TeamMemberStoryblok>;
 
 export type DynamicPage = Page | BlogPostPage | HandbookPage | ProjectPage | TeamMemberPage;

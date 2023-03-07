@@ -64,7 +64,11 @@ export async function fetchStory(options: {
 
     const { data }: { data: { story?: PageStories } } = await storyblok.get(
       `cdn/stories/${noLeadingSlash || HOME_SLUG}`,
-      { version: options.version || 'published', resolve_links: 'url' }
+      {
+        version: options.version || 'published',
+        resolve_links: 'url',
+        resolve_relations: 'blog-post.author,blog-post.project'
+      }
     );
 
     if (!data.story?.id) throw new Error();

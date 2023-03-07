@@ -34,7 +34,7 @@
 </script>
 
 <main class="container">
-  <h1 class="text-8xl my-10 md:my-15 lg:my-20">
+  <h1 class="text-8xl my-10 md:my-14 lg:my-20">
     {#if $page.url.searchParams.getAll('t').length}
       <span class="text-foreground-tertiary">{$page.url.searchParams.getAll('t').join(', ')}</span
       ><br />

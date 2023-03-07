@@ -23,7 +23,7 @@
 </script>
 
 {#if doc.type === 'doc' && doc.content?.length}
-  <svelte:element this={as} class={clsx('rich-text', className)}>
+  <svelte:element this={as} class={clsx('rich-text @container', className)}>
     {#each doc.content as section}
       {#if section.type === 'paragraph' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}

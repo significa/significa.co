@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { getImageAttributes } from '$lib/utils/cms';
   import type { RichtextTestimonialStoryblok } from '$types/bloks';
   import clsx from 'clsx';
+  import Person from '$components/person.svelte';
 
   export let block: RichtextTestimonialStoryblok;
 </script>
@@ -12,20 +12,5 @@
       <span class="bg-border">{block.testimonial}</span>
     </p>
   {/if}
-  <div class="mt-6 flex gap-3 items-center">
-    {#if block.photo?.filename}
-      {@const { src, alt, width, height } = getImageAttributes(block.photo, { size: [100, 100] })}
-      <img class="rounded-full w-10 h-10 object-cover object-center" {src} {alt} {width} {height} />
-    {/if}
-    <div>
-      {#if block.name}
-        <p class="text-base leading-none font-semibold">{block.name}</p>
-      {/if}
-      {#if block.position}
-        <p class="mt-1.5 text-base leading-none font-semibold text-foreground-secondary">
-          {block.position}
-        </p>
-      {/if}
-    </div>
-  </div>
+  <Person class="mt-6" name={block.name} position={block.position} photo={block?.photo} />
 </div>

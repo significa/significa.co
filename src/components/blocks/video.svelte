@@ -9,7 +9,7 @@
 {#if block.video?.filename}
   <!-- svelte-ignore a11y-media-has-caption -->
   <video
-    class={clsx('not-rich-text my-6 md:my-10 w-full h-auto rounded-lg', $$restProps.class)}
+    class={clsx('not-rich-text my-6 h-auto w-full rounded-lg md:my-10', $$restProps.class)}
     use:storyblokEditable={block}
     muted
     src={block.video.filename}

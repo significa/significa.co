@@ -1,15 +1,19 @@
+const path = require('path');
 const parseAlphaColor = (color) => color?.replace('<alpha-value>', '1');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './src/**/*.{html,js,svelte,ts}',
-    './node_modules/@significa/svelte-ui/**/*.{html,js,svelte,ts}'
+    path.join(path.dirname(require.resolve('@significa/svelte-ui')), '**/*.{html,js,svelte,ts}')
   ],
   theme: {
     container: {
       center: true,
-      padding: '1rem'
+      padding: 'clamp(1rem, 2vw, 2rem)',
+      screens: {
+        DEFAULT: '1720px'
+      }
     },
     typography: (theme) => ({
       DEFAULT: {
@@ -85,7 +89,7 @@ module.exports = {
           },
           // headings
           h1: {
-            '@apply text-4xl': {},
+            '@apply text-5xl': {},
             fontWeight: theme('fontWeight.semibold'),
             marginBottom: '1ch',
 
@@ -140,7 +144,11 @@ module.exports = {
         }
       }
     }),
-    extend: {}
+    extend: {
+      screens: {
+        xs: '480px'
+      }
+    }
   },
   plugins: [
     require('@significa/svelte-ui/tailwind')({
@@ -166,6 +174,7 @@ module.exports = {
     }),
     require('@tailwindcss/typography')({
       className: 'rich-text'
-    })
+    }),
+    require('@tailwindcss/container-queries')
   ]
 };

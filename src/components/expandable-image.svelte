@@ -18,8 +18,8 @@
   <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
   <div
     class={clsx(
-      'w-full rounded-md overflow-hidden',
-      enabled && 'group relative outline-none focus-visible:ring-4 transition-all',
+      'w-full overflow-hidden rounded-md',
+      enabled && 'group relative outline-none transition-all focus-visible:ring-4',
       className
     )}
     role={enabled ? 'button' : undefined}
@@ -36,10 +36,10 @@
   >
     {#if enabled}
       <CircleButton
-        class="absolute z-10 top-2 right-2 bg-black text-white hidden group-hover:flex group-focus-visible:flex"
+        class="absolute top-2 right-2 z-10 hidden bg-black text-white group-hover:flex group-focus-visible:flex"
         icon="expand"
       />
     {/if}
-    <img class="w-full h-auto" {src} {alt} {width} {height} />
+    <img class="h-auto w-full" {src} {alt} {width} {height} />
   </div>
 {/if}

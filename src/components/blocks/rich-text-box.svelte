@@ -11,8 +11,8 @@
 <div
   use:storyblokEditable={block}
   class={clsx(
-    'not-rich-text my-6 md:my-10 bg-background-panel rounded-2xl p-4',
-    block.layout === 'horizontal' && 'flex gap-4 items-stretch',
+    'not-rich-text my-6 rounded-2xl bg-background-panel p-4 md:my-10',
+    block.layout === 'horizontal' && 'flex items-stretch gap-4',
     $$restProps.class
   )}
 >
@@ -25,13 +25,13 @@
         block.layout === 'vertical' && 'mb-4'
       )}
     >
-      <img class="object-cover h-full rounded-md" {src} {alt} />
+      <img class="h-full rounded-md object-cover" {src} {alt} />
     </div>
   {/if}
   <div class="flex flex-col">
     <div class="flex-1">
       <h4 class="text-xl font-semibold">{block.title}</h4>
-      <p class="text-xl mt-0.5">{block.text}</p>
+      <p class="mt-0.5 text-xl">{block.text}</p>
     </div>
     {#if block.link?.length}
       {#each block.link as { label, link }}

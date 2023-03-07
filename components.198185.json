@@ -1,6 +1,26 @@
 {
   "components": [
     {
+      "name": "about-page",
+      "display_name": null,
+      "created_at": "2023-03-03T15:54:31.120Z",
+      "updated_at": "2023-03-03T15:54:31.120Z",
+      "id": 3521679,
+      "schema": {},
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "about-page",
+      "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Pages"
+    },
+    {
       "name": "blog-post",
       "display_name": null,
       "created_at": "2023-02-15T13:03:53.849Z",
@@ -112,9 +132,14 @@
       "name": "client",
       "display_name": null,
       "created_at": "2023-02-15T13:54:34.423Z",
-      "updated_at": "2023-02-15T13:54:34.423Z",
+      "updated_at": "2023-03-03T12:08:04.296Z",
       "id": 3442784,
-      "schema": {},
+      "schema": {
+        "catech_labs": {
+          "type": "text",
+          "display_name": "Catech Labs"
+        }
+      },
       "image": null,
       "preview_field": null,
       "is_root": true,
@@ -236,6 +261,26 @@
       "component_group_name": "Blocks & Rich Text"
     },
     {
+      "name": "contacts-page",
+      "display_name": null,
+      "created_at": "2023-03-03T13:47:28.940Z",
+      "updated_at": "2023-03-03T13:47:28.940Z",
+      "id": 3521049,
+      "schema": {},
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "contacts-page",
+      "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Pages"
+    },
+    {
       "name": "deliverable",
       "display_name": null,
       "created_at": "2023-02-15T13:54:14.804Z",
@@ -254,6 +299,26 @@
       "color": null,
       "icon": null,
       "component_group_name": "Configuration"
+    },
+    {
+      "name": "get-a-quote-page",
+      "display_name": null,
+      "created_at": "2023-03-03T13:47:17.251Z",
+      "updated_at": "2023-03-03T13:51:07.847Z",
+      "id": 3521048,
+      "schema": {},
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "get-a-quote-page",
+      "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Pages"
     },
     {
       "name": "handbook",
@@ -362,10 +427,30 @@
       "component_group_name": "Content Types"
     },
     {
+      "name": "home-page",
+      "display_name": null,
+      "created_at": "2023-03-03T14:59:15.465Z",
+      "updated_at": "2023-03-03T14:59:22.817Z",
+      "id": 3521503,
+      "schema": {},
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "home-page",
+      "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Pages"
+    },
+    {
       "name": "image",
       "display_name": null,
       "created_at": "2023-02-16T10:44:18.022Z",
-      "updated_at": "2023-02-25T12:07:59.249Z",
+      "updated_at": "2023-03-03T11:21:32.434Z",
       "id": 3446843,
       "schema": {
         "width": {
@@ -393,7 +478,7 @@
               "name": "full"
             }
           ],
-          "default_value": "narrow"
+          "default_value": "medium"
         },
         "image": {
           "type": "asset",
@@ -521,10 +606,66 @@
       "component_group_name": "Single"
     },
     {
+      "name": "page",
+      "display_name": null,
+      "created_at": "2023-03-03T13:41:50.937Z",
+      "updated_at": "2023-03-03T15:00:27.681Z",
+      "id": 3520995,
+      "schema": {
+        "page": {
+          "type": "bloks",
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_whitelist": [],
+          "component_group_whitelist": [
+            "78726ff5-00c6-4ddb-bfef-551b83977e54"
+          ],
+          "minimum": 1,
+          "maximum": 1
+        },
+        "tab-b1b4aa1b-2d5c-436e-ac16-09e30b9de047": {
+          "display_name": "SEO",
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image"
+          ],
+          "pos": 0,
+          "type": "tab"
+        },
+        "seo_title": {
+          "type": "text",
+          "required": false
+        },
+        "seo_description": {
+          "type": "text",
+          "required": false
+        },
+        "seo_og_image": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": true,
+      "preview_tmpl": null,
+      "is_nestable": false,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "page",
+      "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Content Types"
+    },
+    {
       "name": "project",
       "display_name": null,
       "created_at": "2023-02-15T13:07:44.621Z",
-      "updated_at": "2023-03-02T17:04:21.132Z",
+      "updated_at": "2023-03-07T16:22:42.200Z",
       "id": 3442356,
       "schema": {
         "cover": {
@@ -558,7 +699,7 @@
           ]
         },
         "client": {
-          "type": "option",
+          "type": "text",
           "use_uuid": true,
           "source": "internal_stories",
           "filter_content_type": [
@@ -566,14 +707,14 @@
           ]
         },
         "deliverables": {
-          "type": "options",
+          "type": "textarea",
           "source": "internal_stories",
           "filter_content_type": [
             "deliverable"
           ]
         },
         "services": {
-          "type": "options",
+          "type": "textarea",
           "source": "internal_stories",
           "filter_content_type": [
             "service"
@@ -644,6 +785,14 @@
             "images"
           ],
           "asset_folder_id": 212286
+        },
+        "recognitions": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "recognition"
+          ]
         }
       },
       "image": null,
@@ -658,6 +807,43 @@
       "color": null,
       "icon": null,
       "component_group_name": "Content Types"
+    },
+    {
+      "name": "recognition",
+      "display_name": null,
+      "created_at": "2023-03-07T16:21:33.212Z",
+      "updated_at": "2023-03-07T16:22:20.232Z",
+      "id": 3541187,
+      "schema": {
+        "label": {
+          "type": "text",
+          "required": true
+        },
+        "title": {
+          "type": "text",
+          "required": true
+        },
+        "image": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ],
+          "required": true,
+          "asset_folder_id": 216885
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "recognition",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
     },
     {
       "name": "richtext-box",
@@ -853,6 +1039,30 @@
       "component_group_name": "Rich Text"
     },
     {
+      "name": "root",
+      "display_name": null,
+      "created_at": "2023-03-03T12:10:42.589Z",
+      "updated_at": "2023-03-03T12:10:44.808Z",
+      "id": 3520419,
+      "schema": {
+        "catech_labs": {
+          "type": "text",
+          "display_name": "Catech Labs"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "root",
+      "component_group_uuid": null,
+      "color": null,
+      "icon": null
+    },
+    {
       "name": "service",
       "display_name": null,
       "created_at": "2023-02-15T13:54:22.743Z",
@@ -871,6 +1081,54 @@
       "color": null,
       "icon": null,
       "component_group_name": "Configuration"
+    },
+    {
+      "name": "static-page",
+      "display_name": null,
+      "created_at": "2023-03-03T13:43:24.273Z",
+      "updated_at": "2023-03-07T15:40:14.043Z",
+      "id": 3520996,
+      "schema": {
+        "body": {
+          "type": "richtext",
+          "customize_toolbar": true,
+          "toolbar": [
+            "bold",
+            "strike",
+            "italic",
+            "inlinecode",
+            "underline",
+            "paragraph",
+            "h2",
+            "h3",
+            "h4",
+            "list",
+            "olist",
+            "hrule",
+            "link",
+            "blok",
+            "h1"
+          ],
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_group_whitelist": [
+            "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
+            "1ef77ef8-466a-4b74-a076-f4554004e128"
+          ]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "static-page",
+      "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Pages"
     },
     {
       "name": "team-member",
@@ -1063,7 +1321,7 @@
       "name": "video",
       "display_name": null,
       "created_at": "2023-02-16T10:45:31.449Z",
-      "updated_at": "2023-02-26T22:24:08.318Z",
+      "updated_at": "2023-03-03T11:21:40.663Z",
       "id": 3446844,
       "schema": {
         "width": {
@@ -1091,7 +1349,7 @@
               "name": "full"
             }
           ],
-          "default_value": "narrow"
+          "default_value": "medium"
         },
         "video": {
           "type": "asset",

@@ -1,3 +1,17 @@
 {
-  "hello": "Hello"
+  "expand": "Expand",
+  "related-project.title": "Related project",
+  "related-project.description": "For more details about {{project}}, check out the project page.",
+  "related-project.link": "See project",
+  "author-page": "Author page",
+  "related-posts.title": "Related posts",
+  "blog.title": "Blog",
+  "blog.load-more": "Load more",
+  "blog.no-results": "No posts found",
+  "project.published-in": "Published in {{year}}",
+  "recognitions": "Recognitions",
+  "services": "Services",
+  "deliverables": "Deliverables",
+  "links": "Links",
+  "project.team": "Team involved"
 }

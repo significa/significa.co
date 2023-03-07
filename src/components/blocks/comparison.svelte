@@ -38,7 +38,7 @@
 />
 
 <div
-  class={clsx('not-rich-text my-6 md:my-10 relative overflow-hidden rounded-md', $$restProps.class)}
+  class={clsx('not-rich-text relative my-6 overflow-hidden rounded-md md:my-10', $$restProps.class)}
   style="--comparison-visibility: {$visibility}%"
   use:storyblokEditable={block}
   data-theme="dark"
@@ -64,22 +64,22 @@
 >
   <!-- line -->
   <div
-    class="absolute z-10 top-0 left-[calc(var(--comparison-visibility)-2px)] h-full w-1 bg-black"
+    class="absolute top-0 left-[calc(var(--comparison-visibility)-2px)] z-10 h-full w-1 bg-black"
   />
   <CircleButton
     aria-hidden="true"
-    class="comparison-handler cursor-ew-resize absolute z-20 top-1/2 -translate-x-1/2 -translate-y-1/2 left-[var(--comparison-visibility)] bg-black text-white transition-none hover:opacity-100"
+    class="comparison-handler absolute top-1/2 left-[var(--comparison-visibility)] z-20 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize bg-black text-white transition-none hover:opacity-100"
     icon="comparison"
   />
   {#if block.image_a?.filename}
     {@const { src, alt, width, height } = getImageAttributes(block.image_a)}
-    <img class="w-full h-auto" {src} {alt} {width} {height} />
+    <img class="h-auto w-full" {src} {alt} {width} {height} />
   {/if}
 
   {#if block.image_b?.filename}
     {@const { src, alt, width, height } = getImageAttributes(block.image_b)}
     <img
-      class="absolute overflow-hidden inset-0 h-full w-[var(--comparison-visibility)] object-cover object-left"
+      class="absolute inset-0 h-full w-[var(--comparison-visibility)] overflow-hidden object-cover object-left"
       {src}
       {alt}
       {width}

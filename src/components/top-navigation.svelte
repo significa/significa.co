@@ -2,7 +2,7 @@
   import { Button, Logo } from '@significa/svelte-ui';
 </script>
 
-<header class="container py-6 flex items-center justify-between">
+<header class="container flex items-center justify-between py-4">
   <Logo variant="wordmark" />
 
   <div class="flex items-center gap-4">

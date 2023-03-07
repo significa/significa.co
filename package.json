@@ -28,6 +28,7 @@
     "@storybook/sveltekit": "^7.0.0-beta.49",
     "@sveltejs/adapter-auto": "^2.0.0",
     "@sveltejs/kit": "^1.6.0",
+    "@tailwindcss/container-queries": "^0.1.0",
     "@tailwindcss/typography": "^0.5.9",
     "@types/prismjs": "^1.26.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
@@ -43,6 +44,7 @@
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
     "prettier-plugin-svelte": "^2.9.0",
+    "prettier-plugin-tailwindcss": "^0.2.4",
     "prismjs": "^1.29.0",
     "storybook": "^7.0.0-beta.49",
     "svelte": "^3.55.1",
@@ -56,7 +58,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@significa/svelte-ui": "^0.0.8",
+    "@significa/svelte-ui": "^0.0.9",
     "@storyblok/js": "^2.0.15"
   }
 }

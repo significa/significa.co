@@ -36,16 +36,16 @@
 
 <main class="container">
   <h1 class="mt-10 text-8xl md:mt-14 lg:mt-20">
-    <span>{t('blog.title')}</span>
     {#if $page.url.searchParams.getAll('t').length}
-      <br />
-      <span class="text-foreground-tertiary">{$page.url.searchParams.getAll('t').join(', ')}</span>
+      <a class="text-foreground-tertiary transition-colors hover:text-foreground" href="/blog"
+        >{t('blog.title')}</a
+      >
+      <span class="text-foreground-tertiary">/</span>
+      <span>{$page.url.searchParams.getAll('t').join(', ')}</span>
+    {:else}
+      <span>{t('blog.title')}</span>
     {/if}
   </h1>
-
-  {#if $page.url.searchParams.getAll('t').length}
-    <Button class="mt-6" as="a" href="/blog" variant="secondary">{t('blog.clear-tags')}</Button>
-  {/if}
 
   <div class="mt-10 md:mt-14 lg:mt-20">
     {#each $posts as post}

@@ -2,22 +2,19 @@
   import { richTextBlockWidths } from '$lib/constants';
   import { getImageAttributes } from '$lib/utils/cms';
   import { formatDate } from '$lib/utils/dates';
-  import type { BlogPostStoryblok, ProjectStoryblok, TeamMemberStoryblok } from '$types/bloks';
   import { Button, Tag } from '@significa/svelte-ui';
-  import type { ISbStoryData } from '@storyblok/js';
   import RichText from '$components/rich-text.svelte';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import Person from '$components/person.svelte';
+  import type { BlogPostPage } from '$lib/storyblok';
+  import BlogEntry from '$components/blog-entry.svelte';
+  import { t } from '$lib/i18n';
 
-  export let story: ISbStoryData<
-    Omit<BlogPostStoryblok, 'author' | 'project'> & {
-      author: ISbStoryData<TeamMemberStoryblok>;
-      project: ISbStoryData<ProjectStoryblok>;
-    }
-  >;
+  export let story: BlogPostPage;
+  export let related: BlogPostPage[];
 </script>
 
-<div use:drawerLinks class="container">
+<div class="container">
   <header class="mx-auto mt-8 mb-10 max-w-2xl">
     {#if story.first_published_at}
       <p class="text-base font-medium text-foreground-secondary">
@@ -45,40 +42,36 @@
     <img class="mx-auto h-auto w-full max-w-6xl rounded-md" {src} {alt} {width} {height} />
   {/if}
   {#if story.content.body}
-    <RichText
-      class="my-10 md:my-14 lg:my-20"
-      doc={story.content.body}
-      getAttributes={(_, block) => ({
-        class: `mx-auto ${richTextBlockWidths[block?.width || 'narrow']}`
-      })}
-    />
+    <div use:drawerLinks>
+      <RichText
+        class="my-10 md:my-14 lg:my-20"
+        doc={story.content.body}
+        getAttributes={(_, block) => ({
+          class: `mx-auto ${richTextBlockWidths[block?.width || 'narrow']}`
+        })}
+      />
+    </div>
   {/if}
 
   <!-- Project -->
   {#if story.content.project.id}
     {@const project = story.content.project}
     <div class="mx-auto mb-6 max-w-2xl">
-      <h4 class="text-xl font-medium">Related project</h4>
+      <h4 class="text-xl font-medium">{t('related-project.title')}</h4>
       <p class="text-lg text-foreground-secondary">
-        For more details about {project.name}, check out the project page.
+        {t('related-project.description', { project: project.name })}
       </p>
     </div>
     <div
-      class="mx-auto flex max-w-2xl justify-between overflow-hidden rounded-3xl bg-background-panel elevated-links"
+      class="mx-auto flex max-w-2xl justify-between overflow-hidden rounded-3xl bg-background-panel"
     >
-      <div class="flex flex-col items-start p-6">
+      <div use:drawerLinks class="flex flex-col items-start p-6">
         <div class="flex-1">
           <h3 class="text-xl font-medium">{project.name}</h3>
           <p class="text-xl text-foreground-secondary">{project.content.tagline}</p>
         </div>
-        <Button
-          class="mt-6 elevated-link"
-          variant="secondary"
-          as="a"
-          href={`/projects/${project.slug}`}
-          arrow
-        >
-          See project
+        <Button class="mt-6" variant="secondary" as="a" href={`/projects/${project.slug}`} arrow>
+          {t('related-project.link')}
         </Button>
       </div>
       {#if project.content.thumbnail[0]?.filename}
@@ -93,7 +86,10 @@
   <!-- Author -->
   {#if story.content.author.id}
     {@const author = story.content.author}
-    <div class="mx-auto mt-10 max-w-2xl border-t border-border pt-8 md:mt-14 lg:mt-20">
+    <div
+      use:drawerLinks
+      class="mx-auto mt-10 max-w-2xl border-t border-border pt-8 md:mt-14 lg:mt-20"
+    >
       <Person name={author.name} position={author.content.position} photo={author.content.photo} />
       <p class="mt-6 text-xl text-foreground-secondary">{author.content.bio}</p>
       <Button
@@ -104,8 +100,16 @@
         arrow
         icon="document"
       >
-        Author page
+        {t('author-page')}
       </Button>
     </div>
+  {/if}
+
+  <!-- Related Posts -->
+  {#if related.length}
+    <h3 class="mt-28 border-b border-border pb-10 text-4xl">{t('related-posts.title')}</h3>
+    {#each related as post}
+      <BlogEntry {post} />
+    {/each}
   {/if}
 </div>

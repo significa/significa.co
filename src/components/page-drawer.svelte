@@ -2,7 +2,7 @@
   import DynamicPage from '$components/pages/dynamic-page.svelte';
   import { t } from '$lib/i18n';
   import { drawer } from '$lib/stores/drawer';
-  import { fetchStory, getClientSideSBVersion } from '$lib/storyblok';
+  import { fetchPage, getClientSideSBVersion } from '$lib/storyblok';
   import { Button, Spinner } from '@significa/svelte-ui';
   import { fade, fly } from 'svelte/transition';
   import { items } from './image-gallery.svelte';
@@ -44,12 +44,12 @@
       <Button class="bg-background" variant="ghost" icon="close" on:click={drawer.close} />
     </header>
     <div class="p-4 md:p-6 lg:p-10">
-      {#await fetchStory({ slug: $drawer, version: getClientSideSBVersion() })}
+      {#await fetchPage({ slug: $drawer, version: getClientSideSBVersion() })}
         <div class="flex justify-center p-10">
           <Spinner size="md" />
         </div>
-      {:then story}
-        <DynamicPage {story} />
+      {:then page}
+        <DynamicPage {page} />
       {/await}
     </div>
   </div>

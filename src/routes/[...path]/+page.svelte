@@ -5,11 +5,9 @@
 
   export let data: PageData;
 
-  startStoryblokBridge(data.story.id, (newStory) => (data.story = newStory));
-
-  data.story.content.component;
+  startStoryblokBridge(data.page.story.id, (newStory) => (data.page.story = newStory));
 </script>
 
-{#key data.story.uuid}
-  <DynamicPage story={data.story} />
+{#key data.page.story.uuid}
+  <DynamicPage page={data.page} />
 {/key}

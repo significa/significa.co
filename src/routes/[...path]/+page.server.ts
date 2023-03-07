@@ -1,16 +1,16 @@
-import { fetchStory, getServerSideSBVersion } from '$lib/storyblok';
+import { fetchPage, getServerSideSBVersion } from '$lib/storyblok';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ params, cookies, fetch }) => {
   try {
-    const story = await fetchStory({
+    const page = await fetchPage({
       slug: params.path,
       version: getServerSideSBVersion(cookies),
       fetch
     });
 
-    return { story };
+    return { page };
   } catch (err) {
     throw error(404, 'Not found');
   }

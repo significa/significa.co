@@ -12,15 +12,15 @@
   >;
 </script>
 
-<div class="grid grid-cols-8 border-b border-border py-8 elevated-links first:border-t">
-  <div class="col-span-3 hidden lg:block xl:col-span-2">
+<div class="flex border-b border-border py-8 elevated-links first:border-t">
+  <div class="hidden flex-1 lg:block">
     <Person
       name={post.content.author.name}
       position={post.content.author.content.position}
       photo={post.content.author.content.photo}
     />
   </div>
-  <div class="col-span-8 lg:col-span-5 xl:col-span-4">
+  <div class="w-full max-w-2xl">
     <p class="mb-2 text-base font-medium text-foreground-secondary">
       {formatDate(new Date(post.first_published_at || post.published_at || post.created_at))}
     </p>
@@ -33,7 +33,7 @@
       </div>
     {/if}
   </div>
-  <div class="col-span-2 hidden justify-end text-foreground-tertiary xl:flex">
+  <div class="hidden flex-1 justify-end text-foreground-tertiary xl:flex">
     <Icon icon="arrow-right" />
   </div>
 </div>

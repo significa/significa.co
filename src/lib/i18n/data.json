@@ -1,4 +1,12 @@
 {
-  "hello": "Hello",
-  "expand": "Expand"
+  "expand": "Expand",
+  "related-project.title": "Related project",
+  "related-project.description": "For more details about {{project}}, check out the project page.",
+  "related-project.link": "See project",
+  "author-page": "Author page",
+  "related-posts.title": "Related posts",
+  "blog.title": "Blog",
+  "blog.load-more": "Load more",
+  "blog.no-results": "No posts found",
+  "blog.clear-tags": "Clear tags"
 }

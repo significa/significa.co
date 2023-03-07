@@ -1,56 +1,29 @@
-<script lang="ts" context="module">
-  import type {
-    BlogPostStoryblok,
-    HandbookStoryblok,
-    PageStoryblok,
-    ProjectStoryblok,
-    TeamMemberStoryblok
-  } from '$types/bloks';
-  import type { ISbStoryData } from '@storyblok/js';
-
-  export type PageStories = ISbStoryData<
-    PageStoryblok | BlogPostStoryblok | HandbookStoryblok | ProjectStoryblok | TeamMemberStoryblok
-  >;
-
-  export const isPage = (story: PageStories): story is ISbStoryData<PageStoryblok> => {
-    return story.content.component === 'page';
-  };
-
-  export const isBlogPost = (story: PageStories): story is ISbStoryData<BlogPostStoryblok> => {
-    return story.content.component === 'blog-post';
-  };
-
-  export const isHandbook = (story: PageStories): story is ISbStoryData<HandbookStoryblok> => {
-    return story.content.component === 'handbook';
-  };
-
-  export const isProject = (story: PageStories): story is ISbStoryData<ProjectStoryblok> => {
-    return story.content.component === 'project';
-  };
-
-  export const isTeamMember = (story: PageStories): story is ISbStoryData<TeamMemberStoryblok> => {
-    return story.content.component === 'team-member';
-  };
-</script>
-
 <script lang="ts">
+  import {
+    isBlogPostPage,
+    isHandbookPage,
+    isPage,
+    isProjectPage,
+    isTeamMemberPage,
+    type PageResult
+  } from '$lib/storyblok';
   import BlogPost from './blog-post.svelte';
   import Handbook from './handbook.svelte';
   import Page from './page.svelte';
   import Project from './project.svelte';
   import TeamMember from './team-member.svelte';
 
-  export let story: PageStories;
+  export let page: PageResult;
 </script>
 
-{#if isPage(story)}
-  <Page {story} />
-{:else if isBlogPost(story)}
-  <BlogPost {story} />
-{:else if isHandbook(story)}
-  <Handbook {story} />
-{:else if isProject(story)}
-  <Project {story} />
-{:else if isTeamMember(story)}
-  <TeamMember {story} />
+{#if isPage(page)}
+  <Page story={page.story} />
+{:else if isBlogPostPage(page)}
+  <BlogPost story={page.story} related={page.relatedPosts} />
+{:else if isHandbookPage(page)}
+  <Handbook story={page.story} />
+{:else if isProjectPage(page)}
+  <Project story={page.story} />
+{:else if isTeamMemberPage(page)}
+  <TeamMember story={page.story} />
 {/if}

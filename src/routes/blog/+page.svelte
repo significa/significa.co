@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import BlogEntry from '$components/blog-entry.svelte';
+  import { t } from '$lib/i18n';
   import { BLOG_PARAMS, getStoryblok } from '$lib/storyblok';
   import type { BlogPostStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
@@ -34,15 +35,19 @@
 </script>
 
 <main class="container">
-  <h1 class="my-10 text-8xl md:my-14 lg:my-20">
+  <h1 class="mt-10 text-8xl md:mt-14 lg:mt-20">
+    <span>{t('blog.title')}</span>
     {#if $page.url.searchParams.getAll('t').length}
-      <span class="text-foreground-tertiary">{$page.url.searchParams.getAll('t').join(', ')}</span
-      ><br />
+      <br />
+      <span class="text-foreground-tertiary">{$page.url.searchParams.getAll('t').join(', ')}</span>
     {/if}
-    <span>Blog</span>
   </h1>
 
-  <div>
+  {#if $page.url.searchParams.getAll('t').length}
+    <Button class="mt-6" as="a" href="/blog" variant="secondary">{t('blog.clear-tags')}</Button>
+  {/if}
+
+  <div class="mt-10 md:mt-14 lg:mt-20">
     {#each $posts as post}
       <BlogEntry {post} />
     {/each}
@@ -55,11 +60,11 @@
       on:click={() => fetchStories($posts.length / BLOG_PARAMS.per_page + 1)}
       loading={$isFetching}
     >
-      Load more
+      {t('blog.load-more')}
     </Button>
   {/if}
 
   {#if $posts.length === 0}
-    <p>No posts found</p>
+    <p class="text-5xl">{t('blog.no-results')}</p>
   {/if}
 </main>

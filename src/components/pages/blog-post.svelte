@@ -15,7 +15,9 @@
   <header class="max-w-2xl mx-auto mt-8 mb-10">
     {#if story.first_published_at}
       <p class="text-base text-foreground-secondary font-medium">
-        {formatDate(new Date(story.first_published_at))}
+        {formatDate(new Date(story.first_published_at || story.published_at || story.created_at), {
+          dateStyle: 'medium'
+        })}
       </p>
     {/if}
     <h1 class="text-5xl">{story.name}</h1>

@@ -74,3 +74,10 @@ export async function fetchStory(options: {
     throw new Error('Not found');
   }
 }
+
+export const BLOG_PARAMS = {
+  per_page: 10,
+  content_type: 'blog-post',
+  sort_by: 'first_published_at:desc',
+  resolve_relations: 'blog-post.author'
+} as const;

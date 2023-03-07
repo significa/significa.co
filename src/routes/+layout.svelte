@@ -17,3 +17,4 @@
 <ImageGallery />
 <TopNavigation />
 <slot />
+<footer class="container mt-20 py-20">Footer here</footer>

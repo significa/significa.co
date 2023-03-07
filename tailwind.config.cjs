@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: '1rem',
+      padding: 'clamp(1rem, 2vw, 2rem)',
       screens: {
         DEFAULT: '1720px'
       }

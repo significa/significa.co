@@ -12,7 +12,7 @@
   export let photo: AssetStoryblok | undefined = undefined;
 </script>
 
-<div class={clsx('flex gap-3 items-center whitespace-nowrap', className)}>
+<div class={clsx('flex items-center gap-3 whitespace-nowrap', className)}>
   <Avatar
     class="flex-shrink-0"
     image={photo?.filename ? getImageAttributes(photo, { size: [100, 100] }).src : undefined}
@@ -20,10 +20,10 @@
   />
   <div>
     {#if name}
-      <p class="text-base leading-none font-semibold">{name}</p>
+      <p class="text-base font-semibold leading-none">{name}</p>
     {/if}
     {#if position}
-      <p class="mt-1.5 text-base leading-none font-semibold text-foreground-secondary">
+      <p class="mt-1.5 text-base font-semibold leading-none text-foreground-secondary">
         {position}
       </p>
     {/if}

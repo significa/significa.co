@@ -25,14 +25,14 @@
     role="button"
     on:keydown={onkeydown}
     transition:fade={{ duration: 200 }}
-    class="fixed z-50 inset-0 bg-black/50"
+    class="fixed inset-0 z-50 bg-black/50"
     on:click={drawer.close}
   />
   <div
-    class="fixed z-50 right-2 top-2 bottom-2 left-2 md:left-auto md:w-3/4 lg:w-2/3 bg-background rounded-lg shadow-2xl overflow-y-auto"
+    class="fixed right-2 top-2 bottom-2 left-2 z-50 overflow-y-auto rounded-lg bg-background shadow-2xl md:left-auto md:w-3/4 lg:w-2/3"
     transition:fly={{ x: 300, duration: 200 }}
   >
-    <header class="z-50 flex justify-between items-center p-2">
+    <header class="z-50 flex items-center justify-between p-2">
       <Button
         as="a"
         href={$drawer}

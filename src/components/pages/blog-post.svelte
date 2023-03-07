@@ -18,9 +18,9 @@
 </script>
 
 <div use:drawerLinks class="container">
-  <header class="max-w-2xl mx-auto mt-8 mb-10">
+  <header class="mx-auto mt-8 mb-10 max-w-2xl">
     {#if story.first_published_at}
-      <p class="text-base text-foreground-secondary font-medium">
+      <p class="text-base font-medium text-foreground-secondary">
         {formatDate(new Date(story.first_published_at || story.published_at || story.created_at), {
           dateStyle: 'medium'
         })}
@@ -28,7 +28,7 @@
     {/if}
     <h1 class="text-5xl">{story.name}</h1>
     {#if story.tag_list.length}
-      <div class="flex flex-wrap gap-2 mt-5">
+      <div class="mt-5 flex flex-wrap gap-2">
         {#each story.tag_list as tag}
           <Tag href="/blog?t={encodeURIComponent(tag)}" label={tag} />
         {/each}
@@ -42,7 +42,7 @@
     {@const { alt, src, width, height } = getImageAttributes(story.content.cover, {
       size: [1440, 0]
     })}
-    <img class="max-w-6xl mx-auto rounded-md w-full h-auto" {src} {alt} {width} {height} />
+    <img class="mx-auto h-auto w-full max-w-6xl rounded-md" {src} {alt} {width} {height} />
   {/if}
   {#if story.content.body}
     <RichText
@@ -57,22 +57,22 @@
   <!-- Project -->
   {#if story.content.project.id}
     {@const project = story.content.project}
-    <div class="max-w-2xl mx-auto mb-6">
+    <div class="mx-auto mb-6 max-w-2xl">
       <h4 class="text-xl font-medium">Related project</h4>
       <p class="text-lg text-foreground-secondary">
         For more details about {project.name}, check out the project page.
       </p>
     </div>
     <div
-      class="max-w-2xl mx-auto bg-background-panel rounded-3xl flex overflow-hidden justify-between elevated-links"
+      class="mx-auto flex max-w-2xl justify-between overflow-hidden rounded-3xl bg-background-panel elevated-links"
     >
-      <div class="p-6 flex flex-col items-start">
+      <div class="flex flex-col items-start p-6">
         <div class="flex-1">
           <h3 class="text-xl font-medium">{project.name}</h3>
           <p class="text-xl text-foreground-secondary">{project.content.tagline}</p>
         </div>
         <Button
-          class="elevated-link mt-6"
+          class="mt-6 elevated-link"
           variant="secondary"
           as="a"
           href={`/projects/${project.slug}`}
@@ -93,7 +93,7 @@
   <!-- Author -->
   {#if story.content.author.id}
     {@const author = story.content.author}
-    <div class="mt-10 md:mt-14 lg:mt-20 max-w-2xl mx-auto border-t border-border pt-8">
+    <div class="mx-auto mt-10 max-w-2xl border-t border-border pt-8 md:mt-14 lg:mt-20">
       <Person name={author.name} position={author.content.position} photo={author.content.photo} />
       <p class="mt-6 text-xl text-foreground-secondary">{author.content.bio}</p>
       <Button

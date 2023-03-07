@@ -10,7 +10,7 @@
 
 {#if block?.image?.filename}
   <figure
-    class={clsx('not-rich-text my-6 md:my-10 w-full h-auto', $$restProps.class)}
+    class={clsx('not-rich-text my-6 h-auto w-full md:my-10', $$restProps.class)}
     use:storyblokEditable={block}
   >
     <ExpandableImage
@@ -19,7 +19,7 @@
       on:expand={(e) => open([e.detail])}
     />
     {#if block?.image?.title}
-      <figcaption class="text-sm text-foreground-secondary mt-2 text-center">
+      <figcaption class="mt-2 text-center text-sm text-foreground-secondary">
         {block.image.title}
       </figcaption>
     {/if}

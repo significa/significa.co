@@ -9,14 +9,14 @@
 
 <div
   class={clsx(
-    'relative my-10 @4xl:my-20 grid @4xl:grid-cols-2 gap-10 items-start',
+    'relative my-10 grid items-start gap-10 @4xl:my-20 @4xl:grid-cols-2',
     $$restProps.class
   )}
   use:storyblokEditable={block}
 >
   {#each block.columns as column}
     <RichText
-      class={clsx('rich-text', column.sticky && '@4xl:sticky top-4')}
+      class={clsx('rich-text', column.sticky && 'top-4 @4xl:sticky')}
       doc={column.content}
     />
   {/each}

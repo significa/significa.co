@@ -45,24 +45,24 @@
 
 {#if $items.length}
   <div
-    class="fixed z-50 inset-0 bg-[rgba(0,0,0,0.8)] flex items-center justify-center"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.8)]"
     transition:fade={{ duration: 200 }}
     on:click={close}
     on:keydown={onkeydown}
   >
     <CircleButton
-      class="absolute z-10 bg-black text-white top-2 right-2"
+      class="absolute top-2 right-2 z-10 bg-black text-white"
       on:click={close}
       icon="close"
     />
     {#if $items.length > 1}
       <CircleButton
-        class="absolute z-10 bg-black text-white top-1/2 -translate-y-1/2 left-2 rotate-180"
+        class="absolute top-1/2 left-2 z-10 -translate-y-1/2 rotate-180 bg-black text-white"
         on:click={prev}
         icon="chevron"
       />
       <CircleButton
-        class="absolute z-10 bg-black text-white top-1/2 -translate-y-1/2 right-2"
+        class="absolute top-1/2 right-2 z-10 -translate-y-1/2 bg-black text-white"
         on:click={next}
         icon="chevron"
       />
@@ -70,13 +70,13 @@
     {#each [$items[$active]] as image ($active)}
       {@const { src, alt, width, height, title } = getImageAttributes(image)}
       <figure
-        class="absolute w-[calc(100%-32px)] h-[calc(100%-32px)]"
+        class="absolute h-[calc(100%-32px)] w-[calc(100%-32px)]"
         transition:scale={{ start: 0.9, duration: 200 }}
       >
-        <img class="w-full h-full object-contain" {src} {alt} {width} {height} />
+        <img class="h-full w-full object-contain" {src} {alt} {width} {height} />
         {#if title}
           <figcaption
-            class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-[rgba(0,0,0,0.8)] p-1 rounded-2xs text-white text-xs"
+            class="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-2xs bg-[rgba(0,0,0,0.8)] p-1 text-xs text-white"
           >
             {title}
           </figcaption>

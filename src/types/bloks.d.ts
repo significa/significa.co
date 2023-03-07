@@ -1,5 +1,11 @@
 import { StoryblokStory } from 'storyblok-generate-ts';
 
+export interface AboutPageStoryblok {
+  _uid: string;
+  component: 'about-page';
+  [k: string]: any;
+}
+
 export interface AssetStoryblok {
   alt?: string;
   copyright?: string;
@@ -79,6 +85,12 @@ export interface HandbookStoryblok {
   seo_og_image?: AssetStoryblok;
   _uid: string;
   component: 'handbook';
+  [k: string]: any;
+}
+
+export interface HomePageStoryblok {
+  _uid: string;
+  component: 'home-page';
   [k: string]: any;
 }
 
@@ -175,9 +187,15 @@ export interface LinkStoryblok {
 }
 
 export interface PageStoryblok {
-  page?: (ContactsPageStoryblok | GetAQuotePageStoryblok | StaticPageStoryblok)[];
-  seo_title: string;
-  seo_description: string;
+  page?: (
+    | AboutPageStoryblok
+    | ContactsPageStoryblok
+    | GetAQuotePageStoryblok
+    | HomePageStoryblok
+    | StaticPageStoryblok
+  )[];
+  seo_title?: string;
+  seo_description?: string;
   seo_og_image?: AssetStoryblok;
   _uid: string;
   component: 'page';
@@ -191,9 +209,9 @@ export interface ProjectStoryblok {
   tagline: string;
   intro: string;
   team?: (StoryblokStory<TeamMemberStoryblok> | string)[];
-  client?: StoryblokStory<ClientStoryblok> | string;
-  deliverables?: (StoryblokStory<DeliverableStoryblok> | string)[];
-  services?: (StoryblokStory<ServiceStoryblok> | string)[];
+  client?: string;
+  deliverables?: string;
+  services?: string;
   links?: LinkStoryblok[];
   body?: any;
   seo_title?: string;

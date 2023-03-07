@@ -89,7 +89,7 @@ module.exports = {
           },
           // headings
           h1: {
-            '@apply text-4xl': {},
+            '@apply text-5xl': {},
             fontWeight: theme('fontWeight.semibold'),
             marginBottom: '1ch',
 

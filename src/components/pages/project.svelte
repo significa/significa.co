@@ -1,14 +1,13 @@
 <script lang="ts">
   import { richTextBlockWidths } from '$lib/constants';
-  import type { ProjectStoryblok } from '$types/bloks';
-  import type { ISbStoryData } from '@storyblok/js';
   import RichText from '$components/rich-text.svelte';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import { Avatar, Icon, Link } from '@significa/svelte-ui';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import { t } from '$lib/i18n';
+  import type { ProjectPage } from '$lib/storyblok';
 
-  export let story: ISbStoryData<ProjectStoryblok>;
+  export let story: ProjectPage;
 </script>
 
 <div use:drawerLinks class="container">

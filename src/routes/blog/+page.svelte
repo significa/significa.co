@@ -18,6 +18,7 @@
 
   // sync load function with local store (that will store "load more" posts)
   $: posts.set(data.data.stories);
+  $: total.set(data.total);
 
   const fetchStories = async (page: number) => {
     isFetching.set(true);

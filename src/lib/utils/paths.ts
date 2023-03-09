@@ -9,3 +9,11 @@ export const sanitizeSlug = (slug: string) => {
   // always start with a slash
   return '/' + slug.replace(/^\/+/, '');
 };
+
+export function slugify(string: string) {
+  return string
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w-]/g, '-')
+    .replace(/-+/g, '-');
+}

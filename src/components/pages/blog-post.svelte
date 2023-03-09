@@ -104,12 +104,13 @@
       </Button>
     </div>
   {/if}
+</div>
 
-  <!-- Related Posts -->
-  {#if related.length}
-    <h3 class="mt-28 border-b border-border pb-10 text-4xl">{t('related-posts.title')}</h3>
+<!-- Related Posts -->
+{#if related.length}
+  <div class="mt-28">
     {#each related as post}
       <BlogEntry {post} />
     {/each}
-  {/if}
-</div>
+  </div>
+{/if}

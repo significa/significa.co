@@ -31,7 +31,7 @@ module.exports = {
             fontWeight: theme('fontWeight.semibold')
           },
           a: {
-            color: parseAlphaColor(theme('colors.foreground.secondary')),
+            color: parseAlphaColor(theme('colors.foreground.accent')),
             textDecoration: 'underline'
           },
           // inline code
@@ -88,6 +88,9 @@ module.exports = {
             marginBlock: '32px'
           },
           // headings
+          'h1, h2, h3, h4': {
+            scrollMarginTop: '1rem'
+          },
           h1: {
             '@apply text-5xl': {},
             fontWeight: theme('fontWeight.semibold'),

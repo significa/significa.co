@@ -21,7 +21,7 @@
 
   let headings: Map<string, Heading> = new Map();
 
-  $: ((story.content.body as ISbRichtext).content || []).forEach((section) => {
+  $: ((story.content.body as ISbRichtext)?.content || []).forEach((section) => {
     if (section.type === 'heading' && section.content?.length && section.attrs?.level <= 3) {
       const content = resolver.render(section);
       const id = slugify(content);
@@ -41,7 +41,7 @@
       .find(([, { location }]) => location === 'above-viewport')?.[0];
 </script>
 
-<div class="flex items-start">
+<div class="flex items-start gap-4 @container">
   <div class="flex-1">
     <header class="container my-10 mx-auto max-w-2xl md:my-14 lg:my-20">
       <h1 class="text-5xl">{story.name}</h1>
@@ -100,7 +100,7 @@
     </div>
   </div>
 
-  <aside class="sticky top-10 mt-10 h-auto w-60">
+  <aside class="sticky top-10 mt-10 hidden h-auto w-56 @5xl:block">
     <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">On this page</h4>
     {#each Array.from(headings.entries()) as [id, { content, level }]}
       <a

@@ -5,32 +5,40 @@
   import type { HandbookPage } from '$lib/storyblok';
   import { getImageAttributes } from '$lib/utils/cms';
   import { slugify } from '$lib/utils/paths';
-  import { RichTextResolver } from '@storyblok/js';
+  import { RichTextResolver, type ISbRichtext } from '@storyblok/js';
   import clsx from 'clsx';
 
   export let story: HandbookPage;
 
+  // set headings from content
   const resolver = new RichTextResolver();
 
-  let active: string | undefined;
-  const onIntersect = () => {
-    const headings = document.querySelectorAll('h2[id], h3[id]');
-
-    /** active heading is the first heading in the viewport OR the last heading above the viewport */
-    const activeHeading =
-      Array.from(headings).find((heading) => {
-        const { top } = heading.getBoundingClientRect();
-        return top > 0 && top < window.innerHeight;
-      }) ||
-      Array.from(headings)
-        .reverse()
-        .find((heading) => {
-          const { top } = heading.getBoundingClientRect();
-          return top < 0;
-        });
-
-    active = activeHeading?.id;
+  type Heading = {
+    content: string;
+    location: undefined | 'in-viewport' | 'above-viewport';
+    level: number;
   };
+
+  let headings: Map<string, Heading> = new Map();
+
+  $: ((story.content.body as ISbRichtext).content || []).forEach((section) => {
+    if (section.type === 'heading' && section.content?.length && section.attrs?.level <= 3) {
+      const content = resolver.render(section);
+      const id = slugify(content);
+
+      if (!headings.has(id)) {
+        headings.set(id, { content, level: section.attrs.level, location: undefined });
+      }
+    }
+  });
+
+  // active heading
+  // should be the first heading in the viewport OR the last heading above the viewport
+  $: active =
+    [...headings.entries()].find(([, { location }]) => location === 'in-viewport')?.[0] ||
+    [...headings.entries()]
+      .reverse()
+      .find(([, { location }]) => location === 'above-viewport')?.[0];
 </script>
 
 <div class="flex items-start">
@@ -55,7 +63,22 @@
           use:drawerLinks
           use:intersectionObserver={{
             querySelectorAll: 'h2[id], h3[id]',
-            callback: onIntersect,
+            callback: (observers) => {
+              observers.forEach((o) => {
+                const heading = headings.get(o.target.id);
+
+                if (!heading) return;
+
+                if (o.isIntersecting) {
+                  heading.location = 'in-viewport';
+                } else if (o.boundingClientRect.top < 0) {
+                  heading.location = 'above-viewport';
+                }
+
+                // reactivity
+                headings = headings;
+              });
+            },
             options: { threshold: [1] }
           }}
         >
@@ -65,6 +88,7 @@
             getAttributes={(section) => {
               if (section.type === 'heading') {
                 const heading = resolver.render(section);
+                // add id to heading
                 return { id: slugify(heading) };
               }
 
@@ -78,23 +102,17 @@
 
   <aside class="sticky top-10 mt-10 h-auto w-60">
     <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">On this page</h4>
-    {#if story.content.body?.type === 'doc' && story.content.body?.content?.length}
-      {#each story.content.body.content as section}
-        {#if section.type === 'heading' && section.content?.length && section.attrs?.level <= 3}
-          {@const content = resolver.render(section)}
-          {@const id = slugify(content)}
-          <a
-            href={'#' + id}
-            class={clsx(
-              'block border-l border-border py-1 px-3 text-sm',
-              active === id
-                ? 'border-l-2 border-foreground text-foreground'
-                : 'text-foreground-secondary',
-              section.attrs?.level === 3 ? 'pl-6' : 'pl-3'
-            )}><span class={clsx('block', active === id && '-ml-px')}>{@html content}</span></a
-          >
-        {/if}
-      {/each}
-    {/if}
+    {#each Array.from(headings.entries()) as [id, { content, level }]}
+      <a
+        href={'#' + id}
+        class={clsx(
+          'block border-l border-border py-1 px-3 text-sm',
+          active === id
+            ? 'border-l-2 border-foreground text-foreground'
+            : 'text-foreground-secondary',
+          level >= 3 ? 'pl-6' : 'pl-3'
+        )}><span class={clsx('block', active === id && '-ml-px')}>{@html content}</span></a
+      >
+    {/each}
   </aside>
 </div>

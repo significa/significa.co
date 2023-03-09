@@ -14,7 +14,7 @@
       <ul class="sticky top-2 -mb-px">
         <a
           class={clsx(
-            'flex items-center border-b border-border p-4 text-xs uppercase tracking-wider transition-colors hover:bg-foreground-tertiary/10',
+            'flex items-center border-b border-border px-6 py-4 text-xs uppercase tracking-wider transition-colors hover:bg-foreground-tertiary/10',
             $page.url.pathname === '/handbook' && 'pointer-events-none bg-foreground-tertiary/10'
           )}
           href="/handbook"
@@ -33,7 +33,7 @@
               <a
                 href="/{folder.slug}"
                 class={clsx(
-                  'flex items-center justify-between p-4',
+                  'flex items-center justify-between py-4 px-6',
                   isCurrentFolder && 'pointer-events-none'
                 )}
               >
@@ -43,7 +43,7 @@
                 {/if}
               </a>
               {#if isCurrentFolder}
-                <ul class="px-4 pb-4" transition:slide>
+                <ul class="px-6 pb-4" transition:slide>
                   {#each Object.values(data.links) as sublink}
                     {#if !sublink.is_folder && sublink.parent_id === folder.id}
                       <li class="mb-1.5">

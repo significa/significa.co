@@ -58,14 +58,14 @@
   <div class="flex">
     <aside
       class={clsx(
-        'sticky top-12 z-10 h-screen w-full overflow-y-auto border-r border-border bg-background md:relative md:w-60 lg:top-0 lg:block lg:h-auto lg:w-72',
+        'sticky top-12 z-10 h-screen w-full overflow-y-auto border-r border-border bg-background md:relative md:w-60 md:overflow-y-visible lg:top-0 lg:block lg:h-auto lg:w-72',
         sidebar ? 'block' : 'hidden'
       )}
     >
-      <ul class="sticky -mb-px">
+      <ul class="sticky top-0 -mb-px">
         <a
           class={clsx(
-            'flex items-center border-b border-border px-container py-4 text-xs font-medium uppercase tracking-wider transition-colors hover:bg-foreground-tertiary/10',
+            'flex h-12 items-center border-b border-border px-container py-4 text-xs font-medium uppercase tracking-wider transition-colors hover:bg-foreground-tertiary/10',
             $page.url.pathname === '/handbook' && 'pointer-events-none bg-foreground-tertiary/10'
           )}
           href="/handbook"
@@ -83,7 +83,7 @@
             <a
               href="/{folder.slug}"
               class={clsx(
-                'flex items-center justify-between py-4 px-container',
+                'flex h-12 items-center justify-between py-4 px-container',
                 isCurrentFolder && 'pointer-events-none'
               )}
             >
@@ -113,10 +113,12 @@
         {/each}
       </ul>
     </aside>
-    <main class="flex-1 overflow-hidden">
+    <main class="flex-1 overflow-hidden lg:overflow-visible">
       <slot />
       {#if currentEntry}
-        <div class="flex justify-between border-t border-border text-foreground-secondary">
+        <div
+          class="mb-px flex h-12 justify-between border-t border-border text-foreground-secondary"
+        >
           {#if previousEntry}
             <TextButton
               as="a"

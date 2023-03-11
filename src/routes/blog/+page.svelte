@@ -7,9 +7,8 @@
   import { Button } from '@significa/svelte-ui';
   import type { ISbStoryData } from '@storyblok/js';
   import { writable } from 'svelte/store';
-  import type { PageData } from './$types';
 
-  export let data: PageData;
+  export let data;
 
   const storyblok = getStoryblok();
   const isFetching = writable(false);

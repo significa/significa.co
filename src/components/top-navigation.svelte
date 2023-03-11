@@ -3,7 +3,7 @@
 </script>
 
 <header class="container flex items-center justify-between py-4">
-  <Logo variant="wordmark" />
+  <Logo class="mt-1" variant="wordmark" />
 
   <div class="flex items-center gap-4">
     <Button>Get in touch</Button>

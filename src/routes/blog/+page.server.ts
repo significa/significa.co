@@ -1,8 +1,7 @@
 import { BLOG_PARAMS, getServerSideSBVersion, getStoryblok } from '$lib/storyblok';
 import { error } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
 
-export const load = (async ({ fetch, cookies, url }) => {
+export const load = async ({ fetch, cookies, url }) => {
   const storyblok = getStoryblok({ fetch });
 
   try {
@@ -17,4 +16,4 @@ export const load = (async ({ fetch, cookies, url }) => {
   } catch (err) {
     throw error(404, 'Not found');
   }
-}) satisfies PageServerLoad;
+};

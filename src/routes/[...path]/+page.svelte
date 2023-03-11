@@ -1,9 +1,8 @@
 <script lang="ts">
-  import type { PageData } from './$types';
   import DynamicPage from '$components/pages/dynamic-page.svelte';
   import { startStoryblokBridge } from '$lib/storyblok';
 
-  export let data: PageData;
+  export let data;
 
   startStoryblokBridge(data.page.story.id, (newStory) => {
     data.page.story = newStory;

@@ -1,71 +1,146 @@
 <script lang="ts">
+  import { afterNavigate } from '$app/navigation';
   import { page } from '$app/stores';
-  import { Icon } from '@significa/svelte-ui';
+  import { t } from '$lib/i18n';
+  import { Icon, TextButton } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import { slide } from 'svelte/transition';
-  import type { LayoutData } from './$types';
 
-  export let data: LayoutData;
+  export let data;
+
+  let sidebar = false;
+
+  afterNavigate(() => {
+    sidebar = false;
+  });
+
+  type Entry = { name: string; slug: string };
+  type Folder = Entry & { entries: Entry[] };
+
+  $: directory = Object.values(data.links).reduce((acc, value) => {
+    if (value.is_folder) {
+      acc.push({
+        name: value.name,
+        slug: value.slug,
+        entries: Object.values(data.links)
+          .filter((link) => !link.is_folder && link.parent_id === value.id)
+          .map((link) => ({ name: link.name, slug: link.slug }))
+      });
+    }
+
+    return acc;
+  }, [] as Folder[]);
+
+  $: allEntries = directory.reduce((acc, value) => {
+    acc.push(...value.entries);
+    return acc;
+  }, [] as Entry[]);
+
+  $: currentEntry = allEntries.find(
+    (entry) => $page.url.pathname === `/${entry.slug.replace(/\/$/g, '')}`
+  );
+  $: previousEntry = allEntries.find(
+    (entry, index) => currentEntry && index === allEntries.indexOf(currentEntry) - 1
+  );
+  $: nextEntry = allEntries.find(
+    (entry, index) => currentEntry && index === allEntries.indexOf(currentEntry) + 1
+  );
 </script>
 
 <div class="border-t border-b border-border">
-  <div class="flex min-h-screen">
-    <aside class="w-72 border-r border-border">
-      <ul class="sticky top-2 -mb-px">
+  <div
+    class="sticky top-0 z-10 flex h-12 items-center gap-2 border-b border-border bg-background px-container py-2 lg:hidden"
+  >
+    <TextButton iconLeft={sidebar ? 'close' : 'hamburger'} on:click={() => (sidebar = !sidebar)}>
+      {currentEntry?.name || t('handbook')}
+    </TextButton>
+  </div>
+  <div class="flex">
+    <aside
+      class={clsx(
+        'sticky top-12 z-10 h-screen w-full overflow-y-auto border-r border-border bg-background md:relative md:w-60 lg:top-0 lg:block lg:h-auto lg:w-72',
+        sidebar ? 'block' : 'hidden'
+      )}
+    >
+      <ul class="sticky -mb-px">
         <a
           class={clsx(
-            'flex items-center border-b border-border px-6 py-4 text-xs uppercase tracking-wider transition-colors hover:bg-foreground-tertiary/10',
+            'flex items-center border-b border-border px-container py-4 text-xs font-medium uppercase tracking-wider transition-colors hover:bg-foreground-tertiary/10',
             $page.url.pathname === '/handbook' && 'pointer-events-none bg-foreground-tertiary/10'
           )}
           href="/handbook"
         >
-          Handbook
+          {t('handbook')}
         </a>
-        {#each Object.values(data.links) as folder}
+        {#each directory as folder}
           {@const isCurrentFolder = $page.url.pathname.startsWith(`/${folder.slug}`)}
-          {#if folder.is_folder}
-            <div
+          <div
+            class={clsx(
+              'border-b border-border transition-colors hover:bg-foreground-tertiary/10',
+              isCurrentFolder && 'bg-foreground-tertiary/10'
+            )}
+          >
+            <a
+              href="/{folder.slug}"
               class={clsx(
-                'border-b border-border transition-colors hover:bg-foreground-tertiary/10',
-                isCurrentFolder && 'bg-foreground-tertiary/10'
+                'flex items-center justify-between py-4 px-container',
+                isCurrentFolder && 'pointer-events-none'
               )}
             >
-              <a
-                href="/{folder.slug}"
-                class={clsx(
-                  'flex items-center justify-between py-4 px-6',
-                  isCurrentFolder && 'pointer-events-none'
-                )}
-              >
-                <span class="text-xs uppercase tracking-wider">{folder.name}</span>
-                {#if !isCurrentFolder}
-                  <Icon class="text-foreground-tertiary" icon="chevron" />
-                {/if}
-              </a>
-              {#if isCurrentFolder}
-                <ul class="px-6 pb-4" transition:slide>
-                  {#each Object.values(data.links) as sublink}
-                    {#if !sublink.is_folder && sublink.parent_id === folder.id}
-                      <li class="mb-1.5">
-                        <a
-                          class={clsx(
-                            'text-base transition-colors hover:text-foreground-accent',
-                            $page.url.pathname === `/${sublink.slug.replace(/\/$/g, '')}`
-                              ? 'text-foreground-accent'
-                              : 'text-foreground'
-                          )}
-                          href="/{sublink.slug}">{sublink.name}</a
-                        >
-                      </li>
-                    {/if}
-                  {/each}
-                </ul>
+              <span class="text-xs font-medium uppercase tracking-wider">{folder.name}</span>
+              {#if !isCurrentFolder}
+                <Icon class="text-foreground-tertiary" icon="chevron" />
               {/if}
-            </div>
-          {/if}
+            </a>
+            {#if isCurrentFolder}
+              <ul class="px-container pb-4" transition:slide>
+                {#each folder.entries as entry}
+                  <li class="mb-1.5">
+                    <a
+                      class={clsx(
+                        'text-base transition-colors hover:text-foreground-accent',
+                        currentEntry?.slug === entry.slug
+                          ? 'text-foreground-accent'
+                          : 'text-foreground'
+                      )}
+                      href="/{entry.slug}">{entry.name}</a
+                    >
+                  </li>
+                {/each}
+              </ul>
+            {/if}
+          </div>
         {/each}
       </ul>
     </aside>
-    <main class="flex-1"><slot /></main>
+    <main class="flex-1 overflow-hidden">
+      <slot />
+      {#if currentEntry}
+        <div class="flex justify-between border-t border-border text-foreground-secondary">
+          {#if previousEntry}
+            <TextButton
+              as="a"
+              href={`/${previousEntry.slug}`}
+              class="p-4 text-sm"
+              iconLeft="arrow-left"
+            >
+              {previousEntry.name}
+            </TextButton>
+          {:else}
+            <div />
+          {/if}
+          {#if nextEntry}
+            <TextButton
+              as="a"
+              href={`/${nextEntry.slug}`}
+              class="p-4 text-sm"
+              iconRight="arrow-right"
+            >
+              {nextEntry.name}
+            </TextButton>
+          {/if}
+        </div>
+      {/if}
+    </main>
   </div>
 </div>

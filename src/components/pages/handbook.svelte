@@ -2,6 +2,7 @@
   import RichText from '$components/rich-text.svelte';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import { intersectionObserver } from '$lib/actions/intersection-observer';
+  import { t } from '$lib/i18n';
   import type { HandbookPage } from '$lib/storyblok';
   import { getImageAttributes } from '$lib/utils/cms';
   import { slugify } from '$lib/utils/paths';
@@ -101,7 +102,9 @@
   </div>
 
   <aside class="sticky top-10 mt-10 hidden h-auto w-56 @5xl:block">
-    <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">On this page</h4>
+    <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
+      {t('on-this-page')}
+    </h4>
     {#each Array.from(headings.entries()) as [id, { content, level }]}
       <a
         href={'#' + id}

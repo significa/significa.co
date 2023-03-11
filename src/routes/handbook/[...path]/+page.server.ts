@@ -1,8 +1,7 @@
 import { fetchPage, getServerSideSBVersion } from '$lib/storyblok';
 import { error } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
 
-export const load = (async ({ params, cookies, fetch }) => {
+export const load = async ({ params, cookies, fetch }) => {
   try {
     const page = await fetchPage({
       slug: `handbook/${params.path}`,
@@ -14,4 +13,4 @@ export const load = (async ({ params, cookies, fetch }) => {
   } catch (err) {
     throw error(404, 'Not found');
   }
-}) satisfies PageServerLoad;
+};

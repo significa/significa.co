@@ -24,12 +24,14 @@
       )}
     >
       <div class="mr-6">
-        <h3 class="text-5xl text-foreground-secondary">
-          {project.name}
-        </h3>
-        <p class={clsx('text-5xl', variant === 'default' ? 'max-w-lg' : 'max-w-3xl')}>
-          {project.content.tagline}
-        </p>
+        <a href={`/projects/${project.slug}`}>
+          <h3 class="text-5xl text-foreground-secondary">
+            {project.name}
+          </h3>
+          <p class={clsx('text-5xl', variant === 'default' ? 'max-w-lg' : 'max-w-3xl')}>
+            {project.content.tagline}
+          </p>
+        </a>
         {#if project.content.recognitions?.length}
           <div class="mt-6">
             <Recognitions recognitions={project.content.recognitions} />

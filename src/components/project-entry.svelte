@@ -66,7 +66,7 @@
           />
           {#if project.content.thumbnail.length > 1}
             <CircleButton
-              class="absolute top-1/2 left-2 z-10 -translate-y-1/2 bg-black text-white opacity-0 transition-opacity group-hover:opacity-100"
+              class="absolute top-1/2 left-2 z-10 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 [@media(hover:none)]:opacity-100"
               on:click={() => {
                 if (index === 0) {
                   index = project.content.thumbnail.length - 1;
@@ -77,7 +77,7 @@
               icon="arrow-left"
             />
             <CircleButton
-              class="absolute top-1/2 right-2 z-10 -translate-y-1/2 bg-black text-white opacity-0 transition-opacity group-hover:opacity-100"
+              class="absolute top-1/2 right-2 z-10 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 [@media(hover:none)]:opacity-100"
               on:click={() => {
                 if (index === project.content.thumbnail.length - 1) {
                   index = 0;

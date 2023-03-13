@@ -6,6 +6,7 @@
   import { drawerLinks } from '$lib/actions/drawer-links';
   import { t } from '$lib/i18n';
   import type { ProjectPage } from '$lib/storyblok';
+  import Recognitions from '$components/recognitions.svelte';
 
   export let story: ProjectPage;
 </script>
@@ -38,28 +39,7 @@
         {t('recognitions')}
       </h4>
       <div class="grid grid-cols-1 gap-6 xs:grid-cols-2 md:grid-cols-3">
-        {#each story.content.recognitions as recognition}
-          <div class="col-span-1 flex items-center">
-            {#if recognition.image.filename}
-              {@const { alt, src, width, height } = getImageAttributes(recognition.image, {
-                size: [120, 0]
-              })}
-              <img
-                class="mr-2 h-auto w-14 rounded-md bg-background-offset"
-                {src}
-                {alt}
-                {width}
-                {height}
-              />
-            {/if}
-            <div>
-              <h4 class="text-xs uppercase tracking-wider text-foreground-secondary">
-                {recognition.label}
-              </h4>
-              <p class="text-sm font-medium">{recognition.title}</p>
-            </div>
-          </div>
-        {/each}
+        <Recognitions recognitions={story.content.recognitions} />
       </div>
     </div>
   {/if}
@@ -73,10 +53,12 @@
             <!-- Links -->
             {#each data as link}
               {@const { href, target, rel } = getAnchorFromCmsLink(link.link)}
-              <li class="flex items-center gap-1">
-                <Link {href} {target} {rel}>{link.label}</Link>
-                <Icon class="mt-0.5" icon="arrow-right" />
-              </li>
+              {#if href}
+                <li class="flex items-center gap-1">
+                  <Link {href} {target} {rel}>{link.label}</Link>
+                  <Icon class="mt-0.5" icon="arrow-right" />
+                </li>
+              {/if}
             {/each}
           {:else}
             <!-- Textareas -->

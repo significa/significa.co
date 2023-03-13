@@ -12,7 +12,7 @@ module.exports = {
       center: true,
       padding: '1rem',
       screens: {
-        DEFAULT: '1720px'
+        DEFAULT: '1536px'
       }
     },
     typography: (theme) => ({

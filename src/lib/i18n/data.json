@@ -16,5 +16,8 @@
   "project.team": "Team involved",
   "handbook": "Handbook",
   "on-this-page": "On this page",
-  "close": "Close"
+  "close": "Close",
+  "filters": "Filters",
+  "clear-all": "Clear all",
+  "view-project": "View project"
 }

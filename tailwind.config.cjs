@@ -10,9 +10,9 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: 'clamp(1rem, 2vw, 2rem)',
+      padding: '1rem',
       screens: {
-        DEFAULT: '1720px'
+        DEFAULT: '1536px'
       }
     },
     typography: (theme) => ({
@@ -31,7 +31,7 @@ module.exports = {
             fontWeight: theme('fontWeight.semibold')
           },
           a: {
-            color: parseAlphaColor(theme('colors.foreground.secondary')),
+            color: parseAlphaColor(theme('colors.foreground.accent')),
             textDecoration: 'underline'
           },
           // inline code
@@ -88,6 +88,9 @@ module.exports = {
             marginBlock: '32px'
           },
           // headings
+          'h1, h2, h3, h4': {
+            scrollMarginTop: '1rem'
+          },
           h1: {
             '@apply text-5xl': {},
             fontWeight: theme('fontWeight.semibold'),
@@ -147,6 +150,11 @@ module.exports = {
     extend: {
       screens: {
         xs: '480px'
+      },
+      padding: ({ theme }) => {
+        return {
+          container: theme('container.padding')
+        };
       }
     }
   },
@@ -158,15 +166,18 @@ module.exports = {
           fontFaces: [
             {
               fontWeight: '400',
-              src: `url('/fonts/significa-regular.woff2') format('woff2')`
+              src: `url('/fonts/significa-regular.woff2') format('woff2')`,
+              ascentOverride: '95%'
             },
             {
               fontWeight: '500',
-              src: `url('/fonts/significa-medium.woff2') format('woff2')`
+              src: `url('/fonts/significa-medium.woff2') format('woff2')`,
+              ascentOverride: '95%'
             },
             {
               fontWeight: '600',
-              src: `url('/fonts/significa-semibold.woff2') format('woff2')`
+              src: `url('/fonts/significa-semibold.woff2') format('woff2')`,
+              ascentOverride: '95%'
             }
           ]
         }

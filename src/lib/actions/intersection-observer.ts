@@ -1,13 +1,21 @@
 export function intersectionObserver(
   node: HTMLElement,
-  [callback, options]: [
-    (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => void,
-    IntersectionObserverInit | undefined
-  ]
+  {
+    callback,
+    options,
+    querySelectorAll
+  }: {
+    callback: IntersectionObserverCallback;
+    options?: IntersectionObserverInit;
+    querySelectorAll?: string;
+  }
 ) {
   const observer = new IntersectionObserver(callback, options);
 
-  observer.observe(node);
+  const nodes = querySelectorAll ? node.querySelectorAll(querySelectorAll) : [node];
+  nodes.forEach((n) => {
+    observer.observe(n);
+  });
 
   return {
     destroy() {

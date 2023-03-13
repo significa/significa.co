@@ -13,7 +13,13 @@ export const TranslationKeys = [
   'services',
   'deliverables',
   'links',
-  'project.team'
+  'project.team',
+  'handbook',
+  'on-this-page',
+  'close',
+  'filters',
+  'clear-all',
+  'view-project'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

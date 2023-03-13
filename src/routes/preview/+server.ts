@@ -1,9 +1,8 @@
 import { PREVIEW_COOKIE_KEY } from '$lib/constants';
 import { sanitizeSlug } from '$lib/utils/paths';
 import { redirect } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
 
-export const GET: RequestHandler = async ({ url, cookies }) => {
+export const GET = async ({ url, cookies }) => {
   const path = sanitizeSlug(url.searchParams.get('path') || '/');
 
   url.searchParams.delete('path');

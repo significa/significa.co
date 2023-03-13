@@ -7,9 +7,8 @@
   import { Button } from '@significa/svelte-ui';
   import type { ISbStoryData } from '@storyblok/js';
   import { writable } from 'svelte/store';
-  import type { PageData } from './$types';
 
-  export let data: PageData;
+  export let data;
 
   const storyblok = getStoryblok();
   const isFetching = writable(false);
@@ -18,6 +17,7 @@
 
   // sync load function with local store (that will store "load more" posts)
   $: posts.set(data.data.stories);
+  $: total.set(data.total);
 
   const fetchStories = async (page: number) => {
     isFetching.set(true);
@@ -34,18 +34,20 @@
   };
 </script>
 
-<main class="container">
-  <h1 class="mt-10 text-8xl md:mt-14 lg:mt-20">
-    {#if $page.url.searchParams.getAll('t').length}
-      <a class="text-foreground-tertiary transition-colors hover:text-foreground" href="/blog"
-        >{t('blog.title')}</a
-      >
-      <span class="text-foreground-tertiary">/</span>
-      <span>{$page.url.searchParams.getAll('t').join(', ')}</span>
-    {:else}
-      <span>{t('blog.title')}</span>
-    {/if}
-  </h1>
+<main>
+  <div class="container">
+    <h1 class="mt-10 text-8xl md:mt-14 lg:mt-20">
+      {#if $page.url.searchParams.getAll('t').length}
+        <a class="text-foreground-tertiary transition-colors hover:text-foreground" href="/blog"
+          >{t('blog.title')}</a
+        >
+        <span class="text-foreground-tertiary">/</span>
+        <span>{$page.url.searchParams.getAll('t').join(', ')}</span>
+      {:else}
+        <span>{t('blog.title')}</span>
+      {/if}
+    </h1>
+  </div>
 
   <div class="mt-10 md:mt-14 lg:mt-20">
     {#each $posts as post}
@@ -53,18 +55,20 @@
     {/each}
   </div>
 
-  {#if $posts.length < $total}
-    <Button
-      class="mt-10"
-      variant="secondary"
-      on:click={() => fetchStories($posts.length / BLOG_PARAMS.per_page + 1)}
-      loading={$isFetching}
-    >
-      {t('blog.load-more')}
-    </Button>
-  {/if}
+  <div class="container">
+    {#if $posts.length < $total}
+      <Button
+        class="mt-10"
+        variant="secondary"
+        on:click={() => fetchStories($posts.length / BLOG_PARAMS.per_page + 1)}
+        loading={$isFetching}
+      >
+        {t('blog.load-more')}
+      </Button>
+    {/if}
 
-  {#if $posts.length === 0}
-    <p class="text-5xl">{t('blog.no-results')}</p>
-  {/if}
+    {#if $posts.length === 0}
+      <p class="text-5xl">{t('blog.no-results')}</p>
+    {/if}
+  </div>
 </main>

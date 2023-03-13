@@ -32,6 +32,11 @@ export const BLOG_PARAMS = {
   resolve_relations: 'blog-post.author'
 } as const;
 
+export const PROJECT_PARAMS = {
+  per_page: 50,
+  content_type: 'project'
+};
+
 export const getStoryblok = (apiOptions: SbSDKOptions['apiOptions'] = {}) => {
   const { storyblokApi } = storyblokInit({
     accessToken: env.PUBLIC_STORYBLOK_TOKEN,

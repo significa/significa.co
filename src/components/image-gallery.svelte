@@ -19,6 +19,7 @@
 
 <script lang="ts">
   import { CircleButton } from '@significa/svelte-ui';
+  import { bodyLock } from '$lib/actions/body-lock';
 
   const prev = (e: MouseEvent | KeyboardEvent) => {
     e.stopPropagation();
@@ -45,6 +46,7 @@
 
 {#if $items.length}
   <div
+    use:bodyLock
     class="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.8)]"
     transition:fade={{ duration: 200 }}
     on:click={close}
@@ -59,12 +61,12 @@
       <CircleButton
         class="absolute top-1/2 left-2 z-10 -translate-y-1/2 rotate-180 bg-black text-white"
         on:click={prev}
-        icon="chevron"
+        icon="chevron-right"
       />
       <CircleButton
         class="absolute top-1/2 right-2 z-10 -translate-y-1/2 bg-black text-white"
         on:click={next}
-        icon="chevron"
+        icon="chevron-right"
       />
     {/if}
     {#each [$items[$active]] as image ($active)}

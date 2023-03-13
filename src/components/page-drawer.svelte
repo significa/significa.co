@@ -1,5 +1,6 @@
 <script lang="ts">
   import DynamicPage from '$components/pages/dynamic-page.svelte';
+  import { bodyLock } from '$lib/actions/body-lock';
   import { t } from '$lib/i18n';
   import { drawer } from '$lib/stores/drawer';
   import { fetchPage, getClientSideSBVersion } from '$lib/storyblok';
@@ -22,6 +23,7 @@
 
 {#if $drawer}
   <div
+    use:bodyLock
     role="button"
     on:keydown={onkeydown}
     transition:fade={{ duration: 200 }}
@@ -29,7 +31,7 @@
     on:click={drawer.close}
   />
   <div
-    class="fixed right-2 top-2 bottom-2 left-2 z-50 overflow-y-auto rounded-lg bg-background shadow-2xl md:left-auto md:w-3/4 lg:w-2/3"
+    class="fixed right-2 top-2 bottom-2 left-2 z-50 overflow-y-auto scroll-smooth rounded-lg bg-background shadow-2xl md:left-auto md:w-3/4 lg:w-2/3"
     transition:fly={{ x: 300, duration: 200 }}
   >
     <header class="z-50 flex items-center justify-between p-2">

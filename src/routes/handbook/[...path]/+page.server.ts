@@ -4,7 +4,7 @@ import { error } from '@sveltejs/kit';
 export const load = async ({ params, cookies, fetch }) => {
   try {
     const page = await fetchPage({
-      slug: params.path,
+      slug: `handbook/${params.path}`,
       version: getServerSideSBVersion(cookies),
       fetch
     });

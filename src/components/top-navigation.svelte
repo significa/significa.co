@@ -2,6 +2,7 @@
   import { page } from '$app/stores';
   import { Button, Logo } from '@significa/svelte-ui';
   import clsx from 'clsx';
+  import AnHandAndABook from './an-hand-and-a-book.svelte';
 </script>
 
 <header
@@ -11,7 +12,14 @@
     $page.url.pathname.startsWith('/handbook') ? 'px-container' : 'container'
   )}
 >
-  <Logo class="mt-1" variant="wordmark" />
+  <div class="flex items-center gap-2">
+    <a href="/">
+      <Logo class="mt-1" variant="wordmark" />
+    </a>
+    {#if $page.url.pathname.startsWith('/handbook')}
+      <AnHandAndABook />
+    {/if}
+  </div>
 
   <div class="flex items-center gap-4">
     <Button size="sm">Get in touch</Button>

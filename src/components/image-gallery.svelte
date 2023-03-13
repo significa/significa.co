@@ -19,6 +19,7 @@
 
 <script lang="ts">
   import { CircleButton } from '@significa/svelte-ui';
+  import { bodyLock } from '$lib/actions/body-lock';
 
   const prev = (e: MouseEvent | KeyboardEvent) => {
     e.stopPropagation();
@@ -45,6 +46,7 @@
 
 {#if $items.length}
   <div
+    use:bodyLock
     class="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.8)]"
     transition:fade={{ duration: 200 }}
     on:click={close}

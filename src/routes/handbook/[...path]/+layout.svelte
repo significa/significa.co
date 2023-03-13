@@ -1,17 +1,19 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation';
   import { page } from '$app/stores';
+  import { bodyLock } from '$lib/actions/body-lock';
   import { t } from '$lib/i18n';
   import { Icon, TextButton } from '@significa/svelte-ui';
   import clsx from 'clsx';
+  import { writable } from 'svelte/store';
   import { slide } from 'svelte/transition';
 
   export let data;
 
-  let sidebar = false;
+  let sidebar = writable(false);
 
   afterNavigate(() => {
-    sidebar = false;
+    sidebar.set(false);
   });
 
   type Entry = { name: string; slug: string };
@@ -36,32 +38,41 @@
     return acc;
   }, [] as Entry[]);
 
-  $: currentEntry = allEntries.find(
+  $: currIndex = allEntries.findIndex(
     (entry) => $page.url.pathname === `/${entry.slug.replace(/\/$/g, '')}`
   );
-  $: previousEntry = allEntries.find(
-    (entry, index) => currentEntry && index === allEntries.indexOf(currentEntry) - 1
-  );
-  $: nextEntry = allEntries.find(
-    (entry, index) => currentEntry && index === allEntries.indexOf(currentEntry) + 1
-  );
+
+  let mobileMenu: HTMLDivElement;
+  let mobileMenuTop: number;
+  $: if ($sidebar) {
+    mobileMenuTop = mobileMenu.getBoundingClientRect().top;
+  }
 </script>
 
-<div class="border-t border-b border-border">
+<div class="border-t border-b border-border" use:bodyLock={sidebar}>
+  <!-- Mobile: open menu -->
   <div
-    class="sticky top-0 z-10 flex h-12 items-center gap-2 border-b border-border bg-background px-container py-2 lg:hidden"
+    bind:this={mobileMenu}
+    class="sticky top-0 z-10 flex h-12 items-center border-b border-border bg-background px-container py-2 lg:hidden"
   >
-    <TextButton iconLeft={sidebar ? 'close' : 'hamburger'} on:click={() => (sidebar = !sidebar)}>
-      {currentEntry?.name || t('handbook')}
+    <TextButton iconLeft="hamburger" on:click={() => sidebar.set(true)}>
+      {allEntries[currIndex]?.name || t('handbook')}
     </TextButton>
   </div>
-  <div class="flex">
+  <div class="flex flex-col lg:flex-row">
     <aside
       class={clsx(
-        'sticky top-12 z-10 h-screen w-full overflow-y-auto border-r border-border bg-background md:relative md:w-60 md:overflow-y-visible lg:top-0 lg:block lg:h-auto lg:w-72',
-        sidebar ? 'block' : 'hidden'
+        'fixed top-0 bottom-0 z-10 w-full overflow-y-auto border-r border-border bg-background lg:relative lg:top-auto lg:bottom-auto lg:block lg:h-auto lg:w-72 lg:overflow-y-visible',
+        $sidebar ? 'block' : 'hidden'
       )}
+      style={$sidebar ? `top: ${mobileMenuTop}px` : ''}
     >
+      <!-- Mobile: close menu -->
+      <div
+        class="sticky top-0 z-10 flex h-12 items-center border-b border-border bg-background px-container py-2 lg:hidden"
+      >
+        <TextButton iconLeft="close" on:click={() => sidebar.set(false)}>{t('close')}</TextButton>
+      </div>
       <ul class="sticky top-0 -mb-px">
         <a
           class={clsx(
@@ -99,7 +110,7 @@
                     <a
                       class={clsx(
                         'text-base transition-colors hover:text-foreground-accent',
-                        currentEntry?.slug === entry.slug
+                        allEntries[currIndex]?.slug === entry.slug
                           ? 'text-foreground-accent'
                           : 'text-foreground'
                       )}
@@ -113,32 +124,32 @@
         {/each}
       </ul>
     </aside>
-    <main class="flex-1 overflow-hidden lg:overflow-visible">
+    <main class="flex-1">
       <slot />
-      {#if currentEntry}
+      {#if allEntries[currIndex]}
         <div
           class="mb-px flex h-12 justify-between border-t border-border text-foreground-secondary"
         >
-          {#if previousEntry}
+          {#if allEntries[currIndex - 1]}
             <TextButton
               as="a"
-              href={`/${previousEntry.slug}`}
+              href={`/${allEntries[currIndex - 1].slug}`}
               class="p-4 text-sm"
               iconLeft="arrow-left"
             >
-              {previousEntry.name}
+              {allEntries[currIndex - 1].name}
             </TextButton>
           {:else}
             <div />
           {/if}
-          {#if nextEntry}
+          {#if allEntries[currIndex + 1]}
             <TextButton
               as="a"
-              href={`/${nextEntry.slug}`}
+              href={`/${allEntries[currIndex + 1].slug}`}
               class="p-4 text-sm"
               iconRight="arrow-right"
             >
-              {nextEntry.name}
+              {allEntries[currIndex + 1].name}
             </TextButton>
           {/if}
         </div>

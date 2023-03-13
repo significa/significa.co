@@ -15,7 +15,8 @@ export const TranslationKeys = [
   'links',
   'project.team',
   'handbook',
-  'on-this-page'
+  'on-this-page',
+  'close'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

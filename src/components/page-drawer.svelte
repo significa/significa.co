@@ -1,5 +1,6 @@
 <script lang="ts">
   import DynamicPage from '$components/pages/dynamic-page.svelte';
+  import { bodyLock } from '$lib/actions/body-lock';
   import { t } from '$lib/i18n';
   import { drawer } from '$lib/stores/drawer';
   import { fetchPage, getClientSideSBVersion } from '$lib/storyblok';
@@ -22,6 +23,7 @@
 
 {#if $drawer}
   <div
+    use:bodyLock
     role="button"
     on:keydown={onkeydown}
     transition:fade={{ duration: 200 }}

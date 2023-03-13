@@ -6,7 +6,7 @@
   <Logo class="mt-1" variant="wordmark" />
 
   <div class="flex items-center gap-4">
-    <Button>Get in touch</Button>
-    <Button variant="secondary" icon="3dots" />
+    <Button size="sm">Get in touch</Button>
+    <Button size="sm" variant="secondary" icon="3dots" />
   </div>
 </header>

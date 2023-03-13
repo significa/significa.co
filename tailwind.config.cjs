@@ -167,17 +167,17 @@ module.exports = {
             {
               fontWeight: '400',
               src: `url('/fonts/significa-regular.woff2') format('woff2')`,
-              ascentOverride: '90%'
+              ascentOverride: '95%'
             },
             {
               fontWeight: '500',
               src: `url('/fonts/significa-medium.woff2') format('woff2')`,
-              ascentOverride: '90%'
+              ascentOverride: '95%'
             },
             {
               fontWeight: '600',
               src: `url('/fonts/significa-semibold.woff2') format('woff2')`,
-              ascentOverride: '90%'
+              ascentOverride: '95%'
             }
           ]
         }

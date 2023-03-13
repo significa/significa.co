@@ -100,7 +100,7 @@
             >
               <span class="text-xs font-medium uppercase tracking-wider">{folder.name}</span>
               {#if !isCurrentFolder}
-                <Icon class="text-foreground-tertiary" icon="chevron" />
+                <Icon class="text-foreground-tertiary" icon="chevron-down" />
               {/if}
             </a>
             {#if isCurrentFolder}

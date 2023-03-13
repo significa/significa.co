@@ -61,12 +61,12 @@
       <CircleButton
         class="absolute top-1/2 left-2 z-10 -translate-y-1/2 rotate-180 bg-black text-white"
         on:click={prev}
-        icon="chevron"
+        icon="chevron-right"
       />
       <CircleButton
         class="absolute top-1/2 right-2 z-10 -translate-y-1/2 bg-black text-white"
         on:click={next}
-        icon="chevron"
+        icon="chevron-right"
       />
     {/if}
     {#each [$items[$active]] as image ($active)}

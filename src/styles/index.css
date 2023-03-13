@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
-
 ::selection {
   background-color: theme('colors.foreground.tertiary');
 }

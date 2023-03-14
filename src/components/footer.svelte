@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import { sanitizeSlug } from '$lib/utils/paths';
   import type { ConfigurationStoryblok } from '$types/bloks';
@@ -25,7 +26,11 @@
             {#each column.links || [] as link}
               {#if column.component === 'footer-column-internal'}
                 <li class="mb-2">
-                  <Link class="inline-block" href={sanitizeSlug(link.full_slug)}>{link.name}</Link>
+                  <Link
+                    active={$page.url.pathname === sanitizeSlug(link.full_slug)}
+                    class="inline-block"
+                    href={sanitizeSlug(link.full_slug)}>{link.name}</Link
+                  >
                 </li>
               {:else if column.component === 'footer-column-external'}
                 {@const { href, target, rel } = getAnchorFromCmsLink(link.link)}

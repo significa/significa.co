@@ -37,7 +37,7 @@
   </div>
 
   <div class="flex items-center gap-8">
-    <div class="hidden items-center gap-6 text-base font-medium md:flex">
+    <div class="hidden items-center gap-6 text-base font-medium leading-relaxed md:flex">
       {#each configuration.primary_navigation || [] as nav}
         <Link
           active={$page.url.pathname === sanitizeSlug(nav.full_slug)}

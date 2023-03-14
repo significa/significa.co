@@ -6,8 +6,8 @@ export const sanitizeSlug = (slug: string) => {
   // nothing for now, but it's good to have a centralized function that we pass all slugs through
   if (slug.startsWith('http')) return slug;
 
-  // always start with a slash
-  return '/' + slug.replace(/^\/+/, '');
+  // always start with a slash and end eith no slash
+  return '/' + slug.replace(/^\/+/, '').replace(/\/+$/, '');
 };
 
 export function slugify(string: string) {

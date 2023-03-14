@@ -19,7 +19,7 @@
 
 <script lang="ts">
   import { CircleButton } from '@significa/svelte-ui';
-  import { bodyLock } from '$lib/actions/body-lock';
+  import { bodyLock, escapeKey } from '@significa/svelte-ui/actions';
 
   const prev = (e: MouseEvent | KeyboardEvent) => {
     e.stopPropagation();
@@ -30,27 +30,16 @@
     e.stopPropagation();
     active.update((value) => (value === $items.length - 1 ? 0 : value + 1));
   };
-
-  const onkeydown = (e: KeyboardEvent) => {
-    if ($items.length === 0) return;
-
-    if (e.key === 'Escape') close();
-
-    if ($items.length > 1 && e.key === 'ArrowLeft') prev(e);
-
-    if ($items.length > 1 && e.key === 'ArrowRight') next(e);
-  };
 </script>
 
-<svelte:window on:keydown={onkeydown} />
-
 {#if $items.length}
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div
     use:bodyLock
+    use:escapeKey={{ id: 'image-gallery', callback: close }}
     class="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.8)]"
     transition:fade={{ duration: 200 }}
     on:click={close}
-    on:keydown={onkeydown}
   >
     <CircleButton
       class="absolute top-2 right-2 z-10 bg-black text-white"
@@ -70,20 +59,22 @@
       />
     {/if}
     {#each [$items[$active]] as image ($active)}
-      {@const { src, alt, width, height, title } = getImageAttributes(image)}
-      <figure
-        class="absolute h-[calc(100%-32px)] w-[calc(100%-32px)]"
-        transition:scale={{ start: 0.9, duration: 200 }}
-      >
-        <img class="h-full w-full object-contain" {src} {alt} {width} {height} />
-        {#if title}
-          <figcaption
-            class="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-2xs bg-[rgba(0,0,0,0.8)] p-1 text-xs text-white"
-          >
-            {title}
-          </figcaption>
-        {/if}
-      </figure>
+      {#if image?.filename}
+        {@const { src, alt, width, height, title } = getImageAttributes(image)}
+        <figure
+          class="absolute h-[calc(100%-32px)] w-[calc(100%-32px)]"
+          transition:scale={{ start: 0.9, duration: 200 }}
+        >
+          <img class="h-full w-full object-contain" {src} {alt} {width} {height} />
+          {#if title}
+            <figcaption
+              class="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-2xs bg-[rgba(0,0,0,0.8)] p-1 text-xs text-white"
+            >
+              {title}
+            </figcaption>
+          {/if}
+        </figure>
+      {/if}
     {/each}
   </div>
 {/if}

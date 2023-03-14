@@ -1,7 +1,7 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation';
   import { page } from '$app/stores';
-  import { bodyLock } from '$lib/actions/body-lock';
+  import { bodyLock } from '@significa/svelte-ui/actions';
   import { t } from '$lib/i18n';
   import { Icon, TextButton } from '@significa/svelte-ui';
   import clsx from 'clsx';

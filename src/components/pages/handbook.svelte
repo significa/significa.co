@@ -1,7 +1,7 @@
 <script lang="ts">
   import RichText from '$components/rich-text.svelte';
   import { drawerLinks } from '$lib/actions/drawer-links';
-  import { intersectionObserver } from '$lib/actions/intersection-observer';
+  import { intersectionObserver } from '@significa/svelte-ui/actions';
   import { t } from '$lib/i18n';
   import type { HandbookPage } from '$lib/storyblok';
   import { getImageAttributes } from '$lib/utils/cms';

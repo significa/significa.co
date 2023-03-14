@@ -1,7 +1,7 @@
 <script lang="ts">
   import { tweened } from 'svelte/motion';
 
-  import { intersectionObserver } from '$lib/actions/intersection-observer';
+  import { intersectionObserver } from '@significa/svelte-ui/actions';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { ComparisonStoryblok } from '$types/bloks';
   import { CircleButton } from '@significa/svelte-ui';

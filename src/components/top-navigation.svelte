@@ -1,8 +1,7 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation';
   import { page } from '$app/stores';
-  import { bodyLock } from '$lib/actions/body-lock';
-  import { clickOutside } from '$lib/actions/click-outside';
+  import { escapeKey, clickOutside, bodyLock } from '@significa/svelte-ui/actions';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import { sanitizeSlug } from '$lib/utils/paths';
   import type { ConfigurationStoryblok } from '$types/bloks';
@@ -65,6 +64,7 @@
   {#if panel}
     <div
       use:bodyLock
+      use:escapeKey={{ id: 'top-navigation', callback: () => (panel = false) }}
       role="button"
       on:keydown={onkeydown}
       transition:fade={{ duration: 200 }}

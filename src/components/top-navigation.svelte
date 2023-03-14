@@ -6,16 +6,11 @@
   import { sanitizeSlug } from '$lib/utils/paths';
   import type { ConfigurationStoryblok } from '$types/bloks';
   import { Button, Link, Logo } from '@significa/svelte-ui';
-  import type { ISbStoryData } from '@storyblok/js';
   import clsx from 'clsx';
   import { fade, fly } from 'svelte/transition';
   import AnHandAndABook from './an-hand-and-a-book.svelte';
 
-  export let configuration: ISbStoryData<
-    Omit<ConfigurationStoryblok, 'primary_navigation'> & {
-      primary_navigation: ISbStoryData[];
-    }
-  >;
+  export let configuration: ConfigurationStoryblok;
 
   let panel = false;
   afterNavigate(() => {
@@ -43,7 +38,7 @@
 
   <div class="flex items-center gap-8">
     <div class="hidden items-center gap-6 text-base font-medium md:flex">
-      {#each configuration.content.primary_navigation as nav}
+      {#each configuration.primary_navigation || [] as nav}
         <Link
           active={$page.url.pathname === sanitizeSlug(nav.full_slug)}
           href={sanitizeSlug(nav.full_slug)}>{nav.name}</Link
@@ -51,10 +46,10 @@
       {/each}
     </div>
     <div class="flex items-center gap-4">
-      {#if configuration.content.call_to_action.length}
-        {@const { href } = getAnchorFromCmsLink(configuration.content.call_to_action[0].link)}
+      {#if configuration.call_to_action?.length}
+        {@const { href } = getAnchorFromCmsLink(configuration.call_to_action[0].link)}
         <div class="hidden [@media(min-width:360px)]:block">
-          <Button as="a" {href}>{configuration.content.call_to_action[0].label}</Button>
+          <Button as="a" {href}>{configuration.call_to_action[0].label}</Button>
         </div>
       {/if}
       <Button variant="secondary" icon="3dots" on:click={() => (panel = true)} />
@@ -82,13 +77,13 @@
       </div>
 
       <div class="flex-1">
-        {#each configuration.content.footer as column}
+        {#each configuration.footer || [] as column}
           <div class="mt-8">
             <p class="mb-2 text-xs font-medium uppercase tracking-wider text-foreground-secondary">
               {column.title}
             </p>
             <ul class="text-lg font-medium">
-              {#each column.links as link}
+              {#each column.links || [] as link}
                 {#if column.component === 'footer-column-internal'}
                   <li class="mb-1">
                     <Link class="inline-block" href={sanitizeSlug(link.full_slug)}>{link.name}</Link
@@ -106,10 +101,10 @@
         {/each}
       </div>
 
-      {#if configuration.content.call_to_action.length}
-        {@const { href } = getAnchorFromCmsLink(configuration.content.call_to_action[0].link)}
+      {#if configuration.call_to_action?.length}
+        {@const { href } = getAnchorFromCmsLink(configuration.call_to_action[0].link)}
         <Button class="mt-10 flex-shrink-0" as="a" {href}
-          >{configuration.content.call_to_action[0].label}</Button
+          >{configuration.call_to_action[0].label}</Button
         >
       {/if}
     </div>

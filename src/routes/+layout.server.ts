@@ -16,11 +16,7 @@ export const load = async ({ cookies, fetch }) => {
     });
 
     return {
-      configuration: res.data.story as ISbStoryData<
-        Omit<ConfigurationStoryblok, 'primary_navigation'> & {
-          primary_navigation: ISbStoryData[];
-        }
-      >,
+      configuration: res.data.story as ISbStoryData<ConfigurationStoryblok>,
       version
     };
   } catch (err) {

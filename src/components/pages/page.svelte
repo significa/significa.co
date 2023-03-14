@@ -1,5 +1,6 @@
 <script lang="ts">
   import RichText from '$components/rich-text.svelte';
+  import Slogan from '$components/slogan.svelte';
   import { richTextBlockWidths } from '$lib/constants';
   import type { PageStoryblok } from '$types/bloks';
   import type { ISbStoryData } from '@storyblok/js';
@@ -19,7 +20,10 @@
       />
     </div>
   {:else if page.component === 'home-page'}
-    <div>Home page</div>
+    <div class="container mt-20"><Slogan as="h2" class="text-7xl" /></div>
+    <div class="py-96" />
+    <div class="py-96" />
+    <div class="py-96" />
   {:else if page.component === 'about-page'}
     <div>About page</div>
   {:else if page.component === 'get-a-quote-page'}

@@ -43,8 +43,8 @@
   use:storyblokEditable={block}
   data-theme="dark"
   bind:this={container}
-  use:intersectionObserver={[
-    ([e]) => {
+  use:intersectionObserver={{
+    callback: ([e]) => {
       // move the handle to the middle when the element gets in the viewport
       // to show the user that it's interactive
       if (e.isIntersecting && $visibility === 0) {
@@ -59,8 +59,8 @@
         }, 500);
       }
     },
-    { threshold: [1] }
-  ]}
+    options: { threshold: [1] }
+  }}
 >
   <!-- line -->
   <div

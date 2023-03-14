@@ -9,6 +9,7 @@
 
 {#if isDraft && !dev && !dismissed}
   <div
+    data-theme="yellow"
     class="fixed bottom-4 left-4 z-50 flex flex-col items-stretch rounded-xl border border-border bg-background-panel p-4 text-foreground"
   >
     <header class="mb-1.5 flex items-center justify-between">
@@ -17,10 +18,9 @@
         <Icon icon="close" />
       </button>
     </header>
-    <p class="mb-4 text-base">You're viewing a <em>draft</em> version</p>
+    <p class="mb-4 text-base">You're viewing a draft version</p>
     <Button
       as="a"
-      variant="secondary"
       data-sveltekit-preload-data="off"
       href="/exit-preview?return_to={encodeURIComponent($page.url.pathname)}"
     >

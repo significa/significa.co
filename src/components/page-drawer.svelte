@@ -1,6 +1,6 @@
 <script lang="ts">
   import DynamicPage from '$components/pages/dynamic-page.svelte';
-  import { bodyLock } from '$lib/actions/body-lock';
+  import { bodyLock, escapeKey } from '@significa/svelte-ui/actions';
   import { t } from '$lib/i18n';
   import { drawer } from '$lib/stores/drawer';
   import { fetchPage, getClientSideSBVersion } from '$lib/storyblok';
@@ -19,10 +19,9 @@
   };
 </script>
 
-<svelte:window on:keydown={onkeydown} />
-
 {#if $drawer}
   <div
+    use:escapeKey={{ id: 'page-drawer', callback: drawer.close }}
     use:bodyLock
     role="button"
     on:keydown={onkeydown}

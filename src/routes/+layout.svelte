@@ -1,10 +1,15 @@
 <script lang="ts">
   import '$styles/index.css';
 
+  import { page } from '$app/stores';
+
   import DraftMode from '$components/draft-mode.svelte';
   import ImageGallery from '$components/image-gallery.svelte';
   import TopNavigation from '$components/top-navigation.svelte';
   import PageDrawer from '$components/page-drawer.svelte';
+  import Footer from '$components/footer.svelte';
+
+  export let data;
 </script>
 
 <svelte:head>
@@ -15,6 +20,9 @@
 <PageDrawer />
 <DraftMode />
 <ImageGallery />
-<TopNavigation />
+<TopNavigation
+  configuration={data.configuration.content}
+  variant={$page.url.pathname.startsWith('/handbook') ? 'handbook' : 'default'}
+/>
 <slot />
-<footer class="container mt-20 py-20">Footer here</footer>
+<Footer configuration={data.configuration.content} />

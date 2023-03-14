@@ -55,6 +55,15 @@ export interface ComparisonStoryblok {
   [k: string]: any;
 }
 
+export interface ConfigurationStoryblok {
+  primary_navigation?: any[];
+  call_to_action?: LinkStoryblok[];
+  footer?: (FooterColumnInternalStoryblok | FooterColumnExternalStoryblok)[];
+  _uid: string;
+  component: 'configuration';
+  [k: string]: any;
+}
+
 export interface ContactsPageStoryblok {
   _uid: string;
   component: 'contacts-page';
@@ -64,6 +73,22 @@ export interface ContactsPageStoryblok {
 export interface DeliverableStoryblok {
   _uid: string;
   component: 'deliverable';
+  [k: string]: any;
+}
+
+export interface FooterColumnExternalStoryblok {
+  title?: string;
+  links?: LinkStoryblok[];
+  _uid: string;
+  component: 'footer-column-external';
+  [k: string]: any;
+}
+
+export interface FooterColumnInternalStoryblok {
+  title?: string;
+  links?: any[];
+  _uid: string;
+  component: 'footer-column-internal';
   [k: string]: any;
 }
 
@@ -77,8 +102,6 @@ export interface HandbookStoryblok {
   cover?: AssetStoryblok;
   tagline?: string;
   intro?: string;
-  deliverables?: (StoryblokStory<DeliverableStoryblok> | string)[];
-  services?: (StoryblokStory<ServiceStoryblok> | string)[];
   body?: any;
   seo_title?: string;
   seo_description?: string;

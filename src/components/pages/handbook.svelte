@@ -101,7 +101,7 @@
     </div>
   </div>
 
-  <aside class="sticky top-10 mt-10 hidden h-auto w-56 @5xl:block">
+  <aside class="sticky top-10 mt-10 mb-10 hidden h-auto w-56 @5xl:block">
     <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
       {t('on-this-page')}
     </h4>

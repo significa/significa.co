@@ -20,7 +20,7 @@
       />
     </div>
   {:else if page.component === 'home-page'}
-    <div class="container mt-20"><Slogan as="h2" class="text-7xl" /></div>
+    <div class="container mt-20"><Slogan as="h2" class="text-7xl font-bold" /></div>
     <div class="py-96" />
     <div class="py-96" />
     <div class="py-96" />

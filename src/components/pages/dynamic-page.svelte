@@ -25,5 +25,5 @@
 {:else if isProjectPage(page)}
   <Project story={page.story} related={page.relatedProjects} />
 {:else if isTeamMemberPage(page)}
-  <TeamMember story={page.story} />
+  <TeamMember story={page.story} posts={page.authorPosts} projects={page.authorProjects} />
 {/if}

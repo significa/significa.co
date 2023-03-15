@@ -19,5 +19,10 @@
   "close": "Close",
   "filters": "Filters",
   "clear-all": "Clear all",
-  "view-project": "View project"
+  "view-project": "View project",
+  "member.projects.title": "Projects",
+  "member.projects.subtitle": "Collaborated on",
+  "member.posts.title": "Blog",
+  "member.posts.subtitle": "From this author",
+  "member.about": "About {{name}}"
 }

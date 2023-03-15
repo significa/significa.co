@@ -44,7 +44,7 @@
       >
       <Button class="bg-background" variant="ghost" icon="close" on:click={drawer.close} />
     </header>
-    <div class="p-4 md:p-6 lg:p-10">
+    <div>
       {#await fetchPage({ slug: $drawer, version: getClientSideSBVersion() })}
         <div class="flex justify-center p-10">
           <Spinner size="md" />

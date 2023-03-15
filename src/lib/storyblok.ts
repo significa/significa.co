@@ -149,6 +149,43 @@ export async function fetchPage(options: {
       };
     }
 
+    // Team members need to fetch related posts and projects
+    if (data.story.content.component === 'team-member') {
+      const {
+        data: { stories: authorPosts }
+      } = await storyblok.get('cdn/stories', {
+        version: options.version || 'published',
+        ...BLOG_PARAMS,
+        per_page: 50,
+        page: 1,
+        excluding_fields: 'body',
+        filter_query: {
+          author: {
+            in: data.story.uuid
+          }
+        }
+      });
+
+      const {
+        data: { stories: authorProjects }
+      } = await storyblok.get('cdn/stories', {
+        version: options.version || 'published',
+        ...PROJECT_PARAMS,
+        excluding_fields: 'body',
+        filter_query: {
+          team: {
+            any_in_array: data.story.uuid
+          }
+        }
+      });
+
+      return {
+        story: data.story,
+        authorPosts: authorPosts as BlogPostPage[],
+        authorProjects: authorProjects as ProjectPage[]
+      };
+    }
+
     return { story: data.story };
   } catch (err) {
     throw new Error('Not found');
@@ -159,6 +196,8 @@ export type PageResult = {
   story: DynamicPage;
   relatedPosts?: BlogPostPage[];
   relatedProjects?: ProjectPage[];
+  authorPosts?: BlogPostPage[];
+  authorProjects?: ProjectPage[];
 };
 
 export const isPage = (page: PageResult): page is { story: Page } => {
@@ -181,6 +220,12 @@ export const isProjectPage = (
   return page.story.content.component === 'project';
 };
 
-export const isTeamMemberPage = (page: PageResult): page is { story: TeamMemberPage } => {
+export const isTeamMemberPage = (
+  page: PageResult
+): page is {
+  story: TeamMemberPage;
+  authorPosts: BlogPostPage[];
+  authorProjects: ProjectPage[];
+} => {
   return page.story.content.component === 'team-member';
 };

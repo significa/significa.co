@@ -19,7 +19,12 @@ export const TranslationKeys = [
   'close',
   'filters',
   'clear-all',
-  'view-project'
+  'view-project',
+  'member.projects.title',
+  'member.projects.subtitle',
+  'member.posts.title',
+  'member.posts.subtitle',
+  'member.about'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

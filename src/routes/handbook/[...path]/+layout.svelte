@@ -53,7 +53,7 @@
   <!-- Mobile: open menu -->
   <div
     bind:this={mobileMenu}
-    class="sticky top-0 z-10 flex h-12 items-center border-b border-border bg-background px-container py-2 lg:hidden"
+    class="sticky top-0 z-10 flex h-12 items-center border-b border-border bg-background px-6 py-2 lg:hidden"
   >
     <TextButton iconLeft="hamburger" on:click={() => sidebar.set(true)}>
       {allEntries[currIndex]?.name || t('handbook')}
@@ -69,14 +69,14 @@
     >
       <!-- Mobile: close menu -->
       <div
-        class="sticky top-0 z-10 flex h-12 items-center border-b border-border bg-background px-container py-2 lg:hidden"
+        class="sticky top-0 z-10 flex h-12 items-center border-b border-border bg-background px-6 py-2 lg:hidden"
       >
         <TextButton iconLeft="close" on:click={() => sidebar.set(false)}>{t('close')}</TextButton>
       </div>
       <ul class="sticky top-0 -mb-px">
         <a
           class={clsx(
-            'flex h-12 items-center border-b border-border px-container py-4 text-xs font-medium uppercase tracking-wider transition-colors hover:bg-foreground-tertiary/10',
+            'flex h-12 items-center border-b border-border px-6 py-4 text-xs font-medium uppercase tracking-wider transition-colors hover:bg-foreground-tertiary/10',
             $page.url.pathname === '/handbook' && 'pointer-events-none bg-foreground-tertiary/10'
           )}
           href="/handbook"
@@ -94,7 +94,7 @@
             <a
               href="/{folder.slug}"
               class={clsx(
-                'flex h-12 items-center justify-between py-4 px-container',
+                'flex h-12 items-center justify-between py-4 px-6',
                 isCurrentFolder && 'pointer-events-none'
               )}
             >
@@ -104,7 +104,7 @@
               {/if}
             </a>
             {#if isCurrentFolder}
-              <ul class="px-container pb-4" transition:slide|local>
+              <ul class="px-6 pb-4" transition:slide|local>
                 {#each folder.entries as entry}
                   <li class="mb-1.5">
                     <a

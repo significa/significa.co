@@ -15,12 +15,12 @@
 </script>
 
 <div
-  class="group border-b border-border py-12 transition-colors first:border-t hover:bg-foreground-tertiary/10"
+  class="group border-b border-border py-12 transition-colors @container first:border-t hover:bg-foreground-tertiary/10"
 >
-  <div class={clsx('container', variant === 'default' && 'md:flex')}>
+  <div class={clsx('container', variant === 'default' && '@5xl:flex')}>
     <div
       class={clsx(
-        variant === 'featured' && 'items-end justify-between md:flex',
+        variant === 'featured' && 'items-end justify-between @5xl:flex',
         variant === 'default' && 'flex flex-1 flex-col items-start justify-between'
       )}
     >
@@ -59,7 +59,7 @@
       {@const image = project.content.thumbnail[index]}
       {#if image?.filename}
         {@const { src, alt, width, height } = getImageAttributes(image)}
-        <div class="relative mt-8 aspect-[4/3] flex-1 md:mt-0">
+        <div class="relative mt-8 aspect-[4/3] flex-1 @5xl:mt-0">
           <img
             class="h-full w-full rounded-md bg-background-offset object-cover"
             {src}

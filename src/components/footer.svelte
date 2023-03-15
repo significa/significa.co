@@ -47,7 +47,7 @@
 
   <div class="">
     <div
-      class="container flex flex-col items-start justify-between py-4 text-sm text-foreground-tertiary xs:flex-row xs:items-center"
+      class="container flex flex-col items-start justify-between py-4 text-sm text-foreground-secondary xs:flex-row xs:items-center"
     >
       <span>Significa &mdash; Design-led digital products</span>
       <Link href="/legal">Legal</Link>

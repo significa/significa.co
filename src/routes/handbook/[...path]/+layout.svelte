@@ -104,7 +104,7 @@
               {/if}
             </a>
             {#if isCurrentFolder}
-              <ul class="px-container pb-4" transition:slide>
+              <ul class="px-container pb-4" transition:slide|local>
                 {#each folder.entries as entry}
                   <li class="mb-1.5">
                     <a

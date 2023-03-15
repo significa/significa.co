@@ -23,7 +23,7 @@
 {:else if isHandbookPage(page)}
   <Handbook story={page.story} />
 {:else if isProjectPage(page)}
-  <Project story={page.story} />
+  <Project story={page.story} related={page.relatedProjects} />
 {:else if isTeamMemberPage(page)}
   <TeamMember story={page.story} />
 {/if}

@@ -7,8 +7,11 @@
   import { t } from '$lib/i18n';
   import type { ProjectPage } from '$lib/storyblok';
   import Recognitions from '$components/recognitions.svelte';
+  import ProjectEntry from '$components/project-entry.svelte';
 
   export let story: ProjectPage;
+  export let related: ProjectPage[];
+  $: next = related[related.findIndex((p) => p.id === story.id) + 1] || related[0];
 </script>
 
 <div use:drawerLinks class="container">
@@ -112,3 +115,8 @@
     />
   {/if}
 </div>
+{#if next}
+  <div>
+    <ProjectEntry project={next} />
+  </div>
+{/if}

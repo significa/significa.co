@@ -93,18 +93,18 @@ export async function fetchPage(options: {
   fetch?: typeof fetch;
 }): Promise<PageResult> {
   // remove leading slashes. svelte-kit's path params start with no slash, but links will have a leading slash
-  const noLeadingSlash = options.slug.replace(/^\/+/, '');
+  const slug = options.slug.replace(/^\/+/, '');
 
   const storyblok = getStoryblok({ fetch: options.fetch || fetch });
 
   try {
-    if (noLeadingSlash === HOME_SLUG) {
+    if (slug === HOME_SLUG) {
       // home is in '/', so '/home' should 404
       throw new Error();
     }
 
     const { data }: { data: { story?: DynamicPage } } = await storyblok.get(
-      `cdn/stories/${noLeadingSlash || HOME_SLUG}`,
+      `cdn/stories/${slug || HOME_SLUG}`,
       {
         version: options.version || 'published',
         ...PAGE_PARAMS
@@ -123,12 +123,29 @@ export async function fetchPage(options: {
         per_page: 3,
         page: 1,
         excluding_ids: data.story.id.toString(),
-        with_tag: data.story.tag_list.join(',')
+        with_tag: data.story.tag_list.join(','),
+        excluding_fields: 'body'
       });
 
       return {
         story: data.story,
         relatedPosts: stories as BlogPostPage[]
+      };
+    }
+
+    // Projects need to fetch related projects
+    if (data.story.content.component === 'project') {
+      const {
+        data: { stories }
+      } = await storyblok.get('cdn/stories', {
+        version: options.version || 'published',
+        ...PROJECT_PARAMS,
+        excluding_fields: 'body'
+      });
+
+      return {
+        story: data.story,
+        relatedProjects: stories as ProjectPage[]
       };
     }
 
@@ -141,6 +158,7 @@ export async function fetchPage(options: {
 export type PageResult = {
   story: DynamicPage;
   relatedPosts?: BlogPostPage[];
+  relatedProjects?: ProjectPage[];
 };
 
 export const isPage = (page: PageResult): page is { story: Page } => {
@@ -157,7 +175,9 @@ export const isHandbookPage = (page: PageResult): page is { story: HandbookPage 
   return page.story.content.component === 'handbook';
 };
 
-export const isProjectPage = (page: PageResult): page is { story: ProjectPage } => {
+export const isProjectPage = (
+  page: PageResult
+): page is { story: ProjectPage; relatedProjects: ProjectPage[] } => {
   return page.story.content.component === 'project';
 };
 

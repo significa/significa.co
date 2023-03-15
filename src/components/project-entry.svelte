@@ -1,5 +1,6 @@
 <script lang="ts">
   import { t } from '$lib/i18n';
+  import type { ProjectPage } from '$lib/storyblok';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { ProjectStoryblok } from '$types/bloks';
   import { Button, CircleButton } from '@significa/svelte-ui';
@@ -7,7 +8,7 @@
   import clsx from 'clsx';
   import Recognitions from './recognitions.svelte';
 
-  export let project: ISbStoryData<ProjectStoryblok>;
+  export let project: ISbStoryData<ProjectStoryblok> | ProjectPage;
   export let variant: 'featured' | 'default' = 'default';
 
   let index = 0;

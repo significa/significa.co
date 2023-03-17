@@ -26,7 +26,7 @@ const Text = ({ primary: text, sectionLabel }: ITextProps) => {
           <S.Title>{text.title}</S.Title>
         </S.TitleWrapper>
       )}
-      {textByLine(text.text).map((line, i) => (
+      {textByLine(text.text || '').map((line, i) => (
         <TypographyText key={i}>{line}</TypographyText>
       ))}
       {text.link &&

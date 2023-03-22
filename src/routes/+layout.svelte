@@ -8,6 +8,7 @@
   import TopNavigation from '$components/top-navigation.svelte';
   import PageDrawer from '$components/page-drawer.svelte';
   import Footer from '$components/footer.svelte';
+  import PreFooter from '$components/pre-footer.svelte';
 
   export let data;
 </script>
@@ -25,4 +26,5 @@
   variant={$page.url.pathname.startsWith('/handbook') ? 'handbook' : 'default'}
 />
 <slot />
+<PreFooter />
 <Footer configuration={data.configuration.content} />

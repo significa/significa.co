@@ -8,3 +8,7 @@ export const richTextBlockWidths: Record<string, string> = {
   wide: 'max-w-6xl',
   full: 'w-full'
 };
+
+export const NOTION_DBS = {
+  'get-a-quote': '3fb98bdcad4f41fda78afa879dd701c7'
+};

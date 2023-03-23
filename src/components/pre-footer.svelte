@@ -1,18 +1,8 @@
 <script lang="ts">
-  import { Radio } from '@significa/svelte-ui';
-  import ContactForm from './forms/contact-form.svelte';
-  import GetAQuoteForm from './forms/get-a-quote-form.svelte';
-  import PositionForm from './forms/position-form.svelte';
+  import type { ComponentProps } from 'svelte';
+  import ContactForm from './contact-form.svelte';
 
-  type FormType = 'quote' | 'position' | 'contact';
-  export let variant: undefined | FormType = undefined;
-
-  let selected: undefined | FormType = variant || 'quote';
-  const options = [
-    { type: 'quote', title: 'Get a quote', subtitle: 'For new projects' },
-    { type: 'position', title: 'Apply to position', subtitle: 'Be part of the team' },
-    { type: 'contact', title: 'Talk to us', subtitle: 'General enquiries' }
-  ];
+  export let variant: ComponentProps<ContactForm>['variant'] = undefined;
 </script>
 
 <section class="container mt-10 mb-40">
@@ -28,35 +18,7 @@
       </p>
     </div>
     <div class="col-span-3 bg-background-panel p-8 xl:col-span-2 xl:border-l xl:border-border">
-      {#if variant === undefined}
-        <div class="mb-8 border-b border-border pb-8">
-          <p class="leading-none">What are you looking for?</p>
-          <p class="mt-1 text-foreground-secondary">Please choose an option below</p>
-
-          <div class="mt-4 flex flex-col gap-4 md:flex-row">
-            {#each options as option}
-              <label
-                for={option.type}
-                class="flex w-full items-center gap-3 rounded-md border border-border p-4 transition-all hover:bg-foreground/2"
-              >
-                <Radio id={option.type} bind:group={selected} value={option.type} />
-                <div>
-                  <p class="font-medium leading-none">{option.title}</p>
-                  <p class="mt-0.5 leading-none text-foreground-secondary">{option.subtitle}</p>
-                </div>
-              </label>
-            {/each}
-          </div>
-        </div>
-      {/if}
-
-      {#if selected === 'quote'}
-        <GetAQuoteForm />
-      {:else if selected === 'position'}
-        <PositionForm />
-      {:else if selected === 'contact'}
-        <ContactForm />
-      {/if}
+      <ContactForm {variant} />
     </div>
   </div>
 </section>

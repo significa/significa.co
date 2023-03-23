@@ -4,6 +4,7 @@ import { env } from '$env/dynamic/public';
 import type {
   BlogPostStoryblok,
   HandbookStoryblok,
+  JobStoryblok,
   PageStoryblok,
   ProjectStoryblok,
   TeamMemberStoryblok
@@ -35,6 +36,11 @@ export const BLOG_PARAMS = {
 export const PROJECT_PARAMS = {
   per_page: 50,
   content_type: 'project'
+};
+
+export const JOB_PARAMS = {
+  per_page: 50,
+  content_type: 'job'
 };
 
 export const getStoryblok = (apiOptions: SbSDKOptions['apiOptions'] = {}) => {
@@ -228,4 +234,19 @@ export const isTeamMemberPage = (
   authorProjects: ProjectPage[];
 } => {
   return page.story.content.component === 'team-member';
+};
+
+export const fetchJobs = async (
+  options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
+) => {
+  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
+
+  const {
+    data: { stories }
+  } = await storyblok.get('cdn/stories', {
+    ...JOB_PARAMS,
+    version: options.version || 'published'
+  });
+
+  return stories as ISbStoryData<JobStoryblok>[];
 };

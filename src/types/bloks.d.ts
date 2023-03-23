@@ -6,6 +6,12 @@ export interface AboutPageStoryblok {
   [k: string]: any;
 }
 
+export interface BlogIndexStoryblok {
+  _uid: string;
+  component: 'blog-index';
+  [k: string]: any;
+}
+
 export interface AssetStoryblok {
   alt?: string;
   copyright?: string;
@@ -146,6 +152,12 @@ export interface ImageGridStoryblok {
   [k: string]: any;
 }
 
+export interface JobStoryblok {
+  _uid: string;
+  component: 'job';
+  [k: string]: any;
+}
+
 export type MultilinkStoryblok =
   | {
       cached_url?: string;
@@ -212,6 +224,7 @@ export interface LinkStoryblok {
 export interface PageStoryblok {
   page?: (
     | AboutPageStoryblok
+    | BlogIndexStoryblok
     | ContactsPageStoryblok
     | GetAQuotePageStoryblok
     | HomePageStoryblok

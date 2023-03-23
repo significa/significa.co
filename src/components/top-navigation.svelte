@@ -5,7 +5,7 @@
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import { sanitizeSlug } from '$lib/utils/paths';
   import type { ConfigurationStoryblok } from '$types/bloks';
-  import { Button, Link, Logo } from '@significa/svelte-ui';
+  import { Badge, Button, Link, Logo } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import { fade, fly } from 'svelte/transition';
   import AnHandAndABook from './an-hand-and-a-book.svelte';
@@ -85,9 +85,14 @@
             <ul class="text-lg font-medium">
               {#each column.links || [] as link}
                 {#if column.component === 'footer-column-internal'}
-                  <li class="mb-1">
+                  <li class="mb-1 flex items-center gap-1.5">
                     <Link class="inline-block" href={sanitizeSlug(link.full_slug)}>{link.name}</Link
                     >
+                    {#if sanitizeSlug(link.full_slug) === '/careers'}
+                      {#if $page.data.jobs.length}
+                        <Badge class="text-xs">{$page.data.jobs.length}</Badge>
+                      {/if}
+                    {/if}
                   </li>
                 {:else if column.component === 'footer-column-external'}
                   {@const { href, target, rel } = getAnchorFromCmsLink(link.link)}

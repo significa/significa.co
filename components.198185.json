@@ -21,10 +21,30 @@
       "component_group_name": "Pages"
     },
     {
+      "name": "blog-index",
+      "display_name": null,
+      "created_at": "2023-03-15T11:28:33.845Z",
+      "updated_at": "2023-03-15T11:28:33.845Z",
+      "id": 3586372,
+      "schema": {},
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "blog-index",
+      "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Pages"
+    },
+    {
       "name": "blog-post",
       "display_name": null,
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2023-03-02T17:04:01.447Z",
+      "updated_at": "2023-03-22T11:50:21.977Z",
       "id": 3442347,
       "schema": {
         "cover": {
@@ -115,7 +135,7 @@
           ]
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/f51edbf69b/screenshot-2023-03-22-at-11-49-53.png",
       "preview_field": null,
       "is_root": true,
       "preview_tmpl": null,
@@ -124,8 +144,8 @@
       "preset_id": null,
       "real_name": "blog-post",
       "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
-      "color": null,
-      "icon": null,
+      "color": "#fbce41",
+      "icon": "block-text-img-t-l",
       "component_group_name": "Content Types"
     },
     {
@@ -207,7 +227,7 @@
       "name": "comparison",
       "display_name": null,
       "created_at": "2023-02-16T10:41:06.792Z",
-      "updated_at": "2023-02-16T10:42:58.845Z",
+      "updated_at": "2023-03-22T11:05:45.912Z",
       "id": 3446841,
       "schema": {
         "width": {
@@ -247,7 +267,7 @@
           "required": true
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/8514279d68/screenshot-2023-03-22-at-11-05-27.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -256,8 +276,8 @@
       "preset_id": null,
       "real_name": "comparison",
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
-      "color": null,
-      "icon": null,
+      "color": "#fbce41",
+      "icon": "block-table",
       "component_group_name": "Blocks & Rich Text"
     },
     {
@@ -546,7 +566,7 @@
       "name": "image",
       "display_name": null,
       "created_at": "2023-02-16T10:44:18.022Z",
-      "updated_at": "2023-03-03T11:21:32.434Z",
+      "updated_at": "2023-03-22T10:47:04.790Z",
       "id": 3446843,
       "schema": {
         "width": {
@@ -587,7 +607,7 @@
           "type": "boolean"
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/94b8136fef/screenshot-2023-03-22-at-10-39-48.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -596,15 +616,15 @@
       "preset_id": null,
       "real_name": "image",
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
-      "color": null,
-      "icon": null,
+      "color": "#fbce41",
+      "icon": "block-image",
       "component_group_name": "Blocks & Rich Text"
     },
     {
       "name": "image-grid",
       "display_name": null,
       "created_at": "2023-02-16T10:48:55.079Z",
-      "updated_at": "2023-02-16T10:50:58.968Z",
+      "updated_at": "2023-03-22T11:07:18.021Z",
       "id": 3446857,
       "schema": {
         "width": {
@@ -661,7 +681,7 @@
           "pos": 3
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/3f50615bdf/screenshot-2023-03-22-at-11-06-57.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -670,9 +690,29 @@
       "preset_id": null,
       "real_name": "image-grid",
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
+      "color": "#fbce41",
+      "icon": "block-1-2block",
+      "component_group_name": "Blocks & Rich Text"
+    },
+    {
+      "name": "job",
+      "display_name": null,
+      "created_at": "2023-03-23T13:12:20.312Z",
+      "updated_at": "2023-03-23T13:12:20.312Z",
+      "id": 3647314,
+      "schema": {},
+      "image": null,
+      "preview_field": null,
+      "is_root": true,
+      "preview_tmpl": null,
+      "is_nestable": false,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "job",
+      "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
       "color": null,
       "icon": null,
-      "component_group_name": "Blocks & Rich Text"
+      "component_group_name": "Content Types"
     },
     {
       "name": "link",
@@ -945,7 +985,7 @@
       "name": "richtext-box",
       "display_name": null,
       "created_at": "2023-02-16T10:59:09.847Z",
-      "updated_at": "2023-02-21T10:40:21.176Z",
+      "updated_at": "2023-03-22T11:57:22.918Z",
       "id": 3446937,
       "schema": {
         "layout": {
@@ -992,7 +1032,7 @@
           "maximum": 1
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/a05298ccf4/screenshot-2023-03-22-at-11-57-07.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -1001,15 +1041,15 @@
       "preset_id": null,
       "real_name": "richtext-box",
       "component_group_uuid": "1ef77ef8-466a-4b74-a076-f4554004e128",
-      "color": null,
-      "icon": null,
+      "color": "#fbce41",
+      "icon": "block-text-img-l",
       "component_group_name": "Rich Text"
     },
     {
       "name": "richtext-code-block",
       "display_name": null,
       "created_at": "2023-02-24T17:31:53.338Z",
-      "updated_at": "2023-02-27T14:56:51.271Z",
+      "updated_at": "2023-03-22T11:49:12.650Z",
       "id": 3486021,
       "schema": {
         "language": {
@@ -1079,7 +1119,7 @@
           "pos": 4
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/9c902dcb18/screenshot-2023-03-22-at-11-48-51.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -1088,15 +1128,15 @@
       "preset_id": null,
       "real_name": "richtext-code-block",
       "component_group_uuid": "1ef77ef8-466a-4b74-a076-f4554004e128",
-      "color": null,
-      "icon": null,
+      "color": "#fbce41",
+      "icon": "block-text-img-c",
       "component_group_name": "Rich Text"
     },
     {
       "name": "richtext-testimonial",
       "display_name": null,
       "created_at": "2023-02-16T10:51:32.577Z",
-      "updated_at": "2023-02-16T10:52:50.511Z",
+      "updated_at": "2023-03-22T11:45:25.997Z",
       "id": 3446858,
       "schema": {
         "photo": {
@@ -1121,7 +1161,7 @@
           "required": true
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/0ac321ed98/screenshot-2023-03-22-at-11-44-55.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -1130,8 +1170,8 @@
       "preset_id": null,
       "real_name": "richtext-testimonial",
       "component_group_uuid": "1ef77ef8-466a-4b74-a076-f4554004e128",
-      "color": null,
-      "icon": null,
+      "color": "#fbce41",
+      "icon": "block-text-l",
       "component_group_name": "Rich Text"
     },
     {
@@ -1370,7 +1410,7 @@
       "name": "two-columns",
       "display_name": null,
       "created_at": "2023-02-16T10:36:21.986Z",
-      "updated_at": "2023-02-27T20:21:59.525Z",
+      "updated_at": "2023-03-22T11:58:52.491Z",
       "id": 3446779,
       "schema": {
         "width": {
@@ -1400,7 +1440,7 @@
           "pos": 1
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/c5f0ceead4/screenshot-2023-03-22-at-11-58-36.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -1409,15 +1449,15 @@
       "preset_id": null,
       "real_name": "two-columns",
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
-      "color": null,
-      "icon": null,
+      "color": "#fbce41",
+      "icon": "block-text-img-r-l",
       "component_group_name": "Blocks & Rich Text"
     },
     {
       "name": "video",
       "display_name": null,
       "created_at": "2023-02-16T10:45:31.449Z",
-      "updated_at": "2023-03-03T11:21:40.663Z",
+      "updated_at": "2023-03-22T11:51:33.816Z",
       "id": 3446844,
       "schema": {
         "width": {
@@ -1466,7 +1506,7 @@
           "type": "boolean"
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/d53670833a/screenshot-2023-03-22-at-11-50-59.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -1475,8 +1515,8 @@
       "preset_id": null,
       "real_name": "video",
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
-      "color": null,
-      "icon": null,
+      "color": "#fbce41",
+      "icon": "block-text-img-c",
       "component_group_name": "Blocks & Rich Text"
     }
   ]

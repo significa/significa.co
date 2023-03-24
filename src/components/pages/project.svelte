@@ -57,7 +57,7 @@
             {#each data as link}
               {@const { href, target, rel } = getAnchorFromCmsLink(link.link)}
               {#if href}
-                <li class="flex items-center gap-1">
+                <li class="mb-2 flex items-center gap-1">
                   <Link {href} {target} {rel}>{link.label}</Link>
                   <Icon class="mt-0.5" icon="arrow-right" />
                 </li>

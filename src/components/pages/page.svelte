@@ -1,4 +1,5 @@
 <script lang="ts">
+  import PreFooter from '$components/pre-footer.svelte';
   import RichText from '$components/rich-text.svelte';
   import Slogan from '$components/slogan.svelte';
   import { richTextBlockWidths } from '$lib/constants';
@@ -32,3 +33,5 @@
     <div>Contacts page</div>
   {/if}
 {/each}
+
+<PreFooter />

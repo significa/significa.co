@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 ::selection {
-  background-color: theme('colors.foreground.tertiary');
+  color: theme('colors.background.DEFAULT');
+  background-color: theme('colors.foreground.DEFAULT');
 }

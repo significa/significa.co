@@ -1,5 +1,6 @@
 import { fetchPage, getServerSideSBVersion } from '$lib/storyblok';
 import { error } from '@sveltejs/kit';
+import { actions } from '$lib/forms';
 
 export const load = async ({ params, cookies, fetch }) => {
   try {
@@ -14,3 +15,5 @@ export const load = async ({ params, cookies, fetch }) => {
     throw error(404, 'Not found');
   }
 };
+
+export { actions };

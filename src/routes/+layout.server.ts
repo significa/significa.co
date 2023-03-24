@@ -1,5 +1,5 @@
 import { PREVIEW_COOKIE_KEY } from '$lib/constants';
-import { getStoryblok } from '$lib/storyblok';
+import { fetchJobs, getStoryblok } from '$lib/storyblok';
 import type { ConfigurationStoryblok } from '$types/bloks';
 import { error } from '@sveltejs/kit';
 import type { ISbStoryData } from '@storyblok/js';
@@ -17,6 +17,7 @@ export const load = async ({ cookies, fetch }) => {
 
     return {
       configuration: res.data.story as ISbStoryData<ConfigurationStoryblok>,
+      jobs: await fetchJobs({ version, fetch }),
       version
     };
   } catch (err) {

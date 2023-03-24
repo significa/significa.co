@@ -3,7 +3,7 @@
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import { sanitizeSlug } from '$lib/utils/paths';
   import type { ConfigurationStoryblok } from '$types/bloks';
-  import { Link, Logo } from '@significa/svelte-ui';
+  import { Badge, Link, Logo } from '@significa/svelte-ui';
   import Slogan from './slogan.svelte';
 
   export let configuration: ConfigurationStoryblok;
@@ -25,12 +25,17 @@
           <ul class="text-lg leading-relaxed">
             {#each column.links || [] as link}
               {#if column.component === 'footer-column-internal'}
-                <li class="mb-2">
+                <li class="mb-2 flex items-center gap-1">
                   <Link
                     active={$page.url.pathname === sanitizeSlug(link.full_slug)}
                     class="inline-block"
                     href={sanitizeSlug(link.full_slug)}>{link.name}</Link
                   >
+                  {#if sanitizeSlug(link.full_slug) === '/careers'}
+                    {#if $page.data.jobs.length}
+                      <Badge class="text-xs">{$page.data.jobs.length}</Badge>
+                    {/if}
+                  {/if}
                 </li>
               {:else if column.component === 'footer-column-external'}
                 {@const { href, target, rel } = getAnchorFromCmsLink(link.link)}

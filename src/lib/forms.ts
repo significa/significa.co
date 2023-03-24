@@ -9,7 +9,7 @@ import { sendTransactionalEmail } from './mail/sendEmail.server';
 type FormFields = {
   name: string;
   email: string;
-  message?: string;
+  message: string;
   position?: string;
   budget?: string;
 };
@@ -23,15 +23,16 @@ const handleContactForm =
     const files = data.getAll('attachments');
 
     const fields = Object.fromEntries(data.entries()) as FormFields;
-    const { name, email } = fields;
+    const { name, email, message } = fields;
 
-    if (!name || !email) {
+    if (!name || !email || !message) {
       return fail(400, {
         error: {
           type: 'fields',
           fields: {
-            name: true,
-            email: true
+            name: !name,
+            email: !email,
+            message: !message
           }
         }
       });

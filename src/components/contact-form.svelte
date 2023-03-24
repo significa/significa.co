@@ -117,6 +117,7 @@
   <div class="flex flex-col gap-4">
     <div class="flex w-full flex-col gap-4 md:flex-row">
       <FloatingInput
+        required
         error={!!$page.form?.error?.fields.name}
         name="name"
         class="w-full"
@@ -124,6 +125,7 @@
         bind:value={name}
       />
       <FloatingInput
+        required
         error={!!$page.form?.error?.fields.email}
         name="email"
         type="email"
@@ -157,6 +159,8 @@
       {/if}
     </div>
     <FloatingTextarea
+      required
+      error={!!$page.form?.error?.fields.message}
       name="message"
       class="flex w-full"
       label={t('contact.label.message')}

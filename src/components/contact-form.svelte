@@ -57,7 +57,7 @@
     toast.success({
       message: t('contact.feedback.success.title'),
       description: t('contact.feedback.success.description'),
-      timeout: 5000
+      timeout: 8000
     });
   }
 

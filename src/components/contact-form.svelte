@@ -1,6 +1,7 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
   import { page } from '$app/stores';
+  import { t } from '$lib/i18n';
   import {
     Button,
     FileInput,
@@ -9,7 +10,8 @@
     FloatingTextarea,
     Link,
     Radio,
-    TextButton
+    TextButton,
+    toast
   } from '@significa/svelte-ui';
   import type { ISbStoryData } from '@storyblok/js';
 
@@ -18,12 +20,24 @@
 
   let type: FormType = variant || 'quote';
   const options = [
-    { type: 'quote', title: 'Get a quote', subtitle: 'For new projects' },
-    { type: 'career', title: 'Apply to position', subtitle: 'Be part of the team' },
-    { type: 'contact', title: 'Talk to us', subtitle: 'General enquiries' }
+    {
+      type: 'quote',
+      title: t('contact.type.quote.title'),
+      subtitle: t('contact.type.quote.description')
+    },
+    {
+      type: 'career',
+      title: t('contact.type.position.title'),
+      subtitle: t('contact.type.position.description')
+    },
+    {
+      type: 'contact',
+      title: t('contact.type.contact.title'),
+      subtitle: t('contact.type.contact.description')
+    }
   ];
 
-  const DEFAULT_POSITION = 'Spontaneous application';
+  const DEFAULT_POSITION = t('contact.position.default');
 
   let name = '';
   let email = '';
@@ -38,12 +52,36 @@
   const jobs = [DEFAULT_POSITION, ...($page.data.jobs || []).map((j: ISbStoryData) => j.name)];
 
   let loading = false;
+
+  $: if ($page.form?.success) {
+    toast.success({
+      message: t('contact.feedback.success.title'),
+      description: t('contact.feedback.success.description'),
+      timeout: 5000
+    });
+  }
+
+  $: if ($page.form?.error?.type === 'notion') {
+    toast.error({
+      message: t('contact.feedback.error.notion.title'),
+      description: t('contact.feedback.error.notion.description'),
+      timeout: 0
+    });
+  }
+
+  $: if ($page.form?.error?.type === 'email') {
+    toast.error({
+      message: t('contact.feedback.error.email.title'),
+      description: t('contact.feedback.error.email.description'),
+      timeout: 0
+    });
+  }
 </script>
 
 {#if variant === undefined}
   <div class="mb-8 border-b border-border pb-8">
-    <p class="leading-none">What are you looking for?</p>
-    <p class="mt-1 text-foreground-secondary">Please choose an option below</p>
+    <p class="leading-none">{t('contact.type.title')}</p>
+    <p class="mt-1 text-foreground-secondary">{t('contact.type.description')}</p>
 
     <div class="mt-4 flex flex-col gap-4 md:flex-row">
       {#each options as option}
@@ -79,39 +117,54 @@
   <div class="flex flex-col gap-4">
     <div class="flex w-full flex-col gap-4 md:flex-row">
       <FloatingInput
-        error={!!$page.form?.error?.messages.name}
+        error={!!$page.form?.error?.fields.name}
         name="name"
         class="w-full"
-        label={$page.form?.error?.messages.name || 'Name'}
+        label={t('contact.label.name')}
         bind:value={name}
       />
       <FloatingInput
-        error={!!$page.form?.error?.messages.email}
+        error={!!$page.form?.error?.fields.email}
         name="email"
         type="email"
         class="w-full"
-        label={$page.form?.error?.messages.email || 'Email address'}
+        label={t('contact.label.email')}
         bind:value={email}
       />
       {#if type === 'quote'}
-        <FloatingSelect name="budget" class="w-full" label="Budget range" bind:value={budget}>
+        <FloatingSelect
+          name="budget"
+          class="w-full"
+          label={t('contact.label.budget')}
+          bind:value={budget}
+        >
           <option value="">Select budget</option>
           {#each budgetOptions as option}
             <option value={option}>{option}</option>
           {/each}
         </FloatingSelect>
       {:else if type === 'career'}
-        <FloatingSelect name="budget" class="w-full" label="Position" bind:value={position}>
+        <FloatingSelect
+          name="position"
+          class="w-full"
+          label={t('contact.label.position')}
+          bind:value={position}
+        >
           {#each jobs as option}
             <option value={option}>{option}</option>
           {/each}
         </FloatingSelect>
       {/if}
     </div>
-    <FloatingTextarea name="message" class="flex w-full" label="Message" bind:value={message} />
+    <FloatingTextarea
+      name="message"
+      class="flex w-full"
+      label={t('contact.label.message')}
+      bind:value={message}
+    />
     {#if type !== 'contact'}
       <FileInput
-        error={!!$page.form?.error?.messages.attachments}
+        error={!!$page.form?.error?.fields.attachments}
         name="attachments"
         bind:element={fileInput}
         size="lg"
@@ -138,24 +191,14 @@
       {/if}
     {/if}
   </div>
-  {#if $page.form?.success}
-    <div class="mt-4 text-success">Thank you for reaching out!</div>
-  {/if}
-  {#if $page.form?.error?.type === 'notion'}
-    <div class="mt-4 text-error">
-      Oops! We must've forgotten to feed our pidgeons. Please try again or contact us directly.
-    </div>
-  {/if}
-  {#if $page.form?.error?.type === 'email'}
-    <div class="mt-4 text-error">
-      We couldn't deliver our confirmation e-mail! Did you mistype your e-mail address?
-    </div>
-  {/if}
   <div class="mt-8 flex items-center justify-between">
     <div>
-      <p class="leading-none text-foreground-secondary">Hate contact forms?</p>
-      <Link class="mt-1 inline-flex" href="mailto:hello@significa.co">hello@significa.co</Link>
+      <p class="leading-none text-foreground-secondary">{t('contact.footer.title')}</p>
+      <Link class="mt-1 inline-flex" href="mailto:{t('contact.footer.email')}"
+        >{t('contact.footer.email')}</Link
+      >
     </div>
-    <Button type="submit" size="lg" arrow {loading} disabled={loading}>Send message</Button>
+    <Button type="submit" size="lg" arrow {loading} disabled={loading}>{t('contact.submit')}</Button
+    >
   </div>
 </form>

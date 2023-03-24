@@ -3,6 +3,7 @@ import { Client } from '@notionhq/client';
 import { fail, type Actions, type RequestEvent } from '@sveltejs/kit';
 import { uploadFile } from './aws.server';
 import { NOTION_DBS } from './constants';
+import { t } from './i18n';
 import { sendTransactionalEmail } from './mail/sendEmail.server';
 
 type FormFields = {
@@ -28,9 +29,9 @@ const handleContactForm =
       return fail(400, {
         error: {
           type: 'fields',
-          messages: {
-            name: 'Please enter your name',
-            email: 'Please enter your email'
+          fields: {
+            name: true,
+            email: true
           }
         }
       });
@@ -50,8 +51,8 @@ const handleContactForm =
       return fail(400, {
         error: {
           type: 'fields',
-          messages: {
-            attachments: 'Could not upload attachments'
+          fields: {
+            attachments: true
           }
         }
       });
@@ -62,24 +63,18 @@ const handleContactForm =
     } catch (error) {
       return fail(422, {
         error: {
-          type: 'notion',
-          messages: {
-            global: 'Could not save data'
-          }
+          type: 'notion'
         }
       });
     }
 
     try {
-      const subject = 'Your message was delivered at Significa';
+      const subject = t('form.subject');
       await sendTransactionalEmail({ name, email, subject });
     } catch (error) {
       return fail(422, {
         error: {
-          type: 'email',
-          messages: {
-            global: 'Could not deliver email'
-          }
+          type: 'email'
         }
       });
     }

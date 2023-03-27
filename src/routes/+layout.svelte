@@ -10,6 +10,7 @@
   import Footer from '$components/footer.svelte';
   import { toast, Toaster, ToastNotification } from '@significa/svelte-ui';
   import { beforeNavigate } from '$app/navigation';
+  import Clock from '$components/clock.svelte';
 
   export let data;
 
@@ -31,5 +32,6 @@
   configuration={data.configuration.content}
   variant={$page.url.pathname.startsWith('/handbook') ? 'handbook' : 'default'}
 />
+<Clock />
 <slot />
 <Footer configuration={data.configuration.content} />

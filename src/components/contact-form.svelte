@@ -80,10 +80,10 @@
 
 {#if variant === undefined}
   <div class="mb-8 border-b border-border pb-8">
-    <p class="leading-none">{t('contact.type.title')}</p>
-    <p class="mt-1 text-foreground-secondary">{t('contact.type.description')}</p>
+    <p class="font-medium leading-none">{t('contact.type.title')}</p>
+    <p class="mt-1 leading-none text-foreground-secondary">{t('contact.type.description')}</p>
 
-    <div class="mt-4 flex flex-col gap-4 md:flex-row">
+    <div class="mt-8 flex flex-col gap-4 md:flex-row">
       {#each options as option}
         <label
           for={option.type}
@@ -92,7 +92,7 @@
           <Radio id={option.type} bind:group={type} value={option.type} />
           <div>
             <p class="font-medium leading-none">{option.title}</p>
-            <p class="mt-0.5 leading-none text-foreground-secondary">{option.subtitle}</p>
+            <p class="mt-1 leading-none text-foreground-secondary">{option.subtitle}</p>
           </div>
         </label>
       {/each}
@@ -196,9 +196,9 @@
     {/if}
   </div>
   <div class="mt-8 flex items-center justify-between">
-    <div>
+    <div class="text-sm">
       <p class="leading-none text-foreground-secondary">{t('contact.footer.title')}</p>
-      <Link class="mt-1 inline-flex" href="mailto:{t('contact.footer.email')}"
+      <Link class="mt-0.5 inline-flex" href="mailto:{t('contact.footer.email')}"
         >{t('contact.footer.email')}</Link
       >
     </div>

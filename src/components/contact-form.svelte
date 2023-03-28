@@ -133,37 +133,38 @@
         label={t('contact.label.email')}
         bind:value={email}
       />
-      {#if type === 'quote'}
-        <FloatingSelect
-          name="budget"
-          class="w-full"
-          label={t('contact.label.budget')}
-          bind:value={budget}
-        >
-          <option value="">Select budget</option>
-          {#each budgetOptions as option}
-            <option value={option}>{option}</option>
-          {/each}
-        </FloatingSelect>
-      {:else if type === 'career'}
-        <FloatingSelect
-          name="position"
-          class="w-full"
-          label={t('contact.label.position')}
-          bind:value={position}
-        >
-          {#each jobs as option}
-            <option value={option}>{option}</option>
-          {/each}
-        </FloatingSelect>
-      {/if}
     </div>
+    {#if type === 'quote'}
+      <FloatingSelect
+        name="budget"
+        class="w-full"
+        label={t('contact.label.budget')}
+        bind:value={budget}
+      >
+        <option value="">Select budget</option>
+        {#each budgetOptions as option}
+          <option value={option}>{option}</option>
+        {/each}
+      </FloatingSelect>
+    {:else if type === 'career'}
+      <FloatingSelect
+        name="position"
+        class="w-full"
+        label={t('contact.label.position')}
+        bind:value={position}
+      >
+        {#each jobs as option}
+          <option value={option}>{option}</option>
+        {/each}
+      </FloatingSelect>
+    {/if}
     <FloatingTextarea
       required
       error={!!$page.form?.error?.fields.message}
       name="message"
       class="flex w-full"
       label={t('contact.label.message')}
+      rows={5}
       bind:value={message}
     />
     {#if type !== 'contact'}

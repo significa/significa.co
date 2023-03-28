@@ -5,6 +5,7 @@
   import { richTextBlockWidths } from '$lib/constants';
   import type { PageStoryblok } from '$types/bloks';
   import type { ISbStoryData } from '@storyblok/js';
+  import GetAQuote from './get-a-quote/get-a-quote.svelte';
 
   export let story: ISbStoryData<PageStoryblok>;
 </script>
@@ -28,10 +29,8 @@
   {:else if page.component === 'about-page'}
     <div>About page</div>
   {:else if page.component === 'get-a-quote-page'}
-    <div>Get a quote page</div>
+    <GetAQuote />
   {:else if page.component === 'contacts-page'}
     <div>Contacts page</div>
   {/if}
 {/each}
-
-<PreFooter />

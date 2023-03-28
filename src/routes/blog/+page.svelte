@@ -36,7 +36,7 @@
 
 <main>
   <div class="container">
-    <h1 class="mt-10 text-8xl md:mt-14 lg:mt-20">
+    <h1 class="mt-10 text-7xl md:mt-14 lg:mt-20">
       {#if $page.url.searchParams.getAll('t').length}
         <a class="text-foreground-tertiary transition-colors hover:text-foreground" href="/blog"
           >{t('blog.title')}</a

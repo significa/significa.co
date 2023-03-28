@@ -48,7 +48,7 @@
 </script>
 
 <main>
-  <h1 class="container mt-10 text-8xl md:mt-14 lg:mt-20">Projects</h1>
+  <h1 class="container mt-10 text-7xl md:mt-14 lg:mt-20">Projects</h1>
 
   <!-- Filters -->
   <div class="lg:mt-18 container mt-8 mb-3 flex items-center justify-between md:mt-12">

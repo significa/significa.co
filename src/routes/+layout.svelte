@@ -32,6 +32,5 @@
   configuration={data.configuration.content}
   variant={$page.url.pathname.startsWith('/handbook') ? 'handbook' : 'default'}
 />
-<Clock />
 <slot />
 <Footer configuration={data.configuration.content} />

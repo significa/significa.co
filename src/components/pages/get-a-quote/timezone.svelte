@@ -24,8 +24,7 @@
       class={clsx(
         'mt-8 pb-12',
         'md:mt-12 md:pb-20',
-        'lg:mt-0 lg:flex-1 lg:pb-0 lg:pl-12',
-        'lg:flex lg:justify-end'
+        'lg:mt-0 lg:flex lg:flex-1 lg:justify-end lg:pb-0 lg:pl-12'
       )}
     >
       <div

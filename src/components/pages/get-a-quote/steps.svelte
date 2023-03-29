@@ -22,36 +22,44 @@
 </script>
 
 <div class="border-t border-border">
-  <div class={clsx('container mx-auto px-container', 'lg:flex lg:justify-between')}>
-    <div class={clsx('flex-1 py-12', 'md:py-20', 'lg:py-32')}>
-      <div class="max-w-xl lg:pr-20">
+  <div class={clsx('container mx-auto px-container', 'lg:flex')}>
+    <!-- Title -->
+    <div class="lg:flex-1">
+      <div class={clsx('max-w-md pt-12', 'md:pt-20', 'lg:max-w-sm')}>
         <h3 class="text-5xl text-foreground-secondary">What's next?</h3>
-        <p class="text-5xl">Get to know our process a little better.</p>
+        <p class="text-5xl">What to expect</p>
       </div>
     </div>
 
-    <div class="flex-1 lg:-ml-px">
-      <div class="hidden h-32 border-l border-border lg:block" />
-      {#each steps as step, i}
-        <div
-          class={clsx(
-            'lg:relative lg:flex lg:justify-end lg:border-l lg:border-dashed lg:border-border lg:pl-24 lg:last:border-none'
-          )}
-        >
-          <span
-            class={clsx(
-              'mb-4 flex h-8 w-8 items-center justify-center rounded-full border border-border bg-background tabular-nums',
-              'lg:absolute lg:-left-4'
-            )}>{i + 1}</span
+    <!-- Steps -->
+    <div
+      class={clsx(
+        'relative mt-12',
+        'lg:flex lg:flex-1 lg:justify-end lg:pl-12',
+        'lg:border-l lg:border-dashed'
+      )}
+    >
+      <div class="absolute -left-px -top-32 hidden h-32 border-l border-border lg:block" />
+      <div>
+        {#each steps as step, i}
+          <div
+            class="last:before:absolute last:before:-left-1 last:before:mt-4 last:before:h-full last:before:w-4 last:before:bg-background"
           >
-          <div class="max-w-xl pb-12 text-2xl font-normal">
-            <h4 class="leading-tight">{step.title}</h4>
-            <p class="mt-1 leading-tight text-foreground-secondary">
-              {step.description}
-            </p>
+            <span
+              class={clsx(
+                'mb-4 flex h-8 w-8 items-center justify-center rounded-full border border-border bg-background text-xs tabular-nums',
+                'lg:absolute lg:-left-4'
+              )}>{i + 1}</span
+            >
+            <div class="mb-12 max-w-xl text-xl xs:text-2xl">
+              <h4 class="leading-tight">{step.title}</h4>
+              <p class="mt-1 leading-tight text-foreground-secondary">
+                {step.description}
+              </p>
+            </div>
           </div>
-        </div>
-      {/each}
+        {/each}
+      </div>
     </div>
   </div>
 </div>

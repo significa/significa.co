@@ -44,7 +44,9 @@
 </script>
 
 <div class={clsx('relative', className)}>
-  <div class="absolute bottom-[15%] left-1/2 hidden -translate-x-1/2 text-center text-sm xs:block">
+  <div
+    class="absolute bottom-[13%] left-1/2 hidden -translate-x-1/2 text-center text-xs xl:block 2xl:text-sm"
+  >
     <p class="text-foreground-secondary">
       {Intl.DateTimeFormat().resolvedOptions().timeZone.replace('_', ' ')}
     </p>

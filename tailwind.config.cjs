@@ -34,6 +34,11 @@ module.exports = {
     })
   ],
   theme: {
+    container: {
+      screens: {
+        DEFAULT: '1536px'
+      }
+    },
     typography: (theme) => ({
       DEFAULT: {
         css: {

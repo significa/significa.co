@@ -4,32 +4,37 @@
 </script>
 
 <div class="border-t border-border">
-  <div class={clsx('xl:flex xl:items-center', '2xl:container 2xl:mx-auto 2xl:px-container')}>
-    <div
-      class={clsx(
-        'flex flex-1 items-center justify-center pt-12',
-        'md:pt-20',
-        'lg:pt-32',
-        'xl:border-r xl:border-border xl:pb-32',
-        '2xl:justify-start'
-      )}
-    >
-      <Clock class={clsx('w-full px-10', 'xs:w-[420px]', 'sm:px-0', '2xl:w-[564px]')} />
+  <div class={clsx('container mx-auto px-container', 'lg:flex lg:items-center')}>
+    <!-- Clock -->
+    <div class="border-border lg:flex-1 lg:border-r">
+      <div class={clsx('pt-12', 'md:pt-20', 'lg:pb-20')}>
+        <Clock
+          class={clsx(
+            'mx-auto w-full px-10',
+            'xs:w-96',
+            'xl:w-[420px] xl:px-0',
+            '2xl:mx-0 2xl:w-[564px]'
+          )}
+        />
+      </div>
     </div>
+
+    <!-- Text -->
     <div
       class={clsx(
-        'container mx-auto flex flex-1 px-container text-3xl text-foreground-secondary',
-        'xl:px-0',
-        '2xl:justify-end 2xl:px-0 2xl:text-4xl 2xl:font-normal'
+        'mt-8 pb-12',
+        'md:mt-12 md:pb-20',
+        'lg:mt-0 lg:flex-1 lg:pb-0 lg:pl-12',
+        'lg:flex lg:justify-end'
       )}
     >
       <div
         class={clsx(
-          'container pb-12 pt-12',
-          'pt-20 md:pb-20',
-          'lg:pb-32',
-          'xl:p-24',
-          '2xl:max-w-xl 2xl:p-0'
+          'text-xl text-foreground-secondary',
+          'xs:text-2xl',
+          'lg:max-w-xl',
+          'xl:text-3xl',
+          '2xl:text-4xl 2xl:font-normal'
         )}
       >
         <p>
@@ -37,12 +42,10 @@
           and our working hours are between
           <span class="tabular-nums text-foreground">09:00</span>
           and
-          <span class="tabular-nums text-foreground">18:00</span> (Europe / Lisbon).
-        </p>
-        <p>
-          By being in a central timezone, same as London, we can easily provide overlap with both
-          the US, Europe and Asia. However, experience has shown that having good asynchronous
-          communication, not distance, is key to a successful partnership.
+          <span class="tabular-nums text-foreground">18:00</span> (Europe / Lisbon). By being in a central
+          timezone, same as London, we can easily provide overlap with both the US, Europe and Asia.
+          However, experience has shown that having good asynchronous communication, not distance, is
+          key to a successful partnership.
         </p>
       </div>
     </div>

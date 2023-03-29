@@ -14,7 +14,7 @@
   $: next = related[related.findIndex((p) => p.id === story.id) + 1] || related[0];
 </script>
 
-<div use:drawerLinks class="container">
+<div use:drawerLinks class="container mx-auto px-container">
   <header class="pb-6">
     {#if story.content.cover?.filename}
       {@const { alt, src, width, height } = getImageAttributes(story.content.cover, {

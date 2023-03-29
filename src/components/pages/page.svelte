@@ -12,7 +12,7 @@
 
 {#each story.content.page || [] as page}
   {#if page.component === 'static-page'}
-    <div class="container">
+    <div class="container mx-auto px-container">
       <RichText
         class="my-10 md:my-14 lg:my-20"
         doc={page.body}
@@ -22,7 +22,9 @@
       />
     </div>
   {:else if page.component === 'home-page'}
-    <div class="container mt-20"><Slogan as="h2" class="text-7xl font-bold" /></div>
+    <div class="container mx-auto mt-20 px-container">
+      <Slogan as="h2" class="text-7xl font-bold" />
+    </div>
     <div class="py-96" />
     <div class="py-96" />
     <div class="py-96" />

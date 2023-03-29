@@ -14,7 +14,7 @@
   export let related: BlogPostPage[];
 </script>
 
-<div class="container">
+<div class="container mx-auto px-container">
   <header class="mx-auto mt-8 mb-10 max-w-2xl">
     {#if story.first_published_at}
       <p class="text-base font-medium text-foreground-secondary">

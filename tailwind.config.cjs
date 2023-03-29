@@ -34,10 +34,6 @@ module.exports = {
     })
   ],
   theme: {
-    container: {
-      center: true,
-      padding: 'clamp(1rem, 5vw, 3rem)'
-    },
     typography: (theme) => ({
       DEFAULT: {
         css: {
@@ -174,10 +170,8 @@ module.exports = {
       screens: {
         xs: '480px'
       },
-      padding: ({ theme }) => {
-        return {
-          container: theme('container.padding')
-        };
+      padding: {
+        container: 'clamp(1rem, 5vw, 3rem)'
       }
     }
   },

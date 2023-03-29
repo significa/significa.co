@@ -24,7 +24,7 @@
   class={clsx(
     'flex items-center justify-between py-4',
     // we could achieve this with route groups and a different layout, but it's so simple that we'll leave it like this for now
-    variant === 'handbook' ? 'px-6' : 'container'
+    variant === 'handbook' ? 'px-6' : 'container mx-auto px-container'
   )}
 >
   <div class="flex items-center gap-2">

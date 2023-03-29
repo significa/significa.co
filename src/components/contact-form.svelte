@@ -196,7 +196,7 @@
       {/if}
     {/if}
   </div>
-  <div class="mt-8 flex items-center justify-between">
+  <div class="mt-8 flex flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
     <div class="text-sm">
       <p class="leading-none text-foreground-secondary">{t('contact.footer.title')}</p>
       <Link class="mt-0.5 inline-flex" href="mailto:{t('contact.footer.email')}"

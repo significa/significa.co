@@ -17,7 +17,7 @@
 <div
   class="group border-b border-border py-12 transition-colors elevated-links @container first:border-t hover:bg-foreground-tertiary/10"
 >
-  <div class={clsx('container', variant === 'default' && '@5xl:flex')}>
+  <div class={clsx('container mx-auto px-container', variant === 'default' && '@5xl:flex')}>
     <div
       class={clsx(
         variant === 'featured' && 'items-end justify-between @5xl:flex',

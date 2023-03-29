@@ -31,7 +31,7 @@
   ] as const;
 </script>
 
-<div class="container mt-10 md:mt-14 lg:mt-20">
+<div class="container mx-auto mt-10 px-container md:mt-14 lg:mt-20">
   <div>
     <h1 class="text-6xl">
       {story.name}
@@ -42,7 +42,7 @@
   </div>
 </div>
 
-<div class="container @container">
+<div class="container mx-auto px-container @container">
   <div class="mt-6 flex flex-col items-start justify-between gap-8 @4xl:flex-row">
     <p class="text-2xl @4xl:max-w-xl">{story.content.bio}</p>
     <div class="flex gap-4">
@@ -59,7 +59,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container mx-auto px-container">
   <div class="mt-10 flex gap-10 text-2xl font-medium @container md:mt-14 lg:mt-20">
     {#each buttons as button}
       {#if button.active}

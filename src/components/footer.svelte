@@ -10,7 +10,7 @@
 </script>
 
 <footer>
-  <div class="container grid grid-cols-8 gap-8 py-20">
+  <div class="container mx-auto grid grid-cols-8 gap-8 px-container py-20">
     <div class="col-span-8 md:col-span-3 lg:col-span-4">
       <Logo variant="symbol" />
       <Slogan class="mt-32 hidden md:block" />
@@ -52,7 +52,7 @@
 
   <div class="">
     <div
-      class="container flex flex-col items-start justify-between py-4 text-sm text-foreground-secondary xs:flex-row xs:items-center"
+      class="container mx-auto flex flex-col items-start justify-between px-container py-4 text-sm text-foreground-secondary xs:flex-row xs:items-center"
     >
       <span>Significa &mdash; Design-led digital products</span>
       <Link href="/legal">Legal</Link>

@@ -19,6 +19,8 @@
       description: `At this point, all the best is yet to come. We start working together and we deliver the best results. `
     }
   ];
+
+  let lastItemHeight = 0;
 </script>
 
 <div class="border-t">
@@ -35,6 +37,7 @@
     <div
       class={clsx(
         'relative mt-12',
+        'md:mt-20',
         'lg:flex lg:flex-1 lg:justify-end lg:pl-12',
         'lg:border-l lg:border-dashed'
       )}
@@ -42,16 +45,20 @@
       <div class="absolute -left-px -top-32 hidden h-32 border-l lg:block" />
       <div>
         {#each steps as step, i}
-          <div
-            class="last:before:absolute last:before:-left-1 last:before:mt-4 last:before:h-full last:before:w-4 last:before:bg-background"
-          >
+          <div class="mb-12 last:mb-0">
+            {#if i === steps.length - 1}
+              <div
+                class="absolute -left-2 bottom-0 hidden w-4 bg-background lg:block"
+                style="height: {lastItemHeight}px"
+              />
+            {/if}
             <span
               class={clsx(
                 'mb-4 flex h-8 w-8 items-center justify-center rounded-full border bg-background text-xs tabular-nums',
                 'lg:absolute lg:-left-4'
               )}>{i + 1}</span
             >
-            <div class="mb-12 max-w-xl text-xl xs:text-2xl">
+            <div class="max-w-xl text-xl xs:text-2xl" bind:offsetHeight={lastItemHeight}>
               <h4 class="leading-tight">{step.title}</h4>
               <p class="mt-1 leading-tight text-foreground-secondary">
                 {step.description}

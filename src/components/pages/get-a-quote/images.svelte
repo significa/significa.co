@@ -11,7 +11,7 @@
 
 <svelte:window bind:scrollY={y} />
 
-<div class="mt-32 flex justify-center overflow-hidden border-b border-border pb-32">
+<div class="mt-32 flex justify-center overflow-hidden border-b pb-32">
   <div class="flex gap-10" style="transform: translateX({y / 10 - 200}px)">
     {#each images as img}
       <img class="h-80 w-auto" alt="" src={img} />

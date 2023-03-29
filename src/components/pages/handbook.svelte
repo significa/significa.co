@@ -109,7 +109,7 @@
       <a
         href={'#' + id}
         class={clsx(
-          'block border-l border-border py-1 px-3 text-sm',
+          'block border-l py-1 px-3 text-sm',
           active === id
             ? 'border-l-2 border-foreground text-foreground'
             : 'text-foreground-secondary',

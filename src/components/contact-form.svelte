@@ -79,7 +79,7 @@
 </script>
 
 {#if variant === undefined}
-  <div class="mb-8 border-b border-border pb-8">
+  <div class="mb-8 border-b pb-8">
     <p class="font-medium leading-none">{t('contact.type.title')}</p>
     <p class="mt-1 leading-none text-foreground-secondary">{t('contact.type.description')}</p>
 
@@ -87,7 +87,7 @@
       {#each options as option}
         <label
           for={option.type}
-          class="flex w-full items-center gap-3 rounded-md border border-border p-4 transition-all hover:bg-foreground/2"
+          class="flex w-full items-center gap-3 rounded-md border p-4 transition-all hover:bg-foreground/2"
         >
           <Radio id={option.type} bind:group={type} value={option.type} />
           <div>

@@ -8,7 +8,7 @@
 </script>
 
 <section class="container mx-auto mt-10 mb-40 px-container">
-  <div class="grid grid-cols-3 overflow-hidden rounded-lg border border-border">
+  <div class="grid grid-cols-3 overflow-hidden rounded-lg border">
     <div class="col-span-1 hidden flex-col bg-background-panel p-8 xl:flex">
       <h3 class="text-4xl">
         {t('prefooter.title.line1')}<br />
@@ -21,7 +21,7 @@
         <TwoEggs class="w-64" />
       </div>
     </div>
-    <div class="col-span-3 bg-background-panel p-8 xl:col-span-2 xl:border-l xl:border-border">
+    <div class="col-span-3 bg-background-panel p-8 xl:col-span-2 xl:border-l">
       <ContactForm {variant} />
     </div>
   </div>

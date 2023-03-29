@@ -3,10 +3,10 @@
   import clsx from 'clsx';
 </script>
 
-<div class="border-t border-border">
+<div class="border-t">
   <div class={clsx('container mx-auto px-container', 'lg:flex lg:items-center')}>
     <!-- Clock -->
-    <div class="border-border lg:flex-1 lg:border-r">
+    <div class="lg:flex-1 lg:border-r">
       <div class={clsx('pt-12', 'md:pt-20', 'lg:pb-20')}>
         <Clock
           class={clsx(

@@ -21,7 +21,7 @@
   ];
 </script>
 
-<div class="border-t border-border">
+<div class="border-t">
   <div class={clsx('container mx-auto px-container', 'lg:flex')}>
     <!-- Title -->
     <div class="lg:flex-1">
@@ -39,7 +39,7 @@
         'lg:border-l lg:border-dashed'
       )}
     >
-      <div class="absolute -left-px -top-32 hidden h-32 border-l border-border lg:block" />
+      <div class="absolute -left-px -top-32 hidden h-32 border-l lg:block" />
       <div>
         {#each steps as step, i}
           <div
@@ -47,7 +47,7 @@
           >
             <span
               class={clsx(
-                'mb-4 flex h-8 w-8 items-center justify-center rounded-full border border-border bg-background text-xs tabular-nums',
+                'mb-4 flex h-8 w-8 items-center justify-center rounded-full border bg-background text-xs tabular-nums',
                 'lg:absolute lg:-left-4'
               )}>{i + 1}</span
             >

@@ -37,7 +37,7 @@
   </header>
 
   {#if story.content.recognitions?.length}
-    <div class="mx-auto max-w-2xl border-y border-border py-8">
+    <div class="mx-auto max-w-2xl border-y py-8">
       <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
         {t('recognitions')}
       </h4>
@@ -77,7 +77,7 @@
   </div>
 
   {#if story.content.team?.length}
-    <div class="mx-auto max-w-2xl border-y border-border py-8">
+    <div class="mx-auto max-w-2xl border-y py-8">
       <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
         {t('project.team')}
       </h4>

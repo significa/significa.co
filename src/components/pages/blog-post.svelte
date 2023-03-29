@@ -86,10 +86,7 @@
   <!-- Author -->
   {#if story.content.author.id}
     {@const author = story.content.author}
-    <div
-      use:drawerLinks
-      class="mx-auto mt-10 max-w-2xl border-t border-border pt-8 md:mt-14 lg:mt-20"
-    >
+    <div use:drawerLinks class="mx-auto mt-10 max-w-2xl border-t pt-8 md:mt-14 lg:mt-20">
       <Person name={author.name} position={author.content.position} photo={author.content.photo} />
       <p class="mt-6 text-xl text-foreground-secondary">{author.content.bio}</p>
       <Button

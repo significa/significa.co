@@ -66,17 +66,12 @@
       <TextButton on:click={() => (filters = [])}>{t('clear-all')}</TextButton>
     {/if}
   </div>
-  <div class="border-t border-border">
+  <div class="border-t">
     {#if open}
-      <div transition:slide={{ duration: 300 }} class="border-b border-border">
+      <div transition:slide={{ duration: 300 }} class="border-b">
         <div class="container mx-auto px-container py-4 md:flex md:py-0">
           {#each panels as { type, items }, i}
-            <div
-              class={clsx(
-                'py-4 md:py-10',
-                i === 0 ? 'border-border md:border-r md:pr-6' : 'md:pl-6'
-              )}
-            >
+            <div class={clsx('py-4 md:py-10', i === 0 ? 'md:border-r md:pr-6' : 'md:pl-6')}>
               <p class="text-xs uppercase tracking-wider text-foreground-secondary">
                 {type === 'service' ? t('services') : t('deliverables')}
               </p>

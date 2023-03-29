@@ -13,7 +13,7 @@
 </script>
 
 <div
-  class="border-b border-border py-8 transition-colors elevated-links first:border-t hover:bg-foreground-tertiary/10"
+  class="border-b py-8 transition-colors elevated-links first:border-t hover:bg-foreground-tertiary/10"
 >
   <div class="container mx-auto flex gap-6 px-container">
     <div class="hidden flex-1 lg:block">

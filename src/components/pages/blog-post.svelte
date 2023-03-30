@@ -8,8 +8,8 @@
   import Person from '$components/person.svelte';
   import type { BlogPostPage } from '$lib/storyblok';
   import BlogEntry from '$components/blog-entry.svelte';
-  import Nobita from '$components/seggs/nobita.svelte';
   import { t } from '$lib/i18n';
+  import TwoEggs from '$components/illustrations/two-eggs.svelte';
 
   export let story: BlogPostPage;
   export let related: BlogPostPage[];
@@ -76,13 +76,16 @@
 
 <div class="mx-auto px-container">
   <div class="relative mx-auto mt-20 max-w-2xl">
-    <Nobita
-      class="absolute -right-10 bottom-0 drop-shadow-sm"
-      style="transform: scale(-1, 1) rotate(-8deg) scale(0.8)"
-    />
-    <div data-theme="yellow" class="rounded-lg p-8">
-      <h4 class="max-w-md text-4xl font-bold">{t('blog.pre-footer.title')}</h4>
-      <Button class="mt-6" as="a" href="/get-a-quote">{t('blog.pre-footer.cta')}</Button>
+    <div data-theme="yellow" class="flex justify-between gap-8 rounded-3xl p-6 md:p-8">
+      <div class="flex flex-col items-start">
+        <div class="flex-1">
+          <h4 class="max-w-md text-3xl font-bold">{t('blog.pre-footer.title')}</h4>
+        </div>
+        <Button class="mt-6" as="a" href="/get-a-quote" arrow icon="document"
+          >{t('blog.pre-footer.cta')}</Button
+        >
+      </div>
+      <TwoEggs class="hidden w-60 sm:block" />
     </div>
   </div>
 </div>

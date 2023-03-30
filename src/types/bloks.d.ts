@@ -27,7 +27,6 @@ export interface BlogPostStoryblok {
   cover?: AssetStoryblok;
   intro: string;
   author: StoryblokStory<TeamMemberStoryblok> | string;
-  project?: StoryblokStory<ProjectStoryblok> | string;
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
@@ -98,9 +97,34 @@ export interface FooterColumnInternalStoryblok {
   [k: string]: any;
 }
 
+export type MultiassetStoryblok = {
+  alt?: string;
+  copyright?: string;
+  id: number;
+  filename: string;
+  name: string;
+  title?: string;
+  [k: string]: any;
+}[];
+
 export interface GetAQuotePageStoryblok {
+  title?: string;
+  subtitle?: string;
+  timezone_text?: any;
+  steps_title?: string;
+  steps_subtitle?: string;
+  steps?: GetAQuoteStepStoryblok[];
+  images?: MultiassetStoryblok;
   _uid: string;
   component: 'get-a-quote-page';
+  [k: string]: any;
+}
+
+export interface GetAQuoteStepStoryblok {
+  title?: string;
+  description?: string;
+  _uid: string;
+  component: 'get-a-quote-step';
   [k: string]: any;
 }
 
@@ -131,16 +155,6 @@ export interface ImageStoryblok {
   component: 'image';
   [k: string]: any;
 }
-
-export type MultiassetStoryblok = {
-  alt?: string;
-  copyright?: string;
-  id: number;
-  filename: string;
-  name: string;
-  title?: string;
-  [k: string]: any;
-}[];
 
 export interface ImageGridStoryblok {
   width?: '' | 'medium' | 'wide';

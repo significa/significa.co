@@ -35,8 +35,9 @@ module.exports = {
   ],
   theme: {
     container: {
-      center: true,
-      padding: 'clamp(1rem, 5vw, 3rem)'
+      screens: {
+        DEFAULT: '1536px'
+      }
     },
     typography: (theme) => ({
       DEFAULT: {
@@ -171,13 +172,14 @@ module.exports = {
       }
     }),
     extend: {
+      fontFamily: {
+        comic: 'Comic Sans MS, Textile, cursive'
+      },
       screens: {
         xs: '480px'
       },
-      padding: ({ theme }) => {
-        return {
-          container: theme('container.padding')
-        };
+      padding: {
+        container: 'clamp(1rem, 5vw, 3rem)'
       }
     }
   },

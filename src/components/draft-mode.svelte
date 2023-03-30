@@ -10,7 +10,7 @@
 {#if isDraft && !dev && !dismissed}
   <div
     data-theme="yellow"
-    class="fixed bottom-4 left-4 z-50 flex flex-col items-stretch rounded-xl border border-border bg-background-panel p-4 text-foreground"
+    class="fixed bottom-4 left-4 z-50 flex flex-col items-stretch rounded-xl border bg-background-panel p-4 text-foreground"
   >
     <header class="mb-1.5 flex items-center justify-between">
       <h4 class="text-base font-medium">Warning</h4>

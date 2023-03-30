@@ -44,7 +44,7 @@
 
 <div class="flex items-start gap-4 @container">
   <div class="flex-1">
-    <header class="container my-10 mx-auto max-w-2xl md:my-14 lg:my-20">
+    <header class="container my-10 mx-auto max-w-3xl px-container md:my-14 lg:my-20">
       <h1 class="text-5xl">{story.name}</h1>
       <p class="mt-4 max-w-2xl text-2xl">{story.content.intro}</p>
     </header>
@@ -53,12 +53,12 @@
       {@const { alt, src, width, height } = getImageAttributes(story.content.cover, {
         size: [1440, 0]
       })}
-      <div class="container mx-auto mt-10 max-w-4xl">
+      <div class="container mx-auto mt-10 max-w-4xl px-container">
         <img class="w-full rounded-lg" {src} {alt} {width} {height} />
       </div>
     {/if}
 
-    <div class="container mx-auto max-w-2xl">
+    <div class="container mx-auto max-w-3xl px-container">
       {#if story.content.body}
         <div
           use:drawerLinks
@@ -109,7 +109,7 @@
       <a
         href={'#' + id}
         class={clsx(
-          'block border-l border-border py-1 px-3 text-sm',
+          'block border-l py-1 px-3 text-sm',
           active === id
             ? 'border-l-2 border-foreground text-foreground'
             : 'text-foreground-secondary',

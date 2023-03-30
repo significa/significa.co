@@ -51,5 +51,7 @@
   "contact.label.message": "Message",
   "contact.footer.title": "Hate contact forms?",
   "contact.footer.email": "hello@significa.co",
-  "contact.submit": "Send message"
+  "contact.submit": "Send message",
+  "blog.pre-footer.title": "We are currently accepting new projects",
+  "blog.pre-footer.cta": "Get a quote"
 }

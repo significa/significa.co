@@ -44,7 +44,7 @@
       "name": "blog-post",
       "display_name": null,
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2023-03-22T11:50:21.977Z",
+      "updated_at": "2023-03-30T09:09:50.645Z",
       "id": 3442347,
       "schema": {
         "cover": {
@@ -66,14 +66,6 @@
           "source": "internal_stories",
           "filter_content_type": [
             "team-member"
-          ]
-        },
-        "project": {
-          "type": "option",
-          "use_uuid": true,
-          "source": "internal_stories",
-          "filter_content_type": [
-            "project"
           ]
         },
         "tab-9a5d9933-3840-42d8-aa24-d87e83a9eb5d": {
@@ -434,9 +426,44 @@
       "name": "get-a-quote-page",
       "display_name": null,
       "created_at": "2023-03-03T13:47:17.251Z",
-      "updated_at": "2023-03-03T13:51:07.847Z",
+      "updated_at": "2023-03-30T13:34:06.557Z",
       "id": 3521048,
-      "schema": {},
+      "schema": {
+        "title": {
+          "type": "text"
+        },
+        "subtitle": {
+          "type": "text"
+        },
+        "timezone_text": {
+          "type": "richtext",
+          "customize_toolbar": true,
+          "toolbar": [
+            "paragraph",
+            "bold"
+          ]
+        },
+        "steps_title": {
+          "type": "text"
+        },
+        "steps_subtitle": {
+          "type": "text"
+        },
+        "steps": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "get-a-quote-step"
+          ]
+        },
+        "images": {
+          "type": "multiasset",
+          "filetypes": [
+            "images"
+          ]
+        }
+      },
       "image": null,
       "preview_field": null,
       "is_root": false,
@@ -449,6 +476,33 @@
       "color": null,
       "icon": null,
       "component_group_name": "Pages"
+    },
+    {
+      "name": "get-a-quote-step",
+      "display_name": null,
+      "created_at": "2023-03-30T13:32:36.241Z",
+      "updated_at": "2023-03-30T13:32:44.359Z",
+      "id": 3704710,
+      "schema": {
+        "title": {
+          "type": "text"
+        },
+        "description": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "get-a-quote-step",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
     },
     {
       "name": "handbook",
@@ -566,7 +620,7 @@
       "name": "image",
       "display_name": null,
       "created_at": "2023-02-16T10:44:18.022Z",
-      "updated_at": "2023-03-22T10:47:04.790Z",
+      "updated_at": "2023-03-29T15:31:23.095Z",
       "id": 3446843,
       "schema": {
         "width": {
@@ -594,7 +648,7 @@
               "name": "full"
             }
           ],
-          "default_value": "medium"
+          "default_value": "narrow"
         },
         "image": {
           "type": "asset",

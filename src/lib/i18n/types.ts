@@ -51,7 +51,9 @@ export const TranslationKeys = [
   'contact.label.message',
   'contact.footer.title',
   'contact.footer.email',
-  'contact.submit'
+  'contact.submit',
+  'blog.pre-footer.title',
+  'blog.pre-footer.cta'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

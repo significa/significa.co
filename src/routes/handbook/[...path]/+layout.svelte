@@ -49,11 +49,11 @@
   }
 </script>
 
-<div class="border-t border-b border-border" use:bodyLock={sidebar}>
+<div class="border-t border-b" use:bodyLock={sidebar}>
   <!-- Mobile: open menu -->
   <div
     bind:this={mobileMenu}
-    class="sticky top-0 z-10 flex h-12 items-center border-b border-border bg-background px-6 py-2 lg:hidden"
+    class="sticky top-0 z-10 flex h-12 items-center border-b bg-background px-6 py-2 lg:hidden"
   >
     <TextButton iconLeft="hamburger" on:click={() => sidebar.set(true)}>
       {allEntries[currIndex]?.name || t('handbook')}
@@ -62,21 +62,21 @@
   <div class="flex flex-col lg:flex-row">
     <aside
       class={clsx(
-        'fixed top-0 bottom-0 z-10 w-full overflow-y-auto border-r border-border bg-background lg:relative lg:top-auto lg:bottom-auto lg:block lg:h-auto lg:w-72 lg:overflow-y-visible',
+        'fixed top-0 bottom-0 z-10 w-full overflow-y-auto border-r bg-background lg:relative lg:top-auto lg:bottom-auto lg:block lg:h-auto lg:w-72 lg:overflow-y-visible',
         $sidebar ? 'block' : 'hidden'
       )}
       style={$sidebar ? `top: ${mobileMenuTop}px` : ''}
     >
       <!-- Mobile: close menu -->
       <div
-        class="sticky top-0 z-10 flex h-12 items-center border-b border-border bg-background px-6 py-2 lg:hidden"
+        class="sticky top-0 z-10 flex h-12 items-center border-b bg-background px-6 py-2 lg:hidden"
       >
         <TextButton iconLeft="close" on:click={() => sidebar.set(false)}>{t('close')}</TextButton>
       </div>
       <ul class="sticky top-0 -mb-px">
         <a
           class={clsx(
-            'flex h-12 items-center border-b border-border px-6 py-4 text-xs font-medium uppercase tracking-wider transition-colors hover:bg-foreground-tertiary/10',
+            'flex h-12 items-center border-b px-6 py-4 text-xs font-medium uppercase tracking-wider transition-colors hover:bg-foreground-tertiary/10',
             $page.url.pathname === '/handbook' && 'pointer-events-none bg-foreground-tertiary/10'
           )}
           href="/handbook"
@@ -87,7 +87,7 @@
           {@const isCurrentFolder = $page.url.pathname.startsWith(`/${folder.slug}`)}
           <div
             class={clsx(
-              'border-b border-border transition-colors hover:bg-foreground-tertiary/10',
+              'border-b transition-colors hover:bg-foreground-tertiary/10',
               isCurrentFolder && 'bg-foreground-tertiary/10'
             )}
           >
@@ -127,9 +127,7 @@
     <main class="flex-1">
       <slot />
       {#if allEntries[currIndex]}
-        <div
-          class="mb-px flex h-12 justify-between border-t border-border text-foreground-secondary"
-        >
+        <div class="mb-px flex h-12 justify-between border-t text-foreground-secondary">
           {#if allEntries[currIndex - 1]}
             <TextButton
               as="a"

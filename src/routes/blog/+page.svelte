@@ -35,8 +35,8 @@
 </script>
 
 <main>
-  <div class="container">
-    <h1 class="mt-10 text-8xl md:mt-14 lg:mt-20">
+  <div class="container mx-auto px-container">
+    <h1 class="mt-10 text-7xl md:mt-14 lg:mt-20">
       {#if $page.url.searchParams.getAll('t').length}
         <a class="text-foreground-tertiary transition-colors hover:text-foreground" href="/blog"
           >{t('blog.title')}</a
@@ -55,7 +55,7 @@
     {/each}
   </div>
 
-  <div class="container">
+  <div class="container mx-auto px-container">
     {#if $posts.length < $total}
       <Button
         class="mt-10"

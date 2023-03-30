@@ -8,13 +8,14 @@
   import type { ProjectPage } from '$lib/storyblok';
   import Recognitions from '$components/recognitions.svelte';
   import ProjectEntry from '$components/project-entry.svelte';
+  import PreFooter from '$components/pre-footer.svelte';
 
   export let story: ProjectPage;
   export let related: ProjectPage[];
   $: next = related[related.findIndex((p) => p.id === story.id) + 1] || related[0];
 </script>
 
-<div use:drawerLinks class="container">
+<div use:drawerLinks class="container mx-auto px-container">
   <header class="pb-6">
     {#if story.content.cover?.filename}
       {@const { alt, src, width, height } = getImageAttributes(story.content.cover, {
@@ -37,7 +38,7 @@
   </header>
 
   {#if story.content.recognitions?.length}
-    <div class="mx-auto max-w-2xl border-y border-border py-8">
+    <div class="mx-auto max-w-2xl border-y py-8">
       <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
         {t('recognitions')}
       </h4>
@@ -77,7 +78,7 @@
   </div>
 
   {#if story.content.team?.length}
-    <div class="mx-auto max-w-2xl border-y border-border py-8">
+    <div class="mx-auto max-w-2xl border-y py-8">
       <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
         {t('project.team')}
       </h4>
@@ -115,6 +116,11 @@
     />
   {/if}
 </div>
+
+<div class="mt-40 mb-12">
+  <PreFooter />
+</div>
+
 {#if next}
   <div>
     <ProjectEntry project={next} />

@@ -8,6 +8,7 @@
   import type { ProjectPage } from '$lib/storyblok';
   import Recognitions from '$components/recognitions.svelte';
   import ProjectEntry from '$components/project-entry.svelte';
+  import PreFooter from '$components/pre-footer.svelte';
 
   export let story: ProjectPage;
   export let related: ProjectPage[];
@@ -115,6 +116,11 @@
     />
   {/if}
 </div>
+
+<div class="mt-40 mb-12">
+  <PreFooter />
+</div>
+
 {#if next}
   <div>
     <ProjectEntry project={next} />

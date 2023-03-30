@@ -1,7 +1,7 @@
 <script lang="ts">
-  import ContactForm from '$components/contact-form.svelte';
   import clsx from 'clsx';
-  import Nobita from './nobita.svelte';
+  import ContactForm from '$components/contact-form.svelte';
+  import Nobita from '$components/seggs/nobita.svelte';
   import SpeechHello from './speech-hello.svelte';
 </script>
 

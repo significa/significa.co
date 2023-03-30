@@ -7,7 +7,7 @@
   export let variant: ComponentProps<ContactForm>['variant'] = undefined;
 </script>
 
-<section class="container mx-auto mt-10 mb-40 px-container">
+<section class="container mx-auto px-container">
   <div class="grid grid-cols-3 overflow-hidden rounded-lg border">
     <div class="col-span-1 hidden flex-col bg-background-panel p-8 xl:flex">
       <h3 class="text-4xl">

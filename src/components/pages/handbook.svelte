@@ -44,7 +44,7 @@
 
 <div class="flex items-start gap-4 @container">
   <div class="flex-1">
-    <header class="container my-10 mx-auto max-w-2xl px-container md:my-14 lg:my-20">
+    <header class="container my-10 mx-auto max-w-3xl px-container md:my-14 lg:my-20">
       <h1 class="text-5xl">{story.name}</h1>
       <p class="mt-4 max-w-2xl text-2xl">{story.content.intro}</p>
     </header>
@@ -58,7 +58,7 @@
       </div>
     {/if}
 
-    <div class="container mx-auto max-w-2xl px-container">
+    <div class="container mx-auto max-w-3xl px-container">
       {#if story.content.body}
         <div
           use:drawerLinks

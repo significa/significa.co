@@ -44,12 +44,14 @@
       "name": "blog-post",
       "display_name": null,
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2023-03-22T11:50:21.977Z",
+      "updated_at": "2023-03-30T09:09:50.645Z",
       "id": 3442347,
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212285,
           "required": false
         },
@@ -62,23 +64,25 @@
           "use_uuid": true,
           "required": true,
           "source": "internal_stories",
-          "filter_content_type": ["team-member"]
-        },
-        "project": {
-          "type": "option",
-          "use_uuid": true,
-          "source": "internal_stories",
-          "filter_content_type": ["project"]
+          "filter_content_type": [
+            "team-member"
+          ]
         },
         "tab-9a5d9933-3840-42d8-aa24-d87e83a9eb5d": {
           "display_name": "Content",
-          "keys": ["body"],
+          "keys": [
+            "body"
+          ],
           "pos": 0,
           "type": "tab"
         },
         "tab-c1b66206-334d-4470-a996-ca9aa074e23c": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image"
+          ],
           "pos": 0,
           "type": "tab"
         },
@@ -90,7 +94,9 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212285
         },
         "body": {
@@ -240,12 +246,16 @@
         },
         "image_a": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true
         },
         "image_b": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true
         }
       },
@@ -280,13 +290,18 @@
           "maximum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"]
+          "component_whitelist": [
+            "link"
+          ]
         },
         "footer": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["footer-column-internal", "footer-column-external"]
+          "component_whitelist": [
+            "footer-column-internal",
+            "footer-column-external"
+          ]
         }
       },
       "image": null,
@@ -356,7 +371,9 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"]
+          "component_whitelist": [
+            "link"
+          ]
         }
       },
       "image": null,
@@ -386,7 +403,9 @@
           "type": "options",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"],
+          "component_whitelist": [
+            "link"
+          ],
           "source": "internal_stories"
         }
       },
@@ -432,7 +451,9 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212287
         },
         "tagline": {
@@ -443,13 +464,19 @@
         },
         "tab-6a37f9e9-5fe6-4268-a3e4-7fd4ed252cc0": {
           "display_name": "Content",
-          "keys": ["body"],
+          "keys": [
+            "body"
+          ],
           "pos": 0,
           "type": "tab"
         },
         "tab-40ff5487-8b8b-40db-afae-1c64b4705bbc": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image"
+          ],
           "pos": 0,
           "type": "tab"
         },
@@ -488,7 +515,9 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212287
         }
       },
@@ -529,7 +558,7 @@
       "name": "image",
       "display_name": null,
       "created_at": "2023-02-16T10:44:18.022Z",
-      "updated_at": "2023-03-22T10:47:04.790Z",
+      "updated_at": "2023-03-29T15:31:23.095Z",
       "id": 3446843,
       "schema": {
         "width": {
@@ -557,11 +586,13 @@
               "name": "full"
             }
           ],
-          "default_value": "medium"
+          "default_value": "narrow"
         },
         "image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true
         },
         "expandable": {
@@ -631,7 +662,9 @@
         },
         "images": {
           "type": "multiasset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true,
           "pos": 2
         },
@@ -712,13 +745,19 @@
           "restrict_type": "groups",
           "restrict_components": true,
           "component_whitelist": [],
-          "component_group_whitelist": ["78726ff5-00c6-4ddb-bfef-551b83977e54"],
+          "component_group_whitelist": [
+            "78726ff5-00c6-4ddb-bfef-551b83977e54"
+          ],
           "minimum": 1,
           "maximum": 1
         },
         "tab-b1b4aa1b-2d5c-436e-ac16-09e30b9de047": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image"
+          ],
           "pos": 0,
           "type": "tab"
         },
@@ -732,7 +771,9 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": ["images"]
+          "filetypes": [
+            "images"
+          ]
         }
       },
       "image": null,
@@ -757,12 +798,16 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212286
         },
         "thumbnail": {
           "type": "multiasset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true,
           "asset_folder_id": 212286
         },
@@ -777,33 +822,45 @@
         "team": {
           "type": "options",
           "source": "internal_stories",
-          "filter_content_type": ["team-member"]
+          "filter_content_type": [
+            "team-member"
+          ]
         },
         "client": {
           "type": "text",
           "use_uuid": true,
           "source": "internal_stories",
-          "filter_content_type": ["client"]
+          "filter_content_type": [
+            "client"
+          ]
         },
         "deliverables": {
           "type": "textarea",
           "source": "internal_stories",
-          "filter_content_type": ["deliverable"]
+          "filter_content_type": [
+            "deliverable"
+          ]
         },
         "services": {
           "type": "textarea",
           "source": "internal_stories",
-          "filter_content_type": ["service"]
+          "filter_content_type": [
+            "service"
+          ]
         },
         "links": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"]
+          "component_whitelist": [
+            "link"
+          ]
         },
         "tab-734adeb1-00ef-48e6-aa53-a3001ad39201": {
           "display_name": "Content",
-          "keys": ["body"],
+          "keys": [
+            "body"
+          ],
           "pos": 0,
           "type": "tab"
         },
@@ -836,7 +893,11 @@
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image"
+          ],
           "pos": 0,
           "type": "tab"
         },
@@ -848,14 +909,18 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212286
         },
         "recognitions": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["recognition"]
+          "component_whitelist": [
+            "recognition"
+          ]
         }
       },
       "image": null,
@@ -888,7 +953,9 @@
         },
         "image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true,
           "asset_folder_id": 216885
         }
@@ -934,7 +1001,9 @@
         "image": {
           "type": "asset",
           "pos": 1,
-          "filetypes": ["images"]
+          "filetypes": [
+            "images"
+          ]
         },
         "title": {
           "type": "text",
@@ -949,7 +1018,9 @@
           "pos": 4,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"],
+          "component_whitelist": [
+            "link"
+          ],
           "maximum": 1
         }
       },
@@ -1063,7 +1134,9 @@
         "photo": {
           "type": "asset",
           "pos": 0,
-          "filetypes": ["images"]
+          "filetypes": [
+            "images"
+          ]
         },
         "name": {
           "type": "text",
@@ -1195,13 +1268,17 @@
         "photo": {
           "type": "asset",
           "pos": 0,
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212283
         },
         "egg": {
           "type": "asset",
           "pos": 1,
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212284
         },
         "position": {
@@ -1217,7 +1294,9 @@
           "pos": 4,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["team-member-link"]
+          "component_whitelist": [
+            "team-member-link"
+          ]
         },
         "is_active": {
           "type": "boolean",
@@ -1343,7 +1422,10 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["column-media", "column"],
+          "component_whitelist": [
+            "column-media",
+            "column"
+          ],
           "minimum": 2,
           "maximum": 2,
           "required": true,
@@ -1399,7 +1481,9 @@
         },
         "video": {
           "type": "asset",
-          "filetypes": ["videos"],
+          "filetypes": [
+            "videos"
+          ],
           "required": true
         },
         "loop": {

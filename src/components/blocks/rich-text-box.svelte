@@ -25,7 +25,7 @@
         block.layout === 'vertical' && 'mb-4'
       )}
     >
-      <img class="h-auto rounded-md object-cover" {src} {alt} />
+      <img class="h-full rounded-md object-cover" {src} {alt} />
     </div>
   {/if}
   <div class="flex flex-col">

@@ -27,7 +27,6 @@ export interface BlogPostStoryblok {
   cover?: AssetStoryblok;
   intro: string;
   author: StoryblokStory<TeamMemberStoryblok> | string;
-  project?: StoryblokStory<ProjectStoryblok> | string;
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;

@@ -1,7 +1,9 @@
 <script lang="ts">
+  import { VIDEO_EXTENSIONS } from '$lib/constants';
   import { t } from '$lib/i18n';
   import type { ProjectPage } from '$lib/storyblok';
   import { getImageAttributes } from '$lib/utils/cms';
+  import { getFileExtension } from '$lib/utils/strings';
   import type { ProjectStoryblok } from '$types/bloks';
   import { Button, CircleButton } from '@significa/svelte-ui';
   import type { ISbStoryData } from '@storyblok/js';
@@ -12,9 +14,23 @@
   export let variant: 'featured' | 'default' = 'default';
 
   let index = 0;
+  let video: HTMLVideoElement;
+
+  const onMouseEnter = () => {
+    if (video) video.play();
+  };
+
+  const onMouseLeave = () => {
+    if (video) {
+      video.currentTime = 0;
+      video.pause();
+    }
+  };
 </script>
 
 <div
+  on:mouseenter={onMouseEnter}
+  on:mouseleave={onMouseLeave}
   class="group border-b py-12 transition-colors elevated-links @container first:border-t hover:bg-foreground-tertiary/10"
 >
   <div class={clsx('container mx-auto px-container', variant === 'default' && '@5xl:flex')}>
@@ -45,14 +61,24 @@
     </div>
 
     {#if variant === 'featured' && project.content.cover?.filename}
-      {@const { src, alt, width, height } = getImageAttributes(project.content.cover)}
-      <img
-        class="mt-8 h-auto w-full rounded-md bg-background-offset"
-        {src}
-        {alt}
-        {width}
-        {height}
-      />
+      {#if VIDEO_EXTENSIONS.includes(getFileExtension(project.content.cover.filename))}
+        <video
+          bind:this={video}
+          class="mt-8 aspect-video h-auto w-full rounded-md bg-background-offset"
+          muted
+          playsinline
+          src={project.content.cover.filename}
+        />
+      {:else}
+        {@const { src, alt, width, height } = getImageAttributes(project.content.cover)}
+        <img
+          class="mt-8 h-auto w-full rounded-md bg-background-offset"
+          {src}
+          {alt}
+          {width}
+          {height}
+        />
+      {/if}
     {/if}
 
     {#if variant === 'default' && project.content.thumbnail.length}

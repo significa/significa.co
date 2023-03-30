@@ -14,3 +14,5 @@ export const NOTION_DBS = {
   candidates: 'fecad719a7bc41a5812ed73c7758ed52',
   contacts: 'f189e6a159ae407cb033ea62e0cddcb2'
 };
+
+export const VIDEO_EXTENSIONS = ['mp4', 'webm', 'ogg'];

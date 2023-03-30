@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { richTextBlockWidths } from '$lib/constants';
+  import { richTextBlockWidths, VIDEO_EXTENSIONS } from '$lib/constants';
   import RichText from '$components/rich-text.svelte';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import { Avatar, Icon, Link } from '@significa/svelte-ui';
@@ -9,6 +9,7 @@
   import Recognitions from '$components/recognitions.svelte';
   import ProjectEntry from '$components/project-entry.svelte';
   import PreFooter from '$components/pre-footer.svelte';
+  import { getFileExtension } from '$lib/utils/strings';
 
   export let story: ProjectPage;
   export let related: ProjectPage[];
@@ -18,10 +19,21 @@
 <div use:drawerLinks class="container mx-auto px-container">
   <header class="pb-6">
     {#if story.content.cover?.filename}
-      {@const { alt, src, width, height } = getImageAttributes(story.content.cover, {
-        size: [1440, 0]
-      })}
-      <img class="h-auto w-full rounded-md bg-background-offset" {src} {alt} {width} {height} />
+      {#if VIDEO_EXTENSIONS.includes(getFileExtension(story.content.cover.filename))}
+        <video
+          class="aspect-video h-auto w-full rounded-md bg-background-offset"
+          controls
+          autoplay
+          muted
+          playsinline
+          src={story.content.cover.filename}
+        />
+      {:else}
+        {@const { alt, src, width, height } = getImageAttributes(story.content.cover, {
+          size: [1440, 0]
+        })}
+        <img class="h-auto w-full rounded-md bg-background-offset" {src} {alt} {width} {height} />
+      {/if}
     {/if}
 
     <div class="mx-auto mt-8 mb-8 max-w-2xl md:mt-14 lg:mt-20">

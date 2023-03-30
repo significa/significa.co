@@ -1,24 +1,8 @@
 <script lang="ts">
+  import type { GetAQuotePageStoryblok } from '$types/bloks';
   import clsx from 'clsx';
 
-  const steps = [
-    {
-      title: 'Send us a message.',
-      description: `You're at the right place. It all starts here. Use the form above to get everything started. `
-    },
-    {
-      title: 'We will reach you in 48h.',
-      description: `Unless something weird happens, like being invaded by aliens, we will get back to you in 2 working days.`
-    },
-    {
-      title: 'Meet and proposing',
-      description: `We meet. We scope. We issue a proposal. We negotiate. We discuss. We agree. We start. Simple.`
-    },
-    {
-      title: 'Let’s collaborate!',
-      description: `At this point, all the best is yet to come. We start working together and we deliver the best results. `
-    }
-  ];
+  export let page: GetAQuotePageStoryblok;
 
   let lastItemHeight = 0;
 </script>
@@ -28,8 +12,8 @@
     <!-- Title -->
     <div class="lg:flex-1">
       <div class={clsx('max-w-md pt-12', 'md:pt-20', 'lg:max-w-sm')}>
-        <h3 class="text-5xl text-foreground-secondary">What's next?</h3>
-        <p class="text-5xl">What to expect</p>
+        <h3 class="text-5xl text-foreground-secondary">{page.steps_title}</h3>
+        <p class="text-5xl">{page.steps_subtitle}</p>
       </div>
     </div>
 
@@ -44,9 +28,9 @@
     >
       <div class="absolute -left-px -top-32 hidden h-32 border-l lg:block" />
       <div>
-        {#each steps as step, i}
+        {#each page.steps || [] as step, i}
           <div class="mb-12 last:mb-0">
-            {#if i === steps.length - 1}
+            {#if i === (page.steps || []).length - 1}
               <div
                 class="absolute -left-2 bottom-0 hidden w-4 bg-background lg:block"
                 style="height: {lastItemHeight}px"

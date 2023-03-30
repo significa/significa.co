@@ -426,9 +426,44 @@
       "name": "get-a-quote-page",
       "display_name": null,
       "created_at": "2023-03-03T13:47:17.251Z",
-      "updated_at": "2023-03-03T13:51:07.847Z",
+      "updated_at": "2023-03-30T13:34:06.557Z",
       "id": 3521048,
-      "schema": {},
+      "schema": {
+        "title": {
+          "type": "text"
+        },
+        "subtitle": {
+          "type": "text"
+        },
+        "timezone_text": {
+          "type": "richtext",
+          "customize_toolbar": true,
+          "toolbar": [
+            "paragraph",
+            "bold"
+          ]
+        },
+        "steps_title": {
+          "type": "text"
+        },
+        "steps_subtitle": {
+          "type": "text"
+        },
+        "steps": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "get-a-quote-step"
+          ]
+        },
+        "images": {
+          "type": "multiasset",
+          "filetypes": [
+            "images"
+          ]
+        }
+      },
       "image": null,
       "preview_field": null,
       "is_root": false,
@@ -441,6 +476,33 @@
       "color": null,
       "icon": null,
       "component_group_name": "Pages"
+    },
+    {
+      "name": "get-a-quote-step",
+      "display_name": null,
+      "created_at": "2023-03-30T13:32:36.241Z",
+      "updated_at": "2023-03-30T13:32:44.359Z",
+      "id": 3704710,
+      "schema": {
+        "title": {
+          "type": "text"
+        },
+        "description": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "get-a-quote-step",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
     },
     {
       "name": "handbook",

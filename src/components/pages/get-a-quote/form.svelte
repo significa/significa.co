@@ -1,6 +1,9 @@
 <script lang="ts">
   import clsx from 'clsx';
   import ContactForm from '$components/contact-form.svelte';
+  import type { GetAQuotePageStoryblok } from '$types/bloks';
+
+  export let page: GetAQuotePageStoryblok;
 
   let name = '';
   let budget = '';
@@ -30,8 +33,8 @@
   <div class="flex-1">
     <div class="lg:max-w-xl">
       <h1 class="text-7xl">
-        Get a quote.<br />
-        <span class="text-foreground-secondary">It starts here.</span>
+        {page.title}<br />
+        <span class="text-foreground-secondary">{page.subtitle}</span>
       </h1>
     </div>
   </div>

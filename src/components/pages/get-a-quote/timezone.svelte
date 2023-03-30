@@ -1,6 +1,13 @@
 <script lang="ts">
   import Clock from '$components/clock.svelte';
+  import type { GetAQuotePageStoryblok } from '$types/bloks';
+  import { RichTextResolver } from '@storyblok/js';
   import clsx from 'clsx';
+
+  export let page: GetAQuotePageStoryblok;
+  const resolver = new RichTextResolver();
+
+  $: console.log();
 </script>
 
 <div class="border-t">
@@ -33,19 +40,11 @@
           'xs:text-2xl',
           'lg:max-w-xl',
           'xl:text-3xl',
-          '2xl:text-4xl 2xl:font-normal'
+          '2xl:text-4xl 2xl:font-normal',
+          '[&_b]:font-normal [&_b]:text-foreground'
         )}
       >
-        <p>
-          We are located in <span class="text-foreground">Porto, Portugal</span>
-          and our working hours are between
-          <span class="tabular-nums text-foreground">09:00</span>
-          and
-          <span class="tabular-nums text-foreground">18:00</span> (Europe / Lisbon). By being in a central
-          timezone, same as London, we can easily provide overlap with both the US, Europe and Asia.
-          However, experience has shown that having good asynchronous communication, not distance, is
-          key to a successful partnership.
-        </p>
+        {@html resolver.render(page.timezone_text)}
       </div>
     </div>
   </div>

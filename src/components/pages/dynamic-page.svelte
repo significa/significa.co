@@ -2,12 +2,14 @@
   import {
     isBlogPostPage,
     isHandbookPage,
+    isCareerPage,
     isPage,
     isProjectPage,
     isTeamMemberPage,
     type PageResult
   } from '$lib/storyblok';
   import BlogPost from './blog-post.svelte';
+  import Career from './career.svelte';
   import Handbook from './handbook.svelte';
   import Page from './page.svelte';
   import Project from './project.svelte';
@@ -26,4 +28,6 @@
   <Project story={page.story} related={page.relatedProjects} />
 {:else if isTeamMemberPage(page)}
   <TeamMember story={page.story} posts={page.authorPosts} projects={page.authorProjects} />
+{:else if isCareerPage(page)}
+  <Career story={page.story} />
 {/if}

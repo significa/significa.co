@@ -2,16 +2,20 @@ import { env } from '$env/dynamic/private';
 import { sesClient } from '$lib/aws.server';
 import { SendEmailCommand } from '@aws-sdk/client-ses';
 import { getTextTemplate } from './template';
+import { getTextTemplate as getMinimalTextTemplate } from './template-minimal';
 import emailTemplate from './template.html?raw';
+import minimalEmailTemplate from './template-minimal.html?raw';
 
 export const sendTransactionalEmail = async ({
   name,
   email,
-  subject
+  subject,
+  template = 'default'
 }: {
   name: string;
   email: string;
   subject: string;
+  template?: 'default' | 'minimal';
 }) => {
   await sesClient.send(
     new SendEmailCommand({
@@ -22,11 +26,14 @@ export const sendTransactionalEmail = async ({
         Body: {
           Html: {
             Charset: 'UTF-8',
-            Data: emailTemplate.replace('{{name}}', name)
+            Data:
+              template === 'minimal'
+                ? minimalEmailTemplate.replace('{{name}}', name)
+                : emailTemplate.replace('{{name}}', name)
           },
           Text: {
             Charset: 'UTF-8',
-            Data: getTextTemplate(name)
+            Data: template === 'minimal' ? getMinimalTextTemplate(name) : getTextTemplate(name)
           }
         },
         Subject: {

@@ -89,8 +89,8 @@
                     <Link class="inline-block" href={sanitizeSlug(link.full_slug)}>{link.name}</Link
                     >
                     {#if sanitizeSlug(link.full_slug) === '/careers'}
-                      {#if $page.data.jobs.length}
-                        <Badge class="text-xs">{$page.data.jobs.length}</Badge>
+                      {#if $page.data.careers.length}
+                        <Badge class="text-xs">{$page.data.careers.length}</Badge>
                       {/if}
                     {/if}
                   </li>

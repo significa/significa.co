@@ -14,6 +14,7 @@
     toast
   } from '@significa/svelte-ui';
   import type { ISbStoryData } from '@storyblok/js';
+  import { createEventDispatcher } from 'svelte';
 
   type FormType = 'quote' | 'career' | 'contact';
   export let variant: undefined | FormType = undefined;
@@ -39,12 +40,18 @@
 
   const DEFAULT_POSITION = t('contact.position.default');
 
-  let name = '';
-  let email = '';
-  let budget = '';
-  let position = DEFAULT_POSITION;
-  let message = '';
-  let attachments: FileList | undefined = undefined;
+  export let name = '';
+  export let email = '';
+  export let budget = '';
+  export let position = DEFAULT_POSITION;
+  export let message = '';
+  export let attachments: FileList | undefined = undefined;
+  const dispatch = createEventDispatcher<{
+    focus: string;
+    blur: string;
+    success: undefined;
+    error: string;
+  }>();
 
   let fileInput: HTMLInputElement;
 
@@ -54,6 +61,7 @@
   let loading = false;
 
   $: if ($page.form?.success) {
+    dispatch('success');
     toast.success({
       message: t('contact.feedback.success.title'),
       description: t('contact.feedback.success.description'),
@@ -61,20 +69,24 @@
     });
   }
 
-  $: if ($page.form?.error?.type === 'notion') {
-    toast.error({
-      message: t('contact.feedback.error.notion.title'),
-      description: t('contact.feedback.error.notion.description'),
-      timeout: 0
-    });
-  }
+  $: if ($page.form?.error) {
+    dispatch('error', $page.form.error.type);
 
-  $: if ($page.form?.error?.type === 'email') {
-    toast.error({
-      message: t('contact.feedback.error.email.title'),
-      description: t('contact.feedback.error.email.description'),
-      timeout: 0
-    });
+    if ($page.form?.error?.type === 'notion') {
+      toast.error({
+        message: t('contact.feedback.error.notion.title'),
+        description: t('contact.feedback.error.notion.description'),
+        timeout: 0
+      });
+    }
+
+    if ($page.form?.error?.type === 'email') {
+      toast.error({
+        message: t('contact.feedback.error.email.title'),
+        description: t('contact.feedback.error.email.description'),
+        timeout: 0
+      });
+    }
   }
 </script>
 
@@ -123,6 +135,8 @@
         class="w-full"
         label={t('contact.label.name')}
         bind:value={name}
+        on:focus={() => dispatch('focus', 'name')}
+        on:blur={() => dispatch('blur', 'name')}
       />
       <FloatingInput
         required
@@ -132,6 +146,8 @@
         class="w-full"
         label={t('contact.label.email')}
         bind:value={email}
+        on:focus={() => dispatch('focus', 'email')}
+        on:blur={() => dispatch('blur', 'email')}
       />
     </div>
     {#if type === 'quote'}
@@ -140,6 +156,8 @@
         class="w-full"
         label={t('contact.label.budget')}
         bind:value={budget}
+        on:focus={() => dispatch('focus', 'budget')}
+        on:blur={() => dispatch('blur', 'budget')}
       >
         <option value="">Select budget</option>
         {#each budgetOptions as option}
@@ -152,6 +170,8 @@
         class="w-full"
         label={t('contact.label.position')}
         bind:value={position}
+        on:focus={() => dispatch('focus', 'position')}
+        on:blur={() => dispatch('blur', 'position')}
       >
         {#each jobs as option}
           <option value={option}>{option}</option>
@@ -166,6 +186,8 @@
       label={t('contact.label.message')}
       rows={5}
       bind:value={message}
+      on:focus={() => dispatch('focus', 'message')}
+      on:blur={() => dispatch('blur', 'message')}
     />
     {#if type !== 'contact'}
       <FileInput
@@ -176,6 +198,8 @@
         class="w-full"
         multiple
         bind:files={attachments}
+        on:focus={() => dispatch('focus', 'attachments')}
+        on:blur={() => dispatch('blur', 'attachments')}
       />
       {#if attachments}
         <div>

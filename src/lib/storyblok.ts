@@ -4,7 +4,7 @@ import { env } from '$env/dynamic/public';
 import type {
   BlogPostStoryblok,
   HandbookStoryblok,
-  JobStoryblok,
+  CareerStoryblok,
   PageStoryblok,
   ProjectStoryblok,
   TeamMemberStoryblok
@@ -40,7 +40,7 @@ export const PROJECT_PARAMS = {
 
 export const JOB_PARAMS = {
   per_page: 50,
-  content_type: 'job'
+  content_type: 'career'
 };
 
 export const getStoryblok = (apiOptions: SbSDKOptions['apiOptions'] = {}) => {
@@ -77,6 +77,7 @@ export const getClientSideSBVersion = () => {
 
 // Dynamic Pages
 export type Page = ISbStoryData<PageStoryblok>;
+export type CareerPage = ISbStoryData<CareerStoryblok>;
 export type BlogPostPage = ISbStoryData<
   Omit<BlogPostStoryblok, 'author' | 'project'> & {
     author: ISbStoryData<TeamMemberStoryblok>;
@@ -91,7 +92,13 @@ export type ProjectPage = ISbStoryData<
 >;
 export type TeamMemberPage = ISbStoryData<TeamMemberStoryblok>;
 
-export type DynamicPage = Page | BlogPostPage | HandbookPage | ProjectPage | TeamMemberPage;
+export type DynamicPage =
+  | Page
+  | BlogPostPage
+  | HandbookPage
+  | ProjectPage
+  | TeamMemberPage
+  | CareerPage;
 
 export async function fetchPage(options: {
   slug: string;
@@ -226,6 +233,10 @@ export const isProjectPage = (
   return page.story.content.component === 'project';
 };
 
+export const isCareerPage = (page: PageResult): page is { story: CareerPage } => {
+  return page.story.content.component === 'career';
+};
+
 export const isTeamMemberPage = (
   page: PageResult
 ): page is {
@@ -236,7 +247,7 @@ export const isTeamMemberPage = (
   return page.story.content.component === 'team-member';
 };
 
-export const fetchJobs = async (
+export const fetchCareers = async (
   options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
 ) => {
   const storyblok = getStoryblok({ fetch: options.fetch || fetch });
@@ -248,5 +259,5 @@ export const fetchJobs = async (
     version: options.version || 'published'
   });
 
-  return stories as ISbStoryData<JobStoryblok>[];
+  return stories as CareerPage[];
 };

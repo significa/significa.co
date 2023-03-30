@@ -36,6 +36,16 @@ export interface BlogPostStoryblok {
   [k: string]: any;
 }
 
+export interface CareerStoryblok {
+  seo_title?: string;
+  seo_description?: string;
+  seo_og_image?: AssetStoryblok;
+  body?: any;
+  _uid: string;
+  component: 'career';
+  [k: string]: any;
+}
+
 export interface ClientStoryblok {
   catech_labs?: string;
   _uid: string;
@@ -163,12 +173,6 @@ export interface ImageGridStoryblok {
   expandable?: boolean;
   _uid: string;
   component: 'image-grid';
-  [k: string]: any;
-}
-
-export interface JobStoryblok {
-  _uid: string;
-  component: 'job';
   [k: string]: any;
 }
 

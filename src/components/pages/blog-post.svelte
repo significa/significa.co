@@ -16,7 +16,7 @@
 </script>
 
 <div class="container mx-auto px-container">
-  <header class="mx-auto mt-8 mb-10 max-w-2xl">
+  <header class="mx-auto mt-10 mb-10 max-w-2xl md:mt-14 lg:mt-20">
     {#if story.first_published_at}
       <p class="text-base font-medium text-foreground-secondary">
         {formatDate(new Date(story.first_published_at || story.published_at || story.created_at), {

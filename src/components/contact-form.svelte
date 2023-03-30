@@ -56,7 +56,10 @@
   let fileInput: HTMLInputElement;
 
   const budgetOptions = ['10k - 25k', '25k - 50k', '50k - 100k', '100k+'];
-  const jobs = [DEFAULT_POSITION, ...($page.data.jobs || []).map((j: ISbStoryData) => j.name)];
+  const careers = [
+    DEFAULT_POSITION,
+    ...($page.data.careers || []).map((j: ISbStoryData) => j.name)
+  ];
 
   let loading = false;
 
@@ -173,7 +176,7 @@
         on:focus={() => dispatch('focus', 'position')}
         on:blur={() => dispatch('blur', 'position')}
       >
-        {#each jobs as option}
+        {#each careers as option}
           <option value={option}>{option}</option>
         {/each}
       </FloatingSelect>

@@ -20,12 +20,12 @@
     {@const { src, alt } = getImageAttributes(block.image)}
     <div
       class={clsx(
-        'flex-shrink-0',
+        'flex flex-shrink-0',
         block.layout === 'horizontal' && 'w-1/3',
         block.layout === 'vertical' && 'mb-4'
       )}
     >
-      <img class="h-full rounded-md object-cover" {src} {alt} />
+      <img class="rounded-md object-cover" {src} {alt} />
     </div>
   {/if}
   <div class="flex flex-col">

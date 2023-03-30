@@ -22,25 +22,30 @@
           <p class="mb-4 text-xs font-medium uppercase tracking-wider text-foreground-secondary">
             {column.title}
           </p>
-          <ul class="text-lg leading-relaxed">
+          <ul class="text-lg leading-normal">
             {#each column.links || [] as link}
               {#if column.component === 'footer-column-internal'}
-                <li class="mb-2 flex items-center gap-1">
+                <li class="mb-2">
                   <Link
+                    class="relative"
                     active={$page.url.pathname === sanitizeSlug(link.full_slug)}
-                    class="inline-block"
-                    href={sanitizeSlug(link.full_slug)}>{link.name}</Link
+                    href={sanitizeSlug(link.full_slug)}
                   >
-                  {#if sanitizeSlug(link.full_slug) === '/careers'}
-                    {#if $page.data.careers.length}
-                      <Badge class="text-xs">{$page.data.careers.length}</Badge>
+                    {link.name}
+                    {#if sanitizeSlug(link.full_slug) === '/careers'}
+                      {#if $page.data.careers.length}
+                        <Badge
+                          class="absolute -right-6 top-1/2 -translate-y-1/2 text-xs leading-none"
+                          >{$page.data.careers.length}</Badge
+                        >
+                      {/if}
                     {/if}
-                  {/if}
+                  </Link>
                 </li>
               {:else if column.component === 'footer-column-external'}
                 {@const { href, target, rel } = getAnchorFromCmsLink(link.link)}
                 <li class="mb-2">
-                  <Link class="inline-block" {href} {target} {rel}>{link.label}</Link>
+                  <Link {href} {target} {rel}>{link.label}</Link>
                 </li>
               {/if}
             {/each}

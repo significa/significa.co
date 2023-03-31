@@ -16,5 +16,6 @@
     controls={block.controls}
     loop={block.loop}
     autoplay={block.autoplay}
+    playsinline
   />
 {/if}

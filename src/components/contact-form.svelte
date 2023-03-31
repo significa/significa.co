@@ -1,16 +1,17 @@
 <script lang="ts">
+  import { browser } from '$app/environment';
   import { enhance } from '$app/forms';
   import { page } from '$app/stores';
   import { t } from '$lib/i18n';
   import {
+    type FileUploadItem,
     Button,
-    FileInput,
+    FileUpload,
     FloatingInput,
     FloatingSelect,
     FloatingTextarea,
     Link,
     Radio,
-    TextButton,
     toast
   } from '@significa/svelte-ui';
   import type { ISbStoryData } from '@storyblok/js';
@@ -40,20 +41,26 @@
 
   const DEFAULT_POSITION = t('contact.position.default');
 
+  let files: FileUploadItem[] = [];
   export let name = '';
   export let email = '';
   export let budget = '';
   export let position = DEFAULT_POSITION;
   export let message = '';
-  export let attachments: FileList | undefined = undefined;
+  export let attachments = '';
+  $: if (files.length > 0) {
+    attachments = files
+      .filter((f) => f.status === 'success')
+      .map((f) => f.url)
+      .join(',');
+  }
+
   const dispatch = createEventDispatcher<{
     focus: string;
     blur: string;
     success: undefined;
     error: string;
   }>();
-
-  let fileInput: HTMLInputElement;
 
   const budgetOptions = ['10k - 25k', '25k - 50k', '50k - 100k', '100k+'];
   const careers = [
@@ -75,20 +82,26 @@
   $: if ($page.form?.error) {
     dispatch('error', $page.form.error.type);
 
-    if ($page.form?.error?.type === 'notion') {
-      toast.error({
-        message: t('contact.feedback.error.notion.title'),
-        description: t('contact.feedback.error.notion.description'),
-        timeout: 0
-      });
-    }
-
-    if ($page.form?.error?.type === 'email') {
-      toast.error({
-        message: t('contact.feedback.error.email.title'),
-        description: t('contact.feedback.error.email.description'),
-        timeout: 0
-      });
+    if (browser) {
+      if ($page.form?.error?.type === 'notion') {
+        toast.error({
+          message: t('contact.feedback.error.notion.title'),
+          description: t('contact.feedback.error.notion.description'),
+          timeout: 0
+        });
+      } else if ($page.form?.error?.type === 'email') {
+        toast.error({
+          message: t('contact.feedback.error.email.title'),
+          description: t('contact.feedback.error.email.description'),
+          timeout: 0
+        });
+      } else {
+        toast.error({
+          message: t('contact.feedback.error.title'),
+          description: t('contact.feedback.error.description'),
+          timeout: 0
+        });
+      }
     }
   }
 </script>
@@ -122,10 +135,10 @@
     loading = true;
 
     return async ({ update }) => {
-      update();
-
-      attachments = undefined;
       loading = false;
+      files = [];
+
+      await update();
     };
   }}
 >
@@ -133,7 +146,7 @@
     <div class="flex w-full flex-col gap-4 md:flex-row">
       <FloatingInput
         required
-        error={!!$page.form?.error?.fields.name}
+        error={!!$page.form?.error?.fields?.name}
         name="name"
         class="w-full"
         label={t('contact.label.name')}
@@ -143,7 +156,7 @@
       />
       <FloatingInput
         required
-        error={!!$page.form?.error?.fields.email}
+        error={!!$page.form?.error?.fields?.email}
         name="email"
         type="email"
         class="w-full"
@@ -183,7 +196,7 @@
     {/if}
     <FloatingTextarea
       required
-      error={!!$page.form?.error?.fields.message}
+      error={!!$page.form?.error?.fields?.message}
       name="message"
       class="flex w-full"
       label={t('contact.label.message')}
@@ -193,44 +206,41 @@
       on:blur={() => dispatch('blur', 'message')}
     />
     {#if type !== 'contact'}
-      <FileInput
-        error={!!$page.form?.error?.fields.attachments}
-        name="attachments"
-        bind:element={fileInput}
+      <FileUpload
+        bind:files
+        placeholder={type === 'quote'
+          ? t('contact.label.attachment.quote')
+          : t('contact.label.attachment.position')}
         size="lg"
-        class="w-full"
-        multiple
-        bind:files={attachments}
-        on:focus={() => dispatch('focus', 'attachments')}
-        on:blur={() => dispatch('blur', 'attachments')}
+        getSignedUrl={async (file) => {
+          const res = await fetch(
+            `/get-signed-url?${new URLSearchParams({
+              name: file.name,
+              type: file.type,
+              size: file.size.toString()
+            }).toString()}`
+          );
+
+          return res.text();
+        }}
       />
-      {#if attachments}
-        <div>
-          <p class="text-sm text-foreground-secondary">
-            {#each attachments as file}
-              <span>{file.name}</span>
-              <span class="mr-0.5 text-foreground-tertiary">/</span>
-            {/each}
-            <TextButton
-              class="text-sm text-foreground"
-              on:click={() => {
-                attachments = undefined;
-                fileInput.value = '';
-              }}>Clear all</TextButton
-            >
-          </p>
-        </div>
-      {/if}
+      <input type="hidden" name="attachments" bind:value={attachments} />
     {/if}
   </div>
-  <div class="mt-8 flex flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
+  <div class="mt-8 flex flex-col justify-between gap-4 sm:flex-row-reverse sm:items-center">
+    <Button
+      type="submit"
+      size="lg"
+      arrow
+      {loading}
+      disabled={loading || files.some((f) => f.status === 'uploading')}
+      >{t('contact.submit')}</Button
+    >
     <div class="text-sm">
       <p class="leading-none text-foreground-secondary">{t('contact.footer.title')}</p>
       <Link class="mt-0.5 inline-flex" href="mailto:{t('contact.footer.email')}"
         >{t('contact.footer.email')}</Link
       >
     </div>
-    <Button type="submit" size="lg" arrow {loading} disabled={loading}>{t('contact.submit')}</Button
-    >
   </div>
 </form>

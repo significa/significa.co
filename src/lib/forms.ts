@@ -1,7 +1,6 @@
 import { env } from '$env/dynamic/private';
 import { Client } from '@notionhq/client';
 import { fail, type Actions, type RequestEvent } from '@sveltejs/kit';
-import { uploadFile } from './aws.server';
 import { NOTION_DBS } from './constants';
 import { t } from './i18n';
 import { sendTransactionalEmail } from './mail/sendEmail.server';
@@ -12,15 +11,12 @@ type FormFields = {
   message: string;
   position?: string;
   budget?: string;
+  attachments?: string;
 };
 
-type Attachment = { name: string; url: string };
-
 const handleContactForm =
-  (handleSaveToDatabase: (data: FormFields & { attachments: Attachment[] }) => Promise<void>) =>
-  async (event: RequestEvent) => {
+  (handleSaveToDatabase: (data: FormFields) => Promise<void>) => async (event: RequestEvent) => {
     const data = await event.request.formData();
-    const files = data.getAll('attachments');
 
     const fields = Object.fromEntries(data.entries()) as FormFields;
     const { name, email, message } = fields;
@@ -38,29 +34,8 @@ const handleContactForm =
       });
     }
 
-    const attachmentsUrls: Attachment[] = [];
     try {
-      for (const file of files) {
-        if (file instanceof File && file.size > 0) {
-          attachmentsUrls.push({
-            name: file.name,
-            url: await uploadFile(file)
-          });
-        }
-      }
-    } catch (error) {
-      return fail(400, {
-        error: {
-          type: 'fields',
-          fields: {
-            attachments: true
-          }
-        }
-      });
-    }
-
-    try {
-      await handleSaveToDatabase({ ...fields, attachments: attachmentsUrls });
+      await handleSaveToDatabase(fields);
     } catch (error) {
       return fail(422, {
         error: {
@@ -100,7 +75,10 @@ export const actions: Actions = {
         Message: { rich_text: [{ text: { content: message || '' } }] },
         Status: { select: { name: 'To triage' } },
         Attachments: {
-          files: attachments.map(({ name, url }) => ({ name, external: { url } }))
+          files: (attachments || '').split(',').map((url) => {
+            const parts = url.split('/');
+            return { name: parts[parts.length - 1], external: { url } };
+          })
         }
       }
     });
@@ -114,7 +92,10 @@ export const actions: Actions = {
         Position: { select: { name: position || 'n/a' } },
         Message: { rich_text: [{ text: { content: message || '' } }] },
         Attachments: {
-          files: attachments.map(({ name, url }) => ({ name, external: { url } }))
+          files: (attachments || '').split(',').map((url) => {
+            const parts = url.split('/');
+            return { name: parts[parts.length - 1], external: { url } };
+          })
         }
       }
     });

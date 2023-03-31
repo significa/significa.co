@@ -6,8 +6,6 @@
 
   export let page: GetAQuotePageStoryblok;
   const resolver = new RichTextResolver();
-
-  $: console.log();
 </script>
 
 <div class="border-t">

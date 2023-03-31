@@ -50,10 +50,11 @@
   },
   "type": "module",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.296.0",
-    "@aws-sdk/client-ses": "^3.296.0",
+    "@aws-sdk/client-s3": "3.296.0",
+    "@aws-sdk/client-ses": "3.296.0",
+    "@aws-sdk/s3-request-presigner": "3.296.0",
     "@notionhq/client": "^2.2.3",
-    "@significa/svelte-ui": "^0.0.15",
+    "@significa/svelte-ui": "^0.0.16",
     "@storyblok/js": "^2.0.15"
   }
 }

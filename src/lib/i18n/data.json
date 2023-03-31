@@ -37,11 +37,11 @@
   "contact.type.contact.description": "General enquiries",
   "contact.position.default": "Spontaneous application",
   "contact.feedback.success.title": "Your message has been delivered!",
-  "contact.feedback.success.description": "Keep an eye on your inbox. If you didn't mistype your message, you should be getting an e-mail right now.",
+  "contact.feedback.success.description": "You should be getting an e-mail confirmation right now.",
   "contact.feedback.error.notion.title": "We couldn't deliver your message!",
   "contact.feedback.error.notion.description": "We must've forgotten to feed our pigeons. Please try again or contact us directly.",
-  "contact.feedback.error.email.title": "We couldn't confirm your email address!",
-  "contact.feedback.error.email.description": "Your message was delivered but we could not confirm your email address. Did you mistype it?",
+  "contact.feedback.error.email.title": "Your message was delivered!",
+  "contact.feedback.error.email.description": "But we could not confirm your email address. Did you mistype it?",
   "contact.type.title": "What are you looking for?",
   "contact.type.description": "Please choose an option below",
   "contact.label.name": "Name",
@@ -53,5 +53,9 @@
   "contact.footer.email": "hello@significa.co",
   "contact.submit": "Send message",
   "blog.pre-footer.title": "We build and launch functional digital products.",
-  "blog.pre-footer.cta": "Get a quote"
+  "blog.pre-footer.cta": "Get a quote",
+  "contact.feedback.error.title": "Could not submit your message",
+  "contact.feedback.error.description": "Please contact us directly at hello@significa.co",
+  "contact.label.attachment.quote": "Relevant documents",
+  "contact.label.attachment.position": "CV, portfolio, or other documents"
 }

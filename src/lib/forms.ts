@@ -66,7 +66,7 @@ const notion = new Client({
 
 export const actions: Actions = {
   quote: handleContactForm(async ({ name, email, budget, message, attachments }) => {
-    notion.pages.create({
+    await notion.pages.create({
       parent: { database_id: NOTION_DBS.leads },
       properties: {
         Name: { title: [{ text: { content: name } }] },
@@ -75,16 +75,19 @@ export const actions: Actions = {
         Message: { rich_text: [{ text: { content: message || '' } }] },
         Status: { select: { name: 'To triage' } },
         Attachments: {
-          files: (attachments || '').split(',').map((url) => {
-            const parts = url.split('/');
-            return { name: parts[parts.length - 1], external: { url } };
-          })
+          files: (attachments || '')
+            .split(',')
+            .filter((url) => url && url.startsWith('https'))
+            .map((url) => {
+              const parts = url.split('/');
+              return { name: parts[parts.length - 1], external: { url } };
+            })
         }
       }
     });
   }),
   career: handleContactForm(async ({ name, email, position, message, attachments }) => {
-    notion.pages.create({
+    await notion.pages.create({
       parent: { database_id: NOTION_DBS.candidates },
       properties: {
         Name: { title: [{ text: { content: name } }] },
@@ -92,16 +95,19 @@ export const actions: Actions = {
         Position: { select: { name: position || 'n/a' } },
         Message: { rich_text: [{ text: { content: message || '' } }] },
         Attachments: {
-          files: (attachments || '').split(',').map((url) => {
-            const parts = url.split('/');
-            return { name: parts[parts.length - 1], external: { url } };
-          })
+          files: (attachments || '')
+            .split(',')
+            .filter((url) => url && url.startsWith('https'))
+            .map((url) => {
+              const parts = url.split('/');
+              return { name: parts[parts.length - 1], external: { url } };
+            })
         }
       }
     });
   }),
   contact: handleContactForm(async ({ name, email, message }) => {
-    notion.pages.create({
+    await notion.pages.create({
       parent: { database_id: NOTION_DBS.contacts },
       properties: {
         Name: { title: [{ text: { content: name } }] },

@@ -8,6 +8,7 @@
   import { slugify } from '$lib/utils/paths';
   import { RichTextResolver, type ISbRichtext } from '@storyblok/js';
   import clsx from 'clsx';
+  import Seo from '$components/seo.svelte';
 
   export let story: HandbookPage;
 
@@ -42,9 +43,14 @@
       .find(([, { location }]) => location === 'above-viewport')?.[0];
 </script>
 
+<Seo
+  title={story.content.seo_title || story.content.tagline}
+  description={story.content.seo_description || story.content.intro}
+  image={story.content.seo_og_image || story.content.cover}
+/>
 <div class="flex items-start gap-4 @container">
   <div class="flex-1">
-    <header class="container my-10 mx-auto max-w-3xl px-container md:my-14 lg:my-20">
+    <header class="container mx-auto my-10 max-w-3xl px-container md:my-14 lg:my-20">
       <h1 class="text-5xl">{story.name}</h1>
       <p class="mt-4 max-w-2xl text-2xl">{story.content.intro}</p>
     </header>
@@ -101,7 +107,7 @@
     </div>
   </div>
 
-  <aside class="sticky top-10 mt-10 mb-10 hidden h-auto w-56 @5xl:block">
+  <aside class="sticky top-10 mb-10 mt-10 hidden h-auto w-56 @5xl:block">
     <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
       {t('on-this-page')}
     </h4>
@@ -109,7 +115,7 @@
       <a
         href={'#' + id}
         class={clsx(
-          'block border-l py-1 px-3 text-sm',
+          'block border-l px-3 py-1 text-sm',
           active === id
             ? 'border-l-2 border-foreground text-foreground'
             : 'text-foreground-secondary',

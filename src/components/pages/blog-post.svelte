@@ -10,13 +10,19 @@
   import BlogEntry from '$components/blog-entry.svelte';
   import { t } from '$lib/i18n';
   import TwoEggs from '$components/illustrations/two-eggs.svelte';
+  import Seo from '$components/seo.svelte';
 
   export let story: BlogPostPage;
   export let related: BlogPostPage[];
 </script>
 
+<Seo
+  title={story.content.seo_title || story.content.tagline}
+  description={story.content.seo_description || story.content.intro}
+  image={story.content.seo_og_image || story.content.cover}
+/>
 <div class="container mx-auto px-container">
-  <header class="mx-auto mt-10 mb-10 max-w-2xl md:mt-14 lg:mt-20">
+  <header class="mx-auto mb-10 mt-10 max-w-2xl md:mt-14 lg:mt-20">
     {#if story.first_published_at}
       <p class="text-base font-medium text-foreground-secondary">
         {formatDate(new Date(story.first_published_at || story.published_at || story.created_at), {
@@ -57,7 +63,7 @@
   <!-- Author -->
   {#if story.content.author.id}
     {@const author = story.content.author}
-    <div use:drawerLinks class="mx-auto mt-10 max-w-2xl border-t border-b py-8 md:mt-14 lg:mt-20">
+    <div use:drawerLinks class="mx-auto mt-10 max-w-2xl border-b border-t py-8 md:mt-14 lg:mt-20">
       <Person name={author.name} position={author.content.position} photo={author.content.photo} />
       <p class="mt-6 text-xl text-foreground-secondary">{author.content.bio}</p>
       <Button

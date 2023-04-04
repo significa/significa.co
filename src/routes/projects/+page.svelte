@@ -52,7 +52,7 @@
 
   <!-- Filters -->
   <div
-    class="lg:mt-18 container mx-auto mt-8 mb-3 flex items-center justify-between px-container md:mt-12"
+    class="lg:mt-18 container mx-auto mb-3 mt-8 flex items-center justify-between px-container md:mt-12"
   >
     <div class="flex items-center gap-2">
       <TextButton iconLeft="configuration" on:click={() => (open = !open)}

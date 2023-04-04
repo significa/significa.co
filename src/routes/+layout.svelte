@@ -10,7 +10,7 @@
   import Footer from '$components/footer.svelte';
   import { toast, Toaster, ToastNotification } from '@significa/svelte-ui';
   import { beforeNavigate } from '$app/navigation';
-  import Clock from '$components/clock.svelte';
+  import Seo from '$components/seo.svelte';
 
   export let data;
 
@@ -23,6 +23,7 @@
   <meta name="robots" content="noindex,nofollow" />
   <meta name="googlebot" content="noindex,nofollow" />
 </svelte:head>
+<Seo />
 
 <Toaster component={ToastNotification} />
 <PageDrawer />

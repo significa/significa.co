@@ -49,7 +49,7 @@
   }
 </script>
 
-<div class="border-t border-b" use:bodyLock={sidebar}>
+<div class="border-b border-t" use:bodyLock={sidebar}>
   <!-- Mobile: open menu -->
   <div
     bind:this={mobileMenu}
@@ -62,7 +62,7 @@
   <div class="flex flex-col lg:flex-row">
     <aside
       class={clsx(
-        'fixed top-0 bottom-0 z-10 w-full overflow-y-auto border-r bg-background lg:relative lg:top-auto lg:bottom-auto lg:block lg:h-auto lg:w-72 lg:overflow-y-visible',
+        'fixed bottom-0 top-0 z-10 w-full overflow-y-auto border-r bg-background lg:relative lg:bottom-auto lg:top-auto lg:block lg:h-auto lg:w-72 lg:overflow-y-visible',
         $sidebar ? 'block' : 'hidden'
       )}
       style={$sidebar ? `top: ${mobileMenuTop}px` : ''}
@@ -94,7 +94,7 @@
             <a
               href="/{folder.slug}"
               class={clsx(
-                'flex h-12 items-center justify-between py-4 px-6',
+                'flex h-12 items-center justify-between px-6 py-4',
                 isCurrentFolder && 'pointer-events-none'
               )}
             >

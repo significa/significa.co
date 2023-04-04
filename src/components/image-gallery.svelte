@@ -42,18 +42,18 @@
     on:click={close}
   >
     <CircleButton
-      class="absolute top-2 right-2 z-10 bg-black text-white"
+      class="absolute right-2 top-2 z-10 bg-black text-white"
       on:click={close}
       icon="close"
     />
     {#if $items.length > 1}
       <CircleButton
-        class="absolute top-1/2 left-2 z-10 -translate-y-1/2 rotate-180 bg-black text-white"
+        class="absolute left-2 top-1/2 z-10 -translate-y-1/2 rotate-180 bg-black text-white"
         on:click={prev}
         icon="chevron-right"
       />
       <CircleButton
-        class="absolute top-1/2 right-2 z-10 -translate-y-1/2 bg-black text-white"
+        class="absolute right-2 top-1/2 z-10 -translate-y-1/2 bg-black text-white"
         on:click={next}
         icon="chevron-right"
       />

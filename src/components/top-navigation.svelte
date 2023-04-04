@@ -69,7 +69,7 @@
     <div
       transition:fly={{ x: 1000, duration: 300 }}
       use:clickOutside={() => (panel = false)}
-      class="fixed top-0 bottom-0 right-0 z-50 flex w-full max-w-sm flex-col items-start overflow-y-auto bg-background p-6"
+      class="fixed bottom-0 right-0 top-0 z-50 flex w-full max-w-sm flex-col items-start overflow-y-auto bg-background p-6"
     >
       <div class="flex w-full items-center justify-between">
         <Logo variant="symbol" />

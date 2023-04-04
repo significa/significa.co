@@ -8,7 +8,7 @@
 
   export let story: ISbStoryData<PageStoryblok>;
 
-  const isGetAQuotePage = (page: any): page is GetAQuotePageStoryblok => {
+  const isGetAQuotePage = (page: { component: string }): page is GetAQuotePageStoryblok => {
     return page.component === 'get-a-quote-page';
   };
 </script>

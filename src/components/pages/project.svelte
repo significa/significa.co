@@ -36,7 +36,7 @@
       {/if}
     {/if}
 
-    <div class="mx-auto mt-8 mb-8 max-w-2xl md:mt-14 lg:mt-20">
+    <div class="mx-auto mb-8 mt-8 max-w-2xl md:mt-14 lg:mt-20">
       <h1 class="text-5xl text-foreground-secondary">{story.name}</h1>
       <h2 class="text-5xl">{story.content.tagline}</h2>
       {#if story.first_published_at}
@@ -60,7 +60,7 @@
     </div>
   {/if}
 
-  <div class="mx-auto mt-8 mb-8 grid max-w-2xl grid-cols-1 gap-6 xs:grid-cols-2 md:grid-cols-3">
+  <div class="mx-auto mb-8 mt-8 grid max-w-2xl grid-cols-1 gap-6 xs:grid-cols-2 md:grid-cols-3">
     {#each [{ title: t('services'), data: story.content.services }, { title: t('deliverables'), data: story.content.deliverables }, { title: t('links'), data: story.content.links }] as { title, data }}
       {#if data}
         <ul class="col-span-1">
@@ -129,7 +129,7 @@
   {/if}
 </div>
 
-<div class="mt-40 mb-12">
+<div class="mb-12 mt-40">
   <PreFooter />
 </div>
 

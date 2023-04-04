@@ -16,9 +16,9 @@
   let visibility = tweened(0, { duration: 0, easing: (t) => t });
 
   const onDrag = (e: MouseEvent) => {
-    if (!dragging) return;
+    if (!dragging || !container) return;
 
-    const { left, width } = container?.getBoundingClientRect();
+    const { left, width } = container.getBoundingClientRect();
 
     const relativeX = e.clientX - left;
     const target = (relativeX * 100) / width;
@@ -64,11 +64,11 @@
 >
   <!-- line -->
   <div
-    class="absolute top-0 left-[calc(var(--comparison-visibility)-2px)] z-10 h-full w-1 bg-black"
+    class="absolute left-[calc(var(--comparison-visibility)-2px)] top-0 z-10 h-full w-1 bg-black"
   />
   <CircleButton
     aria-hidden="true"
-    class="comparison-handler absolute top-1/2 left-[var(--comparison-visibility)] z-20 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize bg-black text-white transition-none hover:opacity-100"
+    class="comparison-handler absolute left-[var(--comparison-visibility)] top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize bg-black text-white transition-none hover:opacity-100"
     icon="comparison"
   />
   {#if block.image_a?.filename}

@@ -1,12 +1,12 @@
 <script lang="ts">
   import clsx from 'clsx';
   import Prism from 'prismjs';
+  import 'prism-svelte';
   import 'prismjs/plugins/line-highlight/prism-line-highlight';
   import 'prismjs/plugins/line-numbers/prism-line-numbers';
   import 'prismjs/components/prism-typescript';
   import 'prismjs/components/prism-elixir';
   import 'prismjs/components/prism-bash';
-  import './code-block-svelte-language';
   import { afterUpdate } from 'svelte';
 
   let className: string | undefined = undefined;
@@ -15,8 +15,8 @@
   export let code: string;
   export let language: string;
 
-  export let lineNumbers: boolean = true;
-  export let lineNumbersStartAt: number = 1;
+  export let lineNumbers = true;
+  export let lineNumbersStartAt = 1;
   export let lineHighlight: string | undefined = undefined;
 
   let el: HTMLPreElement;

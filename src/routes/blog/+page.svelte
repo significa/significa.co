@@ -18,12 +18,14 @@
   // sync load function with local store (that will store "load more" posts)
   $: posts.set(data.data.stories);
   $: total.set(data.total);
+  $: version = $page.data.version || 'published';
+  $: tags = $page.url.searchParams.getAll('t').join(',');
 
   const fetchStories = async (page: number) => {
     isFetching.set(true);
     const res = await storyblok.get('cdn/stories', {
-      version: $page.data.version || 'published',
-      with_tag: $page.url.searchParams.getAll('t').join(','),
+      version,
+      with_tag: tags,
       page,
       ...BLOG_PARAMS
     });

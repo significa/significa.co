@@ -10,12 +10,18 @@
   import ProjectEntry from '$components/project-entry.svelte';
   import PreFooter from '$components/pre-footer.svelte';
   import { getFileExtension } from '$lib/utils/strings';
+  import Seo from '$components/seo.svelte';
 
   export let story: ProjectPage;
   export let related: ProjectPage[];
   $: next = related[related.findIndex((p) => p.id === story.id) + 1] || related[0];
 </script>
 
+<Seo
+  title={story.content.seo_title || story.content.tagline}
+  description={story.content.seo_description || story.content.intro}
+  image={story.content.seo_og_image || story.content.cover}
+/>
 <div use:drawerLinks class="container mx-auto px-container">
   <header class="pb-6">
     {#if story.content.cover?.filename}

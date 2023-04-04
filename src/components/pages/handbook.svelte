@@ -8,6 +8,7 @@
   import { slugify } from '$lib/utils/paths';
   import { RichTextResolver, type ISbRichtext } from '@storyblok/js';
   import clsx from 'clsx';
+  import Seo from '$components/seo.svelte';
 
   export let story: HandbookPage;
 
@@ -42,6 +43,11 @@
       .find(([, { location }]) => location === 'above-viewport')?.[0];
 </script>
 
+<Seo
+  title={story.content.seo_title || story.content.tagline}
+  description={story.content.seo_description || story.content.intro}
+  image={story.content.seo_og_image || story.content.cover}
+/>
 <div class="flex items-start gap-4 @container">
   <div class="flex-1">
     <header class="container mx-auto my-10 max-w-3xl px-container md:my-14 lg:my-20">

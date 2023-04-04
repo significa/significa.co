@@ -10,11 +10,17 @@
   import BlogEntry from '$components/blog-entry.svelte';
   import { t } from '$lib/i18n';
   import TwoEggs from '$components/illustrations/two-eggs.svelte';
+  import Seo from '$components/seo.svelte';
 
   export let story: BlogPostPage;
   export let related: BlogPostPage[];
 </script>
 
+<Seo
+  title={story.content.seo_title || story.content.tagline}
+  description={story.content.seo_description || story.content.intro}
+  image={story.content.seo_og_image || story.content.cover}
+/>
 <div class="container mx-auto px-container">
   <header class="mx-auto mb-10 mt-10 max-w-2xl md:mt-14 lg:mt-20">
     {#if story.first_published_at}

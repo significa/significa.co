@@ -57,5 +57,7 @@
   "contact.feedback.error.title": "Could not submit your message",
   "contact.feedback.error.description": "Please contact us directly at hello@significa.co",
   "contact.label.attachment.quote": "Relevant documents",
-  "contact.label.attachment.position": "CV, portfolio, or other documents"
+  "contact.label.attachment.position": "CV, portfolio, or other documents",
+  "seo.title": "Significa – Design-led digital products",
+  "seo.description": "Significa is a studio that partners with companies all over the world to build high-quality digital products."
 }

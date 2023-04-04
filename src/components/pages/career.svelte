@@ -1,6 +1,7 @@
 <script lang="ts">
   import ContactForm from '$components/contact-form.svelte';
   import RichText from '$components/rich-text.svelte';
+  import Seo from '$components/seo.svelte';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import { richTextBlockWidths } from '$lib/constants';
   import type { CareerPage } from '$lib/storyblok';
@@ -8,6 +9,7 @@
   export let story: CareerPage;
 </script>
 
+<Seo title={story.content.seo_title || story.name} />
 <div class="container mx-auto px-container">
   <h1 class="mx-auto mt-10 max-w-2xl text-5xl md:mt-14 lg:mt-20">{story.name}</h1>
   {#if story.content.body}

@@ -3,6 +3,7 @@
   import DashedEgg from '$components/dashed-egg.svelte';
   import DottedEgg from '$components/dotted-egg.svelte';
   import ProjectEntry from '$components/project-entry.svelte';
+  import Seo from '$components/seo.svelte';
   import { t } from '$lib/i18n';
   import type { BlogPostPage, ProjectPage } from '$lib/storyblok';
   import { getImageAttributes } from '$lib/utils/cms';
@@ -30,6 +31,11 @@
     }
   ] as const;
 </script>
+
+<Seo
+  title={story.content.seo_title || story.name}
+  description={story.content.seo_description || story.content.bio}
+/>
 
 <div class="container mx-auto mt-10 px-container md:mt-14 lg:mt-20">
   <div>

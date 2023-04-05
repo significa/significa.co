@@ -3,7 +3,7 @@
   import ContactForm from '$components/contact-form.svelte';
   import type { GetAQuotePageStoryblok } from '$types/bloks';
   import { fly } from 'svelte/transition';
-  import { circInOut } from 'svelte/easing';
+  import { circOut } from 'svelte/easing';
 
   type Eggs = 'attach-multiple' | 'attach' | 'error' | 'excited' | 'idle' | 'success' | 't-shirt';
   const files = import.meta.glob('./eggs/*.svg', { as: 'raw', eager: true });
@@ -79,9 +79,10 @@
         />
         {#if visible || name}
           <div
-            transition:fly={{ y: 500, opacity: 1, easing: circInOut, duration: 230 }}
+            data-theme="light"
+            transition:fly={{ y: 500, opacity: 1, easing: circOut, duration: 250 }}
             aria-hidden="true"
-            class="absolute -bottom-20 left-2 hidden drop-shadow lg:block"
+            class="absolute -bottom-20 left-2 hidden bg-transparent drop-shadow lg:block"
             style="transform: rotate(-10deg)"
           >
             {@html eggs[character]}

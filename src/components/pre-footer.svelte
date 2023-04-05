@@ -17,7 +17,7 @@
       <p class="mt-4 text-lg leading-tight">
         {t('prefooter.description')}
       </p>
-      <div class="flex flex-1 flex-col justify-end text-drawing">
+      <div class="flex flex-1 flex-col justify-end">
         <TwoEggs class="w-64" />
       </div>
     </div>

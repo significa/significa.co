@@ -208,6 +208,8 @@
     {#if type !== 'contact'}
       <FileUpload
         bind:files
+        on:focus={() => dispatch('focus', 'attachments')}
+        on:blur={() => dispatch('blur', 'attachments')}
         placeholder={type === 'quote'
           ? t('contact.label.attachment.quote')
           : t('contact.label.attachment.position')}

@@ -9,8 +9,6 @@
   export let title: undefined | string = undefined;
   export let description: undefined | string = undefined;
   export let image: undefined | AssetStoryblok = undefined;
-
-  $: console.log($page.url);
 </script>
 
 <svelte:head>

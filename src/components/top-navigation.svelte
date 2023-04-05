@@ -48,7 +48,7 @@
     <div class="flex items-center gap-4">
       {#if configuration.call_to_action?.length}
         {@const { href } = getAnchorFromCmsLink(configuration.call_to_action[0].link)}
-        <div class="hidden [@media(min-width:360px)]:block">
+        <div class="hidden [@media(min-width:400px)]:block">
           <Button as="a" {href}>{configuration.call_to_action[0].label}</Button>
         </div>
       {/if}

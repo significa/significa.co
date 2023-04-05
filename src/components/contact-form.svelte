@@ -15,6 +15,7 @@
     toast
   } from '@significa/svelte-ui';
   import type { ISbStoryData } from '@storyblok/js';
+  import clsx from 'clsx';
   import { createEventDispatcher } from 'svelte';
 
   type FormType = 'quote' | 'career' | 'contact';
@@ -115,7 +116,11 @@
       {#each options as option}
         <label
           for={option.type}
-          class="flex w-full items-center gap-3 border-t p-4 transition-all last:border-b-border hover:bg-foreground/2 @2xl:rounded-md @2xl:border @2xl:border-b-border"
+          class={clsx(
+            'flex w-full items-center gap-3 p-4 transition-all hover:bg-foreground/2',
+            'border first:rounded-t-md last:rounded-b-md [&+&]:border-t-0',
+            '@2xl:rounded-md @2xl:border @2xl:border-b-border @2xl:[&+&]:border-t'
+          )}
         >
           <Radio id={option.type} bind:group={type} value={option.type} />
           <div>

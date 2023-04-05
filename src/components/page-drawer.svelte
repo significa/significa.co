@@ -36,7 +36,8 @@
   />
   <div
     class="fixed bottom-2 left-2 right-2 top-2 z-50 overflow-y-auto scroll-smooth rounded-lg bg-background shadow-2xl md:left-auto md:w-3/4 lg:w-2/3"
-    transition:fly={{ x: 300, duration: 200 }}
+    in:fly={{ x: 300, duration: 200 }}
+    out:fly={{ x: -300, duration: 100 }}
   >
     <header class="z-50 flex items-center justify-between p-2">
       <Button

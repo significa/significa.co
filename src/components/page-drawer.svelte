@@ -7,6 +7,11 @@
   import { Button, Spinner } from '@significa/svelte-ui';
   import { fade, fly } from 'svelte/transition';
   import { items } from './image-gallery.svelte';
+  import { beforeNavigate } from '$app/navigation';
+
+  beforeNavigate(() => {
+    if ($drawer) drawer.close();
+  });
 
   const onkeydown = (e: KeyboardEvent) => {
     if (!$drawer) return;

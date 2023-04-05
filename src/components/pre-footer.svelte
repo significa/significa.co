@@ -7,9 +7,9 @@
   export let variant: ComponentProps<ContactForm>['variant'] = undefined;
 </script>
 
-<section class="container mx-auto px-container">
+<section class="container mx-auto px-container @container">
   <div class="grid grid-cols-3 overflow-hidden rounded-lg border">
-    <div class="col-span-1 hidden flex-col bg-background-panel p-8 xl:flex">
+    <div class="col-span-1 hidden flex-col bg-background-panel p-8 @5xl:flex">
       <h3 class="text-4xl">
         {t('prefooter.title.line1')}<br />
         {t('prefooter.title.line2')}
@@ -21,7 +21,7 @@
         <TwoEggs class="w-64" />
       </div>
     </div>
-    <div class="col-span-3 bg-background-panel p-8 xl:col-span-2 xl:border-l">
+    <div class="col-span-3 bg-background-panel p-8 @5xl:col-span-2 @5xl:border-l">
       <ContactForm {variant} />
     </div>
   </div>

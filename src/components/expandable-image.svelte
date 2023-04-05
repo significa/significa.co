@@ -36,7 +36,7 @@
   >
     {#if enabled}
       <CircleButton
-        class="absolute right-2 top-2 z-10 hidden bg-black text-white group-hover:flex group-focus-visible:flex"
+        class="absolute right-2 top-2 z-10 hidden bg-black text-white group-hover:flex group-focus-visible:flex [@media(hover:none)]:flex"
         icon="expand"
       />
     {/if}

@@ -107,15 +107,15 @@
 </script>
 
 {#if variant === undefined}
-  <div class="mb-8 border-b pb-8">
+  <div class="mb-8 border-b pb-8 @container">
     <p class="font-medium leading-none">{t('contact.type.title')}</p>
     <p class="mt-1 leading-none text-foreground-secondary">{t('contact.type.description')}</p>
 
-    <div class="mt-8 flex flex-col gap-4 md:flex-row">
+    <div class="mt-8 flex flex-col @2xl:flex-row @2xl:gap-4">
       {#each options as option}
         <label
           for={option.type}
-          class="flex w-full items-center gap-3 rounded-md border p-4 transition-all hover:bg-foreground/2"
+          class="flex w-full items-center gap-3 border-t p-4 transition-all last:border-b-border hover:bg-foreground/2 @2xl:rounded-md @2xl:border @2xl:border-b-border"
         >
           <Radio id={option.type} bind:group={type} value={option.type} />
           <div>

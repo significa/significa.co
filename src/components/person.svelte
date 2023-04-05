@@ -23,7 +23,7 @@
       <p class="text-base font-semibold leading-none">{name}</p>
     {/if}
     {#if position}
-      <p class="mt-1.5 text-base font-semibold leading-none text-foreground-secondary">
+      <p class="mt-1 text-base font-semibold leading-none text-foreground-secondary">
         {position}
       </p>
     {/if}

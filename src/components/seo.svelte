@@ -36,7 +36,7 @@
     })}
     <meta property="og:image" content={src} />
   {:else}
-    <meta property="og:image" content="//og.jpg" />
+    <meta property="og:image" content="/og.jpg" />
   {/if}
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />

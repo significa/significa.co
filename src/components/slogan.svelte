@@ -38,7 +38,7 @@
         : 'opacity: 0; transform: translateY(1ch);'}
       class={clsx(
         'mr-1 inline-block transition-all ease-smooth',
-        i === source.length - 1 && 'text-foreground-tertiary'
+        i === source.length - 1 && 'text-foreground-secondary'
       )}>{word}</span
     >
     {#if i % 2 === 1}

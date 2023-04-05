@@ -9,6 +9,8 @@
   export let title: undefined | string = undefined;
   export let description: undefined | string = undefined;
   export let image: undefined | AssetStoryblok = undefined;
+
+  $: console.log($page.url);
 </script>
 
 <svelte:head>
@@ -36,7 +38,7 @@
     })}
     <meta property="og:image" content={src} />
   {:else}
-    <meta property="og:image" content="/og.jpg" />
+    <meta property="og:image" content="{$page.url.origin}/og.jpg" />
   {/if}
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />

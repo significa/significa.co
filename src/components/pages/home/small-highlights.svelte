@@ -4,13 +4,36 @@
   import type { HomePageStoryblok } from '$types/bloks';
 
   export let highlights: HomePageStoryblok['small_highlights'] = [];
+  let hover: HTMLDivElement;
 </script>
 
-<div class="-mx-2 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+<div
+  class="relative -mx-2 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4"
+  on:mouseleave={() => {
+    hover.style.opacity = '0';
+    hover.style.transform = 'scale(0)';
+  }}
+>
+  <div
+    aria-hidden="true"
+    class="absolute -z-10 rounded-2xl bg-background-offset transition-all ease-smooth"
+    bind:this={hover}
+  />
   {#each highlights || [] as highlight}
     <a
       href={sanitizeSlug(highlight.full_slug)}
-      class="flex gap-4 rounded-2xl p-2 hover:bg-background-offset"
+      class="flex gap-4 rounded-2xl p-2"
+      on:focus={() => {
+        // noop
+      }}
+      on:mouseenter={(e) => {
+        hover.style.opacity = '1';
+        hover.style.transform = 'scale(1)';
+        hover.style.left = `${e.currentTarget.offsetLeft}px`;
+        hover.style.top = `${e.currentTarget.offsetTop}px`;
+        hover.style.width = `${e.currentTarget.offsetWidth}px`;
+        hover.style.height = `${e.currentTarget.offsetHeight}px`;
+      }}
     >
       <!-- Image -->
       <div class="flex-shrink-0">

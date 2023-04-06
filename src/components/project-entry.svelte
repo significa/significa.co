@@ -1,7 +1,6 @@
 <script lang="ts">
   import { VIDEO_EXTENSIONS } from '$lib/constants';
   import { t } from '$lib/i18n';
-  import type { ProjectPage } from '$lib/storyblok';
   import { getImageAttributes } from '$lib/utils/cms';
   import { getFileExtension } from '$lib/utils/strings';
   import type { ProjectStoryblok } from '$types/bloks';
@@ -9,6 +8,7 @@
   import type { ISbStoryData } from '@storyblok/js';
   import clsx from 'clsx';
   import Recognitions from './recognitions.svelte';
+  import type { ProjectPage } from '$lib/content';
 
   export let project: ISbStoryData<ProjectStoryblok> | ProjectPage;
   export let variant: 'featured' | 'default' = 'default';

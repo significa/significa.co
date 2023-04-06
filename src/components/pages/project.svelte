@@ -5,12 +5,12 @@
   import { Avatar, Icon, Link } from '@significa/svelte-ui';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import { t } from '$lib/i18n';
-  import type { ProjectPage } from '$lib/storyblok';
   import Recognitions from '$components/recognitions.svelte';
   import ProjectEntry from '$components/project-entry.svelte';
   import PreFooter from '$components/pre-footer.svelte';
   import { getFileExtension } from '$lib/utils/strings';
   import Seo from '$components/seo.svelte';
+  import type { ProjectPage } from '$lib/content';
 
   export let story: ProjectPage;
   export let related: ProjectPage[];

@@ -3,12 +3,12 @@
   import { drawerLinks } from '$lib/actions/drawer-links';
   import { intersectionObserver } from '@significa/svelte-ui/actions';
   import { t } from '$lib/i18n';
-  import type { HandbookPage } from '$lib/storyblok';
   import { getImageAttributes } from '$lib/utils/cms';
   import { slugify } from '$lib/utils/paths';
   import { RichTextResolver, type ISbRichtext } from '@storyblok/js';
   import clsx from 'clsx';
   import Seo from '$components/seo.svelte';
+  import type { HandbookPage } from '$lib/content';
 
   export let story: HandbookPage;
 

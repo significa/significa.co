@@ -4,7 +4,7 @@
   import Seo from '$components/seo.svelte';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import { richTextBlockWidths } from '$lib/constants';
-  import type { CareerPage } from '$lib/storyblok';
+  import type { CareerPage } from '$lib/content';
 
   export let story: CareerPage;
 </script>

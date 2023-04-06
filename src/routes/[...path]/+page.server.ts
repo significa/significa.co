@@ -1,13 +1,15 @@
-import { fetchPage, getServerSideSBVersion } from '$lib/storyblok';
 import { error } from '@sveltejs/kit';
 import { actions } from '$lib/forms';
+import { PREVIEW_COOKIE_KEY } from '$lib/constants';
+import { fetchPage } from '$lib/content';
 
-export const load = async ({ params, cookies, fetch }) => {
+export const load = async ({ params, cookies, fetch, url }) => {
   try {
     const page = await fetchPage({
       slug: params.path,
-      version: getServerSideSBVersion(cookies),
-      fetch
+      version: cookies.get(PREVIEW_COOKIE_KEY) ? 'draft' : 'published',
+      fetch,
+      url
     });
 
     return { page };

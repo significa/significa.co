@@ -15,8 +15,8 @@
 <div
   class="border-b py-8 transition-colors elevated-links first:border-t hover:bg-foreground-tertiary/10"
 >
-  <div class="container mx-auto flex gap-6 px-container">
-    <div class="hidden flex-1 lg:block">
+  <div class="container mx-auto flex gap-6 px-container @container">
+    <div class="hidden flex-1 @6xl:block">
       <Person
         name={post.content.author.name}
         position={post.content.author.content.position}

@@ -54,6 +54,8 @@
       .filter((f) => f.status === 'success')
       .map((f) => f.url)
       .join(',');
+  } else {
+    attachments = '';
   }
 
   const dispatch = createEventDispatcher<{

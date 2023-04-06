@@ -16,8 +16,11 @@
   export let page: GetAQuotePageStoryblok;
 
   let name = '';
+  let email = '';
   let budget = '';
+  let message = '';
   let attachments = '';
+  $: dirty = name || email || budget || message || attachments;
 
   let visible = false;
   let error = false;
@@ -77,7 +80,7 @@
           on:success={() => (success = true)}
           on:error={() => (error = true)}
         />
-        {#if visible || name}
+        {#if visible || dirty}
           <div
             data-theme="light"
             transition:fly={{ y: 500, opacity: 1, easing: circOut, duration: 250 }}

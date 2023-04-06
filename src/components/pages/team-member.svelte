@@ -4,8 +4,8 @@
   import DottedEgg from '$components/dotted-egg.svelte';
   import ProjectEntry from '$components/project-entry.svelte';
   import Seo from '$components/seo.svelte';
+  import type { BlogPostPage, ProjectPage } from '$lib/content';
   import { t } from '$lib/i18n';
-  import type { BlogPostPage, ProjectPage } from '$lib/storyblok';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { TeamMemberStoryblok } from '$types/bloks';
   import type { ISbStoryData } from '@storyblok/js';

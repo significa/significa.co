@@ -59,7 +59,8 @@ export const TranslationKeys = [
   'contact.label.attachment.quote',
   'contact.label.attachment.position',
   'seo.title',
-  'seo.description'
+  'seo.description',
+  'projects.title'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

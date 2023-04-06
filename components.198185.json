@@ -801,7 +801,7 @@
       "name": "page",
       "display_name": null,
       "created_at": "2023-03-03T13:41:50.937Z",
-      "updated_at": "2023-03-03T15:00:27.681Z",
+      "updated_at": "2023-04-06T10:56:24.062Z",
       "id": 3520995,
       "schema": {
         "page": {
@@ -810,7 +810,6 @@
           "restrict_components": true,
           "component_whitelist": [],
           "component_group_whitelist": ["78726ff5-00c6-4ddb-bfef-551b83977e54"],
-          "minimum": 1,
           "maximum": 1
         },
         "tab-b1b4aa1b-2d5c-436e-ac16-09e30b9de047": {
@@ -967,6 +966,26 @@
       "color": null,
       "icon": null,
       "component_group_name": "Content Types"
+    },
+    {
+      "name": "projects-index",
+      "display_name": null,
+      "created_at": "2023-04-06T13:42:56.259Z",
+      "updated_at": "2023-04-06T13:42:56.259Z",
+      "id": 3757617,
+      "schema": {},
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "projects-index",
+      "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Pages"
     },
     {
       "name": "recognition",

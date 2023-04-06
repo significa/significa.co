@@ -6,11 +6,11 @@
   import RichText from '$components/rich-text.svelte';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import Person from '$components/person.svelte';
-  import type { BlogPostPage } from '$lib/storyblok';
   import BlogEntry from '$components/blog-entry.svelte';
   import { t } from '$lib/i18n';
   import TwoEggs from '$components/illustrations/two-eggs.svelte';
   import Seo from '$components/seo.svelte';
+  import type { BlogPostPage } from '$lib/content';
 
   export let story: BlogPostPage;
   export let related: BlogPostPage[];

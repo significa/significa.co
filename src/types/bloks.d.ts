@@ -246,6 +246,7 @@ export interface PageStoryblok {
     | ContactsPageStoryblok
     | GetAQuotePageStoryblok
     | HomePageStoryblok
+    | ProjectsIndexStoryblok
     | StaticPageStoryblok
   )[];
   seo_title?: string;
@@ -274,6 +275,12 @@ export interface ProjectStoryblok {
   recognitions?: RecognitionStoryblok[];
   _uid: string;
   component: 'project';
+  [k: string]: any;
+}
+
+export interface ProjectsIndexStoryblok {
+  _uid: string;
+  component: 'projects-index';
   [k: string]: any;
 }
 

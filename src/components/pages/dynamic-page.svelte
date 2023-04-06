@@ -20,7 +20,7 @@
    */
   export let page: PageResult;
 
-  type PageType = { story: Page } & Pick<PageResult, 'blogIndex' | 'projectsIndex'>;
+  type PageType = { story: Page } & Pick<PageResult, 'blogIndex' | 'projectsIndex' | 'homePosts'>;
   const isPage = (page: PageResult): page is PageType => {
     return page.story.content.component === 'page';
   };
@@ -57,7 +57,12 @@
 </script>
 
 {#if isPage(page)}
-  <PageComponent story={page.story} blogIndex={page.blogIndex} projectsIndex={page.projectsIndex} />
+  <PageComponent
+    story={page.story}
+    blogIndex={page.blogIndex}
+    projectsIndex={page.projectsIndex}
+    homePosts={page.homePosts}
+  />
 {:else if isBlogPostPage(page)}
   <BlogPost story={page.story} related={page.relatedPosts} />
 {:else if isHandbookPage(page)}

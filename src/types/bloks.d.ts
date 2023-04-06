@@ -37,10 +37,11 @@ export interface BlogPostStoryblok {
 }
 
 export interface CareerStoryblok {
+  cover?: AssetStoryblok;
+  body?: any;
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
-  body?: any;
   _uid: string;
   component: 'career';
   [k: string]: any;
@@ -152,6 +153,31 @@ export interface HandbookStoryblok {
 }
 
 export interface HomePageStoryblok {
+  small_highlights?: (
+    | StoryblokStory<CareerStoryblok>
+    | StoryblokStory<ProjectStoryblok>
+    | StoryblokStory<HandbookStoryblok>
+    | StoryblokStory<BlogPostStoryblok>
+    | string
+  )[];
+  showreel?: AssetStoryblok;
+  work_title?: string;
+  projects?: (StoryblokStory<ProjectStoryblok> | string)[];
+  about_title1?: string;
+  about_title2?: string;
+  about_description?: string;
+  about_link?: LinkStoryblok[];
+  about_box1?: string;
+  about_box2?: string;
+  about_box3?: string;
+  testimonials_title1?: string;
+  testimonials_title2?: string;
+  testimonials_image?: AssetStoryblok;
+  testimonials?: RichtextTestimonialStoryblok[];
+  blog_title1?: string;
+  blog_title2?: string;
+  handbook_title?: string;
+  handbook_description?: string;
   _uid: string;
   component: 'home-page';
   [k: string]: any;

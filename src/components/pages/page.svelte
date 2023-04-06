@@ -1,24 +1,29 @@
 <script lang="ts">
   import RichText from '$components/rich-text.svelte';
-  import Slogan from '$components/slogan.svelte';
   import { richTextBlockWidths } from '$lib/constants';
-  import type { GetAQuotePageStoryblok, PageStoryblok } from '$types/bloks';
+  import type { GetAQuotePageStoryblok, HomePageStoryblok, PageStoryblok } from '$types/bloks';
   import type { ISbStoryData } from '@storyblok/js';
   import GetAQuote from './get-a-quote/get-a-quote.svelte';
   import BlogIndex from './blog-index.svelte';
   import type { PageResult } from '$lib/content';
   import ProjectsIndex from './projects-index.svelte';
+  import HomePage from './home-page.svelte';
 
   /**
    * This is the "Page" content-type that is used to render all of the "static content" pages.
    * It has a "page" field that will contain one specific page type (e.g. "static-page", "home-page", etc.)
    */
   export let story: ISbStoryData<PageStoryblok>;
+  export let homePosts: PageResult['homePosts'] = undefined;
   export let blogIndex: PageResult['blogIndex'] = undefined;
   export let projectsIndex: PageResult['projectsIndex'] = undefined;
 
   const isGetAQuotePage = (page: { component: string }): page is GetAQuotePageStoryblok => {
     return page.component === 'get-a-quote-page';
+  };
+
+  const isHomePage = (page: { component: string }): page is HomePageStoryblok => {
+    return page.component === 'home-page';
   };
 </script>
 
@@ -33,13 +38,8 @@
         })}
       />
     </div>
-  {:else if page.component === 'home-page'}
-    <div class="container mx-auto mt-20 px-container">
-      <Slogan as="h2" class="text-7xl font-bold" />
-    </div>
-    <div class="py-96" />
-    <div class="py-96" />
-    <div class="py-96" />
+  {:else if page.component === 'home-page' && isHomePage(page)}
+    <HomePage {page} posts={homePosts} />
   {:else if page.component === 'about-page'}
     <div>About page</div>
   {:else if page.component === 'blog-index' && blogIndex}

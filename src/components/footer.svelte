@@ -13,7 +13,7 @@
   <div class="container mx-auto grid grid-cols-8 gap-8 px-container py-20">
     <div class="col-span-8 md:col-span-3 lg:col-span-4">
       <Logo variant="symbol" />
-      <Slogan class="mt-32 hidden md:block" />
+      <Slogan class="mt-32 hidden font-bold md:block" />
     </div>
 
     <div class="col-span-8 flex flex-col gap-8 xs:flex-row md:col-span-5 lg:col-span-4">

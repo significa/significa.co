@@ -65,6 +65,7 @@
           muted
           playsinline
           autoplay
+          loop
           src={project.content.cover.filename}
         />
       {:else}

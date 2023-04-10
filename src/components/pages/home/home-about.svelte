@@ -32,7 +32,7 @@
     {#each page.about_links || [] as link}
       {@const { href } = getAnchorFromCmsLink(link.link)}
       <div
-        class="flex aspect-square flex-1 flex-col items-start justify-between border-t p-container transition-colors first:border-t-0 last:border-r-0 md:border-r md:border-t-0"
+        class="flex flex-1 flex-col items-start justify-between border-t p-container transition-colors first:border-t-0 last:border-r-0 md:border-r md:border-t-0"
       >
         <div class="flex-1">
           <h3 class="text-2xl font-medium">{link.title}</h3>
@@ -40,7 +40,9 @@
             {link.description}
           </p>
         </div>
-        <Button as="a" variant="secondary" {href} arrow>{link.link_label}</Button>
+        <Button class="mt-12 xl:mt-20" as="a" variant="secondary" {href} arrow
+          >{link.link_label}</Button
+        >
       </div>
     {/each}
   </div>

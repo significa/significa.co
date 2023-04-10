@@ -1,20 +1,25 @@
 <script lang="ts">
   import { intersectionObserver } from '@significa/svelte-ui/actions';
   import clsx from 'clsx';
+  import { createEventDispatcher } from 'svelte';
   import { twMerge } from 'tailwind-merge';
+
   let className: undefined | string = undefined;
   export { className as class };
   export let as: undefined | string = 'p';
+  export let bypassAnimation = false;
 
   let source: string[] = ['Think.', 'Design.', 'Develop.', 'Launch.', 'Repeat.'];
-  let target: string[] = [];
+  let target: string[] = bypassAnimation ? source : [];
 
+  const dispatch = createEventDispatcher<{ end: undefined }>();
   const animate = () => {
     const interval = setInterval(() => {
       if (target.length !== source.length) {
         target = [...target, source[target.length]];
       } else {
         clearInterval(interval);
+        dispatch('end');
       }
     }, 200);
   };

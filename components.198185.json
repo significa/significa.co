@@ -678,10 +678,47 @@
       "component_group_name": "Content Types"
     },
     {
+      "name": "home-about-link",
+      "display_name": null,
+      "created_at": "2023-04-10T15:09:32.455Z",
+      "updated_at": "2023-04-10T15:10:13.125Z",
+      "id": 3776794,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "description": {
+          "type": "text",
+          "pos": 1
+        },
+        "link_label": {
+          "type": "text",
+          "pos": 2
+        },
+        "link": {
+          "type": "multilink",
+          "pos": 3
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "home-about-link",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "home-page",
       "display_name": null,
       "created_at": "2023-03-03T14:59:15.465Z",
-      "updated_at": "2023-04-10T10:33:59.821Z",
+      "updated_at": "2023-04-10T15:10:31.828Z",
       "id": 3521503,
       "schema": {
         "small_highlights": {
@@ -754,8 +791,10 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
-            "link"
-          ]
+            "home-about-link"
+          ],
+          "maximum": 3,
+          "minimum": 3
         },
         "testimonials_title1": {
           "type": "text",

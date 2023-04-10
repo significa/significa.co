@@ -8,11 +8,11 @@
 
 <div class="container mx-auto px-container">
   <div class="md:flex">
-    <div class="flex-1 py-10 md:border-r md:py-14 lg:py-20">
-      <h3 class="max-w-sm text-4xl text-foreground-secondary">{page.about_title1}</h3>
-      <p class="max-w-sm text-4xl">{page.about_title2}</p>
+    <div class="flex-1 py-10 md:py-14 lg:py-20">
+      <h3 class="text-4xl text-foreground-secondary">{page.about_title1}</h3>
+      <p class="text-4xl">{page.about_title2}</p>
 
-      <p class="mt-20 max-w-sm text-xl font-medium text-foreground-secondary">
+      <p class="mt-4 max-w-md text-xl/tight font-medium text-foreground-secondary">
         {page.about_description}
       </p>
       {#if page.about_link?.[0]}
@@ -22,18 +22,26 @@
         >
       {/if}
     </div>
-    <!-- TODO: physics -->
-    <div class="flex-1">PHYSICS HERE</div>
   </div>
 </div>
-<div>
-  {#each page.about_links || [] as link}
-    {@const { href, target, rel } = getAnchorFromCmsLink(link.link)}
-    <div class="border-t transition-colors elevated-links hover:bg-foreground-tertiary/10">
-      <div class="container mx-auto flex items-center justify-between px-container">
-        <a class="py-6 text-2xl font-medium elevated-link" {href} {target} {rel}>{link.label}</a>
-        <Button as="a" variant="secondary" size="sm" {href} arrow />
+
+<!-- TODO: physics thingy -->
+
+<div class="border-t">
+  <div class="container mx-auto md:flex">
+    {#each page.about_links || [] as link}
+      {@const { href } = getAnchorFromCmsLink(link.link)}
+      <div
+        class="flex aspect-square flex-1 flex-col items-start justify-between border-t p-container transition-colors first:border-t-0 last:border-r-0 md:border-r md:border-t-0"
+      >
+        <div class="flex-1">
+          <h3 class="text-2xl font-medium">{link.title}</h3>
+          <p class="mt-2 text-xl/tight font-medium text-foreground-secondary">
+            {link.description}
+          </p>
+        </div>
+        <Button as="a" variant="secondary" {href} arrow>{link.link_label}</Button>
       </div>
-    </div>
-  {/each}
+    {/each}
+  </div>
 </div>

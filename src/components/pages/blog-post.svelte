@@ -61,7 +61,7 @@
   {/if}
 
   <!-- Author -->
-  {#if story.content.author.id}
+  {#if story.content.author?.id}
     {@const author = story.content.author}
     <div use:drawerLinks class="mx-auto mt-10 max-w-2xl border-b border-t py-8 md:mt-14 lg:mt-20">
       <Person name={author.name} position={author.content.position} photo={author.content.photo} />

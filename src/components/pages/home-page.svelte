@@ -10,6 +10,7 @@
   import Reel from './home/reel.svelte';
   import clsx from 'clsx';
   import { dev } from '$app/environment';
+  import HomeAbout from './home/home-about.svelte';
 
   export let page: HomePageStoryblok;
   export let posts: BlogPostPage[] | undefined;
@@ -50,6 +51,10 @@
         <ProjectEntry {project} />
       {/each}
     </div>
+  </section>
+
+  <section class="border-b">
+    <HomeAbout {page} />
   </section>
 
   <section class="mt-10 md:mt-14 lg:mt-20">

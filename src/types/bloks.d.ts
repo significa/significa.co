@@ -161,15 +161,14 @@ export interface HomePageStoryblok {
     | string
   )[];
   showreel?: AssetStoryblok;
+  showreel_button_label?: string;
   work_title?: string;
   projects?: (StoryblokStory<ProjectStoryblok> | string)[];
   about_title1?: string;
   about_title2?: string;
   about_description?: string;
   about_link?: LinkStoryblok[];
-  about_box1?: string;
-  about_box2?: string;
-  about_box3?: string;
+  about_links?: LinkStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;
   testimonials_image?: AssetStoryblok;

@@ -39,7 +39,7 @@
       />
     </div>
   {:else if page.component === 'home-page' && isHomePage(page)}
-    <HomePage {page} posts={homePosts} />
+    <HomePage data={page} posts={homePosts} />
   {:else if page.component === 'about-page'}
     <div>About page</div>
   {:else if page.component === 'blog-index' && blogIndex}

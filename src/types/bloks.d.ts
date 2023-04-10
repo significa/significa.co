@@ -242,6 +242,7 @@ export interface HomePageStoryblok {
   blog_title2?: string;
   handbook_title?: string;
   handbook_description?: string;
+  careers_button_label?: string;
   _uid: string;
   component: 'home-page';
   [k: string]: any;

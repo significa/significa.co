@@ -5,10 +5,12 @@
   let video: HTMLVideoElement;
   let paused = true;
   export let src: string;
+
+  export let play_label: string | undefined;
 </script>
 
 <section class="relative mt-8 overflow-hidden rounded-md" data-theme="dark">
-  {#if paused}
+  {#if paused && play_label}
     <div
       transition:fade={{ duration: 200 }}
       class="absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center bg-background/50"
@@ -18,7 +20,7 @@
         on:click={() => {
           video.play();
         }}
-        icon="play">Play reel</Button
+        icon="play">{play_label}</Button
       >
     </div>
   {/if}

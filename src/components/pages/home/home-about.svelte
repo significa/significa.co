@@ -3,22 +3,22 @@
   import type { HomePageStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
 
-  export let page: HomePageStoryblok;
+  export let data: HomePageStoryblok;
 </script>
 
 <div class="container mx-auto px-container">
   <div class="md:flex">
     <div class="flex-1 py-10 md:py-14 lg:py-20">
-      <h3 class="text-4xl text-foreground-secondary">{page.about_title1}</h3>
-      <p class="text-4xl">{page.about_title2}</p>
+      <h3 class="text-5xl text-foreground-secondary">{data.about_title1}</h3>
+      <p class="text-5xl">{data.about_title2}</p>
 
       <p class="mt-4 max-w-md text-xl/tight font-medium text-foreground-secondary">
-        {page.about_description}
+        {data.about_description}
       </p>
-      {#if page.about_link?.[0]}
-        {@const { href, target, rel } = getAnchorFromCmsLink(page.about_link[0].link)}
-        <Button class="mt-6" variant="secondary" as="a" {href} {target} {rel} arrow
-          >{page.about_link[0].label}</Button
+      {#if data.about_link?.[0]}
+        {@const { href, target, rel } = getAnchorFromCmsLink(data.about_link[0].link)}
+        <Button class="mt-12" variant="secondary" as="a" {href} {target} {rel} arrow
+          >{data.about_link[0].label}</Button
         >
       {/if}
     </div>
@@ -29,7 +29,7 @@
 
 <div class="border-t">
   <div class="container mx-auto md:flex">
-    {#each page.about_links || [] as link}
+    {#each data.about_links || [] as link}
       {@const { href } = getAnchorFromCmsLink(link.link)}
       <div
         class="flex flex-1 flex-col items-start justify-between border-t p-container transition-colors first:border-t-0 last:border-r-0 md:border-r md:border-t-0"

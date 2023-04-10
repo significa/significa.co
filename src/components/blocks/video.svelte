@@ -8,14 +8,23 @@
 
 {#if block.video?.filename}
   <!-- svelte-ignore a11y-media-has-caption -->
-  <video
-    class={clsx('not-rich-text my-6 h-auto w-full rounded-lg md:my-10', $$restProps.class)}
+  <figure
+    class={clsx('my-6 h-auto w-full md:my-10', $$restProps.class)}
     use:storyblokEditable={block}
-    muted
-    src={block.video.filename}
-    controls={block.controls}
-    loop={block.loop}
-    autoplay={block.autoplay}
-    playsinline
-  />
+  >
+    <video
+      class="rounded-lg"
+      muted
+      src={block.video.filename}
+      controls={block.controls}
+      loop={block.loop}
+      autoplay={block.autoplay}
+      playsinline
+    />
+    {#if block?.video?.title}
+      <figcaption class="mt-2 text-center text-sm text-foreground-secondary">
+        {block.video.title}
+      </figcaption>
+    {/if}
+  </figure>
 {/if}

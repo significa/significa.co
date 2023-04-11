@@ -4,9 +4,109 @@
       "name": "about-page",
       "display_name": null,
       "created_at": "2023-03-03T15:54:31.120Z",
-      "updated_at": "2023-03-03T15:54:31.120Z",
+      "updated_at": "2023-04-11T13:37:21.000Z",
       "id": 3521679,
-      "schema": {},
+      "schema": {
+        "page_title": {
+          "type": "text",
+          "pos": 0
+        },
+        "about_title1": {
+          "type": "text",
+          "pos": 1
+        },
+        "about_title2": {
+          "type": "text",
+          "pos": 2
+        },
+        "about_description": {
+          "type": "textarea",
+          "pos": 3
+        },
+        "values_title1": {
+          "type": "text",
+          "pos": 4
+        },
+        "values_title2": {
+          "type": "text",
+          "pos": 5
+        },
+        "values_description": {
+          "type": "textarea",
+          "pos": 6
+        },
+        "values": {
+          "type": "bloks",
+          "pos": 7,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "value"
+          ]
+        },
+        "testimonials_title1": {
+          "type": "text",
+          "pos": 8
+        },
+        "testimonials_title2": {
+          "type": "text",
+          "pos": 9
+        },
+        "testimonials_cta_label": {
+          "type": "text",
+          "pos": 10
+        },
+        "testimonials_cta_link": {
+          "type": "multilink",
+          "pos": 11,
+          "force_link_scope": true,
+          "link_scope": "pages/"
+        },
+        "testimonials": {
+          "type": "bloks",
+          "pos": 12,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "richtext-testimonial"
+          ]
+        },
+        "clients_title": {
+          "type": "text",
+          "pos": 13
+        },
+        "clients": {
+          "type": "bloks",
+          "pos": 14,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "client-logo"
+          ]
+        },
+        "office_title1": {
+          "type": "text",
+          "key": "office_title",
+          "pos": 15
+        },
+        "office_title2": {
+          "type": "text",
+          "pos": 16
+        },
+        "office_description": {
+          "type": "textarea",
+          "pos": 17
+        },
+        "office_cards": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "notepad_card",
+            "photo_card"
+          ]
+        }
+      },
       "image": null,
       "preview_field": null,
       "is_root": false,
@@ -49,7 +149,9 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212285,
           "required": false
         },
@@ -62,17 +164,25 @@
           "use_uuid": true,
           "required": true,
           "source": "internal_stories",
-          "filter_content_type": ["team-member"]
+          "filter_content_type": [
+            "team-member"
+          ]
         },
         "tab-9a5d9933-3840-42d8-aa24-d87e83a9eb5d": {
           "display_name": "Content",
-          "keys": ["body"],
+          "keys": [
+            "body"
+          ],
           "pos": 0,
           "type": "tab"
         },
         "tab-c1b66206-334d-4470-a996-ca9aa074e23c": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image"
+          ],
           "pos": 0,
           "type": "tab"
         },
@@ -84,7 +194,9 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212285
         },
         "body": {
@@ -132,21 +244,15 @@
       "name": "career",
       "display_name": null,
       "created_at": "2023-03-23T13:12:20.312Z",
-      "updated_at": "2023-03-30T15:27:49.826Z",
+      "updated_at": "2023-04-06T15:46:23.809Z",
       "id": 3647314,
       "schema": {
-        "seo_title": {
-          "type": "text",
-          "pos": 0
-        },
-        "seo_description": {
-          "type": "text",
-          "pos": 1
-        },
-        "seo_og_image": {
+        "cover": {
           "type": "asset",
-          "filetypes": ["images"],
-          "pos": 2
+          "pos": 0,
+          "filetypes": [
+            "images"
+          ]
         },
         "body": {
           "type": "richtext",
@@ -174,12 +280,31 @@
             "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
             "1ef77ef8-466a-4b74-a076-f4554004e128"
           ],
+          "pos": 1
+        },
+        "seo_title": {
+          "type": "text",
+          "pos": 2
+        },
+        "seo_description": {
+          "type": "text",
           "pos": 3
+        },
+        "seo_og_image": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ],
+          "pos": 4
         },
         "tab-0df1eb17-e1de-4dfd-92cb-c73b4839beec": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
-          "pos": 4,
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image"
+          ],
+          "pos": 5,
           "type": "tab"
         }
       },
@@ -220,6 +345,39 @@
       "color": null,
       "icon": null,
       "component_group_name": "Configuration"
+    },
+    {
+      "name": "client-logo",
+      "display_name": null,
+      "created_at": "2023-04-11T13:27:27.785Z",
+      "updated_at": "2023-04-11T13:28:01.785Z",
+      "id": 3785709,
+      "schema": {
+        "light_mode": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ]
+        },
+        "dark_mode": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "client-logo",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
     },
     {
       "name": "column",
@@ -302,12 +460,16 @@
         },
         "image_a": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true
         },
         "image_b": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true
         }
       },
@@ -342,13 +504,18 @@
           "maximum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"]
+          "component_whitelist": [
+            "link"
+          ]
         },
         "footer": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["footer-column-internal", "footer-column-external"]
+          "component_whitelist": [
+            "footer-column-internal",
+            "footer-column-external"
+          ]
         }
       },
       "image": null,
@@ -418,7 +585,9 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"]
+          "component_whitelist": [
+            "link"
+          ]
         }
       },
       "image": null,
@@ -448,7 +617,9 @@
           "type": "options",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"],
+          "component_whitelist": [
+            "link"
+          ],
           "source": "internal_stories"
         }
       },
@@ -481,7 +652,10 @@
         "timezone_text": {
           "type": "richtext",
           "customize_toolbar": true,
-          "toolbar": ["paragraph", "bold"]
+          "toolbar": [
+            "paragraph",
+            "bold"
+          ]
         },
         "steps_title": {
           "type": "text"
@@ -493,11 +667,15 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["get-a-quote-step"]
+          "component_whitelist": [
+            "get-a-quote-step"
+          ]
         },
         "images": {
           "type": "multiasset",
-          "filetypes": ["images"]
+          "filetypes": [
+            "images"
+          ]
         }
       },
       "image": null,
@@ -549,7 +727,9 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212287
         },
         "tagline": {
@@ -560,13 +740,19 @@
         },
         "tab-6a37f9e9-5fe6-4268-a3e4-7fd4ed252cc0": {
           "display_name": "Content",
-          "keys": ["body"],
+          "keys": [
+            "body"
+          ],
           "pos": 0,
           "type": "tab"
         },
         "tab-40ff5487-8b8b-40db-afae-1c64b4705bbc": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image"
+          ],
           "pos": 0,
           "type": "tab"
         },
@@ -605,7 +791,9 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212287
         }
       },
@@ -623,12 +811,174 @@
       "component_group_name": "Content Types"
     },
     {
+      "name": "home-about-link",
+      "display_name": null,
+      "created_at": "2023-04-10T15:09:32.455Z",
+      "updated_at": "2023-04-10T15:10:13.125Z",
+      "id": 3776794,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "description": {
+          "type": "text",
+          "pos": 1
+        },
+        "link_label": {
+          "type": "text",
+          "pos": 2
+        },
+        "link": {
+          "type": "multilink",
+          "pos": 3
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "home-about-link",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "home-page",
       "display_name": null,
       "created_at": "2023-03-03T14:59:15.465Z",
-      "updated_at": "2023-03-03T14:59:22.817Z",
+      "updated_at": "2023-04-10T21:34:27.851Z",
       "id": 3521503,
-      "schema": {},
+      "schema": {
+        "small_highlights": {
+          "type": "options",
+          "pos": 0,
+          "maximum": 4,
+          "source": "internal_stories",
+          "max_options": "4",
+          "key": "small_highlights",
+          "filter_content_type": [
+            "career",
+            "project",
+            "handbook",
+            "blog-post"
+          ]
+        },
+        "showreel": {
+          "type": "asset",
+          "filetypes": [
+            "videos"
+          ],
+          "pos": 1,
+          "key": "showreel"
+        },
+        "showreel_button_label": {
+          "type": "text",
+          "pos": 2
+        },
+        "work_title": {
+          "type": "text",
+          "pos": 3
+        },
+        "projects": {
+          "type": "options",
+          "pos": 4,
+          "source": "internal_stories",
+          "filter_content_type": [
+            "project"
+          ]
+        },
+        "about_title1": {
+          "type": "text",
+          "key": "about_title1",
+          "pos": 5
+        },
+        "about_title2": {
+          "type": "text",
+          "key": "about_title2",
+          "pos": 6
+        },
+        "about_description": {
+          "type": "textarea",
+          "key": "about_description",
+          "pos": 7
+        },
+        "about_link": {
+          "type": "bloks",
+          "maximum": 1,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "link"
+          ],
+          "key": "about_link",
+          "pos": 8
+        },
+        "about_links": {
+          "type": "bloks",
+          "pos": 9,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "home-about-link"
+          ],
+          "maximum": 3,
+          "minimum": 3
+        },
+        "testimonials_title1": {
+          "type": "text",
+          "key": "testimonials_title1",
+          "pos": 10
+        },
+        "testimonials_title2": {
+          "type": "text",
+          "key": "testimonials_title2",
+          "pos": 11
+        },
+        "testimonials_image": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ],
+          "key": "testimonials_image",
+          "pos": 12
+        },
+        "testimonials": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "richtext-testimonial"
+          ],
+          "maximum": 4,
+          "minimum": 4,
+          "key": "testimonials",
+          "pos": 13
+        },
+        "blog_title1": {
+          "type": "text",
+          "pos": 14
+        },
+        "blog_title2": {
+          "type": "text",
+          "pos": 15
+        },
+        "handbook_title": {
+          "type": "text",
+          "pos": 16
+        },
+        "handbook_description": {
+          "type": "textarea",
+          "pos": 17
+        },
+        "careers_button_label": {
+          "type": "text"
+        }
+      },
       "image": null,
       "preview_field": null,
       "is_root": false,
@@ -678,7 +1028,9 @@
         },
         "image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true
         },
         "expandable": {
@@ -748,7 +1100,9 @@
         },
         "images": {
           "type": "multiasset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true,
           "pos": 2
         },
@@ -798,6 +1152,30 @@
       "component_group_name": "Single"
     },
     {
+      "name": "notepad_card",
+      "display_name": null,
+      "created_at": "2023-04-11T13:32:29.435Z",
+      "updated_at": "2023-04-11T13:32:35.750Z",
+      "id": 3785715,
+      "schema": {
+        "text": {
+          "type": "textarea"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "notepad_card",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "page",
       "display_name": null,
       "created_at": "2023-03-03T13:41:50.937Z",
@@ -809,12 +1187,18 @@
           "restrict_type": "groups",
           "restrict_components": true,
           "component_whitelist": [],
-          "component_group_whitelist": ["78726ff5-00c6-4ddb-bfef-551b83977e54"],
+          "component_group_whitelist": [
+            "78726ff5-00c6-4ddb-bfef-551b83977e54"
+          ],
           "maximum": 1
         },
         "tab-b1b4aa1b-2d5c-436e-ac16-09e30b9de047": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image"
+          ],
           "pos": 0,
           "type": "tab"
         },
@@ -828,7 +1212,9 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": ["images"]
+          "filetypes": [
+            "images"
+          ]
         }
       },
       "image": null,
@@ -845,6 +1231,33 @@
       "component_group_name": "Content Types"
     },
     {
+      "name": "photo_card",
+      "display_name": null,
+      "created_at": "2023-04-11T13:32:46.022Z",
+      "updated_at": "2023-04-11T13:32:54.059Z",
+      "id": 3785716,
+      "schema": {
+        "photo": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "photo_card",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "project",
       "display_name": null,
       "created_at": "2023-02-15T13:07:44.621Z",
@@ -853,12 +1266,17 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": ["images", "videos"],
+          "filetypes": [
+            "images",
+            "videos"
+          ],
           "asset_folder_id": 212286
         },
         "thumbnail": {
           "type": "multiasset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true,
           "asset_folder_id": 212286
         },
@@ -873,33 +1291,45 @@
         "team": {
           "type": "options",
           "source": "internal_stories",
-          "filter_content_type": ["team-member"]
+          "filter_content_type": [
+            "team-member"
+          ]
         },
         "client": {
           "type": "text",
           "use_uuid": true,
           "source": "internal_stories",
-          "filter_content_type": ["client"]
+          "filter_content_type": [
+            "client"
+          ]
         },
         "deliverables": {
           "type": "textarea",
           "source": "internal_stories",
-          "filter_content_type": ["deliverable"]
+          "filter_content_type": [
+            "deliverable"
+          ]
         },
         "services": {
           "type": "textarea",
           "source": "internal_stories",
-          "filter_content_type": ["service"]
+          "filter_content_type": [
+            "service"
+          ]
         },
         "links": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"]
+          "component_whitelist": [
+            "link"
+          ]
         },
         "tab-734adeb1-00ef-48e6-aa53-a3001ad39201": {
           "display_name": "Content",
-          "keys": ["body"],
+          "keys": [
+            "body"
+          ],
           "pos": 0,
           "type": "tab"
         },
@@ -932,7 +1362,11 @@
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image"
+          ],
           "pos": 0,
           "type": "tab"
         },
@@ -944,14 +1378,18 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212286
         },
         "recognitions": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["recognition"]
+          "component_whitelist": [
+            "recognition"
+          ]
         }
       },
       "image": null,
@@ -1004,7 +1442,9 @@
         },
         "image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true,
           "asset_folder_id": 216885
         }
@@ -1050,7 +1490,9 @@
         "image": {
           "type": "asset",
           "pos": 1,
-          "filetypes": ["images"]
+          "filetypes": [
+            "images"
+          ]
         },
         "title": {
           "type": "text",
@@ -1065,7 +1507,9 @@
           "pos": 4,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"],
+          "component_whitelist": [
+            "link"
+          ],
           "maximum": 1
         }
       },
@@ -1179,7 +1623,9 @@
         "photo": {
           "type": "asset",
           "pos": 0,
-          "filetypes": ["images"]
+          "filetypes": [
+            "images"
+          ]
         },
         "name": {
           "type": "text",
@@ -1311,13 +1757,17 @@
         "photo": {
           "type": "asset",
           "pos": 0,
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212283
         },
         "egg": {
           "type": "asset",
           "pos": 1,
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212284
         },
         "position": {
@@ -1333,7 +1783,9 @@
           "pos": 4,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["team-member-link"]
+          "component_whitelist": [
+            "team-member-link"
+          ]
         },
         "is_active": {
           "type": "boolean",
@@ -1459,7 +1911,10 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["column-media", "column"],
+          "component_whitelist": [
+            "column-media",
+            "column"
+          ],
           "minimum": 2,
           "maximum": 2,
           "required": true,
@@ -1478,6 +1933,40 @@
       "color": "#fbce41",
       "icon": "block-text-img-r-l",
       "component_group_name": "Blocks & Rich Text"
+    },
+    {
+      "name": "value",
+      "display_name": null,
+      "created_at": "2023-04-11T13:24:04.277Z",
+      "updated_at": "2023-04-11T13:24:25.699Z",
+      "id": 3785697,
+      "schema": {
+        "illustration": {
+          "type": "option",
+          "pos": 0,
+          "use_uuid": true
+        },
+        "title": {
+          "type": "text",
+          "pos": 1
+        },
+        "description": {
+          "type": "text",
+          "pos": 2
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "value",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
     },
     {
       "name": "video",
@@ -1515,7 +2004,9 @@
         },
         "video": {
           "type": "asset",
-          "filetypes": ["videos"],
+          "filetypes": [
+            "videos"
+          ],
           "required": true
         },
         "loop": {

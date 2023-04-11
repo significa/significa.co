@@ -1,6 +1,80 @@
 import { StoryblokStory } from 'storyblok-generate-ts';
 
+export type MultilinkStoryblok =
+  | {
+      cached_url?: string;
+      linktype?: string;
+      [k: string]: any;
+    }
+  | {
+      id?: string;
+      cached_url?: string;
+      anchor?: string;
+      linktype?: 'story';
+      story?: {
+        name: string;
+        created_at?: string;
+        published_at?: string;
+        id: number;
+        uuid: string;
+        content?: {
+          [k: string]: any;
+        };
+        slug: string;
+        full_slug: string;
+        sort_by_date?: null | string;
+        position?: number;
+        tag_list?: string[];
+        is_startpage?: boolean;
+        parent_id?: null | number;
+        meta_data?: null | {
+          [k: string]: any;
+        };
+        group_id?: string;
+        first_published_at?: string;
+        release_id?: null | number;
+        lang?: string;
+        path?: null | string;
+        alternates?: any[];
+        default_full_slug?: null | string;
+        translated_slugs?: null | any[];
+        [k: string]: any;
+      };
+      [k: string]: any;
+    }
+  | {
+      url?: string;
+      cached_url?: string;
+      anchor?: string;
+      linktype?: 'asset' | 'url';
+      [k: string]: any;
+    }
+  | {
+      email?: string;
+      linktype?: 'email';
+      [k: string]: any;
+    };
+
 export interface AboutPageStoryblok {
+  page_title?: string;
+  about_title1?: string;
+  about_title2?: string;
+  about_description?: string;
+  values_title1?: string;
+  values_title2?: string;
+  values_description?: string;
+  values?: ValueStoryblok[];
+  testimonials_title1?: string;
+  testimonials_title2?: string;
+  testimonials_cta_label?: string;
+  testimonials_cta_link?: MultilinkStoryblok;
+  testimonials?: RichtextTestimonialStoryblok[];
+  clients_title?: string;
+  clients?: ClientLogoStoryblok[];
+  office_title1?: string;
+  office_title2?: string;
+  office_description?: string;
+  office_cards?: (NotepadCardStoryblok | PhotoCardStoryblok)[];
   _uid: string;
   component: 'about-page';
   [k: string]: any;
@@ -37,10 +111,11 @@ export interface BlogPostStoryblok {
 }
 
 export interface CareerStoryblok {
+  cover?: AssetStoryblok;
+  body?: any;
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
-  body?: any;
   _uid: string;
   component: 'career';
   [k: string]: any;
@@ -50,6 +125,14 @@ export interface ClientStoryblok {
   catech_labs?: string;
   _uid: string;
   component: 'client';
+  [k: string]: any;
+}
+
+export interface ClientLogoStoryblok {
+  light_mode?: AssetStoryblok;
+  dark_mode?: AssetStoryblok;
+  _uid: string;
+  component: 'client-logo';
   [k: string]: any;
 }
 
@@ -151,7 +234,42 @@ export interface HandbookStoryblok {
   [k: string]: any;
 }
 
+export interface HomeAboutLinkStoryblok {
+  title?: string;
+  description?: string;
+  link_label?: string;
+  link?: MultilinkStoryblok;
+  _uid: string;
+  component: 'home-about-link';
+  [k: string]: any;
+}
+
 export interface HomePageStoryblok {
+  small_highlights?: (
+    | StoryblokStory<CareerStoryblok>
+    | StoryblokStory<ProjectStoryblok>
+    | StoryblokStory<HandbookStoryblok>
+    | StoryblokStory<BlogPostStoryblok>
+    | string
+  )[];
+  showreel?: AssetStoryblok;
+  showreel_button_label?: string;
+  work_title?: string;
+  projects?: (StoryblokStory<ProjectStoryblok> | string)[];
+  about_title1?: string;
+  about_title2?: string;
+  about_description?: string;
+  about_link?: LinkStoryblok[];
+  about_links?: HomeAboutLinkStoryblok[];
+  testimonials_title1?: string;
+  testimonials_title2?: string;
+  testimonials_image?: AssetStoryblok;
+  testimonials?: RichtextTestimonialStoryblok[];
+  blog_title1?: string;
+  blog_title2?: string;
+  handbook_title?: string;
+  handbook_description?: string;
+  careers_button_label?: string;
   _uid: string;
   component: 'home-page';
   [k: string]: any;
@@ -176,66 +294,18 @@ export interface ImageGridStoryblok {
   [k: string]: any;
 }
 
-export type MultilinkStoryblok =
-  | {
-      cached_url?: string;
-      linktype?: string;
-      [k: string]: any;
-    }
-  | {
-      id?: string;
-      cached_url?: string;
-      anchor?: string;
-      linktype?: 'story';
-      story?: {
-        name: string;
-        created_at?: string;
-        published_at?: string;
-        id: number;
-        uuid: string;
-        content?: {
-          [k: string]: any;
-        };
-        slug: string;
-        full_slug: string;
-        sort_by_date?: null | string;
-        position?: number;
-        tag_list?: string[];
-        is_startpage?: boolean;
-        parent_id?: null | number;
-        meta_data?: null | {
-          [k: string]: any;
-        };
-        group_id?: string;
-        first_published_at?: string;
-        release_id?: null | number;
-        lang?: string;
-        path?: null | string;
-        alternates?: any[];
-        default_full_slug?: null | string;
-        translated_slugs?: null | any[];
-        [k: string]: any;
-      };
-      [k: string]: any;
-    }
-  | {
-      url?: string;
-      cached_url?: string;
-      anchor?: string;
-      linktype?: 'asset' | 'url';
-      [k: string]: any;
-    }
-  | {
-      email?: string;
-      linktype?: 'email';
-      [k: string]: any;
-    };
-
 export interface LinkStoryblok {
   label?: string;
   link?: MultilinkStoryblok;
   _uid: string;
   component: 'link';
+  [k: string]: any;
+}
+
+export interface NotepadCardStoryblok {
+  text?: string;
+  _uid: string;
+  component: 'notepad_card';
   [k: string]: any;
 }
 
@@ -255,6 +325,13 @@ export interface PageStoryblok {
   _uid: string;
   component: 'page';
   uuid?: string;
+  [k: string]: any;
+}
+
+export interface PhotoCardStoryblok {
+  photo?: AssetStoryblok;
+  _uid: string;
+  component: 'photo_card';
   [k: string]: any;
 }
 
@@ -390,6 +467,15 @@ export interface TwoColumnsStoryblok {
   columns: (ColumnMediaStoryblok | ColumnStoryblok)[];
   _uid: string;
   component: 'two-columns';
+  [k: string]: any;
+}
+
+export interface ValueStoryblok {
+  illustration?: any;
+  title?: string;
+  description?: string;
+  _uid: string;
+  component: 'value';
   [k: string]: any;
 }
 

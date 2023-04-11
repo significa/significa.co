@@ -2,12 +2,13 @@
   import RichText from '$components/rich-text.svelte';
   import Slogan from '$components/slogan.svelte';
   import { richTextBlockWidths } from '$lib/constants';
-  import type { GetAQuotePageStoryblok, PageStoryblok } from '$types/bloks';
+  import type { AboutPageStoryblok, GetAQuotePageStoryblok, PageStoryblok } from '$types/bloks';
   import type { ISbStoryData } from '@storyblok/js';
   import GetAQuote from './get-a-quote/get-a-quote.svelte';
   import BlogIndex from './blog-index.svelte';
   import type { PageResult } from '$lib/content';
   import ProjectsIndex from './projects-index.svelte';
+  import About from './about.svelte';
 
   /**
    * This is the "Page" content-type that is used to render all of the "static content" pages.
@@ -19,6 +20,10 @@
 
   const isGetAQuotePage = (page: { component: string }): page is GetAQuotePageStoryblok => {
     return page.component === 'get-a-quote-page';
+  };
+
+  const isAboutPage = (page: { component: string }): page is AboutPageStoryblok => {
+    return page.component === 'about-page';
   };
 </script>
 
@@ -40,8 +45,8 @@
     <div class="py-96" />
     <div class="py-96" />
     <div class="py-96" />
-  {:else if page.component === 'about-page'}
-    <div>About page</div>
+  {:else if page.component === 'about-page' && isAboutPage(page)}
+    <About data={page} />
   {:else if page.component === 'blog-index' && blogIndex}
     <BlogIndex data={blogIndex} />
   {:else if page.component === 'projects-index' && projectsIndex}

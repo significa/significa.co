@@ -15,11 +15,18 @@
   import { page } from '$app/stores';
   import { Button, Icon } from '@significa/svelte-ui';
   import { t } from '$lib/i18n';
+  import { afterNavigate } from '$app/navigation';
 
   export let data: HomePageStoryblok;
   export let posts: BlogPostPage[] | undefined;
 
   let show = false;
+
+  afterNavigate(() => {
+    if (window.scrollY > 500) {
+      show = true;
+    }
+  });
 </script>
 
 <div class="container mx-auto px-container">

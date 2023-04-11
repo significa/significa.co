@@ -37,10 +37,11 @@ export interface BlogPostStoryblok {
 }
 
 export interface CareerStoryblok {
+  cover?: AssetStoryblok;
+  body?: any;
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
-  body?: any;
   _uid: string;
   component: 'career';
   [k: string]: any;
@@ -151,31 +152,6 @@ export interface HandbookStoryblok {
   [k: string]: any;
 }
 
-export interface HomePageStoryblok {
-  _uid: string;
-  component: 'home-page';
-  [k: string]: any;
-}
-
-export interface ImageStoryblok {
-  width?: '' | 'narrow' | 'medium' | 'wide' | 'full';
-  image: AssetStoryblok;
-  expandable?: boolean;
-  _uid: string;
-  component: 'image';
-  [k: string]: any;
-}
-
-export interface ImageGridStoryblok {
-  width?: '' | 'medium' | 'wide';
-  density?: '' | 'regular' | 'loose' | 'tight';
-  images: MultiassetStoryblok;
-  expandable?: boolean;
-  _uid: string;
-  component: 'image-grid';
-  [k: string]: any;
-}
-
 export type MultilinkStoryblok =
   | {
       cached_url?: string;
@@ -230,6 +206,66 @@ export type MultilinkStoryblok =
       linktype?: 'email';
       [k: string]: any;
     };
+
+export interface HomeAboutLinkStoryblok {
+  title?: string;
+  description?: string;
+  link_label?: string;
+  link?: MultilinkStoryblok;
+  _uid: string;
+  component: 'home-about-link';
+  [k: string]: any;
+}
+
+export interface HomePageStoryblok {
+  small_highlights?: (
+    | StoryblokStory<CareerStoryblok>
+    | StoryblokStory<ProjectStoryblok>
+    | StoryblokStory<HandbookStoryblok>
+    | StoryblokStory<BlogPostStoryblok>
+    | string
+  )[];
+  showreel?: AssetStoryblok;
+  showreel_button_label?: string;
+  work_title?: string;
+  projects?: (StoryblokStory<ProjectStoryblok> | string)[];
+  about_title1?: string;
+  about_title2?: string;
+  about_description?: string;
+  about_link?: LinkStoryblok[];
+  about_links?: HomeAboutLinkStoryblok[];
+  testimonials_title1?: string;
+  testimonials_title2?: string;
+  testimonials_image?: AssetStoryblok;
+  testimonials?: RichtextTestimonialStoryblok[];
+  blog_title1?: string;
+  blog_title2?: string;
+  handbook_title?: string;
+  handbook_description?: string;
+  careers_button_label?: string;
+  _uid: string;
+  component: 'home-page';
+  [k: string]: any;
+}
+
+export interface ImageStoryblok {
+  width?: '' | 'narrow' | 'medium' | 'wide' | 'full';
+  image: AssetStoryblok;
+  expandable?: boolean;
+  _uid: string;
+  component: 'image';
+  [k: string]: any;
+}
+
+export interface ImageGridStoryblok {
+  width?: '' | 'medium' | 'wide';
+  density?: '' | 'regular' | 'loose' | 'tight';
+  images: MultiassetStoryblok;
+  expandable?: boolean;
+  _uid: string;
+  component: 'image-grid';
+  [k: string]: any;
+}
 
 export interface LinkStoryblok {
   label?: string;

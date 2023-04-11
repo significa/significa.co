@@ -16,6 +16,8 @@
   import { Button, Icon } from '@significa/svelte-ui';
   import { t } from '$lib/i18n';
   import { afterNavigate } from '$app/navigation';
+  import { browser } from '$app/environment';
+  import { theme } from '$lib/stores/theme';
 
   export let data: HomePageStoryblok;
   export let posts: BlogPostPage[] | undefined;
@@ -131,18 +133,15 @@
           >
         </div>
         <aside
-          class="mt-10 flex flex-col items-start justify-between rounded-lg bg-foreground p-8 text-background lg:mt-0 lg:min-h-[500px] lg:max-w-md"
+          data-theme={browser ? ($theme === 'light' ? 'dark' : 'light') : 'light'}
+          class="mt-10 flex flex-col items-start justify-between rounded-lg p-8 lg:mt-0 lg:min-h-[500px] lg:max-w-md"
         >
           <div class="flex-1">
             <h3 class="text-4xl">{data.handbook_title}</h3>
-            <p class="mt-4 text-xl text-background/50">{data.handbook_description}</p>
+            <p class="mt-4 text-xl text-foreground-secondary">{data.handbook_description}</p>
           </div>
-          <Button
-            as="a"
-            href="/handbook"
-            class="mt-10 border border-background/20 text-background ring-background/10"
-            icon="handbook"
-            arrow>{t('handbook')}</Button
+          <Button variant="secondary" as="a" href="/handbook" class="mt-10" icon="handbook" arrow
+            >{t('handbook')}</Button
           >
         </aside>
       </div>

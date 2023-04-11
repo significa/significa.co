@@ -9,7 +9,6 @@
   import SmallHighlights from './home/small-highlights.svelte';
   import Reel from './home/reel.svelte';
   import clsx from 'clsx';
-  import { dev } from '$app/environment';
   import HomeAbout from './home/home-about.svelte';
   import { getImageAttributes } from '$lib/utils/cms';
   import Person from '$components/person.svelte';
@@ -25,7 +24,7 @@
 
 <div class="container mx-auto px-container">
   <Slogan
-    bypassAnimation={dev}
+    animate
     on:end={() => (show = true)}
     as="h1"
     class="mt-10 text-7xl font-bold md:mt-14 lg:mt-20"
@@ -34,8 +33,8 @@
 
 <div
   class={clsx(
-    'transition-all delay-200 duration-700 ease-motion',
-    show || dev ? 'opacity-1 translate-y-0' : 'translate-y-10 opacity-0'
+    'transition-all duration-700 ease-motion',
+    show ? 'opacity-1 translate-y-0' : 'translate-y-10 opacity-0'
   )}
 >
   <div class="container mx-auto px-container">

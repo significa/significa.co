@@ -5,15 +5,28 @@
   import type { ConfigurationStoryblok } from '$types/bloks';
   import { Badge, Link, Logo } from '@significa/svelte-ui';
   import Slogan from './slogan.svelte';
+  import { intersectionObserver } from '@significa/svelte-ui/actions';
 
   export let configuration: ConfigurationStoryblok;
+  let animate = false;
 </script>
 
 <footer>
   <div class="container mx-auto grid grid-cols-8 gap-8 px-container py-20">
     <div class="col-span-8 md:col-span-3 lg:col-span-4">
       <Logo variant="symbol" />
-      <Slogan class="mt-32 hidden font-bold md:block" />
+      <span
+        use:intersectionObserver={{
+          callback: ([e]) => {
+            if (e.isIntersecting) {
+              animate = true;
+            }
+          },
+          options: { threshold: [1] }
+        }}
+      >
+        <Slogan {animate} class="mt-32 hidden font-bold md:block" />
+      </span>
     </div>
 
     <div class="col-span-8 flex flex-col gap-8 xs:flex-row md:col-span-5 lg:col-span-4">

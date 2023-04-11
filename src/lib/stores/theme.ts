@@ -15,6 +15,6 @@ export const theme = readable<'light' | 'dark'>('light', (set) => {
 
     window.addEventListener('theme-change', onChange);
 
-    return () => window.removeEventListener('theme-changed', onChange);
+    return () => window.removeEventListener('theme-change', onChange);
   }
 });

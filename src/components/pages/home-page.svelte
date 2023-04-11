@@ -103,27 +103,29 @@
   {#if $page.data.careers.length}
     <section class="mt-10 md:mt-14 lg:mt-20">
       <div class="container mx-auto justify-between gap-12 px-container lg:flex">
-        <div class="flex-1">
-          <h3 class="text-5xl">Careers</h3>
-          <ul class="mt-10">
-            {#each $page.data.careers as career}
-              <li class="border-b">
-                <a
-                  class="flex w-full items-center justify-between py-4 text-xl transition-colors hover:text-foreground-secondary"
-                  href={career.full_slug}
-                >
-                  <span>{career.name}</span>
-                  <Icon class="text-foreground-tertiary" icon="arrow-right" />
-                </a>
-              </li>
-            {/each}
-          </ul>
+        <div class="flex flex-1 flex-col items-start">
+          <div class="w-full flex-1">
+            <h3 class="text-5xl">Careers</h3>
+            <ul class="mt-10">
+              {#each $page.data.careers as career}
+                <li class="border-b first:border-t">
+                  <a
+                    class="flex w-full items-center justify-between py-4 text-xl transition-colors hover:text-foreground-secondary"
+                    href={career.full_slug}
+                  >
+                    <span>{career.name}</span>
+                    <Icon class="text-foreground-tertiary" icon="arrow-right" />
+                  </a>
+                </li>
+              {/each}
+            </ul>
+          </div>
           <Button as="a" href="/careers" class="mt-10" variant="secondary" arrow
             >{data.careers_button_label}</Button
           >
         </div>
         <aside
-          class="mt-10 flex flex-col items-start justify-between rounded-lg bg-foreground p-8 text-background lg:mt-0 lg:max-w-md"
+          class="mt-10 flex flex-col items-start justify-between rounded-lg bg-foreground p-8 text-background lg:mt-0 lg:min-h-[500px] lg:max-w-md"
         >
           <div class="flex-1">
             <h3 class="text-4xl">{data.handbook_title}</h3>

@@ -1,13 +1,12 @@
 <script lang="ts">
-  import RichText from '$components/rich-text.svelte';
-  import { richTextBlockWidths } from '$lib/constants';
   import type { GetAQuotePageStoryblok, HomePageStoryblok, PageStoryblok } from '$types/bloks';
   import type { ISbStoryData } from '@storyblok/js';
-  import GetAQuote from './get-a-quote/get-a-quote.svelte';
+  import GetAQuote from './get-a-quote.svelte';
   import BlogIndex from './blog-index.svelte';
   import type { PageResult } from '$lib/content';
   import ProjectsIndex from './projects-index.svelte';
   import HomePage from './home-page.svelte';
+  import StaticPage from './static-page.svelte';
 
   /**
    * This is the "Page" content-type that is used to render all of the "static content" pages.
@@ -29,15 +28,7 @@
 
 {#each story.content.page || [] as page}
   {#if page.component === 'static-page'}
-    <div class="container mx-auto px-container">
-      <RichText
-        class="my-10 md:my-14 lg:my-20"
-        doc={page.body}
-        getAttributes={(_, block) => ({
-          class: `mx-auto ${richTextBlockWidths[block?.width || 'narrow']}`
-        })}
-      />
-    </div>
+    <StaticPage body={page.body} />
   {:else if page.component === 'home-page' && isHomePage(page)}
     <HomePage data={page} posts={homePosts} />
   {:else if page.component === 'about-page'}

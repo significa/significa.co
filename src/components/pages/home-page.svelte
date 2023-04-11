@@ -16,6 +16,7 @@
   import { page } from '$app/stores';
   import { Button, Icon } from '@significa/svelte-ui';
   import { t } from '$lib/i18n';
+  import Seo from '$components/seo.svelte';
 
   export let data: HomePageStoryblok;
   export let posts: BlogPostPage[] | undefined;
@@ -23,6 +24,7 @@
   let show = false;
 </script>
 
+<Seo />
 <div class="container mx-auto px-container">
   <Slogan
     bypassAnimation={dev}

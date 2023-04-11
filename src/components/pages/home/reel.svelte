@@ -12,7 +12,7 @@
 <section class="relative mt-8 overflow-hidden rounded-md" data-theme="dark">
   {#if paused && play_label}
     <div
-      transition:fade={{ duration: 200 }}
+      transition:fade|local={{ duration: 200 }}
       class="absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center bg-background/50"
     >
       <Button

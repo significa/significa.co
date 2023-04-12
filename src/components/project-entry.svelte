@@ -69,7 +69,9 @@
           src={project.content.cover.filename}
         />
       {:else}
-        {@const { src, alt, width, height } = getImageAttributes(project.content.cover)}
+        {@const { src, alt, width, height } = getImageAttributes(project.content.cover, {
+          size: [1440 * 2, 0]
+        })}
         <img
           class="mt-8 h-auto w-full rounded-md bg-background-offset"
           {src}
@@ -83,7 +85,9 @@
     {#if variant === 'default' && project.content.thumbnail.length}
       {@const image = project.content.thumbnail[index]}
       {#if image?.filename}
-        {@const { src, alt, width, height } = getImageAttributes(image)}
+        {@const { src, alt, width, height } = getImageAttributes(image, {
+          size: [720 * 2, 540 * 2]
+        })}
         <div class="pointer-events-none relative mt-8 aspect-[4/3] flex-1 @5xl:mt-0">
           <img
             class="h-full w-full rounded-md bg-background-offset object-cover"

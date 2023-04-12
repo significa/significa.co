@@ -47,13 +47,19 @@
 </div>
 <div
   use:distanceToTop={(distance) => (top = distance)}
+  class="relative"
   style="height: {width + padding * 2 - windowWidth / 2}px;"
 >
   <div
     class="sticky overflow-hidden"
     style="padding-inline: {padding}px; top: calc(50vh - 800px / 2)"
   >
-    <div class="flex h-[800px]" style="transform: translateX({Math.max(0, eased - top) * -1}px)">
+    <div
+      aria-hidden="true"
+      class="absolute inset-0"
+      style="background-image: radial-gradient(hsl(var(--color-foreground-tertiary) / 0.3) 1px, transparent 1px); background-size: 32px 32px;"
+    />
+    <div class="flex h-[800px]" style="transform: translateX({Math.max(0, eased - top) * -1}px);">
       {#each timeline || [] as section}
         <div
           use:storyblokEditable={section}

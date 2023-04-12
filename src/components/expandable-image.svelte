@@ -13,7 +13,7 @@
   export let enabled: boolean;
 </script>
 
-{#if image}
+{#if image?.filename}
   {@const { src, alt, width, height } = getImageAttributes(image)}
   <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
   <div

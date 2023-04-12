@@ -12,7 +12,8 @@ import { HOME_SLUG } from './constants';
 
 export const PAGE_PARAMS = {
   resolve_links: 'url',
-  resolve_relations: 'blog-post.author,blog-post.project,project.team'
+  resolve_relations:
+    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects'
 } as const;
 
 export const BLOG_PARAMS = {
@@ -104,6 +105,7 @@ export type DynamicPage =
 
 export type PageResult = {
   story: DynamicPage;
+  homePosts?: BlogPostPage[];
   blogIndex?: ISbResult;
   projectsIndex?: ISbStoryData<ProjectStoryblok>[];
   relatedPosts?: BlogPostPage[];
@@ -156,6 +158,21 @@ export async function fetchPage(options: {
       return {
         story: data.story,
         projectsIndex: await fetchProjects(options)
+      };
+    }
+
+    // home page data
+    if (
+      data.story.content.component === 'page' &&
+      data.story.content.page?.[0].component === 'home-page'
+    ) {
+      return {
+        story: data.story,
+        homePosts: await fetchEntries<BlogPostPage>(options, {
+          ...BLOG_PARAMS,
+          per_page: 3,
+          page: 1
+        })
       };
     }
 

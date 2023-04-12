@@ -4,7 +4,7 @@
       "name": "about-page",
       "display_name": null,
       "created_at": "2023-03-03T15:54:31.120Z",
-      "updated_at": "2023-04-11T13:37:21.000Z",
+      "updated_at": "2023-04-11T14:32:07.317Z",
       "id": 3521679,
       "schema": {
         "page_title": {
@@ -59,8 +59,8 @@
         "testimonials_cta_link": {
           "type": "multilink",
           "pos": 11,
-          "force_link_scope": true,
-          "link_scope": "pages/"
+          "force_link_scope": false,
+          "link_scope": ""
         },
         "testimonials": {
           "type": "bloks",
@@ -104,7 +104,9 @@
           "component_whitelist": [
             "notepad_card",
             "photo_card"
-          ]
+          ],
+          "minimum": 6,
+          "maximum": 6
         }
       },
       "image": null,

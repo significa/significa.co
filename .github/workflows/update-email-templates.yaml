@@ -20,7 +20,7 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           branch: ci/update-email-templates
-          title: "CI: auto updated email templates"
+          title: 'CI: auto updated email templates'
           body: Updated email templates from Mailchimp.
-          commit-message: "ci: updated email templates"
+          commit-message: 'ci: updated email templates'
           delete-branch: true

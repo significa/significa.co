@@ -9,14 +9,14 @@
   import { browser } from '$app/environment';
   import { page } from '$app/stores';
   import { fetchPage } from '$lib/content';
-    import { setContext } from 'svelte';
+  import { setContext } from 'svelte';
 
   let expanding = false;
   beforeNavigate(() => {
     if ($drawer) drawer.close();
   });
 
-  setContext('drawer', true)
+  setContext('drawer', true);
 </script>
 
 {#if $drawer && browser}

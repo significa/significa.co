@@ -40,10 +40,10 @@
     };
   });
 
-  // scroll easing
+  // scroll easing. TODO: move to a store and refactor src/components/pages/get-a-quote/images.svelte to use it.
   let eased = 0;
   const ease = () => {
-    eased = eased + (y - eased) * 0.8;
+    eased = eased + (y - eased) * 0.25;
     frame = window.requestAnimationFrame(ease);
   };
   let frame: number;

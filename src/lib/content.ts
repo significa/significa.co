@@ -225,7 +225,8 @@ export async function fetchPage(options: {
 
     return { story: data.story };
   } catch (err) {
-    throw new Error('Not found');
+    console.error(err);
+    throw new Error('Not found', { cause: err });
   }
 }
 

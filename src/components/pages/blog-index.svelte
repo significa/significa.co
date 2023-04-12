@@ -21,13 +21,13 @@
   $: posts.set(data.data.stories);
   $: total.set(data.total);
   $: version = $page.data.version || 'published';
-  $: tags = $page.url.searchParams.getAll('t').join(',');
+  $: tags = $page.url.searchParams.getAll('t');
 
   const fetchStories = async (page: number) => {
     isFetching.set(true);
     const res = await storyblok.get('cdn/stories', {
       version,
-      with_tag: tags,
+      with_tag: tags.join(','),
       page,
       ...BLOG_PARAMS
     });
@@ -42,12 +42,12 @@
 <main>
   <div class="container mx-auto px-container">
     <h1 class="mt-10 text-7xl md:mt-14 lg:mt-20">
-      {#if $page.url.searchParams.getAll('t').length}
+      {#if tags.length}
         <a class="text-foreground-tertiary transition-colors hover:text-foreground" href="/blog"
           >{t('blog.title')}</a
         >
         <span class="text-foreground-tertiary">/</span>
-        <span>{$page.url.searchParams.getAll('t').join(', ')}</span>
+        <span>{tags.join(', ')}</span>
       {:else}
         <span>{t('blog.title')}</span>
       {/if}

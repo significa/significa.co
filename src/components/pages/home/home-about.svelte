@@ -28,11 +28,11 @@
 <!-- TODO: physics thingy -->
 
 <div class="border-t">
-  <div class="container mx-auto md:flex">
+  <div class="container mx-auto lg:flex">
     {#each data.about_links || [] as link}
       {@const { href } = getAnchorFromCmsLink(link.link)}
       <div
-        class="flex flex-1 flex-col items-start justify-between border-t p-container transition-colors first:border-t-0 last:border-r-0 md:border-r md:border-t-0"
+        class="flex flex-1 flex-col items-start justify-between border-t p-container transition-colors first:border-t-0 last:border-r-0 lg:border-r lg:border-t-0"
       >
         <div class="flex-1">
           <h3 class="text-2xl font-medium">{link.title}</h3>

@@ -60,6 +60,7 @@ export interface AboutPageStoryblok {
   about_title1?: string;
   about_title2?: string;
   about_description?: string;
+  timeline?: TimelineSectionStoryblok[];
   values_title1?: string;
   values_title2?: string;
   values_description?: string;
@@ -435,6 +436,7 @@ export interface TeamMemberStoryblok {
   photo?: AssetStoryblok;
   egg?: AssetStoryblok;
   position?: string;
+  team?: number | string;
   bio?: string;
   links?: TeamMemberLinkStoryblok[];
   is_active?: boolean;
@@ -459,6 +461,40 @@ export interface TeamMemberLinkStoryblok {
   link?: string;
   _uid: string;
   component: 'team-member-link';
+  [k: string]: any;
+}
+
+export interface TimelineArrowStoryblok {
+  variant: '' | 'one' | 'two' | 'three' | 'four' | 'five';
+  style?: string;
+  _uid: string;
+  component: 'timeline-arrow';
+  [k: string]: any;
+}
+
+export interface TimelineImageStoryblok {
+  image?: AssetStoryblok;
+  style?: string;
+  border?: boolean;
+  _uid: string;
+  component: 'timeline-image';
+  [k: string]: any;
+}
+
+export interface TimelineSectionStoryblok {
+  items?: (TimelineArrowStoryblok | TimelineImageStoryblok | TimelineTextStoryblok)[];
+  style?: string;
+  _uid: string;
+  component: 'timeline-section';
+  [k: string]: any;
+}
+
+export interface TimelineTextStoryblok {
+  text?: string;
+  link?: LinkStoryblok[];
+  style?: string;
+  _uid: string;
+  component: 'timeline-text';
   [k: string]: any;
 }
 

@@ -3,6 +3,7 @@
   import { getImageAttributes } from '$lib/utils/cms';
   import type { AboutPageStoryblok } from '$types/bloks';
   import OfficeSection from './about/office-section.svelte';
+  import Timeline from './about/timeline.svelte';
 
   export let data: AboutPageStoryblok;
 </script>
@@ -27,6 +28,8 @@
       </p>
     </div>
   </section>
+
+  <Timeline timeline={data.timeline} />
 
   <!-- Clients -->
   <section class=" container mx-auto px-container pb-16 pt-20 lg:pb-36 lg:pt-40">

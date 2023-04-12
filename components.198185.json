@@ -4,7 +4,7 @@
       "name": "about-page",
       "display_name": null,
       "created_at": "2023-03-03T15:54:31.120Z",
-      "updated_at": "2023-04-11T14:32:07.317Z",
+      "updated_at": "2023-04-12T14:32:12.395Z",
       "id": 3521679,
       "schema": {
         "page_title": {
@@ -23,90 +23,89 @@
           "type": "textarea",
           "pos": 3
         },
-        "values_title1": {
-          "type": "text",
-          "pos": 4
+        "timeline": {
+          "type": "bloks",
+          "pos": 4,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["timeline-section"]
         },
-        "values_title2": {
+        "values_title1": {
           "type": "text",
           "pos": 5
         },
+        "values_title2": {
+          "type": "text",
+          "pos": 6
+        },
         "values_description": {
           "type": "textarea",
-          "pos": 6
+          "pos": 7
         },
         "values": {
           "type": "bloks",
-          "pos": 7,
+          "pos": 8,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "value"
-          ]
+          "component_whitelist": ["value"]
         },
         "testimonials_title1": {
           "type": "text",
-          "pos": 8
+          "pos": 9
         },
         "testimonials_title2": {
           "type": "text",
-          "pos": 9
+          "pos": 10
         },
         "testimonials_cta_label": {
           "type": "text",
-          "pos": 10
+          "pos": 11
         },
         "testimonials_cta_link": {
           "type": "multilink",
-          "pos": 11,
+          "pos": 12,
           "force_link_scope": false,
           "link_scope": ""
         },
         "testimonials": {
           "type": "bloks",
-          "pos": 12,
+          "pos": 13,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "richtext-testimonial"
-          ]
+          "component_whitelist": ["richtext-testimonial"]
         },
         "clients_title": {
           "type": "text",
-          "pos": 13
+          "pos": 14
         },
         "clients": {
           "type": "bloks",
-          "pos": 14,
+          "pos": 15,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "client-logo"
-          ]
+          "component_whitelist": ["client-logo"]
         },
         "office_title1": {
           "type": "text",
           "key": "office_title",
-          "pos": 15
+          "pos": 16
         },
         "office_title2": {
           "type": "text",
-          "pos": 16
+          "pos": 17
         },
         "office_description": {
           "type": "textarea",
-          "pos": 17
+          "pos": 18
         },
         "office_cards": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "notepad_card",
-            "photo_card"
-          ],
+          "component_whitelist": ["notepad_card", "photo_card"],
           "minimum": 6,
-          "maximum": 6
+          "maximum": 6,
+          "pos": 19
         }
       },
       "image": null,
@@ -151,9 +150,7 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212285,
           "required": false
         },
@@ -166,25 +163,17 @@
           "use_uuid": true,
           "required": true,
           "source": "internal_stories",
-          "filter_content_type": [
-            "team-member"
-          ]
+          "filter_content_type": ["team-member"]
         },
         "tab-9a5d9933-3840-42d8-aa24-d87e83a9eb5d": {
           "display_name": "Content",
-          "keys": [
-            "body"
-          ],
+          "keys": ["body"],
           "pos": 0,
           "type": "tab"
         },
         "tab-c1b66206-334d-4470-a996-ca9aa074e23c": {
           "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image"
-          ],
+          "keys": ["seo_title", "seo_description", "seo_og_image"],
           "pos": 0,
           "type": "tab"
         },
@@ -196,9 +185,7 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212285
         },
         "body": {
@@ -252,9 +239,7 @@
         "cover": {
           "type": "asset",
           "pos": 0,
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "body": {
           "type": "richtext",
@@ -294,18 +279,12 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 4
         },
         "tab-0df1eb17-e1de-4dfd-92cb-c73b4839beec": {
           "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image"
-          ],
+          "keys": ["seo_title", "seo_description", "seo_og_image"],
           "pos": 5,
           "type": "tab"
         }
@@ -352,20 +331,18 @@
       "name": "client-logo",
       "display_name": null,
       "created_at": "2023-04-11T13:27:27.785Z",
-      "updated_at": "2023-04-11T13:28:01.785Z",
+      "updated_at": "2023-04-12T13:16:39.209Z",
       "id": 3785709,
       "schema": {
         "light_mode": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"],
+          "asset_folder_id": 228928
         },
         "dark_mode": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"],
+          "asset_folder_id": 228928
         }
       },
       "image": null,
@@ -462,16 +439,12 @@
         },
         "image_a": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true
         },
         "image_b": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true
         }
       },
@@ -506,18 +479,13 @@
           "maximum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ]
+          "component_whitelist": ["link"]
         },
         "footer": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "footer-column-internal",
-            "footer-column-external"
-          ]
+          "component_whitelist": ["footer-column-internal", "footer-column-external"]
         }
       },
       "image": null,
@@ -587,9 +555,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ]
+          "component_whitelist": ["link"]
         }
       },
       "image": null,
@@ -619,9 +585,7 @@
           "type": "options",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ],
+          "component_whitelist": ["link"],
           "source": "internal_stories"
         }
       },
@@ -654,10 +618,7 @@
         "timezone_text": {
           "type": "richtext",
           "customize_toolbar": true,
-          "toolbar": [
-            "paragraph",
-            "bold"
-          ]
+          "toolbar": ["paragraph", "bold"]
         },
         "steps_title": {
           "type": "text"
@@ -669,15 +630,11 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "get-a-quote-step"
-          ]
+          "component_whitelist": ["get-a-quote-step"]
         },
         "images": {
           "type": "multiasset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         }
       },
       "image": null,
@@ -729,9 +686,7 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212287
         },
         "tagline": {
@@ -742,19 +697,13 @@
         },
         "tab-6a37f9e9-5fe6-4268-a3e4-7fd4ed252cc0": {
           "display_name": "Content",
-          "keys": [
-            "body"
-          ],
+          "keys": ["body"],
           "pos": 0,
           "type": "tab"
         },
         "tab-40ff5487-8b8b-40db-afae-1c64b4705bbc": {
           "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image"
-          ],
+          "keys": ["seo_title", "seo_description", "seo_og_image"],
           "pos": 0,
           "type": "tab"
         },
@@ -793,9 +742,7 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212287
         }
       },
@@ -863,18 +810,11 @@
           "source": "internal_stories",
           "max_options": "4",
           "key": "small_highlights",
-          "filter_content_type": [
-            "career",
-            "project",
-            "handbook",
-            "blog-post"
-          ]
+          "filter_content_type": ["career", "project", "handbook", "blog-post"]
         },
         "showreel": {
           "type": "asset",
-          "filetypes": [
-            "videos"
-          ],
+          "filetypes": ["videos"],
           "pos": 1,
           "key": "showreel"
         },
@@ -890,9 +830,7 @@
           "type": "options",
           "pos": 4,
           "source": "internal_stories",
-          "filter_content_type": [
-            "project"
-          ]
+          "filter_content_type": ["project"]
         },
         "about_title1": {
           "type": "text",
@@ -914,9 +852,7 @@
           "maximum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ],
+          "component_whitelist": ["link"],
           "key": "about_link",
           "pos": 8
         },
@@ -925,9 +861,7 @@
           "pos": 9,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "home-about-link"
-          ],
+          "component_whitelist": ["home-about-link"],
           "maximum": 3,
           "minimum": 3
         },
@@ -943,9 +877,7 @@
         },
         "testimonials_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "key": "testimonials_image",
           "pos": 12
         },
@@ -953,9 +885,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "richtext-testimonial"
-          ],
+          "component_whitelist": ["richtext-testimonial"],
           "maximum": 4,
           "minimum": 4,
           "key": "testimonials",
@@ -1030,9 +960,7 @@
         },
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true
         },
         "expandable": {
@@ -1102,9 +1030,7 @@
         },
         "images": {
           "type": "multiasset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true,
           "pos": 2
         },
@@ -1189,18 +1115,12 @@
           "restrict_type": "groups",
           "restrict_components": true,
           "component_whitelist": [],
-          "component_group_whitelist": [
-            "78726ff5-00c6-4ddb-bfef-551b83977e54"
-          ],
+          "component_group_whitelist": ["78726ff5-00c6-4ddb-bfef-551b83977e54"],
           "maximum": 1
         },
         "tab-b1b4aa1b-2d5c-436e-ac16-09e30b9de047": {
           "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image"
-          ],
+          "keys": ["seo_title", "seo_description", "seo_og_image"],
           "pos": 0,
           "type": "tab"
         },
@@ -1214,9 +1134,7 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         }
       },
       "image": null,
@@ -1241,9 +1159,7 @@
       "schema": {
         "photo": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         }
       },
       "image": null,
@@ -1268,17 +1184,12 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": [
-            "images",
-            "videos"
-          ],
+          "filetypes": ["images", "videos"],
           "asset_folder_id": 212286
         },
         "thumbnail": {
           "type": "multiasset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true,
           "asset_folder_id": 212286
         },
@@ -1293,45 +1204,33 @@
         "team": {
           "type": "options",
           "source": "internal_stories",
-          "filter_content_type": [
-            "team-member"
-          ]
+          "filter_content_type": ["team-member"]
         },
         "client": {
           "type": "text",
           "use_uuid": true,
           "source": "internal_stories",
-          "filter_content_type": [
-            "client"
-          ]
+          "filter_content_type": ["client"]
         },
         "deliverables": {
           "type": "textarea",
           "source": "internal_stories",
-          "filter_content_type": [
-            "deliverable"
-          ]
+          "filter_content_type": ["deliverable"]
         },
         "services": {
           "type": "textarea",
           "source": "internal_stories",
-          "filter_content_type": [
-            "service"
-          ]
+          "filter_content_type": ["service"]
         },
         "links": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ]
+          "component_whitelist": ["link"]
         },
         "tab-734adeb1-00ef-48e6-aa53-a3001ad39201": {
           "display_name": "Content",
-          "keys": [
-            "body"
-          ],
+          "keys": ["body"],
           "pos": 0,
           "type": "tab"
         },
@@ -1364,11 +1263,7 @@
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {
           "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image"
-          ],
+          "keys": ["seo_title", "seo_description", "seo_og_image"],
           "pos": 0,
           "type": "tab"
         },
@@ -1380,18 +1275,14 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212286
         },
         "recognitions": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "recognition"
-          ]
+          "component_whitelist": ["recognition"]
         }
       },
       "image": null,
@@ -1444,9 +1335,7 @@
         },
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true,
           "asset_folder_id": 216885
         }
@@ -1492,9 +1381,7 @@
         "image": {
           "type": "asset",
           "pos": 1,
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "title": {
           "type": "text",
@@ -1509,9 +1396,7 @@
           "pos": 4,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ],
+          "component_whitelist": ["link"],
           "maximum": 1
         }
       },
@@ -1625,9 +1510,7 @@
         "photo": {
           "type": "asset",
           "pos": 0,
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "name": {
           "type": "text",
@@ -1753,45 +1636,46 @@
       "name": "team-member",
       "display_name": null,
       "created_at": "2023-02-15T10:55:16.832Z",
-      "updated_at": "2023-02-15T11:58:50.052Z",
+      "updated_at": "2023-04-12T13:16:05.856Z",
       "id": 3441652,
       "schema": {
         "photo": {
           "type": "asset",
           "pos": 0,
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212283
         },
         "egg": {
           "type": "asset",
           "pos": 1,
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212284
         },
         "position": {
           "type": "text",
           "pos": 2
         },
+        "team": {
+          "type": "option",
+          "pos": 3,
+          "use_uuid": true,
+          "source": "internal",
+          "datasource_slug": "teams"
+        },
         "bio": {
           "type": "textarea",
-          "pos": 3
+          "pos": 4
         },
         "links": {
           "type": "bloks",
-          "pos": 4,
+          "pos": 5,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "team-member-link"
-          ]
+          "component_whitelist": ["team-member-link"]
         },
         "is_active": {
           "type": "boolean",
-          "pos": 5
+          "pos": 6
         }
       },
       "image": null,
@@ -1890,6 +1774,158 @@
       "component_group_name": "Single"
     },
     {
+      "name": "timeline-arrow",
+      "display_name": null,
+      "created_at": "2023-04-12T14:24:11.523Z",
+      "updated_at": "2023-04-12T14:49:25.976Z",
+      "id": 3795710,
+      "schema": {
+        "variant": {
+          "type": "option",
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "c6e3dd43-d4e6-40f6-8ff9-4c53fcef3c6c",
+              "name": "one",
+              "value": "one"
+            },
+            {
+              "_uid": "750d1125-ba97-4ad4-9bd0-0066a4bd9cc3",
+              "value": "two",
+              "name": "two"
+            },
+            {
+              "_uid": "0a543fe1-ccdd-4f2e-89f7-bba9829934d4",
+              "value": "three",
+              "name": "three"
+            },
+            {
+              "_uid": "edc629f8-34ae-4080-ac31-5c7a88d2ead9",
+              "value": "four",
+              "name": "four"
+            },
+            {
+              "_uid": "dc5263af-5ee8-4d85-a6fb-28baaabfff85",
+              "value": "five",
+              "name": "five"
+            }
+          ],
+          "default_value": "one",
+          "required": true
+        },
+        "style": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "timeline-arrow",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "timeline-image",
+      "display_name": null,
+      "created_at": "2023-04-12T14:25:57.635Z",
+      "updated_at": "2023-04-12T14:26:39.045Z",
+      "id": 3795713,
+      "schema": {
+        "image": {
+          "type": "asset",
+          "filetypes": ["images"]
+        },
+        "style": {
+          "type": "text"
+        },
+        "border": {
+          "type": "boolean",
+          "default_value": true
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "timeline-image",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "timeline-section",
+      "display_name": null,
+      "created_at": "2023-04-12T14:19:35.765Z",
+      "updated_at": "2023-04-12T14:27:17.635Z",
+      "id": 3795691,
+      "schema": {
+        "items": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["timeline-arrow", "timeline-image", "timeline-text"]
+        },
+        "style": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "timeline-section",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "timeline-text",
+      "display_name": null,
+      "created_at": "2023-04-12T14:20:49.471Z",
+      "updated_at": "2023-04-12T14:24:55.284Z",
+      "id": 3795700,
+      "schema": {
+        "text": {
+          "type": "text"
+        },
+        "link": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["link"]
+        },
+        "style": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "timeline-text",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "two-columns",
       "display_name": null,
       "created_at": "2023-02-16T10:36:21.986Z",
@@ -1913,10 +1949,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "column-media",
-            "column"
-          ],
+          "component_whitelist": ["column-media", "column"],
           "minimum": 2,
           "maximum": 2,
           "required": true,
@@ -2006,9 +2039,7 @@
         },
         "video": {
           "type": "asset",
-          "filetypes": [
-            "videos"
-          ],
+          "filetypes": ["videos"],
           "required": true
         },
         "loop": {

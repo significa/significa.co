@@ -17,20 +17,35 @@
 
   export let timeline: AboutPageStoryblok['timeline'];
 
-  let y = 0;
-  let top = 0;
-  let windowWidth = 0;
-  let containerSource: HTMLDivElement; // to find the left padding of the container; TODO: resize;
-  $: padding = containerSource?.getBoundingClientRect().left || 0;
+  // the total width of the timeline (based on the width of each section)
   $: width = timeline?.reduce((acc, section) => acc + (+section.width || 300), 0) || 0;
 
-  let eased = 0;
+  let y = 0; // scroll amount
+  let top = 0; // timeline distance to top of document
+  let windowWidth = 0; // the full width of the window
 
+  // to find the left padding of the container
+  let containerSource: HTMLDivElement;
+  let padding = 0;
+  onMount(() => {
+    const setPadding = () => {
+      padding = containerSource?.getBoundingClientRect().left || 0;
+    };
+
+    setPadding();
+    window.addEventListener('resize', setPadding);
+
+    return () => {
+      window.removeEventListener('resize', setPadding);
+    };
+  });
+
+  // scroll easing
+  let eased = 0;
   const ease = () => {
     eased = eased + (y - eased) * 0.8;
     frame = window.requestAnimationFrame(ease);
   };
-
   let frame: number;
   onMount(() => {
     frame = window.requestAnimationFrame(ease);

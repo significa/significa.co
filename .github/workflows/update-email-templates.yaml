@@ -1,0 +1,26 @@
+name: CI/CD
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  update-templates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Update email templates
+        env:
+          MAILCHIMP_API_KEY: ${{ secrets.MAILCHIMP_API_KEY }}
+        run: ./scripts/update-email-templates.sh
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          branch: ci/update-email-templates
+          title: "CI: auto updated email templates"
+          body: Updated email templates from Mailchimp.
+          commit-message: "ci: updated email templates"
+          delete-branch: true

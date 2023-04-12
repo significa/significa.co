@@ -57,7 +57,7 @@
     <div
       aria-hidden="true"
       class="absolute inset-0"
-      style="background-image: radial-gradient(hsl(var(--color-foreground-tertiary) / 0.3) 1px, transparent 1px); background-size: 32px 32px;"
+      style="background-image: radial-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 32px 32px;"
     />
     <div class="flex h-[800px]" style="transform: translateX({Math.max(0, eased - top) * -1}px);">
       {#each timeline || [] as section}

@@ -62,13 +62,13 @@
 
       <div class="flex flex-col py-1">
         <div class="flex-1">
-          <h3 class="line-clamp-2 max-w-sm text-lg/tight font-medium">
+          <p class="line-clamp-2 max-w-sm text-lg/tight font-medium">
             {#if highlight.content.component === 'handbook' || highlight.content.component === 'project'}
               {highlight.name}{highlight.content.tagline ? ` — ${highlight.content.tagline}` : ''}
             {:else}
               {highlight.name}
             {/if}
-          </h3>
+          </p>
         </div>
         <p class="text-sm text-foreground-secondary">
           {#if highlight.content.component === 'blog-post'}

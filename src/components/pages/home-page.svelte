@@ -76,8 +76,10 @@
 
     <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
       {#if data.testimonials_image?.filename}
-        {@const { src, alt } = getImageAttributes(data.testimonials_image, { size: [1200, 0] })}
-        <img class="w-full rounded-lg md:col-span-2" {src} {alt} />
+        {@const { src, alt, width, height } = getImageAttributes(data.testimonials_image, {
+          size: [1200, 0]
+        })}
+        <img class="w-full rounded-lg md:col-span-2" {src} {alt} {width} {height} />
       {/if}
       {#each data.testimonials || [] as testimonial}
         <div class="flex flex-col rounded-lg border p-6">

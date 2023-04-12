@@ -15,6 +15,7 @@
   import { page } from '$app/stores';
   import { Button, Icon } from '@significa/svelte-ui';
   import { t } from '$lib/i18n';
+  import Seo from '$components/seo.svelte';
   import { afterNavigate } from '$app/navigation';
   import { browser } from '$app/environment';
   import { theme } from '$lib/stores/theme';
@@ -31,6 +32,7 @@
   });
 </script>
 
+<Seo />
 <div class="container mx-auto px-container">
   <Slogan
     animate

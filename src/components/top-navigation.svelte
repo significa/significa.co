@@ -28,7 +28,7 @@
   )}
 >
   <div class="flex items-center gap-2">
-    <a href="/">
+    <a aria-label="Go to homepage" href="/">
       <Logo class="mt-1" variant="wordmark" />
     </a>
     {#if variant === 'handbook'}
@@ -52,7 +52,12 @@
           <Button as="a" {href}>{configuration.call_to_action[0].label}</Button>
         </div>
       {/if}
-      <Button variant="secondary" icon="3dots" on:click={() => (panel = true)} />
+      <Button
+        aria-label="Open menu"
+        variant="secondary"
+        icon="3dots"
+        on:click={() => (panel = true)}
+      />
     </div>
   </div>
 
@@ -73,7 +78,13 @@
     >
       <div class="flex w-full items-center justify-between">
         <Logo variant="symbol" />
-        <Button size="sm" variant="secondary" icon="close" on:click={() => (panel = false)} />
+        <Button
+          aria-label="Close menu"
+          size="sm"
+          variant="secondary"
+          icon="close"
+          on:click={() => (panel = false)}
+        />
       </div>
 
       <div class="flex-1">

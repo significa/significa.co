@@ -15,6 +15,7 @@ export const load = async ({ cookies, fetch }) => {
 
     return { links: res.data.links as StoryblokLinks };
   } catch (err) {
+    console.error(err);
     throw error(404, 'Not found');
   }
 };

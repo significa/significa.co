@@ -466,7 +466,10 @@ export interface TeamMemberLinkStoryblok {
 
 export interface TimelineArrowStoryblok {
   variant: '' | 'one' | 'two' | 'three' | 'four' | 'five';
-  style?: string;
+  top: number;
+  left: number;
+  scale?: number;
+  rotate?: number;
   _uid: string;
   component: 'timeline-arrow';
   [k: string]: any;
@@ -474,8 +477,11 @@ export interface TimelineArrowStoryblok {
 
 export interface TimelineImageStoryblok {
   image?: AssetStoryblok;
-  style?: string;
   border?: boolean;
+  top: number;
+  left: number;
+  scale?: number;
+  rotate?: number;
   _uid: string;
   component: 'timeline-image';
   [k: string]: any;
@@ -483,7 +489,7 @@ export interface TimelineImageStoryblok {
 
 export interface TimelineSectionStoryblok {
   items?: (TimelineArrowStoryblok | TimelineImageStoryblok | TimelineTextStoryblok)[];
-  style?: string;
+  width: number;
   _uid: string;
   component: 'timeline-section';
   [k: string]: any;
@@ -492,7 +498,9 @@ export interface TimelineSectionStoryblok {
 export interface TimelineTextStoryblok {
   text?: string;
   link?: LinkStoryblok[];
-  style?: string;
+  width: number;
+  top: number;
+  left: number;
   _uid: string;
   component: 'timeline-text';
   [k: string]: any;

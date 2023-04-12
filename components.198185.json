@@ -1777,7 +1777,7 @@
       "name": "timeline-arrow",
       "display_name": null,
       "created_at": "2023-04-12T14:24:11.523Z",
-      "updated_at": "2023-04-12T14:49:25.976Z",
+      "updated_at": "2023-04-12T20:40:02.348Z",
       "id": 3795710,
       "schema": {
         "variant": {
@@ -1813,8 +1813,28 @@
           "default_value": "one",
           "required": true
         },
-        "style": {
-          "type": "text"
+        "top": {
+          "type": "number",
+          "decimals": 0,
+          "default_value": "0",
+          "required": true
+        },
+        "left": {
+          "type": "number",
+          "required": true,
+          "default_value": "0",
+          "decimals": 0
+        },
+        "scale": {
+          "type": "number",
+          "default_value": "1",
+          "decimals": 2,
+          "description": "Between 0 and 1"
+        },
+        "rotate": {
+          "type": "number",
+          "decimals": 0,
+          "default_value": "0"
         }
       },
       "image": null,
@@ -1834,19 +1854,39 @@
       "name": "timeline-image",
       "display_name": null,
       "created_at": "2023-04-12T14:25:57.635Z",
-      "updated_at": "2023-04-12T14:26:39.045Z",
+      "updated_at": "2023-04-12T20:39:43.446Z",
       "id": 3795713,
       "schema": {
         "image": {
           "type": "asset",
           "filetypes": ["images"]
         },
-        "style": {
-          "type": "text"
-        },
         "border": {
           "type": "boolean",
           "default_value": true
+        },
+        "top": {
+          "type": "number",
+          "required": true,
+          "default_value": "0",
+          "decimals": 0
+        },
+        "left": {
+          "type": "number",
+          "decimals": 0,
+          "default_value": "0",
+          "required": true
+        },
+        "scale": {
+          "type": "number",
+          "default_value": "1",
+          "decimals": 2,
+          "description": "Between 0 and 1"
+        },
+        "rotate": {
+          "type": "number",
+          "default_value": "0",
+          "decimals": 0
         }
       },
       "image": null,
@@ -1866,7 +1906,7 @@
       "name": "timeline-section",
       "display_name": null,
       "created_at": "2023-04-12T14:19:35.765Z",
-      "updated_at": "2023-04-12T14:27:17.635Z",
+      "updated_at": "2023-04-12T20:56:46.026Z",
       "id": 3795691,
       "schema": {
         "items": {
@@ -1875,8 +1915,12 @@
           "restrict_components": true,
           "component_whitelist": ["timeline-arrow", "timeline-image", "timeline-text"]
         },
-        "style": {
-          "type": "text"
+        "width": {
+          "type": "number",
+          "required": true,
+          "default_value": "400",
+          "decimals": 0,
+          "steps": 20
         }
       },
       "image": null,
@@ -1896,20 +1940,41 @@
       "name": "timeline-text",
       "display_name": null,
       "created_at": "2023-04-12T14:20:49.471Z",
-      "updated_at": "2023-04-12T14:24:55.284Z",
+      "updated_at": "2023-04-12T20:32:38.915Z",
       "id": 3795700,
       "schema": {
         "text": {
-          "type": "text"
+          "type": "text",
+          "pos": 0
         },
         "link": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"]
+          "component_whitelist": ["link"],
+          "pos": 1
         },
-        "style": {
-          "type": "text"
+        "width": {
+          "type": "number",
+          "pos": 2,
+          "required": true,
+          "default_value": "240",
+          "description": "e.g.: 140, 160, 200, 240",
+          "decimals": 0
+        },
+        "top": {
+          "type": "number",
+          "pos": 3,
+          "required": true,
+          "decimals": 0,
+          "default_value": "0"
+        },
+        "left": {
+          "type": "number",
+          "pos": 4,
+          "decimals": 0,
+          "required": true,
+          "default_value": "0"
         }
       },
       "image": null,

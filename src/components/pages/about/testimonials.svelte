@@ -25,7 +25,7 @@
 <svelte:window bind:scrollY={scroll} />
 
 <section class="border-t" bind:this={testimonialsSection}>
-  <div class="container mx-auto px-container pt-20">
+  <div class="container mx-auto px-container pt-16 lg:pt-20">
     <div class="mx-auto flex max-w-xl flex-col items-center">
       <h3 class="text-center text-5xl text-foreground-secondary">{firstTitle}</h3>
       <p class="text-center text-5xl">{secondTitle}</p>
@@ -67,7 +67,7 @@
       </div>
 
       {#if testimonials}
-        <div class="mt-10 flex flex-col gap-11 [&>*]:p-0">
+        <div class="mt-10 flex flex-col gap-12 [&>*]:p-0">
           {#each testimonials.slice(0, 5) as testimonial}
             <RichTextTestimonial block={testimonial} />
           {/each}

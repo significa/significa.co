@@ -18,7 +18,7 @@
   const egg = Object.entries(files)[0][1];
 </script>
 
-{#if card.component === 'photo_card' && card.photo}
+{#if card.component === 'photo_card' && card.photo?.filename}
   {@const { alt, src } = getImageAttributes(card.photo)}
   <div
     class="-mx-[10%] bg-white p-[4%] shadow-md transition-all duration-[250ms]"

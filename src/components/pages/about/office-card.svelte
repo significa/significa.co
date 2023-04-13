@@ -47,19 +47,19 @@
       transformState = staticTransformState;
     }}
   >
-    <div class="aspect-[3/4] rounded-xs bg-background-panel p-4 shadow-md">
-      <div class="mb-3 grid h-[10px] grid-cols-12 gap-[4%]">
+    <div class="aspect-[3/4] rounded-xs bg-background-panel shadow-md">
+      <div class="mb-3 grid h-[10px] grid-cols-12 gap-[4%] p-4">
         {#each [...Array(12)] as _}
           <div class="aspect-square rounded-full bg-background shadow-inner" />
         {/each}
       </div>
 
-      <div class="mt-7 flex h-[100%] flex-col justify-between">
-        <div>
-          <SplitLines
-            text={card.text}
-            class="relative font-comic font-bold leading-8 after:absolute after:bottom-1 after:left-0 after:right-0 after:-mx-4 after:h-[1px] after:bg-background-offset"
-          />
+      <div
+        class="mt-7 flex h-[100%] flex-col justify-between"
+        style="background-image: linear-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 2rem 2rem;"
+      >
+        <div class="px-4">
+          <SplitLines text={card.text} class="relative font-comic font-bold leading-8" />
         </div>
 
         <div class="relative flex h-[40%] justify-end [&>svg]:h-[100%] [&>svg]:w-fit">

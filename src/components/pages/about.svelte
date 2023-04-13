@@ -3,6 +3,7 @@
   import { getImageAttributes } from '$lib/utils/cms';
   import type { AboutPageStoryblok } from '$types/bloks';
   import OfficeSection from './about/office-section.svelte';
+  import Testimonials from './about/testimonials.svelte';
 
   export let data: AboutPageStoryblok;
 </script>
@@ -27,6 +28,14 @@
       </p>
     </div>
   </section>
+
+  <Testimonials
+    firstTitle={data.testimonials_title1}
+    secondTitle={data.testimonials_title2}
+    ctaLabel={data.testimonials_cta_label}
+    ctaLink={data.testimonials_cta_link}
+    testimonials={data.testimonials}
+  />
 
   <!-- Clients -->
   <section class=" container mx-auto px-container pb-16 pt-20 lg:pb-36 lg:pt-40">

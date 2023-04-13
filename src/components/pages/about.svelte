@@ -4,6 +4,8 @@
   import type { AboutPageStoryblok } from '$types/bloks';
   import OfficeSection from './about/office-section.svelte';
   import Timeline from './about/timeline.svelte';
+  import PlaceholderValueIllust from './about/placeholder-value-illust.svelte';
+  import Testimonials from './about/testimonials.svelte';
 
   export let data: AboutPageStoryblok;
 </script>
@@ -30,6 +32,46 @@
   </section>
 
   <Timeline timeline={data.timeline} />
+  <!-- Our Values -->
+  <section class="border-t">
+    <div
+      class="container mx-auto flex flex-col gap-8 px-container pt-8 lg:flex-row lg:justify-between lg:pt-0"
+    >
+      <div class="flex flex-col justify-between gap-6 lg:max-w-xl lg:py-12">
+        <div>
+          <h3 class="text-5xl text-foreground-secondary">{data.values_title1}</h3>
+          <p class="text-5xl">{data.values_title2}</p>
+        </div>
+
+        <p class="text-2xl text-foreground-secondary lg:max-w-md">{data.values_description}</p>
+      </div>
+
+      {#if data.values}
+        <div class="lg:max-w-xl">
+          {#each data.values as value}
+            <div
+              class="flex flex-col items-start gap-4 border-t py-12 first:border-none lg:flex-row lg:items-center lg:gap-8"
+            >
+              <!-- TODO: Replace Illustrations -->
+              <PlaceholderValueIllust class="block shrink-0" />
+              <div>
+                <h4 class="text-2xl font-semibold">{value.title}</h4>
+                <p class="text-2xl text-foreground-secondary">{value.description}</p>
+              </div>
+            </div>
+          {/each}
+        </div>
+      {/if}
+    </div>
+  </section>
+
+  <Testimonials
+    firstTitle={data.testimonials_title1}
+    secondTitle={data.testimonials_title2}
+    ctaLabel={data.testimonials_cta_label}
+    ctaLink={data.testimonials_cta_link}
+    testimonials={data.testimonials}
+  />
 
   <!-- Clients -->
   <section class=" container mx-auto px-container pb-16 pt-20 lg:pb-36 lg:pt-40">

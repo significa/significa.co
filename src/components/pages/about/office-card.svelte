@@ -62,7 +62,7 @@
           <SplitLines text={card.text} class="relative font-comic font-bold leading-8" />
         </div>
 
-        <div class="relative flex h-[40%] justify-end [&>svg]:h-[100%] [&>svg]:w-fit">
+        <div class="relative mb-4 flex h-[40%] justify-end [&>svg]:h-[100%] [&>svg]:w-fit">
           {@html egg}
         </div>
       </div>

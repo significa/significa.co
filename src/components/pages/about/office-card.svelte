@@ -7,6 +7,7 @@
   import { getImageAttributes } from '$lib/utils/cms';
 
   import type { NotepadCardStoryblok, PhotoCardStoryblok } from '$types/bloks';
+  import clsx from 'clsx';
 
   export let card: NotepadCardStoryblok | PhotoCardStoryblok;
   export let staticTransformState: TransformOptions;
@@ -21,7 +22,10 @@
 {#if card.component === 'photo_card' && card.photo?.filename}
   {@const { alt, src } = getImageAttributes(card.photo)}
   <div
-    class="-mx-[10%] bg-white p-[4%] shadow-md transition-all duration-[250ms]"
+    class={clsx(
+      '-mx-[10%] bg-white p-[4%] shadow-md transition-all duration-[250ms]',
+      $$restProps.class
+    )}
     style={`transform:translate(${transformState.x}, ${transformState.y}) rotate(${transformState.deg}deg); z-index: ${transformState.z}`}
     on:mouseenter={() => {
       transformState = hoverTransformState;
@@ -34,7 +38,7 @@
   </div>
 {:else if card.component === 'notepad_card' && card.text}
   <div
-    class="-mx-[10%] transition-all duration-[250ms]"
+    class={clsx('-mx-[10%] transition-all duration-[250ms]', $$restProps.class)}
     style={`transform:translate(${transformState.x}, ${transformState.y}) rotate(${transformState.deg}deg); z-index: ${transformState.z} `}
     on:mouseenter={() => {
       transformState = hoverTransformState;

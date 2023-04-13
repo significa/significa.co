@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { NotepadCardStoryblok, PhotoCardStoryblok } from '$types/bloks';
+  import clsx from 'clsx';
   import OfficeCard, { type TransformOptions } from './office-card.svelte';
 
   export let cards: (NotepadCardStoryblok | PhotoCardStoryblok)[] | undefined = undefined;
@@ -41,12 +42,15 @@
     </div>
 
     {#if !!cards?.length}
-      <div class="isolate grid grid-cols-6 px-10">
+      <div class="isolate -mt-20 flex justify-center px-10 lg:mt-0 lg:grid lg:grid-cols-6">
         {#each cards.slice(0, 6) as card, i}
           <OfficeCard
             {card}
             staticTransformState={cardsTransformOptions.static[i]}
             hoverTransformState={cardsTransformOptions.hover[i]}
+            class={clsx(
+              card.component === 'photo_card' ? 'hidden lg:block' : 'max-w-[280px] lg:max-w-[unset]'
+            )}
           />
         {/each}
       </div>

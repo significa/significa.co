@@ -20,19 +20,6 @@
 
   const speedFactors = [0, -0.2, 0.14, -0.13, 0.02];
   const alignments = ['start', 'end', 'start', 'end', 'start'];
-
-  let eased = 0;
-  const ease = () => {
-    eased = eased + (value - eased) * 0.25;
-    frame = window.requestAnimationFrame(ease);
-  };
-  let frame: number;
-  onMount(() => {
-    frame = window.requestAnimationFrame(ease);
-    return () => {
-      window.cancelAnimationFrame(frame);
-    };
-  });
 </script>
 
 <svelte:window bind:scrollY={scroll} />
@@ -63,7 +50,7 @@
                 <BalloonRectangle class="hidden shrink-0 -translate-y-2 self-end xl:block" />
               {/if}
               <div
-                style:transform="translate({i === 4 ? '20%' : i === 3 ? '-20%' : 0} ,{-eased *
+                style:transform="translate({i === 4 ? '20%' : i === 3 ? '-20%' : 0} ,{-value *
                   speedFactors[i]}px)"
               >
                 <RichTextTestimonial block={testimonial} class="max-w-lg xl:max-w-xl " />

@@ -24,7 +24,7 @@
 
 <svelte:window bind:scrollY={scroll} />
 
-<section class="border-t md:mt-14 lg:mt-20" bind:this={testimonialsSection}>
+<section class="border-t" bind:this={testimonialsSection}>
   <div class="container mx-auto px-container pt-20">
     <div class="mx-auto flex max-w-xl flex-col items-center">
       <h3 class="text-center text-5xl text-foreground-secondary">{firstTitle}</h3>

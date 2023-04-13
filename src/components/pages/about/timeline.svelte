@@ -22,7 +22,6 @@
 
   let y = 0; // scroll amount
   let top = 0; // timeline distance to top of document
-  let windowWidth = 0; // the full width of the window
 
   // to find the left padding of the container
   let containerSource: HTMLDivElement;
@@ -39,31 +38,17 @@
       window.removeEventListener('resize', setPadding);
     };
   });
-
-  // scroll easing. TODO: move to a store and refactor src/components/pages/get-a-quote/images.svelte to use it.
-  let eased = 0;
-  const ease = () => {
-    eased = eased + (y - eased) * 0.25;
-    frame = window.requestAnimationFrame(ease);
-  };
-  let frame: number;
-  onMount(() => {
-    frame = window.requestAnimationFrame(ease);
-    return () => {
-      window.cancelAnimationFrame(frame);
-    };
-  });
 </script>
 
 <svelte:window bind:scrollY={y} />
 
-<div class="container mx-auto px-container" bind:clientWidth={windowWidth}>
+<div class="container mx-auto px-container">
   <div bind:this={containerSource} />
 </div>
 <div
   use:distanceToTop={(distance) => (top = distance)}
   class="relative"
-  style="height: {width + padding * 2 - windowWidth / 2}px;"
+  style="height: calc({width + padding * 2}px + 800px / 2)"
 >
   <div
     class="sticky overflow-hidden"
@@ -74,7 +59,7 @@
       class="absolute inset-0"
       style="background-image: radial-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 32px 32px;"
     />
-    <div class="flex h-[800px]" style="transform: translateX({Math.max(0, eased - top) * -1}px);">
+    <div class="flex h-[800px]" style="transform: translateX({Math.max(0, y - top) * -1}px);">
       {#each timeline || [] as section}
         <div
           use:storyblokEditable={section}

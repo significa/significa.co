@@ -26,16 +26,22 @@
   // to find the left padding of the container
   let containerSource: HTMLDivElement;
   let padding = 0;
+
+  // shorter screens (height) don't go well with our 800px fixed height, so we need to scale everything by a certain factor
+  let windowHeight = 0;
+  $: factor = windowHeight < 800 ? windowHeight / 800 : 1;
   onMount(() => {
-    const setPadding = () => {
+    const onResize = () => {
       padding = containerSource?.getBoundingClientRect().left || 0;
+      // save window height
+      windowHeight = window.innerHeight;
     };
 
-    setPadding();
-    window.addEventListener('resize', setPadding);
+    onResize();
+    window.addEventListener('resize', onResize);
 
     return () => {
-      window.removeEventListener('resize', setPadding);
+      window.removeEventListener('resize', onResize);
     };
   });
 </script>
@@ -48,7 +54,7 @@
 <div
   use:distanceToTop={(distance) => (top = distance)}
   class="relative"
-  style="height: calc({width + padding * 2}px + 800px / 2)"
+  style="height: calc({width + padding * 2}px + 800px / 2 * {factor})"
 >
   <div
     class="sticky overflow-hidden"
@@ -64,7 +70,7 @@
         <div
           use:storyblokEditable={section}
           class="relative flex-shrink-0"
-          style="width: {section.width || 300}px;"
+          style="width: {section.width || 300}px; transform: scale({factor});"
         >
           {#each section.items || [] as item}
             {#if item.component === 'timeline-arrow'}
@@ -97,7 +103,7 @@
               <div
                 class="absolute max-w-xs text-center"
                 style="width: {item.width || '240'}px; left: {item.left || 0}px; top: {item.top ||
-                  0}px;"
+                  0}px; transform: scale({1 - factor + 1})"
               >
                 <p class="font-comic text-sm">{item.text}</p>
                 {#if item.link?.[0]}

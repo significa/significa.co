@@ -1,4 +1,5 @@
 <script lang="ts">
+  import PhysicsSection from '$components/physics-section.svelte';
   import { theme } from '$lib/stores/theme';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { AboutPageStoryblok } from '$types/bloks';
@@ -10,12 +11,15 @@
 </script>
 
 <main>
-  <div class="container mx-auto px-container">
-    <h1 class="mt-10 max-w-2xl text-8xl md:mt-14 lg:mt-20">{data.page_title}</h1>
+  <div class="container relative isolate mx-auto">
+    <div class="absolute top-0 z-10 px-container pt-10 md:pt-14 lg:pt-20">
+      <h1 class="max-w-2xl text-8xl">{data.page_title}</h1>
+    </div>
+    <PhysicsSection class="h-[830px]" items={data.physics_blocks} />
   </div>
 
   <!-- Who we are -->
-  <section class="mt-10 border-t md:mt-14 lg:mt-20">
+  <section class="border-t">
     <div
       class="container mx-auto flex flex-col justify-between gap-6 px-container py-8 lg:py-12 xl:flex-row xl:gap-4"
     >

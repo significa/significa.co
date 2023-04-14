@@ -57,9 +57,11 @@ export type MultilinkStoryblok =
 
 export interface AboutPageStoryblok {
   page_title?: string;
+  physics_blocks?: (PhysicsBalloonCardStoryblok | PhysicsRectangleCardStoryblok)[];
   about_title1?: string;
   about_title2?: string;
   about_description?: string;
+  timeline?: TimelineSectionStoryblok[];
   values_title1?: string;
   values_title2?: string;
   values_description?: string;
@@ -335,6 +337,22 @@ export interface PhotoCardStoryblok {
   [k: string]: any;
 }
 
+export interface PhysicsBalloonCardStoryblok {
+  text?: string;
+  theme?: 'inverted' | 'panel' | 'offset' | 'yellow';
+  _uid: string;
+  component: 'physics-balloon-card';
+  [k: string]: any;
+}
+
+export interface PhysicsRectangleCardStoryblok {
+  text?: string;
+  theme?: 'transparent' | 'yellow';
+  _uid: string;
+  component: 'physics-rectangle-card';
+  [k: string]: any;
+}
+
 export interface ProjectStoryblok {
   cover?: AssetStoryblok;
   thumbnail: MultiassetStoryblok;
@@ -435,6 +453,7 @@ export interface TeamMemberStoryblok {
   photo?: AssetStoryblok;
   egg?: AssetStoryblok;
   position?: string;
+  team?: number | string;
   bio?: string;
   links?: TeamMemberLinkStoryblok[];
   is_active?: boolean;
@@ -459,6 +478,48 @@ export interface TeamMemberLinkStoryblok {
   link?: string;
   _uid: string;
   component: 'team-member-link';
+  [k: string]: any;
+}
+
+export interface TimelineArrowStoryblok {
+  variant: '' | 'one' | 'two' | 'three' | 'four' | 'five';
+  top: number;
+  left: number;
+  scale?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'timeline-arrow';
+  [k: string]: any;
+}
+
+export interface TimelineImageStoryblok {
+  image?: AssetStoryblok;
+  border?: boolean;
+  top: number;
+  left: number;
+  scale?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'timeline-image';
+  [k: string]: any;
+}
+
+export interface TimelineSectionStoryblok {
+  items?: (TimelineArrowStoryblok | TimelineImageStoryblok | TimelineTextStoryblok)[];
+  width: number;
+  _uid: string;
+  component: 'timeline-section';
+  [k: string]: any;
+}
+
+export interface TimelineTextStoryblok {
+  text?: string;
+  link?: LinkStoryblok[];
+  width: number;
+  top: number;
+  left: number;
+  _uid: string;
+  component: 'timeline-text';
   [k: string]: any;
 }
 

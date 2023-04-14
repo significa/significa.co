@@ -4,67 +4,88 @@
       "name": "about-page",
       "display_name": null,
       "created_at": "2023-03-03T15:54:31.120Z",
-      "updated_at": "2023-04-11T14:32:07.317Z",
+      "updated_at": "2023-04-14T11:15:08.512Z",
       "id": 3521679,
       "schema": {
         "page_title": {
           "type": "text",
           "pos": 0
         },
-        "about_title1": {
-          "type": "text",
-          "pos": 1
+        "physics_blocks": {
+          "type": "bloks",
+          "pos": 1,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "physics-balloon-card",
+            "physics-rectangle-card"
+          ]
         },
-        "about_title2": {
+        "about_title1": {
           "type": "text",
           "pos": 2
         },
+        "about_title2": {
+          "type": "text",
+          "pos": 3
+        },
         "about_description": {
           "type": "textarea",
-          "pos": 3
+          "pos": 4
+        },
+        "timeline": {
+          "type": "bloks",
+          "pos": 5,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "timeline-section"
+          ]
         },
         "values_title1": {
           "type": "text",
-          "pos": 4
+          "pos": 6
         },
         "values_title2": {
           "type": "text",
-          "pos": 5
+          "pos": 7
         },
         "values_description": {
           "type": "textarea",
-          "pos": 6
+          "pos": 8
         },
         "values": {
           "type": "bloks",
-          "pos": 7,
+          "pos": 9,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
             "value"
-          ]
+          ],
+          "minimum": 3,
+          "maximum": 3
         },
         "testimonials_title1": {
           "type": "text",
-          "pos": 8
+          "pos": 10
         },
         "testimonials_title2": {
           "type": "text",
-          "pos": 9
+          "pos": 11
         },
         "testimonials_cta_label": {
           "type": "text",
-          "pos": 10
+          "pos": 12
         },
         "testimonials_cta_link": {
           "type": "multilink",
-          "pos": 11,
+          "pos": 13,
           "force_link_scope": false,
           "link_scope": ""
         },
         "testimonials": {
           "type": "bloks",
-          "pos": 12,
+          "pos": 14,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
@@ -73,11 +94,11 @@
         },
         "clients_title": {
           "type": "text",
-          "pos": 13
+          "pos": 15
         },
         "clients": {
           "type": "bloks",
-          "pos": 14,
+          "pos": 16,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
@@ -87,15 +108,15 @@
         "office_title1": {
           "type": "text",
           "key": "office_title",
-          "pos": 15
+          "pos": 17
         },
         "office_title2": {
           "type": "text",
-          "pos": 16
+          "pos": 18
         },
         "office_description": {
           "type": "textarea",
-          "pos": 17
+          "pos": 19
         },
         "office_cards": {
           "type": "bloks",
@@ -106,7 +127,8 @@
             "photo_card"
           ],
           "minimum": 6,
-          "maximum": 6
+          "maximum": 6,
+          "pos": 20
         }
       },
       "image": null,
@@ -352,20 +374,22 @@
       "name": "client-logo",
       "display_name": null,
       "created_at": "2023-04-11T13:27:27.785Z",
-      "updated_at": "2023-04-11T13:28:01.785Z",
+      "updated_at": "2023-04-12T13:16:39.209Z",
       "id": 3785709,
       "schema": {
         "light_mode": {
           "type": "asset",
           "filetypes": [
             "images"
-          ]
+          ],
+          "asset_folder_id": 228928
         },
         "dark_mode": {
           "type": "asset",
           "filetypes": [
             "images"
-          ]
+          ],
+          "asset_folder_id": 228928
         }
       },
       "image": null,
@@ -1260,6 +1284,98 @@
       "component_group_name": "Single"
     },
     {
+      "name": "physics-balloon-card",
+      "display_name": null,
+      "created_at": "2023-04-14T10:39:02.963Z",
+      "updated_at": "2023-04-14T10:40:57.966Z",
+      "id": 3811407,
+      "schema": {
+        "text": {
+          "type": "text"
+        },
+        "theme": {
+          "type": "option",
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "a8bfea41-7627-4d4b-af01-db12024bf481",
+              "name": "Inverted",
+              "value": "inverted"
+            },
+            {
+              "_uid": "d583af0e-d1a5-453a-aaeb-28352fc53d00",
+              "value": "panel",
+              "name": "Panel"
+            },
+            {
+              "_uid": "e16413f1-8f0c-464e-8943-7ccab0576906",
+              "value": "offset",
+              "name": "Offset"
+            },
+            {
+              "_uid": "7f18d192-5d34-43e2-97eb-1a8cfd106646",
+              "value": "yellow",
+              "name": "Yellow"
+            }
+          ],
+          "exclude_empty_option": true
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "physics-balloon-card",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "physics-rectangle-card",
+      "display_name": null,
+      "created_at": "2023-04-14T10:37:48.156Z",
+      "updated_at": "2023-04-14T10:38:41.658Z",
+      "id": 3811406,
+      "schema": {
+        "text": {
+          "type": "text"
+        },
+        "theme": {
+          "type": "option",
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "5d003831-5961-497c-9d37-f50dcde94d9c",
+              "name": "Transparent",
+              "value": "transparent"
+            },
+            {
+              "_uid": "4c81fbe7-1760-41d3-846c-e318af0e802f",
+              "value": "yellow",
+              "name": "Yellow"
+            }
+          ],
+          "exclude_empty_option": true
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "physics-rectangle-card",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "project",
       "display_name": null,
       "created_at": "2023-02-15T13:07:44.621Z",
@@ -1753,7 +1869,7 @@
       "name": "team-member",
       "display_name": null,
       "created_at": "2023-02-15T10:55:16.832Z",
-      "updated_at": "2023-02-15T11:58:50.052Z",
+      "updated_at": "2023-04-12T13:16:05.856Z",
       "id": 3441652,
       "schema": {
         "photo": {
@@ -1776,13 +1892,20 @@
           "type": "text",
           "pos": 2
         },
+        "team": {
+          "type": "option",
+          "pos": 3,
+          "use_uuid": true,
+          "source": "internal",
+          "datasource_slug": "teams"
+        },
         "bio": {
           "type": "textarea",
-          "pos": 3
+          "pos": 4
         },
         "links": {
           "type": "bloks",
-          "pos": 4,
+          "pos": 5,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
@@ -1791,7 +1914,7 @@
         },
         "is_active": {
           "type": "boolean",
-          "pos": 5
+          "pos": 6
         }
       },
       "image": null,
@@ -1884,6 +2007,231 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "team-member-link",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "timeline-arrow",
+      "display_name": null,
+      "created_at": "2023-04-12T14:24:11.523Z",
+      "updated_at": "2023-04-12T20:40:02.348Z",
+      "id": 3795710,
+      "schema": {
+        "variant": {
+          "type": "option",
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "c6e3dd43-d4e6-40f6-8ff9-4c53fcef3c6c",
+              "name": "one",
+              "value": "one"
+            },
+            {
+              "_uid": "750d1125-ba97-4ad4-9bd0-0066a4bd9cc3",
+              "value": "two",
+              "name": "two"
+            },
+            {
+              "_uid": "0a543fe1-ccdd-4f2e-89f7-bba9829934d4",
+              "value": "three",
+              "name": "three"
+            },
+            {
+              "_uid": "edc629f8-34ae-4080-ac31-5c7a88d2ead9",
+              "value": "four",
+              "name": "four"
+            },
+            {
+              "_uid": "dc5263af-5ee8-4d85-a6fb-28baaabfff85",
+              "value": "five",
+              "name": "five"
+            }
+          ],
+          "default_value": "one",
+          "required": true
+        },
+        "top": {
+          "type": "number",
+          "decimals": 0,
+          "default_value": "0",
+          "required": true
+        },
+        "left": {
+          "type": "number",
+          "required": true,
+          "default_value": "0",
+          "decimals": 0
+        },
+        "scale": {
+          "type": "number",
+          "default_value": "1",
+          "decimals": 2,
+          "description": "Between 0 and 1"
+        },
+        "rotate": {
+          "type": "number",
+          "decimals": 0,
+          "default_value": "0"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "timeline-arrow",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "timeline-image",
+      "display_name": null,
+      "created_at": "2023-04-12T14:25:57.635Z",
+      "updated_at": "2023-04-12T20:39:43.446Z",
+      "id": 3795713,
+      "schema": {
+        "image": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ]
+        },
+        "border": {
+          "type": "boolean",
+          "default_value": true
+        },
+        "top": {
+          "type": "number",
+          "required": true,
+          "default_value": "0",
+          "decimals": 0
+        },
+        "left": {
+          "type": "number",
+          "decimals": 0,
+          "default_value": "0",
+          "required": true
+        },
+        "scale": {
+          "type": "number",
+          "default_value": "1",
+          "decimals": 2,
+          "description": "Between 0 and 1"
+        },
+        "rotate": {
+          "type": "number",
+          "default_value": "0",
+          "decimals": 0
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "timeline-image",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "timeline-section",
+      "display_name": null,
+      "created_at": "2023-04-12T14:19:35.765Z",
+      "updated_at": "2023-04-12T20:56:46.026Z",
+      "id": 3795691,
+      "schema": {
+        "items": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "timeline-arrow",
+            "timeline-image",
+            "timeline-text"
+          ]
+        },
+        "width": {
+          "type": "number",
+          "required": true,
+          "default_value": "400",
+          "decimals": 0,
+          "steps": 20
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "timeline-section",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "timeline-text",
+      "display_name": null,
+      "created_at": "2023-04-12T14:20:49.471Z",
+      "updated_at": "2023-04-12T20:32:38.915Z",
+      "id": 3795700,
+      "schema": {
+        "text": {
+          "type": "text",
+          "pos": 0
+        },
+        "link": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "link"
+          ],
+          "pos": 1
+        },
+        "width": {
+          "type": "number",
+          "pos": 2,
+          "required": true,
+          "default_value": "240",
+          "description": "e.g.: 140, 160, 200, 240",
+          "decimals": 0
+        },
+        "top": {
+          "type": "number",
+          "pos": 3,
+          "required": true,
+          "decimals": 0,
+          "default_value": "0"
+        },
+        "left": {
+          "type": "number",
+          "pos": 4,
+          "decimals": 0,
+          "required": true,
+          "default_value": "0"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "timeline-text",
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,

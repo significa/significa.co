@@ -18,7 +18,7 @@
   let testimonialsSection: HTMLElement;
   $: value = Math.max(scroll - testimonialsSection?.offsetTop, 0);
 
-  const speedFactors = [0, -0.2, 0.14, -0.13, 0.02];
+  const speedFactors = [0, -0.2, 0.14, 0.01, -0.04];
   const alignments = ['start', 'end', 'start', 'end', 'start'];
 </script>
 

@@ -1,14 +1,17 @@
 <script lang="ts">
-  import { theme } from '$lib/stores/theme';
   import type { PhysicsBalloonCardStoryblok, PhysicsRectangleCardStoryblok } from '$types/bloks';
   import clsx from 'clsx';
   import { onMount } from 'svelte';
+  import BalloonCard from './physics-blocks/balloon-card.svelte';
+  import RectangleCard from './physics-blocks/rectangle-card.svelte';
+  import type { Engine } from 'matter-js';
 
   export let items: (PhysicsBalloonCardStoryblok | PhysicsRectangleCardStoryblok)[] | undefined =
     undefined;
 
   let refs: HTMLElement[] = Array(items?.length);
   let containerRef: HTMLElement;
+  let engine: Engine;
 
   const animate = () => {
     if (items) {
@@ -19,12 +22,18 @@
           Composite = Matter.Composite,
           Bodies = Matter.Bodies;
 
-        const engine = Engine.create();
+        engine = Engine.create({ gravity: { scale: 0.0017 } });
 
         const boxes = refs.map((_, i) => ({
-          body: Bodies.rectangle(0, 0, refs[i].clientWidth, refs[i].clientHeight, {
-            friction: 1
-          }),
+          body: Bodies.rectangle(
+            containerRef.clientWidth / 2 - refs[i].clientWidth / 2,
+            refs[i].clientHeight / 2,
+            refs[i].clientWidth,
+            refs[i].clientHeight,
+            {
+              friction: 1
+            }
+          ),
           elem: refs[i],
           render() {
             const { x, y } = this.body.position;
@@ -34,14 +43,14 @@
           }
         }));
 
+        // Walls and ground
         const ground = Bodies.rectangle(
           containerRef.clientWidth / 2,
           containerRef.clientHeight + 60 / 2,
           containerRef.clientWidth,
-          64,
+          60,
           { isStatic: true }
         );
-
         const leftWall = Bodies.rectangle(
           containerRef.clientWidth + 60 / 2,
           containerRef.clientHeight / 2,
@@ -49,7 +58,6 @@
           containerRef.clientHeight,
           { isStatic: true }
         );
-
         const rightWall = Bodies.rectangle(
           -60 / 2,
           containerRef.clientHeight / 2,
@@ -58,7 +66,6 @@
           { isStatic: true }
         );
 
-        //TODO: Remove Renderer use dom element
         const mouse = Mouse.create(containerRef),
           mouseConstraint = MouseConstraint.create(engine, {
             mouse: mouse,
@@ -90,10 +97,6 @@
           mouseConstraint
         ]);
 
-        //TODO: Remove Renderer
-        // run the renderer
-        //Render.run(render);
-
         (function run() {
           boxes.forEach((box) => box.render());
           window.requestAnimationFrame(run);
@@ -106,41 +109,15 @@
   onMount(() => {
     animate();
   });
-
-  const parseTheme = (variant: PhysicsBalloonCardStoryblok['theme']) => {
-    if (variant === 'inverted') {
-      if ($theme === 'light') return 'dark';
-      else if ($theme === 'dark') return 'light';
-    } else if (variant === 'yellow') {
-      return 'yellow';
-    } else return;
-  };
 </script>
 
 <div bind:this={containerRef} class={clsx('relative isolate overflow-hidden', $$restProps.class)}>
   {#if items}
     {#each items as item, i}
       {#if item.component === 'physics-balloon-card'}
-        <div
-          bind:this={refs[i]}
-          data-theme={parseTheme(item.theme)}
-          class={clsx(
-            'min-w-xs w-xs absolute max-w-xs select-none rounded-xs p-4',
-            (item.theme === 'inverted' || item.theme === 'yellow') && 'bg-background',
-            item.theme === 'panel' && 'bg-background-panel',
-            item.theme === 'offset' && 'bg-background-offset'
-          )}
-        >
-          <p class="text-xl">{item.text}</p>
-        </div>
+        <BalloonCard block={item} bind:ref={refs[i]} class="absolute" />
       {:else if item.component === 'physics-rectangle-card'}
-        <div
-          bind:this={refs[i]}
-          data-theme={item.theme === 'yellow' ? 'yellow' : undefined}
-          class="absolute select-none whitespace-nowrap border-[1px] border-foreground-secondary p-3"
-        >
-          <p class="text-3xl font-bold">{item.text}</p>
-        </div>
+        <RectangleCard block={item} bind:ref={refs[i]} class="absolute" />
       {/if}
     {/each}
   {/if}

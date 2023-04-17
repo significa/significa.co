@@ -21,7 +21,7 @@
   bind:this={ref}
   data-theme={parseTheme(block.theme)}
   class={clsx(
-    'min-w-xs w-xs max-w-xs select-none rounded-xs p-4 after:absolute after:-bottom-1 after:left-[50%] after:h-3 after:w-3 after:rotate-45 after:rounded-3xs',
+    'select-none rounded-xs p-4 after:absolute after:-bottom-1 after:left-0 after:right-0 after:mx-auto after:h-3 after:w-3 after:rotate-45 after:rounded-3xs',
     (block.theme === 'inverted' || block.theme === 'yellow') && 'bg-background after:bg-background',
     block.theme === 'panel' && 'bg-background-panel after:bg-background-panel',
     block.theme === 'offset' && 'bg-background-offset after:bg-background-offset',
@@ -29,6 +29,6 @@
   )}
 >
   {#if block.text}
-    <SplitWords class="whitespace-nowrap text-xl" string={block.text} nLetters={30} />
+    <SplitWords class="whitespace-nowrap text-xl font-medium" string={block.text} nLetters={30} />
   {/if}
 </div>

@@ -4,7 +4,7 @@
       "name": "about-page",
       "display_name": null,
       "created_at": "2023-03-03T15:54:31.120Z",
-      "updated_at": "2023-04-14T11:15:08.512Z",
+      "updated_at": "2023-04-17T15:14:19.552Z",
       "id": 3521679,
       "schema": {
         "page_title": {
@@ -18,7 +18,8 @@
           "restrict_components": true,
           "component_whitelist": [
             "physics-balloon-card",
-            "physics-rectangle-card"
+            "physics-rectangle-card",
+            "physics-input"
           ]
         },
         "about_title1": {
@@ -1329,6 +1330,30 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "physics-balloon-card",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "physics-input",
+      "display_name": null,
+      "created_at": "2023-04-17T15:13:53.017Z",
+      "updated_at": "2023-04-17T15:14:00.636Z",
+      "id": 3830600,
+      "schema": {
+        "placeholder": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "physics-input",
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,

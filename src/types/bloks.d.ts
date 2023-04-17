@@ -57,7 +57,11 @@ export type MultilinkStoryblok =
 
 export interface AboutPageStoryblok {
   page_title?: string;
-  physics_blocks?: (PhysicsBalloonCardStoryblok | PhysicsRectangleCardStoryblok)[];
+  physics_blocks?: (
+    | PhysicsBalloonCardStoryblok
+    | PhysicsRectangleCardStoryblok
+    | PhysicsInputStoryblok
+  )[];
   about_title1?: string;
   about_title2?: string;
   about_description?: string;
@@ -342,6 +346,13 @@ export interface PhysicsBalloonCardStoryblok {
   theme?: 'inverted' | 'panel' | 'offset' | 'yellow';
   _uid: string;
   component: 'physics-balloon-card';
+  [k: string]: any;
+}
+
+export interface PhysicsInputStoryblok {
+  placeholder?: string;
+  _uid: string;
+  component: 'physics-input';
   [k: string]: any;
 }
 

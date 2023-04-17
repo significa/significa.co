@@ -1,123 +1,233 @@
 <script lang="ts">
-  import type { PhysicsBalloonCardStoryblok, PhysicsRectangleCardStoryblok } from '$types/bloks';
+  import type {
+    PhysicsBalloonCardStoryblok,
+    PhysicsInputStoryblok,
+    PhysicsRectangleCardStoryblok
+  } from '$types/bloks';
   import clsx from 'clsx';
   import { onMount } from 'svelte';
   import BalloonCard from './physics-blocks/balloon-card.svelte';
   import RectangleCard from './physics-blocks/rectangle-card.svelte';
-  import type { Engine } from 'matter-js';
+  import type Matter from 'matter-js';
+  import { Button } from '@significa/svelte-ui';
+  import PhysicsInput from './physics-blocks/physics-input.svelte';
 
-  export let items: (PhysicsBalloonCardStoryblok | PhysicsRectangleCardStoryblok)[] | undefined =
-    undefined;
+  const INPUT_NAME = 'input' as const;
 
-  let refs: HTMLElement[] = Array(items?.length);
+  export let items:
+    | (PhysicsBalloonCardStoryblok | PhysicsRectangleCardStoryblok | PhysicsInputStoryblok)[]
+    | undefined = undefined;
+
+  // Where engine will live and use as reference
   let containerRef: HTMLElement;
-  let engine: Engine;
 
-  const animate = () => {
-    if (items) {
-      import('matter-js').then((Matter) => {
-        const Engine = Matter.Engine,
-          MouseConstraint = Matter.MouseConstraint,
-          Mouse = Matter.Mouse,
-          Composite = Matter.Composite,
-          Bodies = Matter.Bodies;
+  // Quantity of initial items
+  let initialBoxesN = items?.length ?? 0;
 
-        engine = Engine.create({ gravity: { scale: 0.0017 } });
+  // Active engine
+  let engine: Matter.Engine;
 
-        const boxes = refs.map((_, i) => ({
-          body: Bodies.rectangle(
-            containerRef.clientWidth / 2 - refs[i].clientWidth / 2,
-            refs[i].clientHeight / 2,
-            refs[i].clientWidth,
-            refs[i].clientHeight,
-            {
-              friction: 1
-            }
-          ),
-          elem: refs[i],
-          render() {
-            const { x, y } = this.body.position;
-            this.elem.style.top = `${y - refs[i].clientHeight / 2}px`;
-            this.elem.style.left = `${x - refs[i].clientWidth / 2}px`;
-            this.elem.style.transform = `rotate(${this.body.angle}rad)`;
+  // Matter
+  let matterInstance: typeof Matter;
+
+  // Items where Matter will be applied
+  let refs: HTMLElement[] = Array(items?.length);
+  let boxes: {
+    body: Matter.Body;
+    elem: HTMLElement;
+    render(): void;
+  }[];
+
+  /**
+   * Should only react when:
+   * - Items are updated (> initial)
+   *   Then references are updated as a result of new items being rendered
+   *   Only then we have the information needed to create a new body
+   */
+  $: if (items && refs && items.length === refs.length && items.length > initialBoxesN) {
+    const i = items.length - 1;
+    const newBox = {
+      body: matterInstance.Bodies.rectangle(
+        containerRef.clientWidth / 2 - refs[i].clientWidth / 2,
+        refs[i].clientHeight / 2,
+        refs[i].clientWidth,
+        refs[i].clientHeight,
+        {
+          friction: 1
+        }
+      ),
+      elem: refs[i],
+      render() {
+        const { x, y } = this.body.position;
+        this.elem.style.top = `${y - refs[i].clientHeight / 2}px`;
+        this.elem.style.left = `${x - refs[i].clientWidth / 2}px`;
+        this.elem.style.transform = `rotate(${this.body.angle}rad)`;
+      }
+    };
+
+    // Update boxes
+    boxes = [...boxes, newBox];
+
+    // Add new box to active engine
+    matterInstance.Composite.add(engine.world, [newBox.body]);
+  }
+
+  const initialization = (matter: typeof Matter) => {
+    const Engine = matter.Engine,
+      MouseConstraint = matter.MouseConstraint,
+      Mouse = matter.Mouse,
+      Composite = matter.Composite,
+      Bodies = matter.Bodies;
+
+    // Create engine
+    engine = Engine.create({ gravity: { scale: 0.0017 } });
+
+    // Create boxes from current rendered items
+    const initialBoxes = refs.map((_, i) => ({
+      body: Bodies.rectangle(
+        containerRef.clientWidth / 2 - refs[i].clientWidth / 2,
+        refs[i].clientHeight / 2,
+        refs[i].clientWidth,
+        refs[i].clientHeight,
+        {
+          friction: 1
+        }
+      ),
+      elem: refs[i],
+      render() {
+        const { x, y } = this.body.position;
+        this.elem.style.top = `${y - refs[i].clientHeight / 2}px`;
+        this.elem.style.left = `${x - refs[i].clientWidth / 2}px`;
+        this.elem.style.transform = `rotate(${this.body.angle}rad)`;
+      }
+    }));
+
+    // Update boxes state with created boxes
+    boxes = initialBoxes;
+
+    // Walls and ground
+    const ground = Bodies.rectangle(
+      containerRef.clientWidth / 2,
+      containerRef.clientHeight + 60 / 2,
+      containerRef.clientWidth,
+      60,
+      { isStatic: true }
+    );
+    const leftWall = Bodies.rectangle(
+      containerRef.clientWidth + 60 / 2,
+      containerRef.clientHeight / 2,
+      60,
+      containerRef.clientHeight,
+      { isStatic: true }
+    );
+    const rightWall = Bodies.rectangle(
+      -60 / 2,
+      containerRef.clientHeight / 2,
+      60,
+      containerRef.clientHeight,
+      { isStatic: true }
+    );
+
+    // Mouse Constraints
+    const mouse = Mouse.create(containerRef),
+      mouseConstraint = MouseConstraint.create(engine, {
+        mouse: mouse,
+        constraint: {
+          stiffness: 0.2,
+          render: {
+            visible: false
           }
-        }));
-
-        // Walls and ground
-        const ground = Bodies.rectangle(
-          containerRef.clientWidth / 2,
-          containerRef.clientHeight + 60 / 2,
-          containerRef.clientWidth,
-          60,
-          { isStatic: true }
-        );
-        const leftWall = Bodies.rectangle(
-          containerRef.clientWidth + 60 / 2,
-          containerRef.clientHeight / 2,
-          60,
-          containerRef.clientHeight,
-          { isStatic: true }
-        );
-        const rightWall = Bodies.rectangle(
-          -60 / 2,
-          containerRef.clientHeight / 2,
-          60,
-          containerRef.clientHeight,
-          { isStatic: true }
-        );
-
-        const mouse = Mouse.create(containerRef),
-          mouseConstraint = MouseConstraint.create(engine, {
-            mouse: mouse,
-            constraint: {
-              stiffness: 0.2,
-              render: {
-                visible: false
-              }
-            }
-          });
-
-        mouseConstraint.mouse.element.removeEventListener(
-          'mousewheel',
-          // @ts-ignore
-          mouseConstraint.mouse.mousewheel
-        );
-        mouseConstraint.mouse.element.removeEventListener(
-          'DOMMouseScroll',
-          // @ts-ignore
-          mouseConstraint.mouse.mousewheel
-        );
-
-        // add all of the bodies to the world
-        Composite.add(engine.world, [
-          ...boxes.map((b) => b.body),
-          leftWall,
-          rightWall,
-          ground,
-          mouseConstraint
-        ]);
-
-        (function run() {
-          boxes.forEach((box) => box.render());
-          window.requestAnimationFrame(run);
-          Engine.update(engine, 1000 / 60);
-        })();
+        }
       });
-    }
+
+    // Allow page scroll when mouse is hovering canvas
+    mouseConstraint.mouse.element.removeEventListener(
+      'mousewheel',
+      // @ts-ignore
+      mouseConstraint.mouse.mousewheel
+    );
+    mouseConstraint.mouse.element.removeEventListener(
+      'DOMMouseScroll',
+      // @ts-ignore
+      mouseConstraint.mouse.mousewheel
+    );
+
+    // Add all of the bodies and walls to the world
+    Composite.add(engine.world, [
+      ...initialBoxes.map((b) => b.body),
+      leftWall,
+      rightWall,
+      ground,
+      mouseConstraint
+    ]);
+
+    // Main loop
+    (function run() {
+      boxes.forEach((box) => box.render());
+      window.requestAnimationFrame(run);
+      Engine.update(engine, 1000 / 60);
+    })();
   };
 
   onMount(() => {
-    animate();
+    if (items) {
+      import('matter-js').then((Matter) => {
+        matterInstance = Matter;
+        initialization(Matter);
+      });
+    }
   });
+
+  const onSubmit = (e: SubmitEvent) => {
+    const target = e.target as HTMLFormElement;
+
+    const formData = new FormData(target);
+    let inputValue = '';
+
+    for (const [key, value] of formData.entries()) {
+      if (key === INPUT_NAME) {
+        inputValue = value.toString();
+      }
+    }
+
+    target.reset();
+
+    if (inputValue !== '') {
+      items = [
+        ...(items || []),
+        { _uid: '123', component: 'physics-rectangle-card', theme: 'yellow', text: inputValue }
+      ];
+    }
+  };
 </script>
 
 <div bind:this={containerRef} class={clsx('relative isolate overflow-hidden', $$restProps.class)}>
+  <Button
+    class="absolute right-0"
+    on:click={() => {
+      items = [
+        ...(items || []),
+        { _uid: '123', component: 'physics-balloon-card', theme: 'yellow', text: 'Help.' }
+      ];
+    }}>Add</Button
+  >
+
   {#if items}
     {#each items as item, i}
       {#if item.component === 'physics-balloon-card'}
         <BalloonCard block={item} bind:ref={refs[i]} class={clsx('absolute w-fit')} />
       {:else if item.component === 'physics-rectangle-card'}
         <RectangleCard block={item} bind:ref={refs[i]} class={clsx('absolute w-fit')} />
+      {:else if item.component === 'physics-input'}
+        <form on:submit|preventDefault={onSubmit} id={i + item._uid}>
+          <PhysicsInput
+            name={INPUT_NAME}
+            form={i + item._uid}
+            block={item}
+            bind:ref={refs[i]}
+            class={clsx('absolute w-fit')}
+          />
+        </form>
       {/if}
     {/each}
   {/if}

@@ -2,6 +2,7 @@
   import type { PhysicsBalloonCardStoryblok } from '$types/bloks';
   import { theme } from '$lib/stores/theme';
   import clsx from 'clsx';
+  import SplitWords from '$components/split-words.svelte';
 
   export let block: PhysicsBalloonCardStoryblok;
   export let ref: HTMLElement;
@@ -27,5 +28,7 @@
     $$restProps.class
   )}
 >
-  <p class="text-xl">{block.text}</p>
+  {#if block.text}
+    <SplitWords class="whitespace-nowrap text-xl" string={block.text} nLetters={30} />
+  {/if}
 </div>

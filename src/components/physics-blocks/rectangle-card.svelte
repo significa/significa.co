@@ -10,7 +10,7 @@
   bind:this={ref}
   data-theme={block.theme === 'yellow' ? 'yellow' : undefined}
   class={clsx(
-    'absolute select-none whitespace-nowrap border-[1px] border-foreground-secondary',
+    'select-none whitespace-nowrap border-[1px] border-foreground-secondary',
     $$restProps.class
   )}
 >

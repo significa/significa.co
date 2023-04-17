@@ -115,9 +115,9 @@
   {#if items}
     {#each items as item, i}
       {#if item.component === 'physics-balloon-card'}
-        <BalloonCard block={item} bind:ref={refs[i]} class="absolute" />
+        <BalloonCard block={item} bind:ref={refs[i]} class={clsx('absolute w-fit')} />
       {:else if item.component === 'physics-rectangle-card'}
-        <RectangleCard block={item} bind:ref={refs[i]} class="absolute" />
+        <RectangleCard block={item} bind:ref={refs[i]} class={clsx('absolute w-fit')} />
       {/if}
     {/each}
   {/if}

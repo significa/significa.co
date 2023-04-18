@@ -9,7 +9,6 @@
   import BalloonCard from './physics-blocks/balloon-card.svelte';
   import RectangleCard from './physics-blocks/rectangle-card.svelte';
   import type Matter from 'matter-js';
-  import { Button } from '@significa/svelte-ui';
   import PhysicsInput from './physics-blocks/physics-input.svelte';
 
   const INPUT_NAME = 'input' as const;
@@ -184,34 +183,49 @@
     const formData = new FormData(target);
     let inputValue = '';
 
+    // get only input value
     for (const [key, value] of formData.entries()) {
       if (key === INPUT_NAME) {
         inputValue = value.toString();
       }
     }
 
+    // clear form
     target.reset();
 
+    // don't create block if empty
     if (inputValue !== '') {
-      items = [
-        ...(items || []),
-        { _uid: '123', component: 'physics-rectangle-card', theme: 'yellow', text: inputValue }
-      ];
+      if (inputValue.length > 30) {
+        const variant: PhysicsBalloonCardStoryblok['component'] = 'physics-balloon-card';
+        const themes: PhysicsBalloonCardStoryblok['theme'][] = [
+          'inverted',
+          'offset',
+          'panel',
+          'yellow'
+        ];
+
+        const theme = themes[Math.floor(Math.random() * themes.length)];
+
+        items = [
+          ...(items || []),
+          { _uid: Math.random().toString(), component: variant, theme: theme, text: inputValue }
+        ];
+      } else {
+        const variant: PhysicsRectangleCardStoryblok['component'] = 'physics-rectangle-card';
+        const themes: PhysicsRectangleCardStoryblok['theme'][] = ['transparent', 'yellow'];
+
+        const theme = themes[Math.floor(Math.random() * themes.length)];
+
+        items = [
+          ...(items || []),
+          { _uid: Math.random().toString(), component: variant, theme: theme, text: inputValue }
+        ];
+      }
     }
   };
 </script>
 
 <div bind:this={containerRef} class={clsx('relative isolate overflow-hidden', $$restProps.class)}>
-  <Button
-    class="absolute right-0"
-    on:click={() => {
-      items = [
-        ...(items || []),
-        { _uid: '123', component: 'physics-balloon-card', theme: 'yellow', text: 'Help.' }
-      ];
-    }}>Add</Button
-  >
-
   {#if items}
     {#each items as item, i}
       {#if item.component === 'physics-balloon-card'}

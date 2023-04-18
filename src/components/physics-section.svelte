@@ -10,6 +10,8 @@
   import RectangleCard from './physics-blocks/rectangle-card.svelte';
   import Matter from 'matter-js';
   import PhysicsInput from './physics-blocks/physics-input.svelte';
+  import { checkScrollSpeed } from '$lib/utils/dom';
+  import { browser } from '$app/environment';
 
   const INPUT_NAME = 'input' as const;
 
@@ -25,6 +27,11 @@
 
   // Active engine
   let engine: Matter.Engine;
+  let isAddingBox: boolean;
+
+  // Mobile behaviour
+  let timeout: ReturnType<typeof setTimeout>;
+  let isTouchDevice: boolean;
 
   // Limits for resize handling
   let boxGround: Matter.Body;
@@ -48,8 +55,18 @@
    *   Then references are updated as a result of new items being rendered
    *   Only then we have the information needed to create a new body
    */
-  $: if (items && refs && items.length === refs.length && items.length > initialBoxesN) {
+  $: if (
+    items &&
+    refs &&
+    items.length === refs.length &&
+    items.length > initialBoxesN &&
+    items.map((i) => i.component).includes('physics-input') &&
+    isAddingBox
+  ) {
+    isAddingBox = false;
+
     const i = items.length - 1;
+
     const newBox = {
       body: matterInstance.Bodies.rectangle(
         containerRef.clientWidth / 2 - refs[i].clientWidth / 2,
@@ -77,14 +94,20 @@
   }
 
   const getLimits = (matter: typeof Matter) => {
-    // const ceil = Bodies.rectangle(containerRef.clientWidth / 2, -60, containerRef.clientWidth, 60, {
-    //   isStatic: true
-    // });
+    const ceil = matter.Bodies.rectangle(
+      containerRef.clientWidth / 2,
+      -60 / 2,
+      containerRef.clientWidth,
+      60,
+      {
+        isStatic: true
+      }
+    );
     const ground = matter.Bodies.rectangle(
       containerRef.clientWidth / 2,
       containerRef.clientHeight + 60 / 2,
       containerRef.clientWidth,
-      60,
+      64,
       { isStatic: true }
     );
     const leftWall = matter.Bodies.rectangle(
@@ -102,7 +125,7 @@
       { isStatic: true }
     );
 
-    return { ground, leftWall, rightWall };
+    return { ground, leftWall, rightWall, ceil };
   };
 
   const initialization = (matter: typeof Matter) => {
@@ -113,13 +136,13 @@
       Bodies = matter.Bodies;
 
     // Create engine
-    engine = Engine.create({ gravity: { scale: 0.0017 } });
+    engine = Engine.create({ gravity: { scale: 0 } });
 
     // Create boxes from current rendered items
     const initialBoxes = refs.map((_, i) => ({
       body: Bodies.rectangle(
-        containerRef.clientWidth / 2 - refs[i].clientWidth / 2,
-        refs[i].clientHeight / 2,
+        containerRef.clientWidth * Math.random(),
+        containerRef.clientHeight / 2 - refs[i].clientHeight,
         refs[i].clientWidth,
         refs[i].clientHeight,
         {
@@ -139,7 +162,7 @@
     boxes = initialBoxes;
 
     // Limits
-    const { ground, leftWall, rightWall } = getLimits(Matter);
+    const { ground, leftWall, rightWall, ceil } = getLimits(Matter);
 
     // Update limits state to allow resize calculation if needed
     boxGround = ground;
@@ -158,7 +181,7 @@
         }
       });
 
-    // Allow page scroll when mouse is hovering canvas
+    // Allow page scroll when mouse is hovering canvas or touch device is interacting
     mouseConstraint.mouse.element.removeEventListener(
       'mousewheel',
       // @ts-ignore
@@ -169,13 +192,28 @@
       // @ts-ignore
       mouseConstraint.mouse.mousewheel
     );
+    mouseConstraint.mouse.element.removeEventListener(
+      'touchstart',
+      // @ts-ignore
+      mouseConstraint.mouse.mousedown
+    );
+    mouseConstraint.mouse.element.removeEventListener(
+      'touchmove',
+      // @ts-ignore
+      mouseConstraint.mouse.mousemove
+    );
+    mouseConstraint.mouse.element.removeEventListener(
+      'touchend',
+      // @ts-ignore
+      mouseConstraint.mouse.mouseup
+    );
 
     // Add all of the bodies and walls to the world
     Composite.add(engine.world, [
       ...initialBoxes.map((b) => b.body),
       leftWall,
       rightWall,
-      //ceil,
+      ceil,
       ground,
       mouseConstraint
     ]);
@@ -206,15 +244,27 @@
     boxRightWall = rightWall;
   };
 
-  onMount(() => {
-    if (items) {
-      import('matter-js').then((Matter) => {
-        matterInstance = Matter;
-        initialization(Matter);
-      });
-    }
-  });
+  // Touch devices behaved badly with element drag so we do a small gravity effect on scroll instead
+  const handleTouchDeviceScroll = () => {
+    if (isTouchDevice) {
+      engine.gravity = {
+        x: 0,
+        y: 1,
+        scale: checkScrollSpeed() <= 2 ? 0.0017 : -0.0013
+      };
 
+      // prevent negative gravity being stuck
+      timeout = setTimeout(() => {
+        engine.gravity = {
+          x: 0,
+          y: 1,
+          scale: 0.0017
+        };
+      }, 250);
+    }
+  };
+
+  // Handle element creation by input
   const onSubmit = (e: SubmitEvent) => {
     const target = e.target as HTMLFormElement;
 
@@ -248,6 +298,8 @@
           ...(items || []),
           { _uid: Math.random().toString(), component: variant, theme: theme, text: inputValue }
         ];
+
+        isAddingBox = true;
       } else {
         const variant: PhysicsRectangleCardStoryblok['component'] = 'physics-rectangle-card';
         const themes: PhysicsRectangleCardStoryblok['theme'][] = ['transparent', 'yellow'];
@@ -258,20 +310,46 @@
           ...(items || []),
           { _uid: Math.random().toString(), component: variant, theme: theme, text: inputValue }
         ];
+        isAddingBox = true;
       }
     }
   };
+
+  onMount(() => {
+    if (browser) {
+      isTouchDevice = !window.matchMedia('(hover: hover)').matches;
+    }
+
+    if (items) {
+      import('matter-js').then((Matter) => {
+        matterInstance = Matter;
+        initialization(Matter);
+
+        setTimeout(() => {
+          engine.gravity = { x: 0, y: 1, scale: 0.0017 };
+        }, 500);
+      });
+    }
+  });
 </script>
 
-<svelte:window on:resize={handleResize} />
+<svelte:window on:resize={handleResize} on:scroll={handleTouchDeviceScroll} />
 
 <div bind:this={containerRef} class={clsx('relative isolate overflow-hidden', $$restProps.class)}>
   {#if items}
     {#each items as item, i}
       {#if item.component === 'physics-balloon-card'}
-        <BalloonCard block={item} bind:ref={refs[i]} class={clsx('absolute w-fit')} />
+        <BalloonCard
+          block={item}
+          bind:ref={refs[i]}
+          class={clsx('absolute w-fit', !engine && 'invisible')}
+        />
       {:else if item.component === 'physics-rectangle-card'}
-        <RectangleCard block={item} bind:ref={refs[i]} class={clsx('absolute w-fit')} />
+        <RectangleCard
+          block={item}
+          bind:ref={refs[i]}
+          class={clsx('absolute w-fit', !engine && 'invisible')}
+        />
       {:else if item.component === 'physics-input'}
         <form on:submit|preventDefault={onSubmit} id={i + item._uid}>
           <PhysicsInput
@@ -279,7 +357,7 @@
             form={i + item._uid}
             block={item}
             bind:ref={refs[i]}
-            class={clsx('absolute w-fit')}
+            class={clsx('absolute w-fit', !engine && 'invisible')}
           />
         </form>
       {/if}

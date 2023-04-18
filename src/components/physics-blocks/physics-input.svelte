@@ -13,7 +13,7 @@
     <Input
       {name}
       placeholder={block.placeholder}
-      class="h-[60px] bg-background-offset pr-16 text-xl placeholder:text-xl"
+      class="h-[60px] min-w-[300px] bg-background-offset pr-16 text-xl placeholder:text-xl"
       size="lg"
     />
     <Button {form} arrow class="absolute bottom-2 right-2 top-2" size="md" />

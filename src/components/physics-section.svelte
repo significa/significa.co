@@ -10,10 +10,11 @@
   import RectangleCard from './physics-blocks/rectangle-card.svelte';
   import Matter from 'matter-js';
   import PhysicsInput from './physics-blocks/physics-input.svelte';
-  import { checkScrollSpeed } from '$lib/utils/dom';
+  import { getScrollSpeed } from '$lib/utils/dom';
   import { browser } from '$app/environment';
 
   const INPUT_NAME = 'input' as const;
+  const GRAVITY_DEFAULT_VALUE = 0.0017 as const;
 
   export let items:
     | (PhysicsBalloonCardStoryblok | PhysicsRectangleCardStoryblok | PhysicsInputStoryblok)[]
@@ -100,7 +101,8 @@
       containerRef.clientWidth,
       60,
       {
-        isStatic: true
+        isStatic: true,
+        friction: 1
       }
     );
     const ground = matter.Bodies.rectangle(
@@ -108,21 +110,21 @@
       containerRef.clientHeight + 60 / 2,
       containerRef.clientWidth,
       64,
-      { isStatic: true }
+      { isStatic: true, friction: 1 }
     );
     const leftWall = matter.Bodies.rectangle(
       containerRef.clientWidth + 60 / 2,
       containerRef.clientHeight / 2,
       60,
       containerRef.clientHeight,
-      { isStatic: true }
+      { isStatic: true, friction: 1 }
     );
     const rightWall = matter.Bodies.rectangle(
       -60 / 2,
       containerRef.clientHeight / 2,
       60,
       containerRef.clientHeight,
-      { isStatic: true }
+      { isStatic: true, friction: 1 }
     );
 
     return { ground, leftWall, rightWall, ceil };
@@ -136,7 +138,7 @@
       Bodies = matter.Bodies;
 
     // Create engine
-    engine = Engine.create({ gravity: { scale: 0 } });
+    engine = Engine.create({ gravity: { scale: GRAVITY_DEFAULT_VALUE } });
 
     // Create boxes from current rendered items
     const initialBoxes = refs.map((_, i) => ({
@@ -181,6 +183,7 @@
         }
       });
 
+    // This looks hideous but it's really needed
     // Allow page scroll when mouse is hovering canvas or touch device is interacting
     mouseConstraint.mouse.element.removeEventListener(
       'mousewheel',
@@ -250,7 +253,7 @@
       engine.gravity = {
         x: 0,
         y: 1,
-        scale: checkScrollSpeed() <= 2 ? 0.0017 : -0.0013
+        scale: getScrollSpeed() <= 2 ? GRAVITY_DEFAULT_VALUE : -0.0013
       };
 
       // prevent negative gravity being stuck
@@ -258,7 +261,7 @@
         engine.gravity = {
           x: 0,
           y: 1,
-          scale: 0.0017
+          scale: GRAVITY_DEFAULT_VALUE
         };
       }, 250);
     }
@@ -324,10 +327,6 @@
       import('matter-js').then((Matter) => {
         matterInstance = Matter;
         initialization(Matter);
-
-        setTimeout(() => {
-          engine.gravity = { x: 0, y: 1, scale: 0.0017 };
-        }, 500);
       });
     }
   });
@@ -335,7 +334,11 @@
 
 <svelte:window on:resize={handleResize} on:scroll={handleTouchDeviceScroll} />
 
-<div bind:this={containerRef} class={clsx('relative isolate overflow-hidden', $$restProps.class)}>
+<div
+  bind:this={containerRef}
+  class={clsx('relative isolate overflow-hidden', $$restProps.class)}
+  style={$$restProps.style}
+>
   {#if items}
     {#each items as item, i}
       {#if item.component === 'physics-balloon-card'}

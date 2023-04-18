@@ -1,4 +1,4 @@
-export const checkScrollSpeed = (function () {
+export const getScrollSpeed = (function () {
   let lastPos: number | null,
     newPos: number,
     timer: any,

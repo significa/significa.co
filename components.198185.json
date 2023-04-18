@@ -878,7 +878,7 @@
       "name": "home-page",
       "display_name": null,
       "created_at": "2023-03-03T14:59:15.465Z",
-      "updated_at": "2023-04-10T21:34:27.851Z",
+      "updated_at": "2023-04-18T16:09:23.594Z",
       "id": 3521503,
       "schema": {
         "small_highlights": {
@@ -934,6 +934,18 @@
           "key": "about_description",
           "pos": 7
         },
+        "about_physics_cards": {
+          "type": "bloks",
+          "pos": 8,
+          "required": false,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "physics-balloon-card",
+            "physics-input",
+            "physics-rectangle-card"
+          ]
+        },
         "about_link": {
           "type": "bloks",
           "maximum": 1,
@@ -943,11 +955,11 @@
             "link"
           ],
           "key": "about_link",
-          "pos": 8
+          "pos": 9
         },
         "about_links": {
           "type": "bloks",
-          "pos": 9,
+          "pos": 10,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
@@ -959,12 +971,12 @@
         "testimonials_title1": {
           "type": "text",
           "key": "testimonials_title1",
-          "pos": 10
+          "pos": 11
         },
         "testimonials_title2": {
           "type": "text",
           "key": "testimonials_title2",
-          "pos": 11
+          "pos": 12
         },
         "testimonials_image": {
           "type": "asset",
@@ -972,7 +984,7 @@
             "images"
           ],
           "key": "testimonials_image",
-          "pos": 12
+          "pos": 13
         },
         "testimonials": {
           "type": "bloks",
@@ -984,26 +996,27 @@
           "maximum": 4,
           "minimum": 4,
           "key": "testimonials",
-          "pos": 13
+          "pos": 14
         },
         "blog_title1": {
           "type": "text",
-          "pos": 14
+          "pos": 15
         },
         "blog_title2": {
           "type": "text",
-          "pos": 15
+          "pos": 16
         },
         "handbook_title": {
           "type": "text",
-          "pos": 16
+          "pos": 17
         },
         "handbook_description": {
           "type": "textarea",
-          "pos": 17
+          "pos": 18
         },
         "careers_button_label": {
-          "type": "text"
+          "type": "text",
+          "pos": 19
         }
       },
       "image": null,

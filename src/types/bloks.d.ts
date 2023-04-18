@@ -265,6 +265,11 @@ export interface HomePageStoryblok {
   about_title1?: string;
   about_title2?: string;
   about_description?: string;
+  about_physics_cards?: (
+    | PhysicsBalloonCardStoryblok
+    | PhysicsInputStoryblok
+    | PhysicsRectangleCardStoryblok
+  )[];
   about_link?: LinkStoryblok[];
   about_links?: HomeAboutLinkStoryblok[];
   testimonials_title1?: string;

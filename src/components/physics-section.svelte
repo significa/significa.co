@@ -8,7 +8,7 @@
   import { onMount } from 'svelte';
   import BalloonCard from './physics-blocks/balloon-card.svelte';
   import RectangleCard from './physics-blocks/rectangle-card.svelte';
-  import type Matter from 'matter-js';
+  import Matter from 'matter-js';
   import PhysicsInput from './physics-blocks/physics-input.svelte';
 
   const INPUT_NAME = 'input' as const;
@@ -25,6 +25,11 @@
 
   // Active engine
   let engine: Matter.Engine;
+
+  // Limits for resize handling
+  let boxGround: Matter.Body;
+  let boxLeftWall: Matter.Body;
+  let boxRightWall: Matter.Body;
 
   // Matter
   let matterInstance: typeof Matter;
@@ -71,6 +76,35 @@
     matterInstance.Composite.add(engine.world, [newBox.body]);
   }
 
+  const getLimits = (matter: typeof Matter) => {
+    // const ceil = Bodies.rectangle(containerRef.clientWidth / 2, -60, containerRef.clientWidth, 60, {
+    //   isStatic: true
+    // });
+    const ground = matter.Bodies.rectangle(
+      containerRef.clientWidth / 2,
+      containerRef.clientHeight + 60 / 2,
+      containerRef.clientWidth,
+      60,
+      { isStatic: true }
+    );
+    const leftWall = matter.Bodies.rectangle(
+      containerRef.clientWidth + 60 / 2,
+      containerRef.clientHeight / 2,
+      60,
+      containerRef.clientHeight,
+      { isStatic: true }
+    );
+    const rightWall = matter.Bodies.rectangle(
+      -60 / 2,
+      containerRef.clientHeight / 2,
+      60,
+      containerRef.clientHeight,
+      { isStatic: true }
+    );
+
+    return { ground, leftWall, rightWall };
+  };
+
   const initialization = (matter: typeof Matter) => {
     const Engine = matter.Engine,
       MouseConstraint = matter.MouseConstraint,
@@ -104,28 +138,13 @@
     // Update boxes state with created boxes
     boxes = initialBoxes;
 
-    // Walls and ground
-    const ground = Bodies.rectangle(
-      containerRef.clientWidth / 2,
-      containerRef.clientHeight + 60 / 2,
-      containerRef.clientWidth,
-      60,
-      { isStatic: true }
-    );
-    const leftWall = Bodies.rectangle(
-      containerRef.clientWidth + 60 / 2,
-      containerRef.clientHeight / 2,
-      60,
-      containerRef.clientHeight,
-      { isStatic: true }
-    );
-    const rightWall = Bodies.rectangle(
-      -60 / 2,
-      containerRef.clientHeight / 2,
-      60,
-      containerRef.clientHeight,
-      { isStatic: true }
-    );
+    // Limits
+    const { ground, leftWall, rightWall } = getLimits(Matter);
+
+    // Update limits state to allow resize calculation if needed
+    boxGround = ground;
+    boxLeftWall = leftWall;
+    boxRightWall = rightWall;
 
     // Mouse Constraints
     const mouse = Mouse.create(containerRef),
@@ -156,6 +175,7 @@
       ...initialBoxes.map((b) => b.body),
       leftWall,
       rightWall,
+      //ceil,
       ground,
       mouseConstraint
     ]);
@@ -166,6 +186,24 @@
       window.requestAnimationFrame(run);
       Engine.update(engine, 1000 / 60);
     })();
+  };
+
+  const handleResize = () => {
+    // re-calculate limits
+    const { ground, leftWall, rightWall } = getLimits(matterInstance);
+
+    // add limits to engine
+    matterInstance.Composite.add(engine.world, [ground, leftWall, rightWall]);
+
+    // remove old limits from engine
+    matterInstance.Composite.remove(engine.world, boxGround);
+    matterInstance.Composite.remove(engine.world, boxLeftWall);
+    matterInstance.Composite.remove(engine.world, boxRightWall);
+
+    // update limits state as source of truth
+    boxGround = ground;
+    boxLeftWall = leftWall;
+    boxRightWall = rightWall;
   };
 
   onMount(() => {
@@ -224,6 +262,8 @@
     }
   };
 </script>
+
+<svelte:window on:resize={handleResize} />
 
 <div bind:this={containerRef} class={clsx('relative isolate overflow-hidden', $$restProps.class)}>
   {#if items}

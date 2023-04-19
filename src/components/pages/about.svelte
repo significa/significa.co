@@ -18,7 +18,7 @@
   <!-- Who we are -->
   <section class="mt-10 border-t md:mt-14 lg:mt-20">
     <div
-      class="container mx-auto flex flex-col justify-between gap-7 px-container py-12 xl:flex-row xl:gap-4"
+      class="container mx-auto flex flex-col justify-between gap-6 px-container py-8 lg:py-12 xl:flex-row xl:gap-4"
     >
       <div class="xl:max-w-xl">
         <h3 class="text-5xl text-foreground-secondary">{data.about_title1}</h3>
@@ -50,7 +50,7 @@
         <div class="lg:max-w-xl">
           {#each data.values as value}
             <div
-              class="flex flex-col items-start gap-4 border-t py-12 first:border-none lg:flex-row lg:items-center lg:gap-8"
+              class="flex flex-col items-start gap-4 border-t py-8 first:border-none lg:flex-row lg:items-center lg:gap-8 lg:py-12"
             >
               <!-- TODO: Replace Illustrations -->
               <PlaceholderValueIllust class="block shrink-0" />

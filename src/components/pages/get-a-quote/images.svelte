@@ -28,8 +28,8 @@
   <div class="flex gap-10" style="transform: translateX(calc({eased / 5}px * -1 + 15vw))">
     {#each page.images || [] as img}
       {#if img?.filename}
-        {@const { src, alt } = getImageAttributes(img)}
-        <img class="max-h-96" {alt} {src} />
+        {@const { src, alt, width, height } = getImageAttributes(img)}
+        <img class="max-h-96" {alt} {src} {width} {height} />
       {/if}
     {/each}
   </div>

@@ -29,7 +29,7 @@
 </script>
 
 <section class="overflow-hidden border-t">
-  <div class="container mx-auto px-container pt-12">
+  <div class="container mx-auto px-container pt-8 lg:pt-12">
     <div class="flex flex-col justify-between gap-7 xl:flex-row xl:gap-4">
       <div class="xl:max-w-lg">
         <h3 class="text-5xl text-foreground-secondary">{firstTitle}</h3>

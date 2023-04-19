@@ -1,5 +1,6 @@
 <script lang="ts">
   import ProjectEntry from '$components/project-entry.svelte';
+  import Seo from '$components/seo.svelte';
   import { t } from '$lib/i18n';
   import type { ProjectStoryblok } from '$types/bloks';
   import { Badge, Tag, TextButton } from '@significa/svelte-ui';
@@ -49,6 +50,7 @@
   });
 </script>
 
+<Seo />
 <main>
   <h1 class="container mx-auto mt-10 px-container text-7xl md:mt-14 lg:mt-20">
     {t('projects.title')}

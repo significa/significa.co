@@ -2,11 +2,11 @@
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import type { MultilinkStoryblok, RichtextTestimonialStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
-  import { onMount } from 'svelte';
   import RichTextTestimonial from '$components/blocks/rich-text-testimonial.svelte';
   import BalloonRound from './stickers/balloon-round.svelte';
   import BalloonRectangle from './stickers/balloon-rectangle.svelte';
   import Combo from './stickers/combo.svelte';
+  import clsx from 'clsx';
 
   export let firstTitle: string | undefined = undefined;
   export let secondTitle: string | undefined = undefined;
@@ -25,7 +25,7 @@
 <svelte:window bind:scrollY={scroll} />
 
 <section class="border-t" bind:this={testimonialsSection}>
-  <div class="container mx-auto px-container pt-20">
+  <div class="container mx-auto px-container pt-16 lg:pt-20">
     <div class="mx-auto flex max-w-xl flex-col items-center">
       <h3 class="text-center text-5xl text-foreground-secondary">{firstTitle}</h3>
       <p class="text-center text-5xl">{secondTitle}</p>
@@ -38,22 +38,33 @@
       {/if}
     </div>
 
-    <div class="hidden flex-col lg:flex">
+    <div class="hidden lg:block">
       {#if testimonials}
         {#each testimonials.slice(0, 5) as testimonial, i}
-          <div style:align-self={alignments[i]}>
-            <div class="flex">
+          <div class="flex w-[100%] flex-col">
+            <div
+              style:align-self={alignments[i]}
+              class={clsx(
+                'flex xl:flex-row',
+                i === 2 && 'lg:flex-col-reverse',
+                i === 1 && 'lg:flex-col'
+              )}
+            >
               {#if i === 1}
-                <BalloonRound class="hidden shrink-0 -translate-y-20 self-start xl:block" />
+                <BalloonRound class="hidden shrink-0 -translate-y-20 self-start lg:block" />
               {/if}
               {#if i === 2}
-                <BalloonRectangle class="hidden shrink-0 -translate-y-2 self-end xl:block" />
+                <BalloonRectangle class="hidden shrink-0 -translate-y-2 self-end lg:block" />
               {/if}
-              <div
-                style:transform="translate({i === 4 ? '20%' : i === 3 ? '-20%' : 0} ,{-value *
-                  speedFactors[i]}px)"
-              >
-                <RichTextTestimonial block={testimonial} class="max-w-lg xl:max-w-xl " />
+              <div style:transform="translateY({-value * speedFactors[i]}px)">
+                <RichTextTestimonial
+                  block={testimonial}
+                  class={clsx(
+                    'max-w-lg xl:max-w-xl',
+                    i === 3 && 'xl:-translate-x-[20%]',
+                    i === 4 && 'xl:translate-x-[20%]'
+                  )}
+                />
               </div>
             </div>
           </div>
@@ -67,7 +78,7 @@
       </div>
 
       {#if testimonials}
-        <div class="mt-10 flex flex-col gap-11 [&>*]:p-0">
+        <div class="mt-10 flex flex-col gap-12 [&>*]:p-0">
           {#each testimonials.slice(0, 5) as testimonial}
             <RichTextTestimonial block={testimonial} />
           {/each}

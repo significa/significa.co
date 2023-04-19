@@ -15,6 +15,7 @@
   import { page } from '$app/stores';
   import { Button, Icon } from '@significa/svelte-ui';
   import { t } from '$lib/i18n';
+  import Seo from '$components/seo.svelte';
   import { afterNavigate } from '$app/navigation';
   import { browser } from '$app/environment';
   import { theme } from '$lib/stores/theme';
@@ -31,6 +32,7 @@
   });
 </script>
 
+<Seo />
 <div class="container mx-auto px-container">
   <Slogan
     animate
@@ -57,7 +59,7 @@
 
   <section class="mt-10 md:mt-14 lg:mt-20">
     <div class="container mx-auto px-container">
-      <h3 class="text-5xl text-foreground-secondary">{data.work_title}</h3>
+      <h2 class="text-5xl text-foreground-secondary">{data.work_title}</h2>
     </div>
     <div class="mt-4 md:mt-6 lg:mt-8">
       {#each data.projects || [] as project}
@@ -71,13 +73,15 @@
   </section>
 
   <section class="container mx-auto mt-10 px-container md:mt-14 lg:mt-20">
-    <h3 class="text-5xl text-foreground-secondary">{data.testimonials_title1}</h3>
+    <h2 class="text-5xl text-foreground-secondary">{data.testimonials_title1}</h2>
     <p class="text-5xl">{data.testimonials_title2}</p>
 
     <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
       {#if data.testimonials_image?.filename}
-        {@const { src, alt } = getImageAttributes(data.testimonials_image, { size: [1200, 0] })}
-        <img class="w-full rounded-lg md:col-span-2" {src} {alt} />
+        {@const { src, alt, width, height } = getImageAttributes(data.testimonials_image, {
+          size: [1200, 0]
+        })}
+        <img class="w-full rounded-lg md:col-span-2" {src} {alt} {width} {height} />
       {/if}
       {#each data.testimonials || [] as testimonial}
         <div class="flex flex-col rounded-lg border p-6">
@@ -98,7 +102,7 @@
 
   <section class="mt-10 md:mt-14 lg:mt-20">
     <div class="container mx-auto px-container">
-      <h3 class="text-5xl text-foreground-secondary">{data.blog_title1}</h3>
+      <h2 class="text-5xl text-foreground-secondary">{data.blog_title1}</h2>
       <p class="text-5xl">{data.blog_title2}</p>
     </div>
     <div class="mt-4 md:mt-6 lg:mt-8">
@@ -113,7 +117,7 @@
       <div class="container mx-auto justify-between gap-12 px-container lg:flex">
         <div class="flex flex-1 flex-col items-start">
           <div class="w-full flex-1">
-            <h3 class="text-5xl">Careers</h3>
+            <h2 class="text-5xl">Careers</h2>
             <ul class="mt-10">
               {#each $page.data.careers as career}
                 <li class="border-b first:border-t">

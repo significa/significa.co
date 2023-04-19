@@ -14,6 +14,7 @@ export const load = async ({ params, cookies, fetch, url }) => {
 
     return { page };
   } catch (err) {
+    console.error(err);
     throw error(404, 'Not found');
   }
 };

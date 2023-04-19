@@ -274,7 +274,8 @@ export interface HomePageStoryblok {
   about_links?: HomeAboutLinkStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;
-  testimonials_image?: AssetStoryblok;
+  testimonials_cta_label?: string;
+  testimonials_cta_link?: MultilinkStoryblok;
   testimonials?: RichtextTestimonialStoryblok[];
   blog_title1?: string;
   blog_title2?: string;

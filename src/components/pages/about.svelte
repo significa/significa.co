@@ -1,11 +1,11 @@
 <script lang="ts">
   import PhysicsSection from '$components/physics-section.svelte';
+  import Testimonials from '$components/testimonials.svelte';
   import { theme } from '$lib/stores/theme';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { AboutPageStoryblok } from '$types/bloks';
   import OfficeSection from './about/office-section.svelte';
   import PlaceholderValueIllust from './about/placeholder-value-illust.svelte';
-  import Testimonials from './about/testimonials.svelte';
 
   export let data: AboutPageStoryblok;
 </script>

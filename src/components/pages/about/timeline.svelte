@@ -31,10 +31,10 @@
   // shorter screens (height) don't go well with our 800px fixed height, so we need to scale everything by a certain factor
   let windowHeight = 0;
   $: factor = windowHeight < 800 ? windowHeight / 800 : 1;
+
   onMount(() => {
     const onResize = () => {
       padding = containerSource?.getBoundingClientRect().left || 0;
-
       containerWidth = containerSource?.clientWidth || 0;
       // save window height
       windowHeight = window.innerHeight;
@@ -63,11 +63,7 @@
     class="sticky overflow-hidden"
     style="padding-left: {padding}px; top: calc(50vh - 800px / 2)"
   >
-    <div
-      aria-hidden="true"
-      class="absolute inset-0"
-      style="background-image: radial-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 32px 32px;"
-    />
+    <div aria-hidden="true" class="absolute inset-0" />
     <div
       class="flex h-[800px]"
       style="transform: translateX({Math.max(

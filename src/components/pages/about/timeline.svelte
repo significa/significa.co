@@ -26,6 +26,7 @@
   // to find the left padding of the container
   let containerSource: HTMLDivElement;
   let padding = 0;
+  let containerWidth = 0;
 
   // shorter screens (height) don't go well with our 800px fixed height, so we need to scale everything by a certain factor
   let windowHeight = 0;
@@ -33,6 +34,8 @@
   onMount(() => {
     const onResize = () => {
       padding = containerSource?.getBoundingClientRect().left || 0;
+
+      containerWidth = containerSource?.clientWidth || 0;
       // save window height
       windowHeight = window.innerHeight;
     };
@@ -54,18 +57,24 @@
 <div
   use:distanceToTop={(distance) => (top = distance)}
   class="relative"
-  style="height: calc({width + padding * 2}px + 800px / 2 * {factor})"
+  style="height: {width - containerWidth + 800 / factor}px"
 >
   <div
     class="sticky overflow-hidden"
-    style="padding-inline: {padding}px; top: calc(50vh - 800px / 2)"
+    style="padding-left: {padding}px; top: calc(50vh - 800px / 2)"
   >
     <div
       aria-hidden="true"
       class="absolute inset-0"
       style="background-image: radial-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 32px 32px;"
     />
-    <div class="flex h-[800px]" style="transform: translateX({Math.max(0, y - top) * -1}px);">
+    <div
+      class="flex h-[800px]"
+      style="transform: translateX({Math.max(
+        -width + containerWidth,
+        Math.max(0, y - top - (800 / factor - windowHeight) / 2) * -1
+      )}px);"
+    >
       {#each timeline || [] as section}
         <div
           use:storyblokEditable={section}

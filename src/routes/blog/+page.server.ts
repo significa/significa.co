@@ -16,6 +16,7 @@ export const load = async ({ fetch, cookies, url }) => {
       version: cookies.get(PREVIEW_COOKIE_KEY) ? 'draft' : 'published'
     });
   } catch (err) {
+    console.error(err);
     throw error(404, 'Not found');
   }
 };

@@ -17,7 +17,7 @@
   )}
 >
   {#if block.image?.filename}
-    {@const { src, alt } = getImageAttributes(block.image)}
+    {@const { src, alt, width, height } = getImageAttributes(block.image)}
     <div
       class={clsx(
         'flex flex-shrink-0',
@@ -25,7 +25,7 @@
         block.layout === 'vertical' && 'mb-4'
       )}
     >
-      <img class="rounded-md object-cover" {src} {alt} />
+      <img class="rounded-md object-cover" {src} {alt} {width} {height} />
     </div>
   {/if}
   <div class="flex flex-col">

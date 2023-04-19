@@ -60,7 +60,8 @@ export const TranslationKeys = [
   'contact.label.attachment.position',
   'seo.title',
   'seo.description',
-  'projects.title'
+  'projects.title',
+  'team.former'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

@@ -43,7 +43,7 @@
       {story.name}
     </h1>
     <p class="text-6xl text-foreground-secondary">
-      {story.content.position}
+      {!story.content.is_active ? `${t('team.former')} ` : ''}{story.content.position}
     </p>
   </div>
 </div>

@@ -402,28 +402,63 @@
       "name": "careers-page",
       "display_name": null,
       "created_at": "2023-04-19T14:55:51.954Z",
-      "updated_at": "2023-04-20T12:53:30.078Z",
+      "updated_at": "2023-04-20T13:56:36.608Z",
       "id": 3845873,
       "schema": {
         "page_title": {
-          "type": "text"
+          "type": "text",
+          "key": "page_title",
+          "pos": 0
         },
         "canvas": {
+          "type": "section",
+          "pos": 1,
+          "keys": [
+            "canvas_items",
+            "canvas_height",
+            "canvas_width"
+          ]
+        },
+        "canvas_width": {
+          "type": "number",
+          "default_value": "3000",
+          "pos": 2
+        },
+        "canvas_height": {
+          "type": "number",
+          "default_value": "3000",
+          "pos": 3
+        },
+        "canvas_items": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
             "canvas-group"
-          ]
+          ],
+          "key": "canvas",
+          "pos": 4
         },
         "careers_title1": {
-          "type": "text"
+          "type": "text",
+          "key": "careers_title1",
+          "pos": 5
         },
         "careers_title2": {
-          "type": "text"
+          "type": "text",
+          "key": "careers_title2",
+          "pos": 6
         },
         "careers_description": {
-          "type": "textarea"
+          "type": "textarea",
+          "key": "careers_description",
+          "pos": 7
+        },
+        "open_positions_title": {
+          "type": "text"
+        },
+        "open_positions_description": {
+          "type": "text"
         }
       },
       "image": null,

@@ -50,7 +50,7 @@
   {:else if page.component === 'get-a-quote-page' && isGetAQuotePage(page)}
     <GetAQuote {page} />
   {:else if page.component === 'careers-page' && isCareersPage(page)}
-    <Careers {page} />
+    <Careers data={page} />
   {:else if page.component === 'contacts-page'}
     <div>Contacts page</div>
   {/if}

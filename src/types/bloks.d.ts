@@ -140,10 +140,15 @@ export interface CareerStoryblok {
 
 export interface CareersPageStoryblok {
   page_title?: string;
-  canvas?: CanvasGroupStoryblok[];
+  canvas?: any;
+  canvas_width?: number;
+  canvas_height?: number;
+  canvas_items?: CanvasGroupStoryblok[];
   careers_title1?: string;
   careers_title2?: string;
   careers_description?: string;
+  open_positions_title?: string;
+  open_positions_description?: string;
   _uid: string;
   component: 'careers-page';
   [k: string]: any;

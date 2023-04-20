@@ -20,7 +20,7 @@
       {width}
       {height}
       draggable="false"
-      class={clsx(item.border && 'border-[10px] border-white drop-shadow')}
+      class={clsx(item.border && 'border-[10px] border-white drop-shadow-md')}
     />
   </div>
 {/if}

@@ -269,7 +269,7 @@
       "name": "canvas-group",
       "display_name": null,
       "created_at": "2023-04-19T14:57:33.541Z",
-      "updated_at": "2023-04-19T16:04:39.502Z",
+      "updated_at": "2023-04-20T14:57:19.422Z",
       "id": 3845878,
       "schema": {
         "width": {
@@ -299,7 +299,8 @@
           "component_whitelist": [
             "timeline-image",
             "timeline-arrow",
-            "timeline-text"
+            "timeline-text",
+            "canvas-yellow-sticker"
           ],
           "pos": 6
         }
@@ -312,6 +313,41 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "canvas-group",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "canvas-yellow-sticker",
+      "display_name": null,
+      "created_at": "2023-04-20T14:56:50.671Z",
+      "updated_at": "2023-04-20T15:06:26.358Z",
+      "id": 3853042,
+      "schema": {
+        "text": {
+          "type": "textarea"
+        },
+        "top": {
+          "type": "number"
+        },
+        "left": {
+          "type": "number"
+        },
+        "rotate": {
+          "type": "number",
+          "max_value": 360,
+          "min_value": -360
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-yellow-sticker",
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
@@ -402,30 +438,31 @@
       "name": "careers-page",
       "display_name": null,
       "created_at": "2023-04-19T14:55:51.954Z",
-      "updated_at": "2023-04-20T12:20:14.276Z",
+      "updated_at": "2023-04-20T13:56:36.608Z",
       "id": 3845873,
       "schema": {
         "page_title": {
           "type": "text",
+          "key": "page_title",
           "pos": 0
         },
         "canvas": {
           "type": "section",
           "pos": 1,
           "keys": [
-            "canvas_width",
+            "canvas_items",
             "canvas_height",
-            "canvas_items"
+            "canvas_width"
           ]
         },
         "canvas_width": {
           "type": "number",
-          "default_value": "1024",
+          "default_value": "3000",
           "pos": 2
         },
         "canvas_height": {
           "type": "number",
-          "default_value": "1024",
+          "default_value": "3000",
           "pos": 3
         },
         "canvas_items": {
@@ -435,7 +472,29 @@
           "component_whitelist": [
             "canvas-group"
           ],
+          "key": "canvas",
           "pos": 4
+        },
+        "careers_title1": {
+          "type": "text",
+          "key": "careers_title1",
+          "pos": 5
+        },
+        "careers_title2": {
+          "type": "text",
+          "key": "careers_title2",
+          "pos": 6
+        },
+        "careers_description": {
+          "type": "textarea",
+          "key": "careers_description",
+          "pos": 7
+        },
+        "open_positions_title": {
+          "type": "text"
+        },
+        "open_positions_description": {
+          "type": "text"
         }
       },
       "image": null,

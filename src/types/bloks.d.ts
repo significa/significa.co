@@ -121,9 +121,24 @@ export interface CanvasGroupStoryblok {
   height?: number;
   top?: number;
   left?: number;
-  items?: (TimelineImageStoryblok | TimelineArrowStoryblok | TimelineTextStoryblok)[];
+  items?: (
+    | TimelineImageStoryblok
+    | TimelineArrowStoryblok
+    | TimelineTextStoryblok
+    | CanvasYellowStickerStoryblok
+  )[];
   _uid: string;
   component: 'canvas-group';
+  [k: string]: any;
+}
+
+export interface CanvasYellowStickerStoryblok {
+  text?: string;
+  top?: number;
+  left?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'canvas-yellow-sticker';
   [k: string]: any;
 }
 
@@ -144,6 +159,11 @@ export interface CareersPageStoryblok {
   canvas_width?: number;
   canvas_height?: number;
   canvas_items?: CanvasGroupStoryblok[];
+  careers_title1?: string;
+  careers_title2?: string;
+  careers_description?: string;
+  open_positions_title?: string;
+  open_positions_description?: string;
   _uid: string;
   component: 'careers-page';
   [k: string]: any;

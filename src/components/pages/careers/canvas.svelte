@@ -5,6 +5,7 @@
   import Photo from './canvas-items/photo.svelte';
   import Arrow from './canvas-items/arrow.svelte';
   import Text from './canvas-items/text.svelte';
+  import YellowSticker from './canvas-items/yellow-sticker.svelte';
 
   export let title: string | undefined = undefined;
   export let height: number = 0;
@@ -86,6 +87,8 @@
             <Arrow {item} />
           {:else if item.component === 'timeline-text'}
             <Text {item} />
+          {:else if item.component === 'canvas-yellow-sticker'}
+            <YellowSticker {item} />
           {/if}
         {/each}
       </div>

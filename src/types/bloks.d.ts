@@ -141,6 +141,9 @@ export interface CareerStoryblok {
 export interface CareersPageStoryblok {
   page_title?: string;
   canvas?: CanvasGroupStoryblok[];
+  careers_title1?: string;
+  careers_title2?: string;
+  careers_description?: string;
   _uid: string;
   component: 'careers-page';
   [k: string]: any;

@@ -402,7 +402,7 @@
       "name": "careers-page",
       "display_name": null,
       "created_at": "2023-04-19T14:55:51.954Z",
-      "updated_at": "2023-04-19T15:03:02.490Z",
+      "updated_at": "2023-04-20T12:53:30.078Z",
       "id": 3845873,
       "schema": {
         "page_title": {
@@ -415,6 +415,15 @@
           "component_whitelist": [
             "canvas-group"
           ]
+        },
+        "careers_title1": {
+          "type": "text"
+        },
+        "careers_title2": {
+          "type": "text"
+        },
+        "careers_description": {
+          "type": "textarea"
         }
       },
       "image": null,

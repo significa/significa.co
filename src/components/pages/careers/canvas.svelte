@@ -3,6 +3,8 @@
   import type { CanvasGroupStoryblok } from '$types/bloks';
   import clsx from 'clsx';
   import Photo from './canvas-items/photo.svelte';
+  import Arrow from './canvas-items/arrow.svelte';
+  import Text from './canvas-items/text.svelte';
 
   export let title: string | undefined = undefined;
   export let height: number = 0;
@@ -80,6 +82,10 @@
         {#each group.items || [] as item}
           {#if item.component === 'timeline-image'}
             <Photo {item} />
+          {:else if item.component === 'timeline-arrow'}
+            <Arrow {item} />
+          {:else if item.component === 'timeline-text'}
+            <Text {item} />
           {/if}
         {/each}
       </div>

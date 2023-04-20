@@ -122,13 +122,23 @@ export interface CanvasGroupStoryblok {
   top?: number;
   left?: number;
   items?: (
-    | TimelineImageStoryblok
-    | TimelineArrowStoryblok
-    | TimelineTextStoryblok
+    | CanvasTeamStoryblok
     | CanvasYellowStickerStoryblok
+    | TimelineArrowStoryblok
+    | TimelineImageStoryblok
+    | TimelineSectionStoryblok
+    | TimelineTextStoryblok
   )[];
   _uid: string;
   component: 'canvas-group';
+  [k: string]: any;
+}
+
+export interface CanvasTeamStoryblok {
+  name?: string;
+  roster?: TeamMemberStoryblok[];
+  _uid: string;
+  component: 'canvas-team';
   [k: string]: any;
 }
 

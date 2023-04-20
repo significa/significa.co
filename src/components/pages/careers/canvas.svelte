@@ -6,6 +6,7 @@
   import Arrow from './canvas-items/arrow.svelte';
   import Text from './canvas-items/text.svelte';
   import YellowSticker from './canvas-items/yellow-sticker.svelte';
+  import Team from './canvas-items/team.svelte';
 
   export let title: string | undefined = undefined;
   export let height: number = 0;
@@ -89,6 +90,8 @@
             <Text {item} />
           {:else if item.component === 'canvas-yellow-sticker'}
             <YellowSticker {item} />
+          {:else if item.component === 'canvas-team'}
+            <Team {item} />
           {/if}
         {/each}
       </div>

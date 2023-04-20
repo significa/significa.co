@@ -13,7 +13,7 @@ import { HOME_SLUG } from './constants';
 export const PAGE_PARAMS = {
   resolve_links: 'url',
   resolve_relations:
-    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects'
+    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects,canvas-team.roster'
 } as const;
 
 export const BLOG_PARAMS = {

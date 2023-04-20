@@ -269,7 +269,7 @@
       "name": "canvas-group",
       "display_name": null,
       "created_at": "2023-04-19T14:57:33.541Z",
-      "updated_at": "2023-04-20T14:57:19.422Z",
+      "updated_at": "2023-04-20T15:56:42.375Z",
       "id": 3845878,
       "schema": {
         "width": {
@@ -294,15 +294,13 @@
         },
         "items": {
           "type": "bloks",
-          "restrict_type": "",
+          "restrict_type": "groups",
           "restrict_components": true,
-          "component_whitelist": [
-            "timeline-image",
-            "timeline-arrow",
-            "timeline-text",
-            "canvas-yellow-sticker"
-          ],
-          "pos": 6
+          "component_whitelist": [],
+          "pos": 6,
+          "component_group_whitelist": [
+            "3c80dc73-98c3-4c97-a2b2-44541c933f72"
+          ]
         }
       },
       "image": null,
@@ -317,6 +315,38 @@
       "color": null,
       "icon": null,
       "component_group_name": "Single"
+    },
+    {
+      "name": "canvas-team",
+      "display_name": null,
+      "created_at": "2023-04-20T15:57:09.434Z",
+      "updated_at": "2023-04-20T15:58:02.789Z",
+      "id": 3853263,
+      "schema": {
+        "name": {
+          "type": "text"
+        },
+        "roster": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "team-member"
+          ]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-team",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
     },
     {
       "name": "canvas-yellow-sticker",
@@ -348,10 +378,10 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "canvas-yellow-sticker",
-      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
-      "component_group_name": "Single"
+      "component_group_name": "Canvas"
     },
     {
       "name": "career",
@@ -2298,10 +2328,10 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "timeline-arrow",
-      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
-      "component_group_name": "Single"
+      "component_group_name": "Canvas"
     },
     {
       "name": "timeline-image",
@@ -2352,10 +2382,10 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "timeline-image",
-      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
-      "component_group_name": "Single"
+      "component_group_name": "Canvas"
     },
     {
       "name": "timeline-section",
@@ -2390,10 +2420,10 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "timeline-section",
-      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
-      "component_group_name": "Single"
+      "component_group_name": "Canvas"
     },
     {
       "name": "timeline-text",
@@ -2446,10 +2476,10 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "timeline-text",
-      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
-      "component_group_name": "Single"
+      "component_group_name": "Canvas"
     },
     {
       "name": "two-columns",

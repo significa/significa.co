@@ -402,19 +402,40 @@
       "name": "careers-page",
       "display_name": null,
       "created_at": "2023-04-19T14:55:51.954Z",
-      "updated_at": "2023-04-19T15:03:02.490Z",
+      "updated_at": "2023-04-20T12:20:14.276Z",
       "id": 3845873,
       "schema": {
         "page_title": {
-          "type": "text"
+          "type": "text",
+          "pos": 0
         },
         "canvas": {
+          "type": "section",
+          "pos": 1,
+          "keys": [
+            "canvas_width",
+            "canvas_height",
+            "canvas_items"
+          ]
+        },
+        "canvas_width": {
+          "type": "number",
+          "default_value": "1024",
+          "pos": 2
+        },
+        "canvas_height": {
+          "type": "number",
+          "default_value": "1024",
+          "pos": 3
+        },
+        "canvas_items": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
             "canvas-group"
-          ]
+          ],
+          "pos": 4
         }
       },
       "image": null,

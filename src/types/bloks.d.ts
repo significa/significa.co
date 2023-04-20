@@ -1,6 +1,86 @@
 import { StoryblokStory } from 'storyblok-generate-ts';
 
+export type MultilinkStoryblok =
+  | {
+      cached_url?: string;
+      linktype?: string;
+      [k: string]: any;
+    }
+  | {
+      id?: string;
+      cached_url?: string;
+      anchor?: string;
+      linktype?: 'story';
+      story?: {
+        name: string;
+        created_at?: string;
+        published_at?: string;
+        id: number;
+        uuid: string;
+        content?: {
+          [k: string]: any;
+        };
+        slug: string;
+        full_slug: string;
+        sort_by_date?: null | string;
+        position?: number;
+        tag_list?: string[];
+        is_startpage?: boolean;
+        parent_id?: null | number;
+        meta_data?: null | {
+          [k: string]: any;
+        };
+        group_id?: string;
+        first_published_at?: string;
+        release_id?: null | number;
+        lang?: string;
+        path?: null | string;
+        alternates?: any[];
+        default_full_slug?: null | string;
+        translated_slugs?: null | any[];
+        [k: string]: any;
+      };
+      [k: string]: any;
+    }
+  | {
+      url?: string;
+      cached_url?: string;
+      anchor?: string;
+      linktype?: 'asset' | 'url';
+      [k: string]: any;
+    }
+  | {
+      email?: string;
+      linktype?: 'email';
+      [k: string]: any;
+    };
+
 export interface AboutPageStoryblok {
+  page_title?: string;
+  physics_blocks?: (
+    | PhysicsBalloonCardStoryblok
+    | PhysicsRectangleCardStoryblok
+    | PhysicsInputStoryblok
+  )[];
+  about_title1?: string;
+  about_title2?: string;
+  about_description?: string;
+  timeline?: TimelineSectionStoryblok[];
+  values_title1?: string;
+  values_title2?: string;
+  values_description?: string;
+  values?: ValueStoryblok[];
+  testimonials_title1?: string;
+  testimonials_title2?: string;
+  testimonials_cta_label?: string;
+  testimonials_cta_link?: MultilinkStoryblok;
+  testimonials?: RichtextTestimonialStoryblok[];
+  clients_title?: string;
+  clients?: ClientLogoStoryblok[];
+  office_title1?: string;
+  office_title2?: string;
+  office_description?: string;
+  office_cards?: (NotepadCardStoryblok | PhotoCardStoryblok)[];
   _uid: string;
   component: 'about-page';
   [k: string]: any;
@@ -36,6 +116,17 @@ export interface BlogPostStoryblok {
   [k: string]: any;
 }
 
+export interface CanvasGroupStoryblok {
+  width?: number;
+  height?: number;
+  top?: number;
+  left?: number;
+  items?: (TimelineImageStoryblok | TimelineArrowStoryblok | TimelineTextStoryblok)[];
+  _uid: string;
+  component: 'canvas-group';
+  [k: string]: any;
+}
+
 export interface CareerStoryblok {
   cover?: AssetStoryblok;
   body?: any;
@@ -47,10 +138,26 @@ export interface CareerStoryblok {
   [k: string]: any;
 }
 
+export interface CareersPageStoryblok {
+  page_title?: string;
+  canvas?: CanvasGroupStoryblok[];
+  _uid: string;
+  component: 'careers-page';
+  [k: string]: any;
+}
+
 export interface ClientStoryblok {
   catech_labs?: string;
   _uid: string;
   component: 'client';
+  [k: string]: any;
+}
+
+export interface ClientLogoStoryblok {
+  light_mode?: AssetStoryblok;
+  dark_mode?: AssetStoryblok;
+  _uid: string;
+  component: 'client-logo';
   [k: string]: any;
 }
 
@@ -152,61 +259,6 @@ export interface HandbookStoryblok {
   [k: string]: any;
 }
 
-export type MultilinkStoryblok =
-  | {
-      cached_url?: string;
-      linktype?: string;
-      [k: string]: any;
-    }
-  | {
-      id?: string;
-      cached_url?: string;
-      anchor?: string;
-      linktype?: 'story';
-      story?: {
-        name: string;
-        created_at?: string;
-        published_at?: string;
-        id: number;
-        uuid: string;
-        content?: {
-          [k: string]: any;
-        };
-        slug: string;
-        full_slug: string;
-        sort_by_date?: null | string;
-        position?: number;
-        tag_list?: string[];
-        is_startpage?: boolean;
-        parent_id?: null | number;
-        meta_data?: null | {
-          [k: string]: any;
-        };
-        group_id?: string;
-        first_published_at?: string;
-        release_id?: null | number;
-        lang?: string;
-        path?: null | string;
-        alternates?: any[];
-        default_full_slug?: null | string;
-        translated_slugs?: null | any[];
-        [k: string]: any;
-      };
-      [k: string]: any;
-    }
-  | {
-      url?: string;
-      cached_url?: string;
-      anchor?: string;
-      linktype?: 'asset' | 'url';
-      [k: string]: any;
-    }
-  | {
-      email?: string;
-      linktype?: 'email';
-      [k: string]: any;
-    };
-
 export interface HomeAboutLinkStoryblok {
   title?: string;
   description?: string;
@@ -232,11 +284,17 @@ export interface HomePageStoryblok {
   about_title1?: string;
   about_title2?: string;
   about_description?: string;
+  about_physics_cards?: (
+    | PhysicsBalloonCardStoryblok
+    | PhysicsInputStoryblok
+    | PhysicsRectangleCardStoryblok
+  )[];
   about_link?: LinkStoryblok[];
   about_links?: HomeAboutLinkStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;
-  testimonials_image?: AssetStoryblok;
+  testimonials_cta_label?: string;
+  testimonials_cta_link?: MultilinkStoryblok;
   testimonials?: RichtextTestimonialStoryblok[];
   blog_title1?: string;
   blog_title2?: string;
@@ -275,10 +333,18 @@ export interface LinkStoryblok {
   [k: string]: any;
 }
 
+export interface NotepadCardStoryblok {
+  text?: string;
+  _uid: string;
+  component: 'notepad_card';
+  [k: string]: any;
+}
+
 export interface PageStoryblok {
   page?: (
     | AboutPageStoryblok
     | BlogIndexStoryblok
+    | CareersPageStoryblok
     | ContactsPageStoryblok
     | GetAQuotePageStoryblok
     | HomePageStoryblok
@@ -291,6 +357,36 @@ export interface PageStoryblok {
   _uid: string;
   component: 'page';
   uuid?: string;
+  [k: string]: any;
+}
+
+export interface PhotoCardStoryblok {
+  photo?: AssetStoryblok;
+  _uid: string;
+  component: 'photo_card';
+  [k: string]: any;
+}
+
+export interface PhysicsBalloonCardStoryblok {
+  text?: string;
+  theme?: 'inverted' | 'panel' | 'offset' | 'yellow';
+  _uid: string;
+  component: 'physics-balloon-card';
+  [k: string]: any;
+}
+
+export interface PhysicsInputStoryblok {
+  placeholder?: string;
+  _uid: string;
+  component: 'physics-input';
+  [k: string]: any;
+}
+
+export interface PhysicsRectangleCardStoryblok {
+  text?: string;
+  theme?: 'transparent' | 'yellow';
+  _uid: string;
+  component: 'physics-rectangle-card';
   [k: string]: any;
 }
 
@@ -394,6 +490,7 @@ export interface TeamMemberStoryblok {
   photo?: AssetStoryblok;
   egg?: AssetStoryblok;
   position?: string;
+  team?: number | string;
   bio?: string;
   links?: TeamMemberLinkStoryblok[];
   is_active?: boolean;
@@ -421,11 +518,62 @@ export interface TeamMemberLinkStoryblok {
   [k: string]: any;
 }
 
+export interface TimelineArrowStoryblok {
+  variant: '' | 'one' | 'two' | 'three' | 'four' | 'five';
+  top: number;
+  left: number;
+  scale?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'timeline-arrow';
+  [k: string]: any;
+}
+
+export interface TimelineImageStoryblok {
+  image?: AssetStoryblok;
+  border?: boolean;
+  top: number;
+  left: number;
+  scale?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'timeline-image';
+  [k: string]: any;
+}
+
+export interface TimelineSectionStoryblok {
+  items?: (TimelineArrowStoryblok | TimelineImageStoryblok | TimelineTextStoryblok)[];
+  width: number;
+  _uid: string;
+  component: 'timeline-section';
+  [k: string]: any;
+}
+
+export interface TimelineTextStoryblok {
+  text?: string;
+  link?: LinkStoryblok[];
+  width: number;
+  top: number;
+  left: number;
+  _uid: string;
+  component: 'timeline-text';
+  [k: string]: any;
+}
+
 export interface TwoColumnsStoryblok {
   width?: '' | 'wide';
   columns: (ColumnMediaStoryblok | ColumnStoryblok)[];
   _uid: string;
   component: 'two-columns';
+  [k: string]: any;
+}
+
+export interface ValueStoryblok {
+  illustration?: any;
+  title?: string;
+  description?: string;
+  _uid: string;
+  component: 'value';
   [k: string]: any;
 }
 

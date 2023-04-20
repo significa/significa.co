@@ -1,5 +1,10 @@
 <script lang="ts">
-  import type { GetAQuotePageStoryblok, HomePageStoryblok, PageStoryblok } from '$types/bloks';
+  import type {
+    CareersPageStoryblok,
+    GetAQuotePageStoryblok,
+    HomePageStoryblok,
+    PageStoryblok
+  } from '$types/bloks';
   import type { ISbStoryData } from '@storyblok/js';
   import GetAQuote from './get-a-quote.svelte';
   import BlogIndex from './blog-index.svelte';
@@ -7,6 +12,7 @@
   import ProjectsIndex from './projects-index.svelte';
   import HomePage from './home-page.svelte';
   import StaticPage from './static-page.svelte';
+  import Careers from './careers.svelte';
 
   /**
    * This is the "Page" content-type that is used to render all of the "static content" pages.
@@ -24,6 +30,10 @@
   const isHomePage = (page: { component: string }): page is HomePageStoryblok => {
     return page.component === 'home-page';
   };
+
+  const isCareersPage = (page: { component: string }): page is CareersPageStoryblok => {
+    return page.component === 'careers-page';
+  };
 </script>
 
 {#each story.content.page || [] as page}
@@ -39,6 +49,8 @@
     <ProjectsIndex projects={projectsIndex} />
   {:else if page.component === 'get-a-quote-page' && isGetAQuotePage(page)}
     <GetAQuote {page} />
+  {:else if page.component === 'careers-page' && isCareersPage(page)}
+    <Careers {page} />
   {:else if page.component === 'contacts-page'}
     <div>Contacts page</div>
   {/if}

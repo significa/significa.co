@@ -85,16 +85,16 @@
     <div
       class="container mx-auto flex flex-col justify-between gap-6 px-container pt-8 lg:pt-12 xl:flex-row xl:gap-4"
     >
-      <div class="sticky top-0 xl:max-w-xl">
+      <div class="xl:sticky xl:top-8 xl:max-w-xl xl:self-start">
         <h3 class="text-5xl text-foreground-secondary">{data.benefits_title}</h3>
         <p class="text-5xl">{data.benefits_description}</p>
       </div>
 
       {#if data.benefits}
-        <div class="grid grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           {#each data.benefits as benefits, index}
             <div
-              class="flex max-w-xs flex-col"
+              class="flex flex-col xl:max-w-xs"
               style="margin-top: {index % 2 !== 0 ? '26px' : '0px'}"
             >
               <BenefitsIcons icon={benefits.icon || 'book'} class="mb-6" />

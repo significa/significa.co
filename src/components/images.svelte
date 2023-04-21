@@ -1,9 +1,9 @@
 <script lang="ts">
   import { getImageAttributes } from '$lib/utils/cms';
-  import type { GetAQuotePageStoryblok } from '$types/bloks';
+  import type { CareersPageStoryblok, GetAQuotePageStoryblok } from '$types/bloks';
   import { onMount } from 'svelte';
 
-  export let page: GetAQuotePageStoryblok;
+  export let page: GetAQuotePageStoryblok | CareersPageStoryblok;
 
   let y = 0;
   let eased = 0;

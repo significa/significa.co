@@ -2,7 +2,7 @@
   import Seo from '$components/seo.svelte';
   import type { GetAQuotePageStoryblok } from '$types/bloks';
   import Form from './get-a-quote/form.svelte';
-  import Images from './get-a-quote/images.svelte';
+  import Images from '../images.svelte';
   import Steps from './get-a-quote/steps.svelte';
   import Timezone from './get-a-quote/timezone.svelte';
 

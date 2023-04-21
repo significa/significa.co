@@ -86,6 +86,31 @@ export interface AboutPageStoryblok {
   [k: string]: any;
 }
 
+export interface BenefitsEntryStoryblok {
+  icon?:
+    | ''
+    | 'clock'
+    | 'book'
+    | 'laptop'
+    | 'tshape'
+    | 'baby'
+    | 'backpack'
+    | 'bus'
+    | 'calendar'
+    | 'fire'
+    | 'gym'
+    | 'health'
+    | 'heart'
+    | 'referral'
+    | 'sun'
+    | 'support';
+  title?: string;
+  description?: string;
+  _uid: string;
+  component: 'benefits-entry';
+  [k: string]: any;
+}
+
 export interface BlogIndexStoryblok {
   _uid: string;
   component: 'blog-index';
@@ -121,9 +146,46 @@ export interface CanvasGroupStoryblok {
   height?: number;
   top?: number;
   left?: number;
-  items?: (TimelineImageStoryblok | TimelineArrowStoryblok | TimelineTextStoryblok)[];
+  items?: (
+    | CanvasTalkBalloonStoryblok
+    | CanvasTeamStoryblok
+    | CanvasYellowStickerStoryblok
+    | TimelineArrowStoryblok
+    | TimelineImageStoryblok
+    | TimelineSectionStoryblok
+    | TimelineTextStoryblok
+  )[];
   _uid: string;
   component: 'canvas-group';
+  [k: string]: any;
+}
+
+export interface CanvasTalkBalloonStoryblok {
+  position?: 'left' | 'right';
+  text?: string;
+  top?: number;
+  left?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'canvas-talk-balloon';
+  [k: string]: any;
+}
+
+export interface CanvasTeamStoryblok {
+  name?: string;
+  roster?: (StoryblokStory<TeamMemberStoryblok> | string)[];
+  _uid: string;
+  component: 'canvas-team';
+  [k: string]: any;
+}
+
+export interface CanvasYellowStickerStoryblok {
+  text?: string;
+  top?: number;
+  left?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'canvas-yellow-sticker';
   [k: string]: any;
 }
 
@@ -138,6 +200,16 @@ export interface CareerStoryblok {
   [k: string]: any;
 }
 
+export type MultiassetStoryblok = {
+  alt?: string;
+  copyright?: string;
+  id: number;
+  filename: string;
+  name: string;
+  title?: string;
+  [k: string]: any;
+}[];
+
 export interface CareersPageStoryblok {
   page_title?: string;
   canvas?: any;
@@ -149,6 +221,10 @@ export interface CareersPageStoryblok {
   careers_description?: string;
   open_positions_title?: string;
   open_positions_description?: string;
+  images?: MultiassetStoryblok;
+  benefits_title?: string;
+  benefits_description?: string;
+  benefits?: BenefitsEntryStoryblok[];
   _uid: string;
   component: 'careers-page';
   [k: string]: any;
@@ -222,16 +298,6 @@ export interface FooterColumnInternalStoryblok {
   component: 'footer-column-internal';
   [k: string]: any;
 }
-
-export type MultiassetStoryblok = {
-  alt?: string;
-  copyright?: string;
-  id: number;
-  filename: string;
-  name: string;
-  title?: string;
-  [k: string]: any;
-}[];
 
 export interface GetAQuotePageStoryblok {
   title?: string;

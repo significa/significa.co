@@ -146,6 +146,115 @@
       "component_group_name": "Pages"
     },
     {
+      "name": "benefits-entry",
+      "display_name": null,
+      "created_at": "2023-04-21T09:26:11.845Z",
+      "updated_at": "2023-04-21T13:10:06.059Z",
+      "id": 3857099,
+      "schema": {
+        "icon": {
+          "type": "option",
+          "filetypes": [],
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "7617b9d0-bf7d-484a-966c-9f08f4e33837",
+              "name": "Clock",
+              "value": "clock"
+            },
+            {
+              "_uid": "21a4793f-3cd3-439c-9b95-13f087df890b",
+              "value": "book",
+              "name": "Book"
+            },
+            {
+              "_uid": "37b0b296-a88a-4cde-ac5a-1104a6670211",
+              "value": "laptop",
+              "name": "Laptop"
+            },
+            {
+              "_uid": "c768d570-18d8-4a1b-a34f-f30bb7a82aa7",
+              "value": "tshape",
+              "name": "Tshape"
+            },
+            {
+              "_uid": "3f08bf5a-13e4-4a3e-b099-170be12c209c",
+              "value": "baby",
+              "name": "Baby"
+            },
+            {
+              "_uid": "ccfc4af0-b5bf-423b-a3ce-af307dd1f242",
+              "value": "backpack",
+              "name": "Backpack"
+            },
+            {
+              "_uid": "b09e5bc3-9657-4626-8a37-5d570ea9ed08",
+              "value": "bus",
+              "name": "Bus"
+            },
+            {
+              "_uid": "b513d974-d9d3-4089-8fcd-6e024cb2b2c7",
+              "value": "calendar",
+              "name": "Calendar"
+            },
+            {
+              "_uid": "fec4111c-1671-42ae-9385-865d5d1d00d3",
+              "value": "fire",
+              "name": "Fire"
+            },
+            {
+              "_uid": "97620d71-2e84-48d1-96b3-64d26ab93b8a",
+              "value": "gym",
+              "name": "Gym"
+            },
+            {
+              "_uid": "cb71c94c-c7ba-491f-822f-a0478280a895",
+              "value": "health",
+              "name": "Health"
+            },
+            {
+              "_uid": "a7b3b7fe-3357-441b-aafd-3058e52ab5d0",
+              "value": "heart",
+              "name": "Heart"
+            },
+            {
+              "_uid": "79967437-ee22-4642-90a7-0eb652c03231",
+              "value": "referral",
+              "name": "Referral"
+            },
+            {
+              "_uid": "9d8751c4-2d56-489c-be34-345e1d9c6d56",
+              "value": "sun",
+              "name": "Sun"
+            },
+            {
+              "_uid": "00a6644b-3a3d-43be-a9f8-ee05c1b58bb9",
+              "value": "support",
+              "name": "Support"
+            }
+          ]
+        },
+        "title": {
+          "type": "text"
+        },
+        "description": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "benefits-entry",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "blog-index",
       "display_name": null,
       "created_at": "2023-03-15T11:28:33.845Z",
@@ -269,7 +378,7 @@
       "name": "canvas-group",
       "display_name": null,
       "created_at": "2023-04-19T14:57:33.541Z",
-      "updated_at": "2023-04-19T16:04:39.502Z",
+      "updated_at": "2023-04-21T12:48:20.536Z",
       "id": 3845878,
       "schema": {
         "width": {
@@ -285,23 +394,26 @@
         "top": {
           "type": "number",
           "decimals": 0,
-          "pos": 2
+          "pos": 2,
+          "default_value": "0",
+          "description": "0 is approximately the vertical center of the canvas"
         },
         "left": {
           "type": "number",
           "decimals": 0,
-          "pos": 3
+          "pos": 3,
+          "default_value": "0",
+          "description": "0 is approximately the horizontal center of the canvas"
         },
         "items": {
           "type": "bloks",
-          "restrict_type": "",
+          "restrict_type": "groups",
           "restrict_components": true,
-          "component_whitelist": [
-            "timeline-image",
-            "timeline-arrow",
-            "timeline-text"
-          ],
-          "pos": 6
+          "component_whitelist": [],
+          "pos": 6,
+          "component_group_whitelist": [
+            "3c80dc73-98c3-4c97-a2b2-44541c933f72"
+          ]
         }
       },
       "image": null,
@@ -316,6 +428,134 @@
       "color": null,
       "icon": null,
       "component_group_name": "Single"
+    },
+    {
+      "name": "canvas-talk-balloon",
+      "display_name": null,
+      "created_at": "2023-04-21T11:10:59.947Z",
+      "updated_at": "2023-04-21T11:23:40.749Z",
+      "id": 3857957,
+      "schema": {
+        "position": {
+          "type": "option",
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "053e2f45-072e-432f-8865-5f168571b358",
+              "name": "Left",
+              "value": "left"
+            },
+            {
+              "_uid": "f097330e-798c-485a-bc94-0ae110165f48",
+              "value": "right",
+              "name": "Right"
+            }
+          ],
+          "exclude_empty_option": true,
+          "default_value": "right",
+          "pos": 0
+        },
+        "text": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "top": {
+          "type": "number",
+          "pos": 2
+        },
+        "left": {
+          "type": "number",
+          "use_uuid": true,
+          "pos": 3
+        },
+        "rotate": {
+          "type": "number",
+          "pos": 4
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-talk-balloon",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
+      "name": "canvas-team",
+      "display_name": null,
+      "created_at": "2023-04-20T15:57:09.434Z",
+      "updated_at": "2023-04-20T16:02:22.104Z",
+      "id": 3853263,
+      "schema": {
+        "name": {
+          "type": "text"
+        },
+        "roster": {
+          "type": "options",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "team-member"
+          ],
+          "source": "internal_stories",
+          "filter_content_type": [
+            "team-member"
+          ]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-team",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
+      "name": "canvas-yellow-sticker",
+      "display_name": null,
+      "created_at": "2023-04-20T14:56:50.671Z",
+      "updated_at": "2023-04-20T15:06:26.358Z",
+      "id": 3853042,
+      "schema": {
+        "text": {
+          "type": "textarea"
+        },
+        "top": {
+          "type": "number"
+        },
+        "left": {
+          "type": "number"
+        },
+        "rotate": {
+          "type": "number",
+          "max_value": 360,
+          "min_value": -360
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-yellow-sticker",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
     },
     {
       "name": "career",
@@ -402,7 +642,7 @@
       "name": "careers-page",
       "display_name": null,
       "created_at": "2023-04-19T14:55:51.954Z",
-      "updated_at": "2023-04-20T13:56:36.608Z",
+      "updated_at": "2023-04-21T09:28:18.507Z",
       "id": 3845873,
       "schema": {
         "page_title": {
@@ -459,6 +699,26 @@
         },
         "open_positions_description": {
           "type": "text"
+        },
+        "images": {
+          "type": "multiasset",
+          "filetypes": [
+            "images"
+          ]
+        },
+        "benefits_title": {
+          "type": "text"
+        },
+        "benefits_description": {
+          "type": "text"
+        },
+        "benefits": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "benefits-entry"
+          ]
         }
       },
       "image": null,
@@ -2262,10 +2522,10 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "timeline-arrow",
-      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
-      "component_group_name": "Single"
+      "component_group_name": "Canvas"
     },
     {
       "name": "timeline-image",
@@ -2316,10 +2576,10 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "timeline-image",
-      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
-      "component_group_name": "Single"
+      "component_group_name": "Canvas"
     },
     {
       "name": "timeline-section",
@@ -2354,10 +2614,10 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "timeline-section",
-      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
-      "component_group_name": "Single"
+      "component_group_name": "Canvas"
     },
     {
       "name": "timeline-text",
@@ -2410,10 +2670,10 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "timeline-text",
-      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
-      "component_group_name": "Single"
+      "component_group_name": "Canvas"
     },
     {
       "name": "two-columns",

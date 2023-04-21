@@ -4,6 +4,8 @@
   import { t } from '$lib/i18n';
   import { page } from '$app/stores';
   import { Button, Link } from '@significa/svelte-ui';
+  import Images from '../images.svelte';
+  import BenefitsIcons from './careers/benefits-icons.svelte';
 
   export let data: CareersPageStoryblok;
 </script>
@@ -74,4 +76,36 @@
       </div>
     </section>
   {/if}
+
+  <Images page={data} />
+
+  <!-- Benefits -->
+
+  <section class="mt-10 md:mt-14 lg:mt-20">
+    <div
+      class="container mx-auto flex flex-col justify-between gap-6 px-container pt-8 lg:pt-12 xl:flex-row xl:gap-4"
+    >
+      <div class="sticky top-0 xl:max-w-xl">
+        <h3 class="text-5xl text-foreground-secondary">{data.benefits_title}</h3>
+        <p class="text-5xl">{data.benefits_description}</p>
+      </div>
+
+      {#if data.benefits}
+        <div class="grid grid-cols-2 gap-6">
+          {#each data.benefits as benefits, index}
+            <div
+              class="flex max-w-xs flex-col"
+              style="margin-top: {index % 2 !== 0 ? '26px' : '0px'}"
+            >
+              <BenefitsIcons icon={benefits.icon || 'book'} class="mb-6" />
+              <div class="text-lg font-semibold">{benefits.title}</div>
+              <div class="text-lg font-semibold text-foreground-secondary">
+                {benefits.description}
+              </div>
+            </div>
+          {/each}
+        </div>
+      {/if}
+    </div>
+  </section>
 </main>

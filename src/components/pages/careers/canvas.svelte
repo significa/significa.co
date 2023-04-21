@@ -8,6 +8,7 @@
   import YellowSticker from './canvas-items/yellow-sticker.svelte';
   import Team from './canvas-items/team.svelte';
 
+  export let withMouseDragScroll = false;
   export let title: string | undefined = undefined;
   export let height: number = 0;
   export let width: number = 0;
@@ -17,55 +18,63 @@
   let offsetY = (height || 0) / 2;
 
   const dragScrolling = (node: HTMLElement) => {
-    // moving state
-    let moving = false;
+    if (withMouseDragScroll) {
+      // state
+      let dragging = false;
 
-    // overflow hidden allows forced scroll which is really nice
-    node.style.overflow = 'hidden';
-    node.style.cursor = 'grab';
-
-    // center
-    node.scrollLeft = (node.scrollWidth - node.clientWidth) / 2;
-    node.scrollTop = (node.scrollHeight - 240) / 2;
-
-    // save initial state
-    let left = node.scrollLeft;
-    let top = node.scrollTop;
-
-    node.addEventListener('mousedown', () => {
-      moving = true;
-      node.style.cursor = 'grabbing';
-      node.style.userSelect = 'none';
-    });
-
-    node.addEventListener('mousemove', (e) => {
-      if (moving) {
-        left -= e.movementX;
-        top -= e.movementY;
-
-        node.scrollLeft = left;
-        node.scrollTop = top;
-      }
-    });
-
-    node.addEventListener('mouseup', () => {
-      moving = false;
+      // overflow hidden allows forced scroll which is really nice
+      node.style.overflow = 'hidden';
       node.style.cursor = 'grab';
-      node.style.userSelect = 'unset';
-    });
 
-    // prevent stuck drag when leaving node still pressing
-    node.addEventListener('mouseleave', () => {
-      moving = false;
-      node.style.cursor = 'grab';
-      node.style.userSelect = 'unset';
-    });
+      // center
+      node.scrollLeft = (node.scrollWidth - node.clientWidth) / 2;
+      node.scrollTop = (node.scrollHeight - 240) / 2;
+
+      // save initial state
+      let left = node.scrollLeft;
+      let top = node.scrollTop;
+
+      node.addEventListener('mousedown', () => {
+        dragging = true;
+        node.style.cursor = 'grabbing';
+        node.style.userSelect = 'none';
+      });
+
+      node.addEventListener('mousemove', (e) => {
+        if (dragging) {
+          left -= e.movementX;
+          top -= e.movementY;
+
+          node.scrollLeft = left;
+          node.scrollTop = top;
+        }
+      });
+
+      node.addEventListener('mouseup', () => {
+        dragging = false;
+        node.style.cursor = 'grab';
+        node.style.userSelect = 'unset';
+      });
+
+      // prevent stuck drag when leaving node still pressing
+      node.addEventListener('mouseleave', () => {
+        dragging = false;
+        node.style.cursor = 'grab';
+        node.style.userSelect = 'unset';
+      });
+    } else {
+      node.style.overflow = 'auto';
+
+      // center
+      node.scrollLeft = (node.scrollWidth - node.clientWidth) / 2;
+      node.scrollTop = (node.scrollHeight - 240) / 2;
+    }
   };
 </script>
 
-<section use:dragScrolling style="height: min({height}px ,calc(100vh - 76px));">
+<div use:dragScrolling style={$$restProps.style} class={$$restProps.class}>
   <div
-    class={clsx('relative', $$restProps.class)}
+    class={clsx('relative mx-auto', $$restProps.class)}
     style="width: {width || 0}px; height: {height ||
       0}px; background-image: radial-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 24px 24px;"
   >
@@ -97,4 +106,4 @@
       </div>
     {/each}
   </div>
-</section>
+</div>

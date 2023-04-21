@@ -87,7 +87,23 @@ export interface AboutPageStoryblok {
 }
 
 export interface BenefitsEntryStoryblok {
-  icon?: '' | 'clock' | 'book' | 'laptop' | 'tshape';
+  icon?:
+    | ''
+    | 'clock'
+    | 'book'
+    | 'laptop'
+    | 'tshape'
+    | 'baby'
+    | 'backpack'
+    | 'bus'
+    | 'calendar'
+    | 'fire'
+    | 'gym'
+    | 'health'
+    | 'heart'
+    | 'referral'
+    | 'sun'
+    | 'support';
   title?: string;
   description?: string;
   _uid: string;
@@ -578,6 +594,7 @@ export interface TeamMemberLinkStoryblok {
 
 export interface TimelineArrowStoryblok {
   variant: '' | 'one' | 'two' | 'three' | 'four' | 'five';
+  flip?: boolean;
   top: number;
   left: number;
   scale?: number;

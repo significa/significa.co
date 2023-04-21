@@ -15,7 +15,7 @@
 <div
   class="absolute text-foreground-secondary"
   style="left: {item.left || 0}px; top: {item.top || 0}px; transform: scale({item.scale ||
-    1}) rotate({item.rotate || 0}deg)"
+    1}) rotate({item.rotate || 0}deg) scaleX({item.flip ? '-1' : '1'})"
 >
   {@html arrows[item.variant]}
 </div>

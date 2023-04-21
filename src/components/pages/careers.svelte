@@ -48,8 +48,11 @@
         <div class="flex flex-1 flex-col items-start">
           <div class="w-full flex-1">
             <ul>
+              <!-- hover:bg-foreground-tertiary/10 -->
               {#each $page.data.careers as career}
-                <li class="border-b first:border-t hover:bg-foreground-tertiary/10">
+                <li
+                  class="border-b bg-gradient-to-r first:border-t hover:from-transparent hover:via-foreground-tertiary/10 hover:to-transparent"
+                >
                   <a
                     class="flex w-full items-center justify-between py-7 text-2xl font-semibold transition-colors hover:text-foreground-secondary"
                     href={career.full_slug}

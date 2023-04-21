@@ -42,7 +42,7 @@
   </section>
 
   <!-- What define us -->
-  <section class="mt-10 border-t md:mt-14 lg:mt-20">
+  <section class="border-t">
     <div
       class="container mx-auto flex flex-col justify-between gap-6 px-container py-8 lg:py-12 xl:flex-row xl:gap-4"
     >

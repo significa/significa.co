@@ -9,11 +9,11 @@
 
 <div class={clsx('absolute', $$restProps.class)}>
   <p class="mb-2 text-xs font-medium uppercase text-foreground-secondary">{item.name}</p>
-  <div class="relative select-none whitespace-nowrap border-[1px] border-foreground-secondary p-3">
-    <div class="absolute -left-[3px] -top-[3px] h-[6px] w-[6px] bg-foreground-secondary" />
-    <div class="absolute -right-[3px] -top-[3px] h-[6px] w-[6px] bg-foreground-secondary" />
-    <div class="absolute -bottom-[3px] -left-[3px] h-[6px] w-[6px] bg-foreground-secondary" />
-    <div class="absolute -bottom-[3px] -right-[3px] h-[6px] w-[6px] bg-foreground-secondary" />
+  <div class="relative select-none whitespace-nowrap border-[1px] border-foreground-tertiary p-3">
+    <div class="absolute -left-[3px] -top-[3px] h-[6px] w-[6px] bg-foreground-tertiary" />
+    <div class="absolute -right-[3px] -top-[3px] h-[6px] w-[6px] bg-foreground-tertiary" />
+    <div class="absolute -bottom-[3px] -left-[3px] h-[6px] w-[6px] bg-foreground-tertiary" />
+    <div class="absolute -bottom-[3px] -right-[3px] h-[6px] w-[6px] bg-foreground-tertiary" />
 
     <div class="flex">
       {#each item.roster || [] as member}

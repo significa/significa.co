@@ -1,0 +1,97 @@
+Arguments: 
+  /Users/joaoribeiro/.nvm/versions/node/v18.4.0/bin/node /Users/joaoribeiro/.nvm/versions/node/v18.4.0/bin/yarn
+
+PATH: 
+  /Users/joaoribeiro/Library/Python/3.8/bin:/opt/homebrew/bin:/usr/local/bin:/Users/joaoribeiro/.nvm/versions/node/v18.4.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.4.0
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  Error: Failed to replace env in config: ${GITHUB_AUTH_TOKEN}
+      at /Users/joaoribeiro/.nvm/versions/node/v18.4.0/lib/node_modules/yarn/lib/cli.js:94933:13
+      at String.replace (<anonymous>)
+      at envReplace (/Users/joaoribeiro/.nvm/versions/node/v18.4.0/lib/node_modules/yarn/lib/cli.js:94928:16)
+      at Function.normalizeConfig (/Users/joaoribeiro/.nvm/versions/node/v18.4.0/lib/node_modules/yarn/lib/cli.js:31938:69)
+      at NpmRegistry.<anonymous> (/Users/joaoribeiro/.nvm/versions/node/v18.4.0/lib/node_modules/yarn/lib/cli.js:31968:34)
+      at Generator.next (<anonymous>)
+      at step (/Users/joaoribeiro/.nvm/versions/node/v18.4.0/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /Users/joaoribeiro/.nvm/versions/node/v18.4.0/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "significa.co",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+      "dev": "vite dev",
+      "prebuild": "npm run datasources",
+      "build": "vite build",
+      "preview": "vite preview",
+      "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+      "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+      "test": "vitest run",
+      "test:unit": "vitest",
+      "lint": "prettier --plugin-search-dir . --check . && eslint .",
+      "validate": "npm run check && npm run lint",
+      "format": "prettier --plugin-search-dir . --write .",
+      "sb:login": "npx storyblok@latest logout && npx storyblok login",
+      "sb:pull": "npx storyblok@latest pull-components --space=198185",
+      "sb:types": "npx storyblok-generate-ts@latest source=./components.198185.json target=./src/types/bloks.d.ts && prettier ./src/types/bloks.d.ts --write",
+      "sb": "npm run sb:pull && npm run sb:types",
+      "datasources": "svelte-kit sync && npx ts-node@latest --project ./node.tsconfig.json ./scripts/datasources.ts"
+    },
+    "devDependencies": {
+      "@sveltejs/adapter-auto": "^2.0.0",
+      "@sveltejs/kit": "^1.6.0",
+      "@tailwindcss/container-queries": "^0.1.1",
+      "@tailwindcss/typography": "^0.5.9",
+      "@types/prismjs": "^1.26.0",
+      "@typescript-eslint/eslint-plugin": "^5.57.1",
+      "@typescript-eslint/parser": "^5.57.1",
+      "autoprefixer": "^10.4.14",
+      "class-variance-authority": "^0.5.1",
+      "clsx": "^1.2.1",
+      "dotenv": "^16.0.3",
+      "eslint": "^8.37.0",
+      "eslint-config-prettier": "^8.8.0",
+      "eslint-plugin-svelte3": "^4.0.0",
+      "husky": "^8.0.3",
+      "postcss": "^8.4.21",
+      "prettier": "^2.8.7",
+      "prettier-plugin-svelte": "^2.9.0",
+      "prettier-plugin-tailwindcss": "^0.2.6",
+      "prismjs": "^1.29.0",
+      "svelte": "^3.55.1",
+      "svelte-check": "^3.0.3",
+      "tailwind-merge": "^1.11.0",
+      "tailwindcss": "^3.3.1",
+      "tslib": "^2.5.0",
+      "typescript": "^5.0.3",
+      "vite": "^4.2.1",
+      "vite-plugin-mkcert": "^1.14.0",
+      "vitest": "^0.29.8"
+    },
+    "type": "module",
+    "dependencies": {
+      "@aws-sdk/client-s3": "3.296.0",
+      "@aws-sdk/client-ses": "3.296.0",
+      "@aws-sdk/s3-request-presigner": "3.296.0",
+      "@notionhq/client": "^2.2.3",
+      "@significa/svelte-ui": "^0.0.17",
+      "@storyblok/js": "^2.1.3",
+      "prism-svelte": "^0.5.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

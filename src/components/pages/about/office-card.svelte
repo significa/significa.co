@@ -4,6 +4,7 @@
 
 <script lang="ts">
   import SplitLines from '$components/split-lines.svelte';
+  import Bird from './stickers/bird.svelte';
   import { getImageAttributes } from '$lib/utils/cms';
 
   import type { NotepadCardStoryblok, PhotoCardStoryblok } from '$types/bloks';
@@ -14,9 +15,6 @@
   export let hoverTransformState: TransformOptions;
 
   let transformState = staticTransformState;
-
-  const files = import.meta.glob('../get-a-quote/eggs/excited.svg', { as: 'raw', eager: true });
-  const egg = Object.entries(files)[0][1];
 </script>
 
 {#if card.component === 'photo_card' && card.photo?.filename}
@@ -62,8 +60,8 @@
           <SplitLines text={card.text} class="relative font-comic font-bold leading-8" />
         </div>
 
-        <div class="relative mb-4 flex h-[40%] justify-end [&>svg]:h-[100%] [&>svg]:w-fit">
-          {@html egg}
+        <div class="relative mb-7 flex h-[50%] justify-end">
+          <Bird class="relative mr-7 h-[100%] w-fit drop-shadow-md" />
         </div>
       </div>
     </div>

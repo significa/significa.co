@@ -4,7 +4,6 @@
   import { getImageAttributes } from '$lib/utils/cms';
   import type { AboutPageStoryblok } from '$types/bloks';
   import OfficeSection from './about/office-section.svelte';
-  import PlaceholderValueIllust from './about/placeholder-value-illust.svelte';
   import Testimonials from './about/testimonials.svelte';
   import ValueIllustrations from './about/value-illustrations.svelte';
 

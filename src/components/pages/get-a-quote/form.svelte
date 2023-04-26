@@ -4,6 +4,8 @@
   import type { GetAQuotePageStoryblok } from '$types/bloks';
   import { fly } from 'svelte/transition';
   import { circOut } from 'svelte/easing';
+  // @ts-ignore
+  import { Confetti } from 'svelte-confetti';
 
   type Eggs =
     | 'attach-multiple'
@@ -47,6 +49,8 @@
     character = 'attach-multiple';
   } else if (attachments) {
     character = 'attach';
+  } else if (message && message.length > 3) {
+    character = 'idle';
   } else if (['10k - 25k'].includes(budget)) {
     character = 'budget10';
   } else if (['25k - 50k'].includes(budget)) {
@@ -57,14 +61,15 @@
     character = 'budget100';
   } else if (name && name.length > 3) {
     character = 't-shirt';
-  } else if (message && message.length > 3) {
-    character = 'idle';
   } else {
     character = 'hello';
   }
+
+  const colorArray = ['#ffbe0b', '#fb5607', '#FFD424', '#8338ec', '#3a86ff'];
 </script>
 
 <svelte:head />
+
 <div
   class={clsx(
     'container relative mx-auto mt-10 min-h-[75vh] gap-8 overflow-hidden px-container pb-12',
@@ -108,6 +113,51 @@
             class="absolute -bottom-20 left-2 hidden bg-transparent drop-shadow lg:block"
             style="transform: rotate(-10deg)"
           >
+            {#if character === 'success'}
+              <div class="absolute left-52 top-28">
+                <Confetti
+                  amount="10"
+                  y={[0.5, 1]}
+                  x={[-1.25, 1.25]}
+                  duration="1500"
+                  size="15"
+                  {colorArray}
+                />
+                <Confetti x={[-0.5, 0.5]} y={[0, 1]} duration="1500" size="15" {colorArray} />
+                <Confetti
+                  amount="10"
+                  x={[-0.75, -0.3]}
+                  y={[0.15, 0.75]}
+                  duration="1500"
+                  size="15"
+                  {colorArray}
+                />
+                <Confetti
+                  amount="10"
+                  x={[0.3, 0.75]}
+                  y={[0.15, 0.75]}
+                  duration="1500"
+                  size="15"
+                  {colorArray}
+                />
+                <Confetti
+                  amount="10"
+                  x={[-1, -0.25]}
+                  y={[0, 0.5]}
+                  duration="1500"
+                  size="15"
+                  {colorArray}
+                />
+                <Confetti
+                  amount="10"
+                  x={[0.25, 1]}
+                  y={[0, 0.5]}
+                  duration="1500"
+                  size="15"
+                  {colorArray}
+                />
+              </div>
+            {/if}
             {@html eggs[character]}
             {#if character === 't-shirt' && name}
               <div

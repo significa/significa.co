@@ -1,15 +1,17 @@
 <script lang="ts">
+  import Seo from '$components/seo.svelte';
   import { theme } from '$lib/stores/theme';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { AboutPageStoryblok } from '$types/bloks';
   import OfficeSection from './about/office-section.svelte';
-  import Timeline from './about/timeline.svelte';
-  import PlaceholderValueIllust from './about/placeholder-value-illust.svelte';
   import Testimonials from './about/testimonials.svelte';
+  import Timeline from './about/timeline.svelte';
+  import ValueIllustrations from './about/value-illustrations.svelte';
 
   export let data: AboutPageStoryblok;
 </script>
 
+<Seo />
 <main>
   <div class="container mx-auto px-container">
     <h1 class="mt-10 max-w-2xl text-8xl md:mt-14 lg:mt-20">{data.page_title}</h1>
@@ -52,8 +54,10 @@
             <div
               class="flex flex-col items-start gap-4 border-t py-8 first:border-none lg:flex-row lg:items-center lg:gap-8 lg:py-12"
             >
-              <!-- TODO: Replace Illustrations -->
-              <PlaceholderValueIllust class="block shrink-0" />
+              <ValueIllustrations
+                variant={value.illustration}
+                class="block shrink-0 drop-shadow-md"
+              />
               <div>
                 <h4 class="text-2xl font-semibold">{value.title}</h4>
                 <p class="text-2xl text-foreground-secondary">{value.description}</p>

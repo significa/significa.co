@@ -18,7 +18,7 @@
   let testimonialsSection: HTMLElement;
   $: value = Math.max(scroll - testimonialsSection?.offsetTop, 0);
 
-  const speedFactors = [0, -0.2, 0.14, -0.13, 0.02];
+  const speedFactors = [0, -0.2, 0.1, -0.13, 0.02];
   const alignments = ['start', 'end', 'start', 'end', 'start'];
 </script>
 
@@ -51,10 +51,14 @@
               )}
             >
               {#if i === 1}
-                <BalloonRound class="hidden shrink-0 -translate-y-20 self-start lg:block" />
+                <BalloonRound
+                  class="mr-12 hidden shrink-0 -translate-y-20 self-start drop-shadow-md lg:block"
+                />
               {/if}
               {#if i === 2}
-                <BalloonRectangle class="hidden shrink-0 -translate-y-2 self-end lg:block" />
+                <BalloonRectangle
+                  class="hidden shrink-0 -translate-y-2 self-end drop-shadow-md lg:block"
+                />
               {/if}
               <div style:transform="translateY({-value * speedFactors[i]}px)">
                 <RichTextTestimonial

@@ -374,7 +374,7 @@
         {@const { width, height, src, alt } = getImageAttributes(item.photo)}
         <img
           bind:this={refs[i]}
-          class={clsx('absolute drop-shadow-md', !engine && 'invisible')}
+          class={clsx('absolute select-none drop-shadow-md', !engine && 'invisible')}
           {src}
           {alt}
           width={+width / 2}

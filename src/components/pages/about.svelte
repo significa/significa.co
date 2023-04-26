@@ -5,6 +5,7 @@
   import type { AboutPageStoryblok } from '$types/bloks';
   import OfficeSection from './about/office-section.svelte';
   import Testimonials from './about/testimonials.svelte';
+  import Timeline from './about/timeline.svelte';
   import ValueIllustrations from './about/value-illustrations.svelte';
 
   export let data: AboutPageStoryblok;
@@ -32,6 +33,7 @@
     </div>
   </section>
 
+  <Timeline timeline={data.timeline} />
   <!-- Our Values -->
   <section class="border-t">
     <div

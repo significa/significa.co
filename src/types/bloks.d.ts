@@ -61,6 +61,7 @@ export interface AboutPageStoryblok {
     | PhysicsBalloonCardStoryblok
     | PhysicsRectangleCardStoryblok
     | PhysicsInputStoryblok
+    | PhysicsStickerStoryblok
   )[];
   about_title1?: string;
   about_title2?: string;
@@ -83,6 +84,31 @@ export interface AboutPageStoryblok {
   office_cards?: (NotepadCardStoryblok | PhotoCardStoryblok)[];
   _uid: string;
   component: 'about-page';
+  [k: string]: any;
+}
+
+export interface BenefitsEntryStoryblok {
+  icon?:
+    | ''
+    | 'clock'
+    | 'book'
+    | 'laptop'
+    | 'tshape'
+    | 'baby'
+    | 'backpack'
+    | 'bus'
+    | 'calendar'
+    | 'fire'
+    | 'gym'
+    | 'health'
+    | 'heart'
+    | 'referral'
+    | 'sun'
+    | 'support';
+  title?: string;
+  description?: string;
+  _uid: string;
+  component: 'benefits-entry';
   [k: string]: any;
 }
 
@@ -116,6 +142,54 @@ export interface BlogPostStoryblok {
   [k: string]: any;
 }
 
+export interface CanvasGroupStoryblok {
+  width?: number;
+  height?: number;
+  top?: number;
+  left?: number;
+  items?: (
+    | CanvasTalkBalloonStoryblok
+    | CanvasTeamStoryblok
+    | CanvasYellowStickerStoryblok
+    | TimelineArrowStoryblok
+    | TimelineImageStoryblok
+    | TimelineSectionStoryblok
+    | TimelineTextStoryblok
+  )[];
+  _uid: string;
+  component: 'canvas-group';
+  [k: string]: any;
+}
+
+export interface CanvasTalkBalloonStoryblok {
+  position?: 'left' | 'right';
+  text?: string;
+  top?: number;
+  left?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'canvas-talk-balloon';
+  [k: string]: any;
+}
+
+export interface CanvasTeamStoryblok {
+  name?: string;
+  roster?: (StoryblokStory<TeamMemberStoryblok> | string)[];
+  _uid: string;
+  component: 'canvas-team';
+  [k: string]: any;
+}
+
+export interface CanvasYellowStickerStoryblok {
+  text?: string;
+  top?: number;
+  left?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'canvas-yellow-sticker';
+  [k: string]: any;
+}
+
 export interface CareerStoryblok {
   cover?: AssetStoryblok;
   body?: any;
@@ -124,6 +198,36 @@ export interface CareerStoryblok {
   seo_og_image?: AssetStoryblok;
   _uid: string;
   component: 'career';
+  [k: string]: any;
+}
+
+export type MultiassetStoryblok = {
+  alt?: string;
+  copyright?: string;
+  id: number;
+  filename: string;
+  name: string;
+  title?: string;
+  [k: string]: any;
+}[];
+
+export interface CareersPageStoryblok {
+  page_title?: string;
+  canvas?: any;
+  canvas_width?: number;
+  canvas_height?: number;
+  canvas_items?: CanvasGroupStoryblok[];
+  careers_title1?: string;
+  careers_title2?: string;
+  careers_description?: string;
+  open_positions_title?: string;
+  open_positions_description?: string;
+  images?: MultiassetStoryblok;
+  benefits_title?: string;
+  benefits_description?: string;
+  benefits?: BenefitsEntryStoryblok[];
+  _uid: string;
+  component: 'careers-page';
   [k: string]: any;
 }
 
@@ -195,16 +299,6 @@ export interface FooterColumnInternalStoryblok {
   component: 'footer-column-internal';
   [k: string]: any;
 }
-
-export type MultiassetStoryblok = {
-  alt?: string;
-  copyright?: string;
-  id: number;
-  filename: string;
-  name: string;
-  title?: string;
-  [k: string]: any;
-}[];
 
 export interface GetAQuotePageStoryblok {
   title?: string;
@@ -325,6 +419,7 @@ export interface PageStoryblok {
   page?: (
     | AboutPageStoryblok
     | BlogIndexStoryblok
+    | CareersPageStoryblok
     | ContactsPageStoryblok
     | GetAQuotePageStoryblok
     | HomePageStoryblok
@@ -367,6 +462,13 @@ export interface PhysicsRectangleCardStoryblok {
   theme?: 'transparent' | 'yellow';
   _uid: string;
   component: 'physics-rectangle-card';
+  [k: string]: any;
+}
+
+export interface PhysicsStickerStoryblok {
+  photo?: AssetStoryblok;
+  _uid: string;
+  component: 'physics-sticker';
   [k: string]: any;
 }
 
@@ -500,6 +602,7 @@ export interface TeamMemberLinkStoryblok {
 
 export interface TimelineArrowStoryblok {
   variant: '' | 'one' | 'two' | 'three' | 'four' | 'five';
+  flip?: boolean;
   top: number;
   left: number;
   scale?: number;

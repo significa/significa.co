@@ -1,23 +1,30 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  import { browser } from '$app/environment';
+  import clsx from 'clsx';
+  import { getScrollSpeed } from '$lib/utils/dom';
+  import BalloonCard from './physics-blocks/balloon-card.svelte';
+  import RectangleCard from './physics-blocks/rectangle-card.svelte';
+  import PhysicsInput from './physics-blocks/physics-input.svelte';
   import type {
     PhysicsBalloonCardStoryblok,
     PhysicsInputStoryblok,
-    PhysicsRectangleCardStoryblok
+    PhysicsRectangleCardStoryblok,
+    PhysicsStickerStoryblok
   } from '$types/bloks';
-  import clsx from 'clsx';
-  import { onMount } from 'svelte';
-  import BalloonCard from './physics-blocks/balloon-card.svelte';
-  import RectangleCard from './physics-blocks/rectangle-card.svelte';
-  import Matter from 'matter-js';
-  import PhysicsInput from './physics-blocks/physics-input.svelte';
-  import { getScrollSpeed } from '$lib/utils/dom';
-  import { browser } from '$app/environment';
+  import { getImageAttributes } from '$lib/utils/cms';
+  import type { Engine, Body } from 'matter-js';
 
   const INPUT_NAME = 'input' as const;
   const GRAVITY_DEFAULT_VALUE = 0.0017 as const;
 
   export let items:
-    | (PhysicsBalloonCardStoryblok | PhysicsRectangleCardStoryblok | PhysicsInputStoryblok)[]
+    | (
+        | PhysicsBalloonCardStoryblok
+        | PhysicsRectangleCardStoryblok
+        | PhysicsInputStoryblok
+        | PhysicsStickerStoryblok
+      )[]
     | undefined = undefined;
 
   // Where engine will live and use as reference
@@ -27,7 +34,7 @@
   let initialBoxesN = items?.length ?? 0;
 
   // Active engine
-  let engine: Matter.Engine;
+  let engine: Engine;
   let isAddingBox: boolean;
 
   // Mobile behaviour
@@ -35,17 +42,17 @@
   let isTouchDevice: boolean;
 
   // Limits for resize handling
-  let boxGround: Matter.Body;
-  let boxLeftWall: Matter.Body;
-  let boxRightWall: Matter.Body;
+  let boxGround: Body;
+  let boxLeftWall: Body;
+  let boxRightWall: Body;
 
   // Matter
-  let matterInstance: typeof Matter;
+  let matterInstance: any;
 
   // Items where Matter will be applied
   let refs: HTMLElement[] = Array(items?.length);
   let boxes: {
-    body: Matter.Body;
+    body: Body;
     elem: HTMLElement;
     render(): void;
   }[];
@@ -94,7 +101,7 @@
     matterInstance.Composite.add(engine.world, [newBox.body]);
   }
 
-  const getLimits = (matter: typeof Matter) => {
+  const getLimits = (matter: any) => {
     const ceil = matter.Bodies.rectangle(
       containerRef.clientWidth / 2,
       -60 / 2,
@@ -130,7 +137,7 @@
     return { ground, leftWall, rightWall, ceil };
   };
 
-  const initialization = (matter: typeof Matter) => {
+  const initialization = (matter: any) => {
     const Engine = matter.Engine,
       MouseConstraint = matter.MouseConstraint,
       Mouse = matter.Mouse,
@@ -164,7 +171,7 @@
     boxes = initialBoxes;
 
     // Limits
-    const { ground, leftWall, rightWall, ceil } = getLimits(Matter);
+    const { ground, leftWall, rightWall, ceil } = getLimits(matter);
 
     // Update limits state to allow resize calculation if needed
     boxGround = ground;
@@ -363,6 +370,17 @@
             class={clsx('absolute w-fit', !engine && 'invisible')}
           />
         </form>
+      {:else if item.component === 'physics-sticker' && item.photo}
+        {@const { width, height, src, alt } = getImageAttributes(item.photo)}
+        <img
+          bind:this={refs[i]}
+          class={clsx('absolute drop-shadow-md', !engine && 'invisible')}
+          {src}
+          {alt}
+          width={+width / 2}
+          height={+height / 2}
+          draggable="false"
+        />
       {/if}
     {/each}
   {/if}

@@ -57,9 +57,16 @@ export type MultilinkStoryblok =
 
 export interface AboutPageStoryblok {
   page_title?: string;
+  physics_blocks?: (
+    | PhysicsBalloonCardStoryblok
+    | PhysicsRectangleCardStoryblok
+    | PhysicsInputStoryblok
+    | PhysicsStickerStoryblok
+  )[];
   about_title1?: string;
   about_title2?: string;
   about_description?: string;
+  timeline?: TimelineSectionStoryblok[];
   values_title1?: string;
   values_title2?: string;
   values_description?: string;
@@ -77,6 +84,31 @@ export interface AboutPageStoryblok {
   office_cards?: (NotepadCardStoryblok | PhotoCardStoryblok)[];
   _uid: string;
   component: 'about-page';
+  [k: string]: any;
+}
+
+export interface BenefitsEntryStoryblok {
+  icon?:
+    | ''
+    | 'clock'
+    | 'book'
+    | 'laptop'
+    | 'tshape'
+    | 'baby'
+    | 'backpack'
+    | 'bus'
+    | 'calendar'
+    | 'fire'
+    | 'gym'
+    | 'health'
+    | 'heart'
+    | 'referral'
+    | 'sun'
+    | 'support';
+  title?: string;
+  description?: string;
+  _uid: string;
+  component: 'benefits-entry';
   [k: string]: any;
 }
 
@@ -110,6 +142,54 @@ export interface BlogPostStoryblok {
   [k: string]: any;
 }
 
+export interface CanvasGroupStoryblok {
+  width?: number;
+  height?: number;
+  top?: number;
+  left?: number;
+  items?: (
+    | CanvasTalkBalloonStoryblok
+    | CanvasTeamStoryblok
+    | CanvasYellowStickerStoryblok
+    | TimelineArrowStoryblok
+    | TimelineImageStoryblok
+    | TimelineSectionStoryblok
+    | TimelineTextStoryblok
+  )[];
+  _uid: string;
+  component: 'canvas-group';
+  [k: string]: any;
+}
+
+export interface CanvasTalkBalloonStoryblok {
+  position?: 'left' | 'right';
+  text?: string;
+  top?: number;
+  left?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'canvas-talk-balloon';
+  [k: string]: any;
+}
+
+export interface CanvasTeamStoryblok {
+  name?: string;
+  roster?: (StoryblokStory<TeamMemberStoryblok> | string)[];
+  _uid: string;
+  component: 'canvas-team';
+  [k: string]: any;
+}
+
+export interface CanvasYellowStickerStoryblok {
+  text?: string;
+  top?: number;
+  left?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'canvas-yellow-sticker';
+  [k: string]: any;
+}
+
 export interface CareerStoryblok {
   cover?: AssetStoryblok;
   body?: any;
@@ -118,6 +198,36 @@ export interface CareerStoryblok {
   seo_og_image?: AssetStoryblok;
   _uid: string;
   component: 'career';
+  [k: string]: any;
+}
+
+export type MultiassetStoryblok = {
+  alt?: string;
+  copyright?: string;
+  id: number;
+  filename: string;
+  name: string;
+  title?: string;
+  [k: string]: any;
+}[];
+
+export interface CareersPageStoryblok {
+  page_title?: string;
+  canvas?: any;
+  canvas_width?: number;
+  canvas_height?: number;
+  canvas_items?: CanvasGroupStoryblok[];
+  careers_title1?: string;
+  careers_title2?: string;
+  careers_description?: string;
+  open_positions_title?: string;
+  open_positions_description?: string;
+  images?: MultiassetStoryblok;
+  benefits_title?: string;
+  benefits_description?: string;
+  benefits?: BenefitsEntryStoryblok[];
+  _uid: string;
+  component: 'careers-page';
   [k: string]: any;
 }
 
@@ -190,16 +300,6 @@ export interface FooterColumnInternalStoryblok {
   [k: string]: any;
 }
 
-export type MultiassetStoryblok = {
-  alt?: string;
-  copyright?: string;
-  id: number;
-  filename: string;
-  name: string;
-  title?: string;
-  [k: string]: any;
-}[];
-
 export interface GetAQuotePageStoryblok {
   title?: string;
   subtitle?: string;
@@ -259,11 +359,17 @@ export interface HomePageStoryblok {
   about_title1?: string;
   about_title2?: string;
   about_description?: string;
+  about_physics_cards?: (
+    | PhysicsBalloonCardStoryblok
+    | PhysicsInputStoryblok
+    | PhysicsRectangleCardStoryblok
+  )[];
   about_link?: LinkStoryblok[];
   about_links?: HomeAboutLinkStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;
-  testimonials_image?: AssetStoryblok;
+  testimonials_cta_label?: string;
+  testimonials_cta_link?: MultilinkStoryblok;
   testimonials?: RichtextTestimonialStoryblok[];
   blog_title1?: string;
   blog_title2?: string;
@@ -313,6 +419,7 @@ export interface PageStoryblok {
   page?: (
     | AboutPageStoryblok
     | BlogIndexStoryblok
+    | CareersPageStoryblok
     | ContactsPageStoryblok
     | GetAQuotePageStoryblok
     | HomePageStoryblok
@@ -332,6 +439,36 @@ export interface PhotoCardStoryblok {
   photo?: AssetStoryblok;
   _uid: string;
   component: 'photo_card';
+  [k: string]: any;
+}
+
+export interface PhysicsBalloonCardStoryblok {
+  text?: string;
+  theme?: 'inverted' | 'panel' | 'offset' | 'yellow';
+  _uid: string;
+  component: 'physics-balloon-card';
+  [k: string]: any;
+}
+
+export interface PhysicsInputStoryblok {
+  placeholder?: string;
+  _uid: string;
+  component: 'physics-input';
+  [k: string]: any;
+}
+
+export interface PhysicsRectangleCardStoryblok {
+  text?: string;
+  theme?: 'transparent' | 'yellow';
+  _uid: string;
+  component: 'physics-rectangle-card';
+  [k: string]: any;
+}
+
+export interface PhysicsStickerStoryblok {
+  photo?: AssetStoryblok;
+  _uid: string;
+  component: 'physics-sticker';
   [k: string]: any;
 }
 
@@ -435,6 +572,7 @@ export interface TeamMemberStoryblok {
   photo?: AssetStoryblok;
   egg?: AssetStoryblok;
   position?: string;
+  team?: number | string;
   bio?: string;
   links?: TeamMemberLinkStoryblok[];
   is_active?: boolean;
@@ -462,6 +600,49 @@ export interface TeamMemberLinkStoryblok {
   [k: string]: any;
 }
 
+export interface TimelineArrowStoryblok {
+  variant: '' | 'one' | 'two' | 'three' | 'four' | 'five';
+  flip?: boolean;
+  top: number;
+  left: number;
+  scale?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'timeline-arrow';
+  [k: string]: any;
+}
+
+export interface TimelineImageStoryblok {
+  image?: AssetStoryblok;
+  border?: boolean;
+  top: number;
+  left: number;
+  scale?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'timeline-image';
+  [k: string]: any;
+}
+
+export interface TimelineSectionStoryblok {
+  items?: (TimelineArrowStoryblok | TimelineImageStoryblok | TimelineTextStoryblok)[];
+  width: number;
+  _uid: string;
+  component: 'timeline-section';
+  [k: string]: any;
+}
+
+export interface TimelineTextStoryblok {
+  text?: string;
+  link?: LinkStoryblok[];
+  width: number;
+  top: number;
+  left: number;
+  _uid: string;
+  component: 'timeline-text';
+  [k: string]: any;
+}
+
 export interface TwoColumnsStoryblok {
   width?: '' | 'wide';
   columns: (ColumnMediaStoryblok | ColumnStoryblok)[];
@@ -471,7 +652,7 @@ export interface TwoColumnsStoryblok {
 }
 
 export interface ValueStoryblok {
-  illustration?: any;
+  illustration: 'people' | 'teamwork' | 'aspiration';
   title?: string;
   description?: string;
   _uid: string;

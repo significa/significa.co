@@ -13,4 +13,4 @@
 <Form {page} />
 <Timezone {page} />
 <Steps {page} />
-<Images {page} />
+<Images images={page.images} class="py-12 md:py-20 lg:py-32" />

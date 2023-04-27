@@ -4,7 +4,7 @@
       "name": "about-page",
       "display_name": null,
       "created_at": "2023-03-03T15:54:31.120Z",
-      "updated_at": "2023-04-17T15:14:19.552Z",
+      "updated_at": "2023-04-26T13:15:53.912Z",
       "id": 3521679,
       "schema": {
         "page_title": {
@@ -19,7 +19,8 @@
           "component_whitelist": [
             "physics-balloon-card",
             "physics-rectangle-card",
-            "physics-input"
+            "physics-input",
+            "physics-sticker"
           ]
         },
         "about_title1": {
@@ -149,7 +150,7 @@
       "name": "benefits-entry",
       "display_name": null,
       "created_at": "2023-04-21T09:26:11.845Z",
-      "updated_at": "2023-04-21T13:10:06.059Z",
+      "updated_at": "2023-04-27T11:09:48.115Z",
       "id": 3857099,
       "schema": {
         "icon": {
@@ -174,8 +175,8 @@
             },
             {
               "_uid": "c768d570-18d8-4a1b-a34f-f30bb7a82aa7",
-              "value": "tshape",
-              "name": "Tshape"
+              "value": "grow",
+              "name": "Grow"
             },
             {
               "_uid": "3f08bf5a-13e4-4a3e-b099-170be12c209c",
@@ -196,11 +197,6 @@
               "_uid": "b513d974-d9d3-4089-8fcd-6e024cb2b2c7",
               "value": "calendar",
               "name": "Calendar"
-            },
-            {
-              "_uid": "fec4111c-1671-42ae-9385-865d5d1d00d3",
-              "value": "fire",
-              "name": "Fire"
             },
             {
               "_uid": "97620d71-2e84-48d1-96b3-64d26ab93b8a",
@@ -950,9 +946,30 @@
       "name": "contacts-page",
       "display_name": null,
       "created_at": "2023-03-03T13:47:28.940Z",
-      "updated_at": "2023-03-03T13:47:28.940Z",
+      "updated_at": "2023-04-27T10:01:47.940Z",
       "id": 3521049,
-      "schema": {},
+      "schema": {
+        "page_title1": {
+          "type": "text"
+        },
+        "page_title2": {
+          "type": "text"
+        },
+        "form_support_text": {
+          "type": "textarea"
+        },
+        "gallery": {
+          "type": "bloks",
+          "minimum": 6,
+          "maximum": 6,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "notepad_card",
+            "photo_card"
+          ]
+        }
+      },
       "image": null,
       "preview_field": null,
       "is_root": false,
@@ -1814,6 +1831,34 @@
       "component_group_name": "Single"
     },
     {
+      "name": "physics-sticker",
+      "display_name": null,
+      "created_at": "2023-04-26T13:15:00.766Z",
+      "updated_at": "2023-04-26T16:25:36.409Z",
+      "id": 3889837,
+      "schema": {
+        "photo": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ],
+          "asset_folder_id": 234280
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "physics-sticker",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "project",
       "display_name": null,
       "created_at": "2023-02-15T13:07:44.621Z",
@@ -2454,7 +2499,7 @@
       "name": "timeline-arrow",
       "display_name": null,
       "created_at": "2023-04-12T14:24:11.523Z",
-      "updated_at": "2023-04-12T20:40:02.348Z",
+      "updated_at": "2023-04-21T13:25:55.540Z",
       "id": 3795710,
       "schema": {
         "variant": {
@@ -2488,30 +2533,39 @@
             }
           ],
           "default_value": "one",
-          "required": true
+          "required": true,
+          "pos": 0
+        },
+        "flip": {
+          "type": "boolean",
+          "pos": 1
         },
         "top": {
           "type": "number",
           "decimals": 0,
           "default_value": "0",
-          "required": true
+          "required": true,
+          "pos": 2
         },
         "left": {
           "type": "number",
           "required": true,
           "default_value": "0",
-          "decimals": 0
+          "decimals": 0,
+          "pos": 3
         },
         "scale": {
           "type": "number",
           "default_value": "1",
           "decimals": 2,
-          "description": "Between 0 and 1"
+          "description": "Between 0 and 1",
+          "pos": 4
         },
         "rotate": {
           "type": "number",
           "decimals": 0,
-          "default_value": "0"
+          "default_value": "0",
+          "pos": 5
         }
       },
       "image": null,
@@ -2726,13 +2780,33 @@
       "name": "value",
       "display_name": null,
       "created_at": "2023-04-11T13:24:04.277Z",
-      "updated_at": "2023-04-11T13:24:25.699Z",
+      "updated_at": "2023-04-26T17:05:26.948Z",
       "id": 3785697,
       "schema": {
         "illustration": {
           "type": "option",
           "pos": 0,
-          "use_uuid": true
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "500fc43f-2461-44a0-b1bd-650e4b346617",
+              "name": "People",
+              "value": "people"
+            },
+            {
+              "_uid": "7f8ebaf6-7f62-4a46-9ddf-162d6d43ab4a",
+              "value": "teamwork",
+              "name": "Teamwork"
+            },
+            {
+              "_uid": "23d20c73-3882-43f4-96d1-c2f3b6aa6aa7",
+              "value": "aspiration",
+              "name": "Aspiration"
+            }
+          ],
+          "exclude_empty_option": true,
+          "default_value": "people",
+          "required": true
         },
         "title": {
           "type": "text",

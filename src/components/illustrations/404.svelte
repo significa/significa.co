@@ -1,4 +1,11 @@
-<svg viewBox="0 0 559 440" fill="none" xmlns="http://www.w3.org/2000/svg" {...$$restProps}>
+<svg
+  width="559"
+  height="440"
+  viewBox="0 0 559 440"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  {...$$restProps}
+>
   <g filter="url(#filter0_dddd_1145_1094)">
     <mask
       id="path-1-outside-1_1145_1094"

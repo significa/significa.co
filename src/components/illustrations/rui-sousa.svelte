@@ -1,4 +1,4 @@
-<svg width="173" height="177" viewBox="0 0 173 177" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="173" height="177" viewBox="0 0 173 177" fill="none" xmlns="http://www.w3.org/2000/svg" {...$$restProps}>
 <g filter="url(#filter0_dddd_1135_8630)">
 <mask id="path-1-outside-1_1135_8630" maskUnits="userSpaceOnUse" x="8.1543" y="12.134" width="157" height="153" fill="black">
 <rect fill="white" x="8.1543" y="12.134" width="157" height="153"/>

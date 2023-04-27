@@ -4,9 +4,135 @@
       "name": "about-page",
       "display_name": null,
       "created_at": "2023-03-03T15:54:31.120Z",
-      "updated_at": "2023-03-03T15:54:31.120Z",
+      "updated_at": "2023-04-26T13:15:53.912Z",
       "id": 3521679,
-      "schema": {},
+      "schema": {
+        "page_title": {
+          "type": "text",
+          "pos": 0
+        },
+        "physics_blocks": {
+          "type": "bloks",
+          "pos": 1,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "physics-balloon-card",
+            "physics-rectangle-card",
+            "physics-input",
+            "physics-sticker"
+          ]
+        },
+        "about_title1": {
+          "type": "text",
+          "pos": 2
+        },
+        "about_title2": {
+          "type": "text",
+          "pos": 3
+        },
+        "about_description": {
+          "type": "textarea",
+          "pos": 4
+        },
+        "timeline": {
+          "type": "bloks",
+          "pos": 5,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "timeline-section"
+          ]
+        },
+        "values_title1": {
+          "type": "text",
+          "pos": 6
+        },
+        "values_title2": {
+          "type": "text",
+          "pos": 7
+        },
+        "values_description": {
+          "type": "textarea",
+          "pos": 8
+        },
+        "values": {
+          "type": "bloks",
+          "pos": 9,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "value"
+          ],
+          "minimum": 3,
+          "maximum": 3
+        },
+        "testimonials_title1": {
+          "type": "text",
+          "pos": 10
+        },
+        "testimonials_title2": {
+          "type": "text",
+          "pos": 11
+        },
+        "testimonials_cta_label": {
+          "type": "text",
+          "pos": 12
+        },
+        "testimonials_cta_link": {
+          "type": "multilink",
+          "pos": 13,
+          "force_link_scope": false,
+          "link_scope": ""
+        },
+        "testimonials": {
+          "type": "bloks",
+          "pos": 14,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "richtext-testimonial"
+          ]
+        },
+        "clients_title": {
+          "type": "text",
+          "pos": 15
+        },
+        "clients": {
+          "type": "bloks",
+          "pos": 16,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "client-logo"
+          ]
+        },
+        "office_title1": {
+          "type": "text",
+          "key": "office_title",
+          "pos": 17
+        },
+        "office_title2": {
+          "type": "text",
+          "pos": 18
+        },
+        "office_description": {
+          "type": "textarea",
+          "pos": 19
+        },
+        "office_cards": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "notepad_card",
+            "photo_card"
+          ],
+          "minimum": 6,
+          "maximum": 6,
+          "pos": 20
+        }
+      },
       "image": null,
       "preview_field": null,
       "is_root": false,
@@ -19,6 +145,110 @@
       "color": null,
       "icon": null,
       "component_group_name": "Pages"
+    },
+    {
+      "name": "benefits-entry",
+      "display_name": null,
+      "created_at": "2023-04-21T09:26:11.845Z",
+      "updated_at": "2023-04-27T11:09:48.115Z",
+      "id": 3857099,
+      "schema": {
+        "icon": {
+          "type": "option",
+          "filetypes": [],
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "7617b9d0-bf7d-484a-966c-9f08f4e33837",
+              "name": "Clock",
+              "value": "clock"
+            },
+            {
+              "_uid": "21a4793f-3cd3-439c-9b95-13f087df890b",
+              "value": "book",
+              "name": "Book"
+            },
+            {
+              "_uid": "37b0b296-a88a-4cde-ac5a-1104a6670211",
+              "value": "laptop",
+              "name": "Laptop"
+            },
+            {
+              "_uid": "c768d570-18d8-4a1b-a34f-f30bb7a82aa7",
+              "value": "grow",
+              "name": "Grow"
+            },
+            {
+              "_uid": "3f08bf5a-13e4-4a3e-b099-170be12c209c",
+              "value": "baby",
+              "name": "Baby"
+            },
+            {
+              "_uid": "ccfc4af0-b5bf-423b-a3ce-af307dd1f242",
+              "value": "backpack",
+              "name": "Backpack"
+            },
+            {
+              "_uid": "b09e5bc3-9657-4626-8a37-5d570ea9ed08",
+              "value": "bus",
+              "name": "Bus"
+            },
+            {
+              "_uid": "b513d974-d9d3-4089-8fcd-6e024cb2b2c7",
+              "value": "calendar",
+              "name": "Calendar"
+            },
+            {
+              "_uid": "97620d71-2e84-48d1-96b3-64d26ab93b8a",
+              "value": "gym",
+              "name": "Gym"
+            },
+            {
+              "_uid": "cb71c94c-c7ba-491f-822f-a0478280a895",
+              "value": "health",
+              "name": "Health"
+            },
+            {
+              "_uid": "a7b3b7fe-3357-441b-aafd-3058e52ab5d0",
+              "value": "heart",
+              "name": "Heart"
+            },
+            {
+              "_uid": "79967437-ee22-4642-90a7-0eb652c03231",
+              "value": "referral",
+              "name": "Referral"
+            },
+            {
+              "_uid": "9d8751c4-2d56-489c-be34-345e1d9c6d56",
+              "value": "sun",
+              "name": "Sun"
+            },
+            {
+              "_uid": "00a6644b-3a3d-43be-a9f8-ee05c1b58bb9",
+              "value": "support",
+              "name": "Support"
+            }
+          ]
+        },
+        "title": {
+          "type": "text"
+        },
+        "description": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "benefits-entry",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
     },
     {
       "name": "blog-index",
@@ -49,7 +279,9 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212285,
           "required": false
         },
@@ -62,17 +294,25 @@
           "use_uuid": true,
           "required": true,
           "source": "internal_stories",
-          "filter_content_type": ["team-member"]
+          "filter_content_type": [
+            "team-member"
+          ]
         },
         "tab-9a5d9933-3840-42d8-aa24-d87e83a9eb5d": {
           "display_name": "Content",
-          "keys": ["body"],
+          "keys": [
+            "body"
+          ],
           "pos": 0,
           "type": "tab"
         },
         "tab-c1b66206-334d-4470-a996-ca9aa074e23c": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image"
+          ],
           "pos": 0,
           "type": "tab"
         },
@@ -84,7 +324,9 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212285
         },
         "body": {
@@ -129,6 +371,189 @@
       "component_group_name": "Content Types"
     },
     {
+      "name": "canvas-group",
+      "display_name": null,
+      "created_at": "2023-04-19T14:57:33.541Z",
+      "updated_at": "2023-04-21T12:48:20.536Z",
+      "id": 3845878,
+      "schema": {
+        "width": {
+          "type": "number",
+          "pos": 0,
+          "default_value": "240"
+        },
+        "height": {
+          "type": "number",
+          "pos": 1,
+          "default_value": "240"
+        },
+        "top": {
+          "type": "number",
+          "decimals": 0,
+          "pos": 2,
+          "default_value": "0",
+          "description": "0 is approximately the vertical center of the canvas"
+        },
+        "left": {
+          "type": "number",
+          "decimals": 0,
+          "pos": 3,
+          "default_value": "0",
+          "description": "0 is approximately the horizontal center of the canvas"
+        },
+        "items": {
+          "type": "bloks",
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_whitelist": [],
+          "pos": 6,
+          "component_group_whitelist": [
+            "3c80dc73-98c3-4c97-a2b2-44541c933f72"
+          ]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-group",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "canvas-talk-balloon",
+      "display_name": null,
+      "created_at": "2023-04-21T11:10:59.947Z",
+      "updated_at": "2023-04-21T11:23:40.749Z",
+      "id": 3857957,
+      "schema": {
+        "position": {
+          "type": "option",
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "053e2f45-072e-432f-8865-5f168571b358",
+              "name": "Left",
+              "value": "left"
+            },
+            {
+              "_uid": "f097330e-798c-485a-bc94-0ae110165f48",
+              "value": "right",
+              "name": "Right"
+            }
+          ],
+          "exclude_empty_option": true,
+          "default_value": "right",
+          "pos": 0
+        },
+        "text": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "top": {
+          "type": "number",
+          "pos": 2
+        },
+        "left": {
+          "type": "number",
+          "use_uuid": true,
+          "pos": 3
+        },
+        "rotate": {
+          "type": "number",
+          "pos": 4
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-talk-balloon",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
+      "name": "canvas-team",
+      "display_name": null,
+      "created_at": "2023-04-20T15:57:09.434Z",
+      "updated_at": "2023-04-20T16:02:22.104Z",
+      "id": 3853263,
+      "schema": {
+        "name": {
+          "type": "text"
+        },
+        "roster": {
+          "type": "options",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "team-member"
+          ],
+          "source": "internal_stories",
+          "filter_content_type": [
+            "team-member"
+          ]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-team",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
+      "name": "canvas-yellow-sticker",
+      "display_name": null,
+      "created_at": "2023-04-20T14:56:50.671Z",
+      "updated_at": "2023-04-20T15:06:26.358Z",
+      "id": 3853042,
+      "schema": {
+        "text": {
+          "type": "textarea"
+        },
+        "top": {
+          "type": "number"
+        },
+        "left": {
+          "type": "number"
+        },
+        "rotate": {
+          "type": "number",
+          "max_value": 360,
+          "min_value": -360
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-yellow-sticker",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
       "name": "career",
       "display_name": null,
       "created_at": "2023-03-23T13:12:20.312Z",
@@ -138,7 +563,9 @@
         "cover": {
           "type": "asset",
           "pos": 0,
-          "filetypes": ["images"]
+          "filetypes": [
+            "images"
+          ]
         },
         "body": {
           "type": "richtext",
@@ -178,12 +605,18 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "pos": 4
         },
         "tab-0df1eb17-e1de-4dfd-92cb-c73b4839beec": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image"
+          ],
           "pos": 5,
           "type": "tab"
         }
@@ -200,6 +633,102 @@
       "color": null,
       "icon": null,
       "component_group_name": "Content Types"
+    },
+    {
+      "name": "careers-page",
+      "display_name": null,
+      "created_at": "2023-04-19T14:55:51.954Z",
+      "updated_at": "2023-04-21T09:28:18.507Z",
+      "id": 3845873,
+      "schema": {
+        "page_title": {
+          "type": "text",
+          "key": "page_title",
+          "pos": 0
+        },
+        "canvas": {
+          "type": "section",
+          "pos": 1,
+          "keys": [
+            "canvas_items",
+            "canvas_height",
+            "canvas_width"
+          ]
+        },
+        "canvas_width": {
+          "type": "number",
+          "default_value": "3000",
+          "pos": 2
+        },
+        "canvas_height": {
+          "type": "number",
+          "default_value": "3000",
+          "pos": 3
+        },
+        "canvas_items": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "canvas-group"
+          ],
+          "key": "canvas",
+          "pos": 4
+        },
+        "careers_title1": {
+          "type": "text",
+          "key": "careers_title1",
+          "pos": 5
+        },
+        "careers_title2": {
+          "type": "text",
+          "key": "careers_title2",
+          "pos": 6
+        },
+        "careers_description": {
+          "type": "textarea",
+          "key": "careers_description",
+          "pos": 7
+        },
+        "open_positions_title": {
+          "type": "text"
+        },
+        "open_positions_description": {
+          "type": "text"
+        },
+        "images": {
+          "type": "multiasset",
+          "filetypes": [
+            "images"
+          ]
+        },
+        "benefits_title": {
+          "type": "text"
+        },
+        "benefits_description": {
+          "type": "text"
+        },
+        "benefits": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "benefits-entry"
+          ]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "careers-page",
+      "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Pages"
     },
     {
       "name": "client",
@@ -225,6 +754,41 @@
       "color": null,
       "icon": null,
       "component_group_name": "Configuration"
+    },
+    {
+      "name": "client-logo",
+      "display_name": null,
+      "created_at": "2023-04-11T13:27:27.785Z",
+      "updated_at": "2023-04-12T13:16:39.209Z",
+      "id": 3785709,
+      "schema": {
+        "light_mode": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ],
+          "asset_folder_id": 228928
+        },
+        "dark_mode": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ],
+          "asset_folder_id": 228928
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "client-logo",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
     },
     {
       "name": "column",
@@ -307,12 +871,16 @@
         },
         "image_a": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true
         },
         "image_b": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true
         }
       },
@@ -347,13 +915,18 @@
           "maximum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"]
+          "component_whitelist": [
+            "link"
+          ]
         },
         "footer": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["footer-column-internal", "footer-column-external"]
+          "component_whitelist": [
+            "footer-column-internal",
+            "footer-column-external"
+          ]
         }
       },
       "image": null,
@@ -373,9 +946,30 @@
       "name": "contacts-page",
       "display_name": null,
       "created_at": "2023-03-03T13:47:28.940Z",
-      "updated_at": "2023-03-03T13:47:28.940Z",
+      "updated_at": "2023-04-27T10:01:47.940Z",
       "id": 3521049,
-      "schema": {},
+      "schema": {
+        "page_title1": {
+          "type": "text"
+        },
+        "page_title2": {
+          "type": "text"
+        },
+        "form_support_text": {
+          "type": "textarea"
+        },
+        "gallery": {
+          "type": "bloks",
+          "minimum": 6,
+          "maximum": 6,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "notepad_card",
+            "photo_card"
+          ]
+        }
+      },
       "image": null,
       "preview_field": null,
       "is_root": false,
@@ -423,7 +1017,9 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"]
+          "component_whitelist": [
+            "link"
+          ]
         }
       },
       "image": null,
@@ -453,7 +1049,9 @@
           "type": "options",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"],
+          "component_whitelist": [
+            "link"
+          ],
           "source": "internal_stories"
         }
       },
@@ -486,7 +1084,10 @@
         "timezone_text": {
           "type": "richtext",
           "customize_toolbar": true,
-          "toolbar": ["paragraph", "bold"]
+          "toolbar": [
+            "paragraph",
+            "bold"
+          ]
         },
         "steps_title": {
           "type": "text"
@@ -498,11 +1099,15 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["get-a-quote-step"]
+          "component_whitelist": [
+            "get-a-quote-step"
+          ]
         },
         "images": {
           "type": "multiasset",
-          "filetypes": ["images"]
+          "filetypes": [
+            "images"
+          ]
         }
       },
       "image": null,
@@ -554,7 +1159,9 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212287
         },
         "tagline": {
@@ -565,13 +1172,19 @@
         },
         "tab-6a37f9e9-5fe6-4268-a3e4-7fd4ed252cc0": {
           "display_name": "Content",
-          "keys": ["body"],
+          "keys": [
+            "body"
+          ],
           "pos": 0,
           "type": "tab"
         },
         "tab-40ff5487-8b8b-40db-afae-1c64b4705bbc": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image"
+          ],
           "pos": 0,
           "type": "tab"
         },
@@ -610,7 +1223,9 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212287
         }
       },
@@ -668,7 +1283,7 @@
       "name": "home-page",
       "display_name": null,
       "created_at": "2023-03-03T14:59:15.465Z",
-      "updated_at": "2023-04-10T21:34:27.851Z",
+      "updated_at": "2023-04-19T14:44:47.513Z",
       "id": 3521503,
       "schema": {
         "small_highlights": {
@@ -678,27 +1293,39 @@
           "source": "internal_stories",
           "max_options": "4",
           "key": "small_highlights",
-          "filter_content_type": ["career", "project", "handbook", "blog-post"]
+          "filter_content_type": [
+            "career",
+            "project",
+            "handbook",
+            "blog-post"
+          ]
         },
         "showreel": {
           "type": "asset",
-          "filetypes": ["videos"],
+          "filetypes": [
+            "videos"
+          ],
           "pos": 1,
           "key": "showreel"
         },
         "showreel_button_label": {
           "type": "text",
-          "pos": 2
+          "pos": 2,
+          "key": "showreel_button_label"
         },
         "work_title": {
           "type": "text",
-          "pos": 3
+          "pos": 3,
+          "key": "work_title"
         },
         "projects": {
           "type": "options",
           "pos": 4,
           "source": "internal_stories",
-          "filter_content_type": ["project"]
+          "filter_content_type": [
+            "project"
+          ],
+          "key": "projects"
         },
         "about_title1": {
           "type": "text",
@@ -715,68 +1342,98 @@
           "key": "about_description",
           "pos": 7
         },
+        "about_physics_cards": {
+          "type": "bloks",
+          "pos": 8,
+          "required": false,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "physics-balloon-card",
+            "physics-input",
+            "physics-rectangle-card"
+          ],
+          "key": "about_physics_cards"
+        },
         "about_link": {
           "type": "bloks",
           "maximum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"],
+          "component_whitelist": [
+            "link"
+          ],
           "key": "about_link",
-          "pos": 8
+          "pos": 9
         },
         "about_links": {
           "type": "bloks",
-          "pos": 9,
+          "pos": 10,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["home-about-link"],
+          "component_whitelist": [
+            "home-about-link"
+          ],
           "maximum": 3,
-          "minimum": 3
+          "minimum": 3,
+          "key": "about_links"
         },
         "testimonials_title1": {
           "type": "text",
           "key": "testimonials_title1",
-          "pos": 10
+          "pos": 11
         },
         "testimonials_title2": {
           "type": "text",
           "key": "testimonials_title2",
-          "pos": 11
-        },
-        "testimonials_image": {
-          "type": "asset",
-          "filetypes": ["images"],
-          "key": "testimonials_image",
           "pos": 12
+        },
+        "testimonials_cta_label": {
+          "type": "text",
+          "pos": 13,
+          "key": "testimonials_cta_label"
+        },
+        "testimonials_cta_link": {
+          "type": "multilink",
+          "pos": 14,
+          "key": "testimonials_cta"
         },
         "testimonials": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["richtext-testimonial"],
-          "maximum": 4,
-          "minimum": 4,
+          "component_whitelist": [
+            "richtext-testimonial"
+          ],
+          "maximum": 5,
+          "minimum": 5,
           "key": "testimonials",
-          "pos": 13
+          "pos": 15
         },
         "blog_title1": {
           "type": "text",
-          "pos": 14
+          "pos": 16,
+          "key": "blog_title1"
         },
         "blog_title2": {
           "type": "text",
-          "pos": 15
+          "pos": 17,
+          "key": "blog_title2"
         },
         "handbook_title": {
           "type": "text",
-          "pos": 16
+          "pos": 18,
+          "key": "handbook_title"
         },
         "handbook_description": {
           "type": "textarea",
-          "pos": 17
+          "pos": 19,
+          "key": "handbook_description"
         },
         "careers_button_label": {
-          "type": "text"
+          "type": "text",
+          "pos": 20,
+          "key": "careers_button_label"
         }
       },
       "image": null,
@@ -828,7 +1485,9 @@
         },
         "image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true
         },
         "expandable": {
@@ -898,7 +1557,9 @@
         },
         "images": {
           "type": "multiasset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true,
           "pos": 2
         },
@@ -948,6 +1609,30 @@
       "component_group_name": "Single"
     },
     {
+      "name": "notepad_card",
+      "display_name": null,
+      "created_at": "2023-04-11T13:32:29.435Z",
+      "updated_at": "2023-04-11T13:32:35.750Z",
+      "id": 3785715,
+      "schema": {
+        "text": {
+          "type": "textarea"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "notepad_card",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "page",
       "display_name": null,
       "created_at": "2023-03-03T13:41:50.937Z",
@@ -959,12 +1644,18 @@
           "restrict_type": "groups",
           "restrict_components": true,
           "component_whitelist": [],
-          "component_group_whitelist": ["78726ff5-00c6-4ddb-bfef-551b83977e54"],
+          "component_group_whitelist": [
+            "78726ff5-00c6-4ddb-bfef-551b83977e54"
+          ],
           "maximum": 1
         },
         "tab-b1b4aa1b-2d5c-436e-ac16-09e30b9de047": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image"
+          ],
           "pos": 0,
           "type": "tab"
         },
@@ -978,7 +1669,9 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": ["images"]
+          "filetypes": [
+            "images"
+          ]
         }
       },
       "image": null,
@@ -995,6 +1688,177 @@
       "component_group_name": "Content Types"
     },
     {
+      "name": "photo_card",
+      "display_name": null,
+      "created_at": "2023-04-11T13:32:46.022Z",
+      "updated_at": "2023-04-11T13:32:54.059Z",
+      "id": 3785716,
+      "schema": {
+        "photo": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "photo_card",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "physics-balloon-card",
+      "display_name": null,
+      "created_at": "2023-04-14T10:39:02.963Z",
+      "updated_at": "2023-04-14T10:40:57.966Z",
+      "id": 3811407,
+      "schema": {
+        "text": {
+          "type": "text"
+        },
+        "theme": {
+          "type": "option",
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "a8bfea41-7627-4d4b-af01-db12024bf481",
+              "name": "Inverted",
+              "value": "inverted"
+            },
+            {
+              "_uid": "d583af0e-d1a5-453a-aaeb-28352fc53d00",
+              "value": "panel",
+              "name": "Panel"
+            },
+            {
+              "_uid": "e16413f1-8f0c-464e-8943-7ccab0576906",
+              "value": "offset",
+              "name": "Offset"
+            },
+            {
+              "_uid": "7f18d192-5d34-43e2-97eb-1a8cfd106646",
+              "value": "yellow",
+              "name": "Yellow"
+            }
+          ],
+          "exclude_empty_option": true
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "physics-balloon-card",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "physics-input",
+      "display_name": null,
+      "created_at": "2023-04-17T15:13:53.017Z",
+      "updated_at": "2023-04-17T15:14:00.636Z",
+      "id": 3830600,
+      "schema": {
+        "placeholder": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "physics-input",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "physics-rectangle-card",
+      "display_name": null,
+      "created_at": "2023-04-14T10:37:48.156Z",
+      "updated_at": "2023-04-14T10:38:41.658Z",
+      "id": 3811406,
+      "schema": {
+        "text": {
+          "type": "text"
+        },
+        "theme": {
+          "type": "option",
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "5d003831-5961-497c-9d37-f50dcde94d9c",
+              "name": "Transparent",
+              "value": "transparent"
+            },
+            {
+              "_uid": "4c81fbe7-1760-41d3-846c-e318af0e802f",
+              "value": "yellow",
+              "name": "Yellow"
+            }
+          ],
+          "exclude_empty_option": true
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "physics-rectangle-card",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "physics-sticker",
+      "display_name": null,
+      "created_at": "2023-04-26T13:15:00.766Z",
+      "updated_at": "2023-04-26T16:25:36.409Z",
+      "id": 3889837,
+      "schema": {
+        "photo": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ],
+          "asset_folder_id": 234280
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "physics-sticker",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "project",
       "display_name": null,
       "created_at": "2023-02-15T13:07:44.621Z",
@@ -1003,12 +1867,17 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": ["images", "videos"],
+          "filetypes": [
+            "images",
+            "videos"
+          ],
           "asset_folder_id": 212286
         },
         "thumbnail": {
           "type": "multiasset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true,
           "asset_folder_id": 212286
         },
@@ -1023,33 +1892,45 @@
         "team": {
           "type": "options",
           "source": "internal_stories",
-          "filter_content_type": ["team-member"]
+          "filter_content_type": [
+            "team-member"
+          ]
         },
         "client": {
           "type": "text",
           "use_uuid": true,
           "source": "internal_stories",
-          "filter_content_type": ["client"]
+          "filter_content_type": [
+            "client"
+          ]
         },
         "deliverables": {
           "type": "textarea",
           "source": "internal_stories",
-          "filter_content_type": ["deliverable"]
+          "filter_content_type": [
+            "deliverable"
+          ]
         },
         "services": {
           "type": "textarea",
           "source": "internal_stories",
-          "filter_content_type": ["service"]
+          "filter_content_type": [
+            "service"
+          ]
         },
         "links": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"]
+          "component_whitelist": [
+            "link"
+          ]
         },
         "tab-734adeb1-00ef-48e6-aa53-a3001ad39201": {
           "display_name": "Content",
-          "keys": ["body"],
+          "keys": [
+            "body"
+          ],
           "pos": 0,
           "type": "tab"
         },
@@ -1082,7 +1963,11 @@
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image"
+          ],
           "pos": 0,
           "type": "tab"
         },
@@ -1094,14 +1979,18 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212286
         },
         "recognitions": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["recognition"]
+          "component_whitelist": [
+            "recognition"
+          ]
         }
       },
       "image": null,
@@ -1154,7 +2043,9 @@
         },
         "image": {
           "type": "asset",
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "required": true,
           "asset_folder_id": 216885
         }
@@ -1200,7 +2091,9 @@
         "image": {
           "type": "asset",
           "pos": 1,
-          "filetypes": ["images"]
+          "filetypes": [
+            "images"
+          ]
         },
         "title": {
           "type": "text",
@@ -1215,7 +2108,9 @@
           "pos": 4,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"],
+          "component_whitelist": [
+            "link"
+          ],
           "maximum": 1
         }
       },
@@ -1329,7 +2224,9 @@
         "photo": {
           "type": "asset",
           "pos": 0,
-          "filetypes": ["images"]
+          "filetypes": [
+            "images"
+          ]
         },
         "name": {
           "type": "text",
@@ -1455,39 +2352,52 @@
       "name": "team-member",
       "display_name": null,
       "created_at": "2023-02-15T10:55:16.832Z",
-      "updated_at": "2023-02-15T11:58:50.052Z",
+      "updated_at": "2023-04-12T13:16:05.856Z",
       "id": 3441652,
       "schema": {
         "photo": {
           "type": "asset",
           "pos": 0,
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212283
         },
         "egg": {
           "type": "asset",
           "pos": 1,
-          "filetypes": ["images"],
+          "filetypes": [
+            "images"
+          ],
           "asset_folder_id": 212284
         },
         "position": {
           "type": "text",
           "pos": 2
         },
+        "team": {
+          "type": "option",
+          "pos": 3,
+          "use_uuid": true,
+          "source": "internal",
+          "datasource_slug": "teams"
+        },
         "bio": {
           "type": "textarea",
-          "pos": 3
+          "pos": 4
         },
         "links": {
           "type": "bloks",
-          "pos": 4,
+          "pos": 5,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["team-member-link"]
+          "component_whitelist": [
+            "team-member-link"
+          ]
         },
         "is_active": {
           "type": "boolean",
-          "pos": 5
+          "pos": 6
         }
       },
       "image": null,
@@ -1586,6 +2496,240 @@
       "component_group_name": "Single"
     },
     {
+      "name": "timeline-arrow",
+      "display_name": null,
+      "created_at": "2023-04-12T14:24:11.523Z",
+      "updated_at": "2023-04-21T13:25:55.540Z",
+      "id": 3795710,
+      "schema": {
+        "variant": {
+          "type": "option",
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "c6e3dd43-d4e6-40f6-8ff9-4c53fcef3c6c",
+              "name": "one",
+              "value": "one"
+            },
+            {
+              "_uid": "750d1125-ba97-4ad4-9bd0-0066a4bd9cc3",
+              "value": "two",
+              "name": "two"
+            },
+            {
+              "_uid": "0a543fe1-ccdd-4f2e-89f7-bba9829934d4",
+              "value": "three",
+              "name": "three"
+            },
+            {
+              "_uid": "edc629f8-34ae-4080-ac31-5c7a88d2ead9",
+              "value": "four",
+              "name": "four"
+            },
+            {
+              "_uid": "dc5263af-5ee8-4d85-a6fb-28baaabfff85",
+              "value": "five",
+              "name": "five"
+            }
+          ],
+          "default_value": "one",
+          "required": true,
+          "pos": 0
+        },
+        "flip": {
+          "type": "boolean",
+          "pos": 1
+        },
+        "top": {
+          "type": "number",
+          "decimals": 0,
+          "default_value": "0",
+          "required": true,
+          "pos": 2
+        },
+        "left": {
+          "type": "number",
+          "required": true,
+          "default_value": "0",
+          "decimals": 0,
+          "pos": 3
+        },
+        "scale": {
+          "type": "number",
+          "default_value": "1",
+          "decimals": 2,
+          "description": "Between 0 and 1",
+          "pos": 4
+        },
+        "rotate": {
+          "type": "number",
+          "decimals": 0,
+          "default_value": "0",
+          "pos": 5
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "timeline-arrow",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
+      "name": "timeline-image",
+      "display_name": null,
+      "created_at": "2023-04-12T14:25:57.635Z",
+      "updated_at": "2023-04-12T20:39:43.446Z",
+      "id": 3795713,
+      "schema": {
+        "image": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ]
+        },
+        "border": {
+          "type": "boolean",
+          "default_value": true
+        },
+        "top": {
+          "type": "number",
+          "required": true,
+          "default_value": "0",
+          "decimals": 0
+        },
+        "left": {
+          "type": "number",
+          "decimals": 0,
+          "default_value": "0",
+          "required": true
+        },
+        "scale": {
+          "type": "number",
+          "default_value": "1",
+          "decimals": 2,
+          "description": "Between 0 and 1"
+        },
+        "rotate": {
+          "type": "number",
+          "default_value": "0",
+          "decimals": 0
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "timeline-image",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
+      "name": "timeline-section",
+      "display_name": null,
+      "created_at": "2023-04-12T14:19:35.765Z",
+      "updated_at": "2023-04-12T20:56:46.026Z",
+      "id": 3795691,
+      "schema": {
+        "items": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "timeline-arrow",
+            "timeline-image",
+            "timeline-text"
+          ]
+        },
+        "width": {
+          "type": "number",
+          "required": true,
+          "default_value": "400",
+          "decimals": 0,
+          "steps": 20
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "timeline-section",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
+      "name": "timeline-text",
+      "display_name": null,
+      "created_at": "2023-04-12T14:20:49.471Z",
+      "updated_at": "2023-04-12T20:32:38.915Z",
+      "id": 3795700,
+      "schema": {
+        "text": {
+          "type": "text",
+          "pos": 0
+        },
+        "link": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "link"
+          ],
+          "pos": 1
+        },
+        "width": {
+          "type": "number",
+          "pos": 2,
+          "required": true,
+          "default_value": "240",
+          "description": "e.g.: 140, 160, 200, 240",
+          "decimals": 0
+        },
+        "top": {
+          "type": "number",
+          "pos": 3,
+          "required": true,
+          "decimals": 0,
+          "default_value": "0"
+        },
+        "left": {
+          "type": "number",
+          "pos": 4,
+          "decimals": 0,
+          "required": true,
+          "default_value": "0"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "timeline-text",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
       "name": "two-columns",
       "display_name": null,
       "created_at": "2023-02-16T10:36:21.986Z",
@@ -1609,7 +2753,10 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["column-media", "column"],
+          "component_whitelist": [
+            "column-media",
+            "column"
+          ],
           "minimum": 2,
           "maximum": 2,
           "required": true,
@@ -1628,6 +2775,60 @@
       "color": "#fbce41",
       "icon": "block-text-img-r-l",
       "component_group_name": "Blocks & Rich Text"
+    },
+    {
+      "name": "value",
+      "display_name": null,
+      "created_at": "2023-04-11T13:24:04.277Z",
+      "updated_at": "2023-04-26T17:05:26.948Z",
+      "id": 3785697,
+      "schema": {
+        "illustration": {
+          "type": "option",
+          "pos": 0,
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "500fc43f-2461-44a0-b1bd-650e4b346617",
+              "name": "People",
+              "value": "people"
+            },
+            {
+              "_uid": "7f8ebaf6-7f62-4a46-9ddf-162d6d43ab4a",
+              "value": "teamwork",
+              "name": "Teamwork"
+            },
+            {
+              "_uid": "23d20c73-3882-43f4-96d1-c2f3b6aa6aa7",
+              "value": "aspiration",
+              "name": "Aspiration"
+            }
+          ],
+          "exclude_empty_option": true,
+          "default_value": "people",
+          "required": true
+        },
+        "title": {
+          "type": "text",
+          "pos": 1
+        },
+        "description": {
+          "type": "text",
+          "pos": 2
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "value",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
     },
     {
       "name": "video",
@@ -1665,7 +2866,9 @@
         },
         "video": {
           "type": "asset",
-          "filetypes": ["videos"],
+          "filetypes": [
+            "videos"
+          ],
           "required": true
         },
         "loop": {

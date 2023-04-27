@@ -150,7 +150,7 @@
       "name": "benefits-entry",
       "display_name": null,
       "created_at": "2023-04-21T09:26:11.845Z",
-      "updated_at": "2023-04-21T13:10:06.059Z",
+      "updated_at": "2023-04-27T11:09:48.115Z",
       "id": 3857099,
       "schema": {
         "icon": {
@@ -175,8 +175,8 @@
             },
             {
               "_uid": "c768d570-18d8-4a1b-a34f-f30bb7a82aa7",
-              "value": "tshape",
-              "name": "Tshape"
+              "value": "grow",
+              "name": "Grow"
             },
             {
               "_uid": "3f08bf5a-13e4-4a3e-b099-170be12c209c",
@@ -197,11 +197,6 @@
               "_uid": "b513d974-d9d3-4089-8fcd-6e024cb2b2c7",
               "value": "calendar",
               "name": "Calendar"
-            },
-            {
-              "_uid": "fec4111c-1671-42ae-9385-865d5d1d00d3",
-              "value": "fire",
-              "name": "Fire"
             },
             {
               "_uid": "97620d71-2e84-48d1-96b3-64d26ab93b8a",
@@ -951,9 +946,30 @@
       "name": "contacts-page",
       "display_name": null,
       "created_at": "2023-03-03T13:47:28.940Z",
-      "updated_at": "2023-03-03T13:47:28.940Z",
+      "updated_at": "2023-04-27T10:01:47.940Z",
       "id": 3521049,
-      "schema": {},
+      "schema": {
+        "page_title1": {
+          "type": "text"
+        },
+        "page_title2": {
+          "type": "text"
+        },
+        "form_support_text": {
+          "type": "textarea"
+        },
+        "gallery": {
+          "type": "bloks",
+          "minimum": 6,
+          "maximum": 6,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "notepad_card",
+            "photo_card"
+          ]
+        }
+      },
       "image": null,
       "preview_field": null,
       "is_root": false,
@@ -1818,23 +1834,15 @@
       "name": "physics-sticker",
       "display_name": null,
       "created_at": "2023-04-26T13:15:00.766Z",
-<<<<<<< HEAD
-      "updated_at": "2023-04-26T16:09:57.794Z",
-=======
       "updated_at": "2023-04-26T16:25:36.409Z",
->>>>>>> main
       "id": 3889837,
       "schema": {
         "photo": {
           "type": "asset",
           "filetypes": [
             "images"
-<<<<<<< HEAD
-          ]
-=======
           ],
           "asset_folder_id": 234280
->>>>>>> main
         }
       },
       "image": null,

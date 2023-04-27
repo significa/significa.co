@@ -1,10 +1,11 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { Button, FloatingInput, FloatingTextarea, Link } from '@significa/svelte-ui';
+  import { enhance } from '$app/forms';
   import { t } from '$lib/i18n';
+  import { Button, FloatingInput, FloatingTextarea, Link } from '@significa/svelte-ui';
+  import HoverableGallery from '$components/hoverable-gallery.svelte';
   import Seo from '$components/seo.svelte';
   import type { ContactsPageStoryblok } from '$types/bloks';
-  import { enhance } from '$app/forms';
 
   export let data: ContactsPageStoryblok;
 
@@ -15,7 +16,7 @@
 </script>
 
 <Seo />
-<main>
+<main class="overflow-hidden">
   <section class="container mx-auto px-container pb-12 pt-20 text-center">
     <h1 class="mx-auto max-w-xl text-7xl">{data.page_title1}</h1>
     <p class="mx-auto max-w-xl text-7xl text-foreground-secondary">{data.page_title2}</p>
@@ -72,4 +73,12 @@
       </div>
     </form>
   </section>
+
+  {#if !!data.gallery?.length}
+    <section class="border-b">
+      <section class="container mx-auto px-container">
+        <HoverableGallery cards={data.gallery} />
+      </section>
+    </section>
+  {/if}
 </main>

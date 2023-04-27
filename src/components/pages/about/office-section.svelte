@@ -10,12 +10,12 @@
 
   const cardsTransformOptions: { static: TransformOptions[]; hover: TransformOptions[] } = {
     static: [
-      { x: '0%', y: '45%', deg: 4, z: 1 },
-      { x: '0%', y: '65%', deg: -14, z: 1 },
-      { x: '-15%', y: '40%', deg: 4, z: 1 },
-      { x: '0%', y: '55%', deg: -5, z: 3 },
-      { x: '-5%', y: '25%', deg: -5, z: 2 },
-      { x: '0%', y: '45%', deg: 10, z: 1 }
+      { x: '0%', y: '55%', deg: 4, z: 1 },
+      { x: '0%', y: '75%', deg: -14, z: 1 },
+      { x: '-15%', y: '50%', deg: 4, z: 1 },
+      { x: '0%', y: '65%', deg: -5, z: 3 },
+      { x: '-5%', y: '35%', deg: -5, z: 2 },
+      { x: '0%', y: '55%', deg: 10, z: 1 }
     ],
     hover: [
       { x: '-5%', y: '-5%', deg: -4, z: 1 },
@@ -42,7 +42,7 @@
     </div>
 
     {#if !!cards?.length}
-      <div class="isolate -mt-20 flex justify-center px-10 lg:mt-0 lg:grid lg:grid-cols-6">
+      <div class="isolate -mt-20 flex justify-center px-10 lg:-mt-10 lg:grid lg:grid-cols-6">
         {#each cards.slice(0, 6) as card, i}
           <OfficeCard
             {card}

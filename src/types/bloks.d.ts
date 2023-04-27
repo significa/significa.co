@@ -652,7 +652,7 @@ export interface TwoColumnsStoryblok {
 }
 
 export interface ValueStoryblok {
-  illustration?: any;
+  illustration: 'people' | 'teamwork' | 'aspiration';
   title?: string;
   description?: string;
   _uid: string;

@@ -1,15 +1,18 @@
 <script lang="ts">
   import PhysicsSection from '$components/physics-section.svelte';
   import Testimonials from '$components/testimonials.svelte';
+  import Seo from '$components/seo.svelte';
   import { theme } from '$lib/stores/theme';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { AboutPageStoryblok } from '$types/bloks';
   import OfficeSection from './about/office-section.svelte';
-  import PlaceholderValueIllust from './about/placeholder-value-illust.svelte';
+  import Timeline from './about/timeline.svelte';
+  import ValueIllustrations from './about/value-illustrations.svelte';
 
   export let data: AboutPageStoryblok;
 </script>
 
+<Seo />
 <main>
   <div class="container relative isolate mx-auto pb-20">
     <div class="absolute top-0 z-10 px-container pt-10 md:pt-14 lg:pt-20">
@@ -34,6 +37,7 @@
     </div>
   </section>
 
+  <Timeline timeline={data.timeline} />
   <!-- Our Values -->
   <section class="border-t">
     <div
@@ -54,8 +58,10 @@
             <div
               class="flex flex-col items-start gap-4 border-t py-8 first:border-none lg:flex-row lg:items-center lg:gap-8 lg:py-12"
             >
-              <!-- TODO: Replace Illustrations -->
-              <PlaceholderValueIllust class="block shrink-0" />
+              <ValueIllustrations
+                variant={value.illustration}
+                class="block shrink-0 drop-shadow-md"
+              />
               <div>
                 <h4 class="text-2xl font-semibold">{value.title}</h4>
                 <p class="text-2xl text-foreground-secondary">{value.description}</p>

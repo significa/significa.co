@@ -951,9 +951,19 @@
       "name": "contacts-page",
       "display_name": null,
       "created_at": "2023-03-03T13:47:28.940Z",
-      "updated_at": "2023-03-03T13:47:28.940Z",
+      "updated_at": "2023-04-27T08:50:17.182Z",
       "id": 3521049,
-      "schema": {},
+      "schema": {
+        "page_title1": {
+          "type": "text"
+        },
+        "page_title2": {
+          "type": "text"
+        },
+        "form_support_text": {
+          "type": "textarea"
+        }
+      },
       "image": null,
       "preview_field": null,
       "is_root": false,

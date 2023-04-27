@@ -273,6 +273,9 @@ export interface ConfigurationStoryblok {
 }
 
 export interface ContactsPageStoryblok {
+  page_title1?: string;
+  page_title2?: string;
+  form_support_text?: string;
   _uid: string;
   component: 'contacts-page';
   [k: string]: any;

@@ -26,17 +26,25 @@
   };
 </script>
 
-<div class={clsx('isolate flex justify-center px-10 lg:grid lg:grid-cols-6', $$restProps.class)}>
+<div class={clsx('isolate hidden justify-center px-10 lg:grid lg:grid-cols-6', $$restProps.class)}>
   {#each cards.slice(0, 6) as card, i}
     <HoverableGalleryCard
       {card}
       staticTransformState={cardsTransformOptions.static[i]}
       hoverTransformState={cardsTransformOptions.hover[i]}
-      class={clsx(
-        card.component === 'photo_card'
-          ? 'hidden lg:block'
-          : 'min-w-[280px] max-w-[280px] lg:min-w-[unset] lg:max-w-[unset]'
-      )}
+      class=" min-w-[280px] max-w-[280px]  lg:min-w-[unset] lg:max-w-[unset]"
+    />
+  {/each}
+</div>
+
+<!-- Mobile -->
+<div class={clsx('flex justify-center lg:hidden', $$restProps.class)}>
+  {#each cards.filter((c) => c.component === 'notepad_card').slice(0, 1) as card}
+    <HoverableGalleryCard
+      {card}
+      staticTransformState={{ x: '0%', y: '0%', z: 1, deg: 4 }}
+      hoverTransformState={{ x: '0%', y: '0%', z: 1, deg: 4 }}
+      class="-mb-56 min-w-[280px] max-w-[280px] lg:min-w-[unset] lg:max-w-[unset]"
     />
   {/each}
 </div>

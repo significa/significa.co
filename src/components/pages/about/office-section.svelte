@@ -22,7 +22,7 @@
     </div>
 
     {#if !!cards?.length}
-      <HoverableGallery {cards} class="-mt-20 lg:-mt-10" />
+      <HoverableGallery {cards} class="mt-12 lg:-mt-10" />
     {/if}
   </div>
 </section>

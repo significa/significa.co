@@ -21,17 +21,18 @@
 <Seo />
 <main class="overflow-hidden">
   <div class="container relative mx-auto px-container">
-    <section class="pb-12 pt-20 text-center">
-      <h1 class="mx-auto max-w-xl text-7xl">{data.page_title1}</h1>
-      <p class="mx-auto max-w-xl text-7xl text-foreground-secondary">{data.page_title2}</p>
+    <section class="pb-5 pt-10 lg:pb-12 lg:pt-20 lg:text-center">
+      <h1 class="mx-auto text-7xl lg:max-w-xl">
+        {data.page_title1}<br /> <span class="text-foreground-secondary">{data.page_title2}</span>
+      </h1>
     </section>
 
-    <section class="container mx-auto px-container">
+    <section>
       <form
         id="contact-form"
         method="POST"
         action="?/contact"
-        class="mx-auto max-w-xl pt-5"
+        class="mx-auto lg:max-w-xl lg:pt-5"
         use:enhance={() => {
           loading = true;
           return async ({ update }) => {
@@ -40,7 +41,7 @@
           };
         }}
       >
-        <div class="border-b [&>*]:mb-6 [&>*]:w-full">
+        <div class="border-b [&>*]:mb-4 [&>*]:w-full lg:[&>*]:mb-6">
           <FloatingInput
             error={!!$page.form?.error?.fields?.email}
             name="email"
@@ -78,16 +79,16 @@
       </form>
     </section>
 
-    <PanWithEggs class="absolute -left-16 top-4 -rotate-[14deg]" />
-    <Segg1 class="absolute -right-16 top-[207px] -rotate-[16deg] drop-shadow-md" />
-    <Segg2 class="absolute -right-20 top-[440px] -rotate-[16deg] drop-shadow-md" />
+    <PanWithEggs class="absolute -left-16 top-4 hidden -rotate-[14deg] lg:block" />
+    <Segg1 class="absolute -right-16 top-[207px] hidden -rotate-[16deg] drop-shadow-md lg:block" />
+    <Segg2 class="absolute -right-20 top-[440px] hidden -rotate-[16deg] drop-shadow-md lg:block" />
   </div>
 
   {#if !!data.gallery?.length}
     <section class="border-b">
-      <section class="container mx-auto px-container">
-        <HoverableGallery cards={data.gallery} />
-      </section>
+      <div class="container mx-auto px-container">
+        <HoverableGallery cards={data.gallery} class="mt-12 lg:mt-0" />
+      </div>
     </section>
   {/if}
 </main>

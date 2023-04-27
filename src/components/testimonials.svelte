@@ -3,9 +3,9 @@
   import type { MultilinkStoryblok, RichtextTestimonialStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
   import RichTextTestimonial from '$components/blocks/rich-text-testimonial.svelte';
-  import BalloonRound from './stickers/balloon-round.svelte';
-  import BalloonRectangle from './stickers/balloon-rectangle.svelte';
-  import Combo from './stickers/combo.svelte';
+  import BalloonRound from './pages/about/stickers/balloon-round.svelte';
+  import BalloonRectangle from './pages/about/stickers/balloon-rectangle.svelte';
+  import Combo from './pages/about/stickers/combo.svelte';
   import clsx from 'clsx';
 
   export let firstTitle: string | undefined = undefined;

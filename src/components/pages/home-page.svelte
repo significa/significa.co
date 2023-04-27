@@ -10,8 +10,6 @@
   import Reel from './home/reel.svelte';
   import clsx from 'clsx';
   import HomeAbout from './home/home-about.svelte';
-  import { getImageAttributes } from '$lib/utils/cms';
-  import Person from '$components/person.svelte';
   import { page } from '$app/stores';
   import { Button, Icon } from '@significa/svelte-ui';
   import { t } from '$lib/i18n';
@@ -19,6 +17,7 @@
   import { afterNavigate } from '$app/navigation';
   import { browser } from '$app/environment';
   import { theme } from '$lib/stores/theme';
+  import Testimonials from '$components/testimonials.svelte';
 
   export let data: HomePageStoryblok;
   export let posts: BlogPostPage[] | undefined;
@@ -72,33 +71,14 @@
     <HomeAbout {data} />
   </section>
 
-  <section class="container mx-auto mt-10 px-container md:mt-14 lg:mt-20">
-    <h2 class="text-5xl text-foreground-secondary">{data.testimonials_title1}</h2>
-    <p class="text-5xl">{data.testimonials_title2}</p>
-
-    <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-      {#if data.testimonials_image?.filename}
-        {@const { src, alt, width, height } = getImageAttributes(data.testimonials_image, {
-          size: [1200, 0]
-        })}
-        <img class="w-full rounded-lg md:col-span-2" {src} {alt} {width} {height} />
-      {/if}
-      {#each data.testimonials || [] as testimonial}
-        <div class="flex flex-col rounded-lg border p-6">
-          <div class="flex-1">
-            <span class="text-5xl text-foreground-tertiary">&ldquo;</span>
-            <p class="text-2xl/tight font-medium">{testimonial.testimonial}</p>
-          </div>
-          <Person
-            class="mt-8"
-            name={testimonial.name}
-            position={testimonial.position}
-            photo={testimonial.photo}
-          />
-        </div>
-      {/each}
-    </div>
-  </section>
+  <Testimonials
+    firstTitle={data.testimonials_title1}
+    secondTitle={data.testimonials_title2}
+    testimonials={data.testimonials}
+    ctaLabel={data.testimonials_cta_label}
+    ctaLink={data.testimonials_cta_link}
+  />
+  <div class="pt-16 lg:pt-20" />
 
   <section class="mt-10 md:mt-14 lg:mt-20">
     <div class="container mx-auto px-container">

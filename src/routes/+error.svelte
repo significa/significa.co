@@ -130,13 +130,21 @@
     { name: Development }
   ];
 
-  const shuffledArray = components.sort((_a, _b) => 0.5 - Math.random());
+  const shuffledArray = components.sort(() => 0.5 - Math.random());
+
   const nobitaIndex = shuffledArray.map((el) => el.class).indexOf('nobita');
 
+  const isNobitaLeftScreenEdge = nobitaIndex % 12 === 0;
+  const isNobitaRightScreenEdge = nobitaIndex % 12 === 11;
+
   const isFoundAbove = shuffledArray[nobitaIndex - 12];
+  const isFoundAboveLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex - 13] : null;
+  const isFoundAboveRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex - 11] : null;
   const isFoundBelow = shuffledArray[nobitaIndex + 12];
-  const isFoundLeft = shuffledArray[nobitaIndex - 1];
-  const isFoundRight = shuffledArray[nobitaIndex + 1];
+  const isFoundBelowLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex + 11] : null;
+  const isFoundBelowRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex + 13] : null;
+  const isFoundLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex - 1] : null;
+  const isFoundRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex + 1] : null;
 
   let screenWidth: number;
   let screenHeight: number;
@@ -157,14 +165,21 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div
       class="stick"
-      class:foundAbove={isFoundAbove === component ? isFound : null}
-      class:foundBelow={isFoundBelow === component ? isFound : null}
+      class:foundAbove={isFoundAbove === component ||
+      isFoundAboveLeft === component ||
+      isFoundAboveRight === component
+        ? isFound
+        : null}
+      class:foundBelow={isFoundBelow === component ||
+      isFoundBelowRight === component ||
+      isFoundBelowLeft === component
+        ? isFound
+        : null}
       class:foundLeft={isFoundLeft === component ? isFound : null}
       class:foundRight={isFoundRight === component ? isFound : null}
       class:nobita={component.class}
       style={getRandomRotation()}
       on:click={() => {
-        console.log(component.class);
         component.class ? (isFound = true) : null;
       }}
     >

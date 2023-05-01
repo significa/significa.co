@@ -42,528 +42,172 @@
   import Tiago from '$components/illustrations/tiago.svelte';
   import Trophy from '$components/illustrations/trophy.svelte';
 
+  const components = [
+    { name: Fred },
+    { name: Alec },
+    { name: Nobita, class: 'nobita' },
+    { name: FriedEgg },
+    { name: Marralhinha },
+    { name: Strategy },
+    { name: Flamingo },
+    { name: Manel },
+    { name: Mariana },
+    { name: Elisa },
+    { name: AnaFernandes },
+    { name: Brandao },
+    { name: JoaoRibeiro },
+    { name: RuiFerreira },
+    { name: RuiSereno },
+    { name: RuiSousa },
+    { name: Joel },
+    { name: Michelle },
+    { name: FranciscoMarques },
+    { name: FranciscoTeixeira },
+    { name: Catarina },
+    { name: AndreResendes },
+    { name: Cocktail },
+    { name: Contact },
+    { name: DanielAlmeida },
+    { name: Design },
+    { name: Development },
+    { name: Esteph },
+    { name: Filipe },
+    { name: Guilherme },
+    { name: IceCream },
+    { name: Ines },
+    { name: Patricia },
+    { name: Pintainho },
+    { name: Plane },
+    { name: Quim },
+    { name: Ricardo },
+    { name: Rita },
+    { name: Teresa },
+    { name: Tiago },
+    { name: Trophy },
+    { name: Design },
+    { name: Development },
+    { name: Fred },
+    { name: Alec },
+    { name: FriedEgg },
+    { name: Marralhinha },
+    { name: Strategy },
+    { name: Flamingo },
+    { name: Manel },
+    { name: Mariana },
+    { name: Elisa },
+    { name: AnaFernandes },
+    { name: Brandao },
+    { name: JoaoRibeiro },
+    { name: RuiFerreira },
+    { name: RuiSereno },
+    { name: RuiSousa },
+    { name: Joel },
+    { name: Michelle },
+    { name: FranciscoMarques },
+    { name: FranciscoTeixeira },
+    { name: Catarina },
+    { name: AndreResendes },
+    { name: Cocktail },
+    { name: Contact },
+    { name: DanielAlmeida },
+    { name: Design },
+    { name: Development },
+    { name: Esteph },
+    { name: Filipe },
+    { name: Guilherme },
+    { name: IceCream },
+    { name: Ines },
+    { name: Patricia },
+    { name: Pintainho },
+    { name: Plane },
+    { name: Quim },
+    { name: Ricardo },
+    { name: Rita },
+    { name: Teresa },
+    { name: Tiago },
+    { name: Trophy },
+    { name: Design },
+    { name: Development }
+  ];
+
+  const shuffledArray = components.sort((_a, _b) => 0.5 - Math.random());
+  const nobitaIndex = shuffledArray.map((el) => el.class).indexOf('nobita');
+
+  const isFoundAbove = shuffledArray[nobitaIndex - 12];
+  const isFoundBelow = shuffledArray[nobitaIndex + 12];
+  const isFoundLeft = shuffledArray[nobitaIndex - 1];
+  const isFoundRight = shuffledArray[nobitaIndex + 1];
+
   let screenWidth: number;
   let screenHeight: number;
-  let seenTop: number[] = [];
-  let seenLeft: number[] = [];
 
-  const getRandomPosition = (height: number, width: number) => {
-    let top = Math.floor(Math.random() * height - 100);
-    let left = Math.floor(Math.random() * width);
-    let rotate = Math.floor(Math.random() * 180);
-    let hasOverlap = false;
-    for (let i = 0; i < seenTop.length; i++) {
-      if (Math.abs(seenTop[i] - top) < 10 && Math.abs(seenLeft[i] - left) < 10) {
-        hasOverlap = true;
-      }
-    }
-    if (hasOverlap) {
-      getRandomPosition(height, width);
-    } else if (top && left) {
-      seenTop.push(top);
-      seenLeft.push(left);
-      return `--top:${top}px;--left:${left}px;--rotate:${rotate}deg`;
-    }
+  const getRandomRotation = () => {
+    return `--rotate:${Math.floor(Math.random() * 180)}deg;margin-top: -100px;`;
   };
+
+  let isFound = false;
 </script>
 
 <svelte:window bind:innerWidth={screenWidth} bind:innerHeight={screenHeight} />
-<div class="relative flex h-full w-full items-center justify-center">
-  <div
-    style={getRandomPosition(screenHeight, screenWidth)}
-    class="z-10"
-    on:click={() => console.log('found me :))')}
-  >
-    <Nobita />
+<div
+  class="fixed grid h-full w-full grid-cols-12 overflow-hidden"
+  style="padding-top: 100px; padding-left: -50px;"
+>
+  {#each shuffledArray as component}
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div
+      class="stick"
+      class:foundAbove={isFoundAbove === component ? isFound : null}
+      class:foundBelow={isFoundBelow === component ? isFound : null}
+      class:foundLeft={isFoundLeft === component ? isFound : null}
+      class:foundRight={isFoundRight === component ? isFound : null}
+      class:nobita={component.class}
+      style={getRandomRotation()}
+      on:click={() => {
+        console.log(component.class);
+        component.class ? (isFound = true) : null;
+      }}
+    >
+      <svelte:component this={component.name} />
+    </div>
+  {/each}
+  <div class="illu">
+    <Illustration />
   </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Fred />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <FriedEgg />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Manel />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Mariana />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Elisa />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <AnaFernandes />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Brandao />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <JoaoRibeiro />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <RuiFerreira />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <RuiSereno />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <RuiSousa />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Joel />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Michelle />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <FranciscoMarques />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <FranciscoTeixeira />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Marralhinha />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Strategy />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Flamingo />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Alec />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Catarina />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <AndreResendes />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Cocktail />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Contact />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <DanielAlmeida />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Design />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Development />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Esteph />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Filipe />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Guilherme />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <IceCream />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Ines />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Patricia />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Pintainho />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Plane />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Quim />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Ricardo />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Rita />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Teresa />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Tiago />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Trophy />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Fred />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <FriedEgg />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Manel />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Mariana />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Elisa />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <AnaFernandes />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Brandao />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <JoaoRibeiro />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <RuiFerreira />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <RuiSereno />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <RuiSousa />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Joel />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Michelle />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <FranciscoMarques />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <FranciscoTeixeira />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Marralhinha />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Strategy />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Flamingo />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Alec />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Catarina />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <AndreResendes />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Cocktail />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Contact />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <DanielAlmeida />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Design />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Development />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Esteph />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Filipe />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Guilherme />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <IceCream />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Ines />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Patricia />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Pintainho />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Plane />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Quim />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Ricardo />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Rita />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Teresa />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Tiago />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Trophy />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Fred />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <FriedEgg />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Manel />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Mariana />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Elisa />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <AnaFernandes />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Brandao />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <JoaoRibeiro />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <RuiFerreira />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <RuiSereno />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <RuiSousa />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Joel />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Michelle />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <FranciscoMarques />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <FranciscoTeixeira />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Marralhinha />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Strategy />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Flamingo />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Alec />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Catarina />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <AndreResendes />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Cocktail />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Contact />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <DanielAlmeida />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Design />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Development />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Esteph />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Filipe />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Guilherme />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <IceCream />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Ines />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Patricia />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Pintainho />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Plane />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Quim />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Ricardo />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Rita />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Teresa />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Tiago />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Trophy />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Fred />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <FriedEgg />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Manel />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Mariana />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Elisa />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <AnaFernandes />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Brandao />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <JoaoRibeiro />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <RuiFerreira />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <RuiSereno />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <RuiSousa />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Joel />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Michelle />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <FranciscoMarques />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <FranciscoTeixeira />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Marralhinha />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Strategy />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Flamingo />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Alec />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Catarina />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <AndreResendes />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Cocktail />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Contact />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <DanielAlmeida />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Design />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Development />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Esteph />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Filipe />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Guilherme />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <IceCream />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Ines />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Patricia />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Pintainho />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Plane />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Quim />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Ricardo />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Rita />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Teresa />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Tiago />
-  </div>
-  <div style={getRandomPosition(screenHeight, screenWidth)}>
-    <Trophy />
-  </div>
-  <Illustration class="z-10" />
 </div>
 
 <style>
-  div {
-    position: absolute;
-    top: var(--top);
-    left: var(--left);
+  .nobita {
     transform: rotate(var(--rotate));
+    transition: all 0.8s ease-out;
+    cursor: pointer;
+    z-index: 10;
+  }
+  .stick {
+    transform: rotate(var(--rotate));
+    height: fit-content;
+    width: fit-content;
+    cursor: pointer;
+    transition: all 0.8s ease-out;
+  }
+  .illu {
+    z-index: 10;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+  .foundAbove {
+    transform: translateY(-75px);
+  }
+  .foundBelow {
+    transform: translateY(75px);
+  }
+  .foundLeft {
+    transform: translateX(-75px);
+  }
+  .foundRight {
+    transform: translateX(75px);
   }
 </style>

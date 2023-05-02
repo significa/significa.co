@@ -8,6 +8,7 @@
   import YellowSticker from './canvas-items/yellow-sticker.svelte';
   import Team from './canvas-items/team.svelte';
   import TalkBalloon from './canvas-items/talk-balloon.svelte';
+  import Checklist from './canvas-items/checklist.svelte';
 
   export let withMouseDragScroll = false;
   export let title: string | undefined = undefined;
@@ -104,6 +105,8 @@
             <Team {item} />
           {:else if item.component === 'canvas-talk-balloon'}
             <TalkBalloon {item} />
+          {:else if item.component === 'canvas-checklist'}
+            <Checklist {item} />
           {/if}
         {/each}
       </div>

@@ -141,12 +141,28 @@ export interface BlogPostStoryblok {
   [k: string]: any;
 }
 
+export interface CanvasChecklistStoryblok {
+  items?: CanvasChecklistItemStoryblok[];
+  _uid: string;
+  component: 'canvas-checklist';
+  [k: string]: any;
+}
+
+export interface CanvasChecklistItemStoryblok {
+  default_checked?: boolean;
+  text?: string;
+  _uid: string;
+  component: 'canvas-checklist-item';
+  [k: string]: any;
+}
+
 export interface CanvasGroupStoryblok {
   width?: number;
   height?: number;
   top?: number;
   left?: number;
   items?: (
+    | CanvasChecklistStoryblok
     | CanvasTalkBalloonStoryblok
     | CanvasTeamStoryblok
     | CanvasYellowStickerStoryblok
@@ -378,6 +394,7 @@ export interface HomePageStoryblok {
   blog_title2?: string;
   handbook_title?: string;
   handbook_description?: string;
+  careers_title?: string;
   careers_button_label?: string;
   _uid: string;
   component: 'home-page';

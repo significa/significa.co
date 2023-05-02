@@ -180,6 +180,15 @@ module.exports = {
       },
       padding: {
         container: 'clamp(1rem, 5vw, 3rem)'
+      },
+      keyframes: {
+        strike: {
+          '0%': { width: '0%' },
+          '100%': { width: '100%' }
+        }
+      },
+      animation: {
+        strike: 'strike 300ms ease-in-out forwards'
       }
     }
   },

@@ -371,6 +371,65 @@
       "component_group_name": "Content Types"
     },
     {
+      "name": "canvas-checklist",
+      "display_name": null,
+      "created_at": "2023-05-02T10:44:42.656Z",
+      "updated_at": "2023-05-02T10:47:14.346Z",
+      "id": 3914196,
+      "schema": {
+        "items": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "canvas-checklist-item"
+          ],
+          "maximum": 8
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-checklist",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
+      "name": "canvas-checklist-item",
+      "display_name": null,
+      "created_at": "2023-05-02T10:44:58.838Z",
+      "updated_at": "2023-05-02T10:45:25.555Z",
+      "id": 3914197,
+      "schema": {
+        "default_checked": {
+          "type": "boolean",
+          "pos": 0
+        },
+        "text": {
+          "type": "text",
+          "pos": 1
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-checklist-item",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "canvas-group",
       "display_name": null,
       "created_at": "2023-04-19T14:57:33.541Z",
@@ -1283,7 +1342,7 @@
       "name": "home-page",
       "display_name": null,
       "created_at": "2023-03-03T14:59:15.465Z",
-      "updated_at": "2023-04-19T14:44:47.513Z",
+      "updated_at": "2023-04-28T12:12:19.265Z",
       "id": 3521503,
       "schema": {
         "small_highlights": {
@@ -1430,9 +1489,13 @@
           "pos": 19,
           "key": "handbook_description"
         },
+        "careers_title": {
+          "type": "text",
+          "pos": 20
+        },
         "careers_button_label": {
           "type": "text",
-          "pos": 20,
+          "pos": 21,
           "key": "careers_button_label"
         }
       },

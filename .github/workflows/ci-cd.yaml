@@ -1,0 +1,22 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  test:
+    name: Validate and test
+    uses: significa/actions/.github/workflows/npm-library.yaml@main
+    permissions:
+      contents: read
+      packages: write
+    with:
+      lint_command: npm run validate
+      test_command: npm run test

@@ -1,9 +1,13 @@
 <script lang="ts">
   import { getImageAttributes } from '$lib/utils/cms';
   import type { CareersPageStoryblok, GetAQuotePageStoryblok } from '$types/bloks';
+  import clsx from 'clsx';
   import { onMount } from 'svelte';
 
-  export let page: GetAQuotePageStoryblok | CareersPageStoryblok;
+  let className: string | undefined = undefined;
+  export { className as class };
+
+  export let images: GetAQuotePageStoryblok['images'] | CareersPageStoryblok['images'];
 
   let y = 0;
   let eased = 0;
@@ -24,9 +28,9 @@
 
 <svelte:window bind:scrollY={y} />
 
-<div class="flex justify-center overflow-hidden border-b py-12 md:py-20 lg:py-32">
+<div class={clsx('flex justify-center overflow-hidden border-b', className)} {...$$restProps}>
   <div class="flex gap-10" style="transform: translateX(calc({eased / 5}px * -1 + 15vw))">
-    {#each page.images || [] as img}
+    {#each images || [] as img}
       {#if img?.filename}
         {@const { src, alt, width, height } = getImageAttributes(img)}
         <img class="max-h-96" {alt} {src} {width} {height} />

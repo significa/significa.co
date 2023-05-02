@@ -3,6 +3,7 @@
     CareersPageStoryblok,
     GetAQuotePageStoryblok,
     HomePageStoryblok,
+    AboutPageStoryblok,
     PageStoryblok
   } from '$types/bloks';
   import type { ISbStoryData } from '@storyblok/js';
@@ -10,6 +11,7 @@
   import BlogIndex from './blog-index.svelte';
   import type { PageResult } from '$lib/content';
   import ProjectsIndex from './projects-index.svelte';
+  import About from './about.svelte';
   import HomePage from './home-page.svelte';
   import StaticPage from './static-page.svelte';
   import Careers from './careers.svelte';
@@ -27,6 +29,9 @@
     return page.component === 'get-a-quote-page';
   };
 
+  const isAboutPage = (page: { component: string }): page is AboutPageStoryblok => {
+    return page.component === 'about-page';
+  };
   const isHomePage = (page: { component: string }): page is HomePageStoryblok => {
     return page.component === 'home-page';
   };
@@ -39,10 +44,10 @@
 {#each story.content.page || [] as page}
   {#if page.component === 'static-page'}
     <StaticPage body={page.body} />
+  {:else if page.component === 'about-page' && isAboutPage(page)}
+    <About data={page} />
   {:else if page.component === 'home-page' && isHomePage(page)}
     <HomePage data={page} posts={homePosts} />
-  {:else if page.component === 'about-page'}
-    <div>About page</div>
   {:else if page.component === 'blog-index' && blogIndex}
     <BlogIndex data={blogIndex} />
   {:else if page.component === 'projects-index' && projectsIndex}

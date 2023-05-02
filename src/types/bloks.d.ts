@@ -61,6 +61,7 @@ export interface AboutPageStoryblok {
     | PhysicsBalloonCardStoryblok
     | PhysicsRectangleCardStoryblok
     | PhysicsInputStoryblok
+    | PhysicsStickerStoryblok
   )[];
   about_title1?: string;
   about_title2?: string;
@@ -92,12 +93,11 @@ export interface BenefitsEntryStoryblok {
     | 'clock'
     | 'book'
     | 'laptop'
-    | 'tshape'
+    | 'grow'
     | 'baby'
     | 'backpack'
     | 'bus'
     | 'calendar'
-    | 'fire'
     | 'gym'
     | 'health'
     | 'heart'
@@ -272,6 +272,10 @@ export interface ConfigurationStoryblok {
 }
 
 export interface ContactsPageStoryblok {
+  page_title1?: string;
+  page_title2?: string;
+  form_support_text?: string;
+  gallery?: (NotepadCardStoryblok | PhotoCardStoryblok)[];
   _uid: string;
   component: 'contacts-page';
   [k: string]: any;
@@ -464,6 +468,13 @@ export interface PhysicsRectangleCardStoryblok {
   [k: string]: any;
 }
 
+export interface PhysicsStickerStoryblok {
+  photo?: AssetStoryblok;
+  _uid: string;
+  component: 'physics-sticker';
+  [k: string]: any;
+}
+
 export interface ProjectStoryblok {
   cover?: AssetStoryblok;
   thumbnail: MultiassetStoryblok;
@@ -644,7 +655,7 @@ export interface TwoColumnsStoryblok {
 }
 
 export interface ValueStoryblok {
-  illustration?: any;
+  illustration: 'people' | 'teamwork' | 'aspiration';
   title?: string;
   description?: string;
   _uid: string;

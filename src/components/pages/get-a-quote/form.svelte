@@ -4,7 +4,6 @@
   import type { GetAQuotePageStoryblok } from '$types/bloks';
   import { fly } from 'svelte/transition';
   import { circOut } from 'svelte/easing';
-  // @ts-ignore
   import { Confetti } from 'svelte-confetti';
 
   type Eggs =

@@ -2,13 +2,34 @@
   import type { CanvasChecklistStoryblok } from '$types/bloks';
   import { CheckboxGroup } from '@significa/svelte-ui';
   import clsx from 'clsx';
+  // @ts-ignore
+  import { Confetti } from 'svelte-confetti';
 
   export let item: CanvasChecklistStoryblok;
 
   let selection: string[] = [];
+
+  const colorArray = ['#ffbe0b', '#fb5607', '#FFD424', '#8338ec', '#3a86ff'];
 </script>
 
-<div class="absolute h-[394px] w-[280px] rounded-xs bg-background-panel shadow-md">
+<div
+  class="absolute h-[394px] w-[280px] rounded-xs bg-background-panel shadow-md"
+  style="left: {item.left || 0}px; top: {item.top || 0}px; transform: rotate({item.rotate || 0}deg)"
+>
+  {#if selection.length === item.items?.length}
+    <div class="absolute bottom-0 left-[50%]">
+      <Confetti
+        delay={[300, 300]}
+        amount="100"
+        y={[0, 2]}
+        x={[-1.1, 1.1]}
+        duration="2000"
+        size="8"
+        {colorArray}
+      />
+    </div>
+  {/if}
+
   <svg
     width="81"
     height="25"
@@ -52,7 +73,7 @@
             <p
               class={clsx(
                 'relative font-medium leading-none',
-                'after:absolute after:left-0 after:top-[50%] after:h-[1px] after:w-[0%] after:bg-white'
+                'after:absolute after:left-0 after:top-[50%] after:h-[1px] after:w-[0%] after:bg-foreground'
               )}
             >
               {option.text}

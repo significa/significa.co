@@ -374,9 +374,13 @@
       "name": "canvas-checklist",
       "display_name": null,
       "created_at": "2023-05-02T10:44:42.656Z",
-      "updated_at": "2023-05-02T10:47:14.346Z",
+      "updated_at": "2023-05-02T13:42:38.832Z",
       "id": 3914196,
       "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
         "items": {
           "type": "bloks",
           "restrict_type": "",
@@ -384,7 +388,20 @@
           "component_whitelist": [
             "canvas-checklist-item"
           ],
-          "maximum": 8
+          "maximum": 8,
+          "pos": 1
+        },
+        "top": {
+          "type": "number",
+          "default_value": "0"
+        },
+        "left": {
+          "type": "number",
+          "default_value": "0"
+        },
+        "rotate": {
+          "type": "number",
+          "default_value": "0"
         }
       },
       "image": null,
@@ -404,13 +421,9 @@
       "name": "canvas-checklist-item",
       "display_name": null,
       "created_at": "2023-05-02T10:44:58.838Z",
-      "updated_at": "2023-05-02T10:45:25.555Z",
+      "updated_at": "2023-05-02T11:20:15.386Z",
       "id": 3914197,
       "schema": {
-        "default_checked": {
-          "type": "boolean",
-          "pos": 0
-        },
         "text": {
           "type": "text",
           "pos": 1

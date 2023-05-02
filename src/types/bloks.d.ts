@@ -142,14 +142,17 @@ export interface BlogPostStoryblok {
 }
 
 export interface CanvasChecklistStoryblok {
+  title?: string;
   items?: CanvasChecklistItemStoryblok[];
+  top?: number;
+  left?: number;
+  rotate?: number;
   _uid: string;
   component: 'canvas-checklist';
   [k: string]: any;
 }
 
 export interface CanvasChecklistItemStoryblok {
-  default_checked?: boolean;
   text?: string;
   _uid: string;
   component: 'canvas-checklist-item';

@@ -58,6 +58,11 @@
         node.style.userSelect = 'unset';
       });
 
+      window.addEventListener('resize', () => {
+        node.scrollLeft = (node.scrollWidth - node.clientWidth) / 2;
+        node.scrollTop = (node.scrollHeight - 240) / 2;
+      });
+
       // prevent stuck drag when leaving node still pressing
       node.addEventListener('mouseleave', () => {
         dragging = false;

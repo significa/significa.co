@@ -41,11 +41,12 @@
   import Teresa from '$components/illustrations/teresa.svelte';
   import Tiago from '$components/illustrations/tiago.svelte';
   import Trophy from '$components/illustrations/trophy.svelte';
+  import { onMount } from 'svelte';
 
   const components = [
+    { name: Nobita, class: 'nobita' },
     { name: Fred },
     { name: Alec },
-    { name: Nobita, class: 'nobita' },
     { name: FriedEgg },
     { name: Marralhinha },
     { name: Strategy },
@@ -130,62 +131,99 @@
     { name: Development }
   ];
 
-  const shuffledArray = components.sort(() => 0.5 - Math.random());
-
-  const nobitaIndex = shuffledArray.map((el) => el.class).indexOf('nobita');
-
-  const isNobitaLeftScreenEdge = nobitaIndex % 12 === 0;
-  const isNobitaRightScreenEdge = nobitaIndex % 12 === 11;
-
-  const isFoundAbove = shuffledArray[nobitaIndex - 12];
-  const isFoundAboveLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex - 13] : null;
-  const isFoundAboveRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex - 11] : null;
-  const isFoundBelow = shuffledArray[nobitaIndex + 12];
-  const isFoundBelowLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex + 11] : null;
-  const isFoundBelowRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex + 13] : null;
-  const isFoundLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex - 1] : null;
-  const isFoundRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex + 1] : null;
-
   let screenWidth: number;
   let screenHeight: number;
+  let colNum: number;
+  let isFoundAbove: any;
+  let isFoundAboveLeft: any;
+  let isFoundAboveRight: any;
+  let isFoundBelow: any;
+  let isFoundBelowLeft: any;
+  let isFoundBelowRight: any;
+  let isFoundLeft: any;
+  let isFoundRight: any;
+  let shuffledArray: any;
 
   const getRandomRotation = () => {
     return `--rotate:${Math.floor(Math.random() * 180)}deg;margin-top: -100px;`;
   };
+
+  onMount(() => {
+    colNum = Math.floor(screenWidth / 100);
+    shuffledArray = components.sort(() => 0.5 - Math.random());
+
+    const nobitaIndex = shuffledArray.map((el: any) => el.class).indexOf('nobita');
+    const colMiddle = Math.floor(colNum / 2);
+    const rowNum = 6;
+
+    const itemsOnScreen = colNum * rowNum;
+    const isNobitaFirstRow = nobitaIndex < colNum;
+    const isNobitaLastRow = nobitaIndex > itemsOnScreen - colNum;
+    const isNobitaHidden =
+      (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle) ||
+      (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle + 1) ||
+      (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle - 1) ||
+      (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle - 2) ||
+      (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle + 2);
+    if (isNobitaHidden) {
+      shuffledArray.splice(nobitaIndex, 1);
+      shuffledArray = [{ name: Nobita, class: 'nobita' }, ...shuffledArray];
+    }
+
+    const isNobitaLeftScreenEdge = nobitaIndex % colNum === 0;
+    const isNobitaRightScreenEdge = nobitaIndex % colNum === colNum - 1;
+
+    isFoundAbove = shuffledArray[nobitaIndex - colNum];
+    isFoundAboveLeft =
+      !isNobitaLeftScreenEdge && !isNobitaRightScreenEdge
+        ? shuffledArray[nobitaIndex - colNum + 1]
+        : null;
+    isFoundAboveRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex - colNum - 1] : null;
+    isFoundBelow = shuffledArray[nobitaIndex + colNum];
+    isFoundBelowLeft =
+      !isNobitaLeftScreenEdge && !isNobitaRightScreenEdge
+        ? shuffledArray[nobitaIndex + colNum - 1]
+        : null;
+    isFoundBelowRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex + colNum + 1] : null;
+    isFoundLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex - 1] : null;
+    isFoundRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex + 1] : null;
+  });
 
   let isFound = false;
 </script>
 
 <svelte:window bind:innerWidth={screenWidth} bind:innerHeight={screenHeight} />
 <div
-  class="fixed grid h-full w-full grid-cols-12 overflow-hidden"
-  style="padding-top: 100px; padding-left: -50px;"
+  style={`--columnsNum:${Math.floor(screenWidth / 100)};padding-top: 100px; padding-left: -50px;`}
+  class="columns fixed grid h-full w-full overflow-hidden"
 >
-  {#each shuffledArray as component}
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div
-      class="stick"
-      class:foundAbove={isFoundAbove === component ||
-      isFoundAboveLeft === component ||
-      isFoundAboveRight === component
-        ? isFound
-        : null}
-      class:foundBelow={isFoundBelow === component ||
-      isFoundBelowRight === component ||
-      isFoundBelowLeft === component
-        ? isFound
-        : null}
-      class:foundLeft={isFoundLeft === component ? isFound : null}
-      class:foundRight={isFoundRight === component ? isFound : null}
-      class:nobita={component.class}
-      style={getRandomRotation()}
-      on:click={() => {
-        component.class ? (isFound = true) : null;
-      }}
-    >
-      <svelte:component this={component.name} />
-    </div>
-  {/each}
+  {#if shuffledArray}
+    {#each shuffledArray as component}
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <div
+        class="stick"
+        class:foundAbove={isFoundAbove === component ||
+        isFoundAboveLeft === component ||
+        isFoundAboveRight === component
+          ? isFound
+          : null}
+        class:foundBelow={isFoundBelow === component ||
+        isFoundBelowRight === component ||
+        isFoundBelowLeft === component
+          ? isFound
+          : null}
+        class:foundLeft={isFoundLeft === component ? isFound : null}
+        class:foundRight={isFoundRight === component ? isFound : null}
+        class:nobita={component.class}
+        style={getRandomRotation()}
+        on:click={() => {
+          component.class ? (isFound = true) : null;
+        }}
+      >
+        <svelte:component this={component.name} />
+      </div>
+    {/each}
+  {/if}
   <div class="illu">
     <Illustration />
   </div>
@@ -196,7 +234,6 @@
     transform: rotate(var(--rotate));
     transition: all 0.8s ease-out;
     cursor: pointer;
-    z-index: 10;
   }
   .stick {
     transform: rotate(var(--rotate));
@@ -224,5 +261,8 @@
   }
   .foundRight {
     transform: translateX(75px);
+  }
+  .columns {
+    grid-template-columns: repeat(var(--columnsNum), minmax(0, 1fr));
   }
 </style>

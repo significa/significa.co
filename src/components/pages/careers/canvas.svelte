@@ -2,7 +2,7 @@
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import type { CanvasGroupStoryblok } from '$types/bloks';
   import clsx from 'clsx';
-  import Photo from './canvas-items/photo.svelte';
+  import Media from './canvas-items/media.svelte';
   import Arrow from './canvas-items/arrow.svelte';
   import Text from './canvas-items/text.svelte';
   import YellowSticker from './canvas-items/yellow-sticker.svelte';
@@ -93,8 +93,8 @@
           : 0}px; top: {group.top ? +group.top + offsetY : 0}px;"
       >
         {#each group.items || [] as item}
-          {#if item.component === 'timeline-image'}
-            <Photo {item} />
+          {#if item.component === 'canvas-media'}
+            <Media {item} />
           {:else if item.component === 'timeline-arrow'}
             <Arrow {item} />
           {:else if item.component === 'timeline-text'}

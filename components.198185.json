@@ -498,6 +498,63 @@
       "component_group_name": "Single"
     },
     {
+      "name": "canvas-media",
+      "display_name": null,
+      "created_at": "2023-05-02T14:13:42.055Z",
+      "updated_at": "2023-05-02T14:14:17.669Z",
+      "id": 3915336,
+      "schema": {
+        "image": {
+          "type": "asset",
+          "filetypes": [
+            "images",
+            "videos"
+          ],
+          "description": "Photo or video. Video will play once on click.",
+          "asset_folder_id": 235349
+        },
+        "border": {
+          "type": "boolean",
+          "default_value": true
+        },
+        "top": {
+          "type": "number",
+          "required": true,
+          "default_value": "0",
+          "decimals": 0
+        },
+        "left": {
+          "type": "number",
+          "decimals": 0,
+          "default_value": "0",
+          "required": true
+        },
+        "scale": {
+          "type": "number",
+          "default_value": "1",
+          "decimals": 2,
+          "description": "Between 0 and 1"
+        },
+        "rotate": {
+          "type": "number",
+          "default_value": "0",
+          "decimals": 0
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-media",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
       "name": "canvas-talk-balloon",
       "display_name": null,
       "created_at": "2023-04-21T11:10:59.947Z",
@@ -2661,7 +2718,7 @@
       "name": "timeline-image",
       "display_name": null,
       "created_at": "2023-04-12T14:25:57.635Z",
-      "updated_at": "2023-04-12T20:39:43.446Z",
+      "updated_at": "2023-05-02T14:12:16.110Z",
       "id": 3795713,
       "schema": {
         "image": {

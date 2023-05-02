@@ -166,6 +166,7 @@ export interface CanvasGroupStoryblok {
   left?: number;
   items?: (
     | CanvasChecklistStoryblok
+    | CanvasMediaStoryblok
     | CanvasTalkBalloonStoryblok
     | CanvasTeamStoryblok
     | CanvasYellowStickerStoryblok
@@ -176,6 +177,18 @@ export interface CanvasGroupStoryblok {
   )[];
   _uid: string;
   component: 'canvas-group';
+  [k: string]: any;
+}
+
+export interface CanvasMediaStoryblok {
+  image?: AssetStoryblok;
+  border?: boolean;
+  top: number;
+  left: number;
+  scale?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'canvas-media';
   [k: string]: any;
 }
 

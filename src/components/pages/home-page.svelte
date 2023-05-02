@@ -97,7 +97,7 @@
       <div class="container mx-auto justify-between gap-12 px-container lg:flex">
         <div class="flex flex-1 flex-col items-start">
           <div class="w-full flex-1">
-            <h2 class="text-5xl">Careers</h2>
+            <h2 class="text-5xl">{data.careers_title}</h2>
             <ul class="mt-10">
               {#each $page.data.careers as career}
                 <li class="border-b first:border-t">

@@ -4,7 +4,7 @@
 
 <script lang="ts">
   import SplitLines from '$components/split-lines.svelte';
-  import Bird from './stickers/bird.svelte';
+  import Bird from './pages/about/stickers/bird.svelte';
   import { getImageAttributes } from '$lib/utils/cms';
 
   import type { NotepadCardStoryblok, PhotoCardStoryblok } from '$types/bloks';
@@ -46,7 +46,7 @@
     }}
   >
     <div class="aspect-[3/4] rounded-xs bg-background-panel shadow-md">
-      <div class="mb-3 grid h-[10px] grid-cols-12 gap-[4%] p-4">
+      <div class="mb-10 grid h-[10px] grid-cols-12 gap-[4%] p-4">
         {#each [...Array(12)] as _}
           <div class="aspect-square rounded-full bg-background shadow-inner" />
         {/each}
@@ -56,7 +56,7 @@
         class="mt-7 flex h-[100%] flex-col justify-between"
         style="background-image: linear-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 2rem 2rem;"
       >
-        <div class="px-4">
+        <div class="-mt-[2rem] px-4">
           <SplitLines text={card.text} class="relative font-comic font-bold leading-8" />
         </div>
 

@@ -4,8 +4,21 @@
   import type { GetAQuotePageStoryblok } from '$types/bloks';
   import { fly } from 'svelte/transition';
   import { circOut } from 'svelte/easing';
+  // @ts-ignore
+  import { Confetti } from 'svelte-confetti';
 
-  type Eggs = 'attach-multiple' | 'attach' | 'error' | 'excited' | 'idle' | 'success' | 't-shirt';
+  type Eggs =
+    | 'attach-multiple'
+    | 'attach'
+    | 'error'
+    | 'budget10'
+    | 'budget25'
+    | 'budget50'
+    | 'budget100'
+    | 'idle'
+    | 'success'
+    | 't-shirt'
+    | 'hello';
   const files = import.meta.glob('./eggs/*.svg', { as: 'raw', eager: true });
   const eggs = Object.entries(files).reduce((acc, [path, file]) => {
     const name = path.replace('./eggs/', '').replace('.svg', '') as Eggs;
@@ -36,16 +49,41 @@
     character = 'attach-multiple';
   } else if (attachments) {
     character = 'attach';
-  } else if (['50k - 100k', '100k+'].includes(budget)) {
-    character = 'excited';
+  } else if (message && message.length > 3) {
+    character = 'idle';
+  } else if (['10k - 25k'].includes(budget)) {
+    character = 'budget10';
+  } else if (['25k - 50k'].includes(budget)) {
+    character = 'budget25';
+  } else if (['50k - 100k'].includes(budget)) {
+    character = 'budget50';
+  } else if (['100k+'].includes(budget)) {
+    character = 'budget100';
   } else if (name && name.length > 3) {
     character = 't-shirt';
   } else {
-    character = 'idle';
+    character = 'hello';
   }
+
+  const colorArray = ['#ffbe0b', '#fb5607', '#FFD424', '#8338ec', '#3a86ff'];
 </script>
 
 <svelte:head />
+
+{#if character === 'success'}
+  <div
+    class="pointer-events-none fixed left-0 top-[-50px] flex h-screen w-screen justify-center overflow-hidden"
+  >
+    <Confetti
+      x={[-5, 5]}
+      y={[0, 0.1]}
+      delay={[1, 2000]}
+      amount="200"
+      fallDistance="100vh"
+      {colorArray}
+    />
+  </div>
+{/if}
 <div
   class={clsx(
     'container relative mx-auto mt-10 min-h-[75vh] gap-8 overflow-hidden px-container pb-12',
@@ -69,6 +107,7 @@
           bind:name
           bind:budget
           bind:attachments
+          bind:message
           on:focus={() => {
             visible = true;
             success = false;
@@ -91,7 +130,8 @@
             {@html eggs[character]}
             {#if character === 't-shirt' && name}
               <div
-                class="absolute left-36 top-72 line-clamp-2 w-24 text-center font-comic font-bold leading-snug"
+                class="absolute left-56 top-[68px] line-clamp-2 w-24 text-center font-comic font-bold leading-snug"
+                style="transform: rotate(-4deg)"
               >
                 I <span class="text-error">{'<3'}</span>
                 {name}

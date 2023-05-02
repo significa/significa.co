@@ -152,7 +152,7 @@
     colNum = Math.floor(screenWidth / 100);
     shuffledArray = components.sort(() => 0.5 - Math.random());
 
-    const nobitaIndex = shuffledArray.map((el: any) => el.class).indexOf('nobita');
+    let nobitaIndex = shuffledArray.map((el: any) => el.class).indexOf('nobita');
     const colMiddle = Math.floor(colNum / 2);
     const rowNum = 6;
 
@@ -164,10 +164,12 @@
       (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle + 1) ||
       (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle - 1) ||
       (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle - 2) ||
-      (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle + 2);
+      (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle + 2) ||
+      nobitaIndex > itemsOnScreen;
     if (isNobitaHidden) {
       shuffledArray.splice(nobitaIndex, 1);
       shuffledArray = [{ name: Nobita, class: 'nobita' }, ...shuffledArray];
+      nobitaIndex = 0;
     }
 
     const isNobitaLeftScreenEdge = nobitaIndex % colNum === 0;
@@ -225,7 +227,7 @@
     {/each}
   {/if}
   <div class="illu">
-    <Illustration />
+    <Illustration class="w-80 md:w-full" />
   </div>
 </div>
 

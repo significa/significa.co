@@ -20,3 +20,5 @@ jobs:
     with:
       lint_command: npm run validate
       test_command: npm run test
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

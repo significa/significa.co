@@ -39,13 +39,30 @@
 
   let tiles: Tile[] = Array(9).fill(-9);
   let playerHasPlayed = false;
-  let gameState: GameState = 'in-progress';
+  let gameState: GameState = 'main-menu';
   let gameWinCon: WinCondition | null = null;
 
-  $: if (tiles.filter((tile) => tile === -9).length === 0 && gameState === 'in-progress')
-    gameState = 'draw';
+  const handleRestart = () => {
+    gameState = 'in-progress';
+    gameWinCon = null;
+    tiles = Array(9).fill(-9);
+  };
 
-  $: if (playerHasPlayed && tiles && gameState === 'in-progress') {
+  const handleQuit = () => {
+    gameState = 'main-menu';
+    gameWinCon = null;
+    tiles = Array(9).fill(-9);
+  };
+
+  const handlePlayerMove = (i: number) => {
+    tiles[i] = 1;
+    playerHasPlayed = true;
+    const { state, winCondition } = checkWinner(tiles);
+    gameState = state;
+    gameWinCon = winCondition;
+  };
+
+  const handleAIMove = () => {
     const aiPlay = getAIPlay(tiles);
 
     setTimeout(() => {
@@ -57,7 +74,12 @@
         gameWinCon = winCondition;
       }
     }, 500);
-  }
+  };
+
+  $: if (tiles.filter((tile) => tile === -9).length === 0 && gameState === 'in-progress')
+    gameState = 'draw';
+
+  $: if (playerHasPlayed && tiles && gameState === 'in-progress') handleAIMove();
 </script>
 
 <div
@@ -93,86 +115,118 @@
       </p>
     {:else if gameState === 'draw'}
       <p class="px-4 text-center text-xl font-semibold">draw</p>
-    {:else}
+    {:else if gameState === 'lose' || gameState === 'win'}
       <p class="px-4 text-center text-xl font-semibold">
         {'Player ' + gameState + ' wins!'}
       </p>
+    {:else if gameState === 'main-menu'}
+      <p class="px-4 text-center text-xl font-semibold">Tic Tac Toe</p>
     {/if}
 
     <div
       class="relative mt-1 flex h-[100%] flex-col"
       style="background-image: linear-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 32px 32px;"
     >
-      <div class="mx-auto mt-4 grid h-[196px] max-w-[201px] grid-cols-3 grid-rows-3">
-        <Grid class="absolute scale-105" />
+      {#if gameState === 'main-menu'}
+        <p class="px-4 text-center text-xl font-semibold text-foreground-secondary">
+          Select fighter
+        </p>
 
-        {#if gameWinCon}
-          <Stroke
-            class={clsx(
-              'absolute left-[50%] z-10 -translate-x-[50%] animate-strike-clip-path',
-              strokeStyles[gameWinCon]
-            )}
+        <div class="flex min-h-[183px]">
+          <img
+            width="153"
+            height="128"
+            class="-mr-3 object-contain drop-shadow-md transition-transform hover:rotate-6"
+            src="/stickers/egg.png"
+            alt="player"
+            draggable="false"
           />
-        {/if}
+          <img
+            width="153"
+            height="128"
+            class="-ml-3 object-contain drop-shadow-md transition-transform hover:-rotate-6"
+            src="/stickers/bird.png"
+            alt="ai"
+            draggable="false"
+          />
+        </div>
 
-        {#each tiles as tile, i}
-          <button
-            class={clsx(tileStyles[i], tile === -9 ? 'opacity-0' : 'block')}
-            disabled={playerHasPlayed || gameState !== 'in-progress' || tile !== -9}
+        <div class="mt-[22px] flex w-[100%] justify-center gap-3">
+          <Button
+            size="md"
+            variant="secondary"
+            class="bg-background-panel"
             on:click={() => {
-              tiles[i] = 1;
-              playerHasPlayed = true;
-              const { state, winCondition } = checkWinner(tiles);
-              gameState = state;
-              gameWinCon = winCondition;
+              gameState = 'in-progress';
             }}
           >
-            {#if tile === 1}
-              <img
-                width="68"
-                height="64"
-                class="drop-shadow-md"
-                src="/stickers/egg.png"
-                alt="player"
-                draggable="false"
-              />
-            {:else}
-              <img
-                width="68"
-                height="64"
-                class="drop-shadow-md"
-                src="/stickers/bird.png"
-                alt="ai"
-                draggable="false"
-              />
-            {/if}
-          </button>
-        {/each}
-      </div>
+            Play
+          </Button>
+        </div>
+      {:else}
+        <div class="mx-auto mt-4 grid h-[196px] max-w-[201px] grid-cols-3 grid-rows-3">
+          <Grid class="absolute scale-105" />
 
-      <div class="mt-[22px] flex w-[100%] justify-center gap-3">
-        <Button
-          size="md"
-          variant="secondary"
-          class="bg-background-panel"
-          disabled={playerHasPlayed && gameState === 'in-progress'}
-          on:click={() => {
-            gameState = 'in-progress';
-            gameWinCon = null;
-            tiles = Array(9).fill(-9);
-          }}
-        >
-          Restart
-        </Button>
-        <Button
-          size="md"
-          variant="secondary"
-          class="bg-background-panel"
-          disabled={playerHasPlayed && !gameState}
-        >
-          Close
-        </Button>
-      </div>
+          {#if gameWinCon}
+            <Stroke
+              class={clsx(
+                'absolute left-[50%] z-10 -translate-x-[50%] animate-strike-clip-path',
+                strokeStyles[gameWinCon]
+              )}
+            />
+          {/if}
+
+          {#each tiles as tile, i}
+            <button
+              class={clsx(tileStyles[i], tile === -9 ? 'opacity-0' : 'block')}
+              disabled={playerHasPlayed || gameState !== 'in-progress' || tile !== -9}
+              on:click={() => handlePlayerMove(i)}
+            >
+              {#if tile === 1}
+                <img
+                  width="68"
+                  height="64"
+                  class="drop-shadow-md"
+                  src="/stickers/egg.png"
+                  alt="player"
+                  draggable="false"
+                />
+              {:else}
+                <img
+                  width="68"
+                  height="64"
+                  class="drop-shadow-md"
+                  src="/stickers/bird.png"
+                  alt="ai"
+                  draggable="false"
+                />
+              {/if}
+            </button>
+          {/each}
+        </div>
+
+        <div class="mt-[22px] flex w-[100%] justify-center gap-3">
+          <Button
+            size="md"
+            variant="secondary"
+            class="bg-background-panel"
+            disabled={playerHasPlayed && gameState === 'in-progress'}
+            on:click={handleRestart}
+          >
+            Restart
+          </Button>
+
+          <Button
+            size="md"
+            variant="secondary"
+            class="bg-background-panel"
+            disabled={playerHasPlayed && gameState === 'in-progress'}
+            on:click={handleQuit}
+          >
+            Close
+          </Button>
+        </div>
+      {/if}
     </div>
   </div>
 </div>

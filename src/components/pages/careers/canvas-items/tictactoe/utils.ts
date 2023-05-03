@@ -1,7 +1,7 @@
 //from: https://betterprogramming.pub/how-i-created-my-first-ai-program-using-react-js-95fe54d994d6
 export type Tile = -9 | 1 | 2;
 
-export type GameState = 'in-progress' | 'win' | 'lose' | 'draw';
+export type GameState = 'in-progress' | 'win' | 'lose' | 'draw' | 'main-menu';
 
 export type WinCondition =
   | 'diag1'

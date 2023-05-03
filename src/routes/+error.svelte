@@ -143,19 +143,19 @@
   let isFoundLeft: any;
   let isFoundRight: any;
   let shuffledArray: any;
+  let nobitaIndex: number;
 
   const getRandomRotation = () => {
     return `--rotate:${Math.floor(Math.random() * 180)}deg;margin-top: -100px;`;
   };
 
-  onMount(() => {
+  const getShuffledArray = () => {
     colNum = Math.floor(screenWidth / 100);
     shuffledArray = components.sort(() => 0.5 - Math.random());
+    nobitaIndex = shuffledArray.map((el: any) => el.class).indexOf('nobita');
 
-    let nobitaIndex = shuffledArray.map((el: any) => el.class).indexOf('nobita');
     const colMiddle = Math.floor(colNum / 2);
     const rowNum = 6;
-
     const itemsOnScreen = colNum * rowNum;
     const isNobitaFirstRow = nobitaIndex < colNum;
     const isNobitaLastRow = nobitaIndex > itemsOnScreen - colNum;
@@ -166,26 +166,24 @@
       (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle - 2) ||
       (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle + 2) ||
       nobitaIndex > itemsOnScreen;
+
     if (isNobitaHidden) {
-      shuffledArray.splice(nobitaIndex, 1);
-      shuffledArray = [{ name: Nobita, class: 'nobita' }, ...shuffledArray];
-      nobitaIndex = 0;
+      getShuffledArray();
     }
 
+    return { shuffledArray, nobitaIndex, colNum };
+  };
+
+  onMount(() => {
+    const { shuffledArray, colNum, nobitaIndex } = getShuffledArray();
     const isNobitaLeftScreenEdge = nobitaIndex % colNum === 0;
     const isNobitaRightScreenEdge = nobitaIndex % colNum === colNum - 1;
 
     isFoundAbove = shuffledArray[nobitaIndex - colNum];
-    isFoundAboveLeft =
-      !isNobitaLeftScreenEdge && !isNobitaRightScreenEdge
-        ? shuffledArray[nobitaIndex - colNum + 1]
-        : null;
+    isFoundAboveLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex - colNum + 1] : null;
     isFoundAboveRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex - colNum - 1] : null;
     isFoundBelow = shuffledArray[nobitaIndex + colNum];
-    isFoundBelowLeft =
-      !isNobitaLeftScreenEdge && !isNobitaRightScreenEdge
-        ? shuffledArray[nobitaIndex + colNum - 1]
-        : null;
+    isFoundBelowLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex + colNum - 1] : null;
     isFoundBelowRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex + colNum + 1] : null;
     isFoundLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex - 1] : null;
     isFoundRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex + 1] : null;

@@ -4,7 +4,6 @@
   import type { GetAQuotePageStoryblok } from '$types/bloks';
   import { fly } from 'svelte/transition';
   import { circOut } from 'svelte/easing';
-  // @ts-ignore
   import { Confetti } from 'svelte-confetti';
 
   type Eggs =
@@ -86,7 +85,7 @@
 {/if}
 <div
   class={clsx(
-    'container relative mx-auto mt-10 min-h-[75vh] gap-8 overflow-hidden px-container pb-12',
+    'container relative mx-auto mt-10 gap-8 overflow-hidden px-container pb-12',
     'md:mt-14 md:pb-20',
     'lg:mt-20 lg:flex lg:justify-between lg:pb-32'
   )}

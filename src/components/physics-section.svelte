@@ -6,6 +6,7 @@
   import BalloonCard from './physics-blocks/balloon-card.svelte';
   import RectangleCard from './physics-blocks/rectangle-card.svelte';
   import PhysicsInput from './physics-blocks/physics-input.svelte';
+  import type Matter from 'matter-js';
   import type {
     PhysicsBalloonCardStoryblok,
     PhysicsInputStoryblok,
@@ -47,7 +48,7 @@
   let boxRightWall: Body;
 
   // Matter
-  let matterInstance: any;
+  let matterInstance: typeof Matter;
 
   // Items where Matter will be applied
   let refs: HTMLElement[] = Array(items?.length);
@@ -75,33 +76,35 @@
 
     const i = items.length - 1;
 
-    const newBox = {
-      body: matterInstance.Bodies.rectangle(
-        containerRef.clientWidth / 2 - refs[i].clientWidth / 2,
-        refs[i].clientHeight / 2,
-        refs[i].clientWidth,
-        refs[i].clientHeight,
-        {
-          friction: 1
+    if (refs[i]) {
+      const newBox = {
+        body: matterInstance.Bodies.rectangle(
+          containerRef.clientWidth / 2 - refs[i].clientWidth / 2,
+          refs[i].clientHeight / 2,
+          refs[i].clientWidth,
+          refs[i].clientHeight,
+          {
+            friction: 1
+          }
+        ),
+        elem: refs[i],
+        render() {
+          const { x, y } = this.body.position;
+          this.elem.style.top = `${y - refs[i].clientHeight / 2}px`;
+          this.elem.style.left = `${x - refs[i].clientWidth / 2}px`;
+          this.elem.style.transform = `rotate(${this.body.angle}rad)`;
         }
-      ),
-      elem: refs[i],
-      render() {
-        const { x, y } = this.body.position;
-        this.elem.style.top = `${y - refs[i].clientHeight / 2}px`;
-        this.elem.style.left = `${x - refs[i].clientWidth / 2}px`;
-        this.elem.style.transform = `rotate(${this.body.angle}rad)`;
-      }
-    };
+      };
 
-    // Update boxes
-    boxes = [...boxes, newBox];
+      // Update boxes
+      boxes = [...boxes, newBox];
 
-    // Add new box to active engine
-    matterInstance.Composite.add(engine.world, [newBox.body]);
+      // Add new box to active engine
+      matterInstance.Composite.add(engine.world, [newBox.body]);
+    }
   }
 
-  const getLimits = (matter: any) => {
+  const getLimits = (matter: typeof Matter) => {
     const ceil = matter.Bodies.rectangle(
       containerRef.clientWidth / 2,
       -60 / 2,
@@ -137,7 +140,7 @@
     return { ground, leftWall, rightWall, ceil };
   };
 
-  const initialization = (matter: any) => {
+  const initialization = (matter: typeof Matter) => {
     const Engine = matter.Engine,
       MouseConstraint = matter.MouseConstraint,
       Mouse = matter.Mouse,
@@ -194,28 +197,28 @@
     // Allow page scroll when mouse is hovering canvas or touch device is interacting
     mouseConstraint.mouse.element.removeEventListener(
       'mousewheel',
-      // @ts-ignore
-      mouseConstraint.mouse.mousewheel
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (mouseConstraint.mouse as any).mousewheel
     );
     mouseConstraint.mouse.element.removeEventListener(
       'DOMMouseScroll',
-      // @ts-ignore
-      mouseConstraint.mouse.mousewheel
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (mouseConstraint.mouse as any).mousewheel
     );
     mouseConstraint.mouse.element.removeEventListener(
       'touchstart',
-      // @ts-ignore
-      mouseConstraint.mouse.mousedown
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (mouseConstraint.mouse as any).mousedown
     );
     mouseConstraint.mouse.element.removeEventListener(
       'touchmove',
-      // @ts-ignore
-      mouseConstraint.mouse.mousemove
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (mouseConstraint.mouse as any).mousemove
     );
     mouseConstraint.mouse.element.removeEventListener(
       'touchend',
-      // @ts-ignore
-      mouseConstraint.mouse.mouseup
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (mouseConstraint.mouse as any).mouseup
     );
 
     // Add all of the bodies and walls to the world

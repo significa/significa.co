@@ -18,7 +18,14 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
-      - run: npm ci --prefer-offline --no-audit --no-fund
+      - run: |
+          cat > ./.npmrc <<EOF
+          //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}
+          @significa:registry=https://npm.pkg.github.com/
+          engine-strict=true
+          EOF
+
+          npm ci --prefer-offline --no-audit --no-fund
 
       - run: npm run lint
 

@@ -14,6 +14,11 @@
 
   export let item: CanvasTictactoeStoryblok;
 
+  type Character = 'egg' | 'bird';
+
+  const DEFAULT_CHARACTER: Character = 'egg';
+  const AI_DEFAULT_CHARACTER: Character = 'bird';
+
   const tileStyles = [
     'mt-1 -translate-x-2',
     'mt-1 -translate-x-1',
@@ -27,13 +32,13 @@
   ];
 
   const strokeStyles: Record<WinCondition, string> = {
-    diag1: 'rotate-45 top-24',
-    diag2: 'rotate-[135deg] top-24',
-    horz1: 'top-10',
-    horz2: 'top-28',
-    horz3: 'top-44',
+    diag1: 'rotate-45 top-24 left-[50%]',
+    diag2: 'rotate-[135deg] top-24 left-[50%]',
+    horz1: 'top-10 left-[50%]',
+    horz2: 'top-28 left-[50%]',
+    horz3: 'top-44 left-[50%]',
     vert1: 'top-24 rotate-90 left-16',
-    vert2: 'top-24 rotate-90',
+    vert2: 'top-24 rotate-90 left-[50%]',
     vert3: 'top-24 rotate-90 left-52'
   };
 
@@ -41,6 +46,7 @@
   let playerHasPlayed = false;
   let gameState: GameState = 'main-menu';
   let gameWinCon: WinCondition | null = null;
+  let selectedCharacter: Character | null = null;
 
   const handleRestart = () => {
     gameState = 'in-progress';
@@ -51,6 +57,7 @@
   const handleQuit = () => {
     gameState = 'main-menu';
     gameWinCon = null;
+    selectedCharacter = null;
     tiles = Array(9).fill(-9);
   };
 
@@ -133,22 +140,42 @@
         </p>
 
         <div class="flex min-h-[183px]">
-          <img
-            width="153"
-            height="128"
-            class="-mr-3 object-contain drop-shadow-md transition-transform hover:rotate-6"
-            src="/stickers/egg.png"
-            alt="player"
-            draggable="false"
-          />
-          <img
-            width="153"
-            height="128"
-            class="-ml-3 object-contain drop-shadow-md transition-transform hover:-rotate-6"
-            src="/stickers/bird.png"
-            alt="ai"
-            draggable="false"
-          />
+          <button
+            class={clsx(
+              'transition-all hover:rotate-6',
+              selectedCharacter === 'bird' && 'opacity-40 hover:opacity-100'
+            )}
+            on:click={() => {
+              selectedCharacter = 'egg';
+            }}
+          >
+            <img
+              width="153"
+              height="128"
+              class="-mr-3 object-contain drop-shadow-md"
+              src="/stickers/egg.png"
+              alt="player"
+              draggable="false"
+            />
+          </button>
+          <button
+            class={clsx(
+              'transition-all hover:-rotate-6',
+              selectedCharacter === 'egg' && 'opacity-40 hover:opacity-100'
+            )}
+            on:click={() => {
+              selectedCharacter = 'bird';
+            }}
+          >
+            <img
+              width="153"
+              height="128"
+              class="-ml-3 object-contain drop-shadow-md"
+              src="/stickers/bird.png"
+              alt="ai"
+              draggable="false"
+            />
+          </button>
         </div>
 
         <div class="mt-[22px] flex w-[100%] justify-center gap-3">
@@ -170,7 +197,7 @@
           {#if gameWinCon}
             <Stroke
               class={clsx(
-                'absolute left-[50%] z-10 -translate-x-[50%] animate-strike-clip-path',
+                'absolute z-10 -translate-x-[50%] animate-strike-clip-path',
                 strokeStyles[gameWinCon]
               )}
             />
@@ -187,7 +214,7 @@
                   width="68"
                   height="64"
                   class="drop-shadow-md"
-                  src="/stickers/egg.png"
+                  src="/stickers/{selectedCharacter || DEFAULT_CHARACTER}.png"
                   alt="player"
                   draggable="false"
                 />
@@ -196,7 +223,11 @@
                   width="68"
                   height="64"
                   class="drop-shadow-md"
-                  src="/stickers/bird.png"
+                  src="/stickers/{selectedCharacter === 'bird'
+                    ? 'egg'
+                    : selectedCharacter === 'egg'
+                    ? 'bird'
+                    : AI_DEFAULT_CHARACTER}.png"
                   alt="ai"
                   draggable="false"
                 />

@@ -18,7 +18,8 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
-      - run: |
+      - name: Install dependencies
+        run: |
           cat > ./.npmrc <<EOF
           //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}
           @significa:registry=https://npm.pkg.github.com/
@@ -27,6 +28,8 @@ jobs:
 
           npm ci --prefer-offline --no-audit --no-fund
 
-      - run: npm run lint
+      - name: Lint
+        run: npm run lint
 
-      - run: npm run test
+      - name: Test
+        run: npm run test

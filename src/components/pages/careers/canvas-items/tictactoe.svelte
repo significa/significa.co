@@ -1,8 +1,18 @@
 <script lang="ts">
   import clsx from 'clsx';
   import Grid from './tictactoe/grid.svelte';
-  import { checkWinner, getAIPlay, type Tile } from './tictactoe/utils';
+  import {
+    checkWinner,
+    getAIPlay,
+    type GameState,
+    type Tile,
+    type WinCondition
+  } from './tictactoe/utils';
   import { Button } from '@significa/svelte-ui';
+  import type { CanvasTictactoeStoryblok } from '$types/bloks';
+  import Stroke from './tictactoe/stroke.svelte';
+
+  export let item: CanvasTictactoeStoryblok;
 
   const tileStyles = [
     'mt-1 -translate-x-2',
@@ -16,26 +26,44 @@
     'mt-[5px] translate-x-2'
   ];
 
+  const strokeStyles: Record<WinCondition, string> = {
+    diag1: 'rotate-45 top-24',
+    diag2: 'rotate-[135deg] top-24',
+    horz1: 'top-10',
+    horz2: 'top-28',
+    horz3: 'top-44',
+    vert1: 'top-24 rotate-90 left-16',
+    vert2: 'top-24 rotate-90',
+    vert3: 'top-24 rotate-90 left-52'
+  };
+
   let tiles: Tile[] = Array(9).fill(-9);
   let playerHasPlayed = false;
-  let winner: 0 | 1 | 2 | -1 = 0;
+  let gameState: GameState = 'in-progress';
+  let gameWinCon: WinCondition | null = null;
 
-  $: if (tiles.filter((tile) => tile === -9).length === 0 && winner === 0) winner = -1;
+  $: if (tiles.filter((tile) => tile === -9).length === 0 && gameState === 'in-progress')
+    gameState = 'draw';
 
-  $: if (playerHasPlayed && tiles && !winner) {
+  $: if (playerHasPlayed && tiles && gameState === 'in-progress') {
     const aiPlay = getAIPlay(tiles);
 
     setTimeout(() => {
       if (aiPlay !== null) {
         tiles[aiPlay] = 2;
         playerHasPlayed = false;
-        winner = checkWinner(tiles);
+        const { state, winCondition } = checkWinner(tiles);
+        gameState = state;
+        gameWinCon = winCondition;
       }
     }, 500);
   }
 </script>
 
-<div class="relative h-[394px] w-[280px] rounded-xs bg-background-panel shadow-md">
+<div
+  class="relative h-[394px] w-[280px] rounded-xs bg-background-panel shadow-md"
+  style="left: {item.left || 0}px; top: {item.top || 0}px; transform: rotate({item.rotate || 0}deg)"
+>
   <svg
     width="81"
     height="25"
@@ -59,15 +87,15 @@
       {/each}
     </div>
 
-    {#if !winner}
+    {#if gameState === 'in-progress'}
       <p class="px-4 text-center text-xl font-semibold">
         {playerHasPlayed ? 'Await' : 'Your turn'}
       </p>
-    {:else if winner === -1}
+    {:else if gameState === 'draw'}
       <p class="px-4 text-center text-xl font-semibold">draw</p>
     {:else}
       <p class="px-4 text-center text-xl font-semibold">
-        {'Player ' + winner + ' wins!'}
+        {'Player ' + gameState + ' wins!'}
       </p>
     {/if}
 
@@ -77,14 +105,26 @@
     >
       <div class="mx-auto mt-4 grid h-[196px] max-w-[201px] grid-cols-3 grid-rows-3">
         <Grid class="absolute scale-105" />
+
+        {#if gameWinCon}
+          <Stroke
+            class={clsx(
+              'absolute left-[50%] z-10 -translate-x-[50%] animate-strike-clip-path',
+              strokeStyles[gameWinCon]
+            )}
+          />
+        {/if}
+
         {#each tiles as tile, i}
           <button
             class={clsx(tileStyles[i], tile === -9 ? 'opacity-0' : 'block')}
-            disabled={playerHasPlayed || winner !== 0}
+            disabled={playerHasPlayed || gameState !== 'in-progress' || tile !== -9}
             on:click={() => {
               tiles[i] = 1;
               playerHasPlayed = true;
-              winner = checkWinner(tiles);
+              const { state, winCondition } = checkWinner(tiles);
+              gameState = state;
+              gameWinCon = winCondition;
             }}
           >
             {#if tile === 1}
@@ -94,6 +134,7 @@
                 class="drop-shadow-md"
                 src="/stickers/egg.png"
                 alt="player"
+                draggable="false"
               />
             {:else}
               <img
@@ -102,20 +143,35 @@
                 class="drop-shadow-md"
                 src="/stickers/bird.png"
                 alt="ai"
+                draggable="false"
               />
             {/if}
           </button>
         {/each}
       </div>
 
-      <div class="mt-7 flex w-[100%] justify-center">
+      <div class="mt-[22px] flex w-[100%] justify-center gap-3">
         <Button
-          disabled={playerHasPlayed && !winner}
+          size="md"
+          variant="secondary"
+          class="bg-background-panel"
+          disabled={playerHasPlayed && gameState === 'in-progress'}
           on:click={() => {
-            winner = 0;
+            gameState = 'in-progress';
+            gameWinCon = null;
             tiles = Array(9).fill(-9);
-          }}>Restart</Button
+          }}
         >
+          Restart
+        </Button>
+        <Button
+          size="md"
+          variant="secondary"
+          class="bg-background-panel"
+          disabled={playerHasPlayed && !gameState}
+        >
+          Close
+        </Button>
       </div>
     </div>
   </div>

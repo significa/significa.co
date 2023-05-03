@@ -446,7 +446,7 @@
       "name": "canvas-group",
       "display_name": null,
       "created_at": "2023-04-19T14:57:33.541Z",
-      "updated_at": "2023-04-21T12:48:20.536Z",
+      "updated_at": "2023-05-03T13:10:40.229Z",
       "id": 3845878,
       "schema": {
         "width": {
@@ -475,13 +475,20 @@
         },
         "items": {
           "type": "bloks",
-          "restrict_type": "groups",
+          "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [],
+          "component_whitelist": [
+            "canvas-checklist",
+            "canvas-media",
+            "canvas-talk-balloon",
+            "canvas-team",
+            "canvas-yellow-sticker",
+            "timeline-arrow",
+            "timeline-text",
+            "canvas-tictactoe"
+          ],
           "pos": 6,
-          "component_group_whitelist": [
-            "3c80dc73-98c3-4c97-a2b2-44541c933f72"
-          ]
+          "component_group_whitelist": []
         }
       },
       "image": null,
@@ -501,7 +508,7 @@
       "name": "canvas-media",
       "display_name": null,
       "created_at": "2023-05-02T14:13:42.055Z",
-      "updated_at": "2023-05-02T14:14:17.669Z",
+      "updated_at": "2023-05-02T14:51:29.886Z",
       "id": 3915336,
       "schema": {
         "image": {
@@ -511,34 +518,52 @@
             "videos"
           ],
           "description": "Photo or video. Video will play once on click.",
-          "asset_folder_id": 235349
+          "asset_folder_id": 235349,
+          "pos": 0
+        },
+        "width": {
+          "type": "number",
+          "pos": 1,
+          "default_value": "100",
+          "description": "If media is a Video please provide its dimensions"
+        },
+        "height": {
+          "type": "number",
+          "pos": 2,
+          "description": "If media is a Video please provide its dimensions",
+          "default_value": "100"
         },
         "border": {
           "type": "boolean",
-          "default_value": true
+          "default_value": true,
+          "pos": 3
         },
         "top": {
           "type": "number",
           "required": true,
           "default_value": "0",
-          "decimals": 0
+          "decimals": 0,
+          "pos": 4
         },
         "left": {
           "type": "number",
           "decimals": 0,
           "default_value": "0",
-          "required": true
+          "required": true,
+          "pos": 5
         },
         "scale": {
           "type": "number",
           "default_value": "1",
           "decimals": 2,
-          "description": "Between 0 and 1"
+          "description": "Between 0 and 1",
+          "pos": 6
         },
         "rotate": {
           "type": "number",
           "default_value": "0",
-          "decimals": 0
+          "decimals": 0,
+          "pos": 7
         }
       },
       "image": null,
@@ -642,6 +667,40 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "canvas-team",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
+      "name": "canvas-tictactoe",
+      "display_name": null,
+      "created_at": "2023-05-03T13:09:31.502Z",
+      "updated_at": "2023-05-03T13:11:22.873Z",
+      "id": 3919751,
+      "schema": {
+        "top": {
+          "type": "number",
+          "default_value": "0"
+        },
+        "left": {
+          "type": "number",
+          "default_value": "0"
+        },
+        "rotate": {
+          "type": "number",
+          "description": "",
+          "default_value": "0"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-tictactoe",
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,

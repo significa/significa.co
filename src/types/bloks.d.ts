@@ -171,9 +171,8 @@ export interface CanvasGroupStoryblok {
     | CanvasTeamStoryblok
     | CanvasYellowStickerStoryblok
     | TimelineArrowStoryblok
-    | TimelineImageStoryblok
-    | TimelineSectionStoryblok
     | TimelineTextStoryblok
+    | CanvasTictactoeStoryblok
   )[];
   _uid: string;
   component: 'canvas-group';
@@ -182,6 +181,8 @@ export interface CanvasGroupStoryblok {
 
 export interface CanvasMediaStoryblok {
   image?: AssetStoryblok;
+  width?: number;
+  height?: number;
   border?: boolean;
   top: number;
   left: number;
@@ -208,6 +209,15 @@ export interface CanvasTeamStoryblok {
   roster?: (StoryblokStory<TeamMemberStoryblok> | string)[];
   _uid: string;
   component: 'canvas-team';
+  [k: string]: any;
+}
+
+export interface CanvasTictactoeStoryblok {
+  top?: number;
+  left?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'canvas-tictactoe';
   [k: string]: any;
 }
 

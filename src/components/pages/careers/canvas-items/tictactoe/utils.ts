@@ -1,6 +1,18 @@
 //from: https://betterprogramming.pub/how-i-created-my-first-ai-program-using-react-js-95fe54d994d6
 export type Tile = -9 | 1 | 2;
 
+export type GameState = 'in-progress' | 'win' | 'lose' | 'draw';
+
+export type WinCondition =
+  | 'diag1'
+  | 'diag2'
+  | 'horz1'
+  | 'horz2'
+  | 'horz3'
+  | 'vert1'
+  | 'vert2'
+  | 'vert3';
+
 const getOpenTiles = (board: Tile[]) => {
   let copy = [...board];
 
@@ -26,7 +38,9 @@ export const getAIPlay = (cur_board: Tile[]) => {
   return null;
 };
 
-export const checkWinner = (board: Tile[]) => {
+export const checkWinner = (
+  board: Tile[]
+): { state: GameState; winCondition: WinCondition | null } => {
   let diag1, diag2, horz1, horz2, horz3, vert1, vert2, vert3;
   diag1 = diag2 = horz1 = horz2 = horz3 = vert1 = vert2 = vert3 = 0;
 
@@ -64,11 +78,31 @@ export const checkWinner = (board: Tile[]) => {
       vert3 % 9 === 6;
   }
 
+  let winCondition: WinCondition | null = null;
+
   if (player1) {
-    return 1;
+    if (diag1 % 9 === 3) winCondition = 'diag1';
+    if (diag2 % 9 === 3) winCondition = 'diag2';
+    if (horz1 % 9 === 3) winCondition = 'horz1';
+    if (horz2 % 9 === 3) winCondition = 'horz2';
+    if (horz3 % 9 === 3) winCondition = 'horz3';
+    if (vert1 % 9 === 3) winCondition = 'vert1';
+    if (vert2 % 9 === 3) winCondition = 'vert2';
+    if (vert3 % 9 === 3) winCondition = 'vert3';
+
+    return { state: 'win', winCondition };
   } else if (player2) {
-    return 2;
+    if (diag1 % 9 === 6) winCondition = 'diag1';
+    if (diag2 % 9 === 6) winCondition = 'diag2';
+    if (horz1 % 9 === 6) winCondition = 'horz1';
+    if (horz2 % 9 === 6) winCondition = 'horz2';
+    if (horz3 % 9 === 6) winCondition = 'horz3';
+    if (vert1 % 9 === 6) winCondition = 'vert1';
+    if (vert2 % 9 === 6) winCondition = 'vert2';
+    if (vert3 % 9 === 6) winCondition = 'vert3';
+
+    return { state: 'lose', winCondition };
   }
 
-  return 0;
+  return { state: 'in-progress', winCondition };
 };

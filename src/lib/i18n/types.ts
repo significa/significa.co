@@ -64,7 +64,17 @@ export const TranslationKeys = [
   'team.former',
   'careers.footer.title',
   'careers.footer.email',
-  'careers.footer.description'
+  'careers.footer.description',
+  'tictactoe.play',
+  'tictactoe.restart',
+  'tictactoe.close',
+  'tictactoe.title',
+  'tictactoe.subtitle',
+  'tictactoe.win',
+  'tictactoe.lose',
+  'tictactoe.draw',
+  'tictactoe.your-turn',
+  'tictactoe.wait'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

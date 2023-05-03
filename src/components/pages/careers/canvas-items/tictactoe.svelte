@@ -1,6 +1,9 @@
 <script lang="ts">
   import clsx from 'clsx';
+  import { Button } from '@significa/svelte-ui';
   import Grid from './tictactoe/grid.svelte';
+  import Stroke from './tictactoe/stroke.svelte';
+  import { t } from '$lib/i18n';
   import {
     checkWinner,
     getAIPlay,
@@ -8,9 +11,7 @@
     type Tile,
     type WinCondition
   } from './tictactoe/utils';
-  import { Button } from '@significa/svelte-ui';
   import type { CanvasTictactoeStoryblok } from '$types/bloks';
-  import Stroke from './tictactoe/stroke.svelte';
 
   export let item: CanvasTictactoeStoryblok;
 
@@ -116,19 +117,19 @@
       {/each}
     </div>
 
-    {#if gameState === 'in-progress'}
-      <p class="px-4 text-center text-xl font-semibold">
-        {playerHasPlayed ? 'Await' : 'Your turn'}
-      </p>
-    {:else if gameState === 'draw'}
-      <p class="px-4 text-center text-xl font-semibold">draw</p>
-    {:else if gameState === 'lose' || gameState === 'win'}
-      <p class="px-4 text-center text-xl font-semibold">
-        {'Player ' + gameState + ' wins!'}
-      </p>
-    {:else if gameState === 'main-menu'}
-      <p class="px-4 text-center text-xl font-semibold">Tic Tac Toe</p>
-    {/if}
+    <p class="px-4 text-center text-xl font-semibold">
+      {#if gameState === 'in-progress'}
+        {playerHasPlayed ? t('tictactoe.wait') : t('tictactoe.your-turn')}
+      {:else if gameState === 'draw'}
+        {t('tictactoe.draw')}
+      {:else if gameState === 'lose'}
+        {t('tictactoe.lose')}
+      {:else if gameState === 'win'}
+        {t('tictactoe.win')}
+      {:else if gameState === 'main-menu'}
+        {t('tictactoe.title')}
+      {/if}
+    </p>
 
     <div
       class="relative mt-1 flex h-[100%] flex-col"
@@ -136,7 +137,7 @@
     >
       {#if gameState === 'main-menu'}
         <p class="px-4 text-center text-xl font-semibold text-foreground-secondary">
-          Select fighter
+          {t('tictactoe.subtitle')}
         </p>
 
         <div class="flex min-h-[183px]">
@@ -187,7 +188,7 @@
               gameState = 'in-progress';
             }}
           >
-            Play
+            {t('tictactoe.play')}
           </Button>
         </div>
       {:else}
@@ -244,7 +245,7 @@
             disabled={playerHasPlayed && gameState === 'in-progress'}
             on:click={handleRestart}
           >
-            Restart
+            {t('tictactoe.restart')}
           </Button>
 
           <Button
@@ -254,7 +255,7 @@
             disabled={playerHasPlayed && gameState === 'in-progress'}
             on:click={handleQuit}
           >
-            Close
+            {t('tictactoe.close')}
           </Button>
         </div>
       {/if}

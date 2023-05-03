@@ -10,12 +10,16 @@ on:
 jobs:
   test:
     name: Validate and test
-    uses: significa/actions/.github/workflows/npm-library.yaml@main
-    permissions:
-      contents: read
-      packages: write
-    with:
-      lint_command: npm run validate
-      test_command: npm run test
-    secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+
+      - run: npm ci --prefer-offline --no-audit --no-fund
+
+      - run: npm run lint
+
+      - run: npm run test

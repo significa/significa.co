@@ -1,4 +1,4 @@
-name: CI/CD
+name: Update email templates
 
 on:
   workflow_dispatch:

@@ -180,8 +180,8 @@
     const isNobitaRightScreenEdge = nobitaIndex % colNum === colNum - 1;
 
     isFoundAbove = shuffledArray[nobitaIndex - colNum];
-    isFoundAboveLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex - colNum + 1] : null;
-    isFoundAboveRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex - colNum - 1] : null;
+    isFoundAboveLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex - colNum - 1] : null;
+    isFoundAboveRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex - colNum + 1] : null;
     isFoundBelow = shuffledArray[nobitaIndex + colNum];
     isFoundBelowLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex + colNum - 1] : null;
     isFoundBelowRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex + colNum + 1] : null;
@@ -225,7 +225,7 @@
     {/each}
   {/if}
   <div class="illu">
-    <Illustration class="w-80 md:w-full" />
+    <Illustration class="h-auto w-80 md:w-full" />
   </div>
 </div>
 

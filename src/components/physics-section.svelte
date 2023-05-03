@@ -76,30 +76,32 @@
 
     const i = items.length - 1;
 
-    const newBox = {
-      body: matterInstance.Bodies.rectangle(
-        containerRef.clientWidth / 2 - refs[i].clientWidth / 2,
-        refs[i].clientHeight / 2,
-        refs[i].clientWidth,
-        refs[i].clientHeight,
-        {
-          friction: 1
+    if (refs[i]) {
+      const newBox = {
+        body: matterInstance.Bodies.rectangle(
+          containerRef.clientWidth / 2 - refs[i].clientWidth / 2,
+          refs[i].clientHeight / 2,
+          refs[i].clientWidth,
+          refs[i].clientHeight,
+          {
+            friction: 1
+          }
+        ),
+        elem: refs[i],
+        render() {
+          const { x, y } = this.body.position;
+          this.elem.style.top = `${y - refs[i].clientHeight / 2}px`;
+          this.elem.style.left = `${x - refs[i].clientWidth / 2}px`;
+          this.elem.style.transform = `rotate(${this.body.angle}rad)`;
         }
-      ),
-      elem: refs[i],
-      render() {
-        const { x, y } = this.body.position;
-        this.elem.style.top = `${y - refs[i].clientHeight / 2}px`;
-        this.elem.style.left = `${x - refs[i].clientWidth / 2}px`;
-        this.elem.style.transform = `rotate(${this.body.angle}rad)`;
-      }
-    };
+      };
 
-    // Update boxes
-    boxes = [...boxes, newBox];
+      // Update boxes
+      boxes = [...boxes, newBox];
 
-    // Add new box to active engine
-    matterInstance.Composite.add(engine.world, [newBox.body]);
+      // Add new box to active engine
+      matterInstance.Composite.add(engine.world, [newBox.body]);
+    }
   }
 
   const getLimits = (matter: typeof Matter) => {

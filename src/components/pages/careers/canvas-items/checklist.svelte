@@ -2,7 +2,6 @@
   import type { CanvasChecklistStoryblok } from '$types/bloks';
   import { CheckboxGroup } from '@significa/svelte-ui';
   import clsx from 'clsx';
-  // @ts-ignore
   import { Confetti } from 'svelte-confetti';
 
   export let item: CanvasChecklistStoryblok;

@@ -21,7 +21,7 @@
 
   <!-- Timeline -->
   {#if data.timeline}
-    <Timeline timeline={data.timeline} class="mt-32" />
+    <Timeline timeline={data.timeline} class="mt-20" />
   {/if}
 
   <section class="mt-10 md:mt-14 lg:mt-20">

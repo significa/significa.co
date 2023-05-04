@@ -10,6 +10,7 @@
   import Square from './services/illustrations/square.svelte';
   import Hand from './services/illustrations/hand.svelte';
   import Duck from './services/illustrations/duck.svelte';
+  import Testimonials from '$components/testimonials.svelte';
 
   export let data: ServicesPageStoryblok;
 </script>
@@ -123,4 +124,14 @@
       {/if}
     </div>
   </section>
+
+  <!-- Testimonials -->
+  <Testimonials
+    firstTitle={data.testimonials_title1}
+    secondTitle={data.testimonials_title2}
+    testimonials={data.testimonials}
+    ctaLabel={data.testimonials_cta_label}
+    ctaLink={data.testimonials_cta_link}
+  />
+  <div class="pt-16 lg:pt-20" />
 </main>

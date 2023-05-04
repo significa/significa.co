@@ -644,6 +644,9 @@ export interface ServicesGroupEntryStoryblok {
 }
 
 export interface ServicesPageStoryblok {
+  page_title1?: string;
+  page_title2?: string;
+  timeline?: ServiceTimelineRowStoryblok[];
   awards_title?: string;
   awards_description?: string;
   awards?: AwardsEntryStoryblok[];
@@ -652,8 +655,41 @@ export interface ServicesPageStoryblok {
   services_title?: string;
   services_description?: string;
   services?: ServicesDeppartmentStoryblok[];
+  testimonials_title1?: string;
+  testimonials_title2?: string;
+  testimonials_cta_label?: string;
+  testimonials_cta_link?: MultilinkStoryblok;
+  testimonials?: RichtextTestimonialStoryblok[];
   _uid: string;
   component: 'services-page';
+  [k: string]: any;
+}
+
+export interface ServiceTimelineCellStoryblok {
+  label?: string;
+  before_light?: AssetStoryblok;
+  before_dark?: AssetStoryblok;
+  after_light?: AssetStoryblok;
+  after_dark?: AssetStoryblok;
+  left_offset?: number;
+  throw_confetti?: boolean;
+  _uid: string;
+  component: 'service-timeline-cell';
+  [k: string]: any;
+}
+
+export interface ServiceTimelineRowStoryblok {
+  title?: string;
+  subrows?: ServiceTimelineSubrowStoryblok[];
+  _uid: string;
+  component: 'service-timeline-row';
+  [k: string]: any;
+}
+
+export interface ServiceTimelineSubrowStoryblok {
+  cells?: ServiceTimelineCellStoryblok[];
+  _uid: string;
+  component: 'service-timeline-subrow';
   [k: string]: any;
 }
 

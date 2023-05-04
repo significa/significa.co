@@ -88,12 +88,12 @@
     {#if data.clients}
       <div class="flex flex-wrap justify-center gap-12 p-6">
         {#each data.clients as client}
-          {#if client.light_mode && $theme === 'light'}
+          {#if client.light_mode?.filename && $theme === 'light'}
             {@const { src, alt } = getImageAttributes(client.light_mode)}
             <img {src} {alt} class="max-h-9 object-contain" />
           {/if}
 
-          {#if client.dark_mode && $theme === 'dark'}
+          {#if client.dark_mode?.filename && $theme === 'dark'}
             {@const { src, alt } = getImageAttributes(client.dark_mode)}
             <img {src} {alt} class="max-h-9 object-contain" />
           {/if}

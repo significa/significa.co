@@ -1,8 +1,5 @@
 {
-  "cssvar.files": [
-    "src/**/*.css",
-    "node_modules/@significa/svelte-ui/dist/**/*.css"
-  ],
+  "cssvar.files": ["src/**/*.css", "node_modules/@significa/svelte-ui/dist/**/*.css"],
   "cssvar.ignore": [],
   "files.associations": {
     "*.css": "tailwindcss"
@@ -11,7 +8,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "eslint.validate": [
-    "svelte"
-  ]
+  "eslint.validate": ["svelte"]
 }

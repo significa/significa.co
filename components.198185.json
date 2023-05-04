@@ -40,9 +40,7 @@
           "pos": 5,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "timeline-section"
-          ]
+          "component_whitelist": ["timeline-section"]
         },
         "values_title1": {
           "type": "text",
@@ -61,9 +59,7 @@
           "pos": 9,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "value"
-          ],
+          "component_whitelist": ["value"],
           "minimum": 3,
           "maximum": 3
         },
@@ -90,9 +86,7 @@
           "pos": 14,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "richtext-testimonial"
-          ]
+          "component_whitelist": ["richtext-testimonial"]
         },
         "clients_title": {
           "type": "text",
@@ -103,9 +97,7 @@
           "pos": 16,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "client-logo"
-          ]
+          "component_whitelist": ["client-logo"]
         },
         "office_title1": {
           "type": "text",
@@ -124,10 +116,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "notepad_card",
-            "photo_card"
-          ],
+          "component_whitelist": ["notepad_card", "photo_card"],
           "minimum": 6,
           "maximum": 6,
           "pos": 20
@@ -155,9 +144,7 @@
       "schema": {
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "label": {
           "type": "text"
@@ -318,9 +305,7 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212285,
           "required": false
         },
@@ -333,25 +318,17 @@
           "use_uuid": true,
           "required": true,
           "source": "internal_stories",
-          "filter_content_type": [
-            "team-member"
-          ]
+          "filter_content_type": ["team-member"]
         },
         "tab-9a5d9933-3840-42d8-aa24-d87e83a9eb5d": {
           "display_name": "Content",
-          "keys": [
-            "body"
-          ],
+          "keys": ["body"],
           "pos": 0,
           "type": "tab"
         },
         "tab-c1b66206-334d-4470-a996-ca9aa074e23c": {
           "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image"
-          ],
+          "keys": ["seo_title", "seo_description", "seo_og_image"],
           "pos": 0,
           "type": "tab"
         },
@@ -363,9 +340,7 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212285
         },
         "body": {
@@ -424,9 +399,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "canvas-checklist-item"
-          ],
+          "component_whitelist": ["canvas-checklist-item"],
           "maximum": 8,
           "pos": 1
         },
@@ -552,10 +525,7 @@
       "schema": {
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images",
-            "videos"
-          ],
+          "filetypes": ["images", "videos"],
           "description": "Photo or video. Video will play once on click.",
           "asset_folder_id": 235349,
           "pos": 0
@@ -689,13 +659,9 @@
           "type": "options",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "team-member"
-          ],
+          "component_whitelist": ["team-member"],
           "source": "internal_stories",
-          "filter_content_type": [
-            "team-member"
-          ]
+          "filter_content_type": ["team-member"]
         }
       },
       "image": null,
@@ -790,9 +756,7 @@
         "cover": {
           "type": "asset",
           "pos": 0,
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "body": {
           "type": "richtext",
@@ -832,18 +796,12 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 4
         },
         "tab-0df1eb17-e1de-4dfd-92cb-c73b4839beec": {
           "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image"
-          ],
+          "keys": ["seo_title", "seo_description", "seo_og_image"],
           "pos": 5,
           "type": "tab"
         }
@@ -876,11 +834,7 @@
         "canvas": {
           "type": "section",
           "pos": 1,
-          "keys": [
-            "canvas_items",
-            "canvas_height",
-            "canvas_width"
-          ]
+          "keys": ["canvas_items", "canvas_height", "canvas_width"]
         },
         "canvas_width": {
           "type": "number",
@@ -896,9 +850,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "canvas-group"
-          ],
+          "component_whitelist": ["canvas-group"],
           "key": "canvas",
           "pos": 4
         },
@@ -925,9 +877,7 @@
         },
         "images": {
           "type": "multiasset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "benefits_title": {
           "type": "text"
@@ -939,9 +889,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "benefits-entry"
-          ]
+          "component_whitelist": ["benefits-entry"]
         }
       },
       "image": null,
@@ -991,16 +939,12 @@
       "schema": {
         "light_mode": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 228928
         },
         "dark_mode": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 228928
         }
       },
@@ -1098,16 +1042,12 @@
         },
         "image_a": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true
         },
         "image_b": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true
         }
       },
@@ -1142,18 +1082,13 @@
           "maximum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ]
+          "component_whitelist": ["link"]
         },
         "footer": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "footer-column-internal",
-            "footer-column-external"
-          ]
+          "component_whitelist": ["footer-column-internal", "footer-column-external"]
         }
       },
       "image": null,
@@ -1191,10 +1126,7 @@
           "maximum": 6,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "notepad_card",
-            "photo_card"
-          ]
+          "component_whitelist": ["notepad_card", "photo_card"]
         }
       },
       "image": null,
@@ -1244,9 +1176,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ]
+          "component_whitelist": ["link"]
         }
       },
       "image": null,
@@ -1276,9 +1206,7 @@
           "type": "options",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ],
+          "component_whitelist": ["link"],
           "source": "internal_stories"
         }
       },
@@ -1311,10 +1239,7 @@
         "timezone_text": {
           "type": "richtext",
           "customize_toolbar": true,
-          "toolbar": [
-            "paragraph",
-            "bold"
-          ]
+          "toolbar": ["paragraph", "bold"]
         },
         "steps_title": {
           "type": "text"
@@ -1326,15 +1251,11 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "get-a-quote-step"
-          ]
+          "component_whitelist": ["get-a-quote-step"]
         },
         "images": {
           "type": "multiasset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         }
       },
       "image": null,
@@ -1386,9 +1307,7 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212287,
           "key": "cover",
           "pos": 0
@@ -1405,20 +1324,14 @@
         },
         "tab-6a37f9e9-5fe6-4268-a3e4-7fd4ed252cc0": {
           "display_name": "Content",
-          "keys": [
-            "body"
-          ],
+          "keys": ["body"],
           "pos": 3,
           "type": "tab",
           "key": "tab-6a37f9e9-5fe6-4268-a3e4-7fd4ed252cc0"
         },
         "tab-40ff5487-8b8b-40db-afae-1c64b4705bbc": {
           "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image"
-          ],
+          "keys": ["seo_title", "seo_description", "seo_og_image"],
           "pos": 4,
           "type": "tab",
           "key": "tab-40ff5487-8b8b-40db-afae-1c64b4705bbc"
@@ -1464,9 +1377,7 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212287,
           "key": "seo_og_image",
           "pos": 8
@@ -1542,18 +1453,11 @@
           "source": "internal_stories",
           "max_options": "4",
           "key": "small_highlights",
-          "filter_content_type": [
-            "career",
-            "project",
-            "handbook",
-            "blog-post"
-          ]
+          "filter_content_type": ["career", "project", "handbook", "blog-post"]
         },
         "showreel": {
           "type": "asset",
-          "filetypes": [
-            "videos"
-          ],
+          "filetypes": ["videos"],
           "pos": 1,
           "key": "showreel"
         },
@@ -1571,9 +1475,7 @@
           "type": "options",
           "pos": 4,
           "source": "internal_stories",
-          "filter_content_type": [
-            "project"
-          ],
+          "filter_content_type": ["project"],
           "key": "projects"
         },
         "about_title1": {
@@ -1609,9 +1511,7 @@
           "maximum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ],
+          "component_whitelist": ["link"],
           "key": "about_link",
           "pos": 9
         },
@@ -1620,9 +1520,7 @@
           "pos": 10,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "home-about-link"
-          ],
+          "component_whitelist": ["home-about-link"],
           "maximum": 3,
           "minimum": 3,
           "key": "about_links"
@@ -1651,9 +1549,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "richtext-testimonial"
-          ],
+          "component_whitelist": ["richtext-testimonial"],
           "maximum": 5,
           "minimum": 5,
           "key": "testimonials",
@@ -1738,9 +1634,7 @@
         },
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true
         },
         "expandable": {
@@ -1810,9 +1704,7 @@
         },
         "images": {
           "type": "multiasset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true,
           "pos": 2
         },
@@ -1897,18 +1789,12 @@
           "restrict_type": "groups",
           "restrict_components": true,
           "component_whitelist": [],
-          "component_group_whitelist": [
-            "78726ff5-00c6-4ddb-bfef-551b83977e54"
-          ],
+          "component_group_whitelist": ["78726ff5-00c6-4ddb-bfef-551b83977e54"],
           "maximum": 1
         },
         "tab-b1b4aa1b-2d5c-436e-ac16-09e30b9de047": {
           "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image"
-          ],
+          "keys": ["seo_title", "seo_description", "seo_og_image"],
           "pos": 0,
           "type": "tab"
         },
@@ -1922,9 +1808,7 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         }
       },
       "image": null,
@@ -1949,9 +1833,7 @@
       "schema": {
         "photo": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         }
       },
       "image": null,
@@ -2092,9 +1974,7 @@
       "schema": {
         "photo": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 234280
         }
       },
@@ -2120,17 +2000,12 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": [
-            "images",
-            "videos"
-          ],
+          "filetypes": ["images", "videos"],
           "asset_folder_id": 212286
         },
         "thumbnail": {
           "type": "multiasset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true,
           "asset_folder_id": 212286
         },
@@ -2145,45 +2020,33 @@
         "team": {
           "type": "options",
           "source": "internal_stories",
-          "filter_content_type": [
-            "team-member"
-          ]
+          "filter_content_type": ["team-member"]
         },
         "client": {
           "type": "text",
           "use_uuid": true,
           "source": "internal_stories",
-          "filter_content_type": [
-            "client"
-          ]
+          "filter_content_type": ["client"]
         },
         "deliverables": {
           "type": "textarea",
           "source": "internal_stories",
-          "filter_content_type": [
-            "deliverable"
-          ]
+          "filter_content_type": ["deliverable"]
         },
         "services": {
           "type": "textarea",
           "source": "internal_stories",
-          "filter_content_type": [
-            "service"
-          ]
+          "filter_content_type": ["service"]
         },
         "links": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ]
+          "component_whitelist": ["link"]
         },
         "tab-734adeb1-00ef-48e6-aa53-a3001ad39201": {
           "display_name": "Content",
-          "keys": [
-            "body"
-          ],
+          "keys": ["body"],
           "pos": 0,
           "type": "tab"
         },
@@ -2216,11 +2079,7 @@
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {
           "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image"
-          ],
+          "keys": ["seo_title", "seo_description", "seo_og_image"],
           "pos": 0,
           "type": "tab"
         },
@@ -2232,18 +2091,14 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212286
         },
         "recognitions": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "recognition"
-          ]
+          "component_whitelist": ["recognition"]
         }
       },
       "image": null,
@@ -2296,9 +2151,7 @@
         },
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true,
           "asset_folder_id": 216885
         }
@@ -2344,9 +2197,7 @@
         "image": {
           "type": "asset",
           "pos": 1,
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "title": {
           "type": "text",
@@ -2361,9 +2212,7 @@
           "pos": 4,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ],
+          "component_whitelist": ["link"],
           "maximum": 1
         }
       },
@@ -2477,9 +2326,7 @@
         "photo": {
           "type": "asset",
           "pos": 0,
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "name": {
           "type": "text",
@@ -2570,9 +2417,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "awards_entry"
-          ]
+          "component_whitelist": ["awards_entry"]
         }
       },
       "image": null,
@@ -2646,17 +2491,13 @@
         "photo": {
           "type": "asset",
           "pos": 0,
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212283
         },
         "egg": {
           "type": "asset",
           "pos": 1,
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212284
         },
         "position": {
@@ -2679,9 +2520,7 @@
           "pos": 5,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "team-member-link"
-          ]
+          "component_whitelist": ["team-member-link"]
         },
         "is_active": {
           "type": "boolean",
@@ -2878,9 +2717,7 @@
       "schema": {
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "border": {
           "type": "boolean",
@@ -2934,11 +2771,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "timeline-arrow",
-            "timeline-image",
-            "timeline-text"
-          ]
+          "component_whitelist": ["timeline-arrow", "timeline-image", "timeline-text"]
         },
         "width": {
           "type": "number",
@@ -2976,9 +2809,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ],
+          "component_whitelist": ["link"],
           "pos": 1
         },
         "width": {
@@ -3041,10 +2872,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "column-media",
-            "column"
-          ],
+          "component_whitelist": ["column-media", "column"],
           "minimum": 2,
           "maximum": 2,
           "required": true,
@@ -3154,9 +2982,7 @@
         },
         "video": {
           "type": "asset",
-          "filetypes": [
-            "videos"
-          ],
+          "filetypes": ["videos"],
           "required": true
         },
         "loop": {

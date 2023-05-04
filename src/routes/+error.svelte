@@ -1,268 +1,147 @@
 <script lang="ts">
-  import Illustration from '$components/illustrations/404.svelte';
-  import Fred from '$components/illustrations/fred.svelte';
-  import Alec from '$components/illustrations/alec.svelte';
-  import FriedEgg from '$components/illustrations/fried-egg.svelte';
-  import Marralhinha from '$components/illustrations/marralhinha.svelte';
-  import Strategy from '$components/illustrations/strategy.svelte';
-  import Flamingo from '$components/illustrations/flamingo.svelte';
-  import Manel from '$components/illustrations/manel.svelte';
-  import Mariana from '$components/illustrations/mariana.svelte';
-  import Elisa from '$components/illustrations/elisa.svelte';
-  import AnaFernandes from '$components/illustrations/ana-fernandes.svelte';
-  import Brandao from '$components/illustrations/brandao.svelte';
-  import JoaoRibeiro from '$components/illustrations/joao-ribeiro.svelte';
-  import RuiFerreira from '$components/illustrations/rui-ferreira.svelte';
-  import RuiSereno from '$components/illustrations/rui-sereno.svelte';
-  import RuiSousa from '$components/illustrations/rui-sousa.svelte';
-  import Joel from '$components/illustrations/joel.svelte';
-  import Michelle from '$components/illustrations/michelle.svelte';
-  import FranciscoMarques from '$components/illustrations/francisco-marques.svelte';
-  import FranciscoTeixeira from '$components/illustrations/francisco-teixeira.svelte';
-  import Catarina from '$components/illustrations/catarina.svelte';
-  import AndreResendes from '$components/illustrations/andre-resendes.svelte';
-  import Cocktail from '$components/illustrations/cocktail.svelte';
-  import Contact from '$components/illustrations/contact.svelte';
-  import DanielAlmeida from '$components/illustrations/daniel-almeida.svelte';
-  import Design from '$components/illustrations/design.svelte';
-  import Development from '$components/illustrations/development.svelte';
-  import Esteph from '$components/illustrations/esteph.svelte';
-  import Filipe from '$components/illustrations/filipe.svelte';
-  import Guilherme from '$components/illustrations/guilherme.svelte';
-  import IceCream from '$components/illustrations/ice-cream.svelte';
-  import Ines from '$components/illustrations/ines.svelte';
-  import Nobita from '$components/illustrations/nobita.svelte';
-  import Patricia from '$components/illustrations/patricia.svelte';
-  import Pintainho from '$components/illustrations/pintainho.svelte';
-  import Plane from '$components/illustrations/plane.svelte';
-  import Quim from '$components/illustrations/quim.svelte';
-  import Ricardo from '$components/illustrations/ricardo.svelte';
-  import Rita from '$components/illustrations/rita.svelte';
-  import Teresa from '$components/illustrations/teresa.svelte';
-  import Tiago from '$components/illustrations/tiago.svelte';
-  import Trophy from '$components/illustrations/trophy.svelte';
-  import { onMount } from 'svelte';
+  import center from '$assets/404.svg';
+  import nobita from '$assets/nobita-small.svg';
 
-  const components = [
-    { name: Nobita, class: 'nobita' },
-    { name: Fred },
-    { name: Alec },
-    { name: FriedEgg },
-    { name: Marralhinha },
-    { name: Strategy },
-    { name: Flamingo },
-    { name: Manel },
-    { name: Mariana },
-    { name: Elisa },
-    { name: AnaFernandes },
-    { name: Brandao },
-    { name: JoaoRibeiro },
-    { name: RuiFerreira },
-    { name: RuiSereno },
-    { name: RuiSousa },
-    { name: Joel },
-    { name: Michelle },
-    { name: FranciscoMarques },
-    { name: FranciscoTeixeira },
-    { name: Catarina },
-    { name: AndreResendes },
-    { name: Cocktail },
-    { name: Contact },
-    { name: DanielAlmeida },
-    { name: Design },
-    { name: Development },
-    { name: Esteph },
-    { name: Filipe },
-    { name: Guilherme },
-    { name: IceCream },
-    { name: Ines },
-    { name: Patricia },
-    { name: Pintainho },
-    { name: Plane },
-    { name: Quim },
-    { name: Ricardo },
-    { name: Rita },
-    { name: Teresa },
-    { name: Tiago },
-    { name: Trophy },
-    { name: Design },
-    { name: Development },
-    { name: Fred },
-    { name: Alec },
-    { name: FriedEgg },
-    { name: Marralhinha },
-    { name: Strategy },
-    { name: Flamingo },
-    { name: Manel },
-    { name: Mariana },
-    { name: Elisa },
-    { name: AnaFernandes },
-    { name: Brandao },
-    { name: JoaoRibeiro },
-    { name: RuiFerreira },
-    { name: RuiSereno },
-    { name: RuiSousa },
-    { name: Joel },
-    { name: Michelle },
-    { name: FranciscoMarques },
-    { name: FranciscoTeixeira },
-    { name: Catarina },
-    { name: AndreResendes },
-    { name: Cocktail },
-    { name: Contact },
-    { name: DanielAlmeida },
-    { name: Design },
-    { name: Development },
-    { name: Esteph },
-    { name: Filipe },
-    { name: Guilherme },
-    { name: IceCream },
-    { name: Ines },
-    { name: Patricia },
-    { name: Pintainho },
-    { name: Plane },
-    { name: Quim },
-    { name: Ricardo },
-    { name: Rita },
-    { name: Teresa },
-    { name: Tiago },
-    { name: Trophy },
-    { name: Design },
-    { name: Development }
-  ];
+  const stickers = Object.values(
+    import.meta.glob('../assets/stickers/*.svg', { eager: true, as: 'url' })
+  );
+
+  const gridSize = 90;
 
   let screenWidth: number;
   let screenHeight: number;
-  let colNum: number;
-  let isFoundAbove: any;
-  let isFoundAboveLeft: any;
-  let isFoundAboveRight: any;
-  let isFoundBelow: any;
-  let isFoundBelowLeft: any;
-  let isFoundBelowRight: any;
-  let isFoundLeft: any;
-  let isFoundRight: any;
-  let shuffledArray: any;
-  let nobitaIndex: number;
+  let centerWidth: number;
+  let centerHeight: number;
 
-  const getRandomRotation = () => {
-    return `--rotate:${Math.floor(Math.random() * 180)}deg;margin-top: -100px;`;
+  const TARGET = 'o';
+  const N = '↑';
+  const S = '↓';
+  const E = '→';
+  const W = '←';
+  const NE = '↗';
+  const NW = '↖';
+  const SE = '↘';
+  const SW = '↙';
+  const transforms: Record<string, string> = {
+    [N]: 'translateY(-50px)',
+    [S]: 'translateY(50px)',
+    [E]: 'translateX(50px)',
+    [W]: 'translateX(-50px)',
+    [NE]: 'translate(50px, -50px)',
+    [NW]: 'translate(-50px, -50px)',
+    [SE]: 'translate(50px, 50px)',
+    [SW]: 'translate(-50px, 50px)'
   };
-
-  const getShuffledArray = () => {
-    colNum = Math.floor(screenWidth / 100);
-    shuffledArray = components.sort(() => 0.5 - Math.random());
-    nobitaIndex = shuffledArray.map((el: any) => el.class).indexOf('nobita');
-
-    const colMiddle = Math.floor(colNum / 2);
-    const rowNum = 6;
-    const itemsOnScreen = colNum * rowNum;
-    const isNobitaFirstRow = nobitaIndex < colNum;
-    const isNobitaLastRow = nobitaIndex > itemsOnScreen - colNum;
-    const isNobitaHidden =
-      (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle) ||
-      (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle + 1) ||
-      (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle - 1) ||
-      (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle - 2) ||
-      (!isNobitaFirstRow && !isNobitaLastRow && (nobitaIndex % colNum) + 1 === colMiddle + 2) ||
-      nobitaIndex > itemsOnScreen;
-
-    if (isNobitaHidden) {
-      getShuffledArray();
-    }
-
-    return { shuffledArray, nobitaIndex, colNum };
-  };
-
-  onMount(() => {
-    const { shuffledArray, colNum, nobitaIndex } = getShuffledArray();
-    const isNobitaLeftScreenEdge = nobitaIndex % colNum === 0;
-    const isNobitaRightScreenEdge = nobitaIndex % colNum === colNum - 1;
-
-    isFoundAbove = shuffledArray[nobitaIndex - colNum];
-    isFoundAboveLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex - colNum - 1] : null;
-    isFoundAboveRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex - colNum + 1] : null;
-    isFoundBelow = shuffledArray[nobitaIndex + colNum];
-    isFoundBelowLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex + colNum - 1] : null;
-    isFoundBelowRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex + colNum + 1] : null;
-    isFoundLeft = !isNobitaLeftScreenEdge ? shuffledArray[nobitaIndex - 1] : null;
-    isFoundRight = !isNobitaRightScreenEdge ? shuffledArray[nobitaIndex + 1] : null;
-  });
 
   let isFound = false;
+
+  const getMatrix = (screenW: number, screenH: number, centerW: number, centerH: number) => {
+    const matrix: string[][] = [];
+
+    // amount of columns and rows (number)
+    const x = Math.floor(screenW / gridSize);
+    const y = Math.floor(screenH / gridSize);
+
+    // the center of the matrix must be locked (so, no nobita there)
+    // we calculate the padding for the matrix (amount of columns and rows around a locked center)
+    const xPadding = Math.floor((x - Math.ceil(centerW / gridSize)) / 2);
+    const yPadding = Math.floor((y - Math.ceil(centerH / gridSize)) / 2);
+
+    for (let row = 0; row < y; row++) {
+      matrix[row] = [];
+
+      for (let column = 0; column < x; column++) {
+        const isLockedX = column >= xPadding && column < x - xPadding;
+        const isLockedY = row >= yPadding && row < y - yPadding;
+
+        matrix[row][column] = isLockedX && isLockedY ? '-' : 'x';
+      }
+    }
+
+    if (matrix.length) {
+      let attempts = 0;
+
+      const placeNobita = () => {
+        const nobitaRowIndex = Math.floor(Math.random() * y) - 1;
+        const nobitaColumnIndex = Math.floor(Math.random() * x) - 1;
+
+        if (matrix[nobitaRowIndex]?.[nobitaColumnIndex] === 'x') {
+          matrix[nobitaRowIndex][nobitaColumnIndex] = TARGET;
+
+          // mark the cells around nobita as cardinal points (n, s, e, w, ne, nw, se, sw)
+          const markNeighbour = (x: number, y: number, value: string) => {
+            if (matrix[y]?.[x]) {
+              matrix[y][x] = value;
+            }
+          };
+
+          markNeighbour(nobitaColumnIndex, nobitaRowIndex - 1, N);
+          markNeighbour(nobitaColumnIndex, nobitaRowIndex + 1, S);
+          markNeighbour(nobitaColumnIndex - 1, nobitaRowIndex, W);
+          markNeighbour(nobitaColumnIndex + 1, nobitaRowIndex, E);
+          markNeighbour(nobitaColumnIndex - 1, nobitaRowIndex - 1, NW);
+          markNeighbour(nobitaColumnIndex + 1, nobitaRowIndex - 1, NE);
+          markNeighbour(nobitaColumnIndex - 1, nobitaRowIndex + 1, SW);
+          markNeighbour(nobitaColumnIndex + 1, nobitaRowIndex + 1, SE);
+        } else if (attempts < 100) {
+          attempts++;
+          placeNobita();
+        }
+      };
+
+      placeNobita();
+    }
+
+    return matrix;
+  };
+
+  $: matrix = getMatrix(screenWidth, screenHeight, centerWidth, centerHeight);
 </script>
 
-<svelte:window bind:innerWidth={screenWidth} bind:innerHeight={screenHeight} />
-<div
-  style={`--columnsNum:${Math.floor(screenWidth / 100)};padding-top: 100px; padding-left: -50px;`}
-  class="columns fixed grid h-full w-full overflow-hidden"
->
-  {#if shuffledArray}
-    {#each shuffledArray as component}
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <div
-        class="stick"
-        class:foundAbove={isFoundAbove === component ||
-        isFoundAboveLeft === component ||
-        isFoundAboveRight === component
-          ? isFound
-          : null}
-        class:foundBelow={isFoundBelow === component ||
-        isFoundBelowRight === component ||
-        isFoundBelowLeft === component
-          ? isFound
-          : null}
-        class:foundLeft={isFoundLeft === component ? isFound : null}
-        class:foundRight={isFoundRight === component ? isFound : null}
-        class:nobita={component.class}
-        style={getRandomRotation()}
-        on:click={() => {
-          component.class ? (isFound = true) : null;
-        }}
-      >
-        <svelte:component this={component.name} />
-      </div>
-    {/each}
-  {/if}
-  <div class="illu">
-    <Illustration class="h-auto w-80 md:w-full" />
+{#if matrix}
+  <div
+    bind:clientWidth={screenWidth}
+    bind:clientHeight={screenHeight}
+    style="height: calc(100vh - 76px);"
+    class="flex items-center justify-center overflow-hidden border-t"
+  >
+    <div
+      style="grid-template-columns: repeat({matrix[0]?.length ||
+        0}, {gridSize}px); grid-template-rows: repeat({matrix?.length || 0}, {gridSize}px);"
+      class="grid"
+    >
+      {#each matrix as row}
+        {#each row as cell}
+          <div
+            class="transition-all duration-700 ease-in-out"
+            style={isFound && transforms[cell] ? `transform: ${transforms[cell]} ` : ''}
+          >
+            {#if cell === TARGET}
+              <!-- svelte-ignore a11y-click-events-have-key-events -->
+              <img
+                alt=""
+                src={nobita}
+                on:click={() => (isFound = true)}
+                class="absolute drop-shadow-sm"
+                style="transform: rotate({Math.floor(Math.random() * 180)}deg);"
+              />
+            {:else}
+              <img
+                alt=""
+                src={stickers[Math.floor(Math.random() * stickers.length)]}
+                style="transform: rotate({Math.floor(Math.random() * 180)}deg);"
+                class="pointer-events-none absolute drop-shadow-sm"
+              />
+            {/if}
+          </div>
+        {/each}
+      {/each}
+    </div>
+  </div>
+{/if}
+
+<div class="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+  <div bind:clientWidth={centerWidth} bind:clientHeight={centerHeight}>
+    <img class="drop-shadow-lg" alt="" src={center} />
   </div>
 </div>
-
-<style>
-  .nobita {
-    transform: rotate(var(--rotate));
-    transition: all 0.8s ease-out;
-    cursor: pointer;
-  }
-  .stick {
-    transform: rotate(var(--rotate));
-    height: fit-content;
-    width: fit-content;
-    cursor: pointer;
-    transition: all 0.8s ease-out;
-  }
-  .illu {
-    z-index: 10;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-  }
-  .foundAbove {
-    transform: translateY(-75px);
-  }
-  .foundBelow {
-    transform: translateY(75px);
-  }
-  .foundLeft {
-    transform: translateX(-75px);
-  }
-  .foundRight {
-    transform: translateX(75px);
-  }
-  .columns {
-    grid-template-columns: repeat(var(--columnsNum), minmax(0, 1fr));
-  }
-</style>

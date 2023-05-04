@@ -2,7 +2,6 @@
   import Seo from '$components/seo.svelte';
   import { VIDEO_EXTENSIONS } from '$lib/constants';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
-  import { formatDate } from '$lib/utils/dates';
   import { getFileExtension } from '$lib/utils/strings';
   import type { ServicesPageStoryblok } from '$types/bloks';
   import { Icon, Link } from '@significa/svelte-ui';
@@ -11,6 +10,8 @@
   import Hand from './services/illustrations/hand.svelte';
   import Duck from './services/illustrations/duck.svelte';
   import Testimonials from '$components/testimonials.svelte';
+  import { theme } from '$lib/stores/theme';
+  import PreFooter from '$components/pre-footer.svelte';
 
   export let data: ServicesPageStoryblok;
 </script>
@@ -133,5 +134,28 @@
     ctaLabel={data.testimonials_cta_label}
     ctaLink={data.testimonials_cta_link}
   />
-  <div class="pt-16 lg:pt-20" />
+
+  <!-- Clients -->
+  <section class=" container mx-auto px-container pb-16 pt-20 lg:pb-20 lg:pt-40">
+    <h3 class="text-center text-2xl text-foreground-secondary">{data.clients_title}</h3>
+    {#if data.clients}
+      <div class="flex flex-wrap justify-center gap-12 p-6">
+        {#each data.clients as client}
+          {#if client.light_mode?.filename && $theme === 'light'}
+            {@const { src, alt } = getImageAttributes(client.light_mode)}
+            <img {src} {alt} class="max-h-9 object-contain" />
+          {/if}
+
+          {#if client.dark_mode?.filename && $theme === 'dark'}
+            {@const { src, alt } = getImageAttributes(client.dark_mode)}
+            <img {src} {alt} class="max-h-9 object-contain" />
+          {/if}
+        {/each}
+      </div>
+    {/if}
+  </section>
+
+  <div class="mb-12">
+    <PreFooter />
+  </div>
 </main>

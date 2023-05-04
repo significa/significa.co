@@ -660,6 +660,8 @@ export interface ServicesPageStoryblok {
   testimonials_cta_label?: string;
   testimonials_cta_link?: MultilinkStoryblok;
   testimonials?: RichtextTestimonialStoryblok[];
+  clients_title?: string;
+  clients?: ClientLogoStoryblok[];
   _uid: string;
   component: 'services-page';
   [k: string]: any;

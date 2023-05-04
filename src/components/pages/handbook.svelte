@@ -52,7 +52,17 @@
   <div class="flex-1">
     <header class="container mx-auto my-10 max-w-3xl px-container md:my-14 lg:my-20">
       <h1 class="text-5xl">{story.name}</h1>
-      <p class="mt-4 max-w-2xl text-2xl">{story.content.intro}</p>
+      {#if story.content.intro}
+        <p class="mt-4 max-w-2xl text-2xl">{story.content.intro}</p>
+      {/if}
+      {#if story.content.draft}
+        <div class="mt-8 rounded-md bg-error p-4">
+          <h4 class="text-lg font-medium">{t('handbook.draft.title')}</h4>
+          <p>
+            {t('handbook.draft.description')}
+          </p>
+        </div>
+      {/if}
     </header>
 
     {#if story.content.cover?.filename}
@@ -64,64 +74,70 @@
       </div>
     {/if}
 
-    <div class="container mx-auto max-w-3xl px-container">
-      {#if story.content.body}
-        <div
-          use:drawerLinks
-          use:intersectionObserver={{
-            querySelectorAll: 'h2[id], h3[id]',
-            callback: (observers) => {
-              observers.forEach((o) => {
-                const heading = headings.get(o.target.id);
+    {#if story.content.body?.length}
+      <div class="container mx-auto max-w-3xl px-container">
+        {#if story.content.body}
+          <div
+            use:drawerLinks
+            use:intersectionObserver={{
+              querySelectorAll: 'h2[id], h3[id]',
+              callback: (observers) => {
+                observers.forEach((o) => {
+                  const heading = headings.get(o.target.id);
 
-                if (!heading) return;
+                  if (!heading) return;
 
-                if (o.isIntersecting) {
-                  heading.location = 'in-viewport';
-                } else if (o.boundingClientRect.top < 0) {
-                  heading.location = 'above-viewport';
+                  if (o.isIntersecting) {
+                    heading.location = 'in-viewport';
+                  } else if (o.boundingClientRect.top < 0) {
+                    heading.location = 'above-viewport';
+                  }
+
+                  // reactivity
+                  headings = headings;
+                });
+              },
+              options: { threshold: [1] }
+            }}
+          >
+            <RichText
+              class="my-10 md:my-14 lg:my-20"
+              doc={story.content.body}
+              getAttributes={(section) => {
+                if (section.type === 'heading') {
+                  const heading = resolver.render(section);
+                  // add id to heading
+                  return { id: slugify(heading) };
                 }
 
-                // reactivity
-                headings = headings;
-              });
-            },
-            options: { threshold: [1] }
-          }}
-        >
-          <RichText
-            class="my-10 md:my-14 lg:my-20"
-            doc={story.content.body}
-            getAttributes={(section) => {
-              if (section.type === 'heading') {
-                const heading = resolver.render(section);
-                // add id to heading
-                return { id: slugify(heading) };
-              }
-
-              return {};
-            }}
-          />
-        </div>
-      {/if}
-    </div>
+                return {};
+              }}
+            />
+          </div>
+        {/if}
+      </div>
+    {:else}
+      <div class="h-80" />
+    {/if}
   </div>
 
   <aside class="sticky top-10 mb-10 mt-10 hidden h-auto w-56 @5xl:block">
-    <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
-      {t('on-this-page')}
-    </h4>
-    {#each Array.from(headings.entries()) as [id, { content, level }]}
-      <a
-        href={'#' + id}
-        class={clsx(
-          'block border-l px-3 py-1 text-sm',
-          active === id
-            ? 'border-l-2 border-foreground text-foreground'
-            : 'text-foreground-secondary',
-          level >= 3 ? 'pl-6' : 'pl-3'
-        )}><span class={clsx('block', active === id && '-ml-px')}>{@html content}</span></a
-      >
-    {/each}
+    {#if headings.size > 0}
+      <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
+        {t('on-this-page')}
+      </h4>
+      {#each Array.from(headings.entries()) as [id, { content, level }]}
+        <a
+          href={'#' + id}
+          class={clsx(
+            'block border-l px-3 py-1 text-sm',
+            active === id
+              ? 'border-l-2 border-foreground text-foreground'
+              : 'text-foreground-secondary',
+            level >= 3 ? 'pl-6' : 'pl-3'
+          )}><span class={clsx('block', active === id && '-ml-px')}>{@html content}</span></a
+        >
+      {/each}
+    {/if}
   </aside>
 </div>

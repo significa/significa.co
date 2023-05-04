@@ -1,48 +1,49 @@
 <script lang="ts">
-  import { storyblokEditable } from '$lib/actions/storyblok-editable';
-  import { theme } from '$lib/stores/theme';
-  import { getImageAttributes } from '$lib/utils/cms';
-  import type { ServicesPageStoryblok } from '$types/bloks';
   import clsx from 'clsx';
+  import TimelineCell from './timeline-cell.svelte';
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
+  import type { ServicesPageStoryblok } from '$types/bloks';
+  import { onMount } from 'svelte';
 
   export let timeline: NonNullable<ServicesPageStoryblok['timeline']>;
+
+  let needle: HTMLElement;
+  let needlePosition: number;
+
+  onMount(() => {
+    needlePosition = needle.getBoundingClientRect().left;
+  });
 </script>
 
-<section class={clsx('overflow-auto', $$restProps.class)}>
-  {#each timeline || [] as row}
-    <div class="border-b" use:storyblokEditable={row}>
-      <div class="container mx-auto flex min-w-[1536px] flex-col gap-5 px-container py-6">
-        {#each row.subrows || [] as subrow, i}
-          <div class="flex items-center" use:storyblokEditable={subrow}>
-            <div class="ml-6 w-28">
-              {#if i === 0}
-                <p class="text-base font-semibold">{row.title}</p>
-              {/if}
-            </div>
+<section class={clsx('relative', $$restProps.class)}>
+  <div class="container absolute inset-0 mx-auto px-container">
+    <div
+      bind:this={needle}
+      class="absolute left-[400px] top-[50%] z-10 h-[120%] w-1 -translate-y-[50%] bg-foreground"
+    />
+  </div>
 
-            <div class="flex gap-6">
-              {#each subrow.cells || [] as cell}
-                {#if cell.before_dark?.filename && cell.before_light?.filename}
-                  {@const img = $theme === 'light' ? cell.before_light : cell.before_dark}
-                  {@const { width, height, src, alt } = getImageAttributes(img)}
-                  <div
-                    class="relative"
-                    style="margin-left: {cell.left_offset || 0}px;"
-                    use:storyblokEditable={cell}
-                  >
-                    <img {width} {height} {src} {alt} />
-                    <p
-                      class="absolute left-4 top-[50%] -translate-y-[50%] text-sm font-semibold text-[#F7F7F7]"
-                    >
-                      {cell.label}
-                    </p>
-                  </div>
+  <div class="overflow-auto">
+    {#each timeline || [] as row}
+      <div class="border-b" use:storyblokEditable={row}>
+        <div class="container mx-auto flex min-w-[1536px] flex-col gap-5 px-container py-6">
+          {#each row.subrows || [] as subrow, i}
+            <div class="flex items-center" use:storyblokEditable={subrow}>
+              <div class="mr-6 w-28">
+                {#if i === 0}
+                  <p class="text-base font-semibold">{row.title}</p>
                 {/if}
-              {/each}
+              </div>
+
+              <div class="flex gap-6">
+                {#each subrow.cells || [] as cell}
+                  <TimelineCell {cell} {needlePosition} />
+                {/each}
+              </div>
             </div>
-          </div>
-        {/each}
+          {/each}
+        </div>
       </div>
-    </div>
-  {/each}
+    {/each}
+  </div>
 </section>

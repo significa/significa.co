@@ -18,7 +18,7 @@
 
 <div
   bind:this={node}
-  class="relative"
+  class="relative shrink-0"
   style="margin-left: {cell.left_offset || 0}px;"
   use:storyblokEditable={cell}
 >

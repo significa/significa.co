@@ -35,7 +35,7 @@
                 {/if}
               </div>
 
-              <div class="flex gap-6">
+              <div class="flex gap-6 overflow-hidden">
                 {#each subrow.cells || [] as cell}
                   <TimelineCell {cell} {needlePosition} />
                 {/each}

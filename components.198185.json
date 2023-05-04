@@ -139,24 +139,29 @@
       "name": "awards_entry",
       "display_name": null,
       "created_at": "2023-05-04T08:53:34.816Z",
-      "updated_at": "2023-05-04T08:55:32.779Z",
+      "updated_at": "2023-05-04T12:30:17.989Z",
       "id": 3924078,
       "schema": {
         "image": {
           "type": "asset",
-          "filetypes": ["images"]
+          "filetypes": ["images"],
+          "pos": 0
         },
         "label": {
-          "type": "text"
+          "type": "text",
+          "pos": 1
         },
         "name": {
-          "type": "text"
+          "type": "text",
+          "pos": 2
+        },
+        "project": {
+          "type": "text",
+          "pos": 3
         },
         "link": {
-          "type": "multilink"
-        },
-        "date": {
-          "type": "datetime"
+          "type": "multilink",
+          "pos": 4
         }
       },
       "image": null,
@@ -2401,10 +2406,96 @@
       "component_group_name": "Configuration"
     },
     {
+      "name": "services_deppartment",
+      "display_name": null,
+      "created_at": "2023-05-04T10:55:05.274Z",
+      "updated_at": "2023-05-04T11:00:55.665Z",
+      "id": 3924768,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "entry": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["services_group_entry"],
+          "pos": 2
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "services_deppartment",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "services_entry",
+      "display_name": null,
+      "created_at": "2023-05-04T10:52:21.360Z",
+      "updated_at": "2023-05-04T10:52:32.373Z",
+      "id": 3924755,
+      "schema": {
+        "label": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "services_entry",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "services_group_entry",
+      "display_name": null,
+      "created_at": "2023-05-04T10:53:28.541Z",
+      "updated_at": "2023-05-04T10:53:55.547Z",
+      "id": 3924760,
+      "schema": {
+        "title": {
+          "type": "text"
+        },
+        "list": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["services_entry"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "services_group_entry",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "services-page",
       "display_name": null,
       "created_at": "2023-05-04T08:50:50.568Z",
-      "updated_at": "2023-05-04T08:56:02.850Z",
+      "updated_at": "2023-05-04T10:57:45.766Z",
       "id": 3924074,
       "schema": {
         "awards_title": {
@@ -2418,6 +2509,25 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["awards_entry"]
+        },
+        "showreel": {
+          "type": "asset",
+          "filetypes": ["videos"]
+        },
+        "showreel_button_label": {
+          "type": "text"
+        },
+        "services_title": {
+          "type": "text"
+        },
+        "services_description": {
+          "type": "text"
+        },
+        "services": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["services_deppartment"]
         }
       },
       "image": null,

@@ -340,6 +340,15 @@ export interface DeliverableStoryblok {
   [k: string]: any;
 }
 
+export interface DeliverablesEntryStoryblok {
+  icon?: AssetStoryblok;
+  title?: string;
+  description?: string;
+  _uid: string;
+  component: 'deliverables_entry';
+  [k: string]: any;
+}
+
 export interface FooterColumnExternalStoryblok {
   title?: string;
   links?: LinkStoryblok[];
@@ -655,6 +664,8 @@ export interface ServicesPageStoryblok {
   services_title?: string;
   services_description?: string;
   services?: ServicesDeppartmentStoryblok[];
+  deliverables_title?: string;
+  deliverables?: DeliverablesEntryStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;
   testimonials_cta_label?: string;

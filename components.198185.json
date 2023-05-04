@@ -1168,6 +1168,37 @@
       "component_group_name": "Configuration"
     },
     {
+      "name": "deliverables_entry",
+      "display_name": null,
+      "created_at": "2023-05-04T15:01:16.651Z",
+      "updated_at": "2023-05-04T15:01:35.645Z",
+      "id": 3926730,
+      "schema": {
+        "icon": {
+          "type": "asset",
+          "filetypes": ["images"]
+        },
+        "title": {
+          "type": "text"
+        },
+        "description": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "deliverables_entry",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "footer-column-external",
       "display_name": "Footer external links",
       "created_at": "2023-03-14T10:59:53.399Z",
@@ -2495,7 +2526,7 @@
       "name": "services-page",
       "display_name": null,
       "created_at": "2023-05-04T08:50:50.568Z",
-      "updated_at": "2023-05-04T14:18:09.116Z",
+      "updated_at": "2023-05-04T15:01:56.719Z",
       "id": 3924074,
       "schema": {
         "page_title1": {
@@ -2552,17 +2583,32 @@
           "component_whitelist": ["services_deppartment"],
           "pos": 10
         },
+        "deliverables_title": {
+          "type": "text",
+          "pos": 11
+        },
+        "deliverables": {
+          "type": "bloks",
+          "pos": 12,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["deliverables_entry"]
+        },
         "testimonials_title1": {
-          "type": "text"
+          "type": "text",
+          "pos": 13
         },
         "testimonials_title2": {
-          "type": "text"
+          "type": "text",
+          "pos": 14
         },
         "testimonials_cta_label": {
-          "type": "text"
+          "type": "text",
+          "pos": 15
         },
         "testimonials_cta_link": {
-          "type": "multilink"
+          "type": "multilink",
+          "pos": 16
         },
         "testimonials": {
           "type": "bloks",
@@ -2570,17 +2616,20 @@
           "restrict_components": true,
           "component_whitelist": ["richtext-testimonial"],
           "minimum": 5,
-          "maximum": 5
+          "maximum": 5,
+          "pos": 17
         },
         "clients_title": {
-          "type": "text"
+          "type": "text",
+          "pos": 18
         },
         "clients": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
           "default_value": "",
-          "component_whitelist": ["client-logo"]
+          "component_whitelist": ["client-logo"],
+          "pos": 19
         }
       },
       "image": null,

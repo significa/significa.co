@@ -87,6 +87,28 @@ export interface AboutPageStoryblok {
   [k: string]: any;
 }
 
+export interface AssetStoryblok {
+  alt?: string;
+  copyright?: string;
+  id: number;
+  filename: string;
+  name: string;
+  title?: string;
+  focus?: string;
+  [k: string]: any;
+}
+
+export interface AwardsEntryStoryblok {
+  image?: AssetStoryblok;
+  label?: string;
+  name?: string;
+  link?: MultilinkStoryblok;
+  date?: string;
+  _uid: string;
+  component: 'awards_entry';
+  [k: string]: any;
+}
+
 export interface BenefitsEntryStoryblok {
   icon?:
     | ''
@@ -114,17 +136,6 @@ export interface BenefitsEntryStoryblok {
 export interface BlogIndexStoryblok {
   _uid: string;
   component: 'blog-index';
-  [k: string]: any;
-}
-
-export interface AssetStoryblok {
-  alt?: string;
-  copyright?: string;
-  id: number;
-  filename: string;
-  name: string;
-  title?: string;
-  focus?: string;
   [k: string]: any;
 }
 
@@ -374,6 +385,7 @@ export interface HandbookStoryblok {
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
+  draft?: boolean;
   _uid: string;
   component: 'handbook';
   [k: string]: any;
@@ -470,6 +482,7 @@ export interface PageStoryblok {
     | GetAQuotePageStoryblok
     | HomePageStoryblok
     | ProjectsIndexStoryblok
+    | ServicesPageStoryblok
     | StaticPageStoryblok
   )[];
   seo_title?: string;
@@ -604,6 +617,16 @@ export interface RootStoryblok {
 export interface ServiceStoryblok {
   _uid: string;
   component: 'service';
+  [k: string]: any;
+}
+
+export interface ServicesPageStoryblok {
+  awards_title?: string;
+  awards_description?: string;
+  awards?: AwardsEntryStoryblok[];
+  showreel?: AssetStoryblok;
+  _uid: string;
+  component: 'services-page';
   [k: string]: any;
 }
 

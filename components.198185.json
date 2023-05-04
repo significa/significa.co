@@ -147,6 +147,45 @@
       "component_group_name": "Pages"
     },
     {
+      "name": "awards_entry",
+      "display_name": null,
+      "created_at": "2023-05-04T08:53:34.816Z",
+      "updated_at": "2023-05-04T08:55:32.779Z",
+      "id": 3924078,
+      "schema": {
+        "image": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ]
+        },
+        "label": {
+          "type": "text"
+        },
+        "name": {
+          "type": "text"
+        },
+        "link": {
+          "type": "multilink"
+        },
+        "date": {
+          "type": "datetime"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "awards_entry",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "benefits-entry",
       "display_name": null,
       "created_at": "2023-04-21T09:26:11.845Z",
@@ -1342,7 +1381,7 @@
       "name": "handbook",
       "display_name": null,
       "created_at": "2023-02-15T13:50:12.113Z",
-      "updated_at": "2023-03-08T11:47:07.187Z",
+      "updated_at": "2023-05-04T09:09:12.330Z",
       "id": 3442773,
       "schema": {
         "cover": {
@@ -1350,21 +1389,28 @@
           "filetypes": [
             "images"
           ],
-          "asset_folder_id": 212287
+          "asset_folder_id": 212287,
+          "key": "cover",
+          "pos": 0
         },
         "tagline": {
-          "type": "text"
+          "type": "text",
+          "key": "tagline",
+          "pos": 1
         },
         "intro": {
-          "type": "textarea"
+          "type": "textarea",
+          "key": "intro",
+          "pos": 2
         },
         "tab-6a37f9e9-5fe6-4268-a3e4-7fd4ed252cc0": {
           "display_name": "Content",
           "keys": [
             "body"
           ],
-          "pos": 0,
-          "type": "tab"
+          "pos": 3,
+          "type": "tab",
+          "key": "tab-6a37f9e9-5fe6-4268-a3e4-7fd4ed252cc0"
         },
         "tab-40ff5487-8b8b-40db-afae-1c64b4705bbc": {
           "display_name": "SEO",
@@ -1373,8 +1419,9 @@
             "seo_description",
             "seo_og_image"
           ],
-          "pos": 0,
-          "type": "tab"
+          "pos": 4,
+          "type": "tab",
+          "key": "tab-40ff5487-8b8b-40db-afae-1c64b4705bbc"
         },
         "body": {
           "type": "richtext",
@@ -1401,20 +1448,34 @@
             "blok",
             "h3",
             "h4"
-          ]
+          ],
+          "key": "body",
+          "pos": 5
         },
         "seo_title": {
-          "type": "text"
+          "type": "text",
+          "key": "seo_title",
+          "pos": 6
         },
         "seo_description": {
-          "type": "text"
+          "type": "text",
+          "key": "seo_description",
+          "pos": 7
         },
         "seo_og_image": {
           "type": "asset",
           "filetypes": [
             "images"
           ],
-          "asset_folder_id": 212287
+          "asset_folder_id": 212287,
+          "key": "seo_og_image",
+          "pos": 8
+        },
+        "draft": {
+          "type": "boolean",
+          "key": "coming_soon",
+          "pos": 9,
+          "default_value": true
         }
       },
       "image": null,
@@ -2491,6 +2552,47 @@
       "color": null,
       "icon": null,
       "component_group_name": "Configuration"
+    },
+    {
+      "name": "services-page",
+      "display_name": null,
+      "created_at": "2023-05-04T08:50:50.568Z",
+      "updated_at": "2023-05-04T10:32:45.245Z",
+      "id": 3924074,
+      "schema": {
+        "awards_title": {
+          "type": "text"
+        },
+        "awards_description": {
+          "type": "text"
+        },
+        "awards": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "awards_entry"
+          ]
+        },
+        "showreel": {
+          "type": "asset",
+          "filetypes": [
+            "videos"
+          ]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "services-page",
+      "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Pages"
     },
     {
       "name": "static-page",

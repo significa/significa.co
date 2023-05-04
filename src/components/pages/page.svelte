@@ -1,9 +1,9 @@
 <script lang="ts">
   import type {
     CareersPageStoryblok,
-    GetAQuotePageStoryblok,
     HomePageStoryblok,
     AboutPageStoryblok,
+    GetAQuotePageStoryblok,
     PageStoryblok,
     ContactsPageStoryblok
   } from '$types/bloks';

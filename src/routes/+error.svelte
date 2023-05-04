@@ -8,11 +8,6 @@
 
   const gridSize = 90;
 
-  let screenWidth: number;
-  let screenHeight: number;
-  let centerWidth: number;
-  let centerHeight: number;
-
   const TARGET = 'o';
   const N = '↑';
   const S = '↓';
@@ -33,8 +28,26 @@
     [SW]: 'translate(-50px, 50px)'
   };
 
-  let isFound = false;
-
+  /**
+   * Creates a matrix of cells (x, y) with a central area where nobita can't be placed
+   *
+   * It uses `x` for normal cells and `-` for locked cells.
+   * It uses `o` for the target cell (nobita).
+   * It uses `n`, `s`, `e`, `w`, `ne`, `nw`, `se`, `sw` for the cardinal points around nobita
+   *
+   * as an example:
+   * [
+   *   ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"],
+   *   ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"],
+   *   ["x","x","x","x","x","x","x","-","-","-","-","-","-","-","x","x","x","x","x","x","x"],
+   *   ["x","x","x","x","x","x","x","-","-","-","-","-","-","-","x","x","x","x","x","x","x"],
+   *   ["x","x","x","↖","↑","↗","x","-","-","-","-","-","-","-","x","x","x","x","x","x","x"],
+   *   ["x","x","x","←","o","→","x","-","-","-","-","-","-","-","x","x","x","x","x","x","x"],
+   *   ["x","x","x","↙","↓","↘","x","-","-","-","-","-","-","-","x","x","x","x","x","x","x"],
+   *   ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"],
+   *   ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"]
+   * ]
+   */
   const getMatrix = (screenW: number, screenH: number, centerW: number, centerH: number) => {
     const matrix: string[][] = [];
 
@@ -94,6 +107,12 @@
 
     return matrix;
   };
+
+  let screenWidth: number;
+  let screenHeight: number;
+  let centerWidth: number;
+  let centerHeight: number;
+  let isFound = false;
 
   $: matrix = getMatrix(screenWidth, screenHeight, centerWidth, centerHeight);
 </script>

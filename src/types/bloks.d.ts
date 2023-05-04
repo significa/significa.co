@@ -87,6 +87,28 @@ export interface AboutPageStoryblok {
   [k: string]: any;
 }
 
+export interface AssetStoryblok {
+  alt?: string;
+  copyright?: string;
+  id: number;
+  filename: string;
+  name: string;
+  title?: string;
+  focus?: string;
+  [k: string]: any;
+}
+
+export interface AwardsEntryStoryblok {
+  image?: AssetStoryblok;
+  label?: string;
+  name?: string;
+  link?: MultilinkStoryblok;
+  date?: string;
+  _uid: string;
+  component: 'awards_entry';
+  [k: string]: any;
+}
+
 export interface BenefitsEntryStoryblok {
   icon?:
     | ''
@@ -117,17 +139,6 @@ export interface BlogIndexStoryblok {
   [k: string]: any;
 }
 
-export interface AssetStoryblok {
-  alt?: string;
-  copyright?: string;
-  id: number;
-  filename: string;
-  name: string;
-  title?: string;
-  focus?: string;
-  [k: string]: any;
-}
-
 export interface BlogPostStoryblok {
   cover?: AssetStoryblok;
   intro: string;
@@ -141,22 +152,55 @@ export interface BlogPostStoryblok {
   [k: string]: any;
 }
 
+export interface CanvasChecklistStoryblok {
+  title?: string;
+  items?: CanvasChecklistItemStoryblok[];
+  top?: number;
+  left?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'canvas-checklist';
+  [k: string]: any;
+}
+
+export interface CanvasChecklistItemStoryblok {
+  text?: string;
+  _uid: string;
+  component: 'canvas-checklist-item';
+  [k: string]: any;
+}
+
 export interface CanvasGroupStoryblok {
   width?: number;
   height?: number;
   top?: number;
   left?: number;
   items?: (
+    | CanvasChecklistStoryblok
+    | CanvasMediaStoryblok
     | CanvasTalkBalloonStoryblok
     | CanvasTeamStoryblok
     | CanvasYellowStickerStoryblok
     | TimelineArrowStoryblok
-    | TimelineImageStoryblok
-    | TimelineSectionStoryblok
     | TimelineTextStoryblok
+    | CanvasTictactoeStoryblok
   )[];
   _uid: string;
   component: 'canvas-group';
+  [k: string]: any;
+}
+
+export interface CanvasMediaStoryblok {
+  image?: AssetStoryblok;
+  width?: number;
+  height?: number;
+  border?: boolean;
+  top: number;
+  left: number;
+  scale?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'canvas-media';
   [k: string]: any;
 }
 
@@ -176,6 +220,15 @@ export interface CanvasTeamStoryblok {
   roster?: (StoryblokStory<TeamMemberStoryblok> | string)[];
   _uid: string;
   component: 'canvas-team';
+  [k: string]: any;
+}
+
+export interface CanvasTictactoeStoryblok {
+  top?: number;
+  left?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'canvas-tictactoe';
   [k: string]: any;
 }
 
@@ -332,6 +385,7 @@ export interface HandbookStoryblok {
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
+  draft?: boolean;
   _uid: string;
   component: 'handbook';
   [k: string]: any;
@@ -428,6 +482,7 @@ export interface PageStoryblok {
     | GetAQuotePageStoryblok
     | HomePageStoryblok
     | ProjectsIndexStoryblok
+    | ServicesPageStoryblok
     | StaticPageStoryblok
   )[];
   seo_title?: string;
@@ -562,6 +617,15 @@ export interface RootStoryblok {
 export interface ServiceStoryblok {
   _uid: string;
   component: 'service';
+  [k: string]: any;
+}
+
+export interface ServicesPageStoryblok {
+  awards_title?: string;
+  awards_description?: string;
+  awards?: AwardsEntryStoryblok[];
+  _uid: string;
+  component: 'services-page';
   [k: string]: any;
 }
 

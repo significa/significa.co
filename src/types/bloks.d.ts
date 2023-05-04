@@ -102,8 +102,8 @@ export interface AwardsEntryStoryblok {
   image?: AssetStoryblok;
   label?: string;
   name?: string;
+  project?: string;
   link?: MultilinkStoryblok;
-  date?: string;
   _uid: string;
   component: 'awards_entry';
   [k: string]: any;
@@ -620,12 +620,71 @@ export interface ServiceStoryblok {
   [k: string]: any;
 }
 
+export interface ServicesDeppartmentStoryblok {
+  title?: string;
+  entry?: ServicesGroupEntryStoryblok[];
+  _uid: string;
+  component: 'services_deppartment';
+  [k: string]: any;
+}
+
+export interface ServicesEntryStoryblok {
+  label?: string;
+  _uid: string;
+  component: 'services_entry';
+  [k: string]: any;
+}
+
+export interface ServicesGroupEntryStoryblok {
+  title?: string;
+  list?: ServicesEntryStoryblok[];
+  _uid: string;
+  component: 'services_group_entry';
+  [k: string]: any;
+}
+
 export interface ServicesPageStoryblok {
+  page_title1?: string;
+  page_title2?: string;
+  timeline?: ServiceTimelineRowStoryblok[];
   awards_title?: string;
   awards_description?: string;
   awards?: AwardsEntryStoryblok[];
+  showreel?: AssetStoryblok;
+  showreel_button_label?: string;
+  services_title?: string;
+  services_description?: string;
+  services?: ServicesDeppartmentStoryblok[];
   _uid: string;
   component: 'services-page';
+  [k: string]: any;
+}
+
+export interface ServiceTimelineCellStoryblok {
+  label?: string;
+  before_light?: AssetStoryblok;
+  before_dark?: AssetStoryblok;
+  after_light?: AssetStoryblok;
+  after_dark?: AssetStoryblok;
+  left_offset?: number;
+  throw_confetti?: boolean;
+  _uid: string;
+  component: 'service-timeline-cell';
+  [k: string]: any;
+}
+
+export interface ServiceTimelineRowStoryblok {
+  title?: string;
+  subrows?: ServiceTimelineSubrowStoryblok[];
+  _uid: string;
+  component: 'service-timeline-row';
+  [k: string]: any;
+}
+
+export interface ServiceTimelineSubrowStoryblok {
+  cells?: ServiceTimelineCellStoryblok[];
+  _uid: string;
+  component: 'service-timeline-subrow';
   [k: string]: any;
 }
 

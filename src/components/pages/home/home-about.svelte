@@ -1,4 +1,5 @@
 <script lang="ts">
+  import PhysicsSection from '$components/physics-section.svelte';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import type { HomePageStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
@@ -8,7 +9,7 @@
 
 <div class="container mx-auto px-container">
   <div class="md:flex">
-    <div class="flex-1 py-10 md:py-14 lg:py-20">
+    <div class="flex-1 pt-10 md:pt-14 lg:pt-20">
       <h3 class="text-5xl text-foreground-secondary">{data.about_title1}</h3>
       <p class="text-5xl">{data.about_title2}</p>
 
@@ -25,7 +26,9 @@
   </div>
 </div>
 
-<!-- TODO: physics thingy -->
+<div class="container mx-auto pb-10 md:pb-14 lg:pb-20">
+  <PhysicsSection class="lg:h-[400px]" items={data.about_physics_cards} />
+</div>
 
 <div class="border-t">
   <div class="container mx-auto lg:flex">

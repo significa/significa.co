@@ -181,11 +181,7 @@
   </div>
 
   <div class="flex gap-4">
-    {#if canUndo}
-      <button on:click={undo}>UNDO</button>
-    {/if}
-    {#if canRedo}
-      <button on:click={redo}>REDO</button>
-    {/if}
+    <button class="disabled:opacity-50" disabled={!canUndo} on:click={undo}>UNDO</button>
+    <button class="disabled:opacity-50" disabled={!canRedo} on:click={redo}>REDO</button>
   </div>
 </div>

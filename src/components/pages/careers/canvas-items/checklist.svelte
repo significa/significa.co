@@ -1,14 +1,13 @@
 <script lang="ts">
-  import type { CanvasChecklistStoryblok } from '$types/bloks';
-  import { CheckboxGroup } from '@significa/svelte-ui';
-  import clsx from 'clsx';
   import { Confetti } from 'svelte-confetti';
+  import clsx from 'clsx';
+  import { CheckboxGroup } from '@significa/svelte-ui';
+  import { CONFETTI_COLOR_ARRAY } from '$lib/constants';
+  import type { CanvasChecklistStoryblok } from '$types/bloks';
 
   export let item: CanvasChecklistStoryblok;
 
   let selection: string[] = [];
-
-  const colorArray = ['#ffbe0b', '#fb5607', '#FFD424', '#8338ec', '#3a86ff'];
 </script>
 
 <div
@@ -24,7 +23,7 @@
         x={[-1.1, 1.1]}
         duration="2000"
         size="8"
-        {colorArray}
+        colorArray={CONFETTI_COLOR_ARRAY}
       />
     </div>
   {/if}

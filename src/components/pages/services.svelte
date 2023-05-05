@@ -90,7 +90,7 @@
   {/if}
 
   <!-- Showreel -->
-  <div class="container mx-auto mt-20 px-container">
+  <div class="container mx-auto mt-10 px-container md:mt-20">
     {#if data.showreel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(data.showreel.filename))}
       <Reel src={data.showreel.filename} play_label={data.showreel_button_label} />
     {/if}
@@ -109,8 +109,8 @@
   <section>
     <div class=" relative flex ">
       <Square class="absolute -bottom-10 left-[20%] hidden drop-shadow-md lg:block" />
-      <Hand class="absolute -top-[76px] left-[54%] hidden drop-shadow-md lg:block" />
-      <Duck class="absolute -bottom-14 right-[5%] hidden drop-shadow-md lg:block" />
+      <Hand class="absolute -top-[76px] left-[54%] hidden drop-shadow-md md:-top-[60px] lg:block" />
+      <Duck class="absolute -bottom-14 right-[20%] hidden drop-shadow-md md:right-[10%] lg:block" />
       {#if data.services}
         <div class="w-full justify-between lg:border-b lg:border-t ">
           <div class="container mx-auto grid grid-cols-1 px-container  md:grid-cols-3 ">

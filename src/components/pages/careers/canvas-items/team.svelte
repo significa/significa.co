@@ -8,7 +8,7 @@
   export let teamMembers: TeamMemberPage[] | undefined;
 
   const roster = (teamMembers || [])
-    .filter((member) => member.content.team === item.team && member.content.is_active)
+    .filter((member) => member.content.team === item.team)
     .map((member) => ({
       photo: member.content.photo
     }));

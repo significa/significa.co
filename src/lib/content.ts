@@ -239,7 +239,12 @@ export async function fetchPage(options: {
         teamMembers: await fetchEntries<TeamMemberPage>(options, {
           ...TEAM_MEMBER_PARAMS,
           per_page: 100,
-          page: 1
+          page: 1,
+          filter_query: {
+            is_active: {
+              is: true
+            }
+          }
         })
       };
     }

@@ -13,7 +13,7 @@ import { HOME_SLUG } from './constants';
 export const PAGE_PARAMS = {
   resolve_links: 'url',
   resolve_relations:
-    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects,canvas-team.roster'
+    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects'
 } as const;
 
 export const BLOG_PARAMS = {
@@ -31,6 +31,11 @@ export const PROJECT_PARAMS = {
 export const CAREERS_PARAMS = {
   per_page: 50,
   content_type: 'career'
+};
+
+export const TEAM_MEMBER_PARAMS = {
+  per_page: 100,
+  content_type: 'team-member'
 };
 
 export const fetchCareers = async (
@@ -112,6 +117,7 @@ export type PageResult = {
   relatedProjects?: ProjectPage[];
   authorPosts?: BlogPostPage[];
   authorProjects?: ProjectPage[];
+  teamMembers?: TeamMemberPage[];
 };
 
 export async function fetchPage(options: {
@@ -219,6 +225,21 @@ export async function fetchPage(options: {
               any_in_array: data.story.uuid
             }
           }
+        })
+      };
+    }
+
+    // Careers canvas needs access to team members in order to fill "Team" component
+    if (
+      data.story.content.component === 'page' &&
+      data.story.content.page?.[0].component === 'careers-page'
+    ) {
+      return {
+        story: data.story,
+        teamMembers: await fetchEntries<TeamMemberPage>(options, {
+          ...TEAM_MEMBER_PARAMS,
+          per_page: 100,
+          page: 1
         })
       };
     }

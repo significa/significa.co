@@ -10,12 +10,14 @@
   import TalkBalloon from './canvas-items/talk-balloon.svelte';
   import Checklist from './canvas-items/checklist.svelte';
   import Tictactoe from './canvas-items/tictactoe.svelte';
+  import type { TeamMemberPage } from '$lib/content';
 
   export let withMouseDragScroll = false;
   export let title: string | undefined = undefined;
   export let height: number = 0;
   export let width: number = 0;
   export let items: CanvasGroupStoryblok[] | undefined;
+  export let teamMembers: TeamMemberPage[] | undefined;
 
   let offsetX = (width || 0) / 2;
   let offsetY = (height || 0) / 2;
@@ -108,7 +110,7 @@
           {:else if item.component === 'canvas-yellow-sticker'}
             <YellowSticker {item} />
           {:else if item.component === 'canvas-team'}
-            <Team {item} />
+            <Team {item} {teamMembers} />
           {:else if item.component === 'canvas-talk-balloon'}
             <TalkBalloon {item} />
           {:else if item.component === 'canvas-checklist'}

@@ -1,5 +1,6 @@
 <script lang="ts">
   import type {
+    CareersPageStoryblok,
     HomePageStoryblok,
     AboutPageStoryblok,
     GetAQuotePageStoryblok,
@@ -15,6 +16,7 @@
   import About from './about.svelte';
   import HomePage from './home-page.svelte';
   import StaticPage from './static-page.svelte';
+  import Careers from './careers.svelte';
   import Contact from './contact.svelte';
   import Services from './services.svelte';
 
@@ -39,6 +41,10 @@
     return page.component === 'home-page';
   };
 
+  const isCareersPage = (page: { component: string }): page is CareersPageStoryblok => {
+    return page.component === 'careers-page';
+  };
+
   const isContactPage = (page: { component: string }): page is ContactsPageStoryblok => {
     return page.component === 'contacts-page';
   };
@@ -61,6 +67,8 @@
     <ProjectsIndex projects={projectsIndex} />
   {:else if page.component === 'get-a-quote-page' && isGetAQuotePage(page)}
     <GetAQuote {page} />
+  {:else if page.component === 'careers-page' && isCareersPage(page)}
+    <Careers data={page} />
   {:else if page.component === 'contacts-page' && isContactPage(page)}
     <Contact data={page} />
   {:else if page.component === 'services-page' && isServicesPage(page)}

@@ -79,7 +79,7 @@
   {/if}
 
   <!-- Showreel -->
-  <div class="container mx-auto mt-20 px-container">
+  <div class="container mx-auto mt-10 px-container md:mt-20">
     {#if data.showreel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(data.showreel.filename))}
       <Reel src={data.showreel.filename} play_label={data.showreel_button_label} />
     {/if}

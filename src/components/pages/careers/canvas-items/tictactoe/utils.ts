@@ -14,7 +14,7 @@ export type WinCondition =
   | 'vert3';
 
 const getOpenTiles = (board: Tile[]) => {
-  let copy = [...board];
+  const copy = [...board];
 
   const tiles = copy.reduce((open: number[], tile, index) => {
     if (tile === -9) {
@@ -27,7 +27,7 @@ const getOpenTiles = (board: Tile[]) => {
 };
 
 export const getAIPlay = (cur_board: Tile[]) => {
-  let boardCopy = [...cur_board];
+  const boardCopy = [...cur_board];
   const open_tiles = getOpenTiles(boardCopy);
 
   if (open_tiles.length) {

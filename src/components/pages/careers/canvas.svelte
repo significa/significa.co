@@ -15,8 +15,8 @@
 
   export let withMouseDragScroll = false;
   export let title: string | undefined = undefined;
-  export let height: number = 0;
-  export let width: number = 0;
+  export let height = 0;
+  export let width = 0;
   export let items: CanvasGroupStoryblok[] | undefined;
   export let teamMembers: TeamMemberPage[] | undefined;
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import template from './nobita.json';
+  import template from './template.json';
   import { tools, colors, widths, type Stroke, type Point, type Tool } from './config';
   import { onMount } from 'svelte';
   import { getMidBetween, simplify } from './utils';
@@ -13,6 +13,23 @@
   let points: Point[] = [];
 
   let isDrawing = false;
+  let undone: Stroke[] = [];
+  $: canUndo = drawing.length > template.length;
+  $: canRedo = !!undone.length;
+
+  function undo() {
+    if (!canUndo) return;
+
+    undone = [...undone, drawing[drawing.length - 1]];
+    drawing = drawing.slice(0, -1);
+  }
+
+  function redo() {
+    if (!canRedo) return;
+
+    drawing = [...drawing, undone[undone.length - 1]];
+    undone = undone.slice(0, -1);
+  }
 
   function setCanvasTool(canvas: HTMLCanvasElement, tool: Tool) {
     const ctx = canvas?.getContext('2d');
@@ -66,6 +83,9 @@
 
   function onMove(e: MouseEvent) {
     if (!isDrawing) return;
+
+    // reset "redo"
+    undone = [];
 
     points = [...points, [e.offsetX, e.offsetY]];
 
@@ -153,5 +173,14 @@
         tool = tools.greyBrush;
       }}>Grey Brush</button
     >
+  </div>
+
+  <div class="flex gap-4">
+    {#if canUndo}
+      <button on:click={undo}>UNDO</button>
+    {/if}
+    {#if canRedo}
+      <button on:click={redo}>REDO</button>
+    {/if}
   </div>
 </div>

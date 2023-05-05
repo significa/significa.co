@@ -160,18 +160,23 @@
     >
     <button
       on:click={() => {
-        tool = tools.blackBrush;
+        tool = tools.black;
       }}>Black Brush</button
     >
     <button
       on:click={() => {
-        tool = tools.yellowBrush;
+        tool = tools.yellow;
       }}>Yellow Brush</button
     >
     <button
       on:click={() => {
-        tool = tools.greyBrush;
+        tool = tools.grey;
       }}>Grey Brush</button
+    >
+    <button
+      on:click={() => {
+        tool = tools.white;
+      }}>White Brush</button
     >
   </div>
 

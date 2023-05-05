@@ -16,7 +16,7 @@
   style="left: {item.left || 0}px; top: {item.top || 0}px; transform: rotate({item.rotate || 0}deg)"
 >
   {#if selection.length === item.items?.length}
-    <div class="absolute bottom-0 left-[50%]">
+    <div class="absolute bottom-0 left-1/2">
       <Confetti
         delay={[300, 300]}
         amount="100"
@@ -35,7 +35,7 @@
     viewBox="0 0 81 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    class="absolute -top-4 left-[50%] -translate-x-[50%] rotate-[3deg] text-border-active"
+    class="absolute -top-4 left-1/2 -translate-x-1/2 rotate-[3deg] text-border-active"
   >
     <path
       fill-rule="evenodd"
@@ -45,7 +45,7 @@
     />
   </svg>
 
-  <div class="h-[100%] overflow-hidden">
+  <div class="h-full overflow-hidden">
     <div class="mb-3 grid h-[10px] grid-cols-12 gap-[4%] p-4">
       {#each [...Array(12)] as _}
         <div class="aspect-square rounded-full bg-background shadow-inner" />
@@ -53,7 +53,7 @@
     </div>
 
     <div
-      class="mt-12 flex h-[100%] flex-col"
+      class="mt-12 flex h-full flex-col"
       style="background-image: linear-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 32px 32px;"
     >
       <p class="-mt-8 px-4 text-xl font-semibold">{item.title}</p>
@@ -72,7 +72,7 @@
             <p
               class={clsx(
                 'relative font-medium leading-none',
-                'after:absolute after:left-0 after:top-[50%] after:h-[1px] after:w-[0%] after:bg-foreground'
+                'after:absolute after:left-0 after:top-1/2 after:h-[1px] after:w-[0%] after:bg-foreground'
               )}
             >
               {option.text}

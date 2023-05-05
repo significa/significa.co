@@ -144,7 +144,7 @@
         height={data.canvas_height}
         width={data.canvas_width}
         items={data.canvas_items}
-        class="h-[100%]"
+        class="h-full"
       />
 
       <Button

@@ -33,13 +33,13 @@
   ];
 
   const strokeStyles: Record<WinCondition, string> = {
-    diag1: 'rotate-45 top-24 left-[50%]',
-    diag2: 'rotate-[135deg] top-24 left-[50%]',
-    horz1: 'top-10 left-[50%]',
-    horz2: 'top-28 left-[50%]',
-    horz3: 'top-44 left-[50%]',
+    diag1: 'rotate-45 top-24 left-1/2',
+    diag2: 'rotate-[135deg] top-24 left-1/2',
+    horz1: 'top-10 left-1/2',
+    horz2: 'top-28 left-1/2',
+    horz3: 'top-44 left-1/2',
     vert1: 'top-24 rotate-90 left-16',
-    vert2: 'top-24 rotate-90 left-[50%]',
+    vert2: 'top-24 rotate-90 left-1/2',
     vert3: 'top-24 rotate-90 left-52'
   };
 
@@ -100,7 +100,7 @@
     viewBox="0 0 81 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    class="absolute -top-4 left-[50%] -translate-x-[50%] rotate-[3deg] text-border-active"
+    class="absolute -top-4 left-1/2 -translate-x-1/2 rotate-[3deg] text-border-active"
   >
     <path
       fill-rule="evenodd"
@@ -110,7 +110,7 @@
     />
   </svg>
 
-  <div class="flex h-[100%] flex-col overflow-hidden">
+  <div class="flex h-full flex-col overflow-hidden">
     <div class="mb-3 grid h-[10px] grid-cols-12 gap-[4%] p-4">
       {#each [...Array(12)] as _}
         <div class="aspect-square rounded-full bg-background shadow-inner" />
@@ -132,7 +132,7 @@
     </p>
 
     <div
-      class="relative mt-1 flex h-[100%] flex-col"
+      class="relative mt-1 flex h-full flex-col"
       style="background-image: linear-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 32px 32px;"
     >
       {#if gameState === 'main-menu'}
@@ -179,7 +179,7 @@
           </button>
         </div>
 
-        <div class="mt-[22px] flex w-[100%] justify-center gap-3">
+        <div class="mt-[22px] flex w-full justify-center gap-3">
           <Button
             size="md"
             variant="secondary"
@@ -198,7 +198,7 @@
           {#if gameWinCon}
             <Stroke
               class={clsx(
-                'absolute z-10 -translate-x-[50%] animate-strike-clip-path',
+                'absolute z-10 -translate-x-1/2 animate-strike-clip-path',
                 strokeStyles[gameWinCon]
               )}
             />
@@ -237,7 +237,7 @@
           {/each}
         </div>
 
-        <div class="mt-[22px] flex w-[100%] justify-center gap-3">
+        <div class="mt-[22px] flex w-full justify-center gap-3">
           <Button
             size="md"
             variant="secondary"

@@ -86,7 +86,7 @@
     style="width: {width || 0}px; height: {height ||
       0}px; background-image: radial-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 24px 24px;"
   >
-    <h1 class="absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] text-8xl">
+    <h1 class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-8xl">
       {title}
     </h1>
 

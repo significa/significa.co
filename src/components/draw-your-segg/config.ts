@@ -1,7 +1,7 @@
 export type Point = [number, number];
 
 type Color = 'black' | 'yellow' | 'grey';
-type Width = 'thin' | 'thick';
+type Width = 'thinnest' | 'thin' | 'thick';
 
 export const colors: Record<Color, string> = {
   black: '#000000',
@@ -10,6 +10,7 @@ export const colors: Record<Color, string> = {
 };
 
 export const widths: Record<Width, number> = {
+  thinnest: 2,
   thin: 3,
   thick: 10
 };

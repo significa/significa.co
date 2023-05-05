@@ -218,7 +218,7 @@
   },
   {
     "color": "black",
-    "width": "thin",
+    "width": "thinnest",
     "points": [
       [324, 190],
       [320, 189],
@@ -477,7 +477,7 @@
   },
   {
     "color": "black",
-    "width": "thin",
+    "width": "thinnest",
     "points": [
       [332, 438],
       [332, 443],
@@ -514,7 +514,7 @@
   },
   {
     "color": "black",
-    "width": "thin",
+    "width": "thinnest",
     "points": [
       [260, 437],
       [260, 441],

@@ -1,7 +1,8 @@
 <script lang="ts">
-  import template from './template.json';
+  import template from './nobita.json';
   import { tools, colors, widths, type Stroke, type Point, type Tool } from './config';
   import { onMount } from 'svelte';
+  import { getMidBetween, simplify } from './utils';
 
   let canvas: HTMLCanvasElement;
   let width = 600;
@@ -12,10 +13,6 @@
   let points: Point[] = [];
 
   let isDrawing = false;
-
-  function getMidBetween([x1, y1]: Point, [x2, y2]: Point): Point {
-    return [x1 + (x2 - x1) / 2, y1 + (y2 - y1) / 2];
-  }
 
   function setCanvasTool(canvas: HTMLCanvasElement, tool: Tool) {
     const ctx = canvas?.getContext('2d');
@@ -84,7 +81,7 @@
 
     // commit the current stroke to the drawing
     if (points.length) {
-      drawing = [...drawing, { ...tool, points }];
+      drawing = [...drawing, { ...tool, points: simplify(points, 2) }];
     }
 
     // reset the points

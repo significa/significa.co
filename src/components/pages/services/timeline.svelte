@@ -69,7 +69,7 @@
       style="left:{drag || referenceLeft}px"
     />
     <div
-      class="absolute top-[50%] z-10 hidden h-[100%] w-1 -translate-y-[50%] bg-foreground lg:block"
+      class="absolute top-1/2 z-10 hidden h-full w-1 -translate-y-1/2 bg-foreground lg:block"
       style="left:{drag || referenceLeft}px"
     />
   {/if}
@@ -112,12 +112,12 @@
   >
     <CircleButton
       aria-hidden="true"
-      class="absolute left-[50%] top-0 z-20 -translate-x-[calc(50%-2px)] cursor-ew-resize bg-foreground text-background transition-none hover:opacity-100"
+      class="absolute left-1/2 top-0 z-20 -translate-x-1/2 cursor-ew-resize bg-foreground text-background transition-none hover:opacity-100"
       icon="comparison"
     />
     <div
       bind:this={mobileNeedle}
-      class="absolute left-[50%] top-[50%] z-10 h-[100%] w-1 -translate-x-[50%] -translate-y-[50%] bg-foreground"
+      class="absolute left-1/2 top-1/2 z-10 h-full w-1 -translate-x-1/2 -translate-y-1/2 bg-foreground"
     />
 
     {#each timeline || [] as row}

@@ -32,7 +32,7 @@
   }
 
   function setCanvasTool(canvas: HTMLCanvasElement, tool: Tool) {
-    const ctx = canvas?.getContext('2d');
+    const ctx = canvas?.getContext('2d', { alpha: false });
     if (!ctx) return;
 
     ctx.lineCap = 'round';
@@ -42,7 +42,7 @@
   }
 
   function draw(canvas: HTMLCanvasElement, points: Point[]) {
-    const ctx = canvas?.getContext('2d');
+    const ctx = canvas?.getContext('2d', { alpha: false });
 
     ctx?.beginPath();
 
@@ -58,8 +58,11 @@
   }
 
   function clear() {
-    const ctx = canvas?.getContext('2d');
-    ctx?.clearRect(0, 0, width, height);
+    const ctx = canvas?.getContext('2d', { alpha: false });
+    if (!ctx) return;
+
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
 
   function renderFullDrawing(canvas: HTMLCanvasElement, drawing: Stroke[]) {
@@ -76,7 +79,7 @@
   function onStart() {
     isDrawing = true;
 
-    const ctx = canvas?.getContext('2d');
+    const ctx = canvas?.getContext('2d', { alpha: false });
     ctx?.save();
     ctx?.beginPath();
   }
@@ -121,7 +124,7 @@
     canvas.height = rect.height * dpr;
 
     // Scale the context to ensure correct drawing operations
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: false });
     ctx?.scale(dpr, dpr);
 
     // Set the "drawn" size of the canvas
@@ -135,7 +138,7 @@
     <canvas
       {width}
       {height}
-      class="touch-none bg-white"
+      class="touch-none"
       style="cursor: url({tool.cursor}) 5 {widths[tool.width] / 2}, auto;"
       bind:this={canvas}
       on:touchstart={onStart}

@@ -98,8 +98,8 @@
   <section>
     <div class=" relative flex ">
       <Square class="absolute -bottom-10 left-[20%] hidden drop-shadow-md lg:block" />
-      <Hand class="absolute -top-[76px] left-[54%] hidden drop-shadow-md lg:block" />
-      <Duck class="absolute -bottom-14 right-[5%] hidden drop-shadow-md lg:block" />
+      <Hand class="absolute -top-[76px] left-[54%] hidden drop-shadow-md md:-top-[60px] lg:block" />
+      <Duck class="absolute -bottom-14 right-[20%] hidden drop-shadow-md md:right-[10%] lg:block" />
       {#if data.services}
         <div class="w-full justify-between lg:border-b lg:border-t ">
           <div class="container mx-auto grid grid-cols-1 px-container  md:grid-cols-3 ">

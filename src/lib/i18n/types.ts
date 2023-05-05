@@ -74,7 +74,9 @@ export const TranslationKeys = [
   'tictactoe.lose',
   'tictactoe.draw',
   'tictactoe.your-turn',
-  'tictactoe.wait'
+  'tictactoe.wait',
+  'handbook.draft.title',
+  'handbook.draft.description'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

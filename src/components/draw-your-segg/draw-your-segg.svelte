@@ -136,7 +136,7 @@
       {width}
       {height}
       class="touch-none bg-white"
-      style="cursor: url({tool.cursor}) 5 0, auto;"
+      style="cursor: url({tool.cursor}) 5 {widths[tool.width] / 2}, auto;"
       bind:this={canvas}
       on:touchstart={onStart}
       on:mousedown={onStart}

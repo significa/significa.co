@@ -11,11 +11,15 @@
     type Tile,
     type WinCondition
   } from './tictactoe/utils';
+  import Bird from './tictactoe/assets/bird.png';
+  import Egg from './tictactoe/assets/egg.png';
   import type { CanvasTictactoeStoryblok } from '$types/bloks';
 
   export let item: CanvasTictactoeStoryblok;
 
   type Character = 'egg' | 'bird';
+
+  const assets: Record<Character, string> = { bird: Bird, egg: Egg };
 
   const DEFAULT_CHARACTER: Character = 'egg';
   const AI_DEFAULT_CHARACTER: Character = 'bird';
@@ -154,7 +158,7 @@
               width="153"
               height="128"
               class="-mr-3 object-contain drop-shadow-md"
-              src="/stickers/egg.png"
+              src={assets.egg}
               alt="player"
               draggable="false"
             />
@@ -172,7 +176,7 @@
               width="153"
               height="128"
               class="-ml-3 object-contain drop-shadow-md"
-              src="/stickers/bird.png"
+              src={assets.bird}
               alt="ai"
               draggable="false"
             />
@@ -215,7 +219,7 @@
                   width="68"
                   height="64"
                   class="drop-shadow-md"
-                  src="/stickers/{selectedCharacter || DEFAULT_CHARACTER}.png"
+                  src={assets[selectedCharacter || DEFAULT_CHARACTER]}
                   alt="player"
                   draggable="false"
                 />
@@ -224,11 +228,13 @@
                   width="68"
                   height="64"
                   class="drop-shadow-md"
-                  src="/stickers/{selectedCharacter === 'bird'
-                    ? 'egg'
-                    : selectedCharacter === 'egg'
-                    ? 'bird'
-                    : AI_DEFAULT_CHARACTER}.png"
+                  src={assets[
+                    selectedCharacter === 'bird'
+                      ? 'egg'
+                      : selectedCharacter === 'egg'
+                      ? 'bird'
+                      : AI_DEFAULT_CHARACTER
+                  ]}
                   alt="ai"
                   draggable="false"
                 />

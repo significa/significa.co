@@ -10,8 +10,8 @@ export const colors: Record<Color, string> = {
 };
 
 export const widths: Record<Width, number> = {
-  thin: 2,
-  thick: 8
+  thin: 3,
+  thick: 10
 };
 
 export type Tool = { color: Color; width: Width };

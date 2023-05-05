@@ -55,7 +55,7 @@ export const dragScrolling = (
     node.style.overflow = 'auto';
 
     // center
-    node.scrollLeft = (node.scrollWidth - node.clientWidth) / 2;
-    node.scrollTop = (node.scrollHeight - 240) / 2;
+    node.scrollLeft = (node.scrollWidth - node.clientWidth + (options.centerXOffset || 0)) / 2;
+    node.scrollTop = (node.scrollHeight + (options.centerYOffset || 0)) / 2;
   }
 };

@@ -81,13 +81,13 @@
     ctx?.beginPath();
   }
 
-  function onMove(e: MouseEvent) {
+  function onMove(x: number, y: number) {
     if (!isDrawing) return;
 
     // reset "redo"
     undone = [];
 
-    points = [...points, [e.offsetX, e.offsetY]];
+    points = [...points, [x, y]];
 
     // draw the entire drawing
     renderFullDrawing(canvas, drawing);
@@ -135,12 +135,22 @@
     <canvas
       {width}
       {height}
-      class="bg-white"
+      class="touch-none bg-white"
       bind:this={canvas}
+      on:touchstart={onStart}
       on:mousedown={onStart}
+      on:touchend={onEnd}
       on:mouseup={onEnd}
       on:mouseleave={onEnd}
-      on:mousemove={onMove}
+      on:mousemove={(e) => onMove(e.offsetX, e.offsetY)}
+      on:touchmove={(e) => {
+        const touch = e.touches[0];
+        // onMove with x and y (taking into account the canvas position on screen)
+        onMove(
+          touch.clientX - canvas.getBoundingClientRect().left,
+          touch.clientY - canvas.getBoundingClientRect().top
+        );
+      }}
     />
     <div
       style="width:{width}px; height:{height}px;"

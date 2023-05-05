@@ -6,16 +6,21 @@
 
   export let cell: ServiceTimelineCellStoryblok;
   export let needlePosition: number;
+  export let scroll: number | undefined = undefined;
 
   let node: HTMLElement;
+  let p: number;
 
-  $: p = Math.min(
-    100,
-    Math.max(
-      0,
-      (needlePosition - node?.getBoundingClientRect().left) / node?.getBoundingClientRect().width
-    ) * 100
-  );
+  // force re-render on scroll to get updated getBoundingClientRect() result of horziontal scrolling
+  $: if (!scroll || scroll) {
+    p = Math.min(
+      100,
+      Math.max(
+        0,
+        (needlePosition - node?.getBoundingClientRect().left) / node?.getBoundingClientRect().width
+      ) * 100
+    );
+  }
 </script>
 
 <div

@@ -141,6 +141,8 @@
     ['undo', undo, canUndo, undoImage],
     ['redo', redo, canRedo, redoImage]
   ] as const;
+
+  $: console.log(drawing);
 </script>
 
 <div data-theme="light" class="relative select-none overflow-hidden">
@@ -193,10 +195,12 @@
 
     <Tools bind:tool />
 
-    <a
-      class="absolute bottom-2 right-2 flex h-8 w-8 items-center justify-center rounded-sm border hover:bg-foreground/2"
-      download="segg.png"
-      href={canvas?.toDataURL('image/png')}><img alt="download" src={saveImage} /></a
-    >
+    {#key drawing}
+      <a
+        class="absolute bottom-2 right-2 flex h-8 w-8 items-center justify-center rounded-sm border hover:bg-foreground/2"
+        download="segg.png"
+        href={canvas?.toDataURL('image/png')}><img alt="download" src={saveImage} /></a
+      >
+    {/key}
   </div>
 </div>

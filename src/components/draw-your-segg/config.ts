@@ -19,7 +19,7 @@ export const colors: Record<Color, string> = {
 export const widths: Record<Width, number> = {
   thinnest: 1,
   thin: 2,
-  thick: 10
+  thick: 5
 };
 
 export type Tool = { color: Color; width: Width };

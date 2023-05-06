@@ -1,14 +1,18 @@
 <script lang="ts">
   import template from './template.json';
-  import { tools, colors, widths, type Stroke, type Point, type Tool, cursors } from './config';
+  import { colors, widths, type Stroke, type Point, type Tool, cursors, tools } from './config';
   import { onMount } from 'svelte';
   import { getMidBetween, simplify } from './utils';
+  import Tools from './tools.svelte';
+  import saveImage from './assets/save.svg';
+  import undoImage from './assets/undo.svg';
+  import redoImage from './assets/redo.svg';
 
   let canvas: HTMLCanvasElement;
   let width = 600;
   let height = 700;
 
-  let tool = tools.pencil;
+  let tool: Tool = tools.pencil;
   let drawing: Stroke[] = template as unknown as Stroke[];
   let points: Point[] = [];
 
@@ -131,74 +135,55 @@
     canvas.style.width = `${rect.width}px`;
     canvas.style.height = `${rect.height}px`;
   });
+
+  $: undoActions = [
+    ['undo', undo, canUndo, undoImage],
+    ['redo', redo, canRedo, redoImage]
+  ] as const;
 </script>
 
-<div>
-  <div class="flex">
-    <canvas
-      {width}
-      {height}
-      class="touch-none"
-      style="cursor: url({cursors.get(tool)}) 5 {widths[tool.width] / 2}, auto;"
-      bind:this={canvas}
-      on:touchstart={onStart}
-      on:mousedown={onStart}
-      on:touchend={onEnd}
-      on:mouseup={onEnd}
-      on:mouseleave={onEnd}
-      on:mousemove={(e) => onMove(e.offsetX, e.offsetY)}
-      on:touchmove={(e) => {
-        const touch = e.touches[0];
-        // onMove with x and y (taking into account the canvas position on screen)
-        onMove(
-          touch.clientX - canvas.getBoundingClientRect().left,
-          touch.clientY - canvas.getBoundingClientRect().top
-        );
-      }}
-    />
-    <div
-      style="width:{width}px; height:{height}px;"
-      class="overflow-scroll bg-background-offset text-sm"
-    >
-      <pre>
-        {JSON.stringify(drawing, null, 2)}
-      </pre>
-    </div>
+<div data-theme="light" class="relative select-none overflow-hidden">
+  <canvas
+    {width}
+    {height}
+    class="touch-none"
+    style="background:white; cursor: url({cursors.get(tool)}) 5 {widths[tool.width] / 2}, auto;"
+    bind:this={canvas}
+    on:touchstart={onStart}
+    on:mousedown={onStart}
+    on:touchend={onEnd}
+    on:mouseup={onEnd}
+    on:mouseleave={onEnd}
+    on:mousemove={(e) => onMove(e.offsetX, e.offsetY)}
+    on:touchmove={(e) => {
+      const touch = e.touches[0];
+      // onMove with x and y (taking into account the canvas position on screen)
+      onMove(
+        touch.clientX - canvas.getBoundingClientRect().left,
+        touch.clientY - canvas.getBoundingClientRect().top
+      );
+    }}
+  />
+  <div class="absolute bottom-2 left-2 flex h-8 items-center justify-between rounded-sm border">
+    {#each undoActions as [alt, action, condition, image], i}
+      {#if i > 0}
+        <div class="h-8 border-r" />
+      {/if}
+      <button
+        disabled={!condition}
+        class="flex h-8 w-8 items-center justify-center hover:bg-foreground/2 disabled:pointer-events-none disabled:opacity-50"
+        on:click={action}
+      >
+        <img {alt} src={image} />
+      </button>
+    {/each}
   </div>
 
-  <div class="flex gap-4">
-    <button
-      on:click={() => {
-        tool = tools.pencil;
-      }}>Pencil</button
-    >
-    <button
-      on:click={() => {
-        tool = tools.black;
-      }}>Black Brush</button
-    >
-    <button
-      on:click={() => {
-        tool = tools.yellow;
-      }}>Yellow Brush</button
-    >
-    <button
-      on:click={() => {
-        tool = tools.grey;
-      }}>Grey Brush</button
-    >
-    <button
-      on:click={() => {
-        tool = tools.white;
-      }}>White Brush</button
-    >
-  </div>
+  <Tools bind:tool />
 
-  <div class="flex gap-4">
-    <button class="disabled:opacity-50" disabled={!canUndo} on:click={undo}>UNDO</button>
-    <button class="disabled:opacity-50" disabled={!canRedo} on:click={redo}>REDO</button>
-    {#key drawing}
-      <a download="segg.png" href={canvas?.toDataURL('image/png')}>Download</a>
-    {/key}
-  </div>
+  <a
+    class="absolute bottom-2 right-2 flex h-8 w-8 items-center justify-center rounded-sm border hover:bg-foreground/2"
+    download="segg.png"
+    href={canvas?.toDataURL('image/png')}><img alt="download" src={saveImage} /></a
+  >
 </div>

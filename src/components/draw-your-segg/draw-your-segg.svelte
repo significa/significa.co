@@ -7,6 +7,7 @@
   import saveImage from './assets/save.svg';
   import undoImage from './assets/undo.svg';
   import redoImage from './assets/redo.svg';
+  import clsx from 'clsx';
 
   let canvas: HTMLCanvasElement;
   let width = 600;
@@ -164,26 +165,33 @@
       );
     }}
   />
-  <div class="absolute bottom-2 left-2 flex h-8 items-center justify-between rounded-sm border">
-    {#each undoActions as [alt, action, condition, image], i}
-      {#if i > 0}
-        <div class="h-8 border-r" />
-      {/if}
-      <button
-        disabled={!condition}
-        class="flex h-8 w-8 items-center justify-center hover:bg-foreground/2 disabled:pointer-events-none disabled:opacity-50"
-        on:click={action}
-      >
-        <img {alt} src={image} />
-      </button>
-    {/each}
-  </div>
-
-  <Tools bind:tool />
-
-  <a
-    class="absolute bottom-2 right-2 flex h-8 w-8 items-center justify-center rounded-sm border hover:bg-foreground/2"
-    download="segg.png"
-    href={canvas?.toDataURL('image/png')}><img alt="download" src={saveImage} /></a
+  <div
+    class={clsx(
+      'transition-all duration-500 ease-motion',
+      isDrawing && 'pointer-events-none translate-y-16'
+    )}
   >
+    <div class="absolute bottom-2 left-2 flex h-8 items-center justify-between rounded-sm border">
+      {#each undoActions as [alt, action, condition, image], i}
+        {#if i > 0}
+          <div class="h-8 border-r" />
+        {/if}
+        <button
+          disabled={!condition}
+          class="flex h-8 w-8 items-center justify-center hover:bg-foreground/2 disabled:pointer-events-none disabled:opacity-50"
+          on:click={action}
+        >
+          <img {alt} src={image} />
+        </button>
+      {/each}
+    </div>
+
+    <Tools bind:tool />
+
+    <a
+      class="absolute bottom-2 right-2 flex h-8 w-8 items-center justify-center rounded-sm border hover:bg-foreground/2"
+      download="segg.png"
+      href={canvas?.toDataURL('image/png')}><img alt="download" src={saveImage} /></a
+    >
+  </div>
 </div>

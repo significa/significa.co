@@ -1,6 +1,6 @@
 <script lang="ts">
   import template from './template.json';
-  import { tools, colors, widths, type Stroke, type Point, type Tool } from './config';
+  import { tools, colors, widths, type Stroke, type Point, type Tool, cursors } from './config';
   import { onMount } from 'svelte';
   import { getMidBetween, simplify } from './utils';
 
@@ -139,7 +139,7 @@
       {width}
       {height}
       class="touch-none"
-      style="cursor: url({tool.cursor}) 5 {widths[tool.width] / 2}, auto;"
+      style="cursor: url({cursors.get(tool)}) 5 {widths[tool.width] / 2}, auto;"
       bind:this={canvas}
       on:touchstart={onStart}
       on:mousedown={onStart}
@@ -197,5 +197,8 @@
   <div class="flex gap-4">
     <button class="disabled:opacity-50" disabled={!canUndo} on:click={undo}>UNDO</button>
     <button class="disabled:opacity-50" disabled={!canRedo} on:click={redo}>REDO</button>
+    {#key drawing}
+      <a download="segg.png" href={canvas?.toDataURL('image/png')}>Download</a>
+    {/key}
   </div>
 </div>

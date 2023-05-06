@@ -17,18 +17,25 @@ export const colors: Record<Color, string> = {
 };
 
 export const widths: Record<Width, number> = {
-  thinnest: 2,
-  thin: 3,
+  thinnest: 1,
+  thin: 2,
   thick: 10
 };
 
-export type Tool = { color: Color; width: Width; cursor: string };
+export type Tool = { color: Color; width: Width };
 export type Stroke = Tool & { points: Point[] };
 
 export const tools: Record<string, Tool> = {
-  pencil: { color: 'black', width: 'thin', cursor: pencil },
-  black: { color: 'black', width: 'thick', cursor: brushBlack },
-  yellow: { color: 'yellow', width: 'thick', cursor: brushYellow },
-  grey: { color: 'grey', width: 'thick', cursor: brushGrey },
-  white: { color: 'white', width: 'thick', cursor: brushWhite }
+  pencil: { color: 'black', width: 'thin' },
+  black: { color: 'black', width: 'thick' },
+  yellow: { color: 'yellow', width: 'thick' },
+  grey: { color: 'grey', width: 'thick' },
+  white: { color: 'white', width: 'thick' }
 };
+
+export const cursors = new Map<Tool, string>();
+cursors.set(tools.pencil, pencil);
+cursors.set(tools.black, brushBlack);
+cursors.set(tools.yellow, brushYellow);
+cursors.set(tools.grey, brushGrey);
+cursors.set(tools.white, brushWhite);

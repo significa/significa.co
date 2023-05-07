@@ -1,8 +1,9 @@
 <script lang="ts">
   import clsx from 'clsx';
   import Brush from './brush.svelte';
-  import { tools, type Tool, colors } from './config';
+  import { tools, colors } from './config';
   import Pencil from './pencil.svelte';
+  import type { Tool } from './types';
 
   export let tool: Tool;
 </script>

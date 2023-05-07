@@ -1,8 +1,10 @@
-[
+import type { Stroke } from './config';
+
+export const template: Stroke[] = [
   {
-    "color": "black",
-    "width": "thin",
-    "points": [
+    color: 'black',
+    width: 'thin',
+    points: [
       [299, 182],
       [295, 182],
       [291, 182],
@@ -217,9 +219,9 @@
     ]
   },
   {
-    "color": "black",
-    "width": "thinnest",
-    "points": [
+    color: 'black',
+    width: 'thinnest',
+    points: [
       [324, 190],
       [320, 189],
       [317, 188],
@@ -440,9 +442,9 @@
     ]
   },
   {
-    "color": "black",
-    "width": "thin",
-    "points": [
+    color: 'black',
+    width: 'thin',
+    points: [
       [262, 437],
       [262, 441],
       [262, 445],
@@ -476,9 +478,9 @@
     ]
   },
   {
-    "color": "black",
-    "width": "thinnest",
-    "points": [
+    color: 'black',
+    width: 'thinnest',
+    points: [
       [332, 438],
       [332, 443],
       [332, 447],
@@ -513,9 +515,9 @@
     ]
   },
   {
-    "color": "black",
-    "width": "thinnest",
-    "points": [
+    color: 'black',
+    width: 'thinnest',
+    points: [
       [260, 437],
       [260, 441],
       [260, 445],
@@ -551,9 +553,9 @@
     ]
   },
   {
-    "color": "black",
-    "width": "thin",
-    "points": [
+    color: 'black',
+    width: 'thin',
+    points: [
       [333, 438],
       [333, 442],
       [333, 446],
@@ -589,4 +591,4 @@
       [358, 538]
     ]
   }
-]
+];

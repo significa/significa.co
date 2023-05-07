@@ -1,6 +1,6 @@
 <script lang="ts">
-  import template from './template.json';
-  import { colors, widths, type Stroke, type Point, type Tool, cursors, tools } from './config';
+  import { template } from './template';
+  import { colors, widths, cursors, tools } from './config';
   import { onMount } from 'svelte';
   import { getMidBetween, simplify } from './utils';
   import Tools from './tools.svelte';
@@ -8,31 +8,66 @@
   import undoImage from './assets/undo.svg';
   import redoImage from './assets/redo.svg';
   import clsx from 'clsx';
+  import { writable, type Writable } from 'svelte/store';
+  import { debounced } from '$lib/stores/debounced';
+  import { isValidDrawing, type Drawing, type Point, type Tool } from './types';
+  import { page } from '$app/stores';
 
   let canvas: HTMLCanvasElement;
   export let width: number;
   export let height: number;
 
   let tool: Tool = tools.pencil;
-  let drawing: Stroke[] = template as unknown as Stroke[];
+  let drawing: Writable<Drawing> = writable(template);
   let points: Point[] = [];
 
+  let dbId: string | null = null;
+  let debouncedDrawing = debounced(drawing, 2000);
+  const saveDrawing = async (drawing: Drawing) => {
+    const res = await fetch('/segg', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: dbId, drawing })
+    });
+
+    // save ID
+    if (res.ok) {
+      dbId = await res.json();
+    }
+  };
+  $: if ($debouncedDrawing && $debouncedDrawing.length > template.length) {
+    saveDrawing($debouncedDrawing);
+  }
+
+  const loadDrawing = async (id: string) => {
+    const res = await fetch(`/segg?id=${encodeURIComponent(id)}`);
+    if (res.ok) {
+      const json = await res.json();
+      const parsed = JSON.parse(json.drawing);
+      if (parsed && isValidDrawing(parsed)) drawing.set(parsed);
+    }
+  };
+  onMount(() => {
+    const savedId = $page.url.searchParams.get('segg');
+    if (savedId) loadDrawing(savedId);
+  });
+
   let isDrawing = false;
-  let undone: Stroke[] = [];
-  $: canUndo = drawing.length > template.length;
+  let undone: Drawing = [];
+  $: canUndo = $drawing.length > template.length;
   $: canRedo = !!undone.length;
 
   function undo() {
     if (!canUndo) return;
 
-    undone = [...undone, drawing[drawing.length - 1]];
-    drawing = drawing.slice(0, -1);
+    undone = [...undone, $drawing[$drawing.length - 1]];
+    drawing.update((prev) => prev.slice(0, -1));
   }
 
   function redo() {
     if (!canRedo) return;
 
-    drawing = [...drawing, undone[undone.length - 1]];
+    drawing.update((prev) => [...prev, undone[undone.length - 1]]);
     undone = undone.slice(0, -1);
   }
 
@@ -70,7 +105,7 @@
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
 
-  function renderFullDrawing(canvas: HTMLCanvasElement, drawing: Stroke[]) {
+  function renderFullDrawing(canvas: HTMLCanvasElement, drawing: Drawing) {
     clear();
 
     drawing.forEach((stroke) => {
@@ -98,7 +133,7 @@
     points = [...points, [x, y]];
 
     // draw the entire drawing
-    renderFullDrawing(canvas, drawing);
+    renderFullDrawing(canvas, $drawing);
 
     // plus the current stroke
     draw(canvas, points);
@@ -109,14 +144,14 @@
 
     // commit the current stroke to the drawing
     if (points.length) {
-      drawing = [...drawing, { ...tool, points: simplify(points, 2) }];
+      drawing.update((prev) => [...prev, { ...tool, points: simplify(points, 2) }]);
     }
 
     // reset the points
     points = [];
   }
 
-  $: renderFullDrawing(canvas, drawing);
+  $: renderFullDrawing(canvas, $drawing);
 
   // set the canvas size (double for retina)
   onMount(() => {
@@ -141,8 +176,6 @@
     ['undo', undo, canUndo, undoImage],
     ['redo', redo, canRedo, redoImage]
   ] as const;
-
-  $: console.log(drawing);
 </script>
 
 <div data-theme="light" class="relative select-none overflow-hidden">
@@ -195,7 +228,7 @@
 
     <Tools bind:tool />
 
-    {#key drawing}
+    {#key $drawing}
       <a
         class="absolute bottom-2 right-2 flex h-8 w-8 items-center justify-center rounded-sm border hover:bg-foreground/2"
         download="segg.png"

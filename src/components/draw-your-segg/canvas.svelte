@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { template } from './template';
   import { colors, widths, cursors, tools } from './config';
-  import { onMount } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   import { getMidBetween, simplify } from './utils';
   import Tools from './tools.svelte';
   import saveImage from './assets/save.svg';
@@ -10,47 +9,23 @@
   import clsx from 'clsx';
   import { writable, type Writable } from 'svelte/store';
   import { debounced } from '$lib/stores/debounced';
-  import { isValidDrawing, type Drawing, type Point, type Tool } from './types';
-  import { page } from '$app/stores';
+  import type { Drawing, Point, Tool } from './types';
+
+  const dispatch = createEventDispatcher<{ change: Drawing }>();
 
   let canvas: HTMLCanvasElement;
   export let width: number;
   export let height: number;
 
-  let tool: Tool = tools.pencil;
+  export let template: Drawing = [];
   let drawing: Writable<Drawing> = writable(template);
   let points: Point[] = [];
+  let tool: Tool = tools.pencil;
 
-  let dbId: string | null = null;
   let debouncedDrawing = debounced(drawing, 2000);
-  const saveDrawing = async (drawing: Drawing) => {
-    const res = await fetch('/segg', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: dbId, drawing })
-    });
-
-    // save ID
-    if (res.ok) {
-      dbId = await res.json();
-    }
-  };
   $: if ($debouncedDrawing && $debouncedDrawing.length > template.length) {
-    saveDrawing($debouncedDrawing);
+    dispatch('change', $debouncedDrawing);
   }
-
-  const loadDrawing = async (id: string) => {
-    const res = await fetch(`/segg?id=${encodeURIComponent(id)}`);
-    if (res.ok) {
-      const json = await res.json();
-      const parsed = JSON.parse(json.drawing);
-      if (parsed && isValidDrawing(parsed)) drawing.set(parsed);
-    }
-  };
-  onMount(() => {
-    const savedId = $page.url.searchParams.get('segg');
-    if (savedId) loadDrawing(savedId);
-  });
 
   let isDrawing = false;
   let undone: Drawing = [];

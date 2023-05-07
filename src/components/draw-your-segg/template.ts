@@ -1,6 +1,6 @@
-import type { Stroke } from './config';
+import type { Drawing } from './types';
 
-export const template: Stroke[] = [
+export const template: Drawing = [
   {
     color: 'black',
     width: 'thin',

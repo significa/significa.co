@@ -99,21 +99,21 @@
           />
         </div>
       {/if}
-      <img
-        src={NeedleHead}
-        alt=""
-        width="69"
-        height="85"
-        draggable="false"
-        class="handler absolute -top-3 z-20 hidden -translate-x-1/2 cursor-ew-resize select-none lg:flex"
-        style="left:{drag ? drag + 'px' : referenceLeft + 'px'}"
-      />
       <div
-        bind:this={needle}
-        class="absolute top-1/2 z-10 hidden h-full -translate-x-1/2 -translate-y-1/2 lg:block"
+        class="absolute top-1/2 flex h-full -translate-x-1/2 -translate-y-1/2 flex-col items-center"
         style="left:{drag ? drag + 'px' : referenceLeft + 'px'}"
       >
-        <Needle class="h-full" />
+        <img
+          src={NeedleHead}
+          alt=""
+          width="69"
+          height="85"
+          draggable="false"
+          class="handler z-20 hidden cursor-ew-resize select-none lg:flex animate-shake"
+        />
+        <div bind:this={needle} class="-mt-6 hidden h-full lg:block animate-shake">
+          <Needle class="h-full" />
+        </div>
       </div>
 
       <!-- Mobile needle -->

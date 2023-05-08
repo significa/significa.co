@@ -17,6 +17,8 @@
 
   const dispatch = createEventDispatcher<{ change: Drawing }>();
 
+  let started = false;
+
   let canvas: HTMLCanvasElement;
   export let width: number;
   export let height: number;
@@ -28,7 +30,8 @@
   let tool: Tool = tools.pencil;
 
   let debouncedDrawing = debounced(drawing, 2000);
-  $: if ($debouncedDrawing && $debouncedDrawing.length > template.length) {
+  $: if ($debouncedDrawing && started) {
+    console.log('saving');
     dispatch('change', $debouncedDrawing);
   }
 
@@ -97,6 +100,7 @@
   }
 
   function onStart() {
+    started = true;
     isDrawing = true;
 
     const ctx = canvas?.getContext('2d', { alpha: false });

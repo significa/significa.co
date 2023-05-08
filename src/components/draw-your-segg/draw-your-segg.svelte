@@ -13,7 +13,7 @@
   let template = base;
 
   // load drawing from DB
-  let loading = $page.url.searchParams.get('segg') ? true : false;
+  let loading = $page.params.segg ? true : false;
   const load = async (id: string) => {
     const res = await fetch(`/segg?id=${encodeURIComponent(id)}`);
     if (res.ok) {
@@ -26,7 +26,7 @@
     loading = false;
   };
   onMount(() => {
-    const savedId = $page.url.searchParams.get('segg');
+    const savedId = $page.params.segg;
     if (savedId) load(savedId);
   });
 

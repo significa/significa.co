@@ -7,6 +7,7 @@
   export let cell: ServiceTimelineCellStoryblok;
   export let needlePosition: number;
   export let scroll: number | undefined = undefined;
+  export let throwConfeti: boolean;
 
   let node: HTMLElement;
   let p: number;
@@ -20,6 +21,12 @@
         (needlePosition - node?.getBoundingClientRect().left) / node?.getBoundingClientRect().width
       ) * 100
     );
+  }
+
+  $: if (cell.throw_confetti && p > 0 && throwConfeti === false) {
+    throwConfeti = true;
+  } else if (cell.throw_confetti && p <= 0) {
+    throwConfeti = false;
   }
 </script>
 

@@ -20,15 +20,17 @@
 <Seo />
 <main>
   <!-- Services -->
-  <section class="container mx-auto px-container pt-20">
-    <h1 class="mb-2 text-3xl font-semibold text-foreground-secondary">{data.page_title1}</h1>
-    <h2 class="max-w-6xl text-7xl">{data.page_title2}</h2>
-  </section>
+  <section class="overflow-clip">
+    <div class="container mx-auto px-container pt-20">
+      <h1 class="mb-2 text-3xl font-semibold text-foreground-secondary">{data.page_title1}</h1>
+      <h2 class="max-w-6xl text-7xl">{data.page_title2}</h2>
+    </div>
 
-  <!-- Timeline -->
-  {#if data.timeline}
-    <Timeline timeline={data.timeline} class="mt-20" />
-  {/if}
+    <!-- Timeline -->
+    {#if data.timeline}
+      <Timeline timeline={data.timeline} class="mt-20" />
+    {/if}
+  </section>
 
   <section class="mt-10 md:mt-14 lg:mt-20">
     <div class="container mx-auto flex px-container pt-8 lg:pt-12">

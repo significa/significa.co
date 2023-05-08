@@ -1,9 +1,12 @@
 <script lang="ts">
   import clsx from 'clsx';
+  import { Confetti } from 'svelte-confetti';
   import TimelineCell from './timeline-cell.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import type { ServiceTimelineRowStoryblok } from '$types/bloks';
-  import { CircleButton } from '@significa/svelte-ui';
+  import { CONFETTI_COLOR_ARRAY } from '$lib/constants';
+  import NeedleHead from './illustrations/needle-head.png';
+  import Needle from './needle.svelte';
 
   export let timeline: ServiceTimelineRowStoryblok[];
 
@@ -15,17 +18,19 @@
   let dragging = false;
 
   let needle: HTMLElement;
-  let section: HTMLElement;
+  let host: HTMLElement;
   let sticky: HTMLElement;
   let overflowContainer: HTMLElement;
 
   let scroll: number;
   let h: number;
 
+  let throwConfeti = false;
+
   $: stickyHeight = sticky?.clientHeight || 0;
   $: referenceLeft = layoutReference?.getBoundingClientRect().left - 16;
   $: referenceRight = Math.min(
-    overflowContainer?.clientWidth - 16,
+    overflowContainer?.clientWidth - 32,
     layoutReference?.getBoundingClientRect().left + layoutReference?.clientWidth
   );
   $: needleReference = needle?.getBoundingClientRect().left + needle?.clientWidth / 2;
@@ -41,7 +46,7 @@
     window.addEventListener('scroll', () => {
       node.scrollLeft = Math.max(
         0,
-        scroll - (section ? section.offsetTop : 0) + (window.innerHeight - sticky?.clientHeight) / 2
+        scroll - (host ? host.offsetTop : 0) + (window.innerHeight - sticky?.clientHeight) / 2
       );
     });
   };
@@ -51,13 +56,11 @@
   on:resize={() => {
     referenceLeft = layoutReference?.getBoundingClientRect().left - 16;
     referenceRight = Math.min(
-      overflowContainer?.clientWidth - 16,
+      overflowContainer?.clientWidth - 32,
       layoutReference?.getBoundingClientRect().left + layoutReference?.clientWidth
     );
     stickyHeight = sticky?.clientHeight || 0;
-
     drag = 0;
-
     needleReference = needle?.getBoundingClientRect().left + needle?.clientWidth / 2;
 
     h = TIMLINE_FIXED_WIDTH - overflowContainer.offsetWidth;
@@ -72,23 +75,79 @@
   bind:scrollY={scroll}
 />
 
-<section
-  bind:this={section}
+<div
+  bind:this={host}
   class={clsx('relative', $$restProps.class)}
   style="height: max({stickyHeight}px, calc({stickyHeight}px + {h}px));"
 >
   <div bind:this={sticky} class="sticky top-0 py-16" style="top:calc(50vh - {stickyHeight}px / 2)">
-    <CircleButton
-      aria-hidden="true"
-      class="handler absolute top-0 z-20 -translate-x-1/2 cursor-ew-resize bg-foreground text-background transition-none hover:opacity-100"
-      icon="comparison"
-      style="left:{drag ? drag + 'px' : '50%'}"
-    />
-    <div
-      bind:this={needle}
-      class="absolute top-1/2 z-10 h-full w-1 -translate-x-1/2 -translate-y-1/2 bg-foreground"
-      style="left:{drag ? drag + 'px' : '50%'}"
-    />
+    {#if layoutReference}
+      <!-- Desktop needle -->
+      {#if throwConfeti}
+        <div
+          class="absolute top-4 hidden lg:block"
+          style="left:{drag ? drag + 'px' : referenceLeft + 'px'}; width:20px; height:50px"
+        >
+          <Confetti
+            amount="60"
+            y={[0, 1.5]}
+            x={[-1, 1]}
+            duration="2000"
+            size="8"
+            colorArray={CONFETTI_COLOR_ARRAY}
+            cone
+          />
+        </div>
+      {/if}
+      <img
+        src={NeedleHead}
+        alt=""
+        width="69"
+        height="85"
+        draggable="false"
+        class="handler absolute -top-3 z-20 hidden -translate-x-1/2 cursor-ew-resize select-none lg:flex"
+        style="left:{drag ? drag + 'px' : referenceLeft + 'px'}"
+      />
+      <div
+        bind:this={needle}
+        class="absolute top-1/2 z-10 hidden h-full -translate-x-1/2 -translate-y-1/2 lg:block"
+        style="left:{drag ? drag + 'px' : referenceLeft + 'px'}"
+      >
+        <Needle class="h-full" />
+      </div>
+
+      <!-- Mobile needle -->
+      {#if throwConfeti}
+        <div
+          class="absolute top-4 lg:hidden"
+          style="left:{drag ? drag + 'px' : '50%'}; width:20px; height:50px"
+        >
+          <Confetti
+            amount="60"
+            y={[0, 1.5]}
+            x={[-1, 1]}
+            duration="2000"
+            size="8"
+            colorArray={CONFETTI_COLOR_ARRAY}
+            cone
+          />
+        </div>
+      {/if}
+      <img
+        src={NeedleHead}
+        alt=""
+        width="69"
+        height="85"
+        draggable="false"
+        class="absolute -top-3 z-20 -translate-x-1/2 select-none lg:hidden"
+        style="left:{drag ? drag + 'px' : '50%'}"
+      />
+      <div
+        bind:this={needle}
+        class="absolute top-1/2 z-10 h-full w-1 -translate-x-1/2 -translate-y-1/2 bg-foreground lg:hidden"
+        style="left:{drag ? drag + 'px' : '50%'}"
+      />
+    {/if}
 
     {#each timeline || [] as row}
       <div class="border-b" use:storyblokEditable={row}>
@@ -111,7 +170,12 @@
 
                 <div class="flex grow gap-6 overflow-hidden" bind:this={layoutReference}>
                   {#each subrow.cells || [] as cell}
-                    <TimelineCell {cell} needlePosition={drag || needleReference} {scroll} />
+                    <TimelineCell
+                      {cell}
+                      {scroll}
+                      needlePosition={drag || needleReference || referenceLeft}
+                      bind:throwConfeti
+                    />
                   {/each}
                 </div>
               </div>
@@ -121,4 +185,4 @@
       </div>
     {/each}
   </div>
-</section>
+</div>

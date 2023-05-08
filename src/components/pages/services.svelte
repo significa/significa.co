@@ -42,45 +42,47 @@
   <!-- Awards -->
   {#if data.awards?.length}
     <section class="mt-10 md:mt-14 lg:mt-20">
-      <div class="container mx-auto justify-between gap-12 px-container lg:flex ">
+      <div class=" justify-between gap-12  lg:flex">
         <div class="flex flex-1 flex-col items-start">
           <div class="w-full flex-1">
             <ul>
               {#each data.awards as award}
                 {@const { href, target, rel } = getAnchorFromCmsLink(award.link)}
-                <li
-                  class="flex flex-col-reverse items-center justify-between border-b bg-gradient-to-r py-5 elevated-links first:border-t hover:from-transparent hover:via-foreground-tertiary/10 hover:to-transparent hover:transition-colors lg:flex-row"
-                >
-                  <div class="flex w-full items-center">
-                    {#if award.image?.filename}
-                      {@const { alt, src, width, height } = getImageAttributes(award.image, {
-                        size: [120, 0]
-                      })}
-                      <img
-                        class="mr-2 h-auto w-14 rounded-xs bg-background-offset"
-                        {src}
-                        {alt}
-                        {width}
-                        {height}
-                      />
-                    {/if}
-                    <div class="ml-4 flex-col">
-                      <p class="text-base font-semibold text-foreground-secondary">
-                        {award.label}
-                      </p>
-                      <p class="text-base font-semibold">{award.name}</p>
+                <div class="border-b first:border-t">
+                  <li
+                    class="container mx-auto  flex flex-col-reverse items-center justify-between bg-gradient-to-r px-container py-5 elevated-links hover:from-transparent hover:via-foreground-tertiary/10 hover:to-transparent hover:transition-colors lg:flex-row"
+                  >
+                    <div class="flex w-full items-center">
+                      {#if award.image?.filename}
+                        {@const { alt, src, width, height } = getImageAttributes(award.image, {
+                          size: [120, 0]
+                        })}
+                        <img
+                          class="mr-2 h-auto w-14 rounded-xs bg-background-offset"
+                          {src}
+                          {alt}
+                          {width}
+                          {height}
+                        />
+                      {/if}
+                      <div class="ml-4 flex-col">
+                        <p class="text-base font-semibold text-foreground-secondary">
+                          {award.label}
+                        </p>
+                        <p class="text-base font-semibold">{award.name}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div class="mb-8 w-full lg:mb-0">
-                    <p class="text-3xl font-semibold">{award.project}</p>
-                  </div>
-                  <div class="w-full">
-                    <Link {href} {target} {rel} class="elevated-link" />
-                    <div class="hidden flex-1 justify-end text-foreground-tertiary xl:flex">
-                      <Icon icon="arrow-right" />
+                    <div class="mb-8 w-full lg:mb-0">
+                      <p class="text-3xl font-semibold">{award.project}</p>
                     </div>
-                  </div>
-                </li>
+                    <div class="w-full">
+                      <Link {href} {target} {rel} class="elevated-link" />
+                      <div class="hidden flex-1 justify-end text-foreground-tertiary xl:flex">
+                        <Icon icon="arrow-right" />
+                      </div>
+                    </div>
+                  </li>
+                </div>
               {/each}
             </ul>
           </div>
@@ -90,11 +92,11 @@
   {/if}
 
   <!-- Showreel -->
-  <div class="container mx-auto mt-10 px-container md:mt-20">
-    {#if data.showreel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(data.showreel.filename))}
+  {#if data.showreel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(data.showreel.filename))}
+    <div class="container mx-auto mt-10 px-container md:mt-20">
       <Reel src={data.showreel.filename} play_label={data.showreel_button_label} />
-    {/if}
-  </div>
+    </div>
+  {/if}
 
   <!-- Services -->
   <section class="mt-10  md:mt-16 lg:mb-16">
@@ -107,13 +109,17 @@
   </section>
 
   <section>
-    <div class=" relative flex ">
-      <Square class="absolute -bottom-10 left-[20%] hidden drop-shadow-md lg:block" />
-      <Hand class="absolute -top-[76px] left-[54%] hidden drop-shadow-md md:-top-[60px] lg:block" />
-      <Duck class="absolute -bottom-14 right-[20%] hidden drop-shadow-md md:right-[10%] lg:block" />
+    <div class="flex">
       {#if data.services}
         <div class="w-full justify-between lg:border-b lg:border-t ">
-          <div class="container mx-auto grid grid-cols-1 px-container  md:grid-cols-3 ">
+          <div class="container relative mx-auto grid grid-cols-1  px-container md:grid-cols-3">
+            <Square class="absolute -bottom-10 left-[20%] hidden drop-shadow-md lg:block" />
+            <Hand
+              class="absolute -top-[76px] left-[54%] hidden drop-shadow-md md:-top-[60px] lg:block"
+            />
+            <Duck
+              class="absolute -bottom-14 right-[20%] hidden drop-shadow-md md:right-[7%] lg:block"
+            />
             {#each data.services as service}
               <div class="flex flex-col lg:border-r lg:p-8 lg:first:pl-0 lg:last:border-r-0">
                 <p class="mb-2 mt-11 text-3xl font-semibold lg:mt-0">{service.title}</p>

@@ -654,19 +654,15 @@
       "name": "canvas-team",
       "display_name": null,
       "created_at": "2023-04-20T15:57:09.434Z",
-      "updated_at": "2023-04-20T16:02:22.104Z",
+      "updated_at": "2023-05-05T15:38:19.709Z",
       "id": 3853263,
       "schema": {
-        "name": {
-          "type": "text"
-        },
-        "roster": {
-          "type": "options",
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": ["team-member"],
-          "source": "internal_stories",
-          "filter_content_type": ["team-member"]
+        "team": {
+          "type": "option",
+          "use_uuid": true,
+          "source": "internal",
+          "datasource_slug": "teams",
+          "exclude_empty_option": true
         }
       },
       "image": null,
@@ -3040,12 +3036,13 @@
       "name": "timeline-image",
       "display_name": null,
       "created_at": "2023-04-12T14:25:57.635Z",
-      "updated_at": "2023-05-02T14:12:16.110Z",
+      "updated_at": "2023-05-05T10:41:49.155Z",
       "id": 3795713,
       "schema": {
         "image": {
           "type": "asset",
-          "filetypes": ["images"]
+          "filetypes": ["images"],
+          "description": "Hello"
         },
         "border": {
           "type": "boolean",

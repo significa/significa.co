@@ -16,3 +16,5 @@ export const NOTION_DBS = {
 };
 
 export const VIDEO_EXTENSIONS = ['mp4', 'webm', 'ogg'];
+
+export const CONFETTI_COLOR_ARRAY = ['#ffbe0b', '#fb5607', '#FFD424', '#8338ec', '#3a86ff'];

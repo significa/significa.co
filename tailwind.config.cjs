@@ -185,10 +185,15 @@ module.exports = {
         strike: {
           '0%': { width: '0%' },
           '100%': { width: '100%' }
+        },
+        'strike-clip-path': {
+          '0%': { 'clip-path': 'polygon(0 0, 0% 0, 0% 120%, 0 120%)' },
+          '100%': { 'clip-path': 'polygon(0 0, 100% 0, 100% 120%, 0 120%)' }
         }
       },
       animation: {
-        strike: 'strike 300ms ease-in-out forwards'
+        strike: 'strike 300ms ease-in-out forwards',
+        'strike-clip-path': 'strike-clip-path 300ms ease-in-out forwards'
       }
     }
   },

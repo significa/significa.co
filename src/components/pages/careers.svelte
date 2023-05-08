@@ -10,8 +10,10 @@
   import { Button, Link } from '@significa/svelte-ui';
   import { bodyLock } from '@significa/svelte-ui/actions';
   import type { CareersPageStoryblok } from '$types/bloks';
+  import type { TeamMemberPage } from '$lib/content';
 
   export let data: CareersPageStoryblok;
+  export let teamMembers: TeamMemberPage[] | undefined;
 
   let canvasFullscreen: boolean;
 </script>
@@ -25,6 +27,7 @@
       height={data.canvas_height}
       width={data.canvas_width}
       items={data.canvas_items}
+      {teamMembers}
       style="height: min({data.canvas_height}px ,calc(100vh - 76px));"
     />
     <div
@@ -144,7 +147,8 @@
         height={data.canvas_height}
         width={data.canvas_width}
         items={data.canvas_items}
-        class="h-[100%]"
+        {teamMembers}
+        class="h-full"
       />
 
       <Button

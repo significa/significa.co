@@ -18,7 +18,8 @@
     "sb:pull": "npx storyblok@latest pull-components --space=198185",
     "sb:types": "npx storyblok-generate-ts@latest source=./components.198185.json target=./src/types/bloks.d.ts && prettier ./src/types/bloks.d.ts --write",
     "sb": "npm run sb:pull && npm run sb:types",
-    "datasources": "svelte-kit sync && npx ts-node@latest --project ./node.tsconfig.json ./scripts/datasources.ts"
+    "datasources": "svelte-kit sync && npx ts-node@latest --project ./node.tsconfig.json ./scripts/datasources.ts",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^2.0.0",
@@ -36,7 +37,7 @@
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-svelte3": "^4.0.0",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.7",
     "prettier-plugin-svelte": "^2.9.0",

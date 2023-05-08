@@ -33,7 +33,7 @@
   </svg>
 
   <p
-    class="absolute left-[50%] top-[50%] w-[246px] -translate-x-[50%] -translate-y-[50%] px-5 pb-14 pt-7 text-center font-comic text-sm font-bold"
+    class="absolute left-1/2 top-1/2 w-[246px] -translate-x-1/2 -translate-y-1/2 px-5 pb-14 pt-7 text-center font-comic text-sm font-bold"
   >
     {item.text}
   </p>

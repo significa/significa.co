@@ -4,8 +4,8 @@
   import type { GetAQuotePageStoryblok } from '$types/bloks';
   import { fly } from 'svelte/transition';
   import { circOut } from 'svelte/easing';
-  // @ts-ignore
   import { Confetti } from 'svelte-confetti';
+  import { CONFETTI_COLOR_ARRAY } from '$lib/constants';
 
   type Eggs =
     | 'attach-multiple'
@@ -64,8 +64,6 @@
   } else {
     character = 'hello';
   }
-
-  const colorArray = ['#ffbe0b', '#fb5607', '#FFD424', '#8338ec', '#3a86ff'];
 </script>
 
 <svelte:head />
@@ -80,13 +78,13 @@
       delay={[1, 2000]}
       amount="200"
       fallDistance="100vh"
-      {colorArray}
+      colorArray={CONFETTI_COLOR_ARRAY}
     />
   </div>
 {/if}
 <div
   class={clsx(
-    'container relative mx-auto mt-10 min-h-[75vh] gap-8 overflow-hidden px-container pb-12',
+    'container relative mx-auto mt-10 gap-8 overflow-hidden px-container pb-12',
     'md:mt-14 md:pb-20',
     'lg:mt-20 lg:flex lg:justify-between lg:pb-32'
   )}

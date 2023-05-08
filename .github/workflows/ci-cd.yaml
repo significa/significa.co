@@ -1,0 +1,35 @@
+name: CI/CD
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  test:
+    name: Validate and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Install dependencies
+        run: |
+          cat > ./.npmrc <<EOF
+          //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}
+          @significa:registry=https://npm.pkg.github.com/
+          engine-strict=true
+          EOF
+
+          npm ci --prefer-offline --no-audit --no-fund
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test

@@ -1,9 +1,9 @@
 <script lang="ts">
   import type {
     CareersPageStoryblok,
-    GetAQuotePageStoryblok,
     HomePageStoryblok,
     AboutPageStoryblok,
+    GetAQuotePageStoryblok,
     PageStoryblok,
     ContactsPageStoryblok
   } from '$types/bloks';
@@ -26,6 +26,7 @@
   export let homePosts: PageResult['homePosts'] = undefined;
   export let blogIndex: PageResult['blogIndex'] = undefined;
   export let projectsIndex: PageResult['projectsIndex'] = undefined;
+  export let teamMembers: PageResult['teamMembers'] = undefined;
 
   const isGetAQuotePage = (page: { component: string }): page is GetAQuotePageStoryblok => {
     return page.component === 'get-a-quote-page';
@@ -62,7 +63,7 @@
   {:else if page.component === 'get-a-quote-page' && isGetAQuotePage(page)}
     <GetAQuote {page} />
   {:else if page.component === 'careers-page' && isCareersPage(page)}
-    <Careers data={page} />
+    <Careers data={page} {teamMembers} />
   {:else if page.component === 'contacts-page' && isContactPage(page)}
     <Contact data={page} />
   {/if}

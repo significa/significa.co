@@ -64,5 +64,17 @@
   "team.former": "(Former)",
   "careers.footer.title": "Nothing for you here?",
   "careers.footer.email": "jobs@significa.co",
-  "careers.footer.description": "Spontaneous application"
+  "careers.footer.description": "Spontaneous application",
+  "tictactoe.play": "Play",
+  "tictactoe.restart": "Restart",
+  "tictactoe.close": "Close",
+  "tictactoe.title": "Tic Tac Toe",
+  "tictactoe.subtitle": "Select fighter",
+  "tictactoe.win": "You win!",
+  "tictactoe.lose": "You lose!",
+  "tictactoe.draw": "It's a Draw!",
+  "tictactoe.your-turn": "Your turn",
+  "tictactoe.wait": "Wait for your turn",
+  "handbook.draft.title": "This is a draft",
+  "handbook.draft.description": "We're working on this page and it's due to be updated soon. Please check again later for some fresh new content."
 }

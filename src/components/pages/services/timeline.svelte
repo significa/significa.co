@@ -109,9 +109,9 @@
           width="69"
           height="85"
           draggable="false"
-          class="handler z-20 hidden cursor-ew-resize select-none lg:flex animate-shake"
+          class="handler z-20 hidden animate-shake cursor-ew-resize select-none transition-all hover:rotate-6 lg:flex"
         />
-        <div bind:this={needle} class="-mt-6 hidden h-full lg:block animate-shake">
+        <div bind:this={needle} class="-mt-6 hidden h-full animate-shake lg:block">
           <Needle class="h-full" />
         </div>
       </div>
@@ -157,7 +157,7 @@
 
         <div class="overflow-hidden" use:update bind:this={overflowContainer}>
           <div
-            class="container mx-auto flex flex-col gap-5 px-container py-6"
+            class="container mx-auto flex flex-col gap-4 px-container py-6"
             style="min-width: {TIMLINE_FIXED_WIDTH}px;"
           >
             {#each row.subrows || [] as subrow, i}
@@ -168,7 +168,7 @@
                   {/if}
                 </div>
 
-                <div class="flex grow gap-6 overflow-hidden" bind:this={layoutReference}>
+                <div class="flex grow gap-3" bind:this={layoutReference}>
                   {#each subrow.cells || [] as cell}
                     <TimelineCell
                       {cell}

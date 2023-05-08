@@ -463,7 +463,7 @@
       "name": "canvas-group",
       "display_name": null,
       "created_at": "2023-04-19T14:57:33.541Z",
-      "updated_at": "2023-05-03T13:10:40.229Z",
+      "updated_at": "2023-05-08T08:34:47.999Z",
       "id": 3845878,
       "schema": {
         "width": {
@@ -502,7 +502,8 @@
             "canvas-yellow-sticker",
             "timeline-arrow",
             "timeline-text",
-            "canvas-tictactoe"
+            "canvas-tictactoe",
+            "canvas-tarot"
           ],
           "pos": 6,
           "component_group_whitelist": []
@@ -649,6 +650,74 @@
       "color": null,
       "icon": null,
       "component_group_name": "Canvas"
+    },
+    {
+      "name": "canvas-tarot",
+      "display_name": null,
+      "created_at": "2023-05-08T08:28:31.521Z",
+      "updated_at": "2023-05-08T08:32:30.733Z",
+      "id": 3938071,
+      "schema": {
+        "image": {
+          "type": "option",
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "d35d369e-df2f-46f4-94ac-fba00e58c0a5",
+              "name": "sun",
+              "value": "sun"
+            },
+            {
+              "_uid": "cbbca55b-0f45-4f36-aa36-036b59bb38f9",
+              "value": "moon",
+              "name": "moon"
+            }
+          ],
+          "exclude_empty_option": true
+        },
+        "text": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["canvas-tarot-text"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-tarot",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
+      "name": "canvas-tarot-text",
+      "display_name": null,
+      "created_at": "2023-05-08T08:31:41.841Z",
+      "updated_at": "2023-05-08T08:31:55.015Z",
+      "id": 3938093,
+      "schema": {
+        "text": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-tarot-text",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
     },
     {
       "name": "canvas-team",
@@ -2645,7 +2714,7 @@
       "name": "service-timeline-cell",
       "display_name": null,
       "created_at": "2023-05-04T12:45:26.410Z",
-      "updated_at": "2023-05-04T13:55:48.115Z",
+      "updated_at": "2023-05-08T16:01:26.703Z",
       "id": 3925566,
       "schema": {
         "label": {
@@ -2676,14 +2745,35 @@
           "pos": 4,
           "asset_folder_id": 235888
         },
+        "decoration": {
+          "type": "section",
+          "pos": 5,
+          "keys": ["decoration_light", "decoration_dark"]
+        },
+        "decoration_light": {
+          "type": "asset",
+          "pos": 6,
+          "description": "Optional image to be above the cell with custom asset",
+          "filetypes": ["images"],
+          "asset_folder_id": 235888
+        },
+        "decoration_dark": {
+          "type": "asset",
+          "pos": 7,
+          "description": "Optional image to be above the cell with custom asset",
+          "filetypes": ["images"],
+          "asset_folder_id": 235888
+        },
         "left_offset": {
           "type": "number",
           "default_value": "",
           "min_value": 0,
-          "description": "px"
+          "description": "px",
+          "pos": 8
         },
         "throw_confetti": {
-          "type": "boolean"
+          "type": "boolean",
+          "pos": 9
         }
       },
       "image": null,

@@ -184,6 +184,7 @@ export interface CanvasGroupStoryblok {
     | TimelineArrowStoryblok
     | TimelineTextStoryblok
     | CanvasTictactoeStoryblok
+    | CanvasTarotStoryblok
   )[];
   _uid: string;
   component: 'canvas-group';
@@ -212,6 +213,21 @@ export interface CanvasTalkBalloonStoryblok {
   rotate?: number;
   _uid: string;
   component: 'canvas-talk-balloon';
+  [k: string]: any;
+}
+
+export interface CanvasTarotStoryblok {
+  image?: 'sun' | 'moon';
+  text?: CanvasTarotTextStoryblok[];
+  _uid: string;
+  component: 'canvas-tarot';
+  [k: string]: any;
+}
+
+export interface CanvasTarotTextStoryblok {
+  text?: string;
+  _uid: string;
+  component: 'canvas-tarot-text';
   [k: string]: any;
 }
 
@@ -683,6 +699,9 @@ export interface ServiceTimelineCellStoryblok {
   before_dark?: AssetStoryblok;
   after_light?: AssetStoryblok;
   after_dark?: AssetStoryblok;
+  decoration?: any;
+  decoration_light?: AssetStoryblok;
+  decoration_dark?: AssetStoryblok;
   left_offset?: number;
   throw_confetti?: boolean;
   _uid: string;

@@ -51,10 +51,22 @@
       />
       <p
         class="absolute left-4 top-1/2 -translate-y-1/2 bg-transparent text-sm font-semibold text-foreground"
-        data-theme="dark"
+        data-theme={cell.throw_confetti ? 'light' : 'dark'}
       >
         {cell.label}
       </p>
+      {#if cell.decoration_dark?.filename && cell.decoration_dark.filename}
+        {@const deco = $theme === 'light' ? cell.decoration_dark : cell.decoration_dark}
+        {@const { width, height, src, alt } = getImageAttributes(deco)}
+        <img
+          {width}
+          {height}
+          {src}
+          {alt}
+          class="absolute left-1/2 top-1/2 shrink-0 -translate-x-1/2 -translate-y-1/2"
+          style="min-width: {width}px; min-height:{height}px"
+        />
+      {/if}
     </div>
   {/if}
 

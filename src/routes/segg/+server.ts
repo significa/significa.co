@@ -1,3 +1,4 @@
+import zlib from 'zlib';
 import { env } from '$env/dynamic/private';
 import { dynamoDbClient } from '$lib/aws.server.js';
 import { PutItemCommand } from '@aws-sdk/client-dynamodb';
@@ -11,7 +12,7 @@ export async function POST({ request }) {
       TableName: env.AWS_DYNAMODB_TABLE,
       Item: {
         id: { S: id },
-        drawing: { S: JSON.stringify(body.drawing) },
+        drawing: { B: zlib.gzipSync(JSON.stringify(body.drawing)) },
         created_at: { S: new Date().toISOString() }
       }
     });

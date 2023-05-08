@@ -1,4 +1,4 @@
-import type { Point } from './config';
+import type { Point } from './types';
 
 export const getMidBetween = ([x1, y1]: Point, [x2, y2]: Point): Point => {
   return [x1 + (x2 - x1) / 2, y1 + (y2 - y1) / 2];

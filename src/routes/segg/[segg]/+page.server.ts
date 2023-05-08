@@ -1,3 +1,4 @@
+import zlib from 'zlib';
 import { isValidDrawing } from '$components/draw-your-segg/types.js';
 import { env } from '$env/dynamic/private';
 import { dynamoDbClient } from '$lib/aws.server.js';
@@ -19,9 +20,9 @@ export const load = async ({ params }) => {
       })
     );
 
-    if (!Item || !Item.drawing.S) throw error(404, 'Not found');
+    if (!Item || !Item.drawing.B) throw error(404, 'Not found');
 
-    const drawing = JSON.parse(Item.drawing.S);
+    const drawing = JSON.parse(zlib.gunzipSync(Item.drawing.B).toString());
 
     if (!isValidDrawing(drawing)) throw new Error('Invalid drawing');
 

@@ -130,21 +130,13 @@
 
   // set the canvas size (double for retina)
   onMount(() => {
-    // Get the DPR and size of the canvas
-    const dpr = window.devicePixelRatio;
-    const rect = canvas.getBoundingClientRect();
-
-    // Set the "actual" size of the canvas
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
+    // Double the canvas size for retina
+    canvas.width = width * 2;
+    canvas.height = height * 2;
 
     // Scale the context to ensure correct drawing operations
     const ctx = canvas.getContext('2d', { alpha: false });
-    ctx?.scale(dpr, dpr);
-
-    // Set the "drawn" size of the canvas
-    canvas.style.width = `${rect.width}px`;
-    canvas.style.height = `${rect.height}px`;
+    ctx?.scale(2, 2);
   });
 
   $: undoActions = [
@@ -158,7 +150,9 @@
     {width}
     {height}
     class="touch-none"
-    style="background:white; cursor: url({cursors.get(tool)}) 5 {widths[tool.width] / 2}, auto;"
+    style="width:{width}px; height:{height}px; background:white; cursor: url({cursors.get(
+      tool
+    )}) 5 {widths[tool.width] / 2}, auto;"
     bind:this={canvas}
     on:touchstart={onStart}
     on:mousedown={onStart}

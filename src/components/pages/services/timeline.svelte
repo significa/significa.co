@@ -2,11 +2,11 @@
   import clsx from 'clsx';
   import { Confetti } from 'svelte-confetti';
   import TimelineCell from './timeline-cell.svelte';
-  import { storyblokEditable } from '$lib/actions/storyblok-editable';
-  import type { ServiceTimelineRowStoryblok } from '$types/bloks';
-  import { CONFETTI_COLOR_ARRAY } from '$lib/constants';
   import NeedleHead from './illustrations/needle-head.png';
   import Needle from './needle.svelte';
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
+  import { CONFETTI_COLOR_ARRAY } from '$lib/constants';
+  import type { ServiceTimelineRowStoryblok } from '$types/bloks';
 
   export let timeline: ServiceTimelineRowStoryblok[];
 

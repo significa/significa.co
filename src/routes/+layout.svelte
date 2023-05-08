@@ -10,7 +10,6 @@
   import Footer from '$components/footer.svelte';
   import { toast, Toaster, ToastNotification } from '@significa/svelte-ui';
   import { beforeNavigate } from '$app/navigation';
-
   export let data;
 
   beforeNavigate(() => {
@@ -33,4 +32,6 @@
   variant={$page.url.pathname.startsWith('/handbook') ? 'handbook' : 'default'}
 />
 <slot />
-<Footer configuration={data.configuration.content} />
+{#if !$page.error}
+  <Footer configuration={data.configuration.content} />
+{/if}

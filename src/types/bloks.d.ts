@@ -87,6 +87,28 @@ export interface AboutPageStoryblok {
   [k: string]: any;
 }
 
+export interface AssetStoryblok {
+  alt?: string;
+  copyright?: string;
+  id: number;
+  filename: string;
+  name: string;
+  title?: string;
+  focus?: string;
+  [k: string]: any;
+}
+
+export interface AwardsEntryStoryblok {
+  image?: AssetStoryblok;
+  label?: string;
+  name?: string;
+  project?: string;
+  link?: MultilinkStoryblok;
+  _uid: string;
+  component: 'awards_entry';
+  [k: string]: any;
+}
+
 export interface BenefitsEntryStoryblok {
   icon?:
     | ''
@@ -114,17 +136,6 @@ export interface BenefitsEntryStoryblok {
 export interface BlogIndexStoryblok {
   _uid: string;
   component: 'blog-index';
-  [k: string]: any;
-}
-
-export interface AssetStoryblok {
-  alt?: string;
-  copyright?: string;
-  id: number;
-  filename: string;
-  name: string;
-  title?: string;
-  focus?: string;
   [k: string]: any;
 }
 
@@ -171,9 +182,9 @@ export interface CanvasGroupStoryblok {
     | CanvasTeamStoryblok
     | CanvasYellowStickerStoryblok
     | TimelineArrowStoryblok
-    | TimelineImageStoryblok
-    | TimelineSectionStoryblok
     | TimelineTextStoryblok
+    | CanvasTictactoeStoryblok
+    | CanvasTarotStoryblok
   )[];
   _uid: string;
   component: 'canvas-group';
@@ -182,6 +193,8 @@ export interface CanvasGroupStoryblok {
 
 export interface CanvasMediaStoryblok {
   image?: AssetStoryblok;
+  width?: number;
+  height?: number;
   border?: boolean;
   top: number;
   left: number;
@@ -203,11 +216,34 @@ export interface CanvasTalkBalloonStoryblok {
   [k: string]: any;
 }
 
+export interface CanvasTarotStoryblok {
+  image?: 'sun' | 'moon';
+  text?: CanvasTarotTextStoryblok[];
+  _uid: string;
+  component: 'canvas-tarot';
+  [k: string]: any;
+}
+
+export interface CanvasTarotTextStoryblok {
+  text?: string;
+  _uid: string;
+  component: 'canvas-tarot-text';
+  [k: string]: any;
+}
+
 export interface CanvasTeamStoryblok {
-  name?: string;
-  roster?: (StoryblokStory<TeamMemberStoryblok> | string)[];
+  team?: number | string;
   _uid: string;
   component: 'canvas-team';
+  [k: string]: any;
+}
+
+export interface CanvasTictactoeStoryblok {
+  top?: number;
+  left?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'canvas-tictactoe';
   [k: string]: any;
 }
 
@@ -319,6 +355,15 @@ export interface DeliverableStoryblok {
   [k: string]: any;
 }
 
+export interface DeliverablesEntryStoryblok {
+  icon?: AssetStoryblok;
+  title?: string;
+  description?: string;
+  _uid: string;
+  component: 'deliverables_entry';
+  [k: string]: any;
+}
+
 export interface FooterColumnExternalStoryblok {
   title?: string;
   links?: LinkStoryblok[];
@@ -364,6 +409,7 @@ export interface HandbookStoryblok {
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
+  draft?: boolean;
   _uid: string;
   component: 'handbook';
   [k: string]: any;
@@ -460,6 +506,7 @@ export interface PageStoryblok {
     | GetAQuotePageStoryblok
     | HomePageStoryblok
     | ProjectsIndexStoryblok
+    | ServicesPageStoryblok
     | StaticPageStoryblok
   )[];
   seo_title?: string;
@@ -594,6 +641,83 @@ export interface RootStoryblok {
 export interface ServiceStoryblok {
   _uid: string;
   component: 'service';
+  [k: string]: any;
+}
+
+export interface ServicesDeppartmentStoryblok {
+  title?: string;
+  entry?: ServicesGroupEntryStoryblok[];
+  _uid: string;
+  component: 'services_deppartment';
+  [k: string]: any;
+}
+
+export interface ServicesEntryStoryblok {
+  label?: string;
+  _uid: string;
+  component: 'services_entry';
+  [k: string]: any;
+}
+
+export interface ServicesGroupEntryStoryblok {
+  title?: string;
+  list?: ServicesEntryStoryblok[];
+  _uid: string;
+  component: 'services_group_entry';
+  [k: string]: any;
+}
+
+export interface ServicesPageStoryblok {
+  page_title1?: string;
+  page_title2?: string;
+  timeline?: ServiceTimelineRowStoryblok[];
+  awards_title?: string;
+  awards_description?: string;
+  awards?: AwardsEntryStoryblok[];
+  showreel?: AssetStoryblok;
+  showreel_button_label?: string;
+  services_title?: string;
+  services_description?: string;
+  services?: ServicesDeppartmentStoryblok[];
+  deliverables_title?: string;
+  deliverables?: DeliverablesEntryStoryblok[];
+  testimonials_title1?: string;
+  testimonials_title2?: string;
+  testimonials_cta_label?: string;
+  testimonials_cta_link?: MultilinkStoryblok;
+  testimonials?: RichtextTestimonialStoryblok[];
+  clients_title?: string;
+  clients?: ClientLogoStoryblok[];
+  _uid: string;
+  component: 'services-page';
+  [k: string]: any;
+}
+
+export interface ServiceTimelineCellStoryblok {
+  label?: string;
+  before_light?: AssetStoryblok;
+  before_dark?: AssetStoryblok;
+  after_light?: AssetStoryblok;
+  after_dark?: AssetStoryblok;
+  left_offset?: number;
+  throw_confetti?: boolean;
+  _uid: string;
+  component: 'service-timeline-cell';
+  [k: string]: any;
+}
+
+export interface ServiceTimelineRowStoryblok {
+  title?: string;
+  subrows?: ServiceTimelineSubrowStoryblok[];
+  _uid: string;
+  component: 'service-timeline-row';
+  [k: string]: any;
+}
+
+export interface ServiceTimelineSubrowStoryblok {
+  cells?: ServiceTimelineCellStoryblok[];
+  _uid: string;
+  component: 'service-timeline-subrow';
   [k: string]: any;
 }
 

@@ -1,14 +1,10 @@
-<script>
-  /**
-   * @type {string}
-   */
-  export let text;
-  /**
-   * @type {any}
-   */
-  export let asset;
-  let flip = false;
+<script lang="ts">
+  import type { CanvasTarotStoryblok } from '$types/bloks';
+  export let item: CanvasTarotStoryblok;
   import back from '$assets/back.svg';
+  import sun from '$assets/sun.svg';
+  import moon from '$assets/moon.svg';
+  let flip = false;
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -24,15 +20,21 @@
 >
   <div class="rleative flip-card-inner h-full w-full" class:rotate={flip}>
     <div class="flip-card-front">
-      <img alt="" src={asset} class="drop-shadow-sm" />
+      {#if item.image === 'sun'}
+        <img alt="" src={sun} class="drop-shadow-sm" />
+      {:else}
+        <img alt="" src={moon} class="drop-shadow-sm" />
+      {/if}
     </div>
     <div class="flip-card-back">
       <div class="relative">
-        <p
-          class="absolute left-6 top-6 z-10 max-w-[154px] text-left text-xl font-semibold text-[#171717]"
-        >
-          {text}
-        </p>
+        {#if item.text}
+          <p
+            class="absolute left-6 top-6 z-10 max-w-[154px] text-left text-xl font-semibold text-[#171717]"
+          >
+            {item.text[0].text}
+          </p>
+        {/if}
         <img alt="" src={back} class="drop-shadow-sm" />
       </div>
     </div>

@@ -10,8 +10,6 @@
   import TalkBalloon from './canvas-items/talk-balloon.svelte';
   import Checklist from './canvas-items/checklist.svelte';
   import Tarot from './canvas-items/tarot.svelte';
-  import sun from '$assets/sun.svg';
-  // import moon from '$assets/moon.svg';
 
   export let withMouseDragScroll = false;
   export let title: string | undefined = undefined;
@@ -100,7 +98,6 @@
           ? +group.left + offsetX
           : 0}px; top: {group.top ? +group.top + offsetY : 0}px;"
       >
-        <Tarot asset={sun} text="We predict that next Tuesday we will likely eat Curb." />
         {#each group.items || [] as item}
           {#if item.component === 'canvas-media'}
             <Media {item} />
@@ -116,6 +113,8 @@
             <TalkBalloon {item} />
           {:else if item.component === 'canvas-checklist'}
             <Checklist {item} />
+          {:else if item.component === 'canvas-tarot'}
+            <Tarot {item} />
           {/if}
         {/each}
       </div>

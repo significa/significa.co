@@ -34,7 +34,7 @@
     <div class="dots" />
   </div>
   <div class="relative overflow-hidden rounded-lg">
-    <Canvas {width} {height} on:change={({ detail }) => save(detail)} {template} />
+    <Canvas id={dbId} {width} {height} on:change={({ detail }) => save(detail)} {template} />
     <div class="dots" />
   </div>
 </div>

@@ -6,10 +6,14 @@
   import saveImage from './assets/save.svg';
   import undoImage from './assets/undo.svg';
   import redoImage from './assets/redo.svg';
+  import linkImage from './assets/link.svg';
   import clsx from 'clsx';
   import { writable, type Writable } from 'svelte/store';
   import { debounced } from '$lib/stores/debounced';
   import type { Drawing, Point, Tool } from './types';
+  import { page } from '$app/stores';
+  import { toast } from '@significa/svelte-ui';
+  import { t } from '$lib/i18n';
 
   const dispatch = createEventDispatcher<{ change: Drawing }>();
 
@@ -17,6 +21,7 @@
   export let width: number;
   export let height: number;
 
+  export let id: string | null = null; // database ID
   export let template: Drawing = [];
   let drawing: Writable<Drawing> = writable(template);
   let points: Point[] = [];
@@ -197,12 +202,27 @@
 
     <Tools bind:tool />
 
-    {#key $drawing}
-      <a
-        class="absolute bottom-2 right-2 flex h-8 w-8 items-center justify-center rounded-sm border hover:bg-foreground/2"
-        download="segg.png"
-        href={canvas?.toDataURL('image/png')}><img alt="download" src={saveImage} /></a
-      >
-    {/key}
+    <div class="absolute bottom-2 right-2 flex gap-2">
+      {#if id}
+        <button
+          class="flex h-8 w-8 items-center justify-center rounded-sm border hover:bg-foreground/2"
+          on:click={() => {
+            navigator.clipboard.writeText($page.url.origin + `/segg/${id}`);
+            toast.success({
+              message: t('draw-segg.clipboard.feedback')
+            });
+          }}
+        >
+          <img alt="copy link" src={linkImage} />
+        </button>
+      {/if}
+      {#key $drawing}
+        <a
+          class="flex h-8 w-8 items-center justify-center rounded-sm border hover:bg-foreground/2"
+          download="segg.png"
+          href={canvas?.toDataURL('image/png')}><img alt="download" src={saveImage} /></a
+        >
+      {/key}
+    </div>
   </div>
 </div>

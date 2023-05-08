@@ -79,7 +79,8 @@ export const TranslationKeys = [
   'handbook.draft.description',
   'draw-segg.title',
   'draw-segg.description',
-  'draw-segg.cta'
+  'draw-segg.cta',
+  'draw-segg.clipboard.feedback'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

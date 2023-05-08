@@ -104,8 +104,13 @@
     ctx?.beginPath();
   }
 
-  function onMove(x: number, y: number) {
+  function onMove(e: { clientX: number; clientY: number }) {
     if (!isDrawing) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const multiplier = width / rect.width; // canvas can be scaled down on mobile
+    const x = (e.clientX - canvas.getBoundingClientRect().left) * multiplier;
+    const y = (e.clientY - canvas.getBoundingClientRect().top) * multiplier;
 
     // reset "redo"
     undone = [];
@@ -164,16 +169,8 @@
     on:touchend={onEnd}
     on:mouseup={onEnd}
     on:mouseleave={onEnd}
-    on:mousemove={(e) => onMove(e.offsetX, e.offsetY)}
-    on:touchmove={(e) => {
-      const touch = e.touches[0];
-      const rect = canvas.getBoundingClientRect();
-      const multiplier = width / rect.width; // canvas can be scaled down on mobile
-      onMove(
-        (touch.clientX - canvas.getBoundingClientRect().left) * multiplier,
-        (touch.clientY - canvas.getBoundingClientRect().top) * multiplier
-      );
-    }}
+    on:mousemove={onMove}
+    on:touchmove={(e) => onMove(e.touches[0])}
   />
   <div
     class={clsx(

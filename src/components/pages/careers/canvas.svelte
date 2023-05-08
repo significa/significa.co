@@ -9,6 +9,7 @@
   import Team from './canvas-items/team.svelte';
   import TalkBalloon from './canvas-items/talk-balloon.svelte';
   import Checklist from './canvas-items/checklist.svelte';
+  import Tarot from './canvas-items/tarot.svelte';
   import Tictactoe from './canvas-items/tictactoe.svelte';
   import type { TeamMemberPage } from '$lib/content';
   import { dragScrolling } from '$lib/actions/drag-scrolling';
@@ -61,6 +62,8 @@
             <TalkBalloon {item} />
           {:else if item.component === 'canvas-checklist'}
             <Checklist {item} />
+          {:else if item.component === 'canvas-tarot'}
+            <Tarot {item} />
           {:else if item.component === 'canvas-tictactoe'}
             <Tictactoe {item} />
           {/if}

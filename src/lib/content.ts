@@ -33,6 +33,11 @@ export const CAREERS_PARAMS = {
   content_type: 'career'
 };
 
+export const TEAM_MEMBER_PARAMS = {
+  per_page: 100,
+  content_type: 'team-member'
+};
+
 export const fetchCareers = async (
   options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
 ) => {
@@ -112,6 +117,7 @@ export type PageResult = {
   relatedProjects?: ProjectPage[];
   authorPosts?: BlogPostPage[];
   authorProjects?: ProjectPage[];
+  teamMembers?: TeamMemberPage[];
 };
 
 export async function fetchPage(options: {
@@ -217,6 +223,26 @@ export async function fetchPage(options: {
           filter_query: {
             team: {
               any_in_array: data.story.uuid
+            }
+          }
+        })
+      };
+    }
+
+    // Careers canvas needs access to team members in order to fill "Team" component
+    if (
+      data.story.content.component === 'page' &&
+      data.story.content.page?.[0].component === 'careers-page'
+    ) {
+      return {
+        story: data.story,
+        teamMembers: await fetchEntries<TeamMemberPage>(options, {
+          ...TEAM_MEMBER_PARAMS,
+          per_page: 100,
+          page: 1,
+          filter_query: {
+            is_active: {
+              is: true
             }
           }
         })

@@ -216,8 +216,7 @@ export interface CanvasTalkBalloonStoryblok {
 }
 
 export interface CanvasTeamStoryblok {
-  name?: string;
-  roster?: (StoryblokStory<TeamMemberStoryblok> | string)[];
+  team?: number | string;
   _uid: string;
   component: 'canvas-team';
   [k: string]: any;

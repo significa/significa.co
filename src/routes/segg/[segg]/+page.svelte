@@ -2,10 +2,12 @@
   import DrawYourSegg from '$components/draw-your-segg/draw-your-segg.svelte';
   import { t } from '$lib/i18n';
   import { Button } from '@significa/svelte-ui';
+
+  export let data;
 </script>
 
 <div class="flex items-center justify-center pt-10">
-  <DrawYourSegg />
+  <DrawYourSegg template={data.drawing} />
 </div>
 
 <div class="mb-10 mt-20 text-center">

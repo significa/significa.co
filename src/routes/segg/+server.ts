@@ -1,6 +1,6 @@
 import { env } from '$env/dynamic/private';
 import { dynamoDbClient } from '$lib/aws.server.js';
-import { PutItemCommand, GetItemCommand } from '@aws-sdk/client-dynamodb';
+import { PutItemCommand } from '@aws-sdk/client-dynamodb';
 import { error, json } from '@sveltejs/kit';
 
 export async function POST({ request }) {
@@ -24,33 +24,5 @@ export async function POST({ request }) {
   } catch (err) {
     console.error(err);
     throw error(422);
-  }
-}
-
-export async function GET({ url }) {
-  const id = url.searchParams.get('id');
-
-  if (!id) throw error(400, 'Missing id');
-
-  const getGetCommand = (id: string) => {
-    return new GetItemCommand({
-      TableName: env.AWS_DYNAMODB_TABLE,
-      Key: {
-        id: { S: id }
-      }
-    });
-  };
-
-  try {
-    const { Item } = await dynamoDbClient.send(getGetCommand(id));
-    if (!Item) throw error(404, 'Not found');
-    return json({
-      id: Item.id.S,
-      drawing: Item.drawing.S,
-      created_at: Item.created_at.S
-    });
-  } catch (err) {
-    console.error(err);
-    throw error(404, 'Not found');
   }
 }

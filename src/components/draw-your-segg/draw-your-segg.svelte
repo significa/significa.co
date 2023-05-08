@@ -1,34 +1,13 @@
 <script lang="ts">
   import Canvas from './canvas.svelte';
   import leftImage from './assets/left.svg';
-  import { page } from '$app/stores';
-  import { Spinner } from '@significa/svelte-ui';
-  import { isValidDrawing, type Drawing } from './types';
   import { template as base } from './template';
-  import { onMount } from 'svelte';
+  import type { Drawing } from './types';
 
   const width = 600;
   const height = 700;
 
-  let template = base;
-
-  // load drawing from DB
-  let loading = $page.params.segg ? true : false;
-  const load = async (id: string) => {
-    const res = await fetch(`/segg?id=${encodeURIComponent(id)}`);
-    if (res.ok) {
-      const json = await res.json();
-      const parsed = JSON.parse(json.drawing);
-      if (parsed && isValidDrawing(parsed)) {
-        template = parsed;
-      }
-    }
-    loading = false;
-  };
-  onMount(() => {
-    const savedId = $page.params.segg;
-    if (savedId) load(savedId);
-  });
+  export let template = base;
 
   // save drawing in DB
   let dbId: string | null = null;
@@ -55,16 +34,7 @@
     <div class="dots" />
   </div>
   <div class="relative overflow-hidden rounded-lg">
-    {#if loading}
-      <div
-        class="flex items-center justify-center bg-white"
-        style="width:{width}px;height:{height}px;"
-      >
-        <Spinner />
-      </div>
-    {:else}
-      <Canvas {width} {height} on:change={({ detail }) => save(detail)} {template} />
-    {/if}
+    <Canvas {width} {height} on:change={({ detail }) => save(detail)} {template} />
     <div class="dots" />
   </div>
 </div>

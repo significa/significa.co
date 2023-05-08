@@ -8,9 +8,9 @@
   import { onMount } from 'svelte';
 
   type Arrows = TimelineArrowStoryblok['variant'];
-  const files = import.meta.glob('./arrows/*.svg', { as: 'raw', eager: true });
+  const files = import.meta.glob('../../illustrations/arrows/*.svg', { as: 'raw', eager: true });
   const arrows = Object.entries(files).reduce((acc, [path, file]) => {
-    const name = path.replace('./arrows/', '').replace('.svg', '') as Arrows;
+    const name = path.replace('../../illustrations/arrows/', '').replace('.svg', '') as Arrows;
     acc[name] = file;
     return acc;
   }, {} as Record<Arrows, string>);

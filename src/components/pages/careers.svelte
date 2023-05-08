@@ -1,25 +1,55 @@
 <script lang="ts">
-  import Seo from '$components/seo.svelte';
-  import type { CareersPageStoryblok } from '$types/bloks';
-  import { t } from '$lib/i18n';
   import { page } from '$app/stores';
-  import { Button, Link } from '@significa/svelte-ui';
+  import { fade } from 'svelte/transition';
+  import { device } from '$lib/stores/device';
+  import { t } from '$lib/i18n';
+  import Seo from '$components/seo.svelte';
+  import Canvas from './careers/canvas.svelte';
   import Images from '../images.svelte';
   import BenefitsIcons from './careers/benefits-icons.svelte';
+  import { Button, Link } from '@significa/svelte-ui';
+  import { bodyLock } from '@significa/svelte-ui/actions';
+  import type { CareersPageStoryblok } from '$types/bloks';
+  import type { TeamMemberPage } from '$lib/content';
 
   export let data: CareersPageStoryblok;
+  export let teamMembers: TeamMemberPage[] | undefined;
+
+  let canvasFullscreen: boolean;
 </script>
 
 <Seo />
 <main>
-  <section class="container mx-auto px-container py-20">
-    <h1 class="text-8xl">
-      {data.page_title}
-    </h1>
+  <section class="relative mx-auto">
+    <Canvas
+      withMouseDragScroll
+      title={data.page_title}
+      height={data.canvas_height}
+      width={data.canvas_width}
+      items={data.canvas_items}
+      {teamMembers}
+      style="height: min({data.canvas_height}px ,calc(100vh - 76px));"
+    />
+    <div
+      class="absolute left-0 right-0 top-0 h-16"
+      style="background-image: linear-gradient(180deg, hsl(var(--color-background)) 0%, transparent 100%);"
+    />
+
+    {#if $device === 'touch'}
+      <Button
+        on:click={() => {
+          canvasFullscreen = true;
+        }}
+        variant="secondary"
+        size="lg"
+        icon="expand"
+        class="absolute bottom-4 right-4 bg-background"
+      />
+    {/if}
   </section>
 
   <!-- What define us -->
-  <section class="mt-10 border-t md:mt-14 lg:mt-20">
+  <section class="border-t">
     <div
       class="container mx-auto flex flex-col justify-between gap-6 px-container py-8 lg:py-12 xl:flex-row xl:gap-4"
     >
@@ -108,3 +138,28 @@
     </div>
   </section>
 </main>
+
+{#if $device === 'touch' && canvasFullscreen}
+  <div use:bodyLock class="fixed inset-0 z-50 bg-black/50" transition:fade={{ duration: 200 }}>
+    <div class="absolute inset-2 overflow-hidden rounded-md bg-background shadow-xl lg:inset-4">
+      <Canvas
+        title={data.page_title}
+        height={data.canvas_height}
+        width={data.canvas_width}
+        items={data.canvas_items}
+        {teamMembers}
+        class="h-full"
+      />
+
+      <Button
+        on:click={() => {
+          canvasFullscreen = false;
+        }}
+        variant="secondary"
+        size="lg"
+        icon="close"
+        class="absolute right-4 top-4 bg-background"
+      />
+    </div>
+  </div>
+{/if}

@@ -5,6 +5,7 @@
   import { fly } from 'svelte/transition';
   import { circOut } from 'svelte/easing';
   import { Confetti } from 'svelte-confetti';
+  import { CONFETTI_COLOR_ARRAY } from '$lib/constants';
 
   type Eggs =
     | 'attach-multiple'
@@ -63,8 +64,6 @@
   } else {
     character = 'hello';
   }
-
-  const colorArray = ['#ffbe0b', '#fb5607', '#FFD424', '#8338ec', '#3a86ff'];
 </script>
 
 <svelte:head />
@@ -79,7 +78,7 @@
       delay={[1, 2000]}
       amount="200"
       fallDistance="100vh"
-      {colorArray}
+      colorArray={CONFETTI_COLOR_ARRAY}
     />
   </div>
 {/if}

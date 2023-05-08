@@ -1,6 +1,7 @@
 <script lang="ts">
   import center from '$assets/404.svg';
   import nobita from '$assets/nobita-small.svg';
+  import clsx from 'clsx';
 
   const stickers = Object.values(
     import.meta.glob('../assets/stickers/*.svg', { eager: true, as: 'url' })
@@ -122,7 +123,7 @@
     bind:clientWidth={screenWidth}
     bind:clientHeight={screenHeight}
     style="height: calc(100vh - 76px);"
-    class="flex items-center justify-center overflow-hidden border-t"
+    class="flex cursor-pointer items-center justify-center overflow-hidden border-t"
   >
     <div
       style="grid-template-columns: repeat({matrix[0]?.length ||
@@ -131,35 +132,41 @@
     >
       {#each matrix as row}
         {#each row as cell}
-          <div
-            class="transition-all duration-700 ease-in-out"
-            style={isFound && transforms[cell] ? `transform: ${transforms[cell]} ` : ''}
-          >
-            {#if cell === TARGET}
-              <!-- svelte-ignore a11y-click-events-have-key-events -->
-              <img
-                alt=""
-                src={nobita}
-                on:click={() => (isFound = true)}
-                class="absolute drop-shadow-sm"
-                style="transform: rotate({Math.floor(Math.random() * 180)}deg);"
-              />
-            {:else}
-              <img
-                alt=""
-                src={stickers[Math.floor(Math.random() * stickers.length)]}
-                style="transform: rotate({Math.floor(Math.random() * 180)}deg);"
-                class="pointer-events-none absolute drop-shadow-sm"
-              />
-            {/if}
-          </div>
+          {@const src = stickers[Math.floor(Math.random() * stickers.length)]}
+          {@const stickerStyle = 'drop-shadow-md pointer-events-none scale-[1.35]'}
+          {#if transforms[cell]}
+            <div
+              class="transition-all duration-700 ease-in-out"
+              style={isFound && transforms[cell]
+                ? `transform: ${transforms[cell]} rotate(${Math.floor(Math.random() * 180)}deg);`
+                : `transform: rotate(${Math.floor(Math.random() * 180)}deg);`}
+            >
+              <img alt="" {src} class={stickerStyle} />
+            </div>
+          {:else}
+            <div style="transform: rotate({Math.floor(Math.random() * 180)}deg);">
+              {#if cell === TARGET}
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                <img
+                  alt=""
+                  src={nobita}
+                  on:click={() => (isFound = !isFound)}
+                  class={clsx(stickerStyle, 'pointer-events-auto')}
+                />
+              {:else}
+                <img alt="" {src} class={stickerStyle} />
+              {/if}
+            </div>
+          {/if}
         {/each}
       {/each}
     </div>
   </div>
 {/if}
 
-<div class="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+<div
+  class="absolute left-1/2 top-1/2 z-10 w-72 -translate-x-1/2 -translate-y-1/2 cursor-pointer xs:w-[404px] lg:w-[550px]"
+>
   <div bind:clientWidth={centerWidth} bind:clientHeight={centerHeight}>
     <img class="drop-shadow-lg" alt="" src={center} />
   </div>

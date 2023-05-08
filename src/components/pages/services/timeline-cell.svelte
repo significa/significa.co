@@ -32,10 +32,18 @@
   {#if cell.before_dark?.filename && cell.before_light?.filename}
     {@const img = $theme === 'light' ? cell.before_light : cell.before_dark}
     {@const { width, height, src, alt } = getImageAttributes(img)}
-    <div style="clip-path: polygon({p}% 0, 100% 0, 100% 100%, {p}% 100%)">
-      <img {width} {height} {src} {alt} draggable="false" class="select-none" />
+    <div>
+      <img
+        {width}
+        {height}
+        {src}
+        {alt}
+        draggable="false"
+        class="select-none"
+        style="clip-path: polygon({p}% 0, 100% 0, 100% 100%, {p}% 100%)"
+      />
       <p
-        class="absolute left-4 top-[50%] -translate-y-[50%] bg-transparent text-sm font-semibold"
+        class="absolute left-4 top-1/2 -translate-y-1/2 bg-transparent text-sm font-semibold text-foreground"
         data-theme="dark"
       >
         {cell.label}
@@ -49,7 +57,7 @@
     <div class="absolute inset-0" style="clip-path: polygon(0% 0, {p}% 0, {p}% 100%, 0% 100%)">
       <img {width} {height} {src} {alt} draggable="false" class="select-none" />
       <p
-        class="absolute left-4 top-[50%] -translate-y-[50%] bg-transparent text-sm font-semibold"
+        class="absolute left-4 top-1/2 -translate-y-1/2 bg-transparent text-sm font-semibold text-foreground"
         data-theme="light"
       >
         {cell.label}

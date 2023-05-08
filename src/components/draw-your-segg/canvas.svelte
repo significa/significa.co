@@ -155,7 +155,7 @@
     {width}
     {height}
     class="touch-none"
-    style="width:{width}px; height:{height}px; background:white; cursor: url({cursors.get(
+    style="width:min(calc(100vw - 32px),{width}px); aspect-ratio: 6/7; background:white; cursor: url({cursors.get(
       tool
     )}) 5 {widths[tool.width] / 2}, auto;"
     bind:this={canvas}
@@ -167,10 +167,11 @@
     on:mousemove={(e) => onMove(e.offsetX, e.offsetY)}
     on:touchmove={(e) => {
       const touch = e.touches[0];
-      // onMove with x and y (taking into account the canvas position on screen)
+      const rect = canvas.getBoundingClientRect();
+      const multiplier = width / rect.width; // canvas can be scaled down on mobile
       onMove(
-        touch.clientX - canvas.getBoundingClientRect().left,
-        touch.clientY - canvas.getBoundingClientRect().top
+        (touch.clientX - canvas.getBoundingClientRect().left) * multiplier,
+        (touch.clientY - canvas.getBoundingClientRect().top) * multiplier
       );
     }}
   />
@@ -181,7 +182,7 @@
     )}
   >
     <div
-      class="absolute bottom-2 left-2 z-10 flex h-8 items-center justify-between rounded-sm border"
+      class="absolute left-2 top-2 z-10 flex h-8 items-center justify-between rounded-sm border xs:bottom-2 xs:top-auto"
     >
       {#each undoActions as [alt, action, condition, image], i}
         {#if i > 0}
@@ -202,7 +203,7 @@
 
     <Tools bind:tool />
 
-    <div class="absolute bottom-2 right-2 flex gap-2">
+    <div class="absolute right-2 top-2 flex gap-2 xs:bottom-2 xs:top-auto">
       {#if id}
         <button
           class="flex h-8 w-8 items-center justify-center rounded-sm border hover:bg-foreground/2"

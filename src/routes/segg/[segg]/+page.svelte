@@ -6,13 +6,13 @@
   export let data;
 </script>
 
-<div class="flex items-center justify-center pt-10">
+<div class="container mx-auto flex items-center justify-center px-container pt-4 md:mt-6 lg:mt-10">
   <DrawYourSegg template={data.drawing} />
 </div>
 
-<div class="mb-10 mt-20 text-center">
+<div class="container mx-auto mb-10 mt-10 px-container md:mt-14 md:text-center lg:mt-20">
   <h2 class="text-4xl">{t('draw-segg.title')}</h2>
-  <p class="mx-auto mt-2 max-w-md text-lg/tight text-foreground-secondary">
+  <p class="mt-2 max-w-md text-lg/tight text-foreground-secondary md:mx-auto">
     {t('draw-segg.description')}
   </p>
   <Button class="mt-6" as="a" href="/careers">{t('draw-segg.cta')}</Button>

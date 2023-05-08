@@ -27,7 +27,7 @@
 
 <div class="flex drop-shadow-lg">
   <div
-    class="relative flex items-center justify-center rounded-lg bg-white bg-gradient-to-l from-black/5 to-transparent to-30%"
+    class="relative hidden items-center justify-center rounded-lg bg-white bg-gradient-to-l from-black/5 to-transparent to-30% xl:flex"
     style="width:{width}px;height:{height}px;"
   >
     <img src={leftImage} alt="Draw your segg" />

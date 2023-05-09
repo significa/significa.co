@@ -13,6 +13,7 @@
   import Tictactoe from './canvas-items/tictactoe.svelte';
   import type { TeamMemberPage } from '$lib/content';
   import { dragScrolling } from '$lib/actions/drag-scrolling';
+  import Plant from './canvas-items/plant.svelte';
 
   export let withMouseDragScroll = false;
   export let title: string | undefined = undefined;
@@ -66,6 +67,8 @@
             <Tarot {item} />
           {:else if item.component === 'canvas-tictactoe'}
             <Tictactoe {item} />
+          {:else if item.component === 'canvas-plant'}
+            <Plant />
           {/if}
         {/each}
       </div>

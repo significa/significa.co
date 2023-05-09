@@ -1,6 +1,6 @@
 <script lang="ts">
   import { browser } from '$app/environment';
-  import { enhance } from '$app/forms';
+  import { applyAction, enhance } from '$app/forms';
   import { page } from '$app/stores';
   import { t } from '$lib/i18n';
   import {
@@ -20,6 +20,7 @@
 
   type FormType = 'quote' | 'career' | 'contact';
   export let variant: undefined | FormType = undefined;
+  export let disclaimer: string | undefined = undefined;
 
   let type: FormType = variant || 'quote';
   const options = [
@@ -108,6 +109,8 @@
       }
     }
   }
+
+  $: console.log($page.form);
 </script>
 
 {#if variant === undefined}
@@ -138,11 +141,12 @@
 <form
   id="contact-form"
   method="POST"
-  action={{ quote: '?/quote', career: '?/career', contact: '?/contact' }[type]}
+  action={{ quote: '/forms/quote', career: '/forms/career', contact: '/forms/contact' }[type]}
   use:enhance={() => {
     loading = true;
 
-    return async ({ update }) => {
+    return async ({ update, result }) => {
+      applyAction(result);
       loading = false;
       files = [];
 
@@ -241,6 +245,10 @@
         }}
       />
       <input type="hidden" name="attachments" bind:value={attachments} />
+    {/if}
+    {#if disclaimer}
+      <p class="text-base text-foreground-secondary">{disclaimer}</p>
+      <hr />
     {/if}
   </div>
   <div class="mt-8 flex flex-col justify-between gap-4 sm:flex-row-reverse sm:items-center">

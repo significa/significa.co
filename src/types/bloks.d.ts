@@ -699,6 +699,9 @@ export interface ServiceTimelineCellStoryblok {
   before_dark?: AssetStoryblok;
   after_light?: AssetStoryblok;
   after_dark?: AssetStoryblok;
+  decoration?: any;
+  decoration_light?: AssetStoryblok;
+  decoration_dark?: AssetStoryblok;
   left_offset?: number;
   throw_confetti?: boolean;
   _uid: string;

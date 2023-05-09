@@ -1,26 +1,38 @@
 <script lang="ts">
-  import Seo from '$components/seo.svelte';
-  import { VIDEO_EXTENSIONS } from '$lib/constants';
-  import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
-  import { getFileExtension } from '$lib/utils/strings';
-  import type { ServicesPageStoryblok } from '$types/bloks';
   import { Icon, Link } from '@significa/svelte-ui';
+  import Seo from '$components/seo.svelte';
+  import Testimonials from '$components/testimonials.svelte';
+  import PreFooter from '$components/pre-footer.svelte';
   import Reel from './home/reel.svelte';
   import Square from './services/illustrations/square.svelte';
   import Hand from './services/illustrations/hand.svelte';
   import Duck from './services/illustrations/duck.svelte';
-  import Testimonials from '$components/testimonials.svelte';
+  import Timeline from './services/timeline.svelte';
   import { theme } from '$lib/stores/theme';
-  import PreFooter from '$components/pre-footer.svelte';
+  import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
+  import { getFileExtension } from '$lib/utils/strings';
+  import { VIDEO_EXTENSIONS } from '$lib/constants';
+  import type { ServicesPageStoryblok } from '$types/bloks';
 
   export let data: ServicesPageStoryblok;
 </script>
 
 <Seo />
 <main>
-  <!-- Services -->
-  <section class="mt-10 md:mt-14 lg:mt-20">
-    <div class="container mx-auto flex px-container pt-8 lg:pt-12">
+  <section class="overflow-clip">
+    <div class="container mx-auto mt-10 px-container md:mt-14 lg:mt-20">
+      <h1 class="mb-2 text-3xl font-semibold text-foreground-secondary">{data.page_title1}</h1>
+      <h2 class="max-w-6xl text-7xl">{data.page_title2}</h2>
+    </div>
+
+    <!-- Timeline -->
+    {#if data.timeline}
+      <Timeline timeline={data.timeline} class="mt-20" />
+    {/if}
+  </section>
+
+  <section class="mt-10 md:mt-14">
+    <div class="container mx-auto flex px-container">
       <div class="xl:max-w-3xl">
         <h3 class="text-5xl text-foreground-secondary">{data.awards_title}</h3>
         <p class="text-5xl">{data.awards_description}</p>
@@ -135,7 +147,6 @@
   </section>
 
   <!-- Deliverables -->
-
   <section class="mt-10 pb-4 md:mt-14 lg:mt-28">
     <div
       class="container mx-auto mb-6 flex flex-col gap-6 px-container pt-8 lg:mb-12 lg:pt-12 xl:flex-row xl:gap-4"

@@ -2714,7 +2714,7 @@
       "name": "service-timeline-cell",
       "display_name": null,
       "created_at": "2023-05-04T12:45:26.410Z",
-      "updated_at": "2023-05-04T13:55:48.115Z",
+      "updated_at": "2023-05-08T16:01:26.703Z",
       "id": 3925566,
       "schema": {
         "label": {
@@ -2745,14 +2745,35 @@
           "pos": 4,
           "asset_folder_id": 235888
         },
+        "decoration": {
+          "type": "section",
+          "pos": 5,
+          "keys": ["decoration_light", "decoration_dark"]
+        },
+        "decoration_light": {
+          "type": "asset",
+          "pos": 6,
+          "description": "Optional image to be above the cell with custom asset",
+          "filetypes": ["images"],
+          "asset_folder_id": 235888
+        },
+        "decoration_dark": {
+          "type": "asset",
+          "pos": 7,
+          "description": "Optional image to be above the cell with custom asset",
+          "filetypes": ["images"],
+          "asset_folder_id": 235888
+        },
         "left_offset": {
           "type": "number",
           "default_value": "",
           "min_value": 0,
-          "description": "px"
+          "description": "px",
+          "pos": 8
         },
         "throw_confetti": {
-          "type": "boolean"
+          "type": "boolean",
+          "pos": 9
         }
       },
       "image": null,

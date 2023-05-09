@@ -41,25 +41,35 @@
 
   let character: Eggs = 'idle';
 
+  let lastChangedInput: string | undefined;
+
+  const onInput = (value: CustomEvent<string>) => {
+    lastChangedInput = value.detail;
+  };
+
   $: if (error) {
     character = 'error';
   } else if (success) {
     character = 'success';
-  } else if (attachments.split(',').length > 1) {
-    character = 'attach-multiple';
-  } else if (attachments) {
-    character = 'attach';
-  } else if (message && message.length > 3) {
+  } else if (lastChangedInput === 'attachments') {
+    if (attachments.split(',').length > 1) {
+      character = 'attach-multiple';
+    } else {
+      character = 'attach';
+    }
+  } else if (lastChangedInput === 'message' && message && message.length > 3) {
     character = 'idle';
-  } else if (['10k - 25k'].includes(budget)) {
-    character = 'budget10';
-  } else if (['25k - 50k'].includes(budget)) {
-    character = 'budget25';
-  } else if (['50k - 100k'].includes(budget)) {
-    character = 'budget50';
-  } else if (['100k+'].includes(budget)) {
-    character = 'budget100';
-  } else if (name && name.length > 3) {
+  } else if (lastChangedInput === 'budget') {
+    if (['10k - 25k'].includes(budget)) {
+      character = 'budget10';
+    } else if (['25k - 50k'].includes(budget)) {
+      character = 'budget25';
+    } else if (['50k - 100k'].includes(budget)) {
+      character = 'budget50';
+    } else if (['100k+'].includes(budget)) {
+      character = 'budget100';
+    }
+  } else if (lastChangedInput === 'name' && name && name.length > 2) {
     character = 't-shirt';
   } else {
     character = 'hello';
@@ -116,6 +126,7 @@
           }}
           on:success={() => (success = true)}
           on:error={() => (error = true)}
+          on:input={onInput}
         />
         {#if visible || dirty}
           <div

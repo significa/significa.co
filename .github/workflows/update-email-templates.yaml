@@ -11,6 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Install prettier
+        run: npm install "prettier@$(< package.json jq -r '.devDependencies.prettier')"
+
       - name: Update email templates
         env:
           MAILCHIMP_API_KEY: ${{ secrets.MAILCHIMP_API_KEY }}
@@ -20,7 +27,11 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           branch: ci/update-email-templates
-          title: 'CI: auto updated email templates'
-          body: Updated email templates from Mailchimp.
           commit-message: 'ci: updated email templates'
           delete-branch: true
+          title: 'CI: auto updated email templates'
+          body: |
+            Updated email templates from Mailchimp.
+
+            Before merging, please make sure that the plaintext versions of the emails
+            still make sense.

@@ -2,7 +2,8 @@
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import type { HomePageStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
-  import ServicesIllustration from './assets/pendulum-placeholder.png';
+  import ServicesIllustration from './assets/pendulum-static.png';
+  import Newton from './newton.svelte';
 
   export let data: HomePageStoryblok;
 </script>
@@ -11,19 +12,20 @@
   class="flex flex-col-reverse lg:container lg:mx-auto lg:grid lg:grid-cols-[50%_50%] lg:px-container"
 >
   <div
-    class="container flex justify-center px-container lg:h-[640px] lg:max-w-none lg:border-r lg:px-0 lg:pr-12"
+    class="container flex justify-center px-container lg:max-w-none lg:border-r lg:px-0 lg:pr-12"
   >
-    <!-- TODO: Pendulum physics -->
     <img
       src={ServicesIllustration}
       alt=""
-      class="mb-12 max-h-[400px] object-contain object-top drop-shadow-md lg:mb-0"
+      class="mb-12 max-h-[400px] object-contain object-top drop-shadow-md lg:mb-0 lg:hidden"
     />
+
+    <Newton class="hidden lg:block" />
   </div>
   <div
     class="container grid place-items-center border-b px-container lg:max-w-none lg:border-none lg:px-0"
   >
-    <div class="py-14 lg:max-w-lg lg:p-8">
+    <div class="py-14 lg:max-w-lg lg:p-12">
       <h3 class="mb-6 text-5xl">
         {data.services_title1} <br />
         <span class="text-foreground-secondary">{data.services_title2}</span>

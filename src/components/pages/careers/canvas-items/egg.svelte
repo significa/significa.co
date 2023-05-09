@@ -5,17 +5,17 @@
     import.meta.glob('../../../../assets/eggs/*.svg', { eager: true, as: 'url' })
   );
 
-  console.log(eggs);
-
   const updatePic = (i: number) => {
     if (!!document && document.getElementById('egg') !== null) {
-      document.getElementById('egg').src = eggs[i + 1];
+      document.getElementById('egg').src = eggs[i];
     }
   };
 
+  console.log(eggs.length);
+
   const picAnimation = (i: number) => {
     updatePic(i);
-    if (i < 8)
+    if (i < eggs.length - 1)
       setTimeout(() => {
         picAnimation(i + 1);
       }, 400);

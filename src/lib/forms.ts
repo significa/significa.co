@@ -1,9 +1,8 @@
-import { env } from '$env/dynamic/private';
-import { Client } from '@notionhq/client';
 import { fail, type Actions, type RequestEvent } from '@sveltejs/kit';
 import { NOTION_DBS } from './constants';
 import { t } from './i18n';
 import { sendTransactionalEmail } from './mail/sendEmail.server';
+import { notion } from './notion.server';
 
 type FormFields = {
   name: string;
@@ -59,10 +58,6 @@ const handleContactForm =
       success: true
     };
   };
-
-const notion = new Client({
-  auth: env.NOTION_TOKEN
-});
 
 export const actions: Actions = {
   quote: handleContactForm(async ({ name, email, budget, message, attachments }) => {

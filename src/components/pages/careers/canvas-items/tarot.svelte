@@ -21,26 +21,26 @@
   <div
     style="left: {item.left || 0}px; top: {item.top || 0}px; transform: rotate({item.rotate ||
       0}deg)"
-    class="flip-card-inner relative h-full w-full"
-    class:rotate={flip}
   >
-    <div class="flip-card-front">
-      {#if item.image === 'sun'}
-        <img alt="" src={sun} class="drop-shadow-sm" />
-      {:else}
-        <img alt="" src={moon} class="drop-shadow-sm" />
-      {/if}
-    </div>
-    <div class="flip-card-back">
-      <div class="relative">
-        {#if item.text && item.text.length > 0}
-          <p
-            class="absolute left-6 top-6 z-10 max-w-[154px] text-left text-xl font-semibold text-[#171717]"
-          >
-            {item.text[Math.floor(Math.random() * item.text.length)].text}
-          </p>
+    <div class="flip-card-inner relative h-full w-full" class:rotate={flip}>
+      <div class="flip-card-front">
+        {#if item.image === 'sun'}
+          <img alt="" src={sun} draggable="false" class="drop-shadow-sm" />
+        {:else}
+          <img alt="" src={moon} draggable="false" class="drop-shadow-sm" />
         {/if}
-        <img alt="" src={back} class="drop-shadow-sm" />
+      </div>
+      <div class="flip-card-back">
+        <div class="relative">
+          {#if item.text && item.text.length > 0}
+            <p
+              class="absolute left-6 top-6 z-10 max-w-[154px] text-left text-xl font-semibold text-[#171717]"
+            >
+              {item.text[Math.floor(Math.random() * item.text.length)].text}
+            </p>
+          {/if}
+          <img alt="" src={back} class="drop-shadow-sm" />
+        </div>
       </div>
     </div>
   </div>

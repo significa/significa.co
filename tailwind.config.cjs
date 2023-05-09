@@ -189,11 +189,18 @@ module.exports = {
         'strike-clip-path': {
           '0%': { 'clip-path': 'polygon(0 0, 0% 0, 0% 120%, 0 120%)' },
           '100%': { 'clip-path': 'polygon(0 0, 100% 0, 100% 120%, 0 120%)' }
+        },
+        shake: {
+          '0%': { transform: 'translateX(0px)' },
+          '25%': { transform: 'translateX(-6px)' },
+          '75%': { transform: 'translateX(6px)' },
+          '0%': { transform: 'translateX(0px)' }
         }
       },
       animation: {
         strike: 'strike 300ms ease-in-out forwards',
-        'strike-clip-path': 'strike-clip-path 300ms ease-in-out forwards'
+        'strike-clip-path': 'strike-clip-path 300ms ease-in-out forwards',
+        shake: 'shake 600ms cubic-bezier(.78,-0.02,.36,.97)'
       }
     }
   },

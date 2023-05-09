@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [[ -z "$MAILCHIMP_API_KEY" ]]; then
     echo "ERROR: 'MAILCHIMP_API_KEY' env var is required!"
     exit 1

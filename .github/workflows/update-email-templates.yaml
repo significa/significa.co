@@ -16,7 +16,10 @@ jobs:
           node-version-file: '.nvmrc'
 
       - name: Install prettier
-        run: npm install "prettier@$(< package.json jq -r '.devDependencies.prettier')"
+        run: >
+          npm install \
+            --no-package-lock --no-save --global \
+            "prettier@$(< package.json jq -r '.devDependencies.prettier')"
 
       - name: Update email templates
         env:

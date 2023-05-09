@@ -6,6 +6,7 @@
   import { circOut } from 'svelte/easing';
   import { Confetti } from 'svelte-confetti';
   import { CONFETTI_COLOR_ARRAY } from '$lib/constants';
+  import { truncateText } from '$lib/utils/strings';
 
   type Eggs =
     | 'attach-multiple'
@@ -40,6 +41,8 @@
   let success = false;
 
   let character: Eggs = 'idle';
+
+  $: truncatedText = truncateText(name, 17);
 
   let lastChangedInput: string | undefined;
 
@@ -137,14 +140,14 @@
             style="transform: rotate(-10deg)"
           >
             {@html eggs[character]}
-            {#if character === 't-shirt' && name}
+            {#if character === 't-shirt' && truncatedText}
               <div
                 class="absolute left-[235px] top-[40px] line-clamp-2 flex h-[76px] w-36 items-center justify-center text-center font-comic font-bold leading-snug"
                 style="transform: rotate(-4deg);"
               >
                 <div class="h-fit w-24">
                   I <span class="text-error">{'<3'}</span>
-                  {name}
+                  {truncatedText}
                 </div>
               </div>
             {/if}

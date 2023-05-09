@@ -72,6 +72,7 @@
   <Services {data} />
 
   <Testimonials
+    variant="two"
     firstTitle={data.testimonials_title1}
     secondTitle={data.testimonials_title2}
     testimonials={data.testimonials}
@@ -79,7 +80,7 @@
     ctaLink={data.testimonials_cta_link}
   />
 
-  <section class="tm-16 border-y lg:mt-20">
+  <section class="mt-16 border-y lg:mt-20">
     <HomeAbout {data} />
   </section>
 

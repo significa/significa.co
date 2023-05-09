@@ -11,15 +11,19 @@
   class="flex flex-col-reverse lg:container lg:mx-auto lg:grid lg:grid-cols-[50%_50%] lg:px-container"
 >
   <div
-    class="container flex h-[640px] justify-center px-container lg:max-w-none lg:border-r lg:px-0 lg:pr-12"
+    class="container flex h-[500px] justify-center px-container lg:h-[640px] lg:max-w-none lg:border-r lg:px-0 lg:pr-12"
   >
     <!-- TODO: Pendulum physics -->
-    <img src={ServicesIllustration} alt="" class="max-h-[400px] object-contain object-top" />
+    <img
+      src={ServicesIllustration}
+      alt=""
+      class="max-h-[400px] object-contain object-top drop-shadow-md"
+    />
   </div>
   <div
     class="container grid place-items-center border-b px-container lg:max-w-none lg:border-none lg:px-0"
   >
-    <div class="py-14 lg:max-w-md lg:p-8">
+    <div class="py-14 lg:max-w-lg lg:p-8">
       <h3 class="mb-6 text-5xl">
         {data.services_title1} <br />
         <span class="text-foreground-secondary">{data.services_title2}</span>

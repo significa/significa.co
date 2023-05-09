@@ -4,7 +4,7 @@
 
 <script lang="ts">
   import SplitLines from '$components/split-lines.svelte';
-  import Bird from './pages/about/stickers/bird.svelte';
+  import Bird from './illustrations/stickers/bird.svelte';
   import { getImageAttributes } from '$lib/utils/cms';
 
   import type { NotepadCardStoryblok, PhotoCardStoryblok } from '$types/bloks';

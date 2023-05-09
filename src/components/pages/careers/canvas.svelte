@@ -14,6 +14,8 @@
   import type { TeamMemberPage } from '$lib/content';
   import { dragScrolling } from '$lib/actions/drag-scrolling';
   import Plant from './canvas-items/plant.svelte';
+  import Egg from './canvas-items/egg.svelte';
+  import EggHatching from './canvas-items/egg-hatching.svelte';
 
   export let withMouseDragScroll = false;
   export let title: string | undefined = undefined;
@@ -68,7 +70,11 @@
           {:else if item.component === 'canvas-tictactoe'}
             <Tictactoe {item} />
           {:else if item.component === 'canvas-plant'}
-            <Plant />
+            <Plant {item} />
+          {:else if item.component === 'canvas-egg'}
+            <Egg {item} />
+          {:else if item.component === 'canvas-egg-hatching'}
+            <EggHatching {item} />
           {/if}
         {/each}
       </div>

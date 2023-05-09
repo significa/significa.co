@@ -460,10 +460,70 @@
       "component_group_name": "Single"
     },
     {
+      "name": "canvas-egg",
+      "display_name": null,
+      "created_at": "2023-05-09T07:51:24.871Z",
+      "updated_at": "2023-05-09T09:54:36.783Z",
+      "id": 3943360,
+      "schema": {
+        "top": {
+          "type": "number"
+        },
+        "left": {
+          "type": "number"
+        },
+        "rotate": {
+          "type": "number"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-egg",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
+      "name": "canvas-egg-hatching",
+      "display_name": null,
+      "created_at": "2023-05-09T15:20:36.052Z",
+      "updated_at": "2023-05-09T15:20:58.595Z",
+      "id": 3946110,
+      "schema": {
+        "top": {
+          "type": "number"
+        },
+        "left": {
+          "type": "number"
+        },
+        "rotate": {
+          "type": "number"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-egg-hatching",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
       "name": "canvas-group",
       "display_name": null,
       "created_at": "2023-04-19T14:57:33.541Z",
-      "updated_at": "2023-05-09T07:27:48.265Z",
+      "updated_at": "2023-05-09T15:22:02.381Z",
       "id": 3845878,
       "schema": {
         "width": {
@@ -504,9 +564,11 @@
             "timeline-text",
             "canvas-tictactoe",
             "canvas-tarot",
-            "canvas-plant"
+            "canvas-plant",
+            "canvas-egg",
+            "canvas-egg-hatching"
           ],
-          "pos": 6,
+          "pos": 4,
           "component_group_whitelist": []
         }
       },
@@ -599,12 +661,21 @@
       "name": "canvas-plant",
       "display_name": null,
       "created_at": "2023-05-09T07:22:26.974Z",
-      "updated_at": "2023-05-09T07:24:11.857Z",
+      "updated_at": "2023-05-09T14:10:59.819Z",
       "id": 3943234,
       "schema": {
         "plant": {
           "type": "option",
           "use_uuid": true
+        },
+        "top": {
+          "type": "number"
+        },
+        "left": {
+          "type": "number"
+        },
+        "rotate": {
+          "type": "number"
         }
       },
       "image": null,
@@ -681,7 +752,7 @@
       "name": "canvas-tarot",
       "display_name": null,
       "created_at": "2023-05-08T08:28:31.521Z",
-      "updated_at": "2023-05-08T08:32:30.733Z",
+      "updated_at": "2023-05-09T14:06:47.049Z",
       "id": 3938071,
       "schema": {
         "image": {
@@ -706,6 +777,15 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["canvas-tarot-text"]
+        },
+        "top": {
+          "type": "number"
+        },
+        "left": {
+          "type": "number"
+        },
+        "rotate": {
+          "type": "number"
         }
       },
       "image": null,
@@ -1570,7 +1650,7 @@
       "name": "home-page",
       "display_name": null,
       "created_at": "2023-03-03T14:59:15.465Z",
-      "updated_at": "2023-04-28T12:12:19.265Z",
+      "updated_at": "2023-05-09T13:10:06.202Z",
       "id": 3521503,
       "schema": {
         "small_highlights": {
@@ -1605,24 +1685,44 @@
           "filter_content_type": ["project"],
           "key": "projects"
         },
+        "services_title1": {
+          "type": "text",
+          "pos": 5
+        },
+        "services_title2": {
+          "type": "text",
+          "pos": 6
+        },
+        "services_description": {
+          "type": "textarea",
+          "pos": 7
+        },
+        "services_cta_label": {
+          "type": "text",
+          "pos": 8
+        },
+        "services_cta_link": {
+          "type": "multilink",
+          "pos": 9
+        },
         "about_title1": {
           "type": "text",
           "key": "about_title1",
-          "pos": 5
+          "pos": 10
         },
         "about_title2": {
           "type": "text",
           "key": "about_title2",
-          "pos": 6
+          "pos": 11
         },
         "about_description": {
           "type": "textarea",
           "key": "about_description",
-          "pos": 7
+          "pos": 12
         },
         "about_physics_cards": {
           "type": "bloks",
-          "pos": 8,
+          "pos": 13,
           "required": false,
           "restrict_type": "",
           "restrict_components": true,
@@ -1640,11 +1740,11 @@
           "restrict_components": true,
           "component_whitelist": ["link"],
           "key": "about_link",
-          "pos": 9
+          "pos": 14
         },
         "about_links": {
           "type": "bloks",
-          "pos": 10,
+          "pos": 15,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["home-about-link"],
@@ -1655,21 +1755,21 @@
         "testimonials_title1": {
           "type": "text",
           "key": "testimonials_title1",
-          "pos": 11
+          "pos": 16
         },
         "testimonials_title2": {
           "type": "text",
           "key": "testimonials_title2",
-          "pos": 12
+          "pos": 17
         },
         "testimonials_cta_label": {
           "type": "text",
-          "pos": 13,
+          "pos": 18,
           "key": "testimonials_cta_label"
         },
         "testimonials_cta_link": {
           "type": "multilink",
-          "pos": 14,
+          "pos": 19,
           "key": "testimonials_cta"
         },
         "testimonials": {
@@ -1680,35 +1780,43 @@
           "maximum": 5,
           "minimum": 5,
           "key": "testimonials",
-          "pos": 15
+          "pos": 20
         },
         "blog_title1": {
           "type": "text",
-          "pos": 16,
+          "pos": 21,
           "key": "blog_title1"
         },
         "blog_title2": {
           "type": "text",
-          "pos": 17,
+          "pos": 22,
           "key": "blog_title2"
         },
         "handbook_title": {
           "type": "text",
-          "pos": 18,
+          "pos": 23,
           "key": "handbook_title"
         },
         "handbook_description": {
           "type": "textarea",
-          "pos": 19,
+          "pos": 24,
           "key": "handbook_description"
+        },
+        "handbook_cta_text": {
+          "type": "text",
+          "pos": 25
+        },
+        "handbook_cta_link": {
+          "type": "multilink",
+          "pos": 26
         },
         "careers_title": {
           "type": "text",
-          "pos": 20
+          "pos": 27
         },
         "careers_button_label": {
           "type": "text",
-          "pos": 21,
+          "pos": 28,
           "key": "careers_button_label"
         }
       },

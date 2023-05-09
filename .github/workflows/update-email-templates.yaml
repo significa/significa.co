@@ -8,8 +8,22 @@ jobs:
   update-templates:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: read
+      packages: read
+
     steps:
       - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+          scope: '@significa'
+          registry-url: 'https://npm.pkg.github.com/'
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Update email templates
         env:
@@ -20,7 +34,11 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           branch: ci/update-email-templates
-          title: 'CI: auto updated email templates'
-          body: Updated email templates from Mailchimp.
           commit-message: 'ci: updated email templates'
           delete-branch: true
+          title: 'CI: auto updated email templates'
+          body: |
+            Updated email templates from Mailchimp.
+
+            Before merging, please make sure that the plaintext versions of the emails
+            still make sense.

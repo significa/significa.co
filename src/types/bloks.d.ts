@@ -170,6 +170,12 @@ export interface CanvasChecklistItemStoryblok {
   [k: string]: any;
 }
 
+export interface CanvasEggStoryblok {
+  _uid: string;
+  component: 'canvas-egg';
+  [k: string]: any;
+}
+
 export interface CanvasGroupStoryblok {
   width?: number;
   height?: number;
@@ -185,6 +191,8 @@ export interface CanvasGroupStoryblok {
     | TimelineTextStoryblok
     | CanvasTictactoeStoryblok
     | CanvasTarotStoryblok
+    | CanvasPlantStoryblok
+    | CanvasEggStoryblok
   )[];
   _uid: string;
   component: 'canvas-group';
@@ -202,6 +210,13 @@ export interface CanvasMediaStoryblok {
   rotate?: number;
   _uid: string;
   component: 'canvas-media';
+  [k: string]: any;
+}
+
+export interface CanvasPlantStoryblok {
+  plant?: any;
+  _uid: string;
+  component: 'canvas-plant';
   [k: string]: any;
 }
 
@@ -456,6 +471,8 @@ export interface HomePageStoryblok {
   blog_title2?: string;
   handbook_title?: string;
   handbook_description?: string;
+  handbook_cta_text?: string;
+  handbook_cta_link?: MultilinkStoryblok;
   careers_title?: string;
   careers_button_label?: string;
   _uid: string;
@@ -699,6 +716,9 @@ export interface ServiceTimelineCellStoryblok {
   before_dark?: AssetStoryblok;
   after_light?: AssetStoryblok;
   after_dark?: AssetStoryblok;
+  decoration?: any;
+  decoration_light?: AssetStoryblok;
+  decoration_dark?: AssetStoryblok;
   left_offset?: number;
   throw_confetti?: boolean;
   _uid: string;

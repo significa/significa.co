@@ -460,10 +460,30 @@
       "component_group_name": "Single"
     },
     {
+      "name": "canvas-egg",
+      "display_name": null,
+      "created_at": "2023-05-09T07:51:24.871Z",
+      "updated_at": "2023-05-09T07:51:24.871Z",
+      "id": 3943360,
+      "schema": {},
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-egg",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
       "name": "canvas-group",
       "display_name": null,
       "created_at": "2023-04-19T14:57:33.541Z",
-      "updated_at": "2023-05-08T08:34:47.999Z",
+      "updated_at": "2023-05-09T07:52:30.038Z",
       "id": 3845878,
       "schema": {
         "width": {
@@ -503,7 +523,9 @@
             "timeline-arrow",
             "timeline-text",
             "canvas-tictactoe",
-            "canvas-tarot"
+            "canvas-tarot",
+            "canvas-plant",
+            "canvas-egg"
           ],
           "pos": 6,
           "component_group_whitelist": []
@@ -589,6 +611,31 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "canvas-media",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
+      "name": "canvas-plant",
+      "display_name": null,
+      "created_at": "2023-05-09T07:22:26.974Z",
+      "updated_at": "2023-05-09T07:24:11.857Z",
+      "id": 3943234,
+      "schema": {
+        "plant": {
+          "type": "option",
+          "use_uuid": true
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-plant",
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
@@ -1544,7 +1591,7 @@
       "name": "home-page",
       "display_name": null,
       "created_at": "2023-03-03T14:59:15.465Z",
-      "updated_at": "2023-04-28T12:12:19.265Z",
+      "updated_at": "2023-05-09T09:23:07.878Z",
       "id": 3521503,
       "schema": {
         "small_highlights": {
@@ -1676,13 +1723,21 @@
           "pos": 19,
           "key": "handbook_description"
         },
-        "careers_title": {
+        "handbook_cta_text": {
           "type": "text",
           "pos": 20
         },
+        "handbook_cta_link": {
+          "type": "multilink",
+          "pos": 21
+        },
+        "careers_title": {
+          "type": "text",
+          "pos": 22
+        },
         "careers_button_label": {
           "type": "text",
-          "pos": 21,
+          "pos": 23,
           "key": "careers_button_label"
         }
       },
@@ -2714,7 +2769,7 @@
       "name": "service-timeline-cell",
       "display_name": null,
       "created_at": "2023-05-04T12:45:26.410Z",
-      "updated_at": "2023-05-04T13:55:48.115Z",
+      "updated_at": "2023-05-08T16:01:26.703Z",
       "id": 3925566,
       "schema": {
         "label": {
@@ -2745,14 +2800,35 @@
           "pos": 4,
           "asset_folder_id": 235888
         },
+        "decoration": {
+          "type": "section",
+          "pos": 5,
+          "keys": ["decoration_light", "decoration_dark"]
+        },
+        "decoration_light": {
+          "type": "asset",
+          "pos": 6,
+          "description": "Optional image to be above the cell with custom asset",
+          "filetypes": ["images"],
+          "asset_folder_id": 235888
+        },
+        "decoration_dark": {
+          "type": "asset",
+          "pos": 7,
+          "description": "Optional image to be above the cell with custom asset",
+          "filetypes": ["images"],
+          "asset_folder_id": 235888
+        },
         "left_offset": {
           "type": "number",
           "default_value": "",
           "min_value": 0,
-          "description": "px"
+          "description": "px",
+          "pos": 8
         },
         "throw_confetti": {
-          "type": "boolean"
+          "type": "boolean",
+          "pos": 9
         }
       },
       "image": null,

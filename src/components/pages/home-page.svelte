@@ -18,6 +18,7 @@
   import { browser } from '$app/environment';
   import { theme } from '$lib/stores/theme';
   import Testimonials from '$components/testimonials.svelte';
+  import { getAnchorFromCmsLink } from '$lib/utils/cms';
 
   export let data: HomePageStoryblok;
   export let posts: BlogPostPage[] | undefined;
@@ -124,9 +125,12 @@
             <h3 class="text-4xl">{data.handbook_title}</h3>
             <p class="mt-4 text-xl text-foreground-secondary">{data.handbook_description}</p>
           </div>
-          <Button variant="secondary" as="a" href="/handbook" class="mt-10" icon="handbook" arrow
-            >{t('handbook')}</Button
-          >
+          {#if data.handbook_cta_text && data.handbook_cta_link}
+            {@const { href } = getAnchorFromCmsLink(data.handbook_cta_link)}
+            <Button variant="secondary" as="a" {href} class="mt-10" icon="handbook" arrow>
+              {data.handbook_cta_text}
+            </Button>
+          {/if}
         </aside>
       </div>
     </section>

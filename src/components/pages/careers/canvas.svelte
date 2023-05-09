@@ -15,7 +15,7 @@
   import { dragScrolling } from '$lib/actions/drag-scrolling';
   import Plant from './canvas-items/plant.svelte';
   import Egg from './canvas-items/egg.svelte';
-  import EggHatching from './canvas-items/eggHatching.svelte';
+  import EggHatching from './canvas-items/egg-hatching.svelte';
 
   export let withMouseDragScroll = false;
   export let title: string | undefined = undefined;

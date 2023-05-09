@@ -1,8 +1,8 @@
 import { fail, type Actions, type RequestEvent } from '@sveltejs/kit';
-import { NOTION_DBS } from './constants';
 import { t } from './i18n';
 import { sendTransactionalEmail } from './mail/sendEmail.server';
 import { notion } from './notion.server';
+import { env } from '$env/dynamic/private';
 
 type FormFields = {
   name: string;
@@ -62,7 +62,7 @@ const handleContactForm =
 export const actions: Actions = {
   quote: handleContactForm(async ({ name, email, budget, message, attachments }) => {
     await notion.pages.create({
-      parent: { database_id: NOTION_DBS.leads },
+      parent: { database_id: env.NOTION_DB_LEADS },
       properties: {
         Name: { title: [{ text: { content: name } }] },
         Email: { email: email },
@@ -83,7 +83,7 @@ export const actions: Actions = {
   }),
   career: handleContactForm(async ({ name, email, position, message, attachments }) => {
     await notion.pages.create({
-      parent: { database_id: NOTION_DBS.candidates },
+      parent: { database_id: env.NOTION_DB_CANDIDATES },
       properties: {
         Name: { title: [{ text: { content: name } }] },
         Email: { email: email },
@@ -103,7 +103,7 @@ export const actions: Actions = {
   }),
   contact: handleContactForm(async ({ name, email, message }) => {
     await notion.pages.create({
-      parent: { database_id: NOTION_DBS.contacts },
+      parent: { database_id: env.NOTION_DB_CONTACTS },
       properties: {
         Name: { title: [{ text: { content: name } }] },
         Email: { email: email },

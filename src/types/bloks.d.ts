@@ -171,6 +171,9 @@ export interface CanvasChecklistItemStoryblok {
 }
 
 export interface CanvasEggStoryblok {
+  top?: number;
+  left?: number;
+  rotate?: number;
   _uid: string;
   component: 'canvas-egg';
   [k: string]: any;
@@ -452,6 +455,11 @@ export interface HomePageStoryblok {
   showreel_button_label?: string;
   work_title?: string;
   projects?: (StoryblokStory<ProjectStoryblok> | string)[];
+  services_title1?: string;
+  services_title2?: string;
+  services_description?: string;
+  services_cta_label?: string;
+  services_cta_link?: MultilinkStoryblok;
   about_title1?: string;
   about_title2?: string;
   about_description?: string;

@@ -19,6 +19,7 @@
   import { theme } from '$lib/stores/theme';
   import Testimonials from '$components/testimonials.svelte';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
+  import Services from './home/services.svelte';
 
   export let data: HomePageStoryblok;
   export let posts: BlogPostPage[] | undefined;
@@ -68,9 +69,7 @@
     </div>
   </section>
 
-  <section class="border-b">
-    <HomeAbout {data} />
-  </section>
+  <Services {data} />
 
   <Testimonials
     firstTitle={data.testimonials_title1}
@@ -79,7 +78,10 @@
     ctaLabel={data.testimonials_cta_label}
     ctaLink={data.testimonials_cta_link}
   />
-  <div class="pt-16 lg:pt-20" />
+
+  <section class="tm-16 border-y lg:mt-20">
+    <HomeAbout {data} />
+  </section>
 
   <section class="mt-10 md:mt-14 lg:mt-20">
     <div class="container mx-auto px-container">

@@ -20,8 +20,8 @@
   "filters": "Filters",
   "clear-all": "Clear all",
   "view-project": "View project",
-  "member.projects.title": "Projects",
-  "member.projects.subtitle": "Collaborated on",
+  "member.projects.title": "Projects.",
+  "member.projects.subtitle": "Collaborated on.",
   "member.posts.title": "Blog",
   "member.posts.subtitle": "From this author",
   "member.about": "About {{name}}",
@@ -76,5 +76,9 @@
   "tictactoe.your-turn": "Your turn",
   "tictactoe.wait": "Wait for your turn",
   "handbook.draft.title": "This is a draft",
-  "handbook.draft.description": "We're working on this page and it's due to be updated soon. Please check again later for some fresh new content."
+  "handbook.draft.description": "We're working on this page and it's due to be updated soon. Please check again later for some fresh new content.",
+  "draw-segg.title": "Your very own segg?",
+  "draw-segg.description": "Head over to our careers page, release your inner Basquiat and start your own Significa egg from scratch.",
+  "draw-segg.cta": "I want my segg",
+  "draw-segg.clipboard.feedback": "Copied link to clipboard!"
 }

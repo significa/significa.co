@@ -11,6 +11,7 @@
   import { bodyLock } from '@significa/svelte-ui/actions';
   import type { CareersPageStoryblok } from '$types/bloks';
   import type { TeamMemberPage } from '$lib/content';
+  import DrawYourSegg from '$components/draw-your-segg/draw-your-segg.svelte';
 
   export let data: CareersPageStoryblok;
   export let teamMembers: TeamMemberPage[] | undefined;
@@ -51,16 +52,22 @@
   <!-- What define us -->
   <section class="border-t">
     <div
-      class="container mx-auto flex flex-col justify-between gap-6 px-container py-8 lg:py-12 xl:flex-row xl:gap-4"
+      class="container mx-auto flex flex-col justify-between gap-6 px-container py-8 lg:flex-row lg:gap-4 lg:py-12"
     >
-      <div class="xl:max-w-xl">
+      <div class="lg:max-w-xl">
         <h3 class="text-5xl text-foreground-secondary">{data.careers_title1}</h3>
         <p class="text-5xl">{data.careers_title2}</p>
       </div>
 
-      <p class="whitespace-pre-line text-2xl text-foreground-secondary xl:max-w-xl">
+      <p class="whitespace-pre-line text-2xl text-foreground-secondary lg:max-w-xl">
         {data.careers_description}
       </p>
+    </div>
+
+    <div
+      class="container mx-auto flex items-center justify-center px-container pt-4 md:mt-6 lg:mt-10"
+    >
+      <DrawYourSegg />
     </div>
   </section>
 

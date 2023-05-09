@@ -37,9 +37,9 @@ jobs:
           branch: ci/update-email-templates
           commit-message: 'ci: updated email templates'
           delete-branch: true
+          committer: 41898282+github-actions[bot]@users.noreply.github.com
           title: 'CI: auto updated email templates'
           body: |
             Updated email templates from Mailchimp.
 
-            Before merging, please make sure that the plaintext versions of the emails
-            still make sense.
+            Before merging, please make sure that the plaintext versions of the emails still make sense.

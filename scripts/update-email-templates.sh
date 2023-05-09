@@ -12,8 +12,6 @@ REGION=$(echo "$MAILCHIMP_API_KEY" | tail -c 5)
 function get_email_template {
     local template_id=$1
 
-    echo "Retrieving email template #$template_id"
-
     curl --silent --request POST \
     --url "https://${REGION}.api.mailchimp.com/2.0/templates/info" \
     --data "{
@@ -26,11 +24,11 @@ function update_email_template {
     local template_id=$1
     local template_path=$2
     
+    echo "Updating $template_path with email template #$template_id"
     get_email_template "$template_id" > "$template_path"
-    echo "Updated $template_path with email template #$template_id"
 
+    echo "Formatting $template_path"
     npx prettier --write "$template_path"
-    echo "Formatted $template_path"
 }
 
 update_email_template 10026505 ./src/lib/mail/template.html

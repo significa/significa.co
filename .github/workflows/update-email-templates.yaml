@@ -37,7 +37,8 @@ jobs:
           branch: ci/update-email-templates
           commit-message: 'ci: updated email templates'
           delete-branch: true
-          committer: 41898282+github-actions[bot]@users.noreply.github.com
+          committer: GitHub Actions Bot <41898282+github-actions[bot]@users.noreply.github.com>
+          author: GitHub Actions Bot <41898282+github-actions[bot]@users.noreply.github.com>
           title: 'CI: auto updated email templates'
           body: |
             Updated email templates from Mailchimp.

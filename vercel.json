@@ -1,6 +1,6 @@
 {
   "redirects": [
-    { "source": "/showcase/:path*", "destination": "/projects/:path*", "permanent": true },
+    { "source": "/showcase/:path", "destination": "/projects/:path", "permanent": true },
     {
       "source": "/handbook/methodology",
       "destination": "/handbook/project-management/project-process",

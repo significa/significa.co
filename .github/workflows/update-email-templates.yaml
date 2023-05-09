@@ -3,6 +3,8 @@ name: Update email templates
 on:
   workflow_dispatch:
   repository_dispatch:
+  schedule:
+    - cron: '0 11 * * 2' # Every tuesday at 11am UTC
 
 jobs:
   update-templates:
@@ -37,8 +39,6 @@ jobs:
           branch: ci/update-email-templates
           commit-message: 'ci: updated email templates'
           delete-branch: true
-          committer: GitHub Actions Bot <41898282+github-actions[bot]@users.noreply.github.com>
-          author: GitHub Actions Bot <41898282+github-actions[bot]@users.noreply.github.com>
           title: 'CI: auto updated email templates'
           body: |
             Updated email templates from Mailchimp.

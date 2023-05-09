@@ -460,10 +460,30 @@
       "component_group_name": "Single"
     },
     {
+      "name": "canvas-egg",
+      "display_name": null,
+      "created_at": "2023-05-09T07:51:24.871Z",
+      "updated_at": "2023-05-09T07:51:24.871Z",
+      "id": 3943360,
+      "schema": {},
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-egg",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
       "name": "canvas-group",
       "display_name": null,
       "created_at": "2023-04-19T14:57:33.541Z",
-      "updated_at": "2023-05-09T07:27:48.265Z",
+      "updated_at": "2023-05-09T07:52:30.038Z",
       "id": 3845878,
       "schema": {
         "width": {
@@ -504,7 +524,8 @@
             "timeline-text",
             "canvas-tictactoe",
             "canvas-tarot",
-            "canvas-plant"
+            "canvas-plant",
+            "canvas-egg"
           ],
           "pos": 6,
           "component_group_whitelist": []

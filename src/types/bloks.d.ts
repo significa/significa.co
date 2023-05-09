@@ -170,6 +170,12 @@ export interface CanvasChecklistItemStoryblok {
   [k: string]: any;
 }
 
+export interface CanvasEggStoryblok {
+  _uid: string;
+  component: 'canvas-egg';
+  [k: string]: any;
+}
+
 export interface CanvasGroupStoryblok {
   width?: number;
   height?: number;
@@ -186,6 +192,7 @@ export interface CanvasGroupStoryblok {
     | CanvasTictactoeStoryblok
     | CanvasTarotStoryblok
     | CanvasPlantStoryblok
+    | CanvasEggStoryblok
   )[];
   _uid: string;
   component: 'canvas-group';

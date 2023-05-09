@@ -1,20 +1,19 @@
 <script lang="ts">
-  import plant1 from '$assets/state=01.svg';
-  import plant2 from '$assets/state=02.svg';
-  import plant3 from '$assets/state=03.svg';
-  import plant4 from '$assets/state=04.svg';
+  import plant1 from '$assets/plants/state=01.svg';
+
+  const plants = Object.values(
+    import.meta.glob('../../../../assets/plants/*.svg', { eager: true, as: 'url' })
+  );
 
   const updatePic = (i: number) => {
     if (!!document && document.getElementById('plant') !== null) {
-      if (i === 2) document.getElementById('plant').src = plant2;
-      if (i === 3) document.getElementById('plant').src = plant3;
-      if (i === 4) document.getElementById('plant').src = plant4;
+      document.getElementById('plant').src = plants[i];
     }
   };
 
   const picAnimation = (i: number) => {
     updatePic(i);
-    if (i < 4)
+    if (i < plants.length - 1)
       setTimeout(() => {
         picAnimation(i + 1);
       }, 600);

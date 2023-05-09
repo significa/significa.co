@@ -32,7 +32,7 @@
           <p
             class="absolute left-6 top-6 z-10 max-w-[154px] text-left text-xl font-semibold text-[#171717]"
           >
-            {item.text[Math.floor(Math.random() * item.text.length)]}
+            {item.text[Math.floor(Math.random() * item.text.length)].text}
           </p>
         {/if}
         <img alt="" src={back} class="drop-shadow-sm" />

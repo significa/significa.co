@@ -15,6 +15,7 @@
   import { dragScrolling } from '$lib/actions/drag-scrolling';
   import Plant from './canvas-items/plant.svelte';
   import Egg from './canvas-items/egg.svelte';
+  import EggHatching from './canvas-items/eggHatching.svelte';
 
   export let withMouseDragScroll = false;
   export let title: string | undefined = undefined;
@@ -72,6 +73,8 @@
             <Plant {item} />
           {:else if item.component === 'canvas-egg'}
             <Egg {item} />
+          {:else if item.component === 'canvas-egg-hatching'}
+            <EggHatching {item} />
           {/if}
         {/each}
       </div>

@@ -3,9 +3,9 @@
 
   export let images: string[];
   export let alt = 'canvas element';
-  export let top: number;
-  export let left: number;
-  export let rotate: number;
+  export let top: number | undefined;
+  export let left: number | undefined;
+  export let rotate: number | undefined;
 
   let active = 0;
 

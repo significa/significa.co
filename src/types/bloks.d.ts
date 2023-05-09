@@ -171,8 +171,20 @@ export interface CanvasChecklistItemStoryblok {
 }
 
 export interface CanvasEggStoryblok {
+  top?: number;
+  left?: number;
+  rotate?: number;
   _uid: string;
   component: 'canvas-egg';
+  [k: string]: any;
+}
+
+export interface CanvasEggHatchingStoryblok {
+  top?: number;
+  left?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'canvas-egg-hatching';
   [k: string]: any;
 }
 
@@ -193,6 +205,7 @@ export interface CanvasGroupStoryblok {
     | CanvasTarotStoryblok
     | CanvasPlantStoryblok
     | CanvasEggStoryblok
+    | CanvasEggHatchingStoryblok
   )[];
   _uid: string;
   component: 'canvas-group';
@@ -215,6 +228,9 @@ export interface CanvasMediaStoryblok {
 
 export interface CanvasPlantStoryblok {
   plant?: any;
+  top?: number;
+  left?: number;
+  rotate?: number;
   _uid: string;
   component: 'canvas-plant';
   [k: string]: any;
@@ -234,6 +250,9 @@ export interface CanvasTalkBalloonStoryblok {
 export interface CanvasTarotStoryblok {
   image?: 'sun' | 'moon';
   text?: CanvasTarotTextStoryblok[];
+  top?: number;
+  left?: number;
+  rotate?: number;
   _uid: string;
   component: 'canvas-tarot';
   [k: string]: any;
@@ -452,6 +471,11 @@ export interface HomePageStoryblok {
   showreel_button_label?: string;
   work_title?: string;
   projects?: (StoryblokStory<ProjectStoryblok> | string)[];
+  services_title1?: string;
+  services_title2?: string;
+  services_description?: string;
+  services_cta_label?: string;
+  services_cta_link?: MultilinkStoryblok;
   about_title1?: string;
   about_title2?: string;
   about_description?: string;
@@ -471,6 +495,8 @@ export interface HomePageStoryblok {
   blog_title2?: string;
   handbook_title?: string;
   handbook_description?: string;
+  handbook_cta_text?: string;
+  handbook_cta_link?: MultilinkStoryblok;
   careers_title?: string;
   careers_button_label?: string;
   _uid: string;

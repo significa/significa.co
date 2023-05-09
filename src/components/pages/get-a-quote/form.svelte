@@ -6,6 +6,7 @@
   import { circOut } from 'svelte/easing';
   import { Confetti } from 'svelte-confetti';
   import { CONFETTI_COLOR_ARRAY } from '$lib/constants';
+  import { truncateText } from '$lib/utils/strings';
 
   type Eggs =
     | 'attach-multiple'
@@ -41,25 +42,37 @@
 
   let character: Eggs = 'idle';
 
+  $: truncatedText = truncateText(name, 17);
+
+  let lastChangedInput: string | undefined;
+
+  const onInput = (value: CustomEvent<string>) => {
+    lastChangedInput = value.detail;
+  };
+
   $: if (error) {
     character = 'error';
   } else if (success) {
     character = 'success';
-  } else if (attachments.split(',').length > 1) {
-    character = 'attach-multiple';
-  } else if (attachments) {
-    character = 'attach';
-  } else if (message && message.length > 3) {
+  } else if (lastChangedInput === 'attachments') {
+    if (attachments.split(',').length > 1) {
+      character = 'attach-multiple';
+    } else {
+      character = 'attach';
+    }
+  } else if (lastChangedInput === 'message' && message && message.length > 3) {
     character = 'idle';
-  } else if (['10k - 25k'].includes(budget)) {
-    character = 'budget10';
-  } else if (['25k - 50k'].includes(budget)) {
-    character = 'budget25';
-  } else if (['50k - 100k'].includes(budget)) {
-    character = 'budget50';
-  } else if (['100k+'].includes(budget)) {
-    character = 'budget100';
-  } else if (name && name.length > 3) {
+  } else if (lastChangedInput === 'budget') {
+    if (['10k - 25k'].includes(budget)) {
+      character = 'budget10';
+    } else if (['25k - 50k'].includes(budget)) {
+      character = 'budget25';
+    } else if (['50k - 100k'].includes(budget)) {
+      character = 'budget50';
+    } else if (['100k+'].includes(budget)) {
+      character = 'budget100';
+    }
+  } else if (lastChangedInput === 'name' && name && name.length > 2) {
     character = 't-shirt';
   } else {
     character = 'hello';
@@ -116,6 +129,7 @@
           }}
           on:success={() => (success = true)}
           on:error={() => (error = true)}
+          on:input={onInput}
         />
         {#if visible || dirty}
           <div
@@ -126,13 +140,15 @@
             style="transform: rotate(-10deg)"
           >
             {@html eggs[character]}
-            {#if character === 't-shirt' && name}
+            {#if character === 't-shirt' && truncatedText}
               <div
-                class="absolute left-56 top-[68px] line-clamp-2 w-24 text-center font-comic font-bold leading-snug"
-                style="transform: rotate(-4deg)"
+                class="absolute left-[235px] top-[40px] line-clamp-2 flex h-[76px] w-36 items-center justify-center text-center font-comic font-bold leading-snug"
+                style="transform: rotate(-4deg);"
               >
-                I <span class="text-error">{'<3'}</span>
-                {name}
+                <div class="h-fit w-24">
+                  I <span class="text-error">{'<3'}</span>
+                  {truncatedText}
+                </div>
               </div>
             {/if}
           </div>

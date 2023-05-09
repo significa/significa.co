@@ -63,6 +63,7 @@
     blur: string;
     success: undefined;
     error: string;
+    input: string;
   }>();
 
   const budgetOptions = ['10k - 25k', '25k - 50k', '50k - 100k', '100k+'];
@@ -160,6 +161,7 @@
         bind:value={name}
         on:focus={() => dispatch('focus', 'name')}
         on:blur={() => dispatch('blur', 'name')}
+        on:input={() => dispatch('input', 'name')}
       />
       <FloatingInput
         required
@@ -171,23 +173,10 @@
         bind:value={email}
         on:focus={() => dispatch('focus', 'email')}
         on:blur={() => dispatch('blur', 'email')}
+        on:input={() => dispatch('input', 'email')}
       />
     </div>
-    {#if type === 'quote'}
-      <FloatingSelect
-        name="budget"
-        class="w-full"
-        label={t('contact.label.budget')}
-        bind:value={budget}
-        on:focus={() => dispatch('focus', 'budget')}
-        on:blur={() => dispatch('blur', 'budget')}
-      >
-        <option value="">Select budget</option>
-        {#each budgetOptions as option}
-          <option value={option}>{option}</option>
-        {/each}
-      </FloatingSelect>
-    {:else if type === 'career'}
+    {#if type === 'career'}
       <FloatingSelect
         name="position"
         class="w-full"
@@ -211,12 +200,30 @@
       bind:value={message}
       on:focus={() => dispatch('focus', 'message')}
       on:blur={() => dispatch('blur', 'message')}
+      on:input={() => dispatch('input', 'message')}
     />
+    {#if type === 'quote'}
+      <FloatingSelect
+        name="budget"
+        class="w-full"
+        label={t('contact.label.budget')}
+        bind:value={budget}
+        on:focus={() => dispatch('focus', 'budget')}
+        on:blur={() => dispatch('blur', 'budget')}
+        on:change={() => dispatch('input', 'budget')}
+      >
+        <option value="">Select budget</option>
+        {#each budgetOptions as option}
+          <option value={option}>{option}</option>
+        {/each}
+      </FloatingSelect>
+    {/if}
     {#if type !== 'contact'}
       <FileUpload
         bind:files
         on:focus={() => dispatch('focus', 'attachments')}
         on:blur={() => dispatch('blur', 'attachments')}
+        on:change={() => dispatch('input', 'attachments')}
         placeholder={type === 'quote'
           ? t('contact.label.attachment.quote')
           : t('contact.label.attachment.position')}

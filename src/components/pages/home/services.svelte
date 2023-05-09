@@ -11,13 +11,13 @@
   class="flex flex-col-reverse lg:container lg:mx-auto lg:grid lg:grid-cols-[50%_50%] lg:px-container"
 >
   <div
-    class="container flex h-[500px] justify-center px-container lg:h-[640px] lg:max-w-none lg:border-r lg:px-0 lg:pr-12"
+    class="container flex justify-center px-container lg:h-[640px] lg:max-w-none lg:border-r lg:px-0 lg:pr-12"
   >
     <!-- TODO: Pendulum physics -->
     <img
       src={ServicesIllustration}
       alt=""
-      class="max-h-[400px] object-contain object-top drop-shadow-md"
+      class="mb-12 max-h-[400px] object-contain object-top drop-shadow-md lg:mb-0"
     />
   </div>
   <div

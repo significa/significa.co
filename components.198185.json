@@ -490,10 +490,40 @@
       "component_group_name": "Canvas"
     },
     {
+      "name": "canvas-egg-hatching",
+      "display_name": null,
+      "created_at": "2023-05-09T15:20:36.052Z",
+      "updated_at": "2023-05-09T15:20:58.595Z",
+      "id": 3946110,
+      "schema": {
+        "top": {
+          "type": "number"
+        },
+        "left": {
+          "type": "number"
+        },
+        "rotate": {
+          "type": "number"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas-egg-hatching",
+      "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Canvas"
+    },
+    {
       "name": "canvas-group",
       "display_name": null,
       "created_at": "2023-04-19T14:57:33.541Z",
-      "updated_at": "2023-05-09T07:52:30.038Z",
+      "updated_at": "2023-05-09T15:22:02.381Z",
       "id": 3845878,
       "schema": {
         "width": {
@@ -535,9 +565,10 @@
             "canvas-tictactoe",
             "canvas-tarot",
             "canvas-plant",
-            "canvas-egg"
+            "canvas-egg",
+            "canvas-egg-hatching"
           ],
-          "pos": 6,
+          "pos": 4,
           "component_group_whitelist": []
         }
       },
@@ -630,12 +661,21 @@
       "name": "canvas-plant",
       "display_name": null,
       "created_at": "2023-05-09T07:22:26.974Z",
-      "updated_at": "2023-05-09T07:24:11.857Z",
+      "updated_at": "2023-05-09T14:10:59.819Z",
       "id": 3943234,
       "schema": {
         "plant": {
           "type": "option",
           "use_uuid": true
+        },
+        "top": {
+          "type": "number"
+        },
+        "left": {
+          "type": "number"
+        },
+        "rotate": {
+          "type": "number"
         }
       },
       "image": null,
@@ -712,7 +752,7 @@
       "name": "canvas-tarot",
       "display_name": null,
       "created_at": "2023-05-08T08:28:31.521Z",
-      "updated_at": "2023-05-08T08:32:30.733Z",
+      "updated_at": "2023-05-09T14:06:47.049Z",
       "id": 3938071,
       "schema": {
         "image": {
@@ -737,6 +777,15 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["canvas-tarot-text"]
+        },
+        "top": {
+          "type": "number"
+        },
+        "left": {
+          "type": "number"
+        },
+        "rotate": {
+          "type": "number"
         }
       },
       "image": null,
@@ -1601,7 +1650,7 @@
       "name": "home-page",
       "display_name": null,
       "created_at": "2023-03-03T14:59:15.465Z",
-      "updated_at": "2023-05-09T13:10:06.202Z",
+      "updated_at": "2023-05-09T15:35:03.078Z",
       "id": 3521503,
       "schema": {
         "small_highlights": {
@@ -1680,7 +1729,8 @@
           "component_whitelist": [
             "physics-balloon-card",
             "physics-input",
-            "physics-rectangle-card"
+            "physics-rectangle-card",
+            "physics-sticker"
           ],
           "key": "about_physics_cards"
         },

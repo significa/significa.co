@@ -179,6 +179,15 @@ export interface CanvasEggStoryblok {
   [k: string]: any;
 }
 
+export interface CanvasEggHatchingStoryblok {
+  top?: number;
+  left?: number;
+  rotate?: number;
+  _uid: string;
+  component: 'canvas-egg-hatching';
+  [k: string]: any;
+}
+
 export interface CanvasGroupStoryblok {
   width?: number;
   height?: number;
@@ -196,6 +205,7 @@ export interface CanvasGroupStoryblok {
     | CanvasTarotStoryblok
     | CanvasPlantStoryblok
     | CanvasEggStoryblok
+    | CanvasEggHatchingStoryblok
   )[];
   _uid: string;
   component: 'canvas-group';
@@ -218,6 +228,9 @@ export interface CanvasMediaStoryblok {
 
 export interface CanvasPlantStoryblok {
   plant?: any;
+  top?: number;
+  left?: number;
+  rotate?: number;
   _uid: string;
   component: 'canvas-plant';
   [k: string]: any;
@@ -237,6 +250,9 @@ export interface CanvasTalkBalloonStoryblok {
 export interface CanvasTarotStoryblok {
   image?: 'sun' | 'moon';
   text?: CanvasTarotTextStoryblok[];
+  top?: number;
+  left?: number;
+  rotate?: number;
   _uid: string;
   component: 'canvas-tarot';
   [k: string]: any;
@@ -467,6 +483,7 @@ export interface HomePageStoryblok {
     | PhysicsBalloonCardStoryblok
     | PhysicsInputStoryblok
     | PhysicsRectangleCardStoryblok
+    | PhysicsStickerStoryblok
   )[];
   about_link?: LinkStoryblok[];
   about_links?: HomeAboutLinkStoryblok[];

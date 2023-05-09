@@ -69,9 +69,9 @@
           {:else if item.component === 'canvas-tictactoe'}
             <Tictactoe {item} />
           {:else if item.component === 'canvas-plant'}
-            <Plant />
+            <Plant {item} />
           {:else if item.component === 'canvas-egg'}
-            <Egg />
+            <Egg {item} />
           {/if}
         {/each}
       </div>

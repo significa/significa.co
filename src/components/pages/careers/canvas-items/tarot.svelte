@@ -18,7 +18,12 @@
     }, 4000);
   }}
 >
-  <div class="flip-card-inner relative h-full w-full" class:rotate={flip}>
+  <div
+    style="left: {item.left || 0}px; top: {item.top || 0}px; transform: rotate({item.rotate ||
+      0}deg)"
+    class="flip-card-inner relative h-full w-full"
+    class:rotate={flip}
+  >
     <div class="flip-card-front">
       {#if item.image === 'sun'}
         <img alt="" src={sun} class="drop-shadow-sm" />

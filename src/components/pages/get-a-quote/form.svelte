@@ -139,8 +139,8 @@
             {@html eggs[character]}
             {#if character === 't-shirt' && name}
               <div
-                class="absolute left-56 top-[68px] line-clamp-2 w-24 text-center font-comic font-bold leading-snug"
-                style="transform: rotate(-4deg)"
+                class="absolute left-64 line-clamp-2 w-24 text-center font-comic font-bold leading-snug"
+                style={`transform: rotate(-4deg); top: ${name.length > 5 ? '58px' : '65px'} `}
               >
                 I <span class="text-error">{'<3'}</span>
                 {name}

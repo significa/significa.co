@@ -7,7 +7,7 @@ fi
 
 REGION=$(echo "$MAILCHIMP_API_KEY" | tail -c 5)
 
-function get_email_template() {
+function get_email_template {
     local template_id=$1
 
     echo "Retrieving email template #$template_id"
@@ -20,7 +20,7 @@ function get_email_template() {
     }" | jq -r '.source'
 }
 
-function update_email_template() {
+function update_email_template {
     local template_id=$1
     local template_path=$2
     

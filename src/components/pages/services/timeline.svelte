@@ -10,7 +10,7 @@
 
   export let timeline: ServiceTimelineRowStoryblok[];
 
-  const TIMLINE_FIXED_WIDTH = 1536 as const;
+  const TIMELINE_FIXED_WIDTH = 1536 as const;
 
   let layoutReference: HTMLElement;
 
@@ -41,14 +41,22 @@
   };
 
   const update = (node: HTMLElement) => {
-    h = TIMLINE_FIXED_WIDTH - node.offsetWidth;
+    h = TIMELINE_FIXED_WIDTH - node.offsetWidth;
 
-    window.addEventListener('scroll', () => {
+    const handler = () => {
       node.scrollLeft = Math.max(
         0,
         scroll - (host ? host.offsetTop : 0) + (window.innerHeight - sticky?.clientHeight) / 2
       );
-    });
+    };
+
+    window.addEventListener('scroll', handler);
+
+    return {
+      destroy() {
+        window.removeEventListener('scroll', handler);
+      }
+    };
   };
 </script>
 
@@ -63,7 +71,7 @@
     drag = 0;
     needleReference = needle?.getBoundingClientRect().left + needle?.clientWidth / 2;
 
-    h = TIMLINE_FIXED_WIDTH - overflowContainer.offsetWidth;
+    h = TIMELINE_FIXED_WIDTH - overflowContainer.offsetWidth;
   }}
   on:mousedown={(e) => {
     if (e.target instanceof HTMLElement && e.target.classList.contains('handler')) {
@@ -158,7 +166,7 @@
         <div class="overflow-hidden" use:update bind:this={overflowContainer}>
           <div
             class="container mx-auto flex flex-col gap-4 px-container py-6"
-            style="min-width: {TIMLINE_FIXED_WIDTH}px;"
+            style="min-width: {TIMELINE_FIXED_WIDTH}px;"
           >
             {#each row.subrows || [] as subrow, i}
               <div class="flex items-center" use:storyblokEditable={subrow}>

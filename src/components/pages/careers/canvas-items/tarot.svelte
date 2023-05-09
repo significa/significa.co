@@ -18,7 +18,7 @@
     }, 4000);
   }}
 >
-  <div class="rleative flip-card-inner h-full w-full" class:rotate={flip}>
+  <div class="flip-card-inner relative h-full w-full" class:rotate={flip}>
     <div class="flip-card-front">
       {#if item.image === 'sun'}
         <img alt="" src={sun} class="drop-shadow-sm" />
@@ -28,11 +28,11 @@
     </div>
     <div class="flip-card-back">
       <div class="relative">
-        {#if item.text}
+        {#if item.text && item.text.length > 0}
           <p
             class="absolute left-6 top-6 z-10 max-w-[154px] text-left text-xl font-semibold text-[#171717]"
           >
-            {item.text[0].text}
+            {item.text[Math.floor(Math.random() * item.text.length)].text}
           </p>
         {/if}
         <img alt="" src={back} class="drop-shadow-sm" />
@@ -62,10 +62,6 @@
   }
   .flip-card-inner:hover .flip-card-front {
     animation: wiggle 1000ms 1 ease-in-out;
-    -webkit-animation-name: wiggle;
-    -webkit-animation-duration: 1000ms;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: ease-in-out;
   }
   @-webkit-keyframes wiggle {
     0% {

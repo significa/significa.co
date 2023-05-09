@@ -5,7 +5,8 @@
     AboutPageStoryblok,
     GetAQuotePageStoryblok,
     PageStoryblok,
-    ContactsPageStoryblok
+    ContactsPageStoryblok,
+    ServicesPageStoryblok
   } from '$types/bloks';
   import type { ISbStoryData } from '@storyblok/js';
   import GetAQuote from './get-a-quote.svelte';
@@ -17,6 +18,7 @@
   import StaticPage from './static-page.svelte';
   import Careers from './careers.svelte';
   import Contact from './contact.svelte';
+  import Services from './services.svelte';
 
   /**
    * This is the "Page" content-type that is used to render all of the "static content" pages.
@@ -47,6 +49,10 @@
   const isContactPage = (page: { component: string }): page is ContactsPageStoryblok => {
     return page.component === 'contacts-page';
   };
+
+  const isServicesPage = (page: { component: string }): page is ServicesPageStoryblok => {
+    return page.component === 'services-page';
+  };
 </script>
 
 {#each story.content.page || [] as page}
@@ -66,5 +72,7 @@
     <Careers data={page} {teamMembers} />
   {:else if page.component === 'contacts-page' && isContactPage(page)}
     <Contact data={page} />
+  {:else if page.component === 'services-page' && isServicesPage(page)}
+    <Services data={page} />
   {/if}
 {/each}

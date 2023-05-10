@@ -15,6 +15,7 @@
       placeholder={block.placeholder}
       class="h-[60px] min-w-[300px] bg-background-offset pr-16 text-xl placeholder:text-xl"
       size="lg"
+      autocomplete="off"
     />
     <Button {form} arrow class="absolute bottom-2 right-2 top-2" size="md" />
   </div>

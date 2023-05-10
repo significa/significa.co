@@ -66,6 +66,7 @@
       use:bodyLock
       use:escapeKey={{ id: 'top-navigation', callback: () => (panel = false) }}
       role="button"
+      tabindex="0"
       on:keydown={onkeydown}
       transition:fade={{ duration: 200 }}
       class="fixed inset-0 z-50 bg-black/50"

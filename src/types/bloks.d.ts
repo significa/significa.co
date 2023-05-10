@@ -483,6 +483,7 @@ export interface HomePageStoryblok {
     | PhysicsBalloonCardStoryblok
     | PhysicsInputStoryblok
     | PhysicsRectangleCardStoryblok
+    | PhysicsStickerStoryblok
   )[];
   about_link?: LinkStoryblok[];
   about_links?: HomeAboutLinkStoryblok[];

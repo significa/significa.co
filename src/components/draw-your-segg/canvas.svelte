@@ -31,7 +31,6 @@
 
   let debouncedDrawing = debounced(drawing, 2000);
   $: if ($debouncedDrawing && started) {
-    console.log('saving');
     dispatch('change', $debouncedDrawing);
   }
 

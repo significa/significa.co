@@ -45,7 +45,7 @@
   <!-- Awards -->
   {#if data.awards?.length}
     <section class="mt-10 md:mt-14 lg:mt-20">
-      <div class=" justify-between gap-12  lg:flex">
+      <div class=" justify-between gap-12 lg:flex">
         <div class="flex flex-1 flex-col items-start">
           <div class="w-full flex-1" use:drawerLinks>
             <ul>
@@ -109,7 +109,7 @@
   {/if}
 
   <!-- Services -->
-  <section class="mt-10  md:mt-16 lg:mb-16">
+  <section class="mt-10 md:mt-16 lg:mb-16">
     <div class="container mx-auto flex px-container">
       <div class="xl:max-w-3xl">
         <h3 class="mb-2 text-5xl">{data.services_title}</h3>
@@ -121,8 +121,8 @@
   <section>
     <div class="flex">
       {#if data.services}
-        <div class="w-full justify-between lg:border-b lg:border-t ">
-          <div class="container relative mx-auto grid grid-cols-1  px-container md:grid-cols-3">
+        <div class="w-full justify-between lg:border-b lg:border-t">
+          <div class="container relative mx-auto grid grid-cols-1 px-container md:grid-cols-3">
             <Square class="absolute -bottom-10 left-[20%] hidden drop-shadow-md lg:block" />
             <Hand
               class="absolute -top-[76px] left-[54%] hidden drop-shadow-md md:-top-[60px] lg:block"
@@ -131,7 +131,9 @@
               class="absolute -bottom-14 right-[20%] hidden drop-shadow-md md:right-[7%] lg:block"
             />
             {#each data.services as service}
-              <div class="flex flex-col lg:border-r lg:p-8 lg:first:pl-0 lg:last:border-r-0">
+              <div
+                class="flex flex-col lg:border-r lg:p-8 lg:last:border-r-0 lg:first-of-type:pl-0"
+              >
                 <p class="mb-2 mt-11 text-3xl font-semibold lg:mt-0">{service.title}</p>
                 {#if service.entry}
                   {#each service.entry as entry}

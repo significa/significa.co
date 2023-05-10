@@ -1,6 +1,6 @@
 <script lang="ts">
   import { browser } from '$app/environment';
-  import { applyAction, enhance } from '$app/forms';
+  import { enhance } from '$app/forms';
   import { page } from '$app/stores';
   import { t } from '$lib/i18n';
   import {
@@ -109,8 +109,6 @@
       }
     }
   }
-
-  $: console.log($page.form);
 </script>
 
 {#if variant === undefined}
@@ -141,12 +139,11 @@
 <form
   id="contact-form"
   method="POST"
-  action={{ quote: '/forms/quote', career: '/forms/career', contact: '/forms/contact' }[type]}
+  action={{ quote: '?/quote', career: '?/career', contact: '?/contact' }[type]}
   use:enhance={() => {
     loading = true;
 
-    return async ({ update, result }) => {
-      applyAction(result);
+    return async ({ update }) => {
       loading = false;
       files = [];
 

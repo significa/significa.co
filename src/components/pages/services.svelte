@@ -122,7 +122,9 @@
               class="absolute -bottom-14 right-[20%] hidden drop-shadow-md md:right-[7%] lg:block"
             />
             {#each data.services as service}
-              <div class="flex flex-col lg:border-r lg:p-8 lg:first:pl-0 lg:last:border-r-0">
+              <div
+                class="flex flex-col lg:border-r lg:p-8 lg:last:border-r-0 lg:first-of-type:pl-0"
+              >
                 <p class="mb-2 mt-11 text-3xl font-semibold lg:mt-0">{service.title}</p>
                 {#if service.entry}
                   {#each service.entry as entry}

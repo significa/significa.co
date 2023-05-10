@@ -24,6 +24,7 @@
     use:escapeKey={{ id: 'page-drawer', callback: drawer.close }}
     use:bodyLock
     role="button"
+    tabindex="0"
     on:keydown={(event) => {
       if (event.key === 'Escape') drawer.close();
     }}

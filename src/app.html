@@ -8,6 +8,7 @@
     <script>
       function setTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.colorScheme = theme;
         localStorage.setItem('theme', theme);
         window.dispatchEvent(new CustomEvent('theme-change', { detail: theme }));
       }

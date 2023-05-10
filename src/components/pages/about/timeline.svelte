@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { items } from '$components/image-gallery.svelte';
   import { distanceToTop } from '$lib/actions/distance-to-top';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';

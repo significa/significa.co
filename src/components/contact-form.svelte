@@ -75,8 +75,6 @@
 
   let loading = false;
 
-  $: console.log($page.form);
-
   $: if ($page.form?.success) {
     dispatch('success');
     toast.success({

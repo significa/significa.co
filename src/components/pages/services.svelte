@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, Icon, Link } from '@significa/svelte-ui';
+  import { Button, Link } from '@significa/svelte-ui';
   import Seo from '$components/seo.svelte';
   import Testimonials from '$components/testimonials.svelte';
   import PreFooter from '$components/pre-footer.svelte';

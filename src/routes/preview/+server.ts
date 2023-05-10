@@ -1,5 +1,5 @@
 import { BYPASS_TOKEN } from '$env/static/private';
-import { PREVIEW_COOKIE_KEY } from '$lib/constants';
+import { ISR_BYPASS_COOKIE_KEY, PREVIEW_COOKIE_KEY } from '$lib/constants';
 import { sanitizeSlug } from '$lib/utils/paths';
 import { redirect } from '@sveltejs/kit';
 
@@ -13,7 +13,7 @@ export const GET = async ({ url, cookies }) => {
     secure: true,
     sameSite: 'none'
   });
-  cookies.set('__prerender_bypass', BYPASS_TOKEN, {
+  cookies.set(ISR_BYPASS_COOKIE_KEY, BYPASS_TOKEN, {
     path: '/',
     secure: true,
     sameSite: 'none'

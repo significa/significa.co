@@ -6,8 +6,6 @@ import { fetchPage } from '$lib/content';
 export const createLoad =
   (slugPrefix?: string): PageServerLoad =>
   async ({ params, cookies, fetch, url }) => {
-    cookies.delete('__prerender_bypass');
-
     try {
       const page = await fetchPage({
         slug: (slugPrefix || '') + params.path,

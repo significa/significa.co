@@ -56,7 +56,7 @@
         <p class="mt-4 max-w-2xl text-2xl">{story.content.intro}</p>
       {/if}
       {#if story.content.draft}
-        <div class="mt-8 rounded-md bg-error p-4">
+        <div class="mt-8 rounded-md bg-error p-4" data-theme="dark">
           <h4 class="text-lg font-medium">{t('handbook.draft.title')}</h4>
           <p>
             {t('handbook.draft.description')}
@@ -74,7 +74,7 @@
       </div>
     {/if}
 
-    {#if story.content.body?.length}
+    {#if story.content.body?.content.length}
       <div class="container mx-auto max-w-3xl px-container">
         {#if story.content.body}
           <div

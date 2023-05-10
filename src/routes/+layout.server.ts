@@ -41,6 +41,6 @@ export const config = {
 
     // List of valid query parameters. Other parameters (such as utm tracking codes) will be ignored,
     // ensuring that they do not result in content being regenerated unnecessarily
-    allowQuery: ['t']
+    allowQuery: ['t', '/quote', '/career', '/contact']
   }
 };

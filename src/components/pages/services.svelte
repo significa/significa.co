@@ -13,6 +13,8 @@
   import { getFileExtension } from '$lib/utils/strings';
   import { VIDEO_EXTENSIONS } from '$lib/constants';
   import type { ServicesPageStoryblok } from '$types/bloks';
+  import { drawerLinks } from '$lib/actions/drawer-links';
+  import clsx from 'clsx';
 
   export let data: ServicesPageStoryblok;
 </script>
@@ -45,13 +47,18 @@
     <section class="mt-10 md:mt-14 lg:mt-20">
       <div class=" justify-between gap-12  lg:flex">
         <div class="flex flex-1 flex-col items-start">
-          <div class="w-full flex-1">
+          <div class="w-full flex-1" use:drawerLinks>
             <ul>
               {#each data.awards as award}
                 {@const { href, target, rel } = getAnchorFromCmsLink(award.link)}
                 <div class="border-b first:border-t">
                   <li
-                    class="container mx-auto  flex flex-col-reverse items-center justify-between bg-gradient-to-r px-container py-5 elevated-links hover:from-transparent hover:via-foreground-tertiary/10 hover:to-transparent hover:transition-colors lg:flex-row"
+                    class={clsx(
+                      'container mx-auto  flex flex-col-reverse items-center justify-between px-container py-5 lg:flex-row',
+                      href
+                        ? 'bg-gradient-to-r elevated-links hover:from-transparent hover:via-foreground-tertiary/10 hover:to-transparent hover:transition-colors'
+                        : ''
+                    )}
                   >
                     <div class="flex w-full items-center">
                       {#if award.image?.filename}
@@ -77,10 +84,12 @@
                       <p class="text-3xl font-semibold">{award.project}</p>
                     </div>
                     <div class="w-full">
-                      <Link {href} {target} {rel} class="elevated-link" />
-                      <div class="hidden flex-1 justify-end text-foreground-tertiary xl:flex">
-                        <Icon icon="arrow-right" />
-                      </div>
+                      {#if href}
+                        <Link {href} {target} {rel} class="elevated-link" />
+                        <div class="hidden flex-1 justify-end text-foreground-tertiary xl:flex">
+                          <Icon icon="arrow-right" />
+                        </div>
+                      {/if}
                     </div>
                   </li>
                 </div>

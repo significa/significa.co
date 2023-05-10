@@ -1650,7 +1650,7 @@
       "name": "home-page",
       "display_name": null,
       "created_at": "2023-03-03T14:59:15.465Z",
-      "updated_at": "2023-05-09T13:10:06.202Z",
+      "updated_at": "2023-05-09T15:35:03.078Z",
       "id": 3521503,
       "schema": {
         "small_highlights": {
@@ -1729,7 +1729,8 @@
           "component_whitelist": [
             "physics-balloon-card",
             "physics-input",
-            "physics-rectangle-card"
+            "physics-rectangle-card",
+            "physics-sticker"
           ],
           "key": "about_physics_cards"
         },

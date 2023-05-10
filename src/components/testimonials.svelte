@@ -3,11 +3,14 @@
   import type { MultilinkStoryblok, RichtextTestimonialStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
   import RichTextTestimonial from '$components/blocks/rich-text-testimonial.svelte';
-  import BalloonRound from './pages/about/stickers/balloon-round.svelte';
-  import BalloonRectangle from './pages/about/stickers/balloon-rectangle.svelte';
-  import Combo from './pages/about/stickers/combo.svelte';
+  import BalloonRound from './illustrations/stickers/balloon-round.svelte';
+  import BalloonRectangle from './illustrations/stickers/balloon-rectangle.svelte';
+  import Combo from './illustrations/stickers/combo.svelte';
   import clsx from 'clsx';
+  import People from './illustrations/stickers/people.svelte';
+  import FriedEgg from './illustrations/stickers/fried-egg.svelte';
 
+  export let variant: 'one' | 'two' = 'one';
   export let firstTitle: string | undefined = undefined;
   export let secondTitle: string | undefined = undefined;
   export let ctaLink: MultilinkStoryblok | undefined = undefined;
@@ -32,7 +35,7 @@
 
       {#if ctaLink}
         {@const { href } = getAnchorFromCmsLink(ctaLink)}
-        <Button as="a" {href} arrow size="lg" class="mx-auto mt-6">
+        <Button as="a" {href} arrow size="md" class="mx-auto mt-6">
           {ctaLabel}
         </Button>
       {/if}
@@ -56,9 +59,15 @@
                 />
               {/if}
               {#if i === 2}
-                <BalloonRectangle
-                  class="hidden shrink-0 -translate-y-2 self-end drop-shadow-md lg:block"
-                />
+                {#if variant === 'one'}
+                  <BalloonRectangle
+                    class="hidden shrink-0 -translate-y-2 self-end drop-shadow-md lg:block"
+                  />
+                {:else if variant === 'two'}
+                  <People
+                    class="ml-20 hidden shrink-0 -translate-y-2 self-end drop-shadow-md lg:block 2xl:mr-20"
+                  />
+                {/if}
               {/if}
               <div style:transform="translateY({-value * speedFactors[i]}px)">
                 <RichTextTestimonial
@@ -70,6 +79,12 @@
                   )}
                 />
               </div>
+              {#if i === 2 && variant === 'two'}
+                <FriedEgg
+                  class="-ml-20 hidden shrink-0 -translate-y-2 self-end drop-shadow-md xl:block"
+                  style="transform: translateY({-value * -0.07}px)"
+                />
+              {/if}
             </div>
           </div>
         {/each}
@@ -78,7 +93,7 @@
 
     <div class="lg:hidden">
       <div class="mt-10 flex justify-center px-4">
-        <Combo />
+        <Combo {variant} />
       </div>
 
       {#if testimonials}

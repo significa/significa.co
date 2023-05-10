@@ -12,12 +12,13 @@
   import HomeAbout from './home/home-about.svelte';
   import { page } from '$app/stores';
   import { Button, Icon } from '@significa/svelte-ui';
-  import { t } from '$lib/i18n';
   import Seo from '$components/seo.svelte';
   import { afterNavigate } from '$app/navigation';
   import { browser } from '$app/environment';
   import { theme } from '$lib/stores/theme';
   import Testimonials from '$components/testimonials.svelte';
+  import { getAnchorFromCmsLink } from '$lib/utils/cms';
+  import Services from './home/services.svelte';
 
   export let data: HomePageStoryblok;
   export let posts: BlogPostPage[] | undefined;
@@ -67,18 +68,20 @@
     </div>
   </section>
 
-  <section class="border-b">
-    <HomeAbout {data} />
-  </section>
+  <Services {data} />
 
   <Testimonials
+    variant="two"
     firstTitle={data.testimonials_title1}
     secondTitle={data.testimonials_title2}
     testimonials={data.testimonials}
     ctaLabel={data.testimonials_cta_label}
     ctaLink={data.testimonials_cta_link}
   />
-  <div class="pt-16 lg:pt-20" />
+
+  <section class="mt-16 border-y lg:mt-20">
+    <HomeAbout {data} />
+  </section>
 
   <section class="mt-10 md:mt-14 lg:mt-20">
     <div class="container mx-auto px-container">
@@ -124,9 +127,12 @@
             <h3 class="text-4xl">{data.handbook_title}</h3>
             <p class="mt-4 text-xl text-foreground-secondary">{data.handbook_description}</p>
           </div>
-          <Button variant="secondary" as="a" href="/handbook" class="mt-10" icon="handbook" arrow
-            >{t('handbook')}</Button
-          >
+          {#if data.handbook_cta_text && data.handbook_cta_link}
+            {@const { href } = getAnchorFromCmsLink(data.handbook_cta_link)}
+            <Button variant="secondary" as="a" {href} class="mt-10" icon="handbook" arrow>
+              {data.handbook_cta_text}
+            </Button>
+          {/if}
         </aside>
       </div>
     </section>

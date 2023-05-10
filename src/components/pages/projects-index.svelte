@@ -10,6 +10,7 @@
 
   export let projects: ISbStoryData<ProjectStoryblok>[];
 
+  let filteredProjects = projects;
   let services: string[] = [];
   let deliverables: string[] = [];
   $: {
@@ -37,7 +38,7 @@
   let open: boolean;
   let filters: { type: 'service' | 'deliverable'; value: string }[] = [];
 
-  $: projects = projects.filter((p) => {
+  $: filteredProjects = projects.filter((p) => {
     if (!filters.length) return true;
 
     return filters.some((f) => {
@@ -105,7 +106,7 @@
     {/if}
   </div>
 
-  {#each projects as project, i}
+  {#each filteredProjects as project, i}
     <ProjectEntry {project} variant={i === 0 && !filters.length ? 'featured' : 'default'} />
   {/each}
 </main>

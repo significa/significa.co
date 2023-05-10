@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { PREVIEW_COOKIE_KEY } from '$lib/constants';
 import { fetchPage } from '$lib/content';
-import { actions } from '$lib/forms.server.js';
+import { isr } from '$lib/isr.server.js';
 
 export const load = async ({ params, cookies, fetch, url }) => {
   try {
@@ -19,4 +19,4 @@ export const load = async ({ params, cookies, fetch, url }) => {
   }
 };
 
-export { actions };
+export const config = { isr };

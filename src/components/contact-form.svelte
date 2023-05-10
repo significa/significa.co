@@ -1,6 +1,6 @@
 <script lang="ts">
   import { browser } from '$app/environment';
-  import { enhance } from '$app/forms';
+  import { applyAction, enhance } from '$app/forms';
   import { page } from '$app/stores';
   import { t } from '$lib/i18n';
   import {
@@ -75,6 +75,8 @@
 
   let loading = false;
 
+  $: console.log($page.form);
+
   $: if ($page.form?.success) {
     dispatch('success');
     toast.success({
@@ -139,18 +141,23 @@
 <form
   id="contact-form"
   method="POST"
-  action={{ quote: '?/quote', career: '?/career', contact: '?/contact' }[type]}
-  use:enhance={() => {
+  action={{ quote: '/form/quote', career: '/form/career', contact: '/form/contact' }[type]}
+  use:enhance={(form) => {
     loading = true;
 
-    return async ({ update }) => {
+    // let our form handler know that we're using progressive enhancement
+    form.data.append('submitted-using-progressive-enhancement', 'true');
+
+    return async ({ update, result }) => {
       loading = false;
       files = [];
 
+      await applyAction(result);
       await update();
     };
   }}
 >
+  <input type="hidden" name="return-to" value={$page.url.pathname} />
   <div class="flex flex-col gap-4">
     <div class="flex w-full flex-col gap-4 md:flex-row">
       <FloatingInput

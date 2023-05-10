@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { items } from '$components/image-gallery.svelte';
   import { distanceToTop } from '$lib/actions/distance-to-top';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
@@ -82,7 +83,8 @@
               <div
                 class="absolute text-foreground-secondary"
                 style="left: {item.left || 0}px; top: {item.top ||
-                  0}px; transform: scale({item.scale || 1}) rotate({item.rotate || 0}deg)"
+                  0}px; transform: scale({(item.scale || 1) * (item.flip ? -1 : 1)} ,{item.scale ||
+                  1}) rotate({item.rotate || 0}deg)"
               >
                 {@html arrows[item.variant]}
               </div>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Icon, Link } from '@significa/svelte-ui';
+  import { Button, Icon, Link } from '@significa/svelte-ui';
   import Seo from '$components/seo.svelte';
   import Testimonials from '$components/testimonials.svelte';
   import PreFooter from '$components/pre-footer.svelte';
@@ -79,7 +79,7 @@
                     <div class="w-full">
                       <Link {href} {target} {rel} class="elevated-link" />
                       <div class="hidden flex-1 justify-end text-foreground-tertiary xl:flex">
-                        <Icon icon="arrow-right" />
+                        <Button variant="secondary" arrow />
                       </div>
                     </div>
                   </li>

@@ -262,7 +262,7 @@
 
 <div
   bind:this={containerRef}
-  class={clsx('relative isolate aspect-square w-full overflow-hidden', $$restProps.class)}
+  class={clsx('relative isolate aspect-square w-full', $$restProps.class)}
   style={$$restProps.style}
 >
   {#if items}

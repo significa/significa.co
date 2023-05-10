@@ -1,4 +1,5 @@
 import { env } from '$env/dynamic/private';
+import { AWS_S3_BUCKET } from '$env/static/private';
 import { t } from '$lib/i18n';
 import { sendTransactionalEmail } from '$lib/mail/sendEmail.server.js';
 import { notion } from '$lib/notion.server.js';
@@ -10,9 +11,19 @@ type FormFields = {
   message: string;
   position?: string;
   budget?: string;
-  attachments?: string;
+  attachments?: string; // comma-separated list of URLs
   'submitted-using-progressive-enhancement'?: string;
   'return-to'?: string;
+};
+
+const getNotionAttachments = (attachmentsUrls: string) => {
+  return attachmentsUrls
+    .split(',')
+    .filter((url) => url && url.startsWith(`https://${AWS_S3_BUCKET}.s3.eu-west-3.amazonaws.com/`))
+    .map((url) => {
+      const parts = url.split('/');
+      return { name: parts[parts.length - 1], external: { url } };
+    });
 };
 
 export const actions = {
@@ -47,13 +58,7 @@ export const actions = {
               Message: { rich_text: [{ text: { content: message || '' } }] },
               Status: { select: { name: 'To triage' } },
               Attachments: {
-                files: (fields.attachments || '')
-                  .split(',')
-                  .filter((url) => url && url.startsWith('https'))
-                  .map((url) => {
-                    const parts = url.split('/');
-                    return { name: parts[parts.length - 1], external: { url } };
-                  })
+                files: getNotionAttachments(fields.attachments || '')
               }
             }
           });
@@ -67,13 +72,7 @@ export const actions = {
               Position: { select: { name: fields.position || 'n/a' } },
               Message: { rich_text: [{ text: { content: message || '' } }] },
               Attachments: {
-                files: (fields.attachments || '')
-                  .split(',')
-                  .filter((url) => url && url.startsWith('https'))
-                  .map((url) => {
-                    const parts = url.split('/');
-                    return { name: parts[parts.length - 1], external: { url } };
-                  })
+                files: getNotionAttachments(fields.attachments || '')
               }
             }
           });

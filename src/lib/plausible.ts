@@ -6,6 +6,7 @@ export enum PlausibleEvents {
   HOME_HIGHLIGHT = 'Home highlight',
   PROJECT_CLICK = 'Project click',
   PROJECT_CAROUSEL = 'Project carousel interaction',
+  PROJECT_FILTER_CLICK = 'Project filter click',
   CTA_CLICK = 'CTA click',
   CAREER_CLICK = 'Career click'
 }

@@ -53,7 +53,11 @@
           href={`/projects/${project.slug}`}
           on:click={() => {
             plausible(PlausibleEvents.PROJECT_CLICK, {
-              props: { to: `/projects/${project.slug}`, path: $page.url.pathname }
+              props: {
+                name: project.name,
+                to: `/projects/${project.slug}`,
+                path: $page.url.pathname
+              }
             });
           }}
         >
@@ -75,7 +79,7 @@
         href={`/projects/${project.slug}`}
         on:click={() => {
           plausible(PlausibleEvents.PROJECT_CLICK, {
-            props: { to: `/projects/${project.slug}`, path: $page.url.pathname }
+            props: { name: project.name, to: `/projects/${project.slug}`, path: $page.url.pathname }
           });
         }}
         class="mt-6"

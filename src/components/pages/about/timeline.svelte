@@ -56,7 +56,7 @@
 </div>
 <div
   use:distanceToTop={(distance) => (top = distance)}
-  class="relative"
+  class="pointer-events-none relative"
   style="height: {width - containerWidth + 800 / factor}px"
 >
   <div
@@ -114,7 +114,7 @@
                 <p class="font-comic text-sm">{item.text}</p>
                 {#if item.link?.[0]}
                   {@const { href, target, rel } = getAnchorFromCmsLink(item.link[0].link)}
-                  <Button size="sm" as="a" {href} {rel} {target} class="mt-4">
+                  <Button size="sm" as="a" {href} {rel} {target} class="pointer-events-auto mt-4">
                     {item.link[0].label}
                   </Button>
                 {/if}

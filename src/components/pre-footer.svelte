@@ -10,7 +10,7 @@
 <section class="container mx-auto px-container @container">
   <div class="grid grid-cols-3 overflow-hidden rounded-lg border">
     <div class="col-span-1 hidden flex-col bg-background-panel p-8 @5xl:flex">
-      <h3 class="text-4xl text-foreground-secondary">
+      <h3 class="text-4xl">
         {t('prefooter.title.line1')}<br />
         {t('prefooter.title.line2')}
       </h3>

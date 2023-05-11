@@ -454,6 +454,8 @@ export interface HomePageStoryblok {
     | string
   )[];
   showreel?: AssetStoryblok;
+  showreel_cover: AssetStoryblok;
+  showreel_button_theme?: '' | 'light' | 'dark';
   showreel_button_label?: string;
   work_title?: string;
   projects?: (StoryblokStory<ProjectStoryblok> | string)[];
@@ -585,6 +587,10 @@ export interface PhysicsStickerStoryblok {
 
 export interface ProjectStoryblok {
   cover?: AssetStoryblok;
+  reel?: AssetStoryblok;
+  reel_button?: any;
+  reel_button_theme?: '' | 'light' | 'dark';
+  reel_button_label?: string;
   thumbnail: MultiassetStoryblok;
   tagline: string;
   intro: string;
@@ -593,11 +599,11 @@ export interface ProjectStoryblok {
   deliverables?: string;
   services?: string;
   links?: LinkStoryblok[];
+  recognitions?: RecognitionStoryblok[];
   body?: any;
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
-  recognitions?: RecognitionStoryblok[];
   _uid: string;
   component: 'project';
   [k: string]: any;
@@ -705,9 +711,11 @@ export interface ServicesPageStoryblok {
   showreel?: AssetStoryblok;
   showreel_button_label?: string;
   services_title?: string;
+  services_subtitle?: string;
   services_description?: string;
   services?: ServicesDeppartmentStoryblok[];
   deliverables_title?: string;
+  deliverables_subtitle?: string;
   deliverables?: DeliverablesEntryStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;

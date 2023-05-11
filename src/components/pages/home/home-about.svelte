@@ -13,7 +13,7 @@
       <h3 class="text-5xl text-foreground-secondary">{data.about_title1}</h3>
       <p class="text-5xl">{data.about_title2}</p>
 
-      <p class="mt-4 max-w-md text-xl/tight font-medium text-foreground-secondary">
+      <p class="mt-4 max-w-md text-2xl text-foreground-secondary">
         {data.about_description}
       </p>
       {#if data.about_link?.[0]}

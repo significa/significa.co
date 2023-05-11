@@ -29,7 +29,6 @@
   let drawing: Writable<Drawing> = writable(template);
   let points: Point[] = [];
   let tool: Tool = tools.pencil;
-  let hasDrawn = false;
 
   let debouncedDrawing = debounced(drawing, 2000);
   $: if ($debouncedDrawing && started) {
@@ -132,11 +131,6 @@
   function onEnd() {
     isDrawing = false;
 
-    if (!hasDrawn) {
-      track(TrackingEvent.DRAW_YOUR_SEGG_INTERACT);
-      hasDrawn = true;
-    }
-
     // commit the current stroke to the drawing
     if (points.length) {
       drawing.update((prev) => [...prev, { ...tool, points: simplify(points, 2) }]);
@@ -163,6 +157,10 @@
     ['undo', undo, canUndo, undoImage],
     ['redo', redo, canRedo, redoImage]
   ] as const;
+
+  $: if (started) {
+    track(TrackingEvent.DRAW_YOUR_SEGG_INTERACT);
+  }
 </script>
 
 <div data-theme="light" class="relative select-none overflow-hidden">

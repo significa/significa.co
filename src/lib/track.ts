@@ -28,7 +28,7 @@ export enum TrackingEvent {
   BLOG_POST_AUTHOR_PAGE_CLICK = 'Blog post author page click',
   SERVICES_AWARD_CLICK = 'Services award click',
   DRAWER_EXPAND = 'Drawer expand',
-  FORM_SUBMITION = 'Form submition',
+  FORM_SUBMISSION = 'Form submission',
   FORM_CHOOSE_MAILTO = 'Form choose to mail',
   NOBITA_FOUND = '404 Nobita found'
 }

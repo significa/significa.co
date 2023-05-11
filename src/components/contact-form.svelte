@@ -77,7 +77,7 @@
   let loading = false;
 
   $: if ($page.form?.success) {
-    track(TrackingEvent.FORM_SUBMITION, { props: { path: $page.url.pathname, type } });
+    track(TrackingEvent.FORM_SUBMISSION, { props: { path: $page.url.pathname, type } });
     dispatch('success');
     toast.success({
       message: t('contact.feedback.success.title'),

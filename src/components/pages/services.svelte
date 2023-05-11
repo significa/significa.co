@@ -3,7 +3,6 @@
   import Seo from '$components/seo.svelte';
   import Testimonials from '$components/testimonials.svelte';
   import PreFooter from '$components/pre-footer.svelte';
-  import Reel from './home/reel.svelte';
   import Square from './services/illustrations/square.svelte';
   import Hand from './services/illustrations/hand.svelte';
   import Duck from './services/illustrations/duck.svelte';
@@ -103,12 +102,12 @@
     </section>
   {/if}
 
-  <!-- Showreel -->
-  {#if data.showreel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(data.showreel.filename))}
+  <!-- TODO: add back showreel -->
+  <!-- {#if data.showreel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(data.showreel.filename))}
     <div class="container mx-auto mt-10 px-container md:mt-20">
       <Reel src={data.showreel.filename} play_label={data.showreel_button_label} />
     </div>
-  {/if}
+  {/if} -->
 
   <!-- Services -->
   <section class="mt-10 md:mt-16 lg:mb-16">

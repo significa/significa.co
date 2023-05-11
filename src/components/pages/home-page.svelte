@@ -7,7 +7,7 @@
   import { getFileExtension } from '$lib/utils/strings';
   import type { HomePageStoryblok } from '$types/bloks';
   import SmallHighlights from './home/small-highlights.svelte';
-  import Reel from './home/reel.svelte';
+  import Reel from '$components/reel.svelte';
   import clsx from 'clsx';
   import HomeAbout from './home/home-about.svelte';
   import { page } from '$app/stores';
@@ -17,7 +17,7 @@
   import { browser } from '$app/environment';
   import { theme } from '$lib/stores/theme';
   import Testimonials from '$components/testimonials.svelte';
-  import { getAnchorFromCmsLink } from '$lib/utils/cms';
+  import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import Services from './home/services.svelte';
 
   export let data: HomePageStoryblok;
@@ -53,7 +53,14 @@
       <SmallHighlights highlights={data.small_highlights} />
     </section>
     {#if data.showreel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(data.showreel.filename))}
-      <Reel src={data.showreel.filename} play_label={data.showreel_button_label} />
+      <Reel
+        src={data.showreel.filename}
+        play_label={data.showreel_button_label}
+        preview={data.showreel_cover?.filename
+          ? getImageAttributes(data.showreel_cover).src
+          : undefined}
+        buttonTheme={data.showreel_button_theme}
+      />
     {/if}
   </div>
 

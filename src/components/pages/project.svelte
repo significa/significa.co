@@ -11,6 +11,7 @@
   import { getFileExtension } from '$lib/utils/strings';
   import Seo from '$components/seo.svelte';
   import type { ProjectPage } from '$lib/content';
+  import Reel from '$components/reel.svelte';
 
   export let story: ProjectPage;
   export let related: ProjectPage[];
@@ -24,22 +25,20 @@
 />
 <div use:drawerLinks class="container mx-auto px-container">
   <header class="pb-6">
-    {#if story.content.cover?.filename}
-      {#if VIDEO_EXTENSIONS.includes(getFileExtension(story.content.cover.filename))}
-        <video
-          class="aspect-video h-auto w-full rounded-md bg-background-offset"
-          controls
-          autoplay
-          muted
-          playsinline
-          src={story.content.cover.filename}
-        />
-      {:else}
-        {@const { alt, src, width, height } = getImageAttributes(story.content.cover, {
-          size: [1440, 0]
-        })}
-        <img class="h-auto w-full rounded-md bg-background-offset" {src} {alt} {width} {height} />
-      {/if}
+    {#if story.content.reel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(story.content.reel.filename))}
+      <Reel
+        src={story.content.reel.filename}
+        play_label={story.content.reel_button_label || t('reel.play')}
+        preview={story.content.cover?.filename
+          ? getImageAttributes(story.content.cover).src
+          : undefined}
+        buttonTheme={story.content.reel_button_theme}
+      />
+    {:else if story.content.cover?.filename}
+      {@const { alt, src, width, height } = getImageAttributes(story.content.cover, {
+        size: [1440, 0]
+      })}
+      <img class="h-auto w-full rounded-md bg-background-offset" {src} {alt} {width} {height} />
     {/if}
 
     <div class="mx-auto mb-8 mt-8 max-w-2xl md:mt-14 lg:mt-20">

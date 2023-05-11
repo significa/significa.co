@@ -11,6 +11,7 @@ export enum PlausibleEvents {
   PROJECT_AUTHOR_PAGE_CLICK = 'Project author page click',
   AUTHOR_PAGE_TAB_INTERACTION = 'Author Page tab interaction',
   CAREERS_INTERACT_WITH_CANVAS = 'Careers interaction with canvas',
+  CAREERS_SPONTANEOUS_APPLICATION = 'Careers spontaneous application click',
   CAREERS_CANVAS_PLAYED_TIC_TAC_TOE = 'Careers canvas played tictactoe',
   CAREERS_CANVAS_FLIPPED_TAROT = 'Careers canvas flipped a tarot card',
   CAREERS_CANVAS_GROW_PLANT = 'Careers canvas grew a plant',

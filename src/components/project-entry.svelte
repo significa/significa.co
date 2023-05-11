@@ -47,7 +47,7 @@
           </p>
         </a>
         {#if project.content.recognitions?.length}
-          <div class="mt-6">
+          <div class={clsx('mt-6 flex gap-4', variant === 'featured' ? '' : 'flex-col')}>
             <Recognitions recognitions={project.content.recognitions} />
           </div>
         {/if}

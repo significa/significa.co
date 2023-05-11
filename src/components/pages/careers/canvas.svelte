@@ -16,6 +16,7 @@
   import Plant from './canvas-items/plant.svelte';
   import Egg from './canvas-items/egg.svelte';
   import EggHatching from './canvas-items/egg-hatching.svelte';
+  import { PlausibleEvents, plausible } from '$lib/plausible';
 
   export let withMouseDragScroll = false;
   export let title: string | undefined = undefined;
@@ -29,7 +30,11 @@
 </script>
 
 <div
-  use:dragScrolling={{ isActive: withMouseDragScroll, centerYOffset: -240 }}
+  use:dragScrolling={{
+    isActive: withMouseDragScroll,
+    centerYOffset: -240,
+    onInteraction: () => plausible(PlausibleEvents.CAREERS_INTERACT_WITH_CANVAS)
+  }}
   style={$$restProps.style}
   class={$$restProps.class}
 >

@@ -1,10 +1,16 @@
 export const dragScrolling = (
   node: HTMLElement,
-  options: { isActive: boolean; centerYOffset?: number; centerXOffset?: number }
+  options: {
+    isActive: boolean;
+    centerYOffset?: number;
+    centerXOffset?: number;
+    onInteraction?: VoidFunction;
+  }
 ) => {
   if (options.isActive) {
     // state
     let dragging = false;
+    let hasInteracted = false;
 
     // overflow hidden allows forced scroll which is really nice
     node.style.overflow = 'hidden';
@@ -31,6 +37,11 @@ export const dragScrolling = (
 
         node.scrollLeft = left;
         node.scrollTop = top;
+
+        if (!hasInteracted) {
+          hasInteracted = true;
+          options.onInteraction?.();
+        }
       }
     });
 
@@ -57,5 +68,14 @@ export const dragScrolling = (
     // center
     node.scrollLeft = (node.scrollWidth - node.clientWidth + (options.centerXOffset || 0)) / 2;
     node.scrollTop = (node.scrollHeight + (options.centerYOffset || 0)) / 2;
+
+    let hasInteracted = false;
+
+    node.addEventListener('scroll', () => {
+      if (!hasInteracted) {
+        hasInteracted = true;
+        options.onInteraction?.();
+      }
+    });
   }
 };

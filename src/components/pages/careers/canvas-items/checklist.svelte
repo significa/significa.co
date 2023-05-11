@@ -4,10 +4,17 @@
   import { CheckboxGroup } from '@significa/svelte-ui';
   import { CONFETTI_COLOR_ARRAY } from '$lib/constants';
   import type { CanvasChecklistStoryblok } from '$types/bloks';
+  import { PlausibleEvents, plausible } from '$lib/plausible';
 
   export let item: CanvasChecklistStoryblok;
 
   let selection: string[] = [];
+  let hasCheckedAllOnce = false;
+
+  $: if (selection.length === item.items?.length && !hasCheckedAllOnce) {
+    plausible(PlausibleEvents.CAREERS_CANVAS_EGGMANDMENDS);
+    hasCheckedAllOnce = true;
+  }
 </script>
 
 <div

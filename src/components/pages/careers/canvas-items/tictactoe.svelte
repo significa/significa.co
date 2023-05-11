@@ -14,6 +14,7 @@
   import Bird from './tictactoe/assets/bird.webp';
   import Egg from './tictactoe/assets/egg.webp';
   import type { CanvasTictactoeStoryblok } from '$types/bloks';
+  import { PlausibleEvents, plausible } from '$lib/plausible';
 
   export let item: CanvasTictactoeStoryblok;
 
@@ -52,6 +53,7 @@
   let gameState: GameState = 'main-menu';
   let gameWinCon: WinCondition | null = null;
   let selectedCharacter: Character | null = null;
+  let userHasPlayedOneGame = false;
 
   const handleRestart = () => {
     gameState = 'in-progress';
@@ -87,6 +89,14 @@
       }
     }, 500);
   };
+
+  $: if (
+    (gameState === 'win' || gameState === 'lose' || gameState === 'draw') &&
+    !userHasPlayedOneGame
+  ) {
+    userHasPlayedOneGame = true;
+    plausible(PlausibleEvents.CAREERS_CANVAS_PLAYED_TIC_TAC_TOE);
+  }
 
   $: if (tiles.filter((tile) => tile === -9).length === 0 && gameState === 'in-progress')
     gameState = 'draw';

@@ -84,6 +84,10 @@
         video.pause();
       } else {
         video.play();
+        if (trackEvent && !hasPlayedOnSession) {
+          track(trackEvent.event, trackEvent.options);
+          hasPlayedOnSession = true;
+        }
       }
     }}
   >

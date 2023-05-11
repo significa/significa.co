@@ -86,9 +86,9 @@
                     <div class="w-full">
                       {#if href}
                         <div class="hidden flex-1 justify-end text-foreground-tertiary xl:flex">
-                          <Button {href} variant="secondary" arrow
-                            >{award.link_text ? award.link_text : ''}</Button
-                          >
+                          <Button variant="secondary" arrow>
+                            {award.link_text ? award.link_text : ''}
+                          </Button>
                         </div>
                         <Link {href} {target} {rel} class="elevated-link" />
                       {/if}

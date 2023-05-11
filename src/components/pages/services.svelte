@@ -56,57 +56,63 @@
                 <div class="border-b first:border-t">
                   <li
                     class={clsx(
-                      'container mx-auto  flex flex-col-reverse items-center justify-between px-container py-5 lg:flex-row',
+                      'container mx-auto  flex flex-col justify-between px-container py-5 lg:flex-row',
                       href
                         ? 'bg-gradient-to-r elevated-links hover:from-transparent hover:via-foreground-tertiary/10 hover:to-transparent hover:transition-colors'
                         : ''
                     )}
                   >
-                    <div class="flex w-full items-center">
-                      {#if award.image?.filename}
-                        {@const { alt, src, width, height } = getImageAttributes(award.image, {
-                          size: [120, 0]
-                        })}
-                        <img
-                          class="mr-2 h-auto w-14 rounded-xs bg-background-offset"
-                          {src}
-                          {alt}
-                          {width}
-                          {height}
-                        />
-                      {/if}
-                      <div class="ml-4 flex-col">
-                        <p class="text-base font-semibold text-foreground-secondary">
-                          {award.label}
-                        </p>
-                        <p class="text-base font-semibold">{award.name}</p>
+                    <div class="flex w-full flex-col-reverse items-center lg:flex-row">
+                      <div class="mb-4 flex w-full items-center lg:mb-0">
+                        {#if award.image?.filename}
+                          {@const { alt, src, width, height } = getImageAttributes(award.image, {
+                            size: [120, 0]
+                          })}
+                          <img
+                            class="mr-2 h-auto w-14 rounded-xs bg-background-offset"
+                            {src}
+                            {alt}
+                            {width}
+                            {height}
+                          />
+                        {/if}
+                        <div class="ml-4 flex-col">
+                          <p class="text-base font-semibold text-foreground-secondary">
+                            {award.label}
+                          </p>
+                          <p class="text-base font-semibold">{award.name}</p>
+                        </div>
+                      </div>
+                      <div class="mb-8 w-full lg:mb-0">
+                        <p class="text-3xl font-semibold">{award.project}</p>
                       </div>
                     </div>
-                    <div class="mb-8 w-full lg:mb-0">
-                      <p class="text-3xl font-semibold">{award.project}</p>
-                    </div>
-                    <div class="w-full">
+                    <div class="w-1/3">
                       {#if href}
-                        <div class="hidden flex-1 justify-end text-foreground-tertiary xl:flex">
-                          <Button variant="secondary" arrow>
-                            {award.link_text ? award.link_text : ''}
-                          </Button>
+                        <div class="flex-1 justify-end text-foreground-tertiary xl:flex">
+                          {#if award.link_text}
+                            <Button as="a" {href} variant="secondary" arrow>
+                              {award.link_text}
+                            </Button>
+                          {:else}
+                            <Button as="a" {href} variant="secondary" arrow />
+                          {/if}
                         </div>
-                        <Link
-                          {href}
-                          {target}
-                          {rel}
-                          on:click={() => {
-                            plausible(PlausibleEvents.SERVICES_AWARD_CLICK, {
-                              props: {
-                                to: href,
-                                path: $page.url.pathname
-                              }
-                            });
-                          }}
-                          class="elevated-link"
-                        />
                       {/if}
+                      <Link
+                        {href}
+                        {target}
+                        {rel}
+                        class="elevated-link"
+                        on:click={() => {
+                          plausible(PlausibleEvents.SERVICES_AWARD_CLICK, {
+                            props: {
+                              to: href,
+                              path: $page.url.pathname
+                            }
+                          });
+                        }}
+                      />
                     </div>
                   </li>
                 </div>
@@ -129,7 +135,8 @@
   <section class="mt-10 md:mt-16 lg:mb-16">
     <div class="container mx-auto flex px-container">
       <div class="xl:max-w-3xl">
-        <h3 class="mb-2 text-5xl">{data.services_title}</h3>
+        <h3 class="text-5xl text-foreground-secondary">{data.services_title}</h3>
+        <h3 class="mb-2 text-5xl">{data.services_subtitle}</h3>
         <p class="text-2xl text-foreground-secondary">{data.services_description}</p>
       </div>
     </div>
@@ -180,7 +187,8 @@
       class="container mx-auto mb-6 flex flex-col gap-6 px-container pt-8 lg:mb-12 lg:pt-12 xl:flex-row xl:gap-4"
     >
       <div class="mb-8 mr-52 xl:sticky xl:top-8 xl:max-w-xl xl:self-start">
-        <h3 class="text-5xl">{data.deliverables_title}</h3>
+        <h3 class="text-5xl text-foreground-secondary">{data.deliverables_title}</h3>
+        <h3 class="text-5xl">{data.deliverables_subtitle}</h3>
       </div>
       {#if data.deliverables}
         <div class="grid grid-cols-1 gap-x-40 gap-y-16 md:grid-cols-2">

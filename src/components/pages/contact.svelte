@@ -14,9 +14,10 @@
 <main class="overflow-hidden">
   <div class="container relative mx-auto px-container">
     <section class="pb-5 pt-10 lg:pb-12 lg:pt-20 lg:text-center">
-      <h1 class="mx-auto text-7xl lg:max-w-xl">
-        {data.page_title1}<br /> <span class="text-foreground-secondary">{data.page_title2}</span>
+      <h1 class="mx-auto text-7xl text-foreground-secondary lg:max-w-xl">
+        {data.page_title1}
       </h1>
+      <span class="mx-auto text-7xl lg:max-w-xl">{data.page_title2}</span>
     </section>
 
     <section class="mx-auto lg:max-w-xl lg:pt-5">

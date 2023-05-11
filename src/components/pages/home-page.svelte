@@ -59,7 +59,7 @@
 
   <section class="mt-10 md:mt-14 lg:mt-20">
     <div class="container mx-auto px-container">
-      <h2 class="text-5xl text-foreground-secondary">{data.work_title}</h2>
+      <h2 class="text-5xl">{data.work_title}</h2>
     </div>
     <div class="mt-4 md:mt-6 lg:mt-8">
       {#each data.projects || [] as project}

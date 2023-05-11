@@ -28,7 +28,7 @@
     {#if story.content.reel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(story.content.reel.filename))}
       <Reel
         src={story.content.reel.filename}
-        play_label={story.content.reel_button_label || t('reel.play')}
+        playLabel={story.content.reel_button_label || t('reel.play')}
         preview={story.content.cover?.filename
           ? getImageAttributes(story.content.cover).src
           : undefined}

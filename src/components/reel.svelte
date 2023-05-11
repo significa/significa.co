@@ -9,7 +9,7 @@
   export let src: string;
   export let preview: string | undefined = undefined;
 
-  export let play_label: string | undefined;
+  export let playLabel: string | undefined;
   export let buttonTheme: 'light' | 'dark' | '' = 'light';
 
   let x = 0;
@@ -43,7 +43,7 @@
     }
   }}
 >
-  {#if showButton && paused && play_label}
+  {#if showButton && paused && playLabel}
     <div
       data-theme={buttonTheme === 'light' ? 'dark' : 'light'}
       transition:scale|local={{ duration: 200 }}
@@ -55,11 +55,11 @@
         on:click={() => {
           video.play();
         }}
-        icon="play">{play_label}</Button
+        icon="play">{playLabel}</Button
       >
     </div>
   {/if}
-  {#if paused && play_label}
+  {#if paused && playLabel}
     <div
       transition:fade|local={{ duration: 200 }}
       class="pointer-events-none absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center bg-black/10"

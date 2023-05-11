@@ -55,7 +55,7 @@
     {#if data.showreel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(data.showreel.filename))}
       <Reel
         src={data.showreel.filename}
-        play_label={data.showreel_button_label}
+        playLabel={data.showreel_button_label}
         preview={data.showreel_cover?.filename
           ? getImageAttributes(data.showreel_cover).src
           : undefined}

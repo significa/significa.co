@@ -5,6 +5,7 @@
   import sun from '$assets/sun.svg';
   import moon from '$assets/moon.svg';
   let flip = false;
+  let timeout: ReturnType<typeof setTimeout>;
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -12,10 +13,13 @@
   class="h-[300px] w-[200px]"
   style="perspective: 1000px;"
   on:click={() => {
+    clearTimeout(timeout);
     flip = !flip;
-    setTimeout(() => {
-      flip = false;
-    }, 4000);
+    if (flip) {
+      timeout = setTimeout(() => {
+        flip = false;
+      }, 4000);
+    }
   }}
 >
   <div

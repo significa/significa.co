@@ -29,7 +29,8 @@ export enum PlausibleEvents {
   SERVICES_AWARD_CLICK = 'Services award click',
   DRAWER_EXPAND = 'Drawer expand',
   FORM_SUBMITION = 'Form submition',
-  FORM_CHOOSE_MAILTO = 'Form choose to mail'
+  FORM_CHOOSE_MAILTO = 'Form choose to mail',
+  NOBITA_FOUND = '404 Nobita found'
 }
 
 type EventOptions = {

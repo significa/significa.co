@@ -9,6 +9,7 @@ export enum PlausibleEvents {
   PROJECT_CAROUSEL = 'Project carousel interaction',
   PROJECT_FILTER_CLICK = 'Project filter click',
   PROJECT_AUTHOR_PAGE_CLICK = 'Project author page click',
+  AUTHOR_PAGE_TAB_INTERACTION = 'Author Page tab interaction',
   CAREER_CLICK = 'Career click',
   BLOG_POST_CLICK = 'Blog post click',
   BLOG_POST_TAG_CLICK = 'Blog post tag click',

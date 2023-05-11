@@ -98,6 +98,7 @@
           />
           {#if project.content.thumbnail.length > 1}
             <CircleButton
+              alt="Previous image"
               data-theme="light"
               class="pointer-events-auto absolute left-2 top-1/2 z-10 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 [@media(hover:none)]:opacity-100"
               on:click={() => {
@@ -110,6 +111,7 @@
               icon="arrow-left"
             />
             <CircleButton
+              alt="Next image"
               data-theme="light"
               class="pointer-events-auto absolute right-2 top-1/2 z-10 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 [@media(hover:none)]:opacity-100"
               on:click={() => {

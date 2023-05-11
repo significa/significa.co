@@ -239,7 +239,7 @@
       "name": "blog-post",
       "display_name": null,
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2023-03-30T09:09:50.645Z",
+      "updated_at": "2023-05-11T20:13:46.340Z",
       "id": 3442347,
       "schema": {
         "cover": {
@@ -523,7 +523,7 @@
       "name": "canvas-media",
       "display_name": null,
       "created_at": "2023-05-02T14:13:42.055Z",
-      "updated_at": "2023-05-02T14:51:29.886Z",
+      "updated_at": "2023-05-11T17:30:02.479Z",
       "id": 3915336,
       "schema": {
         "image": {
@@ -581,7 +581,7 @@
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": null,
+      "preview_tmpl": "{{image(options.image.filename)/}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
@@ -1975,7 +1975,7 @@
       "name": "page",
       "display_name": null,
       "created_at": "2023-03-03T13:41:50.937Z",
-      "updated_at": "2023-04-06T10:56:24.062Z",
+      "updated_at": "2023-05-11T20:13:31.271Z",
       "id": 3520995,
       "schema": {
         "page": {
@@ -1988,7 +1988,7 @@
         },
         "tab-b1b4aa1b-2d5c-436e-ac16-09e30b9de047": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": ["seo_title", "seo_description", "seo_og_image", "change_frequency", "priority"],
           "pos": 0,
           "type": "tab"
         },
@@ -2003,6 +2003,54 @@
         "seo_og_image": {
           "type": "asset",
           "filetypes": ["images"]
+        },
+        "change_frequency": {
+          "type": "option",
+          "use_uuid": true,
+          "datasource_slug": "sitemap-frequencies",
+          "description": "The frequency with which the page is expected to change.\n\n1. Always\nThese page types are constantly changing and will include index pages on major news publications, Google News, stock market data, and social bookmarking categories.\n\n2. Hourly\nThese pages update every hour and will also include major news publications as well as weather services and forums.\n\n3. Daily\nPages updated on average once per day and include things like blog posts, smaller web forum pages, message boards, and classified ads.\n\n4. Weekly\nUpdates typically occur once per week, these pages will include website directories, product pricing pages, and smaller blogs.\n\n5. Monthly\nThese are updated once per month, give or take, and include category pages, FAQs, and sometimes Help Desk articles that change slightly. Refer to the section above for guidelines on what is considered to be a change frequency trigger.\n\n6. Yearly\nUpdates on these pages happen on an annual basis and are typically your contact page, “About” page, login pages, and registration pages.\n\n7. Never\nAs the name suggests, these pages never ever get updates. These are really old blog posts, press releases, notifications about updates that never need updating, and completely static pages.",
+          "options": [
+            {
+              "_uid": "1dfa2d4f-d7af-4d1c-8793-b00914cddbea",
+              "name": "Always",
+              "value": "always"
+            },
+            {
+              "_uid": "a5852b8e-d940-47e6-9e79-dd7df19e371f",
+              "value": "hourly",
+              "name": "Hourly"
+            },
+            {
+              "_uid": "3be82f32-a5c1-4ef5-81c3-37420b912bef",
+              "value": "daily",
+              "name": "Daily"
+            },
+            {
+              "_uid": "cdf021ab-fbe8-42b5-ad49-c9503c2bb8eb",
+              "value": "weekly",
+              "name": "Weekly"
+            },
+            {
+              "_uid": "ab61e280-e6f6-431b-88ae-8cfa9496d886",
+              "value": "monthly",
+              "name": "Monthly"
+            },
+            {
+              "_uid": "55420da8-6f32-4ce7-9c6c-36507a68a3bd",
+              "value": "yearly",
+              "name": "Yearly"
+            },
+            {
+              "_uid": "a89df366-da55-46af-88c2-e2f87d3ee61d",
+              "value": "never",
+              "name": "Never"
+            }
+          ]
+        },
+        "priority": {
+          "type": "number",
+          "description": "The priority of the page relative to other pages on your site, where 0.1 is the lowest priority and 1.0 is the highest priority.\n\n1.0-0.8\nHomepage, product information, landing pages.\n\n0.7-0.4\nNews articles, some weather services, blog posts, pages that no site would be complete without.\n\n0.3-0.0\nFAQs, outdated info, old press releases, completely static pages that are still relevant enough to keep from deleting entirely.",
+          "decimals": 1
         }
       },
       "image": null,

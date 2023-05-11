@@ -29,12 +29,9 @@
       width={data.canvas_width}
       items={data.canvas_items}
       {teamMembers}
-      style="height: min({data.canvas_height}px ,calc(100vh - 76px));"
+      style="height: min({data.canvas_height}px, calc(90vh - 76px));"
     />
-    <div
-      class="absolute left-0 right-0 top-0 h-16"
-      style="background-image: linear-gradient(180deg, hsl(var(--color-background)) 0%, transparent 100%);"
-    />
+    <div class="absolute left-0 right-0 top-0 h-16 border-t" />
 
     {#if $device === 'touch'}
       <Button

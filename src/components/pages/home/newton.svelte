@@ -3,9 +3,9 @@
   import clsx from 'clsx';
   import type Matter from 'matter-js';
   import type { Engine, Body, Constraint } from 'matter-js';
-  import Strategy from './assets/strategy.png';
-  import Design from './assets/design.png';
-  import Dev from './assets/dev.png';
+  import Strategy from './assets/strategy.webp';
+  import Design from './assets/design.webp';
+  import Dev from './assets/dev.webp';
 
   const GRAVITY_DEFAULT_VALUE = 0.0017 as const;
   const items = [Strategy, Design, Dev];

@@ -2,7 +2,7 @@
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import type { HomePageStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
-  import ServicesIllustration from './assets/pendulum-static.png';
+  import ServicesIllustration from './assets/pendulum-static.webp';
   import Newton from './newton.svelte';
 
   export let data: HomePageStoryblok;

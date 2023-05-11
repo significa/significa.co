@@ -64,7 +64,7 @@
         <div class="flex-1">
           <p class="line-clamp-2 max-w-sm text-lg/tight font-medium">
             {#if highlight.content.component === 'handbook' || highlight.content.component === 'project'}
-              {highlight.name}{highlight.content.tagline ? ` — ${highlight.content.tagline}` : ''}
+              {highlight.name}{highlight.content.tagline ? ` ${highlight.content.tagline}` : ''}
             {:else}
               {highlight.name}
             {/if}

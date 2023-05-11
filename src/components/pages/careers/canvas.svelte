@@ -34,7 +34,7 @@
   class={$$restProps.class}
 >
   <div
-    class={clsx('relative mx-auto', $$restProps.class)}
+    class={clsx('relative mx-auto select-none', $$restProps.class)}
     style="width: {width || 0}px; height: {height ||
       0}px; background-image: radial-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 24px 24px;"
   >

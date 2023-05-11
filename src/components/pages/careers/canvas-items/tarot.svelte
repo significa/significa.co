@@ -6,6 +6,57 @@
   import moon from '$assets/moon.svg';
   let flip = false;
   let timeout: ReturnType<typeof setTimeout>;
+  let calculateAngle = function (e, item) {
+    // Get the x position of the users mouse, relative to the card itself
+    let x = Math.abs(item.getBoundingClientRect().x - e.clientX);
+    // Get the y position relative to the button
+    let y = Math.abs(item.getBoundingClientRect().y - e.clientY);
+
+    // Calculate half the width and height
+    let halfWidth = item.getBoundingClientRect().width / 2;
+    let halfHeight = item.getBoundingClientRect().height / 2;
+
+    let calcAngleX = (x - halfWidth) / 14;
+    let calcAngleY = (y - halfHeight) / 14;
+
+    // And set its container's perspective.
+    item.style.perspective = `${halfWidth * 6}px`;
+
+    // Set the items transform CSS property
+    item.style.transform = `rotateY(${calcAngleX}deg) rotateX(${-calcAngleY}deg)`;
+  };
+
+  let frontcard = document.querySelector('.flip-card-front');
+  let backcard = document.querySelector('.flip-card-back');
+  let parent = document.querySelector('.flip-card-inner');
+
+  $: if (flip) {
+    parent?.addEventListener('mouseenter', function (e) {
+      calculateAngle(e, backcard);
+    });
+
+    parent?.addEventListener('mousemove', function (e) {
+      calculateAngle(e, backcard);
+    });
+
+    parent?.addEventListener('mouseleave', function () {
+      // frontcard.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      backcard.style.transform = 'rotateY(180deg) rotateX(0deg)';
+    });
+  } else {
+    parent?.addEventListener('mouseenter', function (e) {
+      calculateAngle(e, frontcard);
+    });
+
+    parent?.addEventListener('mousemove', function (e) {
+      calculateAngle(e, frontcard);
+    });
+
+    parent?.addEventListener('mouseleave', function () {
+      frontcard.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      // backcard.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
+  }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -15,14 +66,15 @@
   on:click={() => {
     clearTimeout(timeout);
     flip = !flip;
-    if (flip) {
-      timeout = setTimeout(() => {
-        flip = false;
-      }, 4000);
-    }
+    // if (flip) {
+    //   timeout = setTimeout(() => {
+    //     flip = false;
+    //   }, 4000);
+    // }
   }}
 >
   <div
+    class="test"
     style="left: {item.left || 0}px; top: {item.top || 0}px; transform: rotate({item.rotate ||
       0}deg)"
   >
@@ -68,43 +120,5 @@
   }
   .flip-card-back {
     transform: rotateY(180deg);
-  }
-  .flip-card-inner:hover .flip-card-front {
-    animation: wiggle 1000ms 1 ease-in-out;
-  }
-  @-webkit-keyframes wiggle {
-    0% {
-      -webkit-transform: rotate(2deg);
-    }
-    25% {
-      -webkit-transform: rotate(-2deg);
-    }
-    50% {
-      -webkit-transform: rotate(4deg);
-    }
-    75% {
-      -webkit-transform: rotate(-1deg);
-    }
-    100% {
-      -webkit-transform: rotate(0deg);
-    }
-  }
-
-  @keyframes wiggle {
-    0% {
-      transform: rotate(2deg);
-    }
-    25% {
-      transform: rotate(-2deg);
-    }
-    50% {
-      transform: rotate(4deg);
-    }
-    75% {
-      transform: rotate(-1deg);
-    }
-    100% {
-      transform: rotate(0deg);
-    }
   }
 </style>

@@ -9,6 +9,7 @@
   import clsx from 'clsx';
   import { fade, fly } from 'svelte/transition';
   import AnHandAndABook from './an-hand-and-a-book.svelte';
+  import { TrackingEvent, track } from '$lib/track';
 
   export let configuration: ConfigurationStoryblok;
 
@@ -28,7 +29,16 @@
   )}
 >
   <div class="flex items-center gap-2">
-    <a aria-label="Go to homepage" href="/">
+    <a
+      aria-label="Go to homepage"
+      href="/"
+      class={clsx($page.url.pathname === '/' && 'pointer-events-none')}
+      on:click={() => {
+        track(TrackingEvent.NAV_LINK, {
+          props: { to: '/', path: $page.url.pathname }
+        });
+      }}
+    >
       <Logo class="mt-1" variant="wordmark" />
     </a>
     {#if variant === 'handbook'}
@@ -41,22 +51,40 @@
       {#each configuration.primary_navigation || [] as nav}
         <Link
           active={$page.url.pathname === sanitizeSlug(nav.full_slug)}
-          href={sanitizeSlug(nav.full_slug)}>{nav.name}</Link
+          href={sanitizeSlug(nav.full_slug)}
+          on:click={() => {
+            track(TrackingEvent.NAV_LINK, {
+              props: { to: sanitizeSlug(nav.full_slug), path: $page.url.pathname }
+            });
+          }}
         >
+          {nav.name}
+        </Link>
       {/each}
     </div>
     <div class="flex items-center gap-4">
       {#if configuration.call_to_action?.length}
         {@const { href } = getAnchorFromCmsLink(configuration.call_to_action[0].link)}
         <div class="hidden [@media(min-width:400px)]:block">
-          <Button as="a" {href}>{configuration.call_to_action[0].label}</Button>
+          <Button
+            as="a"
+            on:click={() => {
+              track(TrackingEvent.GET_A_QUOTE_LINK, {
+                props: { path: $page.url.pathname, context: 'navbar' }
+              });
+            }}
+            {href}>{configuration.call_to_action[0].label}</Button
+          >
         </div>
       {/if}
       <Button
         aria-label="Open menu"
         variant="secondary"
         icon="3dots"
-        on:click={() => (panel = true)}
+        on:click={() => {
+          panel = true;
+          track(TrackingEvent.NAV_MENU, { props: { path: $page.url.pathname } });
+        }}
       />
     </div>
   </div>
@@ -120,8 +148,15 @@
 
       {#if configuration.call_to_action?.length}
         {@const { href } = getAnchorFromCmsLink(configuration.call_to_action[0].link)}
-        <Button class="mt-10 flex-shrink-0" as="a" {href}
-          >{configuration.call_to_action[0].label}</Button
+        <Button
+          class="mt-10 flex-shrink-0"
+          as="a"
+          {href}
+          on:click={() => {
+            track(TrackingEvent.GET_A_QUOTE_LINK, {
+              props: { path: $page.url.pathname, context: 'navigation menu' }
+            });
+          }}>{configuration.call_to_action[0].label}</Button
         >
       {/if}
     </div>

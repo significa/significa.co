@@ -4,6 +4,7 @@
   import Seo from '$components/seo.svelte';
   import { BLOG_PARAMS } from '$lib/content';
   import { t } from '$lib/i18n';
+  import { TrackingEvent, track } from '$lib/track';
   import { getStoryblok } from '$lib/storyblok';
   import type { BlogPostStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
@@ -65,7 +66,10 @@
       <Button
         class="mt-10"
         variant="secondary"
-        on:click={() => fetchStories($posts.length / BLOG_PARAMS.per_page + 1)}
+        on:click={() => {
+          fetchStories($posts.length / BLOG_PARAMS.per_page + 1);
+          track(TrackingEvent.BLOG_INDEX_LOAD_MORE);
+        }}
         loading={$isFetching}
       >
         {t('blog.load-more')}

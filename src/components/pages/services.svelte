@@ -12,6 +12,8 @@
   import type { ServicesPageStoryblok } from '$types/bloks';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import clsx from 'clsx';
+  import { TrackingEvent, track } from '$lib/track';
+  import { page } from '$app/stores';
 
   export let data: ServicesPageStoryblok;
 </script>
@@ -94,7 +96,20 @@
                           {/if}
                         </div>
                       {/if}
-                      <Link {href} {target} {rel} class="elevated-link" />
+                      <Link
+                        {href}
+                        {target}
+                        {rel}
+                        class="elevated-link"
+                        on:click={() => {
+                          track(TrackingEvent.SERVICES_AWARD_CLICK, {
+                            props: {
+                              to: href,
+                              path: $page.url.pathname
+                            }
+                          });
+                        }}
+                      />
                     </div>
                   </li>
                 </div>

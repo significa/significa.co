@@ -16,7 +16,7 @@
 <main>
   <div class="container relative isolate mx-auto pb-20">
     <div class="absolute top-0 z-10 px-container pt-10 md:pt-14 lg:pt-20">
-      <h1 class="max-w-2xl text-8xl">{data.page_title}</h1>
+      <h1 class="max-w-2xl text-7xl">{data.page_title}</h1>
     </div>
     <PhysicsSection style="height: min(calc(100vh - 76px), 830px);" items={data.physics_blocks} />
   </div>

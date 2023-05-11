@@ -27,8 +27,8 @@
   >
     <div class="py-14 lg:max-w-lg lg:p-12">
       <h3 class="mb-6 text-5xl">
-        {data.services_title1} <br />
-        <span class="text-foreground-secondary">{data.services_title2}</span>
+        <span class="text-foreground-secondary">{data.services_title1}</span> <br />
+        {data.services_title2}
       </h3>
       <p class="mb-8 text-2xl text-foreground-secondary">{data.services_description}</p>
       {#if data.services_cta_label && data.services_cta_link}

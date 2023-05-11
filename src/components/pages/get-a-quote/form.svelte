@@ -104,10 +104,10 @@
 >
   <div class="flex-1">
     <div class="lg:max-w-xl">
-      <h1 class="text-7xl">
-        {page.title}<br />
-        <span class="text-foreground-secondary">{page.subtitle}</span>
+      <h1 class="text-7xl text-foreground-secondary">
+        {page.title}
       </h1>
+      <span class="text-7xl">{page.subtitle}</span>
     </div>
   </div>
   <div class={clsx('flex-1', 'lg:flex lg:justify-end')}>

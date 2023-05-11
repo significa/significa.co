@@ -118,7 +118,8 @@
   <section class="mt-10 md:mt-16 lg:mb-16">
     <div class="container mx-auto flex px-container">
       <div class="xl:max-w-3xl">
-        <h3 class="mb-2 text-5xl">{data.services_title}</h3>
+        <h3 class="text-5xl text-foreground-secondary">{data.services_title}</h3>
+        <h3 class="mb-2 text-5xl">{data.services_subtitle}</h3>
         <p class="text-2xl text-foreground-secondary">{data.services_description}</p>
       </div>
     </div>
@@ -169,7 +170,8 @@
       class="container mx-auto mb-6 flex flex-col gap-6 px-container pt-8 lg:mb-12 lg:pt-12 xl:flex-row xl:gap-4"
     >
       <div class="mb-8 mr-52 xl:sticky xl:top-8 xl:max-w-xl xl:self-start">
-        <h3 class="text-5xl">{data.deliverables_title}</h3>
+        <h3 class="text-5xl text-foreground-secondary">{data.deliverables_title}</h3>
+        <h3 class="text-5xl">{data.deliverables_subtitle}</h3>
       </div>
       {#if data.deliverables}
         <div class="grid grid-cols-1 gap-x-40 gap-y-16 md:grid-cols-2">

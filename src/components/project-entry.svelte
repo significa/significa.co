@@ -101,12 +101,19 @@
               alt="Previous image"
               data-theme="light"
               class="pointer-events-auto absolute left-2 top-1/2 z-10 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 [@media(hover:none)]:opacity-100"
-              on:click={() => {
-                if (index === 0) {
-                  index = project.content.thumbnail.length - 1;
-                } else {
-                  index -= 1;
+              on:mouseenter={() => {
+                // preload image
+                const nextIndex = index === 0 ? project.content.thumbnail.length - 1 : index - 1;
+                const nextImage = project.content.thumbnail[nextIndex];
+                if (nextImage?.filename) {
+                  const img = new Image();
+                  img.src = getImageAttributes(nextImage, {
+                    size: [720 * 2, 540 * 2]
+                  }).src;
                 }
+              }}
+              on:click={() => {
+                index = index === 0 ? project.content.thumbnail.length - 1 : index - 1;
               }}
               icon="arrow-left"
             />
@@ -114,12 +121,19 @@
               alt="Next image"
               data-theme="light"
               class="pointer-events-auto absolute right-2 top-1/2 z-10 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 [@media(hover:none)]:opacity-100"
-              on:click={() => {
-                if (index === project.content.thumbnail.length - 1) {
-                  index = 0;
-                } else {
-                  index += 1;
+              on:mouseenter={() => {
+                // preload image
+                const nextIndex = index === project.content.thumbnail.length - 1 ? 0 : index + 1;
+                const nextImage = project.content.thumbnail[nextIndex];
+                if (nextImage?.filename) {
+                  const img = new Image();
+                  img.src = getImageAttributes(nextImage, {
+                    size: [720 * 2, 540 * 2]
+                  }).src;
                 }
+              }}
+              on:click={() => {
+                index = index === project.content.thumbnail.length - 1 ? 0 : index + 1;
               }}
               icon="arrow-right"
             />

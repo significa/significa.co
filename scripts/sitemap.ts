@@ -98,7 +98,7 @@ async function main() {
             loc:
               story.slug === 'home'
                 ? 'https://significa.co'
-                : `https://significa.co/${story.full_slug}`,
+                : `https://significa.co/${story.full_slug.replace(/\/$/, '')}`,
             lastmod: story.published_at || new Date().toISOString(),
             changefreq: 'monthly',
             priority: 0.7

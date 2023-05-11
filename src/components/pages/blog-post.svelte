@@ -11,6 +11,9 @@
   import TwoEggs from '$components/illustrations/two-eggs.svelte';
   import Seo from '$components/seo.svelte';
   import type { BlogPostPage } from '$lib/content';
+  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { page } from '$app/stores';
+  import { drawer } from '$lib/stores/drawer';
 
   export let story: BlogPostPage;
   export let related: BlogPostPage[];
@@ -34,7 +37,15 @@
     {#if story.tag_list.length}
       <div class="mt-5 flex flex-wrap gap-2">
         {#each story.tag_list as tag}
-          <Tag href="/blog?t={encodeURIComponent(tag)}" label={tag} />
+          <Tag
+            href="/blog?t={encodeURIComponent(tag)}"
+            on:click={() => {
+              plausible(PlausibleEvents.BLOG_POST_TAG_CLICK, {
+                props: { name: tag, path: $drawer || $page.url.pathname }
+              });
+            }}
+            label={tag}
+          />
         {/each}
       </div>
     {/if}
@@ -70,6 +81,10 @@
         variant="secondary"
         as="a"
         href={`/about/${author.slug}`}
+        on:click={() =>
+          plausible(PlausibleEvents.BLOG_POST_AUTHOR_PAGE_CLICK, {
+            props: { path: $drawer || $page.url.pathname, to: `/about/${author.slug}` }
+          })}
         class="mt-6"
         arrow
         icon="document"
@@ -87,8 +102,17 @@
         <div class="flex-1">
           <h4 class="max-w-md text-3xl font-bold">{t('blog.pre-footer.title')}</h4>
         </div>
-        <Button class="mt-6" as="a" href="/get-a-quote" arrow icon="document"
-          >{t('blog.pre-footer.cta')}</Button
+        <Button
+          class="mt-6"
+          as="a"
+          href="/get-a-quote"
+          on:click={() => {
+            plausible(PlausibleEvents.GET_A_QUOTE_LINK, {
+              props: { path: $drawer || $page.url.pathname, context: 'blog post' }
+            });
+          }}
+          arrow
+          icon="document">{t('blog.pre-footer.cta')}</Button
         >
       </div>
       <TwoEggs class="hidden w-60 sm:block" />

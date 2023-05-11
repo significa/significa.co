@@ -11,6 +11,7 @@
   import type { ProjectPage } from '$lib/content';
   import { PlausibleEvents, plausible } from '$lib/plausible';
   import { page } from '$app/stores';
+  import { drawer } from '$lib/stores/drawer';
 
   export let project: ISbStoryData<ProjectStoryblok> | ProjectPage;
   export let variant: 'featured' | 'default' = 'default';
@@ -22,7 +23,7 @@
   // should only run once per mount
   $: if (hasInteractedWithCarousel) {
     plausible(PlausibleEvents.PROJECT_CAROUSEL, {
-      props: { name: project.name, path: $page.url.pathname }
+      props: { name: project.name, path: $drawer || $page.url.pathname }
     });
   }
 
@@ -56,7 +57,7 @@
               props: {
                 name: project.name,
                 to: `/projects/${project.slug}`,
-                path: $page.url.pathname
+                path: $drawer || $page.url.pathname
               }
             });
           }}
@@ -79,7 +80,11 @@
         href={`/projects/${project.slug}`}
         on:click={() => {
           plausible(PlausibleEvents.PROJECT_CLICK, {
-            props: { name: project.name, to: `/projects/${project.slug}`, path: $page.url.pathname }
+            props: {
+              name: project.name,
+              to: `/projects/${project.slug}`,
+              path: $drawer || $page.url.pathname
+            }
           });
         }}
         class="mt-6"

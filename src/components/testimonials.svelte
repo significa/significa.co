@@ -11,6 +11,7 @@
   import FriedEgg from './illustrations/stickers/fried-egg.svelte';
   import { PlausibleEvents, plausible } from '$lib/plausible';
   import { page } from '$app/stores';
+  import { drawer } from '$lib/stores/drawer';
 
   export let variant: 'one' | 'two' = 'one';
   export let firstTitle: string | undefined = undefined;
@@ -42,7 +43,7 @@
           {href}
           on:click={() => {
             plausible(PlausibleEvents.CTA_CLICK, {
-              props: { to: href, path: $page.url.pathname, section: firstTitle }
+              props: { to: href, path: $drawer || $page.url.pathname, section: firstTitle }
             });
           }}
           arrow

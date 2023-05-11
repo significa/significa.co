@@ -9,6 +9,7 @@
   import { page } from '$app/stores';
   import { fetchPage } from '$lib/content';
   import { setContext } from 'svelte';
+  import { PlausibleEvents, plausible } from '$lib/plausible';
 
   let expanding = false;
 
@@ -41,6 +42,13 @@
         variant="ghost"
         icon="expand"
         on:click={() => {
+          if ($drawer) {
+            plausible(PlausibleEvents.DRAWER_EXPAND, {
+              props: {
+                to: $drawer
+              }
+            });
+          }
           expanding = true;
           drawer.close();
         }}>{t('expand')}</Button

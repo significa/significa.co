@@ -4,6 +4,9 @@
   import { Icon, Link, Tag } from '@significa/svelte-ui';
   import type { ISbStoryData } from '@storyblok/js';
   import Person from './person.svelte';
+  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { page } from '$app/stores';
+  import { drawer } from '$lib/stores/drawer';
 
   export let post: ISbStoryData<
     Omit<BlogPostStoryblok, 'author'> & {
@@ -27,11 +30,31 @@
       <p class="mb-2 text-base font-medium text-foreground-secondary">
         {formatDate(new Date(post.first_published_at || post.published_at || post.created_at))}
       </p>
-      <Link href={`/blog/${post.slug}`} class="max-w-2xl text-4xl elevated-link">{post.name}</Link>
+      <Link
+        href={`/blog/${post.slug}`}
+        on:click={() => {
+          plausible(PlausibleEvents.BLOG_POST_CLICK, {
+            props: {
+              name: post.name,
+              to: `/blog/${post.slug}`,
+              path: $drawer || $page.url.pathname
+            }
+          });
+        }}
+        class="max-w-2xl text-4xl elevated-link">{post.name}</Link
+      >
       {#if post.tag_list.length}
         <div class="mt-5 flex flex-wrap gap-2">
           {#each post.tag_list as tag}
-            <Tag href="/blog?t={encodeURIComponent(tag)}" label={tag} />
+            <Tag
+              href="/blog?t={encodeURIComponent(tag)}"
+              on:click={() => {
+                plausible(PlausibleEvents.BLOG_POST_TAG_CLICK, {
+                  props: { name: tag, path: $drawer || $page.url.pathname }
+                });
+              }}
+              label={tag}
+            />
           {/each}
         </div>
       {/if}

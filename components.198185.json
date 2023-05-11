@@ -185,91 +185,21 @@
       "name": "benefits-entry",
       "display_name": null,
       "created_at": "2023-04-21T09:26:11.845Z",
-      "updated_at": "2023-04-27T11:09:48.115Z",
+      "updated_at": "2023-05-11T11:21:55.451Z",
       "id": 3857099,
       "schema": {
-        "icon": {
-          "type": "option",
-          "filetypes": [],
-          "use_uuid": true,
-          "options": [
-            {
-              "_uid": "7617b9d0-bf7d-484a-966c-9f08f4e33837",
-              "name": "Clock",
-              "value": "clock"
-            },
-            {
-              "_uid": "21a4793f-3cd3-439c-9b95-13f087df890b",
-              "value": "book",
-              "name": "Book"
-            },
-            {
-              "_uid": "37b0b296-a88a-4cde-ac5a-1104a6670211",
-              "value": "laptop",
-              "name": "Laptop"
-            },
-            {
-              "_uid": "c768d570-18d8-4a1b-a34f-f30bb7a82aa7",
-              "value": "grow",
-              "name": "Grow"
-            },
-            {
-              "_uid": "3f08bf5a-13e4-4a3e-b099-170be12c209c",
-              "value": "baby",
-              "name": "Baby"
-            },
-            {
-              "_uid": "ccfc4af0-b5bf-423b-a3ce-af307dd1f242",
-              "value": "backpack",
-              "name": "Backpack"
-            },
-            {
-              "_uid": "b09e5bc3-9657-4626-8a37-5d570ea9ed08",
-              "value": "bus",
-              "name": "Bus"
-            },
-            {
-              "_uid": "b513d974-d9d3-4089-8fcd-6e024cb2b2c7",
-              "value": "calendar",
-              "name": "Calendar"
-            },
-            {
-              "_uid": "97620d71-2e84-48d1-96b3-64d26ab93b8a",
-              "value": "gym",
-              "name": "Gym"
-            },
-            {
-              "_uid": "cb71c94c-c7ba-491f-822f-a0478280a895",
-              "value": "health",
-              "name": "Health"
-            },
-            {
-              "_uid": "a7b3b7fe-3357-441b-aafd-3058e52ab5d0",
-              "value": "heart",
-              "name": "Heart"
-            },
-            {
-              "_uid": "79967437-ee22-4642-90a7-0eb652c03231",
-              "value": "referral",
-              "name": "Referral"
-            },
-            {
-              "_uid": "9d8751c4-2d56-489c-be34-345e1d9c6d56",
-              "value": "sun",
-              "name": "Sun"
-            },
-            {
-              "_uid": "00a6644b-3a3d-43be-a9f8-ee05c1b58bb9",
-              "value": "support",
-              "name": "Support"
-            }
-          ]
+        "image": {
+          "type": "asset",
+          "pos": 1,
+          "filetypes": ["images"]
         },
         "title": {
-          "type": "text"
+          "type": "text",
+          "pos": 2
         },
         "description": {
-          "type": "text"
+          "type": "text",
+          "pos": 3
         }
       },
       "image": null,

@@ -4,7 +4,7 @@
   import { Button } from '@significa/svelte-ui';
   import ServicesIllustration from './assets/pendulum-static.webp';
   import Newton from './newton.svelte';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
   import { page } from '$app/stores';
 
   export let data: HomePageStoryblok;
@@ -41,7 +41,7 @@
           variant="secondary"
           {href}
           on:click={() => {
-            plausible(PlausibleEvents.CTA_CLICK, {
+            track(TrackingEvent.CTA_CLICK, {
               props: { to: href, path: $page.url.pathname, section: data.services_title1 }
             });
           }}>{data.services_cta_label}</Button

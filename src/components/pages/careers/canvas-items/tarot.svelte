@@ -4,7 +4,7 @@
   import back from '$assets/back.svg';
   import sun from '$assets/sun.svg';
   import moon from '$assets/moon.svg';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
   let flip = false;
   let timeout: ReturnType<typeof setTimeout>;
   let hasInteracted = false;
@@ -16,7 +16,7 @@
   style="perspective: 1000px;"
   on:click={() => {
     if (!hasInteracted) {
-      plausible(PlausibleEvents.CAREERS_CANVAS_FLIPPED_TAROT);
+      track(TrackingEvent.CAREERS_CANVAS_FLIPPED_TAROT);
       hasInteracted = true;
     }
     clearTimeout(timeout);

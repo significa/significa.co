@@ -11,7 +11,7 @@
   import TwoEggs from '$components/illustrations/two-eggs.svelte';
   import Seo from '$components/seo.svelte';
   import type { BlogPostPage } from '$lib/content';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
   import { page } from '$app/stores';
   import { drawer } from '$lib/stores/drawer';
 
@@ -40,7 +40,7 @@
           <Tag
             href="/blog?t={encodeURIComponent(tag)}"
             on:click={() => {
-              plausible(PlausibleEvents.BLOG_POST_TAG_CLICK, {
+              track(TrackingEvent.BLOG_POST_TAG_CLICK, {
                 props: { name: tag, path: $drawer || $page.url.pathname }
               });
             }}
@@ -82,7 +82,7 @@
         as="a"
         href={`/about/${author.slug}`}
         on:click={() =>
-          plausible(PlausibleEvents.BLOG_POST_AUTHOR_PAGE_CLICK, {
+          track(TrackingEvent.BLOG_POST_AUTHOR_PAGE_CLICK, {
             props: { path: $drawer || $page.url.pathname, to: `/about/${author.slug}` }
           })}
         class="mt-6"
@@ -107,7 +107,7 @@
           as="a"
           href="/get-a-quote"
           on:click={() => {
-            plausible(PlausibleEvents.GET_A_QUOTE_LINK, {
+            track(TrackingEvent.GET_A_QUOTE_LINK, {
               props: { path: $drawer || $page.url.pathname, context: 'blog post' }
             });
           }}

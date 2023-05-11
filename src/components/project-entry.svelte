@@ -9,7 +9,7 @@
   import clsx from 'clsx';
   import Recognitions from './recognitions.svelte';
   import type { ProjectPage } from '$lib/content';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
   import { page } from '$app/stores';
   import { drawer } from '$lib/stores/drawer';
 
@@ -22,7 +22,7 @@
 
   // should only run once per mount
   $: if (hasInteractedWithCarousel) {
-    plausible(PlausibleEvents.PROJECT_CAROUSEL, {
+    track(TrackingEvent.PROJECT_CAROUSEL, {
       props: { name: project.name, path: $drawer || $page.url.pathname }
     });
   }
@@ -53,7 +53,7 @@
           class="elevated-link"
           href={`/projects/${project.slug}`}
           on:click={() => {
-            plausible(PlausibleEvents.PROJECT_CLICK, {
+            track(TrackingEvent.PROJECT_CLICK, {
               props: {
                 name: project.name,
                 to: `/projects/${project.slug}`,
@@ -79,7 +79,7 @@
         as="a"
         href={`/projects/${project.slug}`}
         on:click={() => {
-          plausible(PlausibleEvents.PROJECT_CLICK, {
+          track(TrackingEvent.PROJECT_CLICK, {
             props: {
               name: project.name,
               to: `/projects/${project.slug}`,

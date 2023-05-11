@@ -19,7 +19,7 @@
   import Testimonials from '$components/testimonials.svelte';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import Services from './home/services.svelte';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
 
   export let data: HomePageStoryblok;
   export let posts: BlogPostPage[] | undefined;
@@ -57,7 +57,7 @@
       <Reel
         src={data.showreel.filename}
         play_label={data.showreel_button_label}
-        plausibleEvent={{ event: PlausibleEvents.HOME_REEL }}
+        trackEvent={{ event: TrackingEvent.HOME_REEL }}
       />
     {/if}
   </div>
@@ -113,7 +113,7 @@
                     class="flex w-full items-center justify-between py-4 text-xl transition-colors hover:text-foreground-secondary"
                     href={career.full_slug}
                     on:click={() => {
-                      plausible(PlausibleEvents.CAREER_CLICK, {
+                      track(TrackingEvent.CAREER_CLICK, {
                         props: { name: career.name, to: career.full_slug, path: $page.url.pathname }
                       });
                     }}
@@ -129,7 +129,7 @@
             as="a"
             href="/careers"
             on:click={() => {
-              plausible(PlausibleEvents.CTA_CLICK, {
+              track(TrackingEvent.CTA_CLICK, {
                 props: { to: '/careers', path: $page.url.pathname, section: data.careers_title }
               });
             }}
@@ -153,7 +153,7 @@
               as="a"
               {href}
               on:click={() => {
-                plausible(PlausibleEvents.CTA_CLICK, {
+                track(TrackingEvent.CTA_CLICK, {
                   props: { to: href, path: $page.url.pathname, section: data.careers_title }
                 });
               }}

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import type { RichtextBoxStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
@@ -43,7 +43,7 @@
             as="a"
             {href}
             on:click={() => {
-              plausible(PlausibleEvents.CTA_CLICK, {
+              track(TrackingEvent.CTA_CLICK, {
                 props: {
                   to: href,
                   path: $page.url.pathname

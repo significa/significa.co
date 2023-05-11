@@ -4,7 +4,7 @@
   import Seo from '$components/seo.svelte';
   import { BLOG_PARAMS } from '$lib/content';
   import { t } from '$lib/i18n';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
   import { getStoryblok } from '$lib/storyblok';
   import type { BlogPostStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
@@ -68,7 +68,7 @@
         variant="secondary"
         on:click={() => {
           fetchStories($posts.length / BLOG_PARAMS.per_page + 1);
-          plausible(PlausibleEvents.BLOG_INDEX_LOAD_MORE);
+          track(TrackingEvent.BLOG_INDEX_LOAD_MORE);
         }}
         loading={$isFetching}
       >

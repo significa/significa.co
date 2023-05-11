@@ -7,7 +7,7 @@
   import Seo from '$components/seo.svelte';
   import type { BlogPostPage, ProjectPage } from '$lib/content';
   import { t } from '$lib/i18n';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
   import { drawer } from '$lib/stores/drawer';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { TeamMemberStoryblok } from '$types/bloks';
@@ -36,7 +36,7 @@
   let hasInteractedWithTabs = false;
 
   $: if (hasInteractedWithTabs) {
-    plausible(PlausibleEvents.AUTHOR_PAGE_TAB_INTERACTION, {
+    track(TrackingEvent.AUTHOR_PAGE_TAB_INTERACTION, {
       props: {
         path: $drawer || $page.url.pathname
       }

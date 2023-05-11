@@ -15,7 +15,7 @@
   import type { ServicesPageStoryblok } from '$types/bloks';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import clsx from 'clsx';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
   import { page } from '$app/stores';
 
   export let data: ServicesPageStoryblok;
@@ -105,7 +105,7 @@
                         {rel}
                         class="elevated-link"
                         on:click={() => {
-                          plausible(PlausibleEvents.SERVICES_AWARD_CLICK, {
+                          track(TrackingEvent.SERVICES_AWARD_CLICK, {
                             props: {
                               to: href,
                               path: $page.url.pathname

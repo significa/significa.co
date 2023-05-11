@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import PhysicsSection from '$components/physics-section.svelte';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import type { HomePageStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
@@ -28,7 +28,7 @@
           {target}
           {rel}
           on:click={() => {
-            plausible(PlausibleEvents.CTA_CLICK, {
+            track(TrackingEvent.CTA_CLICK, {
               props: { to: href, path: $page.url.pathname, section: data.about_title1 }
             });
           }}
@@ -62,7 +62,7 @@
           variant="secondary"
           {href}
           on:click={() => {
-            plausible(PlausibleEvents.CTA_CLICK, {
+            track(TrackingEvent.CTA_CLICK, {
               props: { to: href, path: $page.url.pathname, section: data.about_title1 }
             });
           }}

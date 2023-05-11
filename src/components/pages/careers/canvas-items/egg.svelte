@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { PlausibleEvents } from '$lib/plausible';
+  import { TrackingEvent } from '$lib/track';
   import type { CanvasEggStoryblok } from '$types/bloks';
   import CycleImages from './cycle-images.svelte';
 
@@ -15,5 +15,5 @@
   left={item.left}
   rotate={item.rotate}
   alt="Egg"
-  plausibleEvent={{ event: PlausibleEvents.CAREERS_CANVAS_EGG_FRY }}
+  trackEvent={{ event: TrackingEvent.CAREERS_CANVAS_EGG_FRY }}
 />

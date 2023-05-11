@@ -4,7 +4,7 @@
   import { Icon, Link, Tag } from '@significa/svelte-ui';
   import type { ISbStoryData } from '@storyblok/js';
   import Person from './person.svelte';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
   import { page } from '$app/stores';
   import { drawer } from '$lib/stores/drawer';
 
@@ -33,7 +33,7 @@
       <Link
         href={`/blog/${post.slug}`}
         on:click={() => {
-          plausible(PlausibleEvents.BLOG_POST_CLICK, {
+          track(TrackingEvent.BLOG_POST_CLICK, {
             props: {
               name: post.name,
               to: `/blog/${post.slug}`,
@@ -49,7 +49,7 @@
             <Tag
               href="/blog?t={encodeURIComponent(tag)}"
               on:click={() => {
-                plausible(PlausibleEvents.BLOG_POST_TAG_CLICK, {
+                track(TrackingEvent.BLOG_POST_TAG_CLICK, {
                   props: { name: tag, path: $drawer || $page.url.pathname }
                 });
               }}

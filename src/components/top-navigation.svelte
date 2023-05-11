@@ -9,7 +9,7 @@
   import clsx from 'clsx';
   import { fade, fly } from 'svelte/transition';
   import AnHandAndABook from './an-hand-and-a-book.svelte';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
 
   export let configuration: ConfigurationStoryblok;
 
@@ -34,7 +34,7 @@
       href="/"
       class={clsx($page.url.pathname === '/' && 'pointer-events-none')}
       on:click={() => {
-        plausible(PlausibleEvents.NAV_LINK, {
+        track(TrackingEvent.NAV_LINK, {
           props: { to: '/', path: $page.url.pathname }
         });
       }}
@@ -53,7 +53,7 @@
           active={$page.url.pathname === sanitizeSlug(nav.full_slug)}
           href={sanitizeSlug(nav.full_slug)}
           on:click={() => {
-            plausible(PlausibleEvents.NAV_LINK, {
+            track(TrackingEvent.NAV_LINK, {
               props: { to: sanitizeSlug(nav.full_slug), path: $page.url.pathname }
             });
           }}
@@ -69,7 +69,7 @@
           <Button
             as="a"
             on:click={() => {
-              plausible(PlausibleEvents.GET_A_QUOTE_LINK, {
+              track(TrackingEvent.GET_A_QUOTE_LINK, {
                 props: { path: $page.url.pathname, context: 'navbar' }
               });
             }}
@@ -83,7 +83,7 @@
         icon="3dots"
         on:click={() => {
           panel = true;
-          plausible(PlausibleEvents.NAV_MENU, { props: { path: $page.url.pathname } });
+          track(TrackingEvent.NAV_MENU, { props: { path: $page.url.pathname } });
         }}
       />
     </div>
@@ -153,7 +153,7 @@
           as="a"
           {href}
           on:click={() => {
-            plausible(PlausibleEvents.GET_A_QUOTE_LINK, {
+            track(TrackingEvent.GET_A_QUOTE_LINK, {
               props: { path: $page.url.pathname, context: 'navigation menu' }
             });
           }}>{configuration.call_to_action[0].label}</Button

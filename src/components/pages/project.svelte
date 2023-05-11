@@ -11,7 +11,7 @@
   import { getFileExtension } from '$lib/utils/strings';
   import Seo from '$components/seo.svelte';
   import type { ProjectPage } from '$lib/content';
-  import { plausible, PlausibleEvents } from '$lib/plausible';
+  import { track, TrackingEvent } from '$lib/track';
   import { drawer } from '$lib/stores/drawer';
   import { page } from '$app/stores';
 
@@ -109,7 +109,7 @@
             <a
               href={`/about/${member.slug}`}
               on:click={() => {
-                plausible(PlausibleEvents.PROJECT_AUTHOR_PAGE_CLICK, {
+                track(TrackingEvent.PROJECT_AUTHOR_PAGE_CLICK, {
                   props: {
                     to: `/about/${member.slug}`,
                     path: $drawer || $page.url.pathname

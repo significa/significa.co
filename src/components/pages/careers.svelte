@@ -12,7 +12,7 @@
   import type { TeamMemberPage } from '$lib/content';
   import DrawYourSegg from '$components/draw-your-segg/draw-your-segg.svelte';
   import { getImageAttributes } from '$lib/utils/cms';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
 
   export let data: CareersPageStoryblok;
   export let teamMembers: TeamMemberPage[] | undefined;
@@ -93,7 +93,7 @@
                     class="flex w-full items-center justify-between py-7 text-2xl font-semibold transition-colors hover:text-foreground-secondary"
                     href={career.full_slug}
                     on:click={() => {
-                      plausible(PlausibleEvents.CAREER_CLICK, {
+                      track(TrackingEvent.CAREER_CLICK, {
                         props: { name: career.name, to: career.full_slug, path: $page.url.pathname }
                       });
                     }}
@@ -111,7 +111,7 @@
               class="mt-0.5 inline-flex"
               href="mailto:{t('careers.footer.email')}"
               on:click={() => {
-                plausible(PlausibleEvents.CAREERS_SPONTANEOUS_APPLICATION);
+                track(TrackingEvent.CAREERS_SPONTANEOUS_APPLICATION);
               }}>{t('careers.footer.description')}</Link
             >
           </div>

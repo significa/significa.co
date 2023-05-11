@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { plausible, type PlausibleEventProps } from '$lib/plausible';
+  import { track, type TrackingEventProps } from '$lib/track';
   import clsx from 'clsx';
 
   export let images: string[];
@@ -7,13 +7,13 @@
   export let top: number | undefined;
   export let left: number | undefined;
   export let rotate: number | undefined;
-  export let plausibleEvent: PlausibleEventProps | undefined = undefined;
+  export let trackEvent: TrackingEventProps | undefined = undefined;
 
   let active = 0;
   let hasMadeOneCycle = false;
 
-  $: if (active === images.length - 1 && !hasMadeOneCycle && plausibleEvent) {
-    plausible(plausibleEvent.event, plausibleEvent.options);
+  $: if (active === images.length - 1 && !hasMadeOneCycle && trackEvent) {
+    track(trackEvent.event, trackEvent.options);
     hasMadeOneCycle = true;
   }
 

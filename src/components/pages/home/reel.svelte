@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { plausible, type PlausibleEventProps } from '$lib/plausible';
+  import { track, type TrackingEventProps } from '$lib/track';
   import { Button } from '@significa/svelte-ui';
   import { fade } from 'svelte/transition';
 
@@ -9,7 +9,7 @@
 
   export let src: string;
   export let play_label: string | undefined;
-  export let plausibleEvent: PlausibleEventProps | undefined = undefined;
+  export let trackEvent: TrackingEventProps | undefined = undefined;
 </script>
 
 <section class="relative mt-8 overflow-hidden rounded-md" data-theme="dark">
@@ -22,8 +22,8 @@
         class="ring-foreground/20"
         on:click={() => {
           video.play();
-          if (plausibleEvent && !hasPlayedOnSession) {
-            plausible(plausibleEvent.event, plausibleEvent.options);
+          if (trackEvent && !hasPlayedOnSession) {
+            track(trackEvent.event, trackEvent.options);
             hasPlayedOnSession = true;
           }
         }}

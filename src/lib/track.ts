@@ -1,4 +1,4 @@
-export enum PlausibleEvents {
+export enum TrackingEvent {
   NAV_MENU = 'Navigation menu',
   NAV_LINK = 'Navbar link',
   GET_A_QUOTE_LINK = 'Get a quote link',
@@ -38,9 +38,9 @@ type EventOptions = {
   callback?: VoidFunction;
 };
 
-export type PlausibleEventProps = { event: PlausibleEvents; options?: EventOptions };
+export type TrackingEventProps = { event: TrackingEvent; options?: EventOptions };
 
-export function plausible(event: PlausibleEvents, options?: EventOptions): void {
+export function track(event: TrackingEvent, options?: EventOptions): void {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (window as any).plausible?.(event, options);
 }

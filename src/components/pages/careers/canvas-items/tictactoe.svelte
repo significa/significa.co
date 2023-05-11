@@ -14,7 +14,7 @@
   import Bird from './tictactoe/assets/bird.webp';
   import Egg from './tictactoe/assets/egg.webp';
   import type { CanvasTictactoeStoryblok } from '$types/bloks';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
 
   export let item: CanvasTictactoeStoryblok;
 
@@ -95,7 +95,7 @@
     !userHasPlayedOneGame
   ) {
     userHasPlayedOneGame = true;
-    plausible(PlausibleEvents.CAREERS_CANVAS_PLAYED_TIC_TAC_TOE);
+    track(TrackingEvent.CAREERS_CANVAS_PLAYED_TIC_TAC_TOE);
   }
 
   $: if (tiles.filter((tile) => tile === -9).length === 0 && gameState === 'in-progress')

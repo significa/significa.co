@@ -4,7 +4,7 @@
   import { CheckboxGroup } from '@significa/svelte-ui';
   import { CONFETTI_COLOR_ARRAY } from '$lib/constants';
   import type { CanvasChecklistStoryblok } from '$types/bloks';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
 
   export let item: CanvasChecklistStoryblok;
 
@@ -12,7 +12,7 @@
   let hasCheckedAllOnce = false;
 
   $: if (selection.length === item.items?.length && !hasCheckedAllOnce) {
-    plausible(PlausibleEvents.CAREERS_CANVAS_EGGMANDMENDS);
+    track(TrackingEvent.CAREERS_CANVAS_EGGMANDMENDS);
     hasCheckedAllOnce = true;
   }
 </script>

@@ -3,7 +3,7 @@
   import { applyAction, enhance } from '$app/forms';
   import { page } from '$app/stores';
   import { t } from '$lib/i18n';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
   import {
     type FileUploadItem,
     Button,
@@ -77,7 +77,7 @@
   let loading = false;
 
   $: if ($page.form?.success) {
-    plausible(PlausibleEvents.FORM_SUBMITION, { props: { path: $page.url.pathname, type } });
+    track(TrackingEvent.FORM_SUBMITION, { props: { path: $page.url.pathname, type } });
     dispatch('success');
     toast.success({
       message: t('contact.feedback.success.title'),
@@ -270,7 +270,7 @@
         class="mt-0.5 inline-flex"
         href="mailto:{t('contact.footer.email')}"
         on:click={() => {
-          plausible(PlausibleEvents.FORM_CHOOSE_MAILTO, { props: { path: $page.url.pathname } });
+          track(TrackingEvent.FORM_CHOOSE_MAILTO, { props: { path: $page.url.pathname } });
         }}>{t('contact.footer.email')}</Link
       >
     </div>

@@ -2,7 +2,7 @@
   import { sanitizeSlug } from '$lib/utils/paths';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { HomePageStoryblok } from '$types/bloks';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
 
   export let highlights: HomePageStoryblok['small_highlights'] = [];
   let hover: HTMLDivElement;
@@ -24,7 +24,7 @@
     <a
       href={sanitizeSlug(highlight.full_slug)}
       on:click={() => {
-        plausible(PlausibleEvents.HOME_HIGHLIGHT, {
+        track(TrackingEvent.HOME_HIGHLIGHT, {
           props: { to: sanitizeSlug(highlight.full_slug) }
         });
       }}

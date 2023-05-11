@@ -9,7 +9,7 @@
   import { page } from '$app/stores';
   import { fetchPage } from '$lib/content';
   import { setContext } from 'svelte';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
 
   let expanding = false;
 
@@ -43,7 +43,7 @@
         icon="expand"
         on:click={() => {
           if ($drawer) {
-            plausible(PlausibleEvents.DRAWER_EXPAND, {
+            track(TrackingEvent.DRAWER_EXPAND, {
               props: {
                 to: $drawer
               }

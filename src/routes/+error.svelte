@@ -1,7 +1,7 @@
 <script lang="ts">
   import center from '$assets/404.svg';
   import nobita from '$assets/nobita-small.svg';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
   import clsx from 'clsx';
 
   const stickers = Object.values(
@@ -119,7 +119,7 @@
 
   $: matrix = getMatrix(screenWidth, screenHeight, centerWidth, centerHeight);
   $: if (isFound && !isFoundOnSession) {
-    plausible(PlausibleEvents.NOBITA_FOUND);
+    track(TrackingEvent.NOBITA_FOUND);
     isFoundOnSession = true;
   }
 </script>

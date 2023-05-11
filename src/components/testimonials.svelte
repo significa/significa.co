@@ -9,7 +9,7 @@
   import clsx from 'clsx';
   import People from './illustrations/stickers/people.svelte';
   import FriedEgg from './illustrations/stickers/fried-egg.svelte';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
   import { page } from '$app/stores';
   import { drawer } from '$lib/stores/drawer';
 
@@ -42,7 +42,7 @@
           as="a"
           {href}
           on:click={() => {
-            plausible(PlausibleEvents.CTA_CLICK, {
+            track(TrackingEvent.CTA_CLICK, {
               props: { to: href, path: $drawer || $page.url.pathname, section: firstTitle }
             });
           }}

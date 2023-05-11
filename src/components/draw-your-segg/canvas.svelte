@@ -14,7 +14,7 @@
   import { page } from '$app/stores';
   import { toast } from '@significa/svelte-ui';
   import { t } from '$lib/i18n';
-  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { TrackingEvent, track } from '$lib/track';
 
   const dispatch = createEventDispatcher<{ change: Drawing }>();
 
@@ -133,7 +133,7 @@
     isDrawing = false;
 
     if (!hasDrawn) {
-      plausible(PlausibleEvents.DRAW_YOUR_SEGG_INTERACT);
+      track(TrackingEvent.DRAW_YOUR_SEGG_INTERACT);
       hasDrawn = true;
     }
 
@@ -219,7 +219,7 @@
             toast.success({
               message: t('draw-segg.clipboard.feedback')
             });
-            plausible(PlausibleEvents.DRAW_YOUR_SEGG_COPY);
+            track(TrackingEvent.DRAW_YOUR_SEGG_COPY);
           }}
         >
           <img alt="copy link" src={linkImage} />
@@ -230,7 +230,7 @@
           class="flex h-8 w-8 items-center justify-center rounded-sm border hover:bg-foreground/2"
           download="segg.png"
           on:click={() => {
-            plausible(PlausibleEvents.DRAW_YOUR_SEGG_DOWNLOAD);
+            track(TrackingEvent.DRAW_YOUR_SEGG_DOWNLOAD);
           }}
           href={canvas?.toDataURL('image/png')}><img alt="download" src={saveImage} /></a
         >

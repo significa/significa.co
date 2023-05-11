@@ -6,12 +6,12 @@
   import Seo from '$components/seo.svelte';
   import Canvas from './careers/canvas.svelte';
   import Images from '../images.svelte';
-  import BenefitsIcons from './careers/benefits-icons.svelte';
   import { Button, Link } from '@significa/svelte-ui';
   import { bodyLock } from '@significa/svelte-ui/actions';
   import type { CareersPageStoryblok } from '$types/bloks';
   import type { TeamMemberPage } from '$lib/content';
   import DrawYourSegg from '$components/draw-your-segg/draw-your-segg.svelte';
+  import { getImageAttributes } from '$lib/utils/cms';
 
   export let data: CareersPageStoryblok;
   export let teamMembers: TeamMemberPage[] | undefined;
@@ -130,10 +130,13 @@
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           {#each data.benefits as benefits, index}
             <div
-              class="flex flex-col xl:max-w-xs"
+              class="flex flex-col items-start xl:max-w-xs"
               style="margin-top: {index % 2 !== 0 ? '26px' : '0px'}"
             >
-              <BenefitsIcons icon={benefits.icon || 'book'} class="mb-2" />
+              {#if benefits.image?.filename}
+                {@const { src, alt } = getImageAttributes(benefits.image)}
+                <img {src} {alt} class="mb-3 max-h-14 object-contain drop-shadow-md" />
+              {/if}
               <div class="text-lg font-semibold">{benefits.title}</div>
               <div class="text-lg font-semibold text-foreground-secondary">
                 {benefits.description}

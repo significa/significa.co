@@ -9,12 +9,22 @@
   import clsx from 'clsx';
   import Recognitions from './recognitions.svelte';
   import type { ProjectPage } from '$lib/content';
+  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { page } from '$app/stores';
 
   export let project: ISbStoryData<ProjectStoryblok> | ProjectPage;
   export let variant: 'featured' | 'default' = 'default';
 
   let index = 0;
   let video: HTMLVideoElement;
+  let hasInteractedWithCarousel = false;
+
+  // should only run once per mount
+  $: if (hasInteractedWithCarousel) {
+    plausible(PlausibleEvents.PROJECT_CAROUSEL, {
+      props: { name: project.name, path: $page.url.pathname }
+    });
+  }
 
   const onMouseEnter = () => {
     if (video) video.play();
@@ -38,7 +48,15 @@
       )}
     >
       <div class="mr-6">
-        <a class="elevated-link" href={`/projects/${project.slug}`}>
+        <a
+          class="elevated-link"
+          href={`/projects/${project.slug}`}
+          on:click={() => {
+            plausible(PlausibleEvents.PROJECT_CLICK, {
+              props: { to: `/projects/${project.slug}`, path: $page.url.pathname }
+            });
+          }}
+        >
           <h3 class="text-5xl text-foreground-secondary">
             {project.name}
           </h3>
@@ -52,8 +70,17 @@
           </div>
         {/if}
       </div>
-      <Button as="a" href={`/projects/${project.slug}`} class="mt-6" variant="secondary" arrow
-        >{t('view-project')}</Button
+      <Button
+        as="a"
+        href={`/projects/${project.slug}`}
+        on:click={() => {
+          plausible(PlausibleEvents.PROJECT_CLICK, {
+            props: { to: `/projects/${project.slug}`, path: $page.url.pathname }
+          });
+        }}
+        class="mt-6"
+        variant="secondary"
+        arrow>{t('view-project')}</Button
       >
     </div>
 
@@ -101,6 +128,7 @@
               data-theme="light"
               class="pointer-events-auto absolute left-2 top-1/2 z-10 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 [@media(hover:none)]:opacity-100"
               on:click={() => {
+                hasInteractedWithCarousel = true;
                 if (index === 0) {
                   index = project.content.thumbnail.length - 1;
                 } else {
@@ -113,6 +141,7 @@
               data-theme="light"
               class="pointer-events-auto absolute right-2 top-1/2 z-10 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 [@media(hover:none)]:opacity-100"
               on:click={() => {
+                hasInteractedWithCarousel = true;
                 if (index === project.content.thumbnail.length - 1) {
                   index = 0;
                 } else {

@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import PhysicsSection from '$components/physics-section.svelte';
+  import { PlausibleEvents, plausible } from '$lib/plausible';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import type { HomePageStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
@@ -18,8 +20,19 @@
       </p>
       {#if data.about_link?.[0]}
         {@const { href, target, rel } = getAnchorFromCmsLink(data.about_link[0].link)}
-        <Button class="mt-12" variant="secondary" as="a" {href} {target} {rel} arrow
-          >{data.about_link[0].label}</Button
+        <Button
+          class="mt-12"
+          variant="secondary"
+          as="a"
+          {href}
+          {target}
+          {rel}
+          on:click={() => {
+            plausible(PlausibleEvents.CTA_CLICK, {
+              props: { to: href, path: $page.url.pathname, section: data.about_title1 }
+            });
+          }}
+          arrow>{data.about_link[0].label}</Button
         >
       {/if}
     </div>
@@ -43,8 +56,17 @@
             {link.description}
           </p>
         </div>
-        <Button class="mt-12 xl:mt-20" as="a" variant="secondary" {href} arrow
-          >{link.link_label}</Button
+        <Button
+          class="mt-12 xl:mt-20"
+          as="a"
+          variant="secondary"
+          {href}
+          on:click={() => {
+            plausible(PlausibleEvents.CTA_CLICK, {
+              props: { to: href, path: $page.url.pathname, section: data.about_title1 }
+            });
+          }}
+          arrow>{link.link_label}</Button
         >
       </div>
     {/each}

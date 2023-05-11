@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Icon, Link } from '@significa/svelte-ui';
+  import { Button, Link } from '@significa/svelte-ui';
   import Seo from '$components/seo.svelte';
   import Testimonials from '$components/testimonials.svelte';
   import PreFooter from '$components/pre-footer.svelte';
@@ -84,12 +84,10 @@
                       <p class="text-3xl font-semibold">{award.project}</p>
                     </div>
                     <div class="w-full">
-                      {#if href}
-                        <Link {href} {target} {rel} class="elevated-link" />
-                        <div class="hidden flex-1 justify-end text-foreground-tertiary xl:flex">
-                          <Icon icon="arrow-right" />
-                        </div>
-                      {/if}
+                      <Link {href} {target} {rel} class="elevated-link" />
+                      <div class="hidden flex-1 justify-end text-foreground-tertiary xl:flex">
+                        <Button variant="secondary" arrow />
+                      </div>
                     </div>
                   </li>
                 </div>

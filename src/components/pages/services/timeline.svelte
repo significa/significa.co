@@ -2,7 +2,7 @@
   import clsx from 'clsx';
   import { Confetti } from 'svelte-confetti';
   import TimelineCell from './timeline-cell.svelte';
-  import NeedleHead from './illustrations/needle-head.png';
+  import NeedleHead from './illustrations/needle-head.webp';
   import Needle from './needle.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { CONFETTI_COLOR_ARRAY } from '$lib/constants';

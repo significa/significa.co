@@ -58,7 +58,7 @@
 </div>
 <div
   use:distanceToTop={(distance) => (top = distance)}
-  class="relative"
+  class="pointer-events-none relative"
   style="height: {width - containerWidth + 800 / factor}px"
 >
   <div
@@ -131,7 +131,7 @@
                         }
                       });
                     }}
-                    class="mt-4"
+                    class="pointer-events-auto mt-4"
                   >
                     {item.link[0].label}
                   </Button>

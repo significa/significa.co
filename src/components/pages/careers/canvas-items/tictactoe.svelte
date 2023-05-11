@@ -11,8 +11,8 @@
     type Tile,
     type WinCondition
   } from './tictactoe/utils';
-  import Bird from './tictactoe/assets/bird.png';
-  import Egg from './tictactoe/assets/egg.png';
+  import Bird from './tictactoe/assets/bird.webp';
+  import Egg from './tictactoe/assets/egg.webp';
   import type { CanvasTictactoeStoryblok } from '$types/bloks';
 
   export let item: CanvasTictactoeStoryblok;

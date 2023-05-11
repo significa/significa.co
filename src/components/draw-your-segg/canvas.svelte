@@ -14,6 +14,7 @@
   import { page } from '$app/stores';
   import { toast } from '@significa/svelte-ui';
   import { t } from '$lib/i18n';
+  import { PlausibleEvents, plausible } from '$lib/plausible';
 
   const dispatch = createEventDispatcher<{ change: Drawing }>();
 
@@ -28,6 +29,7 @@
   let drawing: Writable<Drawing> = writable(template);
   let points: Point[] = [];
   let tool: Tool = tools.pencil;
+  let hasDrawn = false;
 
   let debouncedDrawing = debounced(drawing, 2000);
   $: if ($debouncedDrawing && started) {
@@ -130,6 +132,11 @@
   function onEnd() {
     isDrawing = false;
 
+    if (!hasDrawn) {
+      plausible(PlausibleEvents.DRAW_YOUR_SEGG_INTERACT);
+      hasDrawn = true;
+    }
+
     // commit the current stroke to the drawing
     if (points.length) {
       drawing.update((prev) => [...prev, { ...tool, points: simplify(points, 2) }]);
@@ -212,6 +219,7 @@
             toast.success({
               message: t('draw-segg.clipboard.feedback')
             });
+            plausible(PlausibleEvents.DRAW_YOUR_SEGG_COPY);
           }}
         >
           <img alt="copy link" src={linkImage} />
@@ -221,6 +229,9 @@
         <a
           class="flex h-8 w-8 items-center justify-center rounded-sm border hover:bg-foreground/2"
           download="segg.png"
+          on:click={() => {
+            plausible(PlausibleEvents.DRAW_YOUR_SEGG_DOWNLOAD);
+          }}
           href={canvas?.toDataURL('image/png')}><img alt="download" src={saveImage} /></a
         >
       {/key}

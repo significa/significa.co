@@ -21,7 +21,7 @@
 
 <Seo />
 <main>
-  <section class="relative mx-auto">
+  <section class="relative mx-auto overflow-hidden">
     <Canvas
       withMouseDragScroll
       title={data.page_title}

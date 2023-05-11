@@ -1,9 +1,10 @@
+import { loadEnv } from 'vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import mkcert from 'vite-plugin-mkcert';
 
-const HTTPS_ENABLED = process.env.HTTPS_ENABLED === 'true';
-
+const env = loadEnv('development', process.cwd());
+const HTTPS_ENABLED = env.VITE_HTTPS_ENABLED === 'true';
 const extraPlugins = HTTPS_ENABLED ? [mkcert()] : [];
 
 export default defineConfig({

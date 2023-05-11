@@ -16,7 +16,9 @@ export enum PlausibleEvents {
   BLOG_INDEX_LOAD_MORE = 'Blog index load more',
   BLOG_POST_AUTHOR_PAGE_CLICK = 'Blog post author page click',
   SERVICES_AWARD_CLICK = 'Services award click',
-  DRAWER_EXPAND = 'Drawer expand'
+  DRAWER_EXPAND = 'Drawer expand',
+  FORM_SUBMITION = 'Form submition',
+  FORM_CHOOSE_MAILTO = 'Form choose to mail'
 }
 
 type EventOptions = {

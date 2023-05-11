@@ -8,6 +8,7 @@
   import type { BlogPostPage, ProjectPage } from '$lib/content';
   import { t } from '$lib/i18n';
   import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { drawer } from '$lib/stores/drawer';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { TeamMemberStoryblok } from '$types/bloks';
   import type { ISbStoryData } from '@storyblok/js';
@@ -37,7 +38,7 @@
   $: if (hasInteractedWithTabs) {
     plausible(PlausibleEvents.AUTHOR_PAGE_TAB_INTERACTION, {
       props: {
-        path: $page.url.pathname
+        path: $drawer || $page.url.pathname
       }
     });
   }

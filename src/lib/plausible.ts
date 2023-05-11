@@ -41,9 +41,6 @@ type EventOptions = {
 export type PlausibleEventProps = { event: PlausibleEvents; options?: EventOptions };
 
 export function plausible(event: PlausibleEvents, options?: EventOptions): void {
-  console.log(event);
-  console.log(options?.props);
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // return (window as any).plausible?.(event, options);
+  return (window as any).plausible?.(event, options);
 }

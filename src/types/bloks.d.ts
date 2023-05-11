@@ -103,6 +103,7 @@ export interface AwardsEntryStoryblok {
   label?: string;
   name?: string;
   project?: string;
+  link_text?: string;
   link?: MultilinkStoryblok;
   _uid: string;
   component: 'awards_entry';

@@ -54,48 +54,50 @@
                 <div class="border-b first:border-t">
                   <li
                     class={clsx(
-                      'container mx-auto  flex flex-col-reverse items-center justify-between px-container py-5 lg:flex-row',
+                      'container mx-auto  flex flex-col justify-between px-container py-5 lg:flex-row',
                       href
                         ? 'bg-gradient-to-r elevated-links hover:from-transparent hover:via-foreground-tertiary/10 hover:to-transparent hover:transition-colors'
                         : ''
                     )}
                   >
-                    <div class="flex w-full items-center">
-                      {#if award.image?.filename}
-                        {@const { alt, src, width, height } = getImageAttributes(award.image, {
-                          size: [120, 0]
-                        })}
-                        <img
-                          class="mr-2 h-auto w-14 rounded-xs bg-background-offset"
-                          {src}
-                          {alt}
-                          {width}
-                          {height}
-                        />
-                      {/if}
-                      <div class="ml-4 flex-col">
-                        <p class="text-base font-semibold text-foreground-secondary">
-                          {award.label}
-                        </p>
-                        <p class="text-base font-semibold">{award.name}</p>
+                    <div class="flex w-full flex-col-reverse items-center lg:flex-row">
+                      <div class="mb-4 flex w-full items-center lg:mb-0">
+                        {#if award.image?.filename}
+                          {@const { alt, src, width, height } = getImageAttributes(award.image, {
+                            size: [120, 0]
+                          })}
+                          <img
+                            class="mr-2 h-auto w-14 rounded-xs bg-background-offset"
+                            {src}
+                            {alt}
+                            {width}
+                            {height}
+                          />
+                        {/if}
+                        <div class="ml-4 flex-col">
+                          <p class="text-base font-semibold text-foreground-secondary">
+                            {award.label}
+                          </p>
+                          <p class="text-base font-semibold">{award.name}</p>
+                        </div>
+                      </div>
+                      <div class="mb-8 w-full lg:mb-0">
+                        <p class="text-3xl font-semibold">{award.project}</p>
                       </div>
                     </div>
-                    <div class="mb-8 w-full lg:mb-0">
-                      <p class="text-3xl font-semibold">{award.project}</p>
-                    </div>
-                    <div class="w-full">
+                    <div class="w-1/3">
                       {#if href}
-                        <div class="hidden flex-1 justify-end text-foreground-tertiary xl:flex">
+                        <div class="flex-1 justify-end text-foreground-tertiary xl:flex">
                           {#if award.link_text}
-                            <Button variant="secondary" arrow>
+                            <Button as="a" {href} variant="secondary" arrow>
                               {award.link_text}
                             </Button>
                           {:else}
-                            <Button variant="secondary" arrow />
+                            <Button as="a" {href} variant="secondary" arrow />
                           {/if}
                         </div>
-                        <Link {href} {target} {rel} class="elevated-link" />
                       {/if}
+                      <Link {href} {target} {rel} class="elevated-link" />
                     </div>
                   </li>
                 </div>

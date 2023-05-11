@@ -14,6 +14,7 @@ export enum PlausibleEvents {
   BLOG_POST_TAG_CLICK = 'Blog post tag click',
   BLOG_INDEX_LOAD_MORE = 'Blog index load more',
   BLOG_POST_AUTHOR_PAGE_CLICK = 'Blog post author page click',
+  SERVICES_AWARD_CLICK = 'Services award click',
   DRAWER_EXPAND = 'Drawer expand'
 }
 

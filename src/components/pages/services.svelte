@@ -15,6 +15,8 @@
   import type { ServicesPageStoryblok } from '$types/bloks';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import clsx from 'clsx';
+  import { PlausibleEvents, plausible } from '$lib/plausible';
+  import { page } from '$app/stores';
 
   export let data: ServicesPageStoryblok;
 </script>
@@ -90,7 +92,20 @@
                             {award.link_text ? award.link_text : ''}
                           </Button>
                         </div>
-                        <Link {href} {target} {rel} class="elevated-link" />
+                        <Link
+                          {href}
+                          {target}
+                          {rel}
+                          on:click={() => {
+                            plausible(PlausibleEvents.SERVICES_AWARD_CLICK, {
+                              props: {
+                                to: href,
+                                path: $page.url.pathname
+                              }
+                            });
+                          }}
+                          class="elevated-link"
+                        />
                       {/if}
                     </div>
                   </li>

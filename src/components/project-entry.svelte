@@ -93,8 +93,8 @@
       >
     </div>
 
-    {#if variant === 'featured' && project.content.cover?.filename}
-      {#if VIDEO_EXTENSIONS.includes(getFileExtension(project.content.cover.filename))}
+    {#if variant === 'featured'}
+      {#if project.content.reel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(project.content.reel.filename))}
         <video
           bind:this={video}
           class="pointer-events-none mt-8 aspect-video h-auto w-full rounded-md bg-background-offset"
@@ -102,9 +102,9 @@
           playsinline
           autoplay
           loop
-          src={project.content.cover.filename}
+          src={project.content.reel.filename}
         />
-      {:else}
+      {:else if project.content.cover?.filename}
         {@const { src, alt, width, height } = getImageAttributes(project.content.cover, {
           size: [1440 * 2, 0]
         })}

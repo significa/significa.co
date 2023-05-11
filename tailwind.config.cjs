@@ -173,7 +173,7 @@ module.exports = {
     }),
     extend: {
       fontFamily: {
-        comic: 'Comic Sans MS, Textile, cursive'
+        comic: 'Comic Sans MS, Chalkboard SE, Comic Neue, Comic Sans, sans-serif'
       },
       screens: {
         xs: '480px'

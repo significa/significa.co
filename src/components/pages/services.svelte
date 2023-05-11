@@ -9,8 +9,6 @@
   import Timeline from './services/timeline.svelte';
   import { theme } from '$lib/stores/theme';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
-  import { getFileExtension } from '$lib/utils/strings';
-  import { VIDEO_EXTENSIONS } from '$lib/constants';
   import type { ServicesPageStoryblok } from '$types/bloks';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import clsx from 'clsx';
@@ -101,13 +99,6 @@
       </div>
     </section>
   {/if}
-
-  <!-- TODO: add back showreel -->
-  <!-- {#if data.showreel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(data.showreel.filename))}
-    <div class="container mx-auto mt-10 px-container md:mt-20">
-      <Reel src={data.showreel.filename} play_label={data.showreel_button_label} />
-    </div>
-  {/if} -->
 
   <!-- Services -->
   <section class="mt-10 md:mt-16 lg:mb-16">

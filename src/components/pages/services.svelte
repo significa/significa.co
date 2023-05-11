@@ -84,10 +84,14 @@
                       <p class="text-3xl font-semibold">{award.project}</p>
                     </div>
                     <div class="w-full">
-                      <Link {href} {target} {rel} class="elevated-link" />
-                      <div class="hidden flex-1 justify-end text-foreground-tertiary xl:flex">
-                        <Button variant="secondary" arrow />
-                      </div>
+                      {#if href}
+                        <div class="hidden flex-1 justify-end text-foreground-tertiary xl:flex">
+                          <Button variant="secondary" arrow>
+                            {award.link_text ? award.link_text : ''}
+                          </Button>
+                        </div>
+                        <Link {href} {target} {rel} class="elevated-link" />
+                      {/if}
                     </div>
                   </li>
                 </div>

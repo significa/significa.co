@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import PhysicsSection from '$components/physics-section.svelte';
+  import { drawerLinks } from '$lib/actions/drawer-links';
   import { TrackingEvent, track } from '$lib/track';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import type { HomePageStoryblok } from '$types/bloks';
@@ -43,7 +44,7 @@
   <PhysicsSection class="lg:h-[400px]" items={data.about_physics_cards} />
 </div>
 
-<div class="border-t">
+<div class="border-t" use:drawerLinks>
   <div class="container mx-auto lg:flex">
     {#each data.about_links || [] as link}
       {@const { href } = getAnchorFromCmsLink(link.link)}

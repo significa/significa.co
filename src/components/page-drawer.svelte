@@ -50,7 +50,6 @@
             });
           }
           expanding = true;
-          drawer.close();
         }}>{t('expand')}</Button
       >
       <Button class="bg-background" variant="ghost" icon="close" on:click={drawer.close} />

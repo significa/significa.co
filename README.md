@@ -24,7 +24,7 @@ This is the repo for [Significa's website](https://significa.co/), our very own 
 
 ### Testing and linting
 
-- `npm run lint`
+- `npm run validate`
 - `npm run test`
 
 # Deployment and release

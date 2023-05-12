@@ -83,9 +83,9 @@
 <div class="h-[76px]">
   <header
     class={clsx(
-      'ease-[cubic-bezier(0.90, 0, 0.05, 1)] z-30 w-full border-b border-b-transparent transition-[transform,border-color] duration-300',
+      'ease-[cubic-bezier(0.90, 0, 0.05, 1)] z-30 w-full border-b bg-background/95 backdrop-blur-md transition-[transform,border-color] duration-300',
       variant === 'default' && 'fixed',
-      isPastZero && 'border-b-border bg-background/95 backdrop-blur-md',
+      isPastZero ? 'border-b-border' : 'border-b-transparent',
       !isPastThreshold
         ? 'translate-y-0'
         : scrollDir === 'down' && variant === 'default'

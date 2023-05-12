@@ -1,6 +1,5 @@
 export enum TrackingEvent {
   NAV_MENU = 'Navigation menu',
-  NAV_LINK = 'Navbar link',
   GET_A_QUOTE_LINK = 'Get a quote link',
   CTA_CLICK = 'CTA click',
   HOME_REEL = 'Home showreel play',

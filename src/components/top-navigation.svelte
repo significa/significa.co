@@ -33,11 +33,6 @@
       aria-label="Go to homepage"
       href="/"
       class={clsx($page.url.pathname === '/' && 'pointer-events-none')}
-      on:click={() => {
-        track(TrackingEvent.NAV_LINK, {
-          props: { to: '/', path: $page.url.pathname }
-        });
-      }}
     >
       <Logo class="mt-1" variant="wordmark" />
     </a>
@@ -52,11 +47,6 @@
         <Link
           active={$page.url.pathname === sanitizeSlug(nav.full_slug)}
           href={sanitizeSlug(nav.full_slug)}
-          on:click={() => {
-            track(TrackingEvent.NAV_LINK, {
-              props: { to: sanitizeSlug(nav.full_slug), path: $page.url.pathname }
-            });
-          }}
         >
           {nav.name}
         </Link>

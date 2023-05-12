@@ -10,8 +10,11 @@
   import PreFooter from '$components/pre-footer.svelte';
   import { getFileExtension } from '$lib/utils/strings';
   import Seo from '$components/seo.svelte';
-  import type { ProjectPage } from '$lib/content';
   import Reel from '$components/reel.svelte';
+  import type { ProjectPage } from '$lib/content';
+  import { track, TrackingEvent } from '$lib/track';
+  import { drawer } from '$lib/stores/drawer';
+  import { page } from '$app/stores';
 
   export let story: ProjectPage;
   export let related: ProjectPage[];
@@ -102,7 +105,17 @@
       <div class="flex flex-wrap gap-2">
         {#each story.content.team as member}
           {#if member.content?.photo?.filename}
-            <a href={`/about/${member.slug}`}>
+            <a
+              href={`/about/${member.slug}`}
+              on:click={() => {
+                track(TrackingEvent.PROJECT_AUTHOR_PAGE_CLICK, {
+                  props: {
+                    to: `/about/${member.slug}`,
+                    path: $drawer || $page.url.pathname
+                  }
+                });
+              }}
+            >
               <Avatar
                 image={getImageAttributes(member.content.photo, {
                   size: [100, 100]

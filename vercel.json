@@ -57,6 +57,10 @@
       "destination": "https://plausible.io/js/script.js"
     },
     {
+      "source": "/js/script.actions.js",
+      "destination": "https://plausible.io/js/script.tagged-events.js"
+    },
+    {
       "source": "/api/event",
       "destination": "https://plausible.io/api/event"
     }

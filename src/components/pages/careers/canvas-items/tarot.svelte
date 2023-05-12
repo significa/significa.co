@@ -4,8 +4,10 @@
   import back from '$assets/back.svg';
   import sun from '$assets/sun.svg';
   import moon from '$assets/moon.svg';
+  import { TrackingEvent, track } from '$lib/track';
   let flip = false;
   let timeout: ReturnType<typeof setTimeout>;
+  let hasInteracted = false;
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -13,6 +15,10 @@
   class="h-[300px] w-[200px]"
   style="perspective: 1000px;"
   on:click={() => {
+    if (!hasInteracted) {
+      track(TrackingEvent.CAREERS_CANVAS_FLIPPED_TAROT);
+      hasInteracted = true;
+    }
     clearTimeout(timeout);
     flip = !flip;
     if (flip) {

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import BlogEntry from '$components/blog-entry.svelte';
   import DashedEgg from '$components/dashed-egg.svelte';
   import DottedEgg from '$components/dotted-egg.svelte';
@@ -6,6 +7,8 @@
   import Seo from '$components/seo.svelte';
   import type { BlogPostPage, ProjectPage } from '$lib/content';
   import { t } from '$lib/i18n';
+  import { TrackingEvent, track } from '$lib/track';
+  import { drawer } from '$lib/stores/drawer';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { TeamMemberStoryblok } from '$types/bloks';
   import type { ISbStoryData } from '@storyblok/js';
@@ -30,6 +33,15 @@
       active: !!posts.length
     }
   ] as const;
+  let hasInteractedWithTabs = false;
+
+  $: if (hasInteractedWithTabs) {
+    track(TrackingEvent.AUTHOR_PAGE_TAB_INTERACTION, {
+      props: {
+        path: $drawer || $page.url.pathname
+      }
+    });
+  }
 </script>
 
 <Seo
@@ -76,7 +88,10 @@
               ? 'border-b border-foreground opacity-100'
               : 'border-b border-transparent opacity-50'
           )}
-          on:click={() => (tab = button.tab)}
+          on:click={() => {
+            tab = button.tab;
+            hasInteractedWithTabs = true;
+          }}
         >
           <p>{button.title}</p>
           <p class="hidden text-foreground-secondary @md:block">{button.subtitle}</p>

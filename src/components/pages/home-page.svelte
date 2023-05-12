@@ -19,6 +19,7 @@
   import Testimonials from '$components/testimonials.svelte';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import Services from './home/services.svelte';
+  import { TrackingEvent, track } from '$lib/track';
 
   export let data: HomePageStoryblok;
   export let posts: BlogPostPage[] | undefined;
@@ -60,6 +61,7 @@
           ? getImageAttributes(data.showreel_cover).src
           : undefined}
         buttonTheme={data.showreel_button_theme}
+        trackEvent={{ event: TrackingEvent.HOME_REEL }}
       />
     {/if}
   </div>
@@ -114,6 +116,11 @@
                   <a
                     class="flex w-full items-center justify-between py-4 text-xl transition-colors hover:text-foreground-secondary"
                     href={career.full_slug}
+                    on:click={() => {
+                      track(TrackingEvent.CAREER_CLICK, {
+                        props: { name: career.name, to: career.full_slug, path: $page.url.pathname }
+                      });
+                    }}
                   >
                     <span>{career.name}</span>
                     <Icon class="text-foreground-tertiary" icon="arrow-right" />
@@ -122,8 +129,17 @@
               {/each}
             </ul>
           </div>
-          <Button as="a" href="/careers" class="mt-10" variant="secondary" arrow
-            >{data.careers_button_label}</Button
+          <Button
+            as="a"
+            href="/careers"
+            on:click={() => {
+              track(TrackingEvent.CTA_CLICK, {
+                props: { to: '/careers', path: $page.url.pathname, section: data.careers_title }
+              });
+            }}
+            class="mt-10"
+            variant="secondary"
+            arrow>{data.careers_button_label}</Button
           >
         </div>
         <aside
@@ -136,7 +152,19 @@
           </div>
           {#if data.handbook_cta_text && data.handbook_cta_link}
             {@const { href } = getAnchorFromCmsLink(data.handbook_cta_link)}
-            <Button variant="secondary" as="a" {href} class="mt-10" icon="handbook" arrow>
+            <Button
+              variant="secondary"
+              as="a"
+              {href}
+              on:click={() => {
+                track(TrackingEvent.CTA_CLICK, {
+                  props: { to: href, path: $page.url.pathname, section: data.careers_title }
+                });
+              }}
+              class="mt-10"
+              icon="handbook"
+              arrow
+            >
               {data.handbook_cta_text}
             </Button>
           {/if}

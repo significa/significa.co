@@ -10,6 +10,7 @@
   import { fade, fly } from 'svelte/transition';
   import AnHandAndABook from './an-hand-and-a-book.svelte';
   import { onMount } from 'svelte';
+  import { TrackingEvent, track } from '$lib/track';
 
   export let configuration: ConfigurationStoryblok;
 
@@ -126,12 +127,16 @@
             aria-label="Open menu"
             variant="secondary"
             icon="3dots"
-            on:click={() => (panel = true)}
+            on:click={() => {
+              panel = true;
+              track(TrackingEvent.NAV_MENU, { props: { path: $page.url.pathname } });
+            }}
           />
         </div>
       </div>
     </div>
   </header>
+
   {#if panel}
     <div
       use:bodyLock
@@ -191,8 +196,15 @@
 
       {#if configuration.call_to_action?.length}
         {@const { href } = getAnchorFromCmsLink(configuration.call_to_action[0].link)}
-        <Button class="mt-10 flex-shrink-0" as="a" {href}
-          >{configuration.call_to_action[0].label}</Button
+        <Button
+          class="mt-10 flex-shrink-0"
+          as="a"
+          {href}
+          on:click={() => {
+            track(TrackingEvent.GET_A_QUOTE_LINK, {
+              props: { path: $page.url.pathname, context: 'navigation menu' }
+            });
+          }}>{configuration.call_to_action[0].label}</Button
         >
       {/if}
     </div>

@@ -27,7 +27,7 @@
   <div
     class="container grid place-items-center border-b px-container lg:max-w-none lg:border-none lg:px-0"
   >
-    <div class="py-14 lg:max-w-lg lg:p-12">
+    <div class="py-14 lg:max-w-2xl lg:p-12">
       <h3 class="mb-6 text-5xl">
         <span class="text-foreground-secondary">{data.services_title1}</span> <br />
         {data.services_title2}

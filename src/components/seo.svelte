@@ -40,7 +40,7 @@
       })}
       <meta property="og:image" content={src} />
     {:else}
-      <meta property="og:image" content="{$page.url.origin}/og.jpg" />
+      <meta property="og:image" content="{$page.url.origin}/og.png" />
     {/if}
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />

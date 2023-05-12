@@ -132,12 +132,9 @@
       </div>
 
       {#if data.benefits}
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {#each data.benefits as benefits, index}
-            <div
-              class="flex flex-col items-start xl:max-w-xs"
-              style="margin-top: {index % 2 !== 0 ? '26px' : '0px'}"
-            >
+        <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+          {#each data.benefits as benefits}
+            <div class="flex flex-col items-start xl:max-w-xs">
               {#if benefits.image?.filename}
                 {@const { src, alt } = getImageAttributes(benefits.image)}
                 <img {src} {alt} class="mb-3 max-h-14 object-contain drop-shadow-md" />

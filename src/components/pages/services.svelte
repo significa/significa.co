@@ -46,16 +46,29 @@
     <section class="mt-10 md:mt-14 lg:mt-20">
       <div class=" justify-between gap-12 lg:flex">
         <div class="flex flex-1 flex-col items-start">
-          <div class="w-full flex-1" use:drawerLinks>
-            <ul>
+          <div class="w-full flex-1">
+            <ul use:drawerLinks>
               {#each data.awards as award}
                 {@const { href, target, rel } = getAnchorFromCmsLink(award.link)}
-                <div class="border-b first:border-t">
+                <a
+                  {href}
+                  {target}
+                  {rel}
+                  class={clsx(
+                    'block border-b first:border-t',
+                    href ? 'transition-colors hover:bg-foreground-tertiary/10' : ''
+                  )}
+                  on:click={() => {
+                    track(TrackingEvent.SERVICES_AWARD_CLICK, {
+                      props: {
+                        to: href,
+                        path: $page.url.pathname
+                      }
+                    });
+                  }}
+                >
                   <li
-                    class={clsx(
-                      'container mx-auto  flex flex-col justify-between px-container py-5 lg:flex-row',
-                      href ? 'transition-colors elevated-links hover:bg-foreground-tertiary/10' : ''
-                    )}
+                    class="container mx-auto flex flex-col justify-between px-container py-5 lg:flex-row"
                   >
                     <div class="flex w-full flex-col-reverse items-center lg:flex-row">
                       <div class="mb-4 flex w-full items-center lg:mb-0">
@@ -85,30 +98,14 @@
                     <div class="w-1/3">
                       {#if href}
                         <div class="flex-1 justify-end text-foreground-tertiary xl:flex">
-                          <Button
-                            class="elevated-link"
-                            as="a"
-                            {href}
-                            {target}
-                            {rel}
-                            variant="secondary"
-                            arrow
-                            on:click={() => {
-                              track(TrackingEvent.SERVICES_AWARD_CLICK, {
-                                props: {
-                                  to: href,
-                                  path: $page.url.pathname
-                                }
-                              });
-                            }}
-                          >
+                          <Button variant="secondary" arrow>
                             {award.link_text}
                           </Button>
                         </div>
                       {/if}
                     </div>
                   </li>
-                </div>
+                </a>
               {/each}
             </ul>
           </div>

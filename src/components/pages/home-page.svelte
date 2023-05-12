@@ -18,6 +18,7 @@
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import Services from './home/services.svelte';
   import { TrackingEvent, track } from '$lib/track';
+  import { drawerLinks } from '$lib/actions/drawer-links';
 
   export let data: HomePageStoryblok;
   export let posts: BlogPostPage[] | undefined;
@@ -48,7 +49,7 @@
   )}
 >
   <div class="container mx-auto px-container">
-    <section class="mt-10 md:mt-14 lg:mt-20">
+    <section use:drawerLinks class="mt-10 md:mt-14 lg:mt-20">
       <SmallHighlights highlights={data.small_highlights} />
     </section>
     {#if data.showreel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(data.showreel.filename))}

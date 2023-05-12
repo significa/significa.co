@@ -13,7 +13,7 @@
   let authToken: string | null = null;
 
   const save = async (drawing: Drawing) => {
-    const res = await fetch('/api/segg', {
+    const res = await fetch('/segg', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id, authToken, drawing })

@@ -62,6 +62,8 @@
       }
     };
 
+    onScroll();
+
     window.addEventListener('scroll', onScroll);
 
     return () => {

@@ -18,26 +18,89 @@
   import EggHatching from './canvas-items/egg-hatching.svelte';
   import { TrackingEvent, track } from '$lib/track';
 
+  const MINIMAP_W = 128;
+  const MINIMAP_PADDING = 8;
+
   export let withMouseDragScroll = false;
   export let title: string | undefined = undefined;
   export let height = 0;
   export let width = 0;
   export let items: CanvasGroupStoryblok[] | undefined;
   export let teamMembers: TeamMemberPage[] | undefined;
+  export let hideMap = false;
+
+  let container: HTMLElement;
+  $: if (container) {
+    handleResize();
+  }
+
+  let squareW = 0;
+  let squareH = 0;
+
+  let boxLeft = 0;
+  let boxTop = 0;
 
   let offsetX = (width || 0) / 2;
   let offsetY = (height || 0) / 2;
+
+  const handleResize = () => {
+    const vw = container.clientWidth;
+    const vh = container.clientHeight;
+
+    const aspect = width / height;
+
+    squareW = (vw * (MINIMAP_W - MINIMAP_PADDING)) / width;
+    squareH = (vh * (MINIMAP_W - MINIMAP_PADDING) * aspect) / height;
+  };
+
+  const scrollPosition = (node: HTMLElement, update: (left: number, top: number) => void) => {
+    if (!hideMap) {
+      const handle = () => {
+        const scrollLeft = (squareW / node.clientWidth) * node.scrollLeft;
+        const scrollTop = (squareH / node.clientHeight) * node.scrollTop;
+
+        update(scrollLeft, scrollTop);
+      };
+
+      node.addEventListener('scroll', handle);
+
+      return {
+        destroy() {
+          node.removeEventListener('scroll', handle);
+        }
+      };
+    }
+  };
 </script>
 
+<svelte:window on:resize={handleResize} />
+
 <div
+  bind:this={container}
   use:dragScrolling={{
     isActive: withMouseDragScroll,
     centerYOffset: -240,
     onInteraction: () => track(TrackingEvent.CAREERS_INTERACT_WITH_CANVAS)
   }}
+  use:scrollPosition={(left, top) => {
+    boxLeft = left;
+    boxTop = top;
+  }}
   style={$$restProps.style}
   class={$$restProps.class}
 >
+  {#if !hideMap}
+    <div
+      class="absolute bottom-4 right-4 z-10 w-32 rounded-md border-4 border-foreground/70 bg-foreground/60 drop-shadow-md"
+      style="aspect-ratio: {width} / {height}"
+    >
+      <div
+        class="absolute rounded-sm bg-background-panel"
+        style="width: {squareW}px; height: {squareH}px; left:{boxLeft}px; top:{boxTop}px"
+      />
+    </div>
+  {/if}
+
   <div
     class={clsx('relative mx-auto select-none', $$restProps.class)}
     style="width: {width || 0}px; height: {height ||

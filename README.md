@@ -1,38 +1,43 @@
-# create-svelte
+# Significa website
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This is the repo for [Significa's website](https://significa.co/), our very own presence on the web.
 
-## Creating a project
+## Contributing
 
-If you're seeing this, you've probably already done this step. Congrats!
+### Requirements
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+- Set a GitHub Classic Personal Access Token (PAT) with read access to packages (`packages:read`)
+  in your shell with the name `GITHUB_AUTH_TOKEN`.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- Get the `.env` using [1password-secrets](https://github.com/significa/1password-secrets/):
+  `1password-secrets local pull`.
 
-## Developing
+- Install the node version specified in the `.nvmrc` file
+  (using your favourite nodeversion manager).
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+- Install the dependencies with `npm install` (or `npm ci` for a frozen lockfile).
 
-```bash
-npm run dev
+### Development
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+- Start the development server: `npm run dev`
+- Auto format the code: `npm run format`
 
-## Building
+### Testing and linting
 
-To create a production version of your app:
+- `npm run lint`
+- `npm run test`
 
-```bash
-npm run build
-```
+# Deployment and release
 
-You can preview the production build with `npm run preview`.
+The staging branch is bounded to the `main` branch, create a PR against it for a new feature.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+To deploy a new production version, create a semver release in GitHub
+(prefixed with `v`, for example: `vX.X.X`).
+
+To create a hotfixes:
+
+- Check-out to the latest release `git checkout vX.X.X`;
+- Create a new branch `git checkout -b hotfix/XXXX`;
+- Create a PR to `main`, get approval, and merge it;
+- Create a new release based on your hotfix branch.
+  Use `release/xxx` branches to batch fixes together.

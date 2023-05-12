@@ -14,24 +14,24 @@
 
 <Seo />
 <main>
-  <div class="container relative isolate mx-auto pb-20">
+  <div class="container relative isolate mx-auto">
     <div class="absolute top-0 z-10 px-container pt-10 md:pt-14 lg:pt-20">
       <h1 class="max-w-2xl text-7xl">{data.page_title}</h1>
     </div>
-    <PhysicsSection style="height: min(calc(100vh - 76px), 830px);" items={data.physics_blocks} />
+    <PhysicsSection style="height: min(calc(90vh - 76px), 830px);" items={data.physics_blocks} />
   </div>
 
   <!-- Who we are -->
   <section class="border-t">
     <div
-      class="container mx-auto flex flex-col justify-between gap-6 px-container py-8 lg:py-12 xl:flex-row xl:gap-4"
+      class="container mx-auto flex flex-col justify-between gap-6 px-container py-8 lg:flex-row lg:gap-4 lg:py-12"
     >
-      <div class="xl:max-w-xl">
+      <div class="lg:max-w-xl">
         <h3 class="text-5xl text-foreground-secondary">{data.about_title1}</h3>
         <p class="text-5xl">{data.about_title2}</p>
       </div>
 
-      <p class="whitespace-pre-line text-2xl text-foreground-secondary xl:max-w-xl">
+      <p class="whitespace-pre-line text-2xl text-foreground-secondary lg:max-w-xl">
         {data.about_description}
       </p>
     </div>

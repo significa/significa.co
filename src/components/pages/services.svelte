@@ -54,9 +54,7 @@
                   <li
                     class={clsx(
                       'container mx-auto  flex flex-col justify-between px-container py-5 lg:flex-row',
-                      href
-                        ? 'bg-gradient-to-r elevated-links hover:from-transparent hover:via-foreground-tertiary/10 hover:to-transparent hover:transition-colors'
-                        : ''
+                      href ? 'transition-colors elevated-links hover:bg-foreground-tertiary/10' : ''
                     )}
                   >
                     <div class="flex w-full flex-col-reverse items-center lg:flex-row">
@@ -87,29 +85,27 @@
                     <div class="w-1/3">
                       {#if href}
                         <div class="flex-1 justify-end text-foreground-tertiary xl:flex">
-                          {#if award.link_text}
-                            <Button as="a" {href} variant="secondary" arrow>
-                              {award.link_text}
-                            </Button>
-                          {:else}
-                            <Button as="a" {href} variant="secondary" arrow />
-                          {/if}
+                          <Button
+                            class="elevated-link"
+                            as="a"
+                            {href}
+                            {target}
+                            {rel}
+                            variant="secondary"
+                            arrow
+                            on:click={() => {
+                              track(TrackingEvent.SERVICES_AWARD_CLICK, {
+                                props: {
+                                  to: href,
+                                  path: $page.url.pathname
+                                }
+                              });
+                            }}
+                          >
+                            {award.link_text}
+                          </Button>
                         </div>
                       {/if}
-                      <Link
-                        {href}
-                        {target}
-                        {rel}
-                        class="elevated-link"
-                        on:click={() => {
-                          track(TrackingEvent.SERVICES_AWARD_CLICK, {
-                            props: {
-                              to: href,
-                              path: $page.url.pathname
-                            }
-                          });
-                        }}
-                      />
                     </div>
                   </li>
                 </div>
@@ -122,7 +118,7 @@
   {/if}
 
   <!-- Services -->
-  <section class="mt-10 md:mt-16 lg:mb-16">
+  <section class="mt-14 md:mt-24 lg:mb-12">
     <div class="container mx-auto flex px-container">
       <div class="xl:max-w-3xl">
         <h3 class="text-5xl text-foreground-secondary">{data.services_title}</h3>

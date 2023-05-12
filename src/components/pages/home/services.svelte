@@ -2,7 +2,8 @@
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import type { HomePageStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
-  import ServicesIllustration from './assets/pendulum-static.webp';
+  import ServicesIllustrationDark from './assets/pendulum-static-dark.webp';
+  import ServicesIllustrationLight from './assets/pendulum-static-light.webp';
   import Newton from './newton.svelte';
   import { TrackingEvent, track } from '$lib/track';
   import { page } from '$app/stores';
@@ -17,9 +18,14 @@
     class="container flex justify-center px-container lg:max-w-none lg:border-r lg:px-0 lg:pr-12"
   >
     <img
-      src={ServicesIllustration}
+      src={ServicesIllustrationLight}
       alt=""
-      class="mb-12 max-h-[400px] object-contain object-top drop-shadow-md lg:mb-0 lg:hidden"
+      class="mb-12 max-h-[400px] object-contain object-top dark:hidden lg:mb-0 lg:hidden"
+    />
+    <img
+      src={ServicesIllustrationDark}
+      alt=""
+      class="mb-12 max-h-[400px] object-contain object-top light:hidden lg:mb-0 lg:hidden"
     />
 
     <Newton class="hidden lg:block" />

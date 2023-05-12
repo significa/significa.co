@@ -17,7 +17,7 @@
 >
   <div
     aria-hidden="true"
-    class="absolute -z-10 rounded-2xl bg-background-offset transition-all ease-smooth"
+    class="absolute -z-10 rounded-xl bg-background-offset transition-all ease-smooth"
     bind:this={hover}
   />
   {#each highlights || [] as highlight}
@@ -28,7 +28,7 @@
           props: { to: sanitizeSlug(highlight.full_slug) }
         });
       }}
-      class="flex gap-4 rounded-2xl p-2"
+      class="flex gap-4 rounded-xl p-2"
       on:focus={() => {
         // noop
       }}
@@ -47,7 +47,7 @@
           size: [200, 160]
         })}
         <img
-          class="h-18 w-24 flex-shrink-0 rounded-lg bg-foreground-tertiary/10 object-cover object-center"
+          class="h-18 w-24 flex-shrink-0 rounded-md bg-foreground-tertiary/10 object-cover object-center"
           {src}
           {alt}
           {width}
@@ -58,7 +58,7 @@
           size: [200, 160]
         })}
         <img
-          class="h-18 w-24 flex-shrink-0 rounded-lg bg-background-offset object-cover object-center"
+          class="h-18 w-24 flex-shrink-0 rounded-md bg-background-offset object-cover object-center"
           {src}
           {alt}
           {width}

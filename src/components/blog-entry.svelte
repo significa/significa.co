@@ -1,7 +1,7 @@
 <script lang="ts">
   import { formatDate } from '$lib/utils/dates';
   import type { BlogPostStoryblok, TeamMemberStoryblok } from '$types/bloks';
-  import { Icon, Link, Tag } from '@significa/svelte-ui';
+  import { Button, Link, Tag } from '@significa/svelte-ui';
   import type { ISbStoryData } from '@storyblok/js';
   import Person from './person.svelte';
   import { TrackingEvent, track } from '$lib/track';
@@ -59,8 +59,8 @@
         </div>
       {/if}
     </div>
-    <div class="hidden flex-1 justify-end text-foreground-tertiary xl:flex">
-      <Icon icon="arrow-right" />
+    <div class="hidden flex-1 justify-end xl:flex">
+      <Button class="pointer-events-none" variant="secondary" arrow size="sm" />
     </div>
   </div>
 </div>

@@ -28,7 +28,7 @@
 </script>
 
 <section
-  class="relative mt-8 overflow-hidden rounded-md"
+  class="relative mt-8 overflow-hidden rounded-lg"
   on:mousemove={(e) => {
     if ($device === 'touch') return;
 

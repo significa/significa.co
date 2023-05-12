@@ -11,11 +11,9 @@
   import clsx from 'clsx';
   import HomeAbout from './home/home-about.svelte';
   import { page } from '$app/stores';
-  import { Button, Icon } from '@significa/svelte-ui';
+  import { Button } from '@significa/svelte-ui';
   import Seo from '$components/seo.svelte';
   import { afterNavigate } from '$app/navigation';
-  import { browser } from '$app/environment';
-  import { theme } from '$lib/stores/theme';
   import Testimonials from '$components/testimonials.svelte';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import Services from './home/services.svelte';
@@ -123,7 +121,7 @@
                     }}
                   >
                     <span>{career.name}</span>
-                    <Icon class="text-foreground-tertiary" icon="arrow-right" />
+                    <Button class="pointer-events-none" variant="secondary" arrow size="sm" />
                   </a>
                 </li>
               {/each}
@@ -143,7 +141,7 @@
           >
         </div>
         <aside
-          data-theme={browser ? ($theme === 'light' ? 'dark' : 'light') : 'light'}
+          data-theme="yellow"
           class="mt-10 flex flex-col items-start justify-between rounded-lg p-8 lg:mt-0 lg:min-h-[500px] lg:max-w-md"
         >
           <div class="flex-1">

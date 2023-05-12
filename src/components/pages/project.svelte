@@ -27,7 +27,7 @@
   image={story.content.seo_og_image || story.content.cover}
 />
 <div use:drawerLinks class="container mx-auto px-container">
-  <header class="pb-6">
+  <header>
     {#if story.content.reel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(story.content.reel.filename))}
       <Reel
         src={story.content.reel.filename}
@@ -44,7 +44,7 @@
       <img class="h-auto w-full rounded-md bg-background-offset" {src} {alt} {width} {height} />
     {/if}
 
-    <div class="mx-auto mb-8 mt-8 max-w-2xl md:mt-14 lg:mt-20">
+    <div class="mx-auto mt-8 max-w-2xl border-b pb-12 md:mt-14 lg:mt-20">
       <h1 class="text-5xl text-foreground-secondary">{story.name}</h1>
       <h2 class="text-5xl">{story.content.tagline}</h2>
       {#if story.first_published_at}
@@ -58,7 +58,7 @@
   </header>
 
   {#if story.content.recognitions?.length}
-    <div class="mx-auto max-w-2xl border-y py-8">
+    <div class="mx-auto mt-8 max-w-2xl border-b pb-8">
       <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
         {t('recognitions')}
       </h4>
@@ -68,7 +68,9 @@
     </div>
   {/if}
 
-  <div class="mx-auto mb-8 mt-8 grid max-w-2xl grid-cols-1 gap-6 xs:grid-cols-2 md:grid-cols-3">
+  <div
+    class="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-6 border-b pb-6 xs:grid-cols-2 md:grid-cols-3"
+  >
     {#each [{ title: t('services'), data: story.content.services }, { title: t('deliverables'), data: story.content.deliverables }, { title: t('links'), data: story.content.links }] as { title, data }}
       {#if data}
         <ul class="col-span-1">
@@ -98,7 +100,7 @@
   </div>
 
   {#if story.content.team?.length}
-    <div class="mx-auto max-w-2xl border-y py-8">
+    <div class="mx-auto mt-8 max-w-2xl border-b pb-8">
       <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
         {t('project.team')}
       </h4>

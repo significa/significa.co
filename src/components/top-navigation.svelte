@@ -22,6 +22,7 @@
   let lastScrollY: number;
   let ticking = false;
   let isPastThreshold = false;
+  let isPastZero = false;
 
   onMount(() => {
     const updateScrollDir = () => {
@@ -48,6 +49,12 @@
     };
 
     const onScroll = () => {
+      if (scrollY > 0) {
+        isPastZero = true;
+      } else {
+        isPastZero = false;
+      }
+
       if (!ticking) {
         window.requestAnimationFrame(updateScrollDir);
         ticking = true;
@@ -73,8 +80,9 @@
 <div class="h-[76px]">
   <header
     class={clsx(
-      'ease-[cubic-bezier(0.90, 0, 0.05, 1)] z-30 w-full bg-background transition-[transform] duration-300',
+      'ease-[cubic-bezier(0.90, 0, 0.05, 1)] z-30 w-full border-b border-b-transparent transition-[transform,border-color] duration-300',
       variant === 'default' && 'fixed',
+      isPastZero && 'border-b-border bg-background/95 backdrop-blur-md',
       !isPastThreshold
         ? 'translate-y-0'
         : scrollDir === 'down' && variant === 'default'

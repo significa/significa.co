@@ -151,17 +151,32 @@
     <div
       transition:fly={{ x: 1000, duration: 300 }}
       use:clickOutside={() => (panel = false)}
-      class="fixed bottom-0 right-0 top-0 z-50 flex w-full max-w-sm flex-col items-start overflow-y-auto bg-background p-6"
+      class="fixed bottom-0 right-0 top-0 z-50 flex w-full max-w-sm flex-col items-start overflow-y-auto bg-background px-container py-4"
     >
       <div class="flex w-full items-center justify-between">
         <Logo variant="symbol" />
-        <Button
-          aria-label="Close menu"
-          size="sm"
-          variant="secondary"
-          icon="close"
-          on:click={() => (panel = false)}
-        />
+        <div class="flex gap-4">
+          {#if configuration.call_to_action?.length}
+            {@const { href } = getAnchorFromCmsLink(configuration.call_to_action[0].link)}
+            <Button
+              class="flex-shrink-0"
+              as="a"
+              {href}
+              on:click={() => {
+                track(TrackingEvent.GET_A_QUOTE_LINK, {
+                  props: { path: $page.url.pathname, context: 'navigation menu' }
+                });
+              }}>{configuration.call_to_action[0].label}</Button
+            >
+          {/if}
+          <Button
+            aria-label="Close menu"
+            size="md"
+            variant="secondary"
+            icon="close"
+            on:click={() => (panel = false)}
+          />
+        </div>
       </div>
 
       <div class="flex-1">
@@ -193,20 +208,6 @@
           </div>
         {/each}
       </div>
-
-      {#if configuration.call_to_action?.length}
-        {@const { href } = getAnchorFromCmsLink(configuration.call_to_action[0].link)}
-        <Button
-          class="mt-10 flex-shrink-0"
-          as="a"
-          {href}
-          on:click={() => {
-            track(TrackingEvent.GET_A_QUOTE_LINK, {
-              props: { path: $page.url.pathname, context: 'navigation menu' }
-            });
-          }}>{configuration.call_to_action[0].label}</Button
-        >
-      {/if}
     </div>
   {/if}
 </div>

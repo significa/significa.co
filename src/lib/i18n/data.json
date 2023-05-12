@@ -81,5 +81,7 @@
   "draw-segg.description": "Head over to our careers page, release your inner Basquiat and start your own Significa egg from scratch.",
   "draw-segg.cta": "Get my Segg",
   "draw-segg.clipboard.feedback": "Copied link to clipboard!",
-  "reel.play": "Play reel"
+  "reel.play": "Play reel",
+  "file.upload.error.title": "Could not upload file",
+  "file.upload.error.description": "Please try again or choose another file"
 }

@@ -81,7 +81,9 @@ export const TranslationKeys = [
   'draw-segg.description',
   'draw-segg.cta',
   'draw-segg.clipboard.feedback',
-  'reel.play'
+  'reel.play',
+  'file.upload.error.title',
+  'file.upload.error.description'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

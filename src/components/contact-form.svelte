@@ -232,6 +232,11 @@
         on:focus={() => dispatch('focus', 'attachments')}
         on:blur={() => dispatch('blur', 'attachments')}
         on:change={() => dispatch('input', 'attachments')}
+        on:error={() =>
+          toast.error({
+            message: t('file.upload.error.title'),
+            description: t('file.upload.error.description')
+          })}
         placeholder={type === 'quote'
           ? t('contact.label.attachment.quote')
           : t('contact.label.attachment.position')}

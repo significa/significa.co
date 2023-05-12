@@ -1,7 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { PREVIEW_COOKIE_KEY } from '$lib/constants';
 import { fetchPage } from '$lib/content';
-import { BYPASS_TOKEN } from '$env/static/private';
 
 export const load = async ({ params, cookies, fetch, url }) => {
   try {
@@ -16,13 +15,5 @@ export const load = async ({ params, cookies, fetch, url }) => {
   } catch (err) {
     console.error(err);
     throw error(404, 'Not found');
-  }
-};
-
-export const config = {
-  isr: {
-    expiration: 60,
-    bypassToken: BYPASS_TOKEN,
-    allowQuery: ['drawer']
   }
 };

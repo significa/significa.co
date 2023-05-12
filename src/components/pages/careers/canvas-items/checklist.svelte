@@ -66,7 +66,9 @@
 
       <div class="mt-9 flex flex-col px-4">
         {#each item.items || [] as option, i}
-          <label for={i.toString()} class="flex h-8 w-full items-center gap-3">
+          <!-- svelte-ignore a11y-label-has-associated-control -->
+          <!-- only gives warning because it doesn't recognise the input as a child -->
+          <label class="flex h-8 w-full items-center gap-3">
             <CheckboxGroup
               bind:group={selection}
               id={i.toString()}

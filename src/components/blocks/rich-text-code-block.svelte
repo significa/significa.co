@@ -7,7 +7,7 @@
 </script>
 
 <CodeBlock
-  class={clsx('not-rich-text my-8 md:my-12', $$restProps.class)}
+  class={clsx('not-rich-text my-8 md:my-14', $$restProps.class)}
   code={block.code || ''}
   language={block.language || 'javascript'}
   lineNumbers={!!block.line_numbers}

@@ -144,7 +144,7 @@
             <TextButton
               as="a"
               href={`/${allEntries[currIndex + 1].slug}`}
-              class="p-4 text-sm"
+              class=" p-4 text-right text-sm"
               iconRight="arrow-right"
             >
               {allEntries[currIndex + 1].name}

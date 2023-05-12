@@ -14,7 +14,7 @@
   use:storyblokEditable={block}
   class={clsx(
     'not-rich-text my-6 rounded-2xl bg-background-panel p-4 md:my-10',
-    block.layout === 'horizontal' && 'flex items-stretch gap-4',
+    block.layout === 'horizontal' && 'flex flex-col items-stretch gap-4 xs:flex-row',
     $$restProps.class
   )}
 >
@@ -23,7 +23,7 @@
     <div
       class={clsx(
         'flex flex-shrink-0',
-        block.layout === 'horizontal' && 'w-1/3',
+        block.layout === 'horizontal' && 'w-full xs:w-1/3',
         block.layout === 'vertical' && 'mb-4'
       )}
     >

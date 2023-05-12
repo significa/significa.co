@@ -60,6 +60,13 @@
         all: unset;
         cursor: pointer;
       }
+      p a {
+        text-decoration: underline;
+      }
+      p a:hover {
+        text-decoration: none;
+        background-color: transparent;
+      }
       .bg-light {
         background-color: #f2f2f2;
       }
@@ -203,14 +210,11 @@
         margin: 0 auto;
       }
       .social-media-icon {
-        padding: 8px;
-        border-radius: 8px;
+        padding: 4px;
       }
       .social-media-icon-sm {
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 32px;
-        width: 32px;
+        height: 40px;
+        width: 40px;
         display: block;
       }
       .divider {
@@ -219,6 +223,9 @@
       .divider p {
         letter-spacing: 4px;
         font-size: 32px;
+      }
+      .social-media-icon:hover {
+        opacity: 0.7;
       }
       @media (prefers-color-scheme: light) {
         body {
@@ -318,76 +325,6 @@
       @media (prefers-color-scheme: dark) {
         .header-logo {
           background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/060b8935-c6cf-02b1-c185-feef3ac142a6.png') !important;
-        }
-      }
-      @media (prefers-color-scheme: light) {
-        .social-media-icon:hover {
-          background-color: rgba(025, 025, 026, 0.08) !important;
-        }
-      }
-      @media (prefers-color-scheme: dark) {
-        .social-media-icon:hover {
-          background-color: rgba(242, 242, 242, 0.2) !important;
-        }
-      }
-      @media (prefers-color-scheme: light) {
-        .social-media-icon-twitter {
-          background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/0570d740-4f7b-b926-0560-f8fbb34712e1.png') !important;
-        }
-      }
-      @media (prefers-color-scheme: dark) {
-        .social-media-icon-twitter {
-          background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/0d52f516-656f-5a19-6abc-a64fa5e58dae.png') !important;
-        }
-      }
-      @media (prefers-color-scheme: light) {
-        .social-media-icon-instagram {
-          background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/4ecc8df8-6f6e-045c-d874-98c24b684537.png') !important;
-        }
-      }
-      @media (prefers-color-scheme: dark) {
-        .social-media-icon-instagram {
-          background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/091559c0-4374-1b1d-3d11-fe3ee2f1c9f0.png') !important;
-        }
-      }
-      @media (prefers-color-scheme: light) {
-        .social-media-icon-linkedin {
-          background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/e6a30010-45ae-488d-e89f-a9a4046c2254.png') !important;
-        }
-      }
-      @media (prefers-color-scheme: dark) {
-        .social-media-icon-linkedin {
-          background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/e8933b18-a51b-ad45-9a76-0d6effee9796.png') !important;
-        }
-      }
-      @media (prefers-color-scheme: light) {
-        .social-media-icon-behance {
-          background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/58b0a1c9-a969-fc40-a783-9a32dc3b6bf4.png') !important;
-        }
-      }
-      @media (prefers-color-scheme: dark) {
-        .social-media-icon-behance {
-          background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/a6fa7f68-cd21-7995-0a1f-2a47f62caddc.png') !important;
-        }
-      }
-      @media (prefers-color-scheme: light) {
-        .social-media-icon-dribbble {
-          background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/8eb8d1cc-266e-57b0-e2e9-e97d9737a170.png') !important;
-        }
-      }
-      @media (prefers-color-scheme: dark) {
-        .social-media-icon-dribbble {
-          background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/84a68f1c-cb5b-5a47-1908-265a967ca96d.png') !important;
-        }
-      }
-      @media (prefers-color-scheme: light) {
-        .social-media-icon-github {
-          background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/0a147f29-9ddf-e80c-7664-a545e408bbec.png') !important;
-        }
-      }
-      @media (prefers-color-scheme: dark) {
-        .social-media-icon-github {
-          background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/445e588c-74a2-42fa-ad37-269e6fd3751b.png') !important;
         }
       }
       @media all and (max-width: 520px) {
@@ -499,7 +436,7 @@
                               <tr class="divider">
                                 <!-- Divider -->
                                 <td>
-                                  <p class="txt-dark">•••</p>
+                                  <p class="txt-dark">&#149;&#149;&#149;</p>
                                 </td>
                                 <!-- Divider End -->
                               </tr>
@@ -578,32 +515,58 @@
                         <tr>
                           <td class="social-media-icon">
                             <a href="https://twitter.com/significadotco">
-                              <span class="social-media-icon-sm social-media-icon-twitter"></span>
+                              <img
+                                src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/986e681d-7b73-9f46-bab2-74f582d6cb65.png"
+                                class="social-media-icon-sm social-media-icon-twitter"
+                              />
                             </a>
                           </td>
                           <td class="social-media-icon">
                             <a href="https://pt.linkedin.com/company/significadotco">
-                              <span class="social-media-icon-sm social-media-icon-linkedin"></span>
+                              <img
+                                src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/64c26173-aad9-ee12-0e98-c77397be51c3.png"
+                                class="social-media-icon-sm social-media-icon-twitter"
+                              />
                             </a>
                           </td>
                           <td class="social-media-icon">
                             <a href="https://dribbble.com/significa/">
-                              <span class="social-media-icon-sm social-media-icon-dribbble"></span>
+                              <img
+                                src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/597557da-6007-ded4-c7b4-ed221e7cf71b.png"
+                                class="social-media-icon-sm social-media-icon-twitter"
+                              />
                             </a>
                           </td>
                           <td class="social-media-icon">
                             <a href="https://www.behance.net/significa/">
-                              <span class="social-media-icon-sm social-media-icon-behance"></span>
+                              <img
+                                src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/ae32de4b-854a-2f65-d5aa-1e510b077ac4.png"
+                                class="social-media-icon-sm social-media-icon-twitter"
+                              />
                             </a>
                           </td>
                           <td class="social-media-icon">
                             <a href="https://www.instagram.com/significadotco/">
-                              <span class="social-media-icon-sm social-media-icon-instagram"></span>
+                              <img
+                                src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/c9486f63-1ce9-9b97-bfb4-519982053ec1.png"
+                                class="social-media-icon-sm social-media-icon-twitter"
+                              />
                             </a>
                           </td>
                           <td class="social-media-icon">
                             <a href="https://github.com/significa/">
-                              <span class="social-media-icon-sm social-media-icon-github"></span>
+                              <img
+                                src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/74ad25fa-0ef2-2973-b1a3-d4fef90b4992.png"
+                                class="social-media-icon-sm social-media-icon-twitter"
+                              />
+                            </a>
+                          </td>
+                          <td class="social-media-icon">
+                            <a href="https://www.youtube.com/@SignificaDotCo">
+                              <img
+                                src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/499d37a0-a5fc-6645-aec4-4f817df28425.png"
+                                class="social-media-icon-sm social-media-icon-twitter"
+                              />
                             </a>
                           </td>
                         </tr>
@@ -616,7 +579,7 @@
                         <p class="txt-dark medium o-50">Want to know more?</p>
                       </span>
                       <p class="medium txt-dark">
-                        <a href="https://significa.co/" class="link txt-dark">Go to significa.co</a>
+                        <a href="https://significa.co/" class="txt-dark">Go to significa.co</a>
                       </p>
                     </td>
                   </tr>

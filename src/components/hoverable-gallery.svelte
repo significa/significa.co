@@ -17,10 +17,10 @@
     ],
     hover: [
       { x: '-5%', y: '-5%', deg: -4, z: 1 },
-      { x: '0%', y: '-10%', deg: -5, z: 1 },
+      { x: '0%', y: '0%', deg: -5, z: 1 },
       { x: '-15%', y: '5%', deg: 2, z: 1 },
-      { x: '0%', y: '-10%', deg: 5, z: 3 },
-      { x: '0%', y: '-25%', deg: 5, z: 2 },
+      { x: '0%', y: '0%', deg: 5, z: 3 },
+      { x: '0%', y: '-5%', deg: 5, z: 2 },
       { x: '10%', y: '5%', deg: 15, z: 1 }
     ]
   };
@@ -32,7 +32,7 @@
       {card}
       staticTransformState={cardsTransformOptions.static[i]}
       hoverTransformState={cardsTransformOptions.hover[i]}
-      class=" min-w-[280px] max-w-[280px]  lg:min-w-[unset] lg:max-w-[unset]"
+      class=" min-w-[280px] max-w-[280px] lg:min-w-[unset] lg:max-w-[unset]"
     />
   {/each}
 </div>

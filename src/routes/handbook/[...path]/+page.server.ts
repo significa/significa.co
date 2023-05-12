@@ -1,6 +1,19 @@
-import { isr } from '../../[...path]/isr.server';
-import { createLoad } from '../../[...path]/load.server';
+import { error } from '@sveltejs/kit';
+import { PREVIEW_COOKIE_KEY } from '$lib/constants';
+import { fetchPage } from '$lib/content';
 
-export const load = createLoad('handbook/');
+export const load = async ({ params, cookies, fetch, url }) => {
+  try {
+    const page = await fetchPage({
+      slug: `handbook/${params.path}`,
+      version: cookies.get(PREVIEW_COOKIE_KEY) ? 'draft' : 'published',
+      fetch,
+      url
+    });
 
-export const config = { isr };
+    return { page };
+  } catch (err) {
+    console.error(err);
+    throw error(404, 'Not found');
+  }
+};

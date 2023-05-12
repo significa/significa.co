@@ -17,12 +17,6 @@
   });
 </script>
 
-<!-- TODO: Remove when deploying to production -->
-<svelte:head>
-  <meta name="robots" content="noindex,nofollow" />
-  <meta name="googlebot" content="noindex,nofollow" />
-</svelte:head>
-
 <Toaster component={ToastNotification} />
 <PageDrawer />
 <DraftMode />

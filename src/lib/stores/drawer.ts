@@ -21,7 +21,7 @@ function createDrawer() {
       const searchParams = new URLSearchParams(url.searchParams);
       searchParams.delete('drawer');
 
-      goto(`${url.pathname}?${searchParams.toString()}`, { noScroll: true });
+      history.back();
     }
   };
 }

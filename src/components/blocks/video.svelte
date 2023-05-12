@@ -13,7 +13,7 @@
     use:storyblokEditable={block}
   >
     <video
-      class="m-auto rounded-lg"
+      class="m-auto rounded-lg bg-background"
       muted
       src={block.video.filename}
       controls={block.controls}

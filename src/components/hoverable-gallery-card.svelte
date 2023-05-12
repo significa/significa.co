@@ -21,7 +21,7 @@
   {@const { alt, src } = getImageAttributes(card.photo)}
   <div
     class={clsx(
-      '-mx-[10%] bg-white p-[4%] shadow-md transition-all duration-[250ms]',
+      '-mx-[10%] aspect-[4/6] bg-white p-[4%] shadow-md transition-all duration-[250ms]',
       $$restProps.class
     )}
     style={`transform:translate(${transformState.x}, ${transformState.y}) rotate(${transformState.deg}deg); z-index: ${transformState.z}`}
@@ -32,7 +32,7 @@
       transformState = staticTransformState;
     }}
   >
-    <img class="aspect-[3/4] h-[100%] object-cover" {src} {alt} />
+    <img class="aspect-[4/6] h-[100%] object-cover" {src} {alt} />
   </div>
 {:else if card.component === 'notepad_card' && card.text}
   <div
@@ -45,7 +45,7 @@
       transformState = staticTransformState;
     }}
   >
-    <div class="aspect-[3/4] rounded-xs bg-background-panel shadow-md">
+    <div class="aspect-[4/6] rounded-xs bg-background-panel shadow-md">
       <div class="mb-10 grid h-[10px] grid-cols-12 gap-[4%] p-4">
         {#each [...Array(12)] as _}
           <div class="aspect-square rounded-full bg-background shadow-inner" />

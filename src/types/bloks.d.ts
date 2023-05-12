@@ -542,6 +542,8 @@ export interface PageStoryblok {
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
+  change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  priority?: number;
   _uid: string;
   component: 'page';
   uuid?: string;

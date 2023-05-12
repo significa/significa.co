@@ -9,11 +9,66 @@
   import clsx from 'clsx';
   import { fade, fly } from 'svelte/transition';
   import AnHandAndABook from './an-hand-and-a-book.svelte';
+  import { onMount } from 'svelte';
   import { TrackingEvent, track } from '$lib/track';
 
   export let configuration: ConfigurationStoryblok;
 
+  const SCROLL_DIR_THRESHOLD = 76;
+  const SCROLL_THRESHOLD = 200;
+
   let panel = false;
+  let scrollDir: 'up' | 'down';
+  let scrollY: number;
+  let lastScrollY: number;
+  let ticking = false;
+  let isPastThreshold = false;
+  let isPastZero = false;
+
+  onMount(() => {
+    const updateScrollDir = () => {
+      if (Math.abs(scrollY - lastScrollY) <= SCROLL_DIR_THRESHOLD) {
+        ticking = false;
+        return;
+      }
+
+      const nextDir = scrollY > lastScrollY ? 'down' : 'up';
+      if (nextDir !== scrollDir) {
+        scrollDir = nextDir;
+      }
+
+      const last = scrollY > 0 ? scrollY : 0;
+      lastScrollY = last;
+
+      if (last > SCROLL_THRESHOLD) {
+        isPastThreshold = true;
+      } else {
+        isPastThreshold = false;
+      }
+
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (scrollY > 0) {
+        isPastZero = true;
+      } else {
+        isPastZero = false;
+      }
+
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollDir);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  });
+
   afterNavigate(() => {
     panel = false;
   });
@@ -21,63 +76,66 @@
   export let variant: 'default' | 'handbook' = 'default';
 </script>
 
-<header
-  class={clsx(
-    'flex items-center justify-between py-4',
-    // we could achieve this with route groups and a different layout, but it's so simple that we'll leave it like this for now
-    variant === 'handbook' ? 'px-6' : 'container mx-auto px-container'
-  )}
->
-  <div class="flex items-center gap-2">
-    <a
-      aria-label="Go to homepage"
-      href="/"
-      class={clsx($page.url.pathname === '/' && 'pointer-events-none')}
-    >
-      <Logo class="mt-1" variant="wordmark" />
-    </a>
-    {#if variant === 'handbook'}
-      <AnHandAndABook />
-    {/if}
-  </div>
+<svelte:window bind:scrollY />
 
-  <div class="flex items-center gap-8">
-    <div class="hidden items-center gap-6 text-base font-medium leading-relaxed md:flex">
-      {#each configuration.primary_navigation || [] as nav}
-        <Link
-          active={$page.url.pathname === sanitizeSlug(nav.full_slug)}
-          href={sanitizeSlug(nav.full_slug)}
-        >
-          {nav.name}
-        </Link>
-      {/each}
-    </div>
-    <div class="flex items-center gap-4">
-      {#if configuration.call_to_action?.length}
-        {@const { href } = getAnchorFromCmsLink(configuration.call_to_action[0].link)}
-        <div class="hidden [@media(min-width:400px)]:block">
-          <Button
-            as="a"
-            on:click={() => {
-              track(TrackingEvent.GET_A_QUOTE_LINK, {
-                props: { path: $page.url.pathname, context: 'navbar' }
-              });
-            }}
-            {href}>{configuration.call_to_action[0].label}</Button
-          >
+<div class="h-[76px]">
+  <header
+    class={clsx(
+      'ease-[cubic-bezier(0.90, 0, 0.05, 1)] z-30 w-full border-b border-b-transparent transition-[transform,border-color] duration-300',
+      variant === 'default' && 'fixed',
+      isPastZero && 'border-b-border bg-background/95 backdrop-blur-md',
+      !isPastThreshold
+        ? 'translate-y-0'
+        : scrollDir === 'down' && variant === 'default'
+        ? '-translate-y-full'
+        : 'translate-y-0'
+    )}
+  >
+    <div
+      class={clsx(
+        'flex items-center justify-between py-4',
+        // we could achieve this with route groups and a different layout, but it's so simple that we'll leave it like this for now
+        variant === 'handbook' ? 'px-6' : 'container mx-auto px-container'
+      )}
+    >
+      <div class="flex items-center gap-2">
+        <a aria-label="Go to homepage" href="/">
+          <Logo class="mt-1" variant="wordmark" />
+        </a>
+        {#if variant === 'handbook'}
+          <AnHandAndABook />
+        {/if}
+      </div>
+
+      <div class="flex items-center gap-8">
+        <div class="hidden items-center gap-6 text-base font-medium leading-relaxed md:flex">
+          {#each configuration.primary_navigation || [] as nav}
+            <Link
+              active={$page.url.pathname === sanitizeSlug(nav.full_slug)}
+              href={sanitizeSlug(nav.full_slug)}>{nav.name}</Link
+            >
+          {/each}
         </div>
-      {/if}
-      <Button
-        aria-label="Open menu"
-        variant="secondary"
-        icon="3dots"
-        on:click={() => {
-          panel = true;
-          track(TrackingEvent.NAV_MENU, { props: { path: $page.url.pathname } });
-        }}
-      />
+        <div class="flex items-center gap-4">
+          {#if configuration.call_to_action?.length}
+            {@const { href } = getAnchorFromCmsLink(configuration.call_to_action[0].link)}
+            <div class="hidden [@media(min-width:400px)]:block">
+              <Button as="a" {href}>{configuration.call_to_action[0].label}</Button>
+            </div>
+          {/if}
+          <Button
+            aria-label="Open menu"
+            variant="secondary"
+            icon="3dots"
+            on:click={() => {
+              panel = true;
+              track(TrackingEvent.NAV_MENU, { props: { path: $page.url.pathname } });
+            }}
+          />
+        </div>
+      </div>
     </div>
-  </div>
+  </header>
 
   {#if panel}
     <div
@@ -151,4 +209,4 @@
       {/if}
     </div>
   {/if}
-</header>
+</div>

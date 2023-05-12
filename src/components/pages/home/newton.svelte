@@ -280,7 +280,12 @@
         )}deg)"
       />
       <div bind:this={refs[i]} class="absolute aspect-square h-auto w-1/4">
-        <img src={items[i]} alt="" class="h-full object-contain drop-shadow-md" draggable="false" />
+        <img
+          src={items[i]}
+          alt=""
+          class="h-full select-none object-contain drop-shadow-md"
+          draggable="false"
+        />
       </div>
     {/each}
   {/if}

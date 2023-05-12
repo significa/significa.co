@@ -5,8 +5,14 @@ import { apiPlugin, storyblokInit } from '@storyblok/js';
 
 dotenv.config();
 
+const PUBLIC_STORYBLOK_TOKEN = process.env.PUBLIC_STORYBLOK_TOKEN;
+
+if (!PUBLIC_STORYBLOK_TOKEN) {
+  throw new Error('Missing required env var: PUBLIC_STORYBLOK_TOKEN');
+}
+
 const { storyblokApi } = storyblokInit({
-  accessToken: process.env.PUBLIC_STORYBLOK_TOKEN,
+  accessToken: PUBLIC_STORYBLOK_TOKEN,
   use: [apiPlugin],
   apiOptions: {
     https: true
@@ -33,19 +39,15 @@ const entries: Config[] = [
     fetcher: async () => {
       const strings: Record<string, string> = {};
 
-      try {
-        const translationsRes = await storyblok.get('cdn/datasource_entries', {
-          datasource: 'strings',
-          per_page: 1000,
-          cv: Date.now()
-        });
-        const entries: Datasource[] = translationsRes.data.datasource_entries;
-        entries.forEach((entry) => {
-          strings[entry.name] = entry.value;
-        });
-      } catch (error) {
-        throw new Error(`Failed to get strings`);
-      }
+      const translationsRes = await storyblok.get('cdn/datasource_entries', {
+        datasource: 'strings',
+        per_page: 1000,
+        cv: Date.now()
+      });
+      const entries: Datasource[] = translationsRes.data.datasource_entries;
+      entries.forEach((entry) => {
+        strings[entry.name] = entry.value;
+      });
 
       return {
         keys: Object.keys(strings),

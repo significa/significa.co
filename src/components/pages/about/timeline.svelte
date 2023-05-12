@@ -113,7 +113,7 @@
                 style="width: {item.width || '240'}px; left: {item.left || 0}px; top: {item.top ||
                   0}px; transform: scale({1 - factor + 1})"
               >
-                <p class="font-comic text-sm">{item.text}</p>
+                <p class="font-comic text-sm font-bold">{item.text}</p>
                 {#if item.link?.[0]}
                   {@const { href, target, rel } = getAnchorFromCmsLink(item.link[0].link)}
                   <Button

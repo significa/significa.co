@@ -14,7 +14,7 @@
         {t('prefooter.title.line1')}<br />
         {t('prefooter.title.line2')}
       </h3>
-      <p class="mt-4 text-lg leading-tight">
+      <p class="mt-4 text-xl text-foreground-secondary">
         {t('prefooter.description')}
       </p>
       <div class="flex flex-1 flex-col justify-end">

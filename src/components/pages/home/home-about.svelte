@@ -39,7 +39,7 @@
   </div>
 </div>
 
-<div class="container mx-auto pb-10 md:pb-14 lg:pb-20">
+<div class="container mx-auto pb-10 md:pb-14 lg:-mb-px lg:pb-px">
   <PhysicsSection class="lg:h-[400px]" items={data.about_physics_cards} />
 </div>
 

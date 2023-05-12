@@ -29,6 +29,7 @@
       height={data.canvas_height}
       width={data.canvas_width}
       items={data.canvas_items}
+      hideMap={$device === 'touch'}
       {teamMembers}
       style="height: min({data.canvas_height}px, calc(90vh - 76px));"
     />

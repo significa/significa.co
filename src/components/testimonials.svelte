@@ -87,7 +87,7 @@
                 <RichTextTestimonial
                   block={testimonial}
                   class={clsx(
-                    'max-w-lg xl:max-w-xl',
+                    'max-w-lg 2xl:max-w-xl',
                     i === 3 && 'xl:-translate-x-[20%]',
                     i === 4 && 'xl:translate-x-[20%]'
                   )}
@@ -95,7 +95,7 @@
               </div>
               {#if i === 2 && variant === 'two'}
                 <FriedEgg
-                  class="-ml-20 hidden shrink-0 -translate-y-2 self-end drop-shadow-md xl:block"
+                  class="-ml-20 hidden shrink-0 -translate-y-2 self-end drop-shadow-md 2xl:block"
                   style="transform: translateY({-value * -0.07}px)"
                 />
               {/if}

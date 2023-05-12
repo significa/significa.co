@@ -61,7 +61,7 @@
         </div>
 
         <div class="relative mb-7 flex h-[50%] justify-end">
-          <Bird class="relative mr-7 h-[100%] w-fit drop-shadow-md" />
+          <Bird class="relative mr-2 h-[100%] w-fit drop-shadow-md" />
         </div>
       </div>
     </div>

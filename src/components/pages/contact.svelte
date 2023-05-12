@@ -24,7 +24,7 @@
       <ContactForm variant="contact" disclaimer={data.form_support_text} />
     </section>
 
-    <PanWithEggs class="absolute -left-16 top-4 hidden -rotate-[14deg] lg:block" />
+    <PanWithEggs class="absolute -left-16 top-4 hidden -rotate-[14deg] drop-shadow-md lg:block" />
     <Segg1 class="absolute -right-16 top-[207px] hidden -rotate-[16deg] drop-shadow-md lg:block" />
     <Segg2 class="absolute -right-20 top-[440px] hidden -rotate-[16deg] drop-shadow-md lg:block" />
   </div>

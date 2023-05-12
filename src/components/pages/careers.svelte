@@ -13,6 +13,7 @@
   import DrawYourSegg from '$components/draw-your-segg/draw-your-segg.svelte';
   import { getImageAttributes } from '$lib/utils/cms';
   import { TrackingEvent, track } from '$lib/track';
+  import { drawerLinks } from '$lib/actions/drawer-links';
 
   export let data: CareersPageStoryblok;
   export let teamMembers: TeamMemberPage[] | undefined;
@@ -85,7 +86,7 @@
       <div class="container mx-auto justify-between gap-12 px-container lg:flex">
         <div class="flex flex-1 flex-col items-start">
           <div class="w-full flex-1">
-            <ul>
+            <ul use:drawerLinks>
               {#each $page.data.careers as career}
                 <li class="border-b first:border-t">
                   <a

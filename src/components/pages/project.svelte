@@ -82,7 +82,7 @@
               {#if href}
                 <li class="mb-2 flex items-center gap-1">
                   <Link {href} {target} {rel}>{link.label}</Link>
-                  <Icon class="mt-0.5" icon="arrow-right" />
+                  <Icon class="mt-0.5" icon="arrow-external" />
                 </li>
               {/if}
             {/each}

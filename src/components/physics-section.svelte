@@ -163,10 +163,12 @@
       ),
       elem: refs[i],
       render() {
-        const { x, y } = this.body.position;
-        this.elem.style.top = `${y - refs[i].clientHeight / 2}px`;
-        this.elem.style.left = `${x - refs[i].clientWidth / 2}px`;
-        this.elem.style.transform = `rotate(${this.body.angle}rad)`;
+        if (refs?.[i]?.clientHeight && refs?.[i]?.clientWidth) {
+          const { x, y } = this.body.position;
+          this.elem.style.top = `${y - refs[i].clientHeight / 2}px`;
+          this.elem.style.left = `${x - refs[i].clientWidth / 2}px`;
+          this.elem.style.transform = `rotate(${this.body.angle}rad)`;
+        }
       }
     }));
 

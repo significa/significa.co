@@ -1,4 +1,7 @@
 {
+  "installCommand": "npm ci --prefer-offline --no-audit --no-fund",
+  "buildCommand": "npm run build",
+  "framework": "sveltekit",
   "redirects": [
     { "source": "/showcase/:path", "destination": "/projects/:path", "permanent": true },
     {

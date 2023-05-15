@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="/js/script.js" data-api="/api/event" data-domain="significa.co"></script>
+    <script src="/js/script.actions.js" data-api="/api/event" data-domain="significa.co"></script>
+    <script>
+      window.plausible =
+        window.plausible ||
+        function () {
+          (window.plausible.q = window.plausible.q || []).push(arguments);
+        };
+    </script>
+    <script>
+      function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.colorScheme = theme;
+        localStorage.setItem('theme', theme);
+        window.dispatchEvent(new CustomEvent('theme-change', { detail: theme }));
+      }
+
+      (() => {
+        const s = localStorage.getItem('theme');
+        const q = window.matchMedia('(prefers-color-scheme: dark)');
+
+        setTheme(s ? s : q.matches ? 'dark' : 'light');
+        q.addEventListener('change', (event) => setTheme(event.matches ? 'dark' : 'light'));
+      })();
+    </script>
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover" data-sveltekit-preload-code="viewport">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>

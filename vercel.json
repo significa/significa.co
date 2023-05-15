@@ -1,0 +1,71 @@
+{
+  "installCommand": "npm ci --prefer-offline --no-audit --no-fund",
+  "buildCommand": "npm run build",
+  "framework": "sveltekit",
+  "redirects": [
+    { "source": "/showcase/:path", "destination": "/projects/:path", "permanent": true },
+    {
+      "source": "/handbook/methodology",
+      "destination": "/handbook/project-management/project-process",
+      "permanent": true
+    },
+    {
+      "source": "/handbook/interface-design",
+      "destination": "/handbook/design",
+      "permanent": true
+    },
+    {
+      "source": "/handbook/product-management",
+      "destination": "/handbook/strategy/product-management",
+      "permanent": true
+    },
+    {
+      "source": "/handbook/software-development",
+      "destination": "/handbook/development ",
+      "permanent": true
+    },
+    { "source": "/handbook/illustration", "destination": "/handbook/design", "permanent": true },
+    {
+      "source": "/handbook/branding",
+      "destination": "/handbook/design/branding",
+      "permanent": true
+    },
+    {
+      "source": "/handbook/notion-pm-guidelines",
+      "destination": "/handbook/project-management",
+      "permanent": true
+    },
+    {
+      "source": "/handbook/communication",
+      "destination": "/handbook/project-management/communication",
+      "permanent": true
+    },
+    {
+      "source": "/blog/dangers-of-using-objects-in-usestate--useeffect-reactjs-hooks",
+      "destination": "/blog/dangers-of-using-objects-in-usestate-useeffect-reactjs-hooks",
+      "permanent": true
+    },
+    {
+      "source": "/blog/handbook",
+      "destination": "/blog/we-created-a-handbook"
+    },
+    {
+      "source": "/blog/dark-ui--why-when--where",
+      "destination": "/blog/dark-ui-why-when-where"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/js/script.js",
+      "destination": "https://plausible.io/js/script.js"
+    },
+    {
+      "source": "/js/script.actions.js",
+      "destination": "https://plausible.io/js/script.tagged-events.js"
+    },
+    {
+      "source": "/api/event",
+      "destination": "https://plausible.io/api/event"
+    }
+  ]
+}

@@ -175,6 +175,9 @@ module.exports = {
       fontFamily: {
         comic: 'Comic Sans MS, Chalkboard SE, Comic Neue, Comic Sans, sans-serif'
       },
+      fontSize:{
+        notebook: ["clamp(0.65rem, 1vw, 1rem)",{lineHeight: "2em"}]
+      },
       screens: {
         xs: '480px'
       },

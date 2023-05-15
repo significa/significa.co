@@ -1,1 +1,0 @@
-export { Animated } from './Animated'

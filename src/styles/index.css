@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::selection {
+  color: theme('colors.background.DEFAULT');
+  background-color: theme('colors.foreground.DEFAULT');
+}

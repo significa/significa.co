@@ -1,41 +1,43 @@
-<a href="https://significa.co"><img src="https://user-images.githubusercontent.com/4838076/70076649-20d29b00-15f7-11ea-9379-e2fa1889a525.png" alt="logo" width="300px"></a>
-
-![](https://github.com/significa/significa.co/workflows/Deploy%20to%20Production/badge.svg)
+# Significa website
 
 This is the repo for [Significa's website](https://significa.co/), our very own presence on the web.
 
-![cover](https://user-images.githubusercontent.com/17513388/71968850-8cfb7c80-31fd-11ea-830a-771f2d97be13.png)
+## Contributing
 
-## significa.co
+### Requirements
 
-Project built with Gatsby. You can find more information on available scripts at https://www.gatsbyjs.org/.
+- Set a GitHub Classic Personal Access Token (PAT) with read access to packages (`packages:read`)
+  in your shell with the name `GITHUB_AUTH_TOKEN`.
 
-### Start up the project
+- Get the `.env` using [1password-secrets](https://github.com/significa/1password-secrets/):
+  `1password-secrets local pull`.
 
-Start a local development server at http://localhost:8000/
+- Install the node version specified in the `.nvmrc` file
+  (using your favourite nodeversion manager).
 
-```sh
-npm run develop
-```
+- Install the dependencies with `npm install` (or `npm ci` for a frozen lockfile).
 
-### Build
+### Development
 
-Make a new build to `/public` folder
+- Start the development server: `npm run dev`
+- Auto format the code: `npm run format`
 
-```sh
-npm run build
-```
+### Testing and linting
 
-### Validate codebase
+- `npm run validate`
+- `npm run test`
 
-Run prettier, eslint, typescript and jest to validate codebase
+# Deployment and release
 
-```sh
-npm run validate
-```
+The staging branch is bounded to the `main` branch, create a PR against it for a new feature.
 
-## Lambda functions
+To deploy a new production version, create a semver release in GitHub
+(prefixed with `v`, for example: `vX.X.X`).
 
-Available at [significa.co-functions](https://github.com/significa/significa.co-functions)
+To create a hotfixes:
 
-[![Significa footer](https://user-images.githubusercontent.com/17513388/71971185-fc736b00-3201-11ea-9678-090b6b6a0b3f.png)](https://significa.co)
+- Check-out to the latest release `git checkout vX.X.X`;
+- Create a new branch `git checkout -b hotfix/XXXX`;
+- Create a PR to `main`, get approval, and merge it;
+- Create a new release based on your hotfix branch.
+  Use `release/xxx` branches to batch fixes together.

@@ -1,0 +1,172 @@
+<svg width="216" height="316" viewBox="0 0 216 316" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g filter="url(#filter0_dd_3017_28170)">
+    <rect x="8" y="4" width="200" height="300" rx="8" fill="white" />
+    <rect
+      x="18"
+      y="14"
+      width="180"
+      height="280"
+      rx="4"
+      stroke="url(#paint0_radial_3017_28170)"
+      stroke-width="3"
+    />
+    <rect
+      x="18"
+      y="14"
+      width="180"
+      height="280"
+      rx="4"
+      stroke="url(#paint1_angular_3017_28170)"
+      stroke-opacity="0.5"
+      stroke-width="3"
+      style="mix-blend-mode:difference"
+    />
+    <rect
+      x="18"
+      y="14"
+      width="180"
+      height="280"
+      rx="4"
+      stroke="url(#paint2_angular_3017_28170)"
+      stroke-opacity="0.5"
+      stroke-width="3"
+      style="mix-blend-mode:screen"
+    />
+    <path
+      d="M152.235 258.404C155.885 258.404 158.15 255.431 159.43 252.233C159.816 251.269 160.241 248.187 160.241 249.226C160.241 250.696 160.188 252.176 160.241 253.645C160.35 256.702 162.971 257.768 165.369 258.64C166.093 258.903 167.538 258.873 168.063 259.294C168.36 259.531 168.352 259.346 167.762 259.346C167.094 259.346 166.309 259.203 165.656 259.058C164.726 258.852 163.137 258.569 162.36 259.346C161.255 260.451 160.84 262.207 160.058 263.53C159.25 264.897 158.476 266.747 158.357 268.342C158.319 268.853 158.122 270.586 158.122 269.126C158.122 266.759 158.981 264.532 159.064 262.222C159.101 261.185 159.155 260.294 158.357 259.581C156.71 258.108 154.05 258.404 152 258.404"
+      stroke="#171717"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+    <path
+      d="M57.9033 239C57.7246 242.215 58.6178 246.502 63.9766 246.502C62.2498 246.324 57.9033 247.931 57.9033 254.362C58.0223 252.278 56.8315 246.502 52.0086 246.502C53.378 246.443 57.9033 246.574 57.9033 239Z"
+      stroke="#171717"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M57.2641 244.031C57.3524 244.042 57.5614 244.467 57.6342 244.564C57.9792 245.024 58.376 245.339 58.7825 245.745C59.2712 246.234 59.8091 246.674 60.3008 247.165"
+      stroke="#171717"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M56.0899 245.598C56.3749 245.598 56.584 245.82 56.7973 245.99C57.2929 246.384 57.7895 246.756 58.3429 247.067C58.8952 247.378 59.3601 247.87 59.9102 248.145"
+      stroke="#171717"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M107.892 198C107.713 201.215 108.606 205.502 113.965 205.502C112.238 205.324 107.892 206.931 107.892 213.362C108.011 211.278 106.82 205.502 101.997 205.502C103.366 205.443 107.892 205.574 107.892 198Z"
+      stroke="#171717"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M107.252 203.031C107.341 203.042 107.55 203.467 107.622 203.564C107.967 204.024 108.364 204.339 108.771 204.745C109.26 205.234 109.797 205.674 110.289 206.165"
+      stroke="#171717"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M106.078 204.598C106.363 204.598 106.572 204.82 106.786 204.99C107.281 205.384 107.778 205.756 108.331 206.067C108.883 206.378 109.348 206.87 109.898 207.145"
+      stroke="#171717"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <defs>
+      <filter
+        id="filter0_dd_3017_28170"
+        x="0"
+        y="0"
+        width="216"
+        height="316"
+        filterUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy="2" />
+        <feGaussianBlur stdDeviation="1" />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.02 0" />
+        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_3017_28170" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy="4" />
+        <feGaussianBlur stdDeviation="4" />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0" />
+        <feBlend
+          mode="normal"
+          in2="effect1_dropShadow_3017_28170"
+          result="effect2_dropShadow_3017_28170"
+        />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="effect2_dropShadow_3017_28170"
+          result="shape"
+        />
+      </filter>
+      <radialGradient
+        id="paint0_radial_3017_28170"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="translate(18 14) rotate(57.2648) scale(332.866 271.259)"
+      >
+        <stop stop-color="#56B2DD" />
+        <stop offset="0.192708" stop-color="#EAFE83" />
+        <stop offset="0.385417" stop-color="#F3BCF7" />
+        <stop offset="0.583333" stop-color="#B8BAFA" />
+        <stop offset="0.786458" stop-color="#8EF5B1" />
+        <stop offset="1" stop-color="#7FC7F7" />
+      </radialGradient>
+      <radialGradient
+        id="paint1_angular_3017_28170"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="translate(108 154) rotate(90) scale(140 90)"
+      >
+        <stop />
+        <stop offset="0.197917" stop-color="white" />
+        <stop offset="0.401042" />
+        <stop offset="0.609375" stop-color="white" />
+      </radialGradient>
+      <radialGradient
+        id="paint2_angular_3017_28170"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="translate(108 154) rotate(90) scale(140 90)"
+      >
+        <stop />
+        <stop offset="0.197917" stop-color="white" />
+        <stop offset="0.401042" />
+        <stop offset="0.609375" stop-color="white" />
+        <stop offset="0.791667" />
+        <stop offset="1" stop-color="white" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+  </g></svg
+>

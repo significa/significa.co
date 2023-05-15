@@ -1,23 +1,12 @@
 {
+  "cssvar.files": ["src/**/*.css", "node_modules/@significa/svelte-ui/dist/**/*.css"],
+  "cssvar.ignore": [],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "eslint.enable": true,
-  "editor.gotoLocation.multipleDefinitions": "goto",
-  "editor.gotoLocation.multipleImplementations": "goto",
-  "editor.formatOnPaste": false,
-  "editor.formatOnSave": true,
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true,
-    "**/Thumbs.db": true,
-    "**/node_modules": true
-  }
-  // Eventually I would like to turn this on
-  // "typescript.preferences.importModuleSpecifier": "auto",
+  "eslint.validate": ["svelte"]
 }

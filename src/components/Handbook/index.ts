@@ -1,7 +1,0 @@
-export { default as Content } from './Content'
-export { default as Navigation } from './Navigation'
-export { default as Testimonial } from './Testimonial'
-export { default as Cover } from './Cover'
-export { default as Image } from './Image'
-export { default as BottomNavigation } from './BottomNavigation'
-export { default as CustomComponentParser } from './CustomComponentParser'

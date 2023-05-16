@@ -9,7 +9,9 @@ If you find it interesting, inspiring or learn something from it, make sure to l
 
 ## Architecture
 
-We developed this website using **Svelte** + **SvelteKit**, and a custom UI library `@significa/svelte-ui` published under [significa/significa-svelte-ui](https://github.com/significa/significa-svelte-ui)
+We developed this website using **Svelte** + **SvelteKit**, and a custom UI library
+`@significa/svelte-ui` published under
+[significa/significa-svelte-ui](https://github.com/significa/significa-svelte-ui)
 
 To accomplish all features, we leverage a few external services:
 
@@ -65,7 +67,7 @@ improvements and bug-fixes.
 - `npm run validate`
 - `npm run test`
 
-# Deployment and release
+## Deployment and release
 
 The staging branch is bounded to the `main` branch, create a PR against it for a new feature.
 

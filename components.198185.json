@@ -2095,7 +2095,7 @@
       "name": "physics-balloon-card",
       "display_name": null,
       "created_at": "2023-04-14T10:39:02.963Z",
-      "updated_at": "2023-04-14T10:40:57.966Z",
+      "updated_at": "2023-05-12T15:06:10.366Z",
       "id": 3811407,
       "schema": {
         "text": {
@@ -2127,6 +2127,9 @@
             }
           ],
           "exclude_empty_option": true
+        },
+        "isDesktopOnly": {
+          "type": "boolean"
         }
       },
       "image": null,
@@ -2146,11 +2149,14 @@
       "name": "physics-input",
       "display_name": null,
       "created_at": "2023-04-17T15:13:53.017Z",
-      "updated_at": "2023-04-17T15:14:00.636Z",
+      "updated_at": "2023-05-12T15:06:42.156Z",
       "id": 3830600,
       "schema": {
         "placeholder": {
           "type": "text"
+        },
+        "isDesktopOnly": {
+          "type": "boolean"
         }
       },
       "image": null,
@@ -2170,7 +2176,7 @@
       "name": "physics-rectangle-card",
       "display_name": null,
       "created_at": "2023-04-14T10:37:48.156Z",
-      "updated_at": "2023-04-14T10:38:41.658Z",
+      "updated_at": "2023-05-12T15:05:52.122Z",
       "id": 3811406,
       "schema": {
         "text": {
@@ -2192,6 +2198,9 @@
             }
           ],
           "exclude_empty_option": true
+        },
+        "isDesktopOnly": {
+          "type": "boolean"
         }
       },
       "image": null,
@@ -2211,13 +2220,16 @@
       "name": "physics-sticker",
       "display_name": null,
       "created_at": "2023-04-26T13:15:00.766Z",
-      "updated_at": "2023-04-26T16:25:36.409Z",
+      "updated_at": "2023-05-12T15:04:09.272Z",
       "id": 3889837,
       "schema": {
         "photo": {
           "type": "asset",
           "filetypes": ["images"],
           "asset_folder_id": 234280
+        },
+        "isDesktopOnly": {
+          "type": "boolean"
         }
       },
       "image": null,

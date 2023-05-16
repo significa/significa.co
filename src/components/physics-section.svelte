@@ -357,13 +357,21 @@
         <BalloonCard
           block={item}
           bind:ref={refs[i]}
-          class={clsx('absolute w-fit', !engine && 'invisible')}
+          class={clsx(
+            'absolute w-fit',
+            !engine && 'invisible',
+            item.isDesktopOnly && 'invisible md:visible'
+          )}
         />
       {:else if item.component === 'physics-rectangle-card'}
         <RectangleCard
           block={item}
           bind:ref={refs[i]}
-          class={clsx('absolute w-fit', !engine && 'invisible')}
+          class={clsx(
+            'absolute w-fit',
+            !engine && 'invisible',
+            item.isDesktopOnly && 'invisible md:visible'
+          )}
         />
       {:else if item.component === 'physics-input'}
         <form on:submit|preventDefault={onSubmit} id={i + item._uid}>
@@ -372,14 +380,22 @@
             form={i + item._uid}
             block={item}
             bind:ref={refs[i]}
-            class={clsx('absolute w-fit', !engine && 'invisible')}
+            class={clsx(
+              'absolute w-fit',
+              !engine && 'invisible',
+              item.isDesktopOnly && 'invisible md:visible'
+            )}
           />
         </form>
       {:else if item.component === 'physics-sticker' && item.photo}
         {@const { width, height, src, alt } = getImageAttributes(item.photo)}
         <img
           bind:this={refs[i]}
-          class={clsx('absolute select-none drop-shadow-md', !engine && 'invisible')}
+          class={clsx(
+            'absolute select-none drop-shadow-md',
+            !engine && 'invisible',
+            item.isDesktopOnly && 'invisible md:visible'
+          )}
           {src}
           {alt}
           width={+width / 2}

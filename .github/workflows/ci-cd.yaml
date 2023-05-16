@@ -17,7 +17,7 @@ jobs:
       contents: read
       packages: read
       deployments: write
-    uses: significa/actions/.github/workflows/vercel-app.yaml@vercel-deployment-alias
+    uses: significa/actions/.github/workflows/vercel-app.yaml@main
     with:
       npm_scope: '@significa'
       install_registry_url: 'https://npm.pkg.github.com/'

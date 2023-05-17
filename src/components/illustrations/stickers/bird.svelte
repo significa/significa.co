@@ -2,6 +2,7 @@
   xmlns="http://www.w3.org/2000/svg"
   width="128"
   height="141"
+  viewBox="0 0 128 141"
   fill="none"
   class={$$restProps.class}
   ><path

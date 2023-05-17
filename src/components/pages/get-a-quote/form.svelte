@@ -60,8 +60,6 @@
     } else {
       character = 'attach';
     }
-  } else if (lastChangedInput === 'message' && message && message.length > 3) {
-    character = 'idle';
   } else if (lastChangedInput === 'budget') {
     if (['10k - 25k'].includes(budget)) {
       character = 'budget10';
@@ -72,7 +70,13 @@
     } else if (['100k+'].includes(budget)) {
       character = 'budget100';
     }
-  } else if (lastChangedInput === 'name' && name && name.length > 2) {
+  } else if (
+    (lastChangedInput === 'name' ||
+      lastChangedInput === 'email' ||
+      lastChangedInput === 'message') &&
+    name &&
+    name.length > 2
+  ) {
     character = 't-shirt';
   } else {
     character = 'hello';

@@ -6,119 +6,100 @@
   import moon from '$assets/moon.svg';
   let flip = false;
   let timeout: ReturnType<typeof setTimeout>;
-  let calculateAngle = function (e, item) {
-    // Get the x position of the users mouse, relative to the card itself
+  $: cssVarStyles = `transform: rotateX(0deg) rotateY(0deg)`;
+  let calculateAngle = function (
+    e: MouseEvent & { currentTarget: EventTarget & HTMLDivElement },
+    item: HTMLElement
+  ) {
+    // this is wrong
     let x = Math.abs(item.getBoundingClientRect().x - e.clientX);
-    // Get the y position relative to the button
+    // wrong
     let y = Math.abs(item.getBoundingClientRect().y - e.clientY);
 
     // Calculate half the width and height
     let halfWidth = item.getBoundingClientRect().width / 2;
     let halfHeight = item.getBoundingClientRect().height / 2;
 
-    let calcAngleX = (x - halfWidth) / 14;
+    // Use this to create an angle. I have divided by 6 and 4 respectively so the effect looks good.
+    // Changing these numbers will change the depth of the effect.
+    let calcAngleX = (x - halfWidth) / 6;
     let calcAngleY = (y - halfHeight) / 14;
 
-    // And set its container's perspective.
-    item.style.perspective = `${halfWidth * 6}px`;
-
-    // Set the items transform CSS property
-    item.style.transform = `rotateY(${calcAngleX}deg) rotateX(${-calcAngleY}deg)`;
+    cssVarStyles = `transform: rotateY(${calcAngleX}deg) rotateX(${-calcAngleY}deg); perspective: ${
+      halfWidth * 6
+    }px`;
   };
-
-  let frontcard = document.querySelector('.flip-card-front');
-  let backcard = document.querySelector('.flip-card-back');
-  let parent = document.querySelector('.flip-card-inner');
-
-  $: if (flip) {
-    parent?.addEventListener('mouseenter', function (e) {
-      calculateAngle(e, backcard);
-    });
-
-    parent?.addEventListener('mousemove', function (e) {
-      calculateAngle(e, backcard);
-    });
-
-    parent?.addEventListener('mouseleave', function () {
-      // frontcard.style.transform = 'rotateY(0deg) rotateX(0deg)';
-      backcard.style.transform = 'rotateY(180deg) rotateX(0deg)';
-    });
-  } else {
-    parent?.addEventListener('mouseenter', function (e) {
-      calculateAngle(e, frontcard);
-    });
-
-    parent?.addEventListener('mousemove', function (e) {
-      calculateAngle(e, frontcard);
-    });
-
-    parent?.addEventListener('mouseleave', function () {
-      frontcard.style.transform = 'rotateY(0deg) rotateX(0deg)';
-      // backcard.style.transform = 'rotateY(0deg) rotateX(0deg)';
-    });
-  }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-  class="h-[300px] w-[200px]"
-  style="perspective: 1000px;"
-  on:click={() => {
-    clearTimeout(timeout);
-    flip = !flip;
-    // if (flip) {
-    //   timeout = setTimeout(() => {
-    //     flip = false;
-    //   }, 4000);
-    // }
-  }}
+  style="left: {item.left || 0}px; top: {item.top || 0}px; transform: rotate({item.rotate || 0}deg)"
 >
   <div
-    class="test"
-    style="left: {item.left || 0}px; top: {item.top || 0}px; transform: rotate({item.rotate ||
-      0}deg)"
+    class="card h-[300px] w-[200px]"
+    class:rotate={flip}
+    on:click={() => {
+      clearTimeout(timeout);
+      flip = !flip;
+      if (flip) {
+        timeout = setTimeout(() => {
+          flip = false;
+        }, 4000);
+      }
+    }}
+    on:mouseenter={(e) => {
+      calculateAngle(e, document.querySelector('.inner-card'));
+    }}
+    on:mousemove={(e) => {
+      calculateAngle(e, document.querySelector('.inner-card'));
+    }}
+    on:mouseleave={() => {
+      cssVarStyles = `transform: rotateX(0deg) rotateY(0deg)`;
+    }}
   >
-    <div class="flip-card-inner relative h-full w-full" class:rotate={flip}>
-      <div class="flip-card-front">
+    <span class="inner-card" style={cssVarStyles}>
+      <div class="relative">
         {#if item.image === 'sun'}
           <img alt="" src={sun} draggable="false" class="drop-shadow-sm" />
         {:else}
           <img alt="" src={moon} draggable="false" class="drop-shadow-sm" />
         {/if}
       </div>
-      <div class="flip-card-back">
-        <div class="relative">
-          {#if item.text && item.text.length > 0}
-            <p
-              class="absolute left-6 top-6 z-10 max-w-[154px] text-left text-xl font-semibold text-[#171717]"
-            >
-              {item.text[Math.floor(Math.random() * item.text.length)].text}
-            </p>
-          {/if}
-          <img alt="" src={back} class="drop-shadow-sm" />
-        </div>
+    </span>
+    <span class="inner-card-backface">
+      <div class="relative">
+        {#if item.text && item.text.length > 0}
+          <p
+            class="absolute left-6 top-6 z-10 max-w-[154px] text-left text-xl font-semibold text-[#171717]"
+          >
+            {item.text[Math.floor(Math.random() * item.text.length)].text}
+          </p>
+        {/if}
+        <img alt="" src={back} class="drop-shadow-sm" />
       </div>
-    </div>
+    </span>
   </div>
 </div>
 
 <style>
-  .flip-card-inner {
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-  }
   .rotate {
     transform: rotateY(180deg);
   }
-  .flip-card-front,
-  .flip-card-back {
+  .card {
+    transform-style: preserve-3d;
+    transition: all 0.8s ease-out;
+  }
+  .inner-card,
+  .inner-card-backface {
+    perspective: 500;
+    transform: rotateX(0deg) rotateY(0deg);
     position: absolute;
     width: 100%;
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
-  .flip-card-back {
+  .inner-card-backface {
     transform: rotateY(180deg);
   }
 </style>

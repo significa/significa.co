@@ -125,6 +125,15 @@ export interface BlogIndexStoryblok {
   [k: string]: any;
 }
 
+export interface RichtextStoryblok {
+  type: string;
+  content?: RichtextStoryblok[];
+  marks?: RichtextStoryblok[];
+  attrs?: any;
+  text?: string;
+  [k: string]: any;
+}
+
 export interface BlogPostStoryblok {
   cover?: AssetStoryblok;
   intro: string;
@@ -132,7 +141,7 @@ export interface BlogPostStoryblok {
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
-  body?: any;
+  body?: RichtextStoryblok;
   _uid: string;
   component: 'blog-post';
   [k: string]: any;
@@ -279,7 +288,7 @@ export interface CanvasYellowStickerStoryblok {
 
 export interface CareerStoryblok {
   cover?: AssetStoryblok;
-  body?: any;
+  body?: RichtextStoryblok;
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
@@ -334,7 +343,7 @@ export interface ClientLogoStoryblok {
 }
 
 export interface ColumnStoryblok {
-  content: any;
+  content: RichtextStoryblok;
   sticky?: boolean;
   _uid: string;
   component: 'column';
@@ -403,7 +412,7 @@ export interface FooterColumnInternalStoryblok {
 export interface GetAQuotePageStoryblok {
   title?: string;
   subtitle?: string;
-  timezone_text?: any;
+  timezone_text?: RichtextStoryblok;
   steps_title?: string;
   steps_subtitle?: string;
   steps?: GetAQuoteStepStoryblok[];
@@ -425,7 +434,7 @@ export interface HandbookStoryblok {
   cover?: AssetStoryblok;
   tagline?: string;
   intro?: string;
-  body?: any;
+  body?: RichtextStoryblok;
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
@@ -560,6 +569,7 @@ export interface PhotoCardStoryblok {
 export interface PhysicsBalloonCardStoryblok {
   text?: string;
   theme?: 'inverted' | 'panel' | 'offset' | 'yellow';
+  isDesktopOnly?: boolean;
   _uid: string;
   component: 'physics-balloon-card';
   [k: string]: any;
@@ -567,6 +577,7 @@ export interface PhysicsBalloonCardStoryblok {
 
 export interface PhysicsInputStoryblok {
   placeholder?: string;
+  isDesktopOnly?: boolean;
   _uid: string;
   component: 'physics-input';
   [k: string]: any;
@@ -575,6 +586,7 @@ export interface PhysicsInputStoryblok {
 export interface PhysicsRectangleCardStoryblok {
   text?: string;
   theme?: 'transparent' | 'yellow';
+  isDesktopOnly?: boolean;
   _uid: string;
   component: 'physics-rectangle-card';
   [k: string]: any;
@@ -582,6 +594,7 @@ export interface PhysicsRectangleCardStoryblok {
 
 export interface PhysicsStickerStoryblok {
   photo?: AssetStoryblok;
+  isDesktopOnly?: boolean;
   _uid: string;
   component: 'physics-sticker';
   [k: string]: any;
@@ -602,7 +615,7 @@ export interface ProjectStoryblok {
   services?: string;
   links?: LinkStoryblok[];
   recognitions?: RecognitionStoryblok[];
-  body?: any;
+  body?: RichtextStoryblok;
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
@@ -763,7 +776,7 @@ export interface ServiceTimelineSubrowStoryblok {
 }
 
 export interface StaticPageStoryblok {
-  body?: any;
+  body?: RichtextStoryblok;
   _uid: string;
   component: 'static-page';
   [k: string]: any;
@@ -775,6 +788,8 @@ export interface TeamMemberStoryblok {
   position?: string;
   team?: number | string;
   bio?: string;
+  cover_image_light?: AssetStoryblok;
+  cover_image_dark?: AssetStoryblok;
   links?: TeamMemberLinkStoryblok[];
   is_active?: boolean;
   _uid: string;

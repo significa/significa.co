@@ -17,6 +17,9 @@
 <svelte:head>
   {#if !inDrawer}
     <title>{title || $page.data.story?.content?.seo_title || t('seo.title')}</title>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@SignificaDotCo" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="description"
       content={description || $page.data.story?.content?.seo_description || t('seo.description')}
@@ -26,7 +29,15 @@
       content={title || $page.data.story?.content?.seo_title || t('seo.title')}
     />
     <meta
+      property="twitter:title"
+      content={title || $page.data.story?.content?.seo_title || t('seo.title')}
+    />
+    <meta
       property="og:description"
+      content={description || $page.data.story?.content?.seo_description || t('seo.description')}
+    />
+    <meta
+      property="twitter:description"
       content={description || $page.data.story?.content?.seo_description || t('seo.description')}
     />
     <meta property="og:url" content={$page.url.toString()} />
@@ -34,13 +45,16 @@
     {#if image?.filename && !VIDEO_EXTENSIONS.includes(getFileExtension(image.filename))}
       {@const { src } = getImageAttributes(image, { size: [1200, 630] })}
       <meta property="og:image" content={src} />
+      <meta property="twitter:image" content={src} />
     {:else if $page.data.story?.content?.seo_image?.filename}
       {@const { src } = getImageAttributes($page.data.story?.content?.seo_image, {
         size: [1200, 630]
       })}
       <meta property="og:image" content={src} />
+      <meta property="twitter:image" content={src} />
     {:else}
       <meta property="og:image" content="{$page.url.origin}/og.png" />
+      <meta property="twitter:image" content="{$page.url.origin}/og.png" />
     {/if}
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />

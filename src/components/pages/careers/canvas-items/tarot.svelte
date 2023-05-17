@@ -4,24 +4,22 @@
   import back from '$assets/back.svg';
   import sun from '$assets/sun.svg';
   import moon from '$assets/moon.svg';
-  let flip = false;
+  $: flip = false;
   let timeout: ReturnType<typeof setTimeout>;
   $: cssVarStyles = `transform: rotateX(0deg) rotateY(0deg)`;
   let calculateAngle = function (e: any) {
     let rect = e.target?.getBoundingClientRect();
-    // this is wrong
+    //x and y relative to the card
     let x = Math.abs(e.clientX - rect.left);
-    // wrong
     let y = Math.abs(e.clientY - rect.top);
 
     // Calculate half the width and height
     let halfWidth = rect.width / 2;
     let halfHeight = rect.height / 2;
 
-    // Use this to create an angle. I have divided by 6 and 4 respectively so the effect looks good.
     // Changing these numbers will change the depth of the effect.
     let calcAngleX = (x - halfWidth) / 6;
-    let calcAngleY = (y - halfHeight) / 14;
+    let calcAngleY = (y - halfHeight) / 6;
 
     cssVarStyles = `transform: rotateY(${calcAngleX}deg) rotateX(${-calcAngleY}deg); perspective: ${
       halfWidth * 6
@@ -89,7 +87,6 @@
   }
   .inner-card,
   .inner-card-backface {
-    perspective: 500;
     transform: rotateX(0deg) rotateY(0deg);
     position: absolute;
     width: 100%;

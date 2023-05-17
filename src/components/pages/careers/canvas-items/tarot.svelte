@@ -7,18 +7,16 @@
   let flip = false;
   let timeout: ReturnType<typeof setTimeout>;
   $: cssVarStyles = `transform: rotateX(0deg) rotateY(0deg)`;
-  let calculateAngle = function (
-    e: MouseEvent & { currentTarget: EventTarget & HTMLDivElement },
-    item: HTMLElement
-  ) {
+  let calculateAngle = function (e: any) {
+    let rect = e.target?.getBoundingClientRect();
     // this is wrong
-    let x = Math.abs(item.getBoundingClientRect().x - e.clientX);
+    let x = Math.abs(e.clientX - rect.left);
     // wrong
-    let y = Math.abs(item.getBoundingClientRect().y - e.clientY);
+    let y = Math.abs(e.clientY - rect.top);
 
     // Calculate half the width and height
-    let halfWidth = item.getBoundingClientRect().width / 2;
-    let halfHeight = item.getBoundingClientRect().height / 2;
+    let halfWidth = rect.width / 2;
+    let halfHeight = rect.height / 2;
 
     // Use this to create an angle. I have divided by 6 and 4 respectively so the effect looks good.
     // Changing these numbers will change the depth of the effect.
@@ -48,10 +46,10 @@
       }
     }}
     on:mouseenter={(e) => {
-      calculateAngle(e, document.querySelector('.inner-card'));
+      calculateAngle(e);
     }}
     on:mousemove={(e) => {
-      calculateAngle(e, document.querySelector('.inner-card'));
+      calculateAngle(e);
     }}
     on:mouseleave={() => {
       cssVarStyles = `transform: rotateX(0deg) rotateY(0deg)`;

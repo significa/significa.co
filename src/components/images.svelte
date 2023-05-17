@@ -33,7 +33,7 @@
     {#each images || [] as img}
       {#if img?.filename}
         {@const { src, alt, width, height } = getImageAttributes(img)}
-        <img class="max-h-96" {alt} {src} {width} {height} />
+        <img class="max-h-96 rounded-md object-cover" {alt} {src} {width} {height} />
       {/if}
     {/each}
   </div>

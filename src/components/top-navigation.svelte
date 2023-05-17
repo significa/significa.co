@@ -85,7 +85,7 @@
     class={clsx(
       'ease-[cubic-bezier(0.90, 0, 0.05, 1)] z-30 w-full border-b bg-background/95 backdrop-blur-md transition-[transform,border-color] duration-300',
       variant === 'default' && 'fixed',
-      isPastZero ? 'border-b-border' : 'border-b-transparent',
+      !isPastZero && variant === 'default' ? 'border-b-transparent' : 'border-b-border',
       !isPastThreshold
         ? 'translate-y-0'
         : scrollDir === 'down' && variant === 'default'
@@ -153,7 +153,10 @@
     <div
       transition:fly={{ x: 1000, duration: 300 }}
       use:clickOutside={() => (panel = false)}
-      class="fixed bottom-0 right-0 top-0 z-50 flex w-full max-w-sm flex-col items-start overflow-y-auto bg-background px-container py-4"
+      class={clsx(
+        variant === 'handbook' ? 'px-6' : 'px-container pl-6',
+        'fixed bottom-0 right-0 top-0 z-50 flex w-full max-w-sm flex-col items-start overflow-y-auto bg-background py-4'
+      )}
     >
       <div class="flex w-full items-center justify-between">
         <Logo variant="symbol" />

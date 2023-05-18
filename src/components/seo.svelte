@@ -19,7 +19,6 @@
     <title>{title || $page.data.page?.story?.content?.seo_title || t('seo.title')}</title>
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@SignificaDotCo" />
-    <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="description"
       content={description ||

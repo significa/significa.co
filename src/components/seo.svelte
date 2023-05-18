@@ -20,7 +20,6 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@SignificaDotCo" />
     <meta name="twitter:card" content="summary_large_image" />
-    <title>{title || $page.data.page?.story?.content?.seo_title || t('seo.title')}</title>
     <meta
       name="description"
       content={description ||
@@ -53,8 +52,8 @@
       {@const { src } = getImageAttributes(image, { size: [1200, 630] })}
       <meta property="og:image" content={src} />
       <meta property="twitter:image" content={src} />
-    {:else if $page.data.page?.story?.content?.seo_image?.filename}
-      {@const { src } = getImageAttributes($page.data.page?.story?.content?.seo_image, {
+    {:else if $page.data.page?.story?.content?.seo_og_image?.filename}
+      {@const { src } = getImageAttributes($page.data.page?.story?.content?.seo_og_image, {
         size: [1200, 630]
       })}
       <meta property="og:image" content={src} />

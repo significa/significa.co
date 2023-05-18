@@ -33,6 +33,24 @@
 
   // Quantity of initial items
   let initialBoxesN = items?.length ?? 0;
+  let currentBodies = 0;
+
+  $: if (currentBodies > 0) {
+    const newBoxes = getBoxes(matterInstance);
+
+    // add limits to engine
+    matterInstance.Composite.add(engine.world, [
+      ...newBoxes.filter((bx) => bx !== null).map((b) => b!.body)
+    ]);
+
+    // remove old boxes from engine
+    boxes
+      .filter((bx) => bx !== null)
+      .forEach((box) => matterInstance.Composite.remove(engine.world, box!.body));
+
+    // update boxes state as source of truth
+    boxes = newBoxes;
+  }
 
   // Active engine
   let engine: Engine;
@@ -103,6 +121,38 @@
     }
   }
 
+  const getBoxes = (matter: typeof Matter) => {
+    // Create boxes from current rendered items
+    const boxes = refs.map((boxRef) => {
+      if (getComputedStyle(boxRef).display === 'block') {
+        return {
+          body: matter.Bodies.rectangle(
+            containerRef.clientWidth * Math.random(),
+            containerRef.clientHeight / 2 - boxRef.clientHeight,
+            boxRef.clientWidth,
+            boxRef.clientHeight,
+            {
+              friction: 1
+            }
+          ),
+          elem: boxRef,
+          render() {
+            if (boxRef?.clientHeight && boxRef?.clientWidth) {
+              const { x, y } = this.body.position;
+              this.elem.style.top = `${y - boxRef.clientHeight / 2}px`;
+              this.elem.style.left = `${x - boxRef.clientWidth / 2}px`;
+              this.elem.style.transform = `rotate(${this.body.angle}rad)`;
+            }
+          }
+        };
+      } else {
+        return null;
+      }
+    });
+
+    return boxes;
+  };
+
   const getLimits = (matter: typeof Matter) => {
     const ceil = matter.Bodies.rectangle(
       containerRef.clientWidth / 2,
@@ -143,39 +193,13 @@
     const Engine = matter.Engine,
       MouseConstraint = matter.MouseConstraint,
       Mouse = matter.Mouse,
-      Composite = matter.Composite,
-      Bodies = matter.Bodies;
+      Composite = matter.Composite;
 
     // Create engine
     engine = Engine.create({ gravity: { scale: GRAVITY_DEFAULT_VALUE } });
 
     // Create boxes from current rendered items
-    const initialBoxes = refs.map((boxRef) => {
-      if (getComputedStyle(boxRef).display === 'block') {
-        return {
-          body: Bodies.rectangle(
-            containerRef.clientWidth * Math.random(),
-            containerRef.clientHeight / 2 - boxRef.clientHeight,
-            boxRef.clientWidth,
-            boxRef.clientHeight,
-            {
-              friction: 1
-            }
-          ),
-          elem: boxRef,
-          render() {
-            if (boxRef?.clientHeight && boxRef?.clientWidth) {
-              const { x, y } = this.body.position;
-              this.elem.style.top = `${y - boxRef.clientHeight / 2}px`;
-              this.elem.style.left = `${x - boxRef.clientWidth / 2}px`;
-              this.elem.style.transform = `rotate(${this.body.angle}rad)`;
-            }
-          }
-        };
-      } else {
-        return null;
-      }
-    });
+    const initialBoxes = getBoxes(matter);
 
     // Update boxes state with created boxes
     boxes = initialBoxes;
@@ -247,6 +271,8 @@
   };
 
   const handleResize = () => {
+    currentBodies = refs?.filter((ref) => getComputedStyle(ref).display === 'block').length || 0;
+
     // re-calculate limits
     const { ground, leftWall, rightWall } = getLimits(matterInstance);
 

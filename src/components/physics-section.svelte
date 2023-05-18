@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { browser } from '$app/environment';
+  import { device } from '$lib/stores/device';
   import clsx from 'clsx';
   import { getScrollSpeed } from '$lib/utils/dom';
   import BalloonCard from './physics-blocks/balloon-card.svelte';
@@ -40,7 +40,6 @@
 
   // Mobile behaviour
   let timeout: ReturnType<typeof setTimeout>;
-  let isTouchDevice: boolean;
 
   // Limits for resize handling
   let boxGround: Body;
@@ -52,11 +51,11 @@
 
   // Items where Matter will be applied
   let refs: HTMLElement[] = Array(items?.length);
-  let boxes: {
+  let boxes: ({
     body: Body;
     elem: HTMLElement;
     render(): void;
-  }[];
+  } | null)[];
 
   /**
    * Should only react when:
@@ -151,26 +150,32 @@
     engine = Engine.create({ gravity: { scale: GRAVITY_DEFAULT_VALUE } });
 
     // Create boxes from current rendered items
-    const initialBoxes = refs.map((_, i) => ({
-      body: Bodies.rectangle(
-        containerRef.clientWidth * Math.random(),
-        containerRef.clientHeight / 2 - refs[i].clientHeight,
-        refs[i].clientWidth,
-        refs[i].clientHeight,
-        {
-          friction: 1
-        }
-      ),
-      elem: refs[i],
-      render() {
-        if (refs?.[i]?.clientHeight && refs?.[i]?.clientWidth) {
-          const { x, y } = this.body.position;
-          this.elem.style.top = `${y - refs[i].clientHeight / 2}px`;
-          this.elem.style.left = `${x - refs[i].clientWidth / 2}px`;
-          this.elem.style.transform = `rotate(${this.body.angle}rad)`;
-        }
+    const initialBoxes = refs.map((boxRef) => {
+      if (getComputedStyle(boxRef).display === 'block') {
+        return {
+          body: Bodies.rectangle(
+            containerRef.clientWidth * Math.random(),
+            containerRef.clientHeight / 2 - boxRef.clientHeight,
+            boxRef.clientWidth,
+            boxRef.clientHeight,
+            {
+              friction: 1
+            }
+          ),
+          elem: boxRef,
+          render() {
+            if (boxRef?.clientHeight && boxRef?.clientWidth) {
+              const { x, y } = this.body.position;
+              this.elem.style.top = `${y - boxRef.clientHeight / 2}px`;
+              this.elem.style.left = `${x - boxRef.clientWidth / 2}px`;
+              this.elem.style.transform = `rotate(${this.body.angle}rad)`;
+            }
+          }
+        };
+      } else {
+        return null;
       }
-    }));
+    });
 
     // Update boxes state with created boxes
     boxes = initialBoxes;
@@ -225,7 +230,7 @@
 
     // Add all of the bodies and walls to the world
     Composite.add(engine.world, [
-      ...initialBoxes.map((b) => b.body),
+      ...initialBoxes.filter((bx) => bx !== null).map((b) => b!.body),
       leftWall,
       rightWall,
       ceil,
@@ -235,7 +240,7 @@
 
     // Main loop
     (function run() {
-      boxes.forEach((box) => box.render());
+      boxes.forEach((box) => box?.render());
       window.requestAnimationFrame(run);
       Engine.update(engine, 1000 / 60);
     })();
@@ -261,7 +266,7 @@
 
   // Touch devices behaved badly with element drag so we do a small gravity effect on scroll instead
   const handleTouchDeviceScroll = () => {
-    if (isTouchDevice) {
+    if ($device === 'touch') {
       engine.gravity = {
         x: 0,
         y: 1,
@@ -331,10 +336,6 @@
   };
 
   onMount(() => {
-    if (browser) {
-      isTouchDevice = !window.matchMedia('(hover: hover)').matches;
-    }
-
     if (items) {
       import('matter-js').then((Matter) => {
         matterInstance = Matter;
@@ -357,7 +358,11 @@
         <BalloonCard
           block={item}
           bind:ref={refs[i]}
-          class={clsx('absolute w-fit', !engine && 'invisible')}
+          class={clsx(
+            'absolute w-fit',
+            !engine && 'invisible',
+            item.is_desktop_only && 'hidden md:block'
+          )}
         />
       {:else if item.component === 'physics-rectangle-card'}
         <RectangleCard
@@ -365,8 +370,8 @@
           bind:ref={refs[i]}
           class={clsx(
             'absolute w-fit',
-            !engine && 'invisible'
-            //item.is_desktop_only && 'hidden md:block'
+            !engine && 'invisible',
+            item.is_desktop_only && 'hidden md:block'
           )}
         />
       {:else if item.component === 'physics-input'}
@@ -378,8 +383,8 @@
             bind:ref={refs[i]}
             class={clsx(
               'absolute w-fit',
-              !engine && 'invisible'
-              //item.is_desktop_only && 'hidden md:block'
+              !engine && 'invisible',
+              item.is_desktop_only && 'hidden md:block'
             )}
           />
         </form>
@@ -389,8 +394,8 @@
           bind:this={refs[i]}
           class={clsx(
             'absolute select-none drop-shadow-md',
-            !engine && 'invisible'
-            //item.is_desktop_only && 'hidden md:block'
+            !engine && 'invisible',
+            item.is_desktop_only && 'hidden md:block'
           )}
           {src}
           {alt}

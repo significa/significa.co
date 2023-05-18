@@ -788,6 +788,8 @@ export interface TeamMemberStoryblok {
   position?: string;
   team?: number | string;
   bio?: string;
+  cover_image_light?: AssetStoryblok;
+  cover_image_dark?: AssetStoryblok;
   links?: TeamMemberLinkStoryblok[];
   is_active?: boolean;
   _uid: string;

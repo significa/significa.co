@@ -220,9 +220,9 @@
         on:blur={() => dispatch('blur', 'budget')}
         on:change={() => dispatch('input', 'budget')}
       >
-        <option value="">Select budget</option>
+        <option value="" class="text-foreground">Select budget</option>
         {#each budgetOptions as option}
-          <option value={option}>{option}</option>
+          <option value={option} class="text-foreground">{option}</option>
         {/each}
       </FloatingSelect>
     {/if}

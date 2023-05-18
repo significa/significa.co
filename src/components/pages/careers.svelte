@@ -12,6 +12,8 @@
   import type { TeamMemberPage } from '$lib/content';
   import DrawYourSegg from '$components/draw-your-segg/draw-your-segg.svelte';
   import { getImageAttributes } from '$lib/utils/cms';
+  import { TrackingEvent, track } from '$lib/track';
+  import { drawerLinks } from '$lib/actions/drawer-links';
 
   export let data: CareersPageStoryblok;
   export let teamMembers: TeamMemberPage[] | undefined;
@@ -21,13 +23,14 @@
 
 <Seo />
 <main>
-  <section class="relative mx-auto">
+  <section class="relative mx-auto overflow-hidden">
     <Canvas
       withMouseDragScroll
       title={data.page_title}
       height={data.canvas_height}
       width={data.canvas_width}
       items={data.canvas_items}
+      hideMap={$device === 'touch'}
       {teamMembers}
       style="height: min({data.canvas_height}px, calc(90vh - 76px));"
     />
@@ -83,17 +86,20 @@
       <div class="container mx-auto justify-between gap-12 px-container lg:flex">
         <div class="flex flex-1 flex-col items-start">
           <div class="w-full flex-1">
-            <ul>
+            <ul use:drawerLinks>
               {#each $page.data.careers as career}
-                <li
-                  class="border-b bg-gradient-to-r first:border-t hover:from-transparent hover:via-foreground-tertiary/10 hover:to-transparent hover:transition-colors"
-                >
+                <li class="border-b first:border-t">
                   <a
                     class="flex w-full items-center justify-between py-7 text-2xl font-semibold transition-colors hover:text-foreground-secondary"
                     href={career.full_slug}
+                    on:click={() => {
+                      track(TrackingEvent.CAREER_CLICK, {
+                        props: { name: career.name, to: career.full_slug, path: $page.url.pathname }
+                      });
+                    }}
                   >
                     <span>{career.name}</span>
-                    <Button variant="secondary" arrow />
+                    <Button size="sm" variant="secondary" arrow />
                   </a>
                 </li>
               {/each}
@@ -101,8 +107,12 @@
           </div>
           <div class="mt-12 text-sm">
             <p class="leading-none text-foreground-secondary">{t('careers.footer.title')}</p>
-            <Link class="mt-0.5 inline-flex" href="mailto:{t('careers.footer.email')}"
-              >{t('careers.footer.description')}</Link
+            <Link
+              class="mt-0.5 inline-flex"
+              href="mailto:{t('careers.footer.email')}"
+              on:click={() => {
+                track(TrackingEvent.CAREERS_SPONTANEOUS_APPLICATION);
+              }}>{t('careers.footer.description')}</Link
             >
           </div>
         </div>
@@ -124,12 +134,9 @@
       </div>
 
       {#if data.benefits}
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {#each data.benefits as benefits, index}
-            <div
-              class="flex flex-col items-start xl:max-w-xs"
-              style="margin-top: {index % 2 !== 0 ? '26px' : '0px'}"
-            >
+        <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+          {#each data.benefits as benefits}
+            <div class="flex flex-col items-start xl:max-w-xs">
               {#if benefits.image?.filename}
                 {@const { src, alt } = getImageAttributes(benefits.image)}
                 <img {src} {alt} class="mb-3 max-h-14 object-contain drop-shadow-md" />

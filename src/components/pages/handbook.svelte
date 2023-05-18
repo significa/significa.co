@@ -51,17 +51,17 @@
 <div class="flex items-start gap-4 @container">
   <div class="flex-1">
     <header class="container mx-auto my-10 max-w-3xl px-container md:my-14 lg:my-20">
-      <h1 class="text-5xl">{story.name}</h1>
-      {#if story.content.intro}
-        <p class="mt-4 max-w-2xl text-2xl">{story.content.intro}</p>
-      {/if}
       {#if story.content.draft}
-        <div class="mt-8 rounded-md bg-error p-4" data-theme="dark">
+        <div class="mb-8 rounded-md bg-error p-4" data-theme="dark">
           <h4 class="text-lg font-medium">{t('handbook.draft.title')}</h4>
           <p>
             {t('handbook.draft.description')}
           </p>
         </div>
+      {/if}
+      <h1 class="text-5xl">{story.name}</h1>
+      {#if story.content.intro}
+        <p class="mt-4 max-w-2xl text-2xl">{story.content.intro}</p>
       {/if}
     </header>
 

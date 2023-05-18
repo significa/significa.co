@@ -1,4 +1,7 @@
 {
+  "installCommand": "npm ci --prefer-offline --no-audit --no-fund",
+  "buildCommand": "npm run build",
+  "framework": "sveltekit",
   "redirects": [
     { "source": "/showcase/:path", "destination": "/projects/:path", "permanent": true },
     {
@@ -55,6 +58,10 @@
     {
       "source": "/js/script.js",
       "destination": "https://plausible.io/js/script.js"
+    },
+    {
+      "source": "/js/script.actions.js",
+      "destination": "https://plausible.io/js/script.tagged-events.js"
     },
     {
       "source": "/api/event",

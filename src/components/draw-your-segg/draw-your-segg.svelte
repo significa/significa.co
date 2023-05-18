@@ -9,18 +9,18 @@
 
   export let template = base;
 
-  // save drawing in DB
-  let dbId: string | null = null;
+  let id: string | null = null;
+  let authToken: string | null = null;
+
   const save = async (drawing: Drawing) => {
     const res = await fetch('/segg', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: dbId, drawing })
+      body: JSON.stringify({ id, authToken, drawing })
     });
 
-    // save ID
     if (res.ok) {
-      dbId = await res.json();
+      ({ id, authToken } = await res.json());
     }
   };
 </script>
@@ -34,7 +34,7 @@
     <div class="dots" />
   </div>
   <div class="relative overflow-hidden rounded-lg">
-    <Canvas id={dbId} {width} {height} on:change={({ detail }) => save(detail)} {template} />
+    <Canvas {id} {width} {height} on:change={({ detail }) => save(detail)} {template} />
     <div class="dots" />
   </div>
 </div>

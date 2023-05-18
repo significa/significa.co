@@ -4,10 +4,17 @@
   import { CheckboxGroup } from '@significa/svelte-ui';
   import { CONFETTI_COLOR_ARRAY } from '$lib/constants';
   import type { CanvasChecklistStoryblok } from '$types/bloks';
+  import { TrackingEvent, track } from '$lib/track';
 
   export let item: CanvasChecklistStoryblok;
 
   let selection: string[] = [];
+  let hasCheckedAllOnce = false;
+
+  $: if (selection.length === item.items?.length && !hasCheckedAllOnce) {
+    track(TrackingEvent.CAREERS_CANVAS_EGGMANDMENDS);
+    hasCheckedAllOnce = true;
+  }
 </script>
 
 <div
@@ -59,7 +66,9 @@
 
       <div class="mt-9 flex flex-col px-4">
         {#each item.items || [] as option, i}
-          <label for={i.toString()} class="flex h-8 w-full items-center gap-3">
+          <!-- svelte-ignore a11y-label-has-associated-control -->
+          <!-- only gives warning because it doesn't recognise the input as a child -->
+          <label class="flex h-8 w-full items-center gap-3">
             <CheckboxGroup
               bind:group={selection}
               id={i.toString()}

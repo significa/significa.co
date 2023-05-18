@@ -60,8 +60,6 @@
     } else {
       character = 'attach';
     }
-  } else if (lastChangedInput === 'message' && message && message.length > 3) {
-    character = 'idle';
   } else if (lastChangedInput === 'budget') {
     if (['10k - 25k'].includes(budget)) {
       character = 'budget10';
@@ -72,7 +70,13 @@
     } else if (['100k+'].includes(budget)) {
       character = 'budget100';
     }
-  } else if (lastChangedInput === 'name' && name && name.length > 2) {
+  } else if (
+    (lastChangedInput === 'name' ||
+      lastChangedInput === 'email' ||
+      lastChangedInput === 'message') &&
+    name &&
+    name.length > 2
+  ) {
     character = 't-shirt';
   } else {
     character = 'hello';
@@ -104,10 +108,10 @@
 >
   <div class="flex-1">
     <div class="lg:max-w-xl">
-      <h1 class="text-7xl">
-        {page.title}<br />
-        <span class="text-foreground-secondary">{page.subtitle}</span>
+      <h1 class="text-7xl text-foreground-secondary">
+        {page.title}
       </h1>
+      <span class="text-7xl">{page.subtitle}</span>
     </div>
   </div>
   <div class={clsx('flex-1', 'lg:flex lg:justify-end')}>

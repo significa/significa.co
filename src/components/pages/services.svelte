@@ -1,20 +1,19 @@
 <script lang="ts">
-  import { Button, Link } from '@significa/svelte-ui';
+  import { Button } from '@significa/svelte-ui';
   import Seo from '$components/seo.svelte';
   import Testimonials from '$components/testimonials.svelte';
   import PreFooter from '$components/pre-footer.svelte';
-  import Reel from './home/reel.svelte';
   import Square from './services/illustrations/square.svelte';
   import Hand from './services/illustrations/hand.svelte';
   import Duck from './services/illustrations/duck.svelte';
   import Timeline from './services/timeline.svelte';
   import { theme } from '$lib/stores/theme';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
-  import { getFileExtension } from '$lib/utils/strings';
-  import { VIDEO_EXTENSIONS } from '$lib/constants';
   import type { ServicesPageStoryblok } from '$types/bloks';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import clsx from 'clsx';
+  import { TrackingEvent, track } from '$lib/track';
+  import { page } from '$app/stores';
 
   export let data: ServicesPageStoryblok;
 </script>
@@ -47,54 +46,66 @@
     <section class="mt-10 md:mt-14 lg:mt-20">
       <div class=" justify-between gap-12 lg:flex">
         <div class="flex flex-1 flex-col items-start">
-          <div class="w-full flex-1" use:drawerLinks>
-            <ul>
+          <div class="w-full flex-1">
+            <ul use:drawerLinks>
               {#each data.awards as award}
                 {@const { href, target, rel } = getAnchorFromCmsLink(award.link)}
-                <div class="border-b first:border-t">
+                <a
+                  {href}
+                  {target}
+                  {rel}
+                  class={clsx(
+                    'block border-b first:border-t',
+                    href ? 'transition-colors hover:bg-foreground-tertiary/10' : ''
+                  )}
+                  on:click={() => {
+                    track(TrackingEvent.SERVICES_AWARD_CLICK, {
+                      props: {
+                        to: href,
+                        path: $page.url.pathname
+                      }
+                    });
+                  }}
+                >
                   <li
-                    class={clsx(
-                      'container mx-auto  flex flex-col-reverse items-center justify-between px-container py-5 lg:flex-row',
-                      href
-                        ? 'bg-gradient-to-r elevated-links hover:from-transparent hover:via-foreground-tertiary/10 hover:to-transparent hover:transition-colors'
-                        : ''
-                    )}
+                    class="container mx-auto flex flex-col justify-between px-container py-5 lg:flex-row"
                   >
-                    <div class="flex w-full items-center">
-                      {#if award.image?.filename}
-                        {@const { alt, src, width, height } = getImageAttributes(award.image, {
-                          size: [120, 0]
-                        })}
-                        <img
-                          class="mr-2 h-auto w-14 rounded-xs bg-background-offset"
-                          {src}
-                          {alt}
-                          {width}
-                          {height}
-                        />
-                      {/if}
-                      <div class="ml-4 flex-col">
-                        <p class="text-base font-semibold text-foreground-secondary">
-                          {award.label}
-                        </p>
-                        <p class="text-base font-semibold">{award.name}</p>
+                    <div class="flex w-full flex-col-reverse items-center lg:flex-row">
+                      <div class="mb-4 flex w-full items-center lg:mb-0">
+                        {#if award.image?.filename}
+                          {@const { alt, src, width, height } = getImageAttributes(award.image, {
+                            size: [120, 0]
+                          })}
+                          <img
+                            class="mr-2 h-auto w-14 rounded-xs bg-background-offset"
+                            {src}
+                            {alt}
+                            {width}
+                            {height}
+                          />
+                        {/if}
+                        <div class="ml-4 flex-col">
+                          <p class="text-base font-semibold text-foreground-secondary">
+                            {award.label}
+                          </p>
+                          <p class="text-base font-semibold">{award.name}</p>
+                        </div>
+                      </div>
+                      <div class="mb-8 w-full lg:mb-0">
+                        <p class="text-3xl font-semibold">{award.project}</p>
                       </div>
                     </div>
-                    <div class="mb-8 w-full lg:mb-0">
-                      <p class="text-3xl font-semibold">{award.project}</p>
-                    </div>
-                    <div class="w-full">
+                    <div class="w-1/3">
                       {#if href}
-                        <div class="hidden flex-1 justify-end text-foreground-tertiary xl:flex">
+                        <div class="flex-1 justify-end text-foreground-tertiary xl:flex">
                           <Button variant="secondary" arrow>
-                            {award.link_text ? award.link_text : ''}
+                            {award.link_text}
                           </Button>
                         </div>
-                        <Link {href} {target} {rel} class="elevated-link" />
                       {/if}
                     </div>
                   </li>
-                </div>
+                </a>
               {/each}
             </ul>
           </div>
@@ -103,18 +114,12 @@
     </section>
   {/if}
 
-  <!-- Showreel -->
-  {#if data.showreel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(data.showreel.filename))}
-    <div class="container mx-auto mt-10 px-container md:mt-20">
-      <Reel src={data.showreel.filename} play_label={data.showreel_button_label} />
-    </div>
-  {/if}
-
   <!-- Services -->
-  <section class="mt-10 md:mt-16 lg:mb-16">
+  <section class="mt-14 md:mt-24 lg:mb-12">
     <div class="container mx-auto flex px-container">
       <div class="xl:max-w-3xl">
-        <h3 class="mb-2 text-5xl">{data.services_title}</h3>
+        <h3 class="text-5xl text-foreground-secondary">{data.services_title}</h3>
+        <h3 class="mb-2 text-5xl">{data.services_subtitle}</h3>
         <p class="text-2xl text-foreground-secondary">{data.services_description}</p>
       </div>
     </div>
@@ -165,7 +170,8 @@
       class="container mx-auto mb-6 flex flex-col gap-6 px-container pt-8 lg:mb-12 lg:pt-12 xl:flex-row xl:gap-4"
     >
       <div class="mb-8 mr-52 xl:sticky xl:top-8 xl:max-w-xl xl:self-start">
-        <h3 class="text-5xl">{data.deliverables_title}</h3>
+        <h3 class="text-5xl text-foreground-secondary">{data.deliverables_title}</h3>
+        <h3 class="text-5xl">{data.deliverables_subtitle}</h3>
       </div>
       {#if data.deliverables}
         <div class="grid grid-cols-1 gap-x-40 gap-y-16 md:grid-cols-2">

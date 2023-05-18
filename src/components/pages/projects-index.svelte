@@ -1,7 +1,9 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import ProjectEntry from '$components/project-entry.svelte';
   import Seo from '$components/seo.svelte';
   import { t } from '$lib/i18n';
+  import { TrackingEvent, track } from '$lib/track';
   import type { ProjectStoryblok } from '$types/bloks';
   import { Badge, Tag, TextButton } from '@significa/svelte-ui';
   import type { ISbStoryData } from '@storyblok/js';
@@ -94,6 +96,10 @@
                         filters = rest;
                       } else {
                         filters = [...rest, { type, value: item }];
+
+                        track(TrackingEvent.PROJECT_FILTER_CLICK, {
+                          props: { filter_type: type, filter_name: item, path: $page.url.pathname }
+                        });
                       }
                     }}
                   />

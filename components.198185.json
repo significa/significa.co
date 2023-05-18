@@ -239,7 +239,7 @@
       "name": "blog-post",
       "display_name": null,
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2023-03-30T09:09:50.645Z",
+      "updated_at": "2023-05-11T20:13:46.340Z",
       "id": 3442347,
       "schema": {
         "cover": {
@@ -523,7 +523,7 @@
       "name": "canvas-media",
       "display_name": null,
       "created_at": "2023-05-02T14:13:42.055Z",
-      "updated_at": "2023-05-02T14:51:29.886Z",
+      "updated_at": "2023-05-11T17:30:02.479Z",
       "id": 3915336,
       "schema": {
         "image": {
@@ -581,7 +581,7 @@
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": null,
+      "preview_tmpl": "{{image(options.image.filename)/}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
@@ -1584,7 +1584,7 @@
       "name": "home-page",
       "display_name": null,
       "created_at": "2023-03-03T14:59:15.465Z",
-      "updated_at": "2023-05-09T15:35:03.078Z",
+      "updated_at": "2023-05-11T14:55:55.388Z",
       "id": 3521503,
       "schema": {
         "small_highlights": {
@@ -1602,61 +1602,85 @@
           "pos": 1,
           "key": "showreel"
         },
+        "showreel_cover": {
+          "type": "asset",
+          "pos": 2,
+          "filetypes": ["images"],
+          "required": true
+        },
+        "showreel_button_theme": {
+          "type": "option",
+          "pos": 3,
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "8cf2eb43-ab0b-4001-827d-a254aa307732",
+              "name": "light",
+              "value": "light"
+            },
+            {
+              "_uid": "af618c15-3a92-4db2-ac22-09fa4c09d4ad",
+              "value": "dark",
+              "name": "dark"
+            }
+          ],
+          "default_value": "light"
+        },
         "showreel_button_label": {
           "type": "text",
-          "pos": 2,
+          "pos": 4,
           "key": "showreel_button_label"
         },
         "work_title": {
           "type": "text",
-          "pos": 3,
+          "pos": 5,
           "key": "work_title"
         },
         "projects": {
           "type": "options",
-          "pos": 4,
+          "pos": 6,
           "source": "internal_stories",
           "filter_content_type": ["project"],
           "key": "projects"
         },
         "services_title1": {
           "type": "text",
-          "pos": 5
+          "pos": 7
         },
         "services_title2": {
           "type": "text",
-          "pos": 6
+          "pos": 8
         },
         "services_description": {
           "type": "textarea",
-          "pos": 7
+          "pos": 9
         },
         "services_cta_label": {
           "type": "text",
-          "pos": 8
+          "pos": 10
         },
         "services_cta_link": {
           "type": "multilink",
-          "pos": 9
+          "pos": 11
         },
         "about_title1": {
           "type": "text",
           "key": "about_title1",
-          "pos": 10
+          "pos": 12
         },
         "about_title2": {
           "type": "text",
           "key": "about_title2",
-          "pos": 11
+          "pos": 13
         },
         "about_description": {
           "type": "textarea",
           "key": "about_description",
-          "pos": 12
+          "pos": 14
         },
         "about_physics_cards": {
           "type": "bloks",
-          "pos": 13,
+          "pos": 15,
           "required": false,
           "restrict_type": "",
           "restrict_components": true,
@@ -1675,11 +1699,11 @@
           "restrict_components": true,
           "component_whitelist": ["link"],
           "key": "about_link",
-          "pos": 14
+          "pos": 16
         },
         "about_links": {
           "type": "bloks",
-          "pos": 15,
+          "pos": 17,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["home-about-link"],
@@ -1690,21 +1714,21 @@
         "testimonials_title1": {
           "type": "text",
           "key": "testimonials_title1",
-          "pos": 16
+          "pos": 18
         },
         "testimonials_title2": {
           "type": "text",
           "key": "testimonials_title2",
-          "pos": 17
+          "pos": 19
         },
         "testimonials_cta_label": {
           "type": "text",
-          "pos": 18,
+          "pos": 20,
           "key": "testimonials_cta_label"
         },
         "testimonials_cta_link": {
           "type": "multilink",
-          "pos": 19,
+          "pos": 21,
           "key": "testimonials_cta"
         },
         "testimonials": {
@@ -1715,43 +1739,43 @@
           "maximum": 5,
           "minimum": 5,
           "key": "testimonials",
-          "pos": 20
+          "pos": 22
         },
         "blog_title1": {
           "type": "text",
-          "pos": 21,
+          "pos": 23,
           "key": "blog_title1"
         },
         "blog_title2": {
           "type": "text",
-          "pos": 22,
+          "pos": 24,
           "key": "blog_title2"
         },
         "handbook_title": {
           "type": "text",
-          "pos": 23,
+          "pos": 25,
           "key": "handbook_title"
         },
         "handbook_description": {
           "type": "textarea",
-          "pos": 24,
+          "pos": 26,
           "key": "handbook_description"
         },
         "handbook_cta_text": {
           "type": "text",
-          "pos": 25
+          "pos": 27
         },
         "handbook_cta_link": {
           "type": "multilink",
-          "pos": 26
+          "pos": 28
         },
         "careers_title": {
           "type": "text",
-          "pos": 27
+          "pos": 29
         },
         "careers_button_label": {
           "type": "text",
-          "pos": 28,
+          "pos": 30,
           "key": "careers_button_label"
         }
       },
@@ -1951,7 +1975,7 @@
       "name": "page",
       "display_name": null,
       "created_at": "2023-03-03T13:41:50.937Z",
-      "updated_at": "2023-04-06T10:56:24.062Z",
+      "updated_at": "2023-05-11T20:13:31.271Z",
       "id": 3520995,
       "schema": {
         "page": {
@@ -1964,7 +1988,7 @@
         },
         "tab-b1b4aa1b-2d5c-436e-ac16-09e30b9de047": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": ["seo_title", "seo_description", "seo_og_image", "change_frequency", "priority"],
           "pos": 0,
           "type": "tab"
         },
@@ -1979,6 +2003,54 @@
         "seo_og_image": {
           "type": "asset",
           "filetypes": ["images"]
+        },
+        "change_frequency": {
+          "type": "option",
+          "use_uuid": true,
+          "datasource_slug": "sitemap-frequencies",
+          "description": "The frequency with which the page is expected to change.\n\n1. Always\nThese page types are constantly changing and will include index pages on major news publications, Google News, stock market data, and social bookmarking categories.\n\n2. Hourly\nThese pages update every hour and will also include major news publications as well as weather services and forums.\n\n3. Daily\nPages updated on average once per day and include things like blog posts, smaller web forum pages, message boards, and classified ads.\n\n4. Weekly\nUpdates typically occur once per week, these pages will include website directories, product pricing pages, and smaller blogs.\n\n5. Monthly\nThese are updated once per month, give or take, and include category pages, FAQs, and sometimes Help Desk articles that change slightly. Refer to the section above for guidelines on what is considered to be a change frequency trigger.\n\n6. Yearly\nUpdates on these pages happen on an annual basis and are typically your contact page, “About” page, login pages, and registration pages.\n\n7. Never\nAs the name suggests, these pages never ever get updates. These are really old blog posts, press releases, notifications about updates that never need updating, and completely static pages.",
+          "options": [
+            {
+              "_uid": "1dfa2d4f-d7af-4d1c-8793-b00914cddbea",
+              "name": "Always",
+              "value": "always"
+            },
+            {
+              "_uid": "a5852b8e-d940-47e6-9e79-dd7df19e371f",
+              "value": "hourly",
+              "name": "Hourly"
+            },
+            {
+              "_uid": "3be82f32-a5c1-4ef5-81c3-37420b912bef",
+              "value": "daily",
+              "name": "Daily"
+            },
+            {
+              "_uid": "cdf021ab-fbe8-42b5-ad49-c9503c2bb8eb",
+              "value": "weekly",
+              "name": "Weekly"
+            },
+            {
+              "_uid": "ab61e280-e6f6-431b-88ae-8cfa9496d886",
+              "value": "monthly",
+              "name": "Monthly"
+            },
+            {
+              "_uid": "55420da8-6f32-4ce7-9c6c-36507a68a3bd",
+              "value": "yearly",
+              "name": "Yearly"
+            },
+            {
+              "_uid": "a89df366-da55-46af-88c2-e2f87d3ee61d",
+              "value": "never",
+              "name": "Never"
+            }
+          ]
+        },
+        "priority": {
+          "type": "number",
+          "description": "The priority of the page relative to other pages on your site, where 0.1 is the lowest priority and 1.0 is the highest priority.\n\n1.0-0.8\nHomepage, product information, landing pages.\n\n0.7-0.4\nNews articles, some weather services, blog posts, pages that no site would be complete without.\n\n0.3-0.0\nFAQs, outdated info, old press releases, completely static pages that are still relevant enough to keep from deleting entirely.",
+          "decimals": 1
         }
       },
       "image": null,
@@ -2023,7 +2095,7 @@
       "name": "physics-balloon-card",
       "display_name": null,
       "created_at": "2023-04-14T10:39:02.963Z",
-      "updated_at": "2023-04-14T10:40:57.966Z",
+      "updated_at": "2023-05-12T15:06:10.366Z",
       "id": 3811407,
       "schema": {
         "text": {
@@ -2055,6 +2127,9 @@
             }
           ],
           "exclude_empty_option": true
+        },
+        "isDesktopOnly": {
+          "type": "boolean"
         }
       },
       "image": null,
@@ -2074,11 +2149,14 @@
       "name": "physics-input",
       "display_name": null,
       "created_at": "2023-04-17T15:13:53.017Z",
-      "updated_at": "2023-04-17T15:14:00.636Z",
+      "updated_at": "2023-05-12T15:06:42.156Z",
       "id": 3830600,
       "schema": {
         "placeholder": {
           "type": "text"
+        },
+        "isDesktopOnly": {
+          "type": "boolean"
         }
       },
       "image": null,
@@ -2098,7 +2176,7 @@
       "name": "physics-rectangle-card",
       "display_name": null,
       "created_at": "2023-04-14T10:37:48.156Z",
-      "updated_at": "2023-04-14T10:38:41.658Z",
+      "updated_at": "2023-05-12T15:05:52.122Z",
       "id": 3811406,
       "schema": {
         "text": {
@@ -2120,6 +2198,9 @@
             }
           ],
           "exclude_empty_option": true
+        },
+        "isDesktopOnly": {
+          "type": "boolean"
         }
       },
       "image": null,
@@ -2139,13 +2220,16 @@
       "name": "physics-sticker",
       "display_name": null,
       "created_at": "2023-04-26T13:15:00.766Z",
-      "updated_at": "2023-04-26T16:25:36.409Z",
+      "updated_at": "2023-05-12T15:04:09.272Z",
       "id": 3889837,
       "schema": {
         "photo": {
           "type": "asset",
           "filetypes": ["images"],
           "asset_folder_id": 234280
+        },
+        "isDesktopOnly": {
+          "type": "boolean"
         }
       },
       "image": null,
@@ -2165,59 +2249,110 @@
       "name": "project",
       "display_name": null,
       "created_at": "2023-02-15T13:07:44.621Z",
-      "updated_at": "2023-03-30T16:22:55.826Z",
+      "updated_at": "2023-05-11T14:28:26.097Z",
       "id": 3442356,
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": ["images", "videos"],
-          "asset_folder_id": 212286
+          "filetypes": ["images"],
+          "asset_folder_id": 212286,
+          "pos": 0
+        },
+        "reel": {
+          "type": "asset",
+          "pos": 1,
+          "filetypes": ["videos"]
+        },
+        "reel_button": {
+          "type": "section",
+          "pos": 2,
+          "keys": ["reel_button_theme", "reel_button_label"]
+        },
+        "reel_button_theme": {
+          "type": "option",
+          "use_uuid": true,
+          "pos": 3,
+          "options": [
+            {
+              "_uid": "ed9c0d33-e7d4-42de-a790-9adfca55481a",
+              "name": "light",
+              "value": "light"
+            },
+            {
+              "_uid": "c7dafaf8-2b0c-4a28-b797-d51018a5d995",
+              "value": "dark",
+              "name": "dark"
+            }
+          ],
+          "default_value": "light",
+          "description": "",
+          "display_name": "Reel Button Theme (optional)"
+        },
+        "reel_button_label": {
+          "type": "text",
+          "pos": 4,
+          "display_name": "Reel Button Label (optional)"
         },
         "thumbnail": {
           "type": "multiasset",
           "filetypes": ["images"],
           "required": true,
-          "asset_folder_id": 212286
+          "asset_folder_id": 212286,
+          "pos": 5
         },
         "tagline": {
           "type": "text",
-          "required": true
+          "required": true,
+          "pos": 6
         },
         "intro": {
           "type": "textarea",
-          "required": true
+          "required": true,
+          "pos": 7
         },
         "team": {
           "type": "options",
           "source": "internal_stories",
-          "filter_content_type": ["team-member"]
+          "filter_content_type": ["team-member"],
+          "pos": 8
         },
         "client": {
           "type": "text",
           "use_uuid": true,
           "source": "internal_stories",
-          "filter_content_type": ["client"]
+          "filter_content_type": ["client"],
+          "pos": 9
         },
         "deliverables": {
           "type": "textarea",
           "source": "internal_stories",
-          "filter_content_type": ["deliverable"]
+          "filter_content_type": ["deliverable"],
+          "pos": 10
         },
         "services": {
           "type": "textarea",
           "source": "internal_stories",
-          "filter_content_type": ["service"]
+          "filter_content_type": ["service"],
+          "pos": 11
         },
         "links": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"]
+          "component_whitelist": ["link"],
+          "pos": 12
+        },
+        "recognitions": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["recognition"],
+          "pos": 13
         },
         "tab-734adeb1-00ef-48e6-aa53-a3001ad39201": {
           "display_name": "Content",
           "keys": ["body"],
-          "pos": 0,
+          "pos": 14,
           "type": "tab"
         },
         "body": {
@@ -2245,30 +2380,28 @@
             "link",
             "blok",
             "h4"
-          ]
+          ],
+          "pos": 15
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {
           "display_name": "SEO",
           "keys": ["seo_title", "seo_description", "seo_og_image"],
-          "pos": 0,
+          "pos": 16,
           "type": "tab"
         },
         "seo_title": {
-          "type": "text"
+          "type": "text",
+          "pos": 17
         },
         "seo_description": {
-          "type": "text"
+          "type": "text",
+          "pos": 18
         },
         "seo_og_image": {
           "type": "asset",
           "filetypes": ["images"],
-          "asset_folder_id": 212286
-        },
-        "recognitions": {
-          "type": "bloks",
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": ["recognition"]
+          "asset_folder_id": 212286,
+          "pos": 19
         }
       },
       "image": null,
@@ -2660,7 +2793,7 @@
       "name": "services-page",
       "display_name": null,
       "created_at": "2023-05-04T08:50:50.568Z",
-      "updated_at": "2023-05-04T15:01:56.719Z",
+      "updated_at": "2023-05-11T15:02:32.576Z",
       "id": 3924074,
       "schema": {
         "page_title1": {
@@ -2706,43 +2839,51 @@
           "type": "text",
           "pos": 8
         },
-        "services_description": {
+        "services_subtitle": {
           "type": "text",
           "pos": 9
+        },
+        "services_description": {
+          "type": "text",
+          "pos": 10
         },
         "services": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["services_deppartment"],
-          "pos": 10
+          "pos": 11
         },
         "deliverables_title": {
           "type": "text",
-          "pos": 11
+          "pos": 12
+        },
+        "deliverables_subtitle": {
+          "type": "text",
+          "pos": 13
         },
         "deliverables": {
           "type": "bloks",
-          "pos": 12,
+          "pos": 14,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["deliverables_entry"]
         },
         "testimonials_title1": {
           "type": "text",
-          "pos": 13
+          "pos": 15
         },
         "testimonials_title2": {
           "type": "text",
-          "pos": 14
+          "pos": 16
         },
         "testimonials_cta_label": {
           "type": "text",
-          "pos": 15
+          "pos": 17
         },
         "testimonials_cta_link": {
           "type": "multilink",
-          "pos": 16
+          "pos": 18
         },
         "testimonials": {
           "type": "bloks",
@@ -2751,11 +2892,11 @@
           "component_whitelist": ["richtext-testimonial"],
           "minimum": 5,
           "maximum": 5,
-          "pos": 17
+          "pos": 19
         },
         "clients_title": {
           "type": "text",
-          "pos": 18
+          "pos": 20
         },
         "clients": {
           "type": "bloks",
@@ -2763,7 +2904,7 @@
           "restrict_components": true,
           "default_value": "",
           "component_whitelist": ["client-logo"],
-          "pos": 19
+          "pos": 21
         }
       },
       "image": null,
@@ -2968,7 +3109,7 @@
       "name": "team-member",
       "display_name": null,
       "created_at": "2023-02-15T10:55:16.832Z",
-      "updated_at": "2023-04-12T13:16:05.856Z",
+      "updated_at": "2023-05-17T09:25:55.118Z",
       "id": 3441652,
       "schema": {
         "photo": {
@@ -2998,16 +3139,28 @@
           "type": "textarea",
           "pos": 4
         },
+        "cover_image_light": {
+          "type": "asset",
+          "pos": 5,
+          "filetypes": ["images"],
+          "asset_folder_id": 242648
+        },
+        "cover_image_dark": {
+          "type": "asset",
+          "pos": 6,
+          "filetypes": ["images"],
+          "asset_folder_id": 242648
+        },
         "links": {
           "type": "bloks",
-          "pos": 5,
+          "pos": 7,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["team-member-link"]
         },
         "is_active": {
           "type": "boolean",
-          "pos": 6
+          "pos": 8
         }
       },
       "image": null,

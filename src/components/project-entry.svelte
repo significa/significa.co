@@ -9,12 +9,23 @@
   import clsx from 'clsx';
   import Recognitions from './recognitions.svelte';
   import type { ProjectPage } from '$lib/content';
+  import { TrackingEvent, track } from '$lib/track';
+  import { page } from '$app/stores';
+  import { drawer } from '$lib/stores/drawer';
 
   export let project: ISbStoryData<ProjectStoryblok> | ProjectPage;
   export let variant: 'featured' | 'default' = 'default';
 
   let index = 0;
   let video: HTMLVideoElement;
+  let hasInteractedWithCarousel = false;
+
+  // should only run once per mount
+  $: if (hasInteractedWithCarousel) {
+    track(TrackingEvent.PROJECT_CAROUSEL, {
+      props: { name: project.name, path: $drawer || $page.url.pathname }
+    });
+  }
 
   const onMouseEnter = () => {
     if (video) video.play();
@@ -38,7 +49,19 @@
       )}
     >
       <div class="mr-6">
-        <a class="elevated-link" href={`/projects/${project.slug}`}>
+        <a
+          class="elevated-link"
+          href={`/projects/${project.slug}`}
+          on:click={() => {
+            track(TrackingEvent.PROJECT_CLICK, {
+              props: {
+                name: project.name,
+                to: `/projects/${project.slug}`,
+                path: $drawer || $page.url.pathname
+              }
+            });
+          }}
+        >
           <h3 class="text-5xl text-foreground-secondary">
             {project.name}
           </h3>
@@ -52,13 +75,26 @@
           </div>
         {/if}
       </div>
-      <Button as="a" href={`/projects/${project.slug}`} class="mt-6" variant="secondary" arrow
-        >{t('view-project')}</Button
+      <Button
+        as="a"
+        href={`/projects/${project.slug}`}
+        on:click={() => {
+          track(TrackingEvent.PROJECT_CLICK, {
+            props: {
+              name: project.name,
+              to: `/projects/${project.slug}`,
+              path: $drawer || $page.url.pathname
+            }
+          });
+        }}
+        class="mt-6"
+        variant="secondary"
+        arrow>{t('view-project')}</Button
       >
     </div>
 
-    {#if variant === 'featured' && project.content.cover?.filename}
-      {#if VIDEO_EXTENSIONS.includes(getFileExtension(project.content.cover.filename))}
+    {#if variant === 'featured'}
+      {#if project.content.reel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(project.content.reel.filename))}
         <video
           bind:this={video}
           class="pointer-events-none mt-8 aspect-video h-auto w-full rounded-md bg-background-offset"
@@ -66,9 +102,9 @@
           playsinline
           autoplay
           loop
-          src={project.content.cover.filename}
+          src={project.content.reel.filename}
         />
-      {:else}
+      {:else if project.content.cover?.filename}
         {@const { src, alt, width, height } = getImageAttributes(project.content.cover, {
           size: [1440 * 2, 0]
         })}
@@ -113,6 +149,7 @@
                 }
               }}
               on:click={() => {
+                hasInteractedWithCarousel = true;
                 index = index === 0 ? project.content.thumbnail.length - 1 : index - 1;
               }}
               icon="arrow-left"
@@ -133,6 +170,7 @@
                 }
               }}
               on:click={() => {
+                hasInteractedWithCarousel = true;
                 index = index === project.content.thumbnail.length - 1 ? 0 : index + 1;
               }}
               icon="arrow-right"

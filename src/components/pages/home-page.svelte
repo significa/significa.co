@@ -7,18 +7,18 @@
   import { getFileExtension } from '$lib/utils/strings';
   import type { HomePageStoryblok } from '$types/bloks';
   import SmallHighlights from './home/small-highlights.svelte';
-  import Reel from './home/reel.svelte';
+  import Reel from '$components/reel.svelte';
   import clsx from 'clsx';
   import HomeAbout from './home/home-about.svelte';
   import { page } from '$app/stores';
-  import { Button, Icon } from '@significa/svelte-ui';
+  import { Button } from '@significa/svelte-ui';
   import Seo from '$components/seo.svelte';
   import { afterNavigate } from '$app/navigation';
-  import { browser } from '$app/environment';
-  import { theme } from '$lib/stores/theme';
   import Testimonials from '$components/testimonials.svelte';
-  import { getAnchorFromCmsLink } from '$lib/utils/cms';
+  import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import Services from './home/services.svelte';
+  import { TrackingEvent, track } from '$lib/track';
+  import { drawerLinks } from '$lib/actions/drawer-links';
 
   export let data: HomePageStoryblok;
   export let posts: BlogPostPage[] | undefined;
@@ -49,17 +49,25 @@
   )}
 >
   <div class="container mx-auto px-container">
-    <section class="mt-10 md:mt-14 lg:mt-20">
+    <section use:drawerLinks class="mt-10 md:mt-14 lg:mt-20">
       <SmallHighlights highlights={data.small_highlights} />
     </section>
     {#if data.showreel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(data.showreel.filename))}
-      <Reel src={data.showreel.filename} play_label={data.showreel_button_label} />
+      <Reel
+        src={data.showreel.filename}
+        playLabel={data.showreel_button_label}
+        preview={data.showreel_cover?.filename
+          ? getImageAttributes(data.showreel_cover).src
+          : undefined}
+        buttonTheme={data.showreel_button_theme}
+        trackEvent={{ event: TrackingEvent.HOME_REEL }}
+      />
     {/if}
   </div>
 
   <section class="mt-10 md:mt-14 lg:mt-20">
     <div class="container mx-auto px-container">
-      <h2 class="text-5xl text-foreground-secondary">{data.work_title}</h2>
+      <h2 class="text-5xl">{data.work_title}</h2>
     </div>
     <div class="mt-4 md:mt-6 lg:mt-8">
       {#each data.projects || [] as project}
@@ -107,20 +115,34 @@
                   <a
                     class="flex w-full items-center justify-between py-4 text-xl transition-colors hover:text-foreground-secondary"
                     href={career.full_slug}
+                    on:click={() => {
+                      track(TrackingEvent.CAREER_CLICK, {
+                        props: { name: career.name, to: career.full_slug, path: $page.url.pathname }
+                      });
+                    }}
                   >
                     <span>{career.name}</span>
-                    <Icon class="text-foreground-tertiary" icon="arrow-right" />
+                    <Button class="pointer-events-none" variant="secondary" arrow size="sm" />
                   </a>
                 </li>
               {/each}
             </ul>
           </div>
-          <Button as="a" href="/careers" class="mt-10" variant="secondary" arrow
-            >{data.careers_button_label}</Button
+          <Button
+            as="a"
+            href="/careers"
+            on:click={() => {
+              track(TrackingEvent.CTA_CLICK, {
+                props: { to: '/careers', path: $page.url.pathname, section: data.careers_title }
+              });
+            }}
+            class="mt-10"
+            variant="secondary"
+            arrow>{data.careers_button_label}</Button
           >
         </div>
         <aside
-          data-theme={browser ? ($theme === 'light' ? 'dark' : 'light') : 'light'}
+          data-theme="yellow"
           class="mt-10 flex flex-col items-start justify-between rounded-lg p-8 lg:mt-0 lg:min-h-[500px] lg:max-w-md"
         >
           <div class="flex-1">
@@ -129,7 +151,19 @@
           </div>
           {#if data.handbook_cta_text && data.handbook_cta_link}
             {@const { href } = getAnchorFromCmsLink(data.handbook_cta_link)}
-            <Button variant="secondary" as="a" {href} class="mt-10" icon="handbook" arrow>
+            <Button
+              variant="secondary"
+              as="a"
+              {href}
+              on:click={() => {
+                track(TrackingEvent.CTA_CLICK, {
+                  props: { to: href, path: $page.url.pathname, section: data.careers_title }
+                });
+              }}
+              class="mt-10"
+              icon="handbook"
+              arrow
+            >
               {data.handbook_cta_text}
             </Button>
           {/if}

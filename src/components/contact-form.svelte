@@ -3,6 +3,7 @@
   import { applyAction, enhance } from '$app/forms';
   import { page } from '$app/stores';
   import { t } from '$lib/i18n';
+  import { TrackingEvent, track } from '$lib/track';
   import {
     type FileUploadItem,
     Button,
@@ -76,6 +77,7 @@
   let loading = false;
 
   $: if ($page.form?.success) {
+    track(TrackingEvent.FORM_SUBMISSION, { props: { path: $page.url.pathname, type } });
     dispatch('success');
     toast.success({
       message: t('contact.feedback.success.title'),
@@ -218,9 +220,9 @@
         on:blur={() => dispatch('blur', 'budget')}
         on:change={() => dispatch('input', 'budget')}
       >
-        <option value="">Select budget</option>
+        <option value="" class="text-foreground">Select budget</option>
         {#each budgetOptions as option}
-          <option value={option}>{option}</option>
+          <option value={option} class="text-foreground">{option}</option>
         {/each}
       </FloatingSelect>
     {/if}
@@ -230,6 +232,11 @@
         on:focus={() => dispatch('focus', 'attachments')}
         on:blur={() => dispatch('blur', 'attachments')}
         on:change={() => dispatch('input', 'attachments')}
+        on:error={() =>
+          toast.error({
+            message: t('file.upload.error.title'),
+            description: t('file.upload.error.description')
+          })}
         placeholder={type === 'quote'
           ? t('contact.label.attachment.quote')
           : t('contact.label.attachment.position')}
@@ -264,8 +271,12 @@
     >
     <div class="text-sm">
       <p class="leading-none text-foreground-secondary">{t('contact.footer.title')}</p>
-      <Link class="mt-0.5 inline-flex" href="mailto:{t('contact.footer.email')}"
-        >{t('contact.footer.email')}</Link
+      <Link
+        class="mt-0.5 inline-flex"
+        href="mailto:{t('contact.footer.email')}"
+        on:click={() => {
+          track(TrackingEvent.FORM_CHOOSE_MAILTO, { props: { path: $page.url.pathname } });
+        }}>{t('contact.footer.email')}</Link
       >
     </div>
   </div>

@@ -9,6 +9,7 @@
   import { page } from '$app/stores';
   import { fetchPage } from '$lib/content';
   import { setContext } from 'svelte';
+  import { TrackingEvent, track } from '$lib/track';
 
   let expanding = false;
 
@@ -41,8 +42,14 @@
         variant="ghost"
         icon="expand"
         on:click={() => {
+          if ($drawer) {
+            track(TrackingEvent.DRAWER_EXPAND, {
+              props: {
+                to: $drawer
+              }
+            });
+          }
           expanding = true;
-          drawer.close();
         }}>{t('expand')}</Button
       >
       <Button class="bg-background" variant="ghost" icon="close" on:click={drawer.close} />

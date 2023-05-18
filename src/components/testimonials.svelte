@@ -9,6 +9,9 @@
   import clsx from 'clsx';
   import People from './illustrations/stickers/people.svelte';
   import FriedEgg from './illustrations/stickers/fried-egg.svelte';
+  import { TrackingEvent, track } from '$lib/track';
+  import { page } from '$app/stores';
+  import { drawer } from '$lib/stores/drawer';
 
   export let variant: 'one' | 'two' = 'one';
   export let firstTitle: string | undefined = undefined;
@@ -35,7 +38,18 @@
 
       {#if ctaLink}
         {@const { href } = getAnchorFromCmsLink(ctaLink)}
-        <Button as="a" {href} arrow size="md" class="mx-auto mt-6">
+        <Button
+          as="a"
+          {href}
+          on:click={() => {
+            track(TrackingEvent.CTA_CLICK, {
+              props: { to: href, path: $drawer || $page.url.pathname, section: firstTitle }
+            });
+          }}
+          arrow
+          size="md"
+          class="mx-auto mt-6"
+        >
           {ctaLabel}
         </Button>
       {/if}
@@ -73,7 +87,7 @@
                 <RichTextTestimonial
                   block={testimonial}
                   class={clsx(
-                    'max-w-lg xl:max-w-xl',
+                    'max-w-lg 2xl:max-w-xl',
                     i === 3 && 'xl:-translate-x-[20%]',
                     i === 4 && 'xl:translate-x-[20%]'
                   )}
@@ -81,7 +95,7 @@
               </div>
               {#if i === 2 && variant === 'two'}
                 <FriedEgg
-                  class="-ml-20 hidden shrink-0 -translate-y-2 self-end drop-shadow-md xl:block"
+                  class="-ml-20 hidden shrink-0 -translate-y-2 self-end drop-shadow-md 2xl:block"
                   style="transform: translateY({-value * -0.07}px)"
                 />
               {/if}

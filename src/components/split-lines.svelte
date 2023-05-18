@@ -1,6 +1,4 @@
 <script lang="ts">
-  let className: undefined | string = undefined;
-  export { className as class };
   export let as = 'p';
   export let text: string;
 </script>
@@ -9,6 +7,8 @@
   {#if !line}
     <br />
   {:else}
-    <svelte:element this={as} class={className}>{line}</svelte:element>
+    <svelte:element this={as} class={$$restProps.class} style={$$restProps.style}
+      >{line}</svelte:element
+    >
   {/if}
 {/each}

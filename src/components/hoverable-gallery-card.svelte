@@ -21,7 +21,7 @@
   {@const { alt, src } = getImageAttributes(card.photo)}
   <div
     class={clsx(
-      '-mx-[10%] bg-white p-[4%] shadow-md transition-all duration-[250ms]',
+      '-mx-[10%] aspect-[4/6] bg-white p-[4%] shadow-md transition-all duration-[250ms]',
       $$restProps.class
     )}
     style={`transform:translate(${transformState.x}, ${transformState.y}) rotate(${transformState.deg}deg); z-index: ${transformState.z}`}
@@ -32,11 +32,14 @@
       transformState = staticTransformState;
     }}
   >
-    <img class="aspect-[3/4] h-[100%] object-cover" {src} {alt} />
+    <img class="aspect-[4/6] h-[100%] object-cover" {src} {alt} />
   </div>
 {:else if card.component === 'notepad_card' && card.text}
   <div
-    class={clsx('-mx-[10%] transition-all duration-[250ms]', $$restProps.class)}
+    class={clsx(
+      'aspect-[4/6] transition-all duration-[250ms] lg:-mx-[10%] lg:p-[4%]',
+      $$restProps.class
+    )}
     style={`transform:translate(${transformState.x}, ${transformState.y}) rotate(${transformState.deg}deg); z-index: ${transformState.z} `}
     on:mouseenter={() => {
       transformState = hoverTransformState;
@@ -45,23 +48,23 @@
       transformState = staticTransformState;
     }}
   >
-    <div class="aspect-[3/4] rounded-xs bg-background-panel shadow-md">
-      <div class="mb-10 grid h-[10px] grid-cols-12 gap-[4%] p-4">
+    <div class="h-full rounded-xs bg-background-panel text-base/[2rem] shadow-md lg:text-notebook">
+      <div class="mb-[3em] grid h-[10px] grid-cols-12 gap-[4%] p-4 lg:p-[1em]">
         {#each [...Array(12)] as _}
           <div class="aspect-square rounded-full bg-background shadow-inner" />
         {/each}
       </div>
 
       <div
-        class="mt-7 flex h-[100%] flex-col justify-between"
-        style="background-image: linear-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 2rem 2rem;"
+        class="mt-[2em] flex h-full flex-col justify-between"
+        style="background-image: linear-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 2em 2em"
       >
-        <div class="-mt-[2rem] px-4">
-          <SplitLines text={card.text} class="relative font-comic font-bold leading-8" />
+        <div class="-mt-[2em] px-4 lg:px-[1em]">
+          <SplitLines text={card.text} class="relative font-comic font-bold" />
         </div>
 
-        <div class="relative mb-7 flex h-[50%] justify-end">
-          <Bird class="relative mr-7 h-[100%] w-fit drop-shadow-md" />
+        <div class="relative mb-12 flex h-1/2 justify-end">
+          <Bird class="relative mr-6 block w-1/2 drop-shadow-md" />
         </div>
       </div>
     </div>

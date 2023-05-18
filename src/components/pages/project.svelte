@@ -10,7 +10,11 @@
   import PreFooter from '$components/pre-footer.svelte';
   import { getFileExtension } from '$lib/utils/strings';
   import Seo from '$components/seo.svelte';
+  import Reel from '$components/reel.svelte';
   import type { ProjectPage } from '$lib/content';
+  import { track, TrackingEvent } from '$lib/track';
+  import { drawer } from '$lib/stores/drawer';
+  import { page } from '$app/stores';
 
   export let story: ProjectPage;
   export let related: ProjectPage[];
@@ -23,26 +27,24 @@
   image={story.content.seo_og_image || story.content.cover}
 />
 <div use:drawerLinks class="container mx-auto px-container">
-  <header class="pb-6">
-    {#if story.content.cover?.filename}
-      {#if VIDEO_EXTENSIONS.includes(getFileExtension(story.content.cover.filename))}
-        <video
-          class="aspect-video h-auto w-full rounded-md bg-background-offset"
-          controls
-          autoplay
-          muted
-          playsinline
-          src={story.content.cover.filename}
-        />
-      {:else}
-        {@const { alt, src, width, height } = getImageAttributes(story.content.cover, {
-          size: [1440, 0]
-        })}
-        <img class="h-auto w-full rounded-md bg-background-offset" {src} {alt} {width} {height} />
-      {/if}
+  <header>
+    {#if story.content.reel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(story.content.reel.filename))}
+      <Reel
+        src={story.content.reel.filename}
+        playLabel={story.content.reel_button_label || t('reel.play')}
+        preview={story.content.cover?.filename
+          ? getImageAttributes(story.content.cover).src
+          : undefined}
+        buttonTheme={story.content.reel_button_theme}
+      />
+    {:else if story.content.cover?.filename}
+      {@const { alt, src, width, height } = getImageAttributes(story.content.cover, {
+        size: [1440, 0]
+      })}
+      <img class="h-auto w-full rounded-md bg-background-offset" {src} {alt} {width} {height} />
     {/if}
 
-    <div class="mx-auto mb-8 mt-8 max-w-2xl md:mt-14 lg:mt-20">
+    <div class="mx-auto mt-8 max-w-2xl border-b pb-12 md:mt-14 lg:mt-20">
       <h1 class="text-5xl text-foreground-secondary">{story.name}</h1>
       <h2 class="text-5xl">{story.content.tagline}</h2>
       {#if story.first_published_at}
@@ -56,7 +58,7 @@
   </header>
 
   {#if story.content.recognitions?.length}
-    <div class="mx-auto max-w-2xl border-y py-8">
+    <div class="mx-auto mt-8 max-w-2xl border-b pb-8">
       <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
         {t('recognitions')}
       </h4>
@@ -66,7 +68,9 @@
     </div>
   {/if}
 
-  <div class="mx-auto mb-8 mt-8 grid max-w-2xl grid-cols-1 gap-6 xs:grid-cols-2 md:grid-cols-3">
+  <div
+    class="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-6 border-b pb-6 xs:grid-cols-2 md:grid-cols-3"
+  >
     {#each [{ title: t('services'), data: story.content.services }, { title: t('deliverables'), data: story.content.deliverables }, { title: t('links'), data: story.content.links }] as { title, data }}
       {#if data}
         <ul class="col-span-1">
@@ -78,7 +82,7 @@
               {#if href}
                 <li class="mb-2 flex items-center gap-1">
                   <Link {href} {target} {rel}>{link.label}</Link>
-                  <Icon class="mt-0.5" icon="arrow-right" />
+                  <Icon class="mt-0.5" icon="arrow-external" />
                 </li>
               {/if}
             {/each}
@@ -96,14 +100,24 @@
   </div>
 
   {#if story.content.team?.length}
-    <div class="mx-auto max-w-2xl border-y py-8">
+    <div class="mx-auto mt-8 max-w-2xl border-b pb-8">
       <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
         {t('project.team')}
       </h4>
       <div class="flex flex-wrap gap-2">
         {#each story.content.team as member}
           {#if member.content?.photo?.filename}
-            <a href={`/about/${member.slug}`}>
+            <a
+              href={`/about/${member.slug}`}
+              on:click={() => {
+                track(TrackingEvent.PROJECT_AUTHOR_PAGE_CLICK, {
+                  props: {
+                    to: `/about/${member.slug}`,
+                    path: $drawer || $page.url.pathname
+                  }
+                });
+              }}
+            >
               <Avatar
                 image={getImageAttributes(member.content.photo, {
                   size: [100, 100]

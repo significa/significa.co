@@ -1,29 +1,42 @@
-import zlib from 'zlib';
 import { env } from '$env/dynamic/private';
-import { dynamoDbClient } from '$lib/aws.server.js';
-import { PutItemCommand } from '@aws-sdk/client-dynamodb';
 import { error, json } from '@sveltejs/kit';
 
-export async function POST({ request }) {
+import { createHmac } from 'crypto';
+import { createOrUpdateDrawing } from '$lib/drawings.server.js';
+import { isValidDrawing } from '$components/draw-your-segg/types.js';
+
+const getAuthToken = (id: string) => {
+  const hmac = createHmac('sha256', env.SESSION_SECRET_KEY);
+  hmac.update(id);
+  return hmac.digest('hex');
+};
+
+const isValidUUID4 = (uuid: string) => {
+  const UUID_REGEX = /^[0-9a-f]{8}\b-[0-9a-f]{4}\b-[0-9a-f]{4}\b-[0-9a-f]{4}\b-[0-9a-f]{12}$/;
+
+  if (!uuid) {
+    return false;
+  }
+  const uuidString = uuid.toString();
+  return uuidString.match(UUID_REGEX) !== null;
+};
+
+export const POST = async ({ request }) => {
   const body = await request.json();
 
-  const getPutCommand = (id: string) => {
-    return new PutItemCommand({
-      TableName: env.AWS_DYNAMODB_TABLE,
-      Item: {
-        id: { S: id },
-        drawing: { B: zlib.gzipSync(JSON.stringify(body.drawing)) },
-        created_at: { S: new Date().toISOString() }
-      }
-    });
-  };
+  let id = body.id;
+  const drawing = body.drawing;
 
-  try {
-    const id = body.id || crypto.randomUUID();
-    dynamoDbClient.send(getPutCommand(id));
-    return json(id);
-  } catch (err) {
-    console.error(err);
-    throw error(422);
+  if (!isValidDrawing(drawing)) throw error(422);
+
+  if (id && (!isValidUUID4(id) || getAuthToken(id) !== body.authToken)) {
+    throw error(403);
   }
-}
+
+  id = await createOrUpdateDrawing(drawing, id);
+
+  return json({
+    id,
+    authToken: getAuthToken(id)
+  });
+};

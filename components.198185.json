@@ -2095,7 +2095,7 @@
       "name": "physics-balloon-card",
       "display_name": null,
       "created_at": "2023-04-14T10:39:02.963Z",
-      "updated_at": "2023-05-12T15:06:10.366Z",
+      "updated_at": "2023-05-18T07:26:57.000Z",
       "id": 3811407,
       "schema": {
         "text": {
@@ -2128,7 +2128,7 @@
           ],
           "exclude_empty_option": true
         },
-        "isDesktopOnly": {
+        "is_desktop_only": {
           "type": "boolean"
         }
       },
@@ -2149,13 +2149,13 @@
       "name": "physics-input",
       "display_name": null,
       "created_at": "2023-04-17T15:13:53.017Z",
-      "updated_at": "2023-05-12T15:06:42.156Z",
+      "updated_at": "2023-05-18T07:27:49.440Z",
       "id": 3830600,
       "schema": {
         "placeholder": {
           "type": "text"
         },
-        "isDesktopOnly": {
+        "is_desktop_only": {
           "type": "boolean"
         }
       },
@@ -2176,11 +2176,13 @@
       "name": "physics-rectangle-card",
       "display_name": null,
       "created_at": "2023-04-14T10:37:48.156Z",
-      "updated_at": "2023-05-12T15:05:52.122Z",
+      "updated_at": "2023-05-18T07:25:20.056Z",
       "id": 3811406,
       "schema": {
         "text": {
-          "type": "text"
+          "type": "text",
+          "key": "text",
+          "pos": 0
         },
         "theme": {
           "type": "option",
@@ -2197,10 +2199,14 @@
               "name": "Yellow"
             }
           ],
-          "exclude_empty_option": true
+          "exclude_empty_option": true,
+          "key": "theme",
+          "pos": 1
         },
-        "isDesktopOnly": {
-          "type": "boolean"
+        "is_desktop_only": {
+          "type": "boolean",
+          "key": "isDesktopOnly",
+          "pos": 2
         }
       },
       "image": null,
@@ -2220,16 +2226,20 @@
       "name": "physics-sticker",
       "display_name": null,
       "created_at": "2023-04-26T13:15:00.766Z",
-      "updated_at": "2023-05-12T15:04:09.272Z",
+      "updated_at": "2023-05-18T07:26:39.476Z",
       "id": 3889837,
       "schema": {
         "photo": {
           "type": "asset",
           "filetypes": ["images"],
-          "asset_folder_id": 234280
+          "asset_folder_id": 234280,
+          "key": "photo",
+          "pos": 0
         },
-        "isDesktopOnly": {
-          "type": "boolean"
+        "is_desktop_only": {
+          "type": "boolean",
+          "key": "isDesktopOnly",
+          "pos": 1
         }
       },
       "image": null,

@@ -357,11 +357,7 @@
         <BalloonCard
           block={item}
           bind:ref={refs[i]}
-          class={clsx(
-            'absolute w-fit',
-            !engine && 'invisible',
-            item.isDesktopOnly && 'invisible md:visible'
-          )}
+          class={clsx('absolute w-fit', !engine && 'invisible')}
         />
       {:else if item.component === 'physics-rectangle-card'}
         <RectangleCard
@@ -369,8 +365,8 @@
           bind:ref={refs[i]}
           class={clsx(
             'absolute w-fit',
-            !engine && 'invisible',
-            item.isDesktopOnly && 'invisible md:visible'
+            !engine && 'invisible'
+            //item.is_desktop_only && 'hidden md:block'
           )}
         />
       {:else if item.component === 'physics-input'}
@@ -382,8 +378,8 @@
             bind:ref={refs[i]}
             class={clsx(
               'absolute w-fit',
-              !engine && 'invisible',
-              item.isDesktopOnly && 'invisible md:visible'
+              !engine && 'invisible'
+              //item.is_desktop_only && 'hidden md:block'
             )}
           />
         </form>
@@ -393,8 +389,8 @@
           bind:this={refs[i]}
           class={clsx(
             'absolute select-none drop-shadow-md',
-            !engine && 'invisible',
-            item.isDesktopOnly && 'invisible md:visible'
+            !engine && 'invisible'
+            //item.is_desktop_only && 'hidden md:block'
           )}
           {src}
           {alt}

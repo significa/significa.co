@@ -569,7 +569,7 @@ export interface PhotoCardStoryblok {
 export interface PhysicsBalloonCardStoryblok {
   text?: string;
   theme?: 'inverted' | 'panel' | 'offset' | 'yellow';
-  isDesktopOnly?: boolean;
+  is_desktop_only?: boolean;
   _uid: string;
   component: 'physics-balloon-card';
   [k: string]: any;
@@ -577,7 +577,7 @@ export interface PhysicsBalloonCardStoryblok {
 
 export interface PhysicsInputStoryblok {
   placeholder?: string;
-  isDesktopOnly?: boolean;
+  is_desktop_only?: boolean;
   _uid: string;
   component: 'physics-input';
   [k: string]: any;
@@ -586,7 +586,7 @@ export interface PhysicsInputStoryblok {
 export interface PhysicsRectangleCardStoryblok {
   text?: string;
   theme?: 'transparent' | 'yellow';
-  isDesktopOnly?: boolean;
+  is_desktop_only?: boolean;
   _uid: string;
   component: 'physics-rectangle-card';
   [k: string]: any;
@@ -594,7 +594,7 @@ export interface PhysicsRectangleCardStoryblok {
 
 export interface PhysicsStickerStoryblok {
   photo?: AssetStoryblok;
-  isDesktopOnly?: boolean;
+  is_desktop_only?: boolean;
   _uid: string;
   component: 'physics-sticker';
   [k: string]: any;

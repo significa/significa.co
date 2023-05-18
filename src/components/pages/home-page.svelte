@@ -122,7 +122,7 @@
                     }}
                   >
                     <span>{career.name}</span>
-                    <Button class="pointer-events-none" variant="secondary" arrow size="sm" />
+                    <Button variant="secondary" arrow size="sm" />
                   </a>
                 </li>
               {/each}

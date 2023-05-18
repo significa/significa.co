@@ -60,7 +60,7 @@
       {/if}
     </div>
     <div class="hidden flex-1 justify-end xl:flex">
-      <Button class="pointer-events-none" variant="secondary" arrow size="sm" />
+      <Button variant="secondary" arrow size="sm" />
     </div>
   </div>
 </div>

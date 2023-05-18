@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { browser } from '$app/environment';
+  import { device } from '$lib/stores/device';
   import clsx from 'clsx';
   import { getScrollSpeed } from '$lib/utils/dom';
   import BalloonCard from './physics-blocks/balloon-card.svelte';
@@ -33,6 +33,24 @@
 
   // Quantity of initial items
   let initialBoxesN = items?.length ?? 0;
+  let currentBodies = 0;
+
+  $: if (currentBodies > 0) {
+    const newBoxes = getBoxes(matterInstance);
+
+    // add limits to engine
+    matterInstance.Composite.add(engine.world, [
+      ...newBoxes.filter((bx) => bx !== null).map((b) => b!.body)
+    ]);
+
+    // remove old boxes from engine
+    boxes
+      .filter((bx) => bx !== null)
+      .forEach((box) => matterInstance.Composite.remove(engine.world, box!.body));
+
+    // update boxes state as source of truth
+    boxes = newBoxes;
+  }
 
   // Active engine
   let engine: Engine;
@@ -40,7 +58,6 @@
 
   // Mobile behaviour
   let timeout: ReturnType<typeof setTimeout>;
-  let isTouchDevice: boolean;
 
   // Limits for resize handling
   let boxGround: Body;
@@ -52,11 +69,11 @@
 
   // Items where Matter will be applied
   let refs: HTMLElement[] = Array(items?.length);
-  let boxes: {
+  let boxes: ({
     body: Body;
     elem: HTMLElement;
     render(): void;
-  }[];
+  } | null)[];
 
   /**
    * Should only react when:
@@ -104,6 +121,38 @@
     }
   }
 
+  const getBoxes = (matter: typeof Matter) => {
+    // Create boxes from current rendered items
+    const boxes = refs.map((boxRef) => {
+      if (getComputedStyle(boxRef).display === 'block') {
+        return {
+          body: matter.Bodies.rectangle(
+            containerRef.clientWidth * Math.random(),
+            containerRef.clientHeight / 2 - boxRef.clientHeight,
+            boxRef.clientWidth,
+            boxRef.clientHeight,
+            {
+              friction: 1
+            }
+          ),
+          elem: boxRef,
+          render() {
+            if (boxRef?.clientHeight && boxRef?.clientWidth) {
+              const { x, y } = this.body.position;
+              this.elem.style.top = `${y - boxRef.clientHeight / 2}px`;
+              this.elem.style.left = `${x - boxRef.clientWidth / 2}px`;
+              this.elem.style.transform = `rotate(${this.body.angle}rad)`;
+            }
+          }
+        };
+      } else {
+        return null;
+      }
+    });
+
+    return boxes;
+  };
+
   const getLimits = (matter: typeof Matter) => {
     const ceil = matter.Bodies.rectangle(
       containerRef.clientWidth / 2,
@@ -144,33 +193,13 @@
     const Engine = matter.Engine,
       MouseConstraint = matter.MouseConstraint,
       Mouse = matter.Mouse,
-      Composite = matter.Composite,
-      Bodies = matter.Bodies;
+      Composite = matter.Composite;
 
     // Create engine
     engine = Engine.create({ gravity: { scale: GRAVITY_DEFAULT_VALUE } });
 
     // Create boxes from current rendered items
-    const initialBoxes = refs.map((_, i) => ({
-      body: Bodies.rectangle(
-        containerRef.clientWidth * Math.random(),
-        containerRef.clientHeight / 2 - refs[i].clientHeight,
-        refs[i].clientWidth,
-        refs[i].clientHeight,
-        {
-          friction: 1
-        }
-      ),
-      elem: refs[i],
-      render() {
-        if (refs?.[i]?.clientHeight && refs?.[i]?.clientWidth) {
-          const { x, y } = this.body.position;
-          this.elem.style.top = `${y - refs[i].clientHeight / 2}px`;
-          this.elem.style.left = `${x - refs[i].clientWidth / 2}px`;
-          this.elem.style.transform = `rotate(${this.body.angle}rad)`;
-        }
-      }
-    }));
+    const initialBoxes = getBoxes(matter);
 
     // Update boxes state with created boxes
     boxes = initialBoxes;
@@ -225,7 +254,7 @@
 
     // Add all of the bodies and walls to the world
     Composite.add(engine.world, [
-      ...initialBoxes.map((b) => b.body),
+      ...initialBoxes.filter((bx) => bx !== null).map((b) => b!.body),
       leftWall,
       rightWall,
       ceil,
@@ -235,13 +264,15 @@
 
     // Main loop
     (function run() {
-      boxes.forEach((box) => box.render());
+      boxes.forEach((box) => box?.render());
       window.requestAnimationFrame(run);
       Engine.update(engine, 1000 / 60);
     })();
   };
 
   const handleResize = () => {
+    currentBodies = refs?.filter((ref) => getComputedStyle(ref).display === 'block').length || 0;
+
     // re-calculate limits
     const { ground, leftWall, rightWall } = getLimits(matterInstance);
 
@@ -261,7 +292,7 @@
 
   // Touch devices behaved badly with element drag so we do a small gravity effect on scroll instead
   const handleTouchDeviceScroll = () => {
-    if (isTouchDevice) {
+    if ($device === 'touch') {
       engine.gravity = {
         x: 0,
         y: 1,
@@ -331,10 +362,6 @@
   };
 
   onMount(() => {
-    if (browser) {
-      isTouchDevice = !window.matchMedia('(hover: hover)').matches;
-    }
-
     if (items) {
       import('matter-js').then((Matter) => {
         matterInstance = Matter;
@@ -357,13 +384,21 @@
         <BalloonCard
           block={item}
           bind:ref={refs[i]}
-          class={clsx('absolute w-fit', !engine && 'invisible')}
+          class={clsx(
+            'absolute w-fit',
+            !engine && 'invisible',
+            item.is_desktop_only && 'hidden md:block'
+          )}
         />
       {:else if item.component === 'physics-rectangle-card'}
         <RectangleCard
           block={item}
           bind:ref={refs[i]}
-          class={clsx('absolute w-fit', !engine && 'invisible')}
+          class={clsx(
+            'absolute w-fit',
+            !engine && 'invisible',
+            item.is_desktop_only && 'hidden md:block'
+          )}
         />
       {:else if item.component === 'physics-input'}
         <form on:submit|preventDefault={onSubmit} id={i + item._uid}>
@@ -372,14 +407,22 @@
             form={i + item._uid}
             block={item}
             bind:ref={refs[i]}
-            class={clsx('absolute w-fit', !engine && 'invisible')}
+            class={clsx(
+              'absolute w-fit',
+              !engine && 'invisible',
+              item.is_desktop_only && 'hidden md:block'
+            )}
           />
         </form>
       {:else if item.component === 'physics-sticker' && item.photo}
         {@const { width, height, src, alt } = getImageAttributes(item.photo)}
         <img
           bind:this={refs[i]}
-          class={clsx('absolute select-none drop-shadow-md', !engine && 'invisible')}
+          class={clsx(
+            'absolute select-none drop-shadow-md',
+            !engine && 'invisible',
+            item.is_desktop_only && 'hidden md:block'
+          )}
           {src}
           {alt}
           width={+width / 2}

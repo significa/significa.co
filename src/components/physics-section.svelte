@@ -264,6 +264,8 @@
       mouseConstraint
     ]);
 
+    currentBodies = refs?.filter((ref) => getComputedStyle(ref).display === 'block').length || 0;
+
     // Main loop
     (function run() {
       boxes.forEach((box) => box?.render());

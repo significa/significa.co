@@ -15,6 +15,7 @@
 
   export let project: ISbStoryData<ProjectStoryblok> | ProjectPage;
   export let variant: 'featured' | 'default' = 'default';
+  export let as: 'h2' | 'h3' = 'h3';
 
   let index = 0;
   let video: HTMLVideoElement;
@@ -62,16 +63,19 @@
             });
           }}
         >
-          <h3 class="text-5xl text-foreground-secondary">
+          <svelte:element this={as} class="text-5xl text-foreground-secondary">
             {project.name}
-          </h3>
+          </svelte:element>
           <p class={clsx('text-5xl', variant === 'default' ? 'max-w-lg' : 'max-w-3xl')}>
             {project.content.tagline}
           </p>
         </a>
         {#if project.content.recognitions?.length}
           <div class={clsx('mt-6 flex gap-4', variant === 'featured' ? '' : 'flex-col')}>
-            <Recognitions recognitions={project.content.recognitions} />
+            <Recognitions
+              as={as === 'h2' ? 'h3' : 'h4'}
+              recognitions={project.content.recognitions}
+            />
           </div>
         {/if}
       </div>

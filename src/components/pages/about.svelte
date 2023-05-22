@@ -90,13 +90,13 @@
       <div class="flex flex-wrap justify-center gap-12 p-6">
         {#each data.clients as client}
           {#if client.light_mode?.filename && $theme === 'light'}
-            {@const { src, alt } = getImageAttributes(client.light_mode)}
-            <img {src} {alt} class="max-h-9 object-contain" />
+            {@const { src, alt, width, height } = getImageAttributes(client.light_mode)}
+            <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
           {/if}
 
           {#if client.dark_mode?.filename && $theme === 'dark'}
-            {@const { src, alt } = getImageAttributes(client.dark_mode)}
-            <img {src} {alt} class="max-h-9 object-contain" />
+            {@const { src, alt, width, height } = getImageAttributes(client.dark_mode)}
+            <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
           {/if}
         {/each}
       </div>

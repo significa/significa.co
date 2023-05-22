@@ -153,6 +153,7 @@
                 index = index === 0 ? project.content.thumbnail.length - 1 : index - 1;
               }}
               icon="arrow-left"
+              aria-label={t('a11y.gallery-left')}
             />
             <CircleButton
               alt="Next image"
@@ -174,6 +175,7 @@
                 index = index === project.content.thumbnail.length - 1 ? 0 : index + 1;
               }}
               icon="arrow-right"
+              aria-label={t('a11y.gallery-right')}
             />
           {/if}
         </div>

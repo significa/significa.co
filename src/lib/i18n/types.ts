@@ -83,7 +83,12 @@ export const TranslationKeys = [
   'draw-segg.clipboard.feedback',
   'reel.play',
   'file.upload.error.title',
-  'file.upload.error.description'
+  'file.upload.error.description',
+  'a11y.gallery-left',
+  'a11y.gallery-right',
+  'a11y.physics-add',
+  'a11y.see-post',
+  'a11y.see-career'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

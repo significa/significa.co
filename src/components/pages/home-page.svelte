@@ -19,6 +19,7 @@
   import Services from './home/services.svelte';
   import { TrackingEvent, track } from '$lib/track';
   import { drawerLinks } from '$lib/actions/drawer-links';
+  import { t } from '$lib/i18n';
 
   export let data: HomePageStoryblok;
   export let posts: BlogPostPage[] | undefined;
@@ -122,7 +123,14 @@
                     }}
                   >
                     <span>{career.name}</span>
-                    <Button class="pointer-events-none" variant="secondary" arrow size="sm" />
+                    <Button
+                      as="a"
+                      href={career.full_slug}
+                      variant="secondary"
+                      arrow
+                      size="sm"
+                      aria-label={t('a11y.see-career')}
+                    />
                   </a>
                 </li>
               {/each}

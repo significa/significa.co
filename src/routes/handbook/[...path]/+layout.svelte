@@ -49,7 +49,7 @@
   }
 </script>
 
-<div class="border-b border-t" use:bodyLock={sidebar}>
+<div class="border-b" use:bodyLock={sidebar}>
   <!-- Mobile: open menu -->
   <div
     bind:this={mobileMenu}

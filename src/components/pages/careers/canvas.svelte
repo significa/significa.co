@@ -91,11 +91,11 @@
 >
   {#if !hideMap}
     <div
-      class="absolute bottom-4 right-4 z-10 w-32 rounded-md border-4 border-foreground/70 bg-foreground/60 drop-shadow-md"
+      class="absolute bottom-4 right-4 z-10 w-32 rounded-sm border border-foreground/50 bg-foreground/50 drop-shadow-md backdrop-blur-md"
       style="aspect-ratio: {width} / {height}"
     >
       <div
-        class="absolute rounded-sm bg-background-panel"
+        class="absolute rounded-sm bg-foreground/50 backdrop-blur-sm"
         style="width: {squareW}px; height: {squareH}px; left:{boxLeft}px; top:{boxTop}px"
       />
     </div>

@@ -9,12 +9,16 @@
 
   import type { NotepadCardStoryblok, PhotoCardStoryblok } from '$types/bloks';
   import clsx from 'clsx';
+  import { debounced } from '$lib/stores/debounced';
+  import { writable } from 'svelte/store';
 
   export let card: NotepadCardStoryblok | PhotoCardStoryblok;
   export let staticTransformState: TransformOptions;
   export let hoverTransformState: TransformOptions;
 
-  let transformState = staticTransformState;
+  let hovered = writable(false);
+  let debouncedHover = debounced(hovered, 200);
+  $: transformState = $debouncedHover ? hoverTransformState : staticTransformState;
 </script>
 
 {#if card.component === 'photo_card' && card.photo?.filename}
@@ -26,10 +30,10 @@
     )}
     style={`transform:translate(${transformState.x}, ${transformState.y}) rotate(${transformState.deg}deg); z-index: ${transformState.z}`}
     on:mouseenter={() => {
-      transformState = hoverTransformState;
+      hovered.set(true);
     }}
     on:mouseleave={() => {
-      transformState = staticTransformState;
+      hovered.set(false);
     }}
   >
     <img class="aspect-[4/6] h-[100%] object-cover" {src} {alt} />
@@ -42,10 +46,10 @@
     )}
     style={`transform:translate(${transformState.x}, ${transformState.y}) rotate(${transformState.deg}deg); z-index: ${transformState.z} `}
     on:mouseenter={() => {
-      transformState = hoverTransformState;
+      hovered.set(true);
     }}
     on:mouseleave={() => {
-      transformState = staticTransformState;
+      hovered.set(false);
     }}
   >
     <div class="h-full rounded-xs bg-background-panel text-base/[2rem] shadow-md lg:text-notebook">

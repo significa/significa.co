@@ -34,8 +34,9 @@
   // Quantity of initial items
   let initialBoxesN = items?.length ?? 0;
   let currentBodies = 0;
+  let recalc = false;
 
-  $: if (currentBodies > 0) {
+  $: if (recalc && currentBodies > 0) {
     const newBoxes = getBoxes(matterInstance);
 
     // add limits to engine
@@ -50,6 +51,7 @@
 
     // update boxes state as source of truth
     boxes = newBoxes;
+    recalc = false;
   }
 
   // Active engine
@@ -262,6 +264,8 @@
       mouseConstraint
     ]);
 
+    currentBodies = refs?.filter((ref) => getComputedStyle(ref).display === 'block').length || 0;
+
     // Main loop
     (function run() {
       boxes.forEach((box) => box?.render());
@@ -271,7 +275,14 @@
   };
 
   const handleResize = () => {
-    currentBodies = refs?.filter((ref) => getComputedStyle(ref).display === 'block').length || 0;
+    const prevCurrent = currentBodies;
+
+    if (
+      prevCurrent !== (refs?.filter((ref) => getComputedStyle(ref).display === 'block').length || 0)
+    ) {
+      currentBodies = refs?.filter((ref) => getComputedStyle(ref).display === 'block').length || 0;
+      recalc = true;
+    }
 
     // re-calculate limits
     const { ground, leftWall, rightWall } = getLimits(matterInstance);

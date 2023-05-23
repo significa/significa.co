@@ -281,6 +281,8 @@
       />
       <div bind:this={refs[i]} class="absolute aspect-square h-auto w-1/4">
         <img
+          width="167"
+          height="167"
           src={items[i]}
           alt=""
           class="h-full select-none object-contain drop-shadow-md"

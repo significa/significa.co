@@ -50,24 +50,24 @@
             <ul use:drawerLinks>
               {#each data.awards as award}
                 {@const { href, target, rel } = getAnchorFromCmsLink(award.link)}
-                <a
-                  {href}
-                  {target}
-                  {rel}
+                <li
                   class={clsx(
                     'block border-b first:border-t',
                     href ? 'transition-colors hover:bg-foreground-tertiary/10' : ''
                   )}
-                  on:click={() => {
-                    track(TrackingEvent.SERVICES_AWARD_CLICK, {
-                      props: {
-                        to: href,
-                        path: $page.url.pathname
-                      }
-                    });
-                  }}
                 >
-                  <li
+                  <a
+                    {href}
+                    {target}
+                    {rel}
+                    on:click={() => {
+                      track(TrackingEvent.SERVICES_AWARD_CLICK, {
+                        props: {
+                          to: href,
+                          path: $page.url.pathname
+                        }
+                      });
+                    }}
                     class="container mx-auto flex flex-col justify-between px-container py-5 lg:flex-row"
                   >
                     <div class="flex w-full flex-col-reverse items-center lg:flex-row">
@@ -104,8 +104,8 @@
                         </div>
                       {/if}
                     </div>
-                  </li>
-                </a>
+                  </a>
+                </li>
               {/each}
             </ul>
           </div>
@@ -208,13 +208,13 @@
       <div class="flex flex-wrap justify-center gap-12 p-6">
         {#each data.clients as client}
           {#if client.light_mode?.filename && $theme === 'light'}
-            {@const { src, alt } = getImageAttributes(client.light_mode)}
-            <img {src} {alt} class="max-h-9 object-contain" />
+            {@const { src, alt, width, height } = getImageAttributes(client.light_mode)}
+            <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
           {/if}
 
           {#if client.dark_mode?.filename && $theme === 'dark'}
-            {@const { src, alt } = getImageAttributes(client.dark_mode)}
-            <img {src} {alt} class="max-h-9 object-contain" />
+            {@const { src, alt, width, height } = getImageAttributes(client.dark_mode)}
+            <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
           {/if}
         {/each}
       </div>

@@ -14,6 +14,7 @@
   import { drawer } from '$lib/stores/drawer';
 
   export let variant: 'one' | 'two' = 'one';
+  export let as: 'h2' | 'h3' = 'h3';
   export let firstTitle: string | undefined = undefined;
   export let secondTitle: string | undefined = undefined;
   export let ctaLink: MultilinkStoryblok | undefined = undefined;
@@ -33,7 +34,9 @@
 <section class="border-t" bind:this={testimonialsSection}>
   <div class="container mx-auto px-container pt-16 lg:pt-20">
     <div class="mx-auto flex max-w-xl flex-col items-center">
-      <h3 class="text-center text-5xl text-foreground-secondary">{firstTitle}</h3>
+      <svelte:element this={as} class="text-center text-5xl text-foreground-secondary"
+        >{firstTitle}</svelte:element
+      >
       <p class="text-center text-5xl">{secondTitle}</p>
 
       {#if ctaLink}

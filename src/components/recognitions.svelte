@@ -7,6 +7,7 @@
     title: string;
     image: AssetStoryblok;
   }[];
+  export let as: 'h2' | 'h3' | 'h4' = 'h4';
 </script>
 
 {#each recognitions as recognition}
@@ -18,9 +19,9 @@
       <img class="mr-2 h-auto w-14 rounded-md bg-background-offset" {src} {alt} {width} {height} />
     {/if}
     <div>
-      <h4 class="text-xs uppercase tracking-wider text-foreground-secondary">
+      <svelte:element this={as} class="text-xs uppercase tracking-wider text-foreground-secondary">
         {recognition.label}
-      </h4>
+      </svelte:element>
       <p class="text-sm font-medium">{recognition.title}</p>
     </div>
   </div>

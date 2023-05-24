@@ -32,8 +32,8 @@ export const dragScrolling = (
 
     node.addEventListener('mousemove', (e) => {
       if (dragging) {
-        left -= e.movementX;
-        top -= e.movementY;
+        left = Math.max(0, Math.min(node.scrollWidth - node.clientWidth, left - e.movementX));
+        top = Math.max(0, Math.min(node.scrollHeight - node.clientHeight, top - e.movementY));
 
         node.scrollLeft = left;
         node.scrollTop = top;

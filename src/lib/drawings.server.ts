@@ -12,7 +12,10 @@ export const createOrUpdateDrawing = async (drawing: unknown, id?: string) => {
     Item: {
       id: { S: id },
       drawing: { B: zlib.gzipSync(JSON.stringify(drawing)) },
-      created_at: { S: new Date().toISOString() }
+      created_at: { S: new Date().toISOString() },
+      // `is_deleted` is a hack, to workaround Dynamo's GSI
+      // TODO: find an alternative or migrate away from Dynamo
+      is_deleted: { S: 'false' }
     }
   };
 

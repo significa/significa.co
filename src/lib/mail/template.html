@@ -20,7 +20,7 @@
     <!--[if !mso]><!-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--<![endif]-->
-    <title>Significa</title>
+    <title>Significa – Get a quote</title>
     <meta name="description" content="Significa" />
 
     <style type="text/css">
@@ -59,13 +59,6 @@
       a {
         all: unset;
         cursor: pointer;
-      }
-      p a {
-        text-decoration: underline;
-      }
-      p a:hover {
-        text-decoration: none;
-        background-color: transparent;
       }
       .bg-light {
         background-color: #f2f2f2;
@@ -114,13 +107,17 @@
         background: transparent;
         transition: all 0.2s ease;
       }
-      .button-line span {
-        color: #202021;
+      .button-line--white {
+        border: 1px solid hsl(0deg 0% 46%);
       }
       .button-line:hover {
         background-color: none;
         box-shadow: 0 0 0 4px hsl(48deg 100% 46%);
         border-color: hsl(49deg 100% 40%);
+      }
+      .button-line--white:hover {
+        box-shadow: 0 0 0 4px hsl(0deg 0% 24%);
+        border-color: hsl(0deg 0% 46%);
       }
       .button-line:active {
         background-color: none;
@@ -128,17 +125,37 @@
         border-color: hsl(49deg 100% 40%);
         transform: scale(0.98);
       }
+      .button-line--white:active {
+        box-shadow: 0 0 0 2px hsl(0deg 0% 24%);
+        border-color: hsl(0deg 0% 46%);
+      }
+      p a {
+        text-decoration: underline;
+      }
+      p a:hover {
+        text-decoration: none;
+        background-color: transparent;
+      }
+      .pt-56 {
+        padding-top: 56px;
+      }
       .mt-4 {
         margin-top: 4px;
       }
       .mt-16 {
         margin-top: 16px;
       }
+      .mt-24 {
+        margin-top: 24px;
+      }
       .br-24 {
         border-radius: 24px;
       }
       .br-16 {
         border-radius: 16px;
+      }
+      .w-100 {
+        width: 100%;
       }
       .content-fit {
         width: 100%;
@@ -156,15 +173,24 @@
       .inner-content {
         padding: 48px;
       }
+      h1 {
+        font-size: 40px;
+        line-height: 42px;
+        font-weight: 700;
+        letter-spacing: -0.8px;
+      }
+      h1 span {
+        opacity: 0.4;
+      }
       h3 {
         font-size: 22px;
-        line-height: 28px;
+        line-height: 26px;
         font-weight: 600;
         letter-spacing: -0.4px;
       }
       p {
         font-size: 20px;
-        line-height: 27px;
+        line-height: 29px;
         font-weight: 400;
       }
       p.txt-small {
@@ -194,6 +220,18 @@
         width: 100%;
         border-collapse: separate;
         border-spacing: 20px;
+      }
+      .link-highlight-img {
+        width: 50%;
+        position: relative;
+      }
+      .link-highlight-img img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        object-fit: cover;
+        top: 0;
+        left: 0;
       }
       .footer {
         width: 100%;
@@ -328,6 +366,11 @@
         }
       }
       @media all and (max-width: 520px) {
+        .pt-56 {
+          padding-top: 40px !important;
+        }
+      }
+      @media all and (max-width: 520px) {
         .mt-4 {
           margin-top: 4px !important;
         }
@@ -341,6 +384,12 @@
       @media all and (max-width: 520px) {
         p + p {
           margin-top: 16px !important;
+        }
+      }
+      @media all and (max-width: 520px) {
+        h1 {
+          font-size: 32px !important;
+          line-height: 32px !important;
         }
       }
       @media all and (max-width: 520px) {
@@ -360,6 +409,20 @@
         }
       }
       @media all and (max-width: 520px) {
+        .link-highlight-img {
+          width: 100% !important;
+          margin-bottom: 16px !important;
+        }
+      }
+      @media all and (max-width: 520px) {
+        .link-highlight-img img {
+          position: relative !important;
+          width: 100% !important;
+          height: auto !important;
+          margin-bottom: 16px !important;
+        }
+      }
+      @media all and (max-width: 520px) {
         .footer-wrapper {
           border-spacing: 0 16px !important;
         }
@@ -376,8 +439,8 @@
       }
       @media all and (max-width: 520px) {
         .social-media-icon-sm {
-          height: 28px;
-          width: 28px;
+          height: 36px !important;
+          width: 36px !important;
         }
       }
     </style>
@@ -433,6 +496,76 @@
                                 <!-- Written content End -->
                               </tr>
 
+                              <tr class="divider">
+                                <!-- Divider -->
+                                <td>
+                                  <p class="txt-dark">&#149;&#149;&#149;</p>
+                                </td>
+                                <!-- Divider End -->
+                              </tr>
+
+                              <tr>
+                                <!-- Written content -->
+                                <td class="inner-content">
+                                  <h3>Schedule a call?</h3>
+                                  <p class="txt-dark mt-16">
+                                    There's no need to wait for the elves to sort their
+                                    correspondence out. You can slide into your first date with us
+                                    straight away.
+                                  </p>
+                                </td>
+                                <!-- Written content End -->
+                              </tr>
+
+                              <tr>
+                                <!-- Link Highlight -->
+                                <td class="box">
+                                  <table class="link-highlight br-24 bg-dark">
+                                    <tr>
+                                      <td class="link-highlight-img">
+                                        <img
+                                          class="w-100 br-16"
+                                          src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/18cff95f-7585-a069-e1b7-948a4fff134a.png"
+                                          alt="Better call Rui"
+                                        />
+                                      </td>
+                                      <td>
+                                        <h3 class="txt-light tight">Our first date.</h3>
+                                        <span
+                                          ><p class="txt-light o-80 txt-small tight mt-4">
+                                            This is just like the first date. We get to know each
+                                            other better. Understand one another. See if there's a
+                                            match.
+                                          </p>
+                                          <a
+                                            href="https://si.gnifi.ca/wuXe"
+                                            target="_blank"
+                                            class="button button-line button-line--white button-small txt-light mt-16"
+                                          >
+                                            <!-- Button -->
+                                            <span>Schedule a call</span>
+                                            <!-- Button End -->
+                                          </a>
+                                        </span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                                <!-- Link Highlight End -->
+                              </tr>
+
+                              <tr>
+                                <!-- Written content -->
+                                <td class="inner-content">
+                                  <p class="txt-dark mt-16">
+                                    Once you choose a time slot, you will receive a calendar
+                                    invitation with a Google Meet link for the call.
+                                  </p>
+                                </td>
+                                <!-- Written content End -->
+                              </tr>
+
+                              <tr></tr>
                               <tr class="divider">
                                 <!-- Divider -->
                                 <td>

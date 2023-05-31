@@ -7,6 +7,7 @@
   import { TrackingEvent, track } from '$lib/track';
   import { page } from '$app/stores';
   import { drawer } from '$lib/stores/drawer';
+  import { t } from '$lib/i18n';
 
   export let post: ISbStoryData<
     Omit<BlogPostStoryblok, 'author'> & {
@@ -60,7 +61,14 @@
       {/if}
     </div>
     <div class="hidden flex-1 justify-end xl:flex">
-      <Button class="pointer-events-none" variant="secondary" arrow size="sm" />
+      <Button
+        as="a"
+        variant="secondary"
+        arrow
+        size="sm"
+        href={`/blog/${post.slug}`}
+        aria-label={t('a11y.see-post')}
+      />
     </div>
   </div>
 </div>

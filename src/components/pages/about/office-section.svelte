@@ -12,7 +12,7 @@
   <div class="container mx-auto px-container pt-8 lg:pt-12">
     <div class="flex flex-col justify-between gap-7 lg:flex-row lg:gap-4">
       <div class="lg:max-w-lg">
-        <h3 class="text-5xl text-foreground-secondary">{firstTitle}</h3>
+        <h2 class="text-5xl text-foreground-secondary">{firstTitle}</h2>
         <p class="text-5xl">{secondTitle}</p>
       </div>
 

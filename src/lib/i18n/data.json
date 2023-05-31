@@ -83,5 +83,10 @@
   "draw-segg.clipboard.feedback": "Copied link to clipboard!",
   "reel.play": "Play reel",
   "file.upload.error.title": "Could not upload file",
-  "file.upload.error.description": "Please try again or choose another file"
+  "file.upload.error.description": "Please try again or choose another file",
+  "a11y.gallery-left": "Previous image",
+  "a11y.gallery-right": "Next image",
+  "a11y.physics-add": "Create new physics block",
+  "a11y.see-post": "See post",
+  "a11y.see-career": "Se career"
 }

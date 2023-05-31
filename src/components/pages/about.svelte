@@ -27,7 +27,7 @@
       class="container mx-auto flex flex-col justify-between gap-6 px-container py-8 lg:flex-row lg:gap-4 lg:py-12"
     >
       <div class="lg:max-w-xl">
-        <h3 class="text-5xl text-foreground-secondary">{data.about_title1}</h3>
+        <h2 class="text-5xl text-foreground-secondary">{data.about_title1}</h2>
         <p class="text-5xl">{data.about_title2}</p>
       </div>
 
@@ -45,7 +45,7 @@
     >
       <div class="flex flex-col justify-between gap-6 lg:max-w-xl lg:py-12">
         <div>
-          <h3 class="text-5xl text-foreground-secondary">{data.values_title1}</h3>
+          <h2 class="text-5xl text-foreground-secondary">{data.values_title1}</h2>
           <p class="text-5xl">{data.values_title2}</p>
         </div>
 
@@ -63,7 +63,7 @@
                 class="block shrink-0 drop-shadow-md"
               />
               <div>
-                <h4 class="text-2xl font-semibold">{value.title}</h4>
+                <h3 class="text-2xl font-semibold">{value.title}</h3>
                 <p class="text-2xl text-foreground-secondary">{value.description}</p>
               </div>
             </div>
@@ -74,6 +74,7 @@
   </section>
 
   <Testimonials
+    as="h2"
     firstTitle={data.testimonials_title1}
     secondTitle={data.testimonials_title2}
     ctaLabel={data.testimonials_cta_label}
@@ -89,13 +90,13 @@
       <div class="flex flex-wrap justify-center gap-12 p-6">
         {#each data.clients as client}
           {#if client.light_mode?.filename && $theme === 'light'}
-            {@const { src, alt } = getImageAttributes(client.light_mode)}
-            <img {src} {alt} class="max-h-9 object-contain" />
+            {@const { src, alt, width, height } = getImageAttributes(client.light_mode)}
+            <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
           {/if}
 
           {#if client.dark_mode?.filename && $theme === 'dark'}
-            {@const { src, alt } = getImageAttributes(client.dark_mode)}
-            <img {src} {alt} class="max-h-9 object-contain" />
+            {@const { src, alt, width, height } = getImageAttributes(client.dark_mode)}
+            <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
           {/if}
         {/each}
       </div>

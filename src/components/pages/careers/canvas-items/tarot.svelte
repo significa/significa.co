@@ -97,6 +97,7 @@
   }
   .inner-card,
   .inner-card-backface {
+    transition: all 0.4s ease-out;
     transform: rotateX(0deg) rotateY(0deg);
     position: absolute;
     width: 100%;

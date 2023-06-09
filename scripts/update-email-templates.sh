@@ -12,7 +12,10 @@ REGION=$(echo "$MAILCHIMP_API_KEY" | tail -c 5)
 function get_email_template {
     local template_id=$1
 
-    curl --silent --request POST \
+    curl \
+    --silent \
+    --fail \
+    --request POST \
     --url "https://${REGION}.api.mailchimp.com/2.0/templates/info" \
     --data "{
         \"apikey\": \"$MAILCHIMP_API_KEY\",

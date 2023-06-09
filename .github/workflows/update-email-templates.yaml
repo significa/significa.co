@@ -38,6 +38,7 @@ jobs:
         with:
           branch: ci/update-email-templates
           commit-message: 'ci: updated email templates'
+          author: 'GitHub actions bot <41898282+github-actions[bot]@users.noreply.github.com>'
           delete-branch: true
           title: 'CI: auto updated email templates'
           body: |

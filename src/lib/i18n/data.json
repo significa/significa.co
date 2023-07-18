@@ -88,5 +88,6 @@
   "a11y.gallery-right": "Next image",
   "a11y.physics-add": "Create new physics block",
   "a11y.see-post": "See post",
-  "a11y.see-career": "Se career"
+  "a11y.see-career": "Se career",
+  "blog.meta-description-prefix": "Here you can find articles that are tagged with any of the following tags: {{tags}}."
 }

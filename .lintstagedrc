@@ -1,7 +1,3 @@
 {
-  "*.{js,ts,json,svelte}": [
-    "eslint",
-    "prettier --write",
-    "svelte-check --tsconfig ./tsconfig.json"
-  ]
+  "*.{js,ts,json,svelte}": ["eslint", "prettier --write", "svelte-check --tsconfig ./tsconfig.json"]
 }

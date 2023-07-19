@@ -50,10 +50,9 @@
 
 <Seo
   title={getPageTitle(tags)}
-  description={`${$page.data.page?.story?.content?.seo_description} ${t(
-    'blog.meta-description-prefix',
-    { tags: tags.join(', ') }
-  )}`}
+  description={tags.length
+    ? t('blog.tag-meta-description', { tags: tags.join(', ') })
+    : $page.data.page?.story?.content?.seo_description}
 />
 
 <main>

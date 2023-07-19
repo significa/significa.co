@@ -89,7 +89,7 @@ export const TranslationKeys = [
   'a11y.physics-add',
   'a11y.see-post',
   'a11y.see-career',
-  'blog.meta-description-prefix'
+  'blog.tag-meta-description'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

@@ -56,7 +56,7 @@
 </script>
 
 {#each story.content.page || [] as page}
-  {#if page.component === 'static-page'}
+  {#if page.component === 'static-page' && page.body}
     <StaticPage body={page.body} />
   {:else if page.component === 'about-page' && isAboutPage(page)}
     <About data={page} />

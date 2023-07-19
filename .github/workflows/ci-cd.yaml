@@ -21,6 +21,7 @@ jobs:
     with:
       npm_scope: '@significa'
       install_registry_url: 'https://npm.pkg.github.com/'
+      lint_command: 'npm run validate'
       staging_domain: ${{ vars.STAGING_DOMAIN }}
       production_domain: ${{ vars.PRODUCTION_DOMAIN }}
     secrets:

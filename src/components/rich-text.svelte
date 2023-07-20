@@ -1,8 +1,49 @@
+<script lang="ts" context="module">
+  // Monkey patch RichTextSchema.marks.link to add `sanitizeSlug`
+  // TODO: Find a better alternative and be careful updating storyblok dependency
+  // Patched as of https://github.com/storyblok/storyblok-js-client/blob/069d51afa8003f804ef8af5fc5b5823d2ce4a658/src/schema.ts#L133C1-L161
+  RichTextSchema.marks.link = (node) => {
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    const { story, uuid, linktype = 'url', ...attrs } = node.attrs;
+
+    if (linktype === 'email') {
+      attrs.href = `mailto:${attrs.href}`;
+    }
+    else if(attrs.href){
+      attrs.href  = sanitizeSlug(attrs.href)
+    }
+
+    if (attrs.anchor) {
+      attrs.href = `${attrs.href}#${attrs.anchor}`
+      delete attrs.anchor
+    }
+
+    if (attrs.custom) {
+      for (const key in attrs.custom) {
+        attrs[key] = attrs.custom[key]
+      }
+      delete attrs.custom
+    }
+
+    return {
+      tag: [
+        {
+          tag: 'a',
+          attrs: attrs,
+        },
+      ],
+    }
+  };
+
+  export const resolver = new RichTextResolver(RichTextSchema);
+</script>
+
 <script lang="ts">
   import { clsx } from 'clsx';
-  import { RichTextResolver, type ISbRichtext } from '@storyblok/js';
+  import { RichTextResolver, type ISbRichtext, RichTextSchema } from '@storyblok/js';
   import DynamicBlock from './blocks/dynamic-block.svelte';
   import type { HTMLAttributes } from 'svelte/elements';
+    import { sanitizeSlug } from '$lib/utils/paths';
 
   type Section = NonNullable<ISbRichtext['content']>[number];
   type Block = NonNullable<Section['attrs']['body']>[number];
@@ -18,8 +59,6 @@
   export let doc: $$Props['doc'];
   export let getAttributes: $$Props['getAttributes'] = () => ({});
   export let as: $$Props['as'] = 'div';
-
-  const resolver = new RichTextResolver();
 </script>
 
 {#if doc.type === 'doc' && doc.content?.length}

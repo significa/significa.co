@@ -37,9 +37,24 @@
     posts.update((n) => [...n, ...res.data.stories]);
     total.set(res.total);
   };
+
+  const getPageTitle = (tags: string[]): string => {
+    const titlePrefix = ($page.data.page?.story?.content?.seo_title || '').replace(
+      /\s[-–]\s.*/,
+      ''
+    );
+
+    return `${titlePrefix} - ${tags.join(', ')}`;
+  };
 </script>
 
-<Seo />
+<Seo
+  title={getPageTitle(tags)}
+  description={tags.length
+    ? t('blog.tag-meta-description', { tags: tags.join(', ') })
+    : $page.data.page?.story?.content?.seo_description}
+/>
+
 <main>
   <div class="container mx-auto px-container">
     <h1 class="mt-10 text-7xl md:mt-14 lg:mt-20">

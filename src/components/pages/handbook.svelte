@@ -74,7 +74,7 @@
       </div>
     {/if}
 
-    {#if story.content.body?.content.length}
+    {#if story.content.body?.content && story.content.body?.content.length}
       <div class="container mx-auto max-w-3xl px-container">
         {#if story.content.body}
           <div

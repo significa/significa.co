@@ -21,6 +21,8 @@ jobs:
     with:
       npm_scope: '@significa'
       install_registry_url: 'https://npm.pkg.github.com/'
+      # FIXME: We cannot run `npm run validate` because `svelte-check` requires runtime env vars to be set
+      lint_command: 'npm run lint'
       staging_domain: ${{ vars.STAGING_DOMAIN }}
       production_domain: ${{ vars.PRODUCTION_DOMAIN }}
     secrets:

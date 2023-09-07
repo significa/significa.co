@@ -7,8 +7,9 @@
   $: flip = false;
   let timeout: ReturnType<typeof setTimeout>;
   $: cssVarStyles = `transform: rotateX(0deg) rotateY(0deg)`;
-  let calculateAngle = function (e: any) {
-    let rect = e.target?.getBoundingClientRect();
+  let calculateAngle = function (e: MouseEvent) {
+    const element = e.target as HTMLDivElement;
+    let rect = element?.getBoundingClientRect();
     //x and y relative to the card
     let x = Math.abs(e.clientX - rect.left);
     let y = Math.abs(e.clientY - rect.top);

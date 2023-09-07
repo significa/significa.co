@@ -50,7 +50,7 @@
   )}
 >
   <div class="container mx-auto px-container">
-    <section use:drawerLinks class="mt-10 md:mt-14 lg:mt-20">
+    <section use:drawerLinks class="mt-10 mb-8 md:mt-14 lg:mt-20">
       <SmallHighlights highlights={data.small_highlights} />
     </section>
     {#if data.showreel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(data.showreel.filename))}

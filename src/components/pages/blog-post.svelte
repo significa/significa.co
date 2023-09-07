@@ -96,7 +96,7 @@
 </div>
 
 <div class="mx-auto px-container">
-  <div class="relative mx-auto mt-20 max-w-2xl">
+  <div class="relative mx-auto mt-12 max-w-2xl">
     <div data-theme="yellow" class="flex justify-between gap-8 rounded-3xl p-6 md:p-8">
       <div class="flex flex-col items-start">
         <div class="flex-1">
@@ -122,7 +122,7 @@
 
 <!-- Related Posts -->
 {#if related.length}
-  <div class="mt-28">
+  <div class="mt-12">
     {#each related as post}
       <BlogEntry {post} />
     {/each}

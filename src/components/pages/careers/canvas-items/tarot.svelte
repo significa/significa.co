@@ -4,113 +4,109 @@
   import back from '$assets/back.svg';
   import sun from '$assets/sun.svg';
   import moon from '$assets/moon.svg';
-  import { TrackingEvent, track } from '$lib/track';
-  let flip = false;
+  $: flip = false;
   let timeout: ReturnType<typeof setTimeout>;
+  $: cssVarStyles = `transform: rotateX(0deg) rotateY(0deg)`;
+  let calculateAngle = function (e: MouseEvent) {
+    const element = e.target as HTMLDivElement;
+    let rect = element?.getBoundingClientRect();
+    //x and y relative to the card
+    let x = Math.abs(e.clientX - rect.left);
+    let y = Math.abs(e.clientY - rect.top);
+
+    // Calculate half the width and height
+    let halfWidth = rect.width / 2;
+    let halfHeight = rect.height / 2;
+
+    // Changing these numbers will change the depth of the effect.
+    let calcAngleX = (x - halfWidth) / 6;
+    let calcAngleY = (y - halfHeight) / 6;
+
+    cssVarStyles = `transform: rotateY(${calcAngleX}deg) rotateX(${-calcAngleY}deg); perspective: ${
+      halfWidth * 6
+    }px`;
+  };
+  import { TrackingEvent, track } from '$lib/track';
   let hasInteracted = false;
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
+  style="left: {item.left || 0}px; top: {item.top || 0}px; transform: rotate({item.rotate ||
+    0}deg); perspective: 1000px"
   class="h-[300px] w-[200px]"
-  style="perspective: 1000px;"
   on:click={() => {
     if (!hasInteracted) {
       track(TrackingEvent.CAREERS_CANVAS_FLIPPED_TAROT);
       hasInteracted = true;
     }
-    clearTimeout(timeout);
-    flip = !flip;
-    if (flip) {
-      timeout = setTimeout(() => {
-        flip = false;
-      }, 4000);
-    }
   }}
 >
   <div
-    style="left: {item.left || 0}px; top: {item.top || 0}px; transform: rotate({item.rotate ||
-      0}deg)"
+    class="card h-[300px] w-[200px]"
+    class:rotate={flip}
+    on:click={() => {
+      clearTimeout(timeout);
+      flip = !flip;
+      if (flip) {
+        timeout = setTimeout(() => {
+          flip = false;
+        }, 4000);
+      }
+    }}
+    on:mouseenter={(e) => {
+      calculateAngle(e);
+    }}
+    on:mousemove={(e) => {
+      calculateAngle(e);
+    }}
+    on:mouseleave={() => {
+      cssVarStyles = `transform: rotateX(0deg) rotateY(0deg)`;
+    }}
   >
-    <div class="flip-card-inner relative h-full w-full" class:rotate={flip}>
-      <div class="flip-card-front">
+    <span class="inner-card" style={cssVarStyles}>
+      <div class="relative">
         {#if item.image === 'sun'}
           <img alt="" src={sun} draggable="false" class="drop-shadow-sm" />
         {:else}
           <img alt="" src={moon} draggable="false" class="drop-shadow-sm" />
         {/if}
       </div>
-      <div class="flip-card-back">
-        <div class="relative">
-          {#if item.text && item.text.length > 0}
-            <p
-              class="absolute left-6 top-6 z-10 max-w-[154px] text-left text-xl font-semibold text-[#171717]"
-            >
-              {item.text[Math.floor(Math.random() * item.text.length)].text}
-            </p>
-          {/if}
-          <img alt="" src={back} class="drop-shadow-sm" />
-        </div>
+    </span>
+    <span class="inner-card-backface">
+      <div class="relative">
+        {#if item.text && item.text.length > 0}
+          <p
+            class="absolute left-6 top-6 z-10 max-w-[154px] text-left text-xl font-semibold text-[#171717]"
+          >
+            {item.text[Math.floor(Math.random() * item.text.length)].text}
+          </p>
+        {/if}
+        <img alt="" src={back} class="drop-shadow-sm" />
       </div>
-    </div>
+    </span>
   </div>
 </div>
 
 <style>
-  .flip-card-inner {
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-  }
   .rotate {
     transform: rotateY(180deg);
   }
-  .flip-card-front,
-  .flip-card-back {
+  .card {
+    transform-style: preserve-3d;
+    transition: all 0.8s ease-out;
+  }
+  .inner-card,
+  .inner-card-backface {
+    transition: all 0.4s ease-out;
+    transform: rotateX(0deg) rotateY(0deg);
     position: absolute;
     width: 100%;
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
-  .flip-card-back {
+  .inner-card-backface {
     transform: rotateY(180deg);
-  }
-  .flip-card-inner:hover .flip-card-front {
-    animation: wiggle 1000ms 1 ease-in-out;
-  }
-  @-webkit-keyframes wiggle {
-    0% {
-      -webkit-transform: rotate(2deg);
-    }
-    25% {
-      -webkit-transform: rotate(-2deg);
-    }
-    50% {
-      -webkit-transform: rotate(4deg);
-    }
-    75% {
-      -webkit-transform: rotate(-1deg);
-    }
-    100% {
-      -webkit-transform: rotate(0deg);
-    }
-  }
-
-  @keyframes wiggle {
-    0% {
-      transform: rotate(2deg);
-    }
-    25% {
-      transform: rotate(-2deg);
-    }
-    50% {
-      transform: rotate(4deg);
-    }
-    75% {
-      transform: rotate(-1deg);
-    }
-    100% {
-      transform: rotate(0deg);
-    }
   }
 </style>

@@ -91,7 +91,7 @@
                           <p class="text-base font-semibold">{award.name}</p>
                         </div>
                       </div>
-                      <div class="mb-8 w-full lg:mb-0">
+                      <div class="mb-4 w-full lg:mb-0">
                         <p class="text-3xl font-semibold">{award.project}</p>
                       </div>
                     </div>

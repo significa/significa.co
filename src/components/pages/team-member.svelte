@@ -46,6 +46,7 @@
 <Seo
   title={story.content.seo_title || story.name}
   description={story.content.seo_description || story.content.bio}
+  image={story.content.seo_og_image || story.content.cover_image_light}
 />
 
 <div class="container mx-auto mt-10 px-container md:mt-14 lg:mt-20">

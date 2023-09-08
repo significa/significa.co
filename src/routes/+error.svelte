@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Seo from '$components/seo.svelte';
   import center from '$assets/404.svg';
   import nobita from '$assets/nobita-small.svg';
   import { TrackingEvent, track } from '$lib/track';
@@ -125,6 +126,7 @@
 </script>
 
 {#if matrix}
+  <Seo title="4🥚4" />
   <div
     bind:clientWidth={screenWidth}
     bind:clientHeight={screenHeight}

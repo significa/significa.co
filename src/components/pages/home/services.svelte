@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { device } from '$lib/stores/device';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import type { HomePageStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
@@ -18,20 +17,18 @@
   <div
     class="container flex justify-center px-container lg:max-w-none lg:border-r lg:px-0 lg:pr-12"
   >
-    {#if $device === 'touch'}
-      <img
-        src={ServicesIllustrationLight}
-        alt=""
-        class="mb-12 max-h-[400px] object-contain object-top dark:hidden lg:mb-0"
-      />
-      <img
-        src={ServicesIllustrationDark}
-        alt=""
-        class="mb-12 max-h-[400px] object-contain object-top light:hidden lg:mb-0"
-      />
-    {:else}
-      <Newton />
-    {/if}
+    <img
+      src={ServicesIllustrationLight}
+      alt=""
+      class="mb-12 max-h-[400px] object-contain object-top dark:hidden lg:mb-0 lg:hidden"
+    />
+    <img
+      src={ServicesIllustrationDark}
+      alt=""
+      class="mb-12 max-h-[400px] object-contain object-top light:hidden lg:mb-0 lg:hidden"
+    />
+
+    <Newton class="hidden lg:block" />
   </div>
   <div
     class="container grid place-items-center border-b px-container lg:max-w-none lg:border-none lg:px-0"

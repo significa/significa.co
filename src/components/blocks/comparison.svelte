@@ -28,7 +28,6 @@
 
   const onDragMobile = (e: TouchEvent) => {
     if (!dragging || !container) return;
-    console.log(e.targetTouches[0].clientX);
 
     const { left, width } = container.getBoundingClientRect();
 

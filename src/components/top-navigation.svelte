@@ -198,7 +198,9 @@
                     >
                     {#if sanitizeSlug(link.full_slug) === '/careers'}
                       {#if $page.data.careers.length}
-                        <Badge class="text-xs">{$page.data.careers.length}</Badge>
+                        <div aria-hidden="true">
+                          <Badge class="text-xs">{$page.data.careers.length}</Badge>
+                        </div>
                       {/if}
                     {/if}
                   </li>

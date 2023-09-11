@@ -25,6 +25,18 @@
 
     visibility.set(Math.min(Math.max(target, 0), 100));
   };
+
+  const onDragMobile = (e: TouchEvent) => {
+    if (!dragging || !container) return;
+    console.log(e.targetTouches[0].clientX);
+
+    const { left, width } = container.getBoundingClientRect();
+
+    const relativeX = e.targetTouches[0].clientX - left;
+    const target = (relativeX * 100) / width;
+
+    visibility.set(Math.min(Math.max(target, 0), 100));
+  };
 </script>
 
 <svelte:window
@@ -33,8 +45,14 @@
       dragging = true;
     }
   }}
+  on:touchstart={(e) => {
+    if (e.target instanceof HTMLElement && e.target.classList.contains('comparison-handler')) {
+      dragging = true;
+    }
+  }}
   on:mouseup={() => (dragging = false)}
   on:mousemove={onDrag}
+  on:touchmove={onDragMobile}
 />
 
 <div

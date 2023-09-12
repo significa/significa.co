@@ -27,8 +27,8 @@
     <Canvas
       withMouseDragScroll
       title={data.page_title}
-      height={data.canvas_height}
-      width={data.canvas_width}
+      height={Number(data.canvas_height)}
+      width={Number(data.canvas_width)}
       items={data.canvas_items}
       hideMap={$device === 'touch'}
       {teamMembers}
@@ -158,8 +158,8 @@
     <div class="absolute inset-2 overflow-hidden rounded-md bg-background shadow-xl lg:inset-4">
       <Canvas
         title={data.page_title}
-        height={data.canvas_height}
-        width={data.canvas_width}
+        height={Number(data.canvas_height)}
+        width={Number(data.canvas_width)}
         items={data.canvas_items}
         {teamMembers}
         class="h-full"

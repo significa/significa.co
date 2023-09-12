@@ -11,9 +11,9 @@
 
 <CycleImages
   images={eggs}
-  top={item.top}
-  left={item.left}
-  rotate={item.rotate}
+  top={Number(item.top)}
+  left={Number(item.left)}
+  rotate={Number(item.rotate)}
   alt="Egg"
   trackEvent={{ event: TrackingEvent.CAREERS_CANVAS_EGG_FRY }}
 />

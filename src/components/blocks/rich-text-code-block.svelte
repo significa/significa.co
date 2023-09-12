@@ -11,6 +11,6 @@
   code={block.code || ''}
   language={block.language || 'javascript'}
   lineNumbers={!!block.line_numbers}
-  lineNumbersStartAt={block.line_numbers_start}
+  lineNumbersStartAt={Number(block.line_numbers_start)}
   lineHighlight={block.highlighted_lines}
 />

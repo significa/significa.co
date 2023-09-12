@@ -4,11 +4,11 @@
 
   export let data;
 
-  startStoryblokBridge(data.page.story.id, (newStory) => {
+  startStoryblokBridge(data.page.story?.id, (newStory) => {
     data.page.story = newStory;
   });
 </script>
 
-{#key data.page.story.uuid}
+{#key data.page.story?.uuid}
   <DynamicPage page={data.page} />
 {/key}

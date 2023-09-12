@@ -58,7 +58,7 @@
           </p>
         </div>
         <Button
-          class="mt-12 xl:mt-20"
+          class="mt-8 lg:mt-12 xl:mt-20"
           as="a"
           variant="secondary"
           {href}

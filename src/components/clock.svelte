@@ -43,6 +43,11 @@
   }
 </script>
 
+<svelte:window
+  on:focus={() =>
+    (portugal = new Date(new Date().toLocaleString('en', { timeZone: 'Europe/Lisbon' })))}
+/>
+
 <div class={clsx('relative', className)}>
   <div
     class="absolute bottom-[13%] left-1/2 hidden -translate-x-1/2 text-center text-xs xl:block 2xl:text-sm"

@@ -125,8 +125,8 @@
   }
 </script>
 
+<Seo title="4🥚4" />
 {#if matrix}
-  <Seo title="4🥚4" />
   <div
     bind:clientWidth={screenWidth}
     bind:clientHeight={screenHeight}

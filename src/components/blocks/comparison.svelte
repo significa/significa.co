@@ -38,7 +38,7 @@
   };
 </script>
 
-<svelte:window
+<div
   on:mousedown={(e) => {
     if (e.target instanceof HTMLElement && e.target.classList.contains('comparison-handler')) {
       dragging = true;
@@ -52,9 +52,6 @@
   on:mouseup={() => (dragging = false)}
   on:mousemove={onDrag}
   on:touchmove={onDragMobile}
-/>
-
-<div
   class={clsx('not-rich-text relative my-8 overflow-hidden rounded-md md:my-14', $$restProps.class)}
   style="--comparison-visibility: {$visibility}%"
   use:storyblokEditable={block}

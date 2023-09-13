@@ -86,9 +86,9 @@
             {#if item.component === 'timeline-arrow'}
               <div
                 class="absolute text-foreground-secondary"
-                style="left: {item.left || 0}px; top: {item.top || 0}px; transform: scale({Number(
-                  item.scale || 1
-                ) * (item.flip ? -1 : 1)} ,{item.scale || 1}) rotate({item.rotate || 0}deg)"
+                style="left: {item.left || 0}px; top: {item.top || 0}px; transform: scale({(Number(
+                  item.scale
+                ) || 1) * (item.flip ? -1 : 1)} ,{item.scale || 1}) rotate({item.rotate || 0}deg)"
               >
                 {@html arrows[item.variant]}
               </div>

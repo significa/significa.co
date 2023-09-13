@@ -10,7 +10,7 @@
 </script>
 
 <svelte:head>
-  {#if !dev}
+  {#if !dev && $page.data.version === 'published' && $page.url.host === 'significa.co'}
     <script src="/js/script.js" data-api="/api/event" data-domain="significa.co"></script>
     <script src="/js/script.actions.js" data-api="/api/event" data-domain="significa.co"></script>
     <script>

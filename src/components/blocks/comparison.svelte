@@ -58,7 +58,6 @@
   class={clsx('not-rich-text relative my-8 overflow-hidden rounded-md md:my-14', $$restProps.class)}
   style="--comparison-visibility: {$visibility}%"
   use:storyblokEditable={block}
-  data-theme="dark"
   bind:this={container}
   use:intersectionObserver={{
     callback: ([e]) => {

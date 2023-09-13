@@ -13,11 +13,16 @@
     <script src="/js/script.js" data-api="/api/event" data-domain="significa.co"></script>
     <script src="/js/script.actions.js" data-api="/api/event" data-domain="significa.co"></script>
     <script>
-      window.plausible =
-        window.plausible ||
-        function () {
-          (window.plausible.q = window.plausible.q || []).push(arguments);
-        };
+      if (
+        window.location.host === 'significa.co' &&
+        document.cookie.indexOf('__significa-preview__') === -1
+      ) {
+        window.plausible =
+          window.plausible ||
+          function () {
+            (window.plausible.q = window.plausible.q || []).push(arguments);
+          };
+      }
     </script>
     <script>
       function setTheme(theme) {

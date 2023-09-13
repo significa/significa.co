@@ -8,10 +8,14 @@ import {
 } from '@storyblok/js';
 import { onMount } from 'svelte';
 
-export const getStoryblok = (apiOptions: SbSDKOptions['apiOptions'] = {}) => {
+export const getStoryblok = (
+  apiOptions: SbSDKOptions['apiOptions'] = {},
+  options: Omit<SbSDKOptions, 'apiOptions'> = {}
+) => {
   const { storyblokApi } = storyblokInit({
     accessToken: env.PUBLIC_STORYBLOK_TOKEN,
     use: [apiPlugin],
+    ...options,
     apiOptions: {
       https: true,
       ...apiOptions

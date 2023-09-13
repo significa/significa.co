@@ -150,9 +150,9 @@ export interface BlogPostStoryblok {
 export interface CanvasChecklistStoryblok {
   title?: string;
   items?: CanvasChecklistItemStoryblok[];
-  top?: number;
-  left?: number;
-  rotate?: number;
+  top?: string;
+  left?: string;
+  rotate?: string;
   _uid: string;
   component: 'canvas-checklist';
   [k: string]: any;
@@ -166,28 +166,28 @@ export interface CanvasChecklistItemStoryblok {
 }
 
 export interface CanvasEggStoryblok {
-  top?: number;
-  left?: number;
-  rotate?: number;
+  top?: string;
+  left?: string;
+  rotate?: string;
   _uid: string;
   component: 'canvas-egg';
   [k: string]: any;
 }
 
 export interface CanvasEggHatchingStoryblok {
-  top?: number;
-  left?: number;
-  rotate?: number;
+  top?: string;
+  left?: string;
+  rotate?: string;
   _uid: string;
   component: 'canvas-egg-hatching';
   [k: string]: any;
 }
 
 export interface CanvasGroupStoryblok {
-  width?: number;
-  height?: number;
-  top?: number;
-  left?: number;
+  width?: string;
+  height?: string;
+  top?: string;
+  left?: string;
   items?: (
     | CanvasChecklistStoryblok
     | CanvasMediaStoryblok
@@ -209,13 +209,13 @@ export interface CanvasGroupStoryblok {
 
 export interface CanvasMediaStoryblok {
   image?: AssetStoryblok;
-  width?: number;
-  height?: number;
+  width?: string;
+  height?: string;
   border?: boolean;
-  top: number;
-  left: number;
-  scale?: number;
-  rotate?: number;
+  top: string;
+  left: string;
+  scale?: string;
+  rotate?: string;
   _uid: string;
   component: 'canvas-media';
   [k: string]: any;
@@ -223,9 +223,9 @@ export interface CanvasMediaStoryblok {
 
 export interface CanvasPlantStoryblok {
   plant?: any;
-  top?: number;
-  left?: number;
-  rotate?: number;
+  top?: string;
+  left?: string;
+  rotate?: string;
   _uid: string;
   component: 'canvas-plant';
   [k: string]: any;
@@ -234,9 +234,9 @@ export interface CanvasPlantStoryblok {
 export interface CanvasTalkBalloonStoryblok {
   position?: 'left' | 'right';
   text?: string;
-  top?: number;
-  left?: number;
-  rotate?: number;
+  top?: string;
+  left?: string;
+  rotate?: string;
   _uid: string;
   component: 'canvas-talk-balloon';
   [k: string]: any;
@@ -245,9 +245,9 @@ export interface CanvasTalkBalloonStoryblok {
 export interface CanvasTarotStoryblok {
   image?: 'sun' | 'moon';
   text?: CanvasTarotTextStoryblok[];
-  top?: number;
-  left?: number;
-  rotate?: number;
+  top?: string;
+  left?: string;
+  rotate?: string;
   _uid: string;
   component: 'canvas-tarot';
   [k: string]: any;
@@ -268,9 +268,9 @@ export interface CanvasTeamStoryblok {
 }
 
 export interface CanvasTictactoeStoryblok {
-  top?: number;
-  left?: number;
-  rotate?: number;
+  top?: string;
+  left?: string;
+  rotate?: string;
   _uid: string;
   component: 'canvas-tictactoe';
   [k: string]: any;
@@ -278,9 +278,9 @@ export interface CanvasTictactoeStoryblok {
 
 export interface CanvasYellowStickerStoryblok {
   text?: string;
-  top?: number;
-  left?: number;
-  rotate?: number;
+  top?: string;
+  left?: string;
+  rotate?: string;
   _uid: string;
   component: 'canvas-yellow-sticker';
   [k: string]: any;
@@ -310,8 +310,8 @@ export type MultiassetStoryblok = {
 export interface CareersPageStoryblok {
   page_title?: string;
   canvas?: any;
-  canvas_width?: number;
-  canvas_height?: number;
+  canvas_width?: string;
+  canvas_height?: string;
   canvas_items?: CanvasGroupStoryblok[];
   careers_title1?: string;
   careers_title2?: string;
@@ -552,7 +552,7 @@ export interface PageStoryblok {
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
   change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
-  priority?: number;
+  priority?: string;
   _uid: string;
   component: 'page';
   uuid?: string;
@@ -630,6 +630,104 @@ export interface ProjectsIndexStoryblok {
   [k: string]: any;
 }
 
+export interface ProposalStoryblok {
+  password: string;
+  client: string;
+  validity_days: string;
+  title: string;
+  description: string;
+  cover: AssetStoryblok;
+  versions?: ProposalVersionStoryblok[];
+  _uid: string;
+  component: 'proposal';
+  [k: string]: any;
+}
+
+export interface ProposalDepartmentStoryblok {
+  title: string;
+  description?: string;
+  _uid: string;
+  component: 'proposal-department';
+  [k: string]: any;
+}
+
+export interface ProposalEstimateEntryStoryblok {
+  title: string;
+  description?: string;
+  color: '' | 'blue' | 'red' | 'yellow' | 'green' | 'black';
+  phases?: string;
+  _uid: string;
+  component: 'proposal-estimate-entry';
+  [k: string]: any;
+}
+
+export interface ProposalPhaseEntryStoryblok {
+  title: string;
+  description?: string;
+  team: ProposalPhaseTeamEntryStoryblok[];
+  _uid: string;
+  component: 'proposal-phase-entry';
+  [k: string]: any;
+}
+
+export interface ProposalPhaseTeamEntryStoryblok {
+  duration: string;
+  _uid: string;
+  component: 'proposal-phase-team-entry';
+  [k: string]: any;
+}
+
+export interface ProposalRoleStoryblok {
+  title: string;
+  description?: string;
+  _uid: string;
+  component: 'proposal-role';
+  [k: string]: any;
+}
+
+export interface ProposalScopeEntryStoryblok {
+  title: string;
+  description?: string;
+  services?: ('' | 'Design' | 'Development' | 'Project management')[];
+  features?: string;
+  _uid: string;
+  component: 'proposal-scope-entry';
+  [k: string]: any;
+}
+
+export interface ProposalSectionStoryblok {
+  title?: string;
+  body: RichtextStoryblok;
+  data?: '' | 'scope' | 'team' | 'estimates' | 'timeline';
+  _uid: string;
+  component: 'proposal-section';
+  [k: string]: any;
+}
+
+export interface ProposalTeamEntryStoryblok {
+  department: ProposalDepartmentStoryblok[];
+  role: ProposalRoleStoryblok[];
+  rate_type?: '' | 'value' | 'percentage' | 'free';
+  rate_in_eur?: string;
+  rate_in_percentage?: string;
+  _uid: string;
+  component: 'proposal-team-entry';
+  [k: string]: any;
+}
+
+export interface ProposalVersionStoryblok {
+  version_name: string;
+  discount_percentage?: string;
+  date: string;
+  scope: ProposalScopeEntryStoryblok[];
+  team: ProposalTeamEntryStoryblok[];
+  estimates: ProposalEstimateEntryStoryblok[];
+  body?: ProposalSectionStoryblok[];
+  _uid: string;
+  component: 'proposal-version';
+  [k: string]: any;
+}
+
 export interface RecognitionStoryblok {
   label: string;
   title: string;
@@ -662,7 +760,7 @@ export interface RichtextCodeBlockStoryblok {
     | 'bash'
     | 'clike';
   line_numbers?: boolean;
-  line_numbers_start?: number;
+  line_numbers_start?: string;
   highlighted_lines?: string;
   code?: string;
   _uid: string;
@@ -753,7 +851,7 @@ export interface ServiceTimelineCellStoryblok {
   decoration?: any;
   decoration_light?: AssetStoryblok;
   decoration_dark?: AssetStoryblok;
-  left_offset?: number;
+  left_offset?: string;
   throw_confetti?: boolean;
   _uid: string;
   component: 'service-timeline-cell';
@@ -792,6 +890,11 @@ export interface TeamMemberStoryblok {
   cover_image_dark?: AssetStoryblok;
   links?: TeamMemberLinkStoryblok[];
   is_active?: boolean;
+  seo_title?: string;
+  seo_description?: string;
+  seo_og_image?: AssetStoryblok;
+  priority?: string;
+  change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   _uid: string;
   component: 'team-member';
   [k: string]: any;
@@ -819,10 +922,10 @@ export interface TeamMemberLinkStoryblok {
 export interface TimelineArrowStoryblok {
   variant: '' | 'one' | 'two' | 'three' | 'four' | 'five';
   flip?: boolean;
-  top: number;
-  left: number;
-  scale?: number;
-  rotate?: number;
+  top: string;
+  left: string;
+  scale?: string;
+  rotate?: string;
   _uid: string;
   component: 'timeline-arrow';
   [k: string]: any;
@@ -831,10 +934,10 @@ export interface TimelineArrowStoryblok {
 export interface TimelineImageStoryblok {
   image?: AssetStoryblok;
   border?: boolean;
-  top: number;
-  left: number;
-  scale?: number;
-  rotate?: number;
+  top: string;
+  left: string;
+  scale?: string;
+  rotate?: string;
   _uid: string;
   component: 'timeline-image';
   [k: string]: any;
@@ -842,7 +945,7 @@ export interface TimelineImageStoryblok {
 
 export interface TimelineSectionStoryblok {
   items?: (TimelineArrowStoryblok | TimelineImageStoryblok | TimelineTextStoryblok)[];
-  width: number;
+  width: string;
   _uid: string;
   component: 'timeline-section';
   [k: string]: any;
@@ -851,9 +954,9 @@ export interface TimelineSectionStoryblok {
 export interface TimelineTextStoryblok {
   text?: string;
   link?: LinkStoryblok[];
-  width: number;
-  top: number;
-  left: number;
+  width: string;
+  top: string;
+  left: string;
   _uid: string;
   component: 'timeline-text';
   [k: string]: any;

@@ -2451,7 +2451,7 @@
       "name": "proposal",
       "display_name": null,
       "created_at": "2023-09-11T15:29:11.214Z",
-      "updated_at": "2023-09-12T09:48:31.163Z",
+      "updated_at": "2023-09-13T09:45:31.246Z",
       "id": 4555199,
       "schema": {
         "password": {
@@ -2482,15 +2482,6 @@
           "required": true,
           "default_value": "15"
         },
-        "created_by": {
-          "type": "custom",
-          "use_uuid": true,
-          "filter_content_type": ["team-member"],
-          "pos": 3,
-          "required": true,
-          "field_type": "significa-team-member",
-          "options": []
-        },
         "title": {
           "type": "text",
           "required": true
@@ -2510,6 +2501,11 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["proposal-version"]
+        },
+        "created_by": {
+          "type": "custom",
+          "field_type": "significa-team-member",
+          "options": []
         }
       },
       "image": null,
@@ -2545,7 +2541,17 @@
       "is_root": false,
       "preview_tmpl": null,
       "is_nestable": true,
-      "all_presets": [],
+      "all_presets": [
+        {
+          "id": 1897410,
+          "name": "Management",
+          "component_id": 4555221,
+          "image": "",
+          "color": "",
+          "icon": "",
+          "description": ""
+        }
+      ],
       "preset_id": null,
       "real_name": "proposal-department",
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
@@ -2557,7 +2563,7 @@
       "name": "proposal-estimate-entry",
       "display_name": null,
       "created_at": "2023-09-11T15:43:50.844Z",
-      "updated_at": "2023-09-11T15:45:09.522Z",
+      "updated_at": "2023-09-13T08:45:37.706Z",
       "id": 4555228,
       "schema": {
         "title": {
@@ -2600,7 +2606,12 @@
           "required": true
         },
         "phases": {
-          "type": "text"
+          "type": "bloks",
+          "required": true,
+          "minimum": 1,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["proposal-phase-entry"]
         }
       },
       "image": null,
@@ -2656,20 +2667,19 @@
       "name": "proposal-phase-team-entry",
       "display_name": null,
       "created_at": "2023-09-11T15:46:07.698Z",
-      "updated_at": "2023-09-12T09:49:29.091Z",
+      "updated_at": "2023-09-13T09:47:34.927Z",
       "id": 4555252,
       "schema": {
         "team_member": {
           "type": "custom",
-          "use_uuid": true,
-          "filter_content_type": ["team-member"],
-          "required": true,
+          "pos": 0,
           "field_type": "significa-team-member",
           "options": []
         },
         "duration": {
           "type": "number",
-          "required": true
+          "required": true,
+          "pos": 1
         }
       },
       "image": null,
@@ -2768,24 +2778,9 @@
       "name": "proposal-section",
       "display_name": null,
       "created_at": "2023-09-11T15:35:20.402Z",
-      "updated_at": "2023-09-11T15:37:13.800Z",
+      "updated_at": "2023-09-13T08:38:10.855Z",
       "id": 4555212,
       "schema": {
-        "title": {
-          "type": "text"
-        },
-        "body": {
-          "type": "richtext",
-          "required": true,
-          "restrict_type": "groups",
-          "restrict_components": true,
-          "component_group_whitelist": [
-            "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
-            "1ef77ef8-466a-4b74-a076-f4554004e128"
-          ],
-          "customize_toolbar": true,
-          "toolbar": ["blok", "bold", "list", "h3", "h4", "italic", "link", "olist", "paragraph"]
-        },
         "data": {
           "type": "option",
           "use_uuid": true,
@@ -2810,7 +2805,25 @@
               "value": "timeline",
               "name": "Timeline"
             }
-          ]
+          ],
+          "pos": 0
+        },
+        "title": {
+          "type": "text",
+          "pos": 1
+        },
+        "body": {
+          "type": "richtext",
+          "required": true,
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_group_whitelist": [
+            "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
+            "1ef77ef8-466a-4b74-a076-f4554004e128"
+          ],
+          "customize_toolbar": true,
+          "toolbar": ["blok", "bold", "list", "h3", "h4", "italic", "link", "olist", "paragraph"],
+          "pos": 2
         }
       },
       "image": null,
@@ -2830,9 +2843,15 @@
       "name": "proposal-team-entry",
       "display_name": null,
       "created_at": "2023-09-11T15:39:52.162Z",
-      "updated_at": "2023-09-12T09:49:47.924Z",
+      "updated_at": "2023-09-13T09:46:49.441Z",
       "id": 4555220,
       "schema": {
+        "team_member": {
+          "type": "custom",
+          "pos": 0,
+          "field_type": "significa-team-member",
+          "options": []
+        },
         "department": {
           "type": "bloks",
           "restrict_type": "",
@@ -2841,15 +2860,8 @@
           "minimum": 1,
           "maximum": 1,
           "required": true,
-          "pos": 0
-        },
-        "team_member": {
-          "type": "custom",
-          "use_uuid": true,
-          "filter_content_type": ["team-member"],
           "pos": 1,
-          "field_type": "significa-team-member",
-          "options": []
+          "key": "department"
         },
         "role": {
           "type": "bloks",
@@ -2859,7 +2871,8 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["proposal-role"],
-          "required": true
+          "required": true,
+          "key": "role"
         },
         "rate_type": {
           "type": "option",
@@ -2882,15 +2895,13 @@
             }
           ],
           "default_value": "value",
-          "pos": 3
+          "pos": 3,
+          "key": "rate_type"
         },
-        "rate_in_eur": {
+        "rate_value": {
           "type": "number",
-          "pos": 4
-        },
-        "rate_in_percentage": {
-          "type": "number",
-          "pos": 5
+          "pos": 4,
+          "key": "rate_in_eur"
         }
       },
       "image": null,

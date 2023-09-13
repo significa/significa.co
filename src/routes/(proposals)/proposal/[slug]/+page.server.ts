@@ -20,7 +20,7 @@ export const load = async ({ cookies, fetch, params }) => {
 
   const failAuthentication = () => {
     cookies.delete(getCookieName(params.slug));
-    return { error: 'Either this link has expired or the provided password is incorrect.' };
+    return { error: true };
   };
 
   if (!password) {

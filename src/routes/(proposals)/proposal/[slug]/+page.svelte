@@ -1,6 +1,6 @@
 <script lang="ts">
   import { drawerLinks } from '$lib/actions/drawer-links';
-  import PasswordInput from './password-input.svelte';
+  import PasswordForm from './password-form.svelte';
   export let data;
 </script>
 
@@ -11,9 +11,5 @@
     <a href="/about/ana-moreno">Ana moreno</a>
   </div>
 {:else}
-  <h1>Password</h1>
-  <PasswordInput error={data.error === 'Wrong password'} />
-  {#if data.error}
-    <span class="text-error">{data.error}</span>
-  {/if}
+  <PasswordForm error={data.error} />
 {/if}

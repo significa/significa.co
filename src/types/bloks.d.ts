@@ -655,7 +655,7 @@ export interface ProposalEstimateEntryStoryblok {
   title: string;
   description?: string;
   color: '' | 'blue' | 'red' | 'yellow' | 'green' | 'black';
-  phases?: string;
+  phases: ProposalPhaseEntryStoryblok[];
   _uid: string;
   component: 'proposal-estimate-entry';
   [k: string]: any;
@@ -696,9 +696,9 @@ export interface ProposalScopeEntryStoryblok {
 }
 
 export interface ProposalSectionStoryblok {
+  data?: '' | 'scope' | 'team' | 'estimates' | 'timeline';
   title?: string;
   body: RichtextStoryblok;
-  data?: '' | 'scope' | 'team' | 'estimates' | 'timeline';
   _uid: string;
   component: 'proposal-section';
   [k: string]: any;
@@ -708,8 +708,7 @@ export interface ProposalTeamEntryStoryblok {
   department: ProposalDepartmentStoryblok[];
   role: ProposalRoleStoryblok[];
   rate_type?: '' | 'value' | 'percentage' | 'free';
-  rate_in_eur?: string;
-  rate_in_percentage?: string;
+  rate_value?: string;
   _uid: string;
   component: 'proposal-team-entry';
   [k: string]: any;

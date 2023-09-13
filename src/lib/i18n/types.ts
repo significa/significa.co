@@ -96,7 +96,10 @@ export const TranslationKeys = [
   'proposals.password-form.title',
   'proposals.password-form.subtitle',
   'proposals.password-form.field.label',
-  'proposals.password-form.error'
+  'proposals.password-form.error',
+  'proposals.nav.action.long',
+  'proposals.nav.action.short',
+  'proposals.nav.title'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

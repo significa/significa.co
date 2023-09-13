@@ -96,5 +96,8 @@
   "proposals.password-form.title": "Proposal.",
   "proposals.password-form.subtitle": "Enter your password.",
   "proposals.password-form.field.label": "Password",
-  "proposals.password-form.error": "Either this link has expired or the provided password is incorrect."
+  "proposals.password-form.error": "Either this link has expired or the provided password is incorrect.",
+  "proposals.nav.action.long": "Reply to proposal",
+  "proposals.nav.action.short": "Reply",
+  "proposals.nav.title": "Proposal"
 }

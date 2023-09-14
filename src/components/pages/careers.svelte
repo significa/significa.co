@@ -126,7 +126,7 @@
 
   <section class="mt-10 border-b md:mt-14 lg:mt-20">
     <div
-      class="container mx-auto mb-6 flex flex-col justify-between gap-6 px-container pt-8 lg:mb-12 lg:pt-12 xl:flex-row xl:gap-4"
+      class="container mx-auto mb-6 flex flex-col justify-between gap-10 px-container pt-8 lg:mb-12 lg:pt-12 xl:flex-row xl:gap-4"
     >
       <div class="xl:sticky xl:top-8 xl:max-w-xl xl:self-start">
         <h3 class="text-5xl text-foreground-secondary">{data.benefits_title}</h3>

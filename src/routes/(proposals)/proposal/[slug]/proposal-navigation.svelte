@@ -173,7 +173,7 @@
           <Select
             bind:value={selectedVersion}
             on:change={() => dispatch('selectedVersion', selectedVersion)}
-            class="w-60 hidden md:flex"
+            class="w-full md:hidden flex mb-6"
           >
             {#each versions as version}
               <option value={version}>{version}</option>

@@ -181,8 +181,8 @@
                 {@const { src, alt } = getImageAttributes(deliverables.icon)}
                 <img {src} {alt} class="max-h-12 object-contain drop-shadow-md" />
               {/if}
-              <div class="mt-4 text-lg font-semibold">{deliverables.title}</div>
-              <div class="text-lg font-semibold text-foreground-secondary">
+              <div class="mt-4 text-2xl font-semibold">{deliverables.title}</div>
+              <div class="text-2xl font-semibold text-foreground-secondary">
                 {deliverables.description}
               </div>
             </div>

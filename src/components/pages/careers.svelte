@@ -108,7 +108,7 @@
           <div class="mt-12 text-sm">
             <p class="leading-none text-foreground-secondary">{t('careers.footer.title')}</p>
             <Link
-              class="mt-0.5 inline-flex"
+              class="mt-0.5 inline-flex underline md:no-underline"
               href="mailto:{t('careers.footer.email')}"
               on:click={() => {
                 track(TrackingEvent.CAREERS_SPONTANEOUS_APPLICATION);

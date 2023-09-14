@@ -139,7 +139,7 @@
             />
             {#each data.services as service}
               <div
-                class="flex flex-col lg:border-r lg:p-8 lg:last:border-r-0 lg:first-of-type:pl-0"
+                class="flex flex-col border-t last:border-b md:border-t-0 md:last:border-b-0 lg:border-r lg:p-8 lg:last:border-r-0 lg:first-of-type:pl-0"
               >
                 <p class="mb-2 mt-11 text-3xl font-semibold lg:mt-0">{service.title}</p>
                 {#if service.entry}

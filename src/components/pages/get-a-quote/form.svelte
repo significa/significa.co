@@ -21,11 +21,14 @@
     | 't-shirt'
     | 'hello';
   const files = import.meta.glob('./eggs/*.svg', { as: 'raw', eager: true });
-  const eggs = Object.entries(files).reduce((acc, [path, file]) => {
-    const name = path.replace('./eggs/', '').replace('.svg', '') as Eggs;
-    acc[name] = file;
-    return acc;
-  }, {} as Record<Eggs, string>);
+  const eggs = Object.entries(files).reduce(
+    (acc, [path, file]) => {
+      const name = path.replace('./eggs/', '').replace('.svg', '') as Eggs;
+      acc[name] = file;
+      return acc;
+    },
+    {} as Record<Eggs, string>
+  );
 
   export let page: GetAQuotePageStoryblok;
 
@@ -138,7 +141,7 @@
         {#if visible || dirty}
           <div
             data-theme="light"
-            transition:fly={{ y: 500, opacity: 1, easing: circOut, duration: 250 }}
+            transition:fly|global={{ y: 500, opacity: 1, easing: circOut, duration: 250 }}
             aria-hidden="true"
             class="absolute -bottom-20 left-2 hidden bg-transparent drop-shadow lg:block"
             style="transform: rotate(-10deg)"

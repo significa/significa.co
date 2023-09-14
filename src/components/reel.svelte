@@ -49,7 +49,7 @@
   {#if showButton && paused && playLabel}
     <div
       data-theme={buttonTheme === 'light' ? 'dark' : 'light'}
-      transition:scale|local={{ duration: 200 }}
+      transition:scale={{ duration: 200 }}
       class="absolute z-20 origin-top-left bg-transparent"
       style="left: {x}px; top: {y}px"
     >
@@ -68,7 +68,7 @@
   {/if}
   {#if paused && playLabel}
     <div
-      transition:fade|local={{ duration: 200 }}
+      transition:fade={{ duration: 200 }}
       class="pointer-events-none absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center bg-black/10"
     />
   {/if}

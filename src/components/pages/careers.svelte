@@ -154,7 +154,11 @@
 </main>
 
 {#if $device === 'touch' && canvasFullscreen}
-  <div use:bodyLock class="fixed inset-0 z-50 bg-black/50" transition:fade={{ duration: 200 }}>
+  <div
+    use:bodyLock
+    class="fixed inset-0 z-50 bg-black/50"
+    transition:fade|global={{ duration: 200 }}
+  >
     <div class="absolute inset-2 overflow-hidden rounded-md bg-background shadow-xl lg:inset-4">
       <Canvas
         title={data.page_title}

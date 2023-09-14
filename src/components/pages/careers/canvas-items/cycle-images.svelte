@@ -22,12 +22,12 @@
   }
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<img
-  {alt}
-  src={images[active]}
-  draggable="false"
-  on:click={next}
-  class={clsx('drop-shadow-sm', $$restProps.class)}
-  style="left: {left || 0}px; top: {top || 0}px; transform: rotate({rotate || 0}deg)"
-/>
+<button on:click={next}>
+  <img
+    {alt}
+    src={images[active]}
+    draggable="false"
+    class={clsx('drop-shadow-sm', $$restProps.class)}
+    style="left: {left || 0}px; top: {top || 0}px; transform: rotate({rotate || 0}deg)"
+  />
+</button>

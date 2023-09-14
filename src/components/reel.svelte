@@ -27,6 +27,7 @@
   });
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <section
   class="relative overflow-hidden rounded-lg"
   on:mousemove={(e) => {

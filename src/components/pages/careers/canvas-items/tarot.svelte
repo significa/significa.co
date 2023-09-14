@@ -32,6 +32,8 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
+  role="button"
+  tabindex={0}
   style="left: {item.left || 0}px; top: {item.top || 0}px; transform: rotate({item.rotate ||
     0}deg); perspective: 1000px"
   class="h-[300px] w-[200px]"
@@ -43,6 +45,8 @@
   }}
 >
   <div
+    role="button"
+    tabindex={0}
     class="card h-[300px] w-[200px]"
     class:rotate={flip}
     on:click={() => {

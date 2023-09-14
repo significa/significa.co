@@ -17,7 +17,7 @@
   {sections}
   versions={versions.map((version) => version.version_name)}
   selectedVersion={selectedVersion?.version_name}
-  on:selectedVersion={(event) => {
+  on:select={(event) => {
     selectedVersion = versions?.find((v) => v.version_name === event.detail) || versions[0];
   }}
 />

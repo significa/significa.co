@@ -12,7 +12,7 @@
   export let versions: string[];
   export let selectedVersion: string;
   const dispatch = createEventDispatcher<{
-    selectedVersion: string;
+    select: string;
   }>();
   let panel = false;
 
@@ -38,7 +38,7 @@
         </a>
         <Select
           bind:value={selectedVersion}
-          on:change={() => dispatch('selectedVersion', selectedVersion)}
+          on:change={() => dispatch('select', selectedVersion)}
           class="w-60 hidden md:flex"
         >
           {#each versions as version}
@@ -116,7 +116,7 @@
         <div class="mt-8 w-full">
           <Select
             bind:value={selectedVersion}
-            on:change={() => dispatch('selectedVersion', selectedVersion)}
+            on:change={() => dispatch('select', selectedVersion)}
             class="w-full md:hidden flex mb-6"
           >
             {#each versions as version}

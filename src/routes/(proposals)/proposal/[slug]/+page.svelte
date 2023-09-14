@@ -7,18 +7,24 @@
   export let data;
 
   $: versions = data?.story?.content.versions || [];
-  $: version = $page.url.searchParams.get('version');
-  $: selectedVersion = versions?.find((v) => v.version_name === version) || versions[0];
-
+  $: paramVersion = $page.url.searchParams.get('version');
+  $: selectedVersion = versions?.find((v) => v.version_name === paramVersion) || versions?.[0];
   $: sections = (selectedVersion?.body?.map((section) => section.title).filter(Boolean) ||
     []) as string[];
 </script>
 
-<ProposalNavigation {sections} />
+<ProposalNavigation
+  {sections}
+  versions={versions.map((version) => version.version_name)}
+  selectedVersion={selectedVersion?.version_name}
+  on:selectedVersion={(event) => {
+    selectedVersion = versions?.find((v) => v.version_name === event.detail) || versions[0];
+  }}
+/>
 
 {#if data?.story}
   {#each sections as nav}
-    <h2 id={slugify(nav)} class="h-screen pt-20">{nav}</h2>
+    <h2 id={slugify(nav)} class="h-screen pt-20 pl-8 text-base font-medium">{nav}</h2>
   {/each}
 {:else}
   <PasswordForm error={data.error} />

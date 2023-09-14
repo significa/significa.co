@@ -1,13 +1,15 @@
 <script lang="ts">
   import { escapeKey, clickOutside, bodyLock } from '@significa/svelte-ui/actions';
-  import { Button, Link, Logo } from '@significa/svelte-ui';
+  import { Button, Link, Logo, Select } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import { fade, fly } from 'svelte/transition';
-  import { onMount } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   import { t } from '$lib/i18n';
   import { slugify } from '$lib/utils/paths';
 
   export let sections: string[];
+  export let versions: string[];
+  export let selectedVersion: string;
 
   const SCROLL_DIR_THRESHOLD = 76;
   const SCROLL_THRESHOLD = 200;
@@ -19,6 +21,10 @@
   let ticking = false;
   let isPastThreshold = false;
   let isPastZero = false;
+
+  const dispatch = createEventDispatcher<{
+    selectedVersion: string;
+  }>();
 
   onMount(() => {
     const updateScrollDir = () => {
@@ -82,15 +88,24 @@
     )}
   >
     <div class={'flex items-center justify-between py-4 container mx-auto px-container'}>
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-10">
         <a aria-label="Go to homepage" href="/">
           <Logo class="mt-1" variant="wordmark" />
         </a>
+        <Select
+          bind:value={selectedVersion}
+          on:change={() => dispatch('selectedVersion', selectedVersion)}
+          class="w-60 hidden md:flex"
+        >
+          {#each versions as version}
+            <option value={version}>{version}</option>
+          {/each}
+        </Select>
       </div>
 
       {#if sections.length > 0}
         <div class="flex items-center gap-8">
-          <div class="hidden items-center gap-6 text-base font-medium leading-relaxed lg:flex">
+          <div class="hidden items-center gap-6 text-base font-medium leading-relaxed xl:flex">
             {#each sections as nav}
               <Link href="#{slugify(nav)}">{nav}</Link>
             {/each}
@@ -107,7 +122,7 @@
             </Button>
 
             <Button
-              class="block lg:hidden"
+              class="block xl:hidden"
               aria-label="Open menu"
               variant="secondary"
               icon="3dots"
@@ -153,8 +168,17 @@
         </div>
       </div>
 
-      <div class="flex-1">
-        <div class="mt-8">
+      <div class="flex w-full">
+        <div class="mt-8 w-full">
+          <Select
+            bind:value={selectedVersion}
+            on:change={() => dispatch('selectedVersion', selectedVersion)}
+            class="w-60 hidden md:flex"
+          >
+            {#each versions as version}
+              <option value={version}>{version}</option>
+            {/each}
+          </Select>
           <p class="mb-2 text-xs font-medium uppercase tracking-wider text-foreground-secondary">
             {t('proposals.nav.title')}
           </p>

@@ -50,6 +50,8 @@
     }
   }}
   on:mouseup={() => (dragging = false)}
+  on:mouseleave={() => (dragging = false)}
+  on:touchend={() => (dragging = false)}
   on:mousemove={onDrag}
   on:touchmove={onDragMobile}
   class={clsx('not-rich-text relative my-8 overflow-hidden rounded-md md:my-14', $$restProps.class)}

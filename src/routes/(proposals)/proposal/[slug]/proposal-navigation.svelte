@@ -140,7 +140,7 @@
       <div class="flex w-full items-center justify-between">
         <Logo variant="symbol" />
         <div class="flex gap-4">
-          <!-- TODO: botao a funcionar-->
+          <!-- FIXME: this button should do something-->
           <Button class="flex-shrink-0" as="a">{t('proposals.nav.action.long')}</Button>
 
           <Button

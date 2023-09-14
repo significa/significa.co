@@ -6,17 +6,17 @@
 
   export let data;
 
-  $: versions = data.story?.content.versions || [];
+  $: versions = data?.story?.content.versions || [];
   $: version = $page.url.searchParams.get('version');
-  $: selectedVersion = versions.find((v) => v.version_name === version) || versions[0];
+  $: selectedVersion = versions?.find((v) => v.version_name === version) || versions[0];
 
-  $: sections = (selectedVersion.body?.map((section) => section.title).filter(Boolean) ||
+  $: sections = (selectedVersion?.body?.map((section) => section.title).filter(Boolean) ||
     []) as string[];
 </script>
 
 <ProposalNavigation {sections} />
 
-{#if data.story}
+{#if data?.story}
   {#each sections as nav}
     <h2 id={slugify(nav)} class="h-screen pt-20">{nav}</h2>
   {/each}

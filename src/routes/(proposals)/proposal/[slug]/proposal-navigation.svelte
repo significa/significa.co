@@ -36,15 +36,17 @@
         <a aria-label="Go to homepage" href="/">
           <Logo class="mt-1" variant="wordmark" />
         </a>
-        <Select
-          bind:value={selectedVersion}
-          on:change={() => dispatch('select', selectedVersion)}
-          class="w-60 hidden md:flex"
-        >
-          {#each versions as version}
-            <option value={version}>{version}</option>
-          {/each}
-        </Select>
+        {#if sections.length > 0}
+          <Select
+            bind:value={selectedVersion}
+            on:change={() => dispatch('select', selectedVersion)}
+            class="w-60 hidden md:flex"
+          >
+            {#each versions as version}
+              <option value={version}>{version}</option>
+            {/each}
+          </Select>
+        {/if}
       </div>
 
       {#if sections.length > 0}

@@ -139,6 +139,7 @@
           on:input={onInput}
         />
         {#if visible || dirty}
+          <!-- eslint-disable svelte/no-at-html-tags -->
           <div
             data-theme="light"
             transition:fly|global={{ y: 500, opacity: 1, easing: circOut, duration: 250 }}

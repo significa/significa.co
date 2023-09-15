@@ -84,6 +84,7 @@
         >
           {#each section.items || [] as item}
             {#if item.component === 'timeline-arrow'}
+              <!-- eslint-disable svelte/no-at-html-tags -->
               <div
                 class="absolute text-foreground-secondary"
                 style="left: {item.left || 0}px; top: {item.top || 0}px; transform: scale({(Number(

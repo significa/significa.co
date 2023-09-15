@@ -32,6 +32,7 @@
         'lg:mt-0 lg:flex lg:flex-1 lg:justify-end lg:pb-0 lg:pl-12'
       )}
     >
+      <!-- eslint-disable svelte/no-at-html-tags -->
       <div
         class={clsx(
           'text-xl text-foreground-secondary',

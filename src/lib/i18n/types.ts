@@ -89,7 +89,18 @@ export const TranslationKeys = [
   'a11y.physics-add',
   'a11y.see-post',
   'a11y.see-career',
-  'blog.tag-meta-description'
+  'blog.tag-meta-description',
+  'proposals.password-form.login',
+  'proposals.password-form.trouble.label',
+  'proposals.password-form.trouble.email',
+  'proposals.password-form.title',
+  'proposals.password-form.subtitle',
+  'proposals.password-form.field.label',
+  'proposals.password-form.error',
+  'proposals.nav.action.long',
+  'proposals.nav.action.short',
+  'proposals.nav.title',
+  'blog.pre-footer.related'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

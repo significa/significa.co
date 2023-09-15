@@ -8,31 +8,30 @@
 
     if (linktype === 'email') {
       attrs.href = `mailto:${attrs.href}`;
-    }
-    else if(attrs.href){
-      attrs.href  = sanitizeSlug(attrs.href)
+    } else if (attrs.href) {
+      attrs.href = sanitizeSlug(attrs.href);
     }
 
     if (attrs.anchor) {
-      attrs.href = `${attrs.href}#${attrs.anchor}`
-      delete attrs.anchor
+      attrs.href = `${attrs.href}#${attrs.anchor}`;
+      delete attrs.anchor;
     }
 
     if (attrs.custom) {
       for (const key in attrs.custom) {
-        attrs[key] = attrs.custom[key]
+        attrs[key] = attrs.custom[key];
       }
-      delete attrs.custom
+      delete attrs.custom;
     }
 
     return {
       tag: [
         {
           tag: 'a',
-          attrs: attrs,
-        },
-      ],
-    }
+          attrs: attrs
+        }
+      ]
+    };
   };
 
   export const resolver = new RichTextResolver(RichTextSchema);
@@ -43,7 +42,7 @@
   import { RichTextResolver, type ISbRichtext, RichTextSchema } from '@storyblok/js';
   import DynamicBlock from './blocks/dynamic-block.svelte';
   import type { HTMLAttributes } from 'svelte/elements';
-    import { sanitizeSlug } from '$lib/utils/paths';
+  import { sanitizeSlug } from '$lib/utils/paths';
 
   type Section = NonNullable<ISbRichtext['content']>[number];
   type Block = NonNullable<Section['attrs']['body']>[number];
@@ -61,6 +60,7 @@
   export let as: $$Props['as'] = 'div';
 </script>
 
+<!-- eslint-disable svelte/no-at-html-tags -->
 {#if doc.type === 'doc' && doc.content?.length}
   <svelte:element this={as} class={clsx('rich-text @container', className)}>
     {#each doc.content as section}

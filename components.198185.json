@@ -2451,7 +2451,7 @@
       "name": "proposal",
       "display_name": null,
       "created_at": "2023-09-11T15:29:11.214Z",
-      "updated_at": "2023-09-13T09:45:31.246Z",
+      "updated_at": "2023-09-13T16:14:54.347Z",
       "id": 4555199,
       "schema": {
         "password": {
@@ -2500,7 +2500,8 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["proposal-version"]
+          "component_whitelist": ["proposal-version"],
+          "description": "Most recent at the top"
         },
         "created_by": {
           "type": "custom",
@@ -2563,7 +2564,7 @@
       "name": "proposal-estimate-entry",
       "display_name": null,
       "created_at": "2023-09-11T15:43:50.844Z",
-      "updated_at": "2023-09-13T08:45:37.706Z",
+      "updated_at": "2023-09-13T16:12:00.390Z",
       "id": 4555228,
       "schema": {
         "title": {
@@ -2617,7 +2618,7 @@
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": null,
+      "preview_tmpl": "{{title}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
@@ -2667,7 +2668,7 @@
       "name": "proposal-phase-team-entry",
       "display_name": null,
       "created_at": "2023-09-11T15:46:07.698Z",
-      "updated_at": "2023-09-13T09:47:34.927Z",
+      "updated_at": "2023-09-13T16:11:39.562Z",
       "id": 4555252,
       "schema": {
         "team_member": {
@@ -2685,7 +2686,7 @@
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": null,
+      "preview_tmpl": "{{team_member.member.name}} – {{duration}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
@@ -2778,9 +2779,26 @@
       "name": "proposal-section",
       "display_name": null,
       "created_at": "2023-09-11T15:35:20.402Z",
-      "updated_at": "2023-09-13T08:38:10.855Z",
+      "updated_at": "2023-09-13T16:10:26.709Z",
       "id": 4555212,
       "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "body": {
+          "type": "richtext",
+          "required": true,
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_group_whitelist": [
+            "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
+            "1ef77ef8-466a-4b74-a076-f4554004e128"
+          ],
+          "customize_toolbar": true,
+          "toolbar": ["blok", "bold", "list", "h3", "h4", "italic", "link", "olist", "paragraph"],
+          "pos": 1
+        },
         "data": {
           "type": "option",
           "use_uuid": true,
@@ -2806,30 +2824,13 @@
               "name": "Timeline"
             }
           ],
-          "pos": 0
-        },
-        "title": {
-          "type": "text",
-          "pos": 1
-        },
-        "body": {
-          "type": "richtext",
-          "required": true,
-          "restrict_type": "groups",
-          "restrict_components": true,
-          "component_group_whitelist": [
-            "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
-            "1ef77ef8-466a-4b74-a076-f4554004e128"
-          ],
-          "customize_toolbar": true,
-          "toolbar": ["blok", "bold", "list", "h3", "h4", "italic", "link", "olist", "paragraph"],
           "pos": 2
         }
       },
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": null,
+      "preview_tmpl": "{{title}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
@@ -2843,7 +2844,7 @@
       "name": "proposal-team-entry",
       "display_name": null,
       "created_at": "2023-09-11T15:39:52.162Z",
-      "updated_at": "2023-09-13T09:46:49.441Z",
+      "updated_at": "2023-09-13T16:08:55.251Z",
       "id": 4555220,
       "schema": {
         "team_member": {
@@ -2907,7 +2908,7 @@
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": null,
+      "preview_tmpl": "{{team_member.member.name}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
@@ -2921,7 +2922,7 @@
       "name": "proposal-version",
       "display_name": null,
       "created_at": "2023-09-11T15:33:34.190Z",
-      "updated_at": "2023-09-11T15:47:37.774Z",
+      "updated_at": "2023-09-13T16:13:25.579Z",
       "id": 4555208,
       "schema": {
         "version_name": {
@@ -2976,7 +2977,7 @@
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": null,
+      "preview_tmpl": "{{version_name}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,

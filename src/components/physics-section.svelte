@@ -58,9 +58,6 @@
   let engine: Engine;
   let isAddingBox: boolean;
 
-  // Mobile behaviour
-  let timeout: ReturnType<typeof setTimeout>;
-
   // Limits for resize handling
   let boxGround: Body;
   let boxLeftWall: Body;
@@ -311,7 +308,7 @@
       };
 
       // prevent negative gravity being stuck
-      timeout = setTimeout(() => {
+      setTimeout(() => {
         engine.gravity = {
           x: 0,
           y: 1,

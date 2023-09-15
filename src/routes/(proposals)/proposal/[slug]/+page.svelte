@@ -1,15 +1,14 @@
 <script lang="ts">
-  import { drawerLinks } from '$lib/actions/drawer-links';
-  import PasswordForm from './password-form.svelte';
+  import PasswordPage from './password-page.svelte';
+  import ProposalPage from './proposal-page.svelte';
+
   export let data;
+
+  const proposal = data?.story?.content;
 </script>
 
-{#if data.story}
-  <h1>Hello from proposal {data.story.content.title}</h1>
-  <p>{data.story.content.description}</p>
-  <div use:drawerLinks>
-    <a href="/about/ana-moreno">Ana moreno</a>
-  </div>
+{#if data?.story && proposal}
+  <ProposalPage {proposal} />
 {:else}
-  <PasswordForm error={data.error} />
+  <PasswordPage error={data.error} />
 {/if}

@@ -8,7 +8,7 @@
 
 <div class={clsx('not-rich-text px-4 py-2 md:px-8 md:py-4 lg:px-16 lg:py-10', $$restProps.class)}>
   {#if block.testimonial}
-    <p class="text-2xl/7 font-semibold">
+    <p class="py-4 text-2xl/7 font-semibold md:py-0">
       <span class="bg-border">&ldquo;{block.testimonial}&rdquo;</span>
     </p>
   {/if}

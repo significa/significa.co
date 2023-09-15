@@ -696,9 +696,9 @@ export interface ProposalScopeEntryStoryblok {
 }
 
 export interface ProposalSectionStoryblok {
-  data?: '' | 'scope' | 'team' | 'estimates' | 'timeline';
   title?: string;
   body: RichtextStoryblok;
+  data?: '' | 'scope' | 'team' | 'estimates' | 'timeline';
   _uid: string;
   component: 'proposal-section';
   [k: string]: any;

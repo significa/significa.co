@@ -3,17 +3,14 @@
   import { Button, Link, Logo, Select } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import { fade, fly } from 'svelte/transition';
-  import { createEventDispatcher } from 'svelte';
   import { t } from '$lib/i18n';
   import { slugify } from '$lib/utils/paths';
   import { createTopNavScrollStatus } from '$lib/stores/topnav-scroll-status';
 
-  export let sections: string[];
-  export let versions: string[];
-  export let selectedVersion: string;
-  const dispatch = createEventDispatcher<{
-    select: string;
-  }>();
+  export let sections: string[] = [];
+  export let versions: string[] = [];
+  export let version: string = '';
+
   let panel = false;
 
   const scrollStatus = createTopNavScrollStatus();
@@ -36,14 +33,10 @@
         <a aria-label="Go to homepage" href="/">
           <Logo class="mt-1" variant="wordmark" />
         </a>
-        {#if sections.length > 0}
-          <Select
-            bind:value={selectedVersion}
-            on:change={() => dispatch('select', selectedVersion)}
-            class="w-60 hidden md:flex"
-          >
-            {#each versions as version}
-              <option value={version}>{version}</option>
+        {#if versions.length > 1}
+          <Select bind:value={version} class="w-full hidden md:flex">
+            {#each versions as v}
+              <option value={v}>{v}</option>
             {/each}
           </Select>
         {/if}
@@ -82,7 +75,7 @@
     </div>
   </header>
 
-  {#if panel && sections.length > 0}
+  {#if panel && (sections.length > 0 || versions.length > 1)}
     <div
       use:bodyLock
       use:escapeKey={{ id: 'top-navigation', callback: () => (panel = false) }}
@@ -116,15 +109,13 @@
 
       <div class="flex w-full">
         <div class="mt-8 w-full">
-          <Select
-            bind:value={selectedVersion}
-            on:change={() => dispatch('select', selectedVersion)}
-            class="w-full md:hidden flex mb-6"
-          >
-            {#each versions as version}
-              <option value={version}>{version}</option>
-            {/each}
-          </Select>
+          {#if versions.length > 1}
+            <Select bind:value={version} class="w-full md:hidden flex mb-6">
+              {#each versions as v}
+                <option value={v}>{v}</option>
+              {/each}
+            </Select>
+          {/if}
           <p class="mb-2 text-xs font-medium uppercase tracking-wider text-foreground-secondary">
             {t('proposals.nav.title')}
           </p>

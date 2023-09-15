@@ -132,7 +132,7 @@
           <div class="container relative mx-auto grid grid-cols-1 px-container md:grid-cols-3">
             <Square class="absolute -bottom-10 left-[20%] hidden drop-shadow-md lg:block" />
             <Hand
-              class="absolute -top-[76px] left-[54%] hidden drop-shadow-md md:-top-[60px] lg:block"
+              class="absolute -top-[--topnav-height] left-[54%] hidden drop-shadow-md md:-top-[60px] lg:block"
             />
             <Duck
               class="absolute -bottom-14 right-[20%] hidden drop-shadow-md md:right-[7%] lg:block"

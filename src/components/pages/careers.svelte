@@ -32,7 +32,7 @@
       items={data.canvas_items}
       hideMap={$device === 'touch'}
       {teamMembers}
-      style="height: min({data.canvas_height}px, calc(90vh - 76px));"
+      style="height: min({data.canvas_height}px, calc(90vh - var(--topnav-height)));"
     />
     <div class="absolute left-0 right-0 top-0 h-16 border-t" />
 

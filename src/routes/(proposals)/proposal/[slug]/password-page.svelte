@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, FloatingInput, Link } from '@significa/svelte-ui';
+  import { Button, FloatingInput } from '@significa/svelte-ui';
   import { t } from '$lib/i18n';
   import ProposalNavigation from './proposal-navigation.svelte';
 
@@ -7,37 +7,33 @@
 </script>
 
 <ProposalNavigation />
-<div class="container mx-auto px-container">
-  <div class="max-w-2xl md:mx-auto mx-5 mt-20">
+<div
+  class="container flex items-center xs:mx-auto w-full justify-left xs:justify-center h-[calc(100dvh-var(--topnav-height))] px-container"
+>
+  <div class="max-w-lg xs:max-w-xl xs:mx-auto -mt-[--topnav-height] w-full">
     <h2 class="text-5xl">{t('proposals.password-form.title')}</h2>
     <h2 class="text-5xl text-foreground-secondary">{t('proposals.password-form.subtitle')}</h2>
 
-    <form method="POST">
-      <FloatingInput
-        required
-        class="mt-8"
-        label={t('proposals.password-form.field.label')}
-        type="password"
-        name="password"
-        {error}
-      />
-      {#if error}
-        <span class="text-error block mt-1">{t('proposals.password-form.error')}</span>
-      {/if}
-
-      <div class="mt-8 flex flex-col justify-between gap-4 sm:flex-row-reverse sm:items-center">
-        <Button type="submit" size="lg">{t('proposals.password-form.login')}</Button>
-        <div class="text-sm">
-          <p class="leading-none text-foreground-secondary">
-            {t('proposals.password-form.trouble.label')}
-          </p>
-          <Link
-            class="mt-0.5 inline-flex"
-            href="mailto:{t('proposals.password-form.trouble.email')}"
-            >{t('proposals.password-form.trouble.email')}</Link
-          >
-        </div>
+    <form method="POST" class="relative mt-8 xs:mt-10">
+      <div class="flex-1">
+        <FloatingInput
+          required
+          label={t('proposals.password-form.field.label')}
+          type="password"
+          name="password"
+          maxlength="20"
+          {error}
+        />
+        {#if error}
+          <span class="text-error block mt-1">{t('proposals.password-form.error')}</span>
+        {/if}
       </div>
+
+      <Button
+        class="mt-4 w-full xs:w-auto xs:mt-0 xs:absolute xs:right-1.5 xs:top-1/2 xs:-translate-y-1/2"
+        type="submit"
+        size="md">{t('proposals.password-form.login')}</Button
+      >
     </form>
   </div>
 </div>

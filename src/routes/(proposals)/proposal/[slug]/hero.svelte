@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { t } from '$lib/i18n';
   import { getImageAttributes } from '$lib/utils/cms';
   import { formatDate } from '$lib/utils/dates';
   import type { ProposalStoryblok } from '$types/bloks';
@@ -8,19 +9,25 @@
 </script>
 
 <div class="flex-1 pt-10 md:pt-14 lg:pt-20">
-  <h2 class="text-7xl">{proposal.title}</h2>
-  <h2 class="text-7xl text-foreground-secondary">{proposal.description}</h2>
+  <div class="max-w-2xl">
+    <h2 class="text-7xl">{proposal.title}</h2>
+    <h2 class="text-7xl text-foreground-secondary">{proposal.description}</h2>
+  </div>
 
   <div class="flex gap-7 sm:gap-12 mt-10">
     <div>
-      <p class="text-base font-semibold leading-none text-foreground-secondary">Client</p>
+      <p class="text-base font-semibold leading-none text-foreground-secondary">
+        {t('proposals.hero.client')}
+      </p>
       <p class="mt-1 text-base font-semibold leading-none">
         {proposal.client}
       </p>
     </div>
 
     <div>
-      <p class="text-base font-semibold leading-none text-foreground-secondary">Created By</p>
+      <p class="text-base font-semibold leading-none text-foreground-secondary">
+        {t('proposals.hero.createdby')}
+      </p>
       <p class="mt-1 text-base font-semibold leading-none">
         {proposal.created_by.member.name}
       </p>
@@ -28,7 +35,9 @@
 
     {#if date}
       <div>
-        <p class="text-base font-semibold leading-none text-foreground-secondary">Date</p>
+        <p class="text-base font-semibold leading-none text-foreground-secondary">
+          {t('proposals.hero.date')}
+        </p>
         <p class="mt-1 text-base font-semibold leading-none">
           {formatDate(new Date(date), {
             dateStyle: 'medium'

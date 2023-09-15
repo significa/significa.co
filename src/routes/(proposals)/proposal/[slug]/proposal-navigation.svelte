@@ -28,7 +28,7 @@
         : 'translate-y-0'
     )}
   >
-    <div class={'flex items-center justify-between py-4 container mx-auto px-container'}>
+    <div class={'flex items-center justify-between py-4 container mx-auto px-container h-[76px]'}>
       <div class="flex items-center gap-10">
         <a aria-label="Go to homepage" href="/">
           <Logo class="mt-1" variant="wordmark" />

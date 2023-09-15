@@ -99,5 +99,9 @@
   "proposals.password-form.error": "Either this link has expired or the provided password is incorrect.",
   "proposals.nav.action.long": "Reply to proposal",
   "proposals.nav.action.short": "Reply",
-  "proposals.nav.title": "Proposal"
+  "proposals.nav.title": "Proposal",
+  "blog.pre-footer.related": "Related articles",
+  "proposals.hero.client": "Client",
+  "proposals.hero.createdby": "Created by",
+  "proposals.hero.date": "Date"
 }

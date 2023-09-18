@@ -119,6 +119,7 @@
               {#each versions as v}
                 <li class="mb-1 flex items-center gap-1.5">
                   <Link
+                    active={v === version}
                     class="inline-block"
                     on:click={() => {
                       version = v;

@@ -101,7 +101,8 @@ export const TranslationKeys = [
   'blog.pre-footer.related',
   'proposals.hero.client',
   'proposals.hero.createdby',
-  'proposals.hero.date'
+  'proposals.hero.date',
+  'proposals.nav.versions'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

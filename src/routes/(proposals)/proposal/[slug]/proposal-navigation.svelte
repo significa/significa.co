@@ -109,18 +109,28 @@
         </div>
       </div>
 
-      <div class="flex w-full">
-        <div class="mt-8">
-          {#if versions.length > 1}
+      <div class="w-full">
+        {#if versions.length > 1}
+          <div class="md:hidden block mt-8">
             <p class="mb-2 text-xs font-medium uppercase tracking-wider text-foreground-secondary">
-              Version
+              {t('proposals.nav.versions')}
             </p>
-            <Select bind:value={version} size="sm" class="md:hidden flex mb-8">
+            <ul class="text-lg font-medium">
               {#each versions as v}
-                <option value={v}>{v}</option>
+                <li class="mb-1 flex items-center gap-1.5">
+                  <Link
+                    class="inline-block"
+                    on:click={() => {
+                      version = v;
+                      panel = false;
+                    }}>{v}</Link
+                  >
+                </li>
               {/each}
-            </Select>
-          {/if}
+            </ul>
+          </div>
+        {/if}
+        <div class="mt-8">
           <p class="mb-2 text-xs font-medium uppercase tracking-wider text-foreground-secondary">
             {t('proposals.nav.title')}
           </p>

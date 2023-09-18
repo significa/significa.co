@@ -101,5 +101,6 @@
   "blog.pre-footer.related": "Related articles",
   "proposals.hero.client": "Client",
   "proposals.hero.createdby": "Created by",
-  "proposals.hero.date": "Date"
+  "proposals.hero.date": "Date",
+  "proposals.nav.versions": "Versions"
 }

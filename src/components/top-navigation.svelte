@@ -24,7 +24,7 @@
   const scrollStatus = createTopNavScrollStatus();
 </script>
 
-<div class="mb-px h-[76px]">
+<div class="mb-px h-[--topnav-height]">
   <header
     class={clsx(
       'ease-[cubic-bezier(0.90, 0, 0.05, 1)] z-30 w-full border-b bg-background/95 backdrop-blur-md transition-[transform,border-color] duration-300',

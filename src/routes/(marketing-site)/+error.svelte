@@ -128,7 +128,7 @@
   <div
     bind:clientWidth={screenWidth}
     bind:clientHeight={screenHeight}
-    style="height: calc(100vh - 76px);"
+    style="height: calc(100vh - var(--topnav-height));"
     class="flex cursor-pointer items-center justify-center overflow-hidden border-t select-none"
   >
     <div

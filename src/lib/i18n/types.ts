@@ -91,8 +91,6 @@ export const TranslationKeys = [
   'a11y.see-career',
   'blog.tag-meta-description',
   'proposals.password-form.login',
-  'proposals.password-form.trouble.label',
-  'proposals.password-form.trouble.email',
   'proposals.password-form.title',
   'proposals.password-form.subtitle',
   'proposals.password-form.field.label',
@@ -103,7 +101,8 @@ export const TranslationKeys = [
   'blog.pre-footer.related',
   'proposals.hero.client',
   'proposals.hero.createdby',
-  'proposals.hero.date'
+  'proposals.hero.date',
+  'proposals.nav.versions'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

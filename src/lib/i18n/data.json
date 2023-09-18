@@ -90,12 +90,10 @@
   "a11y.see-post": "See post",
   "a11y.see-career": "Se career",
   "blog.tag-meta-description": "We design, we code, and we write about it too! Discover our blog with articles about: {{tags}}",
-  "proposals.password-form.login": "Log in",
-  "proposals.password-form.trouble.label": "Having trouble logging in?",
-  "proposals.password-form.trouble.email": "shorui@significa.co",
-  "proposals.password-form.title": "Proposal.",
-  "proposals.password-form.subtitle": "Enter your password.",
-  "proposals.password-form.field.label": "Password",
+  "proposals.password-form.login": "Access proposal",
+  "proposals.password-form.title": "Your proposal awaits.",
+  "proposals.password-form.subtitle": "Safely, behind a password.",
+  "proposals.password-form.field.label": "Type your password",
   "proposals.password-form.error": "Either this link has expired or the provided password is incorrect.",
   "proposals.nav.action.long": "Reply to proposal",
   "proposals.nav.action.short": "Reply",
@@ -103,5 +101,6 @@
   "blog.pre-footer.related": "Related articles",
   "proposals.hero.client": "Client",
   "proposals.hero.createdby": "Created by",
-  "proposals.hero.date": "Date"
+  "proposals.hero.date": "Date",
+  "proposals.nav.versions": "Versions"
 }

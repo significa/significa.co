@@ -16,7 +16,7 @@
   const scrollStatus = createTopNavScrollStatus();
 </script>
 
-<div class="mb-px h-[76px]">
+<div class="mb-px h-[--topnav-height]">
   <header
     class={clsx(
       'ease-[cubic-bezier(0.90, 0, 0.05, 1)] z-30 w-full border-b bg-background/95 backdrop-blur-md transition-[transform,border-color] duration-300 fixed',
@@ -28,13 +28,15 @@
         : 'translate-y-0'
     )}
   >
-    <div class={'flex items-center justify-between py-4 container mx-auto px-container h-[76px]'}>
-      <div class="flex items-center gap-10">
+    <div
+      class={'flex items-center justify-between py-4 container mx-auto px-container h-[--topnav-height]'}
+    >
+      <div class="flex items-center gap-6">
         <a aria-label="Go to homepage" href="/">
           <Logo class="mt-1" variant="wordmark" />
         </a>
         {#if versions.length > 1}
-          <Select bind:value={version} class="w-full hidden md:flex">
+          <Select bind:value={version} size="md" class="w-full hidden md:flex text-sm">
             {#each versions as v}
               <option value={v}>{v}</option>
             {/each}
@@ -107,15 +109,29 @@
         </div>
       </div>
 
-      <div class="flex w-full">
-        <div class="mt-8 w-full">
-          {#if versions.length > 1}
-            <Select bind:value={version} class="w-full md:hidden flex mb-6">
+      <div class="w-full">
+        {#if versions.length > 1}
+          <div class="md:hidden block mt-8">
+            <p class="mb-2 text-xs font-medium uppercase tracking-wider text-foreground-secondary">
+              {t('proposals.nav.versions')}
+            </p>
+            <ul class="text-lg font-medium">
               {#each versions as v}
-                <option value={v}>{v}</option>
+                <li class="mb-1 flex items-center gap-1.5">
+                  <Link
+                    active={v === version}
+                    class="inline-block"
+                    on:click={() => {
+                      version = v;
+                      panel = false;
+                    }}>{v}</Link
+                  >
+                </li>
               {/each}
-            </Select>
-          {/if}
+            </ul>
+          </div>
+        {/if}
+        <div class="mt-8">
           <p class="mb-2 text-xs font-medium uppercase tracking-wider text-foreground-secondary">
             {t('proposals.nav.title')}
           </p>

@@ -14,5 +14,10 @@
       gtag('js', new Date());
       gtag('config', 'AW-11144833772');
     </script>
+    {#if $page.url.pathname === '/services'}
+      <script>
+        gtag('event', 'conversion', { send_to: 'AW-11144833772/qEClCJ-Z5OAYEOzVosIp' });
+      </script>
+    {/if}
   {/if}
 </svelte:head>

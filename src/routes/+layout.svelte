@@ -10,6 +10,7 @@
   import Footer from '$components/footer.svelte';
   import { toast, Toaster, ToastNotification } from '@significa/svelte-ui';
   import { beforeNavigate } from '$app/navigation';
+  import Gtag from '$components/gtag.svelte';
   export let data;
 
   beforeNavigate(() => {
@@ -20,6 +21,7 @@
 <Toaster component={ToastNotification} />
 <PageDrawer />
 <DraftMode />
+<Gtag />
 <ImageGallery />
 <TopNavigation
   configuration={data.configuration.content}

@@ -102,7 +102,18 @@ export const TranslationKeys = [
   'proposals.hero.client',
   'proposals.hero.createdby',
   'proposals.hero.date',
-  'proposals.nav.versions'
+  'proposals.nav.versions',
+  'proposals.scope.delivarable',
+  'proposals.scope.service',
+  'proposals.scope.multiple-features',
+  'proposals.show',
+  'proposals.hide',
+  'proposals.team.department',
+  'proposals.team.team-member',
+  'proposals.team.role',
+  'proposals.team.rate',
+  'proposals.included',
+  'proposals.scope.features'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

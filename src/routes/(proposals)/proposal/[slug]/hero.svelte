@@ -8,7 +8,7 @@
   export let date: string | undefined;
 </script>
 
-<div class="flex-1 pt-10 md:pt-14 lg:pt-20">
+<div class="container mx-auto px-container flex-1 pt-10 md:pt-14 lg:pt-20">
   <div class="max-w-2xl">
     <h2 class="text-7xl">{proposal.title}</h2>
     <h2 class="text-7xl text-foreground-secondary">{proposal.description}</h2>

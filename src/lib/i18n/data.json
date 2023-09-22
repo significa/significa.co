@@ -102,5 +102,16 @@
   "proposals.hero.client": "Client",
   "proposals.hero.createdby": "Created by",
   "proposals.hero.date": "Date",
-  "proposals.nav.versions": "Versions"
+  "proposals.nav.versions": "Versions",
+  "proposals.scope.delivarable": "Delivarable",
+  "proposals.scope.service": "service",
+  "proposals.scope.multiple-features": "Multiple Features",
+  "proposals.show": "Show",
+  "proposals.hide": "Hide",
+  "proposals.team.department": "Department",
+  "proposals.team.team-member": "Team Member",
+  "proposals.team.role": "Role",
+  "proposals.team.rate": "Rate",
+  "proposals.included": "Included",
+  "proposals.scope.features": "Features"
 }

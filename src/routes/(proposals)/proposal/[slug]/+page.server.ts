@@ -31,7 +31,8 @@ export const load = async ({ cookies, fetch, params, url }) => {
 
   try {
     res = await storyblok.get('cdn/stories/' + url.pathname, {
-      version
+      version,
+      resolve_relations: ['proposal-team-entry.department']
     });
   } catch (error) {
     if (isStatusError(error) && error.status === 404) {

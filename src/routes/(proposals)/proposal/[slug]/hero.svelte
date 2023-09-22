@@ -51,6 +51,8 @@
     {@const { alt, src, width, height } = getImageAttributes(proposal.cover, {
       size: [1440, 0]
     })}
-    <img class="h-auto w-full rounded-md bg-background-offset mt-10" {src} {alt} {width} {height} />
+    <div class="mt-12">
+      <img class="h-auto w-full rounded-md bg-background-offset" {src} {alt} {width} {height} />
+    </div>
   {/if}
 </div>

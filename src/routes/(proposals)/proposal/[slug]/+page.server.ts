@@ -12,7 +12,7 @@ const isStatusError = (err: unknown): err is { status: number } => {
   );
 };
 
-export const load = async ({ cookies, fetch, params }) => {
+export const load = async ({ cookies, fetch, params, url }) => {
   const version: 'draft' | 'published' = cookies.get(PREVIEW_COOKIE_KEY) ? 'draft' : 'published';
   const storyblok = getStoryblok({ fetch }, { accessToken: STORYBLOK_PROPOSALS_TOKEN });
 
@@ -30,7 +30,7 @@ export const load = async ({ cookies, fetch, params }) => {
   let res;
 
   try {
-    res = await storyblok.get('cdn/stories/proposals/' + params.slug, {
+    res = await storyblok.get('cdn/stories/' + url.pathname, {
       version
     });
   } catch (error) {

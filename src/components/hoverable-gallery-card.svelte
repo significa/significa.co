@@ -23,6 +23,7 @@
 
 {#if card.component === 'photo_card' && card.photo?.filename}
   {@const { alt, src } = getImageAttributes(card.photo)}
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div
     class={clsx(
       '-mx-[10%] aspect-[4/6] bg-white p-[4%] shadow-md transition-all duration-[250ms]',
@@ -39,6 +40,7 @@
     <img class="aspect-[4/6] h-[100%] object-cover" {src} {alt} />
   </div>
 {:else if card.component === 'notepad_card' && card.text}
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div
     class={clsx(
       'aspect-[4/6] transition-all duration-[250ms] lg:-mx-[10%] lg:p-[4%]',

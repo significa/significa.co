@@ -8,6 +8,7 @@
   let hover: HTMLDivElement;
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
   class="relative -mx-2 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4"
   on:mouseleave={() => {

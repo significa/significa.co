@@ -7,7 +7,6 @@
 </script>
 
 {#if block.video?.filename}
-  <!-- svelte-ignore a11y-media-has-caption -->
   <figure
     class={clsx('not-rich-text my-8 h-auto w-full md:my-14', $$restProps.class)}
     use:storyblokEditable={block}

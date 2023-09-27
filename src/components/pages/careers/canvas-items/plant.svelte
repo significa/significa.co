@@ -11,9 +11,9 @@
 
 <CycleImages
   images={plants}
-  top={item.top}
-  left={item.left}
-  rotate={item.rotate}
+  top={Number(item.top)}
+  left={Number(item.left)}
+  rotate={Number(item.rotate)}
   alt="Plant"
   trackEvent={{ event: TrackingEvent.CAREERS_CANVAS_GROW_PLANT }}
 />

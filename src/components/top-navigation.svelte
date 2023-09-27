@@ -146,12 +146,12 @@
       role="button"
       tabindex="0"
       on:keydown={onkeydown}
-      transition:fade={{ duration: 200 }}
+      transition:fade|global={{ duration: 200 }}
       class="fixed inset-0 z-50 bg-black/50"
       on:click={() => (panel = false)}
     />
     <div
-      transition:fly={{ x: 1000, duration: 300 }}
+      transition:fly|global={{ x: 1000, duration: 300 }}
       use:clickOutside={() => (panel = false)}
       class={clsx(
         variant === 'handbook' ? 'px-6' : 'px-container pl-6',

@@ -154,13 +154,9 @@
           {:else}
             <div style="transform: rotate({Math.floor(Math.random() * 180)}deg);">
               {#if cell === TARGET}
-                <!-- svelte-ignore a11y-click-events-have-key-events -->
-                <img
-                  alt=""
-                  src={nobita}
-                  on:click={() => (isFound = !isFound)}
-                  class={clsx(stickerStyle, 'pointer-events-auto')}
-                />
+                <button class="outline-none" on:click={() => (isFound = !isFound)}>
+                  <img alt="" src={nobita} class={clsx(stickerStyle, 'pointer-events-auto')} />
+                </button>
               {:else}
                 <img alt="" {src} class={stickerStyle} />
               {/if}

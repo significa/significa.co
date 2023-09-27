@@ -19,5 +19,8 @@ export default defineConfig({
       // useful when developing locally with linked UI library.
       allow: process.env.NODE_ENV === 'development' ? ['/'] : undefined
     }
+  },
+  optimizeDeps: {
+    exclude: process.env.NODE_ENV === 'development' ? ['@significa/svelte-ui'] : []
   }
 });

@@ -25,7 +25,7 @@
     on:keydown={(event) => {
       if (event.key === 'Escape') drawer.close();
     }}
-    transition:fade={{ duration: 200 }}
+    transition:fade|global={{ duration: 200 }}
     class="fixed inset-0 z-50 bg-black/50"
     on:click={drawer.close}
   />

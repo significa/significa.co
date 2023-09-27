@@ -135,7 +135,10 @@
               ? 'border-l-2 border-foreground text-foreground'
               : 'text-foreground-secondary',
             level >= 3 ? 'pl-6' : 'pl-3'
-          )}><span class={clsx('block', active === id && '-ml-px')}>{@html content}</span></a
+          )}
+        >
+          <!-- eslint-disable svelte/no-at-html-tags -->
+          <span class={clsx('block', active === id && '-ml-px')}>{@html content}</span></a
         >
       {/each}
     {/if}

@@ -33,13 +33,19 @@
 </script>
 
 {#if $items.length}
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div
+    role="button"
+    tabindex={0}
     use:bodyLock
     use:escapeKey={{ id: 'image-gallery', callback: close }}
     class="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.8)]"
-    transition:fade={{ duration: 200 }}
+    transition:fade|global={{ duration: 200 }}
     on:click={close}
+    on:keydown={(e) => {
+      if (e.code === 'Space') {
+        close();
+      }
+    }}
   >
     <CircleButton
       class="absolute right-2 top-2 z-10 bg-black text-white"
@@ -63,7 +69,7 @@
         {@const { src, alt, width, height, title } = getImageAttributes(image)}
         <figure
           class="absolute h-[calc(100%-32px)] w-[calc(100%-32px)]"
-          transition:scale={{ start: 0.9, duration: 200 }}
+          transition:scale|global={{ start: 0.9, duration: 200 }}
         >
           <img class="h-full w-full object-contain" {src} {alt} {width} {height} />
           {#if title}

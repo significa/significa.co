@@ -26,6 +26,7 @@
   });
 </script>
 
+<!-- eslint-disable svelte/no-at-html-tags -->
 <pre
   tabindex="-1"
   bind:this={el}

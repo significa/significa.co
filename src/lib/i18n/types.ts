@@ -113,7 +113,25 @@ export const TranslationKeys = [
   'proposals.team.role',
   'proposals.team.rate',
   'proposals.included',
-  'proposals.scope.features'
+  'proposals.scope.features',
+  'proposals.estimates.area',
+  'proposals.estimates.phases',
+  'proposals.estimates.team',
+  'proposals.estimates.duration',
+  'proposals.estimates.predicted-cost',
+  'proposals.estimates.phase',
+  'proposals.estimates.people',
+  'proposals.estimates.person',
+  'proposals.estimates.subtotal',
+  'proposals.estimates.discount',
+  'proposals.estimates.gran-total',
+  'proposals.reply.description',
+  'proposals.testimonials',
+  'proposals.testimonials.description',
+  'proposals.clients.description',
+  'proposals.awards',
+  'proposals.awards.description',
+  'proposals.projects'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

@@ -29,7 +29,7 @@
   style="--container-margin: {containerMargin}px;
   --section-title-width: {sectionTitleWidth}px;
   --central-cols-width: {centralColsWidth}px;
-  --last-col-content-width: 100px;"
+  --last-col-content-width: 75px;"
 >
   <table class="table-fixed w-[750px] md:w-full">
     <thead>
@@ -37,9 +37,9 @@
         <!-- Delivarable Column -->
         <th
           class={clsx(
-            getContainersPaddingClassName('pl'),
+            getContainersPaddingClassName('left'),
             getColumnsWidthClassName('first'),
-            'py-2.5'
+            'pr-4 lg:pr-12 py-2.5'
           )}
           bind:clientWidth={firstColWidth}
           ><p class={clsx(getHeaderCellTextClassName('left'))}>
@@ -47,7 +47,7 @@
           </p></th
         >
         <!-- Service Column-->
-        <th class={clsx(getColumnsWidthClassName('central'), 'pl-4 lg:pl-12 py-2.5')}
+        <th class={clsx(getColumnsWidthClassName('central'), 'pr-4 lg:pr-12 py-2.5')}
           ><p class={clsx(getHeaderCellTextClassName('left'))}>
             {t('proposals.scope.service')}
           </p></th
@@ -56,8 +56,8 @@
         <th
           class={clsx(
             getColumnsWidthClassName('central'),
-            'pl-4 lg:pl-12 py-2.5 lg:pr-0',
-            getContainersPaddingClassName('pr')
+            'lg:pr-12 py-2.5',
+            getContainersPaddingClassName('right')
           )}
           ><p class={clsx(getHeaderCellTextClassName('left'))}>
             {t('proposals.scope.features')}
@@ -66,7 +66,7 @@
         <!-- Show Column -->
         <th
           class={clsx(
-            getContainersPaddingClassName('pr'),
+            getContainersPaddingClassName('right'),
             getColumnsWidthClassName('last'),
             'hidden lg:block pl-4 lg:pl-12 py-2.5'
           )}
@@ -79,7 +79,7 @@
         {@const features = entry.features?.split('\n').filter(Boolean) || []}
         <tr class="border-b border-foreground-tertiary even:bg-background-offset">
           <!-- Delivarable Cell -->
-          <td class={clsx(getContainersPaddingClassName('pl'), 'py-4 align-top')}>
+          <td class={clsx(getContainersPaddingClassName('left'), 'py-4 pr-4 lg:pr-12 align-top')}>
             <p class="font-bold">
               {entry.title}.
             </p>
@@ -98,7 +98,7 @@
             </Button>
           </td>
           <!-- Service Cell -->
-          <td class="pl-4 lg:pl-12 py-4 align-top">
+          <td class="pr-4 lg:pr-12 py-4 align-top">
             <div class="flex flex-wrap gap-2">
               {#each entry.services || [] as service}
                 <Tag class="cursor-default" label={service} />
@@ -106,7 +106,7 @@
             </div>
           </td>
           <!-- Features Cell -->
-          <td class={clsx(getContainersPaddingClassName('pr'), 'pl-4 lg:pl-12 align-top lg:pr-0')}>
+          <td class={clsx(getContainersPaddingClassName('right'), 'lg:pr-12 align-top')}>
             <p
               class={clsx(
                 'border-t border-foreground-secondary py-4 -mt-0.5 transition-colors',
@@ -131,8 +131,8 @@
           <!-- Show Cell -->
           <td
             class={clsx(
-              getContainersPaddingClassName('pr'),
-              'hidden lg:block pl-4 lg:pl-12 align-top text-right py-4'
+              getContainersPaddingClassName('right'),
+              'hidden lg:table-cell align-top text-right py-4'
             )}
             ><Button
               variant="secondary"

@@ -1,6 +1,7 @@
 import { STORYBLOK_PROPOSALS_TOKEN } from '$env/static/private';
 import { PREVIEW_COOKIE_KEY } from '$lib/constants';
 import { getStoryblok } from '$lib/storyblok';
+import { fetchPage } from '$lib/content';
 import type { ProposalStoryblok } from '$types/bloks.js';
 import type { ISbStoryData } from '@storyblok/js';
 
@@ -28,10 +29,13 @@ export const load = async ({ cookies, fetch, params, url }) => {
   }
 
   let res;
+  let services;
+  let home;
 
   try {
     res = await storyblok.get('cdn/stories/' + url.pathname, {
-      version
+      version,
+      resolve_relations: ['proposal-team-entry.department']
     });
   } catch (error) {
     if (isStatusError(error) && error.status === 404) {
@@ -47,7 +51,31 @@ export const load = async ({ cookies, fetch, params, url }) => {
     return failAuthentication();
   }
 
-  return { story };
+  try {
+    services = await fetchPage({
+      slug: 'services',
+      version: cookies.get(PREVIEW_COOKIE_KEY) ? 'draft' : 'published',
+      fetch,
+      url
+    });
+  } catch (err) {
+    console.error('Fetching services for proposals: ' + err);
+    throw err;
+  }
+
+  try {
+    home = await fetchPage({
+      slug: '',
+      version: cookies.get(PREVIEW_COOKIE_KEY) ? 'draft' : 'published',
+      fetch,
+      url
+    });
+  } catch (err) {
+    console.error('Fetching home for proposals: ' + err);
+    throw err;
+  }
+
+  return { story, services, home };
 };
 
 export const actions = {

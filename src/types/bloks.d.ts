@@ -705,7 +705,7 @@ export interface ProposalSectionStoryblok {
 }
 
 export interface ProposalTeamEntryStoryblok {
-  department: ProposalDepartmentStoryblok[];
+  department: StoryblokStory<ProposalDepartmentStoryblok> | string;
   role: ProposalRoleStoryblok[];
   rate_type?: '' | 'value' | 'percentage' | 'free';
   rate_value?: string;

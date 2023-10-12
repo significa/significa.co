@@ -20,6 +20,7 @@
   export let ctaLink: MultilinkStoryblok | undefined = undefined;
   export let ctaLabel: string | undefined = undefined;
   export let testimonials: RichtextTestimonialStoryblok[] | undefined = undefined;
+  export let hasBorder: boolean | undefined = true;
 
   let scroll: number;
   let testimonialsSection: HTMLElement;
@@ -31,7 +32,7 @@
 
 <svelte:window bind:scrollY={scroll} />
 
-<section class="border-t" bind:this={testimonialsSection}>
+<section class={clsx(hasBorder && 'border-t')} bind:this={testimonialsSection}>
   <div class="container mx-auto px-container pt-16 lg:pt-20">
     <div class="mx-auto flex max-w-xl flex-col items-center">
       <svelte:element this={as} class="text-center text-5xl text-foreground-secondary"

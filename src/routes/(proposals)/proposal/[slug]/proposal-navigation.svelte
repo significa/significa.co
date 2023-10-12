@@ -111,7 +111,7 @@
 
       <div class="w-full">
         {#if versions.length > 1}
-          <div class="md:hidden block mt-8">
+          <div class="md:hidden block mt-10">
             <p class="mb-2 text-xs font-medium uppercase tracking-wider text-foreground-secondary">
               {t('proposals.nav.versions')}
             </p>

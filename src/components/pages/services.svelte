@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { Button } from '@significa/svelte-ui';
   import Seo from '$components/seo.svelte';
   import Testimonials from '$components/testimonials.svelte';
   import PreFooter from '$components/pre-footer.svelte';
@@ -7,13 +6,14 @@
   import Hand from './services/illustrations/hand.svelte';
   import Duck from './services/illustrations/duck.svelte';
   import Timeline from './services/timeline.svelte';
-  import { theme } from '$lib/stores/theme';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import type { ServicesPageStoryblok } from '$types/bloks';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import clsx from 'clsx';
   import { TrackingEvent, track } from '$lib/track';
   import { page } from '$app/stores';
+  import AwardsEntry from '$components/awards-entry.svelte';
+  import Clients from '$components/clients.svelte';
 
   export let data: ServicesPageStoryblok;
 </script>
@@ -70,40 +70,14 @@
                     }}
                     class="container mx-auto flex flex-col justify-between px-container py-5 lg:flex-row"
                   >
-                    <div class="flex w-full flex-col-reverse items-center lg:flex-row">
-                      <div class="mb-4 flex w-full items-center lg:mb-0">
-                        {#if award.image?.filename}
-                          {@const { alt, src, width, height } = getImageAttributes(award.image, {
-                            size: [120, 0]
-                          })}
-                          <img
-                            class="mr-2 h-auto w-14 rounded-xs bg-background-offset"
-                            {src}
-                            {alt}
-                            {width}
-                            {height}
-                          />
-                        {/if}
-                        <div class="ml-4 flex-col">
-                          <p class="text-base font-semibold text-foreground-secondary">
-                            {award.label}
-                          </p>
-                          <p class="text-base font-semibold">{award.name}</p>
-                        </div>
-                      </div>
-                      <div class="mb-4 w-full lg:mb-0">
-                        <p class="text-3xl font-semibold">{award.project}</p>
-                      </div>
-                    </div>
-                    <div class="w-1/3">
-                      {#if href}
-                        <div class="flex-1 justify-end text-foreground-tertiary xl:flex">
-                          <Button variant="secondary" arrow>
-                            {award.link_text}
-                          </Button>
-                        </div>
-                      {/if}
-                    </div>
+                    <AwardsEntry
+                      linkHref={href}
+                      image={award.image}
+                      label={award.label}
+                      name={award.name}
+                      project={award.project}
+                      linkText={award.link_text}
+                    ></AwardsEntry>
                   </a>
                 </li>
               {/each}
@@ -205,19 +179,7 @@
   <section class=" container mx-auto px-container pb-16 pt-20 lg:pb-20 lg:pt-40">
     <h3 class="text-center text-2xl text-foreground-secondary">{data.clients_title}</h3>
     {#if data.clients}
-      <div class="flex flex-wrap justify-center gap-12 p-6">
-        {#each data.clients as client}
-          {#if client.light_mode?.filename && $theme === 'light'}
-            {@const { src, alt, width, height } = getImageAttributes(client.light_mode)}
-            <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
-          {/if}
-
-          {#if client.dark_mode?.filename && $theme === 'dark'}
-            {@const { src, alt, width, height } = getImageAttributes(client.dark_mode)}
-            <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
-          {/if}
-        {/each}
-      </div>
+      <Clients clients={data.clients}></Clients>
     {/if}
   </section>
 

@@ -6,6 +6,9 @@ import { createOrUpdateDrawing } from '$lib/drawings.server.js';
 import { isValidDrawing } from '$components/draw-your-segg/types.js';
 
 const getAuthToken = (id: string) => {
+  if (!env.SESSION_SECRET_KEY) {
+    throw error(500, 'Required env var SESSION_SECRET_KEY not set');
+  }
   const hmac = createHmac('sha256', env.SESSION_SECRET_KEY);
   hmac.update(id);
   return hmac.digest('hex');

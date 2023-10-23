@@ -256,11 +256,11 @@
       <input type="hidden" name="attachments" bind:value={attachments} />
     {/if}
     {#if disclaimer}
-      <p class="text-base text-foreground-secondary">{disclaimer}</p>
+      <p class="text-base text-foreground-secondary my-3">{disclaimer}</p>
       <hr />
     {/if}
   </div>
-  <div class="mt-8 flex flex-col justify-between gap-4 sm:flex-row-reverse sm:items-center">
+  <div class="mt-8 flex flex-col justify-between gap-6 sm:flex-row-reverse sm:items-center">
     <Button
       type="submit"
       size="lg"

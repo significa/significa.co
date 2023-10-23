@@ -118,6 +118,9 @@
       <TwoEggs class="hidden w-60 sm:block" />
     </div>
   </div>
+  <h4 class="mb-[-40px] mt-10 block text-foreground-secondary md:hidden">
+    {t('blog.pre-footer.related')}
+  </h4>
 </div>
 
 <!-- Related Posts -->

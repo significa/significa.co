@@ -87,7 +87,7 @@
 
   <!-- Clients -->
   <section class=" container mx-auto px-container pb-16 pt-20 lg:pb-36 lg:pt-40">
-    <h3 class="text-center text-2xl text-foreground-secondary">{data.clients_title}</h3>
+    <h3 class="text-center text-lg text-foreground-secondary">{data.clients_title}</h3>
 
     {#if data.clients}
       <div class="flex flex-wrap justify-center gap-12 p-6">

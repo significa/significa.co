@@ -3,7 +3,11 @@
   "buildCommand": "npm run build",
   "framework": "sveltekit",
   "redirects": [
-    { "source": "/showcase/:path", "destination": "/projects/:path", "permanent": true },
+    {
+      "source": "/showcase/:path",
+      "destination": "/projects/:path",
+      "permanent": true
+    },
     {
       "source": "/handbook/methodology",
       "destination": "/handbook/project-management/project-process",
@@ -24,7 +28,11 @@
       "destination": "/handbook/development ",
       "permanent": true
     },
-    { "source": "/handbook/illustration", "destination": "/handbook/design", "permanent": true },
+    {
+      "source": "/handbook/illustration",
+      "destination": "/handbook/design",
+      "permanent": true
+    },
     {
       "source": "/handbook/branding",
       "destination": "/handbook/design/branding",
@@ -66,6 +74,14 @@
     {
       "source": "/api/event",
       "destination": "https://plausible.io/api/event"
+    },
+    {
+      "source": "/api/mato/script.js",
+      "destination": "http://cdn.matomo.cloud/significa.matomo.cloud/matomo.js"
+    },
+    {
+      "source": "/api/mato/event",
+      "destination": "https://significa.matomo.cloud/matomo.php"
     }
   ]
 }

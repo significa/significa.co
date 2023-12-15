@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { t } from '$lib/i18n';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { AssetStoryblok } from '$types/bloks';
   import { Avatar } from '@significa/svelte-ui';
@@ -7,6 +8,7 @@
   let className: string | undefined = undefined;
   export { className as class };
 
+  export let is_active: boolean | undefined = undefined;
   export let name: string;
   export let position: string | undefined = undefined;
   export let photo: AssetStoryblok | undefined = undefined;
@@ -24,7 +26,7 @@
     {/if}
     {#if position}
       <p class="mt-1 text-base font-semibold leading-none text-foreground-secondary">
-        {position}
+        {!is_active ? `${t('team.former')} ` : ''}{position}
       </p>
     {/if}
   </div>

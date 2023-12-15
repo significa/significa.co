@@ -44,6 +44,10 @@
       ''
     );
 
+    if (tags.length === 0) {
+      return $page.data.page?.story?.content?.seo_title;
+    }
+
     return `${titlePrefix} - ${tags.join(', ')}`;
   };
 </script>

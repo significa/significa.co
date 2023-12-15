@@ -72,7 +72,12 @@
           </p>
         </a>
         {#if project.content.recognitions?.length}
-          <div class={clsx('mt-6 flex gap-4', variant === 'featured' ? '' : 'flex-col')}>
+          <div
+            class={clsx(
+              'mt-6 flex gap-4',
+              variant === 'featured' ? 'flex-col @5xl:flex-row' : 'flex-col'
+            )}
+          >
             <Recognitions
               as={as === 'h2' ? 'h3' : 'h4'}
               recognitions={project.content.recognitions}

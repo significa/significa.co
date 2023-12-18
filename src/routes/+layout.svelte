@@ -10,12 +10,20 @@
   import Footer from '$components/footer.svelte';
   import { toast, Toaster, ToastNotification } from '@significa/svelte-ui';
   import { beforeNavigate } from '$app/navigation';
-  import { dev } from '$app/environment';
+  import { browser, dev } from '$app/environment';
+  import posthog from 'posthog-js';
   export let data;
 
   beforeNavigate(() => {
     toast.clearAll();
   });
+
+  if (browser) {
+    posthog.init('phc_8ukJJpl6XE0i5TWJmvzkgt9bluU8Uur4n3FkxjT0knL', {
+      api_host: 'https://eu.posthog.com',
+      persistence: 'localStorage'
+    });
+  }
 </script>
 
 <svelte:head>

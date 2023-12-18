@@ -8,7 +8,7 @@
   let className: string | undefined = undefined;
   export { className as class };
 
-  export let is_active: boolean | undefined = undefined;
+  export let isActive: boolean | undefined = undefined;
   export let name: string;
   export let position: string | undefined = undefined;
   export let photo: AssetStoryblok | undefined = undefined;
@@ -26,7 +26,7 @@
     {/if}
     {#if position}
       <p class="mt-1 text-base font-semibold leading-none text-foreground-secondary">
-        {!is_active ? `${t('team.former')} ` : ''}{position}
+        {!isActive ? `${t('team.former')} ` : ''}{position}
       </p>
     {/if}
   </div>

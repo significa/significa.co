@@ -8,7 +8,7 @@
   let className: string | undefined = undefined;
   export { className as class };
 
-  export let isActive: boolean | undefined = undefined;
+  export let isActive: boolean = true;
   export let name: string;
   export let position: string | undefined = undefined;
   export let photo: AssetStoryblok | undefined = undefined;

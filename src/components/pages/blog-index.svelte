@@ -39,14 +39,14 @@
   };
 
   const getPageTitle = (tags: string[]): string => {
+    if (tags.length === 0) {
+      return $page.data.page?.story?.content?.seo_title;
+    }
+
     const titlePrefix = ($page.data.page?.story?.content?.seo_title || '').replace(
       /\s[-–]\s.*/,
       ''
     );
-
-    if (tags.length === 0) {
-      return $page.data.page?.story?.content?.seo_title;
-    }
 
     return `${titlePrefix} - ${tags.join(', ')}`;
   };

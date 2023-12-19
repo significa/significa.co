@@ -29,7 +29,7 @@
   let subtotal: number = 0;
   let totalDuration: number = 0;
   let discountedValue: number = 0;
-  let granTotal: number = 0;
+  let grandTotal: number = 0;
 
   team.forEach((member) => {
     teamInfoMap.set(member.team_member.member.name, {
@@ -70,9 +70,9 @@
 
   if (discount) {
     discountedValue = (subtotal * +discount) / 100;
-    granTotal = subtotal - discountedValue;
+    grandTotal = subtotal - discountedValue;
   } else {
-    granTotal = subtotal;
+    grandTotal = subtotal;
   }
 
   stickyColContentWidth = Math.max((('' + subtotal).length * 135) / 5.5, 175);
@@ -338,15 +338,15 @@
         </tr>
       {/if}
       <tr class={'border-b border-foreground-tertiary bg-background'}>
-        <!-- Gran Total Label Cell -->
+        <!-- Grand Total Label Cell -->
         <td class={clsx('py-4  align-top font-bold')}>
-          {t('proposals.estimates.gran-total')}
+          {t('proposals.estimates.grand-total')}
         </td>
         <!-- Total Duration Cell -->
         <td class={'lg:pl-12 pl-4 py-4 align-top text-right font-bold tabular-nums pr-4 md:pr-0'}>
           {totalDuration}
         </td>
-        <!-- Gran Total Cell -->
+        <!-- Grand Total Cell -->
         <td
           class={clsx(
             getStickyColClassName(),
@@ -356,7 +356,7 @@
           )}
         >
           <div class="w-px bg-foreground-tertiary md:w-0 absolute left-0 top-0 bottom-0" />
-          {formatter.format(granTotal)}
+          {formatter.format(grandTotal)}
         </td>
       </tr>
     </tbody>

@@ -34,7 +34,7 @@
   <table class="table-fixed w-[750px] md:w-full">
     <thead>
       <tr class="border-b border-foreground-secondary">
-        <!-- Delivarable Column -->
+        <!-- Deliverable Column -->
         <th
           class={clsx(
             getContainersPaddingClassName('left'),
@@ -43,7 +43,7 @@
           )}
           bind:clientWidth={firstColWidth}
           ><p class={clsx(getHeaderCellTextClassName('left'))}>
-            {t('proposals.scope.delivarable')}
+            {t('proposals.scope.deliverable')}
           </p></th
         >
         <!-- Service Column-->
@@ -78,7 +78,7 @@
       {#each data as entry, i}
         {@const features = entry.features?.split('\n').filter(Boolean) || []}
         <tr class="border-b border-foreground-tertiary even:bg-background-offset">
-          <!-- Delivarable Cell -->
+          <!-- Deliverable Cell -->
           <td class={clsx(getContainersPaddingClassName('left'), 'py-4 pr-4 lg:pr-12 align-top')}>
             <p class="font-bold">
               {entry.title}.

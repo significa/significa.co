@@ -54,9 +54,9 @@
       phase.team.forEach((team) => {
         areaCounter.duration = areaCounter.duration + +team.duration;
         const memberInfo = teamInfoMap.get(team.team_member.member.name);
-        if (memberInfo.rate_type == 'value') {
+        if (memberInfo?.rate_type == 'value') {
           areaCounter.cost = areaCounter.cost + +team.duration * +memberInfo.rate_value;
-        } else if (memberInfo.rate_type == 'percentage') {
+        } else if (memberInfo?.rate_type == 'percentage') {
           areaCounter.percentage = areaCounter.percentage + +memberInfo.rate_value;
         }
       });

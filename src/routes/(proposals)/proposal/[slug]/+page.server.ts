@@ -54,7 +54,7 @@ export const load = async ({ cookies, fetch, params, url }) => {
   try {
     services = await fetchPage({
       slug: 'services',
-      version: cookies.get(PREVIEW_COOKIE_KEY) ? 'draft' : 'published',
+      version,
       fetch,
       url
     });
@@ -66,7 +66,7 @@ export const load = async ({ cookies, fetch, params, url }) => {
   try {
     home = await fetchPage({
       slug: '',
-      version: cookies.get(PREVIEW_COOKIE_KEY) ? 'draft' : 'published',
+      version,
       fetch,
       url
     });

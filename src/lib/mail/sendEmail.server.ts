@@ -5,6 +5,7 @@ import { getTextTemplate } from './template';
 import { getTextTemplate as getMinimalTextTemplate } from './template-minimal';
 import emailTemplate from './template.html?raw';
 import minimalEmailTemplate from './template-minimal.html?raw';
+import type { FormType } from '$components/contact-form.svelte';
 
 const escapeHTML = (unsafeContent: string | undefined | null): string => {
   if (!unsafeContent) {
@@ -72,19 +73,40 @@ export const sendTransactionalEmail = async ({
 export const sendEmailNotification = async ({
   name,
   email,
-  message
+  message,
+  type
 }: {
   name: string;
   email: string;
   message: string;
+  type: FormType;
 }) => {
   name = escapeHTML(name);
   email = escapeHTML(email);
   message = escapeHTML(message);
 
+  const allEnvsEmail = [
+    {
+      env: env.NOTIFICATION_EMAIL_ADDRESS_GET_A_QUOTE,
+      type: 'quote'
+    },
+    {
+      env: env.NOTIFICATION_EMAIL_ADDRESS_APPLY_TO_POSITION,
+      type: 'career'
+    },
+    {
+      env: env.NOTIFICATION_EMAIL_ADDRESS_TALK_TO_US,
+      type: 'contact'
+    }
+  ] satisfies { env: string; type: FormType }[];
+
+  const destinationEmail = allEnvsEmail.find((val) => val.type === type)?.env;
+
+  if (!destinationEmail) return;
+
   await sendEmail({
     Destination: {
-      ToAddresses: [env.SUBMISSIONS_NOTIFICATION_EMAIL_ADDRESS]
+      ToAddresses: [destinationEmail]
     },
     Message: {
       Body: {

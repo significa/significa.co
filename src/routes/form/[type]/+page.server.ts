@@ -1,7 +1,7 @@
 import { env } from '$env/dynamic/private';
 import { AWS_S3_BUCKET } from '$env/static/private';
 import { t } from '$lib/i18n';
-import { sendTransactionalEmail } from '$lib/mail/sendEmail.server.js';
+import { sendEmailNotification, sendTransactionalEmail } from '$lib/mail/sendEmail.server.js';
 import { notion } from '$lib/notion.server.js';
 import { fail, redirect } from '@sveltejs/kit';
 
@@ -42,6 +42,16 @@ export const actions = {
             email: !email,
             message: !message
           }
+        }
+      });
+    }
+
+    try {
+      sendEmailNotification({ name, email, message });
+    } catch (error) {
+      return fail(500, {
+        error: {
+          message: 'Failed to send internal email notification'
         }
       });
     }
@@ -91,9 +101,9 @@ export const actions = {
           break;
       }
     } catch (error) {
-      return fail(422, {
+      return fail(500, {
         error: {
-          type: 'notion'
+          message: 'Failed to store form submission'
         }
       });
     }
@@ -102,9 +112,9 @@ export const actions = {
       const subject = t('form.subject');
       await sendTransactionalEmail({ name, email, subject });
     } catch (error) {
-      return fail(422, {
+      return fail(500, {
         error: {
-          type: 'email'
+          message: 'Failed to send email notification to user'
         }
       });
     }

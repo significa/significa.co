@@ -74,33 +74,24 @@ export const sendEmailNotification = async ({
   name,
   email,
   message,
-  type
+  formType
 }: {
   name: string;
   email: string;
   message: string;
-  type: FormType;
+  formType: FormType;
 }) => {
   name = escapeHTML(name);
   email = escapeHTML(email);
   message = escapeHTML(message);
 
-  const allEnvsEmail = [
-    {
-      env: env.NOTIFICATION_EMAIL_ADDRESS_GET_A_QUOTE,
-      type: 'quote'
-    },
-    {
-      env: env.NOTIFICATION_EMAIL_ADDRESS_APPLY_TO_POSITION,
-      type: 'career'
-    },
-    {
-      env: env.NOTIFICATION_EMAIL_ADDRESS_TALK_TO_US,
-      type: 'contact'
-    }
-  ] satisfies { env: string; type: FormType }[];
+  const formTypeToDestinationEmail: Record<FormType, string | undefined> = {
+    quote: env.NOTIFICATION_EMAIL_ADDRESS_QUOTE,
+    career: env.NOTIFICATION_EMAIL_ADDRESS_CAREER,
+    contact: env.NOTIFICATION_EMAIL_ADDRESS_CONTACT
+  };
 
-  const destinationEmail = allEnvsEmail.find((val) => val.type === type)?.env;
+  const destinationEmail = formTypeToDestinationEmail[formType];
 
   if (!destinationEmail) return;
 

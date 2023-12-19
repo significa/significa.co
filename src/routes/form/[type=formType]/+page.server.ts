@@ -61,7 +61,7 @@ export const actions = {
         name,
         email,
         message,
-        type: formType
+        formType
       });
     } catch (error) {
       return fail(500, {

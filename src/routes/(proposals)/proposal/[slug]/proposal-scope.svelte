@@ -46,12 +46,14 @@
             {t('proposals.scope.deliverable')}
           </p></th
         >
+
         <!-- Service Column-->
         <th class={clsx(getColumnsWidthClassName('central'), 'pr-4 lg:pr-12 py-2.5')}
           ><p class={clsx(getHeaderCellTextClassName('left'))}>
             {t('proposals.scope.service')}
           </p></th
         >
+
         <!-- Features Column-->
         <th
           class={clsx(
@@ -63,6 +65,7 @@
             {t('proposals.scope.features')}
           </p></th
         >
+
         <!-- Show Column -->
         <th
           class={clsx(
@@ -97,6 +100,7 @@
               {isShowingFeatures[i] ? t('proposals.hide') : t('proposals.show')}
             </Button>
           </td>
+
           <!-- Service Cell -->
           <td class="pr-4 lg:pr-12 py-4 align-top">
             <div class="flex flex-wrap gap-2">
@@ -105,6 +109,7 @@
               {/each}
             </div>
           </td>
+
           <!-- Features Cell -->
           <td class={clsx(getContainersPaddingClassName('right'), 'lg:pr-12 align-top')}>
             <p
@@ -128,6 +133,7 @@
               </div>
             {/if}
           </td>
+
           <!-- Show Cell -->
           <td
             class={clsx(

@@ -6,10 +6,12 @@
   export let clients: ClientLogoStoryblok[];
 </script>
 
-<section class=" container mx-auto px-container pb-16 pt-20 lg:pb-20 lg:pt-40">
-  <h3 class="text-center text-2xl text-foreground-secondary">
-    {t('proposals.clients.description')}
-  </h3>
+{#if clients?.length > 0}
+  <section class=" container mx-auto px-container pb-16 pt-20 lg:pb-20 lg:pt-40">
+    <h3 class="text-center text-2xl text-foreground-secondary">
+      {t('proposals.clients.description')}
+    </h3>
 
-  <Clients {clients}></Clients>
-</section>
+    <Clients {clients}></Clients>
+  </section>
+{/if}

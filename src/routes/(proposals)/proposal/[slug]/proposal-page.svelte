@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { HomePageStoryblok, ProposalStoryblok, ServicesPageStoryblok } from '$types/bloks';
+  import type { ProposalStoryblok } from '$types/bloks';
   import { slugify } from '$lib/utils/paths';
   import Hero from './hero.svelte';
   import ProposalNavigation from './proposal-navigation.svelte';
@@ -7,22 +7,19 @@
   import ProposalScope from './proposal-scope.svelte';
   import ProposalTeam from './proposal-team.svelte';
   import ProposalEstimates from './proposal-estimates.svelte';
-  import ProposalAwards from './proposal-awards.svelte';
-  import ProposalClients from './proposal-clients.svelte';
-  import ProposalTestimonials from './proposal-testimonials.svelte';
-  import ProposalProjects from './proposal-projects.svelte';
+
   import ProposalReplyBlock from './proposal-reply-block.svelte';
 
   export let proposal: ProposalStoryblok;
-  export let services: ServicesPageStoryblok;
-  export let home: HomePageStoryblok;
 
+  // Data related variables
   const versions = proposal?.versions || [];
   let version = versions.length > 0 ? versions[0].version_name : '';
 
   $: content = versions.find((v) => v.version_name === version);
   $: sections = (content?.body || []).map((b) => b.title || '').filter(Boolean);
 
+  // Appearance related variables
   let sectionTitleWidth;
   let containerWidth: number;
   let windowWidth: number;
@@ -31,6 +28,7 @@
 </script>
 
 <div class="container mx-auto" bind:clientWidth={containerWidth}></div>
+<!-- Change to <svelte:window bind:innerWidth={windowWidth} -->
 <div class="w-full" bind:clientWidth={windowWidth}></div>
 
 <ProposalNavigation
@@ -40,6 +38,7 @@
 />
 
 <Hero {proposal} date={content?.date}></Hero>
+
 {#each content?.body || [] as section}
   <section id={slugify(section.title)} class=" pt-20 lg:pt-28">
     <div class="container mx-auto px-container flex flex-col gap-12 lg:flex-row">
@@ -48,6 +47,7 @@
         <RichText class="lg:w-2/3" doc={section.body} />
       </div>
     </div>
+
     <div class="pt-20">
       {#if section.data === 'scope' && content?.scope}
         <ProposalScope data={content.scope} {windowWidth} {containerMargin} {sectionTitleWidth} />
@@ -70,23 +70,3 @@
 {/each}
 
 <ProposalReplyBlock></ProposalReplyBlock>
-
-<!-- Awards -->
-{#if services.awards?.length}
-  <ProposalAwards awards={services.awards}></ProposalAwards>
-{/if}
-
-<!-- Projects -->
-{#if home.projects?.length}
-  <ProposalProjects projects={home.projects}></ProposalProjects>
-{/if}
-
-<!-- Testimonials -->
-{#if services.testimonials?.length}
-  <ProposalTestimonials testimonials={services.testimonials}></ProposalTestimonials>
-{/if}
-
-<!-- Clients -->
-{#if services.clients?.length}
-  <ProposalClients clients={services.clients}></ProposalClients>
-{/if}

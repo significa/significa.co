@@ -79,32 +79,32 @@
     {
       budget: '15.000€ to 50.000€',
       description:
-        'Usually for full-fledged, multi-platform, largely-complex products, like <a class="text-foreground-accent underline" href="/projects/dia">Oopsie</a>. Roughly, around a 1 year project.'
+        'For small or pilot projects, like marketing sites, PoCs, or branding, like  <a class="text-foreground-accent underline" href="/projects/yonder">Kota</a>. Ranging from 1 to 3 months.'
     },
     {
       budget: '50.000€ to 100.000€',
       description:
-        'Usually for mid-size projects, like corporate websites or MVPs, like <a class="text-foreground-accent underline" href="/projects/passaporte-natura">PN2000</a>. Roughly, ranging from 3 to 6 months.'
+        'For mid-size projects, like corporate websites or MVPs, like <a class="text-foreground-accent underline" href="/projects/passaporte-natura">PN2000</a>. Ranging from 3 to 6 months.'
     },
     {
       budget: '100.000€ to 200.000€',
       description:
-        'Usually for projects like tailor-made e-commerces and mid-sized products, like <a class="text-foreground-accent underline" href="/projects/dia">Dia</a>. Roughly, ranging from 6 to 9 months.'
+        'For projects like tailor-made e-commerces and mid-sized products, like <a class="text-foreground-accent underline" href="/projects/dia">Dia</a>. Ranging from 6 to 9 months.'
     },
     {
       budget: '200.000€ to 300.000€',
       description:
-        'Usually for full-fledged, single-platform products of a higher complexity, like <a class="text-foreground-accent underline" href="/projects/bion">Bion</a>. Roughly, ranging from 6 to 12 months.'
+        'For full-fledged, single-platform products of a higher complexity, like <a class="text-foreground-accent underline" href="/projects/bion">Bion</a>. Ranging from 6 to 12 months.'
     },
     {
       budget: '300.000€ to 400.000€',
       description:
-        'Usually for full-fledged, multi-platform, larger products like <a class="text-foreground-accent underline" href="/projects/allo">allO</a>. Roughly, around a 1 year project.'
+        'For full-fledged, multi-platform, larger products like <a class="text-foreground-accent underline" href="/projects/allo">allO</a>. Around a 1 year project.'
     },
     {
       budget: '400.000€ and above',
       description:
-        'Usually for full-fledged, multi-platform, largely-complex products, like <a class="text-foreground-accent underline" href="/projects/oopsie">Oopsie</a>. Roughly, around a 1 year project.'
+        'For full-fledged, multi-platform, largely-complex products, like <a class="text-foreground-accent underline" href="/projects/oopsie">Oopsie</a>. Around a 1 year project.'
     }
   ];
 
@@ -257,26 +257,27 @@
             <label
               for={option.budget}
               class={clsx(
-                'flex items-start gap-3 p-4 transition-all hover:bg-foreground/2 cursor-pointer border rounded-md hover:border-border-active hover:ring-2',
+                'flex flex-col items-start gap-1 p-4 transition-all hover:bg-foreground/2 cursor-pointer border rounded-md hover:border-border-active hover:ring-2',
                 option.budget &&
                   budget.includes(option.budget) &&
                   'hover:ring-4 border-border-active ring-4'
               )}
             >
-              <div>
+              <div class="flex items-center justify-between w-full">
                 <p class="font-medium">{option.budget}</p>
-                <!-- eslint-disable svelte/no-at-html-tags -->
-                <p class="mt-1 text-sm text-foreground-secondary">{@html option.description}</p>
+                <Radio
+                  bind:group={budget}
+                  id={option.budget}
+                  value={option.budget ?? ''}
+                  name="budget"
+                  class={clsx(
+                    'shrink-0 cursor-pointer',
+                    option.budget && budget.includes(option.budget) && '[&+p:after]:animate-strike'
+                  )}
+                />
               </div>
-              <Radio
-                bind:group={budget}
-                id={option.budget}
-                value={option.budget ?? ''}
-                class={clsx(
-                  'shrink-0',
-                  option.budget && budget.includes(option.budget) && '[&+p:after]:animate-strike'
-                )}
-              />
+              <!-- eslint-disable svelte/no-at-html-tags -->
+              <p class="text-sm text-foreground-secondary">{@html option.description}</p>
             </label>
           {/each}
         </div>

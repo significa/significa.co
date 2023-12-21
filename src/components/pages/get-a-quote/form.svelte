@@ -71,11 +71,11 @@
     if (['15.000€ to 50.000€'].includes(budget)) {
       character = 'budget10';
     } else if (['50.000€ to 100.000€'].includes(budget)) {
-      character = 'budget10';
-    } else if (['100.000€ to 200.000€'].includes(budget)) {
-      character = 'budget10';
-    } else if (['200.000€ to 300.000€'].includes(budget)) {
       character = 'budget25';
+    } else if (['100.000€ to 200.000€'].includes(budget)) {
+      character = 'budget25';
+    } else if (['200.000€ to 300.000€'].includes(budget)) {
+      character = 'budget50';
     } else if (['300.000€ to 400.000€'].includes(budget)) {
       character = 'budget50';
     } else if (['400.000€ and above'].includes(budget)) {
@@ -133,7 +133,7 @@
           aria-hidden="true"
           class="container mx-auto mt-10 gap-8 px-container relative bg-transparent pointer-events-none grow hidden lg:flex"
         >
-          <div class="-mb-12 -ml-16 sticky bottom-0 mt-auto">
+          <div class="-mb-12 -ml-16 sticky -bottom-12 mt-auto">
             {@html eggs[character]}
             {#if character === 't-shirt' && truncatedText}
               <div

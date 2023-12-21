@@ -9,6 +9,7 @@
   import { browser } from '$app/environment';
   import { applyAction, enhance } from '$app/forms';
   import { page } from '$app/stores';
+  import { drawerLinks } from '$lib/actions/drawer-links';
   import { t } from '$lib/i18n';
   import { TrackingEvent, track } from '$lib/track';
   import {
@@ -74,7 +75,39 @@
     input: string;
   }>();
 
-  const budgetOptions = ['10k - 25k', '25k - 50k', '50k - 100k', '100k+'];
+  const budgetOptions = [
+    {
+      budget: '15.000€ to 50.000€',
+      description:
+        'Usually for full-fledged, multi-platform, largely-complex products, like <a class="text-foreground-accent underline" href="/projects/dia">Oopsie</a>. Roughly, around a 1 year project.'
+    },
+    {
+      budget: '50.000€ to 100.000€',
+      description:
+        'Usually for mid-size projects, like corporate websites or MVPs, like <a class="text-foreground-accent underline" href="/projects/passaporte-natura">PN2000</a>. Roughly, ranging from 3 to 6 months.'
+    },
+    {
+      budget: '100.000€ to 200.000€',
+      description:
+        'Usually for projects like tailor-made e-commerces and mid-sized products, like <a class="text-foreground-accent underline" href="/projects/dia">Dia</a>. Roughly, ranging from 6 to 9 months.'
+    },
+    {
+      budget: '200.000€ to 300.000€',
+      description:
+        'Usually for full-fledged, single-platform products of a higher complexity, like <a class="text-foreground-accent underline" href="/projects/bion">Bion</a>. Roughly, ranging from 6 to 12 months.'
+    },
+    {
+      budget: '300.000€ to 400.000€',
+      description:
+        'Usually for full-fledged, multi-platform, larger products like <a class="text-foreground-accent underline" href="/projects/allo">allO</a>. Roughly, around a 1 year project.'
+    },
+    {
+      budget: '400.000€ and above',
+      description:
+        'Usually for full-fledged, multi-platform, largely-complex products, like <a class="text-foreground-accent underline" href="/projects/oopsie">Oopsie</a>. Roughly, around a 1 year project.'
+    }
+  ];
+
   const careers = [
     DEFAULT_POSITION,
     ...($page.data.careers || []).map((j: ISbStoryData) => j.name)
@@ -217,20 +250,37 @@
       on:input={() => dispatch('input', 'message')}
     />
     {#if type === 'quote'}
-      <FloatingSelect
-        name="budget"
-        class="w-full"
-        label={t('contact.label.budget')}
-        bind:value={budget}
-        on:focus={() => dispatch('focus', 'budget')}
-        on:blur={() => dispatch('blur', 'budget')}
-        on:change={() => dispatch('input', 'budget')}
-      >
-        <option value="" class="text-foreground">Select budget</option>
-        {#each budgetOptions as option}
-          <option value={option} class="text-foreground">{option}</option>
-        {/each}
-      </FloatingSelect>
+      <div use:drawerLinks class="@container">
+        <p class="pt-5 block leading-none text-foreground-secondary">{t('contact.range')}</p>
+        <div class="mt-4 grid grid-cols-1 gap-4 mb-4 @2xl:grid-cols-2">
+          {#each budgetOptions as option}
+            <label
+              for={option.budget}
+              class={clsx(
+                'flex items-start gap-3 p-4 transition-all hover:bg-foreground/2 cursor-pointer border rounded-md hover:border-border-active hover:ring-2',
+                option.budget &&
+                  budget.includes(option.budget) &&
+                  'hover:ring-4 border-border-active ring-4'
+              )}
+            >
+              <div>
+                <p class="font-medium">{option.budget}</p>
+                <!-- eslint-disable svelte/no-at-html-tags -->
+                <p class="mt-1 text-sm text-foreground-secondary">{@html option.description}</p>
+              </div>
+              <Radio
+                bind:group={budget}
+                id={option.budget}
+                value={option.budget ?? ''}
+                class={clsx(
+                  'shrink-0',
+                  option.budget && budget.includes(option.budget) && '[&+p:after]:animate-strike'
+                )}
+              />
+            </label>
+          {/each}
+        </div>
+      </div>
     {/if}
     {#if type !== 'contact'}
       <FileUpload

@@ -129,7 +129,7 @@
         <!-- eslint-disable svelte/no-at-html-tags -->
         <div
           data-theme="light"
-          transition:fly|global={{ y: 500, opacity: 1, easing: circOut, duration: 250 }}
+          transition:fly|global={{ y: 250, opacity: 0, easing: circOut, duration: 250 }}
           aria-hidden="true"
           class="container mx-auto mt-10 gap-8 px-container relative bg-transparent pointer-events-none grow hidden lg:flex"
         >

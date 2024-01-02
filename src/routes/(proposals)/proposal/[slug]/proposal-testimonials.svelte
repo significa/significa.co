@@ -7,7 +7,7 @@
 </script>
 
 {#if testimonials?.length > 0}
-  <section class=" pt-20 lg:pt-28">
+  <section class="pt-20 lg:pt-28">
     <div class="container mx-auto flex px-container">
       <div class="xl:max-w-3xl lg:w-1/3">
         <h2 class="text-4xl">{t('proposals.testimonials')}.</h2>

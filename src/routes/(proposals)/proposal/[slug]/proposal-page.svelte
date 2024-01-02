@@ -7,19 +7,18 @@
   import ProposalScope from './proposal-scope.svelte';
   import ProposalTeam from './proposal-team.svelte';
   import ProposalEstimates from './proposal-estimates.svelte';
+  import ProposalTimeline from './proposal-timeline.svelte';
 
   import ProposalReplyBlock from './proposal-reply-block.svelte';
 
   export let proposal: ProposalStoryblok;
 
-  // Data related variables
   const versions = proposal?.versions || [];
   let version = versions.length > 0 ? versions[0].version_name : '';
 
   $: content = versions.find((v) => v.version_name === version);
   $: sections = (content?.body || []).map((b) => b.title || '').filter(Boolean);
 
-  // Appearance related variables
   let sectionTitleWidth;
   let containerWidth: number;
   let windowWidth: number;
@@ -28,7 +27,6 @@
 </script>
 
 <div class="container mx-auto" bind:clientWidth={containerWidth}></div>
-<!-- Change to <svelte:window bind:innerWidth={windowWidth} -->
 <div class="w-full" bind:clientWidth={windowWidth}></div>
 
 <ProposalNavigation
@@ -62,8 +60,8 @@
           {containerMargin}
           {sectionTitleWidth}
         />
-        <!-- FIXME: Implement timeline -->
-        <!-- {:else if section.data === 'timeline'} -->
+      {:else if section.data === 'timeline' && content?.estimates}
+        <ProposalTimeline data={content.estimates} team={content.team} />
       {/if}
     </div>
   </section>

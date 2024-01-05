@@ -9,15 +9,12 @@
   import {
     getColumnsWidthClassName,
     getContainersPaddingClassName,
-    getHeaderCellTextClassName,
-    getStickyColClassName
+    getHeaderCellTextClassName
   } from '$lib/utils/proposalTables';
-  import { formatter } from '$lib/utils/currency';
   import { Link } from '@significa/svelte-ui';
   import { drawerLinks } from '$lib/actions/drawer-links';
 
   export let data: ProposalTeamEntryStoryblok[] | ProposalPackageEntryStoryBlok[];
-  export let type: string;
   export let windowWidth: number;
   export let containerMargin: number;
   export let sectionTitleWidth: number;
@@ -48,9 +45,9 @@
 <div
   class="overflow-x-scroll md:overflow-hidden"
   style="--container-margin: {containerMargin}px;
-  --section-title-width: {sectionTitleWidth}px;
-  --central-cols-width: {centralColsWidth}px;
-  --sticky-col-content-width: {lastColContentWidth}px;"
+    --section-title-width: {sectionTitleWidth}px;
+    --central-cols-width: {centralColsWidth}px;
+    --sticky-col-content-width: {lastColContentWidth}px;"
 >
   <table class="table-fixed w-[750px] md:w-full">
     <thead>
@@ -74,27 +71,6 @@
         <th class={clsx(getColumnsWidthClassName('central'), 'pr-4 lg:pr-12 py-2.5')}
           ><p class={clsx(getHeaderCellTextClassName('left'))}>{t('proposals.team.role')}</p></th
         >
-        {#if type === 'rate'}
-          <th
-            class={clsx(
-              getColumnsWidthClassName('sticky'),
-              getStickyColClassName(),
-              'pr-container lg:pr-0 py-2.5 text-right'
-            )}
-            bind:clientWidth={lastColWidth}
-            ><div class="w-px bg-foreground-tertiary md:w-0 absolute left-0 top-0 bottom-0" />
-            <p class={clsx(getHeaderCellTextClassName('right'))}>{t('proposals.team.rate')}</p></th
-          >
-          <th
-            class={clsx(
-              getContainersPaddingClassName('right'),
-              getColumnsWidthClassName('last-empty'),
-              'bg-background md:bg-transparent drop-shadow-md md:drop-shadow-none',
-              'hidden lg:block'
-            )}
-            bind:clientWidth={emptyColWidth}
-          ></th>
-        {/if}
       </tr>
     </thead>
     <tbody>
@@ -112,10 +88,10 @@
                 class={clsx(getContainersPaddingClassName('left'), 'py-4 align-top pr-4 lg:pr-12')}
               >
                 <p class="font-bold">
-                  {department?.content?.title}.
+                  {department.content.title}.
                 </p>
                 <p class="text-foreground-secondary">
-                  {department?.content?.description}
+                  {department.content.description}
                 </p>
               </td>
             {/if}
@@ -138,27 +114,6 @@
                 </p>
               </div>
             </td>
-            {#if type === 'rate'}
-              <td
-                class={clsx(
-                  getStickyColClassName(),
-                  'pr-container lg:pr-0 py-4 pl-container md:pl-0',
-                  'align-top text-right tabular-nums',
-                  j % 2 ? 'bg-background-offset' : 'bg-background'
-                )}
-                ><div class="w-px bg-foreground-tertiary md:w-0 absolute left-0 top-0 bottom-0" />
-                {#if entry.rate_type === 'percentage' && entry.rate_value}
-                  <p class="font-bold">{entry.rate_value} %</p>
-                {:else if entry.rate_type === 'value' && entry.rate_value}
-                  <p class="font-bold">{formatter.format(+entry.rate_value)}</p>
-                {:else if entry.rate_type === 'free'}
-                  <p class="font-bold">{t('proposals.included')}</p>
-                {/if}
-              </td>
-              {#if i == 0}
-                <td rowspan={dataMap.get(department.name).length} class="hidden lg:table-cell"></td>
-              {/if}
-            {/if}
           </tr>
         {/each}
       {/each}

@@ -643,6 +643,26 @@ export interface ProposalStoryblok {
   [k: string]: any;
 }
 
+export interface ProposalDeliverableStoryblok {
+  title: string;
+  description?: string;
+  color: '' | 'blue' | 'red' | 'yellow' | 'green' | 'black';
+  manpower: string;
+  services: ProposalServiceStoryblok[];
+  team: ProposalDeliveryTeamEntryStoryblok[];
+  _uid: string;
+  component: 'proposal-delivery';
+  [k: string]: any;
+}
+
+export interface ProposalDeliveryTeamEntryStoryblok {
+  duration: string;
+  offset: string;
+  _uid: string;
+  component: 'proposal-delivery-team-entry';
+  role: ProposalRoleStoryblok[];
+  [k: string]: any;
+}
 export interface ProposalDepartmentStoryblok {
   title: string;
   description?: string;
@@ -659,6 +679,15 @@ export interface ProposalEstimateEntryStoryblok {
   _uid: string;
   component: 'proposal-estimate-entry';
   [k: string]: any;
+}
+
+export interface ProposalPackageEntryStoryBlok {
+  _uid: string;
+  department: StoryblokStory<ProposalDepartmentStoryblok> | string;
+  component: 'proposal-package-entry';
+  rate_type: 'percentage' | 'fulltime';
+  rate_value: string;
+  role: ProposalRoleStoryblok[];
 }
 
 export interface ProposalPhaseEntryStoryblok {
@@ -698,9 +727,17 @@ export interface ProposalScopeEntryStoryblok {
 export interface ProposalSectionStoryblok {
   title: string;
   body: RichtextStoryblok;
-  data?: '' | 'scope' | 'team' | 'estimates' | 'timeline';
+  data?: '' | 'scope' | 'team' | 'estimates' | 'timeline' | 'package' | 'deliverables';
   _uid: string;
   component: 'proposal-section';
+  [k: string]: any;
+}
+
+export interface ProposalServiceStoryblok {
+  title: string;
+  description?: string;
+  _uid: string;
+  component: 'proposal-service';
   [k: string]: any;
 }
 
@@ -723,7 +760,7 @@ export interface ProposalVersionStoryblok {
   estimates: ProposalEstimateEntryStoryblok[];
   body?: ProposalSectionStoryblok[];
   _uid: string;
-  component: 'proposal-version';
+  component: 'proposal-version' | 'proposal-version-package';
   [k: string]: any;
 }
 

@@ -15,6 +15,7 @@ const isStatusError = (err: unknown): err is { status: number } => {
 
 export const load = async ({ cookies, fetch, params, url }) => {
   const version: 'draft' | 'published' = cookies.get(PREVIEW_COOKIE_KEY) ? 'draft' : 'published';
+
   const storyblok = getStoryblok({ fetch }, { accessToken: STORYBLOK_PROPOSALS_TOKEN });
 
   const password = cookies.get(getCookieName(params.slug));
@@ -35,7 +36,7 @@ export const load = async ({ cookies, fetch, params, url }) => {
   try {
     res = await storyblok.get('cdn/stories/' + url.pathname, {
       version,
-      resolve_relations: ['proposal-team-entry.department']
+      resolve_relations: ['proposal-team-entry.department', 'proposal-package-entry.department']
     });
   } catch (error) {
     if (isStatusError(error) && error.status === 404) {

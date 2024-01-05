@@ -1,12 +1,15 @@
 <script lang="ts">
   import type { ProposalStoryblok } from '$types/bloks';
   import { slugify } from '$lib/utils/paths';
+  import { createPackageTimelineData, createRateTimelineData } from '$lib/utils/proposals';
   import Hero from './hero.svelte';
   import ProposalNavigation from './proposal-navigation.svelte';
   import RichText from '$components/rich-text.svelte';
+  import ProposalDeliverables from './proposal-deliverables.svelte';
   import ProposalScope from './proposal-scope.svelte';
   import ProposalTeam from './proposal-team.svelte';
   import ProposalEstimates from './proposal-estimates.svelte';
+  import ProposalPackage from './proposal-package.svelte';
   import ProposalTimeline from './proposal-timeline.svelte';
 
   import ProposalReplyBlock from './proposal-reply-block.svelte';
@@ -17,7 +20,12 @@
   let version = versions.length > 0 ? versions[0].version_name : '';
 
   $: content = versions.find((v) => v.version_name === version);
+  $: type = content?.component === 'proposal-version-package' ? 'package' : 'rate';
   $: sections = (content?.body || []).map((b) => b.title || '').filter(Boolean);
+  $: timelineData =
+    type === 'rate'
+      ? createRateTimelineData(content?.estimates || [], content?.team || [])
+      : createPackageTimelineData(content?.deliverables);
 
   let sectionTitleWidth;
   let containerWidth: number;
@@ -27,7 +35,7 @@
 </script>
 
 <div class="container mx-auto" bind:clientWidth={containerWidth}></div>
-<div class="w-full" bind:clientWidth={windowWidth}></div>
+<svelte:window bind:innerWidth={windowWidth} />
 
 <ProposalNavigation
   {sections}
@@ -38,7 +46,7 @@
 <Hero {proposal} date={content?.date}></Hero>
 
 {#each content?.body || [] as section}
-  <section id={slugify(section.title)} class=" pt-20 lg:pt-28">
+  <section id={slugify(section.title)} class="pt-20 lg:pt-28">
     <div class="container mx-auto px-container flex flex-col gap-12 lg:flex-row">
       <h2 bind:clientWidth={sectionTitleWidth} class="text-4xl lg:w-1/2">{section.title}.</h2>
       <div class="w-full">
@@ -49,8 +57,29 @@
     <div class="pt-20">
       {#if section.data === 'scope' && content?.scope}
         <ProposalScope data={content.scope} {windowWidth} {containerMargin} {sectionTitleWidth} />
-      {:else if section.data === 'team' && content?.team}
-        <ProposalTeam data={content.team} {windowWidth} {containerMargin} {sectionTitleWidth} />
+      {:else if section.data === 'deliverables' && content?.deliverables}
+        <ProposalDeliverables
+          data={content.deliverables}
+          {windowWidth}
+          {containerMargin}
+          {sectionTitleWidth}
+        />
+      {:else if type === 'rate' && section.data === 'team' && content?.team}
+        <ProposalTeam
+          data={content.team}
+          {type}
+          {windowWidth}
+          {containerMargin}
+          {sectionTitleWidth}
+        />
+      {:else if type === 'package' && section.data === 'team' && content?.package}
+        <ProposalTeam
+          data={content.package}
+          {type}
+          {windowWidth}
+          {containerMargin}
+          {sectionTitleWidth}
+        />
       {:else if section.data === 'estimates' && content?.estimates}
         <ProposalEstimates
           data={content.estimates}
@@ -60,11 +89,13 @@
           {containerMargin}
           {sectionTitleWidth}
         />
-      {:else if section.data === 'timeline' && content?.estimates}
-        <ProposalTimeline data={content.estimates} team={content.team} />
+      {:else if section.data === 'package' && content?.package}
+        <ProposalPackage data={content.package} />
+      {:else if section.data === 'timeline' && timelineData}
+        <ProposalTimeline data={timelineData} />
       {/if}
     </div>
   </section>
 {/each}
 
-<ProposalReplyBlock></ProposalReplyBlock>
+<ProposalReplyBlock {type} />

@@ -1,7 +1,8 @@
+import { isFormType } from '$components/contact-form.svelte';
 import { env } from '$env/dynamic/private';
 import { AWS_S3_BUCKET } from '$env/static/private';
 import { t } from '$lib/i18n';
-import { sendTransactionalEmail } from '$lib/mail/sendEmail.server.js';
+import { sendEmailNotification, sendTransactionalEmail } from '$lib/mail/sendEmail.server.js';
 import { notion } from '$lib/notion.server.js';
 import { fail, redirect } from '@sveltejs/kit';
 
@@ -29,6 +30,15 @@ const getNotionAttachments = (attachmentsUrls: string) => {
 export const actions = {
   default: async (event) => {
     const data = await event.request.formData();
+    const formType = event.params.type;
+
+    if (!isFormType(formType)) {
+      return fail(500, {
+        error: {
+          message: 'Failed to send internal email notification'
+        }
+      });
+    }
 
     const fields = Object.fromEntries(data.entries()) as FormFields;
     const { name, email, message } = fields;
@@ -42,6 +52,21 @@ export const actions = {
             email: !email,
             message: !message
           }
+        }
+      });
+    }
+
+    try {
+      sendEmailNotification({
+        name,
+        email,
+        message,
+        formType
+      });
+    } catch (error) {
+      return fail(500, {
+        error: {
+          message: 'Failed to send internal email notification'
         }
       });
     }
@@ -91,20 +116,25 @@ export const actions = {
           break;
       }
     } catch (error) {
-      return fail(422, {
+      return fail(500, {
         error: {
-          type: 'notion'
+          message: 'Failed to store form submission'
         }
       });
     }
 
     try {
       const subject = t('form.subject');
-      await sendTransactionalEmail({ name, email, subject });
+      await sendTransactionalEmail({
+        name,
+        email,
+        subject,
+        template: event.params.type === 'quote' ? 'default' : 'minimal'
+      });
     } catch (error) {
-      return fail(422, {
+      return fail(500, {
         error: {
-          type: 'email'
+          message: 'Failed to send email notification to user'
         }
       });
     }

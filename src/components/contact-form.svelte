@@ -1,3 +1,10 @@
+<script lang="ts" context="module">
+  export const formTypes = ['quote', 'career', 'contact'] as const;
+  export type FormType = (typeof formTypes)[number];
+  export const isFormType = (type: string): type is FormType =>
+    formTypes.some((formType) => formType === type);
+</script>
+
 <script lang="ts">
   import { browser } from '$app/environment';
   import { applyAction, enhance } from '$app/forms';
@@ -19,7 +26,6 @@
   import clsx from 'clsx';
   import { createEventDispatcher } from 'svelte';
 
-  type FormType = 'quote' | 'career' | 'contact';
   export let variant: undefined | FormType = undefined;
   export let disclaimer: string | undefined = undefined;
 

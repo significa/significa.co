@@ -269,6 +269,7 @@
                   bind:group={budget}
                   id={option.budget}
                   value={option.budget ?? ''}
+                  on:change={() => dispatch('input', 'budget')}
                   name="budget"
                   class={clsx(
                     'shrink-0 cursor-pointer',

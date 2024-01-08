@@ -53,10 +53,6 @@
     lastChangedInput = value.detail;
   };
 
-  $: if (lastChangedInput !== 'budget' && budget.length) {
-    lastChangedInput = 'budget';
-  }
-
   $: if (error) {
     character = 'error';
   } else if (success) {

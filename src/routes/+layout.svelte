@@ -2,20 +2,32 @@
   import '$styles/index.css';
 
   import { page } from '$app/stores';
+  import { beforeNavigate } from '$app/navigation';
+  import { browser, dev } from '$app/environment';
 
   import DraftMode from '$components/draft-mode.svelte';
   import ImageGallery from '$components/image-gallery.svelte';
   import TopNavigation from '$components/top-navigation.svelte';
   import PageDrawer from '$components/page-drawer.svelte';
   import Footer from '$components/footer.svelte';
+
+  import { PUBLIC_POSTHOG_PROJECT_TOKEN } from '$env/static/public';
+
   import { toast, Toaster, ToastNotification } from '@significa/svelte-ui';
-  import { beforeNavigate } from '$app/navigation';
-  import { dev } from '$app/environment';
+  import posthog from 'posthog-js';
+
   export let data;
 
   beforeNavigate(() => {
     toast.clearAll();
   });
+
+  if (browser) {
+    posthog.init(PUBLIC_POSTHOG_PROJECT_TOKEN, {
+      api_host: 'https://eu.posthog.com',
+      persistence: 'localStorage'
+    });
+  }
 </script>
 
 <svelte:head>

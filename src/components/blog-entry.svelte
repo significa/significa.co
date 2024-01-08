@@ -22,6 +22,7 @@
   <div class="container mx-auto flex gap-6 px-container py-8 @container">
     <div class="hidden flex-1 @6xl:block">
       <Person
+        isActive={post.content.author.content.is_active}
         name={post.content.author.name}
         position={post.content.author.content.position}
         photo={post.content.author.content?.photo}

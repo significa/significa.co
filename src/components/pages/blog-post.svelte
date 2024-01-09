@@ -72,30 +72,34 @@
   {/if}
 
   <!-- Author -->
-  {#if story.content.author?.id}
-    {@const author = story.content.author}
-    <div use:drawerLinks class="mx-auto mt-10 max-w-2xl border-b border-t py-8 md:mt-14 lg:mt-20">
-      <Person
-        isActive={author.content.is_active}
-        name={author.name}
-        position={author.content.position}
-        photo={author.content.photo}
-      />
-      <p class="mt-6 text-xl text-foreground-secondary">{author.content.bio}</p>
-      <Button
-        variant="secondary"
-        as="a"
-        href={`/about/${author.slug}`}
-        on:click={() =>
-          track(TrackingEvent.BLOG_POST_AUTHOR_PAGE_CLICK, {
-            props: { path: $drawer || $page.url.pathname, to: `/about/${author.slug}` }
-          })}
-        class="mt-6"
-        arrow
-        icon="document"
-      >
-        {t('author-page')}
-      </Button>
+  {#if story.content.authors?.length}
+    <div class="border-b border-t mx-auto max-w-2xl">
+      {#each story.content.authors as author}
+        <div use:drawerLinks class="mx-auto max-w-2xl py-8">
+          <div class="flex justify-between">
+            <Person
+              isActive={author.content.is_active}
+              name={author.name}
+              position={author.content.position}
+              photo={author.content.photo}
+            />
+            <Button
+              variant="secondary"
+              as="a"
+              href={`/about/${author.slug}`}
+              on:click={() =>
+                track(TrackingEvent.BLOG_POST_AUTHOR_PAGE_CLICK, {
+                  props: { path: $drawer || $page.url.pathname, to: `/about/${author.slug}` }
+                })}
+              arrow
+              icon="document"
+            >
+              {t('author-page')}
+            </Button>
+          </div>
+          <p class="mt-6 text-xl text-foreground-secondary">{author.content.bio}</p>
+        </div>
+      {/each}
     </div>
   {/if}
 </div>

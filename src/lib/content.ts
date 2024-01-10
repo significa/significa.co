@@ -13,14 +13,14 @@ import { HOME_SLUG } from './constants';
 export const PAGE_PARAMS = {
   resolve_links: 'url',
   resolve_relations:
-    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects'
+    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects,blog-post.authors'
 } as const;
 
 export const BLOG_PARAMS = {
   per_page: 10,
   content_type: 'blog-post',
   sort_by: 'first_published_at:desc',
-  resolve_relations: 'blog-post.author'
+  resolve_relations: 'blog-post.author,blog-post.authors'
 } as const;
 
 export const PROJECT_PARAMS = {

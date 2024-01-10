@@ -86,7 +86,7 @@
     </div>
   </section>
 
-  {#if $page.data.careers.length}
+  {#if !$page.data.careers.length}
     <section class="mt-10 md:mt-14 lg:mt-20">
       <div class="container mx-auto justify-between gap-12 px-container lg:flex">
         <div class="flex flex-1 flex-col items-start">
@@ -142,7 +142,7 @@
           >
         </div>
         <div
-          class="xs:flex flex-1 flex-col justify-end ml-16 bg-no-repeat bg-cover hidden"
+          class="hidden flex-1 flex-col justify-end ml-16 bg-no-repeat bg-cover bg-center lg:flex"
           style="background-image: url({src});"
         />
       </div>

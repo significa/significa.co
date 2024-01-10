@@ -86,7 +86,7 @@
     </div>
   </section>
 
-  {#if !$page.data.careers.length}
+  {#if $page.data.careers.length}
     <section class="mt-10 md:mt-14 lg:mt-20">
       <div class="container mx-auto justify-between gap-12 px-container lg:flex">
         <div class="flex flex-1 flex-col items-start">

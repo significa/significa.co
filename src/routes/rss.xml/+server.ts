@@ -27,7 +27,7 @@ export const GET: RequestHandler = async () => {
     return new Response(body, { headers });
   } catch (err) {
     console.error(err);
-    throw error(404, 'Not found');
+    throw error(500, 'Unable to fetch RSS feed');
   }
 };
 

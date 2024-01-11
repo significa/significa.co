@@ -14,11 +14,16 @@
   import { getImageAttributes } from '$lib/utils/cms';
   import { TrackingEvent, track } from '$lib/track';
   import { drawerLinks } from '$lib/actions/drawer-links';
+  import CareersAssetLight from '$components/illustrations/assets/careers-light.webp';
+  import CareersAssetDark from '$components/illustrations/assets/careers-dark.webp';
+  import { theme } from '$lib/stores/theme';
 
   export let data: CareersPageStoryblok;
   export let teamMembers: TeamMemberPage[] | undefined;
 
   let canvasFullscreen: boolean;
+
+  const src = $theme === 'dark' ? CareersAssetDark : CareersAssetLight;
 </script>
 
 <Seo />
@@ -116,6 +121,30 @@
             >
           </div>
         </div>
+      </div>
+    </section>
+  {:else}
+    <section class="container mx-auto px-container @container mt-10 md:mt-14 lg:mt-20">
+      <div class="flex overflow-hidden rounded-lg border bg-background-offset/80">
+        <div class="flex flex-col p-8">
+          <p class="text-2xl font-semibold">{t('careers.footer.no.positions')}</p>
+          <p class="text-2xl font-semibold text-foreground-secondary max-w-md">
+            {t('careers.footer.no.positions.description')}
+          </p>
+          <a
+            href="mailto:{t('careers.footer.email')}"
+            on:click={() => {
+              track(TrackingEvent.CAREERS_SPONTANEOUS_APPLICATION);
+            }}
+            ><Button variant="secondary" size="lg" class="w-fit mt-8 bg-background"
+              >{t('careers.footer.description')}</Button
+            ></a
+          >
+        </div>
+        <div
+          class="hidden flex-1 flex-col justify-end ml-16 bg-no-repeat bg-cover bg-center lg:flex"
+          style="background-image: url({src});"
+        />
       </div>
     </section>
   {/if}

@@ -1612,6 +1612,37 @@
       "component_group_name": "Content Types"
     },
     {
+      "name": "hero",
+      "display_name": null,
+      "created_at": "2024-01-10T16:19:08.681Z",
+      "updated_at": "2024-01-10T16:28:10.537Z",
+      "id": 5148572,
+      "schema": {
+        "small_highlights": {
+          "type": "options",
+          "source": "internal_stories",
+          "filter_content_type": ["career", "project", "handbook", "blog-post"],
+          "max_options": "4"
+        },
+        "showreel": {
+          "type": "asset",
+          "filetypes": ["videos"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "hero",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "home-about-link",
       "display_name": null,
       "created_at": "2023-04-10T15:09:32.455Z",
@@ -1987,6 +2018,34 @@
       "color": "#fbce41",
       "icon": "block-1-2block",
       "component_group_name": "Blocks & Rich Text"
+    },
+    {
+      "name": "landing-page",
+      "display_name": null,
+      "created_at": "2024-01-09T16:40:58.537Z",
+      "updated_at": "2024-01-09T16:41:15.088Z",
+      "id": 5142044,
+      "schema": {
+        "blocks": {
+          "type": "bloks",
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_whitelist": [],
+          "component_group_whitelist": ["c9011224-9690-43bd-b686-e8f60ef6c7f6"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": true,
+      "preview_tmpl": null,
+      "is_nestable": false,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "landing-page",
+      "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Content Types"
     },
     {
       "name": "link",
@@ -2519,33 +2578,28 @@
       "name": "proposable-deliverable-team-entry",
       "display_name": null,
       "created_at": "2024-01-02T16:43:39.862Z",
-      "updated_at": "2024-01-02T16:46:16.774Z",
+      "updated_at": "2024-01-09T15:43:04.035Z",
       "id": 5107587,
       "schema": {
         "team_member": {
           "type": "custom",
           "field_type": "significa-team-member",
-          "options": []
+          "options": [],
+          "pos": 0
         },
         "duration": {
-          "type": "number"
+          "type": "number",
+          "pos": 2
         },
         "offset": {
-          "type": "number"
-        },
-        "role": {
-          "type": "bloks",
-          "minimum": 1,
-          "maximum": 1,
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": ["proposal-role"]
+          "type": "number",
+          "pos": 3
         }
       },
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": "{{it.team_member.member.name}} – {{duration}}",
+      "preview_tmpl": "{{it.team_member.member.name}} – {{it.duration}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
@@ -2634,7 +2688,7 @@
       "name": "proposal-deliverable",
       "display_name": null,
       "created_at": "2023-12-29T10:32:19.656Z",
-      "updated_at": "2024-01-02T17:41:55.626Z",
+      "updated_at": "2024-01-09T11:34:00.532Z",
       "id": 5097435,
       "schema": {
         "title": {
@@ -2694,7 +2748,7 @@
         }
       },
       "image": null,
-      "preview_field": null,
+      "preview_field": "title",
       "is_root": false,
       "preview_tmpl": "",
       "is_nestable": true,
@@ -2710,7 +2764,7 @@
       "name": "proposal-department",
       "display_name": null,
       "created_at": "2023-09-11T15:40:29.996Z",
-      "updated_at": "2023-09-21T09:46:47.753Z",
+      "updated_at": "2024-01-09T11:32:24.025Z",
       "id": 4555221,
       "schema": {
         "title": {
@@ -2722,7 +2776,7 @@
         }
       },
       "image": null,
-      "preview_field": null,
+      "preview_field": "title",
       "is_root": true,
       "preview_tmpl": null,
       "is_nestable": false,
@@ -2811,7 +2865,7 @@
       "name": "proposal-package-pricing",
       "display_name": null,
       "created_at": "2024-01-08T11:00:13.539Z",
-      "updated_at": "2024-01-09T11:05:05.953Z",
+      "updated_at": "2024-01-09T11:34:41.344Z",
       "id": 5132169,
       "schema": {
         "department": {
@@ -2853,13 +2907,55 @@
         }
       },
       "image": null,
-      "preview_field": null,
+      "preview_field": "department",
       "is_root": false,
-      "preview_tmpl": "{{it.department.title}} - {{it.rate_type}} - {{it.rate_value}}",
+      "preview_tmpl": "{{it.team_size}} {{it.department.title}} - {{it.rate_type}} - {{it.rate_value}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
       "real_name": "proposal-package-pricing",
+      "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Proposals"
+    },
+    {
+      "name": "proposal-package-team-entry",
+      "display_name": null,
+      "created_at": "2024-01-09T15:31:15.879Z",
+      "updated_at": "2024-01-09T15:34:11.091Z",
+      "id": 5141817,
+      "schema": {
+        "team_member": {
+          "type": "custom",
+          "field_type": "significa-team-member",
+          "options": []
+        },
+        "department": {
+          "type": "option",
+          "use_uuid": true,
+          "source": "internal_stories",
+          "filter_content_type": ["proposal-department"],
+          "required": true
+        },
+        "role": {
+          "type": "bloks",
+          "required": true,
+          "minimum": 1,
+          "maximum": 1,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["proposal-role"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": true,
+      "preview_tmpl": null,
+      "is_nestable": false,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "proposal-package-team-entry",
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
@@ -3120,7 +3216,7 @@
       "name": "proposal-team-entry",
       "display_name": null,
       "created_at": "2023-09-11T15:39:52.162Z",
-      "updated_at": "2023-12-28T12:07:27.371Z",
+      "updated_at": "2024-01-09T11:31:07.511Z",
       "id": 4555220,
       "schema": {
         "team_member": {
@@ -3187,7 +3283,7 @@
       "image": null,
       "preview_field": null,
       "is_root": true,
-      "preview_tmpl": "{{team_member.member.name}}",
+      "preview_tmpl": "{{it.team_member.member.name}}",
       "is_nestable": false,
       "all_presets": [],
       "preset_id": null,
@@ -3201,7 +3297,7 @@
       "name": "proposal-version",
       "display_name": null,
       "created_at": "2023-09-11T15:33:34.190Z",
-      "updated_at": "2023-12-28T13:43:31.167Z",
+      "updated_at": "2024-01-09T11:31:20.078Z",
       "id": 4555208,
       "schema": {
         "version_name": {
@@ -3256,7 +3352,7 @@
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": "{{version_name}}",
+      "preview_tmpl": "{{it.version_name}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
@@ -3270,41 +3366,67 @@
       "name": "proposal-version-package",
       "display_name": null,
       "created_at": "2023-12-28T13:15:17.211Z",
-      "updated_at": "2024-01-09T10:39:05.925Z",
+      "updated_at": "2024-01-10T11:22:21.521Z",
       "id": 5094324,
       "schema": {
         "version_name": {
           "type": "text",
-          "required": true
+          "required": true,
+          "pos": 0
+        },
+        "discount_percentage": {
+          "type": "number",
+          "pos": 1,
+          "min_value": 0,
+          "max_value": 100,
+          "decimals": 0,
+          "steps": 1
         },
         "date": {
           "type": "datetime",
           "disable_time": true,
-          "required": true
+          "required": true,
+          "pos": 2
+        },
+        "deliverables": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["proposal-deliverable"],
+          "required": true,
+          "minimum": 1,
+          "pos": 3
+        },
+        "pricing": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["proposal-package-pricing"],
+          "required": true,
+          "minimum": 1,
+          "pos": 4
+        },
+        "team": {
+          "type": "bloks",
+          "required": true,
+          "minimum": 1,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["proposal-package-team-entry"],
+          "pos": 5
         },
         "tab-4ab934ca-2771-464a-857a-ee27ae87c8d3": {
           "display_name": "Content",
           "keys": ["body"],
-          "pos": 0,
+          "pos": 6,
           "type": "tab"
         },
         "body": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["proposal-section"]
-        },
-        "deliverables": {
-          "type": "bloks",
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": ["proposal-deliverable"]
-        },
-        "pricing": {
-          "type": "bloks",
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": ["proposal-package-pricing"]
+          "component_whitelist": ["proposal-section"],
+          "pos": 7
         }
       },
       "image": null,
@@ -4201,6 +4323,30 @@
       "color": null,
       "icon": null,
       "component_group_name": "Single"
+    },
+    {
+      "name": "test-block",
+      "display_name": null,
+      "created_at": "2024-01-09T16:35:25.015Z",
+      "updated_at": "2024-01-09T16:35:31.893Z",
+      "id": 5142041,
+      "schema": {
+        "title": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "test-block",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
     },
     {
       "name": "timeline-arrow",

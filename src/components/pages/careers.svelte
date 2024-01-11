@@ -135,10 +135,7 @@
             href="mailto:{t('careers.footer.email')}"
             on:click={() => {
               track(TrackingEvent.CAREERS_SPONTANEOUS_APPLICATION);
-            }}
-            ><Button variant="secondary" size="lg" class="w-fit mt-8 bg-background"
-              >{t('careers.footer.description')}</Button
-            ></a
+            }}><Button size="lg" class="w-fit mt-8">{t('careers.footer.description')}</Button></a
           >
         </div>
         <div

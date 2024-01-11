@@ -132,7 +132,9 @@ export const TranslationKeys = [
   'proposals.awards',
   'proposals.awards.description',
   'proposals.projects',
-  'contact.range'
+  'contact.range',
+  'careers.footer.no.positions',
+  'careers.footer.no.positions.description'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

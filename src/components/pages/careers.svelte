@@ -124,7 +124,7 @@
       </div>
     </section>
   {:else}
-    <section class="container mx-auto px-container @container mt-10 md:mt-14 lg:mt-20">
+    <section class="container mx-auto px-container @container mt-8 md:mt-10 lg:mt-12">
       <div class="flex overflow-hidden rounded-lg border bg-background-offset/80">
         <div class="flex flex-col p-8">
           <p class="text-2xl font-semibold">{t('careers.footer.no.positions')}</p>

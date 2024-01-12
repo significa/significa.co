@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-  export const formTypes = ['quote', 'career', 'contact'] as const;
+  export const formTypes = ['quote', 'career', 'contact', 'packages'] as const;
   export type FormType = (typeof formTypes)[number];
   export const isFormType = (type: string): type is FormType =>
     formTypes.some((formType) => formType === type);
@@ -177,10 +177,16 @@
     </div>
   </div>
 {/if}
+
 <form
   id="contact-form"
   method="POST"
-  action={{ quote: '/form/quote', career: '/form/career', contact: '/form/contact' }[type]}
+  action={{
+    quote: '/form/quote',
+    career: '/form/career',
+    contact: '/form/contact',
+    packages: '/form/quote'
+  }[type]}
   use:enhance={(form) => {
     loading = true;
 
@@ -196,6 +202,7 @@
     };
   }}
 >
+  <slot name="packagesform" />
   <input type="hidden" name="return-to" value={$page.url.pathname} />
   <div class="flex flex-col gap-4">
     <div class="flex w-full flex-col gap-4 md:flex-row">
@@ -295,7 +302,7 @@
             message: t('file.upload.error.title'),
             description: t('file.upload.error.description')
           })}
-        placeholder={type === 'quote'
+        placeholder={type === 'quote' || type === 'packages'
           ? t('contact.label.attachment.quote')
           : t('contact.label.attachment.position')}
         size="lg"

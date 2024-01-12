@@ -6,14 +6,15 @@ import type {
   CareerStoryblok,
   PageStoryblok,
   ProjectStoryblok,
-  TeamMemberStoryblok
+  TeamMemberStoryblok,
+  LandingPageStoryblok
 } from '$types/bloks';
 import { HOME_SLUG } from './constants';
 
 export const PAGE_PARAMS = {
   resolve_links: 'url',
   resolve_relations:
-    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects,blog-post.authors'
+    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects,blog-post.authors,hero.small_highlights'
 } as const;
 
 export const BLOG_PARAMS = {
@@ -99,6 +100,7 @@ export type ProjectPage = ISbStoryData<
   }
 >;
 export type TeamMemberPage = ISbStoryData<TeamMemberStoryblok>;
+export type LandingPage = ISbStoryData<LandingPageStoryblok>;
 
 export type DynamicPage =
   | Page
@@ -106,7 +108,8 @@ export type DynamicPage =
   | HandbookPage
   | ProjectPage
   | TeamMemberPage
-  | CareerPage;
+  | CareerPage
+  | LandingPage;
 
 export type PageResult = {
   story: DynamicPage;

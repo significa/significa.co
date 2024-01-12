@@ -1615,7 +1615,7 @@
       "name": "hero",
       "display_name": null,
       "created_at": "2024-01-10T16:19:08.681Z",
-      "updated_at": "2024-01-10T16:28:10.537Z",
+      "updated_at": "2024-01-10T17:54:49.979Z",
       "id": 5148572,
       "schema": {
         "small_highlights": {
@@ -1627,6 +1627,30 @@
         "showreel": {
           "type": "asset",
           "filetypes": ["videos"]
+        },
+        "showreel_cover": {
+          "type": "asset",
+          "filetypes": ["images"]
+        },
+        "showreel_button_theme": {
+          "type": "option",
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "ddb32dc8-fe4c-4bf0-bfda-42c1faaa8005",
+              "name": "light",
+              "value": "light"
+            },
+            {
+              "_uid": "5ecad356-c9eb-4155-bed0-75452859f996",
+              "value": "dark",
+              "name": "dark"
+            }
+          ],
+          "default_value": "light"
+        },
+        "showreel_button_label": {
+          "type": "text"
         }
       },
       "image": null,
@@ -2097,6 +2121,39 @@
       "color": null,
       "icon": null,
       "component_group_name": "Single"
+    },
+    {
+      "name": "packages",
+      "display_name": null,
+      "created_at": "2024-01-11T12:27:35.516Z",
+      "updated_at": "2024-01-12T11:09:37.292Z",
+      "id": 5153549,
+      "schema": {
+        "title": {
+          "type": "text"
+        },
+        "description": {
+          "type": "text"
+        },
+        "form_title": {
+          "type": "text"
+        },
+        "form_description": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "packages",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
     },
     {
       "name": "page",
@@ -2575,41 +2632,6 @@
       "component_group_name": "Pages"
     },
     {
-      "name": "proposable-deliverable-team-entry",
-      "display_name": null,
-      "created_at": "2024-01-02T16:43:39.862Z",
-      "updated_at": "2024-01-09T15:43:04.035Z",
-      "id": 5107587,
-      "schema": {
-        "team_member": {
-          "type": "custom",
-          "field_type": "significa-team-member",
-          "options": [],
-          "pos": 0
-        },
-        "duration": {
-          "type": "number",
-          "pos": 2
-        },
-        "offset": {
-          "type": "number",
-          "pos": 3
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": "{{it.team_member.member.name}} – {{it.duration}}",
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "proposable-deliverable-team-entry",
-      "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
-      "color": null,
-      "icon": null,
-      "component_group_name": "Proposals"
-    },
-    {
       "name": "proposal",
       "display_name": null,
       "created_at": "2023-09-11T15:29:11.214Z",
@@ -2688,7 +2710,7 @@
       "name": "proposal-deliverable",
       "display_name": null,
       "created_at": "2023-12-29T10:32:19.656Z",
-      "updated_at": "2024-01-09T11:34:00.532Z",
+      "updated_at": "2024-01-11T11:00:36.436Z",
       "id": 5097435,
       "schema": {
         "title": {
@@ -2743,8 +2765,9 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["proposable-deliverable-team-entry"],
-          "pos": 5
+          "component_whitelist": ["proposal-deliverable-team-entry"],
+          "pos": 5,
+          "required": true
         }
       },
       "image": null,
@@ -2755,6 +2778,49 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "proposal-deliverable",
+      "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Proposals"
+    },
+    {
+      "name": "proposal-deliverable-team-entry",
+      "display_name": null,
+      "created_at": "2024-01-02T16:43:39.862Z",
+      "updated_at": "2024-01-11T11:03:45.176Z",
+      "id": 5107587,
+      "schema": {
+        "team_member": {
+          "type": "custom",
+          "field_type": "significa-team-member",
+          "options": [],
+          "pos": 0
+        },
+        "duration": {
+          "type": "number",
+          "pos": 2,
+          "required": true,
+          "min_value": 0,
+          "decimals": 0,
+          "steps": 1
+        },
+        "offset": {
+          "type": "number",
+          "pos": 3,
+          "required": true,
+          "min_value": 0,
+          "decimals": 0,
+          "steps": 1
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": "{{it.team_member.member.name}} – {{it.duration}}",
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "proposal-deliverable-team-entry",
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
@@ -2865,14 +2931,15 @@
       "name": "proposal-package-pricing",
       "display_name": null,
       "created_at": "2024-01-08T11:00:13.539Z",
-      "updated_at": "2024-01-09T11:34:41.344Z",
+      "updated_at": "2024-01-11T11:06:54.165Z",
       "id": 5132169,
       "schema": {
         "department": {
           "type": "option",
           "use_uuid": true,
           "source": "internal_stories",
-          "filter_content_type": ["proposal-department"]
+          "filter_content_type": ["proposal-department"],
+          "required": true
         },
         "rate_type": {
           "type": "option",
@@ -2887,23 +2954,23 @@
               "_uid": "14146b92-7e6a-455e-8e25-d173829b5dc6",
               "value": "percentage",
               "name": "Percentage"
-            },
-            {
-              "_uid": "095cba1b-9eec-4156-ae37-b6019774e67f",
-              "value": "included",
-              "name": "Included"
             }
-          ]
+          ],
+          "required": true
         },
         "rate_value": {
-          "type": "number"
+          "type": "number",
+          "required": true,
+          "min_value": 0,
+          "decimals": 0,
+          "steps": 1
         },
         "team_size": {
           "type": "number",
           "min_value": 1,
-          "max_value": 6,
           "decimals": 0,
-          "steps": 1
+          "steps": 1,
+          "required": true
         }
       },
       "image": null,
@@ -3001,7 +3068,7 @@
       "name": "proposal-phase-team-entry",
       "display_name": null,
       "created_at": "2023-09-11T15:46:07.698Z",
-      "updated_at": "2024-01-09T10:43:01.812Z",
+      "updated_at": "2024-01-11T10:32:48.501Z",
       "id": 4555252,
       "schema": {
         "team_member": {
@@ -3015,6 +3082,13 @@
           "type": "number",
           "required": true,
           "pos": 1
+        },
+        "offset": {
+          "type": "number",
+          "min_value": 0,
+          "decimals": 1,
+          "steps": 1,
+          "default_value": ""
         }
       },
       "image": null,
@@ -4323,30 +4397,6 @@
       "color": null,
       "icon": null,
       "component_group_name": "Single"
-    },
-    {
-      "name": "test-block",
-      "display_name": null,
-      "created_at": "2024-01-09T16:35:25.015Z",
-      "updated_at": "2024-01-09T16:35:31.893Z",
-      "id": 5142041,
-      "schema": {
-        "title": {
-          "type": "text"
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": null,
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "test-block",
-      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
-      "component_group_name": "Blocks"
     },
     {
       "name": "timeline-arrow",

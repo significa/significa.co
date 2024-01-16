@@ -237,9 +237,9 @@
     },
     {
       "name": "blog-post",
-      "display_name": null,
+      "display_name": "Author (Deprecated)",
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2024-01-09T11:02:47.063Z",
+      "updated_at": "2024-01-15T10:42:12.336Z",
       "id": 3442347,
       "schema": {
         "cover": {
@@ -257,7 +257,8 @@
           "use_uuid": true,
           "required": true,
           "source": "internal_stories",
-          "filter_content_type": ["team-member"]
+          "filter_content_type": ["team-member"],
+          "display_name": "Author (Deprecated)"
         },
         "tab-9a5d9933-3840-42d8-aa24-d87e83a9eb5d": {
           "display_name": "Content",
@@ -325,7 +326,7 @@
       "is_nestable": false,
       "all_presets": [],
       "preset_id": null,
-      "real_name": "blog-post",
+      "real_name": "Author (Deprecated)",
       "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
       "color": "#fbce41",
       "icon": "block-text-img-t-l",
@@ -2126,19 +2127,22 @@
       "name": "packages",
       "display_name": null,
       "created_at": "2024-01-11T12:27:35.516Z",
-      "updated_at": "2024-01-12T11:09:37.292Z",
+      "updated_at": "2024-01-15T15:30:47.623Z",
       "id": 5153549,
       "schema": {
+        "section_title": {
+          "type": "text",
+          "pos": 0
+        },
+        "section_description": {
+          "type": "text",
+          "pos": 1
+        },
         "title": {
-          "type": "text"
+          "type": "text",
+          "pos": 2
         },
-        "description": {
-          "type": "text"
-        },
-        "form_title": {
-          "type": "text"
-        },
-        "form_description": {
+        "subtitle": {
           "type": "text"
         }
       },
@@ -3552,6 +3556,97 @@
       "component_group_name": "Single"
     },
     {
+      "name": "recognition-entry",
+      "display_name": null,
+      "created_at": "2024-01-15T10:27:58.850Z",
+      "updated_at": "2024-01-15T10:39:15.898Z",
+      "id": 5170314,
+      "schema": {
+        "recognition": {
+          "type": "option",
+          "use_uuid": true,
+          "required": true,
+          "source": "internal_stories",
+          "filter_content_type": ["recognition-type"],
+          "folder_slug": "database/recognition-types",
+          "pos": 0,
+          "key": "recognition"
+        },
+        "project": {
+          "type": "option",
+          "use_uuid": true,
+          "pos": 1,
+          "required": true,
+          "source": "internal_stories",
+          "filter_content_type": ["project"],
+          "key": "project"
+        },
+        "external_link": {
+          "type": "multilink",
+          "pos": 2,
+          "display_name": "External Link",
+          "key": "external_link"
+        },
+        "year": {
+          "type": "number",
+          "required": true,
+          "disable_time": true,
+          "display_name": "Year",
+          "key": "date",
+          "pos": 3,
+          "min_value": 2000,
+          "max_value": 2100
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": true,
+      "preview_tmpl": null,
+      "is_nestable": false,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "recognition-entry",
+      "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Content Types"
+    },
+    {
+      "name": "recognition-type",
+      "display_name": null,
+      "created_at": "2024-01-15T10:24:43.499Z",
+      "updated_at": "2024-01-15T10:27:30.663Z",
+      "id": 5170311,
+      "schema": {
+        "Title": {
+          "type": "text",
+          "required": true
+        },
+        "Label": {
+          "type": "text",
+          "required": true
+        },
+        "Image": {
+          "type": "asset",
+          "required": true,
+          "filetypes": ["images"],
+          "asset_folder_id": 216885
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": true,
+      "preview_tmpl": null,
+      "is_nestable": false,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "recognition-type",
+      "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Content Types"
+    },
+    {
       "name": "richtext-box",
       "display_name": null,
       "created_at": "2023-02-16T10:59:09.847Z",
@@ -3872,7 +3967,7 @@
       "name": "services-page",
       "display_name": null,
       "created_at": "2023-05-04T08:50:50.568Z",
-      "updated_at": "2023-05-11T15:02:32.576Z",
+      "updated_at": "2024-01-15T10:43:25.183Z",
       "id": 3924074,
       "schema": {
         "page_title1": {
@@ -3898,71 +3993,81 @@
           "type": "text",
           "pos": 4
         },
+        "awards_db": {
+          "type": "options",
+          "pos": 5,
+          "required": true,
+          "source": "internal_stories",
+          "filter_content_type": ["recognition-entry"],
+          "folder_slug": "",
+          "display_name": "Awards"
+        },
         "awards": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["awards_entry"],
-          "pos": 5
+          "pos": 6,
+          "display_name": "Awards (deprecated)"
         },
         "showreel": {
           "type": "asset",
           "filetypes": ["videos"],
-          "pos": 6
+          "pos": 7
         },
         "showreel_button_label": {
           "type": "text",
-          "pos": 7
+          "pos": 8
         },
         "services_title": {
           "type": "text",
-          "pos": 8
+          "pos": 9
         },
         "services_subtitle": {
           "type": "text",
-          "pos": 9
+          "pos": 10
         },
         "services_description": {
           "type": "text",
-          "pos": 10
+          "pos": 11
         },
         "services": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["services_deppartment"],
-          "pos": 11
+          "pos": 12
         },
         "deliverables_title": {
           "type": "text",
-          "pos": 12
+          "pos": 13
         },
         "deliverables_subtitle": {
           "type": "text",
-          "pos": 13
+          "pos": 14
         },
         "deliverables": {
           "type": "bloks",
-          "pos": 14,
+          "pos": 15,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["deliverables_entry"]
         },
         "testimonials_title1": {
           "type": "text",
-          "pos": 15
+          "pos": 16
         },
         "testimonials_title2": {
           "type": "text",
-          "pos": 16
+          "pos": 17
         },
         "testimonials_cta_label": {
           "type": "text",
-          "pos": 17
+          "pos": 18
         },
         "testimonials_cta_link": {
           "type": "multilink",
-          "pos": 18
+          "pos": 19
         },
         "testimonials": {
           "type": "bloks",
@@ -3971,11 +4076,11 @@
           "component_whitelist": ["richtext-testimonial"],
           "minimum": 5,
           "maximum": 5,
-          "pos": 19
+          "pos": 20
         },
         "clients_title": {
           "type": "text",
-          "pos": 20
+          "pos": 21
         },
         "clients": {
           "type": "bloks",
@@ -3983,7 +4088,7 @@
           "restrict_components": true,
           "default_value": "",
           "component_whitelist": ["client-logo"],
-          "pos": 21
+          "pos": 22
         }
       },
       "image": null,

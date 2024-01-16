@@ -578,10 +578,10 @@ export interface NotepadCardStoryblok {
 }
 
 export interface PackagesStoryblok {
+  section_title?: string;
+  section_description?: string;
   title?: string;
-  description?: string;
-  form_title?: string;
-  form_description?: string;
+  subtitle?: string;
   _uid: string;
   component: 'packages';
   [k: string]: any;
@@ -847,6 +847,25 @@ export interface RecognitionStoryblok {
   [k: string]: any;
 }
 
+export interface RecognitionEntryStoryblok {
+  recognition: StoryblokStory<RecognitionTypeStoryblok> | string;
+  project: StoryblokStory<ProjectStoryblok> | string;
+  external_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  year: string;
+  _uid: string;
+  component: 'recognition-entry';
+  [k: string]: any;
+}
+
+export interface RecognitionTypeStoryblok {
+  Title: string;
+  Label: string;
+  Image: AssetStoryblok;
+  _uid: string;
+  component: 'recognition-type';
+  [k: string]: any;
+}
+
 export interface RichtextBoxStoryblok {
   layout?: '' | 'horizontal' | 'vertical';
   image?: AssetStoryblok;
@@ -930,6 +949,7 @@ export interface ServicesPageStoryblok {
   timeline?: ServiceTimelineRowStoryblok[];
   awards_title?: string;
   awards_description?: string;
+  awards_db: (StoryblokStory<RecognitionEntryStoryblok> | string)[];
   awards?: AwardsEntryStoryblok[];
   showreel?: AssetStoryblok;
   showreel_button_label?: string;

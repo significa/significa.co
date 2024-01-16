@@ -88,8 +88,7 @@ export const sendEmailNotification = async ({
   const formTypeToDestinationEmail: Record<FormType, string | undefined> = {
     quote: env.NOTIFICATION_EMAIL_ADDRESS_QUOTE,
     career: env.NOTIFICATION_EMAIL_ADDRESS_CAREER,
-    contact: env.NOTIFICATION_EMAIL_ADDRESS_CONTACT,
-    packages: env.NOTIFICATION_EMAIL_ADDRESS_QUOTE
+    contact: env.NOTIFICATION_EMAIL_ADDRESS_CONTACT
   };
 
   const destinationEmail = formTypeToDestinationEmail[formType];

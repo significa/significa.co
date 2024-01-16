@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-  export const formTypes = ['quote', 'career', 'contact', 'packages'] as const;
+  export const formTypes = ['quote', 'career', 'contact'] as const;
   export type FormType = (typeof formTypes)[number];
   export const isFormType = (type: string): type is FormType =>
     formTypes.some((formType) => formType === type);
@@ -184,8 +184,7 @@
   action={{
     quote: '/form/quote',
     career: '/form/career',
-    contact: '/form/contact',
-    packages: '/form/quote'
+    contact: '/form/contact'
   }[type]}
   use:enhance={(form) => {
     loading = true;
@@ -302,7 +301,7 @@
             message: t('file.upload.error.title'),
             description: t('file.upload.error.description')
           })}
-        placeholder={type === 'quote' || type === 'packages'
+        placeholder={type === 'quote'
           ? t('contact.label.attachment.quote')
           : t('contact.label.attachment.position')}
         size="lg"

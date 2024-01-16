@@ -1,7 +1,7 @@
 <script lang="ts">
   import clsx from 'clsx';
   import ContactForm from '$components/contact-form.svelte';
-  import type { GetAQuotePageStoryblok } from '$types/bloks';
+  import type { GetAQuotePageStoryblok, PackagesStoryblok } from '$types/bloks';
   import { fly } from 'svelte/transition';
   import { circOut } from 'svelte/easing';
   import { Confetti } from 'svelte-confetti';
@@ -30,7 +30,7 @@
     {} as Record<Eggs, string>
   );
 
-  export let page: GetAQuotePageStoryblok;
+  export let page: GetAQuotePageStoryblok | PackagesStoryblok;
 
   let name = '';
   let email = '';

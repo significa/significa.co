@@ -177,7 +177,6 @@
     </div>
   </div>
 {/if}
-
 <form
   id="contact-form"
   method="POST"

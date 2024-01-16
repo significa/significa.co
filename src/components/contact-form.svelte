@@ -181,11 +181,7 @@
 <form
   id="contact-form"
   method="POST"
-  action={{
-    quote: '/form/quote',
-    career: '/form/career',
-    contact: '/form/contact'
-  }[type]}
+  action={{ quote: '/form/quote', career: '/form/career', contact: '/form/contact' }[type]}
   use:enhance={(form) => {
     loading = true;
 
@@ -201,7 +197,6 @@
     };
   }}
 >
-  <slot name="packagesform" />
   <input type="hidden" name="return-to" value={$page.url.pathname} />
   <div class="flex flex-col gap-4">
     <div class="flex w-full flex-col gap-4 md:flex-row">

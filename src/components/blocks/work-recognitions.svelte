@@ -1,22 +1,26 @@
 <script lang="ts">
-  import type { WorkRecognitionsStoryblok } from '$types/bloks';
+  import type { RecognitionEntryStoryblok, WorkRecognitionsStoryblok } from '$types/bloks';
 
   import { page } from '$app/stores';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import SmallHighlights from '$components/pages/home/small-highlights.svelte';
   import { t } from '$lib/i18n';
+  import type { ISbStoryData } from '@storyblok/js';
 
   export let block: WorkRecognitionsStoryblok;
 
   const awardsArray = Object.values(
-    $page.data.awards.reduce((acc, currentValue) => {
-      let groupKey = currentValue.content.recognition.name;
-      if (!acc[groupKey]) {
-        acc[groupKey] = [];
-      }
-      acc[groupKey].push(currentValue);
-      return acc;
-    }, {})
+    $page.data.awards.reduce<Record<string, ISbStoryData<RecognitionEntryStoryblok>[]>>(
+      (acc, currentValue) => {
+        let groupKey = currentValue.content.recognition.name;
+        if (!acc[groupKey]) {
+          acc[groupKey] = [];
+        }
+        acc[groupKey].push(currentValue);
+        return acc;
+      },
+      {}
+    )
   );
 </script>
 

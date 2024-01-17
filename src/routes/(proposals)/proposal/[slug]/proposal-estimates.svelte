@@ -1,364 +1,331 @@
 <script lang="ts">
   import { t } from '$lib/i18n';
   import clsx from 'clsx';
-  import {
-    getColumnsWidthClassName,
-    getContainersPaddingClassName,
-    getHeaderCellTextClassName,
-    getStickyColClassName
-  } from '$lib/utils/proposalTables';
-  import type { ProposalEstimateEntryStoryblok, ProposalTeamEntryStoryblok } from '$types/bloks';
-  import { Tag } from '@significa/svelte-ui';
+  import type {
+    ProposalEstimateEntryStoryblok,
+    ProposalPackageTeamEntryStoryblok,
+    ProposalTeamEntryStoryblok
+  } from '$types/bloks';
+  import { Button } from '@significa/svelte-ui';
   import { formatter } from '$lib/utils/currency';
 
   export let data: ProposalEstimateEntryStoryblok[];
-  export let team: ProposalTeamEntryStoryblok[];
+  export let team: ProposalTeamEntryStoryblok[] | ProposalPackageTeamEntryStoryblok[];
   export let discount: string | undefined;
-  export let windowWidth: number;
-  export let containerMargin: number;
-  export let sectionTitleWidth: number;
 
-  let firstColWidth: number;
-  let stickyColWidth: number;
-  let stickyColContentWidth: number;
-  let emptyColWidth: number;
-
-  let teamInfoMap = new Map();
-  let areaInfoMap = new Map();
+  let openPanes = Array(data.length).fill(false);
 
   let subtotal: number = 0;
   let totalDuration: number = 0;
   let discountedValue: number = 0;
   let grandTotal: number = 0;
 
-  team.forEach((member) => {
-    teamInfoMap.set(member.team_member.member.name, {
-      role: member.role[0].title,
-      rate_type: member.rate_type,
-      rate_value: member.rate_value
-    });
-  });
+  $: estimates = data.map(({ color, phases, title }) => {
+    const enhancedPhases = phases.map((phase) => {
+      // Add team member rate info to phase team object
+      const phaseTeam = phase.team.map((person) => {
+        const teamMember = team.find(
+          (member) => member.team_member.member.name === person.team_member.member.name
+        );
 
-  data.forEach((entry) => {
-    let areaCounter = {
-      phases: entry.phases.length,
-      team: 0,
-      duration: 0,
-      cost: 0,
-      percentage: 0
-    };
-
-    entry.phases.forEach((phase) => {
-      areaCounter.team = areaCounter.team + phase.team.length;
-
-      phase.team.forEach((team) => {
-        areaCounter.duration = areaCounter.duration + +team.duration;
-        const memberInfo = teamInfoMap.get(team.team_member.member.name);
-        if (memberInfo?.rate_type == 'value') {
-          areaCounter.cost = areaCounter.cost + +team.duration * +memberInfo.rate_value;
-        } else if (memberInfo?.rate_type == 'percentage') {
-          areaCounter.percentage = areaCounter.percentage + +memberInfo.rate_value;
-        }
+        return {
+          role: teamMember?.role[0].title,
+          rateType: teamMember?.rate_type,
+          rateValue: +teamMember?.rate_value,
+          duration: +person.duration
+        };
       });
+
+      // add partial totals to phase object
+      const phaseRate = phaseTeam.reduce(
+        (total, member) =>
+          (total += member.rateType === 'value' ? member.rateValue * member.duration : 0),
+        0
+      );
+      const phasePercentage = phaseTeam.reduce(
+        (total, member) => (total += member.rateType === 'percentage' ? member.rateValue : 0),
+        0
+      );
+
+      return {
+        ...phase,
+        team: phaseTeam,
+        duration: phaseTeam.reduce((total, member) => (total += member.duration), 0),
+        rate: phaseRate,
+        percentage: phasePercentage
+      };
     });
 
-    areaCounter.cost = areaCounter.cost + areaCounter.cost * (areaCounter.percentage / 100);
-    subtotal = subtotal + areaCounter.cost;
-    totalDuration = totalDuration + areaCounter.duration;
-    areaInfoMap.set(entry.title, areaCounter);
+    // add totals to data object
+    const totalRate = enhancedPhases.reduce((total, { rate }) => (total += rate), 0);
+    const totalPercentage = enhancedPhases.reduce(
+      (total, { percentage }) => (total += percentage),
+      0
+    );
+
+    return {
+      color,
+      title,
+      totals: {
+        phases: enhancedPhases.length,
+        team: enhancedPhases.reduce((total, { team }) => (total += team.length), 0),
+        cost: totalRate + (totalRate * totalPercentage) / 100,
+        duration: enhancedPhases.reduce((total, { duration }) => (total += duration), 0)
+      },
+      phases: enhancedPhases
+    };
   });
 
-  if (discount) {
-    discountedValue = (subtotal * +discount) / 100;
-    grandTotal = subtotal - discountedValue;
-  } else {
-    grandTotal = subtotal;
-  }
+  $: subtotal = estimates.reduce((subtotal, estimate) => (subtotal += estimate.totals.cost), 0);
+  $: totalDuration = estimates.reduce(
+    (subtotal, estimate) => (subtotal += estimate.totals.duration),
+    0
+  );
 
-  stickyColContentWidth = Math.max((('' + subtotal).length * 135) / 5.5, 175);
-
-  $: centralColsWidth = (windowWidth - firstColWidth - stickyColWidth - emptyColWidth) / 3;
+  $: discountedValue = discount ? (subtotal * +discount) / 100 : 0;
+  $: grandTotal = subtotal - discountedValue;
 </script>
 
-<div
-  class="overflow-x-scroll md:overflow-hidden"
-  style="--container-margin: {containerMargin}px;
-  --section-title-width: {sectionTitleWidth}px;
-  --central-cols-width: {centralColsWidth}px;
-  --sticky-col-content-width: {stickyColContentWidth}px;"
->
-  <table class="table-fixed w-[750px] md:w-full">
-    <thead>
-      <tr class="border-b border-foreground-secondary">
-        <!-- Area Column -->
-        <th
+<div class="overflow-x-scroll">
+  <!-- Header -->
+  <div class="min-w-[780px] border-b border-foreground-secondary even:bg-foreground-tertiary/10">
+    <div
+      class={clsx(
+        'container mx-auto',
+        'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr] gap-10 md:gap-12 px-6 md:px-12 py-3.5'
+      )}
+    >
+      <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+        {t('proposals.estimates.area')}
+      </p>
+      <div class="grid grid-cols-[2fr_1fr_1fr_1fr]">
+        <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+          {t('proposals.estimates.phases')}
+        </p>
+
+        <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+          {t('proposals.estimates.team')}
+        </p>
+
+        <p class="text-xs uppercase tracking-wider text-foreground-secondary text-right">
+          {t('proposals.estimates.duration')}
+        </p>
+
+        <p class="text-xs uppercase tracking-wider text-foreground-secondary text-right">
+          {t('proposals.estimates.predicted-cost')}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {#each estimates as estimate, i}
+    {#if openPanes[i]}
+      <!-- Expanded View -->
+      <div
+        class="min-w-[780px] border-b border-foreground-secondary even:bg-foreground-tertiary/10"
+      >
+        <div
           class={clsx(
-            getColumnsWidthClassName('first'),
-            getContainersPaddingClassName('left'),
-            'pr-4 lg:pr-12 py-2.5'
-          )}
-          bind:clientWidth={firstColWidth}
-        >
-          <p class={clsx(getHeaderCellTextClassName('left'))}>
-            {t('proposals.estimates.area')}
-          </p>
-        </th>
-        <!-- Phases Column -->
-        <th class={clsx(getColumnsWidthClassName('central'), 'pr-4 lg:pr-12 py-2.5')}
-          ><p class={clsx(getHeaderCellTextClassName('left'))}>
-            {t('proposals.estimates.phases')}
-          </p>
-        </th>
-        <!-- Team Column-->
-        <th class={clsx(getColumnsWidthClassName('central'), 'py-2.5')}>
-          <p class={clsx(getHeaderCellTextClassName('left'))}>
-            {t('proposals.estimates.team')}
-          </p>
-        </th>
-        <!-- Duration Column-->
-        <th class={clsx(getColumnsWidthClassName('central'), 'lg:pl-12 pl-4 py-2.5 pr-4 md:pr-0')}>
-          <p class={clsx(getHeaderCellTextClassName('right'))}>
-            {t('proposals.estimates.duration')}
-          </p>
-        </th>
-        <!-- Predicted Cost Column-->
-        <th
-          bind:clientWidth={stickyColWidth}
-          class={clsx(
-            getColumnsWidthClassName('sticky'),
-            getContainersPaddingClassName('right'),
-            'lg:pl-12 pl-4 lg:pr-0 py-2.5',
-            getStickyColClassName()
+            'container mx-auto',
+            'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr] gap-x-10 md:gap-x-12 px-6 md:px-12'
           )}
         >
-          <div class="w-px bg-foreground-tertiary md:w-0 absolute left-0 top-0 bottom-0" />
-          <p class={clsx(getHeaderCellTextClassName('right'))}>
-            {t('proposals.estimates.predicted-cost')}
-          </p>
-        </th>
-        <!-- Empty Column-->
-        <th
-          class={clsx(
-            getContainersPaddingClassName('right'),
-            getColumnsWidthClassName('last-empty'),
-            'bg-background md:bg-transparent drop-shadow-md md:drop-shadow-none',
-            'hidden lg:block'
-          )}
-          bind:clientWidth={emptyColWidth}
-        >
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each data as entry, i}
-        {@const areaInfo = areaInfoMap.get(entry.title)}
-        {#each entry.phases as phase, j}
-          {#each phase.team as team, k}
-            {@const teamMemberInfo = teamInfoMap.get(team.team_member.member.name)}
-            <tr
+          <div class="col-start-1 font-bold -ml-4 py-4">
+            <span
+              style="background-color: {estimate.color}"
+              class="w-2 h-2 mr-2 rounded-full inline-block"
+            ></span>
+            {estimate.title}.
+
+            <div class="block lg:hidden">
+              <Button
+                variant="secondary"
+                size="sm"
+                class="h-6 text-xs uppercase bg-background"
+                on:click={() => {
+                  openPanes[i] = !openPanes[i];
+                }}
+              >
+                {openPanes[i] ? t('proposals.hide') : t('proposals.show')}
+              </Button>
+            </div>
+          </div>
+
+          {#each estimate.phases as phase}
+            <div
               class={clsx(
-                (j !== entry.phases.length - 1 || k !== phase.team.length - 1) &&
-                  'border-b border-foreground-tertiary',
-                i % 2 ? 'bg-background-offset ' : 'bg-background'
+                'col-start-2',
+                'grid grid-cols-[2fr_1fr_1fr_1fr]',
+                'border-b border-foreground-tertiary',
+                '[&>div:nth-last-child(-n+3)]:border-b-0'
               )}
             >
-              <!-- Area Cell -->
-              {#if k == 0 && j == 0}
-                <td
-                  rowspan={areaInfo.team + 1}
-                  class={clsx(
-                    getContainersPaddingClassName('left'),
-                    'py-4 pr-4 lg:pr-12 align-top'
-                  )}
-                >
-                  <span
-                    style="background-color: {entry.color}"
-                    class="w-[8px] h-[8px] rounded-full inline-block mt-[9px] ml-[-16px] absolute"
-                  ></span>
-                  <p class="font-bold">
-                    {entry.title}.
-                  </p>
-                  <p class="text-foreground-secondary">
-                    {entry.description}
-                  </p>
-                </td>
-              {/if}
-              <!-- Phases Cell -->
-              {#if k == 0}
-                <td rowspan={phase.team.length} class={'pr-4 lg:pr-12 py-4  align-top'}>
-                  <p class="font-bold">
-                    {phase.title}.
-                  </p>
-                  <p class="text-foreground-secondary">
-                    {phase.description}
-                  </p>
-                </td>
-              {/if}
-              <!-- Team Cell -->
-              <td class={'py-4  align-top'}>
-                {#if teamMemberInfo}
-                  {teamMemberInfo.role}
-                {/if}
-              </td>
-              <!-- Duration Cell -->
-              <td class={'pl-4 lg:pl-12 py-4 pr-4 md:pr-0 align-top text-right tabular-nums'}>
-                {team.duration}
-              </td>
-              <!-- Predicted Cost Cell -->
-              <td
-                class={clsx(
-                  getStickyColClassName(),
-                  getContainersPaddingClassName('right'),
-                  'lg:pl-12 pl-4 py-4 lg:pr-0',
-                  i % 2 ? 'bg-background-offset' : 'bg-background',
-                  'align-top text-right tabular-nums'
-                )}
-              >
-                <div class="w-px bg-foreground-tertiary md:w-0 absolute left-0 top-0 bottom-0" />
-                {#if teamMemberInfo}
-                  {#if teamMemberInfo.rate_type === 'percentage' && teamMemberInfo.rate_value}
-                    <p>
-                      {teamMemberInfo.rate_value} %
-                    </p>
-                  {:else if teamMemberInfo.rate_type === 'value' && teamMemberInfo.rate_value}
-                    <p>
-                      {formatter.format(+team.duration * +teamMemberInfo.rate_value)}
-                    </p>
-                  {:else if teamMemberInfo.rate_type === 'free'}
-                    <p>{t('proposals.included')}</p>
+              <div class="col-start-1 row-span-{estimate.totals.phases} py-4 pr-2">
+                <p class="font-bold">
+                  {phase.title}.
+                </p>
+
+                <p class="text-foreground-secondary">
+                  {phase.description}
+                </p>
+              </div>
+
+              {#each phase.team as person}
+                <div class="col-start-2 border-b border-foreground-tertiary py-4">
+                  {person.role}
+                </div>
+
+                <div class="col-start-3 text-right border-b border-foreground-tertiary py-4">
+                  {person.duration}
+                </div>
+
+                <div class="col-start-4 text-right border-b border-foreground-tertiary py-4">
+                  {#if person.rateType === 'percentage' && person.rateValue}
+                    {person.rateValue} %
+                  {:else if person.rateType === 'value' && person.rateValue}
+                    {formatter.format(person.duration * person.rateValue)}
+                  {:else if person.rateType === 'free'}
+                    {t('proposals.included')}
                   {/if}
-                {/if}
-              </td>
-              <!-- Empty Cell -->
-              {#if k == 0 && j == 0}
-                <td rowspan={areaInfo.team + 1} class="hidden lg:table-cell"> </td>
-              {/if}
-            </tr>
-          {/each}
-        {/each}
-        <!-- AREA SUMS -->
-        <tr
-          class={clsx(
-            'border-b border-b-foreground-tertiary',
-            i % 2 ? 'bg-background-offset' : 'bg-background'
-          )}
-        >
-          <!-- Total Phases Cell -->
-          <td
-            class={'lg:pr-12 pr-4 py-4 border-t border-t-foreground-secondary align-top tabular-nums'}
-          >
-            {areaInfo.phases}
-            {#if areaInfo.phases == 1}
-              {t('proposals.estimates.phases')}
-            {:else}
-              {t('proposals.estimates.phase')}
-            {/if}
-          </td>
-          <!-- Total Team Cell -->
-          <td class={'py-4 align-top tabular-nums border-t border-t-foreground-secondary'}>
-            {areaInfo.team}
-            {#if areaInfo.team == 1}
-              {t('proposals.estimates.person')}
-            {:else}
-              {t('proposals.estimates.people')}
-            {/if}
-          </td>
-          <!-- Total Duration Cell -->
-          <td
-            class={'lg:pl-12 pl-4 py-4  align-top text-right font-bold tabular-nums pr-4 md:pr-0 border-t border-t-foreground-secondary'}
-          >
-            {areaInfo.duration}
-          </td>
-          <!-- Total Predicted Cost Cell -->
-          <td
-            class={clsx(
-              getStickyColClassName(),
-              getContainersPaddingClassName('right'),
-              'lg:pl-12 pl-4 py-4 lg:pr-0',
-              'align-top text-right font-bold tabular-nums',
-              'border-t border-t-foreground-secondary',
-              i % 2 ? 'bg-background-offset' : 'bg-background'
-            )}
-          >
-            <div class="w-px bg-foreground-tertiary md:w-0 absolute left-0 top-0 bottom-0" />
-            {formatter.format(areaInfo.cost)}
-          </td>
-        </tr>
-      {/each}
-      <!-- TOTAL SUMS -->
-      <tr class={'border-b border-foreground-tertiary bg-background'}>
-        <td rowspan="3"> </td>
-        <td rowspan="3"> </td>
-        <!-- Subtotal Label Cell -->
-        <td class={'py-4 align-top'}>
-          {t('proposals.estimates.subtotal')}
-        </td>
-        <!-- Total Duration Cell -->
-        <td class={'lg:pl-12 pl-4 py-4 pr-4 md:pr-0 align-top text-right tabular-nums'}>
-          {totalDuration}
-        </td>
-        <!-- Subtotal Cell -->
-        <td
-          class={clsx(
-            getStickyColClassName(),
-            getContainersPaddingClassName('right'),
-            'lg:pl-12 pl-4 py-4 lg:pr-0',
-            'align-top text-right tabular-nums'
-          )}
-        >
-          <div class="w-px bg-foreground-tertiary md:w-0 absolute left-0 top-0 bottom-0" />
-          {formatter.format(subtotal)}
-        </td>
-        <!-- Empty Cell -->
-        <td class="hidden lg:table-cell" rowspan="3"> </td>
-      </tr>
-      {#if discount}
-        <tr class={'border-b border-foreground-tertiary bg-background'}>
-          <!-- Discount Label Cell -->
-          <td class={clsx('py-4  align-top')}>
-            <div class="flex gap-2 items-center">
-              <p>{t('proposals.estimates.discount')}</p>
-              <Tag class="cursor-default" label={discount + '%'} />
+                </div>
+              {/each}
             </div>
-          </td>
-          <!-- - Cell -->
-          <td class={'lg:pl-12 pl-4 py-4 pr-4 md:pr-0 align-top text-right'}> - </td>
-          <!-- Discount Cell -->
-          <td
-            class={clsx(
-              getStickyColClassName(),
-              getContainersPaddingClassName('right'),
-              'lg:pl-12 pl-4 py-4 lg:pr-0 align-top text-right',
-              'tabular-nums'
-            )}
-          >
-            <div class="w-px bg-foreground-tertiary md:w-0 absolute left-0 top-0 bottom-0" />
-            {formatter.format(discountedValue)}
-          </td>
-        </tr>
-      {/if}
-      <tr class={'border-b border-foreground-tertiary bg-background'}>
-        <!-- Grand Total Label Cell -->
-        <td class={clsx('py-4  align-top font-bold')}>
-          {t('proposals.estimates.grand-total')}
-        </td>
-        <!-- Total Duration Cell -->
-        <td class={'lg:pl-12 pl-4 py-4 align-top text-right font-bold tabular-nums pr-4 md:pr-0'}>
-          {totalDuration}
-        </td>
-        <!-- Grand Total Cell -->
-        <td
+          {/each}
+
+          <div class="col-start-2 grid grid-cols-[2fr_1fr_1fr_1fr] py-4">
+            <div>
+              {estimate.totals.phases}
+              {#if estimate.totals.phases > 1}
+                {t('proposals.estimates.phases')}
+              {:else}
+                {t('proposals.estimates.phase')}
+              {/if}
+            </div>
+            <div>
+              {estimate.totals.team}
+              {#if estimate.totals.team > 1}
+                {t('proposals.estimates.people')}
+              {:else}
+                {t('proposals.estimates.person')}
+              {/if}
+            </div>
+            <div class="text-right">{estimate.totals.duration}</div>
+            <div class="text-right">{formatter.format(estimate.totals.cost)}</div>
+          </div>
+
+          <div class="hidden lg:block col-start-3 row-start-1 py-4">
+            <Button
+              variant="secondary"
+              size="sm"
+              class="h-6 text-xs uppercase bg-background"
+              on:click={() => {
+                openPanes[i] = !openPanes[i];
+              }}
+            >
+              {openPanes[i] ? t('proposals.hide') : t('proposals.show')}
+            </Button>
+          </div>
+        </div>
+      </div>
+    {:else}
+      <!-- CollapsedView -->
+      <div class="min-w-[780px] border-b border-foreground-secondary">
+        <div
           class={clsx(
-            getStickyColClassName(),
-            getContainersPaddingClassName('right'),
-            'lg:pl-12 pl-4 py-4 lg:pr-0',
-            'font-bold tabular-nums align-top text-right'
+            'container mx-auto',
+            'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr] gap-x-10 md:gap-x-12 px-6 md:px-12 py-4 items-center'
           )}
         >
-          <div class="w-px bg-foreground-tertiary md:w-0 absolute left-0 top-0 bottom-0" />
+          <div class="col-start-1 font-bold -ml-4">
+            <span
+              style="background-color: {estimate.color}"
+              class="w-2 h-2 mr-2 rounded-full inline-block"
+            ></span>
+            {estimate.title}.
+
+            <div class="block lg:hidden">
+              <Button
+                variant="secondary"
+                size="sm"
+                class="h-6 text-xs uppercase bg-background"
+                on:click={() => {
+                  openPanes[i] = !openPanes[i];
+                }}
+              >
+                {openPanes[i] ? t('proposals.hide') : t('proposals.show')}
+              </Button>
+            </div>
+          </div>
+
+          <div class="col-start-2 grid grid-cols-[2fr_1fr_1fr_1fr]">
+            <div>
+              {estimate.totals.phases}
+              {#if estimate.totals.phases > 1}
+                {t('proposals.estimates.phases')}
+              {:else}
+                {t('proposals.estimates.phase')}
+              {/if}
+            </div>
+            <div class="">
+              {estimate.totals.team}
+              {#if estimate.totals.team > 1}
+                {t('proposals.estimates.people')}
+              {:else}
+                {t('proposals.estimates.person')}
+              {/if}
+            </div>
+            <div class="text-right">{estimate.totals.duration}</div>
+            <div class="text-right">{formatter.format(estimate.totals.cost)}</div>
+          </div>
+
+          <div class="hidden lg:block col-start-3">
+            <Button
+              variant="secondary"
+              size="sm"
+              class="h-6 text-xs uppercase bg-background"
+              on:click={() => {
+                openPanes[i] = !openPanes[i];
+              }}
+            >
+              {openPanes[i] ? t('proposals.hide') : t('proposals.show')}
+            </Button>
+          </div>
+        </div>
+      </div>
+    {/if}
+  {/each}
+
+  <div class="min-w-[780px] border-b border-foreground-tertiary">
+    <div
+      class={clsx(
+        'container mx-auto',
+        'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr] gap-10 md:gap-12 px-6 md:px-12'
+      )}
+    >
+      <div class="col-start-2 grid grid-cols-[2fr_1fr_1fr_1fr]">
+        <div class="col-start-2 border-b py-4">{t('proposals.estimates.subtotal')}</div>
+        <div class="col-start-3 border-b text-right py-4">{totalDuration}</div>
+        <div class="col-start-4 border-b text-right py-4">{formatter.format(subtotal)}</div>
+
+        {#if discount}
+          <div class="col-start-2 border-b py-4">
+            {t('proposals.estimates.discount')}
+            <span class="ml-2 text-xs p-1 font-bold rounded-sm border">{discount + '%'}</span>
+          </div>
+          <div class="col-start-3 text-right border-b py-4">-</div>
+          <div class="col-start-4 text-right border-b py-4">
+            -{formatter.format(discountedValue)}
+          </div>
+        {/if}
+
+        <div class="col-start-2 font-bold py-4">
+          {t('proposals.estimates.grand-total')}
+        </div>
+        <div class="col-start-3 text-right font-bold py-4">{totalDuration}</div>
+        <div class="col-start-4 text-right font-bold py-4">
           {formatter.format(grandTotal)}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

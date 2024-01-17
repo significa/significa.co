@@ -1,6 +1,7 @@
 <script lang="ts">
   import { escapeKey, clickOutside, bodyLock } from '@significa/svelte-ui/actions';
   import { Button, Link, Logo, Select } from '@significa/svelte-ui';
+  import { page } from '$app/stores';
   import clsx from 'clsx';
   import { fade, fly } from 'svelte/transition';
   import { t } from '$lib/i18n';
@@ -52,8 +53,7 @@
             {/each}
           </div>
           <div class="flex items-center gap-4">
-            <!-- FIXME: this button should do something-->
-            <Button>
+            <Button as="a" href={`${$page.url.pathname}/accept`}>
               <span aria-hidden="true" class="hidden [@media(min-width:400px)]:block">
                 {t('proposals.nav.action.long')}
               </span>

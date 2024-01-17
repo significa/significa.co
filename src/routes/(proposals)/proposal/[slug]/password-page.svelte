@@ -7,6 +7,7 @@
 </script>
 
 <ProposalNavigation />
+
 <div
   class="container flex items-center xs:mx-auto w-full justify-left xs:justify-center h-[calc(100dvh-var(--topnav-height))] px-container"
 >
@@ -29,11 +30,7 @@
         {/if}
       </div>
 
-      <Button
-        class="mt-4 w-full xs:w-auto xs:mt-0 xs:absolute xs:right-1.5 xs:top-1/2 xs:-translate-y-1/2"
-        type="submit"
-        size="md">{t('proposals.password-form.login')}</Button
-      >
+      <Button class=" mt-5" type="submit" size="md">{t('proposals.password-form.login')}</Button>
     </form>
   </div>
 </div>

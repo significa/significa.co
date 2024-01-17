@@ -1,6 +1,7 @@
 import type {
   ProposalDeliverableStoryblok,
   ProposalEstimateEntryStoryblok,
+  ProposalPackageTeamEntryStoryblok,
   ProposalTeamEntryStoryblok
 } from '$types/bloks';
 
@@ -21,7 +22,7 @@ type Deliverable = {
 
 export function createRateTimelineData(
   estimates: ProposalEstimateEntryStoryblok[],
-  team: ProposalTeamEntryStoryblok[]
+  team: ProposalTeamEntryStoryblok[] | ProposalPackageTeamEntryStoryblok[]
 ) {
   const teamInfoMap = new Map();
   let deliverables: Deliverable[] = [];
@@ -39,14 +40,13 @@ export function createRateTimelineData(
     phases.forEach((phase) => {
       phase.team.forEach((team) => {
         phaseDuration = +team.duration > phaseDuration ? +team.duration : phaseDuration;
-        const memberInfo = teamInfoMap.get(team.team_member.member.name);
         rows = [
           ...rows,
           {
             duration: +team.duration,
             offset: phaseOffset,
             title: phase.title,
-            role: memberInfo?.role,
+            role: teamInfoMap.get(team.team_member.member.name)?.role,
             color
           }
         ];
@@ -68,17 +68,27 @@ export function createRateTimelineData(
   return {
     deliverables,
     rows,
+    totalDays,
     totalMonths
   };
 }
 
-export function createPackageTimelineData(data: ProposalDeliverableStoryblok[]) {
+export function createPackageTimelineData(
+  data: ProposalDeliverableStoryblok[],
+  team: ProposalTeamEntryStoryblok[] | ProposalPackageTeamEntryStoryblok[]
+) {
+  const teamInfoMap = new Map();
+
+  team.forEach((member) => {
+    teamInfoMap.set(member.team_member.member.name, { role: member.role[0].title });
+  });
+
   const deliverables = data.map(({ color, team, title }) => {
     const rows = team.map((member) => ({
       duration: +member.duration,
       offset: +member.offset,
-      title: 'lorem ipsum',
-      role: member.role[0].title,
+      title: title,
+      role: teamInfoMap.get(member.team_member.member.name)?.role,
       color: color
     }));
 
@@ -86,9 +96,16 @@ export function createPackageTimelineData(data: ProposalDeliverableStoryblok[]) 
   });
 
   const rows = deliverables.reduce(
-    (acc: Row[], cur) => [...acc, { duration: 0, offset: 0 }, ...cur.rows],
+    (acc: Row[], cur) => [...acc, { duration: 1, offset: 0 }, ...cur.rows],
     []
   );
 
-  return { deliverables, rows, totalMonths: 3 };
+  const totalDays = rows.reduce(
+    (max, cur) => (cur.duration + cur.offset > max ? (max = +cur.duration + +cur.offset) : max),
+    0
+  );
+
+  const totalMonths = Math.ceil(totalDays / 20);
+
+  return { deliverables, rows, totalDays, totalMonths };
 }

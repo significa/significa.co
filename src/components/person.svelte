@@ -10,6 +10,7 @@
   export let name: string;
   export let position: string | undefined = undefined;
   export let photo: AssetStoryblok | undefined = undefined;
+  export let email: AssetStoryblok | undefined = undefined;
 </script>
 
 <div class={clsx('flex items-center gap-3 whitespace-nowrap', className)}>
@@ -25,6 +26,11 @@
     {#if position}
       <p class="mt-1 text-base font-semibold leading-none text-foreground-secondary">
         {position}
+      </p>
+    {/if}
+    {#if email}
+      <p class="mt-1 text-base font-semibold leading-none text-foreground-secondary">
+        {email}
       </p>
     {/if}
   </div>

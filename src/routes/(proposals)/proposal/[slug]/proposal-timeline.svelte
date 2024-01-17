@@ -1,18 +1,38 @@
 <script lang="ts">
-  export let data;
+  import type { ProposalPackagePricingStoryblok } from '$types/bloks';
+  import clsx from 'clsx';
 
-  const { deliverables, rows, totalMonths } = data;
+  export let data;
+  export let type: string;
+  export let pricing: ProposalPackagePricingStoryblok[] | undefined;
+
+  const { deliverables, rows, totalDays, totalMonths } = data;
+
+  let projectManagement = pricing?.find(
+    (resource) => resource.department.name === 'Project Manager'
+  );
+  let qualityAssurance = pricing?.find(
+    (resource) => resource.department.name === 'Quality Assurance'
+  );
 </script>
 
-<div class="grid gap-1 grid-cols-[max-content,_max-content] overflow-x-scroll py-3 relative">
+<div
+  class={clsx(
+    'container 2xl:px-12 mx-auto relative overflow-x-scroll',
+    'grid gap-1 grid-cols-[max-content,_max-content] py-3'
+  )}
+>
   <div class="col-start-1 row-start-1"></div>
   <div class="col-start-2">
-    <div class="grid gap-1 px-1 auto-cols-[20px] grid-rows-2 border-b shadow-sm">
+    <div
+      class="grid gap-1 px-1 auto-cols-[20px] grid-rows-2 border-b shadow-sm"
+      style="background: linear-gradient(to right, #DDD 1px, transparent 1px); background-size: 120px;"
+    >
       {#each Array(totalMonths) as _, i}
-        <div class="row-start-1" style="grid-column: span 20">Month {i + 1}</div>
-        {#each Array(4) as _, i}
-          <div class="row-start-2 col-span-5 text-foreground-secondary text-xs uppercase">
-            Week {i + 1}
+        <div class="row-start-1 px-2" style="grid-column: span 20">Month {i + 1}</div>
+        {#each Array(4) as _, j}
+          <div class="row-start-2 px-2 col-span-5 text-foreground-secondary text-xs uppercase">
+            Week {j + 1}
           </div>
         {/each}
       {/each}
@@ -23,6 +43,10 @@
     {#each deliverables as deliverable}
       <div class="shadow-md rounded-xs m-1 bg-background">
         <div class="h-[36px] m-1 uppercase font-medium text-xs text-foreground-secondary px-3 py-2">
+          <span
+            style="background-color: {deliverable.color}"
+            class="w-2 h-2 mr-2 rounded-full inline-block"
+          ></span>
           {deliverable.title}
         </div>
         {#each deliverable?.rows as row}
@@ -30,15 +54,24 @@
         {/each}
       </div>
     {/each}
+
+    {#if type === 'package' && pricing}
+      <div class="mt-9 py-1 sticky left-0">
+        <div class="shadow-md rounded-xs m-1 bg-background">
+          <div class="h-[36px] mb-1 text-sm px-3 py-2">Project Manager</div>
+          <div class="h-[36px] mb-1 text-sm px-3 py-2">Quality assurance</div>
+        </div>
+      </div>
+    {/if}
   </div>
 
   <div
-    class="grid gap-1 px-1 auto-cols-[20px] auto-rows-[36px]"
-    style="background: linear-gradient(to right, #DDD 1px, transparent 1px); background-size: 120px;"
+    class="grid auto-cols-[20px] auto-rows-[36px] gap-1 px-0.5 py-1"
+    style="background: linear-gradient(to right, #ddd 1px, transparent 1px); background-size: 120px;"
   >
     {#each rows as row, i}
       <div
-        class="rounded-xs p-2 text-sm text-white"
+        class="rounded-xs mx-1 p-2 text-sm text-white"
         style="
           background-color: {row.color};
           grid-row: {i + 1} / span 1;
@@ -46,11 +79,34 @@
       >
         {#if row.title}
           {row.title}
-          <span>
+          <span class="text-background">
             {row.duration} days
           </span>
         {/if}
       </div>
     {/each}
+
+    {#if type === 'package' && projectManagement && qualityAssurance}
+      <div
+        class="rounded-xs mx-1 p-2 text-sm border border-dashed"
+        style="background-color: #eee;
+               grid-row: {rows.length + 2} / span 1;
+               grid-column: 1 / span {totalDays};"
+      >
+        Project manager <span class="text-foreground"
+          >{(20 * +projectManagement.rate_value * +projectManagement.team_size) / 100} days per month</span
+        >
+      </div>
+      <div
+        class="rounded-xs mx-1 p-2 text-sm border border-dashed"
+        style="background-color: #eee;
+               grid-row: {rows.length + 3} / span 1;
+               grid-column: 1 / span {totalDays};"
+      >
+        Quality Assurance <span class="text-foreground"
+          >{(20 * +qualityAssurance.rate_value * +qualityAssurance.team_size) / 100} days per month</span
+        >
+      </div>
+    {/if}
   </div>
 </div>

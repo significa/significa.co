@@ -1,18 +1,19 @@
 <script lang="ts">
+  import clsx from 'clsx';
   import type { ProposalStoryblok } from '$types/bloks';
   import { slugify } from '$lib/utils/paths';
   import { createPackageTimelineData, createRateTimelineData } from '$lib/utils/proposals';
+  import RichText from '$components/rich-text.svelte';
   import Hero from './hero.svelte';
   import ProposalNavigation from './proposal-navigation.svelte';
-  import RichText from '$components/rich-text.svelte';
   import ProposalDeliverables from './proposal-deliverables.svelte';
   import ProposalScope from './proposal-scope.svelte';
   import ProposalTeam from './proposal-team.svelte';
   import ProposalEstimates from './proposal-estimates.svelte';
   import ProposalPackage from './proposal-package.svelte';
   import ProposalTimeline from './proposal-timeline.svelte';
-
-  import ProposalReplyBlock from './proposal-reply-block.svelte';
+  import ProposalPackageReply from './proposal-package-reply.svelte';
+  import ProposalRateReply from './proposal-rate-reply.svelte';
 
   export let proposal: ProposalStoryblok;
 
@@ -21,21 +22,13 @@
 
   $: content = versions.find((v) => v.version_name === version);
   $: type = content?.component === 'proposal-version-package' ? 'package' : 'rate';
-  $: sections = (content?.body || []).map((b) => b.title || '').filter(Boolean);
+  $: sections = (content?.body || []).map((section) => section.title || '').filter(Boolean);
+
   $: timelineData =
     type === 'rate'
       ? createRateTimelineData(content?.estimates || [], content?.team || [])
-      : createPackageTimelineData(content?.deliverables);
-
-  let sectionTitleWidth;
-  let containerWidth: number;
-  let windowWidth: number;
-
-  $: containerMargin = (windowWidth - containerWidth) / 2;
+      : createPackageTimelineData(content?.deliverables || [], content?.team || []);
 </script>
-
-<div class="container mx-auto" bind:clientWidth={containerWidth}></div>
-<svelte:window bind:innerWidth={windowWidth} />
 
 <ProposalNavigation
   {sections}
@@ -43,59 +36,54 @@
   bind:version
 />
 
-<Hero {proposal} date={content?.date}></Hero>
+<Hero {proposal} date={content?.date} />
 
 {#each content?.body || [] as section}
-  <section id={slugify(section.title)} class="pt-20 lg:pt-28">
-    <div class="container mx-auto px-container flex flex-col gap-12 lg:flex-row">
-      <h2 bind:clientWidth={sectionTitleWidth} class="text-4xl lg:w-1/2">{section.title}.</h2>
-      <div class="w-full">
-        <RichText class="lg:w-2/3" doc={section.body} />
-      </div>
+  <section id={slugify(section.title)} class=" pb-10 md:pb-14 lg:pb-20">
+    <div
+      class={clsx(
+        'grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-10 lg:gap-12',
+        'container mx-auto',
+        'px-6 lg:px-12 pb-10 md:pb-14 lg:pb-20'
+      )}
+    >
+      <h2 class="text-4xl">{section.title}.</h2>
+      <RichText doc={section.body} />
     </div>
 
-    <div class="pt-20">
-      {#if section.data === 'scope' && content?.scope}
-        <ProposalScope data={content.scope} {windowWidth} {containerMargin} {sectionTitleWidth} />
-      {:else if section.data === 'deliverables' && content?.deliverables}
-        <ProposalDeliverables
-          data={content.deliverables}
-          {windowWidth}
-          {containerMargin}
-          {sectionTitleWidth}
-        />
-      {:else if type === 'rate' && section.data === 'team' && content?.team}
-        <ProposalTeam
-          data={content.team}
-          {type}
-          {windowWidth}
-          {containerMargin}
-          {sectionTitleWidth}
-        />
-      {:else if type === 'package' && section.data === 'team' && content?.package}
-        <ProposalTeam
-          data={content.package}
-          {type}
-          {windowWidth}
-          {containerMargin}
-          {sectionTitleWidth}
-        />
-      {:else if section.data === 'estimates' && content?.estimates}
-        <ProposalEstimates
-          data={content.estimates}
-          team={content.team}
-          discount={content.discount_percentage}
-          {windowWidth}
-          {containerMargin}
-          {sectionTitleWidth}
-        />
-      {:else if section.data === 'package' && content?.package}
-        <ProposalPackage data={content.package} />
-      {:else if section.data === 'timeline' && timelineData}
-        <ProposalTimeline data={timelineData} />
-      {/if}
-    </div>
+    {#if section.data === 'scope' && content?.scope}
+      <ProposalScope data={content.scope} />
+    {:else if type === 'package' && section.data === 'deliverables' && content?.deliverables}
+      <ProposalDeliverables data={content.deliverables} />
+    {:else if section.data === 'team' && content?.team}
+      {#key type}
+        <ProposalTeam data={content.team} {type} />
+      {/key}
+    {:else if type === 'rate' && section.data === 'estimates' && content?.estimates}
+      <ProposalEstimates
+        data={content.estimates}
+        discount={content.discount_percentage}
+        team={content.team}
+      />
+    {:else if section.data === 'pricing' && content?.pricing}
+      <ProposalPackage data={content.pricing} />
+    {:else if section.data === 'timeline' && timelineData}
+      {#key timelineData}
+        <ProposalTimeline data={timelineData} {type} pricing={content?.pricing} />
+
+        {#if type === 'package' && content?.team && content?.deliverables && content?.pricing}
+          <ProposalPackageReply
+            discount={content?.discount_percentage ? +content.discount_percentage : 0}
+            deliverables={content.deliverables}
+            pricing={content.pricing}
+            team={content.team}
+          />
+        {/if}
+      {/key}
+    {/if}
   </section>
 {/each}
 
-<ProposalReplyBlock {type} />
+{#if type === 'rate'}
+  <ProposalRateReply />
+{/if}

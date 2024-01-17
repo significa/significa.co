@@ -1,126 +1,80 @@
 <script lang="ts">
-  import { t } from '$lib/i18n';
   import clsx from 'clsx';
-  import {
-    getColumnsWidthClassName,
-    getContainersPaddingClassName,
-    getHeaderCellTextClassName
-  } from '$lib/utils/proposalTables';
+  import { t } from '$lib/i18n';
   import type { ProposalScopeEntryStoryblok } from '$types/bloks';
   import { Button, Tag } from '@significa/svelte-ui';
   import { fade, slide } from 'svelte/transition';
   import { circOut } from 'svelte/easing';
 
   export let data: ProposalScopeEntryStoryblok[];
-  export let windowWidth: number;
-  export let containerMargin: number;
-  export let sectionTitleWidth: number;
 
   let isShowingFeatures = Array(data.length).fill(false);
-
-  let lastColWidth: number;
-  let firstColWidth: number;
-
-  $: centralColsWidth = (windowWidth - lastColWidth - firstColWidth) / 2;
 </script>
 
-<div
-  class="overflow-x-scroll md:overflow-hidden"
-  style="--container-margin: {containerMargin}px;
-  --section-title-width: {sectionTitleWidth}px;
-  --central-cols-width: {centralColsWidth}px;
-  --last-col-content-width: 75px;"
->
-  <table class="table-fixed w-[750px] md:w-full">
-    <thead>
-      <tr class="border-b border-foreground-secondary">
-        <!-- Deliverable Column -->
-        <th
-          class={clsx(
-            getContainersPaddingClassName('left'),
-            getColumnsWidthClassName('first'),
-            'pr-4 lg:pr-12 py-2.5'
-          )}
-          bind:clientWidth={firstColWidth}
-          ><p class={clsx(getHeaderCellTextClassName('left'))}>
-            {t('proposals.scope.deliverable')}
-          </p></th
-        >
+<div class="overflow-x-scroll">
+  <div class="border-b border-foreground-secondary min-w-[780px]">
+    <div
+      class={clsx(
+        'container mx-auto',
+        'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2fr_1fr] gap-10 md:gap-12 px-6 md:px-12 py-2'
+      )}
+    >
+      <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+        {t('proposals.scope.deliverable')}
+      </p>
 
-        <!-- Service Column-->
-        <th class={clsx(getColumnsWidthClassName('central'), 'pr-4 lg:pr-12 py-2.5')}
-          ><p class={clsx(getHeaderCellTextClassName('left'))}>
-            {t('proposals.scope.service')}
-          </p></th
-        >
+      <div class="grid grid-cols-2">
+        <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+          {t('proposals.scope.service')}
+        </p>
+        <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+          {t('proposals.scope.features')}
+        </p>
+      </div>
+      <p class="text-xs uppercase tracking-wider text-foreground-secondary"></p>
+    </div>
+  </div>
 
-        <!-- Features Column-->
-        <th
-          class={clsx(
-            getColumnsWidthClassName('central'),
-            'lg:pr-12 py-2.5',
-            getContainersPaddingClassName('right')
-          )}
-          ><p class={clsx(getHeaderCellTextClassName('left'))}>
-            {t('proposals.scope.features')}
-          </p></th
-        >
+  {#each data as entry, i}
+    {@const features = entry.features?.split('\n').filter(Boolean) || []}
+    <div class="border-b border-foreground-tertiary even:bg-foreground-tertiary/10 min-w-[780px]">
+      <div
+        class={clsx(
+          'container mx-auto',
+          'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2fr_1fr] gap-10 md:gap-12 px-6 md:px-12 py-4'
+        )}
+      >
+        <div>
+          <p class="font-bold">
+            {entry.title}.
+          </p>
+          <p class="text-foreground-secondary">
+            {entry.description}
+          </p>
 
-        <!-- Show Column -->
-        <th
-          class={clsx(
-            getContainersPaddingClassName('right'),
-            getColumnsWidthClassName('last'),
-            'hidden lg:block pl-4 lg:pl-12 py-2.5'
-          )}
-          bind:clientWidth={lastColWidth}
-        ></th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each data as entry, i}
-        {@const features = entry.features?.split('\n').filter(Boolean) || []}
-        <tr class="border-b border-foreground-tertiary even:bg-background-offset">
-          <!-- Deliverable Cell -->
-          <td class={clsx(getContainersPaddingClassName('left'), 'py-4 pr-4 lg:pr-12 align-top')}>
-            <p class="font-bold">
-              {entry.title}.
-            </p>
-            <p class="text-foreground-secondary">
-              {entry.description}
-            </p>
-            <Button
-              class="lg:hidden block mt-3"
-              variant="secondary"
-              size="sm"
-              on:click={() => {
-                isShowingFeatures[i] = !isShowingFeatures[i];
-              }}
-            >
-              {isShowingFeatures[i] ? t('proposals.hide') : t('proposals.show')}
-            </Button>
-          </td>
+          <Button
+            class="lg:hidden block mt-3 h-6 text-xs uppercase bg-background"
+            variant="secondary"
+            size="sm"
+            on:click={() => {
+              isShowingFeatures[i] = !isShowingFeatures[i];
+            }}
+          >
+            {isShowingFeatures[i] ? t('proposals.hide') : t('proposals.show')}
+          </Button>
+        </div>
 
-          <!-- Service Cell -->
-          <td class="pr-4 lg:pr-12 py-4 align-top">
-            <div class="flex flex-wrap gap-2">
-              {#each entry.services || [] as service}
-                <Tag class="cursor-default" label={service} />
-              {/each}
-            </div>
-          </td>
+        <div class="grid grid-cols-2">
+          <div class="">
+            {#each entry.services || [] as service}
+              <Tag class="cursor-default m-1 bg-background" label={service} />
+            {/each}
+          </div>
 
-          <!-- Features Cell -->
-          <td class={clsx(getContainersPaddingClassName('right'), 'lg:pr-12 align-top')}>
-            <p
-              class={clsx(
-                'border-t border-foreground-secondary py-4 -mt-0.5 transition-colors',
-                isShowingFeatures[i] ? 'text-foreground-secondary' : ''
-              )}
-            >
+          <div>
+            {#if !isShowingFeatures[i]}
               {t('proposals.scope.multiple-features')}
-            </p>
-            {#if isShowingFeatures[i]}
+            {:else}
               <div transition:slide={{ duration: 400, easing: circOut }}>
                 {#each features as feature}
                   <p
@@ -132,27 +86,22 @@
                 {/each}
               </div>
             {/if}
-          </td>
+          </div>
+        </div>
 
-          <!-- Show Cell -->
-          <td
-            class={clsx(
-              getContainersPaddingClassName('right'),
-              'hidden lg:table-cell align-top text-right py-4'
-            )}
-            ><Button
-              variant="secondary"
-              size="sm"
-              class="w-16"
-              on:click={() => {
-                isShowingFeatures[i] = !isShowingFeatures[i];
-              }}
-            >
-              {isShowingFeatures[i] ? t('proposals.hide') : t('proposals.show')}
-            </Button></td
+        <div class="justify-end hidden lg:flex">
+          <Button
+            variant="secondary"
+            size="sm"
+            class="h-6 text-xs uppercase bg-background"
+            on:click={() => {
+              isShowingFeatures[i] = !isShowingFeatures[i];
+            }}
           >
-        </tr>
-      {/each}
-    </tbody>
-  </table>
+            {isShowingFeatures[i] ? t('proposals.hide') : t('proposals.show')}
+          </Button>
+        </div>
+      </div>
+    </div>
+  {/each}
 </div>

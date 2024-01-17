@@ -1,7 +1,6 @@
 import { STORYBLOK_PROPOSALS_TOKEN } from '$env/static/private';
 import { PREVIEW_COOKIE_KEY } from '$lib/constants';
 import { getStoryblok } from '$lib/storyblok';
-import { fetchPage } from '$lib/content';
 import type { ProposalStoryblok } from '$types/bloks.js';
 import type { ISbStoryData } from '@storyblok/js';
 
@@ -30,18 +29,11 @@ export const load = async ({ cookies, fetch, params, url }) => {
   }
 
   let res;
-  let services;
-  let home;
 
   try {
-    res = await storyblok.get('cdn/stories/' + url.pathname, {
+    res = await storyblok.get('cdn/stories/' + url.pathname.replace('/accept', ''), {
       version,
-      resolve_relations: [
-        'proposal.created_by',
-        'proposal-team-entry.department',
-        'proposal-package-pricing.department',
-        'proposal-package-team-entry.department'
-      ]
+      resolve_relations: ['proposal.created_by']
     });
   } catch (error) {
     if (isStatusError(error) && error.status === 404) {
@@ -57,42 +49,5 @@ export const load = async ({ cookies, fetch, params, url }) => {
     return failAuthentication();
   }
 
-  try {
-    services = await fetchPage({
-      slug: 'services',
-      version,
-      fetch,
-      url
-    });
-  } catch (err) {
-    console.error('Fetching services for proposals: ' + err);
-    throw err;
-  }
-
-  try {
-    home = await fetchPage({
-      slug: '',
-      version,
-      fetch,
-      url
-    });
-  } catch (err) {
-    console.error('Fetching home for proposals: ' + err);
-    throw err;
-  }
-
-  return { story, services, home };
-};
-
-export const actions = {
-  default: async ({ request, cookies, params }) => {
-    const formData = await request.formData();
-    const password = formData.get('password');
-
-    if (password && typeof password === 'string') {
-      cookies.set(getCookieName(params.slug), password);
-    }
-
-    return {};
-  }
+  return { story };
 };

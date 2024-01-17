@@ -8,7 +8,7 @@
   import Duck from './services/illustrations/duck.svelte';
   import Timeline from './services/timeline.svelte';
   import { theme } from '$lib/stores/theme';
-  import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
+  import { getImageAttributes } from '$lib/utils/cms';
   import type { ServicesPageStoryblok } from '$types/bloks';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import clsx from 'clsx';
@@ -42,14 +42,14 @@
   </section>
 
   <!-- Awards -->
-  {#if data.awards?.length}
+  {#if $page.data.awards.length}
     <section class="mt-10 md:mt-14 lg:mt-20">
       <div class=" justify-between gap-12 lg:flex">
         <div class="flex flex-1 flex-col items-start">
           <div class="w-full flex-1">
             <ul use:drawerLinks>
-              {#each data.awards as award}
-                {@const { href, target, rel } = getAnchorFromCmsLink(award.link)}
+              {#each $page.data.awards as award}
+                {@const href = award.content.project.full_slug}
                 <li
                   class={clsx(
                     'block border-b first:border-t',
@@ -58,8 +58,6 @@
                 >
                   <a
                     {href}
-                    {target}
-                    {rel}
                     on:click={() => {
                       track(TrackingEvent.SERVICES_AWARD_CLICK, {
                         props: {
@@ -72,10 +70,13 @@
                   >
                     <div class="flex w-full flex-col-reverse items-center lg:flex-row">
                       <div class="mb-4 flex w-full items-center lg:mb-0">
-                        {#if award.image?.filename}
-                          {@const { alt, src, width, height } = getImageAttributes(award.image, {
-                            size: [120, 0]
-                          })}
+                        {#if award.content.recognition.content.image?.filename}
+                          {@const { alt, src, width, height } = getImageAttributes(
+                            award.content.recognition.content.image,
+                            {
+                              size: [120, 0]
+                            }
+                          )}
                           <img
                             class="mr-2 h-auto w-14 rounded-xs bg-background-offset"
                             {src}
@@ -86,21 +87,22 @@
                         {/if}
                         <div class="ml-4 flex-col">
                           <p class="text-base font-semibold text-foreground-secondary">
-                            {award.label}
+                            {award.content.recognition.content.label}
                           </p>
-                          <p class="text-base font-semibold">{award.name}</p>
+                          <p class="text-base font-semibold">
+                            {award.content.recognition.content.title}
+                            {award.content.year}
+                          </p>
                         </div>
                       </div>
                       <div class="mb-4 w-full lg:mb-0">
-                        <p class="text-3xl font-semibold">{award.project}</p>
+                        <p class="text-3xl font-semibold">{award.content.project.name}</p>
                       </div>
                     </div>
                     <div class="w-1/3">
                       {#if href}
                         <div class="flex-1 justify-end text-foreground-tertiary xl:flex">
-                          <Button variant="secondary" arrow>
-                            {award.link_text}
-                          </Button>
+                          <Button variant="secondary" arrow>View Project</Button>
                         </div>
                       {/if}
                     </div>

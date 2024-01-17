@@ -19,6 +19,8 @@
   export let story: ProjectPage;
   export let related: ProjectPage[];
   $: next = related[related.findIndex((p) => p.id === story.id) + 1] || related[0];
+
+  const recognitions = $page.data.awards.filter((aw) => aw.content.project.id === story.id);
 </script>
 
 <Seo
@@ -57,13 +59,13 @@
     </div>
   </header>
 
-  {#if story.content.recognitions?.length}
+  {#if recognitions?.length}
     <div class="mx-auto mt-8 max-w-2xl border-b pb-8">
       <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
         {t('recognitions')}
       </h4>
       <div class="grid grid-cols-1 gap-4 xs:gap-6 xs:grid-cols-2 md:grid-cols-3">
-        <Recognitions recognitions={story.content.recognitions} />
+        <Recognitions {recognitions} />
       </div>
     </div>
   {/if}

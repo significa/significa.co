@@ -556,7 +556,12 @@ export interface ImageGridStoryblok {
 }
 
 export interface LandingPageStoryblok {
-  blocks?: (HeroStoryblok | PackagesStoryblok)[];
+  blocks?: (HeroStoryblok | PackagesStoryblok | WorkRecognitionsStoryblok)[];
+  seo_title?: string;
+  seo_description?: string;
+  seo_og_image?: AssetStoryblok;
+  change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  priority?: string;
   _uid: string;
   component: 'landing-page';
   [k: string]: any;
@@ -689,6 +694,7 @@ export interface ProposalStoryblok {
   description: string;
   cover: AssetStoryblok;
   versions?: (ProposalVersionPackageStoryblok | ProposalVersionStoryblok)[];
+  created_by: StoryblokStory<TeamMemberStoryblok> | string;
   _uid: string;
   component: 'proposal';
   [k: string]: any;
@@ -858,9 +864,9 @@ export interface RecognitionEntryStoryblok {
 }
 
 export interface RecognitionTypeStoryblok {
-  Title: string;
-  Label: string;
-  Image: AssetStoryblok;
+  title: string;
+  label: string;
+  image: AssetStoryblok;
   _uid: string;
   component: 'recognition-type';
   [k: string]: any;
@@ -1028,6 +1034,7 @@ export interface TeamMemberStoryblok {
   seo_og_image?: AssetStoryblok;
   priority?: string;
   change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  email?: string;
   _uid: string;
   component: 'team-member';
   [k: string]: any;
@@ -1120,5 +1127,21 @@ export interface VideoStoryblok {
   controls?: boolean;
   _uid: string;
   component: 'video';
+  [k: string]: any;
+}
+
+export interface WorkRecognitionsStoryblok {
+  title?: string;
+  small_highlights_title?: string;
+  small_highlights?: (
+    | StoryblokStory<CareerStoryblok>
+    | StoryblokStory<ProjectStoryblok>
+    | StoryblokStory<HandbookStoryblok>
+    | StoryblokStory<BlogPostStoryblok>
+    | string
+  )[];
+  awards_title?: string;
+  _uid: string;
+  component: 'work-recognitions';
   [k: string]: any;
 }

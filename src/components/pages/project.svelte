@@ -62,7 +62,7 @@
       <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
         {t('recognitions')}
       </h4>
-      <div class="grid grid-cols-1 gap-6 xs:grid-cols-2 md:grid-cols-3">
+      <div class="grid grid-cols-1 gap-4 xs:gap-6 xs:grid-cols-2 md:grid-cols-3">
         <Recognitions recognitions={story.content.recognitions} />
       </div>
     </div>

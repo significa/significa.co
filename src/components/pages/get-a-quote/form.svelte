@@ -64,13 +64,17 @@
       character = 'attach';
     }
   } else if (lastChangedInput === 'budget') {
-    if (['10k - 25k'].includes(budget)) {
+    if (['15.000€ to 50.000€'].includes(budget)) {
       character = 'budget10';
-    } else if (['25k - 50k'].includes(budget)) {
+    } else if (['50.000€ to 100.000€'].includes(budget)) {
       character = 'budget25';
-    } else if (['50k - 100k'].includes(budget)) {
+    } else if (['100.000€ to 200.000€'].includes(budget)) {
+      character = 'budget25';
+    } else if (['200.000€ to 300.000€'].includes(budget)) {
       character = 'budget50';
-    } else if (['100k+'].includes(budget)) {
+    } else if (['300.000€ to 400.000€'].includes(budget)) {
+      character = 'budget50';
+    } else if (['400.000€ and above'].includes(budget)) {
       character = 'budget100';
     }
   } else if (
@@ -104,21 +108,47 @@
 {/if}
 <div
   class={clsx(
-    'container relative mx-auto mt-10 gap-8 overflow-hidden px-container pb-12',
+    'container relative mx-auto mt-10 gap-8 px-container pb-12',
     'md:mt-14 md:pb-20',
     'lg:mt-20 lg:flex lg:justify-between lg:pb-32'
   )}
 >
-  <div class="flex-1">
-    <div class="lg:max-w-xl">
-      <h1 class="text-7xl text-foreground-secondary">
-        {page.title}
-      </h1>
-      <span class="text-7xl">{page.subtitle}</span>
+  <div class="flex-2">
+    <div class="lg:max-w-xl h-full relative flex flex-col justify-between">
+      <div>
+        <h1 class="text-7xl text-foreground-secondary relative">
+          {page.title}
+        </h1>
+        <span class="text-7xl">{page.subtitle}</span>
+      </div>
+      {#if visible || dirty}
+        <!-- eslint-disable svelte/no-at-html-tags -->
+        <div
+          data-theme="light"
+          transition:fly|global={{ y: 250, opacity: 0, easing: circOut, duration: 250 }}
+          aria-hidden="true"
+          class="container mx-auto mt-10 gap-8 px-container relative bg-transparent pointer-events-none grow hidden lg:flex"
+        >
+          <div class="-mb-12 -ml-16 sticky -bottom-12 mt-auto">
+            {@html eggs[character]}
+            {#if character === 't-shirt' && truncatedText}
+              <div
+                class="absolute left-[235px] top-[40px] line-clamp-2 flex h-[76px] w-36 items-center justify-center text-center font-comic font-bold leading-snug"
+                style="transform: rotate(-4deg);"
+              >
+                <div class="h-fit w-24">
+                  I <span class="text-error">{'<3'}</span>
+                  {truncatedText}
+                </div>
+              </div>
+            {/if}
+          </div>
+        </div>
+      {/if}
     </div>
   </div>
   <div class={clsx('flex-1', 'lg:flex lg:justify-end')}>
-    <div class={clsx('mt-5 w-full', 'lg:max-w-xl')}>
+    <div class={clsx('mt-5 w-full', 'lg:max-w-3xl')}>
       <div>
         <ContactForm
           variant="quote"
@@ -138,29 +168,6 @@
           on:error={() => (error = true)}
           on:input={onInput}
         />
-        {#if visible || dirty}
-          <!-- eslint-disable svelte/no-at-html-tags -->
-          <div
-            data-theme="light"
-            transition:fly|global={{ y: 500, opacity: 1, easing: circOut, duration: 250 }}
-            aria-hidden="true"
-            class="absolute -bottom-20 left-2 hidden bg-transparent drop-shadow lg:block"
-            style="transform: rotate(-10deg)"
-          >
-            {@html eggs[character]}
-            {#if character === 't-shirt' && truncatedText}
-              <div
-                class="absolute left-[235px] top-[40px] line-clamp-2 flex h-[--topnav-height] w-36 items-center justify-center text-center font-comic font-bold leading-snug"
-                style="transform: rotate(-4deg);"
-              >
-                <div class="h-fit w-24">
-                  I <span class="text-error">{'<3'}</span>
-                  {truncatedText}
-                </div>
-              </div>
-            {/if}
-          </div>
-        {/if}
       </div>
     </div>
   </div>

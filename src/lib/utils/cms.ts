@@ -10,7 +10,7 @@ export function getAnchorFromCmsLink(link: MultilinkStoryblok | undefined) {
 
   switch (link?.linktype) {
     case 'story': {
-      if ('story' in link && link?.story?.full_slug) {
+      if ('story' in link && link.story?.full_slug) {
         attributes.href = sanitizeSlug(link.story.full_slug);
       } else if (link.cached_url) {
         attributes.href = sanitizeSlug(link.cached_url);

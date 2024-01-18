@@ -4,7 +4,17 @@
   import { page } from '$app/stores';
   import TopNavigation from '$components/top-navigation.svelte';
   import Footer from '$components/footer.svelte';
-  import { dev } from '$app/environment';
+  import { browser, dev } from '$app/environment';
+
+  import { PUBLIC_POSTHOG_PROJECT_TOKEN } from '$env/static/public';
+  import posthog from 'posthog-js';
+
+  if (browser) {
+    posthog.init(PUBLIC_POSTHOG_PROJECT_TOKEN, {
+      api_host: 'https://eu.posthog.com',
+      persistence: 'localStorage'
+    });
+  }
 
   export let data;
 </script>

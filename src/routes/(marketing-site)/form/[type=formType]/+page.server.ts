@@ -1,3 +1,4 @@
+import { isFormType } from '$components/contact-form.svelte';
 import { env } from '$env/dynamic/private';
 import { AWS_S3_BUCKET } from '$env/static/private';
 import { t } from '$lib/i18n';
@@ -29,6 +30,15 @@ const getNotionAttachments = (attachmentsUrls: string) => {
 export const actions = {
   default: async (event) => {
     const data = await event.request.formData();
+    const formType = event.params.type;
+
+    if (!isFormType(formType)) {
+      return fail(500, {
+        error: {
+          message: 'Failed to send internal email notification'
+        }
+      });
+    }
 
     const fields = Object.fromEntries(data.entries()) as FormFields;
     const { name, email, message } = fields;
@@ -47,7 +57,12 @@ export const actions = {
     }
 
     try {
-      sendEmailNotification({ name, email, message });
+      sendEmailNotification({
+        name,
+        email,
+        message,
+        formType
+      });
     } catch (error) {
       return fail(500, {
         error: {
@@ -110,7 +125,12 @@ export const actions = {
 
     try {
       const subject = t('form.subject');
-      await sendTransactionalEmail({ name, email, subject });
+      await sendTransactionalEmail({
+        name,
+        email,
+        subject,
+        template: event.params.type === 'quote' ? 'default' : 'minimal'
+      });
     } catch (error) {
       return fail(500, {
         error: {

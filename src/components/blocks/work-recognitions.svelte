@@ -9,6 +9,8 @@
   import EggChicken from '../illustrations/assets/egg-chicken.webp';
   import QuimHead from '../illustrations/assets/quim.webp';
   import BG from '../illustrations/assets/bg-work-recognitions.webp';
+  import BGWhite from '../illustrations/assets/bg-work-recognitions-white.webp';
+  import { theme } from '$lib/stores/theme';
 
   export let block: WorkRecognitionsStoryblok;
 
@@ -25,9 +27,11 @@
       {}
     )
   );
+
+  const src = $theme === 'dark' ? BG : BGWhite;
 </script>
 
-<div style="background-image: url({BG});">
+<div style="background-image: url({src});">
   <section
     class="container mx-auto px-container @container flex flex-col max-w-[1056px] pt-32 relative"
   >

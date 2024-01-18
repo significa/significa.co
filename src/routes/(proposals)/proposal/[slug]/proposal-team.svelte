@@ -25,17 +25,16 @@
   });
 </script>
 
-<div class="w-full overflow-x-scroll">
+<div class="overflow-x-scroll mt-10 md:mt-14 lg:mt-20">
+  <!-- HEADER -->
   <div class="border-b border-foreground-secondary min-w-[780px]">
     <div
       class={clsx(
         'container mx-auto',
         'grid gap-10 md:gap-12 px-6 md:px-12 py-2',
-        `${
-          type === 'package'
-            ? 'grid-cols-[1fr_3fr] md:grid-cols-[1fr_2fr_1fr]'
-            : 'grid-cols-[1fr_2fr_1fr]'
-        }`
+        type === 'package'
+          ? 'grid-cols-[1fr_3fr] md:grid-cols-[1fr_2fr_1fr]'
+          : 'grid-cols-[1fr_2fr_1fr]'
       )}
     >
       <p class="text-xs uppercase tracking-wider text-foreground-secondary">
@@ -57,12 +56,13 @@
     </div>
   </div>
 
+  <!-- Panes -->
   {#each departmentsInfo as department}
     <div class="border-b border-foreground-tertiary even:bg-foreground-tertiary/10 min-w-[780px]">
       <div
         class={clsx(
           'container mx-auto',
-          'grid gap-x-10 md:gap-x-12 gap-y-2 px-6 md:px-12 py-4',
+          'grid px-6 md:px-12',
           `${
             type === 'package'
               ? 'grid-cols-[1fr_3fr] md:grid-cols-[1fr_2fr_1fr]'
@@ -70,7 +70,7 @@
           }`
         )}
       >
-        <div class="col-start-1 row-span-3">
+        <div class="col-start-1 row-span-{dataMap.get(department.name).length} py-4">
           <p class="font-bold">
             {department?.content?.title}.
           </p>
@@ -79,15 +79,22 @@
           </p>
         </div>
 
-        {#each dataMap.get(department.name) as entry}
-          <div class="col-start-2 grid grid-cols-2 gap-y-2">
+        {#each dataMap.get(department.name) as entry, i}
+          <div
+            class={clsx(
+              'col-start-2 grid grid-cols-2 ml-5 md:ml-6 py-4',
+              i < dataMap.get(department.name).length - 1
+                ? 'border-b border-foreground-tertiary'
+                : ''
+            )}
+          >
             <div class="col-start-1">
               <Link href={`/about/${entry.team_member.member?.slug}`}>
                 {entry.team_member.member.name}
               </Link>
             </div>
 
-            <div class="col-start-2">
+            <div class="col-start-2 -ml-2 md:-ml-3">
               <p>
                 {entry.role[0].title}
               </p>
@@ -99,8 +106,15 @@
             </div>
           </div>
 
-          {#if type === 'rate'}
-            <div class="col-start-3 text-right">
+          <div
+            class={clsx(
+              'col-start-3 text-right py-4',
+              i < dataMap.get(department.name).length - 1
+                ? 'border-b border-foreground-tertiary'
+                : ''
+            )}
+          >
+            {#if type === 'rate'}
               {#if entry.rate_type === 'percentage' && entry.rate_value}
                 <p class="font-bold">{entry.rate_value} %</p>
               {:else if entry.rate_type === 'value' && entry.rate_value}
@@ -108,8 +122,8 @@
               {:else if entry.rate_type === 'free'}
                 <p class="font-bold">{t('proposals.included')}</p>
               {/if}
-            </div>
-          {/if}
+            {/if}
+          </div>
         {/each}
       </div>
     </div>

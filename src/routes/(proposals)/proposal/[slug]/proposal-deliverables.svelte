@@ -9,7 +9,7 @@
   $: totalManpower = data.reduce((acc, entry) => (acc += +entry.manpower), 0);
 </script>
 
-<div class="overflow-x-scroll">
+<div class="overflow-x-scroll mt-10 md:mt-14 lg:mt-20">
   <div class="border-b border-foreground-secondary min-w-[780px]">
     <div
       class={clsx(

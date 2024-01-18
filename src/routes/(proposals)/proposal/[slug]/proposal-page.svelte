@@ -4,7 +4,7 @@
   import { slugify } from '$lib/utils/paths';
   import { createPackageTimelineData, createRateTimelineData } from '$lib/utils/proposals';
   import RichText from '$components/rich-text.svelte';
-  import Hero from './hero.svelte';
+  import ProposalHero from './proposal-hero.svelte';
   import ProposalNavigation from './proposal-navigation.svelte';
   import ProposalDeliverables from './proposal-deliverables.svelte';
   import ProposalScope from './proposal-scope.svelte';
@@ -37,15 +37,14 @@
     bind:version
   />
 
-  <Hero {proposal} date={content?.date} />
+  <ProposalHero {proposal} date={content?.date} />
 
   {#each content?.body || [] as section}
-    <section id={slugify(section.title)} class=" pb-10 md:pb-14 lg:pb-20">
+    <section id={slugify(section.title)} class="my-10 md:my-14 lg:my-20">
       <div
         class={clsx(
-          'grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-10 lg:gap-12',
-          'container mx-auto',
-          'px-6 lg:px-12 pb-10 md:pb-14 lg:pb-20'
+          'container mx-auto px-container',
+          'grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-10 lg:gap-12'
         )}
       >
         <h2 class="text-4xl">{section.title}.</h2>

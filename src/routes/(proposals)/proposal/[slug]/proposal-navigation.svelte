@@ -8,6 +8,7 @@
   import { slugify } from '$lib/utils/paths';
   import { createTopNavScrollStatus } from '$lib/stores/topnav-scroll-status';
 
+  export let variant: 'default' | 'accept' = 'default';
   export let sections: string[] = [];
   export let versions: string[] = [];
   export let version: string = '';
@@ -17,16 +18,19 @@
   const scrollStatus = createTopNavScrollStatus();
 </script>
 
-<div class="mb-px h-[--topnav-height]">
+<div class="h-[--topnav-height]">
   <header
     class={clsx(
       'ease-[cubic-bezier(0.90, 0, 0.05, 1)] z-30 w-full border-b bg-background/95 backdrop-blur-md transition-[transform,border-color] duration-300 fixed',
-      !$scrollStatus.isPastZero ? 'border-b-transparent' : 'border-b-border',
-      !$scrollStatus.isPastThreshold
+      variant === 'default' && !$scrollStatus.isPastZero
+        ? 'border-b-transparent'
+        : 'border-b-border',
+      variant === 'default' && !$scrollStatus.isPastThreshold
         ? 'translate-y-0'
         : $scrollStatus.direction === 'down'
         ? '-translate-y-full'
-        : 'translate-y-0'
+        : 'translate-y-0',
+      variant === 'accept' && 'border-b-border'
     )}
   >
     <div
@@ -73,6 +77,15 @@
             />
           </div>
         </div>
+      {/if}
+
+      {#if variant === 'accept'}
+        <Button
+          variant="ghost"
+          icon="close"
+          as="a"
+          href={$page.url.pathname.replace('/accept', '')}
+        />
       {/if}
     </div>
   </header>

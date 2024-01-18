@@ -27,7 +27,8 @@
 
 <div
   class={clsx(
-    'container mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-10 lg:gap-12 px-6 lg:px-12 py-4'
+    'container mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-10 lg:gap-12',
+    'my-10 md:my-14 lg:my-20 px-6 lg:px-12'
   )}
 >
   <div class="lg:col-start-2 flex flex-col shadow-lg rounded-2xs border">

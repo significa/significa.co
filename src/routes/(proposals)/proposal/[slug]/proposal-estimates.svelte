@@ -86,18 +86,20 @@
   $: grandTotal = subtotal - discountedValue;
 </script>
 
-<div class="overflow-x-scroll">
+<div class="overflow-x-scroll mt-10 md:mt-14 lg:mt-20">
   <!-- Header -->
   <div class="min-w-[780px] border-b border-foreground-secondary even:bg-foreground-tertiary/10">
     <div
       class={clsx(
         'container mx-auto',
-        'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr] gap-10 md:gap-12 px-6 md:px-12 py-3.5'
+        'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr]',
+        'gap-10 md:gap-12 px-6 md:px-12 py-3.5'
       )}
     >
       <p class="text-xs uppercase tracking-wider text-foreground-secondary">
         {t('proposals.estimates.area')}
       </p>
+
       <div class="grid grid-cols-[2fr_1fr_1fr_1fr]">
         <p class="text-xs uppercase tracking-wider text-foreground-secondary">
           {t('proposals.estimates.phases')}
@@ -127,7 +129,8 @@
         <div
           class={clsx(
             'container mx-auto',
-            'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr] gap-x-10 md:gap-x-12 px-6 md:px-12'
+            'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr]',
+            'gap-x-10 md:gap-x-12 px-6 md:px-12'
           )}
         >
           <div class="col-start-1 font-bold -ml-4 py-4">

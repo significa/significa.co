@@ -11,15 +11,18 @@
 
 <div
   class={clsx(
-    'container mx-auto',
-    'grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-x-10 md:gap-x-12 mt-12 px-6 md:px-12 pb-10 md:pb-14 lg:pb-20'
+    'container mx-auto px-container',
+    'grid grid-cols-1 md:grid-cols-2 gap-x-10 md:gap-x-12 mt-12'
   )}
 >
   <h2 class="text-7xl">{proposal.title}</h2>
   <h2 class="col-start-1 text-7xl text-foreground-secondary">{proposal.description}</h2>
 
   <div
-    class="col-start-1 grid grid-rows-2 grid-flow-col grid-cols-[max-content_max-content_max-content] gap-x-7 sm:gap-x-12 mt-10"
+    class={clsx(
+      'col-start-1 grid grid-rows-2 grid-flow-col grid-cols-[repeat(3,_max-content)]',
+      'gap-x-7 sm:gap-x-12 mt-10'
+    )}
   >
     <p class="text-base font-semibold leading-none text-foreground-secondary">
       {t('proposals.hero.client')}

@@ -16,7 +16,7 @@
     <div
       class={clsx(
         'container mx-auto',
-        'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2fr_1fr] gap-10 md:gap-12 px-6 md:px-12 py-2'
+        'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2fr_1fr] gap-x-10 md:gap-x-12 px-6 md:px-12 py-2'
       )}
     >
       <p class="text-xs uppercase tracking-wider text-foreground-secondary">

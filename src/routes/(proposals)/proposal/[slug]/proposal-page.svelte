@@ -17,7 +17,7 @@
 
   export let proposal: ProposalStoryblok;
 
-  const versions = proposal?.versions || [];
+  let versions = proposal?.versions || [];
   let version = versions.length > 0 ? versions[0].version_name : '';
 
   $: content = versions.find((v) => v.version_name === version);
@@ -30,45 +30,43 @@
       : createPackageTimelineData(content?.deliverables || [], content?.team || []);
 </script>
 
-<ProposalNavigation
-  {sections}
-  versions={versions.map((version) => version.version_name)}
-  bind:version
-/>
+{#key version}
+  <ProposalNavigation
+    {sections}
+    versions={versions.map((version) => version.version_name)}
+    bind:version
+  />
 
-<Hero {proposal} date={content?.date} />
+  <Hero {proposal} date={content?.date} />
 
-{#each content?.body || [] as section}
-  <section id={slugify(section.title)} class=" pb-10 md:pb-14 lg:pb-20">
-    <div
-      class={clsx(
-        'grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-10 lg:gap-12',
-        'container mx-auto',
-        'px-6 lg:px-12 pb-10 md:pb-14 lg:pb-20'
-      )}
-    >
-      <h2 class="text-4xl">{section.title}.</h2>
-      <RichText doc={section.body} />
-    </div>
+  {#each content?.body || [] as section}
+    <section id={slugify(section.title)} class=" pb-10 md:pb-14 lg:pb-20">
+      <div
+        class={clsx(
+          'grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-10 lg:gap-12',
+          'container mx-auto',
+          'px-6 lg:px-12 pb-10 md:pb-14 lg:pb-20'
+        )}
+      >
+        <h2 class="text-4xl">{section.title}.</h2>
+        <RichText doc={section.body} />
+      </div>
 
-    {#if section.data === 'scope' && content?.scope}
-      <ProposalScope data={content.scope} />
-    {:else if type === 'package' && section.data === 'deliverables' && content?.deliverables}
-      <ProposalDeliverables data={content.deliverables} />
-    {:else if section.data === 'team' && content?.team}
-      {#key type}
+      {#if section.data === 'scope' && content?.scope}
+        <ProposalScope data={content.scope} />
+      {:else if type === 'package' && section.data === 'deliverables' && content?.deliverables}
+        <ProposalDeliverables data={content.deliverables} />
+      {:else if section.data === 'team' && content?.team}
         <ProposalTeam data={content.team} {type} />
-      {/key}
-    {:else if type === 'rate' && section.data === 'estimates' && content?.estimates}
-      <ProposalEstimates
-        data={content.estimates}
-        discount={content.discount_percentage}
-        team={content.team}
-      />
-    {:else if section.data === 'pricing' && content?.pricing}
-      <ProposalPackage data={content.pricing} />
-    {:else if section.data === 'timeline' && timelineData}
-      {#key timelineData}
+      {:else if type === 'rate' && section.data === 'estimates' && content?.estimates}
+        <ProposalEstimates
+          data={content.estimates}
+          discount={content.discount_percentage}
+          team={content.team}
+        />
+      {:else if section.data === 'pricing' && content?.pricing}
+        <ProposalPackage data={content.pricing} />
+      {:else if section.data === 'timeline' && timelineData}
         <ProposalTimeline data={timelineData} {type} pricing={content?.pricing} />
 
         {#if type === 'package' && content?.team && content?.deliverables && content?.pricing}
@@ -79,11 +77,11 @@
             team={content.team}
           />
         {/if}
-      {/key}
-    {/if}
-  </section>
-{/each}
+      {/if}
+    </section>
+  {/each}
 
-{#if type === 'rate'}
-  <ProposalRateReply />
-{/if}
+  {#if type === 'rate'}
+    <ProposalRateReply />
+  {/if}
+{/key}

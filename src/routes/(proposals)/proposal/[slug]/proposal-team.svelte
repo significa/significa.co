@@ -30,7 +30,12 @@
     <div
       class={clsx(
         'container mx-auto',
-        'grid grid-cols-[1fr_2fr_1fr] gap-10 md:gap-12 px-6 md:px-12 py-4'
+        'grid gap-10 md:gap-12 px-6 md:px-12 py-2',
+        `${
+          type === 'package'
+            ? 'grid-cols-[1fr_3fr] md:grid-cols-[1fr_2fr_1fr]'
+            : 'grid-cols-[1fr_2fr_1fr]'
+        }`
       )}
     >
       <p class="text-xs uppercase tracking-wider text-foreground-secondary">
@@ -57,10 +62,15 @@
       <div
         class={clsx(
           'container mx-auto',
-          'grid grid-cols-[1fr_2fr_1fr] gap-x-10 md:gap-x-12 gap-y-2 px-6 md:px-12 py-4'
+          'grid gap-x-10 md:gap-x-12 gap-y-2 px-6 md:px-12 py-4',
+          `${
+            type === 'package'
+              ? 'grid-cols-[1fr_3fr] md:grid-cols-[1fr_2fr_1fr]'
+              : 'grid-cols-[1fr_2fr_1fr]'
+          }`
         )}
       >
-        <div class="col-start-1 row-span-{dataMap.get(department.name).length}">
+        <div class="col-start-1 row-span-3">
           <p class="font-bold">
             {department?.content?.title}.
           </p>

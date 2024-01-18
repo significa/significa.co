@@ -4,7 +4,7 @@
   import { t } from '$lib/i18n';
 </script>
 
-<section class="container mx-auto px-container mt-20 lg:mt-28">
+<section class="container mx-auto px-container my-20 lg:my-28">
   <div class="bg-black flex items-start justify-between rounded-lg">
     <div class="md:w-1/2 2xl:w-1/3 p-12">
       <div>

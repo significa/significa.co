@@ -407,6 +407,16 @@ export interface DeliverablesEntryStoryblok {
   [k: string]: any;
 }
 
+export interface EstimationStoryblok {
+  title?: string;
+  description?: string;
+  form_title?: string;
+  form_description?: string;
+  _uid: string;
+  component: 'estimation';
+  [k: string]: any;
+}
+
 export interface FooterColumnExternalStoryblok {
   title?: string;
   links?: LinkStoryblok[];
@@ -556,7 +566,7 @@ export interface ImageGridStoryblok {
 }
 
 export interface LandingPageStoryblok {
-  blocks?: (HeroStoryblok | PackagesStoryblok | WorkRecognitionsStoryblok)[];
+  blocks?: (EstimationStoryblok | HeroStoryblok | PackagesStoryblok | WorkRecognitionsStoryblok)[];
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;

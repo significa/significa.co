@@ -196,6 +196,7 @@
     };
   }}
 >
+  <slot name="packagesform" />
   <input type="hidden" name="return-to" value={$page.url.pathname} />
   <div class="flex flex-col gap-4">
     <div class="flex w-full flex-col gap-4 md:flex-row">

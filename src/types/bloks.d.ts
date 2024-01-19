@@ -458,6 +458,20 @@ export interface HandbookStoryblok {
   [k: string]: any;
 }
 
+export interface HeroStoryblok {
+  small_highlights?: (
+    | StoryblokStory<CareerStoryblok>
+    | StoryblokStory<ProjectStoryblok>
+    | StoryblokStory<HandbookStoryblok>
+    | StoryblokStory<BlogPostStoryblok>
+    | string
+  )[];
+  showreel?: AssetStoryblok;
+  _uid: string;
+  component: 'hero';
+  [k: string]: any;
+}
+
 export interface HomeAboutLinkStoryblok {
   title?: string;
   description?: string;
@@ -535,6 +549,13 @@ export interface ImageGridStoryblok {
   expandable?: boolean;
   _uid: string;
   component: 'image-grid';
+  [k: string]: any;
+}
+
+export interface LandingPageStoryblok {
+  blocks?: (HeroStoryblok | TestBlockStoryblok)[];
+  _uid: string;
+  component: 'landing-page';
   [k: string]: any;
 }
 
@@ -650,7 +671,6 @@ export interface ProjectsIndexStoryblok {
 export interface ProposableDeliverableTeamEntryStoryblok {
   duration?: string;
   offset?: string;
-  role?: ProposalRoleStoryblok[];
   _uid: string;
   component: 'proposable-deliverable-team-entry';
   [k: string]: any;
@@ -706,6 +726,14 @@ export interface ProposalPackagePricingStoryblok {
   team_size?: string;
   _uid: string;
   component: 'proposal-package-pricing';
+  [k: string]: any;
+}
+
+export interface ProposalPackageTeamEntryStoryblok {
+  department: StoryblokStory<ProposalDepartmentStoryblok> | string;
+  role: ProposalRoleStoryblok[];
+  _uid: string;
+  component: 'proposal-package-team-entry';
   [k: string]: any;
 }
 
@@ -785,10 +813,12 @@ export interface ProposalVersionStoryblok {
 
 export interface ProposalVersionPackageStoryblok {
   version_name: string;
+  discount_percentage?: string;
   date: string;
+  deliverables: ProposalDeliverableStoryblok[];
+  pricing: ProposalPackagePricingStoryblok[];
+  team: ProposalPackageTeamEntryStoryblok[];
   body?: ProposalSectionStoryblok[];
-  deliverables?: ProposalDeliverableStoryblok[];
-  pricing?: ProposalPackagePricingStoryblok[];
   _uid: string;
   component: 'proposal-version-package';
   [k: string]: any;
@@ -985,6 +1015,13 @@ export interface TeamMemberLinkStoryblok {
   link?: string;
   _uid: string;
   component: 'team-member-link';
+  [k: string]: any;
+}
+
+export interface TestBlockStoryblok {
+  title?: string;
+  _uid: string;
+  component: 'test-block';
   [k: string]: any;
 }
 

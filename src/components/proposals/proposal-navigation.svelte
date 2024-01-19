@@ -21,7 +21,8 @@
 <div class="h-[--topnav-height]">
   <header
     class={clsx(
-      'ease-[cubic-bezier(0.90, 0, 0.05, 1)] z-30 w-full border-b bg-background/95 backdrop-blur-md transition-[transform,border-color] duration-300 fixed',
+      'fixed w-full z-30 border-b bg-background/95 backdrop-blur-md',
+      'transition-[transform,border-color] duration-300 ease-[cubic-bezier(0.90, 0, 0.05, 1)]',
       variant === 'default' && !$scrollStatus.isPastZero
         ? 'border-b-transparent'
         : 'border-b-border',
@@ -34,7 +35,7 @@
     )}
   >
     <div
-      class={'flex items-center justify-between py-4 container mx-auto px-container h-[--topnav-height]'}
+      class="flex items-center justify-between py-4 container mx-auto px-container h-[--topnav-height]"
     >
       <div class="flex items-center gap-6">
         <a aria-label="Go to homepage" href="/">
@@ -104,7 +105,11 @@
     <div
       transition:fly|global={{ x: 1000, duration: 300 }}
       use:clickOutside={() => (panel = false)}
-      class={'px-container pl-6 fixed bottom-0 right-0 top-0 z-50 flex w-full max-w-sm flex-col items-start overflow-y-auto bg-background py-4'}
+      class={clsx(
+        'fixed w-full max-w-sm px-container bottom-0 right-0 top-0 z-50 overflow-y-auto pl-6 py-4',
+        'flex flex-col items-start',
+        'bg-background'
+      )}
     >
       <div class="flex w-full items-center justify-between">
         <Logo variant="symbol" />

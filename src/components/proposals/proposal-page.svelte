@@ -47,7 +47,7 @@
           'grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-10 lg:gap-12'
         )}
       >
-        <h2 class="text-4xl">{section.title}.</h2>
+        <h3 class="text-4xl">{section.title}.</h3>
         <RichText doc={section.body} />
       </div>
 

@@ -1,10 +1,10 @@
 <script lang="ts">
-  import PasswordPage from './password-page.svelte';
-  import ProposalPage from './proposal-page.svelte';
-  import ProposalAwards from './proposal-awards.svelte';
-  import ProposalClients from './proposal-clients.svelte';
-  import ProposalTestimonials from './proposal-testimonials.svelte';
-  import ProposalProjects from './proposal-projects.svelte';
+  import PasswordPage from '$components/proposals/password-page.svelte';
+  import ProposalPage from '$components/proposals//proposal-page.svelte';
+  import ProposalAwards from '$components/proposals/proposal-awards.svelte';
+  import ProposalClients from '$components/proposals/proposal-clients.svelte';
+  import ProposalTestimonials from '$components/proposals/proposal-testimonials.svelte';
+  import ProposalProjects from '$components/proposals/proposal-projects.svelte';
 
   export let data;
 

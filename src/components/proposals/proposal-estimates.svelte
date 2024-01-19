@@ -114,7 +114,12 @@
         </p>
 
         <p class="text-xs uppercase tracking-wider text-foreground-secondary text-right">
-          {t('proposals.estimates.predicted-cost')}
+          <span aria-hidden="true" class="hidden lg:block">
+            {t('proposals.estimates.estimated-cost.long')}
+          </span>
+          <span aria-hidden="true" class="block lg:hidden">
+            {t('proposals.estimates.estimated-cost.short')}
+          </span>
         </p>
       </div>
     </div>

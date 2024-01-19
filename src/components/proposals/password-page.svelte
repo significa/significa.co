@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Button, FloatingInput } from '@significa/svelte-ui';
   import { t } from '$lib/i18n';
-  import ProposalNavigation from './proposal-navigation.svelte';
+  import ProposalNavigation from '$components/proposals/proposal-navigation.svelte';
 
   export let error: boolean | undefined;
 </script>

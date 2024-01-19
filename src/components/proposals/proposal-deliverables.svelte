@@ -26,21 +26,21 @@
       </p>
 
       <p class="text-xs uppercase tracking-wider text-foreground-secondary text-right">
-        Estimated manpower
+        {t('proposals.deliverables.manpower')}
       </p>
     </div>
   </div>
 
   {#each data as entry}
-    <div class="border-b border-foreground-secondary min-w-[780px]">
+    <div class="border-b border-foreground-tertiary min-w-[780px]">
       <div
         class={clsx(
           'container md:mx-auto',
-          'grid grid-cols-[1fr_2fr_1fr] gap-10 md:gap-12 px-6 md:px-12 py-4',
+          'grid grid-cols-[1fr_2fr_1fr] gap-10 md:gap-12 px-6 md:px-12',
           'even:bg-background-offset'
         )}
       >
-        <div>
+        <div class="my-4">
           <p class="font-bold">
             {entry.title}.
           </p>
@@ -51,7 +51,7 @@
 
         <div>
           {#each entry.services || [] as service}
-            <div class="mb-4">
+            <div class="my-4">
               <p class="font-bold">
                 {service.title}.
               </p>
@@ -62,23 +62,29 @@
           {/each}
         </div>
 
-        <p class="text-right">{entry.manpower} month(s)</p>
+        <p class="my-4 text-right">
+          {entry.manpower}
+          {+entry.manpower > 1 ? t('proposals.months') : t('proposals.month')}
+        </p>
       </div>
     </div>
   {/each}
 
-  <div class="border-b border-border bg-background-tertiary/10 min-w-[780px]">
+  <div class="border-b border-border bg-background-offset min-w-[780px]">
     <div
       class={clsx(
         'md:container md:mx-auto',
-        'flex gap-x-2 px-6 md:px-12 py-2 justify-end font-bold'
+        'flex gap-x-2 px-6 md:px-12 py-2 justify-end items-baseline font-semibold'
       )}
     >
       <span
-        class="font-normal text-xs uppercase tracking-wider text-foreground-secondary self-center"
-        >Total</span
+        class="font-normal text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary"
+        >{t('proposals.deliverables.total')}</span
       >
-      {totalManpower} months
+      <span>
+        {totalManpower}
+        {totalManpower > 1 ? t('proposals.months') : t('proposals.month')}
+      </span>
     </div>
   </div>
 </div>

@@ -1,26 +1,16 @@
 <script lang="ts">
   import clsx from 'clsx';
-  import Person from '$components/person.svelte';
   import { Button, toast } from '@significa/svelte-ui';
   import { t } from '$lib/i18n/index.js';
   import { fly } from 'svelte/transition';
   import { circOut } from 'svelte/easing';
   import { Confetti } from 'svelte-confetti';
   import { CONFETTI_COLOR_ARRAY } from '$lib/constants';
-  import SuccessEgg from './eggs/success.svg?raw';
+  import SuccessEgg from './eggs/success.svelte';
+  import { truncateText } from '$lib/utils/strings';
 
-  import ProposalNavigation from '../proposal-navigation.svelte';
-
-  // type Eggs = 'error' | 'success';
-  // const files = import.meta.glob('./eggs/*.svg', { as: 'raw', eager: true });
-  // const eggs = Object.entries(files).reduce(
-  //   (acc, [path, file]) => {
-  //     const name = path.replace('./eggs/', '').replace('.svg', '') as Eggs;
-  //     acc[name] = file;
-  //     return acc;
-  //   },
-  //   {} as Record<Eggs, string>
-  // );
+  import Person from '$components/person.svelte';
+  import ProposalNavigation from '$components/proposals/proposal-navigation.svelte';
 
   export let data;
 
@@ -77,10 +67,20 @@
   <div class="px-4 py-8 md:p-12 md:border-r border-border flex-1 flex flex-col md:justify-end">
     {#if result}
       <div
+        class="relative"
         transition:fly|global={{ y: -250, opacity: 0, easing: circOut, duration: 250, delay: 500 }}
       >
-        <!-- eslint-disable svelte/no-at-html-tags -->
-        {@html SuccessEgg}
+        <SuccessEgg />
+        <div
+          class={clsx(
+            'absolute left-[170px] top-[25px] line-clamp-2 flex h-[76px] w-36 z-10',
+            'items-center justify-center text-center font-comic text-black font-bold leading-snug'
+          )}
+        >
+          <div class="h-fit w-28">
+            Thank you, {truncateText(proposal?.client || '', 16)}
+          </div>
+        </div>
       </div>
     {/if}
 

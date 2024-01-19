@@ -1,8 +1,9 @@
 <script lang="ts">
   import clsx from 'clsx';
-  import Popover from '$components/popover.svelte';
+  import Popover from '$components/proposals/popover.svelte';
   import { formatter } from '$lib/utils/currency';
   import type { ProposalPackagePricingStoryblok } from '$types/bloks';
+  import { t } from '$lib/i18n';
 
   export let data: ProposalPackagePricingStoryblok[];
 
@@ -28,40 +29,40 @@
 <div
   class={clsx(
     'container mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-10 lg:gap-12',
-    'my-10 md:my-14 lg:my-20 px-6 lg:px-12'
+    'my-10 md:my-14 lg:my-20 px-6 md:px-12'
   )}
 >
-  <div class="lg:col-start-2 flex flex-col shadow-lg rounded-2xs border">
+  <div class="lg:col-start-2 flex flex-col shadow-lg rounded-xs border">
     <div class="bg-background-offset">
       <p class="pt-3 px-3 font-medium">{formatter.format(total)}</p>
-      <p class="pb-3 px-3 text-foreground-secondary">Per month</p>
+      <p class="pb-3 px-3 text-foreground-secondary">{t('proposals.per-month')}</p>
     </div>
 
     {#if technicalResources}
       <div class="grid grid-cols-2 p-3 content-between border-t">
-        <p>Technical Resources</p>
+        <p>{technicalResources.department.name}</p>
         <p class="justify-self-end font-medium">{formatter.format(technicalResourcesTotal)}</p>
         <Popover>
-          <p
+          <span
             slot="target"
             class="text-xs underline underline-offset-4 decoration-dashed text-foreground-secondary"
           >
-            Why do I need these people?
-          </p>
+            {t('proposals.package.technical-resources.title')}
+          </span>
           <div slot="popover">
-            <h2 class="font-medium text-sm">Why do I need these people?</h2>
+            <h2 class="font-medium text-sm">{t('proposals.package.technical-resources.title')}</h2>
             <p class="text-sm">
               {technicalResources?.department.content.description}
             </p>
           </div>
         </Popover>
-        <p class="justify-self-end text-foreground-secondary">Full-time</p>
+        <p class="justify-self-end text-foreground-secondary">{t('proposals.package.fulltime')}</p>
       </div>
     {/if}
 
     {#if projectManagement}
       <div class="grid grid-cols-2 p-3 border-t">
-        <p>Project Manager</p>
+        <p>{projectManagement.department.name}</p>
         <p class="justify-self-end font-medium">
           {formatter.format(
             (technicalResourcesTotal *
@@ -71,28 +72,29 @@
           )}
         </p>
         <Popover>
-          <p
+          <span
             slot="target"
             class="text-xs underline underline-offset-4 decoration-dashed text-foreground-secondary"
           >
-            Why do I need a Project Manager?
-          </p>
+            {t('proposals.package.project-manager.title')}
+          </span>
           <div slot="popover">
-            <h2 class="font-medium text-sm">Why do I need a Project Manager?</h2>
+            <h2 class="font-medium text-sm">{t('proposals.package.project-manager.title')}</h2>
             <p class="text-sm">
               {projectManagement.department.content.description}
             </p>
           </div>
         </Popover>
         <p class="justify-self-end text-foreground-secondary">
-          {(20 * +projectManagement.rate_value * +projectManagement.team_size) / 100} days per month
+          {(20 * +projectManagement.rate_value * +projectManagement.team_size) / 100}
+          {t('proposals.days-per-month')}
         </p>
       </div>
     {/if}
 
     {#if qualityAssurance}
       <div class="grid grid-cols-2 p-3 border-t">
-        <p>Quality Assurance</p>
+        <p>{qualityAssurance.department.name}</p>
         <p class="justify-self-end font-medium">
           {formatter.format(
             (technicalResourcesTotal * +qualityAssurance.rate_value * +qualityAssurance.team_size) /
@@ -100,21 +102,22 @@
           )}
         </p>
         <Popover>
-          <p
+          <span
             slot="target"
             class="text-xs underline underline-offset-4 decoration-dashed text-foreground-secondary"
           >
-            Why do I need Quality Assurance?
-          </p>
+            {t('proposals.package.quality-assurance.title')}
+          </span>
           <div slot="popover">
-            <h2 class="font-medium text-sm">Why do I need Quality Assurance?</h2>
+            <h2 class="font-medium text-sm">{t('proposals.package.quality-assurance.title')}</h2>
             <p class="text-sm">
               {qualityAssurance.department.content.description}
             </p>
           </div>
         </Popover>
         <p class="justify-self-end text-foreground-secondary">
-          {(20 * +qualityAssurance.rate_value * +qualityAssurance.team_size) / 100} days per month
+          {(20 * +qualityAssurance.rate_value * +qualityAssurance.team_size) / 100}
+          {t('proposals.days-per-month')}
         </p>
       </div>
     {/if}

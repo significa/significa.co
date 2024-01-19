@@ -47,46 +47,49 @@
 </script>
 
 <section class="container mx-auto px-container mt-20">
-  <h1 class="border rounded-t-lg text-xl font-semibold p-6">Estimated cost & duration</h1>
+  <h1 class="border rounded-t-lg text-xl font-semibold p-6">
+    {t('proposals.package.reply.title')}
+  </h1>
 
   <div class="grid grid-flow-row lg:grid-flow-col gap-y-2 p-6 border-l border-r">
     <div class="flex justify-between lg:flex-col">
-      <p class="text-foreground-secondary">Total people</p>
-      <p class="text-xl">{team.length}</p>
+      <p class="text-foreground-secondary">{t('proposals.package.reply.people')}</p>
+      <p class="text-base lg:text-xl">{team.length}</p>
     </div>
 
     <div class="flex justify-between lg:flex-col">
-      <p class="text-foreground-secondary">Estimated manpower</p>
-      <p class="text-xl">{totalManpower} months</p>
+      <p class="text-foreground-secondary">{t('proposals.package.reply.manpower')}</p>
+      <p class="text-base lg:text-xl">{totalManpower} {t('proposals.months')}</p>
     </div>
 
     <div class="flex justify-between lg:flex-col">
-      <p class="text-foreground-secondary">Estimated duration</p>
-      <p class="text-xl">{totalMonths} months</p>
+      <p class="text-foreground-secondary">{t('proposals.package.reply.total-months')}</p>
+      <p class="text-base lg:text-xl">{totalMonths} {t('proposals.months')}</p>
     </div>
 
     <div class="flex justify-between lg:flex-col">
-      <p class="text-foreground-secondary">Monthly Cost</p>
-      <p class="text-xl">{formatter.format(monthlyTotal)}</p>
+      <p class="text-foreground-secondary">{t('proposals.package.reply.monthly-cost')}</p>
+      <p class="text-base lg:text-xl">{formatter.format(monthlyTotal)}</p>
     </div>
 
     {#if discount}
       <div class="flex justify-between lg:flex-col">
-        <p class="text-foreground-secondary">Applied Discount</p>
-        <p class="text-xl">{discount}%</p>
+        <p class="text-foreground-secondary">{t('proposals.package.reply.discount')}</p>
+        <p class="text-base lg:text-xl">{discount} %</p>
       </div>
     {/if}
 
     <div class="flex justify-between lg:flex-col lg:justify-self-end">
-      <p class="">Estimated total</p>
-      <p class="text-xl font-semibold">{formatter.format(totalValue)}</p>
+      <p class="">{t('proposals.package.reply.total')}</p>
+      <p class="text-base lg:text-xl font-semibold">{formatter.format(totalValue)}</p>
     </div>
   </div>
 
   <div
-    class="bg-black flex flex-col lg:flex-row lg:items-center lg:justify-between rounded-b-lg p-6"
+    class="bg-black flex flex-col lg:flex-row items-start lg:items-center lg:justify-between rounded-b-lg p-6"
   >
-    <h3 class="text-xl text-white">{t('proposals.reply.description')}</h3>
+    <h3 class="text-2xl text-white">{t('proposals.reply.description')}</h3>
+
     <Button as="a" href={`${$page.url.pathname}/accept`} class="bg-white text-black mt-6 lg:mt-0"
       >{t('proposals.nav.action.long')}</Button
     >

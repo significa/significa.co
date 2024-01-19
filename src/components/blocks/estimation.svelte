@@ -3,7 +3,7 @@
   import IllustrationEmply from '../illustrations/assets/illustration-emply.webp';
   import IllustrationEmplyLight from '../illustrations/assets/illustration-emply-light.webp';
   import { theme } from '$lib/stores/theme';
-  import { Button, MultiSelect } from '@significa/svelte-ui';
+  import { Icon, MultiSelect } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import ContactForm from '$components/contact-form.svelte';
   import { estimations } from '$lib/estimations';
@@ -20,10 +20,31 @@
   let selected: Record<string, ListboxOption<string>[]> = {};
 
   $: selectedMap = Object.entries(selected).map(([key, value]) => ({ key, value }));
+
+  $: selectedKeyValues = selectedMap.map(({ value }) => value.map((v) => v.value)).flat();
+
+  let estimationsMap = estimations.map((v) => v.options.filter((o) => o.name)).flat();
+
+  $: combinedBudget = estimationsMap
+    .filter((r) => selectedKeyValues.includes(r.name))
+    .reduce(
+      (a, b) => {
+        return {
+          lowBudget: a.lowBudget + Number(b['low-bud-point']),
+          highBudget: a.highBudget + Number(b['high-bud-point']),
+          lowPower: a.lowPower + Number(b['low-est-point']),
+          highPower: a.highPower + Number(b['high-est-point'])
+        };
+      },
+      { lowBudget: 0, highBudget: 0, lowPower: 0, highPower: 0 }
+    );
+
+  // open / close form
+  $: Object.values(combinedBudget).every((val) => val !== 0) ? (open = true) : (open = false);
 </script>
 
 <section class="container mx-auto px-container @container pt-20 pb-16 flex">
-  <div class="rounded-lg border w-full overflow-hidden flex">
+  <div class="rounded-lg border w-full overflow-hidden flex min-h-[unset] lg:min-h-[710px]">
     <div
       class={clsx(
         'flex transition-all duration-300 ease-motion bg-background-panel rounded-r-lg relative',
@@ -39,7 +60,6 @@
             <p class="mt-4 text-xl text-foreground-secondary max-w-md">
               {block.description}
             </p>
-            <Button on:click={() => (open = !open)}>Click ME !!!</Button>
 
             <div class="pt-10 grid grid-cols-3 gap-4">
               {#each estimations as { name, options }}
@@ -52,38 +72,49 @@
               {/each}
             </div>
 
-            {#each selectedMap as option}
-              {#each option.value as op2}
-                <div class="mt-3 border border-background-offset bg-background-panel">
-                  <button
-                    on:click={() => {
-                      let selected2 = selected[option.key].filter(
-                        (value) => value.label !== op2.label
-                      );
+            <div class="pt-6 flex flex-wrap gap-4 max-w-xl">
+              {#each selectedMap as option}
+                {#each option.value as op}
+                  <div
+                    class="flex items-center justify-between mt-3 px-2.5 py-1.5 border border-border bg-background-offset text-xs font-semibold rounded-xs w-fit hover:transition-all focus-within:border-border-active focus-within:outline-none focus-within:ring-4 focus-within:ring-outline focus-within:transition-all hover:opacity-80"
+                  >
+                    {op.label}
+                    <button
+                      class="outline-none flex"
+                      on:click={() => {
+                        let opSelected = selected[option.key].filter(
+                          (value) => value.label !== op.label
+                        );
 
-                      selected[option.key] = selected2;
-                    }}
-                    >{op2.label}
-                  </button>
-                </div>
+                        selected[option.key] = opSelected;
+                      }}
+                    >
+                      <Icon class="ml-2" icon="close" />
+                    </button>
+                  </div>
+                {/each}
               {/each}
-            {/each}
+            </div>
           </div>
 
           <div class="flex flex-col">
-            <p class="text-base font-medium text-foreground/60">Total people</p>
-            <p class="text-xl font-medium">4</p>
-            <p class="text-base font-medium text-foreground/60 mt-6">Estimated duration</p>
-            <p class="text-xl font-medium">4 months</p>
-            <p class="text-base font-medium text-foreground/60 mt-6">Monthly cost</p>
-            <p class="text-xl font-medium">27 500 €</p>
+            <p class="text-base font-medium text-foreground/60">Estimated man power</p>
+            <p class="text-xl font-medium">
+              {combinedBudget.lowPower === 0
+                ? '-'
+                : combinedBudget.lowPower + ` to ` + combinedBudget.highPower}
+            </p>
             <p class="text-base font-medium text-foreground/60 mt-6">Estimated total</p>
-            <p class="text-xl font-medium text-foreground-accent">78 000.00 € to 94 000.00€</p>
+            <p class="text-xl font-medium text-foreground-accent">
+              {combinedBudget.lowBudget === 0
+                ? '-'
+                : combinedBudget.lowBudget + `€ to ` + combinedBudget.highBudget + `€`}
+            </p>
           </div>
         </div>
         <div
           class={clsx(
-            'flex-1 flex-col items-end hidden xl:flex absolute right-0 bottom-0',
+            'flex-1 flex-col items-end hidden xl:flex absolute right-0 bottom-0 transition-all',
             open && 'xl:opacity-0'
           )}
         >

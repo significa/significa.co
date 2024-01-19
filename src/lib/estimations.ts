@@ -5,20 +5,23 @@ export const estimations = [
       {
         name: 'UX Research',
         'low-est-point': '1',
-        'high-est-point': '3',
-        package: '10000'
+        'high-est-point': '2',
+        'low-bud-point': '10000',
+        'high-bud-point': '20000'
       },
       {
         name: 'MVP build',
-        'low-est-point': '4',
-        'high-est-point': '7',
-        package: '27500'
+        'low-est-point': '1',
+        'high-est-point': '2',
+        'low-bud-point': '10000',
+        'high-bud-point': '20000'
       },
       {
         name: 'Website',
-        'low-est-point': '4',
-        'high-est-point': '7',
-        package: '27500'
+        'low-est-point': '1',
+        'high-est-point': '2',
+        'low-bud-point': '10000',
+        'high-bud-point': '20000'
       }
     ]
   },
@@ -27,9 +30,10 @@ export const estimations = [
     options: [
       {
         name: 'MVP build2',
-        'low-est-point': '4',
-        'high-est-point': '7',
-        package: '27500'
+        'low-est-point': '1',
+        'high-est-point': '2',
+        'low-bud-point': '10000',
+        'high-bud-point': '20000'
       }
     ]
   }

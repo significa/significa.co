@@ -143,5 +143,6 @@
   "proposals.accept.button": "Accept proposal",
   "proposals.accept.contact.title": "Contact us.",
   "proposals.accept.contact.subtitle": "Reply to us by email to discuss the following proposal.",
-  "proposals.accept.contact.button": "Contact us"
+  "proposals.accept.contact.button": "Contact us",
+  "proposals.accept.error": "Unfortunately we couldn't receive your response. Please contact us by email."
 }

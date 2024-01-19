@@ -143,7 +143,8 @@ export const TranslationKeys = [
   'proposals.accept.button',
   'proposals.accept.contact.title',
   'proposals.accept.contact.subtitle',
-  'proposals.accept.contact.button'
+  'proposals.accept.contact.button',
+  'proposals.accept.error'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

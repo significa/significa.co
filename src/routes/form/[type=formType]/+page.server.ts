@@ -15,6 +15,7 @@ type FormFields = {
   attachments?: string; // comma-separated list of URLs
   'submitted-using-progressive-enhancement'?: string;
   'return-to'?: string;
+  estimations?: string;
 };
 
 const getNotionAttachments = (attachmentsUrls: string) => {
@@ -82,6 +83,21 @@ export const actions = {
               Budget: { select: { name: fields.budget || 'n/a' } },
               Message: { rich_text: [{ text: { content: message || '' } }] },
               Status: { select: { name: 'To triage' } },
+              Attachments: {
+                files: getNotionAttachments(fields.attachments || '')
+              }
+            }
+          });
+          break;
+        case 'estimations':
+          await notion.pages.create({
+            parent: { database_id: env.NOTION_DB_LEADS },
+            properties: {
+              Name: { title: [{ text: { content: name } }] },
+              Email: { email: email },
+              Message: { rich_text: [{ text: { content: message || '' } }] },
+              Status: { select: { name: 'To triage' } },
+              Estimations: { rich_text: [{ text: { content: fields.estimations || '' } }] },
               Attachments: {
                 files: getNotionAttachments(fields.attachments || '')
               }

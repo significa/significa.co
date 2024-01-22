@@ -408,6 +408,8 @@ export interface DeliverablesEntryStoryblok {
 }
 
 export interface EstimationStoryblok {
+  section_title?: string;
+  section_description?: string;
   title?: string;
   description?: string;
   form_title?: string;

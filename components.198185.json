@@ -1376,20 +1376,32 @@
       "name": "estimation",
       "display_name": null,
       "created_at": "2024-01-18T12:38:10.713Z",
-      "updated_at": "2024-01-18T14:14:59.707Z",
+      "updated_at": "2024-01-22T11:29:58.228Z",
       "id": 5192821,
       "schema": {
+        "section_title": {
+          "type": "text",
+          "pos": 0
+        },
+        "section_description": {
+          "type": "text",
+          "pos": 1
+        },
         "title": {
-          "type": "text"
+          "type": "text",
+          "pos": 2
         },
         "description": {
-          "type": "text"
+          "type": "text",
+          "pos": 3
         },
         "form_title": {
-          "type": "text"
+          "type": "text",
+          "pos": 4
         },
         "form_description": {
-          "type": "text"
+          "type": "text",
+          "pos": 5
         }
       },
       "image": null,

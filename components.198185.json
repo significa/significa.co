@@ -1373,6 +1373,51 @@
       "component_group_name": "Single"
     },
     {
+      "name": "estimation",
+      "display_name": null,
+      "created_at": "2024-01-18T12:38:10.713Z",
+      "updated_at": "2024-01-22T11:29:58.228Z",
+      "id": 5192821,
+      "schema": {
+        "section_title": {
+          "type": "text",
+          "pos": 0
+        },
+        "section_description": {
+          "type": "text",
+          "pos": 1
+        },
+        "title": {
+          "type": "text",
+          "pos": 2
+        },
+        "description": {
+          "type": "text",
+          "pos": 3
+        },
+        "form_title": {
+          "type": "text",
+          "pos": 4
+        },
+        "form_description": {
+          "type": "text",
+          "pos": 5
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "estimation",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "footer-column-external",
       "display_name": "Footer external links",
       "created_at": "2023-03-14T10:59:53.399Z",

@@ -11,7 +11,9 @@
     'two-columns': TwoColumns,
     'richtext-testimonial': RichTextTestimonial,
     video: Video,
-    'richtext-box': RichTextBox
+    'richtext-box': RichTextBox,
+    hero: Hero,
+    packages: Packages
   };
 
   export type Blocks = keyof typeof map;
@@ -29,6 +31,9 @@
   import RichTextTestimonial from './rich-text-testimonial.svelte';
   import Video from './video.svelte';
   import RichTextBox from './rich-text-box.svelte';
+
+  import Hero from './hero.svelte';
+  import Packages from './packages.svelte';
 
   export let block: { component: string };
 

@@ -3,7 +3,6 @@
   import SmallHighlights from '$components/pages/home/small-highlights.svelte';
   import Reel from '$components/reel.svelte';
 
-  import Seo from '$components/seo.svelte';
   import Slogan from '$components/slogan.svelte';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import { VIDEO_EXTENSIONS } from '$lib/constants';
@@ -25,7 +24,6 @@
   });
 </script>
 
-<Seo />
 <div class="container mx-auto px-container">
   <Slogan
     animate

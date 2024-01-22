@@ -74,12 +74,14 @@ export const sendEmailNotification = async ({
   name,
   email,
   message,
-  formType
+  formType,
+  notionLink
 }: {
   name: string;
   email: string;
   message: string;
   formType: FormType;
+  notionLink?: string;
 }) => {
   name = escapeHTML(name);
   email = escapeHTML(email);
@@ -108,7 +110,8 @@ export const sendEmailNotification = async ({
             `New website submission.\n`,
             `name: ${name}`,
             `email: ${email}`,
-            `message: ${message}`
+            `message: ${message}`,
+            formType === 'quote' && notionLink && `Notion Link: ${notionLink}`
           ].join('\n')
         }
       },

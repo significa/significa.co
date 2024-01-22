@@ -1,5 +1,6 @@
 <script lang="ts">
   import DynamicBlock from '$components/blocks/dynamic-block.svelte';
+  import Seo from '$components/seo.svelte';
   import type {
     PageResult,
     Page,
@@ -84,6 +85,7 @@
 {:else if isCareerPage(page)}
   <Career story={page.story} />
 {:else if isLandingPage(page) && page.story.content.blocks?.length}
+  <Seo />
   {#each page.story.content.blocks as block}
     <DynamicBlock {block} />
   {/each}

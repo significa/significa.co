@@ -32,6 +32,7 @@ export const actions = {
   default: async (event) => {
     const data = await event.request.formData();
     const formType = event.params.type;
+    let notionLink = '';
 
     if (!isFormType(formType)) {
       return fail(500, {
@@ -58,36 +59,26 @@ export const actions = {
     }
 
     try {
-      sendEmailNotification({
-        name,
-        email,
-        message,
-        formType
-      });
-    } catch (error) {
-      return fail(500, {
-        error: {
-          message: 'Failed to send internal email notification'
-        }
-      });
-    }
-
-    try {
       switch (event.params.type) {
         case 'quote':
-          await notion.pages.create({
-            parent: { database_id: env.NOTION_DB_LEADS },
-            properties: {
-              Name: { title: [{ text: { content: name } }] },
-              Email: { email: email },
-              Budget: { select: { name: fields.budget || 'n/a' } },
-              Message: { rich_text: [{ text: { content: message || '' } }] },
-              Status: { select: { name: 'To triage' } },
-              Attachments: {
-                files: getNotionAttachments(fields.attachments || '')
+          {
+            const response = await notion.pages.create({
+              parent: { database_id: env.NOTION_DB_LEADS },
+              properties: {
+                Name: { title: [{ text: { content: name } }] },
+                Email: { email: email },
+                Budget: { select: { name: fields.budget || 'n/a' } },
+                Message: { rich_text: [{ text: { content: message || '' } }] },
+                Status: { select: { name: 'To triage' } },
+                Attachments: {
+                  files: getNotionAttachments(fields.attachments || '')
+                }
               }
+            });
+            if ('url' in response) {
+              notionLink = response.url;
             }
-          });
+          }
           break;
         case 'estimations':
           await notion.pages.create({
@@ -135,6 +126,22 @@ export const actions = {
       return fail(500, {
         error: {
           message: 'Failed to store form submission'
+        }
+      });
+    }
+
+    try {
+      sendEmailNotification({
+        name,
+        email,
+        message,
+        formType,
+        notionLink
+      });
+    } catch (error) {
+      return fail(500, {
+        error: {
+          message: 'Failed to send internal email notification'
         }
       });
     }

@@ -33,6 +33,7 @@
   });
 </script>
 
+<!-- TODO: Remove this code since it's repeated on hero.svelte (block) as soon as we change the pages to blocks -->
 <Seo />
 <div class="container mx-auto px-container">
   <Slogan
@@ -65,6 +66,7 @@
       />
     {/if}
   </div>
+  <!-- -------- -->
 
   <section class="mt-10 md:mt-14 lg:mt-20">
     <div class="container mx-auto px-container">

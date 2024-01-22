@@ -81,19 +81,25 @@ export const actions = {
           }
           break;
         case 'estimations':
-          await notion.pages.create({
-            parent: { database_id: env.NOTION_DB_LEADS },
-            properties: {
-              Name: { title: [{ text: { content: name } }] },
-              Email: { email: email },
-              Message: { rich_text: [{ text: { content: message || '' } }] },
-              Status: { select: { name: 'To triage' } },
-              Estimations: { rich_text: [{ text: { content: fields.estimations || '' } }] },
-              Attachments: {
-                files: getNotionAttachments(fields.attachments || '')
+          {
+            const response = await notion.pages.create({
+              parent: { database_id: env.NOTION_DB_LEADS },
+              properties: {
+                Name: { title: [{ text: { content: name } }] },
+                Email: { email: email },
+                Message: { rich_text: [{ text: { content: message || '' } }] },
+                Status: { select: { name: 'To triage' } },
+                Estimations: { rich_text: [{ text: { content: fields.estimations || '' } }] },
+                Attachments: {
+                  files: getNotionAttachments(fields.attachments || '')
+                }
               }
+            });
+            if ('url' in response) {
+              notionLink = response.url;
             }
-          });
+          }
+
           break;
         case 'career':
           await notion.pages.create({

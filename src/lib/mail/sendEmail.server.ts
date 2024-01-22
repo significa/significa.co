@@ -111,7 +111,8 @@ export const sendEmailNotification = async ({
             `name: ${name}`,
             `email: ${email}`,
             `message: ${message}`,
-            formType === 'quote' && notionLink && `Notion Link: ${notionLink}`
+            formType === 'quote' ||
+              (formType === 'estimations' && notionLink && `Notion Link: ${notionLink}`)
           ].join('\n')
         }
       },

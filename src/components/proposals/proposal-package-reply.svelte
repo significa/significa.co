@@ -86,7 +86,8 @@
   </div>
 
   <div
-    class="bg-black flex flex-col lg:flex-row items-start lg:items-center lg:justify-between rounded-b-lg p-6"
+    data-theme="dark"
+    class="bg-background text-foreground border flex flex-col lg:flex-row items-start lg:items-center lg:justify-between rounded-b-lg p-6"
   >
     <h3 class="text-2xl text-white">{t('proposals.reply.description')}</h3>
 

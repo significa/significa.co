@@ -6,7 +6,10 @@
 </script>
 
 <section class="container mx-auto px-container my-20 lg:my-28">
-  <div class="bg-black flex flex-col lg:flex-row justify-between rounded-lg">
+  <div
+    data-theme="dark"
+    class="border bg-background text-foreground flex flex-col lg:flex-row justify-between rounded-lg"
+  >
     <img
       class="flex lg:hidden mx-6"
       src={ProposalsAsset}

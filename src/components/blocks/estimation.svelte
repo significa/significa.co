@@ -11,6 +11,7 @@
   import HandAsset from '../illustrations/assets/hand.webp';
   import PreFooterAsset from '../illustrations/assets/pre-footer.webp';
   import PreFooterAssetLight from '../illustrations/assets/pre-footer-light.webp';
+  import { t } from '$lib/i18n';
 
   export let block: EstimationStoryblok;
 
@@ -111,13 +112,13 @@
           </div>
 
           <div class="flex flex-col mt-5 xl:mt-3 relative">
-            <p class="text-base font-medium text-foreground/60">Estimated man power</p>
+            <p class="text-base font-medium text-foreground/60">{t('estimation.man.power')}</p>
             <p class="text-xl font-medium">
               {combinedBudgetPower.lowPower === 0
                 ? '-'
                 : combinedBudgetPower.lowPower + ` to ` + combinedBudgetPower.highPower}
             </p>
-            <p class="text-base font-medium text-foreground/60 mt-6">Estimated total</p>
+            <p class="text-base font-medium text-foreground/60 mt-6">{t('estimation.total')}</p>
             <p class="text-xl font-medium text-foreground-accent">
               {combinedBudgetPower.lowBudget === 0
                 ? '-'

@@ -24,17 +24,5 @@ export const estimations = [
         'high-bud-point': '20000'
       }
     ]
-  },
-  {
-    name: 'Design',
-    options: [
-      {
-        name: 'MVP build2',
-        'low-est-point': '1',
-        'high-est-point': '2',
-        'low-bud-point': '10000',
-        'high-bud-point': '20000'
-      }
-    ]
   }
 ];

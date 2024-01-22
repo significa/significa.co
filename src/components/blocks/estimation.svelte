@@ -9,6 +9,8 @@
   import { estimations } from '$lib/estimations';
   import type { ListboxOption } from '@melt-ui/svelte/dist/builders/listbox/types';
   import HandAsset from '../illustrations/assets/hand.webp';
+  import PreFooterAsset from '../illustrations/assets/pre-footer.webp';
+  import PreFooterAssetLight from '../illustrations/assets/pre-footer-light.webp';
 
   export let block: EstimationStoryblok;
 
@@ -58,12 +60,12 @@
   >
     <div
       class={clsx(
-        'flex transition-all duration-300 ease-motion bg-background-panel rounded-r-lg relative',
+        'flex transition-all duration-300 ease-motion bg-background-panel rounded-b-lg xl:rounded-r-lg relative',
         open ? 'xl:w-1/2 w-full ring-1 ring-border' : 'w-full'
       )}
     >
       <div class="w-full @5xl:flex">
-        <div class="p-8 flex flex-col justify-between h-full xl:max-w-2xl">
+        <div class="p-6 xl:p-8 flex flex-col justify-between h-full xl:max-w-2xl">
           <div>
             <h3 class="text-4xl max-w-md">
               {block.title}
@@ -79,6 +81,7 @@
                   bind:selected={selected[name]}
                   selectedLabel={name}
                   icon="plus"
+                  class="w-full xs:w-fit"
                 />
               {/each}
             </div>
@@ -107,7 +110,7 @@
             </div>
           </div>
 
-          <div class="flex flex-col mt-3">
+          <div class="flex flex-col mt-5 xl:mt-3 relative">
             <p class="text-base font-medium text-foreground/60">Estimated man power</p>
             <p class="text-xl font-medium">
               {combinedBudgetPower.lowPower === 0
@@ -120,12 +123,21 @@
                 ? '-'
                 : combinedBudgetPower.lowBudget + `€ to ` + combinedBudgetPower.highBudget + `€`}
             </p>
+            <img
+              class={clsx(
+                'absolute -right-[50%] hidden xl:block transition-all ease-motion duration-500',
+                !open ? '-bottom-96 opacity-0' : '-bottom-8 opacity-100'
+              )}
+              src={$theme === 'dark' ? PreFooterAsset : PreFooterAssetLight}
+              width="354"
+              alt=""
+            />
           </div>
         </div>
         <div
           class={clsx(
-            'flex-1 flex-col items-end hidden xl:flex absolute right-0 bottom-0 transition-opacity opacity-100',
-            open && 'xl:opacity-0'
+            'absolute bottom-0 hidden xl:block transition-all duration-1000',
+            open ? 'xl:hidden xl:opacity-0' : 'right-0 opacity-100'
           )}
         >
           <img class="max-w-[710px]" {src} alt="" />

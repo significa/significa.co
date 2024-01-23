@@ -8,7 +8,7 @@
   let lastItemHeight = 0;
 </script>
 
-<div class={clsx('border-t', variant === 'block' && 'border-t-0')}>
+<div class={clsx('border-t', variant === 'block' && 'border-t-0 md:pb-8 lg:pb-20')}>
   <div class={clsx('container mx-auto px-container', 'lg:flex')}>
     <!-- Title -->
     <div class="lg:flex-1">

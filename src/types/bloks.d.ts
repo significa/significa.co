@@ -356,6 +356,14 @@ export interface ClientLogoStoryblok {
   [k: string]: any;
 }
 
+export interface ClientsStoryblok {
+  clients_title?: string;
+  clients?: ClientLogoStoryblok[];
+  _uid: string;
+  component: 'clients';
+  [k: string]: any;
+}
+
 export interface ColumnStoryblok {
   content: RichtextStoryblok;
   sticky?: boolean;
@@ -569,11 +577,13 @@ export interface ImageGridStoryblok {
 
 export interface LandingPageStoryblok {
   blocks?: (
+    | ClientsStoryblok
     | EstimationStoryblok
     | HeroStoryblok
     | PackagesStoryblok
     | ServicesStoryblok
     | StepsStoryblok
+    | TestimonialsStoryblok
     | WorkRecognitionsStoryblok
   )[];
   seo_title?: string;
@@ -714,6 +724,11 @@ export interface ProposalStoryblok {
   cover: AssetStoryblok;
   versions?: (ProposalVersionPackageStoryblok | ProposalVersionStoryblok)[];
   created_by: StoryblokStory<TeamMemberStoryblok> | string;
+  seo_title?: string;
+  seo_description?: string;
+  seo_og_image?: AssetStoryblok;
+  change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  priority?: string;
   _uid: string;
   component: 'proposal';
   [k: string]: any;
@@ -1094,6 +1109,20 @@ export interface TeamMemberLinkStoryblok {
   link?: string;
   _uid: string;
   component: 'team-member-link';
+  [k: string]: any;
+}
+
+export interface TestimonialsStoryblok {
+  testimonials_title1?: string;
+  testimonials_title2?: string;
+  testimonials_cta_label?: string;
+  testimonials_cta_link?: Exclude<
+    MultilinkStoryblok,
+    { linktype?: 'email' } | { linktype?: 'asset' }
+  >;
+  testimonials?: RichtextTestimonialStoryblok[];
+  _uid: string;
+  component: 'testimonials';
   [k: string]: any;
 }
 

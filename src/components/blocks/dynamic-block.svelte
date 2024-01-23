@@ -17,7 +17,9 @@
     'work-recognitions': WorkRecognitions,
     estimation: Estimation,
     steps: Steps,
-    services: Services
+    services: Services,
+    testimonials: Testimonials,
+    clients: Clients
   };
 
   export type Blocks = keyof typeof map;
@@ -42,6 +44,8 @@
   import Estimation from './estimation.svelte';
   import Steps from './steps.svelte';
   import Services from './services.svelte';
+  import Testimonials from './testimonials.svelte';
+  import Clients from './clients.svelte';
 
   export let block: { component: string };
 

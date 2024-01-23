@@ -205,6 +205,7 @@
   />
 
   <!-- Clients -->
+  <!-- TODO: Remove this code since it's repeated on clients.svelte (block) as soon as we change the pages to blocks -->
   <section class=" container mx-auto px-container pb-16 pt-20 lg:pb-20 lg:pt-40">
     <h3 class="text-center text-2xl text-foreground-secondary">{data.clients_title}</h3>
     {#if data.clients}

@@ -17,7 +17,7 @@
 
   let open = false;
 
-  const src = $theme === 'dark' ? IllustrationEmply : IllustrationEmplyLight;
+  $: src = $theme === 'dark' ? IllustrationEmply : IllustrationEmplyLight;
 
   let selected: Record<string, ListboxOption<string>[]> = {};
 

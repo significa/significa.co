@@ -5,6 +5,7 @@
   import ProposalClients from '$components/proposals/proposal-clients.svelte';
   import ProposalTestimonials from '$components/proposals/proposal-testimonials.svelte';
   import ProposalProjects from '$components/proposals/proposal-projects.svelte';
+  import Seo from '$components/seo.svelte';
 
   export let data;
 
@@ -14,6 +15,8 @@
   const testimonials = data?.services?.story?.content?.page[0].testimonials ?? [];
   const clients = data?.services?.story?.content?.page[0].clients ?? [];
 </script>
+
+<Seo title={proposal?.title || 'Proposal'} />
 
 {#if data?.story && proposal}
   <ProposalPage {proposal} />

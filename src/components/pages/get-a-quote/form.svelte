@@ -133,7 +133,7 @@
             {@html eggs[character]}
             {#if character === 't-shirt' && truncatedText}
               <div
-                class="absolute left-[235px] top-[40px] text-black line-clamp-2 flex h-[76px] w-36 items-center justify-center text-center font-comic font-bold leading-snug"
+                class="absolute left-[235px] top-[40px] line-clamp-2 flex h-[76px] w-36 items-center justify-center text-center font-comic font-bold leading-snug"
                 style="transform: rotate(-4deg);"
               >
                 <div class="h-fit">

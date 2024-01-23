@@ -15,7 +15,8 @@
     hero: Hero,
     packages: Packages,
     'work-recognitions': WorkRecognitions,
-    estimation: Estimation
+    estimation: Estimation,
+    steps: Steps
   };
 
   export type Blocks = keyof typeof map;
@@ -38,6 +39,7 @@
   import Packages from './packages.svelte';
   import WorkRecognitions from './work-recognitions.svelte';
   import Estimation from './estimation.svelte';
+  import Steps from './steps.svelte';
 
   export let block: { component: string };
 

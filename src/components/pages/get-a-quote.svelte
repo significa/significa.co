@@ -12,5 +12,5 @@
 <Seo />
 <Form {page} />
 <Timezone {page} />
-<Steps {page} />
+<Steps {page} variant="get-a-quote" />
 <Images images={page.images} class="py-12 md:py-20 lg:py-32" />

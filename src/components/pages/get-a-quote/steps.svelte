@@ -1,13 +1,14 @@
 <script lang="ts">
-  import type { GetAQuotePageStoryblok } from '$types/bloks';
+  import type { GetAQuotePageStoryblok, StepsStoryblok } from '$types/bloks';
   import clsx from 'clsx';
 
-  export let page: GetAQuotePageStoryblok;
+  export let page: GetAQuotePageStoryblok | StepsStoryblok;
+  export let variant: undefined | 'block' | 'get-a-quote' = undefined;
 
   let lastItemHeight = 0;
 </script>
 
-<div class="border-t">
+<div class={clsx('border-t', variant === 'block' && 'border-t-0')}>
   <div class={clsx('container mx-auto px-container', 'lg:flex')}>
     <!-- Title -->
     <div class="lg:flex-1">
@@ -26,7 +27,12 @@
         'lg:border-l lg:border-dashed'
       )}
     >
-      <div class="absolute -left-px -top-32 hidden h-32 border-l lg:block" />
+      <div
+        class="absolute -left-px -top-32 hidden h-32 border-l lg:block"
+        style={variant === 'block'
+          ? 'border-image: linear-gradient( to top, #2E2E2E 0%, rgba(46, 46, 46, 0.00) ) 1 100%;'
+          : ''}
+      />
       <div>
         {#each page.steps || [] as step, i}
           <div class="mb-12 last:mb-0">

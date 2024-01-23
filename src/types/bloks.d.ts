@@ -568,7 +568,13 @@ export interface ImageGridStoryblok {
 }
 
 export interface LandingPageStoryblok {
-  blocks?: (EstimationStoryblok | HeroStoryblok | PackagesStoryblok | WorkRecognitionsStoryblok)[];
+  blocks?: (
+    | EstimationStoryblok
+    | HeroStoryblok
+    | PackagesStoryblok
+    | StepsStoryblok
+    | WorkRecognitionsStoryblok
+  )[];
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
@@ -1028,6 +1034,15 @@ export interface StaticPageStoryblok {
   body?: RichtextStoryblok;
   _uid: string;
   component: 'static-page';
+  [k: string]: any;
+}
+
+export interface StepsStoryblok {
+  steps_title?: string;
+  steps_subtitle?: string;
+  steps?: GetAQuoteStepStoryblok[];
+  _uid: string;
+  component: 'steps';
   [k: string]: any;
 }
 

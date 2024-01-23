@@ -117,6 +117,7 @@
   {/if}
 
   <!-- Services -->
+  <!-- TODO: Remove this code since it's repeated on services.svelte (block) as soon as we change the pages to blocks -->
   <section class="mt-14 md:mt-24 lg:mb-12">
     <div class="container mx-auto flex px-container">
       <div class="xl:max-w-3xl">

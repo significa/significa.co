@@ -3995,6 +3995,46 @@
       "component_group_name": "Configuration"
     },
     {
+      "name": "services",
+      "display_name": null,
+      "created_at": "2024-01-23T11:26:31.001Z",
+      "updated_at": "2024-01-23T11:31:23.863Z",
+      "id": 5216425,
+      "schema": {
+        "services_title": {
+          "type": "text",
+          "pos": 0
+        },
+        "services_subtitle": {
+          "type": "text",
+          "pos": 1
+        },
+        "services_description": {
+          "type": "text",
+          "pos": 2
+        },
+        "services": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["services_deppartment"],
+          "pos": 3
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "services",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "services_deppartment",
       "display_name": null,
       "created_at": "2023-05-04T10:55:05.274Z",

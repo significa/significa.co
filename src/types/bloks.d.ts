@@ -572,6 +572,7 @@ export interface LandingPageStoryblok {
     | EstimationStoryblok
     | HeroStoryblok
     | PackagesStoryblok
+    | ServicesStoryblok
     | StepsStoryblok
     | WorkRecognitionsStoryblok
   )[];
@@ -941,6 +942,16 @@ export interface RootStoryblok {
 export interface ServiceStoryblok {
   _uid: string;
   component: 'service';
+  [k: string]: any;
+}
+
+export interface ServicesStoryblok {
+  services_title?: string;
+  services_subtitle?: string;
+  services_description?: string;
+  services?: ServicesDeppartmentStoryblok[];
+  _uid: string;
+  component: 'services';
   [k: string]: any;
 }
 

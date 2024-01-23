@@ -237,9 +237,9 @@
     },
     {
       "name": "blog-post",
-      "display_name": "Author (Deprecated)",
+      "display_name": "Author",
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2024-01-15T10:42:12.336Z",
+      "updated_at": "2024-01-16T12:10:50.219Z",
       "id": 3442347,
       "schema": {
         "cover": {
@@ -326,7 +326,7 @@
       "is_nestable": false,
       "all_presets": [],
       "preset_id": null,
-      "real_name": "Author (Deprecated)",
+      "real_name": "Author",
       "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
       "color": "#fbce41",
       "icon": "block-text-img-t-l",
@@ -2048,7 +2048,7 @@
       "name": "landing-page",
       "display_name": null,
       "created_at": "2024-01-09T16:40:58.537Z",
-      "updated_at": "2024-01-09T16:41:15.088Z",
+      "updated_at": "2024-01-16T10:35:21.911Z",
       "id": 5142044,
       "schema": {
         "blocks": {
@@ -2057,6 +2057,69 @@
           "restrict_components": true,
           "component_whitelist": [],
           "component_group_whitelist": ["c9011224-9690-43bd-b686-e8f60ef6c7f6"]
+        },
+        "tab-577daf7c-b61e-4a23-8184-bd9c01ae0af3": {
+          "display_name": "SEO",
+          "keys": ["seo_title", "seo_description", "seo_og_image", "change_frequency", "priority"],
+          "pos": 0,
+          "type": "tab"
+        },
+        "seo_title": {
+          "type": "text"
+        },
+        "seo_description": {
+          "type": "text"
+        },
+        "seo_og_image": {
+          "type": "asset",
+          "filetypes": ["images"]
+        },
+        "change_frequency": {
+          "type": "option",
+          "use_uuid": true,
+          "description": "The frequency with which the page is expected to change.\n\n1. Always\nThese page types are constantly changing and will include index pages on major news publications, Google News, stock market data, and social bookmarking categories.\n\n2. Hourly\nThese pages update every hour and will also include major news publications as well as weather services and forums.\n\n3. Daily\nPages updated on average once per day and include things like blog posts, smaller web forum pages, message boards, and classified ads.\n\n4. Weekly\nUpdates typically occur once per week, these pages will include website directories, product pricing pages, and smaller blogs.\n\n5. Monthly\nThese are updated once per month, give or take, and include category pages, FAQs, and sometimes Help Desk articles that change slightly. Refer to the section above for guidelines on what is considered to be a change frequency trigger.\n\n6. Yearly\nUpdates on these pages happen on an annual basis and are typically your contact page, “About” page, login pages, and registration pages.\n\n7. Never\nAs the name suggests, these pages never ever get updates. These are really old blog posts, press releases, notifications about updates that never need updating, and completely static pages.",
+          "options": [
+            {
+              "_uid": "28d4312b-dabf-494a-bd43-86eff7fb9f2a",
+              "name": "Always",
+              "value": "always"
+            },
+            {
+              "_uid": "d9523a97-d361-4937-bfa9-493e73d69820",
+              "value": "hourly",
+              "name": "Hourly"
+            },
+            {
+              "_uid": "7ceedee3-c1a3-432f-8d41-4639e46e2b53",
+              "value": "daily",
+              "name": "Daily"
+            },
+            {
+              "_uid": "08383c7f-b167-4926-a2ce-b0d54381d712",
+              "value": "weekly",
+              "name": "Weekly"
+            },
+            {
+              "_uid": "1ed99bc4-fc84-4646-85da-82f4328d9fee",
+              "value": "monthly",
+              "name": "Monthly"
+            },
+            {
+              "_uid": "c3eaa833-17dd-4e2d-9b71-efb6ad8fb5bb",
+              "value": "yearly",
+              "name": "Yearly"
+            },
+            {
+              "_uid": "991aed4b-12f6-4dda-bf14-2c65c50dc45a",
+              "value": "never",
+              "name": "Never"
+            }
+          ]
+        },
+        "priority": {
+          "type": "number",
+          "description": "The priority of the page relative to other pages on your site, where 0.1 is the lowest priority and 1.0 is the highest priority.\n\n1.0-0.8\nHomepage, product information, landing pages.\n\n0.7-0.4\nNews articles, some weather services, blog posts, pages that no site would be complete without.\n\n0.3-0.0\nFAQs, outdated info, old press releases, completely static pages that are still relevant enough to keep from deleting entirely.",
+          "decimals": 1
         }
       },
       "image": null,
@@ -2639,7 +2702,7 @@
       "name": "proposal",
       "display_name": null,
       "created_at": "2023-09-11T15:29:11.214Z",
-      "updated_at": "2023-12-28T13:43:31.359Z",
+      "updated_at": "2024-01-17T10:45:42.882Z",
       "id": 4555199,
       "schema": {
         "password": {
@@ -2692,9 +2755,11 @@
           "description": "Most recent at the top"
         },
         "created_by": {
-          "type": "custom",
-          "field_type": "significa-team-member",
-          "options": []
+          "type": "option",
+          "use_uuid": true,
+          "required": true,
+          "source": "internal_stories",
+          "filter_content_type": ["team-member"]
         }
       },
       "image": null,
@@ -3615,22 +3680,28 @@
       "name": "recognition-type",
       "display_name": null,
       "created_at": "2024-01-15T10:24:43.499Z",
-      "updated_at": "2024-01-15T10:27:30.663Z",
+      "updated_at": "2024-01-17T11:28:03.335Z",
       "id": 5170311,
       "schema": {
-        "Title": {
+        "title": {
           "type": "text",
-          "required": true
+          "required": true,
+          "key": "title",
+          "pos": 0
         },
-        "Label": {
+        "label": {
           "type": "text",
-          "required": true
+          "required": true,
+          "key": "Label",
+          "pos": 1
         },
-        "Image": {
+        "image": {
           "type": "asset",
           "required": true,
           "filetypes": ["images"],
-          "asset_folder_id": 216885
+          "asset_folder_id": 216885,
+          "key": "Image",
+          "pos": 2
         }
       },
       "image": null,
@@ -4293,7 +4364,7 @@
       "name": "team-member",
       "display_name": null,
       "created_at": "2023-02-15T10:55:16.832Z",
-      "updated_at": "2023-09-08T10:49:17.984Z",
+      "updated_at": "2024-01-17T10:48:38.280Z",
       "id": 3441652,
       "schema": {
         "photo": {
@@ -4406,6 +4477,10 @@
               "name": "Never"
             }
           ]
+        },
+        "email": {
+          "type": "text",
+          "regex": "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"
         }
       },
       "image": null,
@@ -4891,6 +4966,46 @@
       "color": "#fbce41",
       "icon": "block-text-img-c",
       "component_group_name": "Blocks & Rich Text"
+    },
+    {
+      "name": "work-recognitions",
+      "display_name": null,
+      "created_at": "2024-01-16T12:05:23.832Z",
+      "updated_at": "2024-01-16T15:48:35.049Z",
+      "id": 5178911,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "small_highlights_title": {
+          "type": "text",
+          "pos": 1
+        },
+        "small_highlights": {
+          "type": "options",
+          "source": "internal_stories",
+          "folder_slug": "",
+          "filter_content_type": ["career", "project", "handbook", "blog-post"],
+          "max_options": "3",
+          "pos": 2
+        },
+        "awards_title": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "work-recognitions",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
     }
   ]
 }

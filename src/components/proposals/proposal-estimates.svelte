@@ -8,6 +8,7 @@
   } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
   import { formatter } from '$lib/utils/currency';
+  import { slide } from 'svelte/transition';
 
   export let data: ProposalEstimateEntryStoryblok[];
   export let team: ProposalTeamEntryStoryblok[] | ProposalPackageTeamEntryStoryblok[];
@@ -88,32 +89,36 @@
 
 <div class="overflow-x-scroll mt-10 md:mt-14 lg:mt-20">
   <!-- Header -->
-  <div class="min-w-[780px] border-b border-foreground-secondary even:bg-foreground-tertiary/10">
+  <div class="min-w-[780px] border-b border-foreground-secondary">
     <div
       class={clsx(
         'container mx-auto',
         'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr]',
-        'gap-10 md:gap-12 px-6 md:px-12 py-3.5'
+        'gap-10 md:gap-12 px-6 md:px-12 py-2'
       )}
     >
-      <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+      <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
         {t('proposals.estimates.area')}
       </p>
 
       <div class="grid grid-cols-[2fr_1fr_1fr_1fr]">
-        <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+        <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
           {t('proposals.estimates.phases')}
         </p>
 
-        <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+        <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
           {t('proposals.estimates.team')}
         </p>
 
-        <p class="text-xs uppercase tracking-wider text-foreground-secondary text-right">
+        <p
+          class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary text-right"
+        >
           {t('proposals.estimates.duration')}
         </p>
 
-        <p class="text-xs uppercase tracking-wider text-foreground-secondary text-right">
+        <p
+          class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary text-right"
+        >
           <span aria-hidden="true" class="hidden lg:block">
             {t('proposals.estimates.estimated-cost.long')}
           </span>
@@ -129,7 +134,8 @@
     {#if openPanes[i]}
       <!-- Expanded View -->
       <div
-        class="min-w-[780px] border-b border-foreground-secondary even:bg-foreground-tertiary/10"
+        transition:slide|global={{ duration: 300 }}
+        class="min-w-[780px] border-b border-foreground-tertiary bg-foreground-tertiary/10"
       >
         <div
           class={clsx(
@@ -138,12 +144,14 @@
             'gap-x-10 md:gap-x-12 px-6 md:px-12'
           )}
         >
-          <div class="col-start-1 font-bold -ml-4 py-4">
-            <span
-              style="background-color: {estimate.color}"
-              class="w-2 h-2 mr-2 rounded-full inline-block"
-            ></span>
-            {estimate.title}.
+          <div class="col-start-1 text-sm font-bold -ml-5 py-4">
+            <p class="flex items-center">
+              <span
+                style="background-color: {estimate.color}"
+                class="w-2 h-2 mr-2 rounded-full inline-block"
+              ></span>
+              {estimate.title}.
+            </p>
 
             <div class="block lg:hidden">
               <Button
@@ -169,25 +177,29 @@
               )}
             >
               <div class="col-start-1 row-span-{estimate.totals.phases} py-4 pr-2">
-                <p class="font-bold">
+                <p class="text-sm font-bold">
                   {phase.title}.
                 </p>
 
-                <p class="text-foreground-secondary">
+                <p class="text-sm text-foreground-secondary">
                   {phase.description}
                 </p>
               </div>
 
               {#each phase.team as person}
-                <div class="col-start-2 border-b border-foreground-tertiary py-4">
+                <div class="col-start-2 border-b border-foreground-tertiary py-4 text-sm">
                   {person.role}
                 </div>
 
-                <div class="col-start-3 text-right border-b border-foreground-tertiary py-4">
+                <div
+                  class="col-start-3 text-right border-b border-foreground-tertiary py-4 text-sm"
+                >
                   {person.duration}
                 </div>
 
-                <div class="col-start-4 text-right border-b border-foreground-tertiary py-4">
+                <div
+                  class="col-start-4 text-sm text-right border-b border-foreground-tertiary py-4"
+                >
                   {#if person.rateType === 'percentage' && person.rateValue}
                     {person.rateValue} %
                   {:else if person.rateType === 'value' && person.rateValue}
@@ -201,7 +213,7 @@
           {/each}
 
           <div class="col-start-2 grid grid-cols-[2fr_1fr_1fr_1fr] py-4">
-            <div>
+            <div class="text-sm">
               {estimate.totals.phases}
               {#if estimate.totals.phases > 1}
                 {t('proposals.estimates.phases')}
@@ -209,7 +221,7 @@
                 {t('proposals.estimates.phase')}
               {/if}
             </div>
-            <div>
+            <div class="text-sm">
               {estimate.totals.team}
               {#if estimate.totals.team > 1}
                 {t('proposals.estimates.people')}
@@ -217,11 +229,11 @@
                 {t('proposals.estimates.person')}
               {/if}
             </div>
-            <div class="text-right">{estimate.totals.duration}</div>
-            <div class="text-right">{formatter.format(estimate.totals.cost)}</div>
+            <div class="text-sm text-right">{estimate.totals.duration}</div>
+            <div class="text-sm text-right">{formatter.format(estimate.totals.cost)}</div>
           </div>
 
-          <div class="hidden lg:block col-start-3 row-start-1 py-4">
+          <div class="hidden lg:block col-start-3 row-start-1 justify-self-end py-4">
             <Button
               variant="secondary"
               size="sm"
@@ -237,25 +249,28 @@
       </div>
     {:else}
       <!-- CollapsedView -->
-      <div class="min-w-[780px] border-b border-foreground-secondary">
+      <div class="min-w-[780px] border-b border-foreground-tertiary">
         <div
           class={clsx(
             'container mx-auto',
-            'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr] gap-x-10 md:gap-x-12 px-6 md:px-12 py-4 items-center'
+            'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr] items-center',
+            'gap-x-10 md:gap-x-12 px-6 md:px-12 py-4'
           )}
         >
-          <div class="col-start-1 font-bold -ml-4">
-            <span
-              style="background-color: {estimate.color}"
-              class="w-2 h-2 mr-2 rounded-full inline-block"
-            ></span>
-            {estimate.title}.
+          <div class="col-start-1 text-sm font-bold -ml-5">
+            <p class="flex items-center">
+              <span
+                style="background-color: {estimate.color}"
+                class="w-2 h-2 mr-2 rounded-full inline-block"
+              ></span>
+              {estimate.title}.
+            </p>
 
             <div class="block lg:hidden">
               <Button
                 variant="secondary"
                 size="sm"
-                class="h-6 text-xs uppercase bg-background"
+                class="h-5 text-[0.69rem] uppercase bg-background"
                 on:click={() => {
                   openPanes[i] = !openPanes[i];
                 }}
@@ -266,7 +281,7 @@
           </div>
 
           <div class="col-start-2 grid grid-cols-[2fr_1fr_1fr_1fr]">
-            <div>
+            <div class="text-sm">
               {estimate.totals.phases}
               {#if estimate.totals.phases > 1}
                 {t('proposals.estimates.phases')}
@@ -274,7 +289,7 @@
                 {t('proposals.estimates.phase')}
               {/if}
             </div>
-            <div class="">
+            <div class="text-sm">
               {estimate.totals.team}
               {#if estimate.totals.team > 1}
                 {t('proposals.estimates.people')}
@@ -282,15 +297,15 @@
                 {t('proposals.estimates.person')}
               {/if}
             </div>
-            <div class="text-right">{estimate.totals.duration}</div>
-            <div class="text-right">{formatter.format(estimate.totals.cost)}</div>
+            <div class="text-sm text-right">{estimate.totals.duration}</div>
+            <div class="text-sm text-right">{formatter.format(estimate.totals.cost)}</div>
           </div>
 
-          <div class="hidden lg:block col-start-3">
+          <div class="hidden lg:block col-start-3 justify-self-end">
             <Button
               variant="secondary"
               size="sm"
-              class="h-6 text-xs uppercase bg-background"
+              class="h-6 text-[0.69rem] uppercase bg-background"
               on:click={() => {
                 openPanes[i] = !openPanes[i];
               }}
@@ -303,7 +318,8 @@
     {/if}
   {/each}
 
-  <div class="min-w-[780px] border-b border-foreground-tertiary">
+  <!-- Totals -->
+  <div class="min-w-[780px] border-b border-foreground-secondary">
     <div
       class={clsx(
         'container mx-auto',
@@ -311,26 +327,34 @@
       )}
     >
       <div class="col-start-2 grid grid-cols-[2fr_1fr_1fr_1fr]">
-        <div class="col-start-2 border-b py-4">{t('proposals.estimates.subtotal')}</div>
-        <div class="col-start-3 border-b text-right py-4">{totalDuration}</div>
-        <div class="col-start-4 border-b text-right py-4">{formatter.format(subtotal)}</div>
+        <div class="col-start-2 border-b border-foreground-tertiary py-4 text-sm">
+          {t('proposals.estimates.subtotal')}
+        </div>
+        <div class="col-start-3 border-b border-foreground-tertiary text-sm text-right py-4">
+          {totalDuration}
+        </div>
+        <div class="col-start-4 border-b border-foreground-tertiary text-sm text-right py-4">
+          {formatter.format(subtotal)}
+        </div>
 
         {#if discount}
-          <div class="col-start-2 border-b py-4">
+          <div class="col-start-2 border-b border-foreground-tertiary py-4 text-sm">
             {t('proposals.estimates.discount')}
             <span class="ml-2 text-xs p-1 font-bold rounded-sm border">{discount + '%'}</span>
           </div>
-          <div class="col-start-3 text-right border-b py-4">-</div>
-          <div class="col-start-4 text-right border-b py-4">
+          <div class="col-start-3 text-sm text-right border-b border-foreground-tertiary py-4">
+            -
+          </div>
+          <div class="col-start-4 text-sm text-right border-b border-foreground-tertiary py-4">
             -{formatter.format(discountedValue)}
           </div>
         {/if}
 
-        <div class="col-start-2 font-bold py-4">
+        <div class="col-start-2 text-sm font-bold py-4">
           {t('proposals.estimates.grand-total')}
         </div>
-        <div class="col-start-3 text-right font-bold py-4">{totalDuration}</div>
-        <div class="col-start-4 text-right font-bold py-4">
+        <div class="col-start-3 text-sm text-right font-bold py-4">{totalDuration}</div>
+        <div class="col-start-4 text-sm text-right font-bold py-4">
           {formatter.format(grandTotal)}
         </div>
       </div>

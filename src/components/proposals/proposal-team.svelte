@@ -1,11 +1,14 @@
 <script lang="ts">
   import clsx from 'clsx';
   import { t } from '$lib/i18n';
+
   import type {
     ProposalDepartmentStoryblok,
     ProposalTeamEntryStoryblok,
     ProposalPackageTeamEntryStoryblok
   } from '$types/bloks';
+
+  import { drawerLinks } from '$lib/actions/drawer-links';
   import { formatter } from '$lib/utils/currency';
   import { Link } from '@significa/svelte-ui';
 
@@ -37,19 +40,21 @@
           : 'grid-cols-[1fr_2fr_1fr]'
       )}
     >
-      <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+      <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
         {t('proposals.team.department')}
       </p>
       <div class="grid grid-cols-2">
-        <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+        <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
           {t('proposals.team.team-member')}
         </p>
-        <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+        <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
           {t('proposals.team.role')}
         </p>
       </div>
       {#if type === 'rate'}
-        <p class="text-xs uppercase tracking-wider text-foreground-secondary text-right">
+        <p
+          class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary text-right"
+        >
           {t('proposals.team.rate')}
         </p>
       {/if}
@@ -58,7 +63,7 @@
 
   <!-- Panes -->
   {#each departmentsInfo as department}
-    <div class="border-b border-foreground-tertiary even:bg-foreground-tertiary/10 min-w-[780px]">
+    <div class="border-b border-foreground-tertiary last:border-foreground-secondary min-w-[780px]">
       <div
         class={clsx(
           'container mx-auto',
@@ -71,10 +76,10 @@
         )}
       >
         <div class="col-start-1 row-span-{dataMap.get(department.name).length} py-4">
-          <p class="font-bold">
+          <p class="text-sm font-bold">
             {department?.content?.title}.
           </p>
-          <p class="text-foreground-secondary">
+          <p class="text-sm text-foreground-secondary">
             {department?.content?.description}
           </p>
         </div>
@@ -88,18 +93,18 @@
                 : ''
             )}
           >
-            <div class="col-start-1">
-              <Link href={`/about/${entry.team_member.member?.slug}`}>
+            <div class="col-start-1" use:drawerLinks>
+              <Link class="text-sm" href={`/about/${entry.team_member.member?.slug}`}>
                 {entry.team_member.member.name}
               </Link>
             </div>
 
             <div class="col-start-2 -ml-2 md:-ml-3">
-              <p>
+              <p class="text-sm">
                 {entry.role[0].title}
               </p>
               {#if entry.role[0].description}
-                <p class="text-foreground-secondary">
+                <p class="text-sm text-foreground-secondary">
                   {entry.role[0].description}
                 </p>
               {/if}
@@ -116,11 +121,11 @@
           >
             {#if type === 'rate'}
               {#if entry.rate_type === 'percentage' && entry.rate_value}
-                <p class="font-bold">{entry.rate_value} %</p>
+                <p class="text-sm font-bold">{entry.rate_value} %</p>
               {:else if entry.rate_type === 'value' && entry.rate_value}
-                <p class="font-bold">{formatter.format(+entry.rate_value)}</p>
+                <p class="text-sm font-bold">{formatter.format(+entry.rate_value)}</p>
               {:else if entry.rate_type === 'free'}
-                <p class="font-bold">{t('proposals.included')}</p>
+                <p class="text-sm font-bold">{t('proposals.included')}</p>
               {/if}
             {/if}
           </div>

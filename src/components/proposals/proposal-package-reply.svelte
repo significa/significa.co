@@ -10,6 +10,8 @@
     ProposalPackageTeamEntryStoryblok,
     ProposalTeamEntryStoryblok
   } from '$types/bloks';
+  import clsx from 'clsx';
+  import Popover from './popover.svelte';
 
   export let team: ProposalTeamEntryStoryblok[] | ProposalPackageTeamEntryStoryblok[];
   export let pricing: ProposalPackagePricingStoryblok[];
@@ -53,43 +55,63 @@
 
   <div class="grid grid-flow-row lg:grid-flow-col gap-y-2 p-6 border-l border-r">
     <div class="flex justify-between lg:flex-col">
-      <p class="text-foreground-secondary">{t('proposals.package.reply.people')}</p>
+      <p class="lg:text-sm text-foreground-secondary">{t('proposals.package.reply.people')}</p>
       <p class="text-base lg:text-xl">{team.length}</p>
     </div>
 
     <div class="flex justify-between lg:flex-col">
-      <p class="text-foreground-secondary">{t('proposals.package.reply.manpower')}</p>
+      <Popover>
+        <p
+          slot="target"
+          class="lg:text-sm text-foreground-secondary underline decoration-dashed underline-offset-4"
+        >
+          {t('proposals.package.reply.manpower')}
+        </p>
+
+        <div slot="popover">
+          <h2 class="font-medium text-foreground text-sm">
+            {t('proposals.package.reply.manpower.title')}
+          </h2>
+          <p class="text-sm">{t('proposals.package.reply.manpower.desc')}</p>
+        </div>
+      </Popover>
       <p class="text-base lg:text-xl">{totalManpower} {t('proposals.months')}</p>
     </div>
 
     <div class="flex justify-between lg:flex-col">
-      <p class="text-foreground-secondary">{t('proposals.package.reply.total-months')}</p>
+      <p class="lg:text-sm text-foreground-secondary">
+        {t('proposals.package.reply.total-months')}
+      </p>
       <p class="text-base lg:text-xl">{totalMonths} {t('proposals.months')}</p>
     </div>
 
     <div class="flex justify-between lg:flex-col">
-      <p class="text-foreground-secondary">{t('proposals.package.reply.monthly-cost')}</p>
+      <p class="lg:text-sm text-foreground-secondary">
+        {t('proposals.package.reply.monthly-cost')}
+      </p>
       <p class="text-base lg:text-xl">{formatter.format(monthlyTotal)}</p>
     </div>
 
     {#if discount}
       <div class="flex justify-between lg:flex-col">
-        <p class="text-foreground-secondary">{t('proposals.package.reply.discount')}</p>
+        <p class="lg:text-sm text-foreground-secondary">{t('proposals.package.reply.discount')}</p>
         <p class="text-base lg:text-xl">{discount} %</p>
       </div>
     {/if}
 
     <div class="flex justify-between lg:flex-col lg:justify-self-end">
-      <p class="">{t('proposals.package.reply.total')}</p>
+      <p class="lg:text-sm">{t('proposals.package.reply.total')}</p>
       <p class="text-base lg:text-xl font-semibold">{formatter.format(totalValue)}</p>
     </div>
   </div>
 
   <div
-    data-theme="dark"
-    class="bg-background text-foreground border flex flex-col lg:flex-row items-start lg:items-center lg:justify-between rounded-b-lg p-6"
+    class={clsx(
+      'flex flex-col lg:flex-row items-start lg:items-center lg:justify-between p-6',
+      'bg-foreground dark:bg-background-offset text-foreground border rounded-b-lg'
+    )}
   >
-    <h3 class="text-2xl text-white">{t('proposals.reply.description')}</h3>
+    <h3 class="text-2xl text-white w-2/3 lg:w-full">{t('proposals.reply.description')}</h3>
 
     <Button as="a" href={`${$page.url.pathname}/accept`} class="bg-white text-black mt-6 lg:mt-0"
       >{t('proposals.nav.action.long')}</Button

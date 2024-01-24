@@ -165,7 +165,11 @@ export const TranslationKeys = [
   'proposals.package.technical-resources.title',
   'proposals.package.fulltime',
   'proposals.package.project-manager.title',
-  'proposals.package.quality-assurance.title'
+  'proposals.package.quality-assurance.title',
+  'estimation.man.power',
+  'estimation.total',
+  'proposals.package.reply.manpower.title',
+  'proposals.package.reply.manpower.desc'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

@@ -20,25 +20,25 @@
         'gap-x-10 md:gap-x-12 px-6 md:px-12 py-2'
       )}
     >
-      <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+      <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
         {t('proposals.scope.deliverable')}
       </p>
 
       <div class="grid grid-cols-2">
-        <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+        <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
           {t('proposals.scope.service')}
         </p>
-        <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+        <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
           {t('proposals.scope.features')}
         </p>
       </div>
-      <p class="text-xs uppercase tracking-wider text-foreground-secondary"></p>
+      <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary"></p>
     </div>
   </div>
 
   {#each data as entry, i}
     {@const features = entry.features?.split('\n').filter(Boolean) || []}
-    <div class="border-b border-foreground-tertiary even:bg-foreground-tertiary/10 min-w-[780px]">
+    <div class="border-b border-foreground-tertiary last:border-foreground-secondary min-w-[780px]">
       <div
         class={clsx(
           'container mx-auto',
@@ -46,10 +46,10 @@
         )}
       >
         <div>
-          <p class="font-bold">
+          <p class="text-sm font-bold">
             {entry.title}.
           </p>
-          <p class="text-foreground-secondary">
+          <p class="text-sm text-foreground-secondary">
             {entry.description}
           </p>
 
@@ -68,19 +68,24 @@
         <div class="grid grid-cols-2">
           <div class="">
             {#each entry.services || [] as service}
-              <Tag class="cursor-default m-1 bg-background" label={service} />
+              <Tag
+                class="uppercase text-[0.69rem] cursor-default m-1 py-1.5 px-2.5 bg-background"
+                label={service}
+              />
             {/each}
           </div>
 
           <div>
             {#if !isShowingFeatures[i]}
-              {t('proposals.scope.multiple-features')}
+              <p class="text-sm">
+                {t('proposals.scope.multiple-features')}
+              </p>
             {:else}
               <div transition:slide={{ duration: 400, easing: circOut }}>
                 {#each features as feature}
                   <p
                     transition:fade|global={{ duration: 200 }}
-                    class="py-4 border-b last:border-none"
+                    class="py-4 border-b last:border-none text-sm"
                   >
                     {feature}
                   </p>

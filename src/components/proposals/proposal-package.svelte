@@ -32,25 +32,27 @@
     'my-10 md:my-14 lg:my-20 px-6 md:px-12'
   )}
 >
-  <div class="lg:col-start-2 flex flex-col shadow-lg rounded-xs border">
-    <div class="bg-background-offset">
-      <p class="pt-3 px-3 font-medium">{formatter.format(total)}</p>
-      <p class="pb-3 px-3 text-foreground-secondary">{t('proposals.per-month')}</p>
+  <div class="lg:col-start-2 flex flex-col shadow-md rounded-xs border">
+    <div class="bg-background-offset/50">
+      <p class="pt-3 px-4 text-xl font-medium">{formatter.format(total)}</p>
+      <p class="pb-3 px-4 text-foreground-secondary">{t('proposals.per-month')}</p>
     </div>
 
     {#if technicalResources}
-      <div class="grid grid-cols-2 p-3 content-between border-t">
+      <div class="grid grid-cols-2 p-4 content-between border-t">
         <p>{technicalResources.department.name}</p>
         <p class="justify-self-end font-medium">{formatter.format(technicalResourcesTotal)}</p>
         <Popover>
           <span
             slot="target"
-            class="text-xs underline underline-offset-4 decoration-dashed text-foreground-secondary"
+            class="text-sm underline underline-offset-4 decoration-dashed text-foreground-secondary"
           >
             {t('proposals.package.technical-resources.title')}
           </span>
           <div slot="popover">
-            <h2 class="font-medium text-sm">{t('proposals.package.technical-resources.title')}</h2>
+            <h2 class="font-medium text-foreground text-sm">
+              {t('proposals.package.technical-resources.title')}
+            </h2>
             <p class="text-sm">
               {technicalResources?.department.content.description}
             </p>
@@ -74,12 +76,14 @@
         <Popover>
           <span
             slot="target"
-            class="text-xs underline underline-offset-4 decoration-dashed text-foreground-secondary"
+            class="text-sm underline underline-offset-4 decoration-dashed text-foreground-secondary"
           >
             {t('proposals.package.project-manager.title')}
           </span>
           <div slot="popover">
-            <h2 class="font-medium text-sm">{t('proposals.package.project-manager.title')}</h2>
+            <h2 class="font-medium text-foreground text-sm">
+              {t('proposals.package.project-manager.title')}
+            </h2>
             <p class="text-sm">
               {projectManagement.department.content.description}
             </p>
@@ -104,12 +108,14 @@
         <Popover>
           <span
             slot="target"
-            class="text-xs underline underline-offset-4 decoration-dashed text-foreground-secondary"
+            class="text-sm underline underline-offset-4 decoration-dashed text-foreground-secondary"
           >
             {t('proposals.package.quality-assurance.title')}
           </span>
           <div slot="popover">
-            <h2 class="font-medium text-sm">{t('proposals.package.quality-assurance.title')}</h2>
+            <h2 class="font-medium text-foreground text-sm">
+              {t('proposals.package.quality-assurance.title')}
+            </h2>
             <p class="text-sm">
               {qualityAssurance.department.content.description}
             </p>

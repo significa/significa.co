@@ -48,7 +48,16 @@
         )}
       >
         <h3 class="text-4xl">{section.title}.</h3>
-        <RichText doc={section.body} />
+        <RichText
+          doc={section.body}
+          getAttributes={(section) => {
+            if (section.type !== 'heading') {
+              return { class: 'text-foreground-secondary' };
+            }
+
+            return {};
+          }}
+        />
       </div>
 
       {#if section.data === 'scope' && content?.scope}

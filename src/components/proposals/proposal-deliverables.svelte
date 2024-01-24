@@ -17,60 +17,69 @@
         'grid grid-cols-[1fr_2fr_1fr] gap-10 md:gap-12 px-6 md:px-12 py-2'
       )}
     >
-      <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+      <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
         {t('proposals.scope.deliverable')}
       </p>
 
-      <p class="text-xs uppercase tracking-wider text-foreground-secondary">
+      <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
         {t('proposals.scope.service')}
       </p>
 
-      <p class="text-xs uppercase tracking-wider text-foreground-secondary text-right">
+      <p
+        class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary text-right"
+      >
         {t('proposals.deliverables.manpower')}
       </p>
     </div>
   </div>
 
-  {#each data as entry}
-    <div class="border-b border-foreground-tertiary min-w-[780px]">
+  <div>
+    {#each data as entry}
       <div
-        class={clsx(
-          'container md:mx-auto',
-          'grid grid-cols-[1fr_2fr_1fr] gap-10 md:gap-12 px-6 md:px-12',
-          'even:bg-background-offset'
-        )}
+        class="border-b border-foreground-tertiary last:border-foreground-secondary min-w-[780px]"
       >
-        <div class="my-4">
-          <p class="font-bold">
-            {entry.title}.
-          </p>
-          <p class="text-foreground-secondary">
-            {entry.description}
+        <div
+          class={clsx(
+            'container md:mx-auto',
+            'grid grid-cols-[1fr_2fr_1fr] gap-10 md:gap-12 px-6 md:px-12'
+          )}
+        >
+          <div class="-ml-4 my-4">
+            <p class="text-sm font-bold">
+              <span
+                style="background-color: {entry.color}"
+                class="w-2 h-2 mr-1 rounded-full inline-block"
+              ></span>
+              {entry.title}.
+            </p>
+            <p class="ml-4 text-sm text-foreground-secondary">
+              {entry.description}
+            </p>
+          </div>
+
+          <div>
+            {#each entry.services || [] as service}
+              <div class="my-4">
+                <p class="text-sm font-bold">
+                  {service.title}.
+                </p>
+                <p class="text-sm text-foreground-secondary">
+                  {service.description}
+                </p>
+              </div>
+            {/each}
+          </div>
+
+          <p class="my-4 text-sm text-right">
+            {entry.manpower}
+            {+entry.manpower > 1 ? t('proposals.months') : t('proposals.month')}
           </p>
         </div>
-
-        <div>
-          {#each entry.services || [] as service}
-            <div class="my-4">
-              <p class="font-bold">
-                {service.title}.
-              </p>
-              <p class="text-foreground-secondary">
-                {service.description}
-              </p>
-            </div>
-          {/each}
-        </div>
-
-        <p class="my-4 text-right">
-          {entry.manpower}
-          {+entry.manpower > 1 ? t('proposals.months') : t('proposals.month')}
-        </p>
       </div>
-    </div>
-  {/each}
+    {/each}
+  </div>
 
-  <div class="border-b border-border bg-background-offset min-w-[780px]">
+  <div class="bg-background-offset/50 min-w-[780px]">
     <div
       class={clsx(
         'md:container md:mx-auto',

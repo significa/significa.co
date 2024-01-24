@@ -33,7 +33,7 @@
 <div class="w-1/3">
   {#if linkHref}
     <div class="flex-1 justify-end text-foreground-tertiary xl:flex">
-      <Button variant="secondary" arrow>
+      <Button variant="secondary" href={linkHref} arrow>
         {linkText}
       </Button>
     </div>

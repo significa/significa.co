@@ -136,7 +136,7 @@
                 class="absolute left-[235px] top-[40px] line-clamp-2 flex h-[76px] w-36 items-center justify-center text-center font-comic font-bold leading-snug"
                 style="transform: rotate(-4deg);"
               >
-                <div class="h-fit">
+                <div class="h-fit w-24">
                   I <span class="text-error">{'<3'}</span>
                   {truncatedText}
                 </div>

@@ -65,6 +65,15 @@
         open ? 'xl:w-1/2 w-full ring-1 ring-border' : 'w-full'
       )}
     >
+      <img
+        class={clsx(
+          'absolute right-0 hidden xl:block transition-all ease-motion duration-500',
+          !open ? '-bottom-96 opacity-0' : '-bottom-8 opacity-100'
+        )}
+        src={$theme === 'dark' ? PreFooterAsset : PreFooterAssetLight}
+        width="354"
+        alt=""
+      />
       <div class="w-full @5xl:flex">
         <div class="p-6 xl:p-8 flex flex-col justify-between h-full xl:max-w-2xl">
           <div>
@@ -111,7 +120,7 @@
             </div>
           </div>
 
-          <div class="flex flex-col mt-5 xl:mt-3 relative">
+          <div class="flex flex-col mt-5 xl:mt-3">
             <p class="text-base font-medium text-foreground/60">{t('estimation.man.power')}</p>
             <p class="text-xl font-medium">
               {combinedBudgetPower.lowPower === 0
@@ -124,15 +133,6 @@
                 ? '-'
                 : combinedBudgetPower.lowBudget + `€ to ` + combinedBudgetPower.highBudget + `€`}
             </p>
-            <img
-              class={clsx(
-                'absolute -right-[50%] hidden xl:block transition-all ease-motion duration-500',
-                !open ? '-bottom-96 opacity-0' : '-bottom-8 opacity-100'
-              )}
-              src={$theme === 'dark' ? PreFooterAsset : PreFooterAssetLight}
-              width="354"
-              alt=""
-            />
           </div>
         </div>
         <div

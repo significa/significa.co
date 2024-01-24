@@ -1,7 +1,7 @@
 import { STORYBLOK_PROPOSALS_TOKEN } from '$env/static/private';
 import { PREVIEW_COOKIE_KEY } from '$lib/constants';
 import { getStoryblok } from '$lib/storyblok';
-import { fetchPage } from '$lib/content';
+import { fetchAwards, fetchPage } from '$lib/content';
 import type { ProposalStoryblok } from '$types/bloks.js';
 import type { ISbStoryData } from '@storyblok/js';
 
@@ -81,7 +81,12 @@ export const load = async ({ cookies, fetch, params, url }) => {
     throw err;
   }
 
-  return { story, services, home };
+  return {
+    story,
+    services,
+    home,
+    awards: await fetchAwards({ version, fetch })
+  };
 };
 
 export const actions = {

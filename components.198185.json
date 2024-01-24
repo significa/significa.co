@@ -1141,6 +1141,36 @@
       "component_group_name": "Single"
     },
     {
+      "name": "clients",
+      "display_name": null,
+      "created_at": "2024-01-23T17:00:57.552Z",
+      "updated_at": "2024-01-23T17:02:18.323Z",
+      "id": 5219148,
+      "schema": {
+        "clients_title": {
+          "type": "text"
+        },
+        "clients": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["client-logo"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "clients",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "column",
       "display_name": null,
       "created_at": "2023-02-16T10:38:00.191Z",
@@ -1320,6 +1350,40 @@
       "color": null,
       "icon": null,
       "component_group_name": "Pages"
+    },
+    {
+      "name": "cta-card",
+      "display_name": null,
+      "created_at": "2024-01-24T11:35:57.280Z",
+      "updated_at": "2024-01-24T12:41:34.871Z",
+      "id": 5222861,
+      "schema": {
+        "title": {
+          "type": "text"
+        },
+        "description": {
+          "type": "text"
+        },
+        "link_text": {
+          "type": "text"
+        },
+        "link": {
+          "type": "multilink",
+          "email_link_type": true
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "cta-card",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
     },
     {
       "name": "deliverable",
@@ -2725,6 +2789,35 @@
       "component_group_name": "Content Types"
     },
     {
+      "name": "projects",
+      "display_name": null,
+      "created_at": "2024-01-24T10:08:07.237Z",
+      "updated_at": "2024-01-24T10:10:41.798Z",
+      "id": 5222132,
+      "schema": {
+        "work_title": {
+          "type": "text"
+        },
+        "projects": {
+          "type": "options",
+          "source": "internal_stories",
+          "filter_content_type": ["project"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "projects",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "projects-index",
       "display_name": null,
       "created_at": "2023-04-06T13:42:56.259Z",
@@ -2748,7 +2841,7 @@
       "name": "proposal",
       "display_name": null,
       "created_at": "2023-09-11T15:29:11.214Z",
-      "updated_at": "2024-01-17T10:45:42.882Z",
+      "updated_at": "2024-01-23T11:59:30.858Z",
       "id": 4555199,
       "schema": {
         "password": {
@@ -2806,6 +2899,68 @@
           "required": true,
           "source": "internal_stories",
           "filter_content_type": ["team-member"]
+        },
+        "tab-715a6f05-42cb-4424-92a8-2d4afed3f366": {
+          "display_name": "SEO",
+          "keys": ["seo_title", "seo_description", "seo_og_image", "change_frequency", "priority"],
+          "pos": 0,
+          "type": "tab"
+        },
+        "seo_title": {
+          "type": "text"
+        },
+        "seo_description": {
+          "type": "text"
+        },
+        "seo_og_image": {
+          "type": "asset",
+          "filetypes": ["images"]
+        },
+        "change_frequency": {
+          "type": "option",
+          "use_uuid": true,
+          "description": "The frequency with which the page is expected to change.\n\n1. Always\nThese page types are constantly changing and will include index pages on major news publications, Google News, stock market data, and social bookmarking categories.\n\n2. Hourly\nThese pages update every hour and will also include major news publications as well as weather services and forums.\n\n3. Daily\nPages updated on average once per day and include things like blog posts, smaller web forum pages, message boards, and classified ads.\n\n4. Weekly\nUpdates typically occur once per week, these pages will include website directories, product pricing pages, and smaller blogs.\n\n5. Monthly\nThese are updated once per month, give or take, and include category pages, FAQs, and sometimes Help Desk articles that change slightly. Refer to the section above for guidelines on what is considered to be a change frequency trigger.\n\n6. Yearly\nUpdates on these pages happen on an annual basis and are typically your contact page, “About” page, login pages, and registration pages.\n\n7. Never\nAs the name suggests, these pages never ever get updates. These are really old blog posts, press releases, notifications about updates that never need updating, and completely static pages.",
+          "options": [
+            {
+              "_uid": "a5621b6e-66a1-475d-936c-77ab1dad7536",
+              "name": "Always",
+              "value": "always"
+            },
+            {
+              "_uid": "385a500b-f85e-441d-998c-8385fb7d1e06",
+              "value": "hourly",
+              "name": "Hourly"
+            },
+            {
+              "_uid": "8c3167b2-9055-497c-83e2-9728a97eaee3",
+              "value": "daily",
+              "name": "Daily"
+            },
+            {
+              "_uid": "99da893b-b750-47d3-b57f-8d3b20ef1f8b",
+              "value": "weekly",
+              "name": "Weekly"
+            },
+            {
+              "_uid": "6695fecb-afb1-4c66-83d1-3a9fa7cd31e0",
+              "value": "monthly",
+              "name": "Monthly"
+            },
+            {
+              "_uid": "96f659f8-b76b-4fff-a542-90c8beb83aec",
+              "value": "yearly",
+              "name": "Yearly"
+            },
+            {
+              "_uid": "be210b60-3bdc-438b-848e-0a767557d6bf",
+              "value": "never",
+              "name": "Never"
+            }
+          ]
+        },
+        "priority": {
+          "type": "number",
+          "decimals": 1
         }
       },
       "image": null,
@@ -3995,6 +4150,46 @@
       "component_group_name": "Configuration"
     },
     {
+      "name": "services",
+      "display_name": null,
+      "created_at": "2024-01-23T11:26:31.001Z",
+      "updated_at": "2024-01-23T11:31:23.863Z",
+      "id": 5216425,
+      "schema": {
+        "services_title": {
+          "type": "text",
+          "pos": 0
+        },
+        "services_subtitle": {
+          "type": "text",
+          "pos": 1
+        },
+        "services_description": {
+          "type": "text",
+          "pos": 2
+        },
+        "services": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["services_deppartment"],
+          "pos": 3
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "services",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "services_deppartment",
       "display_name": null,
       "created_at": "2023-05-04T10:55:05.274Z",
@@ -4407,6 +4602,39 @@
       "component_group_name": "Pages"
     },
     {
+      "name": "steps",
+      "display_name": null,
+      "created_at": "2024-01-23T10:01:47.736Z",
+      "updated_at": "2024-01-23T10:03:20.677Z",
+      "id": 5215462,
+      "schema": {
+        "steps_title": {
+          "type": "text"
+        },
+        "steps_subtitle": {
+          "type": "text"
+        },
+        "steps": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["get-a-quote-step"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "steps",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "team-member",
       "display_name": null,
       "created_at": "2023-02-15T10:55:16.832Z",
@@ -4623,6 +4851,47 @@
       "color": null,
       "icon": null,
       "component_group_name": "Single"
+    },
+    {
+      "name": "testimonials",
+      "display_name": null,
+      "created_at": "2024-01-23T16:14:01.707Z",
+      "updated_at": "2024-01-23T16:17:15.066Z",
+      "id": 5218864,
+      "schema": {
+        "testimonials_title1": {
+          "type": "text"
+        },
+        "testimonials_title2": {
+          "type": "text"
+        },
+        "testimonials_cta_label": {
+          "type": "text"
+        },
+        "testimonials_cta_link": {
+          "type": "multilink"
+        },
+        "testimonials": {
+          "type": "bloks",
+          "minimum": 5,
+          "maximum": 5,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["richtext-testimonial"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "testimonials",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
     },
     {
       "name": "timeline-arrow",

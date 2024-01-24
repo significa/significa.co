@@ -7,14 +7,15 @@ import type {
   PageStoryblok,
   ProjectStoryblok,
   TeamMemberStoryblok,
-  LandingPageStoryblok
+  LandingPageStoryblok,
+  RecognitionStoryblok
 } from '$types/bloks';
 import { HOME_SLUG } from './constants';
 
 export const PAGE_PARAMS = {
   resolve_links: 'url',
   resolve_relations:
-    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects,blog-post.authors,hero.small_highlights'
+    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects,blog-post.authors,hero.small_highlights,work-recognitions.small_highlights'
 } as const;
 
 export const BLOG_PARAMS = {
@@ -39,6 +40,17 @@ export const TEAM_MEMBER_PARAMS = {
   content_type: 'team-member'
 };
 
+export const AWARDS_PARAMS = {
+  per_page: 100,
+  content_type: 'recognition-entry',
+  resolve_relations: 'recognition-entry.project,recognition-entry.recognition'
+};
+
+export const AWARDS_TYPES_PARAMS = {
+  per_page: 100,
+  content_type: 'recognition-type'
+};
+
 export const fetchCareers = async (
   options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
 ) => {
@@ -52,6 +64,38 @@ export const fetchCareers = async (
   });
 
   return stories as ISbStoryData<CareerStoryblok>[];
+};
+
+// awards
+export const fetchAwards = async (
+  options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
+) => {
+  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
+
+  const {
+    data: { stories }
+  } = await storyblok.get('cdn/stories', {
+    ...AWARDS_PARAMS,
+    version: options.version || 'published'
+  });
+
+  return stories as ISbStoryData<RecognitionStoryblok>[];
+};
+
+// awards types
+export const fetchAwardsTypes = async (
+  options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
+) => {
+  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
+
+  const {
+    data: { stories }
+  } = await storyblok.get('cdn/stories', {
+    ...AWARDS_TYPES_PARAMS,
+    version: options.version || 'published'
+  });
+
+  return stories as ISbStoryData<RecognitionStoryblok>[];
 };
 
 // blog posts use other data from the response, so we need to return the whole response

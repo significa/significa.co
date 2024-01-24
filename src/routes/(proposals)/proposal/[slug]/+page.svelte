@@ -10,7 +10,7 @@
   export let data;
 
   const proposal = data?.story?.content;
-  const awards = data?.services?.story?.content?.page[0].awards ?? [];
+  const awards = data?.awards ?? [];
   const projects = data?.home?.story.content.page[0].projects ?? [];
   const testimonials = data?.services?.story?.content?.page[0].testimonials ?? [];
   const clients = data?.services?.story?.content?.page[0].clients ?? [];

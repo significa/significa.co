@@ -13,7 +13,8 @@
     video: Video,
     'richtext-box': RichTextBox,
     hero: Hero,
-    packages: Packages
+    packages: Packages,
+    'work-recognitions': WorkRecognitions
   };
 
   export type Blocks = keyof typeof map;
@@ -34,6 +35,7 @@
 
   import Hero from './hero.svelte';
   import Packages from './packages.svelte';
+  import WorkRecognitions from './work-recognitions.svelte';
 
   export let block: { component: string };
 

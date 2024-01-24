@@ -6,7 +6,7 @@
   import Hand from './services/illustrations/hand.svelte';
   import Duck from './services/illustrations/duck.svelte';
   import Timeline from './services/timeline.svelte';
-  import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
+  import { getImageAttributes } from '$lib/utils/cms';
   import type { ServicesPageStoryblok } from '$types/bloks';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import clsx from 'clsx';
@@ -42,14 +42,14 @@
   </section>
 
   <!-- Awards -->
-  {#if data.awards?.length}
+  {#if $page.data.awards.length}
     <section class="mt-10 md:mt-14 lg:mt-20">
-      <div class=" justify-between gap-12 lg:flex">
+      <div class="justify-between gap-12 lg:flex">
         <div class="flex flex-1 flex-col items-start">
           <div class="w-full flex-1">
             <ul use:drawerLinks>
-              {#each data.awards as award}
-                {@const { href, target, rel } = getAnchorFromCmsLink(award.link)}
+              {#each $page.data.awards as award}
+                {@const href = award.content.project.full_slug}
                 <li
                   class={clsx(
                     'block border-b first:border-t',
@@ -58,8 +58,6 @@
                 >
                   <a
                     {href}
-                    {target}
-                    {rel}
                     on:click={() => {
                       track(TrackingEvent.SERVICES_AWARD_CLICK, {
                         props: {
@@ -72,11 +70,11 @@
                   >
                     <AwardsEntry
                       linkHref={href}
-                      image={award.image}
-                      label={award.label}
-                      name={award.name}
-                      project={award.project}
-                      linkText={award.link_text}
+                      image={award.content.recognition.content.image}
+                      label={award.content.recognition.content.label}
+                      name={award.content.recognition.content.title}
+                      year={award.content.year}
+                      project={award.content.project.name}
                     ></AwardsEntry>
                   </a>
                 </li>

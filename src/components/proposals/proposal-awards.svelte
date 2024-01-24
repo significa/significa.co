@@ -1,12 +1,12 @@
 <script lang="ts">
   import { drawerLinks } from '$lib/actions/drawer-links';
   import clsx from 'clsx';
-  import { getAnchorFromCmsLink } from '$lib/utils/cms';
-  import type { AwardsEntryStoryblok } from '$types/bloks';
   import { t } from '$lib/i18n';
   import AwardsEntry from '$components/awards-entry.svelte';
+  import type { ISbStoryData } from '@storyblok/js';
+  import type { RecognitionStoryblok } from '$types/bloks';
 
-  export let awards: AwardsEntryStoryblok[];
+  export let awards: ISbStoryData<RecognitionStoryblok>[];
 </script>
 
 {#if awards?.length > 0}
@@ -23,7 +23,7 @@
         <div class="w-full flex-1">
           <ul use:drawerLinks>
             {#each awards as award}
-              {@const { href, target, rel } = getAnchorFromCmsLink(award.link)}
+              {@const href = `/${award.content.project.full_slug}`}
               <li
                 class={clsx(
                   'block border-b first:border-t',
@@ -32,17 +32,15 @@
               >
                 <a
                   {href}
-                  {target}
-                  {rel}
                   class="container mx-auto flex flex-col justify-between px-container py-5 lg:flex-row"
                 >
                   <AwardsEntry
                     linkHref={href}
-                    image={award.image}
-                    label={award.label}
-                    name={award.name}
-                    project={award.project}
-                    linkText={award.link_text}
+                    image={award.content.recognition.content.image}
+                    label={award.content.recognition.content.label}
+                    name={award.content.recognition.content.title}
+                    year={award.content.year}
+                    project={award.content.project.name}
                   ></AwardsEntry>
                 </a>
               </li>

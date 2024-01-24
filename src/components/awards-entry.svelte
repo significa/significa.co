@@ -2,13 +2,14 @@
   import { Button } from '@significa/svelte-ui';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { AssetStoryblok } from '$types/bloks';
+  import { t } from '$lib/i18n';
 
   export let linkHref: string | undefined;
   export let image: AssetStoryblok | undefined;
   export let label: string | undefined;
+  export let year: string | undefined;
   export let name: string | undefined;
   export let project: string | undefined;
-  export let linkText: string | undefined;
 </script>
 
 <div class="flex w-full flex-col-reverse items-center lg:flex-row">
@@ -23,7 +24,7 @@
       <p class="text-base font-semibold text-foreground-secondary">
         {label}
       </p>
-      <p class="text-base font-semibold">{name}</p>
+      <p class="text-base font-semibold">{name} {year}</p>
     </div>
   </div>
   <div class="mb-4 w-full lg:mb-0">
@@ -33,8 +34,8 @@
 <div class="w-1/3">
   {#if linkHref}
     <div class="flex-1 justify-end text-foreground-tertiary xl:flex">
-      <Button variant="secondary" href={linkHref} arrow>
-        {linkText}
+      <Button variant="secondary" arrow>
+        {t('view-project')}
       </Button>
     </div>
   {/if}

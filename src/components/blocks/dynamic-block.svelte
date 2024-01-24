@@ -20,7 +20,8 @@
     services: Services,
     testimonials: Testimonials,
     clients: Clients,
-    projects: Projects
+    projects: Projects,
+    'cta-card': CtaCard
   };
 
   export type Blocks = keyof typeof map;
@@ -48,6 +49,7 @@
   import Testimonials from './testimonials.svelte';
   import Clients from './clients.svelte';
   import Projects from './projects.svelte';
+  import CtaCard from './cta-card.svelte';
 
   export let block: { component: string };
 

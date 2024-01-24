@@ -400,6 +400,16 @@ export interface ContactsPageStoryblok {
   [k: string]: any;
 }
 
+export interface CtaCardStoryblok {
+  title?: string;
+  description?: string;
+  link_text?: string;
+  link?: Exclude<MultilinkStoryblok, { linktype?: 'asset' }>;
+  _uid: string;
+  component: 'cta-card';
+  [k: string]: any;
+}
+
 export interface DeliverableStoryblok {
   _uid: string;
   component: 'deliverable';
@@ -578,6 +588,7 @@ export interface ImageGridStoryblok {
 export interface LandingPageStoryblok {
   blocks?: (
     | ClientsStoryblok
+    | CtaCardStoryblok
     | EstimationStoryblok
     | HeroStoryblok
     | PackagesStoryblok

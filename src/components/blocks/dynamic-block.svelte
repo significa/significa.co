@@ -19,7 +19,8 @@
     steps: Steps,
     services: Services,
     testimonials: Testimonials,
-    clients: Clients
+    clients: Clients,
+    projects: Projects
   };
 
   export type Blocks = keyof typeof map;
@@ -46,6 +47,7 @@
   import Services from './services.svelte';
   import Testimonials from './testimonials.svelte';
   import Clients from './clients.svelte';
+  import Projects from './projects.svelte';
 
   export let block: { component: string };
 

@@ -68,6 +68,7 @@
   </div>
   <!-- -------- -->
 
+  <!-- TODO: Remove this code since it's repeated on projects.svelte (block) as soon as we change the pages to blocks -->
   <section class="mt-10 md:mt-14 lg:mt-20">
     <div class="container mx-auto px-container">
       <h2 class="text-5xl">{data.work_title}</h2>
@@ -78,6 +79,7 @@
       {/each}
     </div>
   </section>
+  <!-- -------- -->
 
   <Services {data} />
 

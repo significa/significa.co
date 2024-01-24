@@ -581,6 +581,7 @@ export interface LandingPageStoryblok {
     | EstimationStoryblok
     | HeroStoryblok
     | PackagesStoryblok
+    | ProjectsStoryblok
     | ServicesStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
@@ -706,6 +707,14 @@ export interface ProjectStoryblok {
   seo_og_image?: AssetStoryblok;
   _uid: string;
   component: 'project';
+  [k: string]: any;
+}
+
+export interface ProjectsStoryblok {
+  work_title?: string;
+  projects?: (StoryblokStory<ProjectStoryblok> | string)[];
+  _uid: string;
+  component: 'projects';
   [k: string]: any;
 }
 

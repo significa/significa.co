@@ -14,6 +14,7 @@
   import clsx from 'clsx';
   import { TrackingEvent, track } from '$lib/track';
   import { page } from '$app/stores';
+  import { t } from '$lib/i18n';
 
   export let data: ServicesPageStoryblok;
 </script>
@@ -102,7 +103,7 @@
                     <div class="w-1/3">
                       {#if href}
                         <div class="flex-1 justify-end text-foreground-tertiary xl:flex">
-                          <Button variant="secondary" arrow>View Project</Button>
+                          <Button variant="secondary" arrow>{t('view-project')}</Button>
                         </div>
                       {/if}
                     </div>

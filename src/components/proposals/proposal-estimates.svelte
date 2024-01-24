@@ -92,9 +92,9 @@
   <div class="min-w-[780px] border-b border-foreground-secondary">
     <div
       class={clsx(
-        'container mx-auto',
+        'container mx-auto px-container',
         'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr]',
-        'gap-10 md:gap-12 px-6 md:px-12 py-2'
+        'gap-10 md:gap-12 py-2'
       )}
     >
       <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
@@ -139,21 +139,21 @@
       >
         <div
           class={clsx(
-            'container mx-auto',
+            'container mx-auto px-container',
             'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr]',
-            'gap-x-10 md:gap-x-12 px-6 md:px-12'
+            'gap-x-10 md:gap-x-12'
           )}
         >
-          <div class="col-start-1 text-sm font-bold -ml-5 py-4">
+          <div class="col-start-1 text-sm font-bold -ml-3.5 py-4">
             <p class="flex items-center">
               <span
                 style="background-color: {estimate.color}"
-                class="w-2 h-2 mr-2 rounded-full inline-block"
+                class="w-2 h-2 mr-1.5 rounded-full inline-block"
               ></span>
               {estimate.title}.
             </p>
 
-            <div class="block lg:hidden">
+            <div class="block ml-3.5 lg:hidden">
               <Button
                 variant="secondary"
                 size="sm"
@@ -237,7 +237,7 @@
             <Button
               variant="secondary"
               size="sm"
-              class="h-6 text-xs uppercase bg-background"
+              class="h-6 text-[0.69rem] uppercase bg-background"
               on:click={() => {
                 openPanes[i] = !openPanes[i];
               }}
@@ -252,25 +252,25 @@
       <div class="min-w-[780px] border-b border-foreground-tertiary">
         <div
           class={clsx(
-            'container mx-auto',
-            'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr] items-center',
-            'gap-x-10 md:gap-x-12 px-6 md:px-12 py-4'
+            'container mx-auto px-container',
+            'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr]',
+            'gap-x-10 md:gap-x-12 py-4'
           )}
         >
-          <div class="col-start-1 text-sm font-bold -ml-5">
+          <div class="col-start-1 text-sm font-bold -ml-3.5">
             <p class="flex items-center">
               <span
                 style="background-color: {estimate.color}"
-                class="w-2 h-2 mr-2 rounded-full inline-block"
+                class="w-2 h-2 mr-1.5 rounded-full inline-block"
               ></span>
               {estimate.title}.
             </p>
 
-            <div class="block lg:hidden">
+            <div class="block ml-3.5 mt-1 lg:hidden">
               <Button
                 variant="secondary"
                 size="sm"
-                class="h-5 text-[0.69rem] uppercase bg-background"
+                class="h-6 text-[0.69rem] uppercase bg-background"
                 on:click={() => {
                   openPanes[i] = !openPanes[i];
                 }}
@@ -322,8 +322,8 @@
   <div class="min-w-[780px] border-b border-foreground-secondary">
     <div
       class={clsx(
-        'container mx-auto',
-        'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr] gap-10 md:gap-12 px-6 md:px-12'
+        'container mx-auto px-container',
+        'grid grid-cols-[1fr_3fr] lg:grid-cols-[1fr_2.7fr_0.3fr] gap-10 md:gap-12'
       )}
     >
       <div class="col-start-2 grid grid-cols-[2fr_1fr_1fr_1fr]">

@@ -17,8 +17,8 @@
   );
 </script>
 
-<div class="container mx-auto 2xl:px-12 mt-10 md:mt-14 lg:mt-20">
-  <div class={clsx('relative overflow-x-scroll', 'grid grid-cols-[max-content,_max-content] py-3')}>
+<div class="container mx-auto 2xl:px-12 mt-10 md:mt-14 lg:mt-20 text-center overflow-x-scroll">
+  <div class="inline-grid grid-cols-[max-content,_max-content] pb-3 text-left">
     <div class="col-start-1 row-start-1 border-b"></div>
     <div class="col-start-2">
       <div
@@ -72,7 +72,7 @@
         {/each}
       </div>
 
-      {#if type === 'package' && pricing}
+      {#if type === 'package' && projectManagement && qualityAssurance}
         <div class="p-2">
           <hr />
         </div>
@@ -116,7 +116,10 @@
 
       {#if type === 'package' && projectManagement && qualityAssurance}
         <div
-          class="rounded-xs mx-1 p-2 text-sm border border-dashed"
+          class={clsx(
+            'rounded-xs mr-1 p-2 border border-dashed bg-background-offset',
+            'text-sm whitespace-nowrap overflow-hidden hover:overflow-visible'
+          )}
           style="background-color: hsl(var(--color-background-offset));
                grid-row: {rows.length + 2} / span 1;
                grid-column: 1 / span {totalDays};"
@@ -128,10 +131,12 @@
           >
         </div>
         <div
-          class="rounded-xs mx-1 p-2 text-sm border border-dashed"
-          style="background-color: hsl(var(--color-background-offset));
-               grid-row: {rows.length + 3} / span 1;
-               grid-column: 1 / span {totalDays};"
+          class={clsx(
+            'rounded-xs mr-1 p-2 border border-dashed bg-background-offset',
+            'text-sm whitespace-nowrap overflow-hidden hover:overflow-visible'
+          )}
+          style="grid-row: {rows.length + 3} / span 1;
+                 grid-column: 1 / span {totalDays};"
         >
           {qualityAssurance.department.name}
           <span class="text-foreground/50"

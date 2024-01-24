@@ -13,8 +13,8 @@
   <div class="border-b border-foreground-secondary min-w-[780px]">
     <div
       class={clsx(
-        'container mx-auto',
-        'grid grid-cols-[1fr_2fr_1fr] gap-10 md:gap-12 px-6 md:px-12 py-2'
+        'container mx-auto px-container py-2',
+        'grid grid-cols-[1fr_2fr_1fr] gap-10 md:gap-12'
       )}
     >
       <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
@@ -40,11 +40,11 @@
       >
         <div
           class={clsx(
-            'container md:mx-auto',
-            'grid grid-cols-[1fr_2fr_1fr] gap-10 md:gap-12 px-6 md:px-12'
+            'container md:mx-auto px-container',
+            'grid grid-cols-[1fr_2fr_1fr] gap-10 md:gap-12'
           )}
         >
-          <div class="-ml-4 my-4">
+          <div class="-ml-3.5 my-4">
             <p class="text-sm font-bold">
               <span
                 style="background-color: {entry.color}"
@@ -52,7 +52,7 @@
               ></span>
               {entry.title}.
             </p>
-            <p class="ml-4 text-sm text-foreground-secondary">
+            <p class="ml-3.5 text-sm text-foreground-secondary">
               {entry.description}
             </p>
           </div>
@@ -82,8 +82,8 @@
   <div class="bg-background-offset/50 min-w-[780px]">
     <div
       class={clsx(
-        'md:container md:mx-auto',
-        'flex gap-x-2 px-6 md:px-12 py-2 justify-end items-baseline font-semibold'
+        'md:container md:mx-auto px-container',
+        'flex gap-x-2 py-2 justify-end items-baseline font-semibold'
       )}
     >
       <span

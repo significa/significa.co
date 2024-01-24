@@ -20,7 +20,7 @@
   {#if $$slots['popover']}
     <div
       class={clsx(
-        'absolute z-10 top-0 left-[30%] lg:-top-[90%] lg:-left-[90%] w-72 p-4',
+        'absolute z-10 top-0 left-[25%] lg:-top-[90%] lg:-left-[90%] w-72 p-4',
         'transition-opacity bg-background text-foreground-secondary',
         'border rounded-2xs',
         visible ? 'block opacity-100' : 'hidden opacity-0'

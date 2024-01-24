@@ -58,15 +58,6 @@
             {/each}
           </div>
           <div class="flex items-center gap-4">
-            <Button as="a" href={`${$page.url.pathname}/accept`}>
-              <span aria-hidden="true" class="hidden [@media(min-width:400px)]:block">
-                {t('proposals.nav.action.long')}
-              </span>
-              <span aria-hidden="true" class="block [@media(min-width:400px)]:hidden">
-                {t('proposals.nav.action.short')}
-              </span>
-            </Button>
-
             <Button
               class="block xl:hidden"
               aria-label="Open menu"
@@ -76,6 +67,15 @@
                 panel = true;
               }}
             />
+
+            <Button as="a" href={`${$page.url.pathname}/accept`}>
+              <span aria-hidden="true" class="hidden [@media(min-width:400px)]:block">
+                {t('proposals.nav.action.long')}
+              </span>
+              <span aria-hidden="true" class="block [@media(min-width:400px)]:hidden">
+                {t('proposals.nav.action.short')}
+              </span>
+            </Button>
           </div>
         </div>
       {/if}
@@ -114,9 +114,6 @@
       <div class="flex w-full items-center justify-between">
         <Logo variant="symbol" />
         <div class="flex gap-4">
-          <!-- FIXME: this button should do something-->
-          <Button class="flex-shrink-0" as="a">{t('proposals.nav.action.long')}</Button>
-
           <Button
             aria-label="Close menu"
             size="md"

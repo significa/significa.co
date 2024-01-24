@@ -33,8 +33,8 @@
   <div class="border-b border-foreground-secondary min-w-[780px]">
     <div
       class={clsx(
-        'container mx-auto',
-        'grid gap-10 md:gap-12 px-6 md:px-12 py-2',
+        'container mx-auto px-container',
+        'grid gap-10 md:gap-12 py-2',
         type === 'package'
           ? 'grid-cols-[1fr_3fr] md:grid-cols-[1fr_2fr_1fr]'
           : 'grid-cols-[1fr_2fr_1fr]'
@@ -66,8 +66,8 @@
     <div class="border-b border-foreground-tertiary last:border-foreground-secondary min-w-[780px]">
       <div
         class={clsx(
-          'container mx-auto',
-          'grid px-6 md:px-12',
+          'container mx-auto px-container',
+          'grid',
           `${
             type === 'package'
               ? 'grid-cols-[1fr_3fr] md:grid-cols-[1fr_2fr_1fr]'

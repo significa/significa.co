@@ -51,7 +51,7 @@
         <RichText
           doc={section.body}
           getAttributes={(section) => {
-            if (section.type !== 'heading') {
+            if (section.type === 'paragraph' || section.type === 'bullet_list') {
               return { class: 'text-foreground-secondary' };
             }
 
@@ -89,7 +89,7 @@
     </section>
   {/each}
 
-  {#if type === 'rate'}
+  {#if content && type === 'rate'}
     <ProposalRateReply />
   {/if}
 {/key}

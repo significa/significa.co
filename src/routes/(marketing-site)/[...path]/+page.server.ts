@@ -4,6 +4,9 @@ import { fetchPage } from '$lib/content';
 import { BYPASS_TOKEN } from '$env/static/private';
 
 export const load = async ({ params, cookies, fetch, url }) => {
+  // don't catch paths that end with an extension
+  if (/\..+$/.test(params.path)) throw error(404);
+
   try {
     const page = await fetchPage({
       slug: params.path,
@@ -14,7 +17,7 @@ export const load = async ({ params, cookies, fetch, url }) => {
 
     return { page };
   } catch (err) {
-    console.error(err);
+    console.error('Failed to get storyblok page:', params.path, err);
     throw error(404, 'Not found');
   }
 };

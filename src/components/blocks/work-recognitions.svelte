@@ -28,7 +28,7 @@
     )
   );
 
-  const src = $theme === 'dark' ? BG : BGWhite;
+  $: src = $theme === 'dark' ? BG : BGWhite;
 </script>
 
 <div style="background-image: url({src});">

@@ -57,11 +57,20 @@
 
 <section class="container mx-auto px-container @container pt-20 pb-16 flex">
   <div
-    class="rounded-lg border w-full overflow-hidden flex min-h-[unset] xl:min-h-[710px] flex-col xl:flex-row"
+    class="rounded-lg border w-full overflow-hidden flex min-h-[unset] xl:min-h-[710px] flex-col xl:flex-row relative"
   >
+    <img
+      class={clsx(
+        'absolute right-1/2 hidden xl:block transition-all ease-motion duration-500',
+        !open ? '-bottom-96 opacity-0 select-none' : 'bottom-0 opacity-100'
+      )}
+      src={$theme === 'dark' ? PreFooterAsset : PreFooterAssetLight}
+      width="354"
+      alt=""
+    />
     <div
       class={clsx(
-        'flex transition-all duration-300 ease-motion bg-background-panel rounded-b-lg xl:rounded-r-lg relative',
+        'flex transition-all duration-300 ease-motion bg-background-panel rounded-b-lg xl:rounded-r-lg',
         open ? 'xl:w-1/2 w-full ring-1 ring-border' : 'w-full'
       )}
     >
@@ -74,7 +83,6 @@
             <p class="my-4 text-xl text-foreground-secondary max-w-md">
               {block.description}
             </p>
-
             <div class="py-4 xl:py-6 flex lg:flex-row flex-col flex-wrap gap-4">
               {#each estimations as { name, options }}
                 <MultiSelect
@@ -111,7 +119,7 @@
             </div>
           </div>
 
-          <div class="flex flex-col mt-5 xl:mt-3 relative">
+          <div class="flex flex-col mt-5 xl:mt-3">
             <p class="text-base font-medium text-foreground/60">{t('estimation.man.power')}</p>
             <p class="text-xl font-medium">
               {combinedBudgetPower.lowPower === 0
@@ -124,15 +132,6 @@
                 ? '-'
                 : combinedBudgetPower.lowBudget + `€ to ` + combinedBudgetPower.highBudget + `€`}
             </p>
-            <img
-              class={clsx(
-                'absolute -right-[50%] hidden xl:block transition-all ease-motion duration-500',
-                !open ? '-bottom-96 opacity-0' : '-bottom-8 opacity-100'
-              )}
-              src={$theme === 'dark' ? PreFooterAsset : PreFooterAssetLight}
-              width="354"
-              alt=""
-            />
           </div>
         </div>
         <div

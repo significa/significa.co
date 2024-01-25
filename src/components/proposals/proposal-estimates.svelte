@@ -149,11 +149,11 @@
               {estimate.title}.
             </p>
 
-            <div class="block ml-3.5 lg:hidden">
+            <div class="block ml-3.5 mt-1 lg:hidden">
               <Button
                 variant="secondary"
                 size="sm"
-                class="h-6 text-xs uppercase bg-background"
+                class="h-6 text-2xs items-center uppercase bg-background"
                 on:click={() => {
                   openPanes[i] = !openPanes[i];
                 }}
@@ -233,7 +233,7 @@
             <Button
               variant="secondary"
               size="sm"
-              class="h-6 text-2xs uppercase bg-background"
+              class="h-6 text-2xs items-center uppercase bg-background"
               on:click={() => {
                 openPanes[i] = !openPanes[i];
               }}
@@ -266,7 +266,7 @@
               <Button
                 variant="secondary"
                 size="sm"
-                class="h-6 text-2xs uppercase bg-background"
+                class="h-6 text-2xs items-center uppercase bg-background"
                 on:click={() => {
                   openPanes[i] = !openPanes[i];
                 }}
@@ -301,7 +301,7 @@
             <Button
               variant="secondary"
               size="sm"
-              class="h-6 text-2xs uppercase bg-background"
+              class="h-6 text-2xs items-center uppercase bg-background"
               on:click={() => {
                 openPanes[i] = !openPanes[i];
               }}

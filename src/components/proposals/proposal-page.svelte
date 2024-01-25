@@ -51,7 +51,11 @@
         <RichText
           doc={section.body}
           getAttributes={(section) => {
-            if (section.type === 'paragraph' || section.type === 'bullet_list') {
+            if (
+              section.type === 'paragraph' ||
+              section.type === 'bullet_list' ||
+              section.type === 'ordered_list'
+            ) {
               return { class: 'text-foreground-secondary' };
             }
 

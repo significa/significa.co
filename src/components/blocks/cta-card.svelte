@@ -18,7 +18,7 @@
         {block.description}
       </p>
       {#if block.link_text}
-        <Button as="a" href="#estimation" size="lg" class="w-fit mt-8 scroll-b"
+        <Button as="a" href="#estimation" size="md" class="w-fit mt-8 scroll-b"
           >{block.link_text}</Button
         >
       {/if}

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { theme } from '$lib/stores/theme';
   import type { GetAQuotePageStoryblok, StepsStoryblok } from '$types/bloks';
   import clsx from 'clsx';
 
@@ -30,7 +31,11 @@
       <div
         class="absolute -left-px -top-32 hidden h-32 border-l lg:block"
         style={variant === 'block'
-          ? 'border-image: linear-gradient( to top, #2E2E2E 0%, rgba(46, 46, 46, 0.00) ) 1 100%;'
+          ? `border-image: linear-gradient( to top, ${
+              $theme === 'light' ? '#e8e8e8' : '#2E2E2E'
+            } 0%, ${
+              $theme === 'light' ? 'rgba(247, 247, 247, 0.00)' : 'rgba(46, 46, 46, 0.00)'
+            } ) 1 100%;`
           : ''}
       />
       <div>

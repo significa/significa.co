@@ -2,6 +2,8 @@
   import type { EstimationStoryblok } from '$types/bloks';
   import IllustrationEmply from '../illustrations/assets/illustration-emply.webp';
   import IllustrationEmplyLight from '../illustrations/assets/illustration-emply-light.webp';
+  import ArrowLight from '../illustrations/assets/arrow-estimations-white.webp';
+  import ArrowDark from '../illustrations/assets/arrow-estimations.webp';
   import { theme } from '$lib/stores/theme';
   import { Icon, MultiSelect } from '@significa/svelte-ui';
   import clsx from 'clsx';
@@ -18,6 +20,7 @@
   let open = false;
 
   $: src = $theme === 'dark' ? IllustrationEmply : IllustrationEmplyLight;
+  $: srcArror = $theme === 'dark' ? ArrowDark : ArrowLight;
 
   let selected: Record<string, ListboxOption<string>[]> = {};
 
@@ -83,7 +86,16 @@
             <p class="my-4 text-xl text-foreground-secondary max-w-md">
               {block.description}
             </p>
-            <div class="py-4 xl:py-6 flex lg:flex-row flex-col flex-wrap gap-4">
+            <div class="py-4 xl:py-6 inline-flex lg:flex-row flex-col flex-wrap gap-4 relative">
+              <img
+                class={clsx(
+                  'hidden xl:block absolute top-12 -right-4 translate-x-full',
+                  open ? 'xl:hidden xl:opacity-0' : 'opacity-100'
+                )}
+                width="164"
+                src={srcArror}
+                alt=""
+              />
               {#each estimations as { name, options }}
                 <MultiSelect
                   options={options.map((o) => o.name)}
@@ -136,7 +148,7 @@
         </div>
         <div
           class={clsx(
-            'absolute bottom-0 hidden xl:block transition-all duration-1000',
+            'absolute bottom-0 hidden xl:block transition-all',
             open ? 'xl:hidden xl:opacity-0' : 'right-0 opacity-100'
           )}
         >

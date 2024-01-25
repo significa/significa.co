@@ -404,7 +404,6 @@ export interface CtaCardStoryblok {
   title?: string;
   description?: string;
   link_text?: string;
-  link?: Exclude<MultilinkStoryblok, { linktype?: 'asset' }>;
   _uid: string;
   component: 'cta-card';
   [k: string]: any;

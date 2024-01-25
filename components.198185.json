@@ -1355,7 +1355,7 @@
       "name": "cta-card",
       "display_name": null,
       "created_at": "2024-01-24T11:35:57.280Z",
-      "updated_at": "2024-01-24T12:41:34.871Z",
+      "updated_at": "2024-01-25T09:30:01.374Z",
       "id": 5222861,
       "schema": {
         "title": {
@@ -1366,10 +1366,6 @@
         },
         "link_text": {
           "type": "text"
-        },
-        "link": {
-          "type": "multilink",
-          "email_link_type": true
         }
       },
       "image": null,

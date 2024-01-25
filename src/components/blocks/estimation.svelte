@@ -45,7 +45,7 @@
   $: Object.values(combinedBudgetPower).every((val) => val !== 0) ? (open = true) : (open = false);
 </script>
 
-<section class="border-t mt-20">
+<section class="border-t mt-20" id="estimation">
   <div
     class="container mx-auto px-container @container flex flex-col items-center text-center max-w-md"
   >

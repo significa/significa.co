@@ -73,7 +73,7 @@
     />
     <div
       class={clsx(
-        'flex transition-all duration-300 ease-motion bg-background-panel rounded-b-lg xl:rounded-r-lg',
+        'flex transition-all duration-500 ease-motion bg-background-panel rounded-b-lg xl:rounded-r-lg',
         open ? 'xl:w-1/2 w-full ring-1 ring-border' : 'w-full'
       )}
     >
@@ -107,7 +107,7 @@
               {/each}
             </div>
 
-            <div class="flex flex-wrap gap-4 max-w-xl">
+            <div class="flex flex-wrap gap-4 max-w-xl z-10 relative">
               {#each selectedMap as option}
                 {#each option.value as op}
                   <div

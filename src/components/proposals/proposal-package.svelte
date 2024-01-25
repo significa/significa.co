@@ -54,7 +54,7 @@
               {t('proposals.package.technical-resources.title')}
             </h2>
             <p class="text-sm">
-              {technicalResources?.department.content.description}
+              {technicalResources?.department.content.why}
             </p>
           </div>
         </Popover>
@@ -85,7 +85,7 @@
               {t('proposals.package.project-manager.title')}
             </h2>
             <p class="text-sm">
-              {projectManagement.department.content.description}
+              {projectManagement.department.content.why}
             </p>
           </div>
         </Popover>
@@ -117,7 +117,7 @@
               {t('proposals.package.quality-assurance.title')}
             </h2>
             <p class="text-sm">
-              {qualityAssurance.department.content.description}
+              {qualityAssurance.department.content.why}
             </p>
           </div>
         </Popover>

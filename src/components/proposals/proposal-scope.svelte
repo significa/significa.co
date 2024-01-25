@@ -20,19 +20,19 @@
         'gap-x-10 md:gap-x-12 px-6 md:px-12 py-2'
       )}
     >
-      <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
+      <p class="text-2xs uppercase text-foreground-secondary">
         {t('proposals.scope.deliverable')}
       </p>
 
       <div class="grid grid-cols-2">
-        <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
+        <p class="text-2xs uppercase text-foreground-secondary">
           {t('proposals.scope.service')}
         </p>
-        <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
+        <p class="text-2xs uppercase text-foreground-secondary">
           {t('proposals.scope.features')}
         </p>
       </div>
-      <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary"></p>
+      <p class="text-2xs uppercase text-foreground-secondary"></p>
     </div>
   </div>
 
@@ -69,7 +69,7 @@
           <div class="">
             {#each entry.services || [] as service}
               <Tag
-                class="uppercase text-[0.69rem] cursor-default m-1 py-1.5 px-2.5 bg-background"
+                class="uppercase text-2xs cursor-default m-1 py-1.5 px-2.5 bg-background"
                 label={service}
               />
             {/each}

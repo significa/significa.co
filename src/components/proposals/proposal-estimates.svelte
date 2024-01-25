@@ -97,28 +97,24 @@
         'gap-10 md:gap-12 py-2'
       )}
     >
-      <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
+      <p class="text-2xs uppercase text-foreground-secondary">
         {t('proposals.estimates.area')}
       </p>
 
       <div class="grid grid-cols-[2fr_1fr_1fr_1fr]">
-        <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
+        <p class="text-2xs uppercase text-foreground-secondary">
           {t('proposals.estimates.phases')}
         </p>
 
-        <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
+        <p class="text-2xs uppercase text-foreground-secondary">
           {t('proposals.estimates.team')}
         </p>
 
-        <p
-          class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary text-right"
-        >
+        <p class="text-2xs uppercase text-foreground-secondary text-right">
           {t('proposals.estimates.duration')}
         </p>
 
-        <p
-          class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary text-right"
-        >
+        <p class="text-2xs uppercase text-foreground-secondary text-right">
           <span aria-hidden="true" class="hidden lg:block">
             {t('proposals.estimates.estimated-cost.long')}
           </span>
@@ -237,7 +233,7 @@
             <Button
               variant="secondary"
               size="sm"
-              class="h-6 text-[0.69rem] uppercase bg-background"
+              class="h-6 text-2xs uppercase bg-background"
               on:click={() => {
                 openPanes[i] = !openPanes[i];
               }}
@@ -270,7 +266,7 @@
               <Button
                 variant="secondary"
                 size="sm"
-                class="h-6 text-[0.69rem] uppercase bg-background"
+                class="h-6 text-2xs uppercase bg-background"
                 on:click={() => {
                   openPanes[i] = !openPanes[i];
                 }}
@@ -305,7 +301,7 @@
             <Button
               variant="secondary"
               size="sm"
-              class="h-6 text-[0.69rem] uppercase bg-background"
+              class="h-6 text-2xs uppercase bg-background"
               on:click={() => {
                 openPanes[i] = !openPanes[i];
               }}

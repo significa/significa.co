@@ -17,17 +17,15 @@
         'grid grid-cols-[1fr_2fr_1fr] gap-10 md:gap-12'
       )}
     >
-      <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
+      <p class="text-2xs uppercase text-foreground-secondary">
         {t('proposals.scope.deliverable')}
       </p>
 
-      <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
+      <p class="text-2xs uppercase text-foreground-secondary">
         {t('proposals.scope.service')}
       </p>
 
-      <p
-        class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary text-right"
-      >
+      <p class="text-2xs uppercase text-foreground-secondary text-right">
         {t('proposals.deliverables.manpower')}
       </p>
     </div>
@@ -86,8 +84,7 @@
         'flex gap-x-2 py-2 justify-end items-baseline font-semibold'
       )}
     >
-      <span
-        class="font-normal text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary"
+      <span class="font-normal text-2xs uppercase text-foreground-secondary"
         >{t('proposals.deliverables.total')}</span
       >
       <span>

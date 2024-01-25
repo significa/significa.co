@@ -17,23 +17,21 @@
   );
 </script>
 
-<div class="container mx-auto 2xl:px-12 mt-10 md:mt-14 lg:mt-20 text-center overflow-x-scroll">
-  <div class="inline-grid grid-cols-[max-content,_max-content] pb-3 text-left">
+<div class="container mx-auto 2xl:px-12 mt-10 md:mt-14 lg:mt-20">
+  <div class="overflow-x-scroll grid grid-cols-[max-content,_max-content] pb-3">
     <div class="col-start-1 row-start-1 border-b"></div>
     <div class="col-start-2">
       <div
         class="grid gap-1 pb-1 px-1 auto-cols-[20px] grid-rows-2 border-b shadow-sm"
         style="background: linear-gradient(to right, hsl(var(--color-border)) 1px, transparent 1px); background-size: 480px;"
       >
-        {#each Array(totalMonths) as _, i}
+        {#each Array(Math.max(3, totalMonths)) as _, i}
           <div class="row-start-1 px-2 text-sm" style="grid-column: span 20">
             {t('proposals.timeline.month')}
             {i + 1}
           </div>
           {#each Array(4) as _, j}
-            <div
-              class="row-start-2 px-2 col-span-5 text-foreground-secondary text-[0.69rem] uppercase"
-            >
+            <div class="row-start-2 px-2 col-span-5 text-foreground-secondary text-2xs uppercase">
               {t('proposals.timeline.week')}
               {j + 1}
             </div>
@@ -54,7 +52,7 @@
             <div
               class={clsx(
                 'flex items-center px-3 py-2',
-                'uppercase font-medium text-[0.69rem]/[0.88rem] text-foreground-secondary',
+                'uppercase font-medium text-2xs text-foreground-secondary',
                 'bg-background-offset/50 border-b border-border rounded-t-xs'
               )}
             >
@@ -96,20 +94,32 @@
       {#each rows as row, i}
         <div
           class={clsx(
-            'rounded-xs mr-1 p-2 text-sm text-background',
-            'overflow-hidden whitespace-nowrap hover:overflow-visible'
+            'rounded-xs mr-1 p-1 text-sm text-background',
+            'overflow-hidden whitespace-nowrap group hover:overflow-visible'
           )}
-          style="
-          background-color: {row.color};
-          grid-row: {i + 1} / span 1;
-          grid-column: {row.offset + 1} / span {row.duration};"
+          style="background-color: {row.color};
+                 grid-row: {i + 1} / span 1;
+                 grid-column: {row.offset + 1} / span {row.duration};"
         >
           {#if row.title}
-            {row.title}
-            <span class="text-background/50">
-              {row.duration}
-              {t('proposals.days')}
-            </span>
+            <p class="p-1 group-hover:hidden">
+              {row.title}
+              <span class="text-background/50">
+                {row.duration}
+                {t('proposals.days')}
+              </span>
+            </p>
+
+            <p
+              class="p-1 hidden group-hover:inline-block rounded-xs"
+              style="background-color: {row.color}80;"
+            >
+              {row.title}
+              <span class="text-background/50">
+                {row.duration}
+                {t('proposals.days')}
+              </span>
+            </p>
           {/if}
         </div>
       {/each}
@@ -117,32 +127,37 @@
       {#if type === 'package' && projectManagement && qualityAssurance}
         <div
           class={clsx(
-            'rounded-xs mr-1 p-2 border border-dashed bg-background-offset',
+            'rounded-xs mr-1 p-1 border border-dashed bg-background-offset',
             'text-sm whitespace-nowrap overflow-hidden hover:overflow-visible'
           )}
-          style="background-color: hsl(var(--color-background-offset));
-               grid-row: {rows.length + 2} / span 1;
-               grid-column: 1 / span {totalDays};"
+          style="grid-row: {rows.length + 2} / span 1;
+                 grid-column: 1 / span {totalDays};"
         >
-          {projectManagement.department.name}
-          <span class="text-foreground/50"
-            >~ {(20 * +projectManagement.rate_value * +projectManagement.team_size) / 100}
-            {t('proposals.days-per-month')}</span
-          >
+          <p class="p-1 rounded-xs hover:inline-block hover:bg-background-offset/50">
+            {projectManagement.department.name}
+
+            <span class="text-foreground/50"
+              >~ {(20 * +projectManagement.rate_value * +projectManagement.team_size) / 100}
+              {t('proposals.days-per-month')}</span
+            >
+          </p>
         </div>
         <div
           class={clsx(
-            'rounded-xs mr-1 p-2 border border-dashed bg-background-offset',
+            'rounded-xs mr-1 p-1 border border-dashed bg-background-offset',
             'text-sm whitespace-nowrap overflow-hidden hover:overflow-visible'
           )}
           style="grid-row: {rows.length + 3} / span 1;
                  grid-column: 1 / span {totalDays};"
         >
-          {qualityAssurance.department.name}
-          <span class="text-foreground/50"
-            >~ {(20 * +qualityAssurance.rate_value * +qualityAssurance.team_size) / 100}
-            {t('proposals.days-per-month')}</span
-          >
+          <p class="p-1 rounded-xs hover:inline-block hover:bg-background-offset/50">
+            {qualityAssurance.department.name}
+
+            <span class="text-foreground/50"
+              >~ {(20 * +qualityAssurance.rate_value * +qualityAssurance.team_size) / 100}
+              {t('proposals.days-per-month')}</span
+            >
+          </p>
         </div>
       {/if}
     </div>

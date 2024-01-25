@@ -40,21 +40,19 @@
           : 'grid-cols-[1fr_2fr_1fr]'
       )}
     >
-      <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
+      <p class="text-2xs uppercase text-foreground-secondary">
         {t('proposals.team.department')}
       </p>
       <div class="grid grid-cols-2">
-        <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
+        <p class="text-2xs uppercase text-foreground-secondary">
           {t('proposals.team.team-member')}
         </p>
-        <p class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary">
+        <p class="text-2xs uppercase text-foreground-secondary">
           {t('proposals.team.role')}
         </p>
       </div>
       {#if type === 'rate'}
-        <p
-          class="text-[0.69rem]/[0.88rem] uppercase tracking-wider text-foreground-secondary text-right"
-        >
+        <p class="text-2xs uppercase text-foreground-secondary text-right">
           {t('proposals.team.rate')}
         </p>
       {/if}

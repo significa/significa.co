@@ -22,7 +22,6 @@
           label={t('proposals.password-form.field.label')}
           type="password"
           name="password"
-          maxlength="20"
           {error}
         />
         {#if error}

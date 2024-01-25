@@ -25,7 +25,7 @@ export const load = async ({ cookies, fetch, params, url }) => {
     return { error: true };
   };
 
-  if (!password) {
+  if (version === 'published' && !password) {
     return {};
   }
 
@@ -53,7 +53,7 @@ export const load = async ({ cookies, fetch, params, url }) => {
 
   const story: ISbStoryData<ProposalStoryblok> = res.data.story;
 
-  if (story.content.password !== password) {
+  if (version === 'published' && story.content.password !== password) {
     return failAuthentication();
   }
 

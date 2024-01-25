@@ -28,7 +28,7 @@ export function createRateTimelineData(
   let deliverables: Deliverable[] = [];
 
   team.forEach((member) => {
-    teamInfoMap.set(member.team_member.member.name, { role: member.role[0].title });
+    teamInfoMap.set(member.team_member.member?.name, { role: member.role[0].title });
   });
 
   let phaseOffset: number = 0;
@@ -46,7 +46,7 @@ export function createRateTimelineData(
             duration: +team.duration,
             offset: phaseOffset,
             title: phase.title,
-            role: teamInfoMap.get(team.team_member.member.name)?.role,
+            role: teamInfoMap.get(team.team_member.member?.name)?.role,
             color
           }
         ];
@@ -80,7 +80,7 @@ export function createPackageTimelineData(
   const teamInfoMap = new Map();
 
   team.forEach((member) => {
-    teamInfoMap.set(member.team_member.member.name, { role: member.role[0].title });
+    teamInfoMap.set(member.team_member.member?.name, { role: member.role[0].title });
   });
 
   const deliverables = data.map(({ color, team, title }) => {
@@ -88,7 +88,7 @@ export function createPackageTimelineData(
       duration: +member.duration,
       offset: +member.offset,
       title: title,
-      role: teamInfoMap.get(member.team_member.member.name)?.role,
+      role: teamInfoMap.get(member.team_member.member?.name)?.role,
       color: color
     }));
 

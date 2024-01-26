@@ -16,35 +16,31 @@ type Row = {
 type Deliverable = {
   title: string;
   color: string;
-  duration: number;
   rows: Row[];
 };
+
+export const DAYS_PER_MONTH: number = 30;
 
 export function createRateTimelineData(
   estimates: ProposalEstimateEntryStoryblok[],
   team: ProposalTeamEntryStoryblok[] | ProposalPackageTeamEntryStoryblok[]
 ) {
   const teamInfoMap = new Map();
-  let deliverables: Deliverable[] = [];
 
   team.forEach((member) => {
     teamInfoMap.set(member.team_member.member?.name, { role: member.role[0].title });
   });
 
-  let phaseOffset: number = 0;
-
-  estimates?.forEach(({ title, phases, color }) => {
+  const deliverables = estimates?.reduce((acc: Deliverable[], { title, phases, color }) => {
     let rows: Row[] = [];
-    let phaseDuration: number = 0;
 
     phases.forEach((phase) => {
       phase.team.forEach((team) => {
-        phaseDuration = +team.duration > phaseDuration ? +team.duration : phaseDuration;
         rows = [
           ...rows,
           {
             duration: +team.duration,
-            offset: phaseOffset,
+            offset: +team.offset,
             title: phase.title,
             role: teamInfoMap.get(team.team_member.member?.name)?.role,
             color
@@ -53,24 +49,21 @@ export function createRateTimelineData(
       });
     });
 
-    deliverables = [...deliverables, { title, color, duration: phaseDuration, rows }];
-    phaseOffset = phaseDuration;
-  });
+    return [...acc, { title, color, rows }];
+  }, []);
 
   const rows = deliverables.reduce(
-    (acc: Row[], cur) => [...acc, { duration: 0, offset: 0 }, ...cur.rows],
+    (acc: Row[], cur: Deliverable) => [...acc, { duration: 0, offset: 0 }, ...cur.rows],
     []
   );
 
-  const totalDays = deliverables.reduce((acc, curr) => (acc += curr.duration), 0);
-  const totalMonths = Math.ceil(totalDays / 20);
+  const totalDuration = rows.reduce(
+    (max: number, cur: Row) =>
+      cur.duration + cur.offset > max ? (max = +cur.duration + +cur.offset) : max,
+    0
+  );
 
-  return {
-    deliverables,
-    rows,
-    totalDays,
-    totalMonths
-  };
+  return { deliverables, rows, totalDuration };
 }
 
 export function createPackageTimelineData(
@@ -100,12 +93,10 @@ export function createPackageTimelineData(
     []
   );
 
-  const totalDays = rows.reduce(
+  const totalDuration = rows.reduce(
     (max, cur) => (cur.duration + cur.offset > max ? (max = +cur.duration + +cur.offset) : max),
     0
   );
 
-  const totalMonths = Math.ceil(totalDays / 20);
-
-  return { deliverables, rows, totalDays, totalMonths };
+  return { deliverables, rows, totalDuration };
 }

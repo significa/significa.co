@@ -1141,6 +1141,36 @@
       "component_group_name": "Single"
     },
     {
+      "name": "clients",
+      "display_name": null,
+      "created_at": "2024-01-23T17:00:57.552Z",
+      "updated_at": "2024-01-23T17:02:18.323Z",
+      "id": 5219148,
+      "schema": {
+        "clients_title": {
+          "type": "text"
+        },
+        "clients": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["client-logo"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "clients",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "column",
       "display_name": null,
       "created_at": "2023-02-16T10:38:00.191Z",
@@ -1320,6 +1350,36 @@
       "color": null,
       "icon": null,
       "component_group_name": "Pages"
+    },
+    {
+      "name": "cta-card",
+      "display_name": null,
+      "created_at": "2024-01-24T11:35:57.280Z",
+      "updated_at": "2024-01-25T09:30:01.374Z",
+      "id": 5222861,
+      "schema": {
+        "title": {
+          "type": "text"
+        },
+        "description": {
+          "type": "text"
+        },
+        "link_text": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "cta-card",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
     },
     {
       "name": "deliverable",
@@ -2725,6 +2785,35 @@
       "component_group_name": "Content Types"
     },
     {
+      "name": "projects",
+      "display_name": null,
+      "created_at": "2024-01-24T10:08:07.237Z",
+      "updated_at": "2024-01-24T10:10:41.798Z",
+      "id": 5222132,
+      "schema": {
+        "work_title": {
+          "type": "text"
+        },
+        "projects": {
+          "type": "options",
+          "source": "internal_stories",
+          "filter_content_type": ["project"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "projects",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "projects-index",
       "display_name": null,
       "created_at": "2023-04-06T13:42:56.259Z",
@@ -2748,7 +2837,7 @@
       "name": "proposal",
       "display_name": null,
       "created_at": "2023-09-11T15:29:11.214Z",
-      "updated_at": "2024-01-17T10:45:42.882Z",
+      "updated_at": "2024-01-25T11:39:16.635Z",
       "id": 4555199,
       "schema": {
         "password": {
@@ -2902,7 +2991,7 @@
       "name": "proposal-deliverable-team-entry",
       "display_name": null,
       "created_at": "2024-01-02T16:43:39.862Z",
-      "updated_at": "2024-01-11T11:03:45.176Z",
+      "updated_at": "2024-01-25T16:40:16.925Z",
       "id": 5107587,
       "schema": {
         "team_member": {
@@ -2945,7 +3034,7 @@
       "name": "proposal-department",
       "display_name": null,
       "created_at": "2023-09-11T15:40:29.996Z",
-      "updated_at": "2024-01-09T11:32:24.025Z",
+      "updated_at": "2024-01-25T17:23:12.347Z",
       "id": 4555221,
       "schema": {
         "title": {
@@ -2953,6 +3042,9 @@
           "required": true
         },
         "description": {
+          "type": "text"
+        },
+        "why": {
           "type": "text"
         }
       },
@@ -3555,7 +3647,7 @@
       "name": "proposal-version-package",
       "display_name": null,
       "created_at": "2023-12-28T13:15:17.211Z",
-      "updated_at": "2024-01-10T11:22:21.521Z",
+      "updated_at": "2024-01-25T11:43:33.548Z",
       "id": 5094324,
       "schema": {
         "version_name": {
@@ -3582,8 +3674,7 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["proposal-deliverable"],
-          "required": true,
-          "minimum": 1,
+          "required": false,
           "pos": 3
         },
         "pricing": {
@@ -3591,14 +3682,12 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["proposal-package-pricing"],
-          "required": true,
-          "minimum": 1,
+          "required": false,
           "pos": 4
         },
         "team": {
           "type": "bloks",
-          "required": true,
-          "minimum": 1,
+          "required": false,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["proposal-package-team-entry"],
@@ -3993,6 +4082,46 @@
       "color": null,
       "icon": null,
       "component_group_name": "Configuration"
+    },
+    {
+      "name": "services",
+      "display_name": null,
+      "created_at": "2024-01-23T11:26:31.001Z",
+      "updated_at": "2024-01-23T11:31:23.863Z",
+      "id": 5216425,
+      "schema": {
+        "services_title": {
+          "type": "text",
+          "pos": 0
+        },
+        "services_subtitle": {
+          "type": "text",
+          "pos": 1
+        },
+        "services_description": {
+          "type": "text",
+          "pos": 2
+        },
+        "services": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["services_deppartment"],
+          "pos": 3
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "services",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
     },
     {
       "name": "services_deppartment",
@@ -4407,6 +4536,39 @@
       "component_group_name": "Pages"
     },
     {
+      "name": "steps",
+      "display_name": null,
+      "created_at": "2024-01-23T10:01:47.736Z",
+      "updated_at": "2024-01-23T10:03:20.677Z",
+      "id": 5215462,
+      "schema": {
+        "steps_title": {
+          "type": "text"
+        },
+        "steps_subtitle": {
+          "type": "text"
+        },
+        "steps": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["get-a-quote-step"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "steps",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "team-member",
       "display_name": null,
       "created_at": "2023-02-15T10:55:16.832Z",
@@ -4623,6 +4785,47 @@
       "color": null,
       "icon": null,
       "component_group_name": "Single"
+    },
+    {
+      "name": "testimonials",
+      "display_name": null,
+      "created_at": "2024-01-23T16:14:01.707Z",
+      "updated_at": "2024-01-23T16:17:15.066Z",
+      "id": 5218864,
+      "schema": {
+        "testimonials_title1": {
+          "type": "text"
+        },
+        "testimonials_title2": {
+          "type": "text"
+        },
+        "testimonials_cta_label": {
+          "type": "text"
+        },
+        "testimonials_cta_link": {
+          "type": "multilink"
+        },
+        "testimonials": {
+          "type": "bloks",
+          "minimum": 5,
+          "maximum": 5,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["richtext-testimonial"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "testimonials",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
     },
     {
       "name": "timeline-arrow",

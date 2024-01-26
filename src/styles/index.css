@@ -6,3 +6,7 @@
   color: theme('colors.background.DEFAULT');
   background-color: theme('colors.foreground.DEFAULT');
 }
+
+:root {
+  --topnav-height: 76px;
+}

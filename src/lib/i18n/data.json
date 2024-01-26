@@ -167,5 +167,7 @@
   "proposals.package.project-manager.title": "Why do I need a Project Manager?",
   "proposals.package.quality-assurance.title": "Why do I need Quality Assurance?",
   "estimation.man.power": "Estimated man power",
-  "estimation.total": "Estimated total"
+  "estimation.total": "Estimated total",
+  "proposals.package.reply.manpower.title": "What is estimated manpower?",
+  "proposals.package.reply.manpower.desc": "Upon acceptance of this proposal, the project may be kicked off within 10 to 20 working days – a period during which Agreements shall be signed, Upfront Payment dealt with."
 }

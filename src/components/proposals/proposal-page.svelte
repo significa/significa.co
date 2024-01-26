@@ -70,7 +70,7 @@
         <ProposalDeliverables data={content.deliverables} />
       {:else if section.data === 'team' && content?.team}
         <ProposalTeam data={content.team} {type} />
-      {:else if type === 'rate' && section.data === 'estimates' && content?.estimates}
+      {:else if type === 'rate' && section.data === 'estimates' && content?.estimates && content?.team}
         <ProposalEstimates
           data={content.estimates}
           discount={content.discount_percentage}

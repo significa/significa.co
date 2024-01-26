@@ -14,7 +14,8 @@
     'richtext-box': RichTextBox,
     hero: Hero,
     packages: Packages,
-    'work-recognitions': WorkRecognitions
+    'work-recognitions': WorkRecognitions,
+    estimation: Estimation
   };
 
   export type Blocks = keyof typeof map;
@@ -36,6 +37,7 @@
   import Hero from './hero.svelte';
   import Packages from './packages.svelte';
   import WorkRecognitions from './work-recognitions.svelte';
+  import Estimation from './estimation.svelte';
 
   export let block: { component: string };
 

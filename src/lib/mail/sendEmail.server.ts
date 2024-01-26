@@ -90,7 +90,8 @@ export const sendEmailNotification = async ({
   const formTypeToDestinationEmail: Record<FormType, string | undefined> = {
     quote: env.NOTIFICATION_EMAIL_ADDRESS_QUOTE,
     career: env.NOTIFICATION_EMAIL_ADDRESS_CAREER,
-    contact: env.NOTIFICATION_EMAIL_ADDRESS_CONTACT
+    contact: env.NOTIFICATION_EMAIL_ADDRESS_CONTACT,
+    estimations: env.NOTIFICATION_EMAIL_ADDRESS_ESTIMATIONS
   };
 
   const destinationEmail = formTypeToDestinationEmail[formType];
@@ -110,7 +111,9 @@ export const sendEmailNotification = async ({
             `name: ${name}`,
             `email: ${email}`,
             `message: ${message}`,
-            formType === 'quote' && notionLink && `Notion Link: ${notionLink}`
+            (formType === 'quote' || formType === 'estimations') &&
+              notionLink &&
+              `Notion Link: ${notionLink}`
           ].join('\n')
         }
       },

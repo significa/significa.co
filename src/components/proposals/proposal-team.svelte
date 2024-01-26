@@ -73,7 +73,10 @@
           }`
         )}
       >
-        <div class="col-start-1 row-span-{dataMap.get(department.name).length} py-4">
+        <div
+          class="col-start-1 py-4"
+          style="grid-row: 1 / span {dataMap.get(department.name).length}"
+        >
           <p class="text-sm font-bold">
             {department?.content?.title}.
           </p>

@@ -1355,7 +1355,7 @@
       "name": "cta-card",
       "display_name": null,
       "created_at": "2024-01-24T11:35:57.280Z",
-      "updated_at": "2024-01-24T12:41:34.871Z",
+      "updated_at": "2024-01-25T09:30:01.374Z",
       "id": 5222861,
       "schema": {
         "title": {
@@ -1366,10 +1366,6 @@
         },
         "link_text": {
           "type": "text"
-        },
-        "link": {
-          "type": "multilink",
-          "email_link_type": true
         }
       },
       "image": null,
@@ -2841,7 +2837,7 @@
       "name": "proposal",
       "display_name": null,
       "created_at": "2023-09-11T15:29:11.214Z",
-      "updated_at": "2024-01-23T11:59:30.858Z",
+      "updated_at": "2024-01-25T11:39:16.635Z",
       "id": 4555199,
       "schema": {
         "password": {
@@ -2899,68 +2895,6 @@
           "required": true,
           "source": "internal_stories",
           "filter_content_type": ["team-member"]
-        },
-        "tab-715a6f05-42cb-4424-92a8-2d4afed3f366": {
-          "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image", "change_frequency", "priority"],
-          "pos": 0,
-          "type": "tab"
-        },
-        "seo_title": {
-          "type": "text"
-        },
-        "seo_description": {
-          "type": "text"
-        },
-        "seo_og_image": {
-          "type": "asset",
-          "filetypes": ["images"]
-        },
-        "change_frequency": {
-          "type": "option",
-          "use_uuid": true,
-          "description": "The frequency with which the page is expected to change.\n\n1. Always\nThese page types are constantly changing and will include index pages on major news publications, Google News, stock market data, and social bookmarking categories.\n\n2. Hourly\nThese pages update every hour and will also include major news publications as well as weather services and forums.\n\n3. Daily\nPages updated on average once per day and include things like blog posts, smaller web forum pages, message boards, and classified ads.\n\n4. Weekly\nUpdates typically occur once per week, these pages will include website directories, product pricing pages, and smaller blogs.\n\n5. Monthly\nThese are updated once per month, give or take, and include category pages, FAQs, and sometimes Help Desk articles that change slightly. Refer to the section above for guidelines on what is considered to be a change frequency trigger.\n\n6. Yearly\nUpdates on these pages happen on an annual basis and are typically your contact page, “About” page, login pages, and registration pages.\n\n7. Never\nAs the name suggests, these pages never ever get updates. These are really old blog posts, press releases, notifications about updates that never need updating, and completely static pages.",
-          "options": [
-            {
-              "_uid": "a5621b6e-66a1-475d-936c-77ab1dad7536",
-              "name": "Always",
-              "value": "always"
-            },
-            {
-              "_uid": "385a500b-f85e-441d-998c-8385fb7d1e06",
-              "value": "hourly",
-              "name": "Hourly"
-            },
-            {
-              "_uid": "8c3167b2-9055-497c-83e2-9728a97eaee3",
-              "value": "daily",
-              "name": "Daily"
-            },
-            {
-              "_uid": "99da893b-b750-47d3-b57f-8d3b20ef1f8b",
-              "value": "weekly",
-              "name": "Weekly"
-            },
-            {
-              "_uid": "6695fecb-afb1-4c66-83d1-3a9fa7cd31e0",
-              "value": "monthly",
-              "name": "Monthly"
-            },
-            {
-              "_uid": "96f659f8-b76b-4fff-a542-90c8beb83aec",
-              "value": "yearly",
-              "name": "Yearly"
-            },
-            {
-              "_uid": "be210b60-3bdc-438b-848e-0a767557d6bf",
-              "value": "never",
-              "name": "Never"
-            }
-          ]
-        },
-        "priority": {
-          "type": "number",
-          "decimals": 1
         }
       },
       "image": null,
@@ -3057,7 +2991,7 @@
       "name": "proposal-deliverable-team-entry",
       "display_name": null,
       "created_at": "2024-01-02T16:43:39.862Z",
-      "updated_at": "2024-01-11T11:03:45.176Z",
+      "updated_at": "2024-01-25T16:40:16.925Z",
       "id": 5107587,
       "schema": {
         "team_member": {
@@ -3100,7 +3034,7 @@
       "name": "proposal-department",
       "display_name": null,
       "created_at": "2023-09-11T15:40:29.996Z",
-      "updated_at": "2024-01-09T11:32:24.025Z",
+      "updated_at": "2024-01-25T17:23:12.347Z",
       "id": 4555221,
       "schema": {
         "title": {
@@ -3108,6 +3042,9 @@
           "required": true
         },
         "description": {
+          "type": "text"
+        },
+        "why": {
           "type": "text"
         }
       },
@@ -3710,7 +3647,7 @@
       "name": "proposal-version-package",
       "display_name": null,
       "created_at": "2023-12-28T13:15:17.211Z",
-      "updated_at": "2024-01-10T11:22:21.521Z",
+      "updated_at": "2024-01-25T11:43:33.548Z",
       "id": 5094324,
       "schema": {
         "version_name": {
@@ -3737,8 +3674,7 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["proposal-deliverable"],
-          "required": true,
-          "minimum": 1,
+          "required": false,
           "pos": 3
         },
         "pricing": {
@@ -3746,14 +3682,12 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["proposal-package-pricing"],
-          "required": true,
-          "minimum": 1,
+          "required": false,
           "pos": 4
         },
         "team": {
           "type": "bloks",
-          "required": true,
-          "minimum": 1,
+          "required": false,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["proposal-package-team-entry"],

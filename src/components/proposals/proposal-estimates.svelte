@@ -172,7 +172,10 @@
                 '[&>div:nth-last-child(-n+3)]:border-b-0'
               )}
             >
-              <div class="col-start-1 row-span-{estimate.totals.phases} py-4 pr-2">
+              <div
+                class="col-start-1 py-4 pr-2"
+                style="grid-row: 1 / span {estimate.totals.phases}"
+              >
                 <p class="text-sm font-bold">
                   {phase.title}.
                 </p>

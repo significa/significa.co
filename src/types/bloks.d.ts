@@ -404,7 +404,6 @@ export interface CtaCardStoryblok {
   title?: string;
   description?: string;
   link_text?: string;
-  link?: Exclude<MultilinkStoryblok, { linktype?: 'asset' }>;
   _uid: string;
   component: 'cta-card';
   [k: string]: any;
@@ -744,11 +743,6 @@ export interface ProposalStoryblok {
   cover: AssetStoryblok;
   versions?: (ProposalVersionPackageStoryblok | ProposalVersionStoryblok)[];
   created_by: StoryblokStory<TeamMemberStoryblok> | string;
-  seo_title?: string;
-  seo_description?: string;
-  seo_og_image?: AssetStoryblok;
-  change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
-  priority?: string;
   _uid: string;
   component: 'proposal';
   [k: string]: any;
@@ -777,6 +771,7 @@ export interface ProposalDeliverableTeamEntryStoryblok {
 export interface ProposalDepartmentStoryblok {
   title: string;
   description?: string;
+  why?: string;
   _uid: string;
   component: 'proposal-department';
   [k: string]: any;
@@ -889,9 +884,9 @@ export interface ProposalVersionPackageStoryblok {
   version_name: string;
   discount_percentage?: string;
   date: string;
-  deliverables: ProposalDeliverableStoryblok[];
-  pricing: ProposalPackagePricingStoryblok[];
-  team: ProposalPackageTeamEntryStoryblok[];
+  deliverables?: ProposalDeliverableStoryblok[];
+  pricing?: ProposalPackagePricingStoryblok[];
+  team?: ProposalPackageTeamEntryStoryblok[];
   body?: ProposalSectionStoryblok[];
   _uid: string;
   component: 'proposal-version-package';

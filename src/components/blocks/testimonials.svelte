@@ -17,6 +17,7 @@
 
   let scroll: number;
   let testimonialsSection: HTMLElement;
+  export let hasBorder: boolean | undefined = true;
   $: value = Math.max(scroll - testimonialsSection?.offsetTop, 0);
 
   const speedFactors = [0, -0.2, 0.1, -0.13, 0.02];
@@ -25,14 +26,17 @@
 
 <svelte:window bind:scrollY={scroll} />
 
-<section class="border-t" bind:this={testimonialsSection}>
+<section class={clsx(hasBorder && 'border-t')} bind:this={testimonialsSection}>
   <div class="container mx-auto px-container pt-16 lg:pt-20">
     <div class="mx-auto flex max-w-xl flex-col items-center">
-      <svelte:element this={block.size} class="text-center text-5xl text-foreground-secondary"
-        >{block.testimonials_title1}</svelte:element
-      >
-      <p class="text-center text-5xl">{block.testimonials_title2}</p>
-
+      {#if block.testimonials_title1}
+        <svelte:element this={block.size} class="text-center text-5xl text-foreground-secondary"
+          >{block.testimonials_title1}</svelte:element
+        >
+      {/if}
+      {#if block.testimonials_title2}
+        <p class="text-center text-5xl">{block.testimonials_title2}</p>
+      {/if}
       {#if block.testimonials_cta_link}
         {@const { href } = getAnchorFromCmsLink(block.testimonials_cta_link)}
         <Button

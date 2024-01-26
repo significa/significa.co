@@ -4,7 +4,7 @@
       "name": "about-page",
       "display_name": null,
       "created_at": "2023-03-03T15:54:31.120Z",
-      "updated_at": "2023-04-26T13:15:53.912Z",
+      "updated_at": "2024-01-26T11:09:49.179Z",
       "id": 3521679,
       "schema": {
         "page_title": {
@@ -71,30 +71,49 @@
           "type": "text",
           "pos": 11
         },
+        "variant": {
+          "type": "option",
+          "pos": 12,
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "407402c3-c4d6-4977-804c-a2668120f1c2",
+              "name": "One",
+              "value": "one"
+            },
+            {
+              "_uid": "cd44a4f6-d0ea-41a3-99d2-8899c86a4682",
+              "value": "two",
+              "name": "Two"
+            }
+          ],
+          "exclude_empty_option": true,
+          "default_value": "one"
+        },
         "testimonials_cta_label": {
           "type": "text",
-          "pos": 12
+          "pos": 13
         },
         "testimonials_cta_link": {
           "type": "multilink",
-          "pos": 13,
+          "pos": 14,
           "force_link_scope": false,
           "link_scope": ""
         },
         "testimonials": {
           "type": "bloks",
-          "pos": 14,
+          "pos": 15,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["richtext-testimonial"]
         },
         "clients_title": {
           "type": "text",
-          "pos": 15
+          "pos": 16
         },
         "clients": {
           "type": "bloks",
-          "pos": 16,
+          "pos": 17,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["client-logo"]
@@ -102,15 +121,15 @@
         "office_title1": {
           "type": "text",
           "key": "office_title",
-          "pos": 17
+          "pos": 18
         },
         "office_title2": {
           "type": "text",
-          "pos": 18
+          "pos": 19
         },
         "office_description": {
           "type": "textarea",
-          "pos": 19
+          "pos": 20
         },
         "office_cards": {
           "type": "bloks",
@@ -119,7 +138,7 @@
           "component_whitelist": ["notepad_card", "photo_card"],
           "minimum": 6,
           "maximum": 6,
-          "pos": 20
+          "pos": 21
         }
       },
       "image": null,
@@ -3578,7 +3597,7 @@
       "name": "proposal-version",
       "display_name": null,
       "created_at": "2023-09-11T15:33:34.190Z",
-      "updated_at": "2024-01-09T11:31:20.078Z",
+      "updated_at": "2024-01-26T11:12:54.014Z",
       "id": 4555208,
       "schema": {
         "version_name": {
@@ -3628,6 +3647,10 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["proposal-section"]
+        },
+        "show_team_members": {
+          "type": "boolean",
+          "default_value": true
         }
       },
       "image": null,
@@ -3647,7 +3670,7 @@
       "name": "proposal-version-package",
       "display_name": null,
       "created_at": "2023-12-28T13:15:17.211Z",
-      "updated_at": "2024-01-25T11:43:33.548Z",
+      "updated_at": "2024-01-26T10:56:14.601Z",
       "id": 5094324,
       "schema": {
         "version_name": {
@@ -3705,6 +3728,10 @@
           "restrict_components": true,
           "component_whitelist": ["proposal-section"],
           "pos": 7
+        },
+        "show_team_members": {
+          "type": "boolean",
+          "default_value": true
         }
       },
       "image": null,
@@ -4790,7 +4817,7 @@
       "name": "testimonials",
       "display_name": null,
       "created_at": "2024-01-23T16:14:01.707Z",
-      "updated_at": "2024-01-23T16:17:15.066Z",
+      "updated_at": "2024-01-26T10:56:09.869Z",
       "id": 5218864,
       "schema": {
         "testimonials_title1": {
@@ -4812,6 +4839,23 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["richtext-testimonial"]
+        },
+        "variant": {
+          "type": "option",
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "c24e9c9a-1cb8-4ba7-82cb-d70882974fd9",
+              "name": "One",
+              "value": "one"
+            },
+            {
+              "_uid": "b4e705b0-ab30-4d46-b8c2-4228fafceece",
+              "value": "two",
+              "name": "Two"
+            }
+          ],
+          "exclude_empty_option": true
         }
       },
       "image": null,

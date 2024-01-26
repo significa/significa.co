@@ -68,6 +68,7 @@ export interface AboutPageStoryblok {
   values?: ValueStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;
+  variant?: 'one' | 'two';
   testimonials_cta_label?: string;
   testimonials_cta_link?: Exclude<
     MultilinkStoryblok,
@@ -875,6 +876,7 @@ export interface ProposalVersionStoryblok {
   team: ProposalTeamEntryStoryblok[];
   estimates: ProposalEstimateEntryStoryblok[];
   body?: ProposalSectionStoryblok[];
+  show_team_members?: boolean;
   _uid: string;
   component: 'proposal-version';
   [k: string]: any;
@@ -888,6 +890,7 @@ export interface ProposalVersionPackageStoryblok {
   pricing?: ProposalPackagePricingStoryblok[];
   team?: ProposalPackageTeamEntryStoryblok[];
   body?: ProposalSectionStoryblok[];
+  show_team_members?: boolean;
   _uid: string;
   component: 'proposal-version-package';
   [k: string]: any;
@@ -1136,6 +1139,7 @@ export interface TestimonialsStoryblok {
     { linktype?: 'email' } | { linktype?: 'asset' }
   >;
   testimonials?: RichtextTestimonialStoryblok[];
+  variant?: 'one' | 'two';
   _uid: string;
   component: 'testimonials';
   [k: string]: any;

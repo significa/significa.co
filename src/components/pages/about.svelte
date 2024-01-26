@@ -1,6 +1,7 @@
 <script lang="ts">
+  import Testimonials from '$components/blocks/testimonials.svelte';
   import PhysicsSection from '$components/physics-section.svelte';
-  import Testimonials from '$components/testimonials.svelte';
+
   import Seo from '$components/seo.svelte';
   import { theme } from '$lib/stores/theme';
   import { getImageAttributes } from '$lib/utils/cms';
@@ -74,16 +75,21 @@
   </section>
 
   <Testimonials
-    as="h2"
-    firstTitle={data.testimonials_title1}
-    secondTitle={data.testimonials_title2}
-    ctaLabel={data.testimonials_cta_label}
-    ctaLink={data.testimonials_cta_link}
-    testimonials={data.testimonials}
+    block={{
+      _uid: 'AboutTestimonials',
+      component: 'testimonials',
+      testimonials: data.testimonials,
+      testimonials_cta_label: data.testimonials_cta_label,
+      testimonials_cta_link: data.testimonials_cta_link,
+      testimonials_title1: data.testimonials_title1,
+      testimonials_title2: data.testimonials_title2,
+      variant: data.variant,
+      size: data.size
+    }}
   />
 
   <!-- Clients -->
-  <section class=" container mx-auto px-container pb-16 pt-20 lg:pb-36 lg:pt-40">
+  <section class="container mx-auto px-container pb-16 pt-20 lg:pb-36 lg:pt-40">
     <h3 class="text-center text-lg text-foreground-secondary">{data.clients_title}</h3>
 
     {#if data.clients}

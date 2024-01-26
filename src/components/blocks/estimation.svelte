@@ -20,7 +20,7 @@
   let open = false;
 
   $: src = $theme === 'dark' ? IllustrationEmply : IllustrationEmplyLight;
-  $: srcArror = $theme === 'dark' ? ArrowDark : ArrowLight;
+  $: srcArrow = $theme === 'dark' ? ArrowDark : ArrowLight;
 
   let selected: Record<string, ListboxOption<string>[]> = {};
 
@@ -93,7 +93,7 @@
                   open ? 'xl:hidden xl:opacity-0' : 'opacity-100'
                 )}
                 width="164"
-                src={srcArror}
+                src={srcArrow}
                 alt=""
               />
               {#each estimations as { name, options }}

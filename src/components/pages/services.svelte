@@ -1,7 +1,6 @@
 <script lang="ts">
   import { Button } from '@significa/svelte-ui';
   import Seo from '$components/seo.svelte';
-  import Testimonials from '$components/testimonials.svelte';
   import PreFooter from '$components/pre-footer.svelte';
   import Square from './services/illustrations/square.svelte';
   import Hand from './services/illustrations/hand.svelte';
@@ -15,6 +14,7 @@
   import { TrackingEvent, track } from '$lib/track';
   import { page } from '$app/stores';
   import { t } from '$lib/i18n';
+  import Testimonials from '$components/blocks/testimonials.svelte';
 
   export let data: ServicesPageStoryblok;
 </script>
@@ -198,11 +198,17 @@
 
   <!-- Testimonials -->
   <Testimonials
-    firstTitle={data.testimonials_title1}
-    secondTitle={data.testimonials_title2}
-    testimonials={data.testimonials}
-    ctaLabel={data.testimonials_cta_label}
-    ctaLink={data.testimonials_cta_link}
+    block={{
+      _uid: 'ServicesTestimonials',
+      component: 'testimonials',
+      testimonials: data.testimonials,
+      testimonials_cta_label: data.testimonials_cta_label,
+      testimonials_cta_link: data.testimonials_cta_link,
+      testimonials_title1: data.testimonials_title1,
+      testimonials_title2: data.testimonials_title2,
+      variant: data.variant,
+      size: data.size
+    }}
   />
 
   <!-- Clients -->

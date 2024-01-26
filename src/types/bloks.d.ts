@@ -68,6 +68,8 @@ export interface AboutPageStoryblok {
   values?: ValueStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;
+  size?: 'h3' | 'h2';
+  variant?: 'one' | 'two';
   testimonials_cta_label?: string;
   testimonials_cta_link?: Exclude<
     MultilinkStoryblok,
@@ -458,6 +460,7 @@ export interface GetAQuotePageStoryblok {
   timezone_text?: RichtextStoryblok;
   steps_title?: string;
   steps_subtitle?: string;
+  variant?: 'get_a_quote' | 'block';
   steps?: GetAQuoteStepStoryblok[];
   images?: MultiassetStoryblok;
   _uid: string;
@@ -546,6 +549,8 @@ export interface HomePageStoryblok {
   about_links?: HomeAboutLinkStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;
+  size?: 'h3' | 'h2';
+  variant?: 'one' | 'two';
   testimonials_cta_label?: string;
   testimonials_cta_link?: Exclude<
     MultilinkStoryblok,
@@ -743,11 +748,6 @@ export interface ProposalStoryblok {
   cover: AssetStoryblok;
   versions?: (ProposalVersionPackageStoryblok | ProposalVersionStoryblok)[];
   created_by: StoryblokStory<TeamMemberStoryblok> | string;
-  seo_title?: string;
-  seo_description?: string;
-  seo_og_image?: AssetStoryblok;
-  change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
-  priority?: string;
   _uid: string;
   component: 'proposal';
   [k: string]: any;
@@ -776,6 +776,7 @@ export interface ProposalDeliverableTeamEntryStoryblok {
 export interface ProposalDepartmentStoryblok {
   title: string;
   description?: string;
+  why?: string;
   _uid: string;
   component: 'proposal-department';
   [k: string]: any;
@@ -879,6 +880,7 @@ export interface ProposalVersionStoryblok {
   team: ProposalTeamEntryStoryblok[];
   estimates: ProposalEstimateEntryStoryblok[];
   body?: ProposalSectionStoryblok[];
+  show_team_members?: boolean;
   _uid: string;
   component: 'proposal-version';
   [k: string]: any;
@@ -888,10 +890,11 @@ export interface ProposalVersionPackageStoryblok {
   version_name: string;
   discount_percentage?: string;
   date: string;
-  deliverables: ProposalDeliverableStoryblok[];
-  pricing: ProposalPackagePricingStoryblok[];
-  team: ProposalPackageTeamEntryStoryblok[];
+  deliverables?: ProposalDeliverableStoryblok[];
+  pricing?: ProposalPackagePricingStoryblok[];
+  team?: ProposalPackageTeamEntryStoryblok[];
   body?: ProposalSectionStoryblok[];
+  show_team_members?: boolean;
   _uid: string;
   component: 'proposal-version-package';
   [k: string]: any;
@@ -1031,6 +1034,8 @@ export interface ServicesPageStoryblok {
   deliverables?: DeliverablesEntryStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;
+  size?: 'h3' | 'h2';
+  variant?: 'one' | 'two';
   testimonials_cta_label?: string;
   testimonials_cta_link?: Exclude<
     MultilinkStoryblok,
@@ -1085,6 +1090,7 @@ export interface StaticPageStoryblok {
 export interface StepsStoryblok {
   steps_title?: string;
   steps_subtitle?: string;
+  variant?: 'get_a_quote' | 'block';
   steps?: GetAQuoteStepStoryblok[];
   _uid: string;
   component: 'steps';
@@ -1135,6 +1141,8 @@ export interface TestimonialsStoryblok {
   testimonials_title1?: string;
   testimonials_title2?: string;
   testimonials_cta_label?: string;
+  variant?: 'one' | 'two';
+  size?: 'h3' | 'h2';
   testimonials_cta_link?: Exclude<
     MultilinkStoryblok,
     { linktype?: 'email' } | { linktype?: 'asset' }

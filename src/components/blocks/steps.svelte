@@ -28,14 +28,10 @@
       )}
     >
       <div
-        class="absolute -left-px -top-32 hidden h-32 border-l lg:block"
-        style={block.variant === 'block'
-          ? `border-image: linear-gradient( to top, ${
-              $theme === 'light' ? '#e8e8e8' : '#2E2E2E'
-            } 0%, ${
-              $theme === 'light' ? 'rgba(247, 247, 247, 0.00)' : 'rgba(46, 46, 46, 0.00)'
-            } ) 1 100%;`
-          : ''}
+        class={clsx(
+          'absolute -left-px -top-32 hidden h-32 border-l lg:block',
+          $theme === 'light' ? 'light-fade' : 'dark-fade'
+        )}
       />
       <div>
         {#each block.steps || [] as step, i}
@@ -64,3 +60,14 @@
     </div>
   </div>
 </div>
+
+<style lang="postcss">
+  .dark-fade {
+    border-image: linear-gradient(to top, theme('colors.border.DEFAULT') 0%, rgba(46, 46, 46, 0)) 1
+      100%;
+  }
+  .light-fade {
+    border-image: linear-gradient(to top, theme('colors.border.DEFAULT') 0%, rgba(247, 247, 247, 0))
+      1 100%;
+  }
+</style>

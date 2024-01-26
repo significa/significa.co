@@ -20,6 +20,8 @@ type Deliverable = {
   rows: Row[];
 };
 
+export const DAYS_PER_MONTH: number = 30;
+
 export function createRateTimelineData(
   estimates: ProposalEstimateEntryStoryblok[],
   team: ProposalTeamEntryStoryblok[] | ProposalPackageTeamEntryStoryblok[]

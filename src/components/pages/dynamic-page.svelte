@@ -1,4 +1,6 @@
 <script lang="ts">
+  import DynamicBlock from '$components/blocks/dynamic-block.svelte';
+  import Seo from '$components/seo.svelte';
   import type {
     PageResult,
     Page,
@@ -6,7 +8,8 @@
     HandbookPage,
     ProjectPage,
     CareerPage,
-    TeamMemberPage
+    TeamMemberPage,
+    LandingPage
   } from '$lib/content';
   import BlogPost from './blog-post.svelte';
   import Career from './career.svelte';
@@ -57,6 +60,10 @@
   } => {
     return page.story.content.component === 'team-member';
   };
+
+  const isLandingPage = (page: PageResult): page is { story: LandingPage } => {
+    return page.story.content.component === 'landing-page';
+  };
 </script>
 
 {#if isPage(page)}
@@ -77,4 +84,9 @@
   <TeamMember story={page.story} posts={page.authorPosts} projects={page.authorProjects} />
 {:else if isCareerPage(page)}
   <Career story={page.story} />
+{:else if isLandingPage(page) && page.story.content.blocks?.length}
+  <Seo />
+  {#each page.story.content.blocks as block}
+    <DynamicBlock {block} />
+  {/each}
 {/if}

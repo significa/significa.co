@@ -8,6 +8,7 @@
   import { page } from '$app/stores';
   import { drawer } from '$lib/stores/drawer';
   import { t } from '$lib/i18n';
+  import { twMerge } from 'tailwind-merge';
 
   export let post: ISbStoryData<
     Omit<BlogPostStoryblok, 'author'> & {
@@ -20,14 +21,24 @@
   class="border-b transition-colors elevated-links first:border-t hover:bg-foreground-tertiary/10"
 >
   <div class="container mx-auto flex gap-6 px-container py-8 @container">
-    <div class="hidden flex-1 @6xl:block">
-      <Person
-        name={post.content.author.name}
-        position={post.content.author.content.position}
-        photo={post.content.author.content?.photo}
-      />
+    <div
+      class={twMerge(
+        'hidden flex-1 @6xl:grid @6xl:grid-rows-2 @6xl:grid-flow-col @6xl:gap-6 @6xl:h-fit',
+        post.content.authors?.length > 2 && '@6xl:grid-cols-2'
+      )}
+    >
+      {#if post.content.authors?.length}
+        {#each post.content.authors as author}
+          <Person
+            isActive={author.content.is_active}
+            name={author.name}
+            position={author.content.position}
+            photo={author.content?.photo}
+          />
+        {/each}
+      {/if}
     </div>
-    <div class="w-full max-w-2xl">
+    <div class="w-full max-w-xl">
       <p class="mb-2 text-base font-medium text-foreground-secondary">
         {formatDate(new Date(post.first_published_at || post.published_at || post.created_at))}
       </p>
@@ -60,7 +71,7 @@
         </div>
       {/if}
     </div>
-    <div class="hidden flex-1 justify-end xl:flex">
+    <div class="hidden flex-1 justify-end xl:flex xl:max-w-xs">
       <Button
         as="a"
         variant="secondary"

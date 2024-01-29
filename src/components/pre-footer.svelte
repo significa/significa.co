@@ -3,6 +3,8 @@
   import type { ComponentProps } from 'svelte';
   import ContactForm from './contact-form.svelte';
   import PreFooterAsset from './illustrations/assets/pre-footer.webp';
+  import PreFooterAssetLight from './illustrations/assets/pre-footer-light.webp';
+  import { theme } from '$lib/stores/theme';
 
   export let variant: ComponentProps<ContactForm>['variant'] = undefined;
 </script>
@@ -20,7 +22,7 @@
         </p>
       </div>
       <div class="flex flex-1 flex-col justify-end">
-        <img src={PreFooterAsset} alt="" />
+        <img src={$theme === 'dark' ? PreFooterAsset : PreFooterAssetLight} alt="" />
       </div>
     </div>
     <div class="col-span-3 bg-background-panel p-8 @5xl:col-span-2 @5xl:border-l">

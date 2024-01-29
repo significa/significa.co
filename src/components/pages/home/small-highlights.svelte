@@ -3,14 +3,18 @@
   import { getImageAttributes } from '$lib/utils/cms';
   import type { HomePageStoryblok } from '$types/bloks';
   import { TrackingEvent, track } from '$lib/track';
+  import { twMerge } from 'tailwind-merge';
 
   export let highlights: HomePageStoryblok['small_highlights'] = [];
   let hover: HTMLDivElement;
+
+  let className: string | undefined = undefined;
+  export { className as class };
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
-  class="relative -mx-2 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4"
+  class={twMerge('relative -mx-2 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4', className)}
   on:mouseleave={() => {
     hover.style.opacity = '0';
     hover.style.transform = 'scale(0)';

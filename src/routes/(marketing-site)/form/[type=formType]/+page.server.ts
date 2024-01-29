@@ -1,7 +1,8 @@
+import { isFormType } from '$components/contact-form.svelte';
 import { env } from '$env/dynamic/private';
 import { AWS_S3_BUCKET } from '$env/static/private';
 import { t } from '$lib/i18n';
-import { sendTransactionalEmail } from '$lib/mail/sendEmail.server.js';
+import { sendEmailNotification, sendTransactionalEmail } from '$lib/mail/sendEmail.server.js';
 import { notion } from '$lib/notion.server.js';
 import { fail, redirect } from '@sveltejs/kit';
 
@@ -14,6 +15,7 @@ type FormFields = {
   attachments?: string; // comma-separated list of URLs
   'submitted-using-progressive-enhancement'?: string;
   'return-to'?: string;
+  estimations?: string;
 };
 
 const getNotionAttachments = (attachmentsUrls: string) => {
@@ -29,6 +31,16 @@ const getNotionAttachments = (attachmentsUrls: string) => {
 export const actions = {
   default: async (event) => {
     const data = await event.request.formData();
+    const formType = event.params.type;
+    let notionLink = '';
+
+    if (!isFormType(formType)) {
+      return fail(500, {
+        error: {
+          message: 'Failed to send internal email notification'
+        }
+      });
+    }
 
     const fields = Object.fromEntries(data.entries()) as FormFields;
     const { name, email, message } = fields;
@@ -49,19 +61,45 @@ export const actions = {
     try {
       switch (event.params.type) {
         case 'quote':
-          await notion.pages.create({
-            parent: { database_id: env.NOTION_DB_LEADS },
-            properties: {
-              Name: { title: [{ text: { content: name } }] },
-              Email: { email: email },
-              Budget: { select: { name: fields.budget || 'n/a' } },
-              Message: { rich_text: [{ text: { content: message || '' } }] },
-              Status: { select: { name: 'To triage' } },
-              Attachments: {
-                files: getNotionAttachments(fields.attachments || '')
+          {
+            const response = await notion.pages.create({
+              parent: { database_id: env.NOTION_DB_LEADS },
+              properties: {
+                Name: { title: [{ text: { content: name } }] },
+                Email: { email: email },
+                Budget: { select: { name: fields.budget || 'n/a' } },
+                Message: { rich_text: [{ text: { content: message || '' } }] },
+                Status: { select: { name: 'To triage' } },
+                Attachments: {
+                  files: getNotionAttachments(fields.attachments || '')
+                }
               }
+            });
+            if ('url' in response) {
+              notionLink = response.url;
             }
-          });
+          }
+          break;
+        case 'estimations':
+          {
+            const response = await notion.pages.create({
+              parent: { database_id: env.NOTION_DB_LEADS },
+              properties: {
+                Name: { title: [{ text: { content: name } }] },
+                Email: { email: email },
+                Message: { rich_text: [{ text: { content: message || '' } }] },
+                Status: { select: { name: 'To triage' } },
+                Estimations: { rich_text: [{ text: { content: fields.estimations || '' } }] },
+                Attachments: {
+                  files: getNotionAttachments(fields.attachments || '')
+                }
+              }
+            });
+            if ('url' in response) {
+              notionLink = response.url;
+            }
+          }
+
           break;
         case 'career':
           await notion.pages.create({
@@ -91,20 +129,41 @@ export const actions = {
           break;
       }
     } catch (error) {
-      return fail(422, {
+      return fail(500, {
         error: {
-          type: 'notion'
+          message: 'Failed to store form submission'
+        }
+      });
+    }
+
+    try {
+      sendEmailNotification({
+        name,
+        email,
+        message,
+        formType,
+        notionLink
+      });
+    } catch (error) {
+      return fail(500, {
+        error: {
+          message: 'Failed to send internal email notification'
         }
       });
     }
 
     try {
       const subject = t('form.subject');
-      await sendTransactionalEmail({ name, email, subject });
+      await sendTransactionalEmail({
+        name,
+        email,
+        subject,
+        template: event.params.type === 'quote' ? 'default' : 'minimal'
+      });
     } catch (error) {
-      return fail(422, {
+      return fail(500, {
         error: {
-          type: 'email'
+          message: 'Failed to send email notification to user'
         }
       });
     }

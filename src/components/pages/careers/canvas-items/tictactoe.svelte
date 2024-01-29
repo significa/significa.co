@@ -14,7 +14,6 @@
   import Bird from './tictactoe/assets/bird.webp';
   import Egg from './tictactoe/assets/egg.webp';
   import type { CanvasTictactoeStoryblok } from '$types/bloks';
-  import { TrackingEvent, track } from '$lib/track';
 
   export let item: CanvasTictactoeStoryblok;
 
@@ -95,7 +94,6 @@
     !userHasPlayedOneGame
   ) {
     userHasPlayedOneGame = true;
-    track(TrackingEvent.CAREERS_CANVAS_PLAYED_TIC_TAC_TOE);
   }
 
   $: if (tiles.filter((tile) => tile === -9).length === 0 && gameState === 'in-progress')

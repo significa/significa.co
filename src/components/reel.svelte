@@ -1,6 +1,5 @@
 <script lang="ts">
   import { device } from '$lib/stores/device';
-  import { track, type TrackingEventProps } from '$lib/track';
   import { Button } from '@significa/svelte-ui';
   import { onMount } from 'svelte';
   import { fade, scale } from 'svelte/transition';
@@ -13,7 +12,6 @@
 
   export let playLabel: string | undefined;
   export let buttonTheme: 'light' | 'dark' | '' = 'light';
-  export let trackEvent: TrackingEventProps | undefined = undefined;
 
   let x = 0;
   let y = 0;
@@ -58,8 +56,7 @@
         class="-translate-x-1/2 -translate-y-1/2 cursor-none ring-foreground/20"
         on:click={() => {
           video.play();
-          if (trackEvent && !hasPlayedOnSession) {
-            track(trackEvent.event, trackEvent.options);
+          if (!hasPlayedOnSession) {
             hasPlayedOnSession = true;
           }
         }}
@@ -85,8 +82,7 @@
         video.pause();
       } else {
         video.play();
-        if (trackEvent && !hasPlayedOnSession) {
-          track(trackEvent.event, trackEvent.options);
+        if (!hasPlayedOnSession) {
           hasPlayedOnSession = true;
         }
       }

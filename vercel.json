@@ -61,27 +61,5 @@
       "source": "/blog/dark-ui--why-when--where",
       "destination": "/blog/dark-ui-why-when-where"
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/js/script.js",
-      "destination": "https://plausible.io/js/script.js"
-    },
-    {
-      "source": "/js/script.actions.js",
-      "destination": "https://plausible.io/js/script.tagged-events.js"
-    },
-    {
-      "source": "/api/event",
-      "destination": "https://plausible.io/api/event"
-    },
-    {
-      "source": "/api/mato/script.js",
-      "destination": "http://cdn.matomo.cloud/significa.matomo.cloud/matomo.js"
-    },
-    {
-      "source": "/api/mato/event",
-      "destination": "https://significa.matomo.cloud/matomo.php"
-    }
   ]
 }

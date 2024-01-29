@@ -4,7 +4,6 @@
   import { CheckboxGroup } from '@significa/svelte-ui';
   import { CONFETTI_COLOR_ARRAY } from '$lib/constants';
   import type { CanvasChecklistStoryblok } from '$types/bloks';
-  import { TrackingEvent, track } from '$lib/track';
 
   export let item: CanvasChecklistStoryblok;
 
@@ -12,7 +11,6 @@
   let hasCheckedAllOnce = false;
 
   $: if (selection.length === item.items?.length && !hasCheckedAllOnce) {
-    track(TrackingEvent.CAREERS_CANVAS_EGGMANDMENDS);
     hasCheckedAllOnce = true;
   }
 </script>

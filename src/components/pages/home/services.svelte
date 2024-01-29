@@ -6,8 +6,6 @@
   import ServicesIllustrationDark from './assets/pendulum-static-dark.webp';
   import ServicesIllustrationLight from './assets/pendulum-static-light.webp';
   import Newton from './newton.svelte';
-  import { TrackingEvent, track } from '$lib/track';
-  import { page } from '$app/stores';
 
   export let data: HomePageStoryblok;
 </script>
@@ -44,17 +42,7 @@
       <p class="mb-8 text-2xl text-foreground-secondary">{data.services_description}</p>
       {#if data.services_cta_label && data.services_cta_link}
         {@const { href } = getAnchorFromCmsLink(data.services_cta_link)}
-        <Button
-          as="a"
-          arrow
-          variant="secondary"
-          {href}
-          on:click={() => {
-            track(TrackingEvent.CTA_CLICK, {
-              props: { to: href, path: $page.url.pathname, section: data.services_title1 }
-            });
-          }}>{data.services_cta_label}</Button
-        >
+        <Button as="a" arrow variant="secondary" {href}>{data.services_cta_label}</Button>
       {/if}
     </div>
   </div>

@@ -16,7 +16,8 @@
   let visibility = tweened(0, { duration: 0, easing: (t) => t });
 
   const onDrag = (e: MouseEvent) => {
-    if (!dragging || !container) return;
+    const element = e.target as HTMLElement;
+    if (!dragging || !container || element.parentElement !== container) return;
 
     const { left, width } = container.getBoundingClientRect();
 
@@ -27,7 +28,8 @@
   };
 
   const onDragMobile = (e: TouchEvent) => {
-    if (!dragging || !container) return;
+    const element = e.target as HTMLElement;
+    if (!dragging || !container || element.parentElement !== container) return;
 
     const { left, width } = container.getBoundingClientRect();
 

@@ -3,7 +3,7 @@ import { getStoryblok } from '$lib/storyblok';
 import type { ConfigurationStoryblok } from '$types/bloks';
 import { error } from '@sveltejs/kit';
 import type { ISbStoryData } from '@storyblok/js';
-import { fetchCareers } from '$lib/content';
+import { fetchAwards, fetchAwardsTypes, fetchCareers } from '$lib/content';
 
 export const load = async ({ cookies, fetch }) => {
   const version: 'draft' | 'published' = cookies.get(PREVIEW_COOKIE_KEY) ? 'draft' : 'published';
@@ -19,6 +19,8 @@ export const load = async ({ cookies, fetch }) => {
     return {
       configuration: res.data.story as ISbStoryData<ConfigurationStoryblok>,
       careers: await fetchCareers({ version, fetch }),
+      awards: await fetchAwards({ version, fetch }),
+      awardsTypes: await fetchAwardsTypes({ version, fetch }),
       version
     };
   } catch (err) {

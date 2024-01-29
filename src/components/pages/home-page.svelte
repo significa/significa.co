@@ -14,12 +14,12 @@
   import { Button } from '@significa/svelte-ui';
   import Seo from '$components/seo.svelte';
   import { afterNavigate } from '$app/navigation';
-  import Testimonials from '$components/testimonials.svelte';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import Services from './home/services.svelte';
   import { TrackingEvent, track } from '$lib/track';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import { t } from '$lib/i18n';
+  import Testimonials from '$components/blocks/testimonials.svelte';
 
   export let data: HomePageStoryblok;
   export let posts: BlogPostPage[] | undefined;
@@ -33,6 +33,7 @@
   });
 </script>
 
+<!-- TODO: Remove this code since it's repeated on hero.svelte (block) as soon as we change the pages to blocks -->
 <Seo />
 <div class="container mx-auto px-container">
   <Slogan
@@ -65,7 +66,9 @@
       />
     {/if}
   </div>
+  <!-- -------- -->
 
+  <!-- TODO: Remove this code since it's repeated on projects.svelte (block) as soon as we change the pages to blocks -->
   <section class="mt-10 md:mt-14 lg:mt-20">
     <div class="container mx-auto px-container">
       <h2 class="text-5xl">{data.work_title}</h2>
@@ -76,16 +79,22 @@
       {/each}
     </div>
   </section>
+  <!-- -------- -->
 
   <Services {data} />
 
   <Testimonials
-    variant="two"
-    firstTitle={data.testimonials_title1}
-    secondTitle={data.testimonials_title2}
-    testimonials={data.testimonials}
-    ctaLabel={data.testimonials_cta_label}
-    ctaLink={data.testimonials_cta_link}
+    block={{
+      _uid: 'HomeTestimonials',
+      component: 'testimonials',
+      testimonials: data.testimonials,
+      testimonials_cta_label: data.testimonials_cta_label,
+      testimonials_cta_link: data.testimonials_cta_link,
+      testimonials_title1: data.testimonials_title1,
+      testimonials_title2: data.testimonials_title2,
+      variant: data.variant,
+      size: data.size
+    }}
   />
 
   <section class="mt-16 border-y lg:mt-20">

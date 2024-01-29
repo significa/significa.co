@@ -9,86 +9,32 @@
   import clsx from 'clsx';
   import { fade, fly } from 'svelte/transition';
   import AnHandAndABook from './an-hand-and-a-book.svelte';
-  import { onMount } from 'svelte';
   import { TrackingEvent, track } from '$lib/track';
+  import { createTopNavScrollStatus } from '$lib/stores/topnav-scroll-status';
 
   export let configuration: ConfigurationStoryblok;
-
-  const SCROLL_DIR_THRESHOLD = 76;
-  const SCROLL_THRESHOLD = 200;
+  export let variant: 'default' | 'handbook' = 'default';
 
   let panel = false;
-  let scrollDir: 'up' | 'down';
-  let scrollY: number;
-  let lastScrollY: number;
-  let ticking = false;
-  let isPastThreshold = false;
-  let isPastZero = false;
-
-  onMount(() => {
-    const updateScrollDir = () => {
-      if (Math.abs(scrollY - lastScrollY) <= SCROLL_DIR_THRESHOLD) {
-        ticking = false;
-        return;
-      }
-
-      const nextDir = scrollY > lastScrollY ? 'down' : 'up';
-      if (nextDir !== scrollDir) {
-        scrollDir = nextDir;
-      }
-
-      const last = scrollY > 0 ? scrollY : 0;
-      lastScrollY = last;
-
-      if (last > SCROLL_THRESHOLD) {
-        isPastThreshold = true;
-      } else {
-        isPastThreshold = false;
-      }
-
-      ticking = false;
-    };
-
-    const onScroll = () => {
-      if (scrollY > 0) {
-        isPastZero = true;
-      } else {
-        isPastZero = false;
-      }
-
-      if (!ticking) {
-        window.requestAnimationFrame(updateScrollDir);
-        ticking = true;
-      }
-    };
-
-    onScroll();
-
-    window.addEventListener('scroll', onScroll);
-
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-    };
-  });
 
   afterNavigate(() => {
     panel = false;
   });
 
-  export let variant: 'default' | 'handbook' = 'default';
+  const scrollStatus = createTopNavScrollStatus();
 </script>
 
-<svelte:window bind:scrollY />
-
-<div class="mb-px h-[76px]">
+<div class="mb-px h-[--topnav-height]">
   <header
     class={clsx(
       'ease-[cubic-bezier(0.90, 0, 0.05, 1)] z-30 w-full border-b bg-background/95 backdrop-blur-md transition-[transform,border-color] duration-300',
       variant === 'default' && 'fixed',
-      !isPastZero && variant === 'default' ? 'border-b-transparent' : 'border-b-border',
-      !isPastThreshold
+      !$scrollStatus.isPastZero && variant === 'default'
+        ? 'border-b-transparent'
+        : 'border-b-border',
+      !$scrollStatus.isPastThreshold
         ? 'translate-y-0'
-        : scrollDir === 'down' && variant === 'default'
+        : $scrollStatus.direction === 'down' && variant === 'default'
         ? '-translate-y-full'
         : 'translate-y-0'
     )}

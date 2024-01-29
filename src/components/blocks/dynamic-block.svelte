@@ -11,7 +11,17 @@
     'two-columns': TwoColumns,
     'richtext-testimonial': RichTextTestimonial,
     video: Video,
-    'richtext-box': RichTextBox
+    'richtext-box': RichTextBox,
+    hero: Hero,
+    packages: Packages,
+    'work-recognitions': WorkRecognitions,
+    estimation: Estimation,
+    steps: Steps,
+    services: Services,
+    testimonials: Testimonials,
+    clients: Clients,
+    projects: Projects,
+    'cta-card': CtaCard
   };
 
   export type Blocks = keyof typeof map;
@@ -29,6 +39,17 @@
   import RichTextTestimonial from './rich-text-testimonial.svelte';
   import Video from './video.svelte';
   import RichTextBox from './rich-text-box.svelte';
+
+  import Hero from './hero.svelte';
+  import Packages from './packages.svelte';
+  import WorkRecognitions from './work-recognitions.svelte';
+  import Estimation from './estimation.svelte';
+  import Steps from './steps.svelte';
+  import Services from './services.svelte';
+  import Testimonials from './testimonials.svelte';
+  import Clients from './clients.svelte';
+  import Projects from './projects.svelte';
+  import CtaCard from './cta-card.svelte';
 
   export let block: { component: string };
 

@@ -1,19 +1,20 @@
 <script lang="ts">
-  import type { GetAQuotePageStoryblok } from '$types/bloks';
+  import { theme } from '$lib/stores/theme';
+  import type { GetAQuotePageStoryblok, StepsStoryblok } from '$types/bloks';
   import clsx from 'clsx';
 
-  export let page: GetAQuotePageStoryblok;
+  export let block: StepsStoryblok | GetAQuotePageStoryblok;
 
   let lastItemHeight = 0;
 </script>
 
-<div class="border-t">
+<div class={clsx('border-t', block.variant === 'block' && 'border-t-0 md:pb-8 lg:pb-20')}>
   <div class={clsx('container mx-auto px-container', 'lg:flex')}>
     <!-- Title -->
     <div class="lg:flex-1">
       <div class={clsx('max-w-md pt-12', 'md:pt-20', 'lg:max-w-sm')}>
-        <h3 class="text-5xl text-foreground-secondary">{page.steps_title}</h3>
-        <p class="text-5xl">{page.steps_subtitle}</p>
+        <h3 class="text-5xl text-foreground-secondary">{block.steps_title}</h3>
+        <p class="text-5xl">{block.steps_subtitle}</p>
       </div>
     </div>
 
@@ -26,11 +27,16 @@
         'lg:border-l lg:border-dashed'
       )}
     >
-      <div class="absolute -left-px -top-32 hidden h-32 border-l lg:block" />
+      <div
+        class={clsx(
+          'absolute -left-px -top-32 hidden h-32 border-l lg:block',
+          $theme === 'light' ? 'light-fade' : 'dark-fade'
+        )}
+      />
       <div>
-        {#each page.steps || [] as step, i}
+        {#each block.steps || [] as step, i}
           <div class="mb-12 last:mb-0">
-            {#if i === (page.steps || []).length - 1}
+            {#if i === (block.steps || []).length - 1}
               <div
                 class="absolute -left-2 bottom-0 hidden w-4 bg-background lg:block"
                 style="height: {lastItemHeight}px"
@@ -54,3 +60,14 @@
     </div>
   </div>
 </div>
+
+<style lang="postcss">
+  .dark-fade {
+    border-image: linear-gradient(to top, theme('colors.border.DEFAULT') 0%, rgba(46, 46, 46, 0)) 1
+      100%;
+  }
+  .light-fade {
+    border-image: linear-gradient(to top, theme('colors.border.DEFAULT') 0%, rgba(247, 247, 247, 0))
+      1 100%;
+  }
+</style>

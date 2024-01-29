@@ -2,11 +2,6 @@ import { StoryblokStory } from 'storyblok-generate-ts';
 
 export type MultilinkStoryblok =
   | {
-      cached_url?: string;
-      linktype?: string;
-      [k: string]: any;
-    }
-  | {
       id?: string;
       cached_url?: string;
       anchor?: string;
@@ -73,8 +68,13 @@ export interface AboutPageStoryblok {
   values?: ValueStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;
+  size?: 'h3' | 'h2';
+  variant?: 'one' | 'two';
   testimonials_cta_label?: string;
-  testimonials_cta_link?: MultilinkStoryblok;
+  testimonials_cta_link?: Exclude<
+    MultilinkStoryblok,
+    { linktype?: 'email' } | { linktype?: 'asset' }
+  >;
   testimonials?: RichtextTestimonialStoryblok[];
   clients_title?: string;
   clients?: ClientLogoStoryblok[];
@@ -104,7 +104,7 @@ export interface AwardsEntryStoryblok {
   name?: string;
   project?: string;
   link_text?: string;
-  link?: MultilinkStoryblok;
+  link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   _uid: string;
   component: 'awards_entry';
   [k: string]: any;
@@ -142,8 +142,24 @@ export interface BlogPostStoryblok {
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
   body?: RichtextStoryblok;
+  authors: (StoryblokStory<TeamMemberStoryblok> | string)[];
   _uid: string;
   component: 'blog-post';
+  [k: string]: any;
+}
+
+export interface BudgetRangeEntryStoryblok {
+  title: string;
+  description: RichtextStoryblok;
+  _uid: string;
+  component: 'budget-range-entry';
+  [k: string]: any;
+}
+
+export interface BudgetRangesStoryblok {
+  ranges: BudgetRangeEntryStoryblok[];
+  _uid: string;
+  component: 'budget-ranges';
   [k: string]: any;
 }
 
@@ -342,6 +358,14 @@ export interface ClientLogoStoryblok {
   [k: string]: any;
 }
 
+export interface ClientsStoryblok {
+  clients_title?: string;
+  clients?: ClientLogoStoryblok[];
+  _uid: string;
+  component: 'clients';
+  [k: string]: any;
+}
+
 export interface ColumnStoryblok {
   content: RichtextStoryblok;
   sticky?: boolean;
@@ -378,6 +402,15 @@ export interface ContactsPageStoryblok {
   [k: string]: any;
 }
 
+export interface CtaCardStoryblok {
+  title?: string;
+  description?: string;
+  link_text?: string;
+  _uid: string;
+  component: 'cta-card';
+  [k: string]: any;
+}
+
 export interface DeliverableStoryblok {
   _uid: string;
   component: 'deliverable';
@@ -390,6 +423,18 @@ export interface DeliverablesEntryStoryblok {
   description?: string;
   _uid: string;
   component: 'deliverables_entry';
+  [k: string]: any;
+}
+
+export interface EstimationStoryblok {
+  section_title?: string;
+  section_description?: string;
+  title?: string;
+  description?: string;
+  form_title?: string;
+  form_description?: string;
+  _uid: string;
+  component: 'estimation';
   [k: string]: any;
 }
 
@@ -415,6 +460,7 @@ export interface GetAQuotePageStoryblok {
   timezone_text?: RichtextStoryblok;
   steps_title?: string;
   steps_subtitle?: string;
+  variant?: 'get_a_quote' | 'block';
   steps?: GetAQuoteStepStoryblok[];
   images?: MultiassetStoryblok;
   _uid: string;
@@ -444,11 +490,28 @@ export interface HandbookStoryblok {
   [k: string]: any;
 }
 
+export interface HeroStoryblok {
+  small_highlights?: (
+    | StoryblokStory<CareerStoryblok>
+    | StoryblokStory<ProjectStoryblok>
+    | StoryblokStory<HandbookStoryblok>
+    | StoryblokStory<BlogPostStoryblok>
+    | string
+  )[];
+  showreel?: AssetStoryblok;
+  showreel_cover?: AssetStoryblok;
+  showreel_button_theme?: '' | 'light' | 'dark';
+  showreel_button_label?: string;
+  _uid: string;
+  component: 'hero';
+  [k: string]: any;
+}
+
 export interface HomeAboutLinkStoryblok {
   title?: string;
   description?: string;
   link_label?: string;
-  link?: MultilinkStoryblok;
+  link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   _uid: string;
   component: 'home-about-link';
   [k: string]: any;
@@ -472,7 +535,7 @@ export interface HomePageStoryblok {
   services_title2?: string;
   services_description?: string;
   services_cta_label?: string;
-  services_cta_link?: MultilinkStoryblok;
+  services_cta_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   about_title1?: string;
   about_title2?: string;
   about_description?: string;
@@ -486,15 +549,20 @@ export interface HomePageStoryblok {
   about_links?: HomeAboutLinkStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;
+  size?: 'h3' | 'h2';
+  variant?: 'one' | 'two';
   testimonials_cta_label?: string;
-  testimonials_cta_link?: MultilinkStoryblok;
+  testimonials_cta_link?: Exclude<
+    MultilinkStoryblok,
+    { linktype?: 'email' } | { linktype?: 'asset' }
+  >;
   testimonials?: RichtextTestimonialStoryblok[];
   blog_title1?: string;
   blog_title2?: string;
   handbook_title?: string;
   handbook_description?: string;
   handbook_cta_text?: string;
-  handbook_cta_link?: MultilinkStoryblok;
+  handbook_cta_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   careers_title?: string;
   careers_button_label?: string;
   _uid: string;
@@ -521,9 +589,32 @@ export interface ImageGridStoryblok {
   [k: string]: any;
 }
 
+export interface LandingPageStoryblok {
+  blocks?: (
+    | ClientsStoryblok
+    | CtaCardStoryblok
+    | EstimationStoryblok
+    | HeroStoryblok
+    | PackagesStoryblok
+    | ProjectsStoryblok
+    | ServicesStoryblok
+    | StepsStoryblok
+    | TestimonialsStoryblok
+    | WorkRecognitionsStoryblok
+  )[];
+  seo_title?: string;
+  seo_description?: string;
+  seo_og_image?: AssetStoryblok;
+  change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  priority?: string;
+  _uid: string;
+  component: 'landing-page';
+  [k: string]: any;
+}
+
 export interface LinkStoryblok {
   label?: string;
-  link?: MultilinkStoryblok;
+  link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   _uid: string;
   component: 'link';
   [k: string]: any;
@@ -533,6 +624,16 @@ export interface NotepadCardStoryblok {
   text?: string;
   _uid: string;
   component: 'notepad_card';
+  [k: string]: any;
+}
+
+export interface PackagesStoryblok {
+  section_title?: string;
+  section_description?: string;
+  title?: string;
+  subtitle?: string;
+  _uid: string;
+  component: 'packages';
   [k: string]: any;
 }
 
@@ -624,9 +725,178 @@ export interface ProjectStoryblok {
   [k: string]: any;
 }
 
+export interface ProjectsStoryblok {
+  work_title?: string;
+  projects?: (StoryblokStory<ProjectStoryblok> | string)[];
+  _uid: string;
+  component: 'projects';
+  [k: string]: any;
+}
+
 export interface ProjectsIndexStoryblok {
   _uid: string;
   component: 'projects-index';
+  [k: string]: any;
+}
+
+export interface ProposalStoryblok {
+  password: string;
+  client: string;
+  validity_days: string;
+  title: string;
+  description: string;
+  cover: AssetStoryblok;
+  versions?: (ProposalVersionPackageStoryblok | ProposalVersionStoryblok)[];
+  created_by: StoryblokStory<TeamMemberStoryblok> | string;
+  _uid: string;
+  component: 'proposal';
+  [k: string]: any;
+}
+
+export interface ProposalDeliverableStoryblok {
+  title: string;
+  description?: string;
+  color?: '' | '#0055FF' | '#FF9500' | '#078366' | '#171717';
+  manpower: string;
+  services?: ProposalServiceStoryblok[];
+  team: ProposalDeliverableTeamEntryStoryblok[];
+  _uid: string;
+  component: 'proposal-deliverable';
+  [k: string]: any;
+}
+
+export interface ProposalDeliverableTeamEntryStoryblok {
+  duration: string;
+  offset: string;
+  _uid: string;
+  component: 'proposal-deliverable-team-entry';
+  [k: string]: any;
+}
+
+export interface ProposalDepartmentStoryblok {
+  title: string;
+  description?: string;
+  why?: string;
+  _uid: string;
+  component: 'proposal-department';
+  [k: string]: any;
+}
+
+export interface ProposalEstimateEntryStoryblok {
+  title: string;
+  description?: string;
+  color: '' | '#0055FF' | '#FF9500' | '#078366' | '#171717';
+  phases: ProposalPhaseEntryStoryblok[];
+  _uid: string;
+  component: 'proposal-estimate-entry';
+  [k: string]: any;
+}
+
+export interface ProposalPackagePricingStoryblok {
+  department: StoryblokStory<ProposalDepartmentStoryblok> | string;
+  rate_type: '' | 'fulltime' | 'percentage';
+  rate_value: string;
+  team_size: string;
+  _uid: string;
+  component: 'proposal-package-pricing';
+  [k: string]: any;
+}
+
+export interface ProposalPackageTeamEntryStoryblok {
+  department: StoryblokStory<ProposalDepartmentStoryblok> | string;
+  role: ProposalRoleStoryblok[];
+  _uid: string;
+  component: 'proposal-package-team-entry';
+  [k: string]: any;
+}
+
+export interface ProposalPhaseEntryStoryblok {
+  title: string;
+  description?: string;
+  team: ProposalPhaseTeamEntryStoryblok[];
+  _uid: string;
+  component: 'proposal-phase-entry';
+  [k: string]: any;
+}
+
+export interface ProposalPhaseTeamEntryStoryblok {
+  duration: string;
+  offset?: string;
+  _uid: string;
+  component: 'proposal-phase-team-entry';
+  [k: string]: any;
+}
+
+export interface ProposalRoleStoryblok {
+  title: string;
+  description?: string;
+  _uid: string;
+  component: 'proposal-role';
+  [k: string]: any;
+}
+
+export interface ProposalScopeEntryStoryblok {
+  title: string;
+  description?: string;
+  services?: ('' | 'Design' | 'Development' | 'Project management')[];
+  features?: string;
+  _uid: string;
+  component: 'proposal-scope-entry';
+  [k: string]: any;
+}
+
+export interface ProposalSectionStoryblok {
+  title: string;
+  body: RichtextStoryblok;
+  data?: '' | 'scope' | 'team' | 'estimates' | 'timeline' | 'pricing' | 'deliverables';
+  _uid: string;
+  component: 'proposal-section';
+  [k: string]: any;
+}
+
+export interface ProposalServiceStoryblok {
+  title?: string;
+  description?: string;
+  _uid: string;
+  component: 'proposal-service';
+  [k: string]: any;
+}
+
+export interface ProposalTeamEntryStoryblok {
+  department: StoryblokStory<ProposalDepartmentStoryblok> | string;
+  role: ProposalRoleStoryblok[];
+  rate_type?: '' | 'value' | 'percentage' | 'free';
+  rate_value?: string;
+  _uid: string;
+  component: 'proposal-team-entry';
+  [k: string]: any;
+}
+
+export interface ProposalVersionStoryblok {
+  version_name: string;
+  discount_percentage?: string;
+  date: string;
+  scope: ProposalScopeEntryStoryblok[];
+  team: ProposalTeamEntryStoryblok[];
+  estimates: ProposalEstimateEntryStoryblok[];
+  body?: ProposalSectionStoryblok[];
+  show_team_members?: boolean;
+  _uid: string;
+  component: 'proposal-version';
+  [k: string]: any;
+}
+
+export interface ProposalVersionPackageStoryblok {
+  version_name: string;
+  discount_percentage?: string;
+  date: string;
+  deliverables?: ProposalDeliverableStoryblok[];
+  pricing?: ProposalPackagePricingStoryblok[];
+  team?: ProposalPackageTeamEntryStoryblok[];
+  body?: ProposalSectionStoryblok[];
+  show_team_members?: boolean;
+  _uid: string;
+  component: 'proposal-version-package';
   [k: string]: any;
 }
 
@@ -636,6 +906,25 @@ export interface RecognitionStoryblok {
   image: AssetStoryblok;
   _uid: string;
   component: 'recognition';
+  [k: string]: any;
+}
+
+export interface RecognitionEntryStoryblok {
+  recognition: StoryblokStory<RecognitionTypeStoryblok> | string;
+  project: StoryblokStory<ProjectStoryblok> | string;
+  external_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  year: string;
+  _uid: string;
+  component: 'recognition-entry';
+  [k: string]: any;
+}
+
+export interface RecognitionTypeStoryblok {
+  title: string;
+  label: string;
+  image: AssetStoryblok;
+  _uid: string;
+  component: 'recognition-type';
   [k: string]: any;
 }
 
@@ -693,6 +982,16 @@ export interface ServiceStoryblok {
   [k: string]: any;
 }
 
+export interface ServicesStoryblok {
+  services_title?: string;
+  services_subtitle?: string;
+  services_description?: string;
+  services?: ServicesDeppartmentStoryblok[];
+  _uid: string;
+  component: 'services';
+  [k: string]: any;
+}
+
 export interface ServicesDeppartmentStoryblok {
   title?: string;
   entry?: ServicesGroupEntryStoryblok[];
@@ -722,6 +1021,7 @@ export interface ServicesPageStoryblok {
   timeline?: ServiceTimelineRowStoryblok[];
   awards_title?: string;
   awards_description?: string;
+  awards_db: (StoryblokStory<RecognitionEntryStoryblok> | string)[];
   awards?: AwardsEntryStoryblok[];
   showreel?: AssetStoryblok;
   showreel_button_label?: string;
@@ -734,8 +1034,13 @@ export interface ServicesPageStoryblok {
   deliverables?: DeliverablesEntryStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;
+  size?: 'h3' | 'h2';
+  variant?: 'one' | 'two';
   testimonials_cta_label?: string;
-  testimonials_cta_link?: MultilinkStoryblok;
+  testimonials_cta_link?: Exclude<
+    MultilinkStoryblok,
+    { linktype?: 'email' } | { linktype?: 'asset' }
+  >;
   testimonials?: RichtextTestimonialStoryblok[];
   clients_title?: string;
   clients?: ClientLogoStoryblok[];
@@ -782,6 +1087,16 @@ export interface StaticPageStoryblok {
   [k: string]: any;
 }
 
+export interface StepsStoryblok {
+  steps_title?: string;
+  steps_subtitle?: string;
+  variant?: 'get_a_quote' | 'block';
+  steps?: GetAQuoteStepStoryblok[];
+  _uid: string;
+  component: 'steps';
+  [k: string]: any;
+}
+
 export interface TeamMemberStoryblok {
   photo?: AssetStoryblok;
   egg?: AssetStoryblok;
@@ -797,6 +1112,7 @@ export interface TeamMemberStoryblok {
   seo_og_image?: AssetStoryblok;
   priority?: string;
   change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  email?: string;
   _uid: string;
   component: 'team-member';
   [k: string]: any;
@@ -818,6 +1134,22 @@ export interface TeamMemberLinkStoryblok {
   link?: string;
   _uid: string;
   component: 'team-member-link';
+  [k: string]: any;
+}
+
+export interface TestimonialsStoryblok {
+  testimonials_title1?: string;
+  testimonials_title2?: string;
+  testimonials_cta_label?: string;
+  variant?: 'one' | 'two';
+  size?: 'h3' | 'h2';
+  testimonials_cta_link?: Exclude<
+    MultilinkStoryblok,
+    { linktype?: 'email' } | { linktype?: 'asset' }
+  >;
+  testimonials?: RichtextTestimonialStoryblok[];
+  _uid: string;
+  component: 'testimonials';
   [k: string]: any;
 }
 
@@ -889,5 +1221,21 @@ export interface VideoStoryblok {
   controls?: boolean;
   _uid: string;
   component: 'video';
+  [k: string]: any;
+}
+
+export interface WorkRecognitionsStoryblok {
+  title?: string;
+  small_highlights_title?: string;
+  small_highlights?: (
+    | StoryblokStory<CareerStoryblok>
+    | StoryblokStory<ProjectStoryblok>
+    | StoryblokStory<HandbookStoryblok>
+    | StoryblokStory<BlogPostStoryblok>
+    | string
+  )[];
+  awards_title?: string;
+  _uid: string;
+  component: 'work-recognitions';
   [k: string]: any;
 }

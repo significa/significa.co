@@ -6,7 +6,7 @@
   import clsx from 'clsx';
 
   const stickers = Object.values(
-    import.meta.glob('../assets/stickers/*.svg', { eager: true, as: 'url' })
+    import.meta.glob('../../assets/stickers/*.svg', { eager: true, as: 'url' })
   );
 
   const gridSize = 90;
@@ -130,8 +130,8 @@
   <div
     bind:clientWidth={screenWidth}
     bind:clientHeight={screenHeight}
-    style="height: calc(100vh - 76px);"
-    class="flex cursor-pointer items-center justify-center overflow-hidden border-t"
+    style="height: calc(100vh - var(--topnav-height));"
+    class="flex cursor-pointer items-center justify-center overflow-hidden border-t select-none"
   >
     <div
       style="grid-template-columns: repeat({matrix[0]?.length ||

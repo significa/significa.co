@@ -35,6 +35,8 @@
   const onMouseLeave = () => {
     if (video) video.pause();
   };
+
+  const recognitions = $page.data.awards.filter((aw) => aw.content.project.id === project.id);
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -71,17 +73,14 @@
             {project.content.tagline}
           </p>
         </a>
-        {#if project.content.recognitions?.length}
+        {#if recognitions?.length}
           <div
             class={clsx(
               'mt-6 flex gap-4',
               variant === 'featured' ? 'flex-col @5xl:flex-row' : 'flex-col'
             )}
           >
-            <Recognitions
-              as={as === 'h2' ? 'h3' : 'h4'}
-              recognitions={project.content.recognitions}
-            />
+            <Recognitions as={as === 'h2' ? 'h3' : 'h4'} {recognitions} />
           </div>
         {/if}
       </div>

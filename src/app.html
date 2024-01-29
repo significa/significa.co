@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="motion-safe:scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="120x120" href="%sveltekit.assets%/apple-touch-icon.png" />
@@ -10,7 +10,6 @@
     <meta name="msapplication-TileColor" content="#f3f3f3" />
     <meta name="theme-color" content="#ffffff" />
     <meta name="viewport" content="width=device-width" />
-
     <script>
       function setTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
@@ -27,28 +26,8 @@
         q.addEventListener('change', (event) => setTheme(event.matches ? 'dark' : 'light'));
       })();
     </script>
-
-    <script>
-      var _paq = (window._paq = window._paq || []);
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(['disableCookies']);
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function () {
-        _paq.push(['setTrackerUrl', '/api/mato/event']);
-        _paq.push(['setSiteId', '1']);
-        var d = document,
-          g = d.createElement('script'),
-          s = d.getElementsByTagName('script')[0];
-        g.async = true;
-        g.src = '/api/mato/script.js';
-        s.parentNode.insertBefore(g, s);
-      })();
-    </script>
-
     %sveltekit.head%
   </head>
-
   <body data-sveltekit-preload-data="hover" data-sveltekit-preload-code="viewport">
     <div style="display: contents">%sveltekit.body%</div>
   </body>

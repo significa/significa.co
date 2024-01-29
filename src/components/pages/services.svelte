@@ -1,6 +1,5 @@
 <script lang="ts">
   import Seo from '$components/seo.svelte';
-  import Testimonials from '$components/testimonials.svelte';
   import PreFooter from '$components/pre-footer.svelte';
   import Square from './services/illustrations/square.svelte';
   import Hand from './services/illustrations/hand.svelte';
@@ -12,6 +11,7 @@
   import clsx from 'clsx';
   import { TrackingEvent, track } from '$lib/track';
   import { page } from '$app/stores';
+  import Testimonials from '$components/blocks/testimonials.svelte';
   import AwardsEntry from '$components/awards-entry.svelte';
   import Clients from '$components/clients.svelte';
 
@@ -87,6 +87,7 @@
   {/if}
 
   <!-- Services -->
+  <!-- TODO: Remove this code since it's repeated on services.svelte (block) as soon as we change the pages to blocks -->
   <section class="mt-14 md:mt-24 lg:mb-12">
     <div class="container mx-auto flex px-container">
       <div class="xl:max-w-3xl">
@@ -166,14 +167,21 @@
 
   <!-- Testimonials -->
   <Testimonials
-    firstTitle={data.testimonials_title1}
-    secondTitle={data.testimonials_title2}
-    testimonials={data.testimonials}
-    ctaLabel={data.testimonials_cta_label}
-    ctaLink={data.testimonials_cta_link}
+    block={{
+      _uid: 'ServicesTestimonials',
+      component: 'testimonials',
+      testimonials: data.testimonials,
+      testimonials_cta_label: data.testimonials_cta_label,
+      testimonials_cta_link: data.testimonials_cta_link,
+      testimonials_title1: data.testimonials_title1,
+      testimonials_title2: data.testimonials_title2,
+      variant: data.variant,
+      size: data.size
+    }}
   />
 
   <!-- Clients -->
+  <!-- TODO: Remove this code since it's repeated on clients.svelte (block) as soon as we change the pages to blocks -->
   <section class=" container mx-auto px-container pb-16 pt-20 lg:pb-20 lg:pt-40">
     <h3 class="text-center text-2xl text-foreground-secondary">{data.clients_title}</h3>
     {#if data.clients}

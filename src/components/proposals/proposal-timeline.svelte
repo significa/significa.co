@@ -90,8 +90,8 @@
   <div
     class="grid auto-cols-[20px] auto-rows-[36px] gap-1 p-1"
     style="background-image: linear-gradient(to right, hsl(var(--color-border)) 1px, transparent 1px),
-                               linear-gradient(to bottom, hsl(var(--color-selection) / 0.02), hsl(var(--color-selection) / 0));
-             background-size: {MONTH_WIDTH}px, auto;"
+                             linear-gradient(to bottom, hsl(var(--color-selection) / 0.02), hsl(var(--color-selection) / 0));
+           background-size: {MONTH_WIDTH}px, auto;"
   >
     {#each rows as row, i}
       <div

@@ -4,7 +4,7 @@
       "name": "about-page",
       "display_name": null,
       "created_at": "2023-03-03T15:54:31.120Z",
-      "updated_at": "2024-01-26T11:09:49.179Z",
+      "updated_at": "2024-01-26T11:39:34.548Z",
       "id": 3521679,
       "schema": {
         "page_title": {
@@ -71,9 +71,28 @@
           "type": "text",
           "pos": 11
         },
-        "variant": {
+        "size": {
           "type": "option",
           "pos": 12,
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "c78bd462-44ae-4dc5-8809-4253e6d1a33f",
+              "name": "H3",
+              "value": "h3"
+            },
+            {
+              "_uid": "60e14793-997b-45bd-a596-3c725152fbfa",
+              "value": "h2",
+              "name": "H2"
+            }
+          ],
+          "default_value": "h3",
+          "exclude_empty_option": true
+        },
+        "variant": {
+          "type": "option",
+          "pos": 13,
           "use_uuid": true,
           "options": [
             {
@@ -92,28 +111,28 @@
         },
         "testimonials_cta_label": {
           "type": "text",
-          "pos": 13
+          "pos": 14
         },
         "testimonials_cta_link": {
           "type": "multilink",
-          "pos": 14,
+          "pos": 15,
           "force_link_scope": false,
           "link_scope": ""
         },
         "testimonials": {
           "type": "bloks",
-          "pos": 15,
+          "pos": 16,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["richtext-testimonial"]
         },
         "clients_title": {
           "type": "text",
-          "pos": 16
+          "pos": 17
         },
         "clients": {
           "type": "bloks",
-          "pos": 17,
+          "pos": 18,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["client-logo"]
@@ -121,15 +140,15 @@
         "office_title1": {
           "type": "text",
           "key": "office_title",
-          "pos": 18
+          "pos": 19
         },
         "office_title2": {
           "type": "text",
-          "pos": 19
+          "pos": 20
         },
         "office_description": {
           "type": "textarea",
-          "pos": 20
+          "pos": 21
         },
         "office_cards": {
           "type": "bloks",
@@ -138,7 +157,7 @@
           "component_whitelist": ["notepad_card", "photo_card"],
           "minimum": 6,
           "maximum": 6,
-          "pos": 21
+          "pos": 22
         }
       },
       "image": null,
@@ -1561,35 +1580,61 @@
       "name": "get-a-quote-page",
       "display_name": null,
       "created_at": "2023-03-03T13:47:17.251Z",
-      "updated_at": "2023-03-30T13:34:06.557Z",
+      "updated_at": "2024-01-26T12:12:36.946Z",
       "id": 3521048,
       "schema": {
         "title": {
-          "type": "text"
+          "type": "text",
+          "pos": 0
         },
         "subtitle": {
-          "type": "text"
+          "type": "text",
+          "pos": 1
         },
         "timezone_text": {
           "type": "richtext",
           "customize_toolbar": true,
-          "toolbar": ["paragraph", "bold"]
+          "toolbar": ["paragraph", "bold"],
+          "pos": 2
         },
         "steps_title": {
-          "type": "text"
+          "type": "text",
+          "pos": 3
         },
         "steps_subtitle": {
-          "type": "text"
+          "type": "text",
+          "pos": 4
+        },
+        "variant": {
+          "type": "option",
+          "pos": 5,
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "049f2a05-95b6-4919-bbbe-3fa6e54b0b24",
+              "name": "Get A Quote",
+              "value": "get_a_quote"
+            },
+            {
+              "_uid": "713b4d28-5096-4766-9afe-2c8e29b153d1",
+              "value": "block",
+              "name": "Block"
+            }
+          ],
+          "exclude_empty_option": true,
+          "default_value": "block"
         },
         "steps": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["get-a-quote-step"]
+          "component_whitelist": ["get-a-quote-step"],
+          "pos": 6
         },
         "images": {
           "type": "multiasset",
-          "filetypes": ["images"]
+          "filetypes": ["images"],
+          "pos": 7
         }
       },
       "image": null,
@@ -1832,7 +1877,7 @@
       "name": "home-page",
       "display_name": null,
       "created_at": "2023-03-03T14:59:15.465Z",
-      "updated_at": "2023-05-11T14:55:55.388Z",
+      "updated_at": "2024-01-26T11:50:30.539Z",
       "id": 3521503,
       "schema": {
         "small_highlights": {
@@ -1969,14 +2014,52 @@
           "key": "testimonials_title2",
           "pos": 19
         },
+        "size": {
+          "type": "option",
+          "pos": 20,
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "43b3d82a-a55a-4cac-8dd8-2282b34dc480",
+              "name": "H3",
+              "value": "h3"
+            },
+            {
+              "_uid": "a24d855d-01c8-4a43-ae11-69bbd4b122cc",
+              "value": "h2",
+              "name": "H2"
+            }
+          ],
+          "exclude_empty_option": true,
+          "default_value": "h3"
+        },
+        "variant": {
+          "type": "option",
+          "pos": 21,
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "14bc7161-3083-4762-aa92-6afd8fbfd353",
+              "name": "One",
+              "value": "one"
+            },
+            {
+              "_uid": "e4e19464-7d4b-4fef-8a69-cf91cc933f83",
+              "value": "two",
+              "name": "Two"
+            }
+          ],
+          "exclude_empty_option": true,
+          "default_value": "one"
+        },
         "testimonials_cta_label": {
           "type": "text",
-          "pos": 20,
+          "pos": 22,
           "key": "testimonials_cta_label"
         },
         "testimonials_cta_link": {
           "type": "multilink",
-          "pos": 21,
+          "pos": 23,
           "key": "testimonials_cta"
         },
         "testimonials": {
@@ -1987,43 +2070,43 @@
           "maximum": 5,
           "minimum": 5,
           "key": "testimonials",
-          "pos": 22
+          "pos": 24
         },
         "blog_title1": {
           "type": "text",
-          "pos": 23,
+          "pos": 25,
           "key": "blog_title1"
         },
         "blog_title2": {
           "type": "text",
-          "pos": 24,
+          "pos": 26,
           "key": "blog_title2"
         },
         "handbook_title": {
           "type": "text",
-          "pos": 25,
+          "pos": 27,
           "key": "handbook_title"
         },
         "handbook_description": {
           "type": "textarea",
-          "pos": 26,
+          "pos": 28,
           "key": "handbook_description"
         },
         "handbook_cta_text": {
           "type": "text",
-          "pos": 27
+          "pos": 29
         },
         "handbook_cta_link": {
           "type": "multilink",
-          "pos": 28
+          "pos": 30
         },
         "careers_title": {
           "type": "text",
-          "pos": 29
+          "pos": 31
         },
         "careers_button_label": {
           "type": "text",
-          "pos": 30,
+          "pos": 32,
           "key": "careers_button_label"
         }
       },
@@ -3010,7 +3093,7 @@
       "name": "proposal-deliverable-team-entry",
       "display_name": null,
       "created_at": "2024-01-02T16:43:39.862Z",
-      "updated_at": "2024-01-25T16:40:16.925Z",
+      "updated_at": "2024-01-26T11:35:20.540Z",
       "id": 5107587,
       "schema": {
         "team_member": {
@@ -3024,16 +3107,14 @@
           "pos": 2,
           "required": true,
           "min_value": 0,
-          "decimals": 0,
-          "steps": 1
+          "decimals": 1
         },
         "offset": {
           "type": "number",
           "pos": 3,
           "required": true,
           "min_value": 0,
-          "decimals": 0,
-          "steps": 1
+          "decimals": 1
         }
       },
       "image": null,
@@ -3294,7 +3375,7 @@
       "name": "proposal-phase-team-entry",
       "display_name": null,
       "created_at": "2023-09-11T15:46:07.698Z",
-      "updated_at": "2024-01-11T10:32:48.501Z",
+      "updated_at": "2024-01-26T14:08:39.230Z",
       "id": 4555252,
       "schema": {
         "team_member": {
@@ -3307,14 +3388,15 @@
         "duration": {
           "type": "number",
           "required": true,
-          "pos": 1
+          "pos": 1,
+          "decimals": 1
         },
         "offset": {
           "type": "number",
           "min_value": 0,
           "decimals": 1,
-          "steps": 1,
-          "default_value": ""
+          "default_value": "",
+          "required": true
         }
       },
       "image": null,
@@ -4240,7 +4322,7 @@
       "name": "services-page",
       "display_name": null,
       "created_at": "2023-05-04T08:50:50.568Z",
-      "updated_at": "2024-01-15T10:43:25.183Z",
+      "updated_at": "2024-01-26T12:23:01.826Z",
       "id": 3924074,
       "schema": {
         "page_title1": {
@@ -4334,13 +4416,51 @@
           "type": "text",
           "pos": 17
         },
+        "size": {
+          "type": "option",
+          "pos": 18,
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "4a11edd1-a004-4d07-9a8c-31b7df4c2da6",
+              "name": "H3",
+              "value": "h3"
+            },
+            {
+              "_uid": "44ad8696-6040-4861-83da-3ac90d3f4b5e",
+              "value": "h2",
+              "name": "H2"
+            }
+          ],
+          "default_value": "h3",
+          "exclude_empty_option": true
+        },
+        "variant": {
+          "type": "option",
+          "pos": 19,
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "3f953674-4bef-4392-be0c-b6b3049f6206",
+              "name": "One",
+              "value": "one"
+            },
+            {
+              "_uid": "fecc559c-d569-4a61-b90d-f13ca0c15ce8",
+              "value": "two",
+              "name": "Two"
+            }
+          ],
+          "exclude_empty_option": true,
+          "default_value": "one"
+        },
         "testimonials_cta_label": {
           "type": "text",
-          "pos": 18
+          "pos": 20
         },
         "testimonials_cta_link": {
           "type": "multilink",
-          "pos": 19
+          "pos": 21
         },
         "testimonials": {
           "type": "bloks",
@@ -4349,11 +4469,11 @@
           "component_whitelist": ["richtext-testimonial"],
           "minimum": 5,
           "maximum": 5,
-          "pos": 20
+          "pos": 22
         },
         "clients_title": {
           "type": "text",
-          "pos": 21
+          "pos": 23
         },
         "clients": {
           "type": "bloks",
@@ -4361,7 +4481,7 @@
           "restrict_components": true,
           "default_value": "",
           "component_whitelist": ["client-logo"],
-          "pos": 22
+          "pos": 24
         }
       },
       "image": null,
@@ -4566,20 +4686,42 @@
       "name": "steps",
       "display_name": null,
       "created_at": "2024-01-23T10:01:47.736Z",
-      "updated_at": "2024-01-23T10:03:20.677Z",
+      "updated_at": "2024-01-26T12:13:36.778Z",
       "id": 5215462,
       "schema": {
         "steps_title": {
-          "type": "text"
+          "type": "text",
+          "pos": 0
         },
         "steps_subtitle": {
-          "type": "text"
+          "type": "text",
+          "pos": 1
+        },
+        "variant": {
+          "type": "option",
+          "use_uuid": true,
+          "pos": 2,
+          "options": [
+            {
+              "_uid": "d4eced3b-3e74-4048-9a88-60b3fd3e7aeb",
+              "name": "Get A Quote",
+              "value": "get_a_quote"
+            },
+            {
+              "_uid": "ce35a09e-e510-4c67-a144-04d8b7114c7b",
+              "value": "block",
+              "name": "Block"
+            }
+          ],
+          "exclude_empty_option": true,
+          "default_value": "block"
         },
         "steps": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["get-a-quote-step"]
+          "component_whitelist": ["get-a-quote-step"],
+          "pos": 3
         }
       },
       "image": null,
@@ -4817,28 +4959,20 @@
       "name": "testimonials",
       "display_name": null,
       "created_at": "2024-01-23T16:14:01.707Z",
-      "updated_at": "2024-01-26T10:56:09.869Z",
+      "updated_at": "2024-01-26T11:47:06.219Z",
       "id": 5218864,
       "schema": {
         "testimonials_title1": {
-          "type": "text"
+          "type": "text",
+          "pos": 0
         },
         "testimonials_title2": {
-          "type": "text"
+          "type": "text",
+          "pos": 1
         },
         "testimonials_cta_label": {
-          "type": "text"
-        },
-        "testimonials_cta_link": {
-          "type": "multilink"
-        },
-        "testimonials": {
-          "type": "bloks",
-          "minimum": 5,
-          "maximum": 5,
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": ["richtext-testimonial"]
+          "type": "text",
+          "pos": 2
         },
         "variant": {
           "type": "option",
@@ -4855,7 +4989,41 @@
               "name": "Two"
             }
           ],
-          "exclude_empty_option": true
+          "exclude_empty_option": true,
+          "default_value": "one",
+          "pos": 3
+        },
+        "size": {
+          "type": "option",
+          "pos": 4,
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "d4ceb5b1-2d9d-4add-8c46-a5d0d47f039b",
+              "name": "H3",
+              "value": "h3"
+            },
+            {
+              "_uid": "da8153b4-22cc-495c-acff-5afee5e63413",
+              "value": "h2",
+              "name": "H2"
+            }
+          ],
+          "exclude_empty_option": true,
+          "default_value": "h3"
+        },
+        "testimonials_cta_link": {
+          "type": "multilink",
+          "pos": 5
+        },
+        "testimonials": {
+          "type": "bloks",
+          "minimum": 5,
+          "maximum": 5,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["richtext-testimonial"],
+          "pos": 6
         }
       },
       "image": null,

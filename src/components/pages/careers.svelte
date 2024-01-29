@@ -131,11 +131,14 @@
           <p class="text-2xl font-semibold text-foreground-secondary max-w-md">
             {t('careers.footer.no.positions.description')}
           </p>
-          <a
+          <Button
+            as="a"
             href="mailto:{t('careers.footer.email')}"
             on:click={() => {
               track(TrackingEvent.CAREERS_SPONTANEOUS_APPLICATION);
-            }}><Button size="lg" class="w-fit mt-8">{t('careers.footer.description')}</Button></a
+            }}
+            size="lg"
+            class="w-fit mt-8">{t('careers.footer.description')}</Button
           >
         </div>
         <div

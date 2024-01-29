@@ -68,6 +68,7 @@ export interface AboutPageStoryblok {
   values?: ValueStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;
+  size?: 'h3' | 'h2';
   variant?: 'one' | 'two';
   testimonials_cta_label?: string;
   testimonials_cta_link?: Exclude<
@@ -459,6 +460,7 @@ export interface GetAQuotePageStoryblok {
   timezone_text?: RichtextStoryblok;
   steps_title?: string;
   steps_subtitle?: string;
+  variant?: 'get_a_quote' | 'block';
   steps?: GetAQuoteStepStoryblok[];
   images?: MultiassetStoryblok;
   _uid: string;
@@ -547,6 +549,8 @@ export interface HomePageStoryblok {
   about_links?: HomeAboutLinkStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;
+  size?: 'h3' | 'h2';
+  variant?: 'one' | 'two';
   testimonials_cta_label?: string;
   testimonials_cta_link?: Exclude<
     MultilinkStoryblok,
@@ -817,7 +821,7 @@ export interface ProposalPhaseEntryStoryblok {
 
 export interface ProposalPhaseTeamEntryStoryblok {
   duration: string;
-  offset?: string;
+  offset: string;
   _uid: string;
   component: 'proposal-phase-team-entry';
   [k: string]: any;
@@ -1030,6 +1034,8 @@ export interface ServicesPageStoryblok {
   deliverables?: DeliverablesEntryStoryblok[];
   testimonials_title1?: string;
   testimonials_title2?: string;
+  size?: 'h3' | 'h2';
+  variant?: 'one' | 'two';
   testimonials_cta_label?: string;
   testimonials_cta_link?: Exclude<
     MultilinkStoryblok,
@@ -1084,6 +1090,7 @@ export interface StaticPageStoryblok {
 export interface StepsStoryblok {
   steps_title?: string;
   steps_subtitle?: string;
+  variant?: 'get_a_quote' | 'block';
   steps?: GetAQuoteStepStoryblok[];
   _uid: string;
   component: 'steps';
@@ -1134,12 +1141,13 @@ export interface TestimonialsStoryblok {
   testimonials_title1?: string;
   testimonials_title2?: string;
   testimonials_cta_label?: string;
+  variant?: 'one' | 'two';
+  size?: 'h3' | 'h2';
   testimonials_cta_link?: Exclude<
     MultilinkStoryblok,
     { linktype?: 'email' } | { linktype?: 'asset' }
   >;
   testimonials?: RichtextTestimonialStoryblok[];
-  variant?: 'one' | 'two';
   _uid: string;
   component: 'testimonials';
   [k: string]: any;

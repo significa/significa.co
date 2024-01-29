@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Testimonials from '$components/testimonials.svelte';
+  import Testimonials from '$components/blocks/testimonials.svelte';
   import { t } from '$lib/i18n';
   import type { RichtextTestimonialStoryblok } from '$types/bloks';
 
@@ -16,6 +16,15 @@
         </p>
       </div>
     </div>
-    <Testimonials variant="one" firstTitle={''} secondTitle={''} {testimonials} hasBorder={false} />
+    <Testimonials
+      block={{
+        _uid: 'ProposalTestimonials',
+        component: 'testimonials',
+        testimonials: testimonials,
+        variant: 'one',
+        size: 'h3'
+      }}
+      hasBorder={false}
+    />
   </section>
 {/if}

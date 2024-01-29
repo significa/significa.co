@@ -15,7 +15,7 @@ import { HOME_SLUG } from './constants';
 export const PAGE_PARAMS = {
   resolve_links: 'url',
   resolve_relations:
-    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects,blog-post.authors,hero.small_highlights,work-recognitions.small_highlights'
+    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects,blog-post.authors,hero.small_highlights,work-recognitions.small_highlights,projects.projects'
 } as const;
 
 export const BLOG_PARAMS = {

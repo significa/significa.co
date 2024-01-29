@@ -15,7 +15,13 @@
     hero: Hero,
     packages: Packages,
     'work-recognitions': WorkRecognitions,
-    estimation: Estimation
+    estimation: Estimation,
+    steps: Steps,
+    services: Services,
+    testimonials: Testimonials,
+    clients: Clients,
+    projects: Projects,
+    'cta-card': CtaCard
   };
 
   export type Blocks = keyof typeof map;
@@ -38,6 +44,12 @@
   import Packages from './packages.svelte';
   import WorkRecognitions from './work-recognitions.svelte';
   import Estimation from './estimation.svelte';
+  import Steps from './steps.svelte';
+  import Services from './services.svelte';
+  import Testimonials from './testimonials.svelte';
+  import Clients from './clients.svelte';
+  import Projects from './projects.svelte';
+  import CtaCard from './cta-card.svelte';
 
   export let block: { component: string };
 

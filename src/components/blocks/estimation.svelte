@@ -2,6 +2,8 @@
   import type { EstimationStoryblok } from '$types/bloks';
   import IllustrationEmply from '../illustrations/assets/illustration-emply.webp';
   import IllustrationEmplyLight from '../illustrations/assets/illustration-emply-light.webp';
+  import ArrowLight from '../illustrations/assets/arrow-estimations-white.webp';
+  import ArrowDark from '../illustrations/assets/arrow-estimations.webp';
   import { theme } from '$lib/stores/theme';
   import { Icon, MultiSelect } from '@significa/svelte-ui';
   import clsx from 'clsx';
@@ -18,6 +20,7 @@
   let open = false;
 
   $: src = $theme === 'dark' ? IllustrationEmply : IllustrationEmplyLight;
+  $: srcArrow = $theme === 'dark' ? ArrowDark : ArrowLight;
 
   let selected: Record<string, ListboxOption<string>[]> = {};
 
@@ -45,7 +48,7 @@
   $: Object.values(combinedBudgetPower).every((val) => val !== 0) ? (open = true) : (open = false);
 </script>
 
-<section class="border-t mt-20">
+<section class="border-t mt-20" id="estimation">
   <div
     class="container mx-auto px-container @container flex flex-col items-center text-center max-w-md"
   >
@@ -70,7 +73,7 @@
     />
     <div
       class={clsx(
-        'flex transition-all duration-300 ease-motion bg-background-panel rounded-b-lg xl:rounded-r-lg',
+        'flex transition-all duration-500 ease-motion bg-background-panel rounded-b-lg xl:rounded-r-lg',
         open ? 'xl:w-1/2 w-full ring-1 ring-border' : 'w-full'
       )}
     >
@@ -83,7 +86,16 @@
             <p class="my-4 text-xl text-foreground-secondary max-w-md">
               {block.description}
             </p>
-            <div class="py-4 xl:py-6 flex lg:flex-row flex-col flex-wrap gap-4">
+            <div class="py-4 xl:py-6 inline-flex lg:flex-row flex-col flex-wrap gap-4 relative">
+              <img
+                class={clsx(
+                  'hidden xl:block absolute top-12 -right-4 translate-x-full',
+                  open ? 'xl:hidden xl:opacity-0' : 'opacity-100'
+                )}
+                width="164"
+                src={srcArrow}
+                alt=""
+              />
               {#each estimations as { name, options }}
                 <MultiSelect
                   options={options.map((o) => o.name)}
@@ -95,7 +107,7 @@
               {/each}
             </div>
 
-            <div class="flex flex-wrap gap-4 max-w-xl">
+            <div class="flex flex-wrap gap-4 max-w-xl z-10 relative">
               {#each selectedMap as option}
                 {#each option.value as op}
                   <div
@@ -136,7 +148,7 @@
         </div>
         <div
           class={clsx(
-            'absolute bottom-0 hidden xl:block transition-all duration-1000',
+            'absolute bottom-0 hidden xl:block transition-all',
             open ? 'xl:hidden xl:opacity-0' : 'right-0 opacity-100'
           )}
         >

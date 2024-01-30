@@ -14,6 +14,7 @@
 
   export let data: ProposalTeamEntryStoryblok[] | ProposalPackageTeamEntryStoryblok[];
   export let type: string;
+  export let showTeamMembers: boolean = true;
 
   let dataMap = new Map();
   let departmentsInfo: ProposalDepartmentStoryblok[] = [];
@@ -44,9 +45,11 @@
         {t('proposals.team.department')}
       </p>
       <div class="grid grid-cols-2">
-        <p class="text-2xs uppercase text-foreground-secondary">
-          {t('proposals.team.team-member')}
-        </p>
+        {#if showTeamMembers}
+          <p class="text-2xs uppercase text-foreground-secondary">
+            {t('proposals.team.team-member')}
+          </p>
+        {/if}
         <p class="text-2xs uppercase text-foreground-secondary">
           {t('proposals.team.role')}
         </p>
@@ -94,13 +97,15 @@
                 : ''
             )}
           >
-            <div class="col-start-1" use:drawerLinks>
-              <Link class="text-sm" href={`/about/${entry.team_member.member?.slug}`}>
-                {entry.team_member.member.name}
-              </Link>
-            </div>
+            {#if showTeamMembers}
+              <div class="col-start-1" use:drawerLinks>
+                <Link class="text-sm" href={`/about/${entry.team_member.member?.slug}`}>
+                  {entry.team_member.member.name}
+                </Link>
+              </div>
+            {/if}
 
-            <div class="col-start-2 -ml-2 md:-ml-3">
+            <div class={clsx(showTeamMembers ? 'col-start-2 -ml-2 md:-ml-3' : 'col-start-1')}>
               <p class="text-sm">
                 {entry.role[0].title}
               </p>

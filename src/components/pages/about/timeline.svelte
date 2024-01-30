@@ -1,8 +1,6 @@
 <script lang="ts">
-  import { page } from '$app/stores';
   import { distanceToTop } from '$lib/actions/distance-to-top';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
-  import { TrackingEvent, track } from '$lib/track';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import type { AboutPageStoryblok, TimelineArrowStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
@@ -120,23 +118,7 @@
                 <p class="font-comic text-sm font-bold">{item.text}</p>
                 {#if item.link?.[0]}
                   {@const { href, target, rel } = getAnchorFromCmsLink(item.link[0].link)}
-                  <Button
-                    size="sm"
-                    as="a"
-                    {href}
-                    {rel}
-                    {target}
-                    on:click={() => {
-                      track(TrackingEvent.CTA_CLICK, {
-                        props: {
-                          to: href,
-                          path: $page.url.pathname,
-                          section: 'Timeline'
-                        }
-                      });
-                    }}
-                    class="pointer-events-auto mt-4"
-                  >
+                  <Button size="sm" as="a" {href} {rel} {target} class="pointer-events-auto mt-4">
                     {item.link[0].label}
                   </Button>
                 {/if}

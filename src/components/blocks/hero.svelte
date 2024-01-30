@@ -6,7 +6,6 @@
   import Slogan from '$components/slogan.svelte';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import { VIDEO_EXTENSIONS } from '$lib/constants';
-  import { TrackingEvent } from '$lib/track';
   import { getImageAttributes } from '$lib/utils/cms';
   import { getFileExtension } from '$lib/utils/strings';
 
@@ -51,7 +50,6 @@
           ? getImageAttributes(block.showreel_cover).src
           : undefined}
         buttonTheme={block.showreel_button_theme}
-        trackEvent={{ event: TrackingEvent.HOME_REEL }}
       />
     {/if}
   </div>

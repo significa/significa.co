@@ -1,12 +1,9 @@
 <script lang="ts">
-  import { page } from '$app/stores';
   import BlogEntry from '$components/blog-entry.svelte';
   import ProjectEntry from '$components/project-entry.svelte';
   import Seo from '$components/seo.svelte';
   import type { BlogPostPage, ProjectPage } from '$lib/content';
   import { t } from '$lib/i18n';
-  import { TrackingEvent, track } from '$lib/track';
-  import { drawer } from '$lib/stores/drawer';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { TeamMemberStoryblok } from '$types/bloks';
   import type { ISbStoryData } from '@storyblok/js';
@@ -32,15 +29,6 @@
       active: !!posts.length
     }
   ] as const;
-  let hasInteractedWithTabs = false;
-
-  $: if (hasInteractedWithTabs) {
-    track(TrackingEvent.AUTHOR_PAGE_TAB_INTERACTION, {
-      props: {
-        path: $drawer || $page.url.pathname
-      }
-    });
-  }
 </script>
 
 <Seo
@@ -87,7 +75,6 @@
           )}
           on:click={() => {
             tab = button.tab;
-            hasInteractedWithTabs = true;
           }}
         >
           <p>{button.title}</p>

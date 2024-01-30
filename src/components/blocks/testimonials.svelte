@@ -9,9 +9,6 @@
   import clsx from 'clsx';
   import People from '../illustrations/stickers/people.svelte';
   import FriedEgg from '../illustrations/stickers/fried-egg.svelte';
-  import { TrackingEvent, track } from '$lib/track';
-  import { page } from '$app/stores';
-  import { drawer } from '$lib/stores/drawer';
 
   export let block: TestimonialsStoryblok;
 
@@ -39,22 +36,7 @@
       {/if}
       {#if block.testimonials_cta_link}
         {@const { href } = getAnchorFromCmsLink(block.testimonials_cta_link)}
-        <Button
-          as="a"
-          {href}
-          on:click={() => {
-            track(TrackingEvent.CTA_CLICK, {
-              props: {
-                to: href,
-                path: $drawer || $page.url.pathname,
-                section: block.testimonials_title1
-              }
-            });
-          }}
-          arrow
-          size="md"
-          class="mx-auto mt-6"
-        >
+        <Button as="a" {href} arrow size="md" class="mx-auto mt-6">
           {block.testimonials_cta_label}
         </Button>
       {/if}

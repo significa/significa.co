@@ -11,7 +11,6 @@
   import { page } from '$app/stores';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import { t } from '$lib/i18n';
-  import { TrackingEvent, track } from '$lib/track';
   import {
     type FileUploadItem,
     Button,
@@ -116,7 +115,6 @@
   let loading = false;
 
   $: if ($page.form?.success) {
-    track(TrackingEvent.FORM_SUBMISSION, { props: { path: $page.url.pathname, type } });
     dispatch('success');
     toast.success({
       message: t('contact.feedback.success.title'),
@@ -335,12 +333,8 @@
     >
     <div class="text-sm">
       <p class="leading-none text-foreground-secondary">{t('contact.footer.title')}</p>
-      <Link
-        class="mt-0.5 inline-flex"
-        href="mailto:{t('contact.footer.email')}"
-        on:click={() => {
-          track(TrackingEvent.FORM_CHOOSE_MAILTO, { props: { path: $page.url.pathname } });
-        }}>{t('contact.footer.email')}</Link
+      <Link class="mt-0.5 inline-flex" href="mailto:{t('contact.footer.email')}"
+        >{t('contact.footer.email')}</Link
       >
     </div>
   </div>

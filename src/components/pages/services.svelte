@@ -9,7 +9,6 @@
   import type { ServicesPageStoryblok } from '$types/bloks';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import clsx from 'clsx';
-  import { TrackingEvent, track } from '$lib/track';
   import { page } from '$app/stores';
   import Testimonials from '$components/blocks/testimonials.svelte';
   import AwardsEntry from '$components/awards-entry.svelte';
@@ -58,14 +57,6 @@
                 >
                   <a
                     {href}
-                    on:click={() => {
-                      track(TrackingEvent.SERVICES_AWARD_CLICK, {
-                        props: {
-                          to: href,
-                          path: $page.url.pathname
-                        }
-                      });
-                    }}
                     class="container mx-auto flex flex-col justify-between px-container py-5 lg:flex-row"
                   >
                     <AwardsEntry

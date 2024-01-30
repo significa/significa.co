@@ -11,9 +11,6 @@
   import TwoEggs from '$components/illustrations/two-eggs.svelte';
   import Seo from '$components/seo.svelte';
   import type { BlogPostPage } from '$lib/content';
-  import { TrackingEvent, track } from '$lib/track';
-  import { page } from '$app/stores';
-  import { drawer } from '$lib/stores/drawer';
 
   export let story: BlogPostPage;
   export let related: BlogPostPage[];
@@ -37,15 +34,7 @@
     {#if story.tag_list.length}
       <div class="mt-5 flex flex-wrap gap-2">
         {#each story.tag_list as tag}
-          <Tag
-            href="/blog?t={encodeURIComponent(tag)}"
-            on:click={() => {
-              track(TrackingEvent.BLOG_POST_TAG_CLICK, {
-                props: { name: tag, path: $drawer || $page.url.pathname }
-              });
-            }}
-            label={tag}
-          />
+          <Tag href="/blog?t={encodeURIComponent(tag)}" label={tag} />
         {/each}
       </div>
     {/if}
@@ -83,17 +72,7 @@
               position={author.content.position}
               photo={author.content.photo}
             />
-            <Button
-              variant="secondary"
-              as="a"
-              href={`/about/${author.slug}`}
-              on:click={() =>
-                track(TrackingEvent.BLOG_POST_AUTHOR_PAGE_CLICK, {
-                  props: { path: $drawer || $page.url.pathname, to: `/about/${author.slug}` }
-                })}
-              arrow
-              icon="document"
-            >
+            <Button variant="secondary" as="a" href={`/about/${author.slug}`} arrow icon="document">
               {t('author-page')}
             </Button>
           </div>
@@ -111,17 +90,8 @@
         <div class="flex-1">
           <h4 class="max-w-md text-3xl font-bold">{t('blog.pre-footer.title')}</h4>
         </div>
-        <Button
-          class="mt-6"
-          as="a"
-          href="/get-a-quote"
-          on:click={() => {
-            track(TrackingEvent.GET_A_QUOTE_LINK, {
-              props: { path: $drawer || $page.url.pathname, context: 'blog post' }
-            });
-          }}
-          arrow
-          icon="document">{t('blog.pre-footer.cta')}</Button
+        <Button class="mt-6" as="a" href="/get-a-quote" arrow icon="document"
+          >{t('blog.pre-footer.cta')}</Button
         >
       </div>
       <TwoEggs class="hidden w-60 sm:block" />

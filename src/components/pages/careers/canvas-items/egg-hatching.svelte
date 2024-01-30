@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { TrackingEvent } from '$lib/track';
   import type { CanvasEggHatchingStoryblok } from '$types/bloks';
   import CycleImages from './cycle-images.svelte';
 
@@ -15,5 +14,4 @@
   left={Number(item.left)}
   rotate={Number(item.rotate)}
   alt="Egg"
-  trackEvent={{ event: TrackingEvent.CAREERS_CANVAS_EGG_HATCH }}
 />

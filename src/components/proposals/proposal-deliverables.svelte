@@ -48,7 +48,7 @@
                 style="background-color: {entry.color}"
                 class="w-2 h-2 mr-1 rounded-full inline-block"
               ></span>
-              {entry.title}.
+              {entry.title}
             </p>
             <p class="ml-3.5 text-sm text-foreground-secondary">
               {entry.description}
@@ -59,9 +59,9 @@
             {#each entry.services || [] as service}
               <div class="my-4">
                 <p class="text-sm font-bold">
-                  {service.title}.
+                  {service.title}
                 </p>
-                <p class="text-sm text-foreground-secondary">
+                <p class="text-sm text-foreground-secondary max-w-[28rem]">
                   {service.description}
                 </p>
               </div>

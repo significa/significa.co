@@ -1,6 +1,5 @@
 <script lang="ts">
   import { t } from '$lib/i18n';
-  import { DAYS_PER_MONTH } from '$lib/utils/proposals';
   import type { ProposalPackagePricingStoryblok } from '$types/bloks';
   import clsx from 'clsx';
 
@@ -33,7 +32,7 @@
       class="grid gap-1 pb-1 px-1 auto-cols-[20px] border-b shadow-sm"
       style="background: linear-gradient(to right, hsl(var(--color-border)) 1px, transparent 1px); background-size: {MONTH_WIDTH}px;"
     >
-      {#each Array(Math.max(minMonthDisplay, Math.ceil(totalDuration))) as _, i}
+      {#each Array(Math.max(minMonthDisplay, Math.ceil(totalDuration + 1))) as _, i}
         <div class="row-start-1 px-2 text-sm" style="grid-column: span 10">
           {t('proposals.timeline.month')}
           {i + 1}
@@ -107,8 +106,8 @@
           <p class="p-1 group-hover:hidden">
             {row.title}
             <span class="text-background/50">
-              {row.duration * DAYS_PER_MONTH}
-              {t('proposals.days')}
+              {row.duration}
+              {t('proposals.months')}
             </span>
           </p>
 
@@ -118,8 +117,8 @@
           >
             {row.title}
             <span class="text-background/50">
-              {row.duration * DAYS_PER_MONTH}
-              {t('proposals.days')}
+              {row.duration}
+              {t('proposals.months')}
             </span>
           </p>
         {/if}

@@ -2,7 +2,6 @@
   import { sanitizeSlug } from '$lib/utils/paths';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { HomePageStoryblok } from '$types/bloks';
-  import { TrackingEvent, track } from '$lib/track';
   import { twMerge } from 'tailwind-merge';
 
   export let highlights: HomePageStoryblok['small_highlights'] = [];
@@ -28,11 +27,6 @@
   {#each highlights || [] as highlight}
     <a
       href={sanitizeSlug(highlight.full_slug)}
-      on:click={() => {
-        track(TrackingEvent.HOME_HIGHLIGHT, {
-          props: { to: sanitizeSlug(highlight.full_slug) }
-        });
-      }}
       class="flex gap-4 rounded-xl p-2"
       on:focus={() => {
         // noop

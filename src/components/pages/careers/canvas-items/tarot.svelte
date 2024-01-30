@@ -26,8 +26,6 @@
       halfWidth * 6
     }px`;
   };
-  import { TrackingEvent, track } from '$lib/track';
-  let hasInteracted = false;
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -37,12 +35,6 @@
   style="left: {item.left || 0}px; top: {item.top || 0}px; transform: rotate({item.rotate ||
     0}deg); perspective: 1000px"
   class="h-[300px] w-[200px]"
-  on:click={() => {
-    if (!hasInteracted) {
-      track(TrackingEvent.CAREERS_CANVAS_FLIPPED_TAROT);
-      hasInteracted = true;
-    }
-  }}
 >
   <div
     role="button"

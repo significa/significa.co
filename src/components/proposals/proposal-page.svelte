@@ -69,7 +69,7 @@
       {:else if type === 'package' && section.data === 'deliverables' && content?.deliverables}
         <ProposalDeliverables data={content.deliverables} />
       {:else if section.data === 'team' && content?.team}
-        <ProposalTeam data={content.team} {type} />
+        <ProposalTeam data={content.team} {type} showTeamMembers={content.show_team_members} />
       {:else if type === 'rate' && section.data === 'estimates' && content?.estimates && content?.team}
         <ProposalEstimates
           data={content.estimates}

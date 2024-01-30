@@ -1,7 +1,5 @@
 <script lang="ts">
-  import { page } from '$app/stores';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
-  import { TrackingEvent, track } from '$lib/track';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import type { RichtextBoxStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
@@ -39,20 +37,7 @@
       {#each block.link as { label, link }}
         {@const { href } = getAnchorFromCmsLink(link)}
         <div class="mt-4">
-          <Button
-            as="a"
-            {href}
-            on:click={() => {
-              track(TrackingEvent.CTA_CLICK, {
-                props: {
-                  to: href,
-                  path: $page.url.pathname
-                }
-              });
-            }}
-            variant="secondary"
-            arrow>{label}</Button
-          >
+          <Button as="a" {href} variant="secondary" arrow>{label}</Button>
         </div>
       {/each}
     {/if}

@@ -16,7 +16,6 @@
   import Plant from './canvas-items/plant.svelte';
   import Egg from './canvas-items/egg.svelte';
   import EggHatching from './canvas-items/egg-hatching.svelte';
-  import { TrackingEvent, track } from '$lib/track';
 
   const MINIMAP_W = 128;
   const MINIMAP_PADDING = 8;
@@ -79,8 +78,7 @@
   bind:this={container}
   use:dragScrolling={{
     isActive: withMouseDragScroll,
-    centerYOffset: -240,
-    onInteraction: () => track(TrackingEvent.CAREERS_INTERACT_WITH_CANVAS)
+    centerYOffset: -240
   }}
   use:scrollPosition={(left, top) => {
     boxLeft = left;

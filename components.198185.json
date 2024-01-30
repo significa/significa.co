@@ -3375,7 +3375,7 @@
       "name": "proposal-phase-team-entry",
       "display_name": null,
       "created_at": "2023-09-11T15:46:07.698Z",
-      "updated_at": "2024-01-26T12:16:30.397Z",
+      "updated_at": "2024-01-26T14:08:39.230Z",
       "id": 4555252,
       "schema": {
         "team_member": {
@@ -3395,7 +3395,8 @@
           "type": "number",
           "min_value": 0,
           "decimals": 1,
-          "default_value": ""
+          "default_value": "",
+          "required": true
         }
       },
       "image": null,

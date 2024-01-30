@@ -3,6 +3,7 @@
   import type { ProjectStoryblok } from '$types/bloks';
   import type { ISbStoryData } from '@storyblok/js';
   import { t } from '$lib/i18n';
+  import { drawerLinks } from '$lib/actions/drawer-links';
 
   export let projects: ISbStoryData<ProjectStoryblok>[];
 </script>
@@ -14,7 +15,7 @@
         <h2 class="text-4xl">{t('proposals.projects')}.</h2>
       </div>
     </div>
-    <div class="mt-4 md:mt-6 lg:mt-8">
+    <div class="mt-4 md:mt-6 lg:mt-8" use:drawerLinks>
       {#each projects as project}
         <ProjectEntry {project} />
       {/each}

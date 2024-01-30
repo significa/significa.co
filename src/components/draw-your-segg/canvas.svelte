@@ -14,7 +14,6 @@
   import { page } from '$app/stores';
   import { toast } from '@significa/svelte-ui';
   import { t } from '$lib/i18n';
-  import { TrackingEvent, track } from '$lib/track';
 
   const dispatch = createEventDispatcher<{ change: Drawing }>();
 
@@ -157,10 +156,6 @@
     ['undo', undo, canUndo, undoImage],
     ['redo', redo, canRedo, redoImage]
   ] as const;
-
-  $: if (started) {
-    track(TrackingEvent.DRAW_YOUR_SEGG_INTERACT);
-  }
 </script>
 
 <div data-theme="light" class="relative select-none overflow-hidden">
@@ -217,7 +212,6 @@
             toast.success({
               message: t('draw-segg.clipboard.feedback')
             });
-            track(TrackingEvent.DRAW_YOUR_SEGG_COPY);
           }}
         >
           <img alt="copy link" src={linkImage} />
@@ -227,9 +221,6 @@
         <a
           class="flex h-8 w-8 items-center justify-center rounded-sm border hover:bg-foreground/2"
           download="segg.png"
-          on:click={() => {
-            track(TrackingEvent.DRAW_YOUR_SEGG_DOWNLOAD);
-          }}
           href={canvas?.toDataURL('image/png')}><img alt="download" src={saveImage} /></a
         >
       {/key}

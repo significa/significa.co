@@ -9,7 +9,6 @@
   import clsx from 'clsx';
   import { fade, fly } from 'svelte/transition';
   import AnHandAndABook from './an-hand-and-a-book.svelte';
-  import { TrackingEvent, track } from '$lib/track';
   import { createTopNavScrollStatus } from '$lib/stores/topnav-scroll-status';
 
   export let configuration: ConfigurationStoryblok;
@@ -77,7 +76,6 @@
             icon="3dots"
             on:click={() => {
               panel = true;
-              track(TrackingEvent.NAV_MENU, { props: { path: $page.url.pathname } });
             }}
           />
         </div>
@@ -109,15 +107,8 @@
         <div class="flex gap-4">
           {#if configuration.call_to_action?.length}
             {@const { href } = getAnchorFromCmsLink(configuration.call_to_action[0].link)}
-            <Button
-              class="flex-shrink-0"
-              as="a"
-              {href}
-              on:click={() => {
-                track(TrackingEvent.GET_A_QUOTE_LINK, {
-                  props: { path: $page.url.pathname, context: 'navigation menu' }
-                });
-              }}>{configuration.call_to_action[0].label}</Button
+            <Button class="flex-shrink-0" as="a" {href}
+              >{configuration.call_to_action[0].label}</Button
             >
           {/if}
           <Button

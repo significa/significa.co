@@ -821,7 +821,7 @@ export interface ProposalPhaseEntryStoryblok {
 
 export interface ProposalPhaseTeamEntryStoryblok {
   duration: string;
-  offset?: string;
+  offset: string;
   _uid: string;
   component: 'proposal-phase-team-entry';
   [k: string]: any;

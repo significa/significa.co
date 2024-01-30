@@ -2,7 +2,6 @@
   import Seo from '$components/seo.svelte';
   import center from '$assets/404.svg';
   import nobita from '$assets/nobita-small.svg';
-  import { TrackingEvent, track } from '$lib/track';
   import clsx from 'clsx';
 
   const stickers = Object.values(
@@ -116,13 +115,8 @@
   let centerWidth: number;
   let centerHeight: number;
   let isFound = false;
-  let isFoundOnSession = false;
 
   $: matrix = getMatrix(screenWidth, screenHeight, centerWidth, centerHeight);
-  $: if (isFound && !isFoundOnSession) {
-    track(TrackingEvent.NOBITA_FOUND);
-    isFoundOnSession = true;
-  }
 </script>
 
 <Seo title="4🥚4" />

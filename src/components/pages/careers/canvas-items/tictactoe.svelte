@@ -52,7 +52,6 @@
   let gameState: GameState = 'main-menu';
   let gameWinCon: WinCondition | null = null;
   let selectedCharacter: Character | null = null;
-  let userHasPlayedOneGame = false;
 
   const handleRestart = () => {
     gameState = 'in-progress';
@@ -88,13 +87,6 @@
       }
     }, 500);
   };
-
-  $: if (
-    (gameState === 'win' || gameState === 'lose' || gameState === 'draw') &&
-    !userHasPlayedOneGame
-  ) {
-    userHasPlayedOneGame = true;
-  }
 
   $: if (tiles.filter((tile) => tile === -9).length === 0 && gameState === 'in-progress')
     gameState = 'draw';

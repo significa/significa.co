@@ -6,7 +6,6 @@
 
   let video: HTMLVideoElement;
   let paused = true;
-  let hasPlayedOnSession = false;
   export let src: string;
   export let preview: string | undefined = undefined;
 
@@ -56,9 +55,6 @@
         class="-translate-x-1/2 -translate-y-1/2 cursor-none ring-foreground/20"
         on:click={() => {
           video.play();
-          if (!hasPlayedOnSession) {
-            hasPlayedOnSession = true;
-          }
         }}
         icon="play">{playLabel}</Button
       >
@@ -82,9 +78,6 @@
         video.pause();
       } else {
         video.play();
-        if (!hasPlayedOnSession) {
-          hasPlayedOnSession = true;
-        }
       }
     }}
   >

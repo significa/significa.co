@@ -8,11 +8,6 @@
   export let rotate: number | undefined;
 
   let active = 0;
-  let hasMadeOneCycle = false;
-
-  $: if (active === images.length - 1 && !hasMadeOneCycle) {
-    hasMadeOneCycle = true;
-  }
 
   function next() {
     active = (active + 1) % images.length;

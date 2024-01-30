@@ -8,11 +8,6 @@
   export let item: CanvasChecklistStoryblok;
 
   let selection: string[] = [];
-  let hasCheckedAllOnce = false;
-
-  $: if (selection.length === item.items?.length && !hasCheckedAllOnce) {
-    hasCheckedAllOnce = true;
-  }
 </script>
 
 <div

@@ -39,11 +39,16 @@
       <p class="pb-3 px-4 text-foreground-secondary">{t('proposals.per-month')}</p>
     </div>
 
-    {#if technicalResources}
-      <div class="grid grid-cols-2 p-4 content-between border-t">
-        <p>{technicalResources.department.name}</p>
-        <p class="justify-self-end font-medium">{formatter.format(technicalResourcesTotal)}</p>
-        <Popover>
+    <div class="grid grid-cols-[max-content_1fr_1fr] pb-4 border-t">
+      {#if technicalResources}
+        <p class="col-start-1 px-4 pt-4 text-foreground-secondary">
+          {`${technicalResources.team_size}x`}
+        </p>
+        <p class="col-start-2 pt-4">{technicalResources.department.name}</p>
+        <p class="col-start-3 pr-4 pt-4 text-right font-medium">
+          {formatter.format(technicalResourcesTotal)}
+        </p>
+        <Popover class="col-start-2 pb-2">
           <span
             slot="target"
             class="text-sm underline underline-offset-4 decoration-dashed text-foreground-secondary"
@@ -59,14 +64,17 @@
             </p>
           </div>
         </Popover>
-        <p class="justify-self-end text-foreground-secondary">{t('proposals.package.fulltime')}</p>
-      </div>
-    {/if}
+        <p class="col-start-3 pr-4 pb-2 text-right text-foreground-secondary">
+          {t('proposals.package.fulltime')}
+        </p>
+      {/if}
 
-    {#if projectManagement}
-      <div class="grid grid-cols-2 p-3 border-t">
-        <p>{projectManagement.department.name}</p>
-        <p class="justify-self-end font-medium">
+      {#if projectManagement}
+        <p class="col-start-1 px-4 pt-2 text-foreground-secondary border-t">
+          {`${projectManagement.team_size}x`}
+        </p>
+        <p class="col-start-2 pt-2 border-t">{projectManagement.department.name}</p>
+        <p class="col-start-3 pr-4 pt-2 border-t text-right font-medium">
           {formatter.format(
             (technicalResourcesTotal *
               +projectManagement?.rate_value *
@@ -74,7 +82,7 @@
               100
           )}
         </p>
-        <Popover>
+        <Popover class="col-start-2 pb-2">
           <span
             slot="target"
             class="text-sm underline underline-offset-4 decoration-dashed text-foreground-secondary"
@@ -90,23 +98,25 @@
             </p>
           </div>
         </Popover>
-        <p class="justify-self-end text-foreground-secondary">
+        <p class="col-start-3 pr-4 p text-right text-foreground-secondary">
           {(DAYS_PER_MONTH * +projectManagement.rate_value * +projectManagement.team_size) / 100}
           {t('proposals.days-per-month')}
         </p>
-      </div>
-    {/if}
+      {/if}
 
-    {#if qualityAssurance}
-      <div class="grid grid-cols-2 p-3 border-t">
-        <p>{qualityAssurance.department.name}</p>
-        <p class="justify-self-end font-medium">
+      {#if qualityAssurance}
+        <p class="col-start-1 px-4 pt-2 border-t text-foreground-secondary">
+          {`${qualityAssurance.team_size}x`}
+        </p>
+
+        <p class="col-start-2 pt-2 border-t">{qualityAssurance.department.name}</p>
+        <p class="col-start-3 pr-4 pt-2 border-t text-right font-medium">
           {formatter.format(
             (technicalResourcesTotal * +qualityAssurance.rate_value * +qualityAssurance.team_size) /
               100
           )}
         </p>
-        <Popover>
+        <Popover class="col-start-2">
           <span
             slot="target"
             class="text-sm underline underline-offset-4 decoration-dashed text-foreground-secondary"
@@ -122,11 +132,11 @@
             </p>
           </div>
         </Popover>
-        <p class="justify-self-end text-foreground-secondary">
+        <p class="col-start-3 pr-4 text-right text-foreground-secondary">
           {(DAYS_PER_MONTH * +qualityAssurance.rate_value * +qualityAssurance.team_size) / 100}
           {t('proposals.days-per-month')}
         </p>
-      </div>
-    {/if}
+      {/if}
+    </div>
   </div>
 </div>

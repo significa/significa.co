@@ -4,7 +4,7 @@
   let visible: boolean = false;
 </script>
 
-<div class="relative">
+<div class="{$$restProps.class || ''} relative">
   <button
     class="cursor-pointer text-left"
     on:mouseenter={() => (visible = true)}

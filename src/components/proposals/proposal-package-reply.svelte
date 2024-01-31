@@ -42,7 +42,7 @@
         (max: number, current) =>
           +current.duration + +current.offset > max ? +current.duration + +current.offset : max,
         0
-      ) / 20
+      )
   );
 
   $: totalValue = monthlyTotal * totalMonths - (monthlyTotal * totalMonths * discount) / 100;

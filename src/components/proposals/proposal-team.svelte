@@ -81,7 +81,7 @@
           style="grid-row: 1 / span {dataMap.get(department.name).length}"
         >
           <p class="text-sm font-bold">
-            {department?.content?.title}.
+            {department?.content?.title}
           </p>
           <p class="text-sm text-foreground-secondary">
             {department?.content?.description}

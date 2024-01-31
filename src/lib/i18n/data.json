@@ -144,7 +144,7 @@
   "proposals.accept.button": "Accept proposal",
   "proposals.accept.contact.title": "Discuss further.",
   "proposals.accept.contact.subtitle": "If you wish to discussing things further,  we'll be happy to do so. ",
-  "proposals.accept.contact.button": "Contact us",
+  "proposals.accept.contact.button": "Contact {{name}}",
   "proposals.accept.error": "Unfortunately we couldn't receive your response. Please contact us by email.",
   "proposals.month": "month",
   "proposals.months": "months",

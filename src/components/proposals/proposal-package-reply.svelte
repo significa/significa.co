@@ -111,7 +111,9 @@
       'bg-foreground dark:bg-background-offset text-foreground border rounded-b-lg'
     )}
   >
-    <h3 class="text-2xl text-white w-2/3 lg:w-full">{t('proposals.reply.description')}</h3>
+    <h3 class="text-xl font-semibold text-white w-2/3 lg:w-full">
+      {t('proposals.reply.description')}
+    </h3>
 
     <Button as="a" href={`${$page.url.pathname}/accept`} class="bg-white text-black mt-6 lg:mt-0"
       >{t('proposals.nav.action.long')}</Button

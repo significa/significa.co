@@ -91,12 +91,17 @@
 
     <div class="mt-12 flex flex-col md:flex-row justify-between">
       <div>
-        <p>{t('proposals.accept.secondary-title')}</p>
-        <p class="text-foreground-secondary">{t('proposals.accept.secondary-subtitle')}</p>
+        <p class="font-semibold">{t('proposals.accept.secondary-title')}</p>
+        <p class="font-semibold text-foreground-secondary">
+          {t('proposals.accept.secondary-subtitle')}
+        </p>
       </div>
 
-      <Button variant="primary" class="mt-6 md:mt-0" on:click={approveProposal}
-        >{t('proposals.accept.button')}</Button
+      <Button
+        variant="primary"
+        disabled={result === 'success'}
+        class="mt-6 md:mt-0"
+        on:click={approveProposal}>{t('proposals.accept.button')}</Button
       >
     </div>
   </div>
@@ -119,8 +124,11 @@
           variant="secondary"
           class="mt-6 md:mt-0"
           as="a"
-          href="mailto:{proposal?.created_by.content.email}"
-          >{t('proposals.accept.contact.button')}</Button
+          href="mailto:{proposal?.created_by.content
+            .email}?subject={proposal?.title}. Discussion about Significa proposal"
+          >{t('proposals.accept.contact.button', {
+            name: proposal?.created_by.name.split(' ')[0]
+          })}</Button
         >
       </div>
     {/if}

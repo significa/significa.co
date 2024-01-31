@@ -1,5 +1,6 @@
 <script lang="ts">
   import { t } from '$lib/i18n';
+  import { DAYS_PER_MONTH } from '$lib/utils/proposals';
   import type { ProposalPackagePricingStoryblok } from '$types/bloks';
   import clsx from 'clsx';
 
@@ -138,7 +139,8 @@
           {projectManagement.department.name}
 
           <span class="text-foreground/50"
-            >~ {(20 * +projectManagement.rate_value * +projectManagement.team_size) / 100}
+            >~ {(DAYS_PER_MONTH * +projectManagement.rate_value * +projectManagement.team_size) /
+              100}
             {t('proposals.days-per-month')}</span
           >
         </p>
@@ -155,7 +157,7 @@
           {qualityAssurance.department.name}
 
           <span class="text-foreground/50"
-            >~ {(20 * +qualityAssurance.rate_value * +qualityAssurance.team_size) / 100}
+            >~ {(DAYS_PER_MONTH * +qualityAssurance.rate_value * +qualityAssurance.team_size) / 100}
             {t('proposals.days-per-month')}</span
           >
         </p>

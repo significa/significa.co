@@ -50,7 +50,7 @@
 
 <section class="border-t mt-20" id="estimation">
   <div
-    class="container mx-auto px-container @container flex flex-col items-center text-center max-w-md"
+    class="container mx-auto px-container @container flex flex-col items-center text-center max-w-lg"
   >
     <img width="122" src={HandAsset} alt="" class="-mt-14" />
     <h3 class="text-5xl font-semibold text-foreground-secondary">{block.section_title}</h3>

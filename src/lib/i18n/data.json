@@ -169,5 +169,7 @@
   "estimation.man.power": "Estimated man power",
   "estimation.total": "Estimated total",
   "proposals.package.reply.manpower.title": "What is estimated manpower?",
-  "proposals.package.reply.manpower.desc": "Manpower refers to the total capacity available for the project."
+  "proposals.package.reply.manpower.desc": "Manpower refers to the total capacity available for the project.",
+  "handbook.last.updated": "Last updated",
+  "handbook.navigation.website": "Significa website"
 }

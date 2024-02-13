@@ -12,3 +12,7 @@ vite.config.ts.timestamp-*
 .vercel
 
 static/sitemap.xml
+
+# Handbook data
+static/handbook/*
+handbook.json

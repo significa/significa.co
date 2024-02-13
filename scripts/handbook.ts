@@ -109,8 +109,6 @@ async function getChildren(id) {
           block_id: block.synced_block.synced_from.block_id
         });
 
-        console.log(syncedBlock);
-
         children = await getChildren(block.synced_block.synced_from.block_id);
 
         return {
@@ -147,6 +145,12 @@ async function main() {
   if (NOTION_DB_HANDBOOK) {
     verbose && console.log('Starting data fetch');
     verbose && console.log('Fetching page list');
+
+    if (download) {
+      !fs.existsSync(COVERS_PATH) && fs.mkdirSync(COVERS_PATH, { recursive: true });
+      !fs.existsSync(FILES_PATH) && fs.mkdirSync(FILES_PATH, { recursive: true });
+      !fs.existsSync(IMAGES_PATH) && fs.mkdirSync(IMAGES_PATH, { recursive: true });
+    }
 
     /*eslint no-constant-condition: ["error", { "checkLoops": false }]*/
     while (true) {

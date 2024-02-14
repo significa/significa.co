@@ -6,7 +6,7 @@
   import { formatDate } from '$lib/utils/dates.js';
   import Seo from '$components/seo.svelte';
   import { page } from '$app/stores';
-  import handbookOG from '$assets/handbook/handbookOG.jpg';
+  import handbookOG from '$assets/handbook/HandbookOG.jpg';
 
   export let data;
 

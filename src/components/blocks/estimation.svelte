@@ -2,49 +2,40 @@
   import type { EstimationStoryblok } from '$types/bloks';
   import IllustrationEmply from '../illustrations/assets/illustration-emply.webp';
   import IllustrationEmplyLight from '../illustrations/assets/illustration-emply-light.webp';
-  import ArrowLight from '../illustrations/assets/arrow-estimations-white.webp';
-  import ArrowDark from '../illustrations/assets/arrow-estimations.webp';
   import { theme } from '$lib/stores/theme';
-  import { Icon, MultiSelect } from '@significa/svelte-ui';
+  import { Radio } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import ContactForm from '$components/contact-form.svelte';
   import { estimations } from '$lib/estimations';
-  import type { ListboxOption } from '@melt-ui/svelte/dist/builders/listbox/types';
+
   import HandAsset from '../illustrations/assets/hand.webp';
-  import PreFooterAsset from '../illustrations/assets/pre-footer.webp';
-  import PreFooterAssetLight from '../illustrations/assets/pre-footer-light.webp';
+
   import { t } from '$lib/i18n';
 
   export let block: EstimationStoryblok;
 
   let open = false;
 
+  let selected: Array<string> = [];
+
   $: src = $theme === 'dark' ? IllustrationEmply : IllustrationEmplyLight;
-  $: srcArrow = $theme === 'dark' ? ArrowDark : ArrowLight;
 
-  let selected: Record<string, ListboxOption<string>[]> = {};
+  $: estimationsMap = estimations
+    .map((v, i) => v.options.filter((o) => o.name === selected[i]))
+    .flat();
 
-  $: selectedMap = Object.entries(selected).map(([key, value]) => ({ key, value }));
+  $: combinedBudgetPower = estimationsMap.reduce(
+    (a, b) => {
+      return {
+        lowBudget: a.lowBudget + Number(b['low-est-point']) * 14500,
+        highBudget: a.highBudget + Number(b['high-est-point']) * 14500,
+        lowPower: a.lowPower + Number(b['low-est-point']),
+        highPower: a.highPower + Number(b['high-est-point'])
+      };
+    },
+    { lowBudget: 0, highBudget: 0, lowPower: 0, highPower: 0 }
+  );
 
-  $: selectedKeyValues = selectedMap.map(({ value }) => value.map((v) => v.value)).flat();
-
-  let estimationsMap = estimations.map((v) => v.options.filter((o) => o.name)).flat();
-
-  $: combinedBudgetPower = estimationsMap
-    .filter((r) => selectedKeyValues.includes(r.name))
-    .reduce(
-      (a, b) => {
-        return {
-          lowBudget: a.lowBudget + Number(b['low-bud-point']),
-          highBudget: a.highBudget + Number(b['high-bud-point']),
-          lowPower: a.lowPower + Number(b['low-est-point']),
-          highPower: a.highPower + Number(b['high-est-point'])
-        };
-      },
-      { lowBudget: 0, highBudget: 0, lowPower: 0, highPower: 0 }
-    );
-
-  // open / close form
   $: Object.values(combinedBudgetPower).every((val) => val !== 0) ? (open = true) : (open = false);
 </script>
 
@@ -60,25 +51,16 @@
 
 <section class="container mx-auto px-container @container pt-20 pb-16 flex">
   <div
-    class="rounded-lg border w-full overflow-hidden flex min-h-[unset] xl:min-h-[710px] flex-col xl:flex-row relative"
+    class="rounded-lg border w-full overflow-hidden flex min-h-[unset] flex-col xl:flex-row relative"
   >
-    <img
-      class={clsx(
-        'absolute right-1/2 hidden xl:block transition-all ease-motion duration-500',
-        !open ? '-bottom-96 opacity-0 select-none' : 'bottom-0 opacity-100'
-      )}
-      src={$theme === 'dark' ? PreFooterAsset : PreFooterAssetLight}
-      width="354"
-      alt=""
-    />
     <div
       class={clsx(
-        'flex transition-all duration-500 ease-motion bg-background-panel rounded-b-lg xl:rounded-r-lg',
-        open ? 'xl:w-1/2 w-full ring-1 ring-border' : 'w-full'
+        'flex transition-all duration-300 ease-motion bg-background-panel rounded-b-lg xl:rounded-r-lg',
+        open ? 'ring-1 ring-border w-2/3' : 'w-full min-w-full'
       )}
     >
-      <div class="w-full @5xl:flex">
-        <div class="p-6 xl:p-8 flex flex-col justify-between h-full xl:max-w-2xl">
+      <div class="block w-full">
+        <div class="p-6 xl:p-8 flex flex-col h-full relative z-10">
           <div>
             <h3 class="text-4xl max-w-md">
               {block.title}
@@ -86,48 +68,38 @@
             <p class="my-4 text-xl text-foreground-secondary max-w-md">
               {block.description}
             </p>
-            <div class="py-4 xl:py-6 inline-flex lg:flex-row flex-col flex-wrap gap-4 relative">
-              <img
-                class={clsx(
-                  'hidden xl:block absolute top-12 -right-4 translate-x-full',
-                  open ? 'xl:hidden xl:opacity-0' : 'opacity-100'
-                )}
-                width="164"
-                src={srcArrow}
-                alt=""
-              />
-              {#each estimations as { name, options }}
-                <MultiSelect
-                  options={options.map((o) => o.name)}
-                  bind:selected={selected[name]}
-                  selectedLabel={name}
-                  icon="plus"
-                  class="w-full xs:w-fit"
-                />
-              {/each}
-            </div>
-
-            <div class="flex flex-wrap gap-4 max-w-xl z-10 relative">
-              {#each selectedMap as option}
-                {#each option.value as op}
+            <div class={clsx('pb-4 pt-2 xl:pb-8 gap-4 relative', open ? 'w-full' : 'w-2/3')}>
+              <div class="grid grid-cols-3 gap-y-4 gap-x-5">
+                {#each estimations as options, i}
                   <div
-                    class="flex items-center justify-between px-2.5 py-1.5 border border-border bg-background-offset text-xs font-semibold rounded-xs w-fit hover:transition-all focus-within:border-border-active focus-within:outline-none focus-within:ring-4 focus-within:ring-outline focus-within:transition-all hover:opacity-80"
+                    class="gap-2 grid last:col-span-2 last:grid-cols-2 last:gap-x-5 [&:last-child>p]:col-span-2"
                   >
-                    {op.label}
-                    <button
-                      class="outline-none flex"
-                      on:click={() => {
-                        let opSelected = selected[option.key].filter(
-                          (value) => value.label !== op.label
-                        );
-                        selected[option.key] = opSelected;
-                      }}
-                    >
-                      <Icon class="ml-2" icon="close" />
-                    </button>
+                    <p class="pt-4 leading-none text-foreground-secondary text-sm grid pb-2">
+                      {options.name}
+                    </p>
+
+                    {#each options.options as opt}
+                      <label
+                        for={`${options.name} / ${opt.name}`}
+                        class={clsx(
+                          'flex flex-col items-start py-2 px-3 transition-all hover:bg-foreground/2 cursor-pointer border rounded-sm hover:border-border-active hover:ring-2 text-sm/[20px] select-none'
+                        )}
+                      >
+                        <div class="flex items-center justify-between w-full">
+                          <p class="font-medium pr-3">{opt.name}</p>
+                          <Radio
+                            class="cursor-pointer shrink-0"
+                            id={`${options.name} / ${opt.name}`}
+                            value={opt.name}
+                            name={options.name}
+                            bind:group={selected[i]}
+                          />
+                        </div>
+                      </label>
+                    {/each}
                   </div>
                 {/each}
-              {/each}
+              </div>
             </div>
           </div>
 
@@ -152,11 +124,18 @@
             open ? 'xl:hidden xl:opacity-0' : 'right-0 opacity-100'
           )}
         >
-          <img class="max-w-[710px]" {src} alt="" />
+          <img class="max-w-[710px] pointer-events-none" {src} alt="" />
         </div>
       </div>
     </div>
-    <div class={clsx('xl:w-1/2 w-full p-8', open ? 'flex flex-col justify-between' : 'hidden')}>
+    <div
+      class={clsx(
+        'p-8 transition-all duration-300 ease-motion',
+        open
+          ? 'flex flex-col justify-between flex-0.5 shrink-0 translate-x-0 w-1/3'
+          : 'flex-0 translate-x-full'
+      )}
+    >
       <div>
         <h3 class="text-4xl max-w-[300px]">
           {block.form_title}
@@ -167,7 +146,7 @@
       </div>
       <ContactForm variant="estimations">
         <svelte:fragment slot="estimationsform">
-          <input name="estimations" hidden bind:value={selectedKeyValues} />
+          <!-- <input name="estimations" hidden bind:value={selectedKeyValues} /> -->
         </svelte:fragment>
       </ContactForm>
     </div>

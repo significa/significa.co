@@ -1,27 +1,81 @@
 export const estimations = [
   {
-    name: 'Strategy',
+    name: 'Website',
     options: [
       {
-        name: 'UX Research',
+        name: 'Design',
         'low-est-point': '1',
-        'high-est-point': '2',
-        'low-bud-point': '10000',
-        'high-bud-point': '20000'
+        'high-est-point': '2'
       },
       {
-        name: 'MVP build',
-        'low-est-point': '1',
-        'high-est-point': '2',
-        'low-bud-point': '10000',
-        'high-bud-point': '20000'
+        name: 'Design and development',
+        'low-est-point': '2',
+        'high-est-point': '4'
+      }
+    ]
+  },
+  {
+    name: 'E-commerce',
+    options: [
+      {
+        name: 'Design',
+        'low-est-point': '2',
+        'high-est-point': '3'
       },
       {
-        name: 'Website',
+        name: 'Design and development',
+        'low-est-point': '5',
+        'high-est-point': '8'
+      }
+    ]
+  },
+  {
+    name: 'Web app',
+    options: [
+      {
+        name: 'Design',
         'low-est-point': '1',
-        'high-est-point': '2',
-        'low-bud-point': '10000',
-        'high-bud-point': '20000'
+        'high-est-point': '3'
+      },
+      {
+        name: 'Design and development',
+        'low-est-point': '3',
+        'high-est-point': '6'
+      }
+    ]
+  },
+  {
+    name: 'Mobile app',
+    options: [
+      {
+        name: 'Design',
+        'low-est-point': '1',
+        'high-est-point': '3'
+      },
+      {
+        name: 'Design and development',
+        'low-est-point': '3',
+        'high-est-point': '6'
+      }
+    ]
+  },
+  {
+    name: 'Others (design and development)',
+    options: [
+      {
+        name: 'TV App',
+        'low-est-point': '2',
+        'high-est-point': '5'
+      },
+      {
+        name: 'Desktop App',
+        'low-est-point': '3',
+        'high-est-point': '6'
+      },
+      {
+        name: 'Watch App',
+        'low-est-point': '2',
+        'high-est-point': '4'
       }
     ]
   }

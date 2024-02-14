@@ -50,7 +50,10 @@
       <NotionHeading {block} />
     {:else if block.type === 'image'}
       <!-- svelte-ignore a11y-missing-attribute -->
-      <img class="my-8 w-full rounded-xl" src={`/handbook/images/${block.id}`} />
+      <img class="mt-8 mb-2 w-full rounded-xl" src={`/handbook/images/${block.id}`} />
+      {#if block.image.caption}
+        <NotionRichText richText={block.image.caption} />
+      {/if}
     {:else if block.type === 'link_preview'}
       <a
         class="block my-2 text-lg"

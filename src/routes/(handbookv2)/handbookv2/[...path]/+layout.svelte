@@ -1,6 +1,6 @@
 <script lang="ts">
   import clsx from 'clsx';
-  import { TextButton } from '@significa/svelte-ui';
+  import { Icon, Link, TextButton } from '@significa/svelte-ui';
   import plus from '$assets/plus.svg?raw';
   import { slide } from 'svelte/transition';
   import { bodyLock } from '@significa/svelte-ui/actions';
@@ -9,7 +9,7 @@
   import { t } from '$lib/i18n';
   import { circOut } from 'svelte/easing';
   import { slugs } from '$lib/stores/handbook-slugs';
-  import { slugify } from '$lib/utils/paths.js';
+  import { sanitizeSlug, slugify } from '$lib/utils/paths.js';
   import { getPageTitle } from '$lib/utils/notion.js';
   import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints.js';
 
@@ -21,14 +21,16 @@
     sidebar.set(false);
   });
 
-  let openPanes = Object.values(data.chapters).map((pages) => ({
+  $: openPanes = Object.values(data.chapters).map((pages) => ({
     open: pages.some(
       (page) =>
         data.path === page.slug ||
         page.children?.some((childrenPage) => data.path === childrenPage.slug)
     ),
-    children: pages.map((page) =>
-      page.children?.some((childrenPage) => data.path === childrenPage.slug)
+    children: pages.map(
+      (page) =>
+        data.path === page.slug ||
+        page.children?.some((childrenPage) => data.path === childrenPage.slug)
     )
   }));
 
@@ -46,7 +48,7 @@
 <div class="lg:container lg:mx-auto lg:px-container pb-20" use:bodyLock={sidebar}>
   <!-- Mobile: open menu -->
   <div
-    class="sticky top-[61px] z-10 flex h-12 items-center border-b bg-background py-2 px-container lg:px-0 lg:hidden"
+    class="sticky top-[--topnav-height] z-10 flex h-12 items-center border-b bg-background py-2 px-container lg:px-0 lg:hidden"
   >
     <TextButton iconLeft="hamburger" on:click={() => sidebar.set(true)}>
       {t('handbook')}
@@ -56,19 +58,26 @@
   <div class="flex flex-col lg:flex-row gap-5">
     <aside
       class={clsx(
-        'fixed top-[61px] bottom-0 z-10 w-full overflow-y-auto bg-background',
+        'fixed top-[--topnav-height] bottom-0 z-10 w-full overflow-y-auto bg-background',
         'lg:relative lg:bottom-auto lg:top-auto lg:block lg:mt-24 lg:h-auto lg:w-72 lg:overflow-y-visible',
         $sidebar ? 'block' : 'hidden'
       )}
     >
       <!-- Mobile: close menu -->
       <div
-        class="px-container fixed top-0 z-10 flex h-12 items-center border-b bg-background py-2 lg:hidden"
+        class="px-container fixed w-full top-[--topnav-height] z-10 flex h-12 items-center justify-between border-b bg-background py-2 lg:hidden"
       >
         <TextButton iconLeft="close" on:click={() => sidebar.set(false)}>{t('close')}</TextButton>
+
+        <div class="items-center gap-1 text-sm font-medium leading-relaxed flex">
+          <Icon icon="home" />
+          <Link href={sanitizeSlug('/')}>
+            {t('handbook.navigation.website')}
+          </Link>
+        </div>
       </div>
 
-      <nav class="px-container lg:px-0 pt-4 lg:top-[calc(var(--topnav-height)_+_30px)]">
+      <nav class="px-container lg:px-0 pt-[calc(var(--topnav-height))] lg:pt-4">
         <ul>
           {#each Object.entries(data.chapters) as [title, pages], i}
             <li
@@ -88,8 +97,8 @@
               {#each pages as page, j}
                 <li
                   class={clsx(
-                    'pl-6 py-1.5 border-l text-sm font-medium transition-all duration-300 flex items-center',
-                    openPanes[i].children[j] === true || data.path === page.slug
+                    'pl-6 py-1.5 border-l text-sm font-medium transition-all duration-300 flex items-center group',
+                    data.path === page.slug
                       ? 'text-foreground'
                       : 'border-border text-foreground-secondary'
                   )}
@@ -99,7 +108,7 @@
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
                     <div
                       class={clsx(
-                        'bg-background hover:bg-background-panel border border-background hover:border-border',
+                        'bg-background group-hover:bg-background-panel border border-background group-hover:border-border',
                         'cursor-pointer -ml-[37px] mr-3 rounded-xl p-1 transition-transform duration-300',
                         openPanes[i].children[j] === true && 'rotate-45'
                       )}

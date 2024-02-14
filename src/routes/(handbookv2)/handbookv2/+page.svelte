@@ -1,18 +1,25 @@
 <script lang="ts">
-  import handbook from '$assets/handbook.svg';
-  import placeholder from '$assets/handbook_placeholder.svg';
+  import handbook from '$assets/handbook/handbook.svg';
+  import placeholder from '$assets/handbook/handbook_placeholder.svg';
   import { t } from '$lib/i18n';
   import clsx from 'clsx';
   import { formatDate } from '$lib/utils/dates.js';
   import Seo from '$components/seo.svelte';
+  import { page } from '$app/stores';
+  import handbookOG from '$assets/handbook/handbookOG.jpg';
 
   export let data;
+
   const { chapters } = data;
 </script>
 
-<Seo title="Handbook by Significa" />
+<Seo
+  title="Handbook by Significa"
+  description="Our handbook, the source of truth of our existence."
+  image={`${$page.url.origin}${handbookOG}`}
+/>
 
-<div class="container mx-auto px-container">
+<div class="container mx-auto px-container pb-20">
   <img alt="Handbook" src={handbook} class="w-80 mx-auto mt-28 mb-20" />
 
   {#each Object.entries(chapters) as [title, pages]}

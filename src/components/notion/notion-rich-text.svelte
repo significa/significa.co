@@ -3,6 +3,8 @@
   import { slugs } from '$lib/stores/handbook-slugs';
   import { onDestroy } from 'svelte';
   import { annotationsToCSS } from '$lib/utils/notion';
+  import { Icon } from '@significa/svelte-ui';
+  import clsx from 'clsx';
 
   export let richText: Array<RichTextItemResponse>;
 
@@ -19,11 +21,14 @@
   {#if textPart.type === 'text'}
     {#if textPart.href}
       <a
-        class={annotationsToCSS(textPart.annotations)}
+        class={clsx(annotationsToCSS(textPart.annotations), 'inline-flex items-center')}
         href={textPart.href}
         target="_blank"
-        rel="noopener noreferrer">{textPart.plain_text}</a
+        rel="noopener noreferrer"
       >
+        {textPart.plain_text}
+        <Icon icon="arrow-external" />
+      </a>
     {:else}
       <span class={annotationsToCSS(textPart.annotations)}>{textPart.plain_text}</span>
     {/if}
@@ -35,11 +40,14 @@
         >
       {:else}
         <a
-          class={annotationsToCSS(textPart.annotations)}
+          class={clsx(annotationsToCSS(textPart.annotations), 'inline-flex items-center')}
           href={textPart.href}
           target="_blank"
-          rel="noopener noreferrer">{textPart.plain_text}</a
+          rel="noopener noreferrer"
         >
+          {textPart.plain_text}
+          <Icon icon="arrow-external" />
+        </a>
       {/if}
     {/if}
   {/if}

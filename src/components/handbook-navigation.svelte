@@ -23,13 +23,13 @@
       <div class="flex items-center gap-4">
         {#if configuration.call_to_action?.length}
           {@const { href } = getAnchorFromCmsLink(configuration.call_to_action[0].link)}
-          <div class="hidden lg:block">
+          <div class="block">
             <Button as="a" {href}>{configuration.call_to_action[0].label}</Button>
           </div>
         {/if}
       </div>
 
-      <div class="items-center gap-1 text-sm font-medium leading-relaxed flex">
+      <div class="items-center gap-1 text-sm font-medium leading-relaxed hidden lg:flex">
         <Icon icon="home" />
         <Link href={sanitizeSlug('/')}>
           {t('handbook.navigation.website')}

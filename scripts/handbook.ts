@@ -16,6 +16,7 @@ const NOTION_TOKEN = process.env.NOTION_TOKEN;
 const COVERS_PATH = './static/handbook/covers/';
 const IMAGES_PATH = './static/handbook/images/';
 const FILES_PATH = './static/handbook/files/';
+const SEO_IMAGES_PATH = './static/handbook/seo/';
 const FILENAME = './handbook.json';
 
 if (!NOTION_TOKEN) {
@@ -150,6 +151,7 @@ async function main() {
       !fs.existsSync(COVERS_PATH) && fs.mkdirSync(COVERS_PATH, { recursive: true });
       !fs.existsSync(FILES_PATH) && fs.mkdirSync(FILES_PATH, { recursive: true });
       !fs.existsSync(IMAGES_PATH) && fs.mkdirSync(IMAGES_PATH, { recursive: true });
+      !fs.existsSync(SEO_IMAGES_PATH) && fs.mkdirSync(SEO_IMAGES_PATH, { recursive: true });
     }
 
     /*eslint no-constant-condition: ["error", { "checkLoops": false }]*/
@@ -179,6 +181,16 @@ async function main() {
           const path = `${COVERS_PATH}${page.id}`;
 
           downloadFile(page.cover, path);
+        }
+
+        if (
+          'files' in page.properties['OG image'] &&
+          page.properties['OG image'].files[0] &&
+          'file' in page.properties['OG image'].files[0]
+        ) {
+          const path = `${SEO_IMAGES_PATH}${page.id}`;
+
+          downloadFile(page.properties['OG image'].files[0], path);
         }
       });
     }

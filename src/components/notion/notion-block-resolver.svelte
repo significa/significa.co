@@ -33,7 +33,7 @@
         rel="noopener noreferrer">{block.bookmark.url}</a
       >
     {:else if block.type === 'bulleted_list_item'}
-      <ul class="list-disc">
+      <ul class="list-disc my-3">
         <li>
           <NotionRichText richText={block?.bulleted_list_item.rich_text} />
         </li>

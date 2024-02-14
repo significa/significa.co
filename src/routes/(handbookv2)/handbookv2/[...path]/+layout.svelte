@@ -69,7 +69,7 @@
       >
         <TextButton iconLeft="close" on:click={() => sidebar.set(false)}>{t('close')}</TextButton>
 
-        <div class="items-center gap-1 text-sm font-medium leading-relaxed flex">
+        <div class="flex items-center gap-1 text-sm font-medium leading-relaxed">
           <Icon icon="home" />
           <Link href={sanitizeSlug('/')}>
             {t('handbook.navigation.website')}

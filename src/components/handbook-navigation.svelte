@@ -14,7 +14,7 @@
   class={clsx('z-30 w-full border-b bg-background/95 backdrop-blur-md border-b-border fixed top-0')}
 >
   <div class={clsx('flex items-center justify-between py-4 container mx-auto px-container')}>
-    <a class="flex items-center gap-2" aria-label="Go to homepage" href="/handbookv2">
+    <a class="flex items-center gap-2" aria-label="Go to homepage" href="/handbook">
       <Logo class="mt-1" variant="wordmark" />
       <AnHandAndABook />
     </a>

@@ -5,7 +5,6 @@
     PageResult,
     Page,
     BlogPostPage,
-    HandbookPage,
     ProjectPage,
     CareerPage,
     TeamMemberPage,
@@ -13,7 +12,6 @@
   } from '$lib/content';
   import BlogPost from './blog-post.svelte';
   import Career from './career.svelte';
-  import Handbook from './handbook.svelte';
   import PageComponent from './page.svelte';
   import Project from './project.svelte';
   import TeamMember from './team-member.svelte';
@@ -35,10 +33,6 @@
     page: PageResult
   ): page is { story: BlogPostPage; relatedPosts: BlogPostPage[] } => {
     return page.story.content.component === 'blog-post';
-  };
-
-  const isHandbookPage = (page: PageResult): page is { story: HandbookPage } => {
-    return page.story.content.component === 'handbook';
   };
 
   const isProjectPage = (
@@ -76,8 +70,6 @@
   />
 {:else if isBlogPostPage(page)}
   <BlogPost story={page.story} related={page.relatedPosts} />
-{:else if isHandbookPage(page)}
-  <Handbook story={page.story} />
 {:else if isProjectPage(page)}
   <Project story={page.story} related={page.relatedProjects} />
 {:else if isTeamMemberPage(page)}

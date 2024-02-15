@@ -17,7 +17,7 @@ const COVERS_PATH = './static/handbook/covers/';
 const IMAGES_PATH = './static/handbook/images/';
 const FILES_PATH = './static/handbook/files/';
 const SEO_IMAGES_PATH = './static/handbook/seo/';
-const FILENAME = './handbook.json';
+const FILENAME = './handbook-data.json';
 
 if (!NOTION_TOKEN) {
   throw new Error('Missing env var: NOTION_TOKEN');
@@ -211,9 +211,6 @@ async function main() {
 
       fs.writeFileSync(`${FILENAME}`, JSON.stringify(values));
       exec(`npx prettier --write ${FILENAME}`);
-
-      // fs.writeFileSync(`./handbook.json`, JSON.stringify(values));
-      // exec(`npx prettier --write ./handbook.json`);
 
       verbose && console.log('File writing complete');
     });

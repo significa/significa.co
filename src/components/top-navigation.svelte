@@ -8,11 +8,9 @@
   import { Badge, Button, Link, Logo } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import { fade, fly } from 'svelte/transition';
-  import AnHandAndABook from './an-hand-and-a-book.svelte';
   import { createTopNavScrollStatus } from '$lib/stores/topnav-scroll-status';
 
   export let configuration: ConfigurationStoryblok;
-  export let variant: 'default' | 'handbook' = 'default';
 
   let panel = false;
 
@@ -26,32 +24,20 @@
 <div class="mb-px h-[--topnav-height]">
   <header
     class={clsx(
-      'ease-[cubic-bezier(0.90, 0, 0.05, 1)] z-30 w-full border-b bg-background/95 backdrop-blur-md transition-[transform,border-color] duration-300',
-      variant === 'default' && 'fixed',
-      !$scrollStatus.isPastZero && variant === 'default'
-        ? 'border-b-transparent'
-        : 'border-b-border',
+      'fixed ease-[cubic-bezier(0.90, 0, 0.05, 1)] z-30 w-full border-b bg-background/95 backdrop-blur-md transition-[transform,border-color] duration-300',
+      !$scrollStatus.isPastZero ? 'border-b-transparent' : 'border-b-border',
       !$scrollStatus.isPastThreshold
         ? 'translate-y-0'
-        : $scrollStatus.direction === 'down' && variant === 'default'
+        : $scrollStatus.direction === 'down'
         ? '-translate-y-full'
         : 'translate-y-0'
     )}
   >
-    <div
-      class={clsx(
-        'flex items-center justify-between py-4',
-        // we could achieve this with route groups and a different layout, but it's so simple that we'll leave it like this for now
-        variant === 'handbook' ? 'px-6' : 'container mx-auto px-container'
-      )}
-    >
+    <div class="flex items-center justify-between py-4 container mx-auto px-container">
       <div class="flex items-center gap-2">
         <a aria-label="Go to homepage" href="/">
           <Logo class="mt-1" variant="wordmark" />
         </a>
-        {#if variant === 'handbook'}
-          <AnHandAndABook />
-        {/if}
       </div>
 
       <div class="flex items-center gap-8">
@@ -98,7 +84,7 @@
       transition:fly|global={{ x: 1000, duration: 300 }}
       use:clickOutside={() => (panel = false)}
       class={clsx(
-        variant === 'handbook' ? 'px-6' : 'px-container pl-6',
+        'px-container pl-6',
         'fixed bottom-0 right-0 top-0 z-50 flex w-full max-w-sm flex-col items-start overflow-y-auto bg-background py-4'
       )}
     >

@@ -1,9 +1,9 @@
 import { createFileTree } from '$lib/utils/notion';
 import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-import handbook from '$root/handbook.json';
+import handbook from '$root/handbook-data.json';
 
-export const load = ({ params }) => {
+export const load = () => {
   const chapters = createFileTree(handbook as Array<PageObjectResponse>);
 
-  return { path: params.path, chapters, handbook };
+  return { chapters };
 };

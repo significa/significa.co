@@ -32,7 +32,7 @@
             'border shadow-sm flex bg-background-panel hover:bg-background-offset group rounded-lg overflow-hidden',
             page.highlighted ? 'row-span-3 col-span-1 flex-col' : 'row-span-1 col-span-1'
           )}
-          href={`/handbookv2/${page.slug}`}
+          href={`/handbook/${page.slug}`}
         >
           {#if page.hasCover}
             <span

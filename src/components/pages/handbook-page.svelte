@@ -30,7 +30,7 @@
     image={`${$page.url.origin}/handbook/seo/${handbookPage.id}`}
   />
 
-  <div use:drawerLinks class="max-w-2xl mx-auto mt-10 lg:mt-20 rich-text">
+  <div use:drawerLinks class="max-w-2xl mx-6 xl:mx-auto mt-10 lg:mt-20 rich-text mb-20">
     {#if handbookPage?.cover}
       <img
         src={`/handbook/covers/${handbookPage.id}`}

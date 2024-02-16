@@ -10,12 +10,12 @@ const config = {
   kit: {
     adapter: adapter(),
     alias: {
-      $root: '.',
       $assets: './src/assets',
       $components: './src/components',
       $lib: './src/lib',
       $types: './src/types',
-      $styles: './src/styles'
+      $styles: './src/styles',
+      $root: '.'
     }
   }
 };

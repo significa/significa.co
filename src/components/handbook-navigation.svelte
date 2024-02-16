@@ -31,7 +31,7 @@
 
       <div class="items-center gap-1 text-sm font-medium leading-relaxed hidden lg:flex">
         <Icon icon="home" />
-        <Link href={sanitizeSlug('/')}>
+        <Link href={sanitizeSlug('/')} target="_blank" rel="noopener noreferrer">
           {t('handbook.navigation.website')}
         </Link>
       </div>

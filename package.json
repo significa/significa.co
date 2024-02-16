@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "prebuild": "npm run datasources && npm run sitemap",
+    "prebuild": "npm run datasources && npm run sitemap && npm run handbook -- -d",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -18,6 +18,7 @@
     "sb:pull": "npx storyblok@latest pull-components --space=198185",
     "sb:types": "npx storyblok-generate-ts@latest source=./components.198185.json target=./src/types/bloks.d.ts && prettier ./src/types/bloks.d.ts --write",
     "sb": "npm run sb:pull && npm run sb:types",
+    "handbook": "svelte-kit sync && npx ts-node@latest --project ./node.tsconfig.json ./scripts/handbook.ts",
     "datasources": "svelte-kit sync && npx ts-node@latest --project ./node.tsconfig.json ./scripts/datasources.ts",
     "sitemap": "svelte-kit sync && npx ts-node@latest --project ./node.tsconfig.json ./scripts/sitemap.ts",
     "prepare": "husky install"
@@ -61,7 +62,7 @@
     "@aws-sdk/client-ses": "3.413.0",
     "@aws-sdk/s3-request-presigner": "3.413.0",
     "@melt-ui/svelte": "^0.70.0",
-    "@notionhq/client": "^2.2.13",
+    "@notionhq/client": "^2.2.14",
     "@significa/svelte-ui": "^0.0.33",
     "@storyblok/js": "^2.3.0",
     "matter-js": "^0.19.0",

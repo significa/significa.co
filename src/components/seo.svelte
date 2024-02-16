@@ -9,7 +9,7 @@
 
   export let title: undefined | string = undefined;
   export let description: undefined | string = undefined;
-  export let image: undefined | AssetStoryblok = undefined;
+  export let image: undefined | AssetStoryblok | string = undefined;
 
   const inDrawer = getContext<boolean>('drawer');
 </script>
@@ -47,7 +47,7 @@
     />
     <meta property="og:url" content={$page.url.toString()} />
     <meta property="og:type" content="website" />
-    {#if image?.filename && !VIDEO_EXTENSIONS.includes(getFileExtension(image.filename))}
+    {#if typeof image !== 'string' && image?.filename && !VIDEO_EXTENSIONS.includes(getFileExtension(image.filename))}
       {@const { src } = getImageAttributes(image, { size: [1200, 630] })}
       <meta property="og:image" content={src} />
       <meta property="twitter:image" content={src} />
@@ -57,6 +57,9 @@
       })}
       <meta property="og:image" content={src} />
       <meta property="twitter:image" content={src} />
+    {:else if typeof image === 'string'}
+      <meta property="og:image" content={image} />
+      <meta property="twitter:image" content={image} />
     {:else}
       <meta property="og:image" content="{$page.url.origin}/og.png" />
       <meta property="twitter:image" content="{$page.url.origin}/og.png" />

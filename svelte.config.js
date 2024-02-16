@@ -14,7 +14,8 @@ const config = {
       $components: './src/components',
       $lib: './src/lib',
       $types: './src/types',
-      $styles: './src/styles'
+      $styles: './src/styles',
+      $root: '.'
     }
   }
 };

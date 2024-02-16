@@ -8,10 +8,7 @@
   export let data;
 </script>
 
-<TopNavigation
-  configuration={data.configuration.content}
-  variant={$page.url.pathname.startsWith('/handbook') ? 'handbook' : 'default'}
-/>
+<TopNavigation configuration={data.configuration.content} />
 <slot />
 {#if !$page.error}
   <Footer configuration={data.configuration.content} />

@@ -48,7 +48,7 @@
       <Button class="bg-background" variant="ghost" icon="close" on:click={drawer.close} />
     </header>
     <div>
-      {#if !$page.url.pathname.includes('handbook')}
+      {#if !$drawer.includes('handbook/')}
         {#await fetchPage({ slug: $drawer, version: $page.data.version || 'published' })}
           <div class="flex justify-center p-10">
             <Spinner size="md" />

@@ -76,7 +76,7 @@
               as="a"
               href={`${handleLinkType(item.link_type, item.link, item.email_subject)}`}
               size="lg"
-              class={clsx('w-fit', item.link_type === 'url' && 'flex @4xl:hidden')}
+              class={clsx('w-fit [&:last-of-type]:flex [&:last-of-type]:@4xl:hidden')}
               >{item.title}</Button
             >
           {/each}

@@ -5,10 +5,11 @@
   import type { BlogPostPage, ProjectPage } from '$lib/content';
   import { t } from '$lib/i18n';
   import { getImageAttributes } from '$lib/utils/cms';
-  import type { TeamMemberStoryblok } from '$types/bloks';
+  import type { TeamButtonsStoryblok, TeamMemberStoryblok } from '$types/bloks';
   import type { ISbStoryData } from '@storyblok/js';
   import clsx from 'clsx';
   import { theme } from '$lib/stores/theme';
+  import { Button } from '@significa/svelte-ui';
 
   export let story: ISbStoryData<TeamMemberStoryblok>;
   export let posts: BlogPostPage[];
@@ -29,6 +30,23 @@
       active: !!posts.length
     }
   ] as const;
+
+  const handleLinkType = (
+    linkType: TeamButtonsStoryblok['link_type'],
+    link?: string,
+    emailSubject?: string
+  ) => {
+    switch (linkType) {
+      case 'email':
+        return `mailto:${link}?subject=${emailSubject}`;
+      case 'phone':
+        return `tel:${link}`;
+      case 'url':
+        return `${link}`;
+      default:
+        return '';
+    }
+  };
 </script>
 
 <Seo
@@ -50,6 +68,20 @@
         {!story.content.is_active ? `${t('team.former')} ` : ''}{story.content.position}
       </p>
       <p class="mt-6 text-2xl @4xl:max-w-xl">{story.content.bio}</p>
+      {#if story.content.buttons}
+        <div class="flex mt-8 gap-4 flex-wrap">
+          {#each story.content.buttons as item}
+            <Button
+              variant="secondary"
+              as="a"
+              href={`${handleLinkType(item.link_type, item.link, item.email_subject)}`}
+              size="lg"
+              class={clsx('w-fit', item.link_type === 'url' && 'flex @4xl:hidden')}
+              >{item.title}</Button
+            >
+          {/each}
+        </div>
+      {/if}
     </div>
     {#if story.content.cover_image_light && story.content.cover_image_dark && story.content.is_active}
       {@const img =

@@ -9,7 +9,7 @@
 
   export let post: ISbStoryData<
     Omit<BlogPostStoryblok, 'author'> & {
-      author: ISbStoryData<TeamMemberStoryblok>;
+      author?: ISbStoryData<TeamMemberStoryblok>;
     }
   >;
 </script>

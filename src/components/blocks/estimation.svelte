@@ -3,7 +3,7 @@
   import IllustrationEmply from '../illustrations/assets/illustration-emply.webp';
   import IllustrationEmplyLight from '../illustrations/assets/illustration-emply-light.webp';
   import { theme } from '$lib/stores/theme';
-  import { Radio } from '@significa/svelte-ui';
+  import { CheckboxGroup, Radio } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import ContactForm from '$components/contact-form.svelte';
   import { estimations } from '$lib/estimations';
@@ -15,14 +15,24 @@
   export let block: EstimationStoryblok;
 
   let open = false;
+  $: src = $theme === 'dark' ? IllustrationEmply : IllustrationEmplyLight;
 
   let selected: Array<string> = [];
 
-  $: src = $theme === 'dark' ? IllustrationEmply : IllustrationEmplyLight;
+  $: selectedValuesToNotion = estimations
+    .map((estimation, index) => {
+      return estimation.options
+        .filter((option) => option.name === selected[index])
+        .map((option) => `${estimation.name} / ${option.name}`);
+    })
+    .flat()
+    .join(' , ');
 
   $: estimationsMap = estimations
     .map((v, i) => v.options.filter((o) => o.name === selected[i]))
     .flat();
+
+  $: console.log(selectedValuesToNotion);
 
   $: combinedBudgetPower = estimationsMap.reduce(
     (a, b) => {
@@ -71,6 +81,7 @@
             <div class={clsx('pb-4 pt-2 xl:pb-8 gap-4 relative', open ? 'w-full' : 'w-2/3')}>
               <div class="grid grid-cols-3 gap-y-4 gap-x-5">
                 {#each estimations as options, i}
+                  {@const isLast = estimations.length === i + 1}
                   <div
                     class="gap-2 grid last:col-span-2 last:grid-cols-2 last:gap-x-5 [&:last-child>p]:col-span-2"
                   >
@@ -79,23 +90,42 @@
                     </p>
 
                     {#each options.options as opt}
-                      <label
-                        for={`${options.name} / ${opt.name}`}
-                        class={clsx(
-                          'flex flex-col items-start py-2 px-3 transition-all hover:bg-foreground/2 cursor-pointer border rounded-sm hover:border-border-active hover:ring-2 text-sm/[20px] select-none'
-                        )}
-                      >
-                        <div class="flex items-center justify-between w-full">
-                          <p class="font-medium pr-3">{opt.name}</p>
-                          <Radio
-                            class="cursor-pointer shrink-0"
-                            id={`${options.name} / ${opt.name}`}
-                            value={opt.name}
-                            name={options.name}
-                            bind:group={selected[i]}
-                          />
-                        </div>
-                      </label>
+                      {#if isLast}
+                        <label
+                          for={`${options.name} / ${opt.name}`}
+                          class={clsx(
+                            'flex flex-col items-start py-2 px-3 transition-all hover:bg-foreground/2 cursor-pointer border rounded-sm hover:border-border-active hover:ring-2 text-sm/[20px] select-none'
+                          )}
+                        >
+                          <div class="flex items-center justify-between w-full">
+                            <p class="font-medium pr-3">{opt.name}</p>
+                            <CheckboxGroup
+                              bind:group={selected}
+                              id={`${options.name} / ${opt.name}`}
+                              value={opt.name}
+                              name={options.name}
+                            />
+                          </div>
+                        </label>
+                      {:else}
+                        <label
+                          for={`${options.name} / ${opt.name}`}
+                          class={clsx(
+                            'flex flex-col items-start py-2 px-3 transition-all hover:bg-foreground/2 cursor-pointer border rounded-sm hover:border-border-active hover:ring-2 text-sm/[20px] select-none'
+                          )}
+                        >
+                          <div class="flex items-center justify-between w-full">
+                            <p class="font-medium pr-3">{opt.name}</p>
+                            <Radio
+                              class="cursor-pointer shrink-0"
+                              id={`${options.name} / ${opt.name}`}
+                              value={opt.name}
+                              name={options.name}
+                              bind:group={selected[i]}
+                            />
+                          </div>
+                        </label>
+                      {/if}
                     {/each}
                   </div>
                 {/each}
@@ -146,7 +176,7 @@
       </div>
       <ContactForm variant="estimations">
         <svelte:fragment slot="estimationsform">
-          <!-- <input name="estimations" hidden bind:value={selectedKeyValues} /> -->
+          <input name="estimations" hidden bind:value={selectedValuesToNotion} />
         </svelte:fragment>
       </ContactForm>
     </div>

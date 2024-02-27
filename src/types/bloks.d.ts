@@ -137,7 +137,6 @@ export interface RichtextStoryblok {
 export interface BlogPostStoryblok {
   cover?: AssetStoryblok;
   intro: string;
-  author: StoryblokStory<TeamMemberStoryblok> | string;
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
@@ -715,7 +714,6 @@ export interface ProjectStoryblok {
   deliverables?: string;
   services?: string;
   links?: LinkStoryblok[];
-  recognitions?: RecognitionStoryblok[];
   body?: RichtextStoryblok;
   seo_title?: string;
   seo_description?: string;
@@ -1022,7 +1020,6 @@ export interface ServicesPageStoryblok {
   awards_title?: string;
   awards_description?: string;
   awards_db: (StoryblokStory<RecognitionEntryStoryblok> | string)[];
-  awards?: AwardsEntryStoryblok[];
   showreel?: AssetStoryblok;
   showreel_button_label?: string;
   services_title?: string;
@@ -1097,12 +1094,24 @@ export interface StepsStoryblok {
   [k: string]: any;
 }
 
+export interface TeamButtonsStoryblok {
+  link_type?: 'email' | 'phone' | 'url';
+  title?: string;
+  link?: string;
+  email_subject?: string;
+  _uid: string;
+  component: 'team-buttons';
+  [k: string]: any;
+}
+
 export interface TeamMemberStoryblok {
   photo?: AssetStoryblok;
+  email?: string;
   egg?: AssetStoryblok;
   position?: string;
   team?: number | string;
   bio?: string;
+  buttons?: TeamButtonsStoryblok[];
   cover_image_light?: AssetStoryblok;
   cover_image_dark?: AssetStoryblok;
   links?: TeamMemberLinkStoryblok[];
@@ -1112,7 +1121,6 @@ export interface TeamMemberStoryblok {
   seo_og_image?: AssetStoryblok;
   priority?: string;
   change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
-  email?: string;
   _uid: string;
   component: 'team-member';
   [k: string]: any;

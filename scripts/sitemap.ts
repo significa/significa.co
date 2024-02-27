@@ -87,7 +87,6 @@ async function main() {
           return (
             story.content.component === 'blog-post' ||
             story.content.component === 'career' ||
-            story.content.component === 'handbook' ||
             story.content.component === 'page' ||
             story.content.component === 'project' ||
             story.content.component === 'team-member'

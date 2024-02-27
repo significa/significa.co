@@ -2,7 +2,6 @@ import type { ISbResult, ISbStoriesParams, ISbStoryData } from '@storyblok/js';
 import { getStoryblok } from '$lib/storyblok';
 import type {
   BlogPostStoryblok,
-  HandbookStoryblok,
   CareerStoryblok,
   PageStoryblok,
   ProjectStoryblok,
@@ -137,7 +136,6 @@ export type BlogPostPage = ISbStoryData<
     project: ISbStoryData<ProjectStoryblok>;
   }
 >;
-export type HandbookPage = ISbStoryData<HandbookStoryblok>;
 export type ProjectPage = ISbStoryData<
   Omit<ProjectStoryblok, 'team'> & {
     team: ISbStoryData<TeamMemberStoryblok>[];
@@ -149,7 +147,6 @@ export type LandingPage = ISbStoryData<LandingPageStoryblok>;
 export type DynamicPage =
   | Page
   | BlogPostPage
-  | HandbookPage
   | ProjectPage
   | TeamMemberPage
   | CareerPage

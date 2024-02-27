@@ -6,7 +6,7 @@
   import { CheckboxGroup, Radio } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import ContactForm from '$components/contact-form.svelte';
-  import { estimations } from '$lib/estimations';
+  import { estimations, estimationsCheckbox } from '$lib/estimations';
 
   import HandAsset from '../illustrations/assets/hand.webp';
 
@@ -17,24 +17,31 @@
   let open = false;
   $: src = $theme === 'dark' ? IllustrationEmply : IllustrationEmplyLight;
 
-  let selected: Array<string> = [];
+  let selectedRadio: Array<string> = [];
+  let selectedCheckbox: Array<string> = [];
 
-  $: selectedValuesToNotion = estimations
-    .map((estimation, index) => {
-      return estimation.options
-        .filter((option) => option.name === selected[index])
-        .map((option) => `${estimation.name} / ${option.name}`);
-    })
-    .flat()
-    .join(' , ');
+  $: selectedValuesToNotion = [
+    ...estimations.flatMap((estimation, index) =>
+      estimation.options
+        .filter((option) => option.name === selectedRadio[index])
+        .map((option) => `${estimation.name} / ${option.name}`)
+    ),
+    ...estimationsCheckbox.flatMap((estimation) =>
+      estimation.options
+        .filter((option) => selectedCheckbox.includes(option.name))
+        .map((option) => `${estimation.name} / ${option.name}`)
+    )
+  ].join(' , ');
 
-  $: estimationsMap = estimations
-    .map((v, i) => v.options.filter((o) => o.name === selected[i]))
+  $: estimationsMapRadio = estimations
+    .map((v, i) => v.options.filter((o) => o.name === selectedRadio[i]))
     .flat();
 
-  $: console.log(selectedValuesToNotion);
+  $: estimationsMapCheckbox = estimationsCheckbox
+    .map((v) => v.options.filter((v) => selectedCheckbox.includes(v.name)))
+    .flat();
 
-  $: combinedBudgetPower = estimationsMap.reduce(
+  $: combinedBudgetPower = [...estimationsMapRadio, ...estimationsMapCheckbox].reduce(
     (a, b) => {
       return {
         lowBudget: a.lowBudget + Number(b['low-est-point']) * 14500,
@@ -46,7 +53,7 @@
     { lowBudget: 0, highBudget: 0, lowPower: 0, highPower: 0 }
   );
 
-  $: Object.values(combinedBudgetPower).every((val) => val !== 0) ? (open = true) : (open = false);
+  $: open = Object.values(combinedBudgetPower).every((val) => val !== 0);
 </script>
 
 <section class="border-t mt-20" id="estimation">
@@ -81,51 +88,57 @@
             <div class={clsx('pb-4 pt-2 xl:pb-8 gap-4 relative', open ? 'w-full' : 'w-2/3')}>
               <div class="grid grid-cols-3 gap-y-4 gap-x-5">
                 {#each estimations as options, i}
-                  {@const isLast = estimations.length === i + 1}
+                  <div class="gap-2 grid">
+                    <p class="pt-4 leading-none text-foreground-secondary text-sm grid pb-2">
+                      {options.name}
+                    </p>
+
+                    {#each options.options as opt}
+                      <label
+                        for={`${options.name} / ${opt.name}`}
+                        class={clsx(
+                          'flex flex-col items-start py-2 px-3 transition-all hover:bg-foreground/2 cursor-pointer border rounded-sm hover:border-border-active hover:ring-2 text-sm/[20px] select-none'
+                        )}
+                      >
+                        <div class="flex items-center justify-between w-full">
+                          <p class="font-medium pr-3">{opt.name}</p>
+                          <Radio
+                            class="cursor-pointer shrink-0"
+                            id={`${options.name} / ${opt.name}`}
+                            value={opt.name}
+                            name={options.name}
+                            bind:group={selectedRadio[i]}
+                          />
+                        </div>
+                      </label>
+                    {/each}
+                  </div>
+                {/each}
+                {#each estimationsCheckbox as options}
                   <div
-                    class="gap-2 grid last:col-span-2 last:grid-cols-2 last:gap-x-5 [&:last-child>p]:col-span-2"
+                    class="gap-2 grid col-span-2 grid-cols-2 gap-x-5 [&:last-child>p]:col-span-2"
                   >
                     <p class="pt-4 leading-none text-foreground-secondary text-sm grid pb-2">
                       {options.name}
                     </p>
 
                     {#each options.options as opt}
-                      {#if isLast}
-                        <label
-                          for={`${options.name} / ${opt.name}`}
-                          class={clsx(
-                            'flex flex-col items-start py-2 px-3 transition-all hover:bg-foreground/2 cursor-pointer border rounded-sm hover:border-border-active hover:ring-2 text-sm/[20px] select-none'
-                          )}
-                        >
-                          <div class="flex items-center justify-between w-full">
-                            <p class="font-medium pr-3">{opt.name}</p>
-                            <CheckboxGroup
-                              bind:group={selected}
-                              id={`${options.name} / ${opt.name}`}
-                              value={opt.name}
-                              name={options.name}
-                            />
-                          </div>
-                        </label>
-                      {:else}
-                        <label
-                          for={`${options.name} / ${opt.name}`}
-                          class={clsx(
-                            'flex flex-col items-start py-2 px-3 transition-all hover:bg-foreground/2 cursor-pointer border rounded-sm hover:border-border-active hover:ring-2 text-sm/[20px] select-none'
-                          )}
-                        >
-                          <div class="flex items-center justify-between w-full">
-                            <p class="font-medium pr-3">{opt.name}</p>
-                            <Radio
-                              class="cursor-pointer shrink-0"
-                              id={`${options.name} / ${opt.name}`}
-                              value={opt.name}
-                              name={options.name}
-                              bind:group={selected[i]}
-                            />
-                          </div>
-                        </label>
-                      {/if}
+                      <label
+                        for={`${options.name} / ${opt.name}`}
+                        class={clsx(
+                          'flex flex-col items-start py-2 px-3 transition-all hover:bg-foreground/2 cursor-pointer border rounded-sm hover:border-border-active hover:ring-2 text-sm/[20px] select-none'
+                        )}
+                      >
+                        <div class="flex items-center justify-between w-full">
+                          <p class="font-medium pr-3">{opt.name}</p>
+                          <CheckboxGroup
+                            bind:group={selectedCheckbox}
+                            id={`${options.name} / ${opt.name}`}
+                            value={opt.name}
+                            name={options.name}
+                          />
+                        </div>
+                      </label>
                     {/each}
                   </div>
                 {/each}

@@ -58,7 +58,10 @@ export const estimations = [
         'high-est-point': '6'
       }
     ]
-  },
+  }
+];
+
+export const estimationsCheckbox = [
   {
     name: 'Others (design and development)',
     options: [

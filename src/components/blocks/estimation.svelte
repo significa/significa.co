@@ -3,7 +3,7 @@
   import IllustrationEmply from '../illustrations/assets/illustration-emply.webp';
   import IllustrationEmplyLight from '../illustrations/assets/illustration-emply-light.webp';
   import { theme } from '$lib/stores/theme';
-  import { CheckboxGroup, Radio } from '@significa/svelte-ui';
+  import { Button, CheckboxGroup, Radio } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import ContactForm from '$components/contact-form.svelte';
   import { estimations, estimationsCheckbox } from '$lib/estimations';
@@ -72,7 +72,7 @@
   >
     <div
       class={clsx(
-        'flex transition-all duration-300 w-full ease-motion bg-background-panel rounded-b-lg xl:rounded-r-lg z-50',
+        'flex transition-all duration-300 ease-motion w-full  bg-background-panel rounded-b-lg xl:rounded-r-lg z-50',
         open ? 'ring-1 ring-border xl:w-2/3' : 'w-full min-w-full'
       )}
     >
@@ -91,10 +91,18 @@
               <div class="flex flex-col sm:grid sm:grid-cols-3 gap-y-4 gap-x-5">
                 {#each estimations as options, i}
                   <div class="gap-2 grid">
-                    <p class="pt-4 leading-none text-foreground-secondary text-sm grid pb-2">
-                      {options.name}
-                    </p>
-
+                    <div class="flex items-center pt-4 justify-between pb-2">
+                      <p class="leading-none text-foreground-secondary text-sm grid">
+                        {options.name}
+                      </p>
+                      <Button
+                        aria-label="Clear All"
+                        variant="ghost"
+                        icon="close"
+                        size="sm"
+                        on:click={() => {}}>Clear all</Button
+                      >
+                    </div>
                     {#each options.options as opt}
                       <label
                         for={`${options.name} / ${opt.name}`}
@@ -175,7 +183,7 @@
     </div>
     <div
       class={clsx(
-        'p-8  transition-all duration-300 ease-motion w-full xl:w-auto z-10',
+        'p-8 transition-all duration-300  w-full xl:w-auto z-10',
         open
           ? 'flex flex-col justify-between flex-0.5 shrink-0 translate-y-0 xl:translate-x-0 xl:w-1/3 xl:translate-y-0'
           : '-translate-y-full xl:translate-x-full xl:translate-y-0 hidden xl:flex'

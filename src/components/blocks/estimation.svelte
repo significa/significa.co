@@ -3,7 +3,7 @@
   import IllustrationEmply from '../illustrations/assets/illustration-emply.webp';
   import IllustrationEmplyLight from '../illustrations/assets/illustration-emply-light.webp';
   import { theme } from '$lib/stores/theme';
-  import { Button, CheckboxGroup, Radio } from '@significa/svelte-ui';
+  import { CheckboxGroup, Radio } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import ContactForm from '$components/contact-form.svelte';
   import { estimations, estimationsCheckbox } from '$lib/estimations';
@@ -53,6 +53,8 @@
     { lowBudget: 0, highBudget: 0, lowPower: 0, highPower: 0 }
   );
 
+  $: console.log(selectedRadio);
+
   $: open = Object.values(combinedBudgetPower).every((val) => val !== 0);
 </script>
 
@@ -92,16 +94,17 @@
                 {#each estimations as options, i}
                   <div class="gap-2 grid">
                     <div class="flex items-center pt-4 justify-between pb-2">
-                      <p class="leading-none text-foreground-secondary text-sm grid">
+                      <p class="leading-none text-foreground-secondary text-sm">
                         {options.name}
                       </p>
-                      <Button
-                        aria-label="Clear All"
-                        variant="ghost"
-                        icon="close"
-                        size="sm"
-                        on:click={() => {}}>Clear all</Button
+                      <button
+                        class="leading-none text-foreground-secondary text-sm hover:opacity-80 transition-all"
+                        on:click={() => {
+                          selectedRadio[i] = '';
+                        }}
                       >
+                        Clear all
+                      </button>
                     </div>
                     {#each options.options as opt}
                       <label
@@ -117,6 +120,7 @@
                             id={`${options.name} / ${opt.name}`}
                             value={opt.name}
                             name={options.name}
+                            checked={selectedRadio[i] === opt.name}
                             bind:group={selectedRadio[i]}
                           />
                         </div>

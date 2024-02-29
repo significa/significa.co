@@ -70,67 +70,71 @@
 
 <section class="container mx-auto px-container @container pt-20 pb-16 flex">
   <div
-    class="rounded-lg border w-full overflow-hidden flex min-h-[unset] flex-col xl:flex-row relative"
+    class="rounded-lg xl:border w-full xl:overflow-hidden flex min-h-[unset] flex-col xl:flex-row relative"
   >
     <div
       class={clsx(
-        'flex transition-all duration-300 ease-motion w-full  bg-background-panel rounded-b-lg xl:rounded-r-lg z-50',
-        open ? 'ring-1 ring-border xl:w-2/3' : 'w-full min-w-full'
+        'flex transition-all duration-300 ease-motion w-full xl:bg-background-panel xl:rounded-b-lg xl:rounded-r-lg z-50',
+        open ? 'xl:ring-1 xl:ring-border xl:w-2/3' : 'w-full min-w-full'
       )}
     >
       <div class="block w-full">
-        <div class="p-6 xl:p-8 flex flex-col h-full relative z-10">
-          <div>
+        <div class="xl:p-8 flex flex-col h-full relative z-10">
+          <div class="order-1">
             <h3 class="text-4xl max-w-md">
               {block.title}
             </h3>
             <p class="my-4 text-xl text-foreground-secondary max-w-md">
               {block.description}
             </p>
+          </div>
+          <div class="xl:order-2 order-3">
             <div
               class={clsx('pb-4 pt-2 xl:pb-8 gap-4 relative w-full', open ? 'w-full' : 'xl:w-2/3')}
             >
               <div class="flex flex-col sm:grid sm:grid-cols-3 gap-y-4 gap-x-5">
                 {#each estimations as options, i}
                   <div class="gap-2 grid">
-                    <div class="flex items-center pt-4 justify-between pb-2">
+                    <div class="grid grid-cols-2 items-center pt-4 pb-2">
                       <p class="leading-none text-foreground-secondary text-sm">
                         {options.name}
                       </p>
                       <button
-                        class="leading-none text-foreground-secondary text-sm hover:opacity-80 transition-all"
+                        class="leading-none text-foreground-tertiary text-sm hover:text-foreground-secondary transition-all flex justify-end"
                         on:click={() => {
                           selectedRadio[i] = '';
                         }}
                       >
-                        Clear all
+                        {t('clear-all')}
                       </button>
                     </div>
-                    {#each options.options as opt}
-                      <label
-                        for={`${options.name} / ${opt.name}`}
-                        class={clsx(
-                          'flex flex-col items-start py-2 px-3 transition-all hover:bg-foreground/2 cursor-pointer border rounded-sm hover:border-border-active hover:ring-2 text-sm/[20px] select-none'
-                        )}
-                      >
-                        <div class="flex items-center justify-between w-full">
-                          <p class="font-medium pr-3">{opt.name}</p>
-                          <Radio
-                            class="cursor-pointer shrink-0"
-                            id={`${options.name} / ${opt.name}`}
-                            value={opt.name}
-                            name={options.name}
-                            checked={selectedRadio[i] === opt.name}
-                            bind:group={selectedRadio[i]}
-                          />
-                        </div>
-                      </label>
-                    {/each}
+                    <div class="grid grid-cols-2 xl:flex xl:flex-col gap-2">
+                      {#each options.options as opt}
+                        <label
+                          for={`${options.name} / ${opt.name}`}
+                          class={clsx(
+                            'flex flex-col items-start py-2 px-3 transition-all hover:bg-foreground/2 cursor-pointer border rounded-sm hover:border-border-active hover:ring-2 text-sm/[20px] select-none'
+                          )}
+                        >
+                          <div class="flex items-center justify-between w-full">
+                            <p class="font-medium pr-3">{opt.name}</p>
+                            <Radio
+                              class="cursor-pointer shrink-0"
+                              id={`${options.name} / ${opt.name}`}
+                              value={opt.name}
+                              name={options.name}
+                              checked={selectedRadio[i] === opt.name}
+                              bind:group={selectedRadio[i]}
+                            />
+                          </div>
+                        </label>
+                      {/each}
+                    </div>
                   </div>
                 {/each}
                 {#each estimationsCheckbox as options}
                   <div
-                    class="gap-2 flex flex-col sm:grid sm:col-span-2 sm:grid-cols-2 gap-x-5 [&:last-child>p]:col-span-2"
+                    class="gap-2 grid col-span-2 grid-cols-2 gap-x-5 [&:last-child>p]:col-span-2"
                   >
                     <p class="pt-4 leading-none text-foreground-secondary text-sm grid pb-2">
                       {options.name}
@@ -160,19 +164,32 @@
             </div>
           </div>
 
-          <div class="flex flex-col mt-5 xl:mt-3">
-            <p class="text-base font-medium text-foreground/60">{t('estimation.man.power')}</p>
-            <p class="text-xl font-medium">
-              {combinedBudgetPower.lowPower === 0
-                ? '-'
-                : combinedBudgetPower.lowPower + ` to ` + combinedBudgetPower.highPower}
-            </p>
-            <p class="text-base font-medium text-foreground/60 mt-6">{t('estimation.total')}</p>
-            <p class="text-xl font-medium text-foreground-accent">
-              {combinedBudgetPower.lowBudget === 0
-                ? '-'
-                : combinedBudgetPower.lowBudget + `€ to ` + combinedBudgetPower.highBudget + `€`}
-            </p>
+          <div
+            class="flex flex-col mt-2 xl:mt-3 mb-4 xl:mb-0 sticky top-0 xl:relative xl:top-auto order-2 xl:order-3 z-10 border-b xl:border-none w-screen xl:w-full -ml-5 xl:-m-0 bg-background xl:bg-transparent"
+          >
+            <div class="py-3 px-6 xl:py-0 xl:px-0 flex xl:block gap-9">
+              <div>
+                <p class="text-base font-medium text-foreground/60">{t('estimation.man.power')}</p>
+                <p class="text-md xl:text-xl font-medium">
+                  {combinedBudgetPower.lowPower === 0
+                    ? '-'
+                    : combinedBudgetPower.lowPower + ` to ` + combinedBudgetPower.highPower}
+                </p>
+              </div>
+              <div>
+                <p class="text-base font-medium text-foreground/60 mt-0 xl:mt-6">
+                  {t('estimation.total')}
+                </p>
+                <p class="text-md xl:text-xl font-medium text-foreground-accent">
+                  {combinedBudgetPower.lowBudget === 0
+                    ? '-'
+                    : combinedBudgetPower.lowBudget +
+                      `€ to ` +
+                      combinedBudgetPower.highBudget +
+                      `€`}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
         <div
@@ -187,7 +204,7 @@
     </div>
     <div
       class={clsx(
-        'p-8 transition-all duration-300  w-full xl:w-auto z-10',
+        'pt-4 xl:p-8 transition-all duration-300  w-full xl:w-auto z-10',
         open
           ? 'flex flex-col justify-between flex-0.5 shrink-0 translate-y-0 xl:translate-x-0 xl:w-1/3 xl:translate-y-0'
           : '-translate-y-full xl:translate-x-full xl:translate-y-0 hidden xl:flex'

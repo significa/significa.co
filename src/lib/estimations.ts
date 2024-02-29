@@ -8,7 +8,7 @@ export const estimations = [
         'high-est-point': '2'
       },
       {
-        name: 'Design and development',
+        name: 'Design and dev.',
         'low-est-point': '2',
         'high-est-point': '4'
       }
@@ -23,7 +23,7 @@ export const estimations = [
         'high-est-point': '3'
       },
       {
-        name: 'Design and development',
+        name: 'Design and dev.',
         'low-est-point': '5',
         'high-est-point': '8'
       }
@@ -38,7 +38,7 @@ export const estimations = [
         'high-est-point': '3'
       },
       {
-        name: 'Design and development',
+        name: 'Design and dev.',
         'low-est-point': '3',
         'high-est-point': '6'
       }
@@ -53,7 +53,7 @@ export const estimations = [
         'high-est-point': '3'
       },
       {
-        name: 'Design and development',
+        name: 'Design and dev.',
         'low-est-point': '3',
         'high-est-point': '6'
       }
@@ -63,7 +63,7 @@ export const estimations = [
 
 export const estimationsCheckbox = [
   {
-    name: 'Others (design and development)',
+    name: 'Others (design and dev.)',
     options: [
       {
         name: 'TV App',

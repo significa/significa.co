@@ -108,43 +108,17 @@
 {/if}
 <div
   class={clsx(
-    'container relative mx-auto mt-10 gap-8 px-container pb-12',
+    'container relative mx-auto mt-10 gap-8 px-container pb-12 overflow-hidden',
     'md:mt-14 md:pb-20',
     'lg:mt-20 lg:flex lg:justify-between lg:pb-32'
   )}
 >
-  <div class="flex-2">
-    <div class="lg:max-w-xl h-full relative flex flex-col justify-between">
-      <div>
-        <h1 class="text-7xl text-foreground-secondary relative">
-          {page.title}
-        </h1>
-        <span class="text-7xl">{page.subtitle}</span>
-      </div>
-      {#if visible || dirty}
-        <!-- eslint-disable svelte/no-at-html-tags -->
-        <div
-          data-theme="light"
-          transition:fly|global={{ y: 250, opacity: 0, easing: circOut, duration: 250 }}
-          aria-hidden="true"
-          class="container mx-auto mt-10 gap-8 px-container relative bg-transparent pointer-events-none grow hidden lg:flex"
-        >
-          <div class="-mb-12 -ml-16 sticky -bottom-12 mt-auto">
-            {@html eggs[character]}
-            {#if character === 't-shirt' && truncatedText}
-              <div
-                class="absolute left-[235px] top-[40px] line-clamp-2 flex h-[76px] w-36 items-center justify-center text-center font-comic font-bold leading-snug"
-                style="transform: rotate(-4deg);"
-              >
-                <div class="h-fit w-24">
-                  I <span class="text-error">{'<3'}</span>
-                  {truncatedText}
-                </div>
-              </div>
-            {/if}
-          </div>
-        </div>
-      {/if}
+  <div class="flex-1">
+    <div class="lg:max-w-xl">
+      <h1 class="text-7xl text-foreground-secondary">
+        {page.title}
+      </h1>
+      <span class="text-7xl">{page.subtitle}</span>
     </div>
   </div>
   <div class={clsx('flex-1', 'lg:flex lg:justify-end')}>
@@ -168,6 +142,29 @@
           on:error={() => (error = true)}
           on:input={onInput}
         />
+        {#if visible || dirty}
+          <!-- eslint-disable svelte/no-at-html-tags -->
+          <div
+            data-theme="light"
+            transition:fly|global={{ y: 500, opacity: 1, easing: circOut, duration: 250 }}
+            aria-hidden="true"
+            class="absolute -bottom-20 left-2 hidden bg-transparent drop-shadow lg:block"
+            style="transform: rotate(-10deg)"
+          >
+            {@html eggs[character]}
+            {#if character === 't-shirt' && truncatedText}
+              <div
+                class="absolute left-[235px] top-[40px] line-clamp-2 flex h-[76px] w-36 items-center justify-center text-center font-comic font-bold leading-snug"
+                style="transform: rotate(-4deg);"
+              >
+                <div class="h-fit w-24">
+                  I <span class="text-error">{'<3'}</span>
+                  {truncatedText}
+                </div>
+              </div>
+            {/if}
+          </div>
+        {/if}
       </div>
     </div>
   </div>

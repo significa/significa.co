@@ -53,8 +53,6 @@
     { lowBudget: 0, highBudget: 0, lowPower: 0, highPower: 0 }
   );
 
-  $: console.log(selectedRadio);
-
   $: open = Object.values(combinedBudgetPower).every((val) => val !== 0);
 </script>
 
@@ -68,7 +66,7 @@
   </div>
 </section>
 
-<section class="container mx-auto px-container @container pt-20 pb-16 flex">
+<section class="container mx-auto xl:px-container @container pt-20 pb-16 flex">
   <div
     class="rounded-lg xl:border w-full xl:overflow-hidden flex min-h-[unset] flex-col xl:flex-row relative"
   >
@@ -79,8 +77,8 @@
       )}
     >
       <div class="block w-full">
-        <div class="xl:p-8 flex flex-col h-full relative z-10">
-          <div class="order-1">
+        <div class="flex flex-col h-full relative z-10">
+          <div class="order-1 xl:pt-8 xl:px-8 px-container">
             <h3 class="text-4xl max-w-md">
               {block.title}
             </h3>
@@ -88,11 +86,11 @@
               {block.description}
             </p>
           </div>
-          <div class="xl:order-2 order-3">
+          <div class="xl:order-2 order-3 xl:px-8 px-container">
             <div
               class={clsx('pb-4 pt-2 xl:pb-8 gap-4 relative w-full', open ? 'w-full' : 'xl:w-2/3')}
             >
-              <div class="flex flex-col sm:grid sm:grid-cols-3 gap-y-4 gap-x-5">
+              <div class="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 gap-y-4 gap-x-5">
                 {#each estimations as options, i}
                   <div class="gap-2 grid">
                     <div class="grid grid-cols-2 items-center pt-4 pb-2">
@@ -165,19 +163,21 @@
           </div>
 
           <div
-            class="flex flex-col mt-2 xl:mt-3 mb-4 xl:mb-0 sticky top-0 xl:relative xl:top-auto order-2 xl:order-3 z-10 border-b xl:border-none w-screen xl:w-full -ml-5 xl:-m-0 bg-background xl:bg-transparent"
+            class="flex flex-col mt-2 xl:mt-3 mb-4 xl:mb-0 sticky top-0 xl:relative xl:top-auto order-2 xl:order-3 z-10 border-b xl:border-none w-screen xl:w-full bg-background xl:bg-transparent xl:pb-8 xl:px-8"
           >
-            <div class="py-3 px-6 xl:py-0 xl:px-0 flex xl:block gap-9">
-              <div>
-                <p class="text-base font-medium text-foreground/60">{t('estimation.man.power')}</p>
-                <p class="text-md xl:text-xl font-medium">
+            <div class="py-3 px-container xl:py-0 xl:px-0 flex xl:block gap-2 xl:gap-0">
+              <div class="w-1/2 xl:w-auto">
+                <p class="text-base/5 xl:text-base font-medium text-foreground/60">
+                  {t('estimation.man.power')}
+                </p>
+                <p class="text-md md:text-xl font-medium">
                   {combinedBudgetPower.lowPower === 0
                     ? '-'
                     : combinedBudgetPower.lowPower + ` to ` + combinedBudgetPower.highPower}
                 </p>
               </div>
-              <div>
-                <p class="text-base font-medium text-foreground/60 mt-0 xl:mt-6">
+              <div class="w-1/2 xl:w-auto">
+                <p class="text-base/5 xl:text-base font-medium text-foreground/60 mt-0 xl:mt-6">
                   {t('estimation.total')}
                 </p>
                 <p class="text-md xl:text-xl font-medium text-foreground-accent">
@@ -204,7 +204,7 @@
     </div>
     <div
       class={clsx(
-        'pt-4 xl:p-8 transition-all duration-300  w-full xl:w-auto z-10',
+        'pt-8 xl:p-8 transition-all duration-300  w-full xl:w-auto z-10 px-container',
         open
           ? 'flex flex-col justify-between flex-0.5 shrink-0 translate-y-0 xl:translate-x-0 xl:w-1/3 xl:translate-y-0'
           : '-translate-y-full xl:translate-x-full xl:translate-y-0 hidden xl:flex'

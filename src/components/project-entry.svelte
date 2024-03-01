@@ -54,8 +54,8 @@
         {#if recognitions?.length}
           <div
             class={clsx(
-              'mt-6 flex gap-4',
-              variant === 'featured' ? 'flex-col @5xl:flex-row' : 'flex-col'
+              'mt-6 grid grid-cols-2 grid-rows-3 grid-flow-col gap-4',
+              variant === 'featured' && '@5xl:grid-rows-1'
             )}
           >
             <Recognitions as={as === 'h2' ? 'h3' : 'h4'} {recognitions} />

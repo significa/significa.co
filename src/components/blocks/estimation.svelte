@@ -103,7 +103,7 @@
                           selectedRadio[i] = '';
                         }}
                       >
-                        {t('clear-all')}
+                        {t('estimate.clear')}
                       </button>
                     </div>
                     <div class="grid grid-cols-2 xl:flex xl:flex-col gap-2">
@@ -132,7 +132,7 @@
                 {/each}
                 {#each estimationsCheckbox as options}
                   <div
-                    class="gap-2 grid col-span-2 grid-cols-2 gap-x-5 [&:last-child>p]:col-span-2"
+                    class="gap-2 grid col-span-2 grid-cols-2 xl:gap-x-5 [&:last-child>p]:col-span-2"
                   >
                     <p class="pt-4 leading-none text-foreground-secondary text-sm grid pb-2">
                       {options.name}

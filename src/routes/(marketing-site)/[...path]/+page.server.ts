@@ -1,16 +1,16 @@
 import { error } from '@sveltejs/kit';
-import { PREVIEW_COOKIE_KEY } from '$lib/constants';
 import { fetchPage } from '$lib/content';
 import { BYPASS_TOKEN } from '$env/static/private';
 
-export const load = async ({ params, cookies, fetch, url }) => {
+export const load = async ({ params, locals, fetch, url }) => {
+  const version = locals.version;
   // don't catch paths that end with an extension
   if (/\..+$/.test(params.path)) throw error(404);
 
   try {
     const page = await fetchPage({
       slug: params.path,
-      version: cookies.get(PREVIEW_COOKIE_KEY) ? 'draft' : 'published',
+      version,
       fetch,
       url
     });

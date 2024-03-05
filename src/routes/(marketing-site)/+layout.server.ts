@@ -1,12 +1,11 @@
-import { PREVIEW_COOKIE_KEY } from '$lib/constants';
 import { getStoryblok } from '$lib/storyblok';
 import type { ConfigurationStoryblok } from '$types/bloks';
 import { error } from '@sveltejs/kit';
 import type { ISbStoryData } from '@storyblok/js';
 import { fetchAwards, fetchAwardsTypes, fetchCareers } from '$lib/content';
 
-export const load = async ({ cookies, fetch }) => {
-  const version: 'draft' | 'published' = cookies.get(PREVIEW_COOKIE_KEY) ? 'draft' : 'published';
+export const load = async ({ locals, fetch }) => {
+  const version = locals.version;
   const storyblok = getStoryblok({ fetch });
 
   try {

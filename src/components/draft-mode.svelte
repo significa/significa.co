@@ -22,6 +22,7 @@
     <Button
       as="a"
       data-sveltekit-preload-data="off"
+      data-sveltekit-reload
       href="/exit-preview?return_to={encodeURIComponent($page.url.pathname)}"
     >
       Published version

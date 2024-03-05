@@ -26,7 +26,7 @@
     if (video) video.pause();
   };
 
-  const recognitions = $page.data.awards.filter((aw) => aw.content.project.id === project.id);
+  $: recognitions = $page.data.awards.filter((aw) => aw.content.project.id === project.id);
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->

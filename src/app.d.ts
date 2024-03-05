@@ -7,7 +7,9 @@ import type { ISbStoryData } from '@storyblok/js';
 declare global {
   namespace App {
     // interface Error {}
-    // interface Locals {}
+    interface Locals {
+      version: 'published' | 'draft';
+    }
     interface PageData {
       awards: ISbStoryData<RecognitionEntryStoryblok>[];
     }

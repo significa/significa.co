@@ -1,5 +1,4 @@
 import { STORYBLOK_PROPOSALS_TOKEN } from '$env/static/private';
-import { PREVIEW_COOKIE_KEY } from '$lib/constants';
 import { getStoryblok } from '$lib/storyblok';
 import { fetchAwards, fetchPage } from '$lib/content';
 import type { ProposalStoryblok } from '$types/bloks.js';
@@ -13,8 +12,8 @@ const isStatusError = (err: unknown): err is { status: number } => {
   );
 };
 
-export const load = async ({ cookies, fetch, params, url }) => {
-  const version: 'draft' | 'published' = cookies.get(PREVIEW_COOKIE_KEY) ? 'draft' : 'published';
+export const load = async ({ locals, cookies, fetch, params, url }) => {
+  const version = locals.version;
 
   const storyblok = getStoryblok({ fetch }, { accessToken: STORYBLOK_PROPOSALS_TOKEN });
 

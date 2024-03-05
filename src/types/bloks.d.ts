@@ -6,6 +6,7 @@ export type MultilinkStoryblok =
       cached_url?: string;
       anchor?: string;
       linktype?: 'story';
+      target?: '_self' | '_blank';
       story?: {
         name: string;
         created_at?: string;
@@ -42,11 +43,13 @@ export type MultilinkStoryblok =
       cached_url?: string;
       anchor?: string;
       linktype?: 'asset' | 'url';
+      target?: '_self' | '_blank';
       [k: string]: any;
     }
   | {
       email?: string;
       linktype?: 'email';
+      target?: '_self' | '_blank';
       [k: string]: any;
     };
 
@@ -88,13 +91,20 @@ export interface AboutPageStoryblok {
 }
 
 export interface AssetStoryblok {
-  alt?: string;
-  copyright?: string;
+  _uid?: string;
   id: number;
-  filename: string;
+  alt?: string;
   name: string;
-  title?: string;
   focus?: string;
+  source?: string;
+  title?: string;
+  filename: string;
+  copyright?: string;
+  fieldtype?: string;
+  meta_data?: null | {
+    [k: string]: any;
+  };
+  is_external_url?: boolean;
   [k: string]: any;
 }
 
@@ -142,6 +152,10 @@ export interface BlogPostStoryblok {
   seo_og_image?: AssetStoryblok;
   body?: RichtextStoryblok;
   authors: (StoryblokStory<TeamMemberStoryblok> | string)[];
+  services?: (number | string)[];
+  deliverables?: (number | string)[];
+  tech?: (number | string)[];
+  industry?: (number | string)[];
   _uid: string;
   component: 'blog-post';
   [k: string]: any;
@@ -589,6 +603,7 @@ export interface ImageGridStoryblok {
 }
 
 export interface LandingPageStoryblok {
+  keep_top_bar_hidden?: boolean;
   blocks?: (
     | ClientsStoryblok
     | CtaCardStoryblok
@@ -712,7 +727,9 @@ export interface ProjectStoryblok {
   team?: (StoryblokStory<TeamMemberStoryblok> | string)[];
   client?: string;
   deliverables?: string;
+  deliverables_data?: (number | string)[];
   services?: string;
+  services_data?: (number | string)[];
   links?: LinkStoryblok[];
   body?: RichtextStoryblok;
   seo_title?: string;

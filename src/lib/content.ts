@@ -136,11 +136,7 @@ export type BlogPostPage = ISbStoryData<
     project: ISbStoryData<ProjectStoryblok>;
   }
 >;
-export type ProjectPage = ISbStoryData<
-  Omit<ProjectStoryblok, 'team'> & {
-    team: ISbStoryData<TeamMemberStoryblok>[];
-  }
->;
+export type ProjectPage = ISbStoryData<ProjectStoryblok>;
 export type TeamMemberPage = ISbStoryData<TeamMemberStoryblok>;
 export type LandingPage = ISbStoryData<LandingPageStoryblok>;
 

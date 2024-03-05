@@ -2247,31 +2247,40 @@
       "name": "landing-page",
       "display_name": null,
       "created_at": "2024-01-09T16:40:58.537Z",
-      "updated_at": "2024-01-16T10:35:21.911Z",
+      "updated_at": "2024-02-29T15:42:02.200Z",
       "id": 5142044,
       "schema": {
+        "keep_top_bar_hidden": {
+          "type": "boolean",
+          "pos": 0,
+          "required": false
+        },
         "blocks": {
           "type": "bloks",
           "restrict_type": "groups",
           "restrict_components": true,
           "component_whitelist": [],
-          "component_group_whitelist": ["c9011224-9690-43bd-b686-e8f60ef6c7f6"]
+          "component_group_whitelist": ["c9011224-9690-43bd-b686-e8f60ef6c7f6"],
+          "pos": 1
         },
         "tab-577daf7c-b61e-4a23-8184-bd9c01ae0af3": {
           "display_name": "SEO",
           "keys": ["seo_title", "seo_description", "seo_og_image", "change_frequency", "priority"],
-          "pos": 0,
+          "pos": 2,
           "type": "tab"
         },
         "seo_title": {
-          "type": "text"
+          "type": "text",
+          "pos": 3
         },
         "seo_description": {
-          "type": "text"
+          "type": "text",
+          "pos": 4
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": ["images"]
+          "filetypes": ["images"],
+          "pos": 5
         },
         "change_frequency": {
           "type": "option",
@@ -2313,12 +2322,14 @@
               "value": "never",
               "name": "Never"
             }
-          ]
+          ],
+          "pos": 6
         },
         "priority": {
           "type": "number",
           "description": "The priority of the page relative to other pages on your site, where 0.1 is the lowest priority and 1.0 is the highest priority.\n\n1.0-0.8\nHomepage, product information, landing pages.\n\n0.7-0.4\nNews articles, some weather services, blog posts, pages that no site would be complete without.\n\n0.3-0.0\nFAQs, outdated info, old press releases, completely static pages that are still relevant enough to keep from deleting entirely.",
-          "decimals": 1
+          "decimals": 1,
+          "pos": 7
         }
       },
       "image": null,

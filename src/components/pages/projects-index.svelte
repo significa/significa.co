@@ -15,13 +15,13 @@
   let deliverables: string[] = [];
   $: {
     projects.forEach((project) => {
-      project.content.services?.split('\n').forEach((item) => {
-        if (!services.includes(item)) {
+      project.content.services?.forEach((item) => {
+        if (typeof item === 'string' && !services.includes(item)) {
           services.push(item);
         }
       });
-      project.content.deliverables?.split('\n').forEach((item) => {
-        if (!deliverables.includes(item)) {
+      project.content.deliverables?.forEach((item) => {
+        if (typeof item === 'string' && !deliverables.includes(item)) {
           deliverables.push(item);
         }
       });
@@ -85,6 +85,7 @@
               <div class="mt-2 flex flex-wrap gap-2">
                 {#each items as item}
                   <Tag
+                    class="capitalize"
                     label={item}
                     active={filters.some((f) => f.value === item)}
                     on:click={() => {

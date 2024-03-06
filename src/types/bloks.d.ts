@@ -152,6 +152,10 @@ export interface BlogPostStoryblok {
   seo_og_image?: AssetStoryblok;
   body?: RichtextStoryblok;
   authors: (StoryblokStory<TeamMemberStoryblok> | string)[];
+  services?: (number | string)[];
+  deliverables?: (number | string)[];
+  tech?: (number | string)[];
+  industry?: (number | string)[];
   _uid: string;
   component: 'blog-post';
   [k: string]: any;
@@ -722,8 +726,8 @@ export interface ProjectStoryblok {
   intro: string;
   team?: (StoryblokStory<TeamMemberStoryblok> | string)[];
   client?: string;
-  deliverables?: string;
-  services?: string;
+  deliverables?: (number | string)[];
+  services?: (number | string)[];
   links?: LinkStoryblok[];
   body?: RichtextStoryblok;
   seo_title?: string;

@@ -18,7 +18,7 @@
   export let related: ProjectPage[];
   $: next = related[related.findIndex((p) => p.id === story.id) + 1] || related[0];
 
-  const recognitions = $page.data.awards.filter((aw) => aw.content.project.id === story.id);
+  $: recognitions = $page.data.awards.filter((aw) => aw.content.project.id === story.id);
 </script>
 
 <Seo
@@ -75,25 +75,23 @@
       {#if data}
         <ul class="col-span-1">
           <h4 class="mb-2 text-xs uppercase tracking-wider text-foreground-secondary">{title}</h4>
-          {#if Array.isArray(data)}
-            <!-- Links -->
-            {#each data as link}
-              {@const { href, target, rel } = getAnchorFromCmsLink(link.link)}
+
+          <!-- Links -->
+          {#each data as line}
+            {#if typeof line === 'object'}
+              {@const { href, target, rel } = getAnchorFromCmsLink(line.link)}
               {#if href}
                 <li class="mb-2 flex items-center gap-1">
-                  <Link {href} {target} {rel}>{link.label}</Link>
+                  <Link {href} {target} {rel}>{line.label}</Link>
                   <Icon class="mt-0.5" icon="arrow-external" />
                 </li>
               {/if}
-            {/each}
-          {:else}
-            <!-- Textareas -->
-            {#each data.split('\n') as line}
+            {:else}
               <li>
-                <p class="mb-2 text-base">{line}</p>
+                <p class="mb-2 text-base capitalize">{line}</p>
               </li>
-            {/each}
-          {/if}
+            {/if}
+          {/each}
         </ul>
       {/if}
     {/each}

@@ -33,7 +33,7 @@
 
 <div style="background-image: url({src});">
   <section
-    class="container mx-auto px-container @container flex flex-col max-w-[1056px] pt-32 relative"
+    class="container mx-auto px-container @container flex flex-col max-w-[1056px] pt-16 xl:pt-32 relative"
   >
     <img src={EggChicken} class="absolute block drop-shadow-md -right-56 -bottom-80" alt="" />
     <img src={QuimHead} class="absolute block drop-shadow-md -left-60 top-12" alt="" />

@@ -19,6 +19,8 @@
   });
 
   const scrollStatus = createTopNavScrollStatus();
+
+  $: isNavHidden = $page.data?.page?.story?.content?.keep_top_bar_hidden;
 </script>
 
 <div class="mb-px h-[--topnav-height]">
@@ -28,7 +30,7 @@
       !$scrollStatus.isPastZero ? 'border-b-transparent' : 'border-b-border',
       !$scrollStatus.isPastThreshold
         ? 'translate-y-0'
-        : $scrollStatus.direction === 'down'
+        : $scrollStatus.direction === 'down' || isNavHidden
         ? '-translate-y-full'
         : 'translate-y-0'
     )}

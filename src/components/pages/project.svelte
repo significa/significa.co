@@ -88,7 +88,7 @@
               {/if}
             {:else}
               <li>
-                <p class="mb-2 text-base capitalize">{line}</p>
+                <p class="mb-2 text-base">{line}</p>
               </li>
             {/if}
           {/each}

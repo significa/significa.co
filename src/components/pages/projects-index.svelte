@@ -85,7 +85,6 @@
               <div class="mt-2 flex flex-wrap gap-2">
                 {#each items as item}
                   <Tag
-                    class="capitalize"
                     label={item}
                     active={filters.some((f) => f.value === item)}
                     on:click={() => {

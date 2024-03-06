@@ -726,10 +726,8 @@ export interface ProjectStoryblok {
   intro: string;
   team?: (StoryblokStory<TeamMemberStoryblok> | string)[];
   client?: string;
-  deliverables?: string;
-  deliverables_data?: (number | string)[];
-  services?: string;
-  services_data?: (number | string)[];
+  deliverables?: (number | string)[];
+  services?: (number | string)[];
   links?: LinkStoryblok[];
   body?: RichtextStoryblok;
   seo_title?: string;

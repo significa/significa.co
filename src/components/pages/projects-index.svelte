@@ -15,12 +15,12 @@
   let deliverables: string[] = [];
   $: {
     projects.forEach((project) => {
-      project.content.services_data?.forEach((item) => {
+      project.content.services?.forEach((item) => {
         if (typeof item === 'string' && !services.includes(item)) {
           services.push(item);
         }
       });
-      project.content.deliverables_data?.forEach((item) => {
+      project.content.deliverables?.forEach((item) => {
         if (typeof item === 'string' && !deliverables.includes(item)) {
           deliverables.push(item);
         }
@@ -43,10 +43,10 @@
 
     return filters.some((f) => {
       if (f.type === 'service') {
-        return p.content.services_data?.includes(f.value);
+        return p.content.services?.includes(f.value);
       }
 
-      return p.content.deliverables_data?.includes(f.value);
+      return p.content.deliverables?.includes(f.value);
     });
   });
 </script>

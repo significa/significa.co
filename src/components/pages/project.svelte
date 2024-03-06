@@ -71,7 +71,7 @@
   <div
     class="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-6 border-b pb-6 xs:grid-cols-2 md:grid-cols-3"
   >
-    {#each [{ title: t('services'), data: story.content.services_data }, { title: t('deliverables'), data: story.content.deliverables_data }, { title: t('links'), data: story.content.links }] as { title, data }}
+    {#each [{ title: t('services'), data: story.content.services }, { title: t('deliverables'), data: story.content.deliverables }, { title: t('links'), data: story.content.links }] as { title, data }}
       {#if data}
         <ul class="col-span-1">
           <h4 class="mb-2 text-xs uppercase tracking-wider text-foreground-secondary">{title}</h4>

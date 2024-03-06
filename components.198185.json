@@ -2741,24 +2741,27 @@
       "name": "project",
       "display_name": null,
       "created_at": "2023-02-15T13:07:44.621Z",
-      "updated_at": "2024-03-05T15:29:32.672Z",
+      "updated_at": "2024-03-06T10:30:35.274Z",
       "id": 3442356,
       "schema": {
         "cover": {
           "type": "asset",
           "filetypes": ["images"],
           "asset_folder_id": 212286,
-          "pos": 0
+          "pos": 0,
+          "key": "cover"
         },
         "reel": {
           "type": "asset",
           "pos": 1,
-          "filetypes": ["videos"]
+          "filetypes": ["videos"],
+          "key": "reel"
         },
         "reel_button": {
           "type": "section",
           "pos": 2,
-          "keys": ["reel_button_theme", "reel_button_label"]
+          "keys": ["reel_button_theme", "reel_button_label"],
+          "key": "reel_button"
         },
         "reel_button_theme": {
           "type": "option",
@@ -2778,79 +2781,78 @@
           ],
           "default_value": "light",
           "description": "",
-          "display_name": "Reel Button Theme (optional)"
+          "display_name": "Reel Button Theme (optional)",
+          "key": "reel_button_theme"
         },
         "reel_button_label": {
           "type": "text",
           "pos": 4,
-          "display_name": "Reel Button Label (optional)"
+          "display_name": "Reel Button Label (optional)",
+          "key": "reel_button_label"
         },
         "thumbnail": {
           "type": "multiasset",
           "filetypes": ["images"],
           "required": true,
           "asset_folder_id": 212286,
-          "pos": 5
+          "pos": 5,
+          "key": "thumbnail"
         },
         "tagline": {
           "type": "text",
           "required": true,
-          "pos": 6
+          "pos": 6,
+          "key": "tagline"
         },
         "intro": {
           "type": "textarea",
           "required": true,
-          "pos": 7
+          "pos": 7,
+          "key": "intro"
         },
         "team": {
           "type": "options",
           "source": "internal_stories",
           "filter_content_type": ["team-member"],
-          "pos": 8
+          "pos": 8,
+          "key": "team"
         },
         "client": {
           "type": "text",
           "use_uuid": true,
           "source": "internal_stories",
           "filter_content_type": ["client"],
-          "pos": 9
+          "pos": 9,
+          "key": "client"
         },
         "deliverables": {
-          "type": "textarea",
-          "source": "internal_stories",
-          "filter_content_type": ["deliverable"],
-          "pos": 10
+          "type": "options",
+          "pos": 10,
+          "source": "internal",
+          "datasource_slug": "deliverables",
+          "key": "deliverables"
         },
-        "deliverables_data": {
+        "services": {
           "type": "options",
           "pos": 11,
           "source": "internal",
-          "datasource_slug": "deliverables"
-        },
-        "services": {
-          "type": "textarea",
-          "source": "internal_stories",
-          "filter_content_type": ["service"],
-          "pos": 12
-        },
-        "services_data": {
-          "type": "options",
-          "pos": 13,
-          "source": "internal",
-          "datasource_slug": "services"
+          "datasource_slug": "services",
+          "key": "services_data"
         },
         "links": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["link"],
-          "pos": 14
+          "pos": 12,
+          "key": "links"
         },
         "tab-734adeb1-00ef-48e6-aa53-a3001ad39201": {
           "display_name": "Content",
           "keys": ["body"],
-          "pos": 15,
-          "type": "tab"
+          "pos": 13,
+          "type": "tab",
+          "key": "tab-734adeb1-00ef-48e6-aa53-a3001ad39201"
         },
         "body": {
           "type": "richtext",
@@ -2878,27 +2880,32 @@
             "blok",
             "h4"
           ],
-          "pos": 16
+          "pos": 14,
+          "key": "body"
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {
           "display_name": "SEO",
           "keys": ["seo_title", "seo_description", "seo_og_image"],
-          "pos": 17,
-          "type": "tab"
+          "pos": 15,
+          "type": "tab",
+          "key": "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9"
         },
         "seo_title": {
           "type": "text",
-          "pos": 18
+          "pos": 16,
+          "key": "seo_title"
         },
         "seo_description": {
           "type": "text",
-          "pos": 19
+          "pos": 17,
+          "key": "seo_description"
         },
         "seo_og_image": {
           "type": "asset",
           "filetypes": ["images"],
           "asset_folder_id": 212286,
-          "pos": 20
+          "pos": 18,
+          "key": "seo_og_image"
         }
       },
       "image": null,

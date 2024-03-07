@@ -2418,6 +2418,55 @@
       "component_group_name": "Single"
     },
     {
+      "name": "office-cards",
+      "display_name": null,
+      "created_at": "2024-03-06T15:26:14.141Z",
+      "updated_at": "2024-03-07T10:26:05.370Z",
+      "id": 5451419,
+      "schema": {
+        "variant": {
+          "type": "boolean",
+          "pos": 0,
+          "use_uuid": true,
+          "tooltip": true,
+          "description": "Show Only Cards?"
+        },
+        "office_title1": {
+          "type": "text",
+          "pos": 1
+        },
+        "office_title2": {
+          "type": "text",
+          "pos": 2
+        },
+        "office_description": {
+          "type": "textarea",
+          "pos": 3
+        },
+        "office_cards": {
+          "type": "bloks",
+          "minimum": 6,
+          "maximum": 6,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["notepad_card", "photo_card"],
+          "pos": 4
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "office-cards",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "packages",
       "display_name": null,
       "created_at": "2024-01-11T12:27:35.516Z",
@@ -2457,7 +2506,7 @@
       "name": "page",
       "display_name": null,
       "created_at": "2023-03-03T13:41:50.937Z",
-      "updated_at": "2023-05-11T20:13:31.271Z",
+      "updated_at": "2024-03-06T15:33:19.287Z",
       "id": 3520995,
       "schema": {
         "page": {
@@ -2533,6 +2582,13 @@
           "type": "number",
           "description": "The priority of the page relative to other pages on your site, where 0.1 is the lowest priority and 1.0 is the highest priority.\n\n1.0-0.8\nHomepage, product information, landing pages.\n\n0.7-0.4\nNews articles, some weather services, blog posts, pages that no site would be complete without.\n\n0.3-0.0\nFAQs, outdated info, old press releases, completely static pages that are still relevant enough to keep from deleting entirely.",
           "decimals": 1
+        },
+        "blocks": {
+          "type": "bloks",
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_whitelist": [],
+          "component_group_whitelist": ["c9011224-9690-43bd-b686-e8f60ef6c7f6"]
         }
       },
       "image": null,
@@ -2736,6 +2792,26 @@
       "color": null,
       "icon": null,
       "component_group_name": "Single"
+    },
+    {
+      "name": "prefooter-form",
+      "display_name": null,
+      "created_at": "2024-03-07T11:40:30.984Z",
+      "updated_at": "2024-03-07T11:40:30.984Z",
+      "id": 5457509,
+      "schema": {},
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "prefooter-form",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
     },
     {
       "name": "project",

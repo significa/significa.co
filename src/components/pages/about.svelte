@@ -1,16 +1,15 @@
 <script lang="ts">
+  import DynamicBlock from '$components/blocks/dynamic-block.svelte';
   import Testimonials from '$components/blocks/testimonials.svelte';
   import PhysicsSection from '$components/physics-section.svelte';
 
   import Seo from '$components/seo.svelte';
-  import { theme } from '$lib/stores/theme';
-  import { getImageAttributes } from '$lib/utils/cms';
-  import type { AboutPageStoryblok } from '$types/bloks';
-  import OfficeSection from './about/office-section.svelte';
+  import type { AboutPageStoryblok, PageStoryblok } from '$types/bloks';
   import Timeline from './about/timeline.svelte';
   import ValueIllustrations from './about/value-illustrations.svelte';
 
   export let data: AboutPageStoryblok;
+  export let blocks: PageStoryblok['blocks'];
 </script>
 
 <Seo />
@@ -91,31 +90,9 @@
     }}
   />
 
-  <!-- Clients -->
-  <section class="container mx-auto px-container pb-16 pt-20 lg:pb-36 lg:pt-40">
-    <h3 class="text-center text-lg text-foreground-secondary">{data.clients_title}</h3>
-
-    {#if data.clients}
-      <div class="flex flex-wrap justify-center gap-12 p-6">
-        {#each data.clients as client}
-          {#if client.light_mode?.filename && $theme === 'light'}
-            {@const { src, alt, width, height } = getImageAttributes(client.light_mode)}
-            <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
-          {/if}
-
-          {#if client.dark_mode?.filename && $theme === 'dark'}
-            {@const { src, alt, width, height } = getImageAttributes(client.dark_mode)}
-            <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
-          {/if}
-        {/each}
-      </div>
-    {/if}
-  </section>
-
-  <OfficeSection
-    cards={data.office_cards}
-    firstTitle={data.office_title1}
-    secondTitle={data.office_title2}
-    description={data.office_description}
-  />
+  {#if blocks}
+    {#each blocks as block}
+      <DynamicBlock {block} />
+    {/each}
+  {/if}
 </main>

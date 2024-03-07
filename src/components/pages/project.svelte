@@ -137,6 +137,8 @@
   {/if}
 </div>
 
+<!-- Prefooter -->
+<!-- TODO: Remove this code since it's repeated on prefooter-form (block) as soon as we change this page to blocks -->
 <div class="mb-12 mt-40">
   <PreFooter />
 </div>

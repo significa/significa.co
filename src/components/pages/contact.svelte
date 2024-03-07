@@ -1,13 +1,14 @@
 <script lang="ts">
-  import HoverableGallery from '$components/hoverable-gallery.svelte';
   import Seo from '$components/seo.svelte';
-  import type { ContactsPageStoryblok } from '$types/bloks';
+  import type { ContactsPageStoryblok, PageStoryblok } from '$types/bloks';
   import PanWithEggs from './contact/pan-with-eggs.svelte';
   import Segg1 from './contact/illustrations/segg1.svelte';
   import Segg2 from './contact/illustrations/segg2.svelte';
   import ContactForm from '$components/contact-form.svelte';
+  import DynamicBlock from '$components/blocks/dynamic-block.svelte';
 
   export let data: ContactsPageStoryblok;
+  export let blocks: PageStoryblok['blocks'];
 </script>
 
 <Seo />
@@ -29,11 +30,9 @@
     <Segg2 class="absolute -right-20 top-[440px] hidden -rotate-[16deg] drop-shadow-md lg:block" />
   </div>
 
-  {#if !!data.gallery?.length}
-    <section class="border-b">
-      <div class="container mx-auto px-container">
-        <HoverableGallery cards={data.gallery} class="mt-12 lg:mt-0" />
-      </div>
-    </section>
+  {#if blocks}
+    {#each blocks as block}
+      <DynamicBlock {block} />
+    {/each}
   {/if}
 </main>

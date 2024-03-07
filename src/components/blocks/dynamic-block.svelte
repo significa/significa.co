@@ -14,8 +14,10 @@
     'richtext-box': RichTextBox,
     hero: Hero,
     packages: Packages,
+    'prefooter-form': PrefooterForm,
     'work-recognitions': WorkRecognitions,
     estimation: Estimation,
+    'office-cards': OfficeCards,
     steps: Steps,
     services: Services,
     testimonials: Testimonials,
@@ -50,6 +52,8 @@
   import Clients from './clients.svelte';
   import Projects from './projects.svelte';
   import CtaCard from './cta-card.svelte';
+  import OfficeCards from './office-cards.svelte';
+  import PrefooterForm from './prefooter-form.svelte';
 
   export let block: { component: string };
 

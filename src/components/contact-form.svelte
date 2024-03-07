@@ -230,6 +230,7 @@
     />
     {#if type === 'quote'}
       <FloatingSelect
+        required
         name="budget"
         class="w-full"
         label={t('contact.label.budget')}

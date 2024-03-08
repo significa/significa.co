@@ -6,6 +6,7 @@
   const map = {
     image: Image,
     comparison: Comparison,
+    'core-values': CoreValues,
     'image-grid': ImageGrid,
     'richtext-code-block': RichTextCodeBlock,
     'two-columns': TwoColumns,
@@ -54,6 +55,7 @@
   import CtaCard from './cta-card.svelte';
   import OfficeCards from './office-cards.svelte';
   import PrefooterForm from './prefooter-form.svelte';
+  import CoreValues from './core-values.svelte';
 
   export let block: { component: string };
 

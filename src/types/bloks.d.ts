@@ -415,6 +415,16 @@ export interface ContactsPageStoryblok {
   [k: string]: any;
 }
 
+export interface CoreValuesStoryblok {
+  values_title1?: string;
+  values_title2?: string;
+  values_description?: string;
+  values?: ValueStoryblok[];
+  _uid: string;
+  component: 'core-values';
+  [k: string]: any;
+}
+
 export interface CtaCardStoryblok {
   title?: string;
   description?: string;
@@ -606,6 +616,7 @@ export interface LandingPageStoryblok {
   keep_top_bar_hidden?: boolean;
   blocks?: (
     | ClientsStoryblok
+    | CoreValuesStoryblok
     | CtaCardStoryblok
     | EstimationStoryblok
     | HeroStoryblok
@@ -683,6 +694,7 @@ export interface PageStoryblok {
   priority?: string;
   blocks?: (
     | ClientsStoryblok
+    | CoreValuesStoryblok
     | CtaCardStoryblok
     | EstimationStoryblok
     | HeroStoryblok
@@ -1261,7 +1273,14 @@ export interface TwoColumnsStoryblok {
 }
 
 export interface ValueStoryblok {
-  illustration: 'people' | 'teamwork' | 'aspiration';
+  illustration:
+    | 'people'
+    | 'teamwork'
+    | 'aspiration'
+    | 'playfullness'
+    | 'integrity'
+    | 'empathy'
+    | 'ambition';
   title?: string;
   description?: string;
   _uid: string;

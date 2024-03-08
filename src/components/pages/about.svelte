@@ -5,7 +5,6 @@
   import Seo from '$components/seo.svelte';
   import type { AboutPageStoryblok, PageStoryblok } from '$types/bloks';
   import Timeline from './about/timeline.svelte';
-  import ValueIllustrations from './about/value-illustrations.svelte';
 
   export let data: AboutPageStoryblok;
   export let blocks: PageStoryblok['blocks'];
@@ -40,40 +39,6 @@
   </section>
 
   <Timeline timeline={data.timeline} />
-  <!-- Our Values -->
-  <section class="border-t">
-    <div
-      class="container mx-auto flex flex-col gap-8 px-container pt-8 lg:flex-row lg:justify-between lg:pt-0"
-    >
-      <div class="flex flex-col justify-between gap-6 lg:max-w-xl lg:py-12">
-        <div>
-          <h2 class="text-5xl text-foreground-secondary">{data.values_title1}</h2>
-          <p class="text-5xl">{data.values_title2}</p>
-        </div>
-
-        <p class="text-2xl text-foreground-secondary lg:max-w-md">{data.values_description}</p>
-      </div>
-
-      {#if data.values}
-        <div class="lg:max-w-xl">
-          {#each data.values as value}
-            <div
-              class="flex flex-col items-start gap-4 border-t py-8 first:border-none lg:flex-row lg:items-center lg:gap-8 lg:py-12"
-            >
-              <ValueIllustrations
-                variant={value.illustration}
-                class="block shrink-0 drop-shadow-md"
-              />
-              <div>
-                <h3 class="text-2xl font-semibold">{value.title}</h3>
-                <p class="text-2xl text-foreground-secondary">{value.description}</p>
-              </div>
-            </div>
-          {/each}
-        </div>
-      {/if}
-    </div>
-  </section>
 
   {#if blocks}
     {#each blocks as block}

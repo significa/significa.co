@@ -54,7 +54,7 @@
       <h4 class="text-lg font-semibold text-foreground-secondary mb-6">
         {block.awards_title}
       </h4>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-3 xl:gap-8">
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3 xl:gap-4">
         {#each awardsArray as award}
           <div class="flex w-full items-center relative">
             <div

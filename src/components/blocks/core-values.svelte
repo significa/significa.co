@@ -1,5 +1,6 @@
 <script lang="ts">
   import ValueIllustrations from '$components/pages/about/value-illustrations.svelte';
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import type { CoreValuesStoryblok } from '$types/bloks';
 
   export let block: CoreValuesStoryblok;
@@ -7,6 +8,7 @@
 
 <section class="border-t">
   <div
+    use:storyblokEditable={block}
     class="container mx-auto flex flex-col gap-8 px-container pt-8 lg:flex-row lg:justify-between lg:pt-0"
   >
     <div class="flex flex-col justify-between gap-6 lg:max-w-xl lg:py-12">

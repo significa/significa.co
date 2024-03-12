@@ -1403,6 +1403,44 @@
       "component_group_name": "Pages"
     },
     {
+      "name": "core-values",
+      "display_name": null,
+      "created_at": "2024-03-08T15:26:01.922Z",
+      "updated_at": "2024-03-08T15:36:24.779Z",
+      "id": 5466421,
+      "schema": {
+        "values_title1": {
+          "type": "text"
+        },
+        "values_title2": {
+          "type": "text"
+        },
+        "values_description": {
+          "type": "textarea"
+        },
+        "values": {
+          "type": "bloks",
+          "minimum": 3,
+          "maximum": 5,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["value"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "core-values",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "cta-card",
       "display_name": null,
       "created_at": "2024-01-24T11:35:57.280Z",
@@ -5485,7 +5523,7 @@
       "name": "value",
       "display_name": null,
       "created_at": "2023-04-11T13:24:04.277Z",
-      "updated_at": "2023-04-26T17:05:26.948Z",
+      "updated_at": "2024-03-08T15:57:50.262Z",
       "id": 3785697,
       "schema": {
         "illustration": {
@@ -5507,6 +5545,26 @@
               "_uid": "23d20c73-3882-43f4-96d1-c2f3b6aa6aa7",
               "value": "aspiration",
               "name": "Aspiration"
+            },
+            {
+              "_uid": "7a83bb3a-0cd4-434a-972a-5ce5f0015d6f",
+              "value": "playfullness",
+              "name": "Playfullness"
+            },
+            {
+              "_uid": "57d7b5f4-3404-40b7-880c-361ddf23d6b3",
+              "value": "integrity",
+              "name": "Integrity"
+            },
+            {
+              "_uid": "0adf46e8-185f-44ce-a812-2f8a14341fa3",
+              "value": "empathy",
+              "name": "Empathy"
+            },
+            {
+              "_uid": "74fbe23b-d185-496c-92f6-ef4587b4c344",
+              "value": "ambition",
+              "name": "Ambition"
             }
           ],
           "exclude_empty_option": true,

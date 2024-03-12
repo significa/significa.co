@@ -2459,7 +2459,7 @@
       "name": "office-cards",
       "display_name": null,
       "created_at": "2024-03-06T15:26:14.141Z",
-      "updated_at": "2024-03-07T10:26:05.370Z",
+      "updated_at": "2024-03-12T10:19:36.889Z",
       "id": 5451419,
       "schema": {
         "variant": {
@@ -2477,9 +2477,17 @@
           "type": "text",
           "pos": 2
         },
+        "btn_label": {
+          "type": "text",
+          "pos": 3
+        },
+        "btn_link": {
+          "type": "multilink",
+          "pos": 4
+        },
         "office_description": {
           "type": "textarea",
-          "pos": 3
+          "pos": 5
         },
         "office_cards": {
           "type": "bloks",
@@ -2488,7 +2496,7 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["notepad_card", "photo_card"],
-          "pos": 4
+          "pos": 6
         }
       },
       "image": null,
@@ -2666,6 +2674,73 @@
       "color": null,
       "icon": null,
       "component_group_name": "Single"
+    },
+    {
+      "name": "physics",
+      "display_name": null,
+      "created_at": "2024-03-12T15:09:24.990Z",
+      "updated_at": "2024-03-12T15:15:26.425Z",
+      "id": 5485214,
+      "schema": {
+        "variant": {
+          "type": "option",
+          "use_uuid": true,
+          "exclude_empty_option": true,
+          "options": [
+            {
+              "_uid": "572e88df-b66e-4eb7-b6c5-b940e94508b3",
+              "name": "hero",
+              "value": "hero"
+            },
+            {
+              "_uid": "1515e94d-4521-433e-8a98-88b514eb7e84",
+              "value": "section",
+              "name": "section"
+            }
+          ],
+          "pos": 0
+        },
+        "hero_title": {
+          "type": "text",
+          "pos": 1
+        },
+        "section_title1": {
+          "type": "text",
+          "pos": 2
+        },
+        "section_title2": {
+          "type": "text",
+          "pos": 3
+        },
+        "section_description": {
+          "type": "textarea",
+          "pos": 4
+        },
+        "physics_blocks": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "physics-balloon-card",
+            "physics-input",
+            "physics-sticker",
+            "physics-rectangle-card"
+          ],
+          "pos": 5
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "physics",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
     },
     {
       "name": "physics-balloon-card",
@@ -5243,6 +5318,42 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "testimonials",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
+    },
+    {
+      "name": "timeline",
+      "display_name": null,
+      "created_at": "2024-03-12T11:05:47.289Z",
+      "updated_at": "2024-03-12T11:08:03.115Z",
+      "id": 5481922,
+      "schema": {
+        "title1": {
+          "type": "text"
+        },
+        "title2": {
+          "type": "text"
+        },
+        "description": {
+          "type": "textarea"
+        },
+        "timeline": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["timeline-section"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "timeline",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,

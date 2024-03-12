@@ -4,7 +4,6 @@
 
   import Seo from '$components/seo.svelte';
   import type { AboutPageStoryblok, PageStoryblok } from '$types/bloks';
-  import Timeline from './about/timeline.svelte';
 
   export let data: AboutPageStoryblok;
   export let blocks: PageStoryblok['blocks'];
@@ -21,24 +20,6 @@
       items={data.physics_blocks}
     />
   </div>
-
-  <!-- Who we are -->
-  <section class="border-t">
-    <div
-      class="container mx-auto flex flex-col justify-between gap-6 px-container py-8 lg:flex-row lg:gap-4 lg:py-12"
-    >
-      <div class="lg:max-w-xl">
-        <h2 class="text-5xl text-foreground-secondary">{data.about_title1}</h2>
-        <p class="text-5xl">{data.about_title2}</p>
-      </div>
-
-      <p class="whitespace-pre-line text-2xl text-foreground-secondary lg:max-w-xl">
-        {data.about_description}
-      </p>
-    </div>
-  </section>
-
-  <Timeline timeline={data.timeline} />
 
   {#if blocks}
     {#each blocks as block}

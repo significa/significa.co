@@ -5,7 +5,7 @@
   import { VIDEO_EXTENSIONS } from '$lib/constants';
   import type { BlogPostPage } from '$lib/content';
   import { getFileExtension } from '$lib/utils/strings';
-  import type { HomePageStoryblok } from '$types/bloks';
+  import type { HomePageStoryblok, PageStoryblok } from '$types/bloks';
   import SmallHighlights from './home/small-highlights.svelte';
   import Reel from '$components/reel.svelte';
   import clsx from 'clsx';
@@ -19,6 +19,7 @@
   import { drawerLinks } from '$lib/actions/drawer-links';
   import { t } from '$lib/i18n';
   import Testimonials from '$components/blocks/testimonials.svelte';
+  import DynamicBlock from '$components/blocks/dynamic-block.svelte';
 
   export let data: HomePageStoryblok;
   export let posts: BlogPostPage[] | undefined;
@@ -30,6 +31,8 @@
       show = true;
     }
   });
+
+  export let blocks: PageStoryblok['blocks'];
 </script>
 
 <!-- TODO: Remove this code since it's repeated on hero.svelte (block) as soon as we change the pages to blocks -->
@@ -163,3 +166,9 @@
     </section>
   {/if}
 </div>
+
+{#if blocks}
+  {#each blocks as block}
+    <DynamicBlock {block} />
+  {/each}
+{/if}

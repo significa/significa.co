@@ -1,6 +1,5 @@
 <script lang="ts">
   import DynamicBlock from '$components/blocks/dynamic-block.svelte';
-  import Testimonials from '$components/blocks/testimonials.svelte';
   import PhysicsSection from '$components/physics-section.svelte';
 
   import Seo from '$components/seo.svelte';
@@ -75,20 +74,6 @@
       {/if}
     </div>
   </section>
-
-  <Testimonials
-    block={{
-      _uid: 'AboutTestimonials',
-      component: 'testimonials',
-      testimonials: data.testimonials,
-      testimonials_cta_label: data.testimonials_cta_label,
-      testimonials_cta_link: data.testimonials_cta_link,
-      testimonials_title1: data.testimonials_title1,
-      testimonials_title2: data.testimonials_title2,
-      variant: data.variant,
-      size: data.size
-    }}
-  />
 
   {#if blocks}
     {#each blocks as block}

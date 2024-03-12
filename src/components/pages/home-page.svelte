@@ -81,6 +81,8 @@
 
   <Services {data} />
 
+  <!-- TODO: Remove this code once this page is a block -->
+
   <Testimonials
     block={{
       _uid: 'HomeTestimonials',

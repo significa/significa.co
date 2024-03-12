@@ -9,7 +9,6 @@
   import { drawerLinks } from '$lib/actions/drawer-links';
   import clsx from 'clsx';
   import { page } from '$app/stores';
-  import Testimonials from '$components/blocks/testimonials.svelte';
   import AwardsEntry from '$components/awards-entry.svelte';
   import DynamicBlock from '$components/blocks/dynamic-block.svelte';
 
@@ -155,21 +154,6 @@
       {/if}
     </div>
   </section>
-
-  <!-- Testimonials -->
-  <Testimonials
-    block={{
-      _uid: 'ServicesTestimonials',
-      component: 'testimonials',
-      testimonials: data.testimonials,
-      testimonials_cta_label: data.testimonials_cta_label,
-      testimonials_cta_link: data.testimonials_cta_link,
-      testimonials_title1: data.testimonials_title1,
-      testimonials_title2: data.testimonials_title2,
-      variant: data.variant,
-      size: data.size
-    }}
-  />
 
   {#if blocks}
     {#each blocks as block}

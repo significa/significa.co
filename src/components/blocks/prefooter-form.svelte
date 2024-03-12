@@ -6,12 +6,17 @@
   import { theme } from '$lib/stores/theme';
   import ContactForm from '$components/contact-form.svelte';
   import type { PrefooterFormStoryblok } from '$types/bloks';
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
 
-  export let variant: ComponentProps<ContactForm>['variant'] = undefined;
+  let variant: ComponentProps<ContactForm>['variant'] = undefined;
   export let block: PrefooterFormStoryblok;
 </script>
 
-<section id={block._uid} class="container mx-auto px-container @container">
+<section
+  use:storyblokEditable={block}
+  id={block._uid}
+  class="container mx-auto px-container @container"
+>
   <div class="grid grid-cols-3 overflow-hidden rounded-lg border">
     <div class="col-span-1 hidden flex-col bg-background-panel @5xl:flex">
       <div class="p-8">

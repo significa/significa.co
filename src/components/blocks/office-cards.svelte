@@ -2,11 +2,12 @@
   import type { OfficeCardsStoryblok } from '$types/bloks';
   import HoverableGallery from '$components/hoverable-gallery.svelte';
   import clsx from 'clsx';
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
 
   export let block: OfficeCardsStoryblok;
 </script>
 
-<section class={clsx(!block.variant && 'overflow-hidden border-y')}>
+<section use:storyblokEditable={block} class={clsx(!block.variant && 'overflow-hidden border-y')}>
   {#if !block.variant}
     <div class="container mx-auto px-container pt-8 lg:pt-12">
       <div class="flex flex-col justify-between gap-7 lg:flex-row lg:gap-4">

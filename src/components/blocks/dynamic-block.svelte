@@ -4,6 +4,7 @@
   import Image from './image.svelte';
 
   const map = {
+    'awards-list': AwardsList,
     image: Image,
     comparison: Comparison,
     'core-values': CoreValues,
@@ -23,6 +24,7 @@
     steps: Steps,
     services: Services,
     testimonials: Testimonials,
+    'timeline-services': TimelineServices,
     clients: Clients,
     projects: Projects,
     'cta-card': CtaCard
@@ -58,6 +60,8 @@
   import PrefooterForm from './prefooter-form.svelte';
   import CoreValues from './core-values.svelte';
   import Deliverables from './deliverables.svelte';
+  import AwardsList from './awards-list.svelte';
+  import TimelineServices from './timeline-services.svelte';
 
   export let block: { component: string };
 

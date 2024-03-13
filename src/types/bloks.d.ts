@@ -120,6 +120,14 @@ export interface AwardsEntryStoryblok {
   [k: string]: any;
 }
 
+export interface AwardsListStoryblok {
+  title?: string;
+  description?: string;
+  _uid: string;
+  component: 'awards-list';
+  [k: string]: any;
+}
+
 export interface BenefitsEntryStoryblok {
   image?: AssetStoryblok;
   title?: string;
@@ -633,6 +641,7 @@ export interface ImageGridStoryblok {
 export interface LandingPageStoryblok {
   keep_top_bar_hidden?: boolean;
   blocks?: (
+    | AwardsListStoryblok
     | ClientsStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
@@ -648,6 +657,7 @@ export interface LandingPageStoryblok {
     | StepsStoryblok
     | TestimonialsStoryblok
     | TimelineStoryblok
+    | TimelineServicesStoryblok
     | WorkRecognitionsStoryblok
   )[];
   seo_title?: string;
@@ -716,6 +726,7 @@ export interface PageStoryblok {
   change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   priority?: string;
   blocks?: (
+    | AwardsListStoryblok
     | ClientsStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
@@ -731,6 +742,7 @@ export interface PageStoryblok {
     | StepsStoryblok
     | TestimonialsStoryblok
     | TimelineStoryblok
+    | TimelineServicesStoryblok
     | WorkRecognitionsStoryblok
   )[];
   _uid: string;
@@ -1305,6 +1317,15 @@ export interface TimelineSectionStoryblok {
   width: string;
   _uid: string;
   component: 'timeline-section';
+  [k: string]: any;
+}
+
+export interface TimelineServicesStoryblok {
+  title?: string;
+  description?: string;
+  timeline?: ServiceTimelineRowStoryblok[];
+  _uid: string;
+  component: 'timeline-services';
   [k: string]: any;
 }
 

@@ -73,6 +73,6 @@
   {:else if page.component === 'contacts-page' && isContactPage(page)}
     <Contact data={page} blocks={story.content.blocks} />
   {:else if page.component === 'services-page' && isServicesPage(page)}
-    <Services data={page} blocks={story.content.blocks} />
+    <Services blocks={story.content.blocks} />
   {/if}
 {/each}

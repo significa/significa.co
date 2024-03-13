@@ -7,6 +7,7 @@
     image: Image,
     comparison: Comparison,
     'core-values': CoreValues,
+    deliverables: Deliverables,
     'image-grid': ImageGrid,
     'richtext-code-block': RichTextCodeBlock,
     'two-columns': TwoColumns,
@@ -56,6 +57,7 @@
   import OfficeCards from './office-cards.svelte';
   import PrefooterForm from './prefooter-form.svelte';
   import CoreValues from './core-values.svelte';
+  import Deliverables from './deliverables.svelte';
 
   export let block: { component: string };
 

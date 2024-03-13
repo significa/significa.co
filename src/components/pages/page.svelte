@@ -59,7 +59,7 @@
   {#if page.component === 'static-page' && page.body}
     <StaticPage body={page.body} />
   {:else if page.component === 'about-page' && isAboutPage(page)}
-    <About data={page} blocks={story.content.blocks} />
+    <About blocks={story.content.blocks} />
   {:else if page.component === 'home-page' && isHomePage(page)}
     <HomePage data={page} posts={homePosts} blocks={story.content.blocks} />
   {:else if page.component === 'blog-index' && blogIndex}

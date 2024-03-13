@@ -2679,7 +2679,7 @@
       "name": "physics",
       "display_name": null,
       "created_at": "2024-03-12T15:09:24.990Z",
-      "updated_at": "2024-03-12T15:15:26.425Z",
+      "updated_at": "2024-03-13T10:00:44.991Z",
       "id": 5485214,
       "schema": {
         "variant": {
@@ -2716,6 +2716,14 @@
           "type": "textarea",
           "pos": 4
         },
+        "cta_label": {
+          "type": "text",
+          "pos": 5
+        },
+        "cta_link": {
+          "type": "multilink",
+          "pos": 6
+        },
         "physics_blocks": {
           "type": "bloks",
           "restrict_type": "",
@@ -2726,7 +2734,7 @@
             "physics-sticker",
             "physics-rectangle-card"
           ],
-          "pos": 5
+          "pos": 7
         }
       },
       "image": null,

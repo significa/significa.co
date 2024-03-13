@@ -732,6 +732,8 @@ export interface PhysicsStoryblok {
   section_title1?: string;
   section_title2?: string;
   section_description?: string;
+  cta_label?: string;
+  cta_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   physics_blocks?: (
     | PhysicsBalloonCardStoryblok
     | PhysicsInputStoryblok

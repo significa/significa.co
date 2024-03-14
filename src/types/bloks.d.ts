@@ -334,6 +334,19 @@ export interface CareerStoryblok {
   [k: string]: any;
 }
 
+export interface CareersListStoryblok {
+  title?: string;
+  cta_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  cta_label?: string;
+  handbook_title?: string;
+  handbook_description?: string;
+  handbook_cta_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  handbook_cta_text?: string;
+  _uid: string;
+  component: 'careers-list';
+  [k: string]: any;
+}
+
 export type MultiassetStoryblok = {
   alt?: string;
   copyright?: string;
@@ -642,6 +655,7 @@ export interface LandingPageStoryblok {
   keep_top_bar_hidden?: boolean;
   blocks?: (
     | AwardsListStoryblok
+    | CareersListStoryblok
     | ClientsStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
@@ -727,6 +741,7 @@ export interface PageStoryblok {
   priority?: string;
   blocks?: (
     | AwardsListStoryblok
+    | CareersListStoryblok
     | ClientsStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok

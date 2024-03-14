@@ -1077,6 +1077,55 @@
       "component_group_name": "Content Types"
     },
     {
+      "name": "careers-list",
+      "display_name": null,
+      "created_at": "2024-03-14T10:56:07.056Z",
+      "updated_at": "2024-03-14T11:01:45.919Z",
+      "id": 5495548,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "cta_link": {
+          "type": "multilink",
+          "pos": 1
+        },
+        "cta_label": {
+          "type": "text",
+          "pos": 2
+        },
+        "handbook_title": {
+          "type": "text",
+          "pos": 3
+        },
+        "handbook_description": {
+          "type": "textarea",
+          "pos": 4
+        },
+        "handbook_cta_link": {
+          "type": "multilink",
+          "pos": 5
+        },
+        "handbook_cta_text": {
+          "type": "text",
+          "pos": 6
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "careers-list",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "careers-page",
       "display_name": null,
       "created_at": "2023-04-19T14:55:51.954Z",
@@ -5639,14 +5688,15 @@
       "name": "timeline-services",
       "display_name": null,
       "created_at": "2024-03-13T17:08:11.140Z",
-      "updated_at": "2024-03-13T17:08:40.345Z",
+      "updated_at": "2024-03-14T11:54:19.731Z",
       "id": 5492589,
       "schema": {
         "title": {
           "type": "text"
         },
         "description": {
-          "type": "text"
+          "type": "text",
+          "display_name": "Subtitle"
         },
         "timeline": {
           "type": "bloks",

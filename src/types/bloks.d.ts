@@ -415,6 +415,16 @@ export interface ContactsPageStoryblok {
   [k: string]: any;
 }
 
+export interface CoreValuesStoryblok {
+  values_title1?: string;
+  values_title2?: string;
+  values_description?: string;
+  values?: ValueStoryblok[];
+  _uid: string;
+  component: 'core-values';
+  [k: string]: any;
+}
+
 export interface CtaCardStoryblok {
   title?: string;
   description?: string;
@@ -606,10 +616,13 @@ export interface LandingPageStoryblok {
   keep_top_bar_hidden?: boolean;
   blocks?: (
     | ClientsStoryblok
+    | CoreValuesStoryblok
     | CtaCardStoryblok
     | EstimationStoryblok
     | HeroStoryblok
+    | OfficeCardsStoryblok
     | PackagesStoryblok
+    | PrefooterFormStoryblok
     | ProjectsStoryblok
     | ServicesStoryblok
     | StepsStoryblok
@@ -641,6 +654,17 @@ export interface NotepadCardStoryblok {
   [k: string]: any;
 }
 
+export interface OfficeCardsStoryblok {
+  variant?: boolean;
+  office_title1?: string;
+  office_title2?: string;
+  office_description?: string;
+  office_cards?: (NotepadCardStoryblok | PhotoCardStoryblok)[];
+  _uid: string;
+  component: 'office-cards';
+  [k: string]: any;
+}
+
 export interface PackagesStoryblok {
   section_title?: string;
   section_description?: string;
@@ -668,6 +692,21 @@ export interface PageStoryblok {
   seo_og_image?: AssetStoryblok;
   change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   priority?: string;
+  blocks?: (
+    | ClientsStoryblok
+    | CoreValuesStoryblok
+    | CtaCardStoryblok
+    | EstimationStoryblok
+    | HeroStoryblok
+    | OfficeCardsStoryblok
+    | PackagesStoryblok
+    | PrefooterFormStoryblok
+    | ProjectsStoryblok
+    | ServicesStoryblok
+    | StepsStoryblok
+    | TestimonialsStoryblok
+    | WorkRecognitionsStoryblok
+  )[];
   _uid: string;
   component: 'page';
   uuid?: string;
@@ -712,6 +751,12 @@ export interface PhysicsStickerStoryblok {
   is_desktop_only?: boolean;
   _uid: string;
   component: 'physics-sticker';
+  [k: string]: any;
+}
+
+export interface PrefooterFormStoryblok {
+  _uid: string;
+  component: 'prefooter-form';
   [k: string]: any;
 }
 
@@ -1228,7 +1273,14 @@ export interface TwoColumnsStoryblok {
 }
 
 export interface ValueStoryblok {
-  illustration: 'people' | 'teamwork' | 'aspiration';
+  illustration:
+    | 'people'
+    | 'teamwork'
+    | 'aspiration'
+    | 'playfullness'
+    | 'integrity'
+    | 'empathy'
+    | 'ambition';
   title?: string;
   description?: string;
   _uid: string;

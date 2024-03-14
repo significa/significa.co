@@ -1,15 +1,22 @@
 <script lang="ts">
   import { t } from '$lib/i18n';
   import type { ComponentProps } from 'svelte';
-  import ContactForm from './contact-form.svelte';
-  import PreFooterAsset from './illustrations/assets/pre-footer.webp';
-  import PreFooterAssetLight from './illustrations/assets/pre-footer-light.webp';
+  import PreFooterAsset from '../illustrations/assets/pre-footer.webp';
+  import PreFooterAssetLight from '../illustrations/assets/pre-footer-light.webp';
   import { theme } from '$lib/stores/theme';
+  import ContactForm from '$components/contact-form.svelte';
+  import type { PrefooterFormStoryblok } from '$types/bloks';
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
 
-  export let variant: ComponentProps<ContactForm>['variant'] = undefined;
+  let variant: ComponentProps<ContactForm>['variant'] = undefined;
+  export let block: PrefooterFormStoryblok;
 </script>
 
-<section class="container mx-auto px-container @container">
+<section
+  use:storyblokEditable={block}
+  id={block._uid}
+  class="container mx-auto px-container @container"
+>
   <div class="grid grid-cols-3 overflow-hidden rounded-lg border">
     <div class="col-span-1 hidden flex-col bg-background-panel @5xl:flex">
       <div class="p-8">

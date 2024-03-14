@@ -9,6 +9,7 @@
   import clsx from 'clsx';
   import People from '../illustrations/stickers/people.svelte';
   import FriedEgg from '../illustrations/stickers/fried-egg.svelte';
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
 
   export let block: TestimonialsStoryblok;
 
@@ -23,7 +24,11 @@
 
 <svelte:window bind:scrollY={scroll} />
 
-<section class={clsx(hasBorder && 'border-t')} bind:this={testimonialsSection}>
+<section
+  use:storyblokEditable={block}
+  class={clsx(hasBorder && 'border-t')}
+  bind:this={testimonialsSection}
+>
   <div class="container mx-auto px-container pt-16 lg:pt-20">
     <div class="mx-auto flex max-w-xl flex-col items-center">
       {#if block.testimonials_title1}

@@ -59,7 +59,7 @@
   {#if page.component === 'static-page' && page.body}
     <StaticPage body={page.body} />
   {:else if page.component === 'about-page' && isAboutPage(page)}
-    <About data={page} />
+    <About data={page} blocks={story.content.blocks} />
   {:else if page.component === 'home-page' && isHomePage(page)}
     <HomePage data={page} posts={homePosts} />
   {:else if page.component === 'blog-index' && blogIndex}
@@ -71,8 +71,8 @@
   {:else if page.component === 'careers-page' && isCareersPage(page)}
     <Careers data={page} {teamMembers} />
   {:else if page.component === 'contacts-page' && isContactPage(page)}
-    <Contact data={page} />
+    <Contact data={page} blocks={story.content.blocks} />
   {:else if page.component === 'services-page' && isServicesPage(page)}
-    <Services data={page} />
+    <Services data={page} blocks={story.content.blocks} />
   {/if}
 {/each}

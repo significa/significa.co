@@ -1,20 +1,19 @@
 <script lang="ts">
   import Seo from '$components/seo.svelte';
-  import PreFooter from '$components/pre-footer.svelte';
   import Square from './services/illustrations/square.svelte';
   import Hand from './services/illustrations/hand.svelte';
   import Duck from './services/illustrations/duck.svelte';
   import Timeline from './services/timeline.svelte';
   import { getImageAttributes } from '$lib/utils/cms';
-  import type { ServicesPageStoryblok } from '$types/bloks';
+  import type { PageStoryblok, ServicesPageStoryblok } from '$types/bloks';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import clsx from 'clsx';
   import { page } from '$app/stores';
-  import Testimonials from '$components/blocks/testimonials.svelte';
   import AwardsEntry from '$components/awards-entry.svelte';
-  import Clients from '$components/clients.svelte';
+  import DynamicBlock from '$components/blocks/dynamic-block.svelte';
 
   export let data: ServicesPageStoryblok;
+  export let blocks: PageStoryblok['blocks'];
 </script>
 
 <Seo />
@@ -156,31 +155,9 @@
     </div>
   </section>
 
-  <!-- Testimonials -->
-  <Testimonials
-    block={{
-      _uid: 'ServicesTestimonials',
-      component: 'testimonials',
-      testimonials: data.testimonials,
-      testimonials_cta_label: data.testimonials_cta_label,
-      testimonials_cta_link: data.testimonials_cta_link,
-      testimonials_title1: data.testimonials_title1,
-      testimonials_title2: data.testimonials_title2,
-      variant: data.variant,
-      size: data.size
-    }}
-  />
-
-  <!-- Clients -->
-  <!-- TODO: Remove this code since it's repeated on clients.svelte (block) as soon as we change the pages to blocks -->
-  <section class=" container mx-auto px-container pb-16 pt-20 lg:pb-20 lg:pt-40">
-    <h3 class="text-center text-2xl text-foreground-secondary">{data.clients_title}</h3>
-    {#if data.clients}
-      <Clients clients={data.clients}></Clients>
-    {/if}
-  </section>
-
-  <div class="mb-12">
-    <PreFooter />
-  </div>
+  {#if blocks}
+    {#each blocks as block}
+      <DynamicBlock {block} />
+    {/each}
+  {/if}
 </main>

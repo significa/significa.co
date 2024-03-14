@@ -440,12 +440,30 @@ export interface DeliverableStoryblok {
   [k: string]: any;
 }
 
+export interface DeliverablesStoryblok {
+  title?: string;
+  subtitle?: string;
+  deliverables?: DeliverablesEntryBlockStoryblok[];
+  _uid: string;
+  component: 'deliverables';
+  [k: string]: any;
+}
+
 export interface DeliverablesEntryStoryblok {
   icon?: AssetStoryblok;
   title?: string;
   description?: string;
   _uid: string;
   component: 'deliverables_entry';
+  [k: string]: any;
+}
+
+export interface DeliverablesEntryBlockStoryblok {
+  icon?: AssetStoryblok;
+  deliverable?: number | string;
+  description?: string;
+  _uid: string;
+  component: 'deliverables_entry_block';
   [k: string]: any;
 }
 
@@ -618,6 +636,7 @@ export interface LandingPageStoryblok {
     | ClientsStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
+    | DeliverablesStoryblok
     | EstimationStoryblok
     | HeroStoryblok
     | OfficeCardsStoryblok
@@ -700,6 +719,7 @@ export interface PageStoryblok {
     | ClientsStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
+    | DeliverablesStoryblok
     | EstimationStoryblok
     | HeroStoryblok
     | OfficeCardsStoryblok

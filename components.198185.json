@@ -1491,6 +1491,39 @@
       "component_group_name": "Configuration"
     },
     {
+      "name": "deliverables",
+      "display_name": null,
+      "created_at": "2024-03-13T11:55:40.026Z",
+      "updated_at": "2024-03-13T12:01:32.496Z",
+      "id": 5490348,
+      "schema": {
+        "title": {
+          "type": "text"
+        },
+        "subtitle": {
+          "type": "text"
+        },
+        "deliverables": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["deliverables_entry_block"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "deliverables",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "deliverables_entry",
       "display_name": null,
       "created_at": "2023-05-04T15:01:16.651Z",
@@ -1516,6 +1549,41 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "deliverables_entry",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "deliverables_entry_block",
+      "display_name": null,
+      "created_at": "2024-03-13T11:59:49.202Z",
+      "updated_at": "2024-03-13T12:00:52.608Z",
+      "id": 5490353,
+      "schema": {
+        "icon": {
+          "type": "asset",
+          "filetypes": ["images"]
+        },
+        "deliverable": {
+          "type": "option",
+          "use_uuid": true,
+          "source": "internal",
+          "datasource_slug": "deliverables",
+          "exclude_empty_option": true
+        },
+        "description": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "deliverables_entry_block",
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,

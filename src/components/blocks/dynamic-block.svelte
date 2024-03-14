@@ -4,6 +4,7 @@
   import Image from './image.svelte';
 
   const map = {
+    'awards-list': AwardsList,
     image: Image,
     comparison: Comparison,
     'core-values': CoreValues,
@@ -24,6 +25,7 @@
     steps: Steps,
     services: Services,
     testimonials: Testimonials,
+    'timeline-services': TimelineServices,
     timeline: Timeline,
     clients: Clients,
     projects: Projects,
@@ -60,6 +62,8 @@
   import PrefooterForm from './prefooter-form.svelte';
   import CoreValues from './core-values.svelte';
   import Deliverables from './deliverables.svelte';
+  import AwardsList from './awards-list.svelte';
+  import TimelineServices from './timeline-services.svelte';
   import Timeline from './timeline.svelte';
   import Physics from './physics.svelte';
 

@@ -622,11 +622,13 @@ export interface LandingPageStoryblok {
     | HeroStoryblok
     | OfficeCardsStoryblok
     | PackagesStoryblok
+    | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
     | ServicesStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
+    | TimelineStoryblok
     | WorkRecognitionsStoryblok
   )[];
   seo_title?: string;
@@ -658,6 +660,8 @@ export interface OfficeCardsStoryblok {
   variant?: boolean;
   office_title1?: string;
   office_title2?: string;
+  btn_label?: string;
+  btn_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   office_description?: string;
   office_cards?: (NotepadCardStoryblok | PhotoCardStoryblok)[];
   _uid: string;
@@ -700,11 +704,13 @@ export interface PageStoryblok {
     | HeroStoryblok
     | OfficeCardsStoryblok
     | PackagesStoryblok
+    | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
     | ServicesStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
+    | TimelineStoryblok
     | WorkRecognitionsStoryblok
   )[];
   _uid: string;
@@ -717,6 +723,25 @@ export interface PhotoCardStoryblok {
   photo?: AssetStoryblok;
   _uid: string;
   component: 'photo_card';
+  [k: string]: any;
+}
+
+export interface PhysicsStoryblok {
+  variant?: 'hero' | 'section';
+  hero_title?: string;
+  section_title1?: string;
+  section_title2?: string;
+  section_description?: string;
+  cta_label?: string;
+  cta_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  physics_blocks?: (
+    | PhysicsBalloonCardStoryblok
+    | PhysicsInputStoryblok
+    | PhysicsStickerStoryblok
+    | PhysicsRectangleCardStoryblok
+  )[];
+  _uid: string;
+  component: 'physics';
   [k: string]: any;
 }
 
@@ -1218,6 +1243,16 @@ export interface TestimonialsStoryblok {
   testimonials?: RichtextTestimonialStoryblok[];
   _uid: string;
   component: 'testimonials';
+  [k: string]: any;
+}
+
+export interface TimelineStoryblok {
+  title1?: string;
+  title2?: string;
+  description?: string;
+  timeline?: TimelineSectionStoryblok[];
+  _uid: string;
+  component: 'timeline';
   [k: string]: any;
 }
 

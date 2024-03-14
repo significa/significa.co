@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { theme } from '$lib/stores/theme';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { ClientStoryblok } from '$types/bloks';
@@ -6,7 +7,7 @@
   export let block: ClientStoryblok;
 </script>
 
-<section class="container mx-auto px-container pb-16 pt-20 lg:py-20">
+<section use:storyblokEditable={block} class="container mx-auto px-container pb-16 pt-20 lg:py-20">
   <h3 class="text-center text-lg text-foreground-secondary">{block.clients_title}</h3>
   {#if block.clients}
     <div class="flex flex-wrap justify-center gap-12 p-6">

@@ -120,6 +120,14 @@ export interface AwardsEntryStoryblok {
   [k: string]: any;
 }
 
+export interface AwardsListStoryblok {
+  title?: string;
+  description?: string;
+  _uid: string;
+  component: 'awards-list';
+  [k: string]: any;
+}
+
 export interface BenefitsEntryStoryblok {
   image?: AssetStoryblok;
   title?: string;
@@ -440,12 +448,30 @@ export interface DeliverableStoryblok {
   [k: string]: any;
 }
 
+export interface DeliverablesStoryblok {
+  title?: string;
+  subtitle?: string;
+  deliverables?: DeliverablesEntryBlockStoryblok[];
+  _uid: string;
+  component: 'deliverables';
+  [k: string]: any;
+}
+
 export interface DeliverablesEntryStoryblok {
   icon?: AssetStoryblok;
   title?: string;
   description?: string;
   _uid: string;
   component: 'deliverables_entry';
+  [k: string]: any;
+}
+
+export interface DeliverablesEntryBlockStoryblok {
+  icon?: AssetStoryblok;
+  deliverable?: number | string;
+  description?: string;
+  _uid: string;
+  component: 'deliverables_entry_block';
   [k: string]: any;
 }
 
@@ -615,18 +641,23 @@ export interface ImageGridStoryblok {
 export interface LandingPageStoryblok {
   keep_top_bar_hidden?: boolean;
   blocks?: (
+    | AwardsListStoryblok
     | ClientsStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
+    | DeliverablesStoryblok
     | EstimationStoryblok
     | HeroStoryblok
     | OfficeCardsStoryblok
     | PackagesStoryblok
+    | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
     | ServicesStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
+    | TimelineStoryblok
+    | TimelineServicesStoryblok
     | WorkRecognitionsStoryblok
   )[];
   seo_title?: string;
@@ -658,6 +689,8 @@ export interface OfficeCardsStoryblok {
   variant?: boolean;
   office_title1?: string;
   office_title2?: string;
+  btn_label?: string;
+  btn_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   office_description?: string;
   office_cards?: (NotepadCardStoryblok | PhotoCardStoryblok)[];
   _uid: string;
@@ -693,18 +726,23 @@ export interface PageStoryblok {
   change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   priority?: string;
   blocks?: (
+    | AwardsListStoryblok
     | ClientsStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
+    | DeliverablesStoryblok
     | EstimationStoryblok
     | HeroStoryblok
     | OfficeCardsStoryblok
     | PackagesStoryblok
+    | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
     | ServicesStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
+    | TimelineStoryblok
+    | TimelineServicesStoryblok
     | WorkRecognitionsStoryblok
   )[];
   _uid: string;
@@ -717,6 +755,25 @@ export interface PhotoCardStoryblok {
   photo?: AssetStoryblok;
   _uid: string;
   component: 'photo_card';
+  [k: string]: any;
+}
+
+export interface PhysicsStoryblok {
+  variant?: 'hero' | 'section';
+  hero_title?: string;
+  section_title1?: string;
+  section_title2?: string;
+  section_description?: string;
+  cta_label?: string;
+  cta_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  physics_blocks?: (
+    | PhysicsBalloonCardStoryblok
+    | PhysicsInputStoryblok
+    | PhysicsStickerStoryblok
+    | PhysicsRectangleCardStoryblok
+  )[];
+  _uid: string;
+  component: 'physics';
   [k: string]: any;
 }
 
@@ -1221,6 +1278,16 @@ export interface TestimonialsStoryblok {
   [k: string]: any;
 }
 
+export interface TimelineStoryblok {
+  title1?: string;
+  title2?: string;
+  description?: string;
+  timeline?: TimelineSectionStoryblok[];
+  _uid: string;
+  component: 'timeline';
+  [k: string]: any;
+}
+
 export interface TimelineArrowStoryblok {
   variant: '' | 'one' | 'two' | 'three' | 'four' | 'five';
   flip?: boolean;
@@ -1250,6 +1317,15 @@ export interface TimelineSectionStoryblok {
   width: string;
   _uid: string;
   component: 'timeline-section';
+  [k: string]: any;
+}
+
+export interface TimelineServicesStoryblok {
+  title?: string;
+  description?: string;
+  timeline?: ServiceTimelineRowStoryblok[];
+  _uid: string;
+  component: 'timeline-services';
   [k: string]: any;
 }
 

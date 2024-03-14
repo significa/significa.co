@@ -4,9 +4,11 @@
   import Image from './image.svelte';
 
   const map = {
+    'awards-list': AwardsList,
     image: Image,
     comparison: Comparison,
     'core-values': CoreValues,
+    deliverables: Deliverables,
     'image-grid': ImageGrid,
     'richtext-code-block': RichTextCodeBlock,
     'two-columns': TwoColumns,
@@ -15,6 +17,7 @@
     'richtext-box': RichTextBox,
     hero: Hero,
     packages: Packages,
+    physics: Physics,
     'prefooter-form': PrefooterForm,
     'work-recognitions': WorkRecognitions,
     estimation: Estimation,
@@ -22,6 +25,8 @@
     steps: Steps,
     services: Services,
     testimonials: Testimonials,
+    'timeline-services': TimelineServices,
+    timeline: Timeline,
     clients: Clients,
     projects: Projects,
     'cta-card': CtaCard
@@ -56,6 +61,11 @@
   import OfficeCards from './office-cards.svelte';
   import PrefooterForm from './prefooter-form.svelte';
   import CoreValues from './core-values.svelte';
+  import Deliverables from './deliverables.svelte';
+  import AwardsList from './awards-list.svelte';
+  import TimelineServices from './timeline-services.svelte';
+  import Timeline from './timeline.svelte';
+  import Physics from './physics.svelte';
 
   export let block: { component: string };
 

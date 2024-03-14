@@ -32,7 +32,7 @@
         <img src={$theme === 'dark' ? PreFooterAsset : PreFooterAssetLight} alt="" />
       </div>
     </div>
-    <div class="col-span-3 bg-background-panel p-8 @5xl:col-span-2 @5xl:border-l">
+    <div class="col-span-3 bg-background-panel p-4 pt-8 @5xl:p-8 @5xl:col-span-2 @5xl:border-l">
       <ContactForm {variant} />
     </div>
   </div>

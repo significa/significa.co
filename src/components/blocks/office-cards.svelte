@@ -21,6 +21,7 @@
           <p class="text-5xl">{block.office_title2}</p>
 
           {#if block.btn_link?.url}
+            {console.log('entra')}
             {@const { href } = getAnchorFromCmsLink(block.btn_link)}
             <Button as="a" {href} arrow size="md" class="mx-auto mt-6 z-10">
               {block.btn_label}

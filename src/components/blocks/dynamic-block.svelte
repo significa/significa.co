@@ -17,6 +17,7 @@
     'richtext-box': RichTextBox,
     hero: Hero,
     packages: Packages,
+    physics: Physics,
     'prefooter-form': PrefooterForm,
     'work-recognitions': WorkRecognitions,
     estimation: Estimation,
@@ -25,6 +26,7 @@
     services: Services,
     testimonials: Testimonials,
     'timeline-services': TimelineServices,
+    timeline: Timeline,
     clients: Clients,
     projects: Projects,
     'cta-card': CtaCard
@@ -62,6 +64,8 @@
   import Deliverables from './deliverables.svelte';
   import AwardsList from './awards-list.svelte';
   import TimelineServices from './timeline-services.svelte';
+  import Timeline from './timeline.svelte';
+  import Physics from './physics.svelte';
 
   export let block: { component: string };
 

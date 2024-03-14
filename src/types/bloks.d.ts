@@ -143,6 +143,14 @@ export interface BlogIndexStoryblok {
   [k: string]: any;
 }
 
+export interface BlogListStoryblok {
+  title1?: string;
+  title2?: string;
+  _uid: string;
+  component: 'blog-list';
+  [k: string]: any;
+}
+
 export interface RichtextStoryblok {
   type: string;
   content?: RichtextStoryblok[];
@@ -655,6 +663,7 @@ export interface LandingPageStoryblok {
   keep_top_bar_hidden?: boolean;
   blocks?: (
     | AwardsListStoryblok
+    | BlogListStoryblok
     | CareersListStoryblok
     | ClientsStoryblok
     | CoreValuesStoryblok
@@ -741,6 +750,7 @@ export interface PageStoryblok {
   priority?: string;
   blocks?: (
     | AwardsListStoryblok
+    | BlogListStoryblok
     | CareersListStoryblok
     | ClientsStoryblok
     | CoreValuesStoryblok

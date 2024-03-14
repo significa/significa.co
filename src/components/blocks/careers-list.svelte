@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { t } from '$lib/i18n';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import type { CareersListStoryblok } from '$types/bloks';
@@ -9,11 +10,11 @@
 </script>
 
 {#if $page.data.careers.length}
-  <section class="mt-10 md:mt-14 lg:mt-20">
+  <section use:storyblokEditable={block} class="mt-10 md:mt-14 lg:mt-20">
     <div class="container mx-auto justify-between gap-12 px-container lg:flex">
       <div class="flex flex-1 flex-col items-start">
         <div class="w-full flex-1">
-          <h2 class="text-5xl">{block.careers_title}</h2>
+          <h2 class="text-5xl">{block.title}</h2>
           <ul class="mt-10">
             {#each $page.data.careers as career}
               <li class="border-b first:border-t">
@@ -37,7 +38,7 @@
         </div>
         {#if block.cta_link && block.cta_label}
           {@const { href } = getAnchorFromCmsLink(block.cta_link)}
-          <Button variant="secondary" as="a" {href} class="mt-10" icon="handbook" arrow>
+          <Button variant="secondary" as="a" {href} class="mt-10" arrow>
             {block.cta_label}
           </Button>
         {/if}

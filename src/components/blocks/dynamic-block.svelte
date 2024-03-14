@@ -5,7 +5,9 @@
 
   const map = {
     'awards-list': AwardsList,
+    'blog-list': BlogList,
     image: Image,
+    'careers-list': CareersList,
     comparison: Comparison,
     'core-values': CoreValues,
     deliverables: Deliverables,
@@ -47,7 +49,6 @@
   import RichTextTestimonial from './rich-text-testimonial.svelte';
   import Video from './video.svelte';
   import RichTextBox from './rich-text-box.svelte';
-
   import Hero from './hero.svelte';
   import Packages from './packages.svelte';
   import WorkRecognitions from './work-recognitions.svelte';
@@ -66,6 +67,8 @@
   import TimelineServices from './timeline-services.svelte';
   import Timeline from './timeline.svelte';
   import Physics from './physics.svelte';
+  import CareersList from './careers-list.svelte';
+  import BlogList from './blog-list.svelte';
 
   export let block: { component: string };
 

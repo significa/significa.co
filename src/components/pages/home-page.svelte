@@ -7,13 +7,11 @@
   import SmallHighlights from './home/small-highlights.svelte';
   import Reel from '$components/reel.svelte';
   import clsx from 'clsx';
-  import HomeAbout from './home/home-about.svelte';
   import Seo from '$components/seo.svelte';
   import { afterNavigate } from '$app/navigation';
   import { getImageAttributes } from '$lib/utils/cms';
-  import Services from './home/services.svelte';
+
   import { drawerLinks } from '$lib/actions/drawer-links';
-  import Testimonials from '$components/blocks/testimonials.svelte';
   import DynamicBlock from '$components/blocks/dynamic-block.svelte';
 
   export let data: HomePageStoryblok;
@@ -75,28 +73,6 @@
     </div>
   </section>
   <!-- -------- -->
-
-  <Services {data} />
-
-  <!-- TODO: Remove this code once this page is a block -->
-  <Testimonials
-    block={{
-      _uid: 'HomeTestimonials',
-      component: 'testimonials',
-      testimonials: data.testimonials,
-      testimonials_cta_label: data.testimonials_cta_label,
-      testimonials_cta_link: data.testimonials_cta_link,
-      testimonials_title1: data.testimonials_title1,
-      testimonials_title2: data.testimonials_title2,
-      variant: data.variant,
-      size: data.size
-    }}
-  />
-
-  <!-- TODO: Remove this code once this page is a block -->
-  <section class="mt-16 border-t lg:mt-20">
-    <HomeAbout {data} />
-  </section>
 
   {#if blocks}
     {#each blocks as block}

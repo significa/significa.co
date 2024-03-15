@@ -679,6 +679,7 @@ export interface LandingPageStoryblok {
     | DeliverablesStoryblok
     | EstimationStoryblok
     | HeroStoryblok
+    | NewtonStoryblok
     | OfficeCardsStoryblok
     | PackagesStoryblok
     | PhysicsStoryblok
@@ -706,6 +707,17 @@ export interface LinkStoryblok {
   link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   _uid: string;
   component: 'link';
+  [k: string]: any;
+}
+
+export interface NewtonStoryblok {
+  title1?: string;
+  title2?: string;
+  description?: string;
+  cta_label?: string;
+  cta_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  _uid: string;
+  component: 'newton';
   [k: string]: any;
 }
 
@@ -767,6 +779,7 @@ export interface PageStoryblok {
     | DeliverablesStoryblok
     | EstimationStoryblok
     | HeroStoryblok
+    | NewtonStoryblok
     | OfficeCardsStoryblok
     | PackagesStoryblok
     | PhysicsStoryblok

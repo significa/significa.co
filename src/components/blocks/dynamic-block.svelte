@@ -24,6 +24,7 @@
     'prefooter-form': PrefooterForm,
     'work-recognitions': WorkRecognitions,
     estimation: Estimation,
+    newton: Newton,
     'office-cards': OfficeCards,
     steps: Steps,
     services: Services,
@@ -71,6 +72,7 @@
   import CareersList from './careers-list.svelte';
   import BlogList from './blog-list.svelte';
   import AboutGrid from './about-grid.svelte';
+  import Newton from './newton.svelte';
 
   export let block: { component: string };
 

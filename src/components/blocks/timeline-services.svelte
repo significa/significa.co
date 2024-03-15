@@ -8,7 +8,7 @@
 
 <section use:storyblokEditable={block} class="overflow-clip">
   <div class="container mx-auto mt-10 px-container md:mt-14 lg:mt-20">
-    <h1 class="mb-2 text-3xl font-semibold text-foreground-secondary">{block.title}</h1>
+    <h1 class="mb-2 text-3xl max-w-6xl text-7xl text-foreground-secondary">{block.title}</h1>
     <h2 class="max-w-6xl text-7xl">{block.description}</h2>
   </div>
 

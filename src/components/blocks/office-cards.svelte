@@ -9,10 +9,7 @@
   export let block: OfficeCardsStoryblok;
 </script>
 
-<section
-  use:storyblokEditable={block}
-  class={clsx('overflow-hidden', !block.variant && ' border-y')}
->
+<section use:storyblokEditable={block} class={clsx(!block.variant && 'overflow-hidden border-y')}>
   {#if !block.variant}
     <div class="container mx-auto px-container pt-8 lg:pt-12">
       <div class="flex flex-col justify-between gap-7 lg:flex-row lg:gap-4">
@@ -20,7 +17,7 @@
           <h2 class="text-5xl text-foreground-secondary">{block.office_title1}</h2>
           <p class="text-5xl">{block.office_title2}</p>
 
-          {#if block.btn_link?.url}
+          {#if block.btn_link?.story?.url && block.btn_label}
             {@const { href } = getAnchorFromCmsLink(block.btn_link)}
             <Button as="a" {href} arrow size="md" class="mx-auto mt-6 z-10">
               {block.btn_label}
@@ -34,7 +31,15 @@
       </div>
 
       {#if !!block.office_cards?.length}
-        <HoverableGallery cards={block.office_cards} class="mt-12 lg:-mt-10" />
+        <HoverableGallery
+          cards={block.office_cards}
+          class={clsx(
+            block.office_title1 && block.office_title2 && block.office_description
+              ? 'lg:-mt-10'
+              : 'lg:-mt-5',
+            'mt-12'
+          )}
+        />
       {/if}
     </div>
   {:else if !!block.office_cards?.length}

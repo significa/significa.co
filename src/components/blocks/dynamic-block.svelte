@@ -4,6 +4,7 @@
   import Image from './image.svelte';
 
   const map = {
+    'about-grid': AboutGrid,
     'awards-list': AwardsList,
     'blog-list': BlogList,
     image: Image,
@@ -69,6 +70,7 @@
   import Physics from './physics.svelte';
   import CareersList from './careers-list.svelte';
   import BlogList from './blog-list.svelte';
+  import AboutGrid from './about-grid.svelte';
 
   export let block: { component: string };
 

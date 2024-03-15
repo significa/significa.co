@@ -94,7 +94,7 @@
   />
 
   <!-- TODO: Remove this code once this page is a block -->
-  <section class="mt-16 border-y lg:mt-20">
+  <section class="mt-16 border-t lg:mt-20">
     <HomeAbout {data} />
   </section>
 

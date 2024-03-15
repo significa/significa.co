@@ -1,6 +1,36 @@
 {
   "components": [
     {
+      "name": "about-grid",
+      "display_name": null,
+      "created_at": "2024-03-15T11:25:42.067Z",
+      "updated_at": "2024-03-15T11:27:25.931Z",
+      "id": 5503063,
+      "schema": {
+        "about_links": {
+          "type": "bloks",
+          "minimum": 3,
+          "maximum": 3,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["home-about-link"]
+        }
+      },
+      "image": "//a.storyblok.com/f/198185/x/ae6c86c389/about-grid-block.png",
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "about-grid",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "about-page",
       "display_name": null,
       "created_at": "2023-03-03T15:54:31.120Z",
@@ -171,6 +201,7 @@
       "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Pages"
     },
     {
@@ -217,6 +248,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -244,6 +276,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -278,6 +311,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -298,6 +332,7 @@
       "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Pages"
     },
     {
@@ -325,6 +360,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -435,6 +471,7 @@
       "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
       "color": "#fbce41",
       "icon": "block-text-img-t-l",
+      "content_type_asset_preview": null,
       "component_group_name": "Content Types"
     },
     {
@@ -466,6 +503,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -495,6 +533,7 @@
       "component_group_uuid": "f789ade7-9cf4-4fd4-b95a-56b2cbe5844f",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Configuration"
     },
     {
@@ -540,6 +579,7 @@
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Canvas"
     },
     {
@@ -565,6 +605,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -595,6 +636,7 @@
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Canvas"
     },
     {
@@ -625,6 +667,7 @@
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Canvas"
     },
     {
@@ -691,6 +734,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -763,6 +807,7 @@
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Canvas"
     },
     {
@@ -797,6 +842,7 @@
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Canvas"
     },
     {
@@ -854,6 +900,7 @@
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Canvas"
     },
     {
@@ -907,6 +954,7 @@
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Canvas"
     },
     {
@@ -931,6 +979,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -959,6 +1008,7 @@
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Canvas"
     },
     {
@@ -993,6 +1043,7 @@
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Canvas"
     },
     {
@@ -1028,6 +1079,7 @@
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Canvas"
     },
     {
@@ -1101,6 +1153,7 @@
       "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Content Types"
     },
     {
@@ -1150,6 +1203,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -1236,6 +1290,7 @@
       "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Pages"
     },
     {
@@ -1261,6 +1316,7 @@
       "component_group_uuid": "f789ade7-9cf4-4fd4-b95a-56b2cbe5844f",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Configuration"
     },
     {
@@ -1292,6 +1348,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -1322,6 +1379,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -1372,6 +1430,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -1425,6 +1484,7 @@
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
       "color": "#fbce41",
       "icon": "block-table",
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks & Rich Text"
     },
     {
@@ -1465,6 +1525,7 @@
       "component_group_uuid": "f789ade7-9cf4-4fd4-b95a-56b2cbe5844f",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Configuration"
     },
     {
@@ -1503,6 +1564,7 @@
       "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Pages"
     },
     {
@@ -1541,6 +1603,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -1571,6 +1634,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -1591,6 +1655,7 @@
       "component_group_uuid": "f789ade7-9cf4-4fd4-b95a-56b2cbe5844f",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Configuration"
     },
     {
@@ -1624,6 +1689,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -1655,6 +1721,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -1690,6 +1757,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -1735,6 +1803,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -1765,6 +1834,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -1796,6 +1866,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -1870,6 +1941,7 @@
       "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Pages"
     },
     {
@@ -1897,6 +1969,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -2001,6 +2074,7 @@
       "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Content Types"
     },
     {
@@ -2056,6 +2130,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -2093,6 +2168,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -2343,6 +2419,7 @@
       "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Pages"
     },
     {
@@ -2399,6 +2476,7 @@
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
       "color": "#fbce41",
       "icon": "block-image",
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks & Rich Text"
     },
     {
@@ -2471,6 +2549,7 @@
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
       "color": "#fbce41",
       "icon": "block-1-2block",
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks & Rich Text"
     },
     {
@@ -2573,6 +2652,7 @@
       "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Content Types"
     },
     {
@@ -2600,6 +2680,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -2624,6 +2705,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -2681,6 +2763,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -2717,6 +2800,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -2819,6 +2903,7 @@
       "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Content Types"
     },
     {
@@ -2844,6 +2929,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -2919,6 +3005,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -2973,6 +3060,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -3000,6 +3088,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -3050,6 +3139,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -3083,6 +3173,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -3103,6 +3194,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -3287,6 +3379,7 @@
       "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Content Types"
     },
     {
@@ -3316,6 +3409,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -3336,6 +3430,7 @@
       "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Pages"
     },
     {
@@ -3413,6 +3508,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -3490,6 +3586,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -3531,6 +3628,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -3572,6 +3670,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -3635,6 +3734,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -3694,6 +3794,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -3736,6 +3837,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -3772,6 +3874,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -3813,6 +3916,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -3841,6 +3945,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -3892,6 +3997,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -3968,6 +4074,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -3995,6 +4102,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -4076,6 +4184,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -4149,6 +4258,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -4230,6 +4340,7 @@
       "component_group_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Proposals"
     },
     {
@@ -4265,6 +4376,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -4321,6 +4433,7 @@
       "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Content Types"
     },
     {
@@ -4362,6 +4475,7 @@
       "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Content Types"
     },
     {
@@ -4422,6 +4536,7 @@
       "component_group_uuid": "1ef77ef8-466a-4b74-a076-f4554004e128",
       "color": "#fbce41",
       "icon": "block-text-img-l",
+      "content_type_asset_preview": null,
       "component_group_name": "Rich Text"
     },
     {
@@ -4509,6 +4624,7 @@
       "component_group_uuid": "1ef77ef8-466a-4b74-a076-f4554004e128",
       "color": "#fbce41",
       "icon": "block-text-img-c",
+      "content_type_asset_preview": null,
       "component_group_name": "Rich Text"
     },
     {
@@ -4549,6 +4665,7 @@
       "component_group_uuid": "1ef77ef8-466a-4b74-a076-f4554004e128",
       "color": "#fbce41",
       "icon": "block-text-l",
+      "content_type_asset_preview": null,
       "component_group_name": "Rich Text"
     },
     {
@@ -4573,7 +4690,8 @@
       "real_name": "root",
       "component_group_uuid": null,
       "color": null,
-      "icon": null
+      "icon": null,
+      "content_type_asset_preview": null
     },
     {
       "name": "service",
@@ -4593,6 +4711,7 @@
       "component_group_uuid": "f789ade7-9cf4-4fd4-b95a-56b2cbe5844f",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Configuration"
     },
     {
@@ -4633,6 +4752,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -4665,6 +4785,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -4689,6 +4810,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -4719,6 +4841,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -4890,6 +5013,7 @@
       "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Pages"
     },
     {
@@ -4969,6 +5093,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -5000,6 +5125,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -5027,6 +5153,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -5075,6 +5202,7 @@
       "component_group_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Pages"
     },
     {
@@ -5130,6 +5258,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -5185,13 +5314,14 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
       "name": "team-member",
       "display_name": null,
       "created_at": "2023-02-15T10:55:16.832Z",
-      "updated_at": "2024-02-23T11:22:03.987Z",
+      "updated_at": "2024-03-15T10:32:23.041Z",
       "id": 3441652,
       "schema": {
         "photo": {
@@ -5204,12 +5334,6 @@
           "type": "text",
           "regex": "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$",
           "pos": 1
-        },
-        "egg": {
-          "type": "asset",
-          "pos": 2,
-          "filetypes": ["images"],
-          "asset_folder_id": 212284
         },
         "position": {
           "type": "text",
@@ -5334,6 +5458,7 @@
       "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Content Types"
     },
     {
@@ -5416,6 +5541,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -5500,6 +5626,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -5536,6 +5663,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -5622,6 +5750,7 @@
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Canvas"
     },
     {
@@ -5675,6 +5804,7 @@
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Canvas"
     },
     {
@@ -5709,6 +5839,7 @@
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Canvas"
     },
     {
@@ -5743,6 +5874,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
@@ -5797,6 +5929,7 @@
       "component_group_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Canvas"
     },
     {
@@ -5841,6 +5974,7 @@
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
       "color": "#fbce41",
       "icon": "block-text-img-r-l",
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks & Rich Text"
     },
     {
@@ -5915,6 +6049,7 @@
       "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Single"
     },
     {
@@ -5979,6 +6114,7 @@
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
       "color": "#fbce41",
       "icon": "block-text-img-c",
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks & Rich Text"
     },
     {
@@ -6019,6 +6155,7 @@
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
+      "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     }
   ]

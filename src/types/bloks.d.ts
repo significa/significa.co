@@ -1,5 +1,12 @@
 import { StoryblokStory } from 'storyblok-generate-ts';
 
+export interface AboutGridStoryblok {
+  about_links?: HomeAboutLinkStoryblok[];
+  _uid: string;
+  component: 'about-grid';
+  [k: string]: any;
+}
+
 export type MultilinkStoryblok =
   | {
       id?: string;
@@ -662,6 +669,7 @@ export interface ImageGridStoryblok {
 export interface LandingPageStoryblok {
   keep_top_bar_hidden?: boolean;
   blocks?: (
+    | AboutGridStoryblok
     | AwardsListStoryblok
     | BlogListStoryblok
     | CareersListStoryblok
@@ -749,6 +757,7 @@ export interface PageStoryblok {
   change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   priority?: string;
   blocks?: (
+    | AboutGridStoryblok
     | AwardsListStoryblok
     | BlogListStoryblok
     | CareersListStoryblok
@@ -1249,7 +1258,6 @@ export interface TeamButtonsStoryblok {
 export interface TeamMemberStoryblok {
   photo?: AssetStoryblok;
   email?: string;
-  egg?: AssetStoryblok;
   position?: string;
   team?: number | string;
   bio?: string;

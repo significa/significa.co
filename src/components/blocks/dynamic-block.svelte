@@ -26,6 +26,7 @@
     estimation: Estimation,
     newton: Newton,
     'office-cards': OfficeCards,
+    slogan: Slogan,
     steps: Steps,
     services: Services,
     testimonials: Testimonials,
@@ -73,6 +74,7 @@
   import BlogList from './blog-list.svelte';
   import AboutGrid from './about-grid.svelte';
   import Newton from './newton.svelte';
+  import Slogan from './slogan.svelte';
 
   export let block: { component: string };
 

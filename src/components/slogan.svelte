@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { HeroStoryblok, SloganStoryblok } from '$types/bloks';
   import clsx from 'clsx';
   import { createEventDispatcher } from 'svelte';
   import { twMerge } from 'tailwind-merge';
@@ -8,9 +9,17 @@
   export let as: undefined | string = 'p';
   // not passing `animate` will render the slogan immediately. passing in a boolean will control the animation.
   export let animate: undefined | boolean = undefined;
+  export let variant: 'default' | 'big' = 'default';
+  export let block: undefined | SloganStoryblok | HeroStoryblok = undefined;
   const dispatch = createEventDispatcher<{ end: undefined }>();
 
-  let source: string[] = ['Think.', 'Design.', 'Develop.', 'Launch.', 'Repeat.'];
+  const wordSplitHeading = block?.heading?.split(/\s+/);
+  const wordSplitSubheader = block?.subheading?.split(/\s+/);
+  const wordSplitMerge = wordSplitSubheader
+    ? [...(wordSplitHeading || []), ...(wordSplitSubheader || [])]
+    : wordSplitHeading || [];
+
+  let source: string[] = wordSplitMerge || ['Think.', 'Design.', 'Develop.', 'Launch.', 'Repeat.'];
   let target: string[] = typeof animate === 'undefined' ? source : [];
 
   if (typeof animate === 'undefined') {
@@ -28,7 +37,10 @@
   }
 </script>
 
-<svelte:element this={as} class={twMerge('text-3xl font-medium', className)}>
+<svelte:element
+  this={as}
+  class={twMerge(variant === 'big' ? 'max-w-5xl' : 'max-w-none', 'text-3xl font-medium', className)}
+>
   {#each source as word, i}
     <span
       style={target[i]
@@ -36,10 +48,13 @@
         : 'opacity: 0; transform: translateY(1ch);'}
       class={clsx(
         'mr-1 inline-block transition-all duration-500 ease-motion',
-        i === source.length - 1 && 'text-foreground-secondary'
+        wordSplitSubheader &&
+          i >= source.length - wordSplitSubheader.length &&
+          'text-foreground-secondary',
+        !wordSplitSubheader && i === source.length - 1 && 'text-foreground-secondary'
       )}>{word}</span
     >
-    {#if i % 2 === 1}
+    {#if !wordSplitSubheader && i % 2 === 1}
       <br />
     {/if}
   {/each}

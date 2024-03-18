@@ -60,7 +60,7 @@
   {:else if page.component === 'about-page' && isAboutPage(page)}
     <About blocks={story.content.blocks} />
   {:else if page.component === 'home-page' && isHomePage(page)}
-    <HomePage data={page} blocks={story.content.blocks} />
+    <HomePage blocks={story.content.blocks} />
   {:else if page.component === 'blog-index' && blogIndex}
     <BlogIndex data={blogIndex} />
   {:else if page.component === 'projects-index' && projectsIndex}

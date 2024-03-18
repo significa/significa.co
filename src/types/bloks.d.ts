@@ -568,6 +568,7 @@ export interface HandbookStoryblok {
 }
 
 export interface HeroStoryblok {
+  heading?: string;
   small_highlights?: (
     | StoryblokStory<CareerStoryblok>
     | StoryblokStory<ProjectStoryblok>
@@ -581,6 +582,23 @@ export interface HeroStoryblok {
   showreel_button_label?: string;
   _uid: string;
   component: 'hero';
+  [k: string]: any;
+}
+
+export interface HighlightsStoryblok {
+  small_highlights?: (
+    | StoryblokStory<CareerStoryblok>
+    | StoryblokStory<ProjectStoryblok>
+    | StoryblokStory<HandbookStoryblok>
+    | StoryblokStory<BlogPostStoryblok>
+    | string
+  )[];
+  showreel?: AssetStoryblok;
+  showreel_cover?: AssetStoryblok;
+  showreel_button_theme?: 'light' | 'dark';
+  showreel_button_label?: string;
+  _uid: string;
+  component: 'highlights';
   [k: string]: any;
 }
 
@@ -679,6 +697,7 @@ export interface LandingPageStoryblok {
     | DeliverablesStoryblok
     | EstimationStoryblok
     | HeroStoryblok
+    | HighlightsStoryblok
     | NewtonStoryblok
     | OfficeCardsStoryblok
     | PackagesStoryblok
@@ -686,6 +705,7 @@ export interface LandingPageStoryblok {
     | PrefooterFormStoryblok
     | ProjectsStoryblok
     | ServicesStoryblok
+    | SloganStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
     | TimelineStoryblok
@@ -779,6 +799,7 @@ export interface PageStoryblok {
     | DeliverablesStoryblok
     | EstimationStoryblok
     | HeroStoryblok
+    | HighlightsStoryblok
     | NewtonStoryblok
     | OfficeCardsStoryblok
     | PackagesStoryblok
@@ -786,6 +807,7 @@ export interface PageStoryblok {
     | PrefooterFormStoryblok
     | ProjectsStoryblok
     | ServicesStoryblok
+    | SloganStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
     | TimelineStoryblok
@@ -1241,6 +1263,14 @@ export interface ServiceTimelineSubrowStoryblok {
   [k: string]: any;
 }
 
+export interface SloganStoryblok {
+  heading?: string;
+  subheading?: string;
+  _uid: string;
+  component: 'slogan';
+  [k: string]: any;
+}
+
 export interface StaticPageStoryblok {
   body?: RichtextStoryblok;
   _uid: string;
@@ -1418,6 +1448,13 @@ export interface VideoStoryblok {
   controls?: boolean;
   _uid: string;
   component: 'video';
+  [k: string]: any;
+}
+
+export interface WordEntryStoryblok {
+  word?: string;
+  _uid: string;
+  component: 'word_entry';
   [k: string]: any;
 }
 

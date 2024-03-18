@@ -2081,22 +2081,29 @@
       "name": "hero",
       "display_name": null,
       "created_at": "2024-01-10T16:19:08.681Z",
-      "updated_at": "2024-01-10T17:54:49.979Z",
+      "updated_at": "2024-03-18T16:21:41.806Z",
       "id": 5148572,
       "schema": {
+        "heading": {
+          "type": "text",
+          "pos": 0
+        },
         "small_highlights": {
           "type": "options",
           "source": "internal_stories",
           "filter_content_type": ["career", "project", "handbook", "blog-post"],
-          "max_options": "4"
+          "max_options": "4",
+          "pos": 1
         },
         "showreel": {
           "type": "asset",
-          "filetypes": ["videos"]
+          "filetypes": ["videos"],
+          "pos": 2
         },
         "showreel_cover": {
           "type": "asset",
-          "filetypes": ["images"]
+          "filetypes": ["images"],
+          "pos": 3
         },
         "showreel_button_theme": {
           "type": "option",
@@ -2113,10 +2120,12 @@
               "name": "dark"
             }
           ],
-          "default_value": "light"
+          "default_value": "light",
+          "pos": 4
         },
         "showreel_button_label": {
-          "type": "text"
+          "type": "text",
+          "pos": 5
         }
       },
       "image": null,
@@ -2127,6 +2136,65 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "hero",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
+    },
+    {
+      "name": "highlights",
+      "display_name": null,
+      "created_at": "2024-03-18T11:36:49.432Z",
+      "updated_at": "2024-03-18T11:43:00.832Z",
+      "id": 5513701,
+      "schema": {
+        "small_highlights": {
+          "type": "options",
+          "source": "internal_stories",
+          "folder_slug": "",
+          "filter_content_type": ["career", "project", "handbook", "blog-post"],
+          "entry_appearance": "link",
+          "max_options": "4"
+        },
+        "showreel": {
+          "type": "asset",
+          "filetypes": ["videos"]
+        },
+        "showreel_cover": {
+          "type": "asset",
+          "filetypes": ["images"]
+        },
+        "showreel_button_theme": {
+          "type": "option",
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "3929c7f4-3858-4bdd-9483-258ebcb0a72f",
+              "name": "light",
+              "value": "light"
+            },
+            {
+              "_uid": "6a79ed36-7d4f-40b0-808b-f0a72d42cc7a",
+              "value": "dark",
+              "name": "dark"
+            }
+          ],
+          "exclude_empty_option": true,
+          "default_value": "light"
+        },
+        "showreel_button_label": {
+          "type": "text"
+        }
+      },
+      "image": "//a.storyblok.com/f/198185/x/ea56d41ce5/highlights_block.png",
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "highlights",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,
@@ -5194,6 +5262,39 @@
       "component_group_name": "Single"
     },
     {
+      "name": "slogan",
+      "display_name": null,
+      "created_at": "2024-03-18T14:45:11.905Z",
+      "updated_at": "2024-03-18T16:24:10.122Z",
+      "id": 5515857,
+      "schema": {
+        "heading": {
+          "type": "text",
+          "key": "heading",
+          "pos": 1
+        },
+        "subheading": {
+          "type": "text",
+          "key": "text2",
+          "pos": 2,
+          "description": "The grey text."
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "slogan",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "static-page",
       "display_name": null,
       "created_at": "2023-03-03T13:43:24.273Z",
@@ -6153,6 +6254,31 @@
       "icon": "block-text-img-c",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks & Rich Text"
+    },
+    {
+      "name": "word_entry",
+      "display_name": null,
+      "created_at": "2024-03-18T14:46:26.117Z",
+      "updated_at": "2024-03-18T14:57:06.424Z",
+      "id": 5515861,
+      "schema": {
+        "word": {
+          "type": "text"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "word_entry",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "content_type_asset_preview": null,
+      "component_group_name": "Single"
     },
     {
       "name": "work-recognitions",

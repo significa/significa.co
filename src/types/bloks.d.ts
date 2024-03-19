@@ -531,6 +531,14 @@ export interface FooterColumnInternalStoryblok {
   [k: string]: any;
 }
 
+export interface FormBudgetRangeStoryblok {
+  title?: string;
+  subtitle?: string;
+  _uid: string;
+  component: 'form-budget-range';
+  [k: string]: any;
+}
+
 export interface GetAQuotePageStoryblok {
   title?: string;
   subtitle?: string;
@@ -696,6 +704,7 @@ export interface LandingPageStoryblok {
     | CtaCardStoryblok
     | DeliverablesStoryblok
     | EstimationStoryblok
+    | FormBudgetRangeStoryblok
     | HeroStoryblok
     | HighlightsStoryblok
     | NewtonStoryblok
@@ -711,6 +720,7 @@ export interface LandingPageStoryblok {
     | TestimonialsStoryblok
     | TimelineStoryblok
     | TimelineServicesStoryblok
+    | TimezoneStoryblok
     | WorkRecognitionsStoryblok
   )[];
   seo_title?: string;
@@ -799,6 +809,7 @@ export interface PageStoryblok {
     | CtaCardStoryblok
     | DeliverablesStoryblok
     | EstimationStoryblok
+    | FormBudgetRangeStoryblok
     | HeroStoryblok
     | HighlightsStoryblok
     | NewtonStoryblok
@@ -814,6 +825,7 @@ export interface PageStoryblok {
     | TestimonialsStoryblok
     | TimelineStoryblok
     | TimelineServicesStoryblok
+    | TimezoneStoryblok
     | WorkRecognitionsStoryblok
   )[];
   _uid: string;
@@ -1422,6 +1434,13 @@ export interface TimelineTextStoryblok {
   left: string;
   _uid: string;
   component: 'timeline-text';
+  [k: string]: any;
+}
+
+export interface TimezoneStoryblok {
+  text?: RichtextStoryblok;
+  _uid: string;
+  component: 'timezone';
   [k: string]: any;
 }
 

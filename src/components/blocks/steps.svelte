@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { theme } from '$lib/stores/theme';
   import type { GetAQuotePageStoryblok, StepsStoryblok } from '$types/bloks';
   import clsx from 'clsx';
@@ -8,7 +9,7 @@
   let lastItemHeight = 0;
 </script>
 
-<div class={clsx('border-t', block.variant === 'block' && 'border-t-0 md:pb-8 lg:pb-20')}>
+<div use:storyblokEditable={block} class={clsx(block.variant === 'block' && 'md:pb-8 lg:pb-20')}>
   <div class={clsx('container mx-auto px-container', 'lg:flex')}>
     <!-- Title -->
     <div class="lg:flex-1">
@@ -30,7 +31,7 @@
       <div
         class={clsx(
           'absolute -left-px -top-32 hidden h-32 border-l lg:block',
-          $theme === 'light' ? 'light-fade' : 'dark-fade'
+          block.variant === 'block' ? ($theme === 'light' ? 'light-fade' : 'dark-fade') : ''
         )}
       />
       <div>

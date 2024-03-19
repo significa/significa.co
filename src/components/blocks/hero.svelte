@@ -26,7 +26,6 @@
 <div class="container mx-auto px-container">
   <Slogan
     animate
-    {block}
     on:end={() => (show = true)}
     as="h1"
     class="mt-10 text-7xl font-bold md:mt-14 lg:mt-20"

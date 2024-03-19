@@ -29,7 +29,8 @@
     timeline: Timeline,
     clients: Clients,
     projects: Projects,
-    'cta-card': CtaCard
+    'cta-card': CtaCard,
+    slideshow: Slideshow
   };
 
   export type Blocks = keyof typeof map;
@@ -66,6 +67,7 @@
   import TimelineServices from './timeline-services.svelte';
   import Timeline from './timeline.svelte';
   import Physics from './physics.svelte';
+  import Slideshow from './slideshow.svelte';
 
   export let block: { component: string };
 

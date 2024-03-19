@@ -67,7 +67,7 @@
   {:else if page.component === 'projects-index' && projectsIndex}
     <ProjectsIndex projects={projectsIndex} />
   {:else if page.component === 'get-a-quote-page' && isGetAQuotePage(page)}
-    <GetAQuote {page} />
+    <GetAQuote {page} blocks={story.content.blocks} />
   {:else if page.component === 'careers-page' && isCareersPage(page)}
     <Careers data={page} {teamMembers} />
   {:else if page.component === 'contacts-page' && isContactPage(page)}

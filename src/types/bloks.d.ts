@@ -1,5 +1,12 @@
 import { StoryblokStory } from 'storyblok-generate-ts';
 
+export interface AboutGridStoryblok {
+  about_links?: HomeAboutLinkStoryblok[];
+  _uid: string;
+  component: 'about-grid';
+  [k: string]: any;
+}
+
 export type MultilinkStoryblok =
   | {
       id?: string;
@@ -140,6 +147,14 @@ export interface BenefitsEntryStoryblok {
 export interface BlogIndexStoryblok {
   _uid: string;
   component: 'blog-index';
+  [k: string]: any;
+}
+
+export interface BlogListStoryblok {
+  title1?: string;
+  title2?: string;
+  _uid: string;
+  component: 'blog-list';
   [k: string]: any;
 }
 
@@ -553,6 +568,7 @@ export interface HandbookStoryblok {
 }
 
 export interface HeroStoryblok {
+  heading?: string;
   small_highlights?: (
     | StoryblokStory<CareerStoryblok>
     | StoryblokStory<ProjectStoryblok>
@@ -566,6 +582,23 @@ export interface HeroStoryblok {
   showreel_button_label?: string;
   _uid: string;
   component: 'hero';
+  [k: string]: any;
+}
+
+export interface HighlightsStoryblok {
+  small_highlights?: (
+    | StoryblokStory<CareerStoryblok>
+    | StoryblokStory<ProjectStoryblok>
+    | StoryblokStory<HandbookStoryblok>
+    | StoryblokStory<BlogPostStoryblok>
+    | string
+  )[];
+  showreel?: AssetStoryblok;
+  showreel_cover?: AssetStoryblok;
+  showreel_button_theme?: 'light' | 'dark';
+  showreel_button_label?: string;
+  _uid: string;
+  component: 'highlights';
   [k: string]: any;
 }
 
@@ -654,7 +687,9 @@ export interface ImageGridStoryblok {
 export interface LandingPageStoryblok {
   keep_top_bar_hidden?: boolean;
   blocks?: (
+    | AboutGridStoryblok
     | AwardsListStoryblok
+    | BlogListStoryblok
     | CareersListStoryblok
     | ClientsStoryblok
     | CoreValuesStoryblok
@@ -662,12 +697,16 @@ export interface LandingPageStoryblok {
     | DeliverablesStoryblok
     | EstimationStoryblok
     | HeroStoryblok
+    | HighlightsStoryblok
+    | NewtonStoryblok
     | OfficeCardsStoryblok
     | PackagesStoryblok
     | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
     | ServicesStoryblok
+    | SlideshowStoryblok
+    | SloganStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
     | TimelineStoryblok
@@ -689,6 +728,17 @@ export interface LinkStoryblok {
   link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   _uid: string;
   component: 'link';
+  [k: string]: any;
+}
+
+export interface NewtonStoryblok {
+  title1?: string;
+  title2?: string;
+  description?: string;
+  cta_label?: string;
+  cta_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  _uid: string;
+  component: 'newton';
   [k: string]: any;
 }
 
@@ -740,7 +790,9 @@ export interface PageStoryblok {
   change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   priority?: string;
   blocks?: (
+    | AboutGridStoryblok
     | AwardsListStoryblok
+    | BlogListStoryblok
     | CareersListStoryblok
     | ClientsStoryblok
     | CoreValuesStoryblok
@@ -748,12 +800,16 @@ export interface PageStoryblok {
     | DeliverablesStoryblok
     | EstimationStoryblok
     | HeroStoryblok
+    | HighlightsStoryblok
+    | NewtonStoryblok
     | OfficeCardsStoryblok
     | PackagesStoryblok
     | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
     | ServicesStoryblok
+    | SlideshowStoryblok
+    | SloganStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
     | TimelineStoryblok
@@ -1209,6 +1265,21 @@ export interface ServiceTimelineSubrowStoryblok {
   [k: string]: any;
 }
 
+export interface SlideshowStoryblok {
+  images?: MultiassetStoryblok;
+  _uid: string;
+  component: 'slideshow';
+  [k: string]: any;
+}
+
+export interface SloganStoryblok {
+  heading?: string;
+  subheading?: string;
+  _uid: string;
+  component: 'slogan';
+  [k: string]: any;
+}
+
 export interface StaticPageStoryblok {
   body?: RichtextStoryblok;
   _uid: string;
@@ -1239,7 +1310,6 @@ export interface TeamButtonsStoryblok {
 export interface TeamMemberStoryblok {
   photo?: AssetStoryblok;
   email?: string;
-  egg?: AssetStoryblok;
   position?: string;
   team?: number | string;
   bio?: string;
@@ -1387,6 +1457,13 @@ export interface VideoStoryblok {
   controls?: boolean;
   _uid: string;
   component: 'video';
+  [k: string]: any;
+}
+
+export interface WordEntryStoryblok {
+  word?: string;
+  _uid: string;
+  component: 'word_entry';
   [k: string]: any;
 }
 

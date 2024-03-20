@@ -1,5 +1,12 @@
 import { StoryblokStory } from 'storyblok-generate-ts';
 
+export interface AboutGridStoryblok {
+  about_links?: HomeAboutLinkStoryblok[];
+  _uid: string;
+  component: 'about-grid';
+  [k: string]: any;
+}
+
 export type MultilinkStoryblok =
   | {
       id?: string;
@@ -137,9 +144,28 @@ export interface BenefitsEntryStoryblok {
   [k: string]: any;
 }
 
+export interface BenefitsEntryBlockStoryblok {
+  icon?: AssetStoryblok;
+  benefit?: number | string;
+  description?: string;
+  link_title?: string;
+  link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  _uid: string;
+  component: 'benefits-entry-block';
+  [k: string]: any;
+}
+
 export interface BlogIndexStoryblok {
   _uid: string;
   component: 'blog-index';
+  [k: string]: any;
+}
+
+export interface BlogListStoryblok {
+  title1?: string;
+  title2?: string;
+  _uid: string;
+  component: 'blog-list';
   [k: string]: any;
 }
 
@@ -462,6 +488,7 @@ export interface DeliverableStoryblok {
 }
 
 export interface DeliverablesStoryblok {
+  type?: 'large' | 'regular';
   title?: string;
   subtitle?: string;
   deliverables?: DeliverablesEntryBlockStoryblok[];
@@ -483,8 +510,10 @@ export interface DeliverablesEntryBlockStoryblok {
   icon?: AssetStoryblok;
   deliverable?: number | string;
   description?: string;
+  link_title?: string;
+  link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   _uid: string;
-  component: 'deliverables_entry_block';
+  component: 'deliverables-entry-block';
   [k: string]: any;
 }
 
@@ -513,6 +542,14 @@ export interface FooterColumnInternalStoryblok {
   links?: any[];
   _uid: string;
   component: 'footer-column-internal';
+  [k: string]: any;
+}
+
+export interface FormBudgetRangeStoryblok {
+  title?: string;
+  subtitle?: string;
+  _uid: string;
+  component: 'form-budget-range';
   [k: string]: any;
 }
 
@@ -553,6 +590,7 @@ export interface HandbookStoryblok {
 }
 
 export interface HeroStoryblok {
+  heading?: string;
   small_highlights?: (
     | StoryblokStory<CareerStoryblok>
     | StoryblokStory<ProjectStoryblok>
@@ -654,24 +692,32 @@ export interface ImageGridStoryblok {
 export interface LandingPageStoryblok {
   keep_top_bar_hidden?: boolean;
   blocks?: (
+    | AboutGridStoryblok
     | AwardsListStoryblok
+    | BlogListStoryblok
     | CareersListStoryblok
     | ClientsStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
     | DeliverablesStoryblok
     | EstimationStoryblok
+    | FormBudgetRangeStoryblok
     | HeroStoryblok
+    | ListStoryblok
+    | NewtonStoryblok
     | OfficeCardsStoryblok
     | PackagesStoryblok
     | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
     | ServicesStoryblok
+    | SlideshowStoryblok
+    | SloganStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
     | TimelineStoryblok
     | TimelineServicesStoryblok
+    | TimezoneStoryblok
     | WorkRecognitionsStoryblok
   )[];
   seo_title?: string;
@@ -692,6 +738,32 @@ export interface LinkStoryblok {
   [k: string]: any;
 }
 
+export interface ListStoryblok {
+  type?: 'regular' | 'large';
+  border_bottom?: boolean;
+  title?: string;
+  subtitle?: string;
+  blocks?: (
+    | BenefitsEntryBlockStoryblok
+    | DeliverablesEntryBlockStoryblok
+    | OtherEntryBlockStoryblok
+  )[];
+  _uid: string;
+  component: 'list';
+  [k: string]: any;
+}
+
+export interface NewtonStoryblok {
+  title1?: string;
+  title2?: string;
+  description?: string;
+  cta_label?: string;
+  cta_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  _uid: string;
+  component: 'newton';
+  [k: string]: any;
+}
+
 export interface NotepadCardStoryblok {
   text?: string;
   _uid: string;
@@ -709,6 +781,17 @@ export interface OfficeCardsStoryblok {
   office_cards?: (NotepadCardStoryblok | PhotoCardStoryblok)[];
   _uid: string;
   component: 'office-cards';
+  [k: string]: any;
+}
+
+export interface OtherEntryBlockStoryblok {
+  icon?: AssetStoryblok;
+  title?: string;
+  description?: string;
+  link_title?: string;
+  link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  _uid: string;
+  component: 'other-entry-block';
   [k: string]: any;
 }
 
@@ -740,24 +823,32 @@ export interface PageStoryblok {
   change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   priority?: string;
   blocks?: (
+    | AboutGridStoryblok
     | AwardsListStoryblok
+    | BlogListStoryblok
     | CareersListStoryblok
     | ClientsStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
     | DeliverablesStoryblok
     | EstimationStoryblok
+    | FormBudgetRangeStoryblok
     | HeroStoryblok
+    | ListStoryblok
+    | NewtonStoryblok
     | OfficeCardsStoryblok
     | PackagesStoryblok
     | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
     | ServicesStoryblok
+    | SlideshowStoryblok
+    | SloganStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
     | TimelineStoryblok
     | TimelineServicesStoryblok
+    | TimezoneStoryblok
     | WorkRecognitionsStoryblok
   )[];
   _uid: string;
@@ -1209,6 +1300,21 @@ export interface ServiceTimelineSubrowStoryblok {
   [k: string]: any;
 }
 
+export interface SlideshowStoryblok {
+  images?: MultiassetStoryblok;
+  _uid: string;
+  component: 'slideshow';
+  [k: string]: any;
+}
+
+export interface SloganStoryblok {
+  heading?: string;
+  subheading?: string;
+  _uid: string;
+  component: 'slogan';
+  [k: string]: any;
+}
+
 export interface StaticPageStoryblok {
   body?: RichtextStoryblok;
   _uid: string;
@@ -1239,7 +1345,6 @@ export interface TeamButtonsStoryblok {
 export interface TeamMemberStoryblok {
   photo?: AssetStoryblok;
   email?: string;
-  egg?: AssetStoryblok;
   position?: string;
   team?: number | string;
   bio?: string;
@@ -1355,6 +1460,13 @@ export interface TimelineTextStoryblok {
   [k: string]: any;
 }
 
+export interface TimezoneStoryblok {
+  text?: RichtextStoryblok;
+  _uid: string;
+  component: 'timezone';
+  [k: string]: any;
+}
+
 export interface TwoColumnsStoryblok {
   width?: '' | 'wide';
   columns: (ColumnMediaStoryblok | ColumnStoryblok)[];
@@ -1387,6 +1499,13 @@ export interface VideoStoryblok {
   controls?: boolean;
   _uid: string;
   component: 'video';
+  [k: string]: any;
+}
+
+export interface WordEntryStoryblok {
+  word?: string;
+  _uid: string;
+  component: 'word_entry';
   [k: string]: any;
 }
 

@@ -15,6 +15,7 @@
     'richtext-testimonial': RichTextTestimonial,
     video: Video,
     'richtext-box': RichTextBox,
+    list: List,
     hero: Hero,
     packages: Packages,
     physics: Physics,
@@ -66,6 +67,7 @@
   import TimelineServices from './timeline-services.svelte';
   import Timeline from './timeline.svelte';
   import Physics from './physics.svelte';
+  import List from './list.svelte';
 
   export let block: { component: string };
 

@@ -144,6 +144,17 @@ export interface BenefitsEntryStoryblok {
   [k: string]: any;
 }
 
+export interface BenefitsEntryBlockStoryblok {
+  icon?: AssetStoryblok;
+  benefit?: number | string;
+  description?: string;
+  link_title?: string;
+  link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  _uid: string;
+  component: 'benefits-entry-block';
+  [k: string]: any;
+}
+
 export interface BlogIndexStoryblok {
   _uid: string;
   component: 'blog-index';
@@ -477,6 +488,7 @@ export interface DeliverableStoryblok {
 }
 
 export interface DeliverablesStoryblok {
+  type?: 'large' | 'regular';
   title?: string;
   subtitle?: string;
   deliverables?: DeliverablesEntryBlockStoryblok[];
@@ -498,8 +510,10 @@ export interface DeliverablesEntryBlockStoryblok {
   icon?: AssetStoryblok;
   deliverable?: number | string;
   description?: string;
+  link_title?: string;
+  link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   _uid: string;
-  component: 'deliverables_entry_block';
+  component: 'deliverables-entry-block';
   [k: string]: any;
 }
 
@@ -528,6 +542,14 @@ export interface FooterColumnInternalStoryblok {
   links?: any[];
   _uid: string;
   component: 'footer-column-internal';
+  [k: string]: any;
+}
+
+export interface FormBudgetRangeStoryblok {
+  title?: string;
+  subtitle?: string;
+  _uid: string;
+  component: 'form-budget-range';
   [k: string]: any;
 }
 
@@ -582,23 +604,6 @@ export interface HeroStoryblok {
   showreel_button_label?: string;
   _uid: string;
   component: 'hero';
-  [k: string]: any;
-}
-
-export interface HighlightsStoryblok {
-  small_highlights?: (
-    | StoryblokStory<CareerStoryblok>
-    | StoryblokStory<ProjectStoryblok>
-    | StoryblokStory<HandbookStoryblok>
-    | StoryblokStory<BlogPostStoryblok>
-    | string
-  )[];
-  showreel?: AssetStoryblok;
-  showreel_cover?: AssetStoryblok;
-  showreel_button_theme?: 'light' | 'dark';
-  showreel_button_label?: string;
-  _uid: string;
-  component: 'highlights';
   [k: string]: any;
 }
 
@@ -696,8 +701,9 @@ export interface LandingPageStoryblok {
     | CtaCardStoryblok
     | DeliverablesStoryblok
     | EstimationStoryblok
+    | FormBudgetRangeStoryblok
     | HeroStoryblok
-    | HighlightsStoryblok
+    | ListStoryblok
     | NewtonStoryblok
     | OfficeCardsStoryblok
     | PackagesStoryblok
@@ -705,11 +711,13 @@ export interface LandingPageStoryblok {
     | PrefooterFormStoryblok
     | ProjectsStoryblok
     | ServicesStoryblok
+    | SlideshowStoryblok
     | SloganStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
     | TimelineStoryblok
     | TimelineServicesStoryblok
+    | TimezoneStoryblok
     | WorkRecognitionsStoryblok
   )[];
   seo_title?: string;
@@ -727,6 +735,21 @@ export interface LinkStoryblok {
   link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   _uid: string;
   component: 'link';
+  [k: string]: any;
+}
+
+export interface ListStoryblok {
+  type?: 'regular' | 'large';
+  border_bottom?: boolean;
+  title?: string;
+  subtitle?: string;
+  blocks?: (
+    | BenefitsEntryBlockStoryblok
+    | DeliverablesEntryBlockStoryblok
+    | OtherEntryBlockStoryblok
+  )[];
+  _uid: string;
+  component: 'list';
   [k: string]: any;
 }
 
@@ -758,6 +781,17 @@ export interface OfficeCardsStoryblok {
   office_cards?: (NotepadCardStoryblok | PhotoCardStoryblok)[];
   _uid: string;
   component: 'office-cards';
+  [k: string]: any;
+}
+
+export interface OtherEntryBlockStoryblok {
+  icon?: AssetStoryblok;
+  title?: string;
+  description?: string;
+  link_title?: string;
+  link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  _uid: string;
+  component: 'other-entry-block';
   [k: string]: any;
 }
 
@@ -798,8 +832,9 @@ export interface PageStoryblok {
     | CtaCardStoryblok
     | DeliverablesStoryblok
     | EstimationStoryblok
+    | FormBudgetRangeStoryblok
     | HeroStoryblok
-    | HighlightsStoryblok
+    | ListStoryblok
     | NewtonStoryblok
     | OfficeCardsStoryblok
     | PackagesStoryblok
@@ -807,11 +842,13 @@ export interface PageStoryblok {
     | PrefooterFormStoryblok
     | ProjectsStoryblok
     | ServicesStoryblok
+    | SlideshowStoryblok
     | SloganStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
     | TimelineStoryblok
     | TimelineServicesStoryblok
+    | TimezoneStoryblok
     | WorkRecognitionsStoryblok
   )[];
   _uid: string;
@@ -1263,6 +1300,13 @@ export interface ServiceTimelineSubrowStoryblok {
   [k: string]: any;
 }
 
+export interface SlideshowStoryblok {
+  images?: MultiassetStoryblok;
+  _uid: string;
+  component: 'slideshow';
+  [k: string]: any;
+}
+
 export interface SloganStoryblok {
   heading?: string;
   subheading?: string;
@@ -1413,6 +1457,13 @@ export interface TimelineTextStoryblok {
   left: string;
   _uid: string;
   component: 'timeline-text';
+  [k: string]: any;
+}
+
+export interface TimezoneStoryblok {
+  text?: RichtextStoryblok;
+  _uid: string;
+  component: 'timezone';
   [k: string]: any;
 }
 

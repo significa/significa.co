@@ -18,6 +18,7 @@
     'richtext-testimonial': RichTextTestimonial,
     video: Video,
     'richtext-box': RichTextBox,
+    list: List,
     hero: Hero,
     packages: Packages,
     physics: Physics,
@@ -75,6 +76,7 @@
   import AboutGrid from './about-grid.svelte';
   import Newton from './newton.svelte';
   import Slogan from './slogan.svelte';
+  import List from './list.svelte';
 
   export let block: { component: string };
 

@@ -8,21 +8,22 @@
   import Images from '../images.svelte';
   import { Button, Link } from '@significa/svelte-ui';
   import { bodyLock } from '@significa/svelte-ui/actions';
-  import type { CareersPageStoryblok } from '$types/bloks';
+  import type { CareersPageStoryblok, PageStoryblok } from '$types/bloks';
   import type { TeamMemberPage } from '$lib/content';
   import DrawYourSegg from '$components/draw-your-segg/draw-your-segg.svelte';
-  import { getImageAttributes } from '$lib/utils/cms';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import CareersAssetLight from '$components/illustrations/assets/careers-light.webp';
   import CareersAssetDark from '$components/illustrations/assets/careers-dark.webp';
   import { theme } from '$lib/stores/theme';
+  import DynamicBlock from '$components/blocks/dynamic-block.svelte';
+  export let blocks: PageStoryblok['blocks'];
 
   export let data: CareersPageStoryblok;
   export let teamMembers: TeamMemberPage[] | undefined;
 
   let canvasFullscreen: boolean;
 
-  const src = $theme === 'dark' ? CareersAssetDark : CareersAssetLight;
+  $: src = $theme === 'dark' ? CareersAssetDark : CareersAssetLight;
 </script>
 
 <Seo />
@@ -136,35 +137,11 @@
 
   <Images images={data.images} class="py-8 md:py-20 lg:pb-12 lg:pt-24" />
 
-  <!-- Benefits -->
-
-  <section class="mt-10 border-b md:mt-14 lg:mt-20">
-    <div
-      class="container mx-auto mb-6 flex flex-col justify-between gap-10 px-container pt-8 lg:mb-12 lg:pt-12 xl:flex-row xl:gap-4"
-    >
-      <div class="xl:sticky xl:top-8 xl:max-w-xl xl:self-start">
-        <h3 class="text-5xl text-foreground-secondary">{data.benefits_title}</h3>
-        <p class="text-5xl">{data.benefits_description}</p>
-      </div>
-
-      {#if data.benefits}
-        <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-          {#each data.benefits as benefits}
-            <div class="flex flex-col items-start xl:max-w-xs">
-              {#if benefits.image?.filename}
-                {@const { src, alt } = getImageAttributes(benefits.image)}
-                <img {src} {alt} class="mb-3 max-h-14 object-contain drop-shadow-md" />
-              {/if}
-              <div class="text-lg font-semibold">{benefits.title}</div>
-              <div class="text-lg font-semibold text-foreground-secondary">
-                {benefits.description}
-              </div>
-            </div>
-          {/each}
-        </div>
-      {/if}
-    </div>
-  </section>
+  {#if blocks}
+    {#each blocks as block}
+      <DynamicBlock {block} />
+    {/each}
+  {/if}
 </main>
 
 {#if $device === 'touch' && canvasFullscreen}

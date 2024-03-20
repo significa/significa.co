@@ -16,6 +16,7 @@
     'richtext-testimonial': RichTextTestimonial,
     video: Video,
     'richtext-box': RichTextBox,
+    list: List,
     hero: Hero,
     packages: Packages,
     physics: Physics,
@@ -72,6 +73,7 @@
   import Slideshow from './slideshow.svelte';
   import Timezone from './timezone.svelte';
   import FormBudgetRange from './form-budget-range.svelte';
+  import List from './list.svelte';
 
   export let block: { component: string };
 

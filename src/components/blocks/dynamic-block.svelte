@@ -9,6 +9,7 @@
     comparison: Comparison,
     'core-values': CoreValues,
     deliverables: Deliverables,
+    'form-budget-range': FormBudgetRange,
     'image-grid': ImageGrid,
     'richtext-code-block': RichTextCodeBlock,
     'two-columns': TwoColumns,
@@ -23,11 +24,13 @@
     'work-recognitions': WorkRecognitions,
     estimation: Estimation,
     'office-cards': OfficeCards,
+    slideshow: Slideshow,
     steps: Steps,
     services: Services,
     testimonials: Testimonials,
     'timeline-services': TimelineServices,
     timeline: Timeline,
+    timezone: Timezone,
     clients: Clients,
     projects: Projects,
     'cta-card': CtaCard
@@ -67,6 +70,9 @@
   import TimelineServices from './timeline-services.svelte';
   import Timeline from './timeline.svelte';
   import Physics from './physics.svelte';
+  import Slideshow from './slideshow.svelte';
+  import Timezone from './timezone.svelte';
+  import FormBudgetRange from './form-budget-range.svelte';
   import List from './list.svelte';
 
   export let block: { component: string };

@@ -1,14 +1,15 @@
 <script lang="ts">
   import Clock from '$components/clock.svelte';
-  import type { GetAQuotePageStoryblok } from '$types/bloks';
   import { RichTextResolver } from '@storyblok/js';
   import clsx from 'clsx';
+  import type { TimezoneStoryblok } from '$types/bloks';
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
 
-  export let page: GetAQuotePageStoryblok;
+  export let block: TimezoneStoryblok;
   const resolver = new RichTextResolver();
 </script>
 
-<div class="border-t">
+<div use:storyblokEditable={block} class="border-y">
   <div class={clsx('container mx-auto px-container', 'lg:flex lg:items-center')}>
     <!-- Clock -->
     <div class="lg:flex-1 lg:border-r">
@@ -43,7 +44,7 @@
           '[&_b]:font-normal [&_b]:text-foreground'
         )}
       >
-        {@html resolver.render(page.timezone_text)}
+        {@html resolver.render(block.text)}
       </div>
     </div>
   </div>

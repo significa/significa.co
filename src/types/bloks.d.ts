@@ -210,6 +210,16 @@ export interface BudgetRangesStoryblok {
   [k: string]: any;
 }
 
+export interface CanvasStoryblok {
+  page_title?: string;
+  canvas_width?: string;
+  canvas_height?: string;
+  canvas_items?: CanvasGroupStoryblok[];
+  _uid: string;
+  component: 'canvas';
+  [k: string]: any;
+}
+
 export interface CanvasChecklistStoryblok {
   title?: string;
   items?: CanvasChecklistItemStoryblok[];
@@ -517,6 +527,15 @@ export interface DeliverablesEntryBlockStoryblok {
   [k: string]: any;
 }
 
+export interface DrawSeggStoryblok {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  _uid: string;
+  component: 'draw-segg';
+  [k: string]: any;
+}
+
 export interface EstimationStoryblok {
   section_title?: string;
   section_description?: string;
@@ -695,17 +714,20 @@ export interface LandingPageStoryblok {
     | AboutGridStoryblok
     | AwardsListStoryblok
     | BlogListStoryblok
+    | CanvasStoryblok
     | CareersListStoryblok
     | ClientsStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
     | DeliverablesStoryblok
+    | DrawSeggStoryblok
     | EstimationStoryblok
     | FormBudgetRangeStoryblok
     | HeroStoryblok
     | ListStoryblok
     | NewtonStoryblok
     | OfficeCardsStoryblok
+    | OpenPositionsStoryblok
     | PackagesStoryblok
     | PhysicsStoryblok
     | PrefooterFormStoryblok
@@ -784,6 +806,14 @@ export interface OfficeCardsStoryblok {
   [k: string]: any;
 }
 
+export interface OpenPositionsStoryblok {
+  open_positions_title?: string;
+  open_positions_description?: string;
+  _uid: string;
+  component: 'open-positions';
+  [k: string]: any;
+}
+
 export interface OtherEntryBlockStoryblok {
   icon?: AssetStoryblok;
   title?: string;
@@ -826,17 +856,20 @@ export interface PageStoryblok {
     | AboutGridStoryblok
     | AwardsListStoryblok
     | BlogListStoryblok
+    | CanvasStoryblok
     | CareersListStoryblok
     | ClientsStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
     | DeliverablesStoryblok
+    | DrawSeggStoryblok
     | EstimationStoryblok
     | FormBudgetRangeStoryblok
     | HeroStoryblok
     | ListStoryblok
     | NewtonStoryblok
     | OfficeCardsStoryblok
+    | OpenPositionsStoryblok
     | PackagesStoryblok
     | PhysicsStoryblok
     | PrefooterFormStoryblok

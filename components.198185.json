@@ -584,6 +584,46 @@
       "component_group_name": "Configuration"
     },
     {
+      "name": "canvas",
+      "display_name": null,
+      "created_at": "2024-03-20T15:34:38.682Z",
+      "updated_at": "2024-03-20T15:37:55.972Z",
+      "id": 5531250,
+      "schema": {
+        "page_title": {
+          "type": "text"
+        },
+        "canvas_width": {
+          "type": "number",
+          "default_value": "3000"
+        },
+        "canvas_height": {
+          "type": "number",
+          "description": "",
+          "default_value": "3000"
+        },
+        "canvas_items": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["canvas-group"]
+        }
+      },
+      "image": "//a.storyblok.com/f/198185/x/5b24d0a195/canvas.png",
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "canvas-checklist",
       "display_name": null,
       "created_at": "2023-05-02T10:44:42.656Z",
@@ -1836,6 +1876,37 @@
       "component_group_name": "Single"
     },
     {
+      "name": "draw-segg",
+      "display_name": null,
+      "created_at": "2024-03-20T15:31:34.802Z",
+      "updated_at": "2024-03-20T15:41:30.812Z",
+      "id": 5531244,
+      "schema": {
+        "title": {
+          "type": "text"
+        },
+        "subtitle": {
+          "type": "text"
+        },
+        "description": {
+          "type": "textarea"
+        }
+      },
+      "image": "//a.storyblok.com/f/198185/x/44d4b6c711/draw-segg.png",
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "draw-segg",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "estimation",
       "display_name": null,
       "created_at": "2024-01-18T12:38:10.713Z",
@@ -2978,6 +3049,38 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "office-cards",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
+    },
+    {
+      "name": "open-positions",
+      "display_name": null,
+      "created_at": "2024-03-20T15:04:18.340Z",
+      "updated_at": "2024-03-20T15:30:04.055Z",
+      "id": 5531010,
+      "schema": {
+        "open_positions_title": {
+          "type": "text",
+          "key": "open_positions_title",
+          "pos": 3
+        },
+        "open_positions_description": {
+          "type": "text",
+          "key": "open_positions_description",
+          "pos": 4
+        }
+      },
+      "image": "//a.storyblok.com/f/198185/x/bc4cff5609/open_positions_block.png",
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "open-positions",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
       "icon": null,

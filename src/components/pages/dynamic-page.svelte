@@ -65,7 +65,6 @@
     story={page.story}
     blogIndex={page.blogIndex}
     projectsIndex={page.projectsIndex}
-    teamMembers={page.teamMembers}
     homePosts={page.homePosts}
   />
 {:else if isBlogPostPage(page)}

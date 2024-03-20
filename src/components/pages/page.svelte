@@ -28,7 +28,6 @@
   export let homePosts: PageResult['homePosts'] = undefined;
   export let blogIndex: PageResult['blogIndex'] = undefined;
   export let projectsIndex: PageResult['projectsIndex'] = undefined;
-  export let teamMembers: PageResult['teamMembers'] = undefined;
 
   const isGetAQuotePage = (page: { component: string }): page is GetAQuotePageStoryblok => {
     return page.component === 'get-a-quote-page';
@@ -69,7 +68,7 @@
   {:else if page.component === 'get-a-quote-page' && isGetAQuotePage(page)}
     <GetAQuote blocks={story.content.blocks} />
   {:else if page.component === 'careers-page' && isCareersPage(page)}
-    <Careers data={page} {teamMembers} blocks={story.content.blocks} />
+    <Careers blocks={story.content.blocks} />
   {:else if page.component === 'contacts-page' && isContactPage(page)}
     <Contact data={page} blocks={story.content.blocks} />
   {:else if page.component === 'services-page' && isServicesPage(page)}

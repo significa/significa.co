@@ -12,6 +12,7 @@
     comparison: Comparison,
     'core-values': CoreValues,
     deliverables: Deliverables,
+    'form-budget-range': FormBudgetRange,
     'image-grid': ImageGrid,
     'richtext-code-block': RichTextCodeBlock,
     'two-columns': TwoColumns,
@@ -28,11 +29,13 @@
     newton: Newton,
     'office-cards': OfficeCards,
     slogan: Slogan,
+    slideshow: Slideshow,
     steps: Steps,
     services: Services,
     testimonials: Testimonials,
     'timeline-services': TimelineServices,
     timeline: Timeline,
+    timezone: Timezone,
     clients: Clients,
     projects: Projects,
     'cta-card': CtaCard
@@ -76,6 +79,9 @@
   import AboutGrid from './about-grid.svelte';
   import Newton from './newton.svelte';
   import Slogan from './slogan.svelte';
+  import Slideshow from './slideshow.svelte';
+  import Timezone from './timezone.svelte';
+  import FormBudgetRange from './form-budget-range.svelte';
   import List from './list.svelte';
 
   export let block: { component: string };

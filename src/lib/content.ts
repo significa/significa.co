@@ -111,6 +111,23 @@ export const fetchBlogPosts = async (
   });
 };
 
+export const fetchHomeBlogPosts = async (
+  options: { version?: 'draft' | 'published'; fetch?: typeof fetch; url?: URL } = {}
+) => {
+  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
+
+  const res = await storyblok.get('cdn/stories', {
+    content_type: 'blog-post',
+    sort_by: 'first_published_at:desc',
+    resolve_relations: 'blog-post.author,blog-post.authors',
+    per_page: 3,
+    page: 1,
+    version: options.version || 'published'
+  });
+
+  return res.data.stories;
+};
+
 export const fetchProjects = async (
   options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
 ) => {

@@ -21,7 +21,7 @@
     width={Number(block.canvas_width)}
     items={block.canvas_items}
     hideMap={$device === 'touch'}
-    teamMembers={$page.data.page.teamMembers}
+    teamMembers={$page.data.teamMembers}
     style="height: min({block.canvas_height}px, calc(90vh - var(--topnav-height)));"
   />
   <div class="absolute left-0 right-0 top-0 h-16 border-t" />
@@ -51,7 +51,7 @@
         height={Number(block.canvas_height)}
         width={Number(block.canvas_width)}
         items={block.canvas_items}
-        teamMembers={$page.data.page.teamMembers}
+        teamMembers={$page.data.teamMembers}
         class="h-full"
       />
 

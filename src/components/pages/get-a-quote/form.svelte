@@ -53,6 +53,8 @@
     lastChangedInput = value.detail;
   };
 
+  $: budgetRange = page.budget_range?.split('\n');
+
   $: if (error) {
     character = 'error';
   } else if (success) {
@@ -64,17 +66,17 @@
       character = 'attach';
     }
   } else if (lastChangedInput === 'budget') {
-    if (['15.000€ to 50.000€'].includes(budget)) {
+    if (budgetRange[0].includes(budget)) {
       character = 'budget10';
-    } else if (['50.000€ to 100.000€'].includes(budget)) {
+    } else if (budgetRange[1].includes(budget)) {
       character = 'budget25';
-    } else if (['100.000€ to 200.000€'].includes(budget)) {
+    } else if (budgetRange[2].includes(budget)) {
       character = 'budget25';
-    } else if (['200.000€ to 300.000€'].includes(budget)) {
+    } else if (budgetRange[3].includes(budget)) {
       character = 'budget50';
-    } else if (['300.000€ to 400.000€'].includes(budget)) {
+    } else if (budgetRange[4].includes(budget)) {
       character = 'budget50';
-    } else if (['400.000€ and above'].includes(budget)) {
+    } else if (budgetRange[5].includes(budget)) {
       character = 'budget100';
     }
   } else if (

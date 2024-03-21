@@ -9,6 +9,7 @@
     'blog-list': BlogList,
     image: Image,
     'careers-list': CareersList,
+    'contact-us-form': ContactUsForm,
     comparison: Comparison,
     'core-values': CoreValues,
     deliverables: Deliverables,
@@ -83,6 +84,7 @@
   import Timezone from './timezone.svelte';
   import FormBudgetRange from './form-budget-range.svelte';
   import List from './list.svelte';
+  import ContactUsForm from './contact-us-form.svelte';
 
   export let block: { component: string };
 

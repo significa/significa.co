@@ -70,7 +70,7 @@
   {:else if page.component === 'careers-page' && isCareersPage(page)}
     <Careers data={page} {teamMembers} blocks={story.content.blocks} />
   {:else if page.component === 'contacts-page' && isContactPage(page)}
-    <Contact data={page} blocks={story.content.blocks} />
+    <Contact blocks={story.content.blocks} />
   {:else if page.component === 'services-page' && isServicesPage(page)}
     <Services blocks={story.content.blocks} />
   {/if}

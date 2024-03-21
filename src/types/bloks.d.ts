@@ -210,6 +210,16 @@ export interface BudgetRangesStoryblok {
   [k: string]: any;
 }
 
+export interface CanvasStoryblok {
+  page_title?: string;
+  canvas_width?: string;
+  canvas_height?: string;
+  canvas_items?: CanvasGroupStoryblok[];
+  _uid: string;
+  component: 'canvas';
+  [k: string]: any;
+}
+
 export interface CanvasChecklistStoryblok {
   title?: string;
   items?: CanvasChecklistItemStoryblok[];
@@ -462,6 +472,15 @@ export interface ContactsPageStoryblok {
   [k: string]: any;
 }
 
+export interface ContactUsFormStoryblok {
+  title1?: string;
+  title2?: string;
+  form_support_text?: string;
+  _uid: string;
+  component: 'contact-us-form';
+  [k: string]: any;
+}
+
 export interface CoreValuesStoryblok {
   values_title1?: string;
   values_title2?: string;
@@ -517,6 +536,15 @@ export interface DeliverablesEntryBlockStoryblok {
   [k: string]: any;
 }
 
+export interface DrawSeggStoryblok {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  _uid: string;
+  component: 'draw-segg';
+  [k: string]: any;
+}
+
 export interface EstimationStoryblok {
   section_title?: string;
   section_description?: string;
@@ -548,6 +576,7 @@ export interface FooterColumnInternalStoryblok {
 export interface FormBudgetRangeStoryblok {
   title?: string;
   subtitle?: string;
+  budget_range?: string;
   _uid: string;
   component: 'form-budget-range';
   [k: string]: any;
@@ -695,17 +724,21 @@ export interface LandingPageStoryblok {
     | AboutGridStoryblok
     | AwardsListStoryblok
     | BlogListStoryblok
+    | CanvasStoryblok
     | CareersListStoryblok
     | ClientsStoryblok
+    | ContactUsFormStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
     | DeliverablesStoryblok
+    | DrawSeggStoryblok
     | EstimationStoryblok
     | FormBudgetRangeStoryblok
     | HeroStoryblok
     | ListStoryblok
     | NewtonStoryblok
     | OfficeCardsStoryblok
+    | OpenPositionsStoryblok
     | PackagesStoryblok
     | PhysicsStoryblok
     | PrefooterFormStoryblok
@@ -784,6 +817,14 @@ export interface OfficeCardsStoryblok {
   [k: string]: any;
 }
 
+export interface OpenPositionsStoryblok {
+  open_positions_title?: string;
+  open_positions_description?: string;
+  _uid: string;
+  component: 'open-positions';
+  [k: string]: any;
+}
+
 export interface OtherEntryBlockStoryblok {
   icon?: AssetStoryblok;
   title?: string;
@@ -826,17 +867,21 @@ export interface PageStoryblok {
     | AboutGridStoryblok
     | AwardsListStoryblok
     | BlogListStoryblok
+    | CanvasStoryblok
     | CareersListStoryblok
     | ClientsStoryblok
+    | ContactUsFormStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
     | DeliverablesStoryblok
+    | DrawSeggStoryblok
     | EstimationStoryblok
     | FormBudgetRangeStoryblok
     | HeroStoryblok
     | ListStoryblok
     | NewtonStoryblok
     | OfficeCardsStoryblok
+    | OpenPositionsStoryblok
     | PackagesStoryblok
     | PhysicsStoryblok
     | PrefooterFormStoryblok

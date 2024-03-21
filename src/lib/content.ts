@@ -128,6 +128,26 @@ export const fetchHomeBlogPosts = async (
   return res.data.stories;
 };
 
+export const fetchTeamMembers = async (
+  options: { version?: 'draft' | 'published'; fetch?: typeof fetch; url?: URL } = {}
+) => {
+  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
+
+  const res = await storyblok.get('cdn/stories', {
+    ...TEAM_MEMBER_PARAMS,
+    per_page: 100,
+    page: 1,
+    filter_query: {
+      is_active: {
+        is: true
+      }
+    },
+    version: options.version || 'published'
+  });
+
+  return res.data.stories;
+};
+
 export const fetchProjects = async (
   options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
 ) => {

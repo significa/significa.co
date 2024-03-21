@@ -3034,7 +3034,7 @@
       "name": "open-positions",
       "display_name": null,
       "created_at": "2024-03-20T15:04:18.340Z",
-      "updated_at": "2024-03-20T15:30:04.055Z",
+      "updated_at": "2024-03-21T15:37:13.613Z",
       "id": 5531010,
       "schema": {
         "open_positions_title": {
@@ -3058,7 +3058,7 @@
       "real_name": "open-positions",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
-      "icon": null,
+      "icon": "block-cart",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -3104,12 +3104,15 @@
       "name": "packages",
       "display_name": null,
       "created_at": "2024-01-11T12:27:35.516Z",
-      "updated_at": "2024-01-15T15:30:47.623Z",
+      "updated_at": "2024-03-21T15:37:24.688Z",
       "id": 5153549,
       "schema": {
         "section_title": {
           "type": "text",
           "pos": 0
+        },
+        "subtitle": {
+          "type": "text"
         },
         "section_description": {
           "type": "text",
@@ -3118,9 +3121,6 @@
         "title": {
           "type": "text",
           "pos": 2
-        },
-        "subtitle": {
-          "type": "text"
         }
       },
       "image": null,
@@ -3132,8 +3132,8 @@
       "preset_id": null,
       "real_name": "packages",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#1b243f",
+      "icon": "block-dollar-sign",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -3270,7 +3270,7 @@
       "name": "physics",
       "display_name": null,
       "created_at": "2024-03-12T15:09:24.990Z",
-      "updated_at": "2024-03-21T15:16:01.858Z",
+      "updated_at": "2024-03-21T15:37:36.489Z",
       "id": 5485214,
       "schema": {
         "variant": {
@@ -3337,8 +3337,8 @@
       "preset_id": null,
       "real_name": "physics",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#ff6159",
+      "icon": "block-arrow-pointer",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -5052,7 +5052,7 @@
       "name": "services",
       "display_name": null,
       "created_at": "2024-01-23T11:26:31.001Z",
-      "updated_at": "2024-03-21T15:26:47.283Z",
+      "updated_at": "2024-03-21T15:37:56.132Z",
       "id": 5216425,
       "schema": {
         "services_title": {
@@ -5084,8 +5084,8 @@
       "preset_id": null,
       "real_name": "services",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#00b3b0",
+      "icon": "block-text-img-l",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -5494,7 +5494,7 @@
       "name": "slideshow",
       "display_name": null,
       "created_at": "2024-03-19T10:36:17.607Z",
-      "updated_at": "2024-03-19T10:40:28.554Z",
+      "updated_at": "2024-03-21T15:38:03.887Z",
       "id": 5520317,
       "schema": {
         "images": {
@@ -5511,8 +5511,8 @@
       "preset_id": null,
       "real_name": "slideshow",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#1b243f",
+      "icon": "block-image",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -5602,7 +5602,7 @@
       "name": "steps",
       "display_name": null,
       "created_at": "2024-01-23T10:01:47.736Z",
-      "updated_at": "2024-03-21T15:22:33.979Z",
+      "updated_at": "2024-03-21T15:38:49.393Z",
       "id": 5215462,
       "schema": {
         "steps_title": {
@@ -5649,8 +5649,8 @@
       "preset_id": null,
       "real_name": "steps",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#00b3b0",
+      "icon": "block-text-l",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },

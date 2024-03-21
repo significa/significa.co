@@ -6,11 +6,13 @@
   const map = {
     'about-grid': AboutGrid,
     'awards-list': AwardsList,
+    'draw-segg': DrawSegg,
     'blog-list': BlogList,
     image: Image,
     'careers-list': CareersList,
     'contact-us-form': ContactUsForm,
     comparison: Comparison,
+    canvas: Canvas,
     'core-values': CoreValues,
     'form-budget-range': FormBudgetRange,
     'image-grid': ImageGrid,
@@ -28,6 +30,7 @@
     estimation: Estimation,
     newton: Newton,
     'office-cards': OfficeCards,
+    'open-positions': OpenPositions,
     slogan: Slogan,
     slideshow: Slideshow,
     steps: Steps,
@@ -83,6 +86,9 @@
   import FormBudgetRange from './form-budget-range.svelte';
   import List from './list.svelte';
   import ContactUsForm from './contact-us-form.svelte';
+  import OpenPositions from './open-positions.svelte';
+  import DrawSegg from './draw-segg.svelte';
+  import Canvas from './canvas.svelte';
 
   export let block: { component: string };
 

@@ -826,9 +826,9 @@ export interface OtherEntryBlockStoryblok {
 
 export interface PackagesStoryblok {
   section_title?: string;
+  subtitle?: string;
   section_description?: string;
   title?: string;
-  subtitle?: string;
   _uid: string;
   component: 'packages';
   [k: string]: any;

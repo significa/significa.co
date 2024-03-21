@@ -6,12 +6,13 @@
   const map = {
     'about-grid': AboutGrid,
     'awards-list': AwardsList,
+    'draw-segg': DrawSegg,
     'blog-list': BlogList,
     image: Image,
     'careers-list': CareersList,
     comparison: Comparison,
+    canvas: Canvas,
     'core-values': CoreValues,
-    deliverables: Deliverables,
     'form-budget-range': FormBudgetRange,
     'image-grid': ImageGrid,
     'richtext-code-block': RichTextCodeBlock,
@@ -28,6 +29,7 @@
     estimation: Estimation,
     newton: Newton,
     'office-cards': OfficeCards,
+    'open-positions': OpenPositions,
     slogan: Slogan,
     slideshow: Slideshow,
     steps: Steps,
@@ -69,7 +71,6 @@
   import OfficeCards from './office-cards.svelte';
   import PrefooterForm from './prefooter-form.svelte';
   import CoreValues from './core-values.svelte';
-  import Deliverables from './deliverables.svelte';
   import AwardsList from './awards-list.svelte';
   import TimelineServices from './timeline-services.svelte';
   import Timeline from './timeline.svelte';
@@ -83,6 +84,9 @@
   import Timezone from './timezone.svelte';
   import FormBudgetRange from './form-budget-range.svelte';
   import List from './list.svelte';
+  import OpenPositions from './open-positions.svelte';
+  import DrawSegg from './draw-segg.svelte';
+  import Canvas from './canvas.svelte';
 
   export let block: { component: string };
 

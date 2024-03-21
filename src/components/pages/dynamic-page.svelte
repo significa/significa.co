@@ -61,12 +61,7 @@
 </script>
 
 {#if isPage(page)}
-  <PageComponent
-    story={page.story}
-    blogIndex={page.blogIndex}
-    projectsIndex={page.projectsIndex}
-    teamMembers={page.teamMembers}
-  />
+  <PageComponent story={page.story} blogIndex={page.blogIndex} projectsIndex={page.projectsIndex} />
 {:else if isBlogPostPage(page)}
   <BlogPost story={page.story} related={page.relatedPosts} />
 {:else if isProjectPage(page)}

@@ -584,6 +584,46 @@
       "component_group_name": "Configuration"
     },
     {
+      "name": "canvas",
+      "display_name": null,
+      "created_at": "2024-03-20T15:34:38.682Z",
+      "updated_at": "2024-03-20T15:37:55.972Z",
+      "id": 5531250,
+      "schema": {
+        "page_title": {
+          "type": "text"
+        },
+        "canvas_width": {
+          "type": "number",
+          "default_value": "3000"
+        },
+        "canvas_height": {
+          "type": "number",
+          "description": "",
+          "default_value": "3000"
+        },
+        "canvas_items": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["canvas-group"]
+        }
+      },
+      "image": "//a.storyblok.com/f/198185/x/5b24d0a195/canvas.png",
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "canvas",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "canvas-checklist",
       "display_name": null,
       "created_at": "2023-05-02T10:44:42.656Z",
@@ -1615,6 +1655,37 @@
       "component_group_name": "Pages"
     },
     {
+      "name": "contact-us-form",
+      "display_name": null,
+      "created_at": "2024-03-21T10:44:36.930Z",
+      "updated_at": "2024-03-21T10:45:35.470Z",
+      "id": 5535790,
+      "schema": {
+        "title1": {
+          "type": "text"
+        },
+        "title2": {
+          "type": "text"
+        },
+        "form_support_text": {
+          "type": "textarea"
+        }
+      },
+      "image": "//a.storyblok.com/f/198185/x/bea7eaf558/screenshot-2024-03-21-at-10-20-58.png",
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "contact-us-form",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "core-values",
       "display_name": null,
       "created_at": "2024-03-08T15:26:01.922Z",
@@ -1836,6 +1907,37 @@
       "component_group_name": "Single"
     },
     {
+      "name": "draw-segg",
+      "display_name": null,
+      "created_at": "2024-03-20T15:31:34.802Z",
+      "updated_at": "2024-03-20T15:41:30.812Z",
+      "id": 5531244,
+      "schema": {
+        "title": {
+          "type": "text"
+        },
+        "subtitle": {
+          "type": "text"
+        },
+        "description": {
+          "type": "textarea"
+        }
+      },
+      "image": "//a.storyblok.com/f/198185/x/44d4b6c711/draw-segg.png",
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "draw-segg",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "estimation",
       "display_name": null,
       "created_at": "2024-01-18T12:38:10.713Z",
@@ -1948,7 +2050,7 @@
       "name": "form-budget-range",
       "display_name": null,
       "created_at": "2024-03-19T14:26:52.308Z",
-      "updated_at": "2024-03-19T14:29:21.429Z",
+      "updated_at": "2024-03-21T11:16:42.725Z",
       "id": 5523274,
       "schema": {
         "title": {
@@ -1956,6 +2058,9 @@
         },
         "subtitle": {
           "type": "text"
+        },
+        "budget_range": {
+          "type": "textarea"
         }
       },
       "image": "//a.storyblok.com/f/198185/x/74ab5628e2/form_budget_range_block.png",
@@ -2985,6 +3090,38 @@
       "component_group_name": "Blocks"
     },
     {
+      "name": "open-positions",
+      "display_name": null,
+      "created_at": "2024-03-20T15:04:18.340Z",
+      "updated_at": "2024-03-20T15:30:04.055Z",
+      "id": 5531010,
+      "schema": {
+        "open_positions_title": {
+          "type": "text",
+          "key": "open_positions_title",
+          "pos": 3
+        },
+        "open_positions_description": {
+          "type": "text",
+          "key": "open_positions_description",
+          "pos": 4
+        }
+      },
+      "image": "//a.storyblok.com/f/198185/x/bc4cff5609/open_positions_block.png",
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "open-positions",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "other-entry-block",
       "display_name": "other-entry-block",
       "created_at": "2024-03-19T16:21:44.759Z",
@@ -3436,9 +3573,13 @@
       "name": "prefooter-form",
       "display_name": null,
       "created_at": "2024-03-07T11:40:30.984Z",
-      "updated_at": "2024-03-07T11:40:30.984Z",
+      "updated_at": "2024-03-21T11:49:51.223Z",
       "id": 5457509,
-      "schema": {},
+      "schema": {
+        "budget_range": {
+          "type": "textarea"
+        }
+      },
       "image": null,
       "preview_field": null,
       "is_root": false,

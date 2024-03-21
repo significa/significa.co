@@ -25,7 +25,6 @@
    * It has a "page" field that will contain one specific page type (e.g. "static-page", "home-page", etc.)
    */
   export let story: ISbStoryData<PageStoryblok>;
-  export let homePosts: PageResult['homePosts'] = undefined;
   export let blogIndex: PageResult['blogIndex'] = undefined;
   export let projectsIndex: PageResult['projectsIndex'] = undefined;
   export let teamMembers: PageResult['teamMembers'] = undefined;
@@ -61,7 +60,7 @@
   {:else if page.component === 'about-page' && isAboutPage(page)}
     <About blocks={story.content.blocks} />
   {:else if page.component === 'home-page' && isHomePage(page)}
-    <HomePage data={page} posts={homePosts} />
+    <HomePage blocks={story.content.blocks} />
   {:else if page.component === 'blog-index' && blogIndex}
     <BlogIndex data={blogIndex} />
   {:else if page.component === 'projects-index' && projectsIndex}

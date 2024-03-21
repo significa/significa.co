@@ -2,7 +2,7 @@ import { getStoryblok } from '$lib/storyblok';
 import type { ConfigurationStoryblok } from '$types/bloks';
 import { error } from '@sveltejs/kit';
 import type { ISbStoryData } from '@storyblok/js';
-import { fetchAwards, fetchAwardsTypes, fetchCareers } from '$lib/content';
+import { fetchAwards, fetchAwardsTypes, fetchCareers, fetchHomeBlogPosts } from '$lib/content';
 
 export const load = async ({ locals, fetch }) => {
   const version = locals.version;
@@ -20,6 +20,7 @@ export const load = async ({ locals, fetch }) => {
       careers: await fetchCareers({ version, fetch }),
       awards: await fetchAwards({ version, fetch }),
       awardsTypes: await fetchAwardsTypes({ version, fetch }),
+      homePosts: await fetchHomeBlogPosts({ version, fetch }),
       version
     };
   } catch (err) {

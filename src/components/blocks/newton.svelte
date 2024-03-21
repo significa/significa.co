@@ -1,16 +1,18 @@
 <script lang="ts">
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { device } from '$lib/stores/device';
-  import { getAnchorFromCmsLink } from '$lib/utils/cms';
-  import type { HomePageStoryblok } from '$types/bloks';
+  import type { NewtonStoryblok } from '$types/bloks';
+  import ServicesIllustrationDark from '../pages/home/assets/pendulum-static-dark.webp';
+  import ServicesIllustrationLight from '../pages/home/assets/pendulum-static-light.webp';
+  import Newton from '../pages/home/newton.svelte';
   import { Button } from '@significa/svelte-ui';
-  import ServicesIllustrationDark from './assets/pendulum-static-dark.webp';
-  import ServicesIllustrationLight from './assets/pendulum-static-light.webp';
-  import Newton from './newton.svelte';
+  import { getAnchorFromCmsLink } from '$lib/utils/cms';
 
-  export let data: HomePageStoryblok;
+  export let block: NewtonStoryblok;
 </script>
 
 <section
+  use:storyblokEditable={block}
   class="flex flex-col-reverse lg:container lg:mx-auto lg:grid lg:grid-cols-[50%_50%] lg:px-container"
 >
   <div
@@ -36,13 +38,13 @@
   >
     <div class="py-14 lg:max-w-2xl lg:p-12">
       <h3 class="mb-6 text-5xl">
-        <span class="text-foreground-secondary">{data.services_title1}</span> <br />
-        {data.services_title2}
+        <span class="text-foreground-secondary">{block.title1}</span> <br />
+        {block.title2}
       </h3>
-      <p class="mb-8 text-2xl text-foreground-secondary">{data.services_description}</p>
-      {#if data.services_cta_label && data.services_cta_link}
-        {@const { href } = getAnchorFromCmsLink(data.services_cta_link)}
-        <Button as="a" arrow variant="secondary" {href}>{data.services_cta_label}</Button>
+      <p class="mb-8 text-2xl text-foreground-secondary">{block.description}</p>
+      {#if block.cta_label && block.cta_link}
+        {@const { href } = getAnchorFromCmsLink(block.cta_link)}
+        <Button as="a" arrow variant="secondary" {href}>{block.cta_label}</Button>
       {/if}
     </div>
   </div>

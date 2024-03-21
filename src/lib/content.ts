@@ -14,7 +14,7 @@ import { HOME_SLUG } from './constants';
 export const PAGE_PARAMS = {
   resolve_links: 'url',
   resolve_relations:
-    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects,blog-post.authors,hero.small_highlights,work-recognitions.small_highlights,projects.projects'
+    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects,blog-post.authors,hero.small_highlights,work-recognitions.small_highlights,projects.projects,highlights.small_highlights'
 } as const;
 
 export const BLOG_PARAMS = {
@@ -109,6 +109,23 @@ export const fetchBlogPosts = async (
     page: 1,
     version: options.version || 'published'
   });
+};
+
+export const fetchHomeBlogPosts = async (
+  options: { version?: 'draft' | 'published'; fetch?: typeof fetch; url?: URL } = {}
+) => {
+  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
+
+  const res = await storyblok.get('cdn/stories', {
+    content_type: 'blog-post',
+    sort_by: 'first_published_at:desc',
+    resolve_relations: 'blog-post.author,blog-post.authors',
+    per_page: 3,
+    page: 1,
+    version: options.version || 'published'
+  });
+
+  return res.data.stories;
 };
 
 export const fetchTeamMembers = async (

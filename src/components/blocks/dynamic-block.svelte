@@ -4,9 +4,12 @@
   import Image from './image.svelte';
 
   const map = {
+    'about-grid': AboutGrid,
     'awards-list': AwardsList,
     'draw-segg': DrawSegg,
+    'blog-list': BlogList,
     image: Image,
+    'careers-list': CareersList,
     comparison: Comparison,
     canvas: Canvas,
     'core-values': CoreValues,
@@ -24,8 +27,10 @@
     'prefooter-form': PrefooterForm,
     'work-recognitions': WorkRecognitions,
     estimation: Estimation,
+    newton: Newton,
     'office-cards': OfficeCards,
     'open-positions': OpenPositions,
+    slogan: Slogan,
     slideshow: Slideshow,
     steps: Steps,
     services: Services,
@@ -53,7 +58,6 @@
   import RichTextTestimonial from './rich-text-testimonial.svelte';
   import Video from './video.svelte';
   import RichTextBox from './rich-text-box.svelte';
-
   import Hero from './hero.svelte';
   import Packages from './packages.svelte';
   import WorkRecognitions from './work-recognitions.svelte';
@@ -71,6 +75,11 @@
   import TimelineServices from './timeline-services.svelte';
   import Timeline from './timeline.svelte';
   import Physics from './physics.svelte';
+  import CareersList from './careers-list.svelte';
+  import BlogList from './blog-list.svelte';
+  import AboutGrid from './about-grid.svelte';
+  import Newton from './newton.svelte';
+  import Slogan from './slogan.svelte';
   import Slideshow from './slideshow.svelte';
   import Timezone from './timezone.svelte';
   import FormBudgetRange from './form-budget-range.svelte';

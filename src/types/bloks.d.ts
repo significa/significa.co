@@ -472,6 +472,15 @@ export interface ContactsPageStoryblok {
   [k: string]: any;
 }
 
+export interface ContactUsFormStoryblok {
+  title1?: string;
+  title2?: string;
+  form_support_text?: string;
+  _uid: string;
+  component: 'contact-us-form';
+  [k: string]: any;
+}
+
 export interface CoreValuesStoryblok {
   values_title1?: string;
   values_title2?: string;
@@ -567,6 +576,7 @@ export interface FooterColumnInternalStoryblok {
 export interface FormBudgetRangeStoryblok {
   title?: string;
   subtitle?: string;
+  budget_range?: string;
   _uid: string;
   component: 'form-budget-range';
   [k: string]: any;
@@ -717,6 +727,7 @@ export interface LandingPageStoryblok {
     | CanvasStoryblok
     | CareersListStoryblok
     | ClientsStoryblok
+    | ContactUsFormStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
     | DeliverablesStoryblok
@@ -859,6 +870,7 @@ export interface PageStoryblok {
     | CanvasStoryblok
     | CareersListStoryblok
     | ClientsStoryblok
+    | ContactUsFormStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
     | DeliverablesStoryblok
@@ -951,6 +963,7 @@ export interface PhysicsStickerStoryblok {
 }
 
 export interface PrefooterFormStoryblok {
+  budget_range?: string;
   _uid: string;
   component: 'prefooter-form';
   [k: string]: any;

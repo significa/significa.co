@@ -27,7 +27,6 @@
 
   export let variant: undefined | FormType = undefined;
   export let disclaimer: string | undefined = undefined;
-  export let budgetRange: Array<string> | undefined = undefined;
 
   let type: FormType = variant || 'quote';
   const options = [
@@ -74,7 +73,14 @@
     input: string;
   }>();
 
-  const budgetOptions = budgetRange;
+  const budgetOptions = [
+    '15.000€ to 50.000€',
+    '50.000€ to 100.000€',
+    '100.000€ to 200.000€',
+    '200.000€ to 300.000€',
+    '300.000€ to 400.000€',
+    '400.000€ and above'
+  ];
 
   const careers = [
     DEFAULT_POSITION,

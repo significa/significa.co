@@ -506,16 +506,6 @@ export interface DeliverableStoryblok {
   [k: string]: any;
 }
 
-export interface DeliverablesStoryblok {
-  type?: 'large' | 'regular';
-  title?: string;
-  subtitle?: string;
-  deliverables?: DeliverablesEntryBlockStoryblok[];
-  _uid: string;
-  component: 'deliverables';
-  [k: string]: any;
-}
-
 export interface DeliverablesEntryStoryblok {
   icon?: AssetStoryblok;
   title?: string;
@@ -576,7 +566,6 @@ export interface FooterColumnInternalStoryblok {
 export interface FormBudgetRangeStoryblok {
   title?: string;
   subtitle?: string;
-  budget_range?: string;
   _uid: string;
   component: 'form-budget-range';
   [k: string]: any;
@@ -730,7 +719,6 @@ export interface LandingPageStoryblok {
     | ContactUsFormStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
-    | DeliverablesStoryblok
     | DrawSeggStoryblok
     | EstimationStoryblok
     | FormBudgetRangeStoryblok
@@ -873,7 +861,6 @@ export interface PageStoryblok {
     | ContactUsFormStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
-    | DeliverablesStoryblok
     | DrawSeggStoryblok
     | EstimationStoryblok
     | FormBudgetRangeStoryblok
@@ -963,7 +950,6 @@ export interface PhysicsStickerStoryblok {
 }
 
 export interface PrefooterFormStoryblok {
-  budget_range?: string;
   _uid: string;
   component: 'prefooter-form';
   [k: string]: any;

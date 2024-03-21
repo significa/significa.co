@@ -12,7 +12,6 @@
     'contact-us-form': ContactUsForm,
     comparison: Comparison,
     'core-values': CoreValues,
-    deliverables: Deliverables,
     'form-budget-range': FormBudgetRange,
     'image-grid': ImageGrid,
     'richtext-code-block': RichTextCodeBlock,
@@ -70,7 +69,6 @@
   import OfficeCards from './office-cards.svelte';
   import PrefooterForm from './prefooter-form.svelte';
   import CoreValues from './core-values.svelte';
-  import Deliverables from './deliverables.svelte';
   import AwardsList from './awards-list.svelte';
   import TimelineServices from './timeline-services.svelte';
   import Timeline from './timeline.svelte';

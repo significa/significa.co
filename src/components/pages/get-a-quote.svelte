@@ -1,24 +1,18 @@
 <script lang="ts">
   import Seo from '$components/seo.svelte';
-  import type { GetAQuotePageStoryblok } from '$types/bloks';
-  import Form from './get-a-quote/form.svelte';
-  import Images from '../images.svelte';
-  import Timezone from './get-a-quote/timezone.svelte';
-  import Steps from '$components/blocks/steps.svelte';
+  import type { PageStoryblok } from '$types/bloks';
 
-  export let page: GetAQuotePageStoryblok;
+  import DynamicBlock from '$components/blocks/dynamic-block.svelte';
+
+  export let blocks: PageStoryblok['blocks'];
 </script>
 
 <Seo />
-<Form {page} />
-<Timezone {page} />
-<Steps
-  block={{
-    _uid: 'GetAQuoteSteps',
-    component: 'steps',
-    steps: page.steps,
-    steps_subtitle: page.steps_subtitle,
-    steps_title: page.title
-  }}
-/>
-<Images images={page.images} class="py-12 md:py-20 lg:py-32" />
+
+<main>
+  {#if blocks}
+    {#each blocks as block}
+      <DynamicBlock {block} />
+    {/each}
+  {/if}
+</main>

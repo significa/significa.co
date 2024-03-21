@@ -128,6 +128,7 @@
       <div>
         <ContactForm
           variant="quote"
+          {budgetRange}
           bind:name
           bind:budget
           bind:attachments

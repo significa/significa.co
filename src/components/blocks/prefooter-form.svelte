@@ -10,6 +10,8 @@
 
   let variant: ComponentProps<ContactForm>['variant'] = undefined;
   export let block: PrefooterFormStoryblok;
+
+  $: budgetRange = block.budget_range?.split('\n');
 </script>
 
 <section
@@ -33,7 +35,7 @@
       </div>
     </div>
     <div class="col-span-3 bg-background-panel p-4 pt-8 @5xl:p-8 @5xl:col-span-2 @5xl:border-l">
-      <ContactForm {variant} />
+      <ContactForm {budgetRange} {variant} />
     </div>
   </div>
 </section>

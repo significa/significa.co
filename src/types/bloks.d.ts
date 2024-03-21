@@ -963,6 +963,7 @@ export interface PhysicsStickerStoryblok {
 }
 
 export interface PrefooterFormStoryblok {
+  budget_range?: string;
   _uid: string;
   component: 'prefooter-form';
   [k: string]: any;

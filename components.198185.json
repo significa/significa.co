@@ -3573,9 +3573,13 @@
       "name": "prefooter-form",
       "display_name": null,
       "created_at": "2024-03-07T11:40:30.984Z",
-      "updated_at": "2024-03-07T11:40:30.984Z",
+      "updated_at": "2024-03-21T11:49:51.223Z",
       "id": 5457509,
-      "schema": {},
+      "schema": {
+        "budget_range": {
+          "type": "textarea"
+        }
+      },
       "image": null,
       "preview_field": null,
       "is_root": false,

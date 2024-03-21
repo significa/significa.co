@@ -48,7 +48,7 @@
   {:else if !!block.office_cards?.length}
     <section class="border-b">
       <div class="container mx-auto px-container">
-        <HoverableGallery cards={block.office_cards} class="mt-12 lg:mt-0" />
+        <HoverableGallery cards={block.office_cards} class="mt-12 lg:mt-4" />
       </div>
     </section>
   {/if}

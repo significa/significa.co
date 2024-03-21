@@ -4,7 +4,7 @@
       "name": "about-grid",
       "display_name": null,
       "created_at": "2024-03-15T11:25:42.067Z",
-      "updated_at": "2024-03-15T11:27:25.931Z",
+      "updated_at": "2024-03-21T15:32:26.874Z",
       "id": 5503063,
       "schema": {
         "about_links": {
@@ -25,8 +25,8 @@
       "preset_id": null,
       "real_name": "about-grid",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#fbce41",
+      "icon": "block-text-img-r-l",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -255,7 +255,7 @@
       "name": "awards-list",
       "display_name": null,
       "created_at": "2024-03-13T16:49:20.817Z",
-      "updated_at": "2024-03-13T16:49:54.663Z",
+      "updated_at": "2024-03-21T15:32:39.098Z",
       "id": 5492544,
       "schema": {
         "title": {
@@ -265,7 +265,7 @@
           "type": "text"
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/7370f87149/awards-list.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -274,8 +274,8 @@
       "preset_id": null,
       "real_name": "awards-list",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#ffac00",
+      "icon": "block-dollar-sign",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -386,7 +386,7 @@
       "name": "blog-list",
       "display_name": null,
       "created_at": "2024-03-14T16:04:21.544Z",
-      "updated_at": "2024-03-14T16:05:41.188Z",
+      "updated_at": "2024-03-21T15:33:30.676Z",
       "id": 5498274,
       "schema": {
         "title1": {
@@ -405,8 +405,8 @@
       "preset_id": null,
       "real_name": "blog-list",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#00b3b0",
+      "icon": "block-text-c",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -587,7 +587,7 @@
       "name": "canvas",
       "display_name": null,
       "created_at": "2024-03-20T15:34:38.682Z",
-      "updated_at": "2024-03-20T15:37:55.972Z",
+      "updated_at": "2024-03-21T15:33:14.451Z",
       "id": 5531250,
       "schema": {
         "page_title": {
@@ -618,8 +618,8 @@
       "preset_id": null,
       "real_name": "canvas",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#ff6159",
+      "icon": "block-arrow-pointer",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -1247,7 +1247,7 @@
       "name": "careers-list",
       "display_name": null,
       "created_at": "2024-03-14T10:56:07.056Z",
-      "updated_at": "2024-03-14T16:01:38.820Z",
+      "updated_at": "2024-03-21T15:33:41.241Z",
       "id": 5495548,
       "schema": {
         "title": {
@@ -1288,8 +1288,8 @@
       "preset_id": null,
       "real_name": "careers-list",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#00b3b0",
+      "icon": "block-text-c",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -1442,7 +1442,7 @@
       "name": "clients",
       "display_name": null,
       "created_at": "2024-01-23T17:00:57.552Z",
-      "updated_at": "2024-01-23T17:02:18.323Z",
+      "updated_at": "2024-03-21T15:33:53.774Z",
       "id": 5219148,
       "schema": {
         "clients_title": {
@@ -1455,7 +1455,7 @@
           "component_whitelist": ["client-logo"]
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/df9c3a35d2/clients.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -1464,8 +1464,8 @@
       "preset_id": null,
       "real_name": "clients",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#1b243f",
+      "icon": "block-image",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -1658,7 +1658,7 @@
       "name": "contact-us-form",
       "display_name": null,
       "created_at": "2024-03-21T10:44:36.930Z",
-      "updated_at": "2024-03-21T10:45:35.470Z",
+      "updated_at": "2024-03-21T15:24:21.906Z",
       "id": 5535790,
       "schema": {
         "title1": {
@@ -1680,8 +1680,8 @@
       "preset_id": null,
       "real_name": "contact-us-form",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#2db47d",
+      "icon": "block-email",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -1689,7 +1689,7 @@
       "name": "core-values",
       "display_name": null,
       "created_at": "2024-03-08T15:26:01.922Z",
-      "updated_at": "2024-03-08T15:36:24.779Z",
+      "updated_at": "2024-03-21T15:34:06.358Z",
       "id": 5466421,
       "schema": {
         "values_title1": {
@@ -1710,7 +1710,7 @@
           "component_whitelist": ["value"]
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/04a97a24a8/core-values.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -1719,8 +1719,8 @@
       "preset_id": null,
       "real_name": "core-values",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#00b3b0",
+      "icon": "block-text-c",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -1728,7 +1728,7 @@
       "name": "cta-card",
       "display_name": null,
       "created_at": "2024-01-24T11:35:57.280Z",
-      "updated_at": "2024-01-25T09:30:01.374Z",
+      "updated_at": "2024-03-21T17:14:46.247Z",
       "id": 5222861,
       "schema": {
         "title": {
@@ -1739,9 +1739,19 @@
         },
         "link_text": {
           "type": "text"
+        },
+        "link": {
+          "type": "multilink",
+          "email_link_type": false
+        },
+        "secondary_link_text": {
+          "type": "text"
+        },
+        "secondary_link": {
+          "type": "multilink"
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/c2469bba8e/cta-card.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -1750,8 +1760,8 @@
       "preset_id": null,
       "real_name": "cta-card",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "",
+      "icon": "block-paycard",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -1775,62 +1785,6 @@
       "icon": null,
       "content_type_asset_preview": null,
       "component_group_name": "Configuration"
-    },
-    {
-      "name": "deliverables",
-      "display_name": null,
-      "created_at": "2024-03-13T11:55:40.026Z",
-      "updated_at": "2024-03-20T11:15:04.646Z",
-      "id": 5490348,
-      "schema": {
-        "type": {
-          "type": "option",
-          "pos": 0,
-          "use_uuid": true,
-          "options": [
-            {
-              "_uid": "a0084493-6bda-4ba8-91f8-efd36923c1d2",
-              "name": "large",
-              "value": "large"
-            },
-            {
-              "_uid": "6cceee43-6a2f-42a4-bf5c-d789d82cf606",
-              "value": "regular",
-              "name": "regular"
-            }
-          ],
-          "exclude_empty_option": true,
-          "default_value": "large"
-        },
-        "title": {
-          "type": "text",
-          "pos": 1
-        },
-        "subtitle": {
-          "type": "text",
-          "pos": 2
-        },
-        "deliverables": {
-          "type": "bloks",
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": ["deliverables-entry-block"],
-          "pos": 3
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": null,
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "deliverables",
-      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
-      "content_type_asset_preview": null,
-      "component_group_name": "Blocks"
     },
     {
       "name": "deliverables_entry",
@@ -1910,7 +1864,7 @@
       "name": "draw-segg",
       "display_name": null,
       "created_at": "2024-03-20T15:31:34.802Z",
-      "updated_at": "2024-03-20T15:41:30.812Z",
+      "updated_at": "2024-03-21T15:34:44.455Z",
       "id": 5531244,
       "schema": {
         "title": {
@@ -1932,16 +1886,16 @@
       "preset_id": null,
       "real_name": "draw-segg",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#ff6159",
+      "icon": "block-arrow-pointer",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
       "name": "estimation",
-      "display_name": null,
+      "display_name": "Estimation Form",
       "created_at": "2024-01-18T12:38:10.713Z",
-      "updated_at": "2024-01-22T11:29:58.228Z",
+      "updated_at": "2024-03-21T15:23:08.731Z",
       "id": 5192821,
       "schema": {
         "section_title": {
@@ -1969,17 +1923,17 @@
           "pos": 5
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/653da931fc/estimation.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
-      "real_name": "estimation",
+      "real_name": "Estimation Form",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#2db47d",
+      "icon": "block-email",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -2048,9 +2002,9 @@
     },
     {
       "name": "form-budget-range",
-      "display_name": null,
+      "display_name": "Budget Range Form",
       "created_at": "2024-03-19T14:26:52.308Z",
-      "updated_at": "2024-03-21T11:16:42.725Z",
+      "updated_at": "2024-03-21T15:36:39.092Z",
       "id": 5523274,
       "schema": {
         "title": {
@@ -2058,9 +2012,6 @@
         },
         "subtitle": {
           "type": "text"
-        },
-        "budget_range": {
-          "type": "textarea"
         }
       },
       "image": "//a.storyblok.com/f/198185/x/74ab5628e2/form_budget_range_block.png",
@@ -2070,10 +2021,10 @@
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
-      "real_name": "form-budget-range",
+      "real_name": "Budget Range Form",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#2db47d",
+      "icon": "block-email",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -2289,7 +2240,7 @@
       "name": "hero",
       "display_name": null,
       "created_at": "2024-01-10T16:19:08.681Z",
-      "updated_at": "2024-03-18T16:21:41.806Z",
+      "updated_at": "2024-03-21T15:35:47.297Z",
       "id": 5148572,
       "schema": {
         "heading": {
@@ -2336,7 +2287,7 @@
           "pos": 5
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/a76a04ef6a/hero.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -2345,8 +2296,8 @@
       "preset_id": null,
       "real_name": "hero",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#fbce41",
+      "icon": "block-text-img-c",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -2902,9 +2853,9 @@
     },
     {
       "name": "list",
-      "display_name": null,
+      "display_name": "List (Ex: Deliverables & Benefits)",
       "created_at": "2024-03-19T17:01:00.283Z",
-      "updated_at": "2024-03-20T12:04:15.933Z",
+      "updated_at": "2024-03-21T15:36:13.517Z",
       "id": 5524571,
       "schema": {
         "type": {
@@ -2962,10 +2913,10 @@
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
-      "real_name": "list",
+      "real_name": "List (Ex: Deliverables & Benefits)",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#00b3b0",
+      "icon": "block-text-c",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -2973,7 +2924,7 @@
       "name": "newton",
       "display_name": null,
       "created_at": "2024-03-15T16:54:56.519Z",
-      "updated_at": "2024-03-15T16:56:59.359Z",
+      "updated_at": "2024-03-21T15:36:22.059Z",
       "id": 5504812,
       "schema": {
         "title1": {
@@ -3001,8 +2952,8 @@
       "preset_id": null,
       "real_name": "newton",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#ff6159",
+      "icon": "block-arrow-pointer",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -3035,7 +2986,7 @@
       "name": "office-cards",
       "display_name": null,
       "created_at": "2024-03-06T15:26:14.141Z",
-      "updated_at": "2024-03-14T15:01:23.251Z",
+      "updated_at": "2024-03-21T15:36:36.941Z",
       "id": 5451419,
       "schema": {
         "variant": {
@@ -3075,7 +3026,7 @@
           "pos": 6
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/c06e3b8848/office-cards.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -3084,8 +3035,8 @@
       "preset_id": null,
       "real_name": "office-cards",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#1b243f",
+      "icon": "block-image",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -3093,7 +3044,7 @@
       "name": "open-positions",
       "display_name": null,
       "created_at": "2024-03-20T15:04:18.340Z",
-      "updated_at": "2024-03-20T15:30:04.055Z",
+      "updated_at": "2024-03-21T15:37:13.613Z",
       "id": 5531010,
       "schema": {
         "open_positions_title": {
@@ -3117,7 +3068,7 @@
       "real_name": "open-positions",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
       "color": null,
-      "icon": null,
+      "icon": "block-cart",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -3163,12 +3114,15 @@
       "name": "packages",
       "display_name": null,
       "created_at": "2024-01-11T12:27:35.516Z",
-      "updated_at": "2024-01-15T15:30:47.623Z",
+      "updated_at": "2024-03-21T15:37:24.688Z",
       "id": 5153549,
       "schema": {
         "section_title": {
           "type": "text",
           "pos": 0
+        },
+        "subtitle": {
+          "type": "text"
         },
         "section_description": {
           "type": "text",
@@ -3177,9 +3131,6 @@
         "title": {
           "type": "text",
           "pos": 2
-        },
-        "subtitle": {
-          "type": "text"
         }
       },
       "image": null,
@@ -3191,8 +3142,8 @@
       "preset_id": null,
       "real_name": "packages",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#1b243f",
+      "icon": "block-dollar-sign",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -3329,7 +3280,7 @@
       "name": "physics",
       "display_name": null,
       "created_at": "2024-03-12T15:09:24.990Z",
-      "updated_at": "2024-03-13T10:00:44.991Z",
+      "updated_at": "2024-03-21T15:37:36.489Z",
       "id": 5485214,
       "schema": {
         "variant": {
@@ -3387,7 +3338,7 @@
           "pos": 7
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/0e5e28ae46/physics.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -3396,8 +3347,8 @@
       "preset_id": null,
       "real_name": "physics",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#ff6159",
+      "icon": "block-arrow-pointer",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -3573,14 +3524,10 @@
       "name": "prefooter-form",
       "display_name": null,
       "created_at": "2024-03-07T11:40:30.984Z",
-      "updated_at": "2024-03-21T11:49:51.223Z",
+      "updated_at": "2024-03-21T15:35:58.092Z",
       "id": 5457509,
-      "schema": {
-        "budget_range": {
-          "type": "textarea"
-        }
-      },
-      "image": null,
+      "schema": {},
+      "image": "//a.storyblok.com/f/198185/x/60cb75039f/pre-footer-form.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -3589,8 +3536,8 @@
       "preset_id": null,
       "real_name": "prefooter-form",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#2db47d",
+      "icon": "block-email",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -3783,7 +3730,7 @@
       "name": "projects",
       "display_name": null,
       "created_at": "2024-01-24T10:08:07.237Z",
-      "updated_at": "2024-01-24T10:10:41.798Z",
+      "updated_at": "2024-03-21T15:35:57.203Z",
       "id": 5222132,
       "schema": {
         "work_title": {
@@ -3795,7 +3742,7 @@
           "filter_content_type": ["project"]
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/92e57719d6/projects.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -3804,8 +3751,8 @@
       "preset_id": null,
       "real_name": "projects",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#395ece",
+      "icon": "block-suitcase",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -5115,7 +5062,7 @@
       "name": "services",
       "display_name": null,
       "created_at": "2024-01-23T11:26:31.001Z",
-      "updated_at": "2024-01-23T11:31:23.863Z",
+      "updated_at": "2024-03-21T15:37:56.132Z",
       "id": 5216425,
       "schema": {
         "services_title": {
@@ -5138,7 +5085,7 @@
           "pos": 3
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/64be25a1af/services.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -5147,8 +5094,8 @@
       "preset_id": null,
       "real_name": "services",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#00b3b0",
+      "icon": "block-text-img-l",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -5557,7 +5504,7 @@
       "name": "slideshow",
       "display_name": null,
       "created_at": "2024-03-19T10:36:17.607Z",
-      "updated_at": "2024-03-19T10:40:28.554Z",
+      "updated_at": "2024-03-21T15:38:03.887Z",
       "id": 5520317,
       "schema": {
         "images": {
@@ -5574,16 +5521,16 @@
       "preset_id": null,
       "real_name": "slideshow",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#1b243f",
+      "icon": "block-image",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
     {
       "name": "slogan",
-      "display_name": null,
+      "display_name": "Editable Hero",
       "created_at": "2024-03-18T14:45:11.905Z",
-      "updated_at": "2024-03-18T16:24:10.122Z",
+      "updated_at": "2024-03-21T15:35:31.917Z",
       "id": 5515857,
       "schema": {
         "heading": {
@@ -5598,17 +5545,17 @@
           "description": "The grey text."
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/456ea2ce81/slogan.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
-      "real_name": "slogan",
+      "real_name": "Editable Hero",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#fbce41",
+      "icon": "block-text-img-c",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },
@@ -5665,7 +5612,7 @@
       "name": "steps",
       "display_name": null,
       "created_at": "2024-01-23T10:01:47.736Z",
-      "updated_at": "2024-01-26T12:13:36.778Z",
+      "updated_at": "2024-03-21T15:38:49.393Z",
       "id": 5215462,
       "schema": {
         "steps_title": {
@@ -5703,7 +5650,7 @@
           "pos": 3
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/4ff89fbd5a/steps.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -5712,8 +5659,8 @@
       "preset_id": null,
       "real_name": "steps",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#00b3b0",
+      "icon": "block-text-l",
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
     },

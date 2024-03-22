@@ -23,8 +23,8 @@
     class="flex overflow-hidden rounded-lg border bg-background"
   >
     <div class="flex flex-col p-3 md:p-8">
-      <p class="text-2xl font-semibold">{block.title}</p>
-      <p class="text-2xl font-semibold text-foreground-secondary max-w-md">
+      <p class="text-xl md:text-2xl font-semibold">{block.title}</p>
+      <p class="text-xl md:text-2xl font-semibold text-foreground-secondary max-w-md">
         {block.description}
       </p>
       <div class="flex gap-2">

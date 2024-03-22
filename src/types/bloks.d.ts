@@ -778,6 +778,14 @@ export interface ListStoryblok {
   [k: string]: any;
 }
 
+export interface MeasurementEntryStoryblok {
+  title?: string;
+  value?: string;
+  _uid: string;
+  component: 'measurement_entry';
+  [k: string]: any;
+}
+
 export interface NewtonStoryblok {
   title1?: string;
   title2?: string;
@@ -983,6 +991,15 @@ export interface ProjectStoryblok {
   [k: string]: any;
 }
 
+export interface ProjectDetailedEntryStoryblok {
+  project?: StoryblokStory<ProjectStoryblok> | string;
+  measurements?: MeasurementEntryStoryblok[];
+  testimonial?: RichtextTestimonialStoryblok[];
+  _uid: string;
+  component: 'project-detailed-entry';
+  [k: string]: any;
+}
+
 export interface ProjectsStoryblok {
   work_title?: string;
   projects?: (StoryblokStory<ProjectStoryblok> | string)[];
@@ -998,7 +1015,8 @@ export interface ProjectsIndexStoryblok {
 }
 
 export interface ProjectsTwoColumnsStoryblok {
-  projects?: (StoryblokStory<ProjectStoryblok> | string)[];
+  project?: ProjectDetailedEntryStoryblok[];
+  note?: string;
   _uid: string;
   component: 'projects-two-columns';
   [k: string]: any;

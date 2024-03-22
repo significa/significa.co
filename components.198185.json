@@ -2921,6 +2921,34 @@
       "component_group_name": "Blocks"
     },
     {
+      "name": "measurement_entry",
+      "display_name": null,
+      "created_at": "2024-03-22T11:29:02.519Z",
+      "updated_at": "2024-03-22T11:29:15.865Z",
+      "id": 5541574,
+      "schema": {
+        "title": {
+          "type": "text"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "measurement_entry",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "content_type_asset_preview": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "newton",
       "display_name": null,
       "created_at": "2024-03-15T16:54:56.519Z",
@@ -3727,6 +3755,49 @@
       "component_group_name": "Content Types"
     },
     {
+      "name": "project-detailed-entry",
+      "display_name": null,
+      "created_at": "2024-03-22T11:33:38.201Z",
+      "updated_at": "2024-03-22T11:37:48.120Z",
+      "id": 5541582,
+      "schema": {
+        "project": {
+          "type": "option",
+          "use_uuid": true,
+          "options": [],
+          "source": "internal_stories",
+          "filter_content_type": ["project"]
+        },
+        "measurements": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["measurement_entry"]
+        },
+        "testimonial": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["richtext-testimonial"],
+          "maximum": 1,
+          "minimum": 1
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "project-detailed-entry",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "content_type_asset_preview": null,
+      "component_group_name": "Single"
+    },
+    {
       "name": "projects",
       "display_name": null,
       "created_at": "2024-01-24T10:08:07.237Z",
@@ -3781,16 +3852,19 @@
       "name": "projects-two-columns",
       "display_name": null,
       "created_at": "2024-03-22T10:16:30.309Z",
-      "updated_at": "2024-03-22T10:17:36.722Z",
+      "updated_at": "2024-03-22T11:56:07.136Z",
       "id": 5541415,
       "schema": {
-        "projects": {
-          "type": "options",
-          "max_options": "2",
-          "min_options": "2",
-          "source": "internal_stories",
-          "folder_slug": "",
-          "filter_content_type": ["project"]
+        "project": {
+          "type": "bloks",
+          "minimum": 2,
+          "maximum": 2,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["project-detailed-entry"]
+        },
+        "note": {
+          "type": "textarea"
         }
       },
       "image": null,

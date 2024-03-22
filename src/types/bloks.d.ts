@@ -492,6 +492,7 @@ export interface CoreValuesStoryblok {
 }
 
 export interface CtaCardStoryblok {
+  theme?: 'in-theme' | 'contrast';
   title?: string;
   description?: string;
   link_text?: string;

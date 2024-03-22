@@ -1728,27 +1728,52 @@
       "name": "cta-card",
       "display_name": null,
       "created_at": "2024-01-24T11:35:57.280Z",
-      "updated_at": "2024-03-21T17:14:46.247Z",
+      "updated_at": "2024-03-22T17:06:32.032Z",
       "id": 5222861,
       "schema": {
+        "theme": {
+          "type": "option",
+          "pos": 0,
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "3190c07c-2a4d-428e-a80d-741ab8debaa4",
+              "name": "In Theme",
+              "value": "in-theme"
+            },
+            {
+              "_uid": "b0015aa6-b509-4b43-ac33-c3b22c6b2acd",
+              "value": "contrast",
+              "name": "contrast"
+            }
+          ],
+          "default_value": "in-theme",
+          "exclude_empty_option": true
+        },
         "title": {
-          "type": "text"
+          "type": "text",
+          "pos": 1
         },
         "description": {
-          "type": "text"
+          "type": "text",
+          "pos": 2
         },
         "link_text": {
-          "type": "text"
+          "type": "text",
+          "pos": 3
         },
         "link": {
           "type": "multilink",
-          "email_link_type": false
+          "email_link_type": false,
+          "pos": 4
         },
         "secondary_link_text": {
-          "type": "text"
+          "type": "text",
+          "pos": 5
         },
         "secondary_link": {
-          "type": "multilink"
+          "type": "multilink",
+          "pos": 6
         }
       },
       "image": "//a.storyblok.com/f/198185/x/c2469bba8e/cta-card.png",

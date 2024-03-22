@@ -12,8 +12,17 @@
 </script>
 
 <section class="container mx-auto px-container @container mt-8 md:mt-10 lg:mt-12">
-  <div class="flex overflow-hidden rounded-lg border bg-background-offset/80">
-    <div class="flex flex-col p-8">
+  <div
+    data-theme={$theme === 'dark'
+      ? block.theme === 'in-theme'
+        ? 'dark'
+        : 'light'
+      : block.theme === 'contrast'
+      ? 'dark'
+      : 'light'}
+    class="flex overflow-hidden rounded-lg border bg-background"
+  >
+    <div class="flex flex-col p-3 md:p-8">
       <p class="text-2xl font-semibold">{block.title}</p>
       <p class="text-2xl font-semibold text-foreground-secondary max-w-md">
         {block.description}

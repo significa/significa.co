@@ -768,6 +768,7 @@ export interface ListStoryblok {
   border_bottom?: boolean;
   title?: string;
   subtitle?: string;
+  description?: string;
   blocks?: (
     | BenefitsEntryBlockStoryblok
     | DeliverablesEntryBlockStoryblok
@@ -1461,6 +1462,7 @@ export interface TestimonialsStoryblok {
 }
 
 export interface TimelineStoryblok {
+  has_border_top?: boolean;
   title1?: string;
   title2?: string;
   description?: string;

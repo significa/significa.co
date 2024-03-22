@@ -6,19 +6,20 @@
   export let block: ProjectsTwoColumnsStoryblok;
 
   import triangle from '$assets/triangle-measurement.svg';
+  import RichTextTestimonial from './rich-text-testimonial.svelte';
 </script>
 
 <section use:storyblokEditable={block} class="mt-4 md:mt-6 lg:mt-12 border-y">
-  <div class="container mx-auto px-container grid grid-cols-[50%_50%]">
+  <div class="container mx-auto px-container grid grid-cols-1 md:grid-cols-[50%_50%]">
     {#each block.project || [] as project}
       {@const projectItem = project.project}
-      <div class={'first:pr-8 first:border-r last:pl-8'}>
+      <div class={'md:first:pr-8 md:first:border-r md:last:pl-8'}>
         <ProjectTwoColumnsEntry project={projectItem} />
       </div>
     {/each}
   </div>
   <div class="border-t">
-    <div class="container mx-auto px-container grid grid-cols-[50%_50%]">
+    <div class="container mx-auto px-container grid grid-cols-1 md:grid-cols-[50%_50%]">
       {#each block.project || [] as measurement}
         <div class="flex first:pr-8 first:border-r last:pl-8 py-6">
           {#each measurement.measurements || [] as measurements}
@@ -34,6 +35,22 @@
           {/each}
         </div>
       {/each}
+    </div>
+  </div>
+  <div class="border-t">
+    <div class="container mx-auto px-container grid grid-cols-1 md:grid-cols-[50%_50%]">
+      {#each block.project || [] as testimonials}
+        <div class="flex first:pr-8 first:border-r last:pl-8 py-6">
+          {#each testimonials.testimonial || [] as testimonial}
+            <RichTextTestimonial class="max-w-[470px]" variant="default" block={testimonial} />
+          {/each}
+        </div>
+      {/each}
+    </div>
+  </div>
+  <div class="border-t py-3">
+    <div class="container mx-auto px-container flex justify-center">
+      <p class="text-base text-foreground-secondary font-medium">{block.note}</p>
     </div>
   </div>
 </section>

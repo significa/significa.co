@@ -25,6 +25,7 @@
     packages: Packages,
     physics: Physics,
     'prefooter-form': PrefooterForm,
+    'projects-two-columns': ProjectsTwoColumns,
     'work-recognitions': WorkRecognitions,
     estimation: Estimation,
     newton: Newton,
@@ -87,6 +88,7 @@
   import OpenPositions from './open-positions.svelte';
   import DrawSegg from './draw-segg.svelte';
   import Canvas from './canvas.svelte';
+  import ProjectsTwoColumns from './projects-two-columns.svelte';
 
   export let block: { component: string };
 

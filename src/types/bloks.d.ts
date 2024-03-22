@@ -495,6 +495,9 @@ export interface CtaCardStoryblok {
   title?: string;
   description?: string;
   link_text?: string;
+  link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  secondary_link_text?: string;
+  secondary_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   _uid: string;
   component: 'cta-card';
   [k: string]: any;
@@ -503,16 +506,6 @@ export interface CtaCardStoryblok {
 export interface DeliverableStoryblok {
   _uid: string;
   component: 'deliverable';
-  [k: string]: any;
-}
-
-export interface DeliverablesStoryblok {
-  type?: 'large' | 'regular';
-  title?: string;
-  subtitle?: string;
-  deliverables?: DeliverablesEntryBlockStoryblok[];
-  _uid: string;
-  component: 'deliverables';
   [k: string]: any;
 }
 
@@ -576,7 +569,6 @@ export interface FooterColumnInternalStoryblok {
 export interface FormBudgetRangeStoryblok {
   title?: string;
   subtitle?: string;
-  budget_range?: string;
   _uid: string;
   component: 'form-budget-range';
   [k: string]: any;
@@ -730,7 +722,6 @@ export interface LandingPageStoryblok {
     | ContactUsFormStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
-    | DeliverablesStoryblok
     | DrawSeggStoryblok
     | EstimationStoryblok
     | FormBudgetRangeStoryblok
@@ -838,9 +829,9 @@ export interface OtherEntryBlockStoryblok {
 
 export interface PackagesStoryblok {
   section_title?: string;
+  subtitle?: string;
   section_description?: string;
   title?: string;
-  subtitle?: string;
   _uid: string;
   component: 'packages';
   [k: string]: any;
@@ -873,7 +864,6 @@ export interface PageStoryblok {
     | ContactUsFormStoryblok
     | CoreValuesStoryblok
     | CtaCardStoryblok
-    | DeliverablesStoryblok
     | DrawSeggStoryblok
     | EstimationStoryblok
     | FormBudgetRangeStoryblok
@@ -963,7 +953,6 @@ export interface PhysicsStickerStoryblok {
 }
 
 export interface PrefooterFormStoryblok {
-  budget_range?: string;
   _uid: string;
   component: 'prefooter-form';
   [k: string]: any;

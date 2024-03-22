@@ -4,6 +4,7 @@
   import CtaLight from '$components/illustrations/assets/cta-card-light.webp';
   import CtaDark from '$components/illustrations/assets/cta-card-dark.webp';
   import { theme } from '$lib/stores/theme';
+  import { getAnchorFromCmsLink } from '$lib/utils/cms';
 
   export let block: CtaCardStoryblok;
 
@@ -17,11 +18,20 @@
       <p class="text-2xl font-semibold text-foreground-secondary max-w-md">
         {block.description}
       </p>
-      {#if block.link_text}
-        <Button as="a" href="#estimation" size="md" class="w-fit mt-8 scroll-b"
-          >{block.link_text}</Button
-        >
-      {/if}
+      <div class="flex gap-2">
+        {#if block.link_text}
+          {@const { href } = getAnchorFromCmsLink(block.link)}
+          <Button as="a" href={href ? href : '#estimation'} size="md" class="w-fit mt-8 scroll-b"
+            >{block.link_text}</Button
+          >
+        {/if}
+        {#if block.secondary_link_text}
+          {@const { href } = getAnchorFromCmsLink(block.secondary_link)}
+          <Button variant="secondary" as="a" {href} size="md" class="w-fit mt-8 scroll-b"
+            >{block.secondary_link_text}</Button
+          >
+        {/if}
+      </div>
     </div>
     <div
       class="hidden flex-1 flex-col justify-end ml-16 bg-no-repeat bg-cover bg-center lg:flex"

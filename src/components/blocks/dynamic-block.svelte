@@ -10,6 +10,7 @@
     'blog-list': BlogList,
     image: Image,
     'careers-list': CareersList,
+    'contact-us-form': ContactUsForm,
     comparison: Comparison,
     canvas: Canvas,
     'core-values': CoreValues,
@@ -85,6 +86,7 @@
   import Timezone from './timezone.svelte';
   import FormBudgetRange from './form-budget-range.svelte';
   import List from './list.svelte';
+  import ContactUsForm from './contact-us-form.svelte';
   import OpenPositions from './open-positions.svelte';
   import DrawSegg from './draw-segg.svelte';
   import Canvas from './canvas.svelte';

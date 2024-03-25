@@ -24,6 +24,7 @@
   import type { ISbStoryData } from '@storyblok/js';
   import clsx from 'clsx';
   import { createEventDispatcher } from 'svelte';
+  import { budgetRange } from './pages/get-a-quote/budgetRange';
 
   export let variant: undefined | FormType = undefined;
   export let disclaimer: string | undefined = undefined;
@@ -73,14 +74,7 @@
     input: string;
   }>();
 
-  const budgetOptions = [
-    '15.000€ to 50.000€',
-    '50.000€ to 100.000€',
-    '100.000€ to 200.000€',
-    '200.000€ to 300.000€',
-    '300.000€ to 400.000€',
-    '400.000€ and above'
-  ];
+  const budgetOptions = budgetRange;
 
   const careers = [
     DEFAULT_POSITION,
@@ -228,7 +222,7 @@
       on:blur={() => dispatch('blur', 'message')}
       on:input={() => dispatch('input', 'message')}
     />
-    {#if type === 'quote'}
+    {#if type === 'quote' && budgetOptions}
       <FloatingSelect
         required
         name="budget"

@@ -90,7 +90,7 @@
                   </p>
                   <div class="flex">
                     <p class="text-lg font-semibold">{measurements.value}%</p>
-                    <img class="max-h-2.5 mt-2 ml-1.5" src={triangle} alt={measurements.title} />
+                    <img class="max-h-1.5 mt-2 ml-1.5" src={triangle} alt={measurements.title} />
                   </div>
                 </div>
               {/each}

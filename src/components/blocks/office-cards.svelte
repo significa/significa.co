@@ -9,7 +9,10 @@
   export let block: OfficeCardsStoryblok;
 </script>
 
-<section use:storyblokEditable={block} class={clsx(!block.variant && 'overflow-hidden border-y')}>
+<section
+  use:storyblokEditable={block}
+  class={clsx('overflow-hidden', !block.variant && 'border-y')}
+>
   {#if !block.variant}
     <div class="container mx-auto px-container pt-8 lg:pt-12">
       <div class="flex flex-col justify-between gap-7 lg:flex-row lg:gap-4">
@@ -45,7 +48,7 @@
   {:else if !!block.office_cards?.length}
     <section class="border-b">
       <div class="container mx-auto px-container">
-        <HoverableGallery cards={block.office_cards} class="mt-12 lg:mt-0" />
+        <HoverableGallery cards={block.office_cards} class="mt-12 lg:mt-4" />
       </div>
     </section>
   {/if}

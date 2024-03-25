@@ -734,6 +734,7 @@ export interface LandingPageStoryblok {
     | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
+    | ProjectsTwoColumnsStoryblok
     | ServicesStoryblok
     | SlideshowStoryblok
     | SloganStoryblok
@@ -774,6 +775,14 @@ export interface ListStoryblok {
   )[];
   _uid: string;
   component: 'list';
+  [k: string]: any;
+}
+
+export interface MeasurementEntryStoryblok {
+  title?: string;
+  value?: string;
+  _uid: string;
+  component: 'measurement_entry';
   [k: string]: any;
 }
 
@@ -876,6 +885,7 @@ export interface PageStoryblok {
     | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
+    | ProjectsTwoColumnsStoryblok
     | ServicesStoryblok
     | SlideshowStoryblok
     | SloganStoryblok
@@ -981,6 +991,15 @@ export interface ProjectStoryblok {
   [k: string]: any;
 }
 
+export interface ProjectDetailedEntryStoryblok {
+  project?: StoryblokStory<ProjectStoryblok> | string;
+  measurements?: MeasurementEntryStoryblok[];
+  testimonial?: RichtextTestimonialStoryblok[];
+  _uid: string;
+  component: 'project-detailed-entry';
+  [k: string]: any;
+}
+
 export interface ProjectsStoryblok {
   work_title?: string;
   projects?: (StoryblokStory<ProjectStoryblok> | string)[];
@@ -992,6 +1011,14 @@ export interface ProjectsStoryblok {
 export interface ProjectsIndexStoryblok {
   _uid: string;
   component: 'projects-index';
+  [k: string]: any;
+}
+
+export interface ProjectsTwoColumnsStoryblok {
+  project?: ProjectDetailedEntryStoryblok[];
+  note?: string;
+  _uid: string;
+  component: 'projects-two-columns';
   [k: string]: any;
 }
 

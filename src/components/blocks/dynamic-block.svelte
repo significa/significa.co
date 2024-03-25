@@ -40,6 +40,7 @@
     'timeline-services': TimelineServices,
     timeline: Timeline,
     timezone: Timezone,
+    'vertical-list': VerticalList,
     clients: Clients,
     projects: Projects,
     'cta-card': CtaCard
@@ -91,6 +92,7 @@
   import DrawSegg from './draw-segg.svelte';
   import Canvas from './canvas.svelte';
   import ProjectsTwoColumns from './projects-two-columns.svelte';
+  import VerticalList from './vertical-list.svelte';
 
   export let block: { component: string };
 

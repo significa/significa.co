@@ -744,6 +744,7 @@ export interface LandingPageStoryblok {
     | TimelineStoryblok
     | TimelineServicesStoryblok
     | TimezoneStoryblok
+    | VerticalListStoryblok
     | WorkRecognitionsStoryblok
   )[];
   seo_title?: string;
@@ -896,6 +897,7 @@ export interface PageStoryblok {
     | TimelineStoryblok
     | TimelineServicesStoryblok
     | TimezoneStoryblok
+    | VerticalListStoryblok
     | WorkRecognitionsStoryblok
   )[];
   _uid: string;
@@ -994,7 +996,11 @@ export interface ProjectStoryblok {
 }
 
 export interface ProjectDetailedEntryStoryblok {
-  project?: StoryblokStory<ProjectStoryblok> | string;
+  thumbnail: MultiassetStoryblok;
+  name: string;
+  tagline: string;
+  link_text: string;
+  link: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   measurements?: MeasurementEntryStoryblok[];
   testimonial?: RichtextTestimonialStoryblok[];
   _uid: string;
@@ -1553,6 +1559,21 @@ export interface ValueStoryblok {
   description?: string;
   _uid: string;
   component: 'value';
+  [k: string]: any;
+}
+
+export interface VerticalListStoryblok {
+  entry?: VerticalListEntryStoryblok[];
+  _uid: string;
+  component: 'vertical-list';
+  [k: string]: any;
+}
+
+export interface VerticalListEntryStoryblok {
+  title?: string;
+  description?: string;
+  _uid: string;
+  component: 'vertical-list-entry';
   [k: string]: any;
 }
 

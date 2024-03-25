@@ -7,7 +7,7 @@
 
   import triangle from '$assets/triangle-measurement.svg';
   import RichTextTestimonial from './rich-text-testimonial.svelte';
-  import { getImageAttributes } from '$lib/utils/cms';
+  import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import { Button } from '@significa/svelte-ui';
   import { t } from '$lib/i18n';
 </script>
@@ -15,9 +15,8 @@
 <section use:storyblokEditable={block} class="mt-10 lg:mt-12 md:border-y">
   <div class="hidden container mx-auto px-container md:grid grid-cols-1 md:grid-cols-[50%_50%]">
     {#each block.project || [] as project}
-      {@const projectItem = project.project}
       <div class={'md:first:pr-8 md:first:border-r md:last:pl-8'}>
-        <ProjectTwoColumnsEntry project={projectItem} />
+        <ProjectTwoColumnsEntry {project} />
       </div>
     {/each}
   </div>
@@ -56,18 +55,14 @@
       <p class="text-base text-foreground-secondary font-medium">{block.note}</p>
     </div>
   </div>
-
+  <!-- mobile -->
   <div class="container mx-auto px-container md:hidden">
     {#each block.project || [] as project}
-      {@const projectItem = project.project}
-      {#if projectItem.content.thumbnail.length}
-        {#if projectItem.content.thumbnail[0]?.filename}
-          {@const { src, alt, width, height } = getImageAttributes(
-            projectItem.content.thumbnail[0],
-            {
-              size: [540 * 2]
-            }
-          )}
+      {#if project.thumbnail.length}
+        {#if project.thumbnail[0]?.filename}
+          {@const { src, alt, width, height } = getImageAttributes(project.thumbnail[0], {
+            size: [540 * 2]
+          })}
           <div class="rounded-lg bg-background-panel p-3 first:mb-4">
             <div class="flex pb-8">
               <img
@@ -78,8 +73,8 @@
                 {height}
               />
               <div class="flex flex-col pl-3">
-                <p class="text-lg font-semibold text-foreground-secondary">{projectItem.name}</p>
-                <p class="text-lg font-semibold">{projectItem.content.tagline}</p>
+                <p class="text-lg font-semibold text-foreground-secondary">{project.name}</p>
+                <p class="text-lg/[18px] font-semibold">{project.tagline}</p>
               </div>
             </div>
             <div class="flex mb-8">
@@ -108,9 +103,10 @@
                 </div>
               {/each}
             </div>
-            <Button as="a" href={`/projects/${projectItem.slug}`} variant="secondary" arrow
-              >{t('view-project')}</Button
-            >
+            {#if project.link_text}
+              {@const { href } = getAnchorFromCmsLink(project.link)}
+              <Button as="a" {href} variant="secondary" arrow>{t('view-project')}</Button>
+            {/if}
           </div>
         {/if}
       {/if}

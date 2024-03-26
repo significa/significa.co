@@ -1521,6 +1521,7 @@ export interface TimelineServicesStoryblok {
 }
 
 export interface TimelineTextStoryblok {
+  title?: string;
   text?: string;
   link?: LinkStoryblok[];
   width: string;

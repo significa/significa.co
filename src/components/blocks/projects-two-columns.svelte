@@ -21,7 +21,7 @@
     {/each}
   </div>
   <div class="hidden border-t md:flex">
-    <div class=" container mx-auto px-container grid grid-cols-1 md:grid-cols-[50%_50%]">
+    <div class="container mx-auto px-container grid grid-cols-1 md:grid-cols-[50%_50%]">
       {#each block.project || [] as measurement}
         <div class="flex first:pr-8 first:border-r last:pl-8 py-6">
           {#each measurement.measurements || [] as measurements}
@@ -30,7 +30,7 @@
                 {measurements.title}
               </p>
               <div class="flex">
-                <p class="text-3xl font-semibold">{measurements.value}%</p>
+                <p class="md:text-lg text-3xl font-semibold">{measurements.value}%</p>
                 <img class="max-h-2.5 mt-2 ml-1.5" src={triangle} alt={measurements.title} />
               </div>
             </div>

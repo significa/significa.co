@@ -78,7 +78,7 @@
       <svelte:element this={as} class="text-4xl font-semibold text-foreground-secondary">
         {project.name}
       </svelte:element>
-      <p class={clsx('text-5xl')}>
+      <p class={clsx('text-4xl')}>
         {project.tagline}
       </p>
     </div>

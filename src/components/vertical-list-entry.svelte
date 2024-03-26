@@ -11,21 +11,27 @@
 <div
   use:intersectionObserver={[
     (entry) => (isVisible = entry.isIntersecting),
-    { threshold: 0.5, rootMargin: '-20%' }
+    { threshold: 0.5, rootMargin: '-41% 0%' }
   ]}
-  class="py-12 items-center transition-all hover:bg-background-offset"
+  class={clsx(
+    isVisible && 'md:bg-background-offset',
+    'py-4 mb-20 md:py-16 items-center transition-all duration-300'
+  )}
 >
-  <div class="container mx-auto px-container flex justify-between">
+  <div class="flex-col container mx-auto px-container flex md:items-center md:flex-row">
     <p
       class={clsx(
         isVisible ? 'text-foreground' : 'text-foreground-tertiary',
-        'text-5xl transition-all'
+        'text-5xl transition-all duration-300 md:w-1/2'
       )}
     >
       {entry.title}
     </p>
     <p
-      class={clsx(isVisible ? 'opacity-1' : 'opacity-0', 'text-base max-w-[484px] transition-all')}
+      class={clsx(
+        isVisible ? 'opacity-1 text-foreground' : 'text-foreground-tertiary opacity-1 md:opacity-0',
+        'md:text-foreground mt-2 text-2xl md:max-w-[560px] transition-all duration-300 md:w-1/2 md:mt-0'
+      )}
     >
       {entry.description}
     </p>

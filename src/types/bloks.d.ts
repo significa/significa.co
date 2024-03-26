@@ -732,6 +732,7 @@ export interface LandingPageStoryblok {
     | OfficeCardsStoryblok
     | OpenPositionsStoryblok
     | PackagesStoryblok
+    | PartnersStoryblok
     | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
@@ -885,6 +886,7 @@ export interface PageStoryblok {
     | OfficeCardsStoryblok
     | OpenPositionsStoryblok
     | PackagesStoryblok
+    | PartnersStoryblok
     | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
@@ -903,6 +905,14 @@ export interface PageStoryblok {
   _uid: string;
   component: 'page';
   uuid?: string;
+  [k: string]: any;
+}
+
+export interface PartnersStoryblok {
+  title?: string;
+  partners?: ClientLogoStoryblok[];
+  _uid: string;
+  component: 'partners';
   [k: string]: any;
 }
 

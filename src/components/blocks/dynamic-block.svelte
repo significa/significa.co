@@ -24,6 +24,7 @@
     list: List,
     hero: Hero,
     packages: Packages,
+    partners: Partners,
     physics: Physics,
     'prefooter-form': PrefooterForm,
     'projects-two-columns': ProjectsTwoColumns,
@@ -93,6 +94,7 @@
   import Canvas from './canvas.svelte';
   import ProjectsTwoColumns from './projects-two-columns.svelte';
   import VerticalList from './vertical-list.svelte';
+  import Partners from '$components/partners.svelte';
 
   export let block: { component: string };
 

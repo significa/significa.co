@@ -15,7 +15,7 @@
   ]}
   class={clsx(
     isVisible && 'md:bg-background-offset',
-    'py-4 mb-20 md:py-16 items-center transition-all duration-300'
+    'py-4 mb-20 md:mb-0 md:py-16 items-center transition-all duration-300'
   )}
 >
   <div class="flex-col container mx-auto px-container flex md:items-center md:flex-row">

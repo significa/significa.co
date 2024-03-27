@@ -39,8 +39,6 @@
   // This velocity will not only affect how fast the airplane travels in the X axis but also how
   // concave is the parabolic movement
   $: velocity = ticks / windowWidth;
-
-  $: console.log(isVerticalListVisible);
 </script>
 
 <svelte:window bind:scrollY bind:innerWidth={windowWidth} bind:innerHeight={windowHeight} />

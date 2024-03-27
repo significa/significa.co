@@ -127,6 +127,13 @@ export interface AwardsEntryStoryblok {
   [k: string]: any;
 }
 
+export interface AwardsGridStoryblok {
+  description?: string;
+  _uid: string;
+  component: 'awards-grid';
+  [k: string]: any;
+}
+
 export interface AwardsListStoryblok {
   title?: string;
   description?: string;
@@ -715,6 +722,7 @@ export interface LandingPageStoryblok {
   keep_top_bar_hidden?: boolean;
   blocks?: (
     | AboutGridStoryblok
+    | AwardsGridStoryblok
     | AwardsListStoryblok
     | BlogListStoryblok
     | CanvasStoryblok
@@ -869,6 +877,7 @@ export interface PageStoryblok {
   priority?: string;
   blocks?: (
     | AboutGridStoryblok
+    | AwardsGridStoryblok
     | AwardsListStoryblok
     | BlogListStoryblok
     | CanvasStoryblok

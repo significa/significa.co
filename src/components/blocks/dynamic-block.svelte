@@ -6,6 +6,7 @@
   const map = {
     'about-grid': AboutGrid,
     'awards-list': AwardsList,
+    'awards-grid': AwardsGrid,
     'draw-segg': DrawSegg,
     'blog-list': BlogList,
     image: Image,
@@ -76,6 +77,7 @@
   import PrefooterForm from './prefooter-form.svelte';
   import CoreValues from './core-values.svelte';
   import AwardsList from './awards-list.svelte';
+  import AwardsGrid from './awards-grid.svelte';
   import TimelineServices from './timeline-services.svelte';
   import Timeline from './timeline.svelte';
   import Physics from './physics.svelte';

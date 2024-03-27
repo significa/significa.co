@@ -8,10 +8,10 @@
 </script>
 
 <section use:storyblokEditable={block} class={clsx(block.has_border_top && 'border-t')}>
-  <div
-    class="container mx-auto flex flex-col justify-between gap-6 px-container py-8 lg:flex-row lg:gap-4 lg:py-12"
-  >
-    {#if block.title1 || block.title2 || block.description}
+  {#if block.title1 || block.title2 || block.description}
+    <div
+      class="container mx-auto flex flex-col justify-between gap-6 px-container py-8 lg:flex-row lg:gap-4 lg:py-12"
+    >
       <div class="lg:max-w-xl">
         <h2 class="text-5xl text-foreground-secondary">{block.title1}</h2>
         <p class="text-5xl">{block.title2}</p>
@@ -20,8 +20,8 @@
       <p class="whitespace-pre-line text-2xl text-foreground-secondary lg:max-w-xl">
         {block.description}
       </p>
-    {/if}
-  </div>
+    </div>
+  {/if}
 </section>
 
 <Timeline timeline={block.timeline} />

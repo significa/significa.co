@@ -59,7 +59,7 @@
     />
   </div>
 
-  <div>
+  <div class="relative">
     {#each block.entry as entry}
       <VerticalListEntry {entry} />
     {/each}

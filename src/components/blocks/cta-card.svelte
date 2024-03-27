@@ -8,17 +8,33 @@
 
   export let block: CtaCardStoryblok;
 
-  $: src = $theme === 'dark' ? CtaLight : CtaDark;
+  $: src =
+    $theme === 'dark'
+      ? block.theme === 'in-theme'
+        ? CtaLight
+        : CtaDark
+      : block.theme === 'contrast'
+      ? CtaLight
+      : CtaDark;
 </script>
 
 <section class="container mx-auto px-container @container mt-8 md:mt-10 lg:mt-12">
-  <div class="flex overflow-hidden rounded-lg border bg-background-offset/80">
-    <div class="flex flex-col p-8">
-      <p class="text-2xl font-semibold">{block.title}</p>
-      <p class="text-2xl font-semibold text-foreground-secondary max-w-md">
+  <div
+    data-theme={$theme === 'dark'
+      ? block.theme === 'in-theme'
+        ? 'dark'
+        : 'light'
+      : block.theme === 'contrast'
+      ? 'dark'
+      : 'light'}
+    class="flex overflow-hidden rounded-lg border bg-background"
+  >
+    <div class="flex flex-col p-3 md:p-8">
+      <p class="text-xl md:text-2xl font-semibold">{block.title}</p>
+      <p class="text-xl md:text-xl/6 font-medium text-foreground-secondary max-w-md pt-1">
         {block.description}
       </p>
-      <div class="flex gap-2">
+      <div class="flex gap-2 flex-wrap">
         {#if block.link_text}
           {@const { href } = getAnchorFromCmsLink(block.link)}
           <Button as="a" href={href ? href : '#estimation'} size="md" class="w-fit mt-8 scroll-b"

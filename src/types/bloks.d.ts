@@ -127,6 +127,13 @@ export interface AwardsEntryStoryblok {
   [k: string]: any;
 }
 
+export interface AwardsGridStoryblok {
+  description?: string;
+  _uid: string;
+  component: 'awards-grid';
+  [k: string]: any;
+}
+
 export interface AwardsListStoryblok {
   title?: string;
   description?: string;
@@ -492,6 +499,7 @@ export interface CoreValuesStoryblok {
 }
 
 export interface CtaCardStoryblok {
+  theme?: 'in-theme' | 'contrast';
   title?: string;
   description?: string;
   link_text?: string;
@@ -714,6 +722,7 @@ export interface LandingPageStoryblok {
   keep_top_bar_hidden?: boolean;
   blocks?: (
     | AboutGridStoryblok
+    | AwardsGridStoryblok
     | AwardsListStoryblok
     | BlogListStoryblok
     | CanvasStoryblok
@@ -731,6 +740,7 @@ export interface LandingPageStoryblok {
     | OfficeCardsStoryblok
     | OpenPositionsStoryblok
     | PackagesStoryblok
+    | PartnersStoryblok
     | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
@@ -743,6 +753,7 @@ export interface LandingPageStoryblok {
     | TimelineStoryblok
     | TimelineServicesStoryblok
     | TimezoneStoryblok
+    | VerticalListStoryblok
     | WorkRecognitionsStoryblok
   )[];
   seo_title?: string;
@@ -768,6 +779,7 @@ export interface ListStoryblok {
   border_bottom?: boolean;
   title?: string;
   subtitle?: string;
+  description?: string;
   blocks?: (
     | BenefitsEntryBlockStoryblok
     | DeliverablesEntryBlockStoryblok
@@ -865,6 +877,7 @@ export interface PageStoryblok {
   priority?: string;
   blocks?: (
     | AboutGridStoryblok
+    | AwardsGridStoryblok
     | AwardsListStoryblok
     | BlogListStoryblok
     | CanvasStoryblok
@@ -882,6 +895,7 @@ export interface PageStoryblok {
     | OfficeCardsStoryblok
     | OpenPositionsStoryblok
     | PackagesStoryblok
+    | PartnersStoryblok
     | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
@@ -894,11 +908,20 @@ export interface PageStoryblok {
     | TimelineStoryblok
     | TimelineServicesStoryblok
     | TimezoneStoryblok
+    | VerticalListStoryblok
     | WorkRecognitionsStoryblok
   )[];
   _uid: string;
   component: 'page';
   uuid?: string;
+  [k: string]: any;
+}
+
+export interface PartnersStoryblok {
+  title?: string;
+  partners?: ClientLogoStoryblok[];
+  _uid: string;
+  component: 'partners';
   [k: string]: any;
 }
 
@@ -992,7 +1015,11 @@ export interface ProjectStoryblok {
 }
 
 export interface ProjectDetailedEntryStoryblok {
-  project?: StoryblokStory<ProjectStoryblok> | string;
+  thumbnail: MultiassetStoryblok;
+  name: string;
+  tagline: string;
+  link_text: string;
+  link: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   measurements?: MeasurementEntryStoryblok[];
   testimonial?: RichtextTestimonialStoryblok[];
   _uid: string;
@@ -1461,6 +1488,7 @@ export interface TestimonialsStoryblok {
 }
 
 export interface TimelineStoryblok {
+  has_border_top?: boolean;
   title1?: string;
   title2?: string;
   description?: string;
@@ -1512,6 +1540,7 @@ export interface TimelineServicesStoryblok {
 }
 
 export interface TimelineTextStoryblok {
+  title?: string;
   text?: string;
   link?: LinkStoryblok[];
   width: string;
@@ -1550,6 +1579,21 @@ export interface ValueStoryblok {
   description?: string;
   _uid: string;
   component: 'value';
+  [k: string]: any;
+}
+
+export interface VerticalListStoryblok {
+  entry?: VerticalListEntryStoryblok[];
+  _uid: string;
+  component: 'vertical-list';
+  [k: string]: any;
+}
+
+export interface VerticalListEntryStoryblok {
+  title?: string;
+  description?: string;
+  _uid: string;
+  component: 'vertical-list-entry';
   [k: string]: any;
 }
 

@@ -54,9 +54,11 @@
       <h4 class="text-lg font-semibold text-foreground-secondary mb-6">
         {block.awards_title}
       </h4>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-3 xl:gap-4">
+      <div class="grid gap-4 md:gap-6 grid-cols-3">
         {#each awardsArray as award}
-          <div class="flex w-full items-center relative">
+          <div
+            class="flex w-full max-w-fit items-start md:items-center relative flex-col md:flex-row"
+          >
             <div
               class="flex bg-background-panel border-background-offset border h-11 w-[92px] rounded-sm items-center"
             >
@@ -69,7 +71,7 @@
               src={award[0].content.recognition.content.image?.filename}
               alt="award"
             />
-            <div class="flex flex-col ml-3">
+            <div class="flex flex-col mt-3 md:mt-0 md:ml-3">
               <p class="text-xs font-medium text-foreground-secondary">{t('recognitions.award')}</p>
               <p class="text-base font-medium">{award[0].content.recognition.content.title}</p>
             </div>

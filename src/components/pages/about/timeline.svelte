@@ -115,7 +115,10 @@
                 style="width: {item.width || '240'}px; left: {item.left || 0}px; top: {item.top ||
                   0}px; transform: scale({1 - factor + 1})"
               >
-                <p class="font-comic text-sm font-bold">{item.text}</p>
+                {#if item.title}
+                  <p class="font-comic text-sm font-bold text-foreground">{item.title}</p>
+                {/if}
+                <p class="font-comic text-sm font-bold text-foreground-secondary">{item.text}</p>
                 {#if item.link?.[0]}
                   {@const { href, target, rel } = getAnchorFromCmsLink(item.link[0].link)}
                   <Button size="sm" as="a" {href} {rel} {target} class="pointer-events-auto mt-4">

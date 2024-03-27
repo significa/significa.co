@@ -3,69 +3,62 @@
   import type { VerticalListStoryblok } from '$types/bloks';
   import airplane from '$assets/airplane.svg';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
-  import { onMount } from 'svelte';
   import { intersectionObserver } from '$lib/actions/instersection-observer';
 
   export let block: VerticalListStoryblok;
 
-  // console.log(Math.sin)
-
-  let y = 0;
+  let scrollY = 0;
   let windowWidth = 0;
   let windowHeight = 0;
   let section: HTMLDivElement;
-  let sectionTopHeight = 0;
   let isVisible = false;
-  let pixelToComplete = 640;
-  let imageElement: HTMLImageElement;
+  let ticks: number;
 
-  // y = sin(x)
+  /*
+   * We are using a quadratic equation to give the airplane a parabolic motion.
+   * The equation for this is y = ax^2, where:
+   *   y is the vertical component of the movement
+   *   x is the horizontal component of the movement
+   *   a is a constant that controls how concave is the parabola
+   */
 
-  $: scrollY =
-    y - (sectionTopHeight - windowHeight + section?.getBoundingClientRect()?.height) || 0;
+  // Normalizing the x variable in our quadratic equation to make sure it's zero when the airplane
+  // is fully visible and grows as the user scrolls down
+  $: x = scrollY - (section?.offsetTop - windowHeight + section?.getBoundingClientRect()?.height);
 
-  $: xRate = (1 * pixelToComplete) / windowWidth;
+  let a: number = 0.01;
 
-  $: console.log(xRate);
+  // Number of frames of the animation, which correlate to the number of pixels scrolled in the Y axis.
+  // That way the animation finished when the user scrolls the height of this section
+  $: ticks = section?.getBoundingClientRect().height;
 
-  onMount(() => {
-    const onResize = () => {
-      windowWidth = window.innerWidth;
-      windowHeight = window.innerHeight;
-      sectionTopHeight = section?.offsetTop || 0;
-    };
-
-    onResize();
-    window.addEventListener('resize', onResize);
-
-    return () => {
-      window.removeEventListener('resize', onResize);
-    };
-  });
+  // Calculating the rate of advance in relation to the window width to make sure that the
+  // airplane always flies through the entire screen
+  // This velocity will not only affect how fast the airplane travels in the X axis but also how
+  // concave is the parabolic movement
+  $: velocity = ticks / windowWidth;
 </script>
 
-<svelte:window bind:scrollY={y} />
+<svelte:window bind:scrollY bind:innerWidth={windowWidth} bind:innerHeight={windowHeight} />
 
 {#if block.entry}
   <div
     bind:this={section}
-    class="h-[50vh] relative"
+    class="h-[25vh] xl:h-[40vh] relative overflow-x-clip"
     use:storyblokEditable={block}
-    use:intersectionObserver={[(entry) => (isVisible = entry.isIntersecting), { threshold: 0.15 }]}
+    use:intersectionObserver={[(entry) => (isVisible = entry.isIntersecting), { threshold: 0.0 }]}
   >
     <img
-      bind:this={imageElement}
       alt=""
       src={airplane}
       draggable="false"
-      class="absolute bottom-0"
-      style={isVisible &&
-      scrollY > 0 &&
-      scrollY + imageElement?.getBoundingClientRect()?.width < windowWidth
-        ? `transform: translate(${scrollY / xRate}px,${-(Math.pow(scrollY, 2) * 0.003)}px);`
-        : 'display:none;'}
+      class="absolute bottom-0 w-32 xl:w-auto"
+      style={isVisible && x > 0
+        ? `transform: translate(${x / velocity}px, ${-(Math.pow(x, 2) * (a * velocity))}px);`
+        : ''}
     />
   </div>
+
   <div>
     {#each block.entry as entry}
       <VerticalListEntry {entry} />

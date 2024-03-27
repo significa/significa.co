@@ -6,6 +6,7 @@
   const map = {
     'about-grid': AboutGrid,
     'awards-list': AwardsList,
+    'awards-grid': AwardsGrid,
     'draw-segg': DrawSegg,
     'blog-list': BlogList,
     image: Image,
@@ -24,6 +25,7 @@
     list: List,
     hero: Hero,
     packages: Packages,
+    partners: Partners,
     physics: Physics,
     'prefooter-form': PrefooterForm,
     'projects-two-columns': ProjectsTwoColumns,
@@ -40,6 +42,7 @@
     'timeline-services': TimelineServices,
     timeline: Timeline,
     timezone: Timezone,
+    'vertical-list': VerticalList,
     clients: Clients,
     projects: Projects,
     'cta-card': CtaCard
@@ -74,6 +77,7 @@
   import PrefooterForm from './prefooter-form.svelte';
   import CoreValues from './core-values.svelte';
   import AwardsList from './awards-list.svelte';
+  import AwardsGrid from './awards-grid.svelte';
   import TimelineServices from './timeline-services.svelte';
   import Timeline from './timeline.svelte';
   import Physics from './physics.svelte';
@@ -91,6 +95,8 @@
   import DrawSegg from './draw-segg.svelte';
   import Canvas from './canvas.svelte';
   import ProjectsTwoColumns from './projects-two-columns.svelte';
+  import VerticalList from './vertical-list.svelte';
+  import Partners from '$components/partners.svelte';
 
   export let block: { component: string };
 

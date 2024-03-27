@@ -127,6 +127,13 @@ export interface AwardsEntryStoryblok {
   [k: string]: any;
 }
 
+export interface AwardsGridStoryblok {
+  description?: string;
+  _uid: string;
+  component: 'awards-grid';
+  [k: string]: any;
+}
+
 export interface AwardsListStoryblok {
   title?: string;
   description?: string;
@@ -715,6 +722,7 @@ export interface LandingPageStoryblok {
   keep_top_bar_hidden?: boolean;
   blocks?: (
     | AboutGridStoryblok
+    | AwardsGridStoryblok
     | AwardsListStoryblok
     | BlogListStoryblok
     | CanvasStoryblok
@@ -732,6 +740,7 @@ export interface LandingPageStoryblok {
     | OfficeCardsStoryblok
     | OpenPositionsStoryblok
     | PackagesStoryblok
+    | PartnersStoryblok
     | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
@@ -868,6 +877,7 @@ export interface PageStoryblok {
   priority?: string;
   blocks?: (
     | AboutGridStoryblok
+    | AwardsGridStoryblok
     | AwardsListStoryblok
     | BlogListStoryblok
     | CanvasStoryblok
@@ -885,6 +895,7 @@ export interface PageStoryblok {
     | OfficeCardsStoryblok
     | OpenPositionsStoryblok
     | PackagesStoryblok
+    | PartnersStoryblok
     | PhysicsStoryblok
     | PrefooterFormStoryblok
     | ProjectsStoryblok
@@ -903,6 +914,14 @@ export interface PageStoryblok {
   _uid: string;
   component: 'page';
   uuid?: string;
+  [k: string]: any;
+}
+
+export interface PartnersStoryblok {
+  title?: string;
+  partners?: ClientLogoStoryblok[];
+  _uid: string;
+  component: 'partners';
   [k: string]: any;
 }
 
@@ -1521,6 +1540,7 @@ export interface TimelineServicesStoryblok {
 }
 
 export interface TimelineTextStoryblok {
+  title?: string;
   text?: string;
   link?: LinkStoryblok[];
   width: string;

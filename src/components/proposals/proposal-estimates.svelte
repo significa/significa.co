@@ -10,6 +10,14 @@
   import { formatter } from '$lib/utils/currency';
   import { slide } from 'svelte/transition';
 
+  type PhaseTeamType = {
+    name: string;
+    role: string | undefined;
+    rateType: string;
+    rateValue: number;
+    duration: number;
+  }[];
+
   export let data: ProposalEstimateEntryStoryblok[];
   export let team: ProposalTeamEntryStoryblok[] | ProposalPackageTeamEntryStoryblok[];
   export let discount: string | undefined;
@@ -30,6 +38,7 @@
         );
 
         return {
+          name: teamMember?.team_member.member.name,
           role: teamMember?.role[0].title,
           rateType: teamMember?.rate_type,
           rateValue: +teamMember?.rate_value,
@@ -64,12 +73,20 @@
       0
     );
 
+    const totalTeam = [
+      ...new Set(
+        enhancedPhases
+          .reduce((acc: PhaseTeamType, { team }) => [...acc, ...team], [])
+          .map((member) => member.name)
+      )
+    ].length;
+
     return {
       color,
       title,
       totals: {
         phases: enhancedPhases.length,
-        team: enhancedPhases.reduce((total, { team }) => (total += team.length), 0),
+        team: totalTeam,
         cost: totalRate + (totalRate * totalPercentage) / 100,
         duration: enhancedPhases.reduce((total, { duration }) => (total += duration), 0)
       },

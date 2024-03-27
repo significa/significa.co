@@ -6,6 +6,8 @@
   import { intersectionObserver } from '$lib/actions/instersection-observer';
 
   export let block: VerticalListStoryblok;
+  let visibleElement: HTMLDivElement;
+  let isVerticalListVisible = false;
 
   let scrollY = 0;
   let windowWidth = 0;
@@ -37,6 +39,8 @@
   // This velocity will not only affect how fast the airplane travels in the X axis but also how
   // concave is the parabolic movement
   $: velocity = ticks / windowWidth;
+
+  $: console.log(isVerticalListVisible);
 </script>
 
 <svelte:window bind:scrollY bind:innerWidth={windowWidth} bind:innerHeight={windowHeight} />
@@ -59,9 +63,24 @@
     />
   </div>
 
-  <div class="relative">
+  <div
+    class="relative"
+    use:intersectionObserver={[
+      (entry) => {
+        isVerticalListVisible = entry.isIntersecting;
+      },
+      { threshold: windowWidth < 820 ? 0.2 : 0.4 }
+    ]}
+  >
+    {#if isVerticalListVisible}
+      <div
+        aria-hidden="true"
+        class={'absolute -z-10 bg-background-offset transition-all ease-smooth w-full'}
+        style={`height:${visibleElement?.offsetHeight}px;top: ${visibleElement?.offsetTop}px;`}
+      />
+    {/if}
     {#each block.entry as entry}
-      <VerticalListEntry {entry} />
+      <VerticalListEntry {entry} on:visible={({ detail: element }) => (visibleElement = element)} />
     {/each}
   </div>
 {/if}

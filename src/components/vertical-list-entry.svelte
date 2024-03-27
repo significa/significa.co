@@ -2,21 +2,23 @@
   import { intersectionObserver } from '$lib/actions/instersection-observer';
   import type { VerticalListEntryStoryblok } from '$types/bloks';
   import clsx from 'clsx';
+  import { createEventDispatcher } from 'svelte';
 
   export let entry: VerticalListEntryStoryblok;
 
   let isVisible = false;
+  const dispatch = createEventDispatcher<{ visible: HTMLDivElement }>();
 </script>
 
 <div
   use:intersectionObserver={[
-    (entry) => (isVisible = entry.isIntersecting),
+    (entry) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible && entry.target instanceof HTMLDivElement) dispatch('visible', entry.target);
+    },
     { threshold: 0.5, rootMargin: '-41% 0%' }
   ]}
-  class={clsx(
-    isVisible && 'md:bg-background-offset',
-    'py-4 mb-20 md:mb-0 md:py-16 items-center transition-all duration-300'
-  )}
+  class={clsx('py-4 mb-20 md:mb-0 md:py-16 items-center transition-all duration-300')}
 >
   <div class="flex-col container mx-auto px-container flex md:items-center md:flex-row">
     <p

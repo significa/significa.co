@@ -3815,7 +3815,7 @@
       "name": "project",
       "display_name": null,
       "created_at": "2023-02-15T13:07:44.621Z",
-      "updated_at": "2024-03-06T10:30:35.274Z",
+      "updated_at": "2024-03-28T16:37:24.045Z",
       "id": 3442356,
       "schema": {
         "cover": {
@@ -3891,24 +3891,31 @@
           "pos": 8,
           "key": "team"
         },
+        "measurements": {
+          "type": "bloks",
+          "pos": 9,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["measurement_entry"]
+        },
         "client": {
           "type": "text",
           "use_uuid": true,
           "source": "internal_stories",
           "filter_content_type": ["client"],
-          "pos": 9,
+          "pos": 10,
           "key": "client"
         },
         "deliverables": {
           "type": "options",
-          "pos": 10,
+          "pos": 11,
           "source": "internal",
           "datasource_slug": "deliverables",
           "key": "deliverables"
         },
         "services": {
           "type": "options",
-          "pos": 11,
+          "pos": 12,
           "source": "internal",
           "datasource_slug": "services",
           "key": "services_data"
@@ -3918,13 +3925,13 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["link"],
-          "pos": 12,
+          "pos": 13,
           "key": "links"
         },
         "tab-734adeb1-00ef-48e6-aa53-a3001ad39201": {
           "display_name": "Content",
           "keys": ["body"],
-          "pos": 13,
+          "pos": 14,
           "type": "tab",
           "key": "tab-734adeb1-00ef-48e6-aa53-a3001ad39201"
         },
@@ -3954,31 +3961,31 @@
             "blok",
             "h4"
           ],
-          "pos": 14,
+          "pos": 15,
           "key": "body"
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {
           "display_name": "SEO",
           "keys": ["seo_title", "seo_description", "seo_og_image"],
-          "pos": 15,
+          "pos": 16,
           "type": "tab",
           "key": "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9"
         },
         "seo_title": {
           "type": "text",
-          "pos": 16,
+          "pos": 17,
           "key": "seo_title"
         },
         "seo_description": {
           "type": "text",
-          "pos": 17,
+          "pos": 18,
           "key": "seo_description"
         },
         "seo_og_image": {
           "type": "asset",
           "filetypes": ["images"],
           "asset_folder_id": 212286,
-          "pos": 18,
+          "pos": 19,
           "key": "seo_og_image"
         }
       },

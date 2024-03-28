@@ -791,9 +791,9 @@ export interface ListStoryblok {
 }
 
 export interface MeasurementEntryStoryblok {
-  title?: string;
-  popover?: string;
-  value?: string;
+  title: string;
+  popover: string;
+  value: string;
   _uid: string;
   component: 'measurement_entry';
   [k: string]: any;

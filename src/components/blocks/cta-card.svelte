@@ -37,9 +37,9 @@
       </p>
       <div class="flex gap-2 flex-wrap" use:drawerLinks>
         {#if block.link_text}
-          {@const { href } = getAnchorFromCmsLink(block.link)}
+          {@const { href, target } = getAnchorFromCmsLink(block.link)}
           <Button
-            target={block.link?.linktype === 'url' ? '_blank' : '_self'}
+            {target}
             as="a"
             href={href ? href : '#estimation'}
             size="md"

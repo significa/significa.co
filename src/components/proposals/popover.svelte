@@ -27,8 +27,7 @@
         visible ? 'block opacity-100' : 'opacity-0 top-4',
         variant === 'default'
           ? 'w-72 left-[25%] lg:-top-[90%] lg:-left-[90%]'
-          : 'w-auto -translate-y-full -translate-x-1/2 left-1/2 text-center ',
-        visible && variant === 'fit-content' ? 'top-0' : ''
+          : 'w-auto -translate-y-full -translate-x-1/2 left-1/2 text-center '
       )}
     >
       <slot name="popover" />

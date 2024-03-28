@@ -67,7 +67,7 @@
       (entry) => {
         isVerticalListVisible = entry.isIntersecting;
       },
-      { threshold: 0.41 }
+      { threshold: 0.42 }
     ]}
   >
     {#if isVerticalListVisible}

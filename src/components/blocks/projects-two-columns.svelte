@@ -32,12 +32,12 @@
                     {measurements.title}
                   </p>
                   <div class="flex">
-                    <p class="md:text-lg text-3xl font-semibold">{measurements.value}%</p>
+                    <p class="md:text-2xl text-5xl font-semibold">{measurements.value}%</p>
                     <img class="max-h-2.5 mt-2 ml-1.5" src={triangle} alt={measurements.title} />
                   </div>
                 </div>
                 <div slot="popover">
-                  <p class="text-sm">{measurements.popover}</p>
+                  <p class="text-sm whitespace-nowrap">{measurements.popover}</p>
                 </div>
               </Popover>
             </div>

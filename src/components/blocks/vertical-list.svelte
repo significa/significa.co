@@ -67,13 +67,13 @@
       (entry) => {
         isVerticalListVisible = entry.isIntersecting;
       },
-      { threshold: windowWidth < 820 ? 0.2 : 0.4 }
+      { threshold: 0.42 }
     ]}
   >
     {#if isVerticalListVisible}
       <div
         aria-hidden="true"
-        class={'absolute -z-10 bg-background-offset transition-all ease-smooth w-full'}
+        class={'hidden md:block absolute -z-10 bg-background-offset transition-all ease-smooth w-full'}
         style={`height:${visibleElement?.offsetHeight}px;top: ${visibleElement?.offsetTop}px;`}
       />
     {/if}

@@ -16,9 +16,12 @@
       isVisible = entry.isIntersecting;
       if (isVisible && entry.target instanceof HTMLDivElement) dispatch('visible', entry.target);
     },
-    { threshold: 0.5, rootMargin: '-41% 0%' }
+    { threshold: 0.5, rootMargin: '-43% 0%' }
   ]}
-  class={clsx('py-4 mb-20 md:mb-0 md:py-16 items-center transition-all duration-300')}
+  class={clsx(
+    isVisible && 'bg-background-offset md:bg-transparent',
+    'py-4 mb-20 md:mb-0 md:py-16 items-center transition-all duration-300'
+  )}
 >
   <div class="flex-col container mx-auto px-container flex md:items-center md:flex-row">
     <p

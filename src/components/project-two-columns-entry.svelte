@@ -83,8 +83,8 @@
       </p>
     </div>
     {#if project.link_text}
-      {@const { href } = getAnchorFromCmsLink(project.link)}
-      <Button as="a" {href} variant="secondary" arrow>{t('view-project')}</Button>
+      {@const { href, target } = getAnchorFromCmsLink(project.link)}
+      <Button {target} as="a" {href} variant="secondary" arrow>{project.link_text}</Button>
     {/if}
   </div>
 </div>

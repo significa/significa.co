@@ -64,7 +64,7 @@
     "@melt-ui/svelte": "^0.70.0",
     "@notionhq/client": "^2.2.14",
     "@sentry/sveltekit": "^7.105.0",
-    "@significa/svelte-ui": "^0.0.33",
+    "@significa/svelte-ui": "^0.0.34",
     "@storyblok/js": "^2.3.0",
     "matter-js": "^0.19.0",
     "posthog-js": "^1.96.1",

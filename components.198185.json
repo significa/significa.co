@@ -3094,14 +3094,20 @@
       "name": "measurement_entry",
       "display_name": null,
       "created_at": "2024-03-22T11:29:02.519Z",
-      "updated_at": "2024-03-22T11:29:15.865Z",
+      "updated_at": "2024-03-28T10:15:02.124Z",
       "id": 5541574,
       "schema": {
         "title": {
-          "type": "text"
+          "type": "text",
+          "pos": 0
+        },
+        "popover": {
+          "type": "text",
+          "pos": 1
         },
         "value": {
-          "type": "number"
+          "type": "number",
+          "pos": 2
         }
       },
       "image": null,

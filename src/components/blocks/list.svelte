@@ -30,7 +30,9 @@
     >
       <h3 class="text-5xl text-foreground-secondary">{block.title}</h3>
       <p class="text-5xl">{block.subtitle}</p>
-      <p class="text-2xl text-foreground-secondary mt-6">{block.description}</p>
+      {#if block.description}
+        <p class="text-2xl text-foreground-secondary mt-6">{block.description}</p>
+      {/if}
     </div>
 
     {#if block.blocks}

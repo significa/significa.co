@@ -9,7 +9,7 @@
   import RichTextTestimonial from './rich-text-testimonial.svelte';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import { Button } from '@significa/svelte-ui';
-  import { t } from '$lib/i18n';
+  import Popover from '$components/proposals/popover.svelte';
 </script>
 
 <section use:storyblokEditable={block} class="mt-10 lg:mt-12 md:border-y">
@@ -26,13 +26,20 @@
         <div class="flex first:pr-8 first:border-r last:pl-8 py-6">
           {#each measurement.measurements || [] as measurements}
             <div class="flex flex-col mr-3 w-24">
-              <p class="text-xs text-foreground-secondary font-medium uppercase">
-                {measurements.title}
-              </p>
-              <div class="flex">
-                <p class="md:text-lg text-3xl font-semibold">{measurements.value}%</p>
-                <img class="max-h-2.5 mt-2 ml-1.5" src={triangle} alt={measurements.title} />
-              </div>
+              <Popover variant={'fit-content'}>
+                <div slot="target">
+                  <p class="text-xs text-foreground-secondary font-medium uppercase">
+                    {measurements.title}
+                  </p>
+                  <div class="flex">
+                    <p class="md:text-lg text-3xl font-semibold">{measurements.value}%</p>
+                    <img class="max-h-2.5 mt-2 ml-1.5" src={triangle} alt={measurements.title} />
+                  </div>
+                </div>
+                <div slot="popover">
+                  <p class="text-sm">{measurements.popover}</p>
+                </div>
+              </Popover>
             </div>
           {/each}
         </div>
@@ -105,7 +112,7 @@
             </div>
             {#if project.link_text}
               {@const { href } = getAnchorFromCmsLink(project.link)}
-              <Button as="a" {href} variant="secondary" arrow>{t('view-project')}</Button>
+              <Button as="a" {href} variant="secondary" arrow>{project.link_text}</Button>
             {/if}
           </div>
         {/if}

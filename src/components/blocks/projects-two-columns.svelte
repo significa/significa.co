@@ -28,7 +28,7 @@
             <div class="flex flex-col mr-3 w-24">
               <Popover variant={'fit-content'}>
                 <div slot="target">
-                  <p class="text-xs text-foreground-secondary font-medium uppercase">
+                  <p class="text-xs font-medium uppercase">
                     {measurements.title}
                   </p>
                   <div class="flex">
@@ -87,7 +87,7 @@
             <div class="flex mb-8">
               {#each project.measurements || [] as measurements}
                 <div class="flex flex-col mr-3 w-14">
-                  <p class="text-xs text-foreground-secondary font-medium uppercase">
+                  <p class="text-xs font-medium uppercase">
                     {measurements.title}
                   </p>
                   <div class="flex">

@@ -13,6 +13,8 @@
   import Reel from '$components/reel.svelte';
   import type { ProjectPage } from '$lib/content';
   import { page } from '$app/stores';
+  import Popover from '$components/proposals/popover.svelte';
+  import triangle from '$assets/triangle-measurement.svg';
 
   export let story: ProjectPage;
   export let related: ProjectPage[];
@@ -117,6 +119,33 @@
           {/if}
         {/each}
       </div>
+    </div>
+  {/if}
+
+  {#if story.content.measurements && story.content.measurements.length > 0}
+    <div class="flex border-b mx-auto max-w-2xl py-6">
+      {#each story.content.measurements || [] as measurements}
+        <div class="flex flex-col mr-3 w-full">
+          <Popover variant={'fit-content'}>
+            <div slot="target">
+              <p class="text-xs font-medium uppercase">
+                {measurements.title}
+              </p>
+              <div class="flex">
+                <p class="md:text-2xl text-lg font-semibold">{measurements.value}%</p>
+                <img
+                  class="max-h-1.5 md:max-h-2.5 mt-2 ml-1.5"
+                  src={triangle}
+                  alt={measurements.title}
+                />
+              </div>
+            </div>
+            <div slot="popover">
+              <p class="text-sm whitespace-nowrap">{measurements.popover}</p>
+            </div>
+          </Popover>
+        </div>
+      {/each}
     </div>
   {/if}
 

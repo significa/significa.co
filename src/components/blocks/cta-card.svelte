@@ -19,7 +19,7 @@
       : CtaDark;
 </script>
 
-<section class="container mx-auto px-container @container mt-8 md:mt-10 lg:my-24">
+<section class="container mx-auto px-container @container my-16 md:mt-10 lg:my-24">
   <div
     data-theme={$theme === 'dark'
       ? block.theme === 'in-theme'
@@ -35,7 +35,7 @@
       <p class="text-xl md:text-xl/6 font-medium text-foreground-secondary max-w-md pt-1">
         {block.description}
       </p>
-      <div class="flex gap-2 flex-wrap" use:drawerLinks>
+      <div class="flex gap-2 flex-wrap mt-8" use:drawerLinks>
         {#if block.link_text}
           {@const { href, target } = getAnchorFromCmsLink(block.link)}
           <Button
@@ -43,12 +43,12 @@
             as="a"
             href={href ? href : '#estimation'}
             size="md"
-            class="w-fit mt-8 scroll-b">{block.link_text}</Button
+            class="w-fit scroll-b">{block.link_text}</Button
           >
         {/if}
         {#if block.secondary_link_text}
           {@const { href } = getAnchorFromCmsLink(block.secondary_link)}
-          <Button variant="secondary" as="a" {href} size="md" class="w-fit mt-8 scroll-b"
+          <Button variant="secondary" as="a" {href} size="md" class="w-fit scroll-b"
             >{block.secondary_link_text}</Button
           >
         {/if}

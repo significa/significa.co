@@ -1002,6 +1002,7 @@ export interface ProjectStoryblok {
   tagline: string;
   intro: string;
   team?: (StoryblokStory<TeamMemberStoryblok> | string)[];
+  measurements?: MeasurementEntryStoryblok[];
   client?: string;
   deliverables?: (number | string)[];
   services?: (number | string)[];

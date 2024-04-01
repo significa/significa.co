@@ -10,7 +10,7 @@
     class="cursor-pointer text-left"
     on:mouseenter={() => (visible = true)}
     on:mouseleave={() => (visible = false)}
-    on:touchstart={() => (visible = !visible)}
+    on:touchstart={() => console.log('yes')}
     on:keydown={(event) => {
       if (event.key === 'Escape') visible = false;
       if (event.key === 'Enter' || event.key === 'Space') visible = true;

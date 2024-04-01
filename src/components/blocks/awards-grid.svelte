@@ -23,7 +23,7 @@
 
 <div class="container mx-auto px-container flex justify-center">
   <section class="my-12 md:mt-20 md:mb-12 max-w-[740px]">
-    <div class="grid gap-4 md:gap-6 grid-cols-3">
+    <div class="grid-cols-2 grid gap-4 md:gap-6 md:grid-cols-3">
       {#each awardsArray as award}
         <div
           class="flex w-full max-w-fit items-start md:items-center relative flex-col md:flex-row"

@@ -1585,6 +1585,10 @@ export interface ValueStoryblok {
 }
 
 export interface VerticalListStoryblok {
+  link_text?: string;
+  link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  secondary_link_text?: string;
+  secondary_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   entry?: VerticalListEntryStoryblok[];
   _uid: string;
   component: 'vertical-list';

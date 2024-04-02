@@ -6981,16 +6981,32 @@
       "name": "vertical-list",
       "display_name": null,
       "created_at": "2024-03-25T11:31:05.258Z",
-      "updated_at": "2024-03-25T11:36:38.628Z",
+      "updated_at": "2024-04-02T08:13:13.749Z",
       "id": 5552071,
       "schema": {
+        "link_text": {
+          "type": "text",
+          "pos": 0
+        },
+        "link": {
+          "type": "multilink",
+          "pos": 1
+        },
+        "secondary_link_text": {
+          "type": "text",
+          "pos": 2
+        },
+        "secondary_link": {
+          "type": "multilink",
+          "pos": 3
+        },
         "entry": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["vertical-list-entry"],
           "key": "success_fee",
-          "pos": 0
+          "pos": 4
         }
       },
       "image": null,

@@ -4,6 +4,8 @@
   import airplane from '$assets/airplane.svg';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { intersectionObserver } from '$lib/actions/instersection-observer';
+  import { getAnchorFromCmsLink } from '$lib/utils/cms';
+  import { Button } from '@significa/svelte-ui';
 
   export let block: VerticalListStoryblok;
   let visibleElement: HTMLDivElement;
@@ -28,7 +30,7 @@
   // is fully visible and grows as the user scrolls down
   $: x = scrollY - (section?.offsetTop - windowHeight + section?.getBoundingClientRect()?.height);
 
-  let a: number = 0.01;
+  let a: number = 0.007;
 
   // Number of frames of the animation, which correlate to the number of pixels scrolled in the Y axis.
   // That way the animation finished when the user scrolls the height of this section
@@ -46,19 +48,44 @@
 {#if block.entry}
   <div
     bind:this={section}
-    class="h-[25vh] xl:h-[40vh] relative overflow-x-clip"
+    class="h-[15vh] mt-24 xl:pt-0 xl:h-[50vh] 2xl:h-[45vh] relative overflow-x-clip"
     use:storyblokEditable={block}
     use:intersectionObserver={[(entry) => (isVisible = entry.isIntersecting), { threshold: 0.0 }]}
   >
-    <img
-      alt=""
-      src={airplane}
+    <div
       draggable="false"
-      class="absolute bottom-0 w-32 xl:w-auto"
+      class="absolute -bottom-12 w-64 xl:w-auto -left-[400px]"
       style={isVisible && x > 0
         ? `transform: translate(${x / velocity}px, ${-(Math.pow(x, 2) * (a * velocity))}px);`
         : ''}
-    />
+    >
+      <img alt="" src={airplane} class="relative z-10" />
+      <div
+        class="w-fit h-fit bottom-[24px] left-[7px] absolute inline-flex -translate-x-full rounded-lg bg-white shadow-xl ring-8 ring-white rotate-[5deg]"
+      >
+        <div
+          class="h-fit w-fit flex gap-3 p-3 border-white ring-black ring-1 rounded-xl"
+          data-theme="light"
+        >
+          {#if block.link_text}
+            {@const { href, target } = getAnchorFromCmsLink(block.link)}
+            <Button
+              {target}
+              as="a"
+              href={href ? href : '#estimation'}
+              size="md"
+              class="w-fit scroll-b">{block.link_text}</Button
+            >
+          {/if}
+          {#if block.secondary_link_text}
+            {@const { href } = getAnchorFromCmsLink(block.secondary_link)}
+            <Button variant="secondary" as="a" {href} size="md" class="w-fit scroll-b"
+              >{block.secondary_link_text}</Button
+            >
+          {/if}
+        </div>
+      </div>
+    </div>
   </div>
 
   <div

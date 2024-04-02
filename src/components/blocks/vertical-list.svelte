@@ -94,7 +94,7 @@
       (entry) => {
         isVerticalListVisible = entry.isIntersecting;
       },
-      { threshold: 0.42 }
+      { rootMargin: '-50%' }
     ]}
   >
     {#if isVerticalListVisible}

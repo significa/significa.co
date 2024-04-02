@@ -16,7 +16,7 @@
       isVisible = entry.isIntersecting;
       if (isVisible && entry.target instanceof HTMLDivElement) dispatch('visible', entry.target);
     },
-    { threshold: 0.5, rootMargin: '-43% 0%' }
+    { rootMargin: '-50%' }
   ]}
   class={clsx('py-4 mb-20 md:mb-0 md:py-16 items-center transition-all duration-300')}
 >

@@ -7,7 +7,7 @@ if (!dev) {
   Sentry.init({
     environment: PUBLIC_SENTRY_ENVIRONMENT || 'unknown-environment',
     dsn: PUBLIC_SENTRY_DNS,
-    tracesSampleRate: 1.0,
+    tracesSampleRate: 0.0,
 
     // If the entire session is not sampled, use the below sample rate to sample
     // sessions when an error occurs.

@@ -13,6 +13,7 @@
   } from '@notionhq/client/build/src/api-endpoints.js';
   import handbook from '$root/handbook-data.json';
   import { page } from '$app/stores';
+  import { slugs } from '$lib/stores/handbook-slugs';
 
   export let path: string;
 
@@ -21,6 +22,16 @@
   $: handbookPage = handbook.find(
     (page) => path === slugify(getPageTitle(page as PageObjectResponse))
   ) as PageObjectResponse;
+
+  const dict = handbook.reduce(
+    (acc, page) => ({
+      ...acc,
+      ...{ [page.id]: `handbook/${slugify(getPageTitle(page as PageObjectResponse))}` }
+    }),
+    {}
+  );
+
+  slugs.set(dict);
 </script>
 
 {#key path}

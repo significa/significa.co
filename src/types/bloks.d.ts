@@ -1585,6 +1585,7 @@ export interface ValueStoryblok {
 }
 
 export interface VerticalListStoryblok {
+  airplane?: boolean;
   link_text?: string;
   link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   secondary_link_text?: string;

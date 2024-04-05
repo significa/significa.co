@@ -261,14 +261,14 @@
       "name": "awards-grid",
       "display_name": null,
       "created_at": "2024-03-27T11:08:19.684Z",
-      "updated_at": "2024-03-27T11:09:33.206Z",
+      "updated_at": "2024-04-04T13:45:32.548Z",
       "id": 5564649,
       "schema": {
         "description": {
           "type": "textarea"
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/33865c197f/awards-grid.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -277,8 +277,8 @@
       "preset_id": null,
       "real_name": "awards-grid",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#fbce41",
+      "icon": "block-text-img-t-l",
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
@@ -3477,7 +3477,7 @@
       "name": "partners",
       "display_name": null,
       "created_at": "2024-03-26T11:33:41.071Z",
-      "updated_at": "2024-03-26T11:34:19.241Z",
+      "updated_at": "2024-04-04T13:47:59.022Z",
       "id": 5557967,
       "schema": {
         "title": {
@@ -3490,7 +3490,7 @@
           "component_whitelist": ["client-logo"]
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/c724f2ea0a/partners.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -3499,8 +3499,8 @@
       "preset_id": null,
       "real_name": "partners",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#1b243f",
+      "icon": "block-image",
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
@@ -4130,7 +4130,7 @@
       "name": "projects-two-columns",
       "display_name": null,
       "created_at": "2024-03-22T10:16:30.309Z",
-      "updated_at": "2024-03-22T11:56:07.136Z",
+      "updated_at": "2024-04-04T13:48:23.511Z",
       "id": 5541415,
       "schema": {
         "project": {
@@ -4145,7 +4145,7 @@
           "type": "textarea"
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/5bfb32910c/project-2-columns.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -4154,8 +4154,8 @@
       "preset_id": null,
       "real_name": "projects-two-columns",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
-      "color": null,
-      "icon": null,
+      "color": "#395ece",
+      "icon": "block-suitcase",
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
@@ -6981,24 +6981,29 @@
       "name": "vertical-list",
       "display_name": null,
       "created_at": "2024-03-25T11:31:05.258Z",
-      "updated_at": "2024-04-02T08:13:13.749Z",
+      "updated_at": "2024-04-05T13:20:05.855Z",
       "id": 5552071,
       "schema": {
+        "airplane": {
+          "type": "boolean",
+          "pos": 0,
+          "default_value": true
+        },
         "link_text": {
           "type": "text",
-          "pos": 0
+          "pos": 1
         },
         "link": {
           "type": "multilink",
-          "pos": 1
+          "pos": 2
         },
         "secondary_link_text": {
           "type": "text",
-          "pos": 2
+          "pos": 3
         },
         "secondary_link": {
           "type": "multilink",
-          "pos": 3
+          "pos": 4
         },
         "entry": {
           "type": "bloks",
@@ -7006,7 +7011,7 @@
           "restrict_components": true,
           "component_whitelist": ["vertical-list-entry"],
           "key": "success_fee",
-          "pos": 4
+          "pos": 5
         }
       },
       "image": null,

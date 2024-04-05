@@ -46,48 +46,49 @@
 <svelte:window bind:scrollY bind:innerWidth={windowWidth} bind:innerHeight={windowHeight} />
 
 {#if block.entry}
-  <div
-    bind:this={section}
-    class="h-[15vh] mt-24 xl:pt-0 xl:h-[50vh] 2xl:h-[45vh] relative overflow-x-clip"
-    use:storyblokEditable={block}
-    use:intersectionObserver={[(entry) => (isVisible = entry.isIntersecting), { threshold: 0.0 }]}
-  >
+  {#if block.airplane}
     <div
-      draggable="false"
-      class="absolute -bottom-12 w-64 xl:w-auto -left-[400px]"
-      style={isVisible && x > 0
-        ? `transform: translate(${x / velocity}px, ${-(Math.pow(x, 2) * (a * velocity))}px);`
-        : ''}
+      bind:this={section}
+      class="h-[15vh] mt-24 xl:pt-0 xl:h-[50vh] 2xl:h-[45vh] relative overflow-x-clip"
+      use:storyblokEditable={block}
+      use:intersectionObserver={[(entry) => (isVisible = entry.isIntersecting), { threshold: 0.0 }]}
     >
-      <img alt="" src={airplane} class="relative z-10" />
       <div
-        class="w-fit h-fit bottom-[24px] left-[7px] absolute inline-flex -translate-x-full rounded-lg bg-white shadow-xl ring-8 ring-white rotate-[5deg]"
+        draggable="false"
+        class="absolute -bottom-12 w-64 xl:w-auto -left-[400px]"
+        style={isVisible && x > 0
+          ? `transform: translate(${x / velocity}px, ${-(Math.pow(x, 2) * (a * velocity))}px);`
+          : ''}
       >
+        <img alt="" src={airplane} class="relative z-10" />
         <div
-          class="h-fit w-fit flex gap-3 p-3 border-white ring-black ring-1 rounded-xl"
-          data-theme="light"
+          class="w-fit h-fit bottom-[24px] left-[7px] absolute inline-flex -translate-x-full rounded-lg bg-white shadow-xl ring-8 ring-white rotate-[5deg]"
         >
-          {#if block.link_text}
-            {@const { href, target } = getAnchorFromCmsLink(block.link)}
-            <Button
-              {target}
-              as="a"
-              href={href ? href : '#estimation'}
-              size="md"
-              class="w-fit scroll-b">{block.link_text}</Button
-            >
-          {/if}
-          {#if block.secondary_link_text}
-            {@const { href } = getAnchorFromCmsLink(block.secondary_link)}
-            <Button variant="secondary" as="a" {href} size="md" class="w-fit scroll-b"
-              >{block.secondary_link_text}</Button
-            >
-          {/if}
+          <div
+            class="h-fit w-fit flex gap-3 p-3 border-white ring-black ring-1 rounded-xl"
+            data-theme="light"
+          >
+            {#if block.link_text}
+              {@const { href, target } = getAnchorFromCmsLink(block.link)}
+              <Button
+                {target}
+                as="a"
+                href={href ? href : '#estimation'}
+                size="md"
+                class="w-fit scroll-b">{block.link_text}</Button
+              >
+            {/if}
+            {#if block.secondary_link_text}
+              {@const { href } = getAnchorFromCmsLink(block.secondary_link)}
+              <Button variant="secondary" as="a" {href} size="md" class="w-fit scroll-b"
+                >{block.secondary_link_text}</Button
+              >
+            {/if}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
+  {/if}
   <div
     class="relative"
     use:intersectionObserver={[

@@ -128,6 +128,11 @@ async function main() {
             entry.priority = 0.8;
           }
 
+          if (story.content.component === 'landing-page') {
+            entry.changefreq = story.content.change_frequency || 'monthly';
+            entry.priority = story.content.priority || 0.7;
+          }
+
           return entry;
         })
     );

@@ -5,7 +5,6 @@
   import CtaDark from '$components/illustrations/assets/cta-card-dark.webp';
   import { theme } from '$lib/stores/theme';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
-  import { drawerLinks } from '$lib/actions/drawer-links';
 
   export let block: CtaCardStoryblok;
 
@@ -35,7 +34,7 @@
       <p class="text-xl md:text-xl/6 font-medium text-foreground-secondary max-w-md pt-1">
         {block.description}
       </p>
-      <div class="flex gap-2 flex-wrap mt-8" use:drawerLinks>
+      <div class="flex gap-2 flex-wrap mt-8">
         {#if block.link_text}
           {@const { href, target } = getAnchorFromCmsLink(block.link)}
           <Button

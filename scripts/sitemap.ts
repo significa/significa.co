@@ -1,6 +1,9 @@
 import fs from 'fs';
 import * as dotenv from 'dotenv';
 import { ISbResult, ISbStoryData, apiPlugin, storyblokInit } from '@storyblok/js';
+import { createFileTree } from '../src/lib/utils/notion';
+import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import handbook from '../handbook-data.json';
 
 dotenv.config();
 
@@ -13,6 +16,8 @@ const { storyblokApi } = storyblokInit({
 });
 
 const storyblok = storyblokApi as NonNullable<ReturnType<typeof storyblokInit>['storyblokApi']>;
+
+const chapters = createFileTree(handbook as Array<PageObjectResponse>);
 
 type SitemapEntry = {
   loc: string;
@@ -89,7 +94,8 @@ async function main() {
             story.content.component === 'career' ||
             story.content.component === 'page' ||
             story.content.component === 'project' ||
-            story.content.component === 'team-member'
+            story.content.component === 'team-member' ||
+            story.content.component === 'landing-page'
           );
         })
         .map((story: ISbStoryData) => {
@@ -127,10 +133,26 @@ async function main() {
     );
   }, []);
 
+  const chaptersArray = Object.values(chapters)
+    .flat()
+    .map((chapter) => ({
+      lastmod: chapter.lastUpdatedAt,
+      slug: chapter.slug
+    }));
+
+  const entriesHandbook = chaptersArray.map((val) => ({
+    loc: `https://significa.co/handbook/${val.slug}`,
+    lastmod: val.lastmod || new Date().toISOString(),
+    changefreq: 'monthly',
+    priority: 0.7
+  }));
+
+  const entriesWithHandbook = [...entries, ...entriesHandbook];
+
   // build a ../static/sitemap.xml file
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    ${entries
+    ${entriesWithHandbook
       .map(
         (entry) => `
     <url>

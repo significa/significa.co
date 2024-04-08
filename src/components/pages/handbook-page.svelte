@@ -38,7 +38,7 @@
   <Seo
     title={`${getPageTitle(handbookPage)} - Handbook by Significa`}
     description={getPageDescription(handbookPage)}
-    image={`${$page.url.origin}/handbook/seo/${handbookPage.id}`}
+    image={handbookPage.id ? `${$page.url.origin}/handbook/seo/${handbookPage.id}` : undefined}
   />
 
   <div use:drawerLinks class="max-w-2xl mx-6 xl:mx-auto mt-10 lg:mt-20 rich-text mb-20">

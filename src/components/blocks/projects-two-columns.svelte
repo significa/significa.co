@@ -5,7 +5,6 @@
 
   export let block: ProjectsTwoColumnsStoryblok;
 
-  import triangle from '$assets/triangle-measurement.svg';
   import RichTextTestimonial from './rich-text-testimonial.svelte';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import { Button } from '@significa/svelte-ui';
@@ -20,32 +19,37 @@
       </div>
     {/each}
   </div>
-  <div class="hidden border-t md:flex">
-    <div class="container mx-auto px-container grid grid-cols-1 md:grid-cols-[50%_50%]">
-      {#each block.project || [] as measurement}
-        <div class="flex first:pr-8 first:border-r last:pl-8 py-6">
-          {#each measurement.measurements || [] as measurements}
-            <div class="flex flex-col mr-3 w-24">
-              <Popover variant={'fit-content'}>
-                <div slot="target">
-                  <p class="text-xs font-medium uppercase">
-                    {measurements.title}
-                  </p>
-                  <div class="flex">
-                    <p class="md:text-2xl text-5xl font-semibold">{measurements.value}%</p>
-                    <img class="max-h-2.5 mt-2 ml-1.5" src={triangle} alt={measurements.title} />
+  {#if block.project && block.project[0].measurements && block.project[1].measurements}
+    <div class="hidden border-t md:flex">
+      <div class="container mx-auto px-container grid grid-cols-1 md:grid-cols-[50%_50%]">
+        {#each block.project || [] as measurement}
+          <div class="flex first:pr-8 first:border-r last:pl-8 py-6">
+            {#each measurement.measurements || [] as measurements}
+              <div class="flex flex-col mr-3 w-24">
+                <Popover variant={'fit-content'}>
+                  <div slot="target">
+                    <p class="text-xs font-medium uppercase">
+                      {measurements.title}
+                    </p>
+                    <div class="flex items-center gap-1.5">
+                      {#if measurements.icon}
+                        {@const { alt, src } = getImageAttributes(measurements.icon)}
+                        <img class="max-h-2.5" {src} {alt} />
+                      {/if}
+                      <p class="md:text-2xl text-5xl font-semibold">{measurements.value}</p>
+                    </div>
                   </div>
-                </div>
-                <div slot="popover">
-                  <p class="text-sm whitespace-nowrap">{measurements.popover}</p>
-                </div>
-              </Popover>
-            </div>
-          {/each}
-        </div>
-      {/each}
+                  <div slot="popover">
+                    <p class="text-sm whitespace-nowrap">{measurements.popover}</p>
+                  </div>
+                </Popover>
+              </div>
+            {/each}
+          </div>
+        {/each}
+      </div>
     </div>
-  </div>
+  {/if}
   <div class="hidden border-t md:flex">
     <div class=" container mx-auto px-container grid grid-cols-1 md:grid-cols-[50%_50%]">
       {#each block.project || [] as testimonials}
@@ -90,9 +94,12 @@
                   <p class="text-xs font-medium uppercase">
                     {measurements.title}
                   </p>
-                  <div class="flex">
-                    <p class="text-lg font-semibold">{measurements.value}%</p>
-                    <img class="max-h-1.5 mt-2 ml-1.5" src={triangle} alt={measurements.title} />
+                  <div class="flex items-center gap-1.5">
+                    {#if measurements.icon}
+                      {@const { alt, src } = getImageAttributes(measurements.icon)}
+                      <img class="max-h-1.5" {src} {alt} />
+                    {/if}
+                    <p class="text-lg font-semibold">{measurements.value}</p>
                   </div>
                 </div>
               {/each}

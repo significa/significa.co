@@ -122,9 +122,9 @@
   {/if}
 
   {#if story.content.measurements && story.content.measurements.length > 0}
-    <div class="flex border-b mx-auto max-w-2xl py-6">
+    <div class="flex border-b mx-auto max-w-2xl py-6 gap-6 gap-y-3 md:gap-8 md:gap-y-4 flex-wrap">
       {#each story.content.measurements || [] as measurements}
-        <div class="flex flex-col mr-3 w-full">
+        <div class="flex flex-col whitespace-nowrap">
           <Popover variant={'fit-content'}>
             <div slot="target">
               <p class="text-xs font-medium uppercase">

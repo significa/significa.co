@@ -25,7 +25,7 @@
     <div
       class={clsx(
         block.type === 'regular' ? '' : 'mb-8 mr-52',
-        'xl:sticky xl:top-8 xl:max-w-xl xl:self-start'
+        'xl:sticky xl:top-8 xl:max-w-xl xl:self-start xl:pr-6'
       )}
     >
       <h3 class="text-5xl text-foreground-secondary">{block.title}</h3>

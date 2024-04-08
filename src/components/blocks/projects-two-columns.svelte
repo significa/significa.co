@@ -31,12 +31,12 @@
                     <p class="text-xs font-medium uppercase">
                       {measurements.title}
                     </p>
-                    <div class="flex">
-                      <p class="md:text-2xl text-5xl font-semibold">{measurements.value}</p>
+                    <div class="flex items-center gap-1.5">
                       {#if measurements.icon}
                         {@const { alt, src } = getImageAttributes(measurements.icon)}
-                        <img class="max-h-2.5 mt-2 ml-1.5" {src} {alt} />
+                        <img class="max-h-2.5" {src} {alt} />
                       {/if}
+                      <p class="md:text-2xl text-5xl font-semibold">{measurements.value}</p>
                     </div>
                   </div>
                   <div slot="popover">
@@ -94,12 +94,12 @@
                   <p class="text-xs font-medium uppercase">
                     {measurements.title}
                   </p>
-                  <div class="flex">
-                    <p class="text-lg font-semibold">{measurements.value}</p>
+                  <div class="flex items-center gap-1.5">
                     {#if measurements.icon}
                       {@const { alt, src } = getImageAttributes(measurements.icon)}
-                      <img class="max-h-1.5 mt-2 ml-1.5" {src} {alt} />
+                      <img class="max-h-1.5" {src} {alt} />
                     {/if}
+                    <p class="text-lg font-semibold">{measurements.value}</p>
                   </div>
                 </div>
               {/each}

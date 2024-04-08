@@ -14,7 +14,6 @@
   import type { ProjectPage } from '$lib/content';
   import { page } from '$app/stores';
   import Popover from '$components/proposals/popover.svelte';
-  import triangle from '$assets/triangle-measurement.svg';
 
   export let story: ProjectPage;
   export let related: ProjectPage[];
@@ -131,13 +130,12 @@
               <p class="text-xs font-medium uppercase">
                 {measurements.title}
               </p>
-              <div class="flex">
-                <p class="md:text-2xl text-lg font-semibold">{measurements.value}%</p>
-                <img
-                  class="max-h-1.5 md:max-h-2.5 mt-2 ml-1.5"
-                  src={triangle}
-                  alt={measurements.title}
-                />
+              <div class="flex items-center gap-1.5">
+                {#if measurements.icon}
+                  {@const { alt, src } = getImageAttributes(measurements.icon)}
+                  <img class="max-h-1.5" {src} {alt} />
+                {/if}
+                <p class="md:text-2xl text-lg font-semibold">{measurements.value}</p>
               </div>
             </div>
             <div slot="popover">

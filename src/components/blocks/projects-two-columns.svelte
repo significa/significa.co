@@ -23,9 +23,9 @@
     <div class="hidden border-t md:flex">
       <div class="container mx-auto px-container grid grid-cols-1 md:grid-cols-[50%_50%]">
         {#each block.project || [] as measurement}
-          <div class="flex first:pr-8 first:border-r last:pl-8 py-6">
+          <div class="flex gap-8 gap-y-4 first:pr-8 first:border-r last:pl-8 py-6 flex-wrap">
             {#each measurement.measurements || [] as measurements}
-              <div class="flex flex-col mr-3 w-24">
+              <div class="flex flex-col whitespace-nowrap">
                 <Popover variant={'fit-content'}>
                   <div slot="target">
                     <p class="text-xs font-medium uppercase">
@@ -88,9 +88,9 @@
                 <p class="text-lg/[18px] font-semibold">{project.tagline}</p>
               </div>
             </div>
-            <div class="flex mb-8">
+            <div class="flex mb-8 flex-wrap gap-6 gap-y-3">
               {#each project.measurements || [] as measurements}
-                <div class="flex flex-col mr-3 w-14">
+                <div class="flex flex-col whitespace-nowrap">
                   <p class="text-xs font-medium uppercase">
                     {measurements.title}
                   </p>

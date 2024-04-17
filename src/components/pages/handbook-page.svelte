@@ -26,7 +26,7 @@
   const dict = handbook.reduce(
     (acc, page) => ({
       ...acc,
-      ...{ [page.id]: `handbook/${slugify(getPageTitle(page as PageObjectResponse))}` }
+      ...{ [page.id]: `/handbook/${slugify(getPageTitle(page as PageObjectResponse))}` }
     }),
     {}
   );

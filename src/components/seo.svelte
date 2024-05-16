@@ -21,11 +21,8 @@
     <title>{title || $page.data.page?.story?.content?.seo_title || t('seo.title')}</title>
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@SignificaDotCo" />
-
-    {#if structureDataMarkup}
-      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-      {@html '<script type="application/ld+json">' + `${structureDataMarkup}` + '</script>'}
-    {/if}
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    {@html '<script type="application/ld+json">' + `${structureDataMarkup}` + '</script>'}
     <meta
       name="description"
       content={description ||

@@ -457,7 +457,7 @@
       "name": "blog-post",
       "display_name": "Author",
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2024-03-05T15:42:48.889Z",
+      "updated_at": "2024-05-16T10:15:54.405Z",
       "id": 3442347,
       "schema": {
         "cover": {
@@ -478,7 +478,7 @@
         },
         "tab-c1b66206-334d-4470-a996-ca9aa074e23c": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
+          "keys": ["seo_title", "seo_description", "seo_og_image", "structure_data_markup"],
           "pos": 0,
           "type": "tab"
         },
@@ -548,6 +548,10 @@
           "type": "options",
           "source": "internal",
           "datasource_slug": "industry"
+        },
+        "structure_data_markup": {
+          "type": "textarea",
+          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)"
         }
       },
       "image": "//a.storyblok.com/f/198185/x/f51edbf69b/screenshot-2023-03-22-at-11-49-53.png",
@@ -3813,32 +3817,54 @@
       "name": "project",
       "display_name": null,
       "created_at": "2023-02-15T13:07:44.621Z",
-      "updated_at": "2024-03-28T16:37:24.045Z",
+      "updated_at": "2024-05-16T10:02:15.017Z",
       "id": 3442356,
       "schema": {
+        "seo_title": {
+          "type": "text",
+          "pos": 0,
+          "key": "seo_title"
+        },
+        "seo_description": {
+          "type": "text",
+          "pos": 1,
+          "key": "seo_description"
+        },
+        "seo_og_image": {
+          "type": "asset",
+          "filetypes": ["images"],
+          "asset_folder_id": 212286,
+          "pos": 2,
+          "key": "seo_og_image"
+        },
+        "structure_data_markup": {
+          "type": "textarea",
+          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
+          "pos": 3
+        },
         "cover": {
           "type": "asset",
           "filetypes": ["images"],
           "asset_folder_id": 212286,
-          "pos": 0,
+          "pos": 4,
           "key": "cover"
         },
         "reel": {
           "type": "asset",
-          "pos": 1,
+          "pos": 5,
           "filetypes": ["videos"],
           "key": "reel"
         },
         "reel_button": {
           "type": "section",
-          "pos": 2,
+          "pos": 6,
           "keys": ["reel_button_theme", "reel_button_label"],
           "key": "reel_button"
         },
         "reel_button_theme": {
           "type": "option",
           "use_uuid": true,
-          "pos": 3,
+          "pos": 7,
           "options": [
             {
               "_uid": "ed9c0d33-e7d4-42de-a790-9adfca55481a",
@@ -3858,7 +3884,7 @@
         },
         "reel_button_label": {
           "type": "text",
-          "pos": 4,
+          "pos": 8,
           "display_name": "Reel Button Label (optional)",
           "key": "reel_button_label"
         },
@@ -3867,31 +3893,31 @@
           "filetypes": ["images"],
           "required": true,
           "asset_folder_id": 212286,
-          "pos": 5,
+          "pos": 9,
           "key": "thumbnail"
         },
         "tagline": {
           "type": "text",
           "required": true,
-          "pos": 6,
+          "pos": 10,
           "key": "tagline"
         },
         "intro": {
           "type": "textarea",
           "required": true,
-          "pos": 7,
+          "pos": 11,
           "key": "intro"
         },
         "team": {
           "type": "options",
           "source": "internal_stories",
           "filter_content_type": ["team-member"],
-          "pos": 8,
+          "pos": 12,
           "key": "team"
         },
         "measurements": {
           "type": "bloks",
-          "pos": 9,
+          "pos": 13,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["measurement_entry"]
@@ -3901,19 +3927,19 @@
           "use_uuid": true,
           "source": "internal_stories",
           "filter_content_type": ["client"],
-          "pos": 10,
+          "pos": 14,
           "key": "client"
         },
         "deliverables": {
           "type": "options",
-          "pos": 11,
+          "pos": 15,
           "source": "internal",
           "datasource_slug": "deliverables",
           "key": "deliverables"
         },
         "services": {
           "type": "options",
-          "pos": 12,
+          "pos": 16,
           "source": "internal",
           "datasource_slug": "services",
           "key": "services_data"
@@ -3923,13 +3949,13 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["link"],
-          "pos": 13,
+          "pos": 17,
           "key": "links"
         },
         "tab-734adeb1-00ef-48e6-aa53-a3001ad39201": {
           "display_name": "Content",
           "keys": ["body"],
-          "pos": 14,
+          "pos": 18,
           "type": "tab",
           "key": "tab-734adeb1-00ef-48e6-aa53-a3001ad39201"
         },
@@ -3959,32 +3985,15 @@
             "blok",
             "h4"
           ],
-          "pos": 15,
+          "pos": 19,
           "key": "body"
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
-          "pos": 16,
+          "keys": ["seo_title", "seo_description", "seo_og_image", "structure_data_markup"],
+          "pos": 20,
           "type": "tab",
           "key": "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9"
-        },
-        "seo_title": {
-          "type": "text",
-          "pos": 17,
-          "key": "seo_title"
-        },
-        "seo_description": {
-          "type": "text",
-          "pos": 18,
-          "key": "seo_description"
-        },
-        "seo_og_image": {
-          "type": "asset",
-          "filetypes": ["images"],
-          "asset_folder_id": 212286,
-          "pos": 19,
-          "key": "seo_og_image"
         }
       },
       "image": null,

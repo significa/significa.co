@@ -71,7 +71,7 @@
 {:else if isCareerPage(page)}
   <Career story={page.story} />
 {:else if isLandingPage(page) && page.story.content.blocks?.length}
-  <Seo />
+  <Seo structureDataMarkup={page.story.content.structure_data_markup} />
   {#each page.story.content.blocks as block}
     <DynamicBlock {block} />
   {/each}

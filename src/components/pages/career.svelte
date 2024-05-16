@@ -9,7 +9,10 @@
   export let story: CareerPage;
 </script>
 
-<Seo title={story.content.seo_title || story.name} />
+<Seo
+  structureDataMarkup={story.content.structure_data_markup}
+  title={story.content.seo_title || story.name}
+/>
 <div class="container mx-auto px-container">
   <h1 class="mx-auto mt-10 max-w-2xl text-5xl md:mt-14 lg:mt-20">{story.name}</h1>
   {#if story.content.body}

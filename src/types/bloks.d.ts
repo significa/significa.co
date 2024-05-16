@@ -168,6 +168,7 @@ export interface BlogPostStoryblok {
   deliverables?: (number | string)[];
   tech?: (number | string)[];
   industry?: (number | string)[];
+  structure_data_markup?: string;
   _uid: string;
   component: 'blog-post';
   [k: string]: any;
@@ -957,6 +958,10 @@ export interface PrefooterFormStoryblok {
 }
 
 export interface ProjectStoryblok {
+  seo_title?: string;
+  seo_description?: string;
+  seo_og_image?: AssetStoryblok;
+  structure_data_markup?: string;
   cover?: AssetStoryblok;
   reel?: AssetStoryblok;
   reel_button?: any;
@@ -972,9 +977,6 @@ export interface ProjectStoryblok {
   services?: (number | string)[];
   links?: LinkStoryblok[];
   body?: RichtextStoryblok;
-  seo_title?: string;
-  seo_description?: string;
-  seo_og_image?: AssetStoryblok;
   _uid: string;
   component: 'project';
   [k: string]: any;

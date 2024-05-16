@@ -26,6 +26,7 @@
   title={story.content.seo_title || story.content.tagline}
   description={story.content.seo_description || story.content.intro}
   image={story.content.seo_og_image || story.content.cover}
+  structureDataMarkup={story.content.structure_data_markup}
 />
 <div use:drawerLinks class="container mx-auto px-container">
   <header>

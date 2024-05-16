@@ -56,6 +56,7 @@
   description={tags.length
     ? t('blog.tag-meta-description', { tags: tags.join(', ') })
     : $page.data.page?.story?.content?.seo_description}
+  structureDataMarkup={$page.data.page?.story?.content?.structure_data_markup}
 />
 
 <main>

@@ -20,6 +20,7 @@
   title={story.content.seo_title || story.content.tagline}
   description={story.content.seo_description || story.content.intro}
   image={story.content.seo_og_image || story.content.cover}
+  structureDataMarkup={story.content.structure_data_markup}
 />
 <div class="container mx-auto px-container">
   <header class="mx-auto mb-10 mt-10 max-w-2xl md:mt-14 lg:mt-20">

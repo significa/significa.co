@@ -7,6 +7,7 @@
   import type { ISbStoryData } from '@storyblok/js';
   import clsx from 'clsx';
   import { slide } from 'svelte/transition';
+  import { page } from '$app/stores';
 
   export let projects: ISbStoryData<ProjectStoryblok>[];
 
@@ -51,7 +52,7 @@
   });
 </script>
 
-<Seo />
+<Seo structureDataMarkup={$page.data.page.story.content.structure_data_markup} />
 <main>
   <h1 class="container mx-auto mt-10 px-container text-7xl md:mt-14 lg:mt-20">
     {t('projects.title')}

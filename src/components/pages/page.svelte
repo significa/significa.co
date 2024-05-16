@@ -18,7 +18,7 @@
 </script>
 
 {#if story.content.blocks?.length}
-  <Seo />
+  <Seo structureDataMarkup={story.content.structure_data_markup} />
   {#each story.content.blocks as block}
     <DynamicBlock {block} />
   {/each}

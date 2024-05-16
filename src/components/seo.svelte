@@ -10,10 +10,9 @@
   export let title: undefined | string = undefined;
   export let description: undefined | string = undefined;
   export let image: undefined | AssetStoryblok | string = undefined;
+  export let structureDataMarkup: string | undefined = undefined;
 
   const inDrawer = getContext<boolean>('drawer');
-
-  $: structureDataMarkup = $page.data.page?.story?.content?.structure_data_markup;
 </script>
 
 <svelte:head>
@@ -21,8 +20,12 @@
     <title>{title || $page.data.page?.story?.content?.seo_title || t('seo.title')}</title>
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@SignificaDotCo" />
-    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-    {@html '<script type="application/ld+json">' + `${structureDataMarkup}` + '</script>'}
+
+    {#if structureDataMarkup}
+      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+      {@html '<script type="application/ld+json">' + `${structureDataMarkup}` + '</script>'}
+    {/if}
+
     <meta
       name="description"
       content={description ||

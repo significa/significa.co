@@ -14,35 +14,6 @@ export type MultilinkStoryblok =
       anchor?: string;
       linktype?: 'story';
       target?: '_self' | '_blank';
-      story?: {
-        name: string;
-        created_at?: string;
-        published_at?: string;
-        id: number;
-        uuid: string;
-        content?: {
-          [k: string]: any;
-        };
-        slug: string;
-        full_slug: string;
-        sort_by_date?: null | string;
-        position?: number;
-        tag_list?: string[];
-        is_startpage?: boolean;
-        parent_id?: null | number;
-        meta_data?: null | {
-          [k: string]: any;
-        };
-        group_id?: string;
-        first_published_at?: string;
-        release_id?: null | number;
-        lang?: string;
-        path?: null | string;
-        alternates?: any[];
-        default_full_slug?: null | string;
-        translated_slugs?: null | any[];
-        [k: string]: any;
-      };
       [k: string]: any;
     }
   | {
@@ -760,6 +731,7 @@ export interface LandingPageStoryblok {
   seo_og_image?: AssetStoryblok;
   change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   priority?: string;
+  structure_data_markup?: string;
   _uid: string;
   component: 'landing-page';
   [k: string]: any;
@@ -911,6 +883,7 @@ export interface PageStoryblok {
     | VerticalListStoryblok
     | WorkRecognitionsStoryblok
   )[];
+  structure_data_markup?: string;
   _uid: string;
   component: 'page';
   uuid?: string;

@@ -5,6 +5,7 @@
   import type { ProposalDeliverableStoryblok } from '$types/bloks';
 
   export let data: ProposalDeliverableStoryblok[];
+  export let showManpower = true;
 
   $: totalManpower = data.reduce((acc, entry) => (acc += +entry.manpower), 0);
 </script>
@@ -25,9 +26,11 @@
         {t('proposals.scope.service')}
       </p>
 
-      <p class="text-2xs uppercase text-foreground-secondary text-right">
-        {t('proposals.deliverables.manpower')}
-      </p>
+      {#if showManpower}
+        <p class="text-2xs uppercase text-foreground-secondary text-right">
+          {t('proposals.deliverables.manpower')}
+        </p>
+      {/if}
     </div>
   </div>
 
@@ -68,29 +71,33 @@
             {/each}
           </div>
 
-          <p class="my-4 text-sm text-right">
-            {entry.manpower}
-            {+entry.manpower > 1 ? t('proposals.months') : t('proposals.month')}
-          </p>
+          {#if showManpower}
+            <p class="my-4 text-sm text-right">
+              {entry.manpower}
+              {+entry.manpower > 1 ? t('proposals.months') : t('proposals.month')}
+            </p>
+          {/if}
         </div>
       </div>
     {/each}
   </div>
 
-  <div class="bg-background-offset/50 min-w-[780px]">
-    <div
-      class={clsx(
-        'md:container md:mx-auto px-container',
-        'flex gap-x-2 py-2 justify-end items-baseline font-semibold'
-      )}
-    >
-      <span class="font-normal text-2xs uppercase text-foreground-secondary"
-        >{t('proposals.deliverables.total')}</span
+  {#if showManpower}
+    <div class="bg-background-offset/50 min-w-[780px]">
+      <div
+        class={clsx(
+          'md:container md:mx-auto px-container',
+          'flex gap-x-2 py-2 justify-end items-baseline font-semibold'
+        )}
       >
-      <span>
-        {totalManpower}
-        {totalManpower > 1 ? t('proposals.months') : t('proposals.month')}
-      </span>
+        <span class="font-normal text-2xs uppercase text-foreground-secondary"
+          >{t('proposals.deliverables.total')}</span
+        >
+        <span>
+          {totalManpower}
+          {totalManpower > 1 ? t('proposals.months') : t('proposals.month')}
+        </span>
+      </div>
     </div>
-  </div>
+  {/if}
 </div>

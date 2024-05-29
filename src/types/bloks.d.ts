@@ -1159,6 +1159,7 @@ export interface ProposalVersionStoryblok {
   estimates: ProposalEstimateEntryStoryblok[];
   body?: ProposalSectionStoryblok[];
   show_team_members?: boolean;
+  show_manpower?: boolean;
   _uid: string;
   component: 'proposal-version';
   [k: string]: any;
@@ -1166,13 +1167,14 @@ export interface ProposalVersionStoryblok {
 
 export interface ProposalVersionPackageStoryblok {
   version_name: string;
+  show_team_members?: boolean;
+  show_manpower?: boolean;
   discount_percentage?: string;
   date: string;
   deliverables?: ProposalDeliverableStoryblok[];
   pricing?: ProposalPackagePricingStoryblok[];
   team?: ProposalPackageTeamEntryStoryblok[];
   body?: ProposalSectionStoryblok[];
-  show_team_members?: boolean;
   _uid: string;
   component: 'proposal-version-package';
   [k: string]: any;

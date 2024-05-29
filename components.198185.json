@@ -4954,7 +4954,7 @@
       "name": "proposal-version",
       "display_name": null,
       "created_at": "2023-09-11T15:33:34.190Z",
-      "updated_at": "2024-01-26T11:12:54.014Z",
+      "updated_at": "2024-05-29T09:22:53.544Z",
       "id": 4555208,
       "schema": {
         "version_name": {
@@ -5008,6 +5008,10 @@
         "show_team_members": {
           "type": "boolean",
           "default_value": true
+        },
+        "show_manpower": {
+          "type": "boolean",
+          "default_value": true
         }
       },
       "image": null,
@@ -5030,7 +5034,7 @@
       "name": "proposal-version-package",
       "display_name": null,
       "created_at": "2023-12-28T13:15:17.211Z",
-      "updated_at": "2024-01-26T10:56:14.601Z",
+      "updated_at": "2024-05-29T09:49:07.190Z",
       "id": 5094324,
       "schema": {
         "version_name": {
@@ -5038,9 +5042,19 @@
           "required": true,
           "pos": 0
         },
+        "show_team_members": {
+          "type": "boolean",
+          "default_value": true,
+          "pos": 1
+        },
+        "show_manpower": {
+          "type": "boolean",
+          "pos": 2,
+          "default_value": true
+        },
         "discount_percentage": {
           "type": "number",
-          "pos": 1,
+          "pos": 3,
           "min_value": 0,
           "max_value": 100,
           "decimals": 0,
@@ -5050,7 +5064,7 @@
           "type": "datetime",
           "disable_time": true,
           "required": true,
-          "pos": 2
+          "pos": 4
         },
         "deliverables": {
           "type": "bloks",
@@ -5058,7 +5072,7 @@
           "restrict_components": true,
           "component_whitelist": ["proposal-deliverable"],
           "required": false,
-          "pos": 3
+          "pos": 5
         },
         "pricing": {
           "type": "bloks",
@@ -5066,7 +5080,7 @@
           "restrict_components": true,
           "component_whitelist": ["proposal-package-pricing"],
           "required": false,
-          "pos": 4
+          "pos": 6
         },
         "team": {
           "type": "bloks",
@@ -5074,12 +5088,12 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["proposal-package-team-entry"],
-          "pos": 5
+          "pos": 7
         },
         "tab-4ab934ca-2771-464a-857a-ee27ae87c8d3": {
           "display_name": "Content",
           "keys": ["body"],
-          "pos": 6,
+          "pos": 8,
           "type": "tab"
         },
         "body": {
@@ -5087,11 +5101,7 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["proposal-section"],
-          "pos": 7
-        },
-        "show_team_members": {
-          "type": "boolean",
-          "default_value": true
+          "pos": 9
         }
       },
       "image": null,

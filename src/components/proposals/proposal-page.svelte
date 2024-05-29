@@ -67,7 +67,7 @@
       {#if section.data === 'scope' && content?.scope}
         <ProposalScope data={content.scope} />
       {:else if type === 'package' && section.data === 'deliverables' && content?.deliverables}
-        <ProposalDeliverables data={content.deliverables} />
+        <ProposalDeliverables data={content.deliverables} showManpower={content.show_manpower} />
       {:else if section.data === 'team' && content?.team}
         <ProposalTeam data={content.team} {type} showTeamMembers={content.show_team_members} />
       {:else if type === 'rate' && section.data === 'estimates' && content?.estimates && content?.team}

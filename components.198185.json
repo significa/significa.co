@@ -13,9 +13,7 @@
           "maximum": 3,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "home-about-link"
-          ]
+          "component_whitelist": ["home-about-link"]
         }
       },
       "image": "//a.storyblok.com/f/198185/x/ae6c86c389/about-grid-block.png",
@@ -74,9 +72,7 @@
           "pos": 5,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "timeline-section"
-          ]
+          "component_whitelist": ["timeline-section"]
         },
         "values_title1": {
           "type": "text",
@@ -95,9 +91,7 @@
           "pos": 9,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "value"
-          ],
+          "component_whitelist": ["value"],
           "minimum": 3,
           "maximum": 3
         },
@@ -162,9 +156,7 @@
           "pos": 16,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "richtext-testimonial"
-          ]
+          "component_whitelist": ["richtext-testimonial"]
         },
         "clients_title": {
           "type": "text",
@@ -175,9 +167,7 @@
           "pos": 18,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "client-logo"
-          ]
+          "component_whitelist": ["client-logo"]
         },
         "office_title1": {
           "type": "text",
@@ -196,10 +186,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "notepad_card",
-            "photo_card"
-          ],
+          "component_whitelist": ["notepad_card", "photo_card"],
           "minimum": 6,
           "maximum": 6,
           "pos": 22
@@ -230,9 +217,7 @@
       "schema": {
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 0
         },
         "label": {
@@ -339,9 +324,7 @@
         "image": {
           "type": "asset",
           "pos": 1,
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "title": {
           "type": "text",
@@ -377,9 +360,7 @@
       "schema": {
         "icon": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 0
         },
         "benefit": {
@@ -481,9 +462,7 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212285,
           "required": false
         },
@@ -493,20 +472,13 @@
         },
         "tab-9a5d9933-3840-42d8-aa24-d87e83a9eb5d": {
           "display_name": "Content",
-          "keys": [
-            "body"
-          ],
+          "keys": ["body"],
           "pos": 0,
           "type": "tab"
         },
         "tab-c1b66206-334d-4470-a996-ca9aa074e23c": {
           "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image",
-            "structure_data_markup"
-          ],
+          "keys": ["seo_title", "seo_description", "seo_og_image", "structure_data_markup"],
           "pos": 0,
           "type": "tab"
         },
@@ -518,9 +490,7 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212285
         },
         "body": {
@@ -553,9 +523,7 @@
         "authors": {
           "type": "options",
           "source": "internal_stories",
-          "filter_content_type": [
-            "team-member"
-          ],
+          "filter_content_type": ["team-member"],
           "required": true,
           "min_options": "1",
           "max_options": "4"
@@ -617,9 +585,7 @@
           "type": "richtext",
           "required": true,
           "customize_toolbar": true,
-          "toolbar": [
-            "link"
-          ]
+          "toolbar": ["link"]
         }
       },
       "image": null,
@@ -651,9 +617,7 @@
           "required": true,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "budget-range-entry"
-          ]
+          "component_whitelist": ["budget-range-entry"]
         }
       },
       "image": null,
@@ -695,9 +659,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "canvas-group"
-          ]
+          "component_whitelist": ["canvas-group"]
         }
       },
       "image": "//a.storyblok.com/f/198185/x/5b24d0a195/canvas.png",
@@ -731,9 +693,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "canvas-checklist-item"
-          ],
+          "component_whitelist": ["canvas-checklist-item"],
           "maximum": 8,
           "pos": 1
         },
@@ -938,10 +898,7 @@
       "schema": {
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images",
-            "videos"
-          ],
+          "filetypes": ["images", "videos"],
           "description": "Photo or video. Video will play once on click.",
           "asset_folder_id": 235349,
           "pos": 0
@@ -1132,9 +1089,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "canvas-tarot-text"
-          ]
+          "component_whitelist": ["canvas-tarot-text"]
         },
         "top": {
           "type": "number"
@@ -1305,9 +1260,7 @@
         "cover": {
           "type": "asset",
           "pos": 0,
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "body": {
           "type": "richtext",
@@ -1347,18 +1300,12 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 4
         },
         "tab-0df1eb17-e1de-4dfd-92cb-c73b4839beec": {
           "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image"
-          ],
+          "keys": ["seo_title", "seo_description", "seo_og_image"],
           "pos": 5,
           "type": "tab"
         }
@@ -1446,11 +1393,7 @@
         "canvas": {
           "type": "section",
           "pos": 1,
-          "keys": [
-            "canvas_items",
-            "canvas_height",
-            "canvas_width"
-          ]
+          "keys": ["canvas_items", "canvas_height", "canvas_width"]
         },
         "canvas_width": {
           "type": "number",
@@ -1466,9 +1409,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "canvas-group"
-          ],
+          "component_whitelist": ["canvas-group"],
           "key": "canvas",
           "pos": 4
         },
@@ -1495,9 +1436,7 @@
         },
         "images": {
           "type": "multiasset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "benefits_title": {
           "type": "text"
@@ -1509,9 +1448,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "benefits-entry"
-          ]
+          "component_whitelist": ["benefits-entry"]
         }
       },
       "image": null,
@@ -1567,16 +1504,12 @@
       "schema": {
         "light_mode": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 228928
         },
         "dark_mode": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 228928
         }
       },
@@ -1610,9 +1543,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "client-logo"
-          ]
+          "component_whitelist": ["client-logo"]
         }
       },
       "image": "//a.storyblok.com/f/198185/x/df9c3a35d2/clients.png",
@@ -1715,16 +1646,12 @@
         },
         "image_a": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true
         },
         "image_b": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true
         }
       },
@@ -1762,18 +1689,13 @@
           "maximum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ]
+          "component_whitelist": ["link"]
         },
         "footer": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "footer-column-internal",
-            "footer-column-external"
-          ]
+          "component_whitelist": ["footer-column-internal", "footer-column-external"]
         }
       },
       "image": null,
@@ -1814,10 +1736,7 @@
           "maximum": 6,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "notepad_card",
-            "photo_card"
-          ]
+          "component_whitelist": ["notepad_card", "photo_card"]
         }
       },
       "image": null,
@@ -1891,9 +1810,7 @@
           "maximum": 5,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "value"
-          ]
+          "component_whitelist": ["value"]
         }
       },
       "image": "//a.storyblok.com/f/198185/x/04a97a24a8/core-values.png",
@@ -2012,9 +1929,7 @@
       "schema": {
         "icon": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "title": {
           "type": "text"
@@ -2048,9 +1963,7 @@
       "schema": {
         "icon": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "deliverable": {
           "type": "option",
@@ -2180,9 +2093,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ]
+          "component_whitelist": ["link"]
         }
       },
       "image": null,
@@ -2215,9 +2126,7 @@
           "type": "options",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ],
+          "component_whitelist": ["link"],
           "source": "internal_stories"
         }
       },
@@ -2285,10 +2194,7 @@
         "timezone_text": {
           "type": "richtext",
           "customize_toolbar": true,
-          "toolbar": [
-            "paragraph",
-            "bold"
-          ],
+          "toolbar": ["paragraph", "bold"],
           "pos": 2
         },
         "steps_title": {
@@ -2322,16 +2228,12 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "get-a-quote-step"
-          ],
+          "component_whitelist": ["get-a-quote-step"],
           "pos": 6
         },
         "images": {
           "type": "multiasset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 7
         }
       },
@@ -2390,9 +2292,7 @@
       "schema": {
         "cover": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212287,
           "key": "cover",
           "pos": 0
@@ -2409,20 +2309,14 @@
         },
         "tab-6a37f9e9-5fe6-4268-a3e4-7fd4ed252cc0": {
           "display_name": "Content",
-          "keys": [
-            "body"
-          ],
+          "keys": ["body"],
           "pos": 3,
           "type": "tab",
           "key": "tab-6a37f9e9-5fe6-4268-a3e4-7fd4ed252cc0"
         },
         "tab-40ff5487-8b8b-40db-afae-1c64b4705bbc": {
           "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image"
-          ],
+          "keys": ["seo_title", "seo_description", "seo_og_image"],
           "pos": 4,
           "type": "tab",
           "key": "tab-40ff5487-8b8b-40db-afae-1c64b4705bbc"
@@ -2468,9 +2362,7 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212287,
           "key": "seo_og_image",
           "pos": 8
@@ -2512,27 +2404,18 @@
         "small_highlights": {
           "type": "options",
           "source": "internal_stories",
-          "filter_content_type": [
-            "career",
-            "project",
-            "handbook",
-            "blog-post"
-          ],
+          "filter_content_type": ["career", "project", "handbook", "blog-post"],
           "max_options": "4",
           "pos": 1
         },
         "showreel": {
           "type": "asset",
-          "filetypes": [
-            "videos"
-          ],
+          "filetypes": ["videos"],
           "pos": 2
         },
         "showreel_cover": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 3
         },
         "showreel_button_theme": {
@@ -2628,27 +2511,18 @@
           "source": "internal_stories",
           "max_options": "4",
           "key": "small_highlights",
-          "filter_content_type": [
-            "career",
-            "project",
-            "handbook",
-            "blog-post"
-          ]
+          "filter_content_type": ["career", "project", "handbook", "blog-post"]
         },
         "showreel": {
           "type": "asset",
-          "filetypes": [
-            "videos"
-          ],
+          "filetypes": ["videos"],
           "pos": 1,
           "key": "showreel"
         },
         "showreel_cover": {
           "type": "asset",
           "pos": 2,
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true
         },
         "showreel_button_theme": {
@@ -2683,9 +2557,7 @@
           "type": "options",
           "pos": 6,
           "source": "internal_stories",
-          "filter_content_type": [
-            "project"
-          ],
+          "filter_content_type": ["project"],
           "key": "projects"
         },
         "services_title1": {
@@ -2742,9 +2614,7 @@
           "maximum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ],
+          "component_whitelist": ["link"],
           "key": "about_link",
           "pos": 16
         },
@@ -2753,9 +2623,7 @@
           "pos": 17,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "home-about-link"
-          ],
+          "component_whitelist": ["home-about-link"],
           "maximum": 3,
           "minimum": 3,
           "key": "about_links"
@@ -2822,9 +2690,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "richtext-testimonial"
-          ],
+          "component_whitelist": ["richtext-testimonial"],
           "maximum": 5,
           "minimum": 5,
           "key": "testimonials",
@@ -2920,9 +2786,7 @@
         },
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true
         },
         "expandable": {
@@ -2995,9 +2859,7 @@
         },
         "images": {
           "type": "multiasset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true,
           "pos": 2
         },
@@ -3039,9 +2901,7 @@
           "restrict_type": "groups",
           "restrict_components": true,
           "component_whitelist": [],
-          "component_group_whitelist": [
-            "c9011224-9690-43bd-b686-e8f60ef6c7f6"
-          ],
+          "component_group_whitelist": ["c9011224-9690-43bd-b686-e8f60ef6c7f6"],
           "pos": 1
         },
         "tab-577daf7c-b61e-4a23-8184-bd9c01ae0af3": {
@@ -3067,9 +2927,7 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 5
         },
         "change_frequency": {
@@ -3273,9 +3131,7 @@
         },
         "icon": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 3
         }
       },
@@ -3401,10 +3257,7 @@
           "maximum": 6,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "notepad_card",
-            "photo_card"
-          ],
+          "component_whitelist": ["notepad_card", "photo_card"],
           "pos": 6
         }
       },
@@ -3467,9 +3320,7 @@
       "schema": {
         "icon": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "title": {
           "type": "text"
@@ -3551,9 +3402,7 @@
           "restrict_type": "groups",
           "restrict_components": true,
           "component_whitelist": [],
-          "component_group_whitelist": [
-            "78726ff5-00c6-4ddb-bfef-551b83977e54"
-          ],
+          "component_group_whitelist": ["78726ff5-00c6-4ddb-bfef-551b83977e54"],
           "maximum": 1
         },
         "tab-b1b4aa1b-2d5c-436e-ac16-09e30b9de047": {
@@ -3579,9 +3428,7 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "change_frequency": {
           "type": "option",
@@ -3636,9 +3483,7 @@
           "restrict_type": "groups",
           "restrict_components": true,
           "component_whitelist": [],
-          "component_group_whitelist": [
-            "c9011224-9690-43bd-b686-e8f60ef6c7f6"
-          ]
+          "component_group_whitelist": ["c9011224-9690-43bd-b686-e8f60ef6c7f6"]
         },
         "structure_data_markup": {
           "type": "textarea",
@@ -3672,9 +3517,7 @@
       "schema": {
         "photo": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         }
       },
       "image": null,
@@ -3920,9 +3763,7 @@
       "schema": {
         "photo": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 234280,
           "key": "photo",
           "pos": 0
@@ -3991,9 +3832,7 @@
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212286,
           "pos": 2,
           "key": "seo_og_image"
@@ -4005,9 +3844,7 @@
         },
         "cover": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212286,
           "pos": 4,
           "key": "cover"
@@ -4015,18 +3852,13 @@
         "reel": {
           "type": "asset",
           "pos": 5,
-          "filetypes": [
-            "videos"
-          ],
+          "filetypes": ["videos"],
           "key": "reel"
         },
         "reel_button": {
           "type": "section",
           "pos": 6,
-          "keys": [
-            "reel_button_theme",
-            "reel_button_label"
-          ],
+          "keys": ["reel_button_theme", "reel_button_label"],
           "key": "reel_button"
         },
         "reel_button_theme": {
@@ -4058,9 +3890,7 @@
         },
         "thumbnail": {
           "type": "multiasset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true,
           "asset_folder_id": 212286,
           "pos": 9,
@@ -4081,9 +3911,7 @@
         "team": {
           "type": "options",
           "source": "internal_stories",
-          "filter_content_type": [
-            "team-member"
-          ],
+          "filter_content_type": ["team-member"],
           "pos": 12,
           "key": "team"
         },
@@ -4092,17 +3920,13 @@
           "pos": 13,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "measurement_entry"
-          ]
+          "component_whitelist": ["measurement_entry"]
         },
         "client": {
           "type": "text",
           "use_uuid": true,
           "source": "internal_stories",
-          "filter_content_type": [
-            "client"
-          ],
+          "filter_content_type": ["client"],
           "pos": 14,
           "key": "client"
         },
@@ -4124,17 +3948,13 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ],
+          "component_whitelist": ["link"],
           "pos": 17,
           "key": "links"
         },
         "tab-734adeb1-00ef-48e6-aa53-a3001ad39201": {
           "display_name": "Content",
-          "keys": [
-            "body"
-          ],
+          "keys": ["body"],
           "pos": 18,
           "type": "tab",
           "key": "tab-734adeb1-00ef-48e6-aa53-a3001ad39201"
@@ -4170,12 +3990,7 @@
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {
           "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image",
-            "structure_data_markup"
-          ],
+          "keys": ["seo_title", "seo_description", "seo_og_image", "structure_data_markup"],
           "pos": 20,
           "type": "tab",
           "key": "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9"
@@ -4206,9 +4021,7 @@
       "schema": {
         "thumbnail": {
           "type": "multiasset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true,
           "pos": 0
         },
@@ -4236,18 +4049,14 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "measurement_entry"
-          ],
+          "component_whitelist": ["measurement_entry"],
           "pos": 5
         },
         "testimonial": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "richtext-testimonial"
-          ],
+          "component_whitelist": ["richtext-testimonial"],
           "maximum": 1,
           "minimum": 1,
           "pos": 6
@@ -4282,9 +4091,7 @@
         "projects": {
           "type": "options",
           "source": "internal_stories",
-          "filter_content_type": [
-            "project"
-          ]
+          "filter_content_type": ["project"]
         }
       },
       "image": "//a.storyblok.com/f/198185/x/92e57719d6/projects.png",
@@ -4339,9 +4146,7 @@
           "maximum": 2,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "project-detailed-entry"
-          ]
+          "component_whitelist": ["project-detailed-entry"]
         },
         "note": {
           "type": "textarea"
@@ -4377,19 +4182,13 @@
         },
         "tab-7b44a927-2d83-4442-a519-1513e3d7d782": {
           "display_name": "Content",
-          "keys": [
-            "title",
-            "description",
-            "cover"
-          ],
+          "keys": ["title", "description", "cover"],
           "pos": 0,
           "type": "tab"
         },
         "tab-a343eb5b-b615-488c-812c-87c5932e6dc3": {
           "display_name": "Versions",
-          "keys": [
-            "versions"
-          ],
+          "keys": ["versions"],
           "pos": 0,
           "type": "tab"
         },
@@ -4415,19 +4214,14 @@
         "cover": {
           "type": "asset",
           "required": true,
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 308076
         },
         "versions": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-version-package",
-            "proposal-version"
-          ],
+          "component_whitelist": ["proposal-version-package", "proposal-version"],
           "description": "Most recent at the top"
         },
         "created_by": {
@@ -4435,9 +4229,7 @@
           "use_uuid": true,
           "required": true,
           "source": "internal_stories",
-          "filter_content_type": [
-            "team-member"
-          ]
+          "filter_content_type": ["team-member"]
         }
       },
       "image": null,
@@ -4509,17 +4301,13 @@
           "pos": 4,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-service"
-          ]
+          "component_whitelist": ["proposal-service"]
         },
         "team": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-deliverable-team-entry"
-          ],
+          "component_whitelist": ["proposal-deliverable-team-entry"],
           "pos": 5,
           "required": true
         }
@@ -4675,9 +4463,7 @@
           "minimum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-phase-entry"
-          ]
+          "component_whitelist": ["proposal-phase-entry"]
         }
       },
       "image": null,
@@ -4707,9 +4493,7 @@
           "type": "option",
           "use_uuid": true,
           "source": "internal_stories",
-          "filter_content_type": [
-            "proposal-department"
-          ],
+          "filter_content_type": ["proposal-department"],
           "required": true
         },
         "rate_type": {
@@ -4776,9 +4560,7 @@
           "type": "option",
           "use_uuid": true,
           "source": "internal_stories",
-          "filter_content_type": [
-            "proposal-department"
-          ],
+          "filter_content_type": ["proposal-department"],
           "required": true
         },
         "role": {
@@ -4788,9 +4570,7 @@
           "maximum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-role"
-          ]
+          "component_whitelist": ["proposal-role"]
         }
       },
       "image": null,
@@ -4829,9 +4609,7 @@
           "minimum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-phase-team-entry"
-          ]
+          "component_whitelist": ["proposal-phase-team-entry"]
         }
       },
       "image": null,
@@ -5001,17 +4779,7 @@
             "1ef77ef8-466a-4b74-a076-f4554004e128"
           ],
           "customize_toolbar": true,
-          "toolbar": [
-            "blok",
-            "bold",
-            "list",
-            "h3",
-            "h4",
-            "italic",
-            "link",
-            "olist",
-            "paragraph"
-          ],
+          "toolbar": ["blok", "bold", "list", "h3", "h4", "italic", "link", "olist", "paragraph"],
           "pos": 1
         },
         "data": {
@@ -5115,9 +4883,7 @@
           "type": "option",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-department"
-          ],
+          "component_whitelist": ["proposal-department"],
           "minimum": 1,
           "maximum": 1,
           "required": true,
@@ -5125,9 +4891,7 @@
           "key": "department",
           "use_uuid": true,
           "source": "internal_stories",
-          "filter_content_type": [
-            "proposal-department"
-          ]
+          "filter_content_type": ["proposal-department"]
         },
         "role": {
           "type": "bloks",
@@ -5136,9 +4900,7 @@
           "maximum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-role"
-          ],
+          "component_whitelist": ["proposal-role"],
           "required": true,
           "key": "role"
         },
@@ -5211,9 +4973,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-scope-entry"
-          ],
+          "component_whitelist": ["proposal-scope-entry"],
           "required": true,
           "minimum": 1
         },
@@ -5221,9 +4981,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-team-entry"
-          ],
+          "component_whitelist": ["proposal-team-entry"],
           "required": true,
           "minimum": 1
         },
@@ -5233,15 +4991,11 @@
           "minimum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-estimate-entry"
-          ]
+          "component_whitelist": ["proposal-estimate-entry"]
         },
         "tab-4ab934ca-2771-464a-857a-ee27ae87c8d3": {
           "display_name": "Content",
-          "keys": [
-            "body"
-          ],
+          "keys": ["body"],
           "pos": 0,
           "type": "tab"
         },
@@ -5249,9 +5003,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-section"
-          ]
+          "component_whitelist": ["proposal-section"]
         },
         "show_team_members": {
           "type": "boolean",
@@ -5318,9 +5070,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-deliverable"
-          ],
+          "component_whitelist": ["proposal-deliverable"],
           "required": false,
           "pos": 5
         },
@@ -5328,9 +5078,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-package-pricing"
-          ],
+          "component_whitelist": ["proposal-package-pricing"],
           "required": false,
           "pos": 6
         },
@@ -5339,16 +5087,12 @@
           "required": false,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-package-team-entry"
-          ],
+          "component_whitelist": ["proposal-package-team-entry"],
           "pos": 7
         },
         "tab-4ab934ca-2771-464a-857a-ee27ae87c8d3": {
           "display_name": "Content",
-          "keys": [
-            "body"
-          ],
+          "keys": ["body"],
           "pos": 8,
           "type": "tab"
         },
@@ -5356,9 +5100,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "proposal-section"
-          ],
+          "component_whitelist": ["proposal-section"],
           "pos": 9
         }
       },
@@ -5395,9 +5137,7 @@
         },
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true,
           "asset_folder_id": 216885
         }
@@ -5430,9 +5170,7 @@
           "use_uuid": true,
           "required": true,
           "source": "internal_stories",
-          "filter_content_type": [
-            "recognition-type"
-          ],
+          "filter_content_type": ["recognition-type"],
           "folder_slug": "database/recognition-types",
           "pos": 0,
           "key": "recognition"
@@ -5443,9 +5181,7 @@
           "pos": 1,
           "required": true,
           "source": "internal_stories",
-          "filter_content_type": [
-            "project"
-          ],
+          "filter_content_type": ["project"],
           "key": "project"
         },
         "external_link": {
@@ -5503,9 +5239,7 @@
         "image": {
           "type": "asset",
           "required": true,
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 216885,
           "key": "Image",
           "pos": 2
@@ -5555,9 +5289,7 @@
         "image": {
           "type": "asset",
           "pos": 1,
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "title": {
           "type": "text",
@@ -5572,9 +5304,7 @@
           "pos": 4,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ],
+          "component_whitelist": ["link"],
           "maximum": 1
         }
       },
@@ -5694,9 +5424,7 @@
         "photo": {
           "type": "asset",
           "pos": 0,
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "name": {
           "type": "text",
@@ -5802,9 +5530,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "services_deppartment"
-          ],
+          "component_whitelist": ["services_deppartment"],
           "pos": 3
         }
       },
@@ -5839,9 +5565,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "services_group_entry"
-          ],
+          "component_whitelist": ["services_group_entry"],
           "pos": 2
         }
       },
@@ -5902,9 +5626,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "services_entry"
-          ]
+          "component_whitelist": ["services_entry"]
         }
       },
       "image": null,
@@ -5943,9 +5665,7 @@
           "pos": 2,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "service-timeline-row"
-          ]
+          "component_whitelist": ["service-timeline-row"]
         },
         "awards_title": {
           "type": "text",
@@ -5960,17 +5680,13 @@
           "pos": 5,
           "required": true,
           "source": "internal_stories",
-          "filter_content_type": [
-            "recognition-entry"
-          ],
+          "filter_content_type": ["recognition-entry"],
           "folder_slug": "",
           "display_name": "Awards"
         },
         "showreel": {
           "type": "asset",
-          "filetypes": [
-            "videos"
-          ],
+          "filetypes": ["videos"],
           "pos": 7
         },
         "showreel_button_label": {
@@ -5993,9 +5709,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "services_deppartment"
-          ],
+          "component_whitelist": ["services_deppartment"],
           "pos": 12
         },
         "deliverables_title": {
@@ -6011,9 +5725,7 @@
           "pos": 15,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "deliverables_entry"
-          ]
+          "component_whitelist": ["deliverables_entry"]
         },
         "testimonials_title1": {
           "type": "text",
@@ -6073,9 +5785,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "richtext-testimonial"
-          ],
+          "component_whitelist": ["richtext-testimonial"],
           "minimum": 5,
           "maximum": 5,
           "pos": 22
@@ -6089,9 +5799,7 @@
           "restrict_type": "",
           "restrict_components": true,
           "default_value": "",
-          "component_whitelist": [
-            "client-logo"
-          ],
+          "component_whitelist": ["client-logo"],
           "pos": 24
         }
       },
@@ -6124,60 +5832,45 @@
         },
         "before_light": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 1,
           "asset_folder_id": 235888
         },
         "before_dark": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 2,
           "asset_folder_id": 235888
         },
         "after_light": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 3,
           "asset_folder_id": 235888
         },
         "after_dark": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 4,
           "asset_folder_id": 235888
         },
         "decoration": {
           "type": "section",
           "pos": 5,
-          "keys": [
-            "decoration_light",
-            "decoration_dark"
-          ]
+          "keys": ["decoration_light", "decoration_dark"]
         },
         "decoration_light": {
           "type": "asset",
           "pos": 6,
           "description": "Optional image to be above the cell with custom asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 235888
         },
         "decoration_dark": {
           "type": "asset",
           "pos": 7,
           "description": "Optional image to be above the cell with custom asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 235888
         },
         "left_offset": {
@@ -6223,9 +5916,7 @@
           "maximum": 2,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "service-timeline-subrow"
-          ]
+          "component_whitelist": ["service-timeline-subrow"]
         }
       },
       "image": null,
@@ -6255,9 +5946,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "service-timeline-cell"
-          ]
+          "component_whitelist": ["service-timeline-cell"]
         }
       },
       "image": null,
@@ -6285,9 +5974,7 @@
       "schema": {
         "images": {
           "type": "multiasset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         }
       },
       "image": "//a.storyblok.com/f/198185/x/b133815452/slideshow_block.png",
@@ -6430,9 +6117,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "get-a-quote-step"
-          ],
+          "component_whitelist": ["get-a-quote-step"],
           "pos": 3
         }
       },
@@ -6520,9 +6205,7 @@
         "photo": {
           "type": "asset",
           "pos": 0,
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 212283
         },
         "email": {
@@ -6549,25 +6232,19 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "team-buttons"
-          ],
+          "component_whitelist": ["team-buttons"],
           "pos": 6
         },
         "cover_image_light": {
           "type": "asset",
           "pos": 7,
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 242648
         },
         "cover_image_dark": {
           "type": "asset",
           "pos": 8,
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "asset_folder_id": 242648
         },
         "links": {
@@ -6575,9 +6252,7 @@
           "pos": 9,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "team-member-link"
-          ]
+          "component_whitelist": ["team-member-link"]
         },
         "is_active": {
           "type": "boolean",
@@ -6585,13 +6260,7 @@
         },
         "tab-c90d7d4a-2910-456a-9d47-9c3bb3ec09aa": {
           "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image",
-            "priority",
-            "change_frequency"
-          ],
+          "keys": ["seo_title", "seo_description", "seo_og_image", "priority", "change_frequency"],
           "pos": 11,
           "type": "tab"
         },
@@ -6824,9 +6493,7 @@
           "maximum": 5,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "richtext-testimonial"
-          ],
+          "component_whitelist": ["richtext-testimonial"],
           "pos": 6
         }
       },
@@ -6874,9 +6541,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "timeline-section"
-          ],
+          "component_whitelist": ["timeline-section"],
           "pos": 4
         }
       },
@@ -6994,9 +6659,7 @@
       "schema": {
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "description": "Hello"
         },
         "border": {
@@ -7054,11 +6717,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "timeline-arrow",
-            "timeline-image",
-            "timeline-text"
-          ]
+          "component_whitelist": ["timeline-arrow", "timeline-image", "timeline-text"]
         },
         "width": {
           "type": "number",
@@ -7102,9 +6761,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "service-timeline-row"
-          ]
+          "component_whitelist": ["service-timeline-row"]
         }
       },
       "image": null,
@@ -7142,9 +6799,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ],
+          "component_whitelist": ["link"],
           "pos": 2
         },
         "width": {
@@ -7196,10 +6851,7 @@
         "text": {
           "type": "richtext",
           "customize_toolbar": true,
-          "toolbar": [
-            "bold",
-            "paragraph"
-          ]
+          "toolbar": ["bold", "paragraph"]
         }
       },
       "image": "//a.storyblok.com/f/198185/x/93160417c2/timezone_block.png",
@@ -7242,10 +6894,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "column-media",
-            "column"
-          ],
+          "component_whitelist": ["column-media", "column"],
           "minimum": 2,
           "maximum": 2,
           "required": true,
@@ -7377,9 +7026,7 @@
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "vertical-list-entry"
-          ],
+          "component_whitelist": ["vertical-list-entry"],
           "key": "success_fee",
           "pos": 5
         }
@@ -7466,9 +7113,7 @@
         },
         "video": {
           "type": "asset",
-          "filetypes": [
-            "videos"
-          ],
+          "filetypes": ["videos"],
           "required": true
         },
         "loop": {
@@ -7545,12 +7190,7 @@
           "type": "options",
           "source": "internal_stories",
           "folder_slug": "",
-          "filter_content_type": [
-            "career",
-            "project",
-            "handbook",
-            "blog-post"
-          ],
+          "filter_content_type": ["career", "project", "handbook", "blog-post"],
           "max_options": "3",
           "pos": 2
         },

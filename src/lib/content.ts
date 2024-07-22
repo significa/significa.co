@@ -293,8 +293,8 @@ export async function fetchPage(options: {
           per_page: 50,
           page: 1,
           filter_query: {
-            author: {
-              in: data.story.uuid
+            authors: {
+              any_in_array: data.story.uuid
             }
           }
         }),

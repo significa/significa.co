@@ -7,7 +7,7 @@
   import { t } from '$lib/i18n';
   import type { ISbStoryData } from '@storyblok/js';
   import EggChicken from '../illustrations/assets/egg-chicken.webp';
-  import QuimHead from '../illustrations/assets/quim.webp';
+  import SeggChicken from '../illustrations/assets/segg-chicken.webp';
   import BG from '../illustrations/assets/bg-work-recognitions.webp';
   import BGWhite from '../illustrations/assets/bg-work-recognitions-white.webp';
   import { theme } from '$lib/stores/theme';
@@ -36,7 +36,7 @@
     class="container mx-auto px-container @container flex flex-col max-w-[1056px] pt-16 xl:pt-32 relative"
   >
     <img src={EggChicken} class="absolute block drop-shadow-md -right-56 -bottom-80" alt="" />
-    <img src={QuimHead} class="absolute block drop-shadow-md -left-60 top-12" alt="" />
+    <img src={SeggChicken} class="absolute block drop-shadow-md -left-72 top-12 w-[20%]" alt="" />
     <h3 class="text-5xl font-semibold">{block.title}</h3>
   </section>
 

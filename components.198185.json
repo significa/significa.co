@@ -457,41 +457,62 @@
       "name": "blog-post",
       "display_name": "Author",
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2024-05-16T10:15:54.405Z",
+      "updated_at": "2024-08-13T14:33:19.492Z",
       "id": 3442347,
       "schema": {
-        "cover": {
-          "type": "asset",
-          "filetypes": ["images"],
-          "asset_folder_id": 212285,
-          "required": false
-        },
-        "intro": {
-          "type": "textarea",
-          "required": true
-        },
-        "tab-9a5d9933-3840-42d8-aa24-d87e83a9eb5d": {
-          "display_name": "Content",
-          "keys": ["body"],
-          "pos": 0,
-          "type": "tab"
-        },
-        "tab-c1b66206-334d-4470-a996-ca9aa074e23c": {
-          "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image", "structure_data_markup"],
-          "pos": 0,
-          "type": "tab"
-        },
         "seo_title": {
-          "type": "text"
+          "type": "text",
+          "pos": 0
         },
         "seo_description": {
-          "type": "text"
+          "type": "text",
+          "pos": 1
         },
         "seo_og_image": {
           "type": "asset",
           "filetypes": ["images"],
-          "asset_folder_id": 212285
+          "asset_folder_id": 212285,
+          "pos": 2
+        },
+        "seo_canonical_url": {
+          "type": "text",
+          "pos": 3,
+          "description": "The default is the page URL"
+        },
+        "structure_data_markup": {
+          "type": "textarea",
+          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
+          "pos": 4
+        },
+        "cover": {
+          "type": "asset",
+          "filetypes": ["images"],
+          "asset_folder_id": 212285,
+          "required": false,
+          "pos": 5
+        },
+        "intro": {
+          "type": "textarea",
+          "required": true,
+          "pos": 6
+        },
+        "tab-9a5d9933-3840-42d8-aa24-d87e83a9eb5d": {
+          "display_name": "Content",
+          "keys": ["body"],
+          "pos": 7,
+          "type": "tab"
+        },
+        "tab-c1b66206-334d-4470-a996-ca9aa074e23c": {
+          "display_name": "SEO",
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image",
+            "structure_data_markup",
+            "seo_canonical_url"
+          ],
+          "pos": 8,
+          "type": "tab"
         },
         "body": {
           "type": "richtext",
@@ -518,7 +539,8 @@
             "link",
             "blok",
             "h4"
-          ]
+          ],
+          "pos": 9
         },
         "authors": {
           "type": "options",
@@ -526,32 +548,33 @@
           "filter_content_type": ["team-member"],
           "required": true,
           "min_options": "1",
-          "max_options": "4"
+          "max_options": "4",
+          "pos": 10
         },
         "services": {
           "type": "options",
           "source": "internal",
-          "datasource_slug": "services"
+          "datasource_slug": "services",
+          "pos": 11
         },
         "deliverables": {
           "type": "options",
           "source": "internal",
-          "datasource_slug": "deliverables"
+          "datasource_slug": "deliverables",
+          "pos": 12
         },
         "tech": {
           "type": "options",
           "display_name": "",
           "source": "internal",
-          "datasource_slug": "tech-stack"
+          "datasource_slug": "tech-stack",
+          "pos": 13
         },
         "industry": {
           "type": "options",
           "source": "internal",
-          "datasource_slug": "industry"
-        },
-        "structure_data_markup": {
-          "type": "textarea",
-          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)"
+          "datasource_slug": "industry",
+          "pos": 14
         }
       },
       "image": "//a.storyblok.com/f/198185/x/f51edbf69b/screenshot-2023-03-22-at-11-49-53.png",
@@ -2888,47 +2911,33 @@
       "name": "landing-page",
       "display_name": null,
       "created_at": "2024-01-09T16:40:58.537Z",
-      "updated_at": "2024-05-15T08:01:53.679Z",
+      "updated_at": "2024-08-13T14:29:22.784Z",
       "id": 5142044,
       "schema": {
-        "keep_top_bar_hidden": {
-          "type": "boolean",
-          "pos": 0,
-          "required": false
-        },
-        "blocks": {
-          "type": "bloks",
-          "restrict_type": "groups",
-          "restrict_components": true,
-          "component_whitelist": [],
-          "component_group_whitelist": ["c9011224-9690-43bd-b686-e8f60ef6c7f6"],
-          "pos": 1
-        },
-        "tab-577daf7c-b61e-4a23-8184-bd9c01ae0af3": {
-          "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image",
-            "change_frequency",
-            "priority",
-            "structure_data_markup"
-          ],
-          "pos": 2,
-          "type": "tab"
+        "structure_data_markup": {
+          "type": "textarea",
+          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
+          "tooltip": true,
+          "display_name": "Structure Data Markup",
+          "pos": 0
         },
         "seo_title": {
           "type": "text",
-          "pos": 3
+          "pos": 1
         },
         "seo_description": {
           "type": "text",
-          "pos": 4
+          "pos": 2
         },
         "seo_og_image": {
           "type": "asset",
           "filetypes": ["images"],
-          "pos": 5
+          "pos": 3
+        },
+        "seo_canonical_url": {
+          "type": "text",
+          "pos": 4,
+          "description": "The default is the page URL"
         },
         "change_frequency": {
           "type": "option",
@@ -2971,19 +2980,40 @@
               "name": "Never"
             }
           ],
-          "pos": 6
+          "pos": 5
         },
         "priority": {
           "type": "number",
           "description": "The priority of the page relative to other pages on your site, where 0.1 is the lowest priority and 1.0 is the highest priority.\n\n1.0-0.8\nHomepage, product information, landing pages.\n\n0.7-0.4\nNews articles, some weather services, blog posts, pages that no site would be complete without.\n\n0.3-0.0\nFAQs, outdated info, old press releases, completely static pages that are still relevant enough to keep from deleting entirely.",
           "decimals": 1,
-          "pos": 7
+          "pos": 6
         },
-        "structure_data_markup": {
-          "type": "textarea",
-          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
-          "tooltip": true,
-          "display_name": "Structure Data Markup"
+        "keep_top_bar_hidden": {
+          "type": "boolean",
+          "pos": 7,
+          "required": false
+        },
+        "blocks": {
+          "type": "bloks",
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_whitelist": [],
+          "component_group_whitelist": ["c9011224-9690-43bd-b686-e8f60ef6c7f6"],
+          "pos": 8
+        },
+        "tab-577daf7c-b61e-4a23-8184-bd9c01ae0af3": {
+          "display_name": "SEO",
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image",
+            "change_frequency",
+            "priority",
+            "structure_data_markup",
+            "seo_canonical_url"
+          ],
+          "pos": 9,
+          "type": "tab"
         }
       },
       "image": null,
@@ -3394,41 +3424,28 @@
       "name": "page",
       "display_name": null,
       "created_at": "2023-03-03T13:41:50.937Z",
-      "updated_at": "2024-05-15T07:59:57.369Z",
+      "updated_at": "2024-08-13T14:21:23.054Z",
       "id": 3520995,
       "schema": {
-        "page": {
-          "type": "bloks",
-          "restrict_type": "groups",
-          "restrict_components": true,
-          "component_whitelist": [],
-          "component_group_whitelist": ["78726ff5-00c6-4ddb-bfef-551b83977e54"],
-          "maximum": 1
-        },
-        "tab-b1b4aa1b-2d5c-436e-ac16-09e30b9de047": {
-          "display_name": "SEO",
-          "keys": [
-            "seo_title",
-            "seo_description",
-            "seo_og_image",
-            "change_frequency",
-            "priority",
-            "structure_data_markup"
-          ],
-          "pos": 0,
-          "type": "tab"
-        },
         "seo_title": {
           "type": "text",
-          "required": false
+          "required": false,
+          "pos": 0
         },
         "seo_description": {
           "type": "text",
-          "required": false
+          "required": false,
+          "pos": 1
         },
         "seo_og_image": {
           "type": "asset",
-          "filetypes": ["images"]
+          "filetypes": ["images"],
+          "pos": 2
+        },
+        "seo_canonical_url": {
+          "type": "text",
+          "pos": 3,
+          "description": "The default is the page URL"
         },
         "change_frequency": {
           "type": "option",
@@ -3471,25 +3488,52 @@
               "value": "never",
               "name": "Never"
             }
-          ]
+          ],
+          "pos": 4
         },
         "priority": {
           "type": "number",
           "description": "The priority of the page relative to other pages on your site, where 0.1 is the lowest priority and 1.0 is the highest priority.\n\n1.0-0.8\nHomepage, product information, landing pages.\n\n0.7-0.4\nNews articles, some weather services, blog posts, pages that no site would be complete without.\n\n0.3-0.0\nFAQs, outdated info, old press releases, completely static pages that are still relevant enough to keep from deleting entirely.",
-          "decimals": 1
+          "decimals": 1,
+          "pos": 5
+        },
+        "structure_data_markup": {
+          "type": "textarea",
+          "display_name": "Structure Data Markup",
+          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
+          "tooltip": true,
+          "pos": 6
+        },
+        "page": {
+          "type": "bloks",
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_whitelist": [],
+          "component_group_whitelist": ["78726ff5-00c6-4ddb-bfef-551b83977e54"],
+          "maximum": 1,
+          "pos": 7
+        },
+        "tab-b1b4aa1b-2d5c-436e-ac16-09e30b9de047": {
+          "display_name": "SEO",
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image",
+            "change_frequency",
+            "priority",
+            "structure_data_markup",
+            "seo_canonical_url"
+          ],
+          "pos": 8,
+          "type": "tab"
         },
         "blocks": {
           "type": "bloks",
           "restrict_type": "groups",
           "restrict_components": true,
           "component_whitelist": [],
-          "component_group_whitelist": ["c9011224-9690-43bd-b686-e8f60ef6c7f6"]
-        },
-        "structure_data_markup": {
-          "type": "textarea",
-          "display_name": "Structure Data Markup",
-          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
-          "tooltip": true
+          "component_group_whitelist": ["c9011224-9690-43bd-b686-e8f60ef6c7f6"],
+          "pos": 9
         }
       },
       "image": null,
@@ -6430,7 +6474,7 @@
       "name": "testimonials",
       "display_name": null,
       "created_at": "2024-01-23T16:14:01.707Z",
-      "updated_at": "2024-01-26T11:47:06.219Z",
+      "updated_at": "2024-07-22T08:24:27.643Z",
       "id": 5218864,
       "schema": {
         "testimonials_title1": {
@@ -6489,7 +6533,7 @@
         },
         "testimonials": {
           "type": "bloks",
-          "minimum": 5,
+          "minimum": 3,
           "maximum": 5,
           "restrict_type": "",
           "restrict_components": true,

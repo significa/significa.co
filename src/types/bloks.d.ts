@@ -157,18 +157,19 @@ export interface RichtextStoryblok {
 }
 
 export interface BlogPostStoryblok {
-  cover?: AssetStoryblok;
-  intro: string;
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
+  seo_canonical_url?: string;
+  structure_data_markup?: string;
+  cover?: AssetStoryblok;
+  intro: string;
   body?: RichtextStoryblok;
   authors: (StoryblokStory<TeamMemberStoryblok> | string)[];
   services?: (number | string)[];
   deliverables?: (number | string)[];
   tech?: (number | string)[];
   industry?: (number | string)[];
-  structure_data_markup?: string;
   _uid: string;
   component: 'blog-post';
   [k: string]: any;
@@ -691,6 +692,13 @@ export interface ImageGridStoryblok {
 }
 
 export interface LandingPageStoryblok {
+  structure_data_markup?: string;
+  seo_title?: string;
+  seo_description?: string;
+  seo_og_image?: AssetStoryblok;
+  seo_canonical_url?: string;
+  change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  priority?: string;
   keep_top_bar_hidden?: boolean;
   blocks?: (
     | AboutGridStoryblok
@@ -727,12 +735,6 @@ export interface LandingPageStoryblok {
     | VerticalListStoryblok
     | WorkRecognitionsStoryblok
   )[];
-  seo_title?: string;
-  seo_description?: string;
-  seo_og_image?: AssetStoryblok;
-  change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
-  priority?: string;
-  structure_data_markup?: string;
   _uid: string;
   component: 'landing-page';
   [k: string]: any;
@@ -833,6 +835,13 @@ export interface PackagesStoryblok {
 }
 
 export interface PageStoryblok {
+  seo_title?: string;
+  seo_description?: string;
+  seo_og_image?: AssetStoryblok;
+  seo_canonical_url?: string;
+  change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  priority?: string;
+  structure_data_markup?: string;
   page?: (
     | AboutPageStoryblok
     | BlogIndexStoryblok
@@ -844,11 +853,6 @@ export interface PageStoryblok {
     | ServicesPageStoryblok
     | StaticPageStoryblok
   )[];
-  seo_title?: string;
-  seo_description?: string;
-  seo_og_image?: AssetStoryblok;
-  change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
-  priority?: string;
   blocks?: (
     | AboutGridStoryblok
     | AwardsGridStoryblok
@@ -884,7 +888,6 @@ export interface PageStoryblok {
     | VerticalListStoryblok
     | WorkRecognitionsStoryblok
   )[];
-  structure_data_markup?: string;
   _uid: string;
   component: 'page';
   uuid?: string;

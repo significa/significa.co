@@ -17,6 +17,12 @@
 
 <svelte:head>
   {#if !inDrawer}
+    <!-- FYI: Added this seo_canonical_url field only to the 'Page' | 'Landing Page' | 'Blog Post (Author)' content types -->
+    <link
+      rel="canonical"
+      href={$page.data.page?.story?.content?.seo_canonical_url || `${$page.url.toString()}`}
+    />
+
     <title>{title || $page.data.page?.story?.content?.seo_title || t('seo.title')}</title>
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@SignificaDotCo" />

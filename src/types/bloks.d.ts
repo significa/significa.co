@@ -578,14 +578,24 @@ export interface GetAQuoteStepStoryblok {
 }
 
 export interface HandbookStoryblok {
-  cover?: AssetStoryblok;
-  tagline?: string;
-  intro?: string;
+  last_updated: string;
+  chapter:
+    | '1 – Knowing Significa'
+    | '2 – Working at Significa'
+    | '3 – Recruitment'
+    | '4 – Working with Significa'
+    | '5 – Strategy and product';
+  cover: AssetStoryblok;
+  order: string;
+  highlight?: boolean;
   body?: RichtextStoryblok;
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
-  draft?: boolean;
+  seo_canonical_url?: string;
+  change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  priority?: string;
+  structure_data_markup?: string;
   _uid: string;
   component: 'handbook';
   [k: string]: any;

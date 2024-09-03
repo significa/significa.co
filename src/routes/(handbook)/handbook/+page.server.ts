@@ -1,9 +1,38 @@
-import { createFileTree } from '$lib/utils/notion';
-import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-import handbook from '$root/handbook-data.json';
+import type { ISbStoryData } from '@storyblok/js';
+import { getStoryblok } from '$lib/storyblok';
+import type { HandbookStoryblok } from '$types/bloks';
+import { error } from '@sveltejs/kit';
+import { groupHandbookChapters } from '$components/pages/handbook-index/utils';
 
-export const load = () => {
-  const chapters = createFileTree(handbook as Array<PageObjectResponse>);
+export const load = async ({ locals, fetch }) => {
+  const version = locals.version;
+  const storyblok = getStoryblok({ fetch });
 
-  return { chapters };
+  const exclusions = [
+    'body',
+    'seo_title',
+    'seo_og_image',
+    'seo_og_image',
+    'seo_description',
+    'change_frequency',
+    'seo_canonical_url',
+    'structure_data_markup',
+    'priority'
+  ] as const;
+
+  try {
+    const res = await storyblok.get('cdn/stories', {
+      starts_with: 'handbook',
+      cv: Date.now(),
+      version,
+      excluding_fields: exclusions.join(',')
+    });
+
+    const stories = res.data.stories as ISbStoryData<HandbookStoryblok>[];
+
+    return { chapters: groupHandbookChapters(stories) };
+  } catch (err) {
+    console.error('Failed to get Handbook content for the index page', err);
+    throw error(404, 'Not found');
+  }
 };

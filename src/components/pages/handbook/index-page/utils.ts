@@ -1,13 +1,9 @@
 import type { HandbookStoryblok } from '$types/bloks';
 import type { ISbStoryData } from '@storyblok/js';
-import type { ChaptersMap, TransformedHandbookItem } from './types';
+import type { ChapterCardsMap, HandbookItemCard } from './types';
+import { isNestedPath, trimChapterNumber } from '../common/utils';
 
-const SEPARATOR = ' – ' as const;
-
-const isNestedPath = (path: string) => path.replace(/\/$/, '').split('/').length > 2;
-const trimChapterNumber = (chapter: string) => +chapter.split(SEPARATOR)[0] || 1;
-
-export const groupHandbookChapters = (stories: ISbStoryData<HandbookStoryblok>[]) => {
+export const groupMainHandbookEntriesByChapter = (stories: ISbStoryData<HandbookStoryblok>[]) => {
   const transformed = stories
     .map(
       ({ content: { cover, order, chapter, last_updated, highlight }, uuid, full_slug, name }) => ({
@@ -24,11 +20,11 @@ export const groupHandbookChapters = (stories: ISbStoryData<HandbookStoryblok>[]
     .filter(({ full_slug }) => !isNestedPath(full_slug))
     .sort(({ chapter: a }, { chapter: b }) => {
       return trimChapterNumber(a) - trimChapterNumber(b);
-    }) satisfies TransformedHandbookItem;
+    }) satisfies HandbookItemCard[];
 
   const chaptersList = [...new Set(transformed.map(({ chapter }) => chapter))];
 
-  const chapters: ChaptersMap = new Map();
+  const chapters: ChapterCardsMap = new Map();
 
   chaptersList.forEach((ch) => {
     chapters.set(

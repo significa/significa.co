@@ -8,9 +8,9 @@
   import handbookOG from '$assets/handbook/HandbookOG.jpg';
   import { sanitizeSlug } from '$lib/utils/paths';
   import { getImageAttributes } from '$lib/utils/cms';
-  import type { ChaptersMap } from './types';
+  import type { ChapterCardsMap } from './types';
 
-  export let chapters: ChaptersMap;
+  export let chapters: ChapterCardsMap;
 </script>
 
 <Seo

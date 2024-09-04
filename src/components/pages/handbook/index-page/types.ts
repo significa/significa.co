@@ -1,6 +1,6 @@
 import type { AssetStoryblok, HandbookStoryblok } from '$types/bloks';
 
-export type TransformedHandbookItem = {
+export type HandbookItemCard = {
   name: string;
   cover: AssetStoryblok;
   last_updated: string;
@@ -9,6 +9,6 @@ export type TransformedHandbookItem = {
   chapter: HandbookStoryblok['chapter'];
   highlight: boolean;
   full_slug: string;
-}[];
+};
 
-export type ChaptersMap = Map<HandbookStoryblok['chapter'], TransformedHandbookItem[number][]>;
+export type ChapterCardsMap = Map<HandbookStoryblok['chapter'], HandbookItemCard[]>;

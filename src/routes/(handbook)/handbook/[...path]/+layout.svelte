@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page as pageStore } from '$app/stores';
   import clsx from 'clsx';
   import { Icon, Link, TextButton } from '@significa/svelte-ui';
   import plus from '$assets/plus.svg?raw';
@@ -8,10 +9,7 @@
   import { afterNavigate } from '$app/navigation';
   import { t } from '$lib/i18n';
   import { circOut } from 'svelte/easing';
-  import { slugs } from '$lib/stores/handbook-slugs';
-  import { sanitizeSlug, slugify } from '$lib/utils/paths.js';
-  import { getPageTitle } from '$lib/utils/notion.js';
-  import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints.js';
+  import { sanitizeSlug } from '$lib/utils/paths.js';
 
   export let data;
 
@@ -21,28 +19,28 @@
     sidebar.set(false);
   });
 
-  $: openPanes = Object.values(data.chapters).map((pages) => ({
+  $: openPanes = Object.values([...data.chapters.values()]).map((pages) => ({
     open: pages.some(
       (page) =>
-        data.path === page.slug ||
-        page.children?.some((childrenPage) => data.path === childrenPage.slug)
+        $pageStore.params.path === page.slug ||
+        page.children?.some((childrenPage) => $pageStore.params.path === childrenPage.slug)
     ),
     children: pages.map(
       (page) =>
-        data.path === page.slug ||
-        page.children?.some((childrenPage) => data.path === childrenPage.slug)
+        $pageStore.params.path === page.slug ||
+        page.children?.some((childrenPage) => $pageStore.params.path === childrenPage.slug)
     )
   }));
 
-  const dict = data.handbook.reduce(
-    (acc, page) => ({
-      ...acc,
-      ...{ [page.id]: slugify(getPageTitle(page as PageObjectResponse)) }
-    }),
-    {}
-  );
+  // const dict = data.handbook.reduce(
+  //   (acc, page) => ({
+  //     ...acc,
+  //     ...{ [page.id]: slugify(getPageTitle(page as PageObjectResponse)) }
+  //   }),
+  //   {}
+  // );
 
-  slugs.set(dict);
+  // slugs.set(dict);
 </script>
 
 <div class="lg:container lg:mx-auto lg:px-container pb-20" use:bodyLock={sidebar}>
@@ -79,7 +77,7 @@
 
       <nav class="px-container lg:px-0 pt-[calc(var(--topnav-height))] lg:pt-4">
         <ul>
-          {#each Object.entries(data.chapters) as [title, pages], i}
+          {#each data.chapters.entries() as [title, pages], i}
             <li
               transition:slide
               class={clsx(
@@ -98,7 +96,7 @@
                 <li
                   class={clsx(
                     'pl-6 py-1.5 border-l text-sm font-medium transition-all duration-300 flex items-center group',
-                    data.path === page.slug
+                    $pageStore.params.path === page.slug
                       ? 'text-foreground'
                       : 'border-border text-foreground-secondary'
                   )}
@@ -125,7 +123,7 @@
                     href={page.slug}
                   >
                     <span class="shrink-0">
-                      {page.title}
+                      {page.name}
                     </span>
                   </a>
                 </li>
@@ -136,7 +134,7 @@
                       <li
                         class={clsx(
                           'pl-6 py-2 text-sm border-l font-medium cursor-pointer transition-all duration-300',
-                          data.path === children.slug
+                          $pageStore.params.path === children.slug
                             ? 'border-foreground text-foreground-primary'
                             : 'border-border text-foreground-secondary'
                         )}
@@ -145,7 +143,7 @@
                           class="hover:text-foreground transition-color duration-300"
                           href={`${children.slug}`}
                         >
-                          {children.title}
+                          {children.name}
                         </a>
                       </li>
                     {/each}

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import HandbookIndexPage from '$components/pages/handbook-index/handbook-index.svelte';
+  import HandbookIndexPage from '$components/pages/handbook/index-page/handbook-index.svelte';
 
   export let data;
 

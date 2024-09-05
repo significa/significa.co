@@ -10,7 +10,6 @@
   import { t } from '$lib/i18n';
   import { circOut } from 'svelte/easing';
   import { sanitizeSlug } from '$lib/utils/paths.js';
-  import { trimLeadingSlash } from '$components/pages/handbook/common/utils.js';
 
   export let data;
 
@@ -20,18 +19,20 @@
     sidebar.set(false);
   });
 
-  $: pathname = $pageStore.url.pathname.slice(1);
-
   $: openPanes = Object.values([...data.chapters.values()]).map((pages) => ({
     open: pages.some(
       (page) =>
-        pathname === trimLeadingSlash(page.full_slug) ||
-        page.children?.some((childrenPage) => pathname === trimLeadingSlash(childrenPage.full_slug))
+        $pageStore.url.pathname === sanitizeSlug(page.full_slug) ||
+        page.children?.some(
+          (childrenPage) => $pageStore.url.pathname === sanitizeSlug(childrenPage.full_slug)
+        )
     ),
     children: pages.map(
       (page) =>
-        pathname === trimLeadingSlash(page.full_slug) ||
-        page.children?.some((childrenPage) => pathname === trimLeadingSlash(childrenPage.full_slug))
+        $pageStore.url.pathname === sanitizeSlug(page.full_slug) ||
+        page.children?.some(
+          (childrenPage) => $pageStore.url.pathname === sanitizeSlug(childrenPage.full_slug)
+        )
     )
   }));
 </script>
@@ -89,7 +90,7 @@
                 <li
                   class={clsx(
                     'pl-6 py-1.5 border-l text-sm font-medium transition-all duration-300 flex items-center group',
-                    pathname === trimLeadingSlash(page.full_slug)
+                    $pageStore.url.pathname === sanitizeSlug(page.full_slug)
                       ? 'text-foreground'
                       : 'border-border text-foreground-secondary'
                   )}
@@ -113,7 +114,7 @@
                   {/if}
                   <a
                     class="w-full mr-2 flex hover:text-foreground transition-color duration-300"
-                    href="/{page.full_slug}"
+                    href={sanitizeSlug(page.full_slug)}
                   >
                     <span class="shrink-0">
                       {page.name}
@@ -127,14 +128,14 @@
                       <li
                         class={clsx(
                           'pl-6 py-2 text-sm border-l font-medium cursor-pointer transition-all duration-300',
-                          pathname === trimLeadingSlash(children.full_slug)
+                          $pageStore.url.pathname === sanitizeSlug(children.full_slug)
                             ? 'border-foreground text-foreground-primary'
                             : 'border-border text-foreground-secondary'
                         )}
                       >
                         <a
                           class="hover:text-foreground transition-color duration-300"
-                          href="/{children.full_slug}"
+                          href={sanitizeSlug(children.full_slug)}
                         >
                           {children.name}
                         </a>

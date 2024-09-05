@@ -10,6 +10,7 @@
   import { t } from '$lib/i18n';
   import { circOut } from 'svelte/easing';
   import { sanitizeSlug } from '$lib/utils/paths.js';
+  import { trimLeadingSlash } from '$components/pages/handbook/common/utils.js';
 
   export let data;
 
@@ -19,28 +20,20 @@
     sidebar.set(false);
   });
 
+  $: pathname = $pageStore.url.pathname.slice(1);
+
   $: openPanes = Object.values([...data.chapters.values()]).map((pages) => ({
     open: pages.some(
       (page) =>
-        $pageStore.params.path === page.slug ||
-        page.children?.some((childrenPage) => $pageStore.params.path === childrenPage.slug)
+        pathname === trimLeadingSlash(page.full_slug) ||
+        page.children?.some((childrenPage) => pathname === trimLeadingSlash(childrenPage.full_slug))
     ),
     children: pages.map(
       (page) =>
-        $pageStore.params.path === page.slug ||
-        page.children?.some((childrenPage) => $pageStore.params.path === childrenPage.slug)
+        pathname === trimLeadingSlash(page.full_slug) ||
+        page.children?.some((childrenPage) => pathname === trimLeadingSlash(childrenPage.full_slug))
     )
   }));
-
-  // const dict = data.handbook.reduce(
-  //   (acc, page) => ({
-  //     ...acc,
-  //     ...{ [page.id]: slugify(getPageTitle(page as PageObjectResponse)) }
-  //   }),
-  //   {}
-  // );
-
-  // slugs.set(dict);
 </script>
 
 <div class="lg:container lg:mx-auto lg:px-container pb-20" use:bodyLock={sidebar}>
@@ -96,7 +89,7 @@
                 <li
                   class={clsx(
                     'pl-6 py-1.5 border-l text-sm font-medium transition-all duration-300 flex items-center group',
-                    $pageStore.params.path === page.slug
+                    pathname === trimLeadingSlash(page.full_slug)
                       ? 'text-foreground'
                       : 'border-border text-foreground-secondary'
                   )}
@@ -120,7 +113,7 @@
                   {/if}
                   <a
                     class="w-full mr-2 flex hover:text-foreground transition-color duration-300"
-                    href={page.slug}
+                    href="/{page.full_slug}"
                   >
                     <span class="shrink-0">
                       {page.name}
@@ -134,14 +127,14 @@
                       <li
                         class={clsx(
                           'pl-6 py-2 text-sm border-l font-medium cursor-pointer transition-all duration-300',
-                          $pageStore.params.path === children.slug
+                          pathname === trimLeadingSlash(children.full_slug)
                             ? 'border-foreground text-foreground-primary'
                             : 'border-border text-foreground-secondary'
                         )}
                       >
                         <a
                           class="hover:text-foreground transition-color duration-300"
-                          href={`${children.slug}`}
+                          href="/{children.full_slug}"
                         >
                           {children.name}
                         </a>

@@ -7,7 +7,6 @@ export type HandbookSidebarItem = {
   order: number;
   chapter: HandbookStoryblok['chapter'];
   full_slug: string;
-  slug: string;
   children: Omit<HandbookSidebarItem, 'children'>[];
 };
 

@@ -7,7 +7,8 @@ import type {
   ProjectStoryblok,
   TeamMemberStoryblok,
   LandingPageStoryblok,
-  RecognitionStoryblok
+  RecognitionStoryblok,
+  HandbookStoryblok
 } from '$types/bloks';
 import { HOME_SLUG } from './constants';
 
@@ -176,6 +177,7 @@ export type BlogPostPage = ISbStoryData<
 export type ProjectPage = ISbStoryData<ProjectStoryblok>;
 export type TeamMemberPage = ISbStoryData<TeamMemberStoryblok>;
 export type LandingPage = ISbStoryData<LandingPageStoryblok>;
+export type HandbookPage = ISbStoryData<HandbookStoryblok>;
 
 export type DynamicPage =
   | Page
@@ -183,7 +185,8 @@ export type DynamicPage =
   | ProjectPage
   | TeamMemberPage
   | CareerPage
-  | LandingPage;
+  | LandingPage
+  | HandbookPage;
 
 export type PageResult = {
   story: DynamicPage;
@@ -328,6 +331,10 @@ export async function fetchPage(options: {
           }
         })
       };
+    }
+
+    if (data.story.content.component === 'handbook') {
+      return { story: data.story };
     }
 
     return { story: data.story };

@@ -1,6 +1,6 @@
 import type { HandbookStoryblok } from '$types/bloks';
 import type { ISbStoryData } from '@storyblok/js';
-import { isNestedPath, trimChapterNumber, trimLeadingSlash } from '../common/utils';
+import { isNestedPath, trimChapterNumber } from '../common/utils';
 import type { HandbookSidebarItem, SidebarMap } from './types';
 
 export const groupHandbookEntriesByChapter = (stories: ISbStoryData<HandbookStoryblok>[]) => {
@@ -11,8 +11,7 @@ export const groupHandbookEntriesByChapter = (stories: ISbStoryData<HandbookStor
       id: uuid,
       order: +order,
       chapter,
-      full_slug,
-      slug: trimLeadingSlash(full_slug.replace('handbook/', ''))
+      full_slug
     }))
     .sort(({ chapter: a }, { chapter: b }) => {
       return trimChapterNumber(a) - trimChapterNumber(b);

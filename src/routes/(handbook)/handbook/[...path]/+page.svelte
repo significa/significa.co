@@ -1,7 +1,7 @@
 <script lang="ts">
-  import HandbookPage from '$components/pages/handbook-page.svelte';
+  import HandbookPage from '$components/pages/handbook/handbook-page/handbook-page.svelte';
 
   export let data;
 </script>
 
-<HandbookPage path={data.path} />
+<HandbookPage story={data.story} />

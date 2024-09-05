@@ -150,7 +150,7 @@
       </nav>
     </aside>
 
-    <main class="flex-1 mt-20 lg:mt-10 px-container md:px-0">
+    <main class="flex-1 mt-20 lg:mt-10">
       <slot />
     </main>
   </div>

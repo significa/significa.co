@@ -1,9 +1,14 @@
-import { createFileTree } from '$lib/utils/notion';
-import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-import handbook from '$root/handbook-data.json';
+import { getStoryblok } from '$lib/storyblok';
+import { getHandbookEntries } from '$components/pages/handbook/common/data.js';
+import { groupHandbookEntriesByChapter } from '$components/pages/handbook/handbook-page/utils.js';
 
-export const load = ({ params }) => {
-  const chapters = createFileTree(handbook as Array<PageObjectResponse>);
+export const load = async ({ locals }) => {
+  const version = locals.version;
+  const storyblok = getStoryblok({ fetch });
 
-  return { path: params.path, chapters, handbook };
+  const stories = await getHandbookEntries(storyblok, version, 'sidebar');
+
+  const chapters = groupHandbookEntriesByChapter(stories);
+
+  return { chapters };
 };

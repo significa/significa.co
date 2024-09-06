@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "prebuild": "npm run datasources && npm run sitemap && npm run handbook -- -d",
+    "prebuild": "npm run datasources && npm run sitemap",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -18,7 +18,6 @@
     "sb:pull": "npx storyblok@latest pull-components --space=198185",
     "sb:types": "npx storyblok-generate-ts@latest source=./components.198185.json target=./src/types/bloks.d.ts && prettier ./src/types/bloks.d.ts --write",
     "sb": "npm run sb:pull && npm run sb:types",
-    "handbook": "svelte-kit sync && npx ts-node@latest --project ./node.tsconfig.json ./scripts/handbook.ts",
     "datasources": "svelte-kit sync && npx ts-node@latest --project ./node.tsconfig.json ./scripts/datasources.ts",
     "sitemap": "svelte-kit sync && npx ts-node@latest --project ./node.tsconfig.json ./scripts/sitemap.ts",
     "prepare": "husky install"

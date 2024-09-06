@@ -2310,37 +2310,91 @@
       "name": "handbook",
       "display_name": null,
       "created_at": "2023-02-15T13:50:12.113Z",
-      "updated_at": "2023-05-04T09:09:12.330Z",
+      "updated_at": "2024-09-03T10:57:35.051Z",
       "id": 3442773,
       "schema": {
+        "last_updated": {
+          "type": "datetime",
+          "pos": 0,
+          "required": true,
+          "disable_time": true
+        },
+        "chapter": {
+          "type": "option",
+          "pos": 1,
+          "use_uuid": true,
+          "required": true,
+          "exclude_empty_option": true,
+          "options": [
+            {
+              "_uid": "14db7a67-f3ae-4911-9d34-54f435a545ad",
+              "name": "1 – Knowing Significa",
+              "value": "1 – Knowing Significa"
+            },
+            {
+              "_uid": "95905291-d1a8-4b19-8f37-c43c6659d9a5",
+              "value": "2 – Working at Significa",
+              "name": "2 – Working at Significa"
+            },
+            {
+              "_uid": "1551f571-a148-47cd-a024-33fd215539e5",
+              "value": "3 – Recruitment",
+              "name": "3 – Recruitment"
+            },
+            {
+              "_uid": "06ad8bbe-e278-4081-bba6-e0efa48be529",
+              "value": "4 – Working with Significa",
+              "name": "4 – Working with Significa"
+            },
+            {
+              "_uid": "632875c1-4c19-4d6c-8659-0a93010c08c3",
+              "value": "5 – Strategy and product",
+              "name": "5 – Strategy and product"
+            }
+          ],
+          "description": "When adding new chapters they should follow the format: \"{N} – {Name}\" where N is the presentation order."
+        },
         "cover": {
           "type": "asset",
           "filetypes": ["images"],
           "asset_folder_id": 212287,
           "key": "cover",
-          "pos": 0
+          "pos": 2,
+          "required": true
         },
-        "tagline": {
-          "type": "text",
-          "key": "tagline",
-          "pos": 1
+        "order": {
+          "type": "number",
+          "pos": 3,
+          "required": true,
+          "default_value": "1",
+          "min_value": 1,
+          "description": "Order within its parent whether chapter or sub-chapter."
         },
-        "intro": {
-          "type": "textarea",
-          "key": "intro",
-          "pos": 2
+        "highlight": {
+          "type": "boolean",
+          "pos": 4,
+          "inline_label": false,
+          "description": "Whether to present this page with a larger card on the index page."
         },
         "tab-6a37f9e9-5fe6-4268-a3e4-7fd4ed252cc0": {
           "display_name": "Content",
           "keys": ["body"],
-          "pos": 3,
+          "pos": 5,
           "type": "tab",
           "key": "tab-6a37f9e9-5fe6-4268-a3e4-7fd4ed252cc0"
         },
         "tab-40ff5487-8b8b-40db-afae-1c64b4705bbc": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image"],
-          "pos": 4,
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image",
+            "seo_canonical_url",
+            "change_frequency",
+            "priority",
+            "structure_data_markup"
+          ],
+          "pos": 6,
           "type": "tab",
           "key": "tab-40ff5487-8b8b-40db-afae-1c64b4705bbc"
         },
@@ -2368,33 +2422,92 @@
             "hrule",
             "blok",
             "h3",
-            "h4"
+            "h4",
+            "redo",
+            "undo",
+            "paste-action",
+            "image"
           ],
           "key": "body",
-          "pos": 5
+          "pos": 7
         },
         "seo_title": {
           "type": "text",
           "key": "seo_title",
-          "pos": 6
+          "pos": 8,
+          "description": "Defaults to: \"{Name} - Handbook by Significa\""
         },
         "seo_description": {
           "type": "text",
           "key": "seo_description",
-          "pos": 7
+          "pos": 9
         },
         "seo_og_image": {
           "type": "asset",
           "filetypes": ["images"],
           "asset_folder_id": 212287,
           "key": "seo_og_image",
-          "pos": 8
+          "pos": 10
         },
-        "draft": {
-          "type": "boolean",
-          "key": "coming_soon",
-          "pos": 9,
-          "default_value": true
+        "seo_canonical_url": {
+          "type": "text",
+          "pos": 11,
+          "description": "The default is the page URL"
+        },
+        "change_frequency": {
+          "type": "option",
+          "pos": 12,
+          "use_uuid": true,
+          "description": "The frequency with which the page is expected to change.\n\n1. Always\nThese page types are constantly changing and will include index pages on major news publications, Google News, stock market data, and social bookmarking categories.\n\n2. Hourly\nThese pages update every hour and will also include major news publications as well as weather services and forums.\n\n3. Daily\nPages updated on average once per day and include things like blog posts, smaller web forum pages, message boards, and classified ads.\n\n4. Weekly\nUpdates typically occur once per week, these pages will include website directories, product pricing pages, and smaller blogs.\n\n5. Monthly\nThese are updated once per month, give or take, and include category pages, FAQs, and sometimes Help Desk articles that change slightly. Refer to the section above for guidelines on what is considered to be a change frequency trigger.\n\n6. Yearly\nUpdates on these pages happen on an annual basis and are typically your contact page, “About” page, login pages, and registration pages.\n\n7. Never\nAs the name suggests, these pages never ever get updates. These are really old blog posts, press releases, notifications about updates that never need updating, and completely static pages.",
+          "options": [
+            {
+              "_uid": "c20494f2-7605-4a93-9c5e-8a88616c914b",
+              "name": "Always",
+              "value": "always"
+            },
+            {
+              "_uid": "f110a894-c721-401c-9107-6f89a35c8bbe",
+              "value": "hourly",
+              "name": "Hourly"
+            },
+            {
+              "_uid": "21445ecb-6be4-4e17-a45b-2df69f172510",
+              "value": "daily",
+              "name": "Daily"
+            },
+            {
+              "_uid": "ff8c6855-796c-4127-8474-8ddfb917d51c",
+              "value": "weekly",
+              "name": "Weekly"
+            },
+            {
+              "_uid": "37cc41b6-4504-43c9-a8c8-21a6ff8d7913",
+              "value": "monthly",
+              "name": "Monthly"
+            },
+            {
+              "_uid": "86615349-05a9-4929-b498-e3e35cb1e5ca",
+              "value": "yearly",
+              "name": "Yearly"
+            },
+            {
+              "_uid": "d496338c-471e-4d6d-bdc8-9f2d7420a0eb",
+              "value": "never",
+              "name": "Never"
+            }
+          ]
+        },
+        "priority": {
+          "type": "number",
+          "pos": 13,
+          "description": "The priority of the page relative to other pages on your site, where 0.1 is the lowest priority and 1.0 is the highest priority.\n",
+          "decimals": 1
+        },
+        "structure_data_markup": {
+          "type": "textarea",
+          "pos": 14,
+          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
+          "tooltip": true
         }
       },
       "image": null,
@@ -7257,6 +7370,71 @@
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
+    }
+  ],
+  "component_groups": [
+    {
+      "name": "Blocks",
+      "id": 109818,
+      "uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "parent_id": null,
+      "parent_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6"
+    },
+    {
+      "name": "Blocks & Rich Text",
+      "id": 109819,
+      "uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
+      "parent_id": null,
+      "parent_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca"
+    },
+    {
+      "name": "Canvas",
+      "id": 142134,
+      "uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+      "parent_id": null,
+      "parent_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72"
+    },
+    {
+      "name": "Configuration",
+      "id": 109825,
+      "uuid": "f789ade7-9cf4-4fd4-b95a-56b2cbe5844f",
+      "parent_id": null,
+      "parent_uuid": "f789ade7-9cf4-4fd4-b95a-56b2cbe5844f"
+    },
+    {
+      "name": "Content Types",
+      "id": 109822,
+      "uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
+      "parent_id": null,
+      "parent_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f"
+    },
+    {
+      "name": "Pages",
+      "id": 115747,
+      "uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
+      "parent_id": null,
+      "parent_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54"
+    },
+    {
+      "name": "Proposals",
+      "id": 203541,
+      "uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
+      "parent_id": null,
+      "parent_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48"
+    },
+    {
+      "name": "Rich Text",
+      "id": 109820,
+      "uuid": "1ef77ef8-466a-4b74-a076-f4554004e128",
+      "parent_id": null,
+      "parent_uuid": "1ef77ef8-466a-4b74-a076-f4554004e128"
+    },
+    {
+      "name": "Single",
+      "id": 109821,
+      "uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "parent_id": null,
+      "parent_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3"
     }
   ]
 }

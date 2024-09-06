@@ -1,6 +1,5 @@
 <script lang="ts">
   import DynamicPage from '$components/pages/dynamic-page.svelte';
-  import HandbookPage from '$components/pages/handbook-page.svelte';
   import { bodyLock, escapeKey } from '@significa/svelte-ui/actions';
   import { t } from '$lib/i18n';
   import { drawer } from '$lib/stores/drawer';
@@ -48,17 +47,13 @@
       <Button class="bg-background" variant="ghost" icon="close" on:click={drawer.close} />
     </header>
     <div>
-      {#if !$drawer.includes('handbook/')}
-        {#await fetchPage({ slug: $drawer, version: $page.data.version || 'published' })}
-          <div class="flex justify-center p-10">
-            <Spinner size="md" />
-          </div>
-        {:then page}
-          <DynamicPage {page} />
-        {/await}
-      {:else}
-        <HandbookPage path={$drawer.replace('/handbook/', '')} />
-      {/if}
+      {#await fetchPage({ slug: $drawer, version: $page.data.version || 'published' })}
+        <div class="flex justify-center p-10">
+          <Spinner size="md" />
+        </div>
+      {:then page}
+        <DynamicPage {page} />
+      {/await}
     </div>
   </div>
 {/if}

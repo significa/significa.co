@@ -8,10 +8,12 @@
     ProjectPage,
     CareerPage,
     TeamMemberPage,
-    LandingPage
+    LandingPage,
+    HandbookPage
   } from '$lib/content';
   import BlogPost from './blog-post.svelte';
   import Career from './career.svelte';
+  import Handbook from './handbook/handbook-page/handbook-page.svelte';
   import PageComponent from './page.svelte';
   import Project from './project.svelte';
   import TeamMember from './team-member.svelte';
@@ -58,6 +60,10 @@
   const isLandingPage = (page: PageResult): page is { story: LandingPage } => {
     return page.story.content.component === 'landing-page';
   };
+
+  const isHandbookPage = (page: PageResult): page is { story: HandbookPage } => {
+    return page.story.content.component === 'handbook';
+  };
 </script>
 
 {#if isPage(page)}
@@ -70,6 +76,8 @@
   <TeamMember story={page.story} posts={page.authorPosts} projects={page.authorProjects} />
 {:else if isCareerPage(page)}
   <Career story={page.story} />
+{:else if isHandbookPage(page)}
+  <Handbook story={page.story} />
 {:else if isLandingPage(page) && page.story.content.blocks?.length}
   <Seo structureDataMarkup={page.story.content.structure_data_markup} />
   {#each page.story.content.blocks as block}

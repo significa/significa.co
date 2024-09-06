@@ -1698,13 +1698,15 @@
       "name": "configuration",
       "display_name": null,
       "created_at": "2023-03-13T17:47:31.124Z",
-      "updated_at": "2024-02-23T10:41:20.263Z",
+      "updated_at": "2024-09-06T13:21:46.635Z",
       "id": 3575812,
       "schema": {
         "primary_navigation": {
           "type": "options",
           "source": "internal_stories",
-          "max_options": "4"
+          "max_options": "4",
+          "key": "primary_navigation",
+          "pos": 0
         },
         "call_to_action": {
           "type": "bloks",
@@ -1712,13 +1714,26 @@
           "maximum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["link"]
+          "component_whitelist": ["link"],
+          "key": "call_to_action",
+          "pos": 1
         },
         "footer": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["footer-column-internal", "footer-column-external"]
+          "component_whitelist": ["footer-column-internal", "footer-column-external"],
+          "key": "footer",
+          "pos": 2
+        },
+        "footer_logo": {
+          "type": "bloks",
+          "pos": 3,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["client-logo"],
+          "maximum": 1,
+          "key": "logo"
         }
       },
       "image": null,
@@ -2310,7 +2325,7 @@
       "name": "handbook",
       "display_name": null,
       "created_at": "2023-02-15T13:50:12.113Z",
-      "updated_at": "2024-09-03T10:57:35.051Z",
+      "updated_at": "2024-09-04T14:38:25.847Z",
       "id": 3442773,
       "schema": {
         "last_updated": {
@@ -2412,7 +2427,6 @@
             "italic",
             "strike",
             "underline",
-            "inlinecode",
             "paragraph",
             "h2",
             "list",
@@ -2420,13 +2434,10 @@
             "quote",
             "link",
             "hrule",
-            "blok",
             "h3",
             "h4",
-            "redo",
-            "undo",
-            "paste-action",
-            "image"
+            "blok",
+            "inlinecode"
           ],
           "key": "body",
           "pos": 7

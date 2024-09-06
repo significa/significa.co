@@ -49,7 +49,13 @@ export const groupHandbookEntriesByChapter = (stories: ISbStoryData<HandbookStor
         .sort(({ order: a }, { order: b }) => {
           return a - b;
         })
-        .map((t) => ({ ...t, children: childrenByPathname.get(t.full_slug) || [] }))
+        .map((t) => ({
+          ...t,
+          children:
+            childrenByPathname.get(t.full_slug)?.sort(({ order: a }, { order: b }) => {
+              return a - b;
+            }) || []
+        }))
     );
   });
 

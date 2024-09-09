@@ -69,7 +69,7 @@ improvements and bug-fixes.
 
 ## Deployment and release
 
-The staging environment is bounded to the `main` branch, each new addition to this branch, 
+The staging environment is bounded to the `main` branch, each new addition to this branch,
 creates a new deployment to staging.
 
 To deploy a new version to production, create a _semver_ compliant release in GitHub

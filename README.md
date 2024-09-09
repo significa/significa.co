@@ -69,10 +69,11 @@ improvements and bug-fixes.
 
 ## Deployment and release
 
-The staging branch is bounded to the `main` branch, create a PR against it for a new feature.
+The staging environment is bounded to the `main` branch, each new addition to this branch, 
+creates a new deployment to staging.
 
-To deploy a new production version, create a semver release in GitHub
-(prefixed with `v`, for example: `vX.X.X`).
+To deploy a new version to production, create a _semver_ compliant release in GitHub
+(prefixed with `v`, for example: `vX.X.X`), it will be deployed automatically to production
 
 To create hotfixes:
 

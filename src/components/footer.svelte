@@ -1,11 +1,12 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { getAnchorFromCmsLink } from '$lib/utils/cms';
+  import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import { sanitizeSlug } from '$lib/utils/paths';
   import type { ConfigurationStoryblok } from '$types/bloks';
   import { Badge, Link, Logo } from '@significa/svelte-ui';
   import Slogan from './slogan.svelte';
   import { intersectionObserver } from '@significa/svelte-ui/actions';
+  import { theme } from '$lib/stores/theme';
 
   export let configuration: ConfigurationStoryblok;
   let animate = false;
@@ -27,6 +28,24 @@
       >
         <Slogan {animate} class="mt-32 hidden font-bold md:block" />
       </span>
+      {#if !!configuration.footer_logo?.length}
+        <div class="hidden gap-2 h-9 mt-11 lg:flex">
+          {#each configuration.footer_logo || [] as logo}
+            {#if logo.light_mode?.filename && $theme === 'light'}
+              {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
+                size: [0, 72]
+              })}
+              <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
+            {/if}
+            {#if logo.dark_mode?.filename && $theme === 'dark'}
+              {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
+                size: [0, 72]
+              })}
+              <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
+            {/if}
+          {/each}
+        </div>
+      {/if}
     </div>
 
     <div class="col-span-8 flex flex-col gap-8 xs:flex-row md:col-span-5 lg:col-span-4">
@@ -68,6 +87,25 @@
           </ul>
         </div>
       {/each}
+
+      {#if !!configuration.footer_logo?.length}
+        <div class="flex gap-2 h-9 lg:hidden">
+          {#each configuration.footer_logo || [] as logo}
+            {#if logo.light_mode?.filename && $theme === 'light'}
+              {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
+                size: [0, 72]
+              })}
+              <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
+            {/if}
+            {#if logo.dark_mode?.filename && $theme === 'dark'}
+              {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
+                size: [0, 72]
+              })}
+              <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
+            {/if}
+          {/each}
+        </div>
+      {/if}
     </div>
   </div>
 

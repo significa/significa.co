@@ -61,6 +61,7 @@
 
             return {};
           }}
+          patternMatchReplace={['[#CLIENT#]', proposal.client]}
         />
       </div>
 

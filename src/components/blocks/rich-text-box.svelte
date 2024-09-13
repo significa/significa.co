@@ -25,7 +25,13 @@
         block.layout === 'vertical' && 'mb-4'
       )}
     >
-      <img class="rounded-md object-cover" {src} {alt} {width} {height} />
+      <img
+        class={clsx('rounded-md object-cover', block.layout === 'vertical' && 'w-full')}
+        {src}
+        {alt}
+        {width}
+        {height}
+      />
     </div>
   {/if}
   <div class="flex flex-col">

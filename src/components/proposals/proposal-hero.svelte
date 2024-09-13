@@ -15,8 +15,10 @@
     'grid grid-cols-1 md:grid-cols-2 gap-x-10 md:gap-x-12 mt-12'
   )}
 >
-  <h1 class="text-7xl">{proposal.title}</h1>
-  <h2 class="col-start-1 text-7xl text-foreground-secondary">{proposal.description}</h2>
+  <h1 class="text-7xl md:col-span-2 md:max-w-[832px]">{proposal.title}</h1>
+  <h2 class="col-start-1 text-7xl text-foreground-secondary md:col-span-2 md:max-w-[832px]">
+    {proposal.description}
+  </h2>
 
   <div
     class={clsx(

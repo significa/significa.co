@@ -46,11 +46,13 @@
 
   type Section = NonNullable<ISbRichtext['content']>[number];
   type Block = NonNullable<Section['attrs']['body']>[number];
+  type PatternMatchString = '[#CLIENT#]';
 
   type $$Props = HTMLAttributes<HTMLDivElement> & {
     doc: ISbRichtext;
     getAttributes?: (section: Section, block?: Block) => Partial<Record<string, string>>;
     as?: string;
+    patternMatchReplace?: [PatternMatchString, string];
   };
 
   let className: $$Props['class'] = undefined;
@@ -58,6 +60,14 @@
   export let doc: $$Props['doc'];
   export let getAttributes: $$Props['getAttributes'] = () => ({});
   export let as: $$Props['as'] = 'div';
+  export let patternMatchReplace: $$Props['patternMatchReplace'] = undefined;
+
+  const renderSection = (section: ISbRichtext) => {
+    if (patternMatchReplace) {
+      return resolver.render(section).replace(patternMatchReplace[0], patternMatchReplace[1]);
+    }
+    return resolver.render(section);
+  };
 </script>
 
 <!-- eslint-disable svelte/no-at-html-tags -->
@@ -66,22 +76,22 @@
     {#each doc.content as section}
       {#if section.type === 'paragraph' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}
-        <p {...attributes}>{@html resolver.render(section)}</p>
+        <p {...attributes}>{@html renderSection(section)}</p>
       {:else if section.type === 'heading' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}
-        {@const content = resolver.render(section)}
+        {@const content = renderSection(section)}
         <svelte:element this={`h${[section.attrs.level.toString()]}`} {...attributes}>
           {@html content}
         </svelte:element>
       {:else if section.type === 'bullet_list' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}
-        <ul {...attributes}>{@html resolver.render(section)}</ul>
+        <ul {...attributes}>{@html renderSection(section)}</ul>
       {:else if section.type === 'ordered_list' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}
-        <ol {...attributes}>{@html resolver.render(section)}</ol>
+        <ol {...attributes}>{@html renderSection(section)}</ol>
       {:else if section.type === 'blockquote' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}
-        <blockquote {...attributes}>{@html resolver.render(section)}</blockquote>
+        <blockquote {...attributes}>{@html renderSection(section)}</blockquote>
       {:else if section.type === 'horizontal_rule'}
         {@const attributes = getAttributes?.(section) || {}}
         <hr {...attributes} />

@@ -39,7 +39,9 @@ export const getHandbookEntries = async (
       starts_with: 'handbook',
       cv: Date.now(),
       version,
-      excluding_fields: EXCLUSIONS[context].join(',')
+      excluding_fields: EXCLUSIONS[context].join(','),
+      page: 1,
+      per_page: 100 // FIXME: allow more than 100 entries.
     });
 
     return res.data.stories as ISbStoryData<HandbookStoryblok>[];

@@ -46,13 +46,13 @@
 
   type Section = NonNullable<ISbRichtext['content']>[number];
   type Block = NonNullable<Section['attrs']['body']>[number];
-  type PatternMatchString = '[#CLIENT#]';
+  type PatternMatchString = '[#CLIENT#]' | '[#COMPANY#]';
 
   type $$Props = HTMLAttributes<HTMLDivElement> & {
     doc: ISbRichtext;
     getAttributes?: (section: Section, block?: Block) => Partial<Record<string, string>>;
     as?: string;
-    patternMatchReplace?: [PatternMatchString, string];
+    patternMatchReplace?: [PatternMatchString, string][];
   };
 
   let className: $$Props['class'] = undefined;
@@ -63,10 +63,13 @@
   export let patternMatchReplace: $$Props['patternMatchReplace'] = undefined;
 
   const renderSection = (section: ISbRichtext) => {
-    if (patternMatchReplace) {
-      return resolver.render(section).replace(patternMatchReplace[0], patternMatchReplace[1]);
-    }
-    return resolver.render(section);
+    let text: string = resolver.render(section);
+
+    (patternMatchReplace || []).forEach((r) => {
+      text = text.replace(r[0], r[1]);
+    });
+
+    return text;
   };
 </script>
 

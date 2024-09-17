@@ -1033,13 +1033,14 @@ export interface ProjectsTwoColumnsStoryblok {
 
 export interface ProposalStoryblok {
   password: string;
-  client: string;
-  validity_days: string;
   title: string;
   description: string;
   cover: AssetStoryblok;
   versions?: (ProposalVersionPackageStoryblok | ProposalVersionStoryblok)[];
   created_by: StoryblokStory<TeamMemberStoryblok> | string;
+  client: string;
+  validity_days: string;
+  company_name?: string;
   _uid: string;
   component: 'proposal';
   [k: string]: any;

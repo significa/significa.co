@@ -61,7 +61,10 @@
 
             return {};
           }}
-          patternMatchReplace={['[#CLIENT#]', proposal.client]}
+          patternMatchReplace={[
+            ['[#CLIENT#]', proposal.client],
+            ['[#COMPANY#]', proposal.company_name || '[#COMPANY#]']
+          ]}
         />
       </div>
 

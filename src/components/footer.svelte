@@ -109,7 +109,7 @@
     {/if}
   </div>
 
-  <div class="">
+  <div>
     <div
       class="container mx-auto flex flex-col items-start justify-between px-container py-4 text-sm text-foreground-secondary xs:flex-row xs:items-center"
     >

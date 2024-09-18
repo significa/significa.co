@@ -4,11 +4,19 @@
   "framework": "sveltekit",
   "headers": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "headers": [
         {
           "key": "X-Frame-Options",
           "value": "DENY"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src *; script-src *; img-src *; media-src 'self'; object-src *; child-src 'none'; frame-ancestors https://app.storyblok.com"
+        },
+        {
+          "key": "Content-Security-Policy-Report-Only",
+          "value": "default-src *; script-src *; img-src 'self'; media-src 'self'; object-src *; child-src 'none'; frame-ancestors https://app.storyblok.com; report-uri https://exgb4n9a.uriports.com/reports/report; report-to default"
         },
         {
           "key": "X-Content-Type-Options",

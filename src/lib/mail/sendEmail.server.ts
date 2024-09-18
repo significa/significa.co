@@ -75,13 +75,15 @@ export const sendEmailNotification = async ({
   email,
   message,
   formType,
-  notionLink
+  notionLink,
+  notionErrorMessage
 }: {
   name: string;
   email: string;
   message: string;
   formType: FormType;
   notionLink?: string;
+  notionErrorMessage?: string;
 }) => {
   name = escapeHTML(name);
   email = escapeHTML(email);
@@ -96,7 +98,19 @@ export const sendEmailNotification = async ({
 
   const destinationEmail = formTypeToDestinationEmail[formType];
 
-  if (!destinationEmail) return;
+  if (!destinationEmail) {
+    console.warn(
+      `Destination email not configured: Skipping sending of email notification for form type ${formType}`
+    );
+    return;
+  }
+
+  let errorMessage: string = '';
+  if (notionErrorMessage) {
+    errorMessage = `⚠️ Failed to store submission to Notion ⚠️\n'${escapeHTML(
+      notionErrorMessage
+    )}'\n`;
+  }
 
   await sendEmail({
     Destination: {
@@ -107,13 +121,12 @@ export const sendEmailNotification = async ({
         Text: {
           Charset: 'UTF-8',
           Data: [
+            errorMessage,
             `New website submission.\n`,
+            notionLink && `Notion Link: ${notionLink}`,
             `name: ${name}`,
             `email: ${email}`,
-            `message: ${message}`,
-            (formType === 'quote' || formType === 'estimations') &&
-              notionLink &&
-              `Notion Link: ${notionLink}`
+            `message: ${message}`
           ].join('\n')
         }
       },

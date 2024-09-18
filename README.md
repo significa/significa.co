@@ -43,7 +43,7 @@ Here's how everything is connected (arrows represent the request initiator):
 ## Contributing
 
 The development of this project follows an internal roadmap. Therefore we usually are only open to
-improvements and bug-fixes.
+improvements and bug-fixes that do not have big impact in the features or project setup.
 
 ### Requirements
 
@@ -85,5 +85,13 @@ To create hotfixes:
 
 ## License
 
-This material is licensed under the AGPL License, feel free remix-it, learn and play with it as
-you wish. But note that distribution of the source code under the same license is mandatory.
+This material is licensed under the AGPL License, allowing you to remix, learn, and experiment with
+it freely.
+
+However, please note that this is **not** a traditional open-source project; it is more accurately
+described as _source available_. In accordance with the AGPL License, redistribution of the source
+code under the same license, with attribution to the original author, is mandatory.
+Since the software can only be offered over a network, the source code must be properly disclosed.
+
+We do not provide support for this project, and replication or rebranding is strongly discouraged.
+However, we encourage you to explore and take inspiration from how we built our website.

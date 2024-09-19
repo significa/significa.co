@@ -34,6 +34,7 @@
         background-color: #f6f7f8;
         font-size: 16px;
       }
+
       table,
       tr,
       td {
@@ -41,10 +42,12 @@
         border-collapse: collapse;
         border-spacing: 0px;
       }
+
       img {
         display: block;
         margin: 0 auto;
       }
+
       * {
         line-height: inherit;
         box-sizing: border-box;
@@ -52,41 +55,53 @@
         margin: 0;
         max-width: 100%;
       }
+
       a[x-apple-data-detectors='true'] {
         color: inherit;
         text-decoration: none;
       }
+
       a {
         all: unset;
         cursor: pointer;
       }
+
       .bg-light {
         background-color: #f2f2f2;
       }
+
       .bg-dark {
         background-color: #202021;
       }
+
       .bg-panel {
         background-color: #ffffff;
       }
+
       .bg-yellow {
         background-color: #ffd424;
       }
+
       .txt-dark {
         color: #19191a;
       }
+
       .txt-light {
         color: #f2f2f2;
       }
+
       .txt-yellow {
         color: #ffd424;
       }
+
       .txt-center {
         text-align: center;
       }
+
       .o-80 {
         opacity: 0.8;
       }
+
       .button {
         display: inline-block;
         border-radius: 16px;
@@ -97,66 +112,83 @@
         box-sizing: border-box;
         outline: none;
       }
+
       .button span {
         display: inline-block;
         padding: 8px 16px;
         font-size: 16px;
       }
+
       .button-line {
         border: 1px solid hsl(48deg 100% 46%);
         background: transparent;
         transition: all 0.2s ease;
       }
+
       .button-line--white {
         border: 1px solid hsl(0deg 0% 46%);
       }
+
       .button-line:hover {
         background-color: none;
         box-shadow: 0 0 0 4px hsl(48deg 100% 46%);
         border-color: hsl(49deg 100% 40%);
       }
+
       .button-line--white:hover {
         box-shadow: 0 0 0 4px hsl(0deg 0% 24%);
         border-color: hsl(0deg 0% 46%);
       }
+
       .button-line:active {
         background-color: none;
         box-shadow: 0 0 0 2px hsl(48deg 100% 46%);
         border-color: hsl(49deg 100% 40%);
         transform: scale(0.98);
       }
+
       .button-line--white:active {
         box-shadow: 0 0 0 2px hsl(0deg 0% 24%);
         border-color: hsl(0deg 0% 46%);
       }
+
       p a {
         text-decoration: underline;
       }
+
       p a:hover {
         text-decoration: none;
         background-color: transparent;
       }
+
       .pt-56 {
         padding-top: 56px;
       }
+
       .mt-4 {
         margin-top: 4px;
       }
+
       .mt-16 {
         margin-top: 16px;
       }
+
       .mt-24 {
         margin-top: 24px;
       }
+
       .br-24 {
         border-radius: 24px;
       }
+
       .br-16 {
         border-radius: 16px;
       }
+
       .w-100 {
         width: 100%;
       }
+
       .content-fit {
         width: 100%;
         height: 100%;
@@ -164,47 +196,57 @@
         padding: 48px 16px;
         margin: 0 auto;
       }
+
       .content {
         width: 100%;
         height: auto;
         border-collapse: separate;
         border-spacing: 0 2rem;
       }
+
       .inner-content {
         padding: 48px;
       }
+
       h1 {
         font-size: 40px;
         line-height: 42px;
         font-weight: 700;
         letter-spacing: -0.8px;
       }
+
       h1 span {
         opacity: 0.4;
       }
+
       h3 {
         font-size: 22px;
         line-height: 26px;
         font-weight: 600;
         letter-spacing: -0.4px;
       }
+
       p {
         font-size: 20px;
         line-height: 29px;
         font-weight: 400;
       }
+
       p.txt-small {
         font-size: 18px;
         line-height: 24px;
         font-weight: 400;
       }
+
       p + p {
         margin-top: 8px;
       }
+
       .header {
         text-align: center;
         width: 100%;
       }
+
       .header-logo {
         width: 100px;
         height: 26px;
@@ -212,19 +254,23 @@
         background-repeat: no-repeat;
         margin: 0 auto;
       }
+
       .box {
         width: 100%;
         padding: 0 32px;
       }
+
       .link-highlight {
         width: 100%;
         border-collapse: separate;
         border-spacing: 20px;
       }
+
       .link-highlight-img {
         width: 50%;
         position: relative;
       }
+
       .link-highlight-img img {
         width: 100%;
         height: 100%;
@@ -233,187 +279,225 @@
         top: 0;
         left: 0;
       }
+
       .footer {
         width: 100%;
         text-align: center;
       }
+
       .footer-wrapper {
         border-collapse: separate;
         border-spacing: 48px;
         width: 100%;
       }
+
       .social-media {
         border-collapse: separate;
         border-spacing: 4px 0;
         margin: 0 auto;
       }
+
       .social-media-icon {
         padding: 4px;
       }
+
       .social-media-icon-sm {
         height: 40px;
         width: 40px;
         display: block;
       }
+
       .divider {
         text-align: center;
       }
+
       .divider p {
         letter-spacing: 4px;
         font-size: 32px;
       }
+
       .social-media-icon:hover {
         opacity: 0.7;
       }
+
       @media (prefers-color-scheme: light) {
         body {
           background-color: #f6f7f8 !important;
         }
       }
+
       @media (prefers-color-scheme: dark) {
         body {
           background-color: #272728 !important;
         }
       }
+
       @media (prefers-color-scheme: light) {
         .bg-light {
           background-color: #f2f2f2 !important;
         }
       }
+
       @media (prefers-color-scheme: dark) {
         .bg-light {
           background-color: #202021 !important;
         }
       }
+
       @media (prefers-color-scheme: light) {
         .bg-dark {
           background-color: #202021 !important;
         }
       }
+
       @media (prefers-color-scheme: dark) {
         .bg-dark {
           background-color: #f2f2f2 !important;
         }
       }
+
       @media (prefers-color-scheme: dark) {
         .bg-yellow .bg-dark {
           background-color: #202021 !important;
         }
       }
+
       @media (prefers-color-scheme: light) {
         .bg-panel {
           background-color: #ffffff !important;
         }
       }
+
       @media (prefers-color-scheme: dark) {
         .bg-panel {
           background-color: #19191a !important;
         }
       }
+
       @media (prefers-color-scheme: light) {
         .txt-dark {
           color: #19191a !important;
         }
       }
+
       @media (prefers-color-scheme: dark) {
         .txt-dark {
           color: #f2f2f2 !important;
         }
       }
+
       @media (prefers-color-scheme: dark) {
         .bg-dark .txt-dark {
           color: #f2f2f2 !important;
         }
       }
+
       @media (prefers-color-scheme: dark) {
         .bg-yellow .txt-dark {
           color: #19191a !important;
         }
       }
+
       @media (prefers-color-scheme: dark) {
         .bg-yellow .bg-light .txt-dark {
           color: #f2f2f2 !important;
         }
       }
+
       @media (prefers-color-scheme: light) {
         .txt-light {
           color: #f2f2f2;
         }
       }
+
       @media (prefers-color-scheme: dark) {
         .txt-light {
           color: #19191a !important;
         }
       }
+
       @media (prefers-color-scheme: light) {
         .link:hover {
           background-color: rgba(025, 025, 026, 0.12) !important;
         }
       }
+
       @media (prefers-color-scheme: dark) {
         .link:hover {
           background-color: rgba(242, 242, 242, 0.2) !important;
         }
       }
+
       @media (prefers-color-scheme: light) {
         .header-logo {
           background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/0d365efd-675f-22fc-ce94-a39d55166dcb.png') !important;
         }
       }
+
       @media (prefers-color-scheme: dark) {
         .header-logo {
           background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/060b8935-c6cf-02b1-c185-feef3ac142a6.png') !important;
         }
       }
+
       @media all and (max-width: 520px) {
         .pt-56 {
           padding-top: 40px !important;
         }
       }
+
       @media all and (max-width: 520px) {
         .mt-4 {
           margin-top: 4px !important;
         }
       }
+
       @media all and (max-width: 520px) {
         p {
           font-size: 18px !important;
           line-height: 24px !important;
         }
       }
+
       @media all and (max-width: 520px) {
         p + p {
           margin-top: 16px !important;
         }
       }
+
       @media all and (max-width: 520px) {
         h1 {
           font-size: 32px !important;
           line-height: 32px !important;
         }
       }
+
       @media all and (max-width: 520px) {
         .header {
           max-width: 90% !important;
           margin: 0 auto !important;
         }
       }
+
       @media all and (max-width: 520px) {
         .header-logo {
           width: 96px !important;
         }
       }
+
       @media all and (max-width: 520px) {
         .link-highlight td {
           display: block !important;
         }
       }
+
       @media all and (max-width: 520px) {
         .link-highlight-img {
           width: 100% !important;
           margin-bottom: 16px !important;
         }
       }
+
       @media all and (max-width: 520px) {
         .link-highlight-img img {
           position: relative !important;
@@ -422,21 +506,25 @@
           margin-bottom: 16px !important;
         }
       }
+
       @media all and (max-width: 520px) {
         .footer-wrapper {
           border-spacing: 0 16px !important;
         }
       }
+
       @media all and (max-width: 520px) {
         .inner-content {
           padding: 24px !important;
         }
       }
+
       @media all and (max-width: 520px) {
         .box {
           padding: 20px 12px !important;
         }
       }
+
       @media all and (max-width: 520px) {
         .social-media-icon-sm {
           height: 36px !important;
@@ -445,6 +533,7 @@
       }
     </style>
   </head>
+
   <body>
     <!-- Preview Text-->
     <div class="background">
@@ -522,17 +611,15 @@
                                 <td class="box">
                                   <table class="link-highlight br-24 bg-dark">
                                     <tr>
-                                      <td class="link-highlight-img">
-                                        <img
-                                          class="w-100 br-16"
-                                          src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/18cff95f-7585-a069-e1b7-948a4fff134a.png"
-                                          alt="Better call Rui"
-                                        />
-                                      </td>
+                                      <!-- <td class="link-highlight-img">
+                                        <img class="w-100 br-16"
+                                          src="#"
+                                          alt="Better call Rui" />
+                                      </td> -->
                                       <td>
                                         <h3 class="txt-light tight">Our first date.</h3>
-                                        <span
-                                          ><p class="txt-light o-80 txt-small tight mt-4">
+                                        <span>
+                                          <p class="txt-light o-80 txt-small tight mt-4">
                                             This is just like the first date. We get to know each
                                             other better. Understand one another. See if there's a
                                             match.
@@ -595,8 +682,8 @@
                                     <tr>
                                       <td>
                                         <p class="txt-dark tight">Handbook</p>
-                                        <span
-                                          ><p class="txt-dark o-80 txt-small tight mt-4">
+                                        <span>
+                                          <p class="txt-dark o-80 txt-small tight mt-4">
                                             A mixture of our working methodology, guidelines, useful
                                             resources and whatever we might decide to include in
                                             here.
@@ -644,12 +731,12 @@
                 <table class="footer-wrapper">
                   <tr>
                     <td>
-                      <table class="social-media">
+                      <!-- <table class="social-media">
                         <tr>
                           <td class="social-media-icon">
                             <a href="https://twitter.com/significadotco">
                               <img
-                                src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/986e681d-7b73-9f46-bab2-74f582d6cb65.png"
+                                src="#"
                                 class="social-media-icon-sm social-media-icon-twitter"
                               />
                             </a>
@@ -657,7 +744,7 @@
                           <td class="social-media-icon">
                             <a href="https://pt.linkedin.com/company/significadotco">
                               <img
-                                src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/64c26173-aad9-ee12-0e98-c77397be51c3.png"
+                                src="#"
                                 class="social-media-icon-sm social-media-icon-twitter"
                               />
                             </a>
@@ -665,7 +752,7 @@
                           <td class="social-media-icon">
                             <a href="https://dribbble.com/significa/">
                               <img
-                                src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/597557da-6007-ded4-c7b4-ed221e7cf71b.png"
+                                src="#"
                                 class="social-media-icon-sm social-media-icon-twitter"
                               />
                             </a>
@@ -673,7 +760,7 @@
                           <td class="social-media-icon">
                             <a href="https://www.behance.net/significa/">
                               <img
-                                src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/ae32de4b-854a-2f65-d5aa-1e510b077ac4.png"
+                                src="#"
                                 class="social-media-icon-sm social-media-icon-twitter"
                               />
                             </a>
@@ -681,7 +768,7 @@
                           <td class="social-media-icon">
                             <a href="https://www.instagram.com/significadotco/">
                               <img
-                                src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/c9486f63-1ce9-9b97-bfb4-519982053ec1.png"
+                                src="#"
                                 class="social-media-icon-sm social-media-icon-twitter"
                               />
                             </a>
@@ -689,7 +776,7 @@
                           <td class="social-media-icon">
                             <a href="https://github.com/significa/">
                               <img
-                                src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/74ad25fa-0ef2-2973-b1a3-d4fef90b4992.png"
+                                src="#"
                                 class="social-media-icon-sm social-media-icon-twitter"
                               />
                             </a>
@@ -697,13 +784,13 @@
                           <td class="social-media-icon">
                             <a href="https://www.youtube.com/@SignificaDotCo">
                               <img
-                                src="https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/499d37a0-a5fc-6645-aec4-4f817df28425.png"
+                                src="#"
                                 class="social-media-icon-sm social-media-icon-twitter"
                               />
                             </a>
                           </td>
                         </tr>
-                      </table>
+                      </table> -->
                     </td>
                   </tr>
                   <tr>

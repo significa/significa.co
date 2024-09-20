@@ -273,7 +273,7 @@
       <hr />
     {/if}
   </div>
-  <div class="mt-8 flex flex-col justify-between gap-6 sm:flex-row-reverse sm:items-center">
+  <div class="mt-8 pb-1 flex flex-col justify-between gap-6 sm:flex-row-reverse sm:items-center">
     <Button
       type="submit"
       size="lg"

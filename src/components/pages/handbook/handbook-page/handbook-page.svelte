@@ -14,7 +14,12 @@
 </script>
 
 {#key story.full_slug}
-  <Seo title={story.content.seo_title || `${story.name} - Handbook by Significa`} />
+  <Seo
+    title={story.content.seo_title || `${story.name} - Handbook by Significa`}
+    description={story.content.seo_description}
+    image={story.content.seo_og_image}
+    structureDataMarkup={story.content.structure_data_markup}
+  />
   <div use:drawerLinks class="mx-auto px-container container">
     <div class="max-w-2xl mx-auto mt-10 lg:mt-20 rich-text mb-20">
       {#if story.content.cover.filename}

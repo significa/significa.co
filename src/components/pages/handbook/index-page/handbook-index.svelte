@@ -9,6 +9,7 @@
   import { sanitizeSlug } from '$lib/utils/paths';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { ChapterCardsMap } from './types';
+  import { structureDataMarkup } from './structure-data-markup';
 
   export let chapters: ChapterCardsMap;
 </script>
@@ -17,6 +18,7 @@
   title="Handbook by Significa"
   description="Our handbook, the source of truth of our existence."
   image={handbookOG}
+  {structureDataMarkup}
 />
 <div class="container mx-auto px-container pb-20">
   <img alt="Handbook" src={handbook} class="w-80 mx-auto mt-28 mb-20" />

@@ -55,6 +55,14 @@
     {
       "source": "/blog/dark-ui--why-when--where",
       "destination": "/blog/dark-ui-why-when-where"
+    },
+    {
+      "source": "/labs",
+      "destination": "/blog"
+    },
+    {
+      "source": "/labs/css-only-slider",
+      "destination": "/blog/css-only-slider"
     }
   ]
 }

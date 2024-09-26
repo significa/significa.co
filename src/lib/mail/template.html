@@ -1,10 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:v="urn:schemas-microsoft-com:vml"
-  xmlns:o="urn:schemas-microsoft-com:office:office"
->
+<!DOCTYPE html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
     <!--[if gte mso 9]>
       <xml>
         <o:OfficeDocumentSettings>
@@ -13,17 +10,16 @@
         </o:OfficeDocumentSettings>
       </xml>
     <![endif]-->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="x-apple-disable-message-reformatting" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="x-apple-disable-message-reformatting" content="">
+    <meta name="color-scheme" content="light dark">
     <!--[if !mso]><!-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--<![endif]-->
     <title>Significa – Get a quote</title>
-    <meta name="description" content="Significa" />
+    <meta name="description" content="Significa">
 
-    <style type="text/css">
+    <style>
       body {
         margin: 0;
         padding: 0;
@@ -74,10 +70,6 @@
         background-color: #202021;
       }
 
-      .bg-panel {
-        background-color: #ffffff;
-      }
-
       .bg-yellow {
         background-color: #ffd424;
       }
@@ -113,7 +105,7 @@
         outline: none;
       }
 
-      .button span {
+      .button-inner {
         display: inline-block;
         padding: 8px 16px;
         font-size: 16px;
@@ -130,7 +122,6 @@
       }
 
       .button-line:hover {
-        background-color: none;
         box-shadow: 0 0 0 4px hsl(48deg 100% 46%);
         border-color: hsl(49deg 100% 40%);
       }
@@ -141,7 +132,6 @@
       }
 
       .button-line:active {
-        background-color: none;
         box-shadow: 0 0 0 2px hsl(48deg 100% 46%);
         border-color: hsl(49deg 100% 40%);
         transform: scale(0.98);
@@ -169,6 +159,10 @@
         margin-top: 4px;
       }
 
+      .mt-8 {
+        margin-top: 8px;
+      }
+
       .mt-16 {
         margin-top: 16px;
       }
@@ -189,11 +183,14 @@
         width: 100%;
       }
 
+      .background {
+        background-color: #f6f7f8 !important;
+      }
+
       .content-fit {
         width: 100%;
         height: 100%;
-        max-width: 680px;
-        padding: 48px 16px;
+        max-width: 600px;
         margin: 0 auto;
       }
 
@@ -205,7 +202,7 @@
       }
 
       .inner-content {
-        padding: 48px;
+        padding: 32px 16px;
       }
 
       h1 {
@@ -227,8 +224,8 @@
       }
 
       p {
-        font-size: 20px;
-        line-height: 29px;
+        font-size: 18px;
+        line-height: 24px;
         font-weight: 400;
       }
 
@@ -243,41 +240,28 @@
       }
 
       .header {
-        text-align: center;
         width: 100%;
+
       }
 
       .header-logo {
-        width: 100px;
-        height: 26px;
+        /* width: 96px; */
+        height: 40px;
+        margin: 0 16px;
         background-size: contain;
         background-repeat: no-repeat;
-        margin: 0 auto;
+        background-image: url(https://a.storyblok.com/f/198185/832x340/d37aaf3f50/woodmark.png);
       }
 
       .box {
         width: 100%;
-        padding: 0 32px;
+        padding: 0px 8px;
       }
 
       .link-highlight {
         width: 100%;
         border-collapse: separate;
         border-spacing: 20px;
-      }
-
-      .link-highlight-img {
-        width: 50%;
-        position: relative;
-      }
-
-      .link-highlight-img img {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        object-fit: cover;
-        top: 0;
-        left: 0;
       }
 
       .footer {
@@ -287,7 +271,7 @@
 
       .footer-wrapper {
         border-collapse: separate;
-        border-spacing: 48px;
+        border-spacing: 16px;
         width: 100%;
       }
 
@@ -298,12 +282,12 @@
       }
 
       .social-media-icon {
-        padding: 4px;
+        padding: 8px;
       }
 
       .social-media-icon-sm {
-        height: 40px;
-        width: 40px;
+        height: 32px;
+        width: 32px;
         display: block;
       }
 
@@ -311,7 +295,7 @@
         text-align: center;
       }
 
-      .divider p {
+      .divider-text {
         letter-spacing: 4px;
         font-size: 32px;
       }
@@ -320,217 +304,7 @@
         opacity: 0.7;
       }
 
-      @media (prefers-color-scheme: light) {
-        body {
-          background-color: #f6f7f8 !important;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        body {
-          background-color: #272728 !important;
-        }
-      }
-
-      @media (prefers-color-scheme: light) {
-        .bg-light {
-          background-color: #f2f2f2 !important;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .bg-light {
-          background-color: #202021 !important;
-        }
-      }
-
-      @media (prefers-color-scheme: light) {
-        .bg-dark {
-          background-color: #202021 !important;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .bg-dark {
-          background-color: #f2f2f2 !important;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .bg-yellow .bg-dark {
-          background-color: #202021 !important;
-        }
-      }
-
-      @media (prefers-color-scheme: light) {
-        .bg-panel {
-          background-color: #ffffff !important;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .bg-panel {
-          background-color: #19191a !important;
-        }
-      }
-
-      @media (prefers-color-scheme: light) {
-        .txt-dark {
-          color: #19191a !important;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .txt-dark {
-          color: #f2f2f2 !important;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .bg-dark .txt-dark {
-          color: #f2f2f2 !important;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .bg-yellow .txt-dark {
-          color: #19191a !important;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .bg-yellow .bg-light .txt-dark {
-          color: #f2f2f2 !important;
-        }
-      }
-
-      @media (prefers-color-scheme: light) {
-        .txt-light {
-          color: #f2f2f2;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .txt-light {
-          color: #19191a !important;
-        }
-      }
-
-      @media (prefers-color-scheme: light) {
-        .link:hover {
-          background-color: rgba(025, 025, 026, 0.12) !important;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .link:hover {
-          background-color: rgba(242, 242, 242, 0.2) !important;
-        }
-      }
-
-      @media (prefers-color-scheme: light) {
-        .header-logo {
-          background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/0d365efd-675f-22fc-ce94-a39d55166dcb.png') !important;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .header-logo {
-          background-image: url('https://mcusercontent.com/bdf56fcb5d0fdfbc9ce24686c/images/060b8935-c6cf-02b1-c185-feef3ac142a6.png') !important;
-        }
-      }
-
-      @media all and (max-width: 520px) {
-        .pt-56 {
-          padding-top: 40px !important;
-        }
-      }
-
-      @media all and (max-width: 520px) {
-        .mt-4 {
-          margin-top: 4px !important;
-        }
-      }
-
-      @media all and (max-width: 520px) {
-        p {
-          font-size: 18px !important;
-          line-height: 24px !important;
-        }
-      }
-
-      @media all and (max-width: 520px) {
-        p + p {
-          margin-top: 16px !important;
-        }
-      }
-
-      @media all and (max-width: 520px) {
-        h1 {
-          font-size: 32px !important;
-          line-height: 32px !important;
-        }
-      }
-
-      @media all and (max-width: 520px) {
-        .header {
-          max-width: 90% !important;
-          margin: 0 auto !important;
-        }
-      }
-
-      @media all and (max-width: 520px) {
-        .header-logo {
-          width: 96px !important;
-        }
-      }
-
-      @media all and (max-width: 520px) {
-        .link-highlight td {
-          display: block !important;
-        }
-      }
-
-      @media all and (max-width: 520px) {
-        .link-highlight-img {
-          width: 100% !important;
-          margin-bottom: 16px !important;
-        }
-      }
-
-      @media all and (max-width: 520px) {
-        .link-highlight-img img {
-          position: relative !important;
-          width: 100% !important;
-          height: auto !important;
-          margin-bottom: 16px !important;
-        }
-      }
-
-      @media all and (max-width: 520px) {
-        .footer-wrapper {
-          border-spacing: 0 16px !important;
-        }
-      }
-
-      @media all and (max-width: 520px) {
-        .inner-content {
-          padding: 24px !important;
-        }
-      }
-
-      @media all and (max-width: 520px) {
-        .box {
-          padding: 20px 12px !important;
-        }
-      }
-
-      @media all and (max-width: 520px) {
-        .social-media-icon-sm {
-          height: 36px !important;
-          width: 36px !important;
-        }
-      }
+  
     </style>
   </head>
 
@@ -558,7 +332,7 @@
 
             <tr>
               <!-- Content -->
-              <td class="pt-56">
+              <td>
                 <table class="content">
                   <tr class="box-holder">
                     <!-- Box -->
@@ -571,7 +345,7 @@
                               <tr>
                                 <!-- Written content -->
                                 <td class="inner-content">
-                                  <h3>Hello {{name}},</h3>
+                                  <h3 class="txt-dark">Hello {{name}},</h3>
                                   <p class="txt-dark mt-16">Thank you for reaching out to us.</p>
                                   <p class="txt-dark mt-16">
                                     We have a few elves helping out with correspondence, so we
@@ -588,7 +362,7 @@
                               <tr class="divider">
                                 <!-- Divider -->
                                 <td>
-                                  <p class="txt-dark">&bull;&bull;&bull;</p>
+                                  <p class="txt-dark divider-text">&bull;&bull;&bull;</p>
                                 </td>
                                 <!-- Divider End -->
                               </tr>
@@ -596,7 +370,7 @@
                               <tr>
                                 <!-- Written content -->
                                 <td class="inner-content">
-                                  <h3>Schedule a call?</h3>
+                                  <h3 class="txt-dark">Schedule a call?</h3>
                                   <p class="txt-dark mt-16">
                                     There's no need to wait for the elves to sort their
                                     correspondence out. You can slide into your first date with us
@@ -614,12 +388,13 @@
                                       <!-- <td class="link-highlight-img">
                                         <img class="w-100 br-16"
                                           src="#"
+                                          alt="#"
                                           alt="Better call Rui" />
                                       </td> -->
                                       <td>
                                         <h3 class="txt-light tight">Our first date.</h3>
-                                        <span>
-                                          <p class="txt-light o-80 txt-small tight mt-4">
+                                        <div>
+                                          <p class="txt-light o-80 txt-small tight mt-8">
                                             This is just like the first date. We get to know each
                                             other better. Understand one another. See if there's a
                                             match.
@@ -630,10 +405,10 @@
                                             class="button button-line button-line--white button-small txt-light mt-16"
                                           >
                                             <!-- Button -->
-                                            <span>Schedule a call</span>
+                                            <span class="button-inner">Schedule a call</span>
                                             <!-- Button End -->
                                           </a>
-                                        </span>
+                                        </div>
                                       </td>
                                     </tr>
                                   </table>
@@ -652,11 +427,11 @@
                                 <!-- Written content End -->
                               </tr>
 
-                              <tr></tr>
+                              
                               <tr class="divider">
                                 <!-- Divider -->
                                 <td>
-                                  <p class="txt-dark">&bull;&bull;&bull;</p>
+                                  <p class="txt-dark divider-text">&bull;&bull;&bull;</p>
                                 </td>
                                 <!-- Divider End -->
                               </tr>
@@ -682,7 +457,7 @@
                                     <tr>
                                       <td>
                                         <p class="txt-dark tight">Handbook</p>
-                                        <span>
+                                        <div>
                                           <p class="txt-dark o-80 txt-small tight mt-4">
                                             A mixture of our working methodology, guidelines, useful
                                             resources and whatever we might decide to include in
@@ -693,10 +468,10 @@
                                             class="button button-line button-small txt-dark mt-16"
                                           >
                                             <!-- Button -->
-                                            <span>Know more</span>
+                                            <span class="button-inner">Know more</span>
                                             <!-- Button End -->
                                           </a>
-                                        </span>
+                                        </div>
                                       </td>
                                     </tr>
                                   </table>
@@ -731,73 +506,71 @@
                 <table class="footer-wrapper">
                   <tr>
                     <td>
-                      <!-- <table class="social-media">
+                      <table class="social-media">
                         <tr>
                           <td class="social-media-icon">
                             <a href="https://twitter.com/significadotco">
                               <img
-                                src="#"
+                                src="https://a.storyblok.com/f/198185/49x48/1bf6a5fbbe/twitterv2.png"
+                                alt="Twitter"
                                 class="social-media-icon-sm social-media-icon-twitter"
-                              />
+                              >
                             </a>
                           </td>
                           <td class="social-media-icon">
                             <a href="https://pt.linkedin.com/company/significadotco">
                               <img
-                                src="#"
+                                src="https://a.storyblok.com/f/198185/49x48/42fa7d457f/linkedinv2.png"
+                                alt="LinkedIn"
                                 class="social-media-icon-sm social-media-icon-twitter"
-                              />
+                              >
                             </a>
                           </td>
                           <td class="social-media-icon">
                             <a href="https://dribbble.com/significa/">
                               <img
-                                src="#"
+                                src="https://a.storyblok.com/f/198185/49x48/d6402c1edb/dribbblev2.png"
+                                alt="Dribbble"
                                 class="social-media-icon-sm social-media-icon-twitter"
-                              />
+                              >
                             </a>
                           </td>
                           <td class="social-media-icon">
                             <a href="https://www.behance.net/significa/">
                               <img
-                                src="#"
+                                src="https://a.storyblok.com/f/198185/49x48/a372c3504d/behancev2.png"
+                                alt="Behance"
                                 class="social-media-icon-sm social-media-icon-twitter"
-                              />
+                              >
                             </a>
                           </td>
                           <td class="social-media-icon">
                             <a href="https://www.instagram.com/significadotco/">
                               <img
-                                src="#"
+                                src="https://a.storyblok.com/f/198185/50x51/8e736ff043/instagramv3.png"
+                                alt="Instagram"
                                 class="social-media-icon-sm social-media-icon-twitter"
-                              />
+                              >
                             </a>
                           </td>
                           <td class="social-media-icon">
                             <a href="https://github.com/significa/">
                               <img
-                                src="#"
+                                src="https://a.storyblok.com/f/198185/49x48/bc9718763e/githubv3.png"
+                                alt="Github"
                                 class="social-media-icon-sm social-media-icon-twitter"
-                              />
-                            </a>
-                          </td>
-                          <td class="social-media-icon">
-                            <a href="https://www.youtube.com/@SignificaDotCo">
-                              <img
-                                src="#"
-                                class="social-media-icon-sm social-media-icon-twitter"
-                              />
+                              >
                             </a>
                           </td>
                         </tr>
-                      </table> -->
+                      </table>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <span>
+                      <div>
                         <p class="txt-dark medium o-50">Want to know more?</p>
-                      </span>
+                      </div>
                       <p class="medium txt-dark">
                         <a href="https://significa.co/" class="txt-dark">Go to significa.co</a>
                       </p>

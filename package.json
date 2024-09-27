@@ -41,7 +41,7 @@
     "husky": "^8.0.3",
     "postcss": "^8.4.29",
     "prettier": "^3.0.3",
-    "prettier-plugin-svelte": "^3.0.3",
+    "prettier-plugin-svelte": "^3.2.7",
     "prettier-plugin-tailwindcss": "^0.4.1",
     "prismjs": "^1.29.0",
     "svelte": "^4.2.0",

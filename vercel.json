@@ -12,7 +12,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "script-src * 'unsafe-inline'; script-src-attr 'none'; img-src 'self' *.storyblok.com data:; media-src 'self' *.storyblok.com; object-src *; child-src 'none'; frame-src 'none'; frame-ancestors https://app.storyblok.com; upgrade-insecure-requests"
+          "value": "script-src * 'unsafe-inline' blob:; script-src-attr 'none'; img-src 'self' *.storyblok.com data: blob:; media-src 'self' *.storyblok.com; object-src *; child-src 'none'; frame-src 'none'; frame-ancestors https://app.storyblok.com; upgrade-insecure-requests"
         },
         {
           "key": "Permissions-Policy",

@@ -14,8 +14,8 @@
         ? CtaLight
         : CtaDark
       : block.theme === 'contrast'
-      ? CtaLight
-      : CtaDark;
+        ? CtaLight
+        : CtaDark;
 </script>
 
 <section class="container mx-auto px-container @container my-16 md:mt-10 lg:my-24">
@@ -25,8 +25,8 @@
         ? 'dark'
         : 'light'
       : block.theme === 'contrast'
-      ? 'dark'
-      : 'light'}
+        ? 'dark'
+        : 'light'}
     class="flex overflow-hidden rounded-lg border bg-background"
   >
     <div class="flex flex-col p-3 md:p-8">

@@ -232,8 +232,8 @@
                     selectedCharacter === 'bird'
                       ? 'egg'
                       : selectedCharacter === 'egg'
-                      ? 'bird'
-                      : AI_DEFAULT_CHARACTER
+                        ? 'bird'
+                        : AI_DEFAULT_CHARACTER
                   ]}
                   alt="ai"
                   draggable="false"

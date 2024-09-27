@@ -29,8 +29,8 @@
       variant === 'default' && !$scrollStatus.isPastThreshold
         ? 'translate-y-0'
         : $scrollStatus.direction === 'down'
-        ? '-translate-y-full'
-        : 'translate-y-0',
+          ? '-translate-y-full'
+          : 'translate-y-0',
       variant === 'accept' && 'border-b-border'
     )}
   >

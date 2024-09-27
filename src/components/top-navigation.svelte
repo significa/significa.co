@@ -31,8 +31,8 @@
       !$scrollStatus.isPastThreshold
         ? 'translate-y-0'
         : $scrollStatus.direction === 'down' || isNavHidden
-        ? '-translate-y-full'
-        : 'translate-y-0'
+          ? '-translate-y-full'
+          : 'translate-y-0'
     )}
   >
     <div class="flex items-center justify-between py-4 container mx-auto px-container">

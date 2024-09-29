@@ -16,7 +16,7 @@
         },
         {
           "key": "Permissions-Policy",
-          "value": "fullscreen=*, picture-in-picture=*, autoplay=*, accelerometer=(), ambient-light-sensor=(), , battery=(), camera=(), display-capture=(), encrypted-media=(), geolocation=(), gyroscope=(), idle-detection=(), magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), web-share=()"
+          "value": "fullscreen=*, picture-in-picture=*, autoplay=*, accelerometer=(), ambient-light-sensor=(), battery=(), camera=(), display-capture=(), encrypted-media=(), geolocation=(), gyroscope=(), idle-detection=(), magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), web-share=()"
         },
         {
           "key": "X-Content-Type-Options",

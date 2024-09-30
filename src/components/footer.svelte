@@ -15,7 +15,7 @@
 <footer>
   <div class="container mx-auto grid grid-cols-8 gap-8 px-container py-20">
     <div class="col-span-8 flex flex-col justify-between md:col-span-3 lg:col-span-4">
-      <Logo variant="symbol" />
+      <Logo variant="symbol" class="md:scale-125 md:origin-top-left" />
       <span
         use:intersectionObserver={{
           callback: ([e]) => {
@@ -29,19 +29,19 @@
         <Slogan {animate} class="hidden font-bold md:block" />
       </span>
       {#if !!configuration.footer_logo?.length}
-        <div class="hidden gap-2 h-9 md:flex">
+        <div class="hidden gap-2 h-12 md:flex">
           {#each configuration.footer_logo || [] as logo}
             {#if logo.light_mode?.filename && $theme === 'light'}
               {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
-                size: [0, 72]
+                size: [0, 96]
               })}
-              <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
+              <img {src} {alt} {width} {height} class="h-auto max-h-12 w-auto object-contain" />
             {/if}
             {#if logo.dark_mode?.filename && $theme === 'dark'}
               {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
-                size: [0, 72]
+                size: [0, 96]
               })}
-              <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
+              <img {src} {alt} {width} {height} class="h-auto max-h-12 w-auto object-contain" />
             {/if}
           {/each}
         </div>
@@ -90,19 +90,19 @@
     </div>
 
     {#if !!configuration.footer_logo?.length}
-      <div class="flex gap-2 h-9 col-span-2 md:hidden">
+      <div class="flex gap-2 h-12 col-span-3 md:hidden">
         {#each configuration.footer_logo || [] as logo}
           {#if logo.light_mode?.filename && $theme === 'light'}
             {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
-              size: [0, 72]
+              size: [0, 96]
             })}
-            <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
+            <img {src} {alt} {width} {height} class="h-auto max-h-12 w-auto object-contain" />
           {/if}
           {#if logo.dark_mode?.filename && $theme === 'dark'}
             {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
-              size: [0, 72]
+              size: [0, 96]
             })}
-            <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
+            <img {src} {alt} {width} {height} class="h-auto max-h-12 w-auto object-contain" />
           {/if}
         {/each}
       </div>

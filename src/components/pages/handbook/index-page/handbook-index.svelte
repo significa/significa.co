@@ -1,5 +1,5 @@
 <script lang="ts">
-  import handbook from '$assets/handbook/handbook.svg';
+  import handbook from '$assets/handbook/handbook_illustration.svg';
   import placeholder from '$assets/handbook/handbook_placeholder.svg';
   import { t } from '$lib/i18n';
   import clsx from 'clsx';
@@ -28,6 +28,7 @@
     <div class="grid grid-cols-1 auto-rows-fr md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {#each pages as page}
         <a
+          data-highlight={page.highlight}
           class={clsx(
             'border shadow-sm flex bg-background-panel hover:bg-background-offset group rounded-lg overflow-hidden',
             page.highlight ? 'row-span-3 col-span-1 flex-col' : 'row-span-1 col-span-1'

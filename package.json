@@ -62,7 +62,7 @@
     "@aws-sdk/s3-request-presigner": "3.413.0",
     "@melt-ui/svelte": "^0.70.0",
     "@notionhq/client": "^2.2.15",
-    "@sentry/sveltekit": "^7.119.0",
+    "@sentry/sveltekit": "^7.119.1",
     "@significa/svelte-ui": "^0.0.34",
     "@storyblok/js": "^2.3.0",
     "matter-js": "^0.19.0",

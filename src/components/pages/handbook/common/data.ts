@@ -35,16 +35,30 @@ export const getHandbookEntries = async (
   context: keyof typeof EXCLUSIONS = 'index'
 ) => {
   try {
-    const res = await storyblok.get('cdn/stories', {
-      starts_with: 'handbook',
-      cv: Date.now(),
-      version,
-      excluding_fields: EXCLUSIONS[context].join(','),
-      page: 1,
-      per_page: 100 // FIXME: allow more than 100 entries.
-    });
+    let loop = true;
+    let page = 1;
+    const results: ISbStoryData<HandbookStoryblok>[] = [];
 
-    return res.data.stories as ISbStoryData<HandbookStoryblok>[];
+    do {
+      const res = await storyblok.get('cdn/stories', {
+        starts_with: 'handbook',
+        cv: Date.now(),
+        version,
+        excluding_fields: EXCLUSIONS[context].join(','),
+        page,
+        per_page: 100
+      });
+
+      results.push(...res.data.stories);
+
+      if (results.length >= res.total) {
+        loop = false;
+      }
+
+      page++;
+    } while (loop);
+
+    return results;
   } catch (err) {
     throw new Error('Failed to fetch Handbook entries', { cause: err });
   }

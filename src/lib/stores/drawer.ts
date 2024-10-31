@@ -4,7 +4,9 @@ import { derived } from 'svelte/store';
 
 function createDrawer() {
   const { subscribe } = derived(page, ($page) => {
-    return $page.url.searchParams.get('drawer') || null;
+    const drawerParam = $page.url.searchParams.get('drawer');
+    const parentFolderName = $page.url.pathname.split('/').pop();
+    return drawerParam && drawerParam !== parentFolderName ? drawerParam : null;
   });
 
   return {
@@ -12,15 +14,17 @@ function createDrawer() {
     open: (slug: string) => {
       const url = new URL(window.location.href);
       const searchParams = new URLSearchParams(url.searchParams);
-      searchParams.set('drawer', slug);
+      const parentFolderName = url.pathname.split('/').pop();
 
-      goto(`${url.pathname}?${searchParams.toString()}`, { noScroll: true });
+      if (slug !== parentFolderName) {
+        searchParams.set('drawer', slug);
+        goto(`${url.pathname}?${searchParams.toString()}`, { noScroll: true });
+      }
     },
     close: () => {
       const url = new URL(window.location.href);
       const searchParams = new URLSearchParams(url.searchParams);
       searchParams.delete('drawer');
-
       history.back();
     }
   };

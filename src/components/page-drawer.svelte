@@ -43,8 +43,8 @@
   >
     <header
       class={clsx(
-        'sticky bg-background top-0 left-0 z-50 flex items-center justify-between p-2 border-b border-b-transparent motion-safe:transition-colors',
-        isSticky && 'border-b-background-offset'
+        'sticky bg-background top-0 left-0 z-50 flex items-center justify-between p-2 motion-safe:transition',
+        isSticky && 'border-b border-b-background-offset'
       )}
     >
       <Button

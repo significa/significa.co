@@ -43,7 +43,7 @@
   >
     <header
       class={clsx(
-        'sticky bg-background top-0 left-0 z-50 flex items-center justify-between p-2 motion-safe:transition',
+        'sticky bg-background top-0 left-0 z-50 flex items-center justify-between p-2 motion-safe:transition-colors',
         isSticky && 'border-b border-b-background-offset'
       )}
     >

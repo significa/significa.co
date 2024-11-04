@@ -11,7 +11,8 @@ export function drawerLinks(node: HTMLElement) {
     if (url.origin === window.location.origin) {
       event.preventDefault();
 
-      drawer.open(url.pathname);
+      const drawerLink = el.getAttribute('href');
+      if (drawerLink) drawer.open(drawerLink);
     }
   };
 

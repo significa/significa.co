@@ -1,10 +1,13 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { storyblokEditable } from '$lib/actions/storyblok-editable';
-  import { t } from '$lib/i18n';
-  import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import type { CareersListStoryblok } from '$types/bloks';
+
   import { Button } from '@significa/svelte-ui';
+
+  import { t } from '$lib/i18n';
+  import { sanitizeSlug } from '$lib/utils/paths';
+  import { getAnchorFromCmsLink } from '$lib/utils/cms';
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
 
   export let block: CareersListStoryblok;
 </script>
@@ -17,15 +20,16 @@
           <h2 class="text-5xl">{block.title}</h2>
           <ul class="mt-10">
             {#each $page.data.careers as career}
+              {@const href = sanitizeSlug(career.full_slug)}
               <li class="border-b first:border-t">
                 <a
                   class="flex w-full items-center justify-between py-4 text-xl transition-colors hover:text-foreground-secondary"
-                  href={career.full_slug}
+                  {href}
                 >
                   <span>{career.name}</span>
                   <Button
                     as="a"
-                    href={career.full_slug}
+                    {href}
                     variant="secondary"
                     arrow
                     size="sm"

@@ -1,11 +1,15 @@
 <script lang="ts">
-  import { storyblokEditable } from '$lib/actions/storyblok-editable';
-  import type { OpenPositionsStoryblok } from '$types/bloks';
   import { page } from '$app/stores';
-  import { drawerLinks } from '$lib/actions/drawer-links';
+  import type { OpenPositionsStoryblok } from '$types/bloks';
+
   import { Button, Link } from '@significa/svelte-ui';
+
   import { t } from '$lib/i18n';
   import { theme } from '$lib/stores/theme';
+  import { sanitizeSlug } from '$lib/utils/paths';
+  import { drawerLinks } from '$lib/actions/drawer-links';
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
+
   import CareersAssetLight from '$components/illustrations/assets/careers-light.webp';
   import CareersAssetDark from '$components/illustrations/assets/careers-dark.webp';
 
@@ -30,10 +34,11 @@
         <div class="w-full flex-1">
           <ul use:drawerLinks>
             {#each $page.data.careers as career}
+              {@const href = sanitizeSlug(career.full_slug)}
               <li class="border-b first:border-t">
                 <a
                   class="flex w-full items-center justify-between py-7 text-2xl font-semibold transition-colors hover:text-foreground-secondary"
-                  href={career.full_slug}
+                  {href}
                 >
                   <span>{career.name}</span>
                   <Button size="sm" variant="secondary" arrow />

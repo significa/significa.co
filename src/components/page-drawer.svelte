@@ -1,15 +1,18 @@
 <script lang="ts">
-  import DynamicPage from '$components/pages/dynamic-page.svelte';
-  import { bodyLock, escapeKey } from '@significa/svelte-ui/actions';
-  import { t } from '$lib/i18n';
-  import { drawer } from '$lib/stores/drawer';
-  import { Button, Spinner } from '@significa/svelte-ui';
-  import { fade, fly } from 'svelte/transition';
-  import { browser } from '$app/environment';
-  import { page } from '$app/stores';
-  import { fetchPage } from '$lib/content';
-  import { setContext } from 'svelte';
   import clsx from 'clsx';
+  import { page } from '$app/stores';
+  import { setContext } from 'svelte';
+  import { browser } from '$app/environment';
+  import { fade, fly } from 'svelte/transition';
+
+  import { Button, Spinner } from '@significa/svelte-ui';
+  import { bodyLock, escapeKey } from '@significa/svelte-ui/actions';
+
+  import { t } from '$lib/i18n';
+  import { fetchPage } from '$lib/content';
+  import { drawer } from '$lib/stores/drawer';
+
+  import DynamicPage from '$components/pages/dynamic-page.svelte';
 
   let isSticky = true;
   let expanding = false;
@@ -55,8 +58,11 @@
         icon="expand"
         on:click={() => {
           expanding = true;
-        }}>{t('expand')}</Button
+        }}
       >
+        {t('expand')}
+      </Button>
+
       <Button class="bg-background" variant="ghost" icon="close" on:click={drawer.close} />
     </header>
     <div>

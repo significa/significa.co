@@ -16,15 +16,16 @@
 
 <Seo
   title="Handbook by Significa"
-  description="Our handbook, the source of truth of our existence."
+  description="Our handbook: the ultimate source of truth for everything about Significa—our culture, values, and the way we work."
   image={handbookOG}
   {structureDataMarkup}
 />
 <div class="container mx-auto px-container pb-20">
+  <h1 class="sr-only">Handbook by Significa</h1>
   <img alt="Handbook" src={handbook} class="w-80 mx-auto mt-28 mb-20" />
 
   {#each chapters.entries() as [title, pages]}
-    <h1 class="font-semibold text-2xl mt-20 mb-8">{title.substring(4)}</h1>
+    <h2 class="font-semibold text-2xl mt-20 mb-8">{title.substring(4)}</h2>
     <div class="grid grid-cols-1 auto-rows-fr md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {#each pages as page}
         <a

@@ -113,7 +113,7 @@
     <div
       class="container mx-auto flex flex-col items-start justify-between px-container py-4 text-sm text-foreground-secondary xs:flex-row xs:items-center"
     >
-      <span>Significa &mdash; Design-led digital products</span>
+      <span>Significa &mdash; Digital Product Design & Development Agency</span>
       <Link href="/legal">Legal</Link>
     </div>
   </div>

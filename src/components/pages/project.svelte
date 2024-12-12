@@ -38,6 +38,7 @@
           ? getImageAttributes(story.content.cover).src
           : undefined}
         buttonTheme={story.content.reel_button_theme}
+        showControls={story.content.show_reel_controls}
       />
     {:else if story.content.cover?.filename}
       {@const { alt, src, width, height } = getImageAttributes(story.content.cover, {

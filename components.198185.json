@@ -3,6 +3,7 @@
     {
       "name": "about-grid",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-15T11:25:42.067Z",
       "updated_at": "2024-03-21T15:32:26.874Z",
       "id": 5503063,
@@ -35,6 +36,7 @@
     {
       "name": "about-page",
       "display_name": null,
+      "description": null,
       "created_at": "2023-03-03T15:54:31.120Z",
       "updated_at": "2024-01-26T11:39:34.548Z",
       "id": 3521679,
@@ -211,6 +213,7 @@
     {
       "name": "awards_entry",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-04T08:53:34.816Z",
       "updated_at": "2023-05-11T09:14:10.069Z",
       "id": 3924078,
@@ -260,6 +263,7 @@
     {
       "name": "awards-grid",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-27T11:08:19.684Z",
       "updated_at": "2024-04-04T13:45:32.548Z",
       "id": 5564649,
@@ -287,6 +291,7 @@
     {
       "name": "awards-list",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-13T16:49:20.817Z",
       "updated_at": "2024-03-21T15:32:39.098Z",
       "id": 5492544,
@@ -317,6 +322,7 @@
     {
       "name": "benefits-entry",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-21T09:26:11.845Z",
       "updated_at": "2024-02-08T14:40:32.628Z",
       "id": 3857099,
@@ -354,6 +360,7 @@
     {
       "name": "benefits-entry-block",
       "display_name": "benefits-entry-block",
+      "description": null,
       "created_at": "2024-03-19T15:53:02.775Z",
       "updated_at": "2024-03-20T11:14:31.100Z",
       "id": 5524132,
@@ -403,6 +410,7 @@
     {
       "name": "blog-index",
       "display_name": null,
+      "description": null,
       "created_at": "2023-03-15T11:28:33.845Z",
       "updated_at": "2023-03-15T11:28:33.845Z",
       "id": 3586372,
@@ -426,6 +434,7 @@
     {
       "name": "blog-list",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-14T16:04:21.544Z",
       "updated_at": "2024-03-21T15:33:30.676Z",
       "id": 5498274,
@@ -456,8 +465,9 @@
     {
       "name": "blog-post",
       "display_name": "Author",
+      "description": null,
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2024-08-13T14:33:19.492Z",
+      "updated_at": "2024-11-07T16:22:14.376Z",
       "id": 3442347,
       "schema": {
         "seo_title": {
@@ -538,7 +548,10 @@
             "hrule",
             "link",
             "blok",
-            "h4"
+            "h4",
+            "undo",
+            "redo",
+            "color"
           ],
           "pos": 9
         },
@@ -596,6 +609,7 @@
     {
       "name": "budget-range-entry",
       "display_name": null,
+      "description": null,
       "created_at": "2023-12-21T09:10:07.387Z",
       "updated_at": "2023-12-21T11:25:37.031Z",
       "id": 5073650,
@@ -630,6 +644,7 @@
     {
       "name": "budget-ranges",
       "display_name": null,
+      "description": null,
       "created_at": "2023-12-21T09:08:30.938Z",
       "updated_at": "2023-12-21T09:14:56.786Z",
       "id": 5073588,
@@ -662,6 +677,7 @@
     {
       "name": "canvas",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-20T15:34:38.682Z",
       "updated_at": "2024-03-21T15:33:14.451Z",
       "id": 5531250,
@@ -704,6 +720,7 @@
     {
       "name": "canvas-checklist",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-02T10:44:42.656Z",
       "updated_at": "2023-05-02T13:42:38.832Z",
       "id": 3914196,
@@ -752,6 +769,7 @@
     {
       "name": "canvas-checklist-item",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-02T10:44:58.838Z",
       "updated_at": "2023-05-02T11:20:15.386Z",
       "id": 3914197,
@@ -780,6 +798,7 @@
     {
       "name": "canvas-egg",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-09T07:51:24.871Z",
       "updated_at": "2023-05-09T09:54:36.783Z",
       "id": 3943360,
@@ -813,6 +832,7 @@
     {
       "name": "canvas-egg-hatching",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-09T15:20:36.052Z",
       "updated_at": "2023-05-09T15:20:58.595Z",
       "id": 3946110,
@@ -846,6 +866,7 @@
     {
       "name": "canvas-group",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-19T14:57:33.541Z",
       "updated_at": "2023-05-09T15:22:02.381Z",
       "id": 3845878,
@@ -915,6 +936,7 @@
     {
       "name": "canvas-media",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-02T14:13:42.055Z",
       "updated_at": "2023-05-11T17:30:02.479Z",
       "id": 3915336,
@@ -990,6 +1012,7 @@
     {
       "name": "canvas-plant",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-09T07:22:26.974Z",
       "updated_at": "2023-05-09T14:10:59.819Z",
       "id": 3943234,
@@ -1027,6 +1050,7 @@
     {
       "name": "canvas-talk-balloon",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-21T11:10:59.947Z",
       "updated_at": "2023-04-21T11:23:40.749Z",
       "id": 3857957,
@@ -1087,6 +1111,7 @@
     {
       "name": "canvas-tarot",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-08T08:28:31.521Z",
       "updated_at": "2023-05-09T14:06:47.049Z",
       "id": 3938071,
@@ -1143,6 +1168,7 @@
     {
       "name": "canvas-tarot-text",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-08T08:31:41.841Z",
       "updated_at": "2023-05-08T08:31:55.015Z",
       "id": 3938093,
@@ -1170,6 +1196,7 @@
     {
       "name": "canvas-team",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-20T15:57:09.434Z",
       "updated_at": "2023-05-05T15:38:19.709Z",
       "id": 3853263,
@@ -1201,6 +1228,7 @@
     {
       "name": "canvas-tictactoe",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-03T13:09:31.502Z",
       "updated_at": "2023-05-03T13:11:22.873Z",
       "id": 3919751,
@@ -1238,6 +1266,7 @@
     {
       "name": "canvas-yellow-sticker",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-20T14:56:50.671Z",
       "updated_at": "2023-04-20T15:06:26.358Z",
       "id": 3853042,
@@ -1276,6 +1305,7 @@
     {
       "name": "career",
       "display_name": null,
+      "description": null,
       "created_at": "2023-03-23T13:12:20.312Z",
       "updated_at": "2023-04-06T15:46:23.809Z",
       "id": 3647314,
@@ -1352,6 +1382,7 @@
     {
       "name": "careers-list",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-14T10:56:07.056Z",
       "updated_at": "2024-03-21T15:33:41.241Z",
       "id": 5495548,
@@ -1404,6 +1435,7 @@
     {
       "name": "careers-page",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-19T14:55:51.954Z",
       "updated_at": "2023-04-21T09:28:18.507Z",
       "id": 3845873,
@@ -1493,6 +1525,7 @@
     {
       "name": "client",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-15T13:54:34.423Z",
       "updated_at": "2023-03-03T12:08:04.296Z",
       "id": 3442784,
@@ -1521,6 +1554,7 @@
     {
       "name": "client-logo",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-11T13:27:27.785Z",
       "updated_at": "2024-02-08T14:32:24.906Z",
       "id": 3785709,
@@ -1555,6 +1589,7 @@
     {
       "name": "clients",
       "display_name": null,
+      "description": null,
       "created_at": "2024-01-23T17:00:57.552Z",
       "updated_at": "2024-03-21T15:33:53.774Z",
       "id": 5219148,
@@ -1588,6 +1623,7 @@
     {
       "name": "column",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-16T10:38:00.191Z",
       "updated_at": "2023-03-02T17:04:33.780Z",
       "id": 3446784,
@@ -1641,6 +1677,7 @@
     {
       "name": "comparison",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-16T10:41:06.792Z",
       "updated_at": "2023-03-22T11:05:45.912Z",
       "id": 3446841,
@@ -1697,6 +1734,7 @@
     {
       "name": "configuration",
       "display_name": null,
+      "description": null,
       "created_at": "2023-03-13T17:47:31.124Z",
       "updated_at": "2024-09-06T13:21:46.635Z",
       "id": 3575812,
@@ -1755,6 +1793,7 @@
     {
       "name": "contacts-page",
       "display_name": null,
+      "description": null,
       "created_at": "2023-03-03T13:47:28.940Z",
       "updated_at": "2023-04-27T10:01:47.940Z",
       "id": 3521049,
@@ -1796,6 +1835,7 @@
     {
       "name": "contact-us-form",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-21T10:44:36.930Z",
       "updated_at": "2024-03-21T15:24:21.906Z",
       "id": 5535790,
@@ -1829,6 +1869,7 @@
     {
       "name": "core-values",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-08T15:26:01.922Z",
       "updated_at": "2024-03-21T15:34:06.358Z",
       "id": 5466421,
@@ -1870,6 +1911,7 @@
     {
       "name": "cta-card",
       "display_name": null,
+      "description": null,
       "created_at": "2024-01-24T11:35:57.280Z",
       "updated_at": "2024-03-22T17:06:32.032Z",
       "id": 5222861,
@@ -1938,6 +1980,7 @@
     {
       "name": "deliverable",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-15T13:54:14.804Z",
       "updated_at": "2023-02-15T13:54:14.804Z",
       "id": 3442781,
@@ -1961,6 +2004,7 @@
     {
       "name": "deliverables_entry",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-04T15:01:16.651Z",
       "updated_at": "2024-02-08T14:42:34.746Z",
       "id": 3926730,
@@ -1995,6 +2039,7 @@
     {
       "name": "deliverables-entry-block",
       "display_name": "deliverables-entry-block",
+      "description": null,
       "created_at": "2024-03-13T11:59:49.202Z",
       "updated_at": "2024-03-20T11:15:04.305Z",
       "id": 5490353,
@@ -2039,6 +2084,7 @@
     {
       "name": "draw-segg",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-20T15:31:34.802Z",
       "updated_at": "2024-03-21T15:34:44.455Z",
       "id": 5531244,
@@ -2072,6 +2118,7 @@
     {
       "name": "estimation",
       "display_name": "Estimation Form",
+      "description": null,
       "created_at": "2024-01-18T12:38:10.713Z",
       "updated_at": "2024-03-21T15:23:08.731Z",
       "id": 5192821,
@@ -2120,6 +2167,7 @@
     {
       "name": "footer-column-external",
       "display_name": "Footer external links",
+      "description": null,
       "created_at": "2023-03-14T10:59:53.399Z",
       "updated_at": "2023-03-14T11:00:16.441Z",
       "id": 3579925,
@@ -2153,6 +2201,7 @@
     {
       "name": "footer-column-internal",
       "display_name": "Footer internal links",
+      "description": null,
       "created_at": "2023-03-13T17:50:36.332Z",
       "updated_at": "2023-03-14T10:59:40.056Z",
       "id": 3575813,
@@ -2187,6 +2236,7 @@
     {
       "name": "form-budget-range",
       "display_name": "Budget Range Form",
+      "description": null,
       "created_at": "2024-03-19T14:26:52.308Z",
       "updated_at": "2024-03-21T15:36:39.092Z",
       "id": 5523274,
@@ -2217,6 +2267,7 @@
     {
       "name": "get-a-quote-page",
       "display_name": null,
+      "description": null,
       "created_at": "2023-03-03T13:47:17.251Z",
       "updated_at": "2024-01-26T12:12:36.946Z",
       "id": 3521048,
@@ -2294,6 +2345,7 @@
     {
       "name": "get-a-quote-step",
       "display_name": null,
+      "description": null,
       "created_at": "2023-03-30T13:32:36.241Z",
       "updated_at": "2023-03-30T13:32:44.359Z",
       "id": 3704710,
@@ -2324,8 +2376,9 @@
     {
       "name": "handbook",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-15T13:50:12.113Z",
-      "updated_at": "2024-09-16T14:14:36.147Z",
+      "updated_at": "2024-10-29T12:04:19.489Z",
       "id": 3442773,
       "schema": {
         "last_updated": {
@@ -2362,9 +2415,19 @@
               "name": "4 – Working with Significa"
             },
             {
+              "_uid": "9f0de963-31cf-4244-8b4d-c7aa2f73f203",
+              "value": "5 – Engineering",
+              "name": "5 – Engineering"
+            },
+            {
               "_uid": "632875c1-4c19-4d6c-8659-0a93010c08c3",
-              "value": "5 – Strategy and product",
-              "name": "5 – Strategy and product"
+              "value": "6 – Strategy and product",
+              "name": "6 – Strategy and product"
+            },
+            {
+              "_uid": "5a1a5ca6-a90e-4167-a9a1-12cfb35d0d90",
+              "value": "7 – Brand and Marketing",
+              "name": "7 – Brand and Marketing"
             }
           ],
           "description": "When adding new chapters they should follow the format: \"{N} – {Name}\" where N is the presentation order."
@@ -2441,7 +2504,8 @@
             "color"
           ],
           "key": "body",
-          "pos": 7
+          "pos": 7,
+          "allow_custom_attributes": true
         },
         "seo_title": {
           "type": "text",
@@ -2541,6 +2605,7 @@
     {
       "name": "hero",
       "display_name": null,
+      "description": null,
       "created_at": "2024-01-10T16:19:08.681Z",
       "updated_at": "2024-03-21T15:35:47.297Z",
       "id": 5148572,
@@ -2608,6 +2673,7 @@
     {
       "name": "home-about-link",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-10T15:09:32.455Z",
       "updated_at": "2023-04-10T15:10:13.125Z",
       "id": 3776794,
@@ -2648,6 +2714,7 @@
     {
       "name": "home-page",
       "display_name": null,
+      "description": null,
       "created_at": "2023-03-03T14:59:15.465Z",
       "updated_at": "2024-01-26T11:50:30.539Z",
       "id": 3521503,
@@ -2901,6 +2968,7 @@
     {
       "name": "image",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-16T10:44:18.022Z",
       "updated_at": "2023-03-29T15:31:23.095Z",
       "id": 3446843,
@@ -2960,6 +3028,7 @@
     {
       "name": "image-grid",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-16T10:48:55.079Z",
       "updated_at": "2023-03-22T11:07:18.021Z",
       "id": 3446857,
@@ -3035,6 +3104,7 @@
     {
       "name": "landing-page",
       "display_name": null,
+      "description": null,
       "created_at": "2024-01-09T16:40:58.537Z",
       "updated_at": "2024-08-13T14:29:22.784Z",
       "id": 5142044,
@@ -3160,6 +3230,7 @@
     {
       "name": "link",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-15T13:51:55.247Z",
       "updated_at": "2023-02-15T13:52:44.426Z",
       "id": 3442775,
@@ -3190,6 +3261,7 @@
     {
       "name": "list",
       "display_name": "List (Ex: Deliverables & Benefits)",
+      "description": null,
       "created_at": "2024-03-19T17:01:00.283Z",
       "updated_at": "2024-03-22T15:28:10.422Z",
       "id": 5524571,
@@ -3265,6 +3337,7 @@
     {
       "name": "measurement_entry",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-22T11:29:02.519Z",
       "updated_at": "2024-04-08T13:21:01.344Z",
       "id": 5541574,
@@ -3309,6 +3382,7 @@
     {
       "name": "newton",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-15T16:54:56.519Z",
       "updated_at": "2024-03-21T15:36:22.059Z",
       "id": 5504812,
@@ -3348,6 +3422,7 @@
     {
       "name": "notepad_card",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-11T13:32:29.435Z",
       "updated_at": "2023-04-11T13:32:35.750Z",
       "id": 3785715,
@@ -3375,6 +3450,7 @@
     {
       "name": "office-cards",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-06T15:26:14.141Z",
       "updated_at": "2024-03-21T15:36:36.941Z",
       "id": 5451419,
@@ -3435,6 +3511,7 @@
     {
       "name": "open-positions",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-20T15:04:18.340Z",
       "updated_at": "2024-03-21T15:37:13.613Z",
       "id": 5531010,
@@ -3469,6 +3546,7 @@
     {
       "name": "other-entry-block",
       "display_name": "other-entry-block",
+      "description": null,
       "created_at": "2024-03-19T16:21:44.759Z",
       "updated_at": "2024-03-20T11:15:23.446Z",
       "id": 5524242,
@@ -3509,6 +3587,7 @@
     {
       "name": "packages",
       "display_name": null,
+      "description": null,
       "created_at": "2024-01-11T12:27:35.516Z",
       "updated_at": "2024-03-21T15:37:24.688Z",
       "id": 5153549,
@@ -3548,6 +3627,7 @@
     {
       "name": "page",
       "display_name": null,
+      "description": null,
       "created_at": "2023-03-03T13:41:50.937Z",
       "updated_at": "2024-08-13T14:21:23.054Z",
       "id": 3520995,
@@ -3680,6 +3760,7 @@
     {
       "name": "photo_card",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-11T13:32:46.022Z",
       "updated_at": "2023-04-11T13:32:54.059Z",
       "id": 3785716,
@@ -3708,6 +3789,7 @@
     {
       "name": "physics",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-12T15:09:24.990Z",
       "updated_at": "2024-03-21T15:37:36.489Z",
       "id": 5485214,
@@ -3786,6 +3868,7 @@
     {
       "name": "physics-balloon-card",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-14T10:39:02.963Z",
       "updated_at": "2023-05-18T07:26:57.000Z",
       "id": 3811407,
@@ -3843,6 +3926,7 @@
     {
       "name": "physics-input",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-17T15:13:53.017Z",
       "updated_at": "2023-05-18T07:27:49.440Z",
       "id": 3830600,
@@ -3873,6 +3957,7 @@
     {
       "name": "physics-rectangle-card",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-14T10:37:48.156Z",
       "updated_at": "2023-05-18T07:25:20.056Z",
       "id": 3811406,
@@ -3926,6 +4011,7 @@
     {
       "name": "physics-sticker",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-26T13:15:00.766Z",
       "updated_at": "2023-05-18T07:26:39.476Z",
       "id": 3889837,
@@ -3962,6 +4048,7 @@
     {
       "name": "prefooter-form",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-07T11:40:30.984Z",
       "updated_at": "2024-03-21T15:35:58.092Z",
       "id": 5457509,
@@ -3985,55 +4072,40 @@
     {
       "name": "project",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-15T13:07:44.621Z",
-      "updated_at": "2024-05-16T10:02:15.017Z",
+      "updated_at": "2024-12-12T17:27:11.951Z",
       "id": 3442356,
       "schema": {
-        "seo_title": {
-          "type": "text",
-          "pos": 0,
-          "key": "seo_title"
-        },
-        "seo_description": {
-          "type": "text",
-          "pos": 1,
-          "key": "seo_description"
-        },
-        "seo_og_image": {
-          "type": "asset",
-          "filetypes": ["images"],
-          "asset_folder_id": 212286,
-          "pos": 2,
-          "key": "seo_og_image"
-        },
-        "structure_data_markup": {
-          "type": "textarea",
-          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
-          "pos": 3
-        },
         "cover": {
           "type": "asset",
           "filetypes": ["images"],
           "asset_folder_id": 212286,
-          "pos": 4,
+          "pos": 0,
           "key": "cover"
         },
         "reel": {
           "type": "asset",
-          "pos": 5,
+          "pos": 1,
           "filetypes": ["videos"],
           "key": "reel"
         },
         "reel_button": {
           "type": "section",
-          "pos": 6,
-          "keys": ["reel_button_theme", "reel_button_label"],
-          "key": "reel_button"
+          "pos": 2,
+          "keys": ["reel_button_theme", "reel_button_label", "show_reel_controls"],
+          "key": "reel_button",
+          "display_name": "Reel Options"
+        },
+        "show_reel_controls": {
+          "type": "boolean",
+          "pos": 3,
+          "default_value": true
         },
         "reel_button_theme": {
           "type": "option",
           "use_uuid": true,
-          "pos": 7,
+          "pos": 4,
           "options": [
             {
               "_uid": "ed9c0d33-e7d4-42de-a790-9adfca55481a",
@@ -4053,7 +4125,7 @@
         },
         "reel_button_label": {
           "type": "text",
-          "pos": 8,
+          "pos": 5,
           "display_name": "Reel Button Label (optional)",
           "key": "reel_button_label"
         },
@@ -4062,31 +4134,31 @@
           "filetypes": ["images"],
           "required": true,
           "asset_folder_id": 212286,
-          "pos": 9,
+          "pos": 6,
           "key": "thumbnail"
         },
         "tagline": {
           "type": "text",
           "required": true,
-          "pos": 10,
+          "pos": 7,
           "key": "tagline"
         },
         "intro": {
           "type": "textarea",
           "required": true,
-          "pos": 11,
+          "pos": 8,
           "key": "intro"
         },
         "team": {
           "type": "options",
           "source": "internal_stories",
           "filter_content_type": ["team-member"],
-          "pos": 12,
+          "pos": 9,
           "key": "team"
         },
         "measurements": {
           "type": "bloks",
-          "pos": 13,
+          "pos": 10,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["measurement_entry"]
@@ -4096,19 +4168,19 @@
           "use_uuid": true,
           "source": "internal_stories",
           "filter_content_type": ["client"],
-          "pos": 14,
+          "pos": 11,
           "key": "client"
         },
         "deliverables": {
           "type": "options",
-          "pos": 15,
+          "pos": 12,
           "source": "internal",
           "datasource_slug": "deliverables",
           "key": "deliverables"
         },
         "services": {
           "type": "options",
-          "pos": 16,
+          "pos": 13,
           "source": "internal",
           "datasource_slug": "services",
           "key": "services_data"
@@ -4118,13 +4190,35 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["link"],
-          "pos": 17,
+          "pos": 14,
           "key": "links"
+        },
+        "seo_title": {
+          "type": "text",
+          "pos": 15,
+          "key": "seo_title"
+        },
+        "seo_description": {
+          "type": "text",
+          "pos": 16,
+          "key": "seo_description"
+        },
+        "seo_og_image": {
+          "type": "asset",
+          "filetypes": ["images"],
+          "asset_folder_id": 212286,
+          "pos": 17,
+          "key": "seo_og_image"
+        },
+        "structure_data_markup": {
+          "type": "textarea",
+          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
+          "pos": 18
         },
         "tab-734adeb1-00ef-48e6-aa53-a3001ad39201": {
           "display_name": "Content",
           "keys": ["body"],
-          "pos": 18,
+          "pos": 19,
           "type": "tab",
           "key": "tab-734adeb1-00ef-48e6-aa53-a3001ad39201"
         },
@@ -4152,15 +4246,16 @@
             "hrule",
             "link",
             "blok",
-            "h4"
+            "h4",
+            "color"
           ],
-          "pos": 19,
+          "pos": 20,
           "key": "body"
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {
           "display_name": "SEO",
           "keys": ["seo_title", "seo_description", "seo_og_image", "structure_data_markup"],
-          "pos": 20,
+          "pos": 21,
           "type": "tab",
           "key": "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9"
         }
@@ -4184,6 +4279,7 @@
     {
       "name": "project-detailed-entry",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-22T11:33:38.201Z",
       "updated_at": "2024-03-25T12:45:29.971Z",
       "id": 5541582,
@@ -4250,6 +4346,7 @@
     {
       "name": "projects",
       "display_name": null,
+      "description": null,
       "created_at": "2024-01-24T10:08:07.237Z",
       "updated_at": "2024-03-21T15:35:57.203Z",
       "id": 5222132,
@@ -4282,6 +4379,7 @@
     {
       "name": "projects-index",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-06T13:42:56.259Z",
       "updated_at": "2023-04-06T13:42:56.259Z",
       "id": 3757617,
@@ -4305,6 +4403,7 @@
     {
       "name": "projects-two-columns",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-22T10:16:30.309Z",
       "updated_at": "2024-04-04T13:48:23.511Z",
       "id": 5541415,
@@ -4340,6 +4439,7 @@
     {
       "name": "proposal",
       "display_name": null,
+      "description": null,
       "created_at": "2023-09-11T15:29:11.214Z",
       "updated_at": "2024-09-17T16:19:11.256Z",
       "id": 4555199,
@@ -4424,6 +4524,7 @@
     {
       "name": "proposal-deliverable",
       "display_name": null,
+      "description": null,
       "created_at": "2023-12-29T10:32:19.656Z",
       "updated_at": "2024-01-11T11:00:36.436Z",
       "id": 5097435,
@@ -4504,6 +4605,7 @@
     {
       "name": "proposal-deliverable-team-entry",
       "display_name": null,
+      "description": null,
       "created_at": "2024-01-02T16:43:39.862Z",
       "updated_at": "2024-01-26T11:35:20.540Z",
       "id": 5107587,
@@ -4548,6 +4650,7 @@
     {
       "name": "proposal-department",
       "display_name": null,
+      "description": null,
       "created_at": "2023-09-11T15:40:29.996Z",
       "updated_at": "2024-01-25T17:23:12.347Z",
       "id": 4555221,
@@ -4592,6 +4695,7 @@
     {
       "name": "proposal-estimate-entry",
       "display_name": null,
+      "description": null,
       "created_at": "2023-09-11T15:43:50.844Z",
       "updated_at": "2023-09-27T09:19:21.295Z",
       "id": 4555228,
@@ -4658,6 +4762,7 @@
     {
       "name": "proposal-package-pricing",
       "display_name": null,
+      "description": null,
       "created_at": "2024-01-08T11:00:13.539Z",
       "updated_at": "2024-01-17T13:29:16.552Z",
       "id": 5132169,
@@ -4720,6 +4825,7 @@
     {
       "name": "proposal-package-team-entry",
       "display_name": null,
+      "description": null,
       "created_at": "2024-01-09T15:31:15.879Z",
       "updated_at": "2024-01-17T13:19:15.578Z",
       "id": 5141817,
@@ -4765,6 +4871,7 @@
     {
       "name": "proposal-phase-entry",
       "display_name": null,
+      "description": null,
       "created_at": "2023-09-11T15:45:23.034Z",
       "updated_at": "2023-09-11T15:46:58.405Z",
       "id": 4555251,
@@ -4804,6 +4911,7 @@
     {
       "name": "proposal-phase-team-entry",
       "display_name": null,
+      "description": null,
       "created_at": "2023-09-11T15:46:07.698Z",
       "updated_at": "2024-01-26T14:08:39.230Z",
       "id": 4555252,
@@ -4848,6 +4956,7 @@
     {
       "name": "proposal-role",
       "display_name": null,
+      "description": null,
       "created_at": "2023-09-11T15:42:16.849Z",
       "updated_at": "2023-09-11T15:42:29.505Z",
       "id": 4555227,
@@ -4879,6 +4988,7 @@
     {
       "name": "proposal-scope-entry",
       "display_name": null,
+      "description": null,
       "created_at": "2023-09-11T15:37:58.606Z",
       "updated_at": "2023-09-11T15:39:05.984Z",
       "id": 4555213,
@@ -4933,6 +5043,7 @@
     {
       "name": "proposal-section",
       "display_name": null,
+      "description": null,
       "created_at": "2023-09-11T15:35:20.402Z",
       "updated_at": "2024-01-17T13:22:49.221Z",
       "id": 4555212,
@@ -5012,6 +5123,7 @@
     {
       "name": "proposal-service",
       "display_name": null,
+      "description": null,
       "created_at": "2023-12-29T10:33:50.802Z",
       "updated_at": "2023-12-29T10:34:07.792Z",
       "id": 5097436,
@@ -5042,6 +5154,7 @@
     {
       "name": "proposal-team-entry",
       "display_name": null,
+      "description": null,
       "created_at": "2023-09-11T15:39:52.162Z",
       "updated_at": "2024-01-09T11:31:07.511Z",
       "id": 4555220,
@@ -5126,6 +5239,7 @@
     {
       "name": "proposal-version",
       "display_name": null,
+      "description": null,
       "created_at": "2023-09-11T15:33:34.190Z",
       "updated_at": "2024-05-29T09:22:53.544Z",
       "id": 4555208,
@@ -5206,6 +5320,7 @@
     {
       "name": "proposal-version-package",
       "display_name": null,
+      "description": null,
       "created_at": "2023-12-28T13:15:17.211Z",
       "updated_at": "2024-05-29T09:49:07.190Z",
       "id": 5094324,
@@ -5296,6 +5411,7 @@
     {
       "name": "recognition",
       "display_name": null,
+      "description": null,
       "created_at": "2023-03-07T16:21:33.212Z",
       "updated_at": "2023-03-07T16:22:20.232Z",
       "id": 3541187,
@@ -5334,6 +5450,7 @@
     {
       "name": "recognition-entry",
       "display_name": null,
+      "description": null,
       "created_at": "2024-01-15T10:27:58.850Z",
       "updated_at": "2024-01-15T10:39:15.898Z",
       "id": 5170314,
@@ -5393,6 +5510,7 @@
     {
       "name": "recognition-type",
       "display_name": null,
+      "description": null,
       "created_at": "2024-01-15T10:24:43.499Z",
       "updated_at": "2024-01-17T11:28:03.335Z",
       "id": 5170311,
@@ -5437,6 +5555,7 @@
     {
       "name": "richtext-box",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-16T10:59:09.847Z",
       "updated_at": "2023-03-22T11:57:22.918Z",
       "id": 3446937,
@@ -5500,6 +5619,7 @@
     {
       "name": "richtext-code-block",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-24T17:31:53.338Z",
       "updated_at": "2023-03-22T11:49:12.650Z",
       "id": 3486021,
@@ -5590,6 +5710,7 @@
     {
       "name": "richtext-testimonial",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-16T10:51:32.577Z",
       "updated_at": "2024-02-08T14:36:59.330Z",
       "id": 3446858,
@@ -5633,6 +5754,7 @@
     {
       "name": "root",
       "display_name": null,
+      "description": null,
       "created_at": "2023-03-03T12:10:42.589Z",
       "updated_at": "2023-03-03T12:10:44.808Z",
       "id": 3520419,
@@ -5660,6 +5782,7 @@
     {
       "name": "service",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-15T13:54:22.743Z",
       "updated_at": "2023-02-15T13:54:22.743Z",
       "id": 3442782,
@@ -5683,6 +5806,7 @@
     {
       "name": "services",
       "display_name": null,
+      "description": null,
       "created_at": "2024-01-23T11:26:31.001Z",
       "updated_at": "2024-03-21T15:37:56.132Z",
       "id": 5216425,
@@ -5726,6 +5850,7 @@
     {
       "name": "services_deppartment",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-04T10:55:05.274Z",
       "updated_at": "2023-05-04T11:00:55.665Z",
       "id": 3924768,
@@ -5761,6 +5886,7 @@
     {
       "name": "services_entry",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-04T10:52:21.360Z",
       "updated_at": "2023-05-04T10:52:32.373Z",
       "id": 3924755,
@@ -5788,6 +5914,7 @@
     {
       "name": "services_group_entry",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-04T10:53:28.541Z",
       "updated_at": "2023-05-04T10:53:55.547Z",
       "id": 3924760,
@@ -5821,6 +5948,7 @@
     {
       "name": "services-page",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-04T08:50:50.568Z",
       "updated_at": "2024-02-08T14:33:34.810Z",
       "id": 3924074,
@@ -5995,6 +6123,7 @@
     {
       "name": "service-timeline-cell",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-04T12:45:26.410Z",
       "updated_at": "2023-05-08T16:01:26.703Z",
       "id": 3925566,
@@ -6077,6 +6206,7 @@
     {
       "name": "service-timeline-row",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-04T12:51:29.190Z",
       "updated_at": "2023-05-04T12:51:49.994Z",
       "id": 3925598,
@@ -6111,6 +6241,7 @@
     {
       "name": "service-timeline-subrow",
       "display_name": null,
+      "description": null,
       "created_at": "2023-05-04T12:51:01.890Z",
       "updated_at": "2023-05-04T12:51:14.713Z",
       "id": 3925597,
@@ -6141,6 +6272,7 @@
     {
       "name": "slideshow",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-19T10:36:17.607Z",
       "updated_at": "2024-03-21T15:38:03.887Z",
       "id": 5520317,
@@ -6169,6 +6301,7 @@
     {
       "name": "slogan",
       "display_name": "Editable Hero",
+      "description": null,
       "created_at": "2024-03-18T14:45:11.905Z",
       "updated_at": "2024-03-21T15:35:31.917Z",
       "id": 5515857,
@@ -6204,6 +6337,7 @@
     {
       "name": "static-page",
       "display_name": null,
+      "description": null,
       "created_at": "2023-03-03T13:43:24.273Z",
       "updated_at": "2023-03-07T15:40:14.043Z",
       "id": 3520996,
@@ -6255,6 +6389,7 @@
     {
       "name": "steps",
       "display_name": null,
+      "description": null,
       "created_at": "2024-01-23T10:01:47.736Z",
       "updated_at": "2024-03-21T15:38:49.393Z",
       "id": 5215462,
@@ -6313,6 +6448,7 @@
     {
       "name": "team-buttons",
       "display_name": null,
+      "description": null,
       "created_at": "2024-02-23T11:16:31.291Z",
       "updated_at": "2024-02-23T13:52:58.429Z",
       "id": 5386334,
@@ -6371,6 +6507,7 @@
     {
       "name": "team-member",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-15T10:55:16.832Z",
       "updated_at": "2024-03-15T10:32:23.041Z",
       "id": 3441652,
@@ -6517,6 +6654,7 @@
     {
       "name": "team-member-link",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-15T11:55:00.748Z",
       "updated_at": "2023-02-16T10:25:48.383Z",
       "id": 3441976,
@@ -6602,6 +6740,7 @@
     {
       "name": "testimonials",
       "display_name": null,
+      "description": null,
       "created_at": "2024-01-23T16:14:01.707Z",
       "updated_at": "2024-07-22T08:24:27.643Z",
       "id": 5218864,
@@ -6689,6 +6828,7 @@
     {
       "name": "timeline",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-12T11:05:47.289Z",
       "updated_at": "2024-03-22T15:35:28.908Z",
       "id": 5481922,
@@ -6737,6 +6877,7 @@
     {
       "name": "timeline-arrow",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-12T14:24:11.523Z",
       "updated_at": "2023-04-21T13:25:55.540Z",
       "id": 3795710,
@@ -6826,6 +6967,7 @@
     {
       "name": "timeline-image",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-12T14:25:57.635Z",
       "updated_at": "2023-05-10T17:05:29.001Z",
       "id": 3795713,
@@ -6882,6 +7024,7 @@
     {
       "name": "timeline-section",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-12T14:19:35.765Z",
       "updated_at": "2023-04-12T20:56:46.026Z",
       "id": 3795691,
@@ -6919,6 +7062,7 @@
     {
       "name": "timeline-services",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-13T17:08:11.140Z",
       "updated_at": "2024-03-14T11:54:19.731Z",
       "id": 5492589,
@@ -6956,6 +7100,7 @@
     {
       "name": "timeline-text",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-12T14:20:49.471Z",
       "updated_at": "2024-03-26T10:35:38.423Z",
       "id": 3795700,
@@ -7017,6 +7162,7 @@
     {
       "name": "timezone",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-19T11:21:58.068Z",
       "updated_at": "2024-03-19T11:24:02.397Z",
       "id": 5520937,
@@ -7046,6 +7192,7 @@
     {
       "name": "two-columns",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-16T10:36:21.986Z",
       "updated_at": "2023-03-22T11:58:52.491Z",
       "id": 3446779,
@@ -7093,6 +7240,7 @@
     {
       "name": "value",
       "display_name": null,
+      "description": null,
       "created_at": "2023-04-11T13:24:04.277Z",
       "updated_at": "2024-03-08T15:57:50.262Z",
       "id": 3785697,
@@ -7170,6 +7318,7 @@
     {
       "name": "vertical-list",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-25T11:31:05.258Z",
       "updated_at": "2024-04-05T13:20:05.855Z",
       "id": 5552071,
@@ -7223,6 +7372,7 @@
     {
       "name": "vertical-list-entry",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-25T11:30:41.475Z",
       "updated_at": "2024-03-25T11:35:38.113Z",
       "id": 5552070,
@@ -7253,6 +7403,7 @@
     {
       "name": "video",
       "display_name": null,
+      "description": null,
       "created_at": "2023-02-16T10:45:31.449Z",
       "updated_at": "2023-03-22T11:51:33.816Z",
       "id": 3446844,
@@ -7320,6 +7471,7 @@
     {
       "name": "word_entry",
       "display_name": null,
+      "description": null,
       "created_at": "2024-03-18T14:46:26.117Z",
       "updated_at": "2024-03-18T14:57:06.424Z",
       "id": 5515861,
@@ -7347,6 +7499,7 @@
     {
       "name": "work-recognitions",
       "display_name": null,
+      "description": null,
       "created_at": "2024-01-16T12:05:23.832Z",
       "updated_at": "2024-01-16T15:48:35.049Z",
       "id": 5178911,

@@ -585,7 +585,9 @@ export interface HandbookStoryblok {
     | '2 – Working at Significa'
     | '3 – Recruitment'
     | '4 – Working with Significa'
-    | '5 – Strategy and product';
+    | '5 – Engineering'
+    | '6 – Strategy and product'
+    | '7 – Brand and Marketing';
   cover: AssetStoryblok;
   order: string;
   highlight?: boolean;
@@ -972,13 +974,10 @@ export interface PrefooterFormStoryblok {
 }
 
 export interface ProjectStoryblok {
-  seo_title?: string;
-  seo_description?: string;
-  seo_og_image?: AssetStoryblok;
-  structure_data_markup?: string;
   cover?: AssetStoryblok;
   reel?: AssetStoryblok;
   reel_button?: any;
+  show_reel_controls?: boolean;
   reel_button_theme?: '' | 'light' | 'dark';
   reel_button_label?: string;
   thumbnail: MultiassetStoryblok;
@@ -990,6 +989,10 @@ export interface ProjectStoryblok {
   deliverables?: (number | string)[];
   services?: (number | string)[];
   links?: LinkStoryblok[];
+  seo_title?: string;
+  seo_description?: string;
+  seo_og_image?: AssetStoryblok;
+  structure_data_markup?: string;
   body?: RichtextStoryblok;
   _uid: string;
   component: 'project';

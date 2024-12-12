@@ -11,6 +11,7 @@
 
   export let playLabel: string | undefined;
   export let buttonTheme: 'light' | 'dark' | '' = 'light';
+  export let showControls: boolean | undefined = undefined;
 
   let x = 0;
   let y = 0;
@@ -72,8 +73,10 @@
     class="aspect-video h-auto w-full bg-background-offset [&[poster]]:h-full [&[poster]]:w-full [&[poster]]:bg-background [&[poster]]:object-cover"
     muted={false}
     playsinline
+    controls={showControls}
     bind:paused
     on:click={() => {
+      if (showControls) return;
       if (!paused) {
         video.pause();
       } else {

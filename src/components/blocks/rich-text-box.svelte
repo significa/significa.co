@@ -2,14 +2,19 @@
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import type { RichtextBoxStoryblok } from '$types/bloks';
-  import { Button } from '@significa/svelte-ui';
   import clsx from 'clsx';
+  import { drawerLinks } from '$lib/actions/drawer-links';
+  import { Icon } from '@significa/svelte-ui';
 
   export let block: RichtextBoxStoryblok;
+  $: ({ href } = getAnchorFromCmsLink(block.link?.[0]?.link) || { href: undefined });
 </script>
 
-<div
+<svelte:element
+  this={href ? 'a' : 'div'}
   use:storyblokEditable={block}
+  use:drawerLinks
+  {...href ? { href } : {}}
   class={clsx(
     'not-rich-text my-6 rounded-2xl bg-background-panel p-4 md:my-10',
     block.layout === 'horizontal' && 'flex flex-col items-stretch gap-4 xs:flex-row',
@@ -40,12 +45,14 @@
       <p class="mt-0.5 text-xl">{block.text}</p>
     </div>
     {#if block.link?.length}
-      {#each block.link as { label, link }}
-        {@const { href } = getAnchorFromCmsLink(link)}
-        <div class="mt-4">
-          <Button as="a" {href} variant="secondary" arrow>{label}</Button>
+      {#each block.link as { label }}
+        <div
+          class="mt-4 inline-flex items-center gap-2 rounded-full bg-background-panel px-4 py-2 text-base font-medium"
+        >
+          {label}
+          <Icon icon="arrow-right" />
         </div>
       {/each}
     {/if}
   </div>
-</div>
+</svelte:element>

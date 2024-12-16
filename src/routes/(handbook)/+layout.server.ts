@@ -20,7 +20,7 @@ export const load = async ({ fetch, locals }) => {
       careers: await fetchCareers({ version, fetch }),
       version
     };
-  } catch (err) {
+  } catch {
     throw error(404, 'Not found');
   }
 };

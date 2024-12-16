@@ -26,7 +26,7 @@ export const GET = async ({ url }) => {
     );
 
     return text(url);
-  } catch (err) {
+  } catch {
     throw error(500, 'Could not get signed URL');
   }
 };

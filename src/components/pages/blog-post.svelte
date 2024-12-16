@@ -21,17 +21,40 @@
   description={story.content.seo_description || story.content.intro}
   image={story.content.seo_og_image || story.content.cover}
   structureDataMarkup={story.content.structure_data_markup}
+  twitterExtraFields={story?.content?.reading_time
+    ? [
+        {
+          key: t('blog.est-reading-time'),
+          value: t('blog.x_minutes', { value: story.content.reading_time })
+        }
+      ]
+    : []}
 />
 <div class="container mx-auto px-container">
   <header class="mx-auto mb-10 mt-10 max-w-2xl md:mt-14 lg:mt-20">
-    {#if story.first_published_at}
-      <p class="text-base font-medium text-foreground-secondary">
-        {formatDate(new Date(story.first_published_at || story.published_at || story.created_at), {
-          dateStyle: 'medium'
-        })}
-      </p>
-    {/if}
+    <div class="flex gap-2">
+      {#if story.first_published_at}
+        <p class="text-base font-medium text-foreground-secondary">
+          {formatDate(
+            new Date(story.first_published_at || story.published_at || story.created_at),
+            {
+              dateStyle: 'medium'
+            }
+          )}
+        </p>
+      {/if}
+      {#if story.first_published_at && story.content.reading_time}
+        <p class="text-base text-foreground-secondary/80">•</p>
+      {/if}
+      {#if story.content.reading_time}
+        <p class="text-base text-foreground-secondary/80">
+          {t('blog.x_min_read', { value: story.content.reading_time })}
+        </p>
+      {/if}
+    </div>
+
     <h1 class="text-5xl">{story.name}</h1>
+
     {#if story.tag_list.length}
       <div class="mt-5 flex flex-wrap gap-2">
         {#each story.tag_list as tag}
@@ -39,6 +62,7 @@
         {/each}
       </div>
     {/if}
+
     {#if story.content.intro}
       <p class="mt-9 text-2xl font-medium">{story.content.intro}</p>
     {/if}

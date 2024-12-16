@@ -157,19 +157,20 @@ export interface RichtextStoryblok {
 }
 
 export interface BlogPostStoryblok {
-  seo_title?: string;
-  seo_description?: string;
-  seo_og_image?: AssetStoryblok;
-  seo_canonical_url?: string;
-  structure_data_markup?: string;
   cover?: AssetStoryblok;
+  reading_time?: string;
   intro: string;
-  body?: RichtextStoryblok;
   authors: (StoryblokStory<TeamMemberStoryblok> | string)[];
   services?: (number | string)[];
   deliverables?: (number | string)[];
   tech?: (number | string)[];
   industry?: (number | string)[];
+  seo_title?: string;
+  seo_description?: string;
+  seo_og_image?: AssetStoryblok;
+  seo_canonical_url?: string;
+  structure_data_markup?: string;
+  body?: RichtextStoryblok;
   _uid: string;
   component: 'blog-post';
   [k: string]: any;

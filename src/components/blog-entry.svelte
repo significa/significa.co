@@ -36,9 +36,20 @@
       {/if}
     </div>
     <div class="w-full max-w-xl">
-      <p class="mb-2 text-base font-medium text-foreground-secondary">
-        {formatDate(new Date(post.first_published_at || post.published_at || post.created_at))}
-      </p>
+      <div class="flex gap-2">
+        <p class="mb-2 text-base font-medium text-foreground-secondary">
+          {formatDate(new Date(post.first_published_at || post.published_at || post.created_at))}
+        </p>
+        {#if post.first_published_at && post.content.reading_time}
+          <p class="text-base text-foreground-secondary/80">•</p>
+        {/if}
+        {#if post.content.reading_time}
+          <p class="text-base text-foreground-secondary/80">
+            {`${post.content.reading_time} min read`}
+          </p>
+        {/if}
+      </div>
+
       <Link href={`/blog/${post.slug}`} class="max-w-2xl text-4xl elevated-link">{post.name}</Link>
       {#if post.tag_list.length}
         <div class="mt-5 flex flex-wrap gap-2">

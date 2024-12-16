@@ -172,7 +172,10 @@ export const TranslationKeys = [
   'proposals.package.reply.manpower.desc',
   'handbook.last.updated',
   'handbook.navigation.website',
-  'estimate.clear'
+  'estimate.clear',
+  'blog.x_minutes',
+  'blog.est-reading-time',
+  'blog.x_min_read'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

@@ -467,49 +467,88 @@
       "display_name": "Author",
       "description": null,
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2024-11-07T16:22:14.376Z",
+      "updated_at": "2024-12-16T10:30:37.243Z",
       "id": 3442347,
       "schema": {
-        "seo_title": {
-          "type": "text",
-          "pos": 0
-        },
-        "seo_description": {
-          "type": "text",
-          "pos": 1
-        },
-        "seo_og_image": {
-          "type": "asset",
-          "filetypes": ["images"],
-          "asset_folder_id": 212285,
-          "pos": 2
-        },
-        "seo_canonical_url": {
-          "type": "text",
-          "pos": 3,
-          "description": "The default is the page URL"
-        },
-        "structure_data_markup": {
-          "type": "textarea",
-          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
-          "pos": 4
-        },
         "cover": {
           "type": "asset",
           "filetypes": ["images"],
           "asset_folder_id": 212285,
           "required": false,
-          "pos": 5
+          "pos": 0
+        },
+        "reading_time": {
+          "type": "number",
+          "pos": 1,
+          "display_name": "Reading Time (mins)"
         },
         "intro": {
           "type": "textarea",
           "required": true,
+          "pos": 2
+        },
+        "authors": {
+          "type": "options",
+          "source": "internal_stories",
+          "filter_content_type": ["team-member"],
+          "required": true,
+          "min_options": "1",
+          "max_options": "4",
+          "pos": 3
+        },
+        "services": {
+          "type": "options",
+          "source": "internal",
+          "datasource_slug": "services",
+          "pos": 4
+        },
+        "deliverables": {
+          "type": "options",
+          "source": "internal",
+          "datasource_slug": "deliverables",
+          "pos": 5
+        },
+        "tech": {
+          "type": "options",
+          "display_name": "",
+          "source": "internal",
+          "datasource_slug": "tech-stack",
           "pos": 6
+        },
+        "industry": {
+          "type": "options",
+          "source": "internal",
+          "datasource_slug": "industry",
+          "pos": 7
+        },
+        "seo_title": {
+          "type": "text",
+          "pos": 8
+        },
+        "seo_description": {
+          "type": "text",
+          "pos": 9
+        },
+        "seo_og_image": {
+          "type": "asset",
+          "filetypes": ["images"],
+          "asset_folder_id": 212285,
+          "pos": 10
+        },
+        "seo_canonical_url": {
+          "type": "text",
+          "pos": 11,
+          "description": "The default is the page URL"
+        },
+        "structure_data_markup": {
+          "type": "textarea",
+          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
+          "pos": 12
         },
         "tab-9a5d9933-3840-42d8-aa24-d87e83a9eb5d": {
           "display_name": "Content",
           "keys": ["body"],
-          "pos": 7,
+          "pos": 13,
           "type": "tab"
         },
         "tab-c1b66206-334d-4470-a996-ca9aa074e23c": {
@@ -521,7 +560,7 @@
             "structure_data_markup",
             "seo_canonical_url"
           ],
-          "pos": 8,
+          "pos": 14,
           "type": "tab"
         },
         "body": {
@@ -553,41 +592,7 @@
             "redo",
             "color"
           ],
-          "pos": 9
-        },
-        "authors": {
-          "type": "options",
-          "source": "internal_stories",
-          "filter_content_type": ["team-member"],
-          "required": true,
-          "min_options": "1",
-          "max_options": "4",
-          "pos": 10
-        },
-        "services": {
-          "type": "options",
-          "source": "internal",
-          "datasource_slug": "services",
-          "pos": 11
-        },
-        "deliverables": {
-          "type": "options",
-          "source": "internal",
-          "datasource_slug": "deliverables",
-          "pos": 12
-        },
-        "tech": {
-          "type": "options",
-          "display_name": "",
-          "source": "internal",
-          "datasource_slug": "tech-stack",
-          "pos": 13
-        },
-        "industry": {
-          "type": "options",
-          "source": "internal",
-          "datasource_slug": "industry",
-          "pos": 14
+          "pos": 15
         }
       },
       "image": "//a.storyblok.com/f/198185/x/f51edbf69b/screenshot-2023-03-22-at-11-49-53.png",

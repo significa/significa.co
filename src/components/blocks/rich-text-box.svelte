@@ -17,6 +17,7 @@
   {...href ? { href } : {}}
   class={clsx(
     'not-rich-text my-6 rounded-2xl bg-background-panel p-4 md:my-10',
+    href && 'hover:border-border-active hover:ring-2 transition-all',
     block.layout === 'horizontal' && 'flex flex-col items-stretch gap-4 xs:flex-row',
     $$restProps.class
   )}
@@ -46,9 +47,7 @@
     </div>
     {#if block.link?.length}
       {#each block.link as { label }}
-        <div
-          class="mt-4 inline-flex items-center gap-2 rounded-full bg-background-panel px-4 py-2 text-base font-medium"
-        >
+        <div class="mt-4 inline-flex items-center gap-2 text-base font-medium">
           {label}
           <Icon icon="arrow-right" />
         </div>

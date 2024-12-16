@@ -20,7 +20,7 @@
     "sb": "npm run sb:pull && npm run sb:types",
     "datasources": "svelte-kit sync && npx ts-node@latest --project ./node.tsconfig.json ./scripts/datasources.ts",
     "sitemap": "svelte-kit sync && npx ts-node@latest --project ./node.tsconfig.json ./scripts/sitemap.ts",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "devDependencies": {
     "@sveltejs/adapter-vercel": "^3.1.0",
@@ -38,7 +38,7 @@
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-svelte": "^2.46.1",
-    "husky": "^8.0.3",
+    "husky": "^9.1.7",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
     "prettier-plugin-svelte": "^3.3.2",

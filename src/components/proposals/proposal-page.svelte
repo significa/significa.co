@@ -44,7 +44,7 @@
       <div
         class={clsx(
           'container mx-auto px-container',
-          'grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-10 lg:gap-12'
+          'grid grid-cols-1 gap-10 md:grid-cols-[1fr_2fr_1fr] lg:gap-12'
         )}
       >
         <h3 class="text-4xl">{section.title}</h3>

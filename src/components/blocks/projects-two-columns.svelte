@@ -11,19 +11,19 @@
   import Popover from '$components/proposals/popover.svelte';
 </script>
 
-<section use:storyblokEditable={block} class="mt-10 lg:mt-12 md:border-y">
-  <div class="hidden container mx-auto px-container md:grid grid-cols-1 md:grid-cols-[50%_50%]">
+<section use:storyblokEditable={block} class="mt-10 md:border-y lg:mt-12">
+  <div class="container mx-auto hidden grid-cols-1 px-container md:grid md:grid-cols-[50%_50%]">
     {#each block.project || [] as project}
-      <div class={'md:first:pr-8 md:first:border-r md:last:pl-8'}>
+      <div class={'md:first:border-r md:first:pr-8 md:last:pl-8'}>
         <ProjectTwoColumnsEntry {project} />
       </div>
     {/each}
   </div>
   {#if block.project && block.project[0].measurements && block.project[1].measurements}
     <div class="hidden border-t md:flex">
-      <div class="container mx-auto px-container grid grid-cols-1 md:grid-cols-[50%_50%]">
+      <div class="container mx-auto grid grid-cols-1 px-container md:grid-cols-[50%_50%]">
         {#each block.project || [] as measurement}
-          <div class="flex gap-8 gap-y-4 first:pr-8 first:border-r last:pl-8 py-6 flex-wrap">
+          <div class="flex flex-wrap gap-8 gap-y-4 py-6 first:border-r first:pr-8 last:pl-8">
             {#each measurement.measurements || [] as measurements}
               <div class="flex flex-col whitespace-nowrap">
                 <Popover variant={'fit-content'}>
@@ -36,11 +36,11 @@
                         {@const { alt, src } = getImageAttributes(measurements.icon)}
                         <img class="max-h-2.5" {src} {alt} />
                       {/if}
-                      <p class="md:text-2xl text-5xl font-semibold">{measurements.value}</p>
+                      <p class="text-5xl font-semibold md:text-2xl">{measurements.value}</p>
                     </div>
                   </div>
                   <div slot="popover">
-                    <p class="text-sm whitespace-nowrap">{measurements.popover}</p>
+                    <p class="whitespace-nowrap text-sm">{measurements.popover}</p>
                   </div>
                 </Popover>
               </div>
@@ -51,9 +51,9 @@
     </div>
   {/if}
   <div class="hidden border-t md:flex">
-    <div class=" container mx-auto px-container grid grid-cols-1 md:grid-cols-[50%_50%]">
+    <div class=" container mx-auto grid grid-cols-1 px-container md:grid-cols-[50%_50%]">
       {#each block.project || [] as testimonials}
-        <div class="flex first:pr-8 first:border-r last:pl-8 py-6">
+        <div class="flex py-6 first:border-r first:pr-8 last:pl-8">
           {#each testimonials.testimonial || [] as testimonial}
             <RichTextTestimonial class="max-w-[470px]" variant="default" block={testimonial} />
           {/each}
@@ -61,9 +61,9 @@
       {/each}
     </div>
   </div>
-  <div class="hidden md:flex border-t py-3">
-    <div class="container mx-auto px-container flex justify-center">
-      <p class="text-base text-foreground-secondary font-medium">{block.note}</p>
+  <div class="hidden border-t py-3 md:flex">
+    <div class="container mx-auto flex justify-center px-container">
+      <p class="text-base font-medium text-foreground-secondary">{block.note}</p>
     </div>
   </div>
   <!-- mobile -->
@@ -77,7 +77,7 @@
           <div class="rounded-lg bg-background-panel p-3 first:mb-4">
             <div class="flex pb-8">
               <img
-                class="h-20 w-full rounded-md bg-background-offset object-cover max-w-[102px]"
+                class="h-20 w-full max-w-[102px] rounded-md bg-background-offset object-cover"
                 {src}
                 {alt}
                 {width}
@@ -88,7 +88,7 @@
                 <p class="text-lg/[18px] font-semibold">{project.tagline}</p>
               </div>
             </div>
-            <div class="flex mb-8 flex-wrap gap-6 gap-y-3">
+            <div class="mb-8 flex flex-wrap gap-6 gap-y-3">
               {#each project.measurements || [] as measurements}
                 <div class="flex flex-col whitespace-nowrap">
                   <p class="text-xs font-medium uppercase">
@@ -104,14 +104,14 @@
                 </div>
               {/each}
             </div>
-            <div class="flex flex-col mb-8">
+            <div class="mb-8 flex flex-col">
               {#each project.testimonial || [] as testimonial}
-                <span class="text-base font-semibold mb-2"
+                <span class="mb-2 text-base font-semibold"
                   >&ldquo;{testimonial.testimonial}&rdquo;</span
                 >
                 <div class="flex">
                   <p class="text-sm font-semibold">{testimonial.name}</p>
-                  <p class="text-sm font-semibold text-foreground-secondary ml-1">
+                  <p class="ml-1 text-sm font-semibold text-foreground-secondary">
                     {testimonial.position}
                   </p>
                 </div>
@@ -125,8 +125,8 @@
         {/if}
       {/if}
     {/each}
-    <div class="flex mx-auto text-center max-w-72 mt-4">
-      <p class="text-xs text-foreground-secondary font-medium">{block.note}</p>
+    <div class="mx-auto mt-4 flex max-w-72 text-center">
+      <p class="text-xs font-medium text-foreground-secondary">{block.note}</p>
     </div>
   </div>
 </section>

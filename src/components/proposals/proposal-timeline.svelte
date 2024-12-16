@@ -26,12 +26,12 @@
 
 {#if type === 'package'}
   <div
-    class="overflow-x-scroll grid grid-cols-[max-content,_max-content] mt-10 md:mt-14 lg:mt-20 pb-3"
+    class="mt-10 grid grid-cols-[max-content,_max-content] overflow-x-scroll pb-3 md:mt-14 lg:mt-20"
   >
     <div class="col-start-1 row-start-1 border-b"></div>
     <div class="col-start-2">
       <div
-        class="grid gap-1 pb-1 px-1 auto-cols-[20px] border-b shadow-sm"
+        class="grid auto-cols-[20px] gap-1 border-b px-1 pb-1 shadow-sm"
         style="background: linear-gradient(to right, hsl(var(--color-border)) 1px, transparent 1px); background-size: {MONTH_WIDTH}px;"
       >
         {#each Array(Math.max(minMonthDisplay, Math.ceil(totalDuration + 1))) as _, i}
@@ -44,30 +44,30 @@
     </div>
 
     <div
-      class="row-start-2 sticky left-0 p-1 flex flex-col justify-between"
+      class="sticky left-0 row-start-2 flex flex-col justify-between p-1"
       style="background-image: linear-gradient(to bottom, hsl(var(--color-selection) / 0.02), hsl(var(--color-selection) / 0));"
     >
       <div>
         {#each deliverables as deliverable}
           <div
-            class="shadow-sm grid grid-cols-1 auto-rows-[36px] gap-y-1 rounded-xs border border-border bg-background mb-1"
+            class="mb-1 grid auto-rows-[36px] grid-cols-1 gap-y-1 rounded-xs border border-border bg-background shadow-sm"
           >
             <div
               class={clsx(
                 'flex items-center px-3 py-2',
-                'uppercase font-medium text-2xs text-foreground-secondary',
-                'bg-background-offset/50 border-b border-border rounded-t-xs'
+                'text-2xs font-medium uppercase text-foreground-secondary',
+                'rounded-t-xs border-b border-border bg-background-offset/50'
               )}
             >
               <span
                 style="background-color: {deliverable.color}"
-                class="w-2 h-2 mr-2 rounded-full inline-block"
+                class="mr-2 inline-block h-2 w-2 rounded-full"
               ></span>
               {deliverable.title}
             </div>
 
             {#each deliverable?.rows as row}
-              <div class="text-sm px-3 py-2 border-b last:border-0">{row.role}</div>
+              <div class="border-b px-3 py-2 text-sm last:border-0">{row.role}</div>
             {/each}
           </div>
         {/each}
@@ -78,12 +78,12 @@
           <hr />
         </div>
         <div
-          class="shadow-md items-center grid-flow-row rounded-xs border border-border bg-background"
+          class="grid-flow-row items-center rounded-xs border border-border bg-background shadow-md"
         >
-          <div class="h-[37px] border-b text-sm px-3 py-2">
+          <div class="h-[37px] border-b px-3 py-2 text-sm">
             {projectManagement?.department.name}
           </div>
-          <div class="h-[37px] text-sm px-3 py-2">{qualityAssurance?.department.name}</div>
+          <div class="h-[37px] px-3 py-2 text-sm">{qualityAssurance?.department.name}</div>
         </div>
       {/if}
     </div>
@@ -97,8 +97,8 @@
       {#each rows as row, i}
         <div
           class={clsx(
-            'rounded-xs mr-1 p-1 text-sm text-background',
-            'overflow-hidden whitespace-nowrap group hover:overflow-visible'
+            'mr-1 rounded-xs p-1 text-sm text-background',
+            'group overflow-hidden whitespace-nowrap hover:overflow-visible'
           )}
           style="background-color: {row.color};
                  grid-row: {i + 1} / span 1;
@@ -114,7 +114,7 @@
             </p>
 
             <p
-              class="p-1 hidden group-hover:inline-block rounded-xs"
+              class="hidden rounded-xs p-1 group-hover:inline-block"
               style="background-color: {row.color}80;"
             >
               {row.title}
@@ -130,13 +130,13 @@
       {#if projectManagement && qualityAssurance}
         <div
           class={clsx(
-            'rounded-xs mr-1 p-1 border border-dashed bg-background-offset',
-            'text-sm whitespace-nowrap overflow-hidden hover:overflow-visible'
+            'mr-1 rounded-xs border border-dashed bg-background-offset p-1',
+            'overflow-hidden whitespace-nowrap text-sm hover:overflow-visible'
           )}
           style="grid-row: {rows.length + 2} / span 1;
                  grid-column: 1 / span {totalDuration * 10};"
         >
-          <p class="p-1 rounded-xs hover:inline-block hover:bg-background-offset/50">
+          <p class="rounded-xs p-1 hover:inline-block hover:bg-background-offset/50">
             {projectManagement.department.name}
 
             <span class="text-foreground/50"
@@ -148,13 +148,13 @@
         </div>
         <div
           class={clsx(
-            'rounded-xs mr-1 p-1 border border-dashed bg-background-offset',
-            'text-sm whitespace-nowrap overflow-hidden hover:overflow-visible'
+            'mr-1 rounded-xs border border-dashed bg-background-offset p-1',
+            'overflow-hidden whitespace-nowrap text-sm hover:overflow-visible'
           )}
           style="grid-row: {rows.length + 3} / span 1;
                  grid-column: 1 / span {totalDuration * 10};"
         >
-          <p class="p-1 rounded-xs hover:inline-block hover:bg-background-offset/50">
+          <p class="rounded-xs p-1 hover:inline-block hover:bg-background-offset/50">
             {qualityAssurance.department.name}
 
             <span class="text-foreground/50"
@@ -169,12 +169,12 @@
   </div>
 {:else if type === 'rate'}
   <div
-    class="overflow-x-scroll grid grid-cols-[max-content,_max-content] mt-10 md:mt-14 lg:mt-20 pb-3"
+    class="mt-10 grid grid-cols-[max-content,_max-content] overflow-x-scroll pb-3 md:mt-14 lg:mt-20"
   >
     <div class="col-start-1 row-start-1 border-b"></div>
     <div class="col-start-2">
       <div
-        class="grid gap-1 pb-1 px-1 auto-cols-[20px] border-b shadow-sm"
+        class="grid auto-cols-[20px] gap-1 border-b px-1 pb-1 shadow-sm"
         style="background: linear-gradient(to right, hsl(var(--color-border)) 1px, transparent 1px); background-size: {MONTH_WIDTH}px;"
       >
         {#each Array(Math.max(minMonthDisplay, Math.ceil(totalDuration / 5 + 1))) as _, i}
@@ -187,30 +187,30 @@
     </div>
 
     <div
-      class="row-start-2 sticky left-0 p-1 flex flex-col justify-between"
+      class="sticky left-0 row-start-2 flex flex-col justify-between p-1"
       style="background-image: linear-gradient(to bottom, hsl(var(--color-selection) / 0.02), hsl(var(--color-selection) / 0));"
     >
       <div>
         {#each deliverables as deliverable}
           <div
-            class="shadow-sm grid grid-cols-1 auto-rows-[36px] gap-y-1 rounded-xs border border-border bg-background mb-1"
+            class="mb-1 grid auto-rows-[36px] grid-cols-1 gap-y-1 rounded-xs border border-border bg-background shadow-sm"
           >
             <div
               class={clsx(
                 'flex items-center px-3 py-2',
-                'uppercase font-medium text-2xs text-foreground-secondary',
-                'bg-background-offset/50 border-b border-border rounded-t-xs'
+                'text-2xs font-medium uppercase text-foreground-secondary',
+                'rounded-t-xs border-b border-border bg-background-offset/50'
               )}
             >
               <span
                 style="background-color: {deliverable.color}"
-                class="w-2 h-2 mr-2 rounded-full inline-block"
+                class="mr-2 inline-block h-2 w-2 rounded-full"
               ></span>
               {deliverable.title}
             </div>
 
             {#each deliverable?.rows as row}
-              <div class="text-sm px-3 py-2 border-b last:border-0">{row.role}</div>
+              <div class="border-b px-3 py-2 text-sm last:border-0">{row.role}</div>
             {/each}
           </div>
         {/each}
@@ -226,8 +226,8 @@
       {#each rows as row, i}
         <div
           class={clsx(
-            'rounded-xs mr-1 p-1 text-sm text-background',
-            'overflow-hidden whitespace-nowrap group hover:overflow-visible'
+            'mr-1 rounded-xs p-1 text-sm text-background',
+            'group overflow-hidden whitespace-nowrap hover:overflow-visible'
           )}
           style="background-color: {row.color};
              grid-row: {i + 1} / span 1;
@@ -243,7 +243,7 @@
             </p>
 
             <p
-              class="p-1 hidden group-hover:inline-block rounded-xs"
+              class="hidden rounded-xs p-1 group-hover:inline-block"
               style="background-color: {row.color}80;"
             >
               {row.title}

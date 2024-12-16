@@ -21,13 +21,13 @@
   {#if $$slots['popover']}
     <div
       class={clsx(
-        'absolute z-10 top-0 p-4',
+        'absolute top-0 z-10 p-4',
         ' bg-background text-foreground-secondary',
-        'border rounded-2xs transition-all',
-        visible ? 'block opacity-100' : 'opacity-0 top-4',
+        'rounded-2xs border transition-all',
+        visible ? 'block opacity-100' : 'top-4 opacity-0',
         variant === 'default'
-          ? 'w-72 left-[25%] lg:-top-[90%] lg:-left-[90%]'
-          : 'w-auto -translate-y-full -translate-x-1/2 left-1/2 text-center '
+          ? 'left-[25%] w-72 lg:-left-[90%] lg:-top-[90%]'
+          : 'left-1/2 w-auto -translate-x-1/2 -translate-y-full text-center '
       )}
     >
       <slot name="popover" />

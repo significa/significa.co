@@ -33,45 +33,45 @@
 
 <div style="background-image: url({src});">
   <section
-    class="container mx-auto px-container @container flex flex-col max-w-[1056px] pt-16 xl:pt-32 relative"
+    class="container relative mx-auto flex max-w-[1056px] flex-col px-container pt-16 @container xl:pt-32"
   >
-    <img src={EggChicken} class="absolute block drop-shadow-md -right-56 -bottom-80" alt="" />
-    <img src={SeggChicken} class="absolute block drop-shadow-md -left-72 top-12 w-[20%]" alt="" />
+    <img src={EggChicken} class="absolute -bottom-80 -right-56 block drop-shadow-md" alt="" />
+    <img src={SeggChicken} class="absolute -left-72 top-12 block w-[20%] drop-shadow-md" alt="" />
     <h3 class="text-5xl font-semibold">{block.title}</h3>
   </section>
 
-  <div class="container mx-auto px-container max-w-[1056px]">
-    <section use:drawerLinks class="mt-10 mb-8 md:mt-14 lg:mt-20">
-      <h4 class="text-lg font-semibold text-foreground-secondary mb-6">
+  <div class="container mx-auto max-w-[1056px] px-container">
+    <section use:drawerLinks class="mb-8 mt-10 md:mt-14 lg:mt-20">
+      <h4 class="mb-6 text-lg font-semibold text-foreground-secondary">
         {block.small_highlights_title}
       </h4>
       <SmallHighlights highlights={block.small_highlights} class="xl:grid-cols-3" />
     </section>
   </div>
 
-  <div class="container mx-auto px-container max-w-[1056px]">
-    <section use:drawerLinks class="mt-10 mb-8 md:mt-10 lg:mt-12 lg:mb-40">
-      <h4 class="text-lg font-semibold text-foreground-secondary mb-6">
+  <div class="container mx-auto max-w-[1056px] px-container">
+    <section use:drawerLinks class="mb-8 mt-10 md:mt-10 lg:mb-40 lg:mt-12">
+      <h4 class="mb-6 text-lg font-semibold text-foreground-secondary">
         {block.awards_title}
       </h4>
-      <div class="grid gap-4 md:gap-6 grid-cols-3">
+      <div class="grid grid-cols-3 gap-4 md:gap-6">
         {#each awardsArray as award}
           <div
-            class="flex w-full max-w-fit items-start md:items-center relative flex-col md:flex-row"
+            class="relative flex w-full max-w-fit flex-col items-start md:flex-row md:items-center"
           >
             <div
-              class="flex bg-background-panel border-background-offset border h-11 w-[92px] rounded-sm items-center"
+              class="flex h-11 w-[92px] items-center rounded-sm border border-background-offset bg-background-panel"
             >
-              <p class="text-sm font-medium text-foreground-secondary ml-3.5 mr-3.5">
+              <p class="ml-3.5 mr-3.5 text-sm font-medium text-foreground-secondary">
                 {award.length}
               </p>
             </div>
             <img
-              class="h-auto w-14 rounded-md bg-background-offset border-2 border-background absolute left-10"
+              class="absolute left-10 h-auto w-14 rounded-md border-2 border-background bg-background-offset"
               src={award[0].content.recognition.content.image?.filename}
               alt="award"
             />
-            <div class="flex flex-col mt-3 md:mt-0 md:ml-3">
+            <div class="mt-3 flex flex-col md:ml-3 md:mt-0">
               <p class="text-xs font-medium text-foreground-secondary">{t('recognitions.award')}</p>
               <p class="text-base font-medium">{award[0].content.recognition.content.title}</p>
             </div>

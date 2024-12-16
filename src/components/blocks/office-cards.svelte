@@ -22,7 +22,7 @@
 
           {#if block.btn_link?.story?.url && block.btn_label}
             {@const { href } = getAnchorFromCmsLink(block.btn_link)}
-            <Button as="a" {href} arrow size="md" class="mx-auto mt-6 z-10">
+            <Button as="a" {href} arrow size="md" class="z-10 mx-auto mt-6">
               {block.btn_label}
             </Button>
           {/if}

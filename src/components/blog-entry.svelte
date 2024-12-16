@@ -20,7 +20,7 @@
   <div class="container mx-auto flex gap-6 px-container py-8 @container">
     <div
       class={twMerge(
-        'hidden flex-1 @6xl:grid @6xl:grid-rows-2 @6xl:grid-flow-col @6xl:gap-6 @6xl:h-fit',
+        'hidden flex-1 @6xl:grid @6xl:h-fit @6xl:grid-flow-col @6xl:grid-rows-2 @6xl:gap-6',
         post.content.authors?.length > 2 && '@6xl:grid-cols-2'
       )}
     >

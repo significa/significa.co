@@ -18,7 +18,7 @@
 >
   <div
     class={clsx(
-      block.type === 'regular' ? 'gap-10 justify-between' : 'gap-6',
+      block.type === 'regular' ? 'justify-between gap-10' : 'gap-6',
       'container mx-auto mb-6 flex flex-col px-container pt-8 lg:mb-12 lg:pt-12 xl:flex-row xl:gap-4'
     )}
   >
@@ -31,7 +31,7 @@
       <h3 class="text-5xl text-foreground-secondary">{block.title}</h3>
       <p class="text-5xl">{block.subtitle}</p>
       {#if block.description}
-        <p class="text-2xl text-foreground-secondary mt-6">{block.description}</p>
+        <p class="mt-6 text-2xl text-foreground-secondary">{block.description}</p>
       {/if}
     </div>
 

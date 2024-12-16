@@ -42,7 +42,7 @@
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
     "prettier-plugin-svelte": "^3.3.2",
-    "prettier-plugin-tailwindcss": "^0.4.1",
+    "prettier-plugin-tailwindcss": "^0.6.9",
     "prismjs": "^1.29.0",
     "svelte": "^4.2.19",
     "svelte-check": "^4.1.1",

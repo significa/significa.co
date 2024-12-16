@@ -12,13 +12,13 @@
 {#if awards?.length > 0}
   <section>
     <div class="container mx-auto flex px-container">
-      <div class="xl:max-w-3xl lg:w-1/4">
+      <div class="lg:w-1/4 xl:max-w-3xl">
         <h2 class="text-4xl">{t('proposals.awards')}.</h2>
         <p class="text-4xl text-foreground-secondary">{t('proposals.awards.description')}</p>
       </div>
     </div>
 
-    <div class="mt-10 md:mt-14 lg:mt-20 justify-between gap-12 lg:flex">
+    <div class="mt-10 justify-between gap-12 md:mt-14 lg:mt-20 lg:flex">
       <div class="flex flex-1 flex-col items-start">
         <div class="w-full flex-1">
           <ul use:drawerLinks>

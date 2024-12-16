@@ -54,7 +54,7 @@
         {#if recognitions?.length}
           <div
             class={clsx(
-              'mt-6 grid grid-cols-2 grid-rows-3 grid-flow-col gap-4',
+              'mt-6 grid grid-flow-col grid-cols-2 grid-rows-3 gap-4',
               variant === 'featured' && '@5xl:grid-rows-1'
             )}
           >

@@ -56,9 +56,9 @@
   $: open = Object.values(combinedBudgetPower).every((val) => val !== 0);
 </script>
 
-<section class="border-t mt-20" id="estimation">
+<section class="mt-20 border-t" id="estimation">
   <div
-    class="container mx-auto px-container @container flex flex-col items-center text-center max-w-lg"
+    class="container mx-auto flex max-w-lg flex-col items-center px-container text-center @container"
   >
     <img width="122" src={HandAsset} alt="" class="-mt-14" />
     <h3 class="text-5xl font-semibold text-foreground-secondary">{block.section_title}</h3>
@@ -66,39 +66,39 @@
   </div>
 </section>
 
-<section class="container mx-auto xl:px-container @container pt-20 pb-16 flex">
+<section class="container mx-auto flex pb-16 pt-20 @container xl:px-container">
   <div
-    class="rounded-lg xl:border w-full xl:overflow-hidden flex min-h-[unset] flex-col xl:flex-row relative"
+    class="relative flex min-h-[unset] w-full flex-col rounded-lg xl:flex-row xl:overflow-hidden xl:border"
   >
     <div
       class={clsx(
-        'flex transition-all duration-300 ease-motion w-full xl:bg-background-panel xl:rounded-b-lg xl:rounded-r-lg z-50',
-        open ? 'xl:ring-1 xl:ring-border xl:w-2/3' : 'w-full min-w-full'
+        'z-50 flex w-full transition-all duration-300 ease-motion xl:rounded-b-lg xl:rounded-r-lg xl:bg-background-panel',
+        open ? 'xl:w-2/3 xl:ring-1 xl:ring-border' : 'w-full min-w-full'
       )}
     >
       <div class="block w-full">
-        <div class="flex flex-col h-full relative z-10">
-          <div class="order-1 xl:pt-8 xl:px-8 px-container">
-            <h3 class="text-4xl max-w-md">
+        <div class="relative z-10 flex h-full flex-col">
+          <div class="order-1 px-container xl:px-8 xl:pt-8">
+            <h3 class="max-w-md text-4xl">
               {block.title}
             </h3>
-            <p class="my-4 text-xl text-foreground-secondary max-w-md">
+            <p class="my-4 max-w-md text-xl text-foreground-secondary">
               {block.description}
             </p>
           </div>
-          <div class="xl:order-2 order-3 xl:px-8 px-container">
+          <div class="order-3 px-container xl:order-2 xl:px-8">
             <div
-              class={clsx('pb-4 pt-2 xl:pb-8 gap-4 relative w-full', open ? 'w-full' : 'xl:w-2/3')}
+              class={clsx('relative w-full gap-4 pb-4 pt-2 xl:pb-8', open ? 'w-full' : 'xl:w-2/3')}
             >
-              <div class="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 gap-y-4 gap-x-5">
+              <div class="flex flex-col gap-x-5 gap-y-4 md:grid md:grid-cols-2 xl:grid-cols-3">
                 {#each estimations as options, i}
-                  <div class="gap-2 grid">
-                    <div class="grid grid-cols-2 items-center pt-4 pb-2">
-                      <p class="leading-none text-foreground-secondary text-sm">
+                  <div class="grid gap-2">
+                    <div class="grid grid-cols-2 items-center pb-2 pt-4">
+                      <p class="text-sm leading-none text-foreground-secondary">
                         {options.name}
                       </p>
                       <button
-                        class="leading-none text-foreground-tertiary text-sm hover:text-foreground-secondary transition-all flex justify-end"
+                        class="flex justify-end text-sm leading-none text-foreground-tertiary transition-all hover:text-foreground-secondary"
                         on:click={() => {
                           selectedRadio[i] = '';
                         }}
@@ -106,18 +106,18 @@
                         {t('estimate.clear')}
                       </button>
                     </div>
-                    <div class="grid grid-cols-2 xl:flex xl:flex-col gap-2">
+                    <div class="grid grid-cols-2 gap-2 xl:flex xl:flex-col">
                       {#each options.options as opt}
                         <label
                           for={`${options.name} / ${opt.name}`}
                           class={clsx(
-                            'flex flex-col items-start py-2 px-3 transition-all hover:bg-foreground/2 cursor-pointer border rounded-sm hover:border-border-active hover:ring-2 text-sm/[20px] select-none'
+                            'flex cursor-pointer select-none flex-col items-start rounded-sm border px-3 py-2 text-sm/[20px] transition-all hover:border-border-active hover:bg-foreground/2 hover:ring-2'
                           )}
                         >
-                          <div class="flex items-center justify-between w-full">
-                            <p class="font-medium pr-3">{opt.name}</p>
+                          <div class="flex w-full items-center justify-between">
+                            <p class="pr-3 font-medium">{opt.name}</p>
                             <Radio
-                              class="cursor-pointer shrink-0"
+                              class="shrink-0 cursor-pointer"
                               id={`${options.name} / ${opt.name}`}
                               value={opt.name}
                               name={options.name}
@@ -132,9 +132,9 @@
                 {/each}
                 {#each estimationsCheckbox as options}
                   <div
-                    class="gap-2 grid col-span-2 grid-cols-2 xl:gap-x-5 [&:last-child>p]:col-span-2"
+                    class="col-span-2 grid grid-cols-2 gap-2 xl:gap-x-5 [&:last-child>p]:col-span-2"
                   >
-                    <p class="pt-4 leading-none text-foreground-secondary text-sm grid pb-2">
+                    <p class="grid pb-2 pt-4 text-sm leading-none text-foreground-secondary">
                       {options.name}
                     </p>
 
@@ -142,11 +142,11 @@
                       <label
                         for={`${options.name} / ${opt.name}`}
                         class={clsx(
-                          'flex flex-col items-start py-2 px-3 transition-all hover:bg-foreground/2 cursor-pointer border rounded-sm hover:border-border-active hover:ring-2 text-sm/[20px] select-none'
+                          'flex cursor-pointer select-none flex-col items-start rounded-sm border px-3 py-2 text-sm/[20px] transition-all hover:border-border-active hover:bg-foreground/2 hover:ring-2'
                         )}
                       >
-                        <div class="flex items-center justify-between w-full">
-                          <p class="font-medium pr-3">{opt.name}</p>
+                        <div class="flex w-full items-center justify-between">
+                          <p class="pr-3 font-medium">{opt.name}</p>
                           <CheckboxGroup
                             bind:group={selectedCheckbox}
                             id={`${options.name} / ${opt.name}`}
@@ -163,24 +163,24 @@
           </div>
 
           <div
-            class="flex flex-col mt-2 xl:mt-3 mb-4 xl:mb-0 sticky top-0 xl:relative xl:top-auto order-2 xl:order-3 z-10 border-b xl:border-none w-screen xl:w-full bg-background xl:bg-transparent xl:pb-8 xl:px-8"
+            class="sticky top-0 z-10 order-2 mb-4 mt-2 flex w-screen flex-col border-b bg-background xl:relative xl:top-auto xl:order-3 xl:mb-0 xl:mt-3 xl:w-full xl:border-none xl:bg-transparent xl:px-8 xl:pb-8"
           >
-            <div class="py-3 px-container xl:py-0 xl:px-0 flex xl:block gap-2 xl:gap-0">
+            <div class="flex gap-2 px-container py-3 xl:block xl:gap-0 xl:px-0 xl:py-0">
               <div class="w-1/2 xl:w-auto">
-                <p class="text-base/5 xl:text-base font-medium text-foreground/60">
+                <p class="text-base/5 font-medium text-foreground/60 xl:text-base">
                   {t('estimation.man.power')}
                 </p>
-                <p class="text-md md:text-xl font-medium">
+                <p class="text-md font-medium md:text-xl">
                   {combinedBudgetPower.lowPower === 0
                     ? '-'
                     : combinedBudgetPower.lowPower + ` to ` + combinedBudgetPower.highPower}
                 </p>
               </div>
               <div class="w-1/2 xl:w-auto">
-                <p class="text-base/5 xl:text-base font-medium text-foreground/60 mt-0 xl:mt-6">
+                <p class="mt-0 text-base/5 font-medium text-foreground/60 xl:mt-6 xl:text-base">
                   {t('estimation.total')}
                 </p>
-                <p class="text-md xl:text-xl font-medium text-foreground-accent">
+                <p class="text-md font-medium text-foreground-accent xl:text-xl">
                   {combinedBudgetPower.lowBudget === 0
                     ? '-'
                     : combinedBudgetPower.lowBudget +
@@ -194,27 +194,27 @@
         </div>
         <div
           class={clsx(
-            'absolute bottom-0 hidden xl:block transition-all',
+            'absolute bottom-0 hidden transition-all xl:block',
             open ? 'xl:hidden xl:opacity-0' : 'right-0 opacity-100'
           )}
         >
-          <img class="max-w-[710px] pointer-events-none" {src} alt="" />
+          <img class="pointer-events-none max-w-[710px]" {src} alt="" />
         </div>
       </div>
     </div>
     <div
       class={clsx(
-        'pt-8 xl:p-8 transition-all duration-300  w-full xl:w-auto z-10 px-container',
+        'z-10 w-full px-container pt-8  transition-all duration-300 xl:w-auto xl:p-8',
         open
-          ? 'flex flex-col justify-between flex-0.5 shrink-0 translate-y-0 xl:translate-x-0 xl:w-1/3 xl:translate-y-0'
-          : '-translate-y-full xl:translate-x-full xl:translate-y-0 hidden xl:flex'
+          ? 'flex-0.5 flex shrink-0 translate-y-0 flex-col justify-between xl:w-1/3 xl:translate-x-0 xl:translate-y-0'
+          : 'hidden -translate-y-full xl:flex xl:translate-x-full xl:translate-y-0'
       )}
     >
       <div>
-        <h3 class="text-4xl max-w-[300px]">
+        <h3 class="max-w-[300px] text-4xl">
           {block.form_title}
         </h3>
-        <p class="mt-4 text-xl text-foreground-secondary max-w-lg mb-10">
+        <p class="mb-10 mt-4 max-w-lg text-xl text-foreground-secondary">
           {block.form_description}
         </p>
       </div>

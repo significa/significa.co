@@ -29,7 +29,7 @@
       {@const newPosition = !isActive ? `${t('team.former')} ${position}` : position}
       <p
         title={newPosition}
-        class="mt-1 text-base font-semibold leading-none text-foreground-secondary whitespace-nowrap text-ellipsis overflow-hidden"
+        class="mt-1 overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold leading-none text-foreground-secondary"
       >
         {newPosition}
       </p>

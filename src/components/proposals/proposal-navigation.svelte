@@ -21,8 +21,8 @@
 <div class="h-[--topnav-height]">
   <header
     class={clsx(
-      'fixed w-full z-30 border-b bg-background/95 backdrop-blur-md',
-      'transition-[transform,border-color] duration-300 ease-[cubic-bezier(0.90, 0, 0.05, 1)]',
+      'fixed z-30 w-full border-b bg-background/95 backdrop-blur-md',
+      'ease-[cubic-bezier(0.90, 0, 0.05, 1)] transition-[transform,border-color] duration-300',
       variant === 'default' && !$scrollStatus.isPastZero
         ? 'border-b-transparent'
         : 'border-b-border',
@@ -35,14 +35,14 @@
     )}
   >
     <div
-      class="flex items-center justify-between py-4 container mx-auto px-container h-[--topnav-height]"
+      class="container mx-auto flex h-[--topnav-height] items-center justify-between px-container py-4"
     >
       <div class="flex items-center gap-6">
         <a aria-label="Go to homepage" href="/">
           <Logo class="mt-1" variant="wordmark" />
         </a>
         {#if versions.length > 1}
-          <Select bind:value={version} size="md" class="w-full hidden md:flex text-sm">
+          <Select bind:value={version} size="md" class="hidden w-full text-sm md:flex">
             {#each versions as v}
               <option value={v}>{v}</option>
             {/each}
@@ -106,7 +106,7 @@
       transition:fly|global={{ x: 1000, duration: 300 }}
       use:clickOutside={() => (panel = false)}
       class={clsx(
-        'fixed w-full max-w-sm px-container bottom-0 right-0 top-0 z-50 overflow-y-auto pl-6 py-4',
+        'fixed bottom-0 right-0 top-0 z-50 w-full max-w-sm overflow-y-auto px-container py-4 pl-6',
         'flex flex-col items-start',
         'bg-background'
       )}
@@ -126,7 +126,7 @@
 
       <div class="w-full">
         {#if versions.length > 1}
-          <div class="md:hidden block mt-10">
+          <div class="mt-10 block md:hidden">
             <p class="mb-2 text-xs font-medium uppercase tracking-wider text-foreground-secondary">
               {t('proposals.nav.versions')}
             </p>

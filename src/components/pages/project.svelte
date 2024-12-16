@@ -65,7 +65,7 @@
       <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
         {t('recognitions')}
       </h4>
-      <div class="grid grid-cols-1 gap-4 xs:gap-6 xs:grid-cols-2 md:grid-cols-3">
+      <div class="grid grid-cols-1 gap-4 xs:grid-cols-2 xs:gap-6 md:grid-cols-3">
         <Recognitions {recognitions} />
       </div>
     </div>
@@ -124,7 +124,7 @@
   {/if}
 
   {#if story.content.measurements && story.content.measurements.length > 0}
-    <div class="flex border-b mx-auto max-w-2xl py-6 gap-6 gap-y-3 md:gap-8 md:gap-y-4 flex-wrap">
+    <div class="mx-auto flex max-w-2xl flex-wrap gap-6 gap-y-3 border-b py-6 md:gap-8 md:gap-y-4">
       {#each story.content.measurements || [] as measurements}
         <div class="flex flex-col whitespace-nowrap">
           <Popover variant={'fit-content'}>
@@ -137,11 +137,11 @@
                   {@const { alt, src } = getImageAttributes(measurements.icon)}
                   <img class="max-h-1.5" {src} {alt} />
                 {/if}
-                <p class="md:text-2xl text-lg font-semibold">{measurements.value}</p>
+                <p class="text-lg font-semibold md:text-2xl">{measurements.value}</p>
               </div>
             </div>
             <div slot="popover">
-              <p class="text-sm whitespace-nowrap">{measurements.popover}</p>
+              <p class="whitespace-nowrap text-sm">{measurements.popover}</p>
             </div>
           </Popover>
         </div>

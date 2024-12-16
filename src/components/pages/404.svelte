@@ -129,7 +129,7 @@
     bind:clientHeight={screenHeight}
     style="height: calc(100vh - var(--topnav-height));"
     class={clsx(
-      'flex cursor-pointer items-center justify-center overflow-hidden border-t select-none',
+      'flex cursor-pointer select-none items-center justify-center overflow-hidden border-t',
       className
     )}
   >

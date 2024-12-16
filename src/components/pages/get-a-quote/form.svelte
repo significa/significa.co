@@ -109,7 +109,7 @@
 {/if}
 <div
   class={clsx(
-    'container relative mx-auto mt-10 gap-8 px-container pb-12 overflow-hidden',
+    'container relative mx-auto mt-10 gap-8 overflow-hidden px-container pb-12',
     'md:mt-14 md:pb-20',
     'lg:mt-20 lg:flex lg:justify-between lg:pb-32'
   )}

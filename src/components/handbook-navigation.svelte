@@ -11,9 +11,9 @@
 </script>
 
 <header
-  class={clsx('z-30 w-full border-b bg-background/95 backdrop-blur-md border-b-border fixed top-0')}
+  class={clsx('fixed top-0 z-30 w-full border-b border-b-border bg-background/95 backdrop-blur-md')}
 >
-  <div class={clsx('flex items-center justify-between py-4 container mx-auto px-container')}>
+  <div class={clsx('container mx-auto flex items-center justify-between px-container py-4')}>
     <a class="flex items-center gap-2" aria-label="Go to homepage" href="/handbook">
       <Logo class="mt-1" variant="wordmark" />
       <AnHandAndABook />
@@ -29,7 +29,7 @@
         {/if}
       </div>
 
-      <div class="items-center gap-1 text-sm font-medium leading-relaxed hidden lg:flex">
+      <div class="hidden items-center gap-1 text-sm font-medium leading-relaxed lg:flex">
         <Icon icon="home" />
         <Link href={sanitizeSlug('/')} target="_blank" rel="noopener noreferrer">
           {t('handbook.navigation.website')}

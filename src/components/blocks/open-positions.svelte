@@ -58,19 +58,19 @@
     </div>
   </section>
 {:else}
-  <section class="container mx-auto px-container @container mt-8 md:mt-10 lg:mt-12">
+  <section class="container mx-auto mt-8 px-container @container md:mt-10 lg:mt-12">
     <div class="flex overflow-hidden rounded-lg border bg-background-offset/80">
       <div class="flex flex-col p-8">
         <p class="text-2xl font-semibold">{t('careers.footer.no.positions')}</p>
-        <p class="text-2xl font-semibold text-foreground-secondary max-w-md">
+        <p class="max-w-md text-2xl font-semibold text-foreground-secondary">
           {t('careers.footer.no.positions.description')}
         </p>
-        <Button as="a" href="mailto:{t('careers.footer.email')}" size="lg" class="w-fit mt-8"
+        <Button as="a" href="mailto:{t('careers.footer.email')}" size="lg" class="mt-8 w-fit"
           >{t('careers.footer.description')}</Button
         >
       </div>
       <div
-        class="hidden flex-1 flex-col justify-end ml-16 bg-no-repeat bg-cover bg-center lg:flex"
+        class="ml-16 hidden flex-1 flex-col justify-end bg-cover bg-center bg-no-repeat lg:flex"
         style="background-image: url({src});"
       />
     </div>

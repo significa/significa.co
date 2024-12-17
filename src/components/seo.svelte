@@ -30,7 +30,7 @@
 
     {#if structureDataMarkup}
       <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-      {@html '<script type="application/ld+json">' + `${structureDataMarkup}` + '</script>'}
+      {@html `<${'script'} type="application/ld+json"> ${structureDataMarkup} </${'script'}>`}
     {/if}
 
     <meta

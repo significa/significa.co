@@ -49,23 +49,23 @@
   {#if block.airplane}
     <div
       bind:this={section}
-      class="h-[15vh] mt-24 xl:pt-0 xl:h-[50vh] 2xl:h-[45vh] relative overflow-x-clip"
+      class="relative mt-24 h-[15vh] overflow-x-clip xl:h-[50vh] xl:pt-0 2xl:h-[45vh]"
       use:storyblokEditable={block}
       use:intersectionObserver={[(entry) => (isVisible = entry.isIntersecting), { threshold: 0.0 }]}
     >
       <div
         draggable="false"
-        class="absolute -bottom-12 w-64 xl:w-auto -left-[400px]"
+        class="absolute -bottom-12 -left-[400px] w-64 xl:w-auto"
         style={isVisible && x > 0
           ? `transform: translate(${x / velocity}px, ${-(Math.pow(x, 2) * (a * velocity))}px);`
           : ''}
       >
         <img alt="" src={airplane} class="relative z-10" />
         <div
-          class="w-fit h-fit bottom-[24px] left-[7px] absolute inline-flex -translate-x-full rounded-lg bg-white shadow-xl ring-8 ring-white rotate-[5deg]"
+          class="absolute bottom-[24px] left-[7px] inline-flex h-fit w-fit -translate-x-full rotate-[5deg] rounded-lg bg-white shadow-xl ring-8 ring-white"
         >
           <div
-            class="h-fit w-fit flex gap-3 p-3 border-white ring-black ring-1 rounded-xl"
+            class="flex h-fit w-fit gap-3 rounded-xl border-white p-3 ring-1 ring-black"
             data-theme="light"
           >
             {#if block.link_text}
@@ -75,12 +75,12 @@
                 as="a"
                 href={href ? href : '#estimation'}
                 size="md"
-                class="w-fit scroll-b">{block.link_text}</Button
+                class="scroll-b w-fit">{block.link_text}</Button
               >
             {/if}
             {#if block.secondary_link_text}
               {@const { href } = getAnchorFromCmsLink(block.secondary_link)}
-              <Button variant="secondary" as="a" {href} size="md" class="w-fit scroll-b"
+              <Button variant="secondary" as="a" {href} size="md" class="scroll-b w-fit"
                 >{block.secondary_link_text}</Button
               >
             {/if}
@@ -101,7 +101,7 @@
     {#if isVerticalListVisible}
       <div
         aria-hidden="true"
-        class={'hidden md:block absolute -z-10 bg-background-offset transition-all ease-smooth w-full'}
+        class={'absolute -z-10 hidden w-full bg-background-offset transition-all ease-smooth md:block'}
         style={`height:${visibleElement?.offsetHeight}px;top: ${visibleElement?.offsetTop}px;`}
       />
     {/if}

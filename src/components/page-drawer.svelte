@@ -40,13 +40,13 @@
   />
   <div
     on:scroll={handleScroll}
-    class="fixed bottom-2 left-2 right-2 top-2 transition z-50 overflow-y-auto scroll-smooth rounded-lg bg-background shadow-2xl md:left-auto md:w-3/4 lg:w-2/3"
+    class="fixed bottom-2 left-2 right-2 top-2 z-50 overflow-y-auto scroll-smooth rounded-lg bg-background shadow-2xl transition md:left-auto md:w-3/4 lg:w-2/3"
     in:fly={{ x: 300, duration: 200 }}
     out:fly={{ x: expanding ? -300 : 300, duration: expanding ? 200 : 100 }}
   >
     <header
       class={clsx(
-        'sticky bg-background top-0 left-0 z-50 flex items-center justify-between p-2 border-b motion-safe:transition-colors',
+        'sticky left-0 top-0 z-50 flex items-center justify-between border-b bg-background p-2 motion-safe:transition-colors',
         isSticky ? 'border-b-background-offset' : 'border-b-transparent'
       )}
     >

@@ -30,7 +30,7 @@ export const load = async ({ locals, fetch }) => {
       homePosts: await fetchHomeBlogPosts({ version, fetch }),
       version
     };
-  } catch (err) {
+  } catch {
     throw error(404, 'Not found');
   }
 };

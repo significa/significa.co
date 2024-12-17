@@ -22,17 +22,17 @@
 />
 <div class="container mx-auto px-container pb-20">
   <h1 class="sr-only">Handbook by Significa</h1>
-  <img alt="Handbook" src={handbook} class="w-80 mx-auto mt-28 mb-20" />
+  <img alt="Handbook" src={handbook} class="mx-auto mb-20 mt-28 w-80" />
 
   {#each chapters.entries() as [title, pages]}
-    <h2 class="font-semibold text-2xl mt-20 mb-8">{title.substring(4)}</h2>
-    <div class="grid grid-cols-1 auto-rows-fr md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <h2 class="mb-8 mt-20 text-2xl font-semibold">{title.substring(4)}</h2>
+    <div class="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {#each pages as page}
         <a
           data-highlight={page.highlight}
           class={clsx(
-            'border shadow-sm flex bg-background-panel hover:bg-background-offset group rounded-lg overflow-hidden',
-            page.highlight ? 'row-span-3 col-span-1 flex-col' : 'row-span-1 col-span-1'
+            'group flex overflow-hidden rounded-lg border bg-background-panel shadow-sm hover:bg-background-offset',
+            page.highlight ? 'col-span-1 row-span-3 flex-col' : 'col-span-1 row-span-1'
           )}
           href={sanitizeSlug(page.full_slug)}
         >
@@ -40,10 +40,10 @@
             {@const { src } = getImageAttributes(page.cover, { size: [1024, 0] })}
             <span
               class={clsx(
-                'overflow-hidden block bg-center bg-no-repeat',
+                'block overflow-hidden bg-center bg-no-repeat',
                 page.highlight
-                  ? 'w-full border-b rounded-b-none h-full bg-[length:auto_100%] transition-all duration-300 group-hover:bg-[length:auto_120%]'
-                  : 'w-20 bg-background-panel border-r rounded-r-none aspect-square bg-[length:380%] transition-all duration-300 group-hover:bg-[length:440%] shrink-0'
+                  ? 'h-full w-full rounded-b-none border-b bg-[length:auto_100%] transition-all duration-300 group-hover:bg-[length:auto_120%]'
+                  : 'aspect-square w-20 shrink-0 rounded-r-none border-r bg-background-panel bg-[length:380%] transition-all duration-300 group-hover:bg-[length:440%]'
               )}
               style="background-image: url({src});"
             >
@@ -51,19 +51,19 @@
           {:else}
             <span
               class={clsx(
-                'overflow-hidden block bg-center bg-no-repeat',
+                'block overflow-hidden bg-center bg-no-repeat',
                 page.highlight
-                  ? 'w-full border-b rounded-b-none h-full bg-cover'
-                  : 'w-20 bg-background-panel border-r rounded-r-none aspect-square bg-[length:380%] shrink-0'
+                  ? 'h-full w-full rounded-b-none border-b bg-cover'
+                  : 'aspect-square w-20 shrink-0 rounded-r-none border-r bg-background-panel bg-[length:380%]'
               )}
               style="background-image: url({placeholder});"
             >
             </span>
           {/if}
 
-          <div class="flex flex-col px-4 font-medium justify-center min-h-[82px]">
+          <div class="flex min-h-[82px] flex-col justify-center px-4 font-medium">
             <h2 class="text-base/[20px] font-bold">{page.name}</h2>
-            <p class="text-sm text-foreground-secondary pt-0.5">
+            <p class="pt-0.5 text-sm text-foreground-secondary">
               <span>{t('handbook.last.updated')}</span>
               <span class="text-foreground-tertiary">·</span>
               <span class="text-foreground">{formatDate(new Date(page.last_updated))}</span>

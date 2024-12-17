@@ -15,7 +15,7 @@
 <footer>
   <div class="container mx-auto grid grid-cols-8 gap-8 px-container py-20">
     <div class="col-span-8 flex flex-col justify-between md:col-span-3 lg:col-span-4">
-      <Logo variant="symbol" class="md:scale-125 md:origin-top-left" />
+      <Logo variant="symbol" class="md:origin-top-left md:scale-125" />
       <span
         use:intersectionObserver={{
           callback: ([e]) => {
@@ -29,7 +29,7 @@
         <Slogan {animate} class="hidden font-bold md:block" />
       </span>
       {#if !!configuration.footer_logo?.length}
-        <div class="hidden gap-2 h-12 md:flex">
+        <div class="hidden h-12 gap-2 md:flex">
           {#each configuration.footer_logo || [] as logo}
             {#if logo.light_mode?.filename && $theme === 'light'}
               {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
@@ -90,7 +90,7 @@
     </div>
 
     {#if !!configuration.footer_logo?.length}
-      <div class="flex gap-2 h-12 col-span-3 md:hidden">
+      <div class="col-span-3 flex h-12 gap-2 md:hidden">
         {#each configuration.footer_logo || [] as logo}
           {#if logo.light_mode?.filename && $theme === 'light'}
             {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {

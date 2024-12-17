@@ -11,7 +11,7 @@
       {block.heading}
     </h1>
 
-    <p class="text-7xl font-bol text-foreground-secondary">
+    <p class="font-bol text-7xl text-foreground-secondary">
       {block.subheading}
     </p>
   </div>

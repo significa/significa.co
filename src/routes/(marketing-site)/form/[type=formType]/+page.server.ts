@@ -168,7 +168,7 @@ export const actions = {
         formType,
         notionLink
       });
-    } catch (error) {
+    } catch {
       return fail(500, {
         error: {
           message: 'Failed to send internal email notification'
@@ -184,7 +184,7 @@ export const actions = {
         subject,
         template: event.params.type === 'quote' ? 'default' : 'minimal'
       });
-    } catch (error) {
+    } catch {
       return fail(500, {
         error: {
           message: 'Failed to send email notification to user'

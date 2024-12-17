@@ -165,7 +165,7 @@
     {/if}
 
     {#if $posts.length === 0}
-      <p class="text-5xl py-8">{t('blog.no-results')}</p>
+      <p class="py-8 text-5xl">{t('blog.no-results')}</p>
     {/if}
   </div>
 </main>

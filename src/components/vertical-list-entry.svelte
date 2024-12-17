@@ -18,9 +18,9 @@
     },
     { rootMargin: '-50%' }
   ]}
-  class={clsx('py-4 mb-20 md:mb-0 md:py-16 items-center transition-all duration-300')}
+  class={clsx('mb-20 items-center py-4 transition-all duration-300 md:mb-0 md:py-16')}
 >
-  <div class="flex-col container mx-auto px-container flex md:items-center md:flex-row">
+  <div class="container mx-auto flex flex-col px-container md:flex-row md:items-center">
     <p
       class={clsx(
         isVisible ? 'text-foreground' : 'md:text-foreground-tertiary',
@@ -33,8 +33,8 @@
       class={clsx(
         isVisible
           ? 'opacity-1 text-foreground'
-          : 'md:text-foreground-tertiary md:opacity-1 md:opacity-0',
-        'md:text-foreground mt-2 text-2xl md:max-w-[560px] transition-all duration-300 md:w-1/2 md:mt-0'
+          : 'md:opacity-1 md:text-foreground-tertiary md:opacity-0',
+        'mt-2 text-2xl transition-all duration-300 md:mt-0 md:w-1/2 md:max-w-[560px] md:text-foreground'
       )}
     >
       {entry.description}

@@ -17,7 +17,7 @@
   {...href ? { href } : {}}
   class={clsx(
     'not-rich-text my-6 rounded-2xl bg-background-panel p-4 md:my-10',
-    href && 'hover:border-border-active hover:ring-2 transition-all',
+    href && 'transition-all hover:border-border-active hover:ring-2',
     block.layout === 'horizontal' && 'flex flex-col items-stretch gap-4 xs:flex-row',
     $$restProps.class
   )}

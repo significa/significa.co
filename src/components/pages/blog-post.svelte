@@ -87,7 +87,7 @@
 
   <!-- Author -->
   {#if story.content.authors?.length}
-    <div class="border-b border-t mx-auto max-w-2xl">
+    <div class="mx-auto max-w-2xl border-b border-t">
       {#each story.content.authors as author}
         <div use:drawerLinks class="mx-auto max-w-2xl py-8">
           <div class="flex justify-between">

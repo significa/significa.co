@@ -20,17 +20,17 @@
     image={story.content.seo_og_image}
     structureDataMarkup={story.content.structure_data_markup}
   />
-  <div use:drawerLinks class="mx-auto px-container container">
-    <div class="max-w-2xl mx-auto mt-10 lg:mt-20 rich-text mb-20">
+  <div use:drawerLinks class="container mx-auto px-container">
+    <div class="rich-text mx-auto mb-20 mt-10 max-w-2xl lg:mt-20">
       {#if story.content.cover.filename}
         {@const { src, alt } = getImageAttributes(story.content.cover, { size: [1024, 0] })}
-        <img {src} {alt} class="w-full rounded-lg mb-10" />
+        <img {src} {alt} class="mb-10 w-full rounded-lg" />
       {:else}
-        <img src={placeholder} alt="Page cover placeholder" class="w-full rounded-lg mb-10" />
+        <img src={placeholder} alt="Page cover placeholder" class="mb-10 w-full rounded-lg" />
       {/if}
 
       {#if story.content.last_updated}
-        <p class="text-sm text-foreground-secondary pt-0.5">
+        <p class="pt-0.5 text-sm text-foreground-secondary">
           <span>{t('handbook.last.updated')}</span>
           <span class="text-foreground-tertiary">·</span>
           <span class="text-foreground">{formatDate(new Date(story.content.last_updated))}</span>

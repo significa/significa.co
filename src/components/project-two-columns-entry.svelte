@@ -74,7 +74,7 @@
     {/if}
   {/if}
   <div class={clsx('flex flex-1 flex-col items-start justify-between')}>
-    <div class="pt-8 pb-6">
+    <div class="pb-6 pt-8">
       <svelte:element this={as} class="text-4xl font-semibold text-foreground-secondary">
         {project.name}
       </svelte:element>

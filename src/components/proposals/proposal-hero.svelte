@@ -12,7 +12,7 @@
 <div
   class={clsx(
     'container mx-auto px-container',
-    'grid grid-cols-1 md:grid-cols-2 gap-x-10 md:gap-x-12 mt-12'
+    'mt-12 grid grid-cols-1 gap-x-10 md:grid-cols-2 md:gap-x-12'
   )}
 >
   <h1 class="text-7xl md:col-span-2 md:max-w-[832px]">{proposal.title}</h1>
@@ -22,8 +22,8 @@
 
   <div
     class={clsx(
-      'col-start-1 grid grid-rows-2 grid-flow-col grid-cols-[repeat(3,_max-content)]',
-      'gap-x-7 sm:gap-x-12 mt-10'
+      'col-start-1 grid grid-flow-col grid-cols-[repeat(3,_max-content)] grid-rows-2',
+      'mt-10 gap-x-7 sm:gap-x-12'
     )}
   >
     <p class="text-base font-semibold leading-none text-foreground-secondary">

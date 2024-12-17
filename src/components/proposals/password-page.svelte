@@ -9,9 +9,9 @@
 <ProposalNavigation />
 
 <div
-  class="container flex items-center xs:mx-auto w-full justify-left xs:justify-center h-[calc(100dvh-var(--topnav-height))] px-container"
+  class="justify-left container flex h-[calc(100dvh-var(--topnav-height))] w-full items-center px-container xs:mx-auto xs:justify-center"
 >
-  <div class="max-w-lg xs:max-w-xl xs:mx-auto -mt-[--topnav-height] w-full">
+  <div class="-mt-[--topnav-height] w-full max-w-lg xs:mx-auto xs:max-w-xl">
     <h2 class="text-5xl">{t('proposals.password-form.title')}</h2>
     <h2 class="text-5xl text-foreground-secondary">{t('proposals.password-form.subtitle')}</h2>
 
@@ -25,7 +25,7 @@
           {error}
         />
         {#if error}
-          <span class="text-error block mt-1">{t('proposals.password-form.error')}</span>
+          <span class="mt-1 block text-error">{t('proposals.password-form.error')}</span>
         {/if}
       </div>
 

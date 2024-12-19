@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-vercel": "^3.1.0",
-    "@sveltejs/kit": "^1.30.4",
+    "@sveltejs/kit": "^2.12.2",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.15",
     "@types/matter-js": "^0.18.5",

@@ -8,7 +8,7 @@
 
 <table
   class={clsx(
-    'table w-full table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border border-border',
+    'table w-full table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border border-border group-[.rich-text]:mb-4',
     $$restProps.class
   )}
   use:storyblokEditable={block}

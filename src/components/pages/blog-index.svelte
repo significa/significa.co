@@ -118,7 +118,6 @@
           <div transition:slide|global={{ duration: 300 }} class="border-b">
             <div class="container mx-auto px-container py-4 md:flex md:py-0">
               <div class={clsx('py-4 md:py-10')}>
-                <p class="text-xs uppercase tracking-wider text-foreground-secondary">Tags</p>
                 <div class="mt-2 flex flex-wrap gap-2">
                   {#each allTags as tag}
                     <Tag

@@ -19,6 +19,7 @@
     'image-grid': ImageGrid,
     'richtext-code-block': RichTextCodeBlock,
     'two-columns': TwoColumns,
+    table: Table,
     'richtext-testimonial': RichTextTestimonial,
     video: Video,
     'richtext-box': RichTextBox,
@@ -95,6 +96,7 @@
   import Canvas from './canvas.svelte';
   import ProjectsTwoColumns from './projects-two-columns.svelte';
   import VerticalList from './vertical-list.svelte';
+  import Table from './table.svelte';
 
   export let block: { component: string };
 

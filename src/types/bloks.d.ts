@@ -586,9 +586,10 @@ export interface HandbookStoryblok {
     | '2 – Working at Significa'
     | '3 – Recruitment'
     | '4 – Working with Significa'
-    | '5 – Engineering'
-    | '6 – Strategy and product'
-    | '7 – Brand and Marketing';
+    | '5 – Design'
+    | '6 – Engineering'
+    | '7 – Strategy and product'
+    | '8 – Brand and Marketing';
   cover: AssetStoryblok;
   order: string;
   highlight?: boolean;
@@ -1407,6 +1408,34 @@ export interface StepsStoryblok {
   steps?: GetAQuoteStepStoryblok[];
   _uid: string;
   component: 'steps';
+  [k: string]: any;
+}
+
+export interface TableStoryblok {
+  thead: {
+    _uid: string;
+    value?: string;
+    component: number;
+    [k: string]: any;
+  }[];
+  tbody: {
+    _uid: string;
+    body: {
+      _uid?: string;
+      value?: string;
+      component?: number;
+      [k: string]: any;
+    }[];
+    component: number;
+    [k: string]: any;
+  }[];
+  [k: string]: any;
+}
+
+export interface TableStoryblok {
+  table?: TableStoryblok;
+  _uid: string;
+  component: 'table';
   [k: string]: any;
 }
 

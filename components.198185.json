@@ -2383,7 +2383,7 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-02-15T13:50:12.113Z",
-      "updated_at": "2024-10-29T12:04:19.489Z",
+      "updated_at": "2024-12-17T17:14:30.609Z",
       "id": 3442773,
       "schema": {
         "last_updated": {
@@ -2420,19 +2420,24 @@
               "name": "4 – Working with Significa"
             },
             {
+              "_uid": "c2236179-e11a-4d3a-9682-3be1baaa9956",
+              "value": "5 – Design",
+              "name": "5 – Design"
+            },
+            {
               "_uid": "9f0de963-31cf-4244-8b4d-c7aa2f73f203",
-              "value": "5 – Engineering",
-              "name": "5 – Engineering"
+              "value": "6 – Engineering",
+              "name": "6 – Engineering"
             },
             {
               "_uid": "632875c1-4c19-4d6c-8659-0a93010c08c3",
-              "value": "6 – Strategy and product",
-              "name": "6 – Strategy and product"
+              "value": "7 – Strategy and product",
+              "name": "7 – Strategy and product"
             },
             {
               "_uid": "5a1a5ca6-a90e-4167-a9a1-12cfb35d0d90",
-              "value": "7 – Brand and Marketing",
-              "name": "7 – Brand and Marketing"
+              "value": "8 – Brand and Marketing",
+              "name": "8 – Brand and Marketing"
             }
           ],
           "description": "When adding new chapters they should follow the format: \"{N} – {Name}\" where N is the presentation order."
@@ -2440,7 +2445,7 @@
         "cover": {
           "type": "asset",
           "filetypes": ["images"],
-          "asset_folder_id": 212287,
+          "asset_folder_id": 640205,
           "key": "cover",
           "pos": 2,
           "required": true
@@ -6449,6 +6454,36 @@
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
+    },
+    {
+      "name": "table",
+      "display_name": null,
+      "description": null,
+      "created_at": "2024-12-19T13:32:55.556Z",
+      "updated_at": "2024-12-19T13:33:32.044Z",
+      "id": 6711880,
+      "schema": {
+        "table": {
+          "type": "table",
+          "pos": 0,
+          "id": "UA_rFl02TEmOc0NxY2WX2A"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "table",
+      "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
+      "color": "#f4cc48",
+      "icon": "block-table-2",
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks & Rich Text"
     },
     {
       "name": "team-buttons",

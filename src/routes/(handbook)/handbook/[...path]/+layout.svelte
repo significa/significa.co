@@ -10,6 +10,7 @@
   import { t } from '$lib/i18n';
   import { circOut } from 'svelte/easing';
   import { sanitizeSlug } from '$lib/utils/paths.js';
+  import { formatTitle } from '$components/pages/handbook/common/utils';
 
   export let data;
 
@@ -82,69 +83,80 @@
                   : 'border-border text-foreground-secondary'
               )}
             >
-              {title.substring(4)}
+              <!-- this is specific for the changelog -->
+              {#if pages.length == 1}
+                <a href={sanitizeSlug(pages[0].full_slug)}>
+                  <span class="shrink-0">
+                    {pages[0].name}
+                  </span>
+                </a>
+              {:else}
+                {formatTitle(title)}
+              {/if}
             </li>
 
-            <ul class="mb-6" transition:slide={{ duration: 400, easing: circOut }}>
-              {#each pages as page, j}
-                <li
-                  class={clsx(
-                    'group flex items-center border-l py-1.5 pl-6 text-sm font-medium transition-all duration-300',
-                    $pageStore.url.pathname === sanitizeSlug(page.full_slug)
-                      ? 'text-foreground'
-                      : 'border-border text-foreground-secondary'
-                  )}
-                >
-                  {#if page?.children?.length}
-                    <!-- svelte-ignore a11y-no-static-element-interactions -->
-                    <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <div
-                      class={clsx(
-                        'border border-background bg-background group-hover:border-border group-hover:bg-background-panel',
-                        '-ml-[37px] mr-3 cursor-pointer rounded-xl p-1 transition-transform duration-300',
-                        openPanes[i].children[j] === true && 'rotate-45'
-                      )}
-                      on:click={() => {
-                        openPanes[i].children[j] = !openPanes[i].children[j];
-                      }}
-                    >
-                      <!-- eslint-disable svelte/no-at-html-tags -->
-                      {@html plus}
-                    </div>
-                  {/if}
-                  <a
-                    class="transition-color mr-2 flex w-full duration-300 hover:text-foreground"
-                    href={sanitizeSlug(page.full_slug)}
+            {#if pages.length > 1}
+              <ul class="mb-6" transition:slide={{ duration: 400, easing: circOut }}>
+                {#each pages as page, j}
+                  <li
+                    class={clsx(
+                      'group flex items-center border-l py-1.5 pl-6 text-sm font-medium transition-all duration-300',
+                      $pageStore.url.pathname === sanitizeSlug(page.full_slug)
+                        ? 'text-foreground'
+                        : 'border-border text-foreground-secondary'
+                    )}
                   >
-                    <span class="shrink-0">
-                      {page.name}
-                    </span>
-                  </a>
-                </li>
-
-                {#if page.children?.length && openPanes[i].children[j] === true}
-                  <ul transition:slide class="flex flex-col border-l pb-2 pl-7">
-                    {#each page.children as children}
-                      <li
+                    {#if page?.children?.length}
+                      <!-- svelte-ignore a11y-no-static-element-interactions -->
+                      <!-- svelte-ignore a11y-click-events-have-key-events -->
+                      <div
                         class={clsx(
-                          'cursor-pointer border-l py-2 pl-6 text-sm font-medium transition-all duration-300',
-                          $pageStore.url.pathname === sanitizeSlug(children.full_slug)
-                            ? 'text-foreground-primary border-foreground'
-                            : 'border-border text-foreground-secondary'
+                          'border border-background bg-background group-hover:border-border group-hover:bg-background-panel',
+                          '-ml-[37px] mr-3 cursor-pointer rounded-xl p-1 transition-transform duration-300',
+                          openPanes[i].children[j] === true && 'rotate-45'
                         )}
+                        on:click={() => {
+                          openPanes[i].children[j] = !openPanes[i].children[j];
+                        }}
                       >
-                        <a
-                          class="transition-color duration-300 hover:text-foreground"
-                          href={sanitizeSlug(children.full_slug)}
+                        <!-- eslint-disable svelte/no-at-html-tags -->
+                        {@html plus}
+                      </div>
+                    {/if}
+                    <a
+                      class="transition-color mr-2 flex w-full duration-300 hover:text-foreground"
+                      href={sanitizeSlug(page.full_slug)}
+                    >
+                      <span class="shrink-0">
+                        {page.name}
+                      </span>
+                    </a>
+                  </li>
+
+                  {#if page.children?.length && openPanes[i].children[j] === true}
+                    <ul transition:slide class="flex flex-col border-l pb-2 pl-7">
+                      {#each page.children as children}
+                        <li
+                          class={clsx(
+                            'cursor-pointer border-l py-2 pl-6 text-sm font-medium transition-all duration-300',
+                            $pageStore.url.pathname === sanitizeSlug(children.full_slug)
+                              ? 'text-foreground-primary border-foreground'
+                              : 'border-border text-foreground-secondary'
+                          )}
                         >
-                          {children.name}
-                        </a>
-                      </li>
-                    {/each}
-                  </ul>
-                {/if}
-              {/each}
-            </ul>
+                          <a
+                            class="transition-color duration-300 hover:text-foreground"
+                            href={sanitizeSlug(children.full_slug)}
+                          >
+                            {children.name}
+                          </a>
+                        </li>
+                      {/each}
+                    </ul>
+                  {/if}
+                {/each}
+              </ul>
+            {/if}
           {/each}
         </ul>
       </nav>

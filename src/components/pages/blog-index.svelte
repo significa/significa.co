@@ -65,7 +65,10 @@
 
   onMount(async () => {
     const blogTags = await storyblok.get('cdn/tags', {
-      starts_with: 'blog/'
+      version,
+      cv: Date.now(),
+      starts_with: 'blog/',
+      per_page: 100
     });
 
     allTags = blogTags.data.tags.map((tag: { name: string }) => tag.name);

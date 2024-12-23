@@ -8,10 +8,11 @@
   import handbookOG from '$assets/handbook/HandbookOG.jpg';
   import { sanitizeSlug } from '$lib/utils/paths';
   import { getImageAttributes } from '$lib/utils/cms';
-  import type { ChapterCardsMap } from './types';
+  import type { Ju_ChapterCardsMap } from './types';
   import { structureDataMarkup } from './structure-data-markup';
+  import { formatTitle } from '../common/utils';
 
-  export let chapters: ChapterCardsMap;
+  export let chapters: Ju_ChapterCardsMap;
 </script>
 
 <Seo
@@ -25,7 +26,7 @@
   <img alt="Handbook" src={handbook} class="mx-auto mb-20 mt-28 w-80" />
 
   {#each chapters.entries() as [title, pages]}
-    <h2 class="mb-8 mt-20 text-2xl font-semibold">{title.substring(4)}</h2>
+    <h2 class="mb-8 mt-20 text-2xl font-semibold">{formatTitle(title)}</h2>
     <div class="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {#each pages as page}
         <a

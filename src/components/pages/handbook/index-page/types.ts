@@ -12,3 +12,5 @@ export type HandbookItemCard = {
 };
 
 export type ChapterCardsMap = Map<HandbookStoryblok['chapter'], HandbookItemCard[]>;
+
+export type Ju_ChapterCardsMap = Map<string | null, HandbookItemCard[]>;

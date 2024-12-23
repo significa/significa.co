@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { dev } from '$app/environment';
   import { page } from '$app/stores';
   import { Button, Icon } from '@significa/svelte-ui';
 
@@ -7,7 +6,7 @@
   const isDraft = $page.data.version === 'draft';
 </script>
 
-{#if isDraft && !dev && !dismissed}
+{#if isDraft && !dismissed}
   <div
     data-theme="yellow"
     class="fixed bottom-4 left-4 z-50 flex flex-col items-stretch rounded-xl border bg-background-panel p-4 text-foreground"

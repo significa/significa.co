@@ -7,19 +7,14 @@ export const load = async ({ params, locals, fetch, url }) => {
   // don't catch paths that end with an extension
   if (/\..+$/.test(params.path)) throw error(404);
 
-  try {
-    const page = await fetchPage({
-      slug: params.path,
-      version,
-      fetch,
-      url
-    });
+  const page = await fetchPage({
+    slug: params.path,
+    version,
+    fetch,
+    url
+  });
 
-    return { page };
-  } catch (err) {
-    console.error('Failed to get storyblok page:', params.path, err);
-    throw error(404, 'Not found');
-  }
+  return { page };
 };
 
 export const config = {

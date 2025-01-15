@@ -8,7 +8,7 @@
   export { className as class };
 
   const stickers = Object.values(
-    import.meta.glob('../../assets/stickers/*.svg', { eager: true, as: 'url' })
+    import.meta.glob('../../../assets/stickers/*.svg', { eager: true, as: 'url' })
   );
 
   const gridSize = 90;

@@ -60,6 +60,7 @@ export const getHandbookEntries = async (
 
     return results;
   } catch (err) {
-    throw new Error('Failed to fetch Handbook entries', { cause: err });
+    console.error('Failed to fetch Handbook entries', err);
+    throw err;
   }
 };

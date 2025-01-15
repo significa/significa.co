@@ -1,16 +1,10 @@
 import { STORYBLOK_PROPOSALS_TOKEN } from '$env/static/private';
 import { PREVIEW_COOKIE_KEY } from '$lib/constants';
-import { getStoryblok } from '$lib/storyblok';
+import { getStoryblok, isStatusError } from '$lib/storyblok';
 import type { ProposalStoryblok } from '$types/bloks.js';
 import type { ISbStoryData } from '@storyblok/js';
 
 const getCookieName = (slug: string) => `PROPOSAL_TOKEN_${slug.toUpperCase().replace('-', '_')}`;
-
-const isStatusError = (err: unknown): err is { status: number } => {
-  return (
-    typeof err === 'object' && err !== null && 'status' in err && typeof err.status === 'number'
-  );
-};
 
 export const load = async ({ cookies, fetch, params, url }) => {
   const version: 'draft' | 'published' = cookies.get(PREVIEW_COOKIE_KEY) ? 'draft' : 'published';

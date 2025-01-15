@@ -14,19 +14,15 @@ export const GET = async ({ url }) => {
     throw error(400, 'Missing required query params');
   }
 
-  try {
-    const uuid = crypto.randomUUID();
-    const url = await getSignedUrl(
-      s3Client,
-      new PutObjectCommand({
-        Bucket: env.AWS_S3_BUCKET,
-        Key: `${uuid}.${getFileExtension(name)}`,
-        ContentType: type
-      })
-    );
+  const uuid = crypto.randomUUID();
+  const signedUrl = await getSignedUrl(
+    s3Client,
+    new PutObjectCommand({
+      Bucket: env.AWS_S3_BUCKET,
+      Key: `${uuid}.${getFileExtension(name)}`,
+      ContentType: type
+    })
+  );
 
-    return text(url);
-  } catch {
-    throw error(500, 'Could not get signed URL');
-  }
+  return text(signedUrl);
 };

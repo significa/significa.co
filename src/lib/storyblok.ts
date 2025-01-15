@@ -6,6 +6,8 @@ import {
   type ISbStoryData,
   type SbSDKOptions
 } from '@storyblok/js';
+import { error } from '@sveltejs/kit';
+import type { HttpError } from '@sveltejs/kit';
 import { onMount } from 'svelte';
 
 export const getStoryblok = (
@@ -35,3 +37,22 @@ export function startStoryblokBridge<T extends { story: ISbStoryData<any> }>(
     useStoryblokBridge(id, onNewStory);
   });
 }
+
+export const isStatusError = (err: unknown): err is { status: number } => {
+  return (
+    typeof err === 'object' && err !== null && 'status' in err && typeof err.status === 'number'
+  );
+};
+
+/**
+ * Converts a Storyblok error to a SvelteKit error when needed.
+ *
+ * @param err - The error object to handle, which can be of any type.
+ * @returns The original error if it is not a Storyblok error, or a SvelteKit 404 error.
+ */
+export const handleStoryblokError = <T>(err: T): T | HttpError => {
+  if (isStatusError(err) && err.status === 404) {
+    return error(404, 'Storyblok 404 error');
+  }
+  return err;
+};

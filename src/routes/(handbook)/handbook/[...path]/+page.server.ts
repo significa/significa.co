@@ -8,24 +8,22 @@ const isHandbookStory = (story: DynamicPage): story is HandbookPage =>
 export const load = async ({ locals, fetch, url }) => {
   const version = locals.version;
 
-  try {
-    const page = await fetchPage({
-      slug: url.pathname,
-      version,
-      fetch,
-      url
-    });
+  const page = await fetchPage({
+    slug: url.pathname,
+    version,
+    fetch,
+    url
+  });
 
-    const story = page.story;
+  const story = page.story;
 
-    if (isHandbookStory(story)) {
-      return { story };
-    } else {
-      console.error('Only "Handbook" pages can live inside the /handbook folder');
-      throw error(404, 'Not found');
-    }
-  } catch (err) {
-    console.error('Failed to get storyblok page:', url.pathname, err);
+  if (isHandbookStory(story)) {
+    return { story };
+  } else {
+    console.error(
+      'Only "Handbook" pages can live inside the /handbook folder, got',
+      story.content.component
+    );
     throw error(404, 'Not found');
   }
 };

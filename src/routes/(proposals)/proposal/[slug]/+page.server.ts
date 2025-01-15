@@ -29,8 +29,6 @@ export const load = async ({ locals, cookies, fetch, params, url }) => {
   }
 
   let res;
-  let services;
-  let home;
 
   try {
     res = await storyblok.get('cdn/stories/' + url.pathname, {
@@ -56,29 +54,19 @@ export const load = async ({ locals, cookies, fetch, params, url }) => {
     return failAuthentication();
   }
 
-  try {
-    services = await fetchPage({
-      slug: 'services',
-      version,
-      fetch,
-      url
-    });
-  } catch (err) {
-    console.error('Fetching services for proposals: ' + err);
-    throw err;
-  }
+  const services = await fetchPage({
+    slug: 'services',
+    version,
+    fetch,
+    url
+  });
 
-  try {
-    home = await fetchPage({
-      slug: '',
-      version,
-      fetch,
-      url
-    });
-  } catch (err) {
-    console.error('Fetching home for proposals: ' + err);
-    throw err;
-  }
+  const home = await fetchPage({
+    slug: '',
+    version,
+    fetch,
+    url
+  });
 
   return {
     story,

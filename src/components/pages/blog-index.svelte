@@ -118,7 +118,7 @@
       </div>
       <div class="border-t">
         {#if filtersOpen}
-          <div transition:slide|global={{ duration: 300 }} class="border-b">
+          <div transition:slide|local={{ duration: 300 }} class="border-b">
             <div class="container mx-auto px-container py-4 md:flex md:py-0">
               <div class={clsx('py-4 md:py-10')}>
                 <div class="mt-2 flex flex-wrap gap-2">

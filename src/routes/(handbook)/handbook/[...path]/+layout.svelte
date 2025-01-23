@@ -10,7 +10,7 @@
   import { t } from '$lib/i18n';
   import { circOut } from 'svelte/easing';
   import { sanitizeSlug } from '$lib/utils/paths.js';
-
+  import type { HandbookLevelStoryblok } from '$types/bloks';
   export let data;
 
   let sidebar = writable(false);
@@ -19,22 +19,26 @@
     sidebar.set(false);
   });
 
-  $: openPanes = Object.values([...data.chapters.values()]).map((pages) => ({
-    open: pages.some(
-      (page) =>
-        $pageStore.url.pathname === sanitizeSlug(page.full_slug) ||
-        page.children?.some(
-          (childrenPage) => $pageStore.url.pathname === sanitizeSlug(childrenPage.full_slug)
-        )
-    ),
-    children: pages.map(
-      (page) =>
-        $pageStore.url.pathname === sanitizeSlug(page.full_slug) ||
-        page.children?.some(
-          (childrenPage) => $pageStore.url.pathname === sanitizeSlug(childrenPage.full_slug)
-        )
-    )
-  }));
+  $: openPanes = data.hierarchy
+    .map((chapter: HandbookLevelStoryblok) => chapter.children)
+    .map((subchapters: HandbookLevelStoryblok[]) => ({
+      open: subchapters.some(
+        (subchapter: HandbookLevelStoryblok) =>
+          $pageStore.url.pathname === sanitizeSlug(subchapter.homepage.full_slug) ||
+          subchapter.children?.some(
+            (childrenPage: HandbookLevelStoryblok) =>
+              $pageStore.url.pathname === sanitizeSlug(childrenPage.homepage.full_slug)
+          )
+      ),
+      children: subchapters.map(
+        (subchapter) =>
+          $pageStore.url.pathname === sanitizeSlug(subchapter.homepage.full_slug) ||
+          subchapter.children?.some(
+            (childrenPage) =>
+              $pageStore.url.pathname === sanitizeSlug(childrenPage.homepage.full_slug)
+          )
+      )
+    }));
 </script>
 
 <div class="pb-20 lg:container lg:mx-auto lg:px-container" use:bodyLock={sidebar}>
@@ -71,7 +75,7 @@
 
       <nav class="px-container pt-[calc(var(--topnav-height))] lg:px-0 lg:pt-4">
         <ul>
-          {#each data.chapters.entries() as [title, pages], i}
+          {#each data.hierarchy as chapter, i}
             <li
               transition:slide
               class={clsx(
@@ -82,20 +86,34 @@
                   : 'border-border text-foreground-secondary'
               )}
             >
-              {title.substring(4)}
+              {#if chapter.homepage}
+                <a
+                  class={clsx(
+                    'transition-color mr-2 flex w-full duration-300 hover:text-foreground',
+                    $pageStore.url.pathname === sanitizeSlug(chapter.homepage.full_slug) &&
+                      'text-foreground'
+                  )}
+                  href={sanitizeSlug(chapter.homepage.full_slug)}
+                >
+                  <span class="shrink-0">
+                    {chapter.name}
+                  </span>
+                </a>
+              {:else}
+                {chapter.name}
+              {/if}
             </li>
-
             <ul class="mb-6" transition:slide={{ duration: 400, easing: circOut }}>
-              {#each pages as page, j}
+              {#each chapter.children as subchapter, j}
                 <li
                   class={clsx(
                     'group flex items-center border-l py-1.5 pl-6 text-sm font-medium transition-all duration-300',
-                    $pageStore.url.pathname === sanitizeSlug(page.full_slug)
+                    $pageStore.url.pathname === sanitizeSlug(subchapter.homepage.full_slug)
                       ? 'text-foreground'
                       : 'border-border text-foreground-secondary'
                   )}
                 >
-                  {#if page?.children?.length}
+                  {#if subchapter?.children?.length}
                     <!-- svelte-ignore a11y-no-static-element-interactions -->
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
                     <div
@@ -114,30 +132,30 @@
                   {/if}
                   <a
                     class="transition-color mr-2 flex w-full duration-300 hover:text-foreground"
-                    href={sanitizeSlug(page.full_slug)}
+                    href={sanitizeSlug(subchapter.homepage.full_slug)}
                   >
                     <span class="shrink-0">
-                      {page.name}
+                      {subchapter.name}
                     </span>
                   </a>
                 </li>
 
-                {#if page.children?.length && openPanes[i].children[j] === true}
+                {#if subchapter.children?.length && openPanes[i].children[j] === true}
                   <ul transition:slide class="flex flex-col border-l pb-2 pl-7">
-                    {#each page.children as children}
+                    {#each subchapter.children as child}
                       <li
                         class={clsx(
                           'cursor-pointer border-l py-2 pl-6 text-sm font-medium transition-all duration-300',
-                          $pageStore.url.pathname === sanitizeSlug(children.full_slug)
+                          $pageStore.url.pathname === sanitizeSlug(child.homepage.full_slug)
                             ? 'text-foreground-primary border-foreground'
                             : 'border-border text-foreground-secondary'
                         )}
                       >
                         <a
                           class="transition-color duration-300 hover:text-foreground"
-                          href={sanitizeSlug(children.full_slug)}
+                          href={sanitizeSlug(child.homepage.full_slug)}
                         >
-                          {children.name}
+                          {child.name}
                         </a>
                       </li>
                     {/each}

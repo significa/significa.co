@@ -616,6 +616,7 @@ export interface HandbookHierarchyConfigurationStoryblok {
 export interface HandbookLevelStoryblok {
   name?: string;
   homepage?: any;
+  highlight?: boolean;
   children?: HandbookLevelStoryblok[];
   _uid: string;
   component: 'handbook-level';

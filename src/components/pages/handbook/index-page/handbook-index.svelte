@@ -31,12 +31,10 @@
     >
       {#if chapter.homepage}
         <a
-          data-highlight={chapter.homepage.content.highlight}
+          data-highlight={chapter.highlight}
           class={clsx(
             'group flex overflow-hidden rounded-lg border bg-background-panel shadow-sm hover:bg-background-offset',
-            chapter.homepage.content.highlight
-              ? 'col-span-1 row-span-3 flex-col'
-              : 'col-span-1 row-span-1'
+            chapter.highlight ? 'col-span-1 row-span-3 flex-col' : 'col-span-1 row-span-1'
           )}
           href={sanitizeSlug(chapter.homepage.full_slug)}
         >
@@ -47,7 +45,7 @@
             <span
               class={clsx(
                 'block overflow-hidden bg-center bg-no-repeat',
-                chapter.homepage.content.highlight
+                chapter.highlight
                   ? 'h-full w-full rounded-b-none border-b bg-[length:auto_100%] transition-all duration-300 group-hover:bg-[length:auto_120%]'
                   : 'aspect-square w-20 shrink-0 rounded-r-none border-r bg-background-panel bg-[length:380%] transition-all duration-300 group-hover:bg-[length:440%]'
               )}
@@ -58,7 +56,7 @@
             <span
               class={clsx(
                 'block overflow-hidden bg-center bg-no-repeat',
-                chapter.homepage.content.highlight
+                chapter.highlight
                   ? 'h-full w-full rounded-b-none border-b bg-cover'
                   : 'aspect-square w-20 shrink-0 rounded-r-none border-r bg-background-panel bg-[length:380%]'
               )}
@@ -82,12 +80,10 @@
       {#if chapter.children}
         {#each chapter.children as subchapter}
           <a
-            data-highlight={subchapter.homepage.content.highlight}
+            data-highlight={subchapter.highlight}
             class={clsx(
               'group flex overflow-hidden rounded-lg border bg-background-panel shadow-sm hover:bg-background-offset',
-              subchapter.homepage.content.highlight
-                ? 'col-span-1 row-span-3 flex-col'
-                : 'col-span-1 row-span-1'
+              subchapter.highlight ? 'col-span-1 row-span-3 flex-col' : 'col-span-1 row-span-1'
             )}
             href={sanitizeSlug(subchapter.homepage.full_slug)}
           >
@@ -98,7 +94,7 @@
               <span
                 class={clsx(
                   'block overflow-hidden bg-center bg-no-repeat',
-                  subchapter.homepage.content.highlight
+                  subchapter.highlight
                     ? 'h-full w-full rounded-b-none border-b bg-[length:auto_100%] transition-all duration-300 group-hover:bg-[length:auto_120%]'
                     : 'aspect-square w-20 shrink-0 rounded-r-none border-r bg-background-panel bg-[length:380%] transition-all duration-300 group-hover:bg-[length:440%]'
                 )}
@@ -109,7 +105,7 @@
               <span
                 class={clsx(
                   'block overflow-hidden bg-center bg-no-repeat',
-                  subchapter.homepage.content.highlight
+                  subchapter.highlight
                     ? 'h-full w-full rounded-b-none border-b bg-cover'
                     : 'aspect-square w-20 shrink-0 rounded-r-none border-r bg-background-panel bg-[length:380%]'
                 )}

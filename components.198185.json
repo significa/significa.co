@@ -467,7 +467,7 @@
       "display_name": "Author",
       "description": null,
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2024-12-16T10:30:37.243Z",
+      "updated_at": "2025-01-13T08:44:47.905Z",
       "id": 3442347,
       "schema": {
         "cover": {
@@ -475,17 +475,20 @@
           "filetypes": ["images"],
           "asset_folder_id": 212285,
           "required": false,
-          "pos": 0
+          "pos": 0,
+          "id": "8dLyaE42R3GwiQWEMB9ZkQ"
         },
         "reading_time": {
           "type": "number",
           "pos": 1,
-          "display_name": "Reading Time (mins)"
+          "display_name": "Reading Time (mins)",
+          "id": "MiPFnbyLSjCWHlOysdIV2A"
         },
         "intro": {
           "type": "textarea",
           "required": true,
-          "pos": 2
+          "pos": 2,
+          "id": "ki2PS1dbQ7a2MqWpUWPImw"
         },
         "authors": {
           "type": "options",
@@ -494,62 +497,73 @@
           "required": true,
           "min_options": "1",
           "max_options": "4",
-          "pos": 3
+          "pos": 3,
+          "id": "vlcOr1lSSkynG2QKXt4YJg"
         },
         "services": {
           "type": "options",
           "source": "internal",
           "datasource_slug": "services",
-          "pos": 4
+          "pos": 4,
+          "id": "SmiU9YHQQFmiu3YKGdcK9w"
         },
         "deliverables": {
           "type": "options",
           "source": "internal",
           "datasource_slug": "deliverables",
-          "pos": 5
+          "pos": 5,
+          "id": "vF2l7ScsRUuUNq_nOYroKg"
         },
         "tech": {
           "type": "options",
           "display_name": "",
           "source": "internal",
           "datasource_slug": "tech-stack",
-          "pos": 6
+          "pos": 6,
+          "id": "uHMZJfCDR06MV30J7QHzKA"
         },
         "industry": {
           "type": "options",
           "source": "internal",
           "datasource_slug": "industry",
-          "pos": 7
+          "pos": 7,
+          "id": "CssUjMEXTo6Kjnn86kwajA"
         },
         "seo_title": {
           "type": "text",
-          "pos": 8
+          "pos": 8,
+          "id": "BOQalEUqQiyk1md3F5xIVA"
         },
         "seo_description": {
           "type": "text",
-          "pos": 9
+          "pos": 9,
+          "id": "7NAqowg8QR2aKKFF5RhbXQ"
         },
         "seo_og_image": {
           "type": "asset",
           "filetypes": ["images"],
           "asset_folder_id": 212285,
-          "pos": 10
+          "pos": 10,
+          "id": "aKZDfkIZSByFgTOpanjZyg"
         },
         "seo_canonical_url": {
           "type": "text",
           "pos": 11,
-          "description": "The default is the page URL"
+          "description": "The default is the page URL",
+          "id": "uti5hsDBSF6WaKtICvmJ3Q"
         },
         "structure_data_markup": {
           "type": "textarea",
           "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
-          "pos": 12
+          "pos": 12,
+          "id": "jlD5mft8RjCpiuV3jnrKQA"
         },
         "tab-9a5d9933-3840-42d8-aa24-d87e83a9eb5d": {
           "display_name": "Content",
           "keys": ["body"],
           "pos": 13,
-          "type": "tab"
+          "type": "tab",
+          "id": "ml2ZMzhAQtiqJNh-g6nrXQ"
         },
         "tab-c1b66206-334d-4470-a996-ca9aa074e23c": {
           "display_name": "SEO",
@@ -561,7 +575,8 @@
             "seo_canonical_url"
           ],
           "pos": 14,
-          "type": "tab"
+          "type": "tab",
+          "id": "wbZiBjNNRHCplsqaoHTiPA"
         },
         "body": {
           "type": "richtext",
@@ -592,7 +607,9 @@
             "redo",
             "color"
           ],
-          "pos": 15
+          "pos": 15,
+          "allow_custom_attributes": true,
+          "id": "5ed-PQo1Sv6G4smOLUMFNg"
         }
       },
       "image": "//a.storyblok.com/f/198185/x/f51edbf69b/screenshot-2023-03-22-at-11-49-53.png",
@@ -2611,6 +2628,85 @@
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
       "component_group_name": "Content Types"
+    },
+    {
+      "name": "handbook-hierarchy-configuration",
+      "display_name": null,
+      "description": null,
+      "created_at": "2025-01-23T12:47:33.813Z",
+      "updated_at": "2025-01-23T12:57:07.248Z",
+      "id": 6843009,
+      "schema": {
+        "hierarchy": {
+          "type": "bloks",
+          "pos": 0,
+          "restrict_type": "",
+          "restrict_components": true,
+          "id": "D2dheEMnQZOfdeorIE1fWA",
+          "component_whitelist": ["handbook-level"]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": true,
+      "preview_tmpl": null,
+      "is_nestable": false,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "handbook-hierarchy-configuration",
+      "component_group_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
+      "color": null,
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "Content Types"
+    },
+    {
+      "name": "handbook-level",
+      "display_name": null,
+      "description": null,
+      "created_at": "2025-01-23T12:50:04.973Z",
+      "updated_at": "2025-01-23T13:09:42.371Z",
+      "id": 6843171,
+      "schema": {
+        "name": {
+          "type": "text",
+          "pos": 0,
+          "id": "GxVX8y44QsyQju7M-cWcXQ"
+        },
+        "homepage": {
+          "type": "option",
+          "pos": 1,
+          "use_uuid": true,
+          "source": "internal_stories",
+          "folder_slug": "handbook/",
+          "id": "RnPEHft2QACPAylWLDgnrg"
+        },
+        "children": {
+          "type": "bloks",
+          "pos": 3,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["handbook-level"],
+          "id": "GOEdF9mATnKRcWv5keCVMQ"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": "<div> {{it.name}} </div>\n<div>\n{{@each(it.children) =&gt; val, index}}\n  {{val.name}} /\n{{/each}}\n</div>",
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "handbook-level",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
     },
     {
       "name": "hero",

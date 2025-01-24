@@ -1,6 +1,4 @@
 import type { getStoryblok } from '$lib/storyblok';
-import type { HandbookStoryblok } from '$types/bloks';
-import type { ISbStoryData } from '@storyblok/js';
 
 const EXCLUSIONS = {
   index: [
@@ -29,38 +27,21 @@ const EXCLUSIONS = {
   ]
 } as const;
 
-export const getHandbookEntries = async (
+export const getHandbookHierarchyConfig = async (
   storyblok: ReturnType<typeof getStoryblok>,
   version: 'draft' | 'published' | undefined,
   context: keyof typeof EXCLUSIONS = 'index'
 ) => {
   try {
-    let loop = true;
-    let page = 1;
-    const results: ISbStoryData<HandbookStoryblok>[] = [];
+    const res = await storyblok.get('cdn/stories/configuration/handbook-hierarchy-config', {
+      version,
+      excluding_fields: EXCLUSIONS[context].join(','),
+      resolve_relations: 'handbook-level.homepage,handbook-level.children'
+    });
 
-    do {
-      const res = await storyblok.get('cdn/stories', {
-        starts_with: 'handbook',
-        cv: Date.now(),
-        version,
-        excluding_fields: EXCLUSIONS[context].join(','),
-        page,
-        per_page: 100
-      });
-
-      results.push(...res.data.stories);
-
-      if (results.length >= res.total) {
-        loop = false;
-      }
-
-      page++;
-    } while (loop);
-
-    return results;
+    return res.data.story;
   } catch (err) {
-    console.error('Failed to fetch Handbook entries', err);
+    console.error('Failed to fetch Handbook Hierarchy Config', err);
     throw err;
   }
 };

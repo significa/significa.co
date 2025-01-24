@@ -3,7 +3,7 @@
 
   export let data;
 
-  const { chapters } = data;
+  const { hierarchy } = data;
 </script>
 
-<HandbookIndexPage {chapters} />
+<HandbookIndexPage {hierarchy} />

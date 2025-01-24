@@ -606,6 +606,22 @@ export interface HandbookStoryblok {
   [k: string]: any;
 }
 
+export interface HandbookHierarchyConfigurationStoryblok {
+  hierarchy?: HandbookLevelStoryblok[];
+  _uid: string;
+  component: 'handbook-hierarchy-configuration';
+  [k: string]: any;
+}
+
+export interface HandbookLevelStoryblok {
+  name?: string;
+  homepage?: any;
+  children?: HandbookLevelStoryblok[];
+  _uid: string;
+  component: 'handbook-level';
+  [k: string]: any;
+}
+
 export interface HeroStoryblok {
   heading?: string;
   small_highlights?: (
@@ -729,6 +745,7 @@ export interface LandingPageStoryblok {
     | DrawSeggStoryblok
     | EstimationStoryblok
     | FormBudgetRangeStoryblok
+    | HandbookLevelStoryblok
     | HeroStoryblok
     | ListStoryblok
     | NewtonStoryblok
@@ -882,6 +899,7 @@ export interface PageStoryblok {
     | DrawSeggStoryblok
     | EstimationStoryblok
     | FormBudgetRangeStoryblok
+    | HandbookLevelStoryblok
     | HeroStoryblok
     | ListStoryblok
     | NewtonStoryblok

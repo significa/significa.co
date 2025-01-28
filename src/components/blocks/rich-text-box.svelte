@@ -32,7 +32,7 @@
       )}
     >
       <img
-        class={clsx('rounded-md object-cover', block.layout === 'vertical' && 'w-full')}
+        class={clsx('aspect-auto rounded-md object-cover', block.layout === 'vertical' && 'w-full')}
         {src}
         {alt}
         {width}

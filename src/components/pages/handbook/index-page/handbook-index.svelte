@@ -13,12 +13,15 @@
   import { fetchEntries } from '$lib/content';
   import type { HandbookPage } from '$lib/content';
   import { onMount } from 'svelte';
+  import clsx from 'clsx';
+  import { createBreakpointMediaQueryStore } from '$lib/stores/media';
 
   export let hierarchy: HandbookLevelStoryblok[];
 
   let searchInputValue = '';
   let submittedTerm: string | null = null;
   let searchResults: HandbookPage[] = [];
+  const desktop = createBreakpointMediaQueryStore('md');
 
   $: if (searchInputValue === '') {
     searchResults = [];
@@ -66,15 +69,22 @@
 
   <form
     id="search-form"
-    class="m-auto mb-6 flex max-w-[600px] gap-2"
+    class="relative m-auto mb-6 flex max-w-[600px] gap-2"
     on:submit|preventDefault={() => handleSearch()}
   >
     <div class="relative flex-1">
-      <Input bind:value={searchInputValue} />
+      <Input
+        bind:value={searchInputValue}
+        class={clsx('pr-28', searchInputValue && 'pr-32')}
+        placeholder={$desktop
+          ? 'Search! Because asking in Slack is overrated.'
+          : 'Search the Handbook'}
+        size="lg"
+      />
       {#if searchInputValue}
         <button
           type="button"
-          class="absolute right-3 top-1/2 -translate-y-1/2 text-foreground-secondary hover:text-foreground"
+          class="absolute right-[104px] top-1/2 -translate-y-1/2 text-foreground-secondary hover:text-foreground"
           on:click={() => {
             searchInputValue = '';
             submittedTerm = null;
@@ -86,7 +96,9 @@
         </button>
       {/if}
     </div>
-    <Button type="submit" variant="primary">Search</Button>
+    <Button type="submit" class="absolute right-1.5 top-1/2 -translate-y-1/2" variant="primary"
+      >Search</Button
+    >
   </form>
 
   {#if submittedTerm && searchResults.length > 0}

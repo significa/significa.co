@@ -35,14 +35,13 @@
   });
 
   async function handleSearch() {
-    submittedTerm = searchInputValue;
-
     const response = await fetchEntries<HandbookPage>(
       { version: $page.data.version || 'published' },
       { starts_with: 'handbook', search_term: searchInputValue }
     );
 
     searchResults = response;
+    submittedTerm = searchInputValue;
 
     $page.url.searchParams.set('search', searchInputValue);
     await goto($page.url, { keepFocus: true });

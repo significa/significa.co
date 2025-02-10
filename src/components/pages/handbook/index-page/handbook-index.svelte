@@ -76,9 +76,7 @@
       <Input
         bind:value={searchInputValue}
         class={clsx('pr-28', searchInputValue && 'pr-32')}
-        placeholder={$desktop
-          ? 'Search! Because asking in Slack is overrated.'
-          : 'Search the Handbook'}
+        placeholder={$desktop ? 'Search! Because asking in Slack is overrated.' : 'Search!'}
         size="lg"
       />
       {#if searchInputValue}

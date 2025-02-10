@@ -341,7 +341,7 @@ export async function fetchPage(options: {
   return { story: data.story };
 }
 
-async function fetchEntries<T>(
+export async function fetchEntries<T>(
   options: {
     version?: 'draft' | 'published';
     fetch?: typeof fetch;

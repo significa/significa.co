@@ -7,13 +7,16 @@
     <link rel="icon" type="image/png" sizes="16x16" href="%sveltekit.assets%/favicon-16x16.png" />
     <link rel="manifest" href="%sveltekit.assets%/site.webmanifest" />
     <link rel="mask-icon" href="%sveltekit.assets%/safari-pinned-tab.svg" color="#171717" />
+
+    <link rel="alternate" hreflang="en" href="https://significa.co" />
+
     <meta name="msapplication-TileColor" content="#f3f3f3" />
     <meta name="theme-color" content="#ffffff" />
     <meta name="viewport" content="width=device-width" />
     <script>
       function setTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
-        document.documentElement.style.colorScheme = theme;
+        document.documentElement.styled.colorScheme = theme;
         localStorage.setItem('theme', theme);
         window.dispatchEvent(new CustomEvent('theme-change', { detail: theme }));
       }

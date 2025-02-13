@@ -56,7 +56,7 @@
               section.type === 'bullet_list' ||
               section.type === 'ordered_list'
             ) {
-              return { class: 'text-foreground-secondary' };
+              return { class: 'text-foreground' };
             }
 
             return {};

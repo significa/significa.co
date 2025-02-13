@@ -1,19 +1,19 @@
 <script lang="ts">
-  import clsx from 'clsx';
-  import type { ProposalStoryblok } from '$types/bloks';
+  import RichText from '$components/rich-text.svelte';
   import { slugify } from '$lib/utils/paths';
   import { createPackageTimelineData, createRateTimelineData } from '$lib/utils/proposals';
-  import RichText from '$components/rich-text.svelte';
+  import type { ProposalStoryblok } from '$types/bloks';
+  import clsx from 'clsx';
+  import ProposalDeliverables from './proposal-deliverables.svelte';
+  import ProposalEstimates from './proposal-estimates.svelte';
   import ProposalHero from './proposal-hero.svelte';
   import ProposalNavigation from './proposal-navigation.svelte';
-  import ProposalDeliverables from './proposal-deliverables.svelte';
+  import ProposalPackageReply from './proposal-package-reply.svelte';
+  import ProposalPackage from './proposal-package.svelte';
+  import ProposalRateReply from './proposal-rate-reply.svelte';
   import ProposalScope from './proposal-scope.svelte';
   import ProposalTeam from './proposal-team.svelte';
-  import ProposalEstimates from './proposal-estimates.svelte';
-  import ProposalPackage from './proposal-package.svelte';
   import ProposalTimeline from './proposal-timeline.svelte';
-  import ProposalPackageReply from './proposal-package-reply.svelte';
-  import ProposalRateReply from './proposal-rate-reply.svelte';
 
   export let proposal: ProposalStoryblok;
 
@@ -21,6 +21,7 @@
   let version = versions.length > 0 ? versions[0].version_name : '';
 
   $: content = versions.find((v) => v.version_name === version);
+  $: console.log(content);
   $: type = content?.component === 'proposal-version-package' ? 'package' : 'rate';
   $: sections = (content?.body || []).map((section) => section.title || '').filter(Boolean);
 
@@ -37,7 +38,7 @@
     bind:version
   />
 
-  <ProposalHero {proposal} date={content?.date} />
+  <ProposalHero {proposal} date={content?.date} cover={content?.cover} />
 
   {#each content?.body || [] as section}
     <section id={slugify(section.title)} class="my-10 md:my-14 lg:my-20">

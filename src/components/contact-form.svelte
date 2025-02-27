@@ -224,9 +224,9 @@
         on:blur={() => dispatch('blur', 'message')}
         on:input={() => dispatch('input', 'message')}
       />
-      <div class="mt-2 text-right text-sm text-foreground-secondary">
+      <p class="mt-2 text-right text-sm text-foreground-secondary">
         {message.length}/2000
-      </div>
+      </p>
     </div>
 
     {#if type === 'quote' && budgetOptions}

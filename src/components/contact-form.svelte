@@ -210,18 +210,25 @@
         {/each}
       </FloatingSelect>
     {/if}
-    <FloatingTextarea
-      required
-      error={!!$page.form?.error?.fields?.message}
-      name="message"
-      class="flex w-full"
-      label={t('contact.label.message')}
-      rows={5}
-      bind:value={message}
-      on:focus={() => dispatch('focus', 'message')}
-      on:blur={() => dispatch('blur', 'message')}
-      on:input={() => dispatch('input', 'message')}
-    />
+    <div>
+      <FloatingTextarea
+        required
+        error={!!$page.form?.error?.fields?.message}
+        name="message"
+        class="flex w-full"
+        label={t('contact.label.message')}
+        rows={5}
+        maxlength={2000}
+        bind:value={message}
+        on:focus={() => dispatch('focus', 'message')}
+        on:blur={() => dispatch('blur', 'message')}
+        on:input={() => dispatch('input', 'message')}
+      />
+      <div class="mt-2 text-right text-sm text-foreground-secondary">
+        {message.length}/2000
+      </div>
+    </div>
+
     {#if type === 'quote' && budgetOptions}
       <FloatingSelect
         required

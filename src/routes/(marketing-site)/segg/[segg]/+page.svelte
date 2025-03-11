@@ -7,7 +7,7 @@
 </script>
 
 <div class="container mx-auto flex items-center justify-center px-container pt-4 md:mt-6 lg:mt-10">
-  <DrawYourSegg template={data.drawing} />
+  <DrawYourSegg drawingId={data.drawing.id} baseDrawingContent={data.drawing.content} />
 </div>
 
 <div class="container mx-auto mb-10 mt-10 px-container md:mt-14 md:text-center lg:mt-20">

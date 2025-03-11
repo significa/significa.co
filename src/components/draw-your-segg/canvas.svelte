@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { colors, widths, cursors, tools } from './config';
+  import { tools } from './config';
   import { createEventDispatcher, onMount } from 'svelte';
-  import { getMidBetween, simplify } from './utils';
+  import { simplify, renderDrawing, draw } from './canvas-rendering';
   import Tools from './tools.svelte';
   import saveImage from './assets/save.svg';
   import undoImage from './assets/undo.svg';
@@ -10,92 +10,58 @@
   import clsx from 'clsx';
   import { writable, type Writable } from 'svelte/store';
   import { debounced } from '$lib/stores/debounced';
-  import type { Drawing, Point, Tool } from './types';
+  import type { Point, Tool, Stroke, DrawingContent } from './types';
   import { page } from '$app/stores';
   import { toast } from '@significa/svelte-ui';
   import { t } from '$lib/i18n';
 
-  const dispatch = createEventDispatcher<{ change: Drawing }>();
+  // 2x scale for a higher resolution render ("High DPI displays")
+  const CANVAS_SCALE = 2;
+
+  export let drawingId: string | null;
+  export let width: number;
+  export let height: number;
+  export let templateStrokes: Stroke[];
+
+  const dispatch = createEventDispatcher<{ change: DrawingContent }>();
 
   let started = false;
 
   let canvas: HTMLCanvasElement;
-  export let width: number;
-  export let height: number;
 
-  export let id: string | null = null; // database ID
-  export let template: Drawing = [];
-  let drawing: Writable<Drawing> = writable(template);
-  let points: Point[] = [];
-  let tool: Tool = tools.pencil;
+  let strokes: Writable<Stroke[]> = writable(templateStrokes);
 
-  let debouncedDrawing = debounced(drawing, 2000);
-  $: if ($debouncedDrawing && started) {
-    dispatch('change', $debouncedDrawing);
+  let currentStrokePath: Point[] = [];
+  let currentTool: Tool = tools.pencil;
+
+  let debouncedStrokes = debounced(strokes, 2000);
+
+  $: if ($debouncedStrokes && started) {
+    dispatch('change', {
+      canvas_width: width,
+      canvas_height: height,
+      strokes: $debouncedStrokes
+    });
   }
 
   let isDrawing = false;
-  let undone: Drawing = [];
-  $: canUndo = $drawing.length > template.length;
+  let undone: Stroke[] = [];
+
+  $: canUndo = $strokes.length > templateStrokes.length;
   $: canRedo = !!undone.length;
 
   function undo() {
     if (!canUndo) return;
 
-    undone = [...undone, $drawing[$drawing.length - 1]];
-    drawing.update((prev) => prev.slice(0, -1));
+    undone = [...undone, $strokes[$strokes.length - 1]];
+    strokes.update((prev) => prev.slice(0, -1));
   }
 
   function redo() {
     if (!canRedo) return;
 
-    drawing.update((prev) => [...prev, undone[undone.length - 1]]);
+    strokes.update((prev) => [...prev, undone[undone.length - 1]]);
     undone = undone.slice(0, -1);
-  }
-
-  function setCanvasTool(canvas: HTMLCanvasElement, tool: Tool) {
-    const ctx = canvas?.getContext('2d', { alpha: false });
-    if (!ctx) return;
-
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    ctx.lineWidth = widths[tool.width];
-    ctx.strokeStyle = colors[tool.color];
-  }
-
-  function draw(canvas: HTMLCanvasElement, points: Point[]) {
-    const ctx = canvas?.getContext('2d', { alpha: false });
-
-    ctx?.beginPath();
-
-    for (let i = 0; i < points.length - 1; i++) {
-      let p1 = points[i];
-      let p2 = points[i + 1];
-
-      const [midX, midY] = getMidBetween(p1, p2);
-      ctx?.quadraticCurveTo(p1[0], p1[1], midX, midY);
-    }
-
-    ctx?.stroke();
-  }
-
-  function clear() {
-    const ctx = canvas?.getContext('2d', { alpha: false });
-    if (!ctx) return;
-
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-  }
-
-  function renderFullDrawing(canvas: HTMLCanvasElement, drawing: Drawing) {
-    clear();
-
-    drawing.forEach((stroke) => {
-      setCanvasTool(canvas, stroke);
-      draw(canvas, stroke.points);
-    });
-
-    setCanvasTool(canvas, tool);
   }
 
   function onStart() {
@@ -111,45 +77,70 @@
     if (!isDrawing) return;
 
     const rect = canvas.getBoundingClientRect();
-    const multiplier = width / rect.width; // canvas can be scaled down on mobile
-    const x = (e.clientX - canvas.getBoundingClientRect().left) * multiplier;
-    const y = (e.clientY - canvas.getBoundingClientRect().top) * multiplier;
+    const scale = width / rect.width; // canvas can be scaled down on mobile
+    const x = (e.clientX - canvas.getBoundingClientRect().left) * scale;
+    const y = (e.clientY - canvas.getBoundingClientRect().top) * scale;
 
     // reset "redo"
     undone = [];
 
-    points = [...points, [x, y]];
+    currentStrokePath = [...currentStrokePath, [x, y]];
 
     // draw the entire drawing
-    renderFullDrawing(canvas, $drawing);
+    renderDrawing(
+      canvas,
+      {
+        canvas_width: width,
+        canvas_height: height,
+        strokes: $strokes
+      },
+      1
+    );
 
     // plus the current stroke
-    draw(canvas, points);
+    draw(
+      canvas,
+      {
+        color: currentTool.color,
+        width: currentTool.width,
+        path: currentStrokePath
+      },
+      1
+    );
   }
 
   function onEnd() {
     isDrawing = false;
 
     // commit the current stroke to the drawing
-    if (points.length) {
-      drawing.update((prev) => [...prev, { ...tool, points: simplify(points, 2) }]);
+    if (currentStrokePath.length) {
+      strokes.update((prev) => [
+        ...prev,
+        {
+          color: currentTool.color,
+          width: currentTool.width,
+          path: simplify(currentStrokePath, 2)
+        }
+      ]);
     }
 
     // reset the points
-    points = [];
+    currentStrokePath = [];
   }
 
-  $: renderFullDrawing(canvas, $drawing);
+  $: renderDrawing(
+    canvas,
+    {
+      canvas_width: width,
+      canvas_height: height,
+      strokes: $strokes
+    },
+    1
+  );
 
-  // set the canvas size (double for retina)
   onMount(() => {
-    // Double the canvas size for retina
-    canvas.width = width * 2;
-    canvas.height = height * 2;
-
-    // Scale the context to ensure correct drawing operations
     const ctx = canvas.getContext('2d', { alpha: false });
-    ctx?.scale(2, 2);
+    ctx?.scale(CANVAS_SCALE, CANVAS_SCALE);
   });
 
   $: undoActions = [
@@ -160,12 +151,11 @@
 
 <div data-theme="light" class="relative select-none overflow-hidden">
   <canvas
-    {width}
-    {height}
+    width={width * CANVAS_SCALE}
+    height={height * CANVAS_SCALE}
     class="touch-none"
-    style="width:min(calc(100vw - 32px),{width}px); aspect-ratio: 6/7; background:white; cursor: url({cursors.get(
-      tool
-    )}) 5 {widths[tool.width] / 2}, auto;"
+    style="width:min(calc(100vw - 32px),{width}px); aspect-ratio: 6/7; background:white; cursor: url({currentTool.cursor}) 5 {currentTool.width /
+      2}, auto;"
     bind:this={canvas}
     on:touchstart={onStart}
     on:mousedown={onStart}
@@ -201,14 +191,14 @@
       {/each}
     </div>
 
-    <Tools bind:tool />
+    <Tools bind:currentTool />
 
     <div class="absolute right-2 top-2 flex gap-2 xs:bottom-2 xs:top-auto">
-      {#if id}
+      {#if drawingId}
         <button
           class="flex h-8 w-8 items-center justify-center rounded-sm border hover:bg-foreground/2"
           on:click={() => {
-            navigator.clipboard.writeText($page.url.origin + `/segg/${id}`);
+            navigator.clipboard.writeText($page.url.origin + `/segg/${drawingId}`);
             toast.success({
               message: t('draw-segg.clipboard.feedback')
             });
@@ -217,7 +207,8 @@
           <img alt="copy link" src={linkImage} />
         </button>
       {/if}
-      {#key $drawing}
+
+      {#key $strokes}
         <a
           class="flex h-8 w-8 items-center justify-center rounded-sm border hover:bg-foreground/2"
           download="segg.png"

@@ -2,11 +2,12 @@
   import { t } from '$lib/i18n';
   import { getImageAttributes } from '$lib/utils/cms';
   import { formatDate } from '$lib/utils/dates';
-  import type { ProposalStoryblok } from '$types/bloks';
+  import type { AssetStoryblok, ProposalStoryblok } from '$types/bloks';
   import clsx from 'clsx';
 
   export let proposal: ProposalStoryblok;
   export let date: string | undefined;
+  export let cover: AssetStoryblok | undefined;
 </script>
 
 <div
@@ -52,7 +53,14 @@
     {/if}
   </div>
 
-  {#if proposal.cover.filename}
+  {#if cover}
+    {@const { alt, src, width, height } = getImageAttributes(cover, {
+      size: [1440, 0]
+    })}
+    <div class="mt-12 md:col-span-2">
+      <img class="rounded-md bg-background-offset" {src} {alt} {width} {height} />
+    </div>
+  {:else if proposal.cover.filename}
     {@const { alt, src, width, height } = getImageAttributes(proposal.cover, {
       size: [1440, 0]
     })}

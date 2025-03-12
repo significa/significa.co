@@ -6,7 +6,6 @@
   import { Badge, Link, Logo } from '@significa/svelte-ui';
   import Slogan from './slogan.svelte';
   import { intersectionObserver } from '@significa/svelte-ui/actions';
-  import { theme } from '$lib/stores/theme';
 
   export let configuration: ConfigurationStoryblok;
   let animate = false;
@@ -33,7 +32,7 @@
         <div class="hidden h-20 items-center gap-7 md:flex">
           {#if !!configuration.footer_logo_two}
             {#each configuration.footer_logo_two || [] as logo}
-              {#if logo.light_mode?.filename && $theme === 'light'}
+              {#if logo.light_mode?.filename}
                 {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
                   size: [0, 96]
                 })}
@@ -42,10 +41,10 @@
                   {alt}
                   {width}
                   {height}
-                  class="mt-[7px] h-auto max-h-20 w-auto object-contain"
+                  class="mt-[7px] h-auto max-h-20 w-auto object-contain dark:hidden"
                 />
               {/if}
-              {#if logo.dark_mode?.filename && $theme === 'dark'}
+              {#if logo.dark_mode?.filename}
                 {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
                   size: [0, 96]
                 })}
@@ -54,24 +53,36 @@
                   {alt}
                   {width}
                   {height}
-                  class="mt-[7px] h-auto max-h-20 w-auto object-contain"
+                  class="mt-[7px] hidden h-auto max-h-20 w-auto object-contain dark:block"
                 />
               {/if}
             {/each}
           {/if}
           {#if !!configuration.footer_logo}
             {#each configuration.footer_logo || [] as logo}
-              {#if logo.light_mode?.filename && $theme === 'light'}
+              {#if logo.light_mode?.filename}
                 {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
                   size: [0, 96]
                 })}
-                <img {src} {alt} {width} {height} class="h-auto max-h-12 w-auto object-contain" />
+                <img
+                  {src}
+                  {alt}
+                  {width}
+                  {height}
+                  class="h-auto max-h-12 w-auto object-contain dark:hidden"
+                />
               {/if}
-              {#if logo.dark_mode?.filename && $theme === 'dark'}
+              {#if logo.dark_mode?.filename}
                 {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
                   size: [0, 96]
                 })}
-                <img {src} {alt} {width} {height} class="h-auto max-h-12 w-auto object-contain" />
+                <img
+                  {src}
+                  {alt}
+                  {width}
+                  {height}
+                  class="hidden h-auto max-h-12 w-auto object-contain dark:block"
+                />
               {/if}
             {/each}
           {/if}
@@ -124,7 +135,7 @@
       <div class="col-span-3 flex h-20 items-center gap-7 md:hidden">
         {#if !!configuration.footer_logo_two?.length}
           {#each configuration.footer_logo_two || [] as logo}
-            {#if logo.light_mode?.filename && $theme === 'light'}
+            {#if logo.light_mode?.filename}
               {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
                 size: [0, 96]
               })}
@@ -133,10 +144,10 @@
                 {alt}
                 {width}
                 {height}
-                class="mt-[7px] h-auto max-h-20 w-auto object-contain"
+                class="mt-[7px] h-auto max-h-20 w-auto object-contain dark:hidden"
               />
             {/if}
-            {#if logo.dark_mode?.filename && $theme === 'dark'}
+            {#if logo.dark_mode?.filename}
               {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
                 size: [0, 96]
               })}
@@ -145,24 +156,36 @@
                 {alt}
                 {width}
                 {height}
-                class="mt-[7px] h-auto max-h-20 w-auto object-contain"
+                class="mt-[7px] hidden h-auto max-h-20 w-auto object-contain dark:block"
               />
             {/if}
           {/each}
         {/if}
         {#if !!configuration.footer_logo?.length}
           {#each configuration.footer_logo || [] as logo}
-            {#if logo.light_mode?.filename && $theme === 'light'}
+            {#if logo.light_mode?.filename}
               {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
                 size: [0, 96]
               })}
-              <img {src} {alt} {width} {height} class="h-auto max-h-12 w-auto object-contain" />
+              <img
+                {src}
+                {alt}
+                {width}
+                {height}
+                class="h-auto max-h-12 w-auto object-contain dark:hidden"
+              />
             {/if}
-            {#if logo.dark_mode?.filename && $theme === 'dark'}
+            {#if logo.dark_mode?.filename}
               {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
                 size: [0, 96]
               })}
-              <img {src} {alt} {width} {height} class="h-auto max-h-12 w-auto object-contain" />
+              <img
+                {src}
+                {alt}
+                {width}
+                {height}
+                class="hidden h-auto max-h-12 w-auto object-contain dark:block"
+              />
             {/if}
           {/each}
         {/if}

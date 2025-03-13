@@ -29,7 +29,7 @@
       </span>
 
       {#if !!configuration.footer_logo_two?.length || !!configuration.footer_logo?.length}
-        <div class="hidden h-20 items-center gap-7 md:flex">
+        <div class="-ml-2 hidden h-20 items-center gap-7 md:flex">
           {#if !!configuration.footer_logo_two}
             {#each configuration.footer_logo_two || [] as logo}
               {#if logo.light_mode?.filename}
@@ -132,7 +132,7 @@
     </div>
 
     {#if !!configuration.footer_logo_two?.length || !!configuration.footer_logo?.length}
-      <div class="col-span-3 flex h-20 items-center gap-7 md:hidden">
+      <div class="col-span-3 -ml-2 flex h-20 items-center gap-7 md:hidden">
         {#if !!configuration.footer_logo_two?.length}
           {#each configuration.footer_logo_two || [] as logo}
             {#if logo.light_mode?.filename}

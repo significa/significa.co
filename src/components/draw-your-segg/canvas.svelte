@@ -33,15 +33,24 @@
 
   let currentStrokePath: Point[] = [];
   let currentTool: Tool = tools.pencil;
+  let currentDrawingContent: DrawingContent = {
+    canvas_width: width,
+    canvas_height: height,
+    strokes: $strokes
+  };
+
+  $: currentDrawingContent = {
+    canvas_width: width,
+    canvas_height: height,
+    strokes: $strokes
+  };
+
+  $: renderDrawing(canvas, currentDrawingContent, 1);
 
   let debouncedStrokes = debounced(strokes, 2000);
 
   $: if ($debouncedStrokes && started) {
-    dispatch('change', {
-      canvas_width: width,
-      canvas_height: height,
-      strokes: $debouncedStrokes
-    });
+    dispatch('change', currentDrawingContent);
   }
 
   let isDrawing = false;
@@ -49,6 +58,11 @@
 
   $: canUndo = $strokes.length > templateStrokes.length;
   $: canRedo = !!undone.length;
+
+  $: undoActions = [
+    ['undo', undo, canUndo, undoImage],
+    ['redo', redo, canRedo, redoImage]
+  ] as const;
 
   function undo() {
     if (!canUndo) return;
@@ -87,15 +101,7 @@
     currentStrokePath = [...currentStrokePath, [x, y]];
 
     // draw the entire drawing
-    renderDrawing(
-      canvas,
-      {
-        canvas_width: width,
-        canvas_height: height,
-        strokes: $strokes
-      },
-      1
-    );
+    renderDrawing(canvas, currentDrawingContent, 1);
 
     // plus the current stroke
     draw(
@@ -128,25 +134,10 @@
     currentStrokePath = [];
   }
 
-  $: renderDrawing(
-    canvas,
-    {
-      canvas_width: width,
-      canvas_height: height,
-      strokes: $strokes
-    },
-    1
-  );
-
   onMount(() => {
     const ctx = canvas.getContext('2d', { alpha: false });
     ctx?.scale(CANVAS_SCALE, CANVAS_SCALE);
   });
-
-  $: undoActions = [
-    ['undo', undo, canUndo, undoImage],
-    ['redo', redo, canRedo, redoImage]
-  ] as const;
 </script>
 
 <div data-theme="light" class="relative select-none overflow-hidden">

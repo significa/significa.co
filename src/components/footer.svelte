@@ -34,26 +34,26 @@
             {#each configuration.footer_logo_two || [] as logo}
               {#if logo.light_mode?.filename}
                 {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
-                  size: [0, 96]
+                  size: [0, 720]
                 })}
                 <img
                   {src}
                   {alt}
                   {width}
                   {height}
-                  class="mt-[7px] h-auto max-h-20 w-auto object-contain dark:hidden"
+                  class="mt-[7px] h-auto max-h-24 w-auto object-contain dark:hidden"
                 />
               {/if}
               {#if logo.dark_mode?.filename}
                 {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
-                  size: [0, 96]
+                  size: [0, 720]
                 })}
                 <img
                   {src}
                   {alt}
                   {width}
                   {height}
-                  class="mt-[7px] hidden h-auto max-h-20 w-auto object-contain dark:block"
+                  class="mt-[7px] hidden h-auto max-h-24 w-auto object-contain dark:block"
                 />
               {/if}
             {/each}
@@ -62,7 +62,7 @@
             {#each configuration.footer_logo || [] as logo}
               {#if logo.light_mode?.filename}
                 {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
-                  size: [0, 96]
+                  size: [0, 720]
                 })}
                 <img
                   {src}
@@ -74,7 +74,7 @@
               {/if}
               {#if logo.dark_mode?.filename}
                 {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
-                  size: [0, 96]
+                  size: [0, 720]
                 })}
                 <img
                   {src}
@@ -137,26 +137,26 @@
           {#each configuration.footer_logo_two || [] as logo}
             {#if logo.light_mode?.filename}
               {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
-                size: [0, 96]
+                size: [0, 720]
               })}
               <img
                 {src}
                 {alt}
                 {width}
                 {height}
-                class="mt-[7px] h-auto max-h-20 w-auto object-contain dark:hidden"
+                class="mt-[7px] h-auto max-h-24 w-auto object-contain dark:hidden"
               />
             {/if}
             {#if logo.dark_mode?.filename}
               {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
-                size: [0, 96]
+                size: [0, 720]
               })}
               <img
                 {src}
                 {alt}
                 {width}
                 {height}
-                class="mt-[7px] hidden h-auto max-h-20 w-auto object-contain dark:block"
+                class="mt-[7px] hidden h-auto max-h-24 w-auto object-contain dark:block"
               />
             {/if}
           {/each}
@@ -165,7 +165,7 @@
           {#each configuration.footer_logo || [] as logo}
             {#if logo.light_mode?.filename}
               {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
-                size: [0, 96]
+                size: [0, 720]
               })}
               <img
                 {src}
@@ -177,7 +177,7 @@
             {/if}
             {#if logo.dark_mode?.filename}
               {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
-                size: [0, 96]
+                size: [0, 720]
               })}
               <img
                 {src}

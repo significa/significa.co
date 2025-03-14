@@ -8,5 +8,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
   },
-  "eslint.validate": ["svelte"]
+  "eslint.validate": ["svelte"],
+  "editor.tabSize": 2
 }

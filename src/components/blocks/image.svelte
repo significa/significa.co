@@ -4,13 +4,18 @@
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import type { ImageStoryblok } from '$types/bloks';
   import clsx from 'clsx';
+  import { richTextBlockWidths } from '$lib/constants';
 
   export let block: ImageStoryblok;
 </script>
 
 {#if block?.image?.filename}
   <figure
-    class={clsx('not-rich-text my-8 h-auto w-full md:my-14', $$restProps.class)}
+    class={clsx(
+      'not-rich-text mx-auto my-8 h-auto w-full md:my-14',
+      $$restProps.class,
+      richTextBlockWidths[block?.width || 'full']
+    )}
     use:storyblokEditable={block}
   >
     <ExpandableImage

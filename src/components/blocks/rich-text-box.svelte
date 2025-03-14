@@ -5,6 +5,7 @@
   import clsx from 'clsx';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import { Icon } from '@significa/svelte-ui';
+  import Video from './video.svelte';
 
   export let block: RichtextBoxStoryblok;
   $: ({ href } = getAnchorFromCmsLink(block.link?.[0]?.link) || { href: undefined });
@@ -39,6 +40,15 @@
         {height}
       />
     </div>
+  {:else if block.video && block.video.length > 0}
+    <Video
+      block={block.video[0]}
+      class={clsx(
+        ' flex flex-shrink-0 ',
+        block.layout === 'horizontal' && '!my-0 w-full xs:w-1/3',
+        block.layout === 'vertical' && '!mb-4 !mt-0'
+      )}
+    />
   {/if}
   <div class="flex flex-col">
     <div class="flex-1">

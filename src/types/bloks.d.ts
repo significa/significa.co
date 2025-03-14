@@ -1250,6 +1250,7 @@ export interface RecognitionTypeStoryblok {
 export interface RichtextBoxStoryblok {
   layout?: '' | 'horizontal' | 'vertical';
   image?: AssetStoryblok;
+  video?: VideoStoryblok[];
   title?: string;
   text?: string;
   link?: LinkStoryblok[];

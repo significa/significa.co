@@ -1,6 +1,6 @@
 {
   "name": "significa.co",
-  "version": "0.0.1",
+  "version": "0.0.1-development",
   "private": true,
   "scripts": {
     "dev": "vite dev",
@@ -58,7 +58,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.712.0",
     "@aws-sdk/client-s3": "3.712.0",
     "@aws-sdk/client-ses": "3.712.0",
     "@aws-sdk/s3-request-presigner": "3.712.0",

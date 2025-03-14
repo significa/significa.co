@@ -18,8 +18,7 @@ To accomplish all features, we leverage a few external services:
 - CMS - Storyblok: It's where we configure the website, build pages, store and serve assets.
 - Storage bucket - AWS S3: Used to store attachments, uploaded via the contact forms.
 - Email dispatcher - AWS SES: Used to dispatch notification emails.
-- NOSQL database - AWS Dynamo DB: Intended to store and retrieve egg drawings "seggs" drawn by our
-  users.
+- Drawings API - Custom closed source API to store "seggs".
 - Form submission database - Notion: We create a new entry on a Notion database when someone
   submits a form. This way we can keep everything in a centralized space.
 
@@ -37,6 +36,8 @@ Includes distinct keys and external and integrations: AWS resources, Notion appl
 databases, etc.
 
 Here's how everything is connected (arrows represent the request initiator):
+
+<!-- TODO: Update this diagram and leave here the link to figma -->
 
 ![infrastructure diagram](./docs/architecture-diagram.png)
 

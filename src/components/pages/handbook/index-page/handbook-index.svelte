@@ -2,13 +2,14 @@
   import HandbookIndexItem from './HandbookIndexItem.svelte';
   import { goto } from '$app/navigation';
   import handbook from '$assets/handbook/handbook_illustration.svg';
+  import { fade } from 'svelte/transition';
 
   import Seo from '$components/seo.svelte';
   import handbookOG from '$assets/handbook/HandbookOG.jpg';
 
   import { structureDataMarkup } from './structure-data-markup';
   import type { HandbookLevelStoryblok } from '$types/bloks';
-  import { Input } from '@significa/svelte-ui';
+  import { Button, Input } from '@significa/svelte-ui';
 
   import clsx from 'clsx';
   import { createBreakpointMediaQueryStore } from '$lib/stores/media';
@@ -43,10 +44,16 @@
   >
     <Input
       bind:value={searchInputValue}
-      class={clsx('pr-28')}
+      class={clsx('pr-20')}
       placeholder={$desktop ? 'Search! Because asking in Slack is overrated.' : 'Search!'}
       size="lg"
     />
+
+    {#if searchInputValue}
+      <div transition:fade={{ duration: 100 }} class="absolute right-1.5 top-1/2 -translate-y-1/2">
+        <Button type="submit" size="md" icon="arrow-right" variant="primary"></Button>
+      </div>
+    {/if}
   </form>
 
   {#each hierarchy as chapter}

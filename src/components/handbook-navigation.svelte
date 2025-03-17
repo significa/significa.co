@@ -59,10 +59,18 @@
         >
           <Input
             bind:value={searchInputValue}
-            class={clsx('pr-24')}
+            class={clsx('pr-14')}
             placeholder={'Search! Because asking in Slack is overrated.'}
             size="md"
           />
+          {#if searchInputValue}
+            <div
+              transition:fade={{ duration: 100 }}
+              class="absolute right-1.5 top-1/2 -translate-y-1/2"
+            >
+              <Button type="submit" size="sm" icon="arrow-right" variant="primary"></Button>
+            </div>
+          {/if}
         </form>
       {/if}
     </div>

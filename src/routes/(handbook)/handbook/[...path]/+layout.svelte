@@ -44,7 +44,7 @@
 <div class="pb-20 lg:container lg:mx-auto lg:px-container" use:bodyLock={sidebar}>
   <!-- Mobile: open menu -->
   <div
-    class="sticky top-[--topnav-height] z-10 flex h-12 items-center border-b bg-background px-container py-2 lg:hidden lg:px-0"
+    class="sticky top-[--topnav-handbook-mobile-height] z-10 flex h-12 items-center border-b bg-background px-container py-2 md:top-[--topnav-height] lg:hidden lg:px-0"
   >
     <TextButton iconLeft="hamburger" on:click={() => sidebar.set(true)}>
       {t('handbook')}
@@ -54,14 +54,14 @@
   <div class="flex flex-col gap-5 lg:flex-row">
     <aside
       class={clsx(
-        'fixed bottom-0 top-[--topnav-height] z-10 w-full overflow-y-auto bg-background',
+        'fixed bottom-0 top-[--topnav-handbook-mobile-height] z-10 w-full overflow-y-auto bg-background md:top-[--topnav-height]',
         'lg:relative lg:bottom-auto lg:top-auto lg:mt-24 lg:block lg:h-auto lg:w-72 lg:overflow-y-visible',
         $sidebar ? 'block' : 'hidden'
       )}
     >
       <!-- Mobile: close menu -->
       <div
-        class="fixed top-[--topnav-height] z-10 flex h-12 w-full items-center justify-between border-b bg-background px-container py-2 lg:hidden"
+        class="fixed top-[--topnav-handbook-mobile-height] z-10 flex h-12 w-full items-center justify-between border-b bg-background px-container py-2 md:top-[--topnav-height] lg:hidden"
       >
         <TextButton iconLeft="close" on:click={() => sidebar.set(false)}>{t('close')}</TextButton>
 
@@ -168,7 +168,7 @@
       </nav>
     </aside>
 
-    <main class="mt-20 flex-1 lg:mt-10">
+    <main class="mt-36 flex-1 md:mt-20 lg:mt-10">
       <slot />
     </main>
   </div>

@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { Button } from '@significa/svelte-ui';
-  import { t } from '$lib/i18n';
   import { page } from '$app/stores';
+  import { t } from '$lib/i18n';
   import { formatter } from '$lib/utils/currency';
   import type {
     ProposalDeliverableStoryblok,
@@ -10,6 +9,7 @@
     ProposalPackageTeamEntryStoryblok,
     ProposalTeamEntryStoryblok
   } from '$types/bloks';
+  import { Button } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import Popover from './popover.svelte';
 
@@ -32,18 +32,16 @@
 
   $: totalManpower = deliverables.reduce((acc, resource) => (acc = acc + +resource.manpower), 0);
 
-  $: totalMonths = Math.ceil(
-    deliverables
-      .reduce(
-        (acc: ProposalDeliverableTeamEntryStoryblok[], current) => [...acc, ...current.team],
-        []
-      )
-      .reduce(
-        (max: number, current) =>
-          +current.duration + +current.offset > max ? +current.duration + +current.offset : max,
-        0
-      )
-  );
+  $: totalMonths = deliverables
+    .reduce(
+      (acc: ProposalDeliverableTeamEntryStoryblok[], current) => [...acc, ...current.team],
+      []
+    )
+    .reduce(
+      (max: number, current) =>
+        +current.duration + +current.offset > max ? +current.duration + +current.offset : max,
+      0
+    );
 
   $: totalValue = monthlyTotal * totalMonths - (monthlyTotal * totalMonths * discount) / 100;
 </script>

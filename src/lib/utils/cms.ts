@@ -6,6 +6,7 @@ export function getAnchorFromCmsLink(link: MultilinkStoryblok | undefined) {
     href?: string;
     rel?: string;
     target?: '_blank';
+    custom?: Record<string, string>;
   } = {};
 
   switch (link?.linktype) {

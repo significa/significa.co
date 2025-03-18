@@ -6,6 +6,8 @@
   import { theme } from '$lib/stores/theme';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
 
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
+
   export let block: CtaCardStoryblok;
 
   $: src =
@@ -18,7 +20,10 @@
         : CtaDark;
 </script>
 
-<section class="container mx-auto my-16 px-container @container md:mt-10 lg:my-24">
+<section
+  use:storyblokEditable={block}
+  class="container mx-auto my-16 px-container @container md:mt-10 lg:my-24"
+>
   <div
     data-theme={$theme === 'dark'
       ? block.theme === 'in-theme'
@@ -36,20 +41,32 @@
       </p>
       <div class="mt-8 flex flex-wrap gap-2">
         {#if block.link_text}
-          {@const { href, target } = getAnchorFromCmsLink(block.link)}
+          {@const { href, target, rel } = getAnchorFromCmsLink(block.link)}
+
           <Button
+            {...block.link}
+            {rel}
             {target}
             as="a"
             href={href ? href : '#estimation'}
             size="md"
-            class="scroll-b w-fit">{block.link_text}</Button
+            class="scroll-b w-fit"
           >
+            {block.link_text}
+          </Button>
         {/if}
         {#if block.secondary_link_text}
           {@const { href } = getAnchorFromCmsLink(block.secondary_link)}
-          <Button variant="secondary" as="a" {href} size="md" class="scroll-b w-fit"
-            >{block.secondary_link_text}</Button
+          <Button
+            variant="secondary"
+            as="a"
+            {...block.secondary_link}
+            {href}
+            size="md"
+            class="scroll-b w-fit"
           >
+            {block.secondary_link_text}
+          </Button>
         {/if}
       </div>
     </div>

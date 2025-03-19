@@ -21,7 +21,8 @@
     <ExpandableImage
       image={block.image}
       enabled={!!block.expandable}
-      on:expand={(e) => open([e.detail])}
+      on:expand={(e) =>
+        open([{ ...e.detail, alt: e.detail.alt || '', title: e.detail.title || '' }])}
     />
     {#if block?.image?.title}
       <figcaption class="mt-2 text-center text-sm text-foreground-secondary">

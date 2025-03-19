@@ -15,9 +15,7 @@
   {#if project.thumbnail.length}
     {@const image = project.thumbnail[index]}
     {#if image?.filename}
-      {@const { src, alt, width, height } = getImageAttributes(image, {
-        size: [720 * 2, 540 * 2]
-      })}
+      {@const { src, alt, width, height } = getImageAttributes(image, { size: [720 * 2, 540 * 2] })}
       <div class="pointer-events-none relative aspect-[4/3] flex-1 @5xl:mt-0">
         <img
           class="h-full w-full rounded-md bg-background-offset object-cover"

@@ -1,15 +1,17 @@
 <script lang="ts">
   import { getImageAttributes } from '$lib/utils/cms';
-  import type { AssetStoryblok } from '$types/bloks';
+  import type { AssetStoryblok, MultiassetStoryblok } from '$types/bloks';
   import { CircleButton } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import { createEventDispatcher } from 'svelte';
 
-  const dispatch = createEventDispatcher<{ expand: AssetStoryblok }>();
+  const dispatch = createEventDispatcher<{
+    expand: AssetStoryblok | MultiassetStoryblok[number];
+  }>();
 
   let className: string | undefined = undefined;
   export { className as class };
-  export let image: AssetStoryblok;
+  export let image: AssetStoryblok | MultiassetStoryblok[number];
   export let enabled: boolean;
 </script>
 

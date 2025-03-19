@@ -7,9 +7,11 @@
   let active = writable(0);
   export const items = writable<AssetStoryblok[]>([]);
 
-  export const open = (images: AssetStoryblok[]) => {
-    items.set(images);
-  };
+  export function open(
+    images: { filename: string; alt?: string; name?: string; title?: string }[]
+  ) {
+    items.set(images.map((image) => image as AssetStoryblok));
+  }
 
   export const close = () => {
     active.set(0);

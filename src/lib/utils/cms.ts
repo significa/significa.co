@@ -1,4 +1,4 @@
-import type { AssetStoryblok, MultilinkStoryblok } from '$types/bloks';
+import type { AssetStoryblok, MultiassetStoryblok, MultilinkStoryblok } from '$types/bloks';
 import { sanitizeSlug } from './paths';
 
 export function getAnchorFromCmsLink(link: MultilinkStoryblok | undefined) {
@@ -137,7 +137,7 @@ export type ImageAttributes = {
 };
 
 export function getImageAttributes(
-  image: AssetStoryblok,
+  image: AssetStoryblok | MultiassetStoryblok[number],
   options?: Partial<ImageAttributesOptions>
 ): ImageAttributes {
   let src = image.filename + '/m/';
@@ -236,7 +236,7 @@ export function getImageAttributes(
 
   return {
     alt,
-    title,
+    title: title || undefined,
     src,
     ...imgSizeAttr
   };

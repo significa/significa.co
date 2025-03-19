@@ -350,7 +350,13 @@
 
         items = [
           ...(items || []),
-          { _uid: Math.random().toString(), component: variant, theme: theme, text: inputValue }
+          {
+            _uid: Math.random().toString(),
+            component: variant,
+            theme: theme,
+            text: inputValue,
+            is_desktop_only: true
+          }
         ];
 
         isAddingBox = true;
@@ -362,7 +368,13 @@
 
         items = [
           ...(items || []),
-          { _uid: Math.random().toString(), component: variant, theme: theme, text: inputValue }
+          {
+            _uid: Math.random().toString(),
+            component: variant,
+            theme: theme,
+            text: inputValue,
+            is_desktop_only: true
+          }
         ];
         isAddingBox = true;
       }

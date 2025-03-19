@@ -176,6 +176,19 @@ export interface BlogPostStoryblok {
   [k: string]: any;
 }
 
+export interface BoxStoryblok {
+  width?: '' | 'narrow' | 'medium' | 'wide' | 'full';
+  layout?: '' | 'horizontal' | 'vertical';
+  image?: AssetStoryblok;
+  video?: VideoStoryblok[];
+  title?: string;
+  text?: string;
+  link?: LinkStoryblok[];
+  _uid: string;
+  component: 'box';
+  [k: string]: any;
+}
+
 export interface BudgetRangeEntryStoryblok {
   title: string;
   description: RichtextStoryblok;
@@ -728,6 +741,7 @@ export interface LandingPageStoryblok {
     | AwardsGridStoryblok
     | AwardsListStoryblok
     | BlogListStoryblok
+    | BoxStoryblok
     | CanvasStoryblok
     | CareersListStoryblok
     | ClientsStoryblok
@@ -888,6 +902,7 @@ export interface PageStoryblok {
     | AwardsGridStoryblok
     | AwardsListStoryblok
     | BlogListStoryblok
+    | BoxStoryblok
     | CanvasStoryblok
     | CareersListStoryblok
     | ClientsStoryblok

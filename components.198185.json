@@ -630,6 +630,113 @@
       "component_group_name": "Content Types"
     },
     {
+      "name": "box",
+      "display_name": null,
+      "description": null,
+      "created_at": "2025-03-19T17:07:35.356Z",
+      "updated_at": "2025-03-19T17:09:32.654Z",
+      "id": 7107240,
+      "schema": {
+        "width": {
+          "type": "option",
+          "pos": 0,
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "56e12626-bba8-4b72-8aed-6ca02f26369e",
+              "name": "narrow",
+              "value": "narrow"
+            },
+            {
+              "_uid": "12c2618d-29b1-434e-b5e7-e127890abc76",
+              "value": "medium",
+              "name": "medium"
+            },
+            {
+              "_uid": "ec3c4d8e-3a6f-4041-9641-2a7707c65a64",
+              "value": "wide",
+              "name": "wide"
+            },
+            {
+              "_uid": "0aa2b89e-377e-45a6-9933-81552fff6c8f",
+              "value": "full",
+              "name": "full"
+            }
+          ],
+          "id": "odcekWO5QsK3mhkbMlnUAA"
+        },
+        "layout": {
+          "type": "option",
+          "pos": 1,
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "77851a5e-c1cf-4f53-9dc3-bc76145ada99",
+              "name": "horizontal",
+              "value": "horizontal"
+            },
+            {
+              "_uid": "a54e64de-6281-4cb3-b443-8fa31dcf0a39",
+              "value": "vertical",
+              "name": "vertical"
+            }
+          ],
+          "default_value": "horizontal",
+          "id": "mu5Krzf8TI27l8nIi7dCjA"
+        },
+        "image": {
+          "type": "asset",
+          "pos": 2,
+          "filetypes": ["images"],
+          "id": "HJLjhz1XRhC_00HOqrqtcw"
+        },
+        "video": {
+          "type": "bloks",
+          "pos": 3,
+          "maximum": 1,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["video"],
+          "id": "n40xO5_GQe6Qc9GonkrzsA",
+          "description": "Video will only be shown if image is not defined"
+        },
+        "title": {
+          "type": "text",
+          "pos": 4,
+          "id": "_daO8hq7QBGgvznlnwkoDQ"
+        },
+        "text": {
+          "type": "text",
+          "pos": 5,
+          "id": "AunBFOJpQR-gvAMCnHSFmQ"
+        },
+        "link": {
+          "type": "bloks",
+          "pos": 6,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["link"],
+          "maximum": 1,
+          "id": "hSHbRTw_SPmdduR31D4PWg"
+        }
+      },
+      "image": "//a.storyblok.com/f/198185/x/a05298ccf4/screenshot-2023-03-22-at-11-57-07.png",
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "box",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": "#fbce41",
+      "icon": "block-text-img-l",
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "budget-range-entry",
       "display_name": null,
       "description": null,

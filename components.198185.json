@@ -467,7 +467,7 @@
       "display_name": "Author",
       "description": null,
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2025-01-13T08:44:47.905Z",
+      "updated_at": "2025-02-11T09:38:09.431Z",
       "id": 3442347,
       "schema": {
         "cover": {
@@ -609,7 +609,8 @@
           ],
           "pos": 15,
           "allow_custom_attributes": true,
-          "id": "5ed-PQo1Sv6G4smOLUMFNg"
+          "id": "5ed-PQo1Sv6G4smOLUMFNg",
+          "allow_target_blank": true
         }
       },
       "image": "//a.storyblok.com/f/198185/x/f51edbf69b/screenshot-2023-03-22-at-11-49-53.png",
@@ -1613,17 +1614,27 @@
       "display_name": null,
       "description": null,
       "created_at": "2024-01-23T17:00:57.552Z",
-      "updated_at": "2024-03-21T15:33:53.774Z",
+      "updated_at": "2025-03-18T18:05:23.255Z",
       "id": 5219148,
       "schema": {
         "clients_title": {
-          "type": "text"
+          "type": "text",
+          "id": "pYN0qCi1TaW8aaftrXZTxg"
         },
         "clients": {
           "type": "bloks",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["client-logo"]
+          "component_whitelist": ["client-logo"],
+          "id": "-xckeRNGTJyzQZbpKk4tig"
+        },
+        "links": {
+          "type": "bloks",
+          "pos": 2,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["link"],
+          "id": "aX_2sXHiTuSrr4mPacBlaQ"
         }
       },
       "image": "//a.storyblok.com/f/198185/x/df9c3a35d2/clients.png",
@@ -1758,7 +1769,7 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-03-13T17:47:31.124Z",
-      "updated_at": "2024-09-06T13:21:46.635Z",
+      "updated_at": "2025-03-12T16:51:41.442Z",
       "id": 3575812,
       "schema": {
         "primary_navigation": {
@@ -1766,7 +1777,8 @@
           "source": "internal_stories",
           "max_options": "4",
           "key": "primary_navigation",
-          "pos": 0
+          "pos": 0,
+          "id": "Ux3A_q2KT1eWd5YRXL9Ldg"
         },
         "call_to_action": {
           "type": "bloks",
@@ -1776,7 +1788,8 @@
           "restrict_components": true,
           "component_whitelist": ["link"],
           "key": "call_to_action",
-          "pos": 1
+          "pos": 1,
+          "id": "doXs15MqRESxlZ88uQ4_ZQ"
         },
         "footer": {
           "type": "bloks",
@@ -1784,16 +1797,29 @@
           "restrict_components": true,
           "component_whitelist": ["footer-column-internal", "footer-column-external"],
           "key": "footer",
-          "pos": 2
+          "pos": 2,
+          "id": "5OaV1V1kSH6fQFMwTm-Xpg"
         },
-        "footer_logo": {
+        "footer_logo_two": {
           "type": "bloks",
           "pos": 3,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["client-logo"],
           "maximum": 1,
-          "key": "logo"
+          "id": "CstXAXHpQCKXx6P9mwaymQ",
+          "display_name": "First partner logo"
+        },
+        "footer_logo": {
+          "type": "bloks",
+          "pos": 4,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["client-logo"],
+          "maximum": 1,
+          "key": "logo",
+          "id": "4EULgvISSgWjsjEAmLfjBg",
+          "display_name": "Second partner logo"
         }
       },
       "image": null,
@@ -1935,7 +1961,7 @@
       "display_name": null,
       "description": null,
       "created_at": "2024-01-24T11:35:57.280Z",
-      "updated_at": "2024-03-22T17:06:32.032Z",
+      "updated_at": "2025-03-19T10:45:07.068Z",
       "id": 5222861,
       "schema": {
         "theme": {
@@ -1955,32 +1981,43 @@
             }
           ],
           "default_value": "in-theme",
-          "exclude_empty_option": true
+          "exclude_empty_option": true,
+          "id": "vMfgXG20TduhTBGr9meyHw"
         },
         "title": {
           "type": "text",
-          "pos": 1
+          "pos": 1,
+          "id": "XdzPIbX9Smipgvl_ncwzqg"
         },
         "description": {
           "type": "text",
-          "pos": 2
+          "pos": 2,
+          "id": "Cu6PQqZuSaqF-EM8Vli6lA"
         },
         "link_text": {
           "type": "text",
-          "pos": 3
+          "pos": 3,
+          "id": "_yE_12AJTIS0PXG63wIEeA"
         },
         "link": {
           "type": "multilink",
           "email_link_type": false,
-          "pos": 4
+          "pos": 4,
+          "allow_custom_attributes": true,
+          "id": "xEeKMmPiTpqEUaqsxwJ4-A",
+          "allow_target_blank": true
         },
         "secondary_link_text": {
           "type": "text",
-          "pos": 5
+          "pos": 5,
+          "id": "bn0xQNpPRmaznTqhTXLTrg"
         },
         "secondary_link": {
           "type": "multilink",
-          "pos": 6
+          "pos": 6,
+          "id": "nRK3U6h_Qzi43HT4REdSsg",
+          "allow_target_blank": true,
+          "allow_custom_attributes": true
         }
       },
       "image": "//a.storyblok.com/f/198185/x/c2469bba8e/cta-card.png",
@@ -2400,64 +2437,15 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-02-15T13:50:12.113Z",
-      "updated_at": "2024-12-17T17:14:30.609Z",
+      "updated_at": "2025-01-27T09:45:53.842Z",
       "id": 3442773,
       "schema": {
         "last_updated": {
           "type": "datetime",
           "pos": 0,
           "required": true,
-          "disable_time": true
-        },
-        "chapter": {
-          "type": "option",
-          "pos": 1,
-          "use_uuid": true,
-          "required": true,
-          "exclude_empty_option": true,
-          "options": [
-            {
-              "_uid": "14db7a67-f3ae-4911-9d34-54f435a545ad",
-              "name": "1 – Knowing Significa",
-              "value": "1 – Knowing Significa"
-            },
-            {
-              "_uid": "95905291-d1a8-4b19-8f37-c43c6659d9a5",
-              "value": "2 – Working at Significa",
-              "name": "2 – Working at Significa"
-            },
-            {
-              "_uid": "1551f571-a148-47cd-a024-33fd215539e5",
-              "value": "3 – Recruitment",
-              "name": "3 – Recruitment"
-            },
-            {
-              "_uid": "06ad8bbe-e278-4081-bba6-e0efa48be529",
-              "value": "4 – Working with Significa",
-              "name": "4 – Working with Significa"
-            },
-            {
-              "_uid": "c2236179-e11a-4d3a-9682-3be1baaa9956",
-              "value": "5 – Design",
-              "name": "5 – Design"
-            },
-            {
-              "_uid": "9f0de963-31cf-4244-8b4d-c7aa2f73f203",
-              "value": "6 – Engineering",
-              "name": "6 – Engineering"
-            },
-            {
-              "_uid": "632875c1-4c19-4d6c-8659-0a93010c08c3",
-              "value": "7 – Strategy and product",
-              "name": "7 – Strategy and product"
-            },
-            {
-              "_uid": "5a1a5ca6-a90e-4167-a9a1-12cfb35d0d90",
-              "value": "8 – Brand and Marketing",
-              "name": "8 – Brand and Marketing"
-            }
-          ],
-          "description": "When adding new chapters they should follow the format: \"{N} – {Name}\" where N is the presentation order."
+          "disable_time": true,
+          "id": "42E5nbrASxq55NaaqMEm-w"
         },
         "cover": {
           "type": "asset",
@@ -2465,28 +2453,16 @@
           "asset_folder_id": 640205,
           "key": "cover",
           "pos": 2,
-          "required": true
-        },
-        "order": {
-          "type": "number",
-          "pos": 3,
           "required": true,
-          "default_value": "1",
-          "min_value": 1,
-          "description": "Order within its parent whether chapter or sub-chapter."
-        },
-        "highlight": {
-          "type": "boolean",
-          "pos": 4,
-          "inline_label": false,
-          "description": "Whether to present this page with a larger card on the index page."
+          "id": "P8Wy4qbOSBWkEbA-ezlBuA"
         },
         "tab-6a37f9e9-5fe6-4268-a3e4-7fd4ed252cc0": {
           "display_name": "Content",
           "keys": ["body"],
           "pos": 5,
           "type": "tab",
-          "key": "tab-6a37f9e9-5fe6-4268-a3e4-7fd4ed252cc0"
+          "key": "tab-6a37f9e9-5fe6-4268-a3e4-7fd4ed252cc0",
+          "id": "ajf56V_mQmij5H_U7SUswA"
         },
         "tab-40ff5487-8b8b-40db-afae-1c64b4705bbc": {
           "display_name": "SEO",
@@ -2501,7 +2477,8 @@
           ],
           "pos": 6,
           "type": "tab",
-          "key": "tab-40ff5487-8b8b-40db-afae-1c64b4705bbc"
+          "key": "tab-40ff5487-8b8b-40db-afae-1c64b4705bbc",
+          "id": "QP9Uh4uLQNuvrhxktHBbvA"
         },
         "body": {
           "type": "richtext",
@@ -2532,30 +2509,35 @@
           ],
           "key": "body",
           "pos": 7,
-          "allow_custom_attributes": true
+          "allow_custom_attributes": true,
+          "id": "eqbfbOKzQQSwToAGIgsuCw"
         },
         "seo_title": {
           "type": "text",
           "key": "seo_title",
           "pos": 8,
-          "description": "Defaults to: \"{Name} - Handbook by Significa\""
+          "description": "Defaults to: \"{Name} - Handbook by Significa\"",
+          "id": "H4VPlL9lTNW2J4ip19exYQ"
         },
         "seo_description": {
           "type": "text",
           "key": "seo_description",
-          "pos": 9
+          "pos": 9,
+          "id": "3uJIlGYITTub8NNhD7mOyg"
         },
         "seo_og_image": {
           "type": "asset",
           "filetypes": ["images"],
           "asset_folder_id": 212287,
           "key": "seo_og_image",
-          "pos": 10
+          "pos": 10,
+          "id": "a3Mj2R04SkWkAaUUbyU1OA"
         },
         "seo_canonical_url": {
           "type": "text",
           "pos": 11,
-          "description": "The default is the page URL"
+          "description": "The default is the page URL",
+          "id": "6_3ZjcKXR6OJzo8vRqufTg"
         },
         "change_frequency": {
           "type": "option",
@@ -2598,19 +2580,22 @@
               "value": "never",
               "name": "Never"
             }
-          ]
+          ],
+          "id": "MoJHZjsaSRqa-zRr7gzVdw"
         },
         "priority": {
           "type": "number",
           "pos": 13,
           "description": "The priority of the page relative to other pages on your site, where 0.1 is the lowest priority and 1.0 is the highest priority.\n",
-          "decimals": 1
+          "decimals": 1,
+          "id": "Z2r_GFGES1uCQ1NOWlYPog"
         },
         "structure_data_markup": {
           "type": "textarea",
           "pos": 14,
           "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
-          "tooltip": true
+          "tooltip": true,
+          "id": "t_XwRrtYT7CRsOOhm0ICPg"
         }
       },
       "image": null,
@@ -3218,7 +3203,7 @@
       "display_name": null,
       "description": null,
       "created_at": "2024-01-09T16:40:58.537Z",
-      "updated_at": "2024-08-13T14:29:22.784Z",
+      "updated_at": "2025-02-26T11:25:33.249Z",
       "id": 5142044,
       "schema": {
         "structure_data_markup": {
@@ -3226,25 +3211,30 @@
           "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
           "tooltip": true,
           "display_name": "Structure Data Markup",
-          "pos": 0
+          "pos": 0,
+          "id": "074Eu4jhTpeHJe-_BdSAXQ"
         },
         "seo_title": {
           "type": "text",
-          "pos": 1
+          "pos": 1,
+          "id": "ej3_9_ALQPWkooLbboH5NA"
         },
         "seo_description": {
           "type": "text",
-          "pos": 2
+          "pos": 2,
+          "id": "Acha2TV0TPWAtCu5XGDSJQ"
         },
         "seo_og_image": {
           "type": "asset",
           "filetypes": ["images"],
-          "pos": 3
+          "pos": 3,
+          "id": "WkUzEKuBQpWWRI8SHw_3Sw"
         },
         "seo_canonical_url": {
           "type": "text",
           "pos": 4,
-          "description": "The default is the page URL"
+          "description": "The default is the page URL",
+          "id": "OcQqsfTURge-qLAlbxK4Aw"
         },
         "change_frequency": {
           "type": "option",
@@ -3287,26 +3277,33 @@
               "name": "Never"
             }
           ],
-          "pos": 5
+          "pos": 5,
+          "id": "qblLMYrSRsaNLjjvpqwiJQ"
         },
         "priority": {
           "type": "number",
           "description": "The priority of the page relative to other pages on your site, where 0.1 is the lowest priority and 1.0 is the highest priority.\n\n1.0-0.8\nHomepage, product information, landing pages.\n\n0.7-0.4\nNews articles, some weather services, blog posts, pages that no site would be complete without.\n\n0.3-0.0\nFAQs, outdated info, old press releases, completely static pages that are still relevant enough to keep from deleting entirely.",
           "decimals": 1,
-          "pos": 6
+          "pos": 6,
+          "id": "8GH-M9sJQ_yxkSz_lXo9Lw"
         },
         "keep_top_bar_hidden": {
           "type": "boolean",
           "pos": 7,
-          "required": false
+          "required": false,
+          "id": "nquqd53iTVu23_2N04pX-g"
         },
         "blocks": {
           "type": "bloks",
           "restrict_type": "groups",
           "restrict_components": true,
           "component_whitelist": [],
-          "component_group_whitelist": ["c9011224-9690-43bd-b686-e8f60ef6c7f6"],
-          "pos": 8
+          "component_group_whitelist": [
+            "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+            "76b6a3af-a1fa-4ffe-b980-52a2da9245ca"
+          ],
+          "pos": 8,
+          "id": "l7rd2F9fTFaEbOad2ncpRA"
         },
         "tab-577daf7c-b61e-4a23-8184-bd9c01ae0af3": {
           "display_name": "SEO",
@@ -3320,7 +3317,8 @@
             "seo_canonical_url"
           ],
           "pos": 9,
-          "type": "tab"
+          "type": "tab",
+          "id": "V32vfLYeSiOBhL2cAa4K8w"
         }
       },
       "image": null,
@@ -4186,7 +4184,7 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-02-15T13:07:44.621Z",
-      "updated_at": "2024-12-12T17:27:11.951Z",
+      "updated_at": "2025-02-18T10:31:09.613Z",
       "id": 3442356,
       "schema": {
         "cover": {
@@ -4194,25 +4192,29 @@
           "filetypes": ["images"],
           "asset_folder_id": 212286,
           "pos": 0,
-          "key": "cover"
+          "key": "cover",
+          "id": "K4bPe8P3TSyanaB86SdEAQ"
         },
         "reel": {
           "type": "asset",
           "pos": 1,
           "filetypes": ["videos"],
-          "key": "reel"
+          "key": "reel",
+          "id": "S2e1YKgjRBOVvymDY0GuBw"
         },
         "reel_button": {
           "type": "section",
           "pos": 2,
           "keys": ["reel_button_theme", "reel_button_label", "show_reel_controls"],
           "key": "reel_button",
-          "display_name": "Reel Options"
+          "display_name": "Reel Options",
+          "id": "G0uz2UdBS6WLpB0Qg0WEtg"
         },
         "show_reel_controls": {
           "type": "boolean",
           "pos": 3,
-          "default_value": true
+          "default_value": true,
+          "id": "pYYJ-A-XQDmgVfNO66q20g"
         },
         "reel_button_theme": {
           "type": "option",
@@ -4233,13 +4235,15 @@
           "default_value": "light",
           "description": "",
           "display_name": "Reel Button Theme (optional)",
-          "key": "reel_button_theme"
+          "key": "reel_button_theme",
+          "id": "cnRw9pL1QSiQhHiLkcWl-g"
         },
         "reel_button_label": {
           "type": "text",
           "pos": 5,
           "display_name": "Reel Button Label (optional)",
-          "key": "reel_button_label"
+          "key": "reel_button_label",
+          "id": "j-F8L5tQSD2vhsuCJSmFvA"
         },
         "thumbnail": {
           "type": "multiasset",
@@ -4247,33 +4251,38 @@
           "required": true,
           "asset_folder_id": 212286,
           "pos": 6,
-          "key": "thumbnail"
+          "key": "thumbnail",
+          "id": "gZGWhNMXSBCYDBaXqpwvmA"
         },
         "tagline": {
           "type": "text",
           "required": true,
           "pos": 7,
-          "key": "tagline"
+          "key": "tagline",
+          "id": "_Ada4_5uQ1erYNdMD1zyug"
         },
         "intro": {
           "type": "textarea",
           "required": true,
           "pos": 8,
-          "key": "intro"
+          "key": "intro",
+          "id": "oC9vSdLEQBOkqBzSzklJaA"
         },
         "team": {
           "type": "options",
           "source": "internal_stories",
           "filter_content_type": ["team-member"],
           "pos": 9,
-          "key": "team"
+          "key": "team",
+          "id": "df5X6-EbT4mBJRNnehLikA"
         },
         "measurements": {
           "type": "bloks",
           "pos": 10,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["measurement_entry"]
+          "component_whitelist": ["measurement_entry"],
+          "id": "yN01uZlYRC6TaSGRZKhpDw"
         },
         "client": {
           "type": "text",
@@ -4281,21 +4290,24 @@
           "source": "internal_stories",
           "filter_content_type": ["client"],
           "pos": 11,
-          "key": "client"
+          "key": "client",
+          "id": "xMZPyZMMQ_CmsvBzjMNlOQ"
         },
         "deliverables": {
           "type": "options",
           "pos": 12,
           "source": "internal",
           "datasource_slug": "deliverables",
-          "key": "deliverables"
+          "key": "deliverables",
+          "id": "KKI1-H9TQ1-OO1VBezVlKA"
         },
         "services": {
           "type": "options",
           "pos": 13,
           "source": "internal",
           "datasource_slug": "services",
-          "key": "services_data"
+          "key": "services_data",
+          "id": "6R87iZofQR-TXMy5ynfhLg"
         },
         "links": {
           "type": "bloks",
@@ -4303,36 +4315,42 @@
           "restrict_components": true,
           "component_whitelist": ["link"],
           "pos": 14,
-          "key": "links"
+          "key": "links",
+          "id": "kj9itQzJR4adEdmWQ7LWyA"
         },
         "seo_title": {
           "type": "text",
           "pos": 15,
-          "key": "seo_title"
+          "key": "seo_title",
+          "id": "IAubVawWRP6I66D5pr26zg"
         },
         "seo_description": {
           "type": "text",
           "pos": 16,
-          "key": "seo_description"
+          "key": "seo_description",
+          "id": "3i3zrdtORPmaNmrOH5Tz3Q"
         },
         "seo_og_image": {
           "type": "asset",
           "filetypes": ["images"],
-          "asset_folder_id": 212286,
+          "asset_folder_id": 238159,
           "pos": 17,
-          "key": "seo_og_image"
+          "key": "seo_og_image",
+          "id": "1f2qC26RQA6L8T1VxxNhRA"
         },
         "structure_data_markup": {
           "type": "textarea",
           "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
-          "pos": 18
+          "pos": 18,
+          "id": "ZxgiQebySJO3YsQUZiqq7A"
         },
         "tab-734adeb1-00ef-48e6-aa53-a3001ad39201": {
           "display_name": "Content",
           "keys": ["body"],
           "pos": 19,
           "type": "tab",
-          "key": "tab-734adeb1-00ef-48e6-aa53-a3001ad39201"
+          "key": "tab-734adeb1-00ef-48e6-aa53-a3001ad39201",
+          "id": "c0resQDvSOaqU6MAGtOSAQ"
         },
         "body": {
           "type": "richtext",
@@ -4362,14 +4380,16 @@
             "color"
           ],
           "pos": 20,
-          "key": "body"
+          "key": "body",
+          "id": "0ZABAogMSpqMzkXwAN-5GQ"
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {
           "display_name": "SEO",
           "keys": ["seo_title", "seo_description", "seo_og_image", "structure_data_markup"],
           "pos": 21,
           "type": "tab",
-          "key": "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9"
+          "key": "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9",
+          "id": "RR1WvdNlTfCKYSAHuLIqqQ"
         }
       },
       "image": null,
@@ -5353,20 +5373,34 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-09-11T15:33:34.190Z",
-      "updated_at": "2024-05-29T09:22:53.544Z",
+      "updated_at": "2025-02-13T15:47:29.914Z",
       "id": 4555208,
       "schema": {
+        "body": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["proposal-section"],
+          "pos": 1,
+          "id": "IvZ89SvcRiyMCV2pE-zIOg"
+        },
         "version_name": {
           "type": "text",
-          "required": true
+          "required": true,
+          "pos": 2,
+          "id": "kMT7te8iRmCISNt0Q_h25A"
         },
         "discount_percentage": {
-          "type": "number"
+          "type": "number",
+          "pos": 3,
+          "id": "vdEjoBh8QKWD89G4UhLDrw"
         },
         "date": {
           "type": "datetime",
           "disable_time": true,
-          "required": true
+          "required": true,
+          "pos": 4,
+          "id": "MJCK71o7R3-E5fwgd9rdFw"
         },
         "scope": {
           "type": "bloks",
@@ -5374,7 +5408,9 @@
           "restrict_components": true,
           "component_whitelist": ["proposal-scope-entry"],
           "required": true,
-          "minimum": 1
+          "minimum": 1,
+          "pos": 5,
+          "id": "FI5vhS7HRYadJI2z_ZLF6w"
         },
         "team": {
           "type": "bloks",
@@ -5382,7 +5418,9 @@
           "restrict_components": true,
           "component_whitelist": ["proposal-team-entry"],
           "required": true,
-          "minimum": 1
+          "minimum": 1,
+          "pos": 6,
+          "id": "evHwojCVR7OOLl9IRXwtBQ"
         },
         "estimates": {
           "type": "bloks",
@@ -5390,27 +5428,28 @@
           "minimum": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": ["proposal-estimate-entry"]
+          "component_whitelist": ["proposal-estimate-entry"],
+          "pos": 7,
+          "id": "QWESaMEWTh6LX66G5rJ5dQ"
         },
         "tab-4ab934ca-2771-464a-857a-ee27ae87c8d3": {
           "display_name": "Content",
           "keys": ["body"],
-          "pos": 0,
-          "type": "tab"
-        },
-        "body": {
-          "type": "bloks",
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": ["proposal-section"]
+          "pos": 8,
+          "type": "tab",
+          "id": "Srk0yidxRkqFeu4nrofI0w"
         },
         "show_team_members": {
           "type": "boolean",
-          "default_value": true
+          "default_value": true,
+          "pos": 9,
+          "id": "TymYZiuuQrSsh0rRGOxYYw"
         },
         "show_manpower": {
           "type": "boolean",
-          "default_value": true
+          "default_value": true,
+          "pos": 10,
+          "id": "l0MVFD_KT7ujjbFM8eFkGA"
         }
       },
       "image": null,
@@ -5434,37 +5473,55 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-12-28T13:15:17.211Z",
-      "updated_at": "2024-05-29T09:49:07.190Z",
+      "updated_at": "2025-02-13T15:47:47.827Z",
       "id": 5094324,
       "schema": {
+        "cover": {
+          "type": "asset",
+          "pos": 0,
+          "id": "mssbEyqOQgSsOqb-OBlAbg"
+        },
+        "body": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["proposal-section"],
+          "pos": 1,
+          "id": "cs3mkkdBRd--tgAQOPeSMw"
+        },
         "version_name": {
           "type": "text",
           "required": true,
-          "pos": 0
+          "pos": 2,
+          "id": "WiDDF486Sj-1ux_9wDcXHA"
         },
         "show_team_members": {
           "type": "boolean",
           "default_value": true,
-          "pos": 1
+          "pos": 3,
+          "id": "LOyPhqLRTKuZWsGF1czHzw"
         },
         "show_manpower": {
           "type": "boolean",
-          "pos": 2,
-          "default_value": true
+          "pos": 4,
+          "default_value": true,
+          "id": "W9GBa87nTyGFC-oVJ6DfIQ"
         },
         "discount_percentage": {
           "type": "number",
-          "pos": 3,
+          "pos": 5,
           "min_value": 0,
           "max_value": 100,
           "decimals": 0,
-          "steps": 1
+          "steps": 1,
+          "id": "Sr1TIAK5Rv6DoBwIcW7fCw"
         },
         "date": {
           "type": "datetime",
           "disable_time": true,
           "required": true,
-          "pos": 4
+          "pos": 6,
+          "id": "PL3Vlea7RhW4OR1SObIT4g"
         },
         "deliverables": {
           "type": "bloks",
@@ -5472,7 +5529,8 @@
           "restrict_components": true,
           "component_whitelist": ["proposal-deliverable"],
           "required": false,
-          "pos": 5
+          "pos": 7,
+          "id": "JqOqI-hNTMm-LfjqcBKZCQ"
         },
         "pricing": {
           "type": "bloks",
@@ -5480,7 +5538,8 @@
           "restrict_components": true,
           "component_whitelist": ["proposal-package-pricing"],
           "required": false,
-          "pos": 6
+          "pos": 8,
+          "id": "izz2yvg9T8S982SuF4Nfig"
         },
         "team": {
           "type": "bloks",
@@ -5488,20 +5547,15 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["proposal-package-team-entry"],
-          "pos": 7
+          "pos": 9,
+          "id": "0lP_si2bRQW2InVkJevz2Q"
         },
         "tab-4ab934ca-2771-464a-857a-ee27ae87c8d3": {
           "display_name": "Content",
-          "keys": ["body"],
-          "pos": 8,
-          "type": "tab"
-        },
-        "body": {
-          "type": "bloks",
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": ["proposal-section"],
-          "pos": 9
+          "keys": ["body", "cover"],
+          "pos": 10,
+          "type": "tab",
+          "id": "Srk0yidxRkqFeu4nrofI0w"
         }
       },
       "image": null,
@@ -5669,7 +5723,7 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-02-16T10:59:09.847Z",
-      "updated_at": "2025-03-14T10:26:09.975Z",
+      "updated_at": "2025-03-14T10:35:01.251Z",
       "id": 3446937,
       "schema": {
         "layout": {
@@ -5704,7 +5758,8 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["video"],
-          "id": "n40xO5_GQe6Qc9GonkrzsA"
+          "id": "n40xO5_GQe6Qc9GonkrzsA",
+          "description": "Video will only be shown if image is not defined"
         },
         "title": {
           "type": "text",

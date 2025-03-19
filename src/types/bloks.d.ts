@@ -70,14 +70,14 @@ export interface AboutPageStoryblok {
 
 export interface AssetStoryblok {
   _uid?: string;
-  id: number;
-  alt?: string;
+  id: number | null;
+  alt: string | null;
   name: string;
-  focus?: string;
-  source?: string;
-  title?: string;
+  focus: string | null;
+  source: string | null;
+  title: string | null;
   filename: string;
-  copyright?: string;
+  copyright: string | null;
   fieldtype?: string;
   meta_data?: null | {
     [k: string]: any;
@@ -265,7 +265,7 @@ export interface CanvasMediaStoryblok {
   image?: AssetStoryblok;
   width?: string;
   height?: string;
-  border?: boolean;
+  border: boolean;
   top: string;
   left: string;
   scale?: string;
@@ -412,6 +412,7 @@ export interface ClientLogoStoryblok {
 export interface ClientsStoryblok {
   clients_title?: string;
   clients?: ClientLogoStoryblok[];
+  links?: LinkStoryblok[];
   _uid: string;
   component: 'clients';
   [k: string]: any;
@@ -419,7 +420,7 @@ export interface ClientsStoryblok {
 
 export interface ColumnStoryblok {
   content: RichtextStoryblok;
-  sticky?: boolean;
+  sticky: boolean;
   _uid: string;
   component: 'column';
   [k: string]: any;
@@ -438,6 +439,7 @@ export interface ConfigurationStoryblok {
   primary_navigation?: any[];
   call_to_action?: LinkStoryblok[];
   footer?: (FooterColumnInternalStoryblok | FooterColumnExternalStoryblok)[];
+  footer_logo_two?: ClientLogoStoryblok[];
   footer_logo?: ClientLogoStoryblok[];
   _uid: string;
   component: 'configuration';
@@ -581,18 +583,7 @@ export interface GetAQuoteStepStoryblok {
 
 export interface HandbookStoryblok {
   last_updated: string;
-  chapter:
-    | '1 – Knowing Significa'
-    | '2 – Working at Significa'
-    | '3 – Recruitment'
-    | '4 – Working with Significa'
-    | '5 – Design'
-    | '6 – Engineering'
-    | '7 – Strategy and product'
-    | '8 – Brand and Marketing';
   cover: AssetStoryblok;
-  order: string;
-  highlight?: boolean;
   body?: RichtextStoryblok;
   seo_title?: string;
   seo_description?: string;
@@ -616,7 +607,7 @@ export interface HandbookHierarchyConfigurationStoryblok {
 export interface HandbookLevelStoryblok {
   name?: string;
   homepage?: any;
-  highlight?: boolean;
+  highlight: boolean;
   children?: HandbookLevelStoryblok[];
   _uid: string;
   component: 'handbook-level';
@@ -707,7 +698,7 @@ export interface HomePageStoryblok {
 export interface ImageStoryblok {
   width?: '' | 'narrow' | 'medium' | 'wide' | 'full';
   image: AssetStoryblok;
-  expandable?: boolean;
+  expandable: boolean;
   _uid: string;
   component: 'image';
   [k: string]: any;
@@ -717,7 +708,7 @@ export interface ImageGridStoryblok {
   width?: '' | 'medium' | 'wide';
   density?: '' | 'regular' | 'loose' | 'tight';
   images: MultiassetStoryblok;
-  expandable?: boolean;
+  expandable: boolean;
   _uid: string;
   component: 'image-grid';
   [k: string]: any;
@@ -731,7 +722,7 @@ export interface LandingPageStoryblok {
   seo_canonical_url?: string;
   change_frequency?: '' | 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   priority?: string;
-  keep_top_bar_hidden?: boolean;
+  keep_top_bar_hidden: boolean;
   blocks?: (
     | AboutGridStoryblok
     | AwardsGridStoryblok
@@ -767,6 +758,12 @@ export interface LandingPageStoryblok {
     | TimezoneStoryblok
     | VerticalListStoryblok
     | WorkRecognitionsStoryblok
+    | ComparisonStoryblok
+    | ImageStoryblok
+    | ImageGridStoryblok
+    | TableStoryblok
+    | TwoColumnsStoryblok
+    | VideoStoryblok
   )[];
   _uid: string;
   component: 'landing-page';
@@ -783,7 +780,7 @@ export interface LinkStoryblok {
 
 export interface ListStoryblok {
   type?: 'regular' | 'large';
-  border_bottom?: boolean;
+  border_bottom: boolean;
   title?: string;
   subtitle?: string;
   description?: string;
@@ -826,7 +823,7 @@ export interface NotepadCardStoryblok {
 }
 
 export interface OfficeCardsStoryblok {
-  variant?: boolean;
+  variant: boolean;
   office_title1?: string;
   office_title2?: string;
   btn_label?: string;
@@ -957,7 +954,7 @@ export interface PhysicsStoryblok {
 export interface PhysicsBalloonCardStoryblok {
   text?: string;
   theme?: 'inverted' | 'panel' | 'offset' | 'yellow';
-  is_desktop_only?: boolean;
+  is_desktop_only: boolean;
   _uid: string;
   component: 'physics-balloon-card';
   [k: string]: any;
@@ -965,7 +962,7 @@ export interface PhysicsBalloonCardStoryblok {
 
 export interface PhysicsInputStoryblok {
   placeholder?: string;
-  is_desktop_only?: boolean;
+  is_desktop_only: boolean;
   _uid: string;
   component: 'physics-input';
   [k: string]: any;
@@ -974,7 +971,7 @@ export interface PhysicsInputStoryblok {
 export interface PhysicsRectangleCardStoryblok {
   text?: string;
   theme?: 'transparent' | 'yellow';
-  is_desktop_only?: boolean;
+  is_desktop_only: boolean;
   _uid: string;
   component: 'physics-rectangle-card';
   [k: string]: any;
@@ -982,7 +979,7 @@ export interface PhysicsRectangleCardStoryblok {
 
 export interface PhysicsStickerStoryblok {
   photo?: AssetStoryblok;
-  is_desktop_only?: boolean;
+  is_desktop_only: boolean;
   _uid: string;
   component: 'physics-sticker';
   [k: string]: any;
@@ -998,7 +995,7 @@ export interface ProjectStoryblok {
   cover?: AssetStoryblok;
   reel?: AssetStoryblok;
   reel_button?: any;
-  show_reel_controls?: boolean;
+  show_reel_controls: boolean;
   reel_button_theme?: '' | 'light' | 'dark';
   reel_button_label?: string;
   thumbnail: MultiassetStoryblok;
@@ -1190,30 +1187,31 @@ export interface ProposalTeamEntryStoryblok {
 }
 
 export interface ProposalVersionStoryblok {
+  body?: ProposalSectionStoryblok[];
   version_name: string;
   discount_percentage?: string;
   date: string;
   scope: ProposalScopeEntryStoryblok[];
   team: ProposalTeamEntryStoryblok[];
   estimates: ProposalEstimateEntryStoryblok[];
-  body?: ProposalSectionStoryblok[];
-  show_team_members?: boolean;
-  show_manpower?: boolean;
+  show_team_members: boolean;
+  show_manpower: boolean;
   _uid: string;
   component: 'proposal-version';
   [k: string]: any;
 }
 
 export interface ProposalVersionPackageStoryblok {
+  cover?: AssetStoryblok;
+  body?: ProposalSectionStoryblok[];
   version_name: string;
-  show_team_members?: boolean;
-  show_manpower?: boolean;
+  show_team_members: boolean;
+  show_manpower: boolean;
   discount_percentage?: string;
   date: string;
   deliverables?: ProposalDeliverableStoryblok[];
   pricing?: ProposalPackagePricingStoryblok[];
   team?: ProposalPackageTeamEntryStoryblok[];
-  body?: ProposalSectionStoryblok[];
   _uid: string;
   component: 'proposal-version-package';
   [k: string]: any;
@@ -1270,7 +1268,7 @@ export interface RichtextCodeBlockStoryblok {
     | 'elixir'
     | 'bash'
     | 'clike';
-  line_numbers?: boolean;
+  line_numbers: boolean;
   line_numbers_start?: string;
   highlighted_lines?: string;
   code?: string;
@@ -1378,7 +1376,7 @@ export interface ServiceTimelineCellStoryblok {
   decoration_light?: AssetStoryblok;
   decoration_dark?: AssetStoryblok;
   left_offset?: string;
-  throw_confetti?: boolean;
+  throw_confetti: boolean;
   _uid: string;
   component: 'service-timeline-cell';
   [k: string]: any;
@@ -1479,7 +1477,7 @@ export interface TeamMemberStoryblok {
   cover_image_light?: AssetStoryblok;
   cover_image_dark?: AssetStoryblok;
   links?: TeamMemberLinkStoryblok[];
-  is_active?: boolean;
+  is_active: boolean;
   seo_title?: string;
   seo_description?: string;
   seo_og_image?: AssetStoryblok;
@@ -1526,7 +1524,7 @@ export interface TestimonialsStoryblok {
 }
 
 export interface TimelineStoryblok {
-  has_border_top?: boolean;
+  has_border_top: boolean;
   title1?: string;
   title2?: string;
   description?: string;
@@ -1538,7 +1536,7 @@ export interface TimelineStoryblok {
 
 export interface TimelineArrowStoryblok {
   variant: '' | 'one' | 'two' | 'three' | 'four' | 'five';
-  flip?: boolean;
+  flip: boolean;
   top: string;
   left: string;
   scale?: string;
@@ -1550,7 +1548,7 @@ export interface TimelineArrowStoryblok {
 
 export interface TimelineImageStoryblok {
   image?: AssetStoryblok;
-  border?: boolean;
+  border: boolean;
   top: string;
   left: string;
   scale?: string;
@@ -1621,7 +1619,7 @@ export interface ValueStoryblok {
 }
 
 export interface VerticalListStoryblok {
-  airplane?: boolean;
+  airplane: boolean;
   link_text?: string;
   link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   secondary_link_text?: string;
@@ -1643,9 +1641,9 @@ export interface VerticalListEntryStoryblok {
 export interface VideoStoryblok {
   width?: '' | 'narrow' | 'medium' | 'wide' | 'full';
   video: AssetStoryblok;
-  loop?: boolean;
-  autoplay?: boolean;
-  controls?: boolean;
+  loop: boolean;
+  autoplay: boolean;
+  controls: boolean;
   _uid: string;
   component: 'video';
   [k: string]: any;

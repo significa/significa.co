@@ -58,9 +58,9 @@
         {#if block.secondary_link_text}
           {@const { href } = getAnchorFromCmsLink(block.secondary_link)}
           <Button
+            {...block.secondary_link}
             variant="secondary"
             as="a"
-            {...block.secondary_link}
             {href}
             size="md"
             class="scroll-b w-fit"

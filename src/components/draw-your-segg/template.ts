@@ -1,10 +1,10 @@
-import type { Drawing } from './types';
+import type { Stroke } from './types';
 
-export const template: Drawing = [
+export const templateStrokes: Stroke[] = [
   {
-    color: 'black',
-    width: 'thin',
-    points: [
+    color: '#000',
+    width: 2,
+    path: [
       [299, 182],
       [295, 182],
       [291, 182],
@@ -219,9 +219,9 @@ export const template: Drawing = [
     ]
   },
   {
-    color: 'black',
-    width: 'thinnest',
-    points: [
+    color: '#000',
+    width: 1,
+    path: [
       [324, 190],
       [320, 189],
       [317, 188],
@@ -442,9 +442,9 @@ export const template: Drawing = [
     ]
   },
   {
-    color: 'black',
-    width: 'thin',
-    points: [
+    color: '#000',
+    width: 2,
+    path: [
       [262, 437],
       [262, 441],
       [262, 445],
@@ -478,9 +478,9 @@ export const template: Drawing = [
     ]
   },
   {
-    color: 'black',
-    width: 'thinnest',
-    points: [
+    color: '#000',
+    width: 1,
+    path: [
       [332, 438],
       [332, 443],
       [332, 447],
@@ -515,9 +515,9 @@ export const template: Drawing = [
     ]
   },
   {
-    color: 'black',
-    width: 'thinnest',
-    points: [
+    color: '#000',
+    width: 1,
+    path: [
       [260, 437],
       [260, 441],
       [260, 445],
@@ -553,9 +553,9 @@ export const template: Drawing = [
     ]
   },
   {
-    color: 'black',
-    width: 'thin',
-    points: [
+    color: '#000',
+    width: 2,
+    path: [
       [333, 438],
       [333, 442],
       [333, 446],

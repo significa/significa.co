@@ -1,6 +1,7 @@
 <script lang="ts">
   import clsx from 'clsx';
 
+  export let variant: 'fit-content' | 'default' = 'default';
   let visible: boolean = false;
 </script>
 
@@ -20,10 +21,13 @@
   {#if $$slots['popover']}
     <div
       class={clsx(
-        'absolute z-10 top-0 left-[25%] lg:-top-[90%] lg:-left-[90%] w-72 p-4',
-        'transition-opacity bg-background text-foreground-secondary',
-        'border rounded-2xs',
-        visible ? 'block opacity-100' : 'hidden opacity-0'
+        'absolute top-0 z-10 p-4',
+        ' bg-background text-foreground-secondary',
+        'rounded-2xs border transition-all',
+        visible ? 'block opacity-100' : 'top-4 opacity-0',
+        variant === 'default'
+          ? 'left-[25%] w-72 lg:-left-[90%] lg:-top-[90%]'
+          : 'left-1/2 w-auto -translate-x-1/2 -translate-y-full text-center '
       )}
     >
       <slot name="popover" />

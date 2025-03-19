@@ -14,7 +14,8 @@
   if (browser) {
     posthog.init(PUBLIC_POSTHOG_PROJECT_TOKEN, {
       api_host: 'https://eu.posthog.com',
-      persistence: 'localStorage'
+      persistence: 'localStorage',
+      person_profiles: 'always'
     });
   }
 

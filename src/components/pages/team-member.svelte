@@ -69,7 +69,7 @@
       </p>
       <p class="mt-6 text-2xl @4xl:max-w-xl">{story.content.bio}</p>
       {#if story.content.buttons}
-        <div class="flex mt-8 gap-4 flex-wrap">
+        <div class="mt-8 flex flex-wrap gap-4">
           {#each story.content.buttons as item}
             <Button
               variant="secondary"

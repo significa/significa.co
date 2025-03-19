@@ -1,17 +1,26 @@
 <script lang="ts">
-  import DynamicPage from '$components/pages/dynamic-page.svelte';
-  import HandbookPage from '$components/pages/handbook-page.svelte';
-  import { bodyLock, escapeKey } from '@significa/svelte-ui/actions';
-  import { t } from '$lib/i18n';
-  import { drawer } from '$lib/stores/drawer';
-  import { Button, Spinner } from '@significa/svelte-ui';
-  import { fade, fly } from 'svelte/transition';
-  import { browser } from '$app/environment';
+  import clsx from 'clsx';
   import { page } from '$app/stores';
-  import { fetchPage } from '$lib/content';
   import { setContext } from 'svelte';
+  import { browser } from '$app/environment';
+  import { fade, fly } from 'svelte/transition';
 
+  import { Button, Spinner } from '@significa/svelte-ui';
+  import { bodyLock, escapeKey } from '@significa/svelte-ui/actions';
+
+  import { t } from '$lib/i18n';
+  import { fetchPage } from '$lib/content';
+  import { drawer } from '$lib/stores/drawer';
+
+  import DynamicPage from '$components/pages/dynamic-page.svelte';
+
+  let isSticky = true;
   let expanding = false;
+
+  function handleScroll(event: Event) {
+    const target = event.target as HTMLElement;
+    isSticky = target.scrollTop !== 0;
+  }
 
   setContext('drawer', true);
 </script>
@@ -30,11 +39,17 @@
     on:click={drawer.close}
   />
   <div
-    class="fixed bottom-2 left-2 right-2 top-2 z-50 overflow-y-auto scroll-smooth rounded-lg bg-background shadow-2xl md:left-auto md:w-3/4 lg:w-2/3"
+    on:scroll={handleScroll}
+    class="fixed bottom-2 left-2 right-2 top-2 z-50 overflow-y-auto scroll-smooth rounded-lg bg-background shadow-2xl transition md:left-auto md:w-3/4 lg:w-2/3"
     in:fly={{ x: 300, duration: 200 }}
     out:fly={{ x: expanding ? -300 : 300, duration: expanding ? 200 : 100 }}
   >
-    <header class="z-50 flex items-center justify-between p-2">
+    <header
+      class={clsx(
+        'sticky left-0 top-0 z-50 flex items-center justify-between border-b bg-background p-2 motion-safe:transition-colors',
+        isSticky ? 'border-b-background-offset' : 'border-b-transparent'
+      )}
+    >
       <Button
         as="a"
         href={$drawer}
@@ -43,22 +58,21 @@
         icon="expand"
         on:click={() => {
           expanding = true;
-        }}>{t('expand')}</Button
+        }}
       >
+        {t('expand')}
+      </Button>
+
       <Button class="bg-background" variant="ghost" icon="close" on:click={drawer.close} />
     </header>
     <div>
-      {#if !$drawer.includes('handbook/')}
-        {#await fetchPage({ slug: $drawer, version: $page.data.version || 'published' })}
-          <div class="flex justify-center p-10">
-            <Spinner size="md" />
-          </div>
-        {:then page}
-          <DynamicPage {page} />
-        {/await}
-      {:else}
-        <HandbookPage path={$drawer.replace('/handbook/', '')} />
-      {/if}
+      {#await fetchPage({ slug: $drawer, version: $page.data.version || 'published' })}
+        <div class="flex justify-center p-10">
+          <Spinner size="md" />
+        </div>
+      {:then page}
+        <DynamicPage {page} />
+      {/await}
     </div>
   </div>
 {/if}

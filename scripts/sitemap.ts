@@ -89,7 +89,8 @@ async function main() {
             story.content.component === 'career' ||
             story.content.component === 'page' ||
             story.content.component === 'project' ||
-            story.content.component === 'team-member'
+            story.content.component === 'team-member' ||
+            story.content.component === 'handbook'
           );
         })
         .map((story: ISbStoryData) => {

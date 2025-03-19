@@ -60,11 +60,11 @@
 
 <div
   class={clsx(
-    'container mx-auto px-auto h-[calc(100dvh-var(--topnav-height))]',
+    'px-auto container mx-auto h-[calc(100dvh-var(--topnav-height))]',
     'flex flex-col md:flex-row'
   )}
 >
-  <div class="px-4 py-8 md:p-12 md:border-r border-border flex-1 flex flex-col md:justify-end">
+  <div class="flex flex-1 flex-col border-border px-4 py-8 md:justify-end md:border-r md:p-12">
     {#if result}
       <div
         class="relative"
@@ -73,8 +73,8 @@
         <SuccessEgg />
         <div
           class={clsx(
-            'absolute left-[170px] top-[25px] line-clamp-2 flex h-[76px] w-36 z-10',
-            'items-center justify-center text-center font-comic text-black font-bold leading-snug'
+            'absolute left-[170px] top-[25px] z-10 line-clamp-2 flex h-[76px] w-36',
+            'items-center justify-center text-center font-comic font-bold leading-snug text-black'
           )}
         >
           <div class="h-fit w-28">
@@ -89,7 +89,7 @@
       {t('proposals.accept.subtitle')}
     </h2>
 
-    <div class="mt-12 flex flex-col md:flex-row justify-between">
+    <div class="mt-12 flex flex-col justify-between md:flex-row">
       <div>
         <p class="font-semibold">{t('proposals.accept.secondary-title')}</p>
         <p class="font-semibold text-foreground-secondary">
@@ -107,13 +107,13 @@
   </div>
 
   <div
-    class="px-4 py-8 md:p-12 border-t border-border md:border-t-0 flex-1 flex flex-col md:justify-end"
+    class="flex flex-1 flex-col border-t border-border px-4 py-8 md:justify-end md:border-t-0 md:p-12"
   >
     <h2 class="text-4xl">{t('proposals.accept.contact.title')}</h2>
     <h2 class="text-4xl text-foreground-secondary">{t('proposals.accept.contact.subtitle')}</h2>
 
     {#if proposal?.created_by?.content?.email}
-      <div class="mt-12 flex flex-col md:flex-row justify-between">
+      <div class="mt-12 flex flex-col justify-between md:flex-row">
         <Person
           name={proposal?.created_by.name}
           photo={proposal?.created_by.content.photo}

@@ -18,8 +18,7 @@ To accomplish all features, we leverage a few external services:
 - CMS - Storyblok: It's where we configure the website, build pages, store and serve assets.
 - Storage bucket - AWS S3: Used to store attachments, uploaded via the contact forms.
 - Email dispatcher - AWS SES: Used to dispatch notification emails.
-- NOSQL database - AWS Dynamo DB: Intended to store and retrieve egg drawings "seggs" drawn by our
-  users.
+- Drawings API - Custom closed source API to store "seggs".
 - Form submission database - Notion: We create a new entry on a Notion database when someone
   submits a form. This way we can keep everything in a centralized space.
 
@@ -38,12 +37,14 @@ databases, etc.
 
 Here's how everything is connected (arrows represent the request initiator):
 
+<!-- TODO: Update this diagram and leave here the link to figma -->
+
 ![infrastructure diagram](./docs/architecture-diagram.png)
 
 ## Contributing
 
 The development of this project follows an internal roadmap. Therefore we usually are only open to
-improvements and bug-fixes.
+improvements and bug-fixes that do not have big impact in the features or project setup.
 
 ### Requirements
 
@@ -69,10 +70,11 @@ improvements and bug-fixes.
 
 ## Deployment and release
 
-The staging branch is bounded to the `main` branch, create a PR against it for a new feature.
+The staging environment is bounded to the `main` branch, each new addition to this branch,
+creates a new deployment to staging.
 
-To deploy a new production version, create a semver release in GitHub
-(prefixed with `v`, for example: `vX.X.X`).
+To deploy a new version to production, create a _semver_ compliant release in GitHub
+(prefixed with `v`, for example: `vX.X.X`), it will be deployed automatically to production
 
 To create hotfixes:
 
@@ -84,5 +86,13 @@ To create hotfixes:
 
 ## License
 
-This material is licensed under the AGPL License, feel free remix-it, learn and play with it as
-you wish. But note that distribution of the source code under the same license is mandatory.
+This material is licensed under the AGPL License, allowing you to remix, learn, and experiment with
+it freely.
+
+However, please note that this is **not** a traditional open-source project; it is more accurately
+described as _source available_. In accordance with the AGPL License, redistribution of the source
+code under the same license, with attribution to the original author, is mandatory.
+Since the software can only be offered over a network, the source code must be properly disclosed.
+
+We do not provide support for this project, and replication or rebranding is strongly discouraged.
+However, we encourage you to explore and take inspiration from how we built our website.

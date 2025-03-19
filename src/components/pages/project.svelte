@@ -13,18 +13,20 @@
   import Reel from '$components/reel.svelte';
   import type { ProjectPage } from '$lib/content';
   import { page } from '$app/stores';
+  import Popover from '$components/proposals/popover.svelte';
 
   export let story: ProjectPage;
   export let related: ProjectPage[];
   $: next = related[related.findIndex((p) => p.id === story.id) + 1] || related[0];
 
-  const recognitions = $page.data.awards.filter((aw) => aw.content.project.id === story.id);
+  $: recognitions = $page.data.awards.filter((aw) => aw.content.project.id === story.id);
 </script>
 
 <Seo
   title={story.content.seo_title || story.content.tagline}
   description={story.content.seo_description || story.content.intro}
   image={story.content.seo_og_image || story.content.cover}
+  structureDataMarkup={story.content.structure_data_markup}
 />
 <div use:drawerLinks class="container mx-auto px-container">
   <header>
@@ -36,6 +38,7 @@
           ? getImageAttributes(story.content.cover).src
           : undefined}
         buttonTheme={story.content.reel_button_theme}
+        showControls={story.content.show_reel_controls}
       />
     {:else if story.content.cover?.filename}
       {@const { alt, src, width, height } = getImageAttributes(story.content.cover, {
@@ -62,7 +65,7 @@
       <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
         {t('recognitions')}
       </h4>
-      <div class="grid grid-cols-1 gap-4 xs:gap-6 xs:grid-cols-2 md:grid-cols-3">
+      <div class="grid grid-cols-1 gap-4 xs:grid-cols-2 xs:gap-6 md:grid-cols-3">
         <Recognitions {recognitions} />
       </div>
     </div>
@@ -75,25 +78,23 @@
       {#if data}
         <ul class="col-span-1">
           <h4 class="mb-2 text-xs uppercase tracking-wider text-foreground-secondary">{title}</h4>
-          {#if Array.isArray(data)}
-            <!-- Links -->
-            {#each data as link}
-              {@const { href, target, rel } = getAnchorFromCmsLink(link.link)}
+
+          <!-- Links -->
+          {#each data as line}
+            {#if typeof line === 'object'}
+              {@const { href, target, rel } = getAnchorFromCmsLink(line.link)}
               {#if href}
                 <li class="mb-2 flex items-center gap-1">
-                  <Link {href} {target} {rel}>{link.label}</Link>
+                  <Link {href} {target} {rel}>{line.label}</Link>
                   <Icon class="mt-0.5" icon="arrow-external" />
                 </li>
               {/if}
-            {/each}
-          {:else}
-            <!-- Textareas -->
-            {#each data.split('\n') as line}
+            {:else}
               <li>
                 <p class="mb-2 text-base">{line}</p>
               </li>
-            {/each}
-          {/if}
+            {/if}
+          {/each}
         </ul>
       {/if}
     {/each}
@@ -122,6 +123,32 @@
     </div>
   {/if}
 
+  {#if story.content.measurements && story.content.measurements.length > 0}
+    <div class="mx-auto flex max-w-2xl flex-wrap gap-6 gap-y-3 border-b py-6 md:gap-8 md:gap-y-4">
+      {#each story.content.measurements || [] as measurements}
+        <div class="flex flex-col whitespace-nowrap">
+          <Popover variant={'fit-content'}>
+            <div slot="target">
+              <p class="text-xs font-medium uppercase">
+                {measurements.title}
+              </p>
+              <div class="flex items-center gap-1.5">
+                {#if measurements.icon}
+                  {@const { alt, src } = getImageAttributes(measurements.icon)}
+                  <img class="max-h-1.5" {src} {alt} />
+                {/if}
+                <p class="text-lg font-semibold md:text-2xl">{measurements.value}</p>
+              </div>
+            </div>
+            <div slot="popover">
+              <p class="whitespace-nowrap text-sm">{measurements.popover}</p>
+            </div>
+          </Popover>
+        </div>
+      {/each}
+    </div>
+  {/if}
+
   {#if story.content.intro}
     <p class="mx-auto my-10 max-w-2xl text-3xl font-medium md:my-14 lg:my-20">
       {story.content.intro}
@@ -139,6 +166,8 @@
   {/if}
 </div>
 
+<!-- Prefooter -->
+<!-- TODO: Remove this code since it's repeated on prefooter-form (block) as soon as we change this page to blocks -->
 <div class="mb-12 mt-40">
   <PreFooter />
 </div>

@@ -10,15 +10,29 @@
   export let title: undefined | string = undefined;
   export let description: undefined | string = undefined;
   export let image: undefined | AssetStoryblok | string = undefined;
+  export let structureDataMarkup: string | undefined = undefined;
+  export let twitterExtraFields: { key: string; value: string }[] = [];
 
   const inDrawer = getContext<boolean>('drawer');
 </script>
 
 <svelte:head>
   {#if !inDrawer}
+    <!-- FYI: Added this seo_canonical_url field only to the 'Page' | 'Landing Page' | 'Blog Post (Author)' content types -->
+    <link
+      rel="canonical"
+      href={$page.data.page?.story?.content?.seo_canonical_url || `${$page.url.toString()}`}
+    />
+
     <title>{title || $page.data.page?.story?.content?.seo_title || t('seo.title')}</title>
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@SignificaDotCo" />
+
+    {#if structureDataMarkup}
+      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+      {@html `<${'script'} type="application/ld+json"> ${structureDataMarkup} </${'script'}>`}
+    {/if}
+
     <meta
       name="description"
       content={description ||
@@ -45,6 +59,12 @@
         $page.data.page?.story?.content?.seo_description ||
         t('seo.description')}
     />
+
+    {#each twitterExtraFields as { key, value }, i}
+      <meta name="twitter:label{i + 1}" content={key} />
+      <meta name="twitter:data{i + 1}" content={value} />
+    {/each}
+
     <meta property="og:url" content={$page.url.toString()} />
     <meta property="og:type" content="website" />
     {#if typeof image !== 'string' && image?.filename && !VIDEO_EXTENSIONS.includes(getFileExtension(image.filename))}

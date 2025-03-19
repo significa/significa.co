@@ -29,13 +29,13 @@
   });
 </script>
 
-<div class="overflow-x-scroll mt-10 md:mt-14 lg:mt-20">
+<div class="mt-10 overflow-x-scroll md:mt-14 lg:mt-20">
   <!-- HEADER -->
-  <div class="border-b border-foreground-secondary min-w-[780px]">
+  <div class="min-w-[780px] border-b border-foreground-secondary">
     <div
       class={clsx(
         'container mx-auto px-container',
-        'grid gap-10 md:gap-12 py-2',
+        'grid gap-10 py-2 md:gap-12',
         type === 'package'
           ? 'grid-cols-[1fr_3fr] md:grid-cols-[1fr_2fr_1fr]'
           : 'grid-cols-[1fr_2fr_1fr]'
@@ -55,7 +55,7 @@
         </p>
       </div>
       {#if type === 'rate'}
-        <p class="text-2xs uppercase text-foreground-secondary text-right">
+        <p class="text-right text-2xs uppercase text-foreground-secondary">
           {t('proposals.team.rate')}
         </p>
       {/if}
@@ -64,7 +64,7 @@
 
   <!-- Panes -->
   {#each departmentsInfo as department}
-    <div class="border-b border-foreground-tertiary last:border-foreground-secondary min-w-[780px]">
+    <div class="min-w-[780px] border-b border-foreground-tertiary last:border-foreground-secondary">
       <div
         class={clsx(
           'container mx-auto px-container',
@@ -91,7 +91,7 @@
         {#each dataMap.get(department.name) as entry, i}
           <div
             class={clsx(
-              'col-start-2 grid grid-cols-2 ml-5 md:ml-6 py-4',
+              'col-start-2 ml-5 grid grid-cols-2 py-4 md:ml-6',
               i < dataMap.get(department.name).length - 1
                 ? 'border-b border-foreground-tertiary'
                 : ''
@@ -119,7 +119,7 @@
 
           <div
             class={clsx(
-              'col-start-3 text-right py-4',
+              'col-start-3 py-4 text-right',
               i < dataMap.get(department.name).length - 1
                 ? 'border-b border-foreground-tertiary'
                 : ''

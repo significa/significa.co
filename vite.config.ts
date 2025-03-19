@@ -2,13 +2,23 @@ import { loadEnv } from 'vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import mkcert from 'vite-plugin-mkcert';
+import { sentrySvelteKit } from '@sentry/sveltekit';
 
 const env = loadEnv('development', process.cwd());
 const HTTPS_ENABLED = env.VITE_HTTPS_ENABLED === 'true';
 const extraPlugins = HTTPS_ENABLED ? [mkcert()] : [];
 
 export default defineConfig({
-  plugins: [sveltekit(), ...extraPlugins],
+  plugins: [
+    sveltekit(),
+    sentrySvelteKit({
+      sourceMapsUploadOptions: {
+        org: 'significa',
+        project: 'significa-website'
+      }
+    }),
+    ...extraPlugins
+  ],
   test: {
     include: ['src/**/*.{test,spec}.{js,ts}']
   },

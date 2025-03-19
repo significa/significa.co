@@ -7,6 +7,7 @@
   import type { ISbStoryData } from '@storyblok/js';
   import clsx from 'clsx';
   import { slide } from 'svelte/transition';
+  import { page } from '$app/stores';
 
   export let projects: ISbStoryData<ProjectStoryblok>[];
 
@@ -15,13 +16,13 @@
   let deliverables: string[] = [];
   $: {
     projects.forEach((project) => {
-      project.content.services?.split('\n').forEach((item) => {
-        if (!services.includes(item)) {
+      project.content.services?.forEach((item) => {
+        if (typeof item === 'string' && !services.includes(item)) {
           services.push(item);
         }
       });
-      project.content.deliverables?.split('\n').forEach((item) => {
-        if (!deliverables.includes(item)) {
+      project.content.deliverables?.forEach((item) => {
+        if (typeof item === 'string' && !deliverables.includes(item)) {
           deliverables.push(item);
         }
       });
@@ -51,7 +52,7 @@
   });
 </script>
 
-<Seo />
+<Seo structureDataMarkup={$page.data.page.story.content.structure_data_markup} />
 <main>
   <h1 class="container mx-auto mt-10 px-container text-7xl md:mt-14 lg:mt-20">
     {t('projects.title')}

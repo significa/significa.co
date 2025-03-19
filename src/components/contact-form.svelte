@@ -24,6 +24,7 @@
   import type { ISbStoryData } from '@storyblok/js';
   import clsx from 'clsx';
   import { createEventDispatcher } from 'svelte';
+  import { budgetRange } from './pages/get-a-quote/budgetRange';
 
   export let variant: undefined | FormType = undefined;
   export let disclaimer: string | undefined = undefined;
@@ -73,14 +74,7 @@
     input: string;
   }>();
 
-  const budgetOptions = [
-    '15.000€ to 50.000€',
-    '50.000€ to 100.000€',
-    '100.000€ to 200.000€',
-    '200.000€ to 300.000€',
-    '300.000€ to 400.000€',
-    '400.000€ and above'
-  ];
+  const budgetOptions = budgetRange;
 
   const careers = [
     DEFAULT_POSITION,
@@ -216,20 +210,28 @@
         {/each}
       </FloatingSelect>
     {/if}
-    <FloatingTextarea
-      required
-      error={!!$page.form?.error?.fields?.message}
-      name="message"
-      class="flex w-full"
-      label={t('contact.label.message')}
-      rows={5}
-      bind:value={message}
-      on:focus={() => dispatch('focus', 'message')}
-      on:blur={() => dispatch('blur', 'message')}
-      on:input={() => dispatch('input', 'message')}
-    />
-    {#if type === 'quote'}
+    <div>
+      <FloatingTextarea
+        required
+        error={!!$page.form?.error?.fields?.message}
+        name="message"
+        class="flex w-full"
+        label={t('contact.label.message')}
+        rows={5}
+        maxlength={2000}
+        bind:value={message}
+        on:focus={() => dispatch('focus', 'message')}
+        on:blur={() => dispatch('blur', 'message')}
+        on:input={() => dispatch('input', 'message')}
+      />
+      <p class="mt-2 text-right text-sm text-foreground-secondary">
+        {message.length}/2000
+      </p>
+    </div>
+
+    {#if type === 'quote' && budgetOptions}
       <FloatingSelect
+        required
         name="budget"
         class="w-full"
         label={t('contact.label.budget')}
@@ -274,11 +276,11 @@
       <input type="hidden" name="attachments" bind:value={attachments} />
     {/if}
     {#if disclaimer}
-      <p class="text-base text-foreground-secondary my-3">{disclaimer}</p>
+      <p class="my-3 text-base text-foreground-secondary">{disclaimer}</p>
       <hr />
     {/if}
   </div>
-  <div class="mt-8 flex flex-col justify-between gap-6 sm:flex-row-reverse sm:items-center">
+  <div class="mt-8 flex flex-col justify-between gap-6 pb-1 sm:flex-row-reverse sm:items-center">
     <Button
       type="submit"
       size="lg"

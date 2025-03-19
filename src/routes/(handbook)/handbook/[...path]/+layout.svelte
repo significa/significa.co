@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page as pageStore } from '$app/stores';
   import clsx from 'clsx';
   import { Icon, Link, TextButton } from '@significa/svelte-ui';
   import plus from '$assets/plus.svg?raw';
@@ -8,11 +9,8 @@
   import { afterNavigate } from '$app/navigation';
   import { t } from '$lib/i18n';
   import { circOut } from 'svelte/easing';
-  import { slugs } from '$lib/stores/handbook-slugs';
-  import { sanitizeSlug, slugify } from '$lib/utils/paths.js';
-  import { getPageTitle } from '$lib/utils/notion.js';
-  import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints.js';
-
+  import { sanitizeSlug } from '$lib/utils/paths.js';
+  import type { HandbookLevelStoryblok } from '$types/bloks';
   export let data;
 
   let sidebar = writable(false);
@@ -21,51 +19,49 @@
     sidebar.set(false);
   });
 
-  $: openPanes = Object.values(data.chapters).map((pages) => ({
-    open: pages.some(
-      (page) =>
-        data.path === page.slug ||
-        page.children?.some((childrenPage) => data.path === childrenPage.slug)
-    ),
-    children: pages.map(
-      (page) =>
-        data.path === page.slug ||
-        page.children?.some((childrenPage) => data.path === childrenPage.slug)
-    )
-  }));
-
-  const dict = data.handbook.reduce(
-    (acc, page) => ({
-      ...acc,
-      ...{ [page.id]: slugify(getPageTitle(page as PageObjectResponse)) }
-    }),
-    {}
-  );
-
-  slugs.set(dict);
+  $: openPanes = data.hierarchy
+    .map((chapter: HandbookLevelStoryblok) => chapter.children)
+    .map((subchapters: HandbookLevelStoryblok[]) => ({
+      open: subchapters.some(
+        (subchapter: HandbookLevelStoryblok) =>
+          $pageStore.url.pathname === sanitizeSlug(subchapter.homepage.full_slug) ||
+          subchapter.children?.some(
+            (childrenPage: HandbookLevelStoryblok) =>
+              $pageStore.url.pathname === sanitizeSlug(childrenPage.homepage.full_slug)
+          )
+      ),
+      children: subchapters.map(
+        (subchapter) =>
+          $pageStore.url.pathname === sanitizeSlug(subchapter.homepage.full_slug) ||
+          subchapter.children?.some(
+            (childrenPage) =>
+              $pageStore.url.pathname === sanitizeSlug(childrenPage.homepage.full_slug)
+          )
+      )
+    }));
 </script>
 
-<div class="lg:container lg:mx-auto lg:px-container pb-20" use:bodyLock={sidebar}>
+<div class="pb-20 lg:container lg:mx-auto lg:px-container" use:bodyLock={sidebar}>
   <!-- Mobile: open menu -->
   <div
-    class="sticky top-[--topnav-height] z-10 flex h-12 items-center border-b bg-background py-2 px-container lg:px-0 lg:hidden"
+    class="sticky top-[--topnav-handbook-mobile-height] z-10 flex h-12 items-center border-b bg-background px-container py-2 md:top-[--topnav-height] lg:hidden lg:px-0"
   >
     <TextButton iconLeft="hamburger" on:click={() => sidebar.set(true)}>
       {t('handbook')}
     </TextButton>
   </div>
 
-  <div class="flex flex-col lg:flex-row gap-5">
+  <div class="flex flex-col gap-5 lg:flex-row">
     <aside
       class={clsx(
-        'fixed top-[--topnav-height] bottom-0 z-10 w-full overflow-y-auto bg-background',
-        'lg:relative lg:bottom-auto lg:top-auto lg:block lg:mt-24 lg:h-auto lg:w-72 lg:overflow-y-visible',
+        'fixed bottom-0 top-[--topnav-handbook-mobile-height] z-10 w-full overflow-y-auto bg-background md:top-[--topnav-height]',
+        'lg:relative lg:bottom-auto lg:top-auto lg:mt-24 lg:block lg:h-auto lg:w-72 lg:overflow-y-visible',
         $sidebar ? 'block' : 'hidden'
       )}
     >
       <!-- Mobile: close menu -->
       <div
-        class="px-container fixed w-full top-[--topnav-height] z-10 flex h-12 items-center justify-between border-b bg-background py-2 lg:hidden"
+        class="fixed top-[--topnav-handbook-mobile-height] z-10 flex h-12 w-full items-center justify-between border-b bg-background px-container py-2 md:top-[--topnav-height] lg:hidden"
       >
         <TextButton iconLeft="close" on:click={() => sidebar.set(false)}>{t('close')}</TextButton>
 
@@ -77,9 +73,9 @@
         </div>
       </div>
 
-      <nav class="px-container lg:px-0 pt-[calc(var(--topnav-height))] lg:pt-4">
+      <nav class="px-container pt-[calc(var(--topnav-height))] lg:px-0 lg:pt-4">
         <ul>
-          {#each Object.entries(data.chapters) as [title, pages], i}
+          {#each data.hierarchy as chapter, i}
             <li
               transition:slide
               class={clsx(
@@ -90,26 +86,40 @@
                   : 'border-border text-foreground-secondary'
               )}
             >
-              {title.substring(4)}
+              {#if chapter.homepage}
+                <a
+                  class={clsx(
+                    'transition-color mr-2 flex w-full duration-300 hover:text-foreground',
+                    $pageStore.url.pathname === sanitizeSlug(chapter.homepage.full_slug) &&
+                      'text-foreground'
+                  )}
+                  href={sanitizeSlug(chapter.homepage.full_slug)}
+                >
+                  <span class="shrink-0">
+                    {chapter.name}
+                  </span>
+                </a>
+              {:else}
+                {chapter.name}
+              {/if}
             </li>
-
             <ul class="mb-6" transition:slide={{ duration: 400, easing: circOut }}>
-              {#each pages as page, j}
+              {#each chapter.children as subchapter, j}
                 <li
                   class={clsx(
-                    'pl-6 py-1.5 border-l text-sm font-medium transition-all duration-300 flex items-center group',
-                    data.path === page.slug
+                    'group flex items-center border-l py-1.5 pl-6 text-sm font-medium transition-all duration-300',
+                    $pageStore.url.pathname === sanitizeSlug(subchapter.homepage.full_slug)
                       ? 'text-foreground'
                       : 'border-border text-foreground-secondary'
                   )}
                 >
-                  {#if page?.children?.length}
+                  {#if subchapter?.children?.length}
                     <!-- svelte-ignore a11y-no-static-element-interactions -->
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
                     <div
                       class={clsx(
-                        'bg-background group-hover:bg-background-panel border border-background group-hover:border-border',
-                        'cursor-pointer -ml-[37px] mr-3 rounded-xl p-1 transition-transform duration-300',
+                        'border border-background bg-background group-hover:border-border group-hover:bg-background-panel',
+                        '-ml-[37px] mr-3 cursor-pointer rounded-xl p-1 transition-transform duration-300',
                         openPanes[i].children[j] === true && 'rotate-45'
                       )}
                       on:click={() => {
@@ -121,31 +131,31 @@
                     </div>
                   {/if}
                   <a
-                    class="w-full mr-2 flex hover:text-foreground transition-color duration-300"
-                    href={page.slug}
+                    class="transition-color mr-2 flex w-full duration-300 hover:text-foreground"
+                    href={sanitizeSlug(subchapter.homepage.full_slug)}
                   >
                     <span class="shrink-0">
-                      {page.title}
+                      {subchapter.name}
                     </span>
                   </a>
                 </li>
 
-                {#if page.children?.length && openPanes[i].children[j] === true}
-                  <ul transition:slide class="flex flex-col border-l pl-7 pb-2">
-                    {#each page.children as children}
+                {#if subchapter.children?.length && openPanes[i].children[j] === true}
+                  <ul transition:slide class="flex flex-col border-l pb-2 pl-7">
+                    {#each subchapter.children as child}
                       <li
                         class={clsx(
-                          'pl-6 py-2 text-sm border-l font-medium cursor-pointer transition-all duration-300',
-                          data.path === children.slug
-                            ? 'border-foreground text-foreground-primary'
+                          'cursor-pointer border-l py-2 pl-6 text-sm font-medium transition-all duration-300',
+                          $pageStore.url.pathname === sanitizeSlug(child.homepage.full_slug)
+                            ? 'text-foreground-primary border-foreground'
                             : 'border-border text-foreground-secondary'
                         )}
                       >
                         <a
-                          class="hover:text-foreground transition-color duration-300"
-                          href={`${children.slug}`}
+                          class="transition-color duration-300 hover:text-foreground"
+                          href={sanitizeSlug(child.homepage.full_slug)}
                         >
-                          {children.title}
+                          {child.name}
                         </a>
                       </li>
                     {/each}
@@ -158,7 +168,7 @@
       </nav>
     </aside>
 
-    <main class="flex-1 mt-20 lg:mt-10 px-container md:px-0">
+    <main class="mt-36 flex-1 md:mt-20 lg:mt-10">
       <slot />
     </main>
   </div>

@@ -1,6 +1,10 @@
 import { isFormType } from '$components/contact-form.svelte';
-import { env } from '$env/dynamic/private';
-import { AWS_S3_BUCKET } from '$env/static/private';
+import {
+  AWS_S3_BUCKET,
+  NOTION_DB_LEADS,
+  NOTION_DB_CANDIDATES,
+  NOTION_DB_CONTACTS
+} from '$env/static/private';
 import { t } from '$lib/i18n';
 import { sendEmailNotification, sendTransactionalEmail } from '$lib/mail/sendEmail.server.js';
 import { notion } from '$lib/notion.server.js';
@@ -63,13 +67,18 @@ export const actions = {
         case 'quote':
           {
             const response = await notion.pages.create({
-              parent: { database_id: env.NOTION_DB_LEADS },
+              parent: { database_id: NOTION_DB_LEADS },
               properties: {
                 Name: { title: [{ text: { content: name } }] },
                 Email: { email: email },
                 Budget: { select: { name: fields.budget || 'n/a' } },
                 Message: { rich_text: [{ text: { content: message || '' } }] },
                 Status: { select: { name: 'To triage' } },
+                Type: { select: { name: 'Organic' } },
+                Source: { select: { name: 'Website' } },
+                'Account Owner': {
+                  people: [{ id: 'd8a42f29-ea96-44d4-80bb-4129259b1d41', object: 'user' }]
+                },
                 Attachments: {
                   files: getNotionAttachments(fields.attachments || '')
                 }
@@ -83,7 +92,7 @@ export const actions = {
         case 'estimations':
           {
             const response = await notion.pages.create({
-              parent: { database_id: env.NOTION_DB_LEADS },
+              parent: { database_id: NOTION_DB_LEADS },
               properties: {
                 Name: { title: [{ text: { content: name } }] },
                 Email: { email: email },
@@ -99,11 +108,11 @@ export const actions = {
               notionLink = response.url;
             }
           }
-
           break;
+
         case 'career':
           await notion.pages.create({
-            parent: { database_id: env.NOTION_DB_CANDIDATES },
+            parent: { database_id: NOTION_DB_CANDIDATES },
             properties: {
               Name: { title: [{ text: { content: name } }] },
               Email: { email: email },
@@ -115,9 +124,10 @@ export const actions = {
             }
           });
           break;
+
         case 'contact':
           await notion.pages.create({
-            parent: { database_id: env.NOTION_DB_CONTACTS },
+            parent: { database_id: NOTION_DB_CONTACTS },
             properties: {
               Name: { title: [{ text: { content: name } }] },
               Email: { email: email },
@@ -125,10 +135,24 @@ export const actions = {
             }
           });
           break;
+
         default:
           break;
       }
     } catch (error) {
+      console.error('Failed to store submission', error);
+
+      const notionErrorMessage: string =
+        error instanceof Error ? error.message.toString() : 'unknown error, please check the logs';
+
+      sendEmailNotification({
+        name,
+        email,
+        message,
+        formType,
+        notionErrorMessage
+      });
+
       return fail(500, {
         error: {
           message: 'Failed to store form submission'
@@ -144,7 +168,7 @@ export const actions = {
         formType,
         notionLink
       });
-    } catch (error) {
+    } catch {
       return fail(500, {
         error: {
           message: 'Failed to send internal email notification'
@@ -160,7 +184,7 @@ export const actions = {
         subject,
         template: event.params.type === 'quote' ? 'default' : 'minimal'
       });
-    } catch (error) {
+    } catch {
       return fail(500, {
         error: {
           message: 'Failed to send email notification to user'

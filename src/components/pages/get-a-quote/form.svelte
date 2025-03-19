@@ -1,12 +1,13 @@
 <script lang="ts">
   import clsx from 'clsx';
   import ContactForm from '$components/contact-form.svelte';
-  import type { GetAQuotePageStoryblok, PackagesStoryblok } from '$types/bloks';
+  import type { FormBudgetRangeStoryblok, PackagesStoryblok } from '$types/bloks';
   import { fly } from 'svelte/transition';
   import { circOut } from 'svelte/easing';
   import { Confetti } from 'svelte-confetti';
   import { CONFETTI_COLOR_ARRAY } from '$lib/constants';
   import { truncateText } from '$lib/utils/strings';
+  import { budgetRange } from './budgetRange';
 
   type Eggs =
     | 'attach-multiple'
@@ -30,7 +31,7 @@
     {} as Record<Eggs, string>
   );
 
-  export let page: GetAQuotePageStoryblok | PackagesStoryblok;
+  export let page: FormBudgetRangeStoryblok | PackagesStoryblok;
 
   let name = '';
   let email = '';
@@ -64,17 +65,17 @@
       character = 'attach';
     }
   } else if (lastChangedInput === 'budget') {
-    if (['15.000€ to 50.000€'].includes(budget)) {
+    if (budgetRange[0].includes(budget)) {
       character = 'budget10';
-    } else if (['50.000€ to 100.000€'].includes(budget)) {
+    } else if (budgetRange[1].includes(budget)) {
       character = 'budget25';
-    } else if (['100.000€ to 200.000€'].includes(budget)) {
+    } else if (budgetRange[2].includes(budget)) {
       character = 'budget25';
-    } else if (['200.000€ to 300.000€'].includes(budget)) {
+    } else if (budgetRange[3].includes(budget)) {
       character = 'budget50';
-    } else if (['300.000€ to 400.000€'].includes(budget)) {
+    } else if (budgetRange[4].includes(budget)) {
       character = 'budget50';
-    } else if (['400.000€ and above'].includes(budget)) {
+    } else if (budgetRange[5].includes(budget)) {
       character = 'budget100';
     }
   } else if (
@@ -108,7 +109,7 @@
 {/if}
 <div
   class={clsx(
-    'container relative mx-auto mt-10 gap-8 px-container pb-12 overflow-hidden',
+    'container relative mx-auto mt-10 gap-8 overflow-hidden px-container pb-12',
     'md:mt-14 md:pb-20',
     'lg:mt-20 lg:flex lg:justify-between lg:pb-32'
   )}

@@ -1,9 +1,20 @@
-import { createFileTree } from '$lib/utils/notion';
-import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-import handbook from '$root/handbook-data.json';
+import { getStoryblok } from '$lib/storyblok';
+import { error } from '@sveltejs/kit';
 
-export const load = () => {
-  const chapters = createFileTree(handbook as Array<PageObjectResponse>);
+import { getHandbookHierarchyConfig } from '$components/pages/handbook/common/data.js';
 
-  return { chapters };
+export const load = async ({ locals, fetch }) => {
+  const version = locals.version;
+  const storyblok = getStoryblok({ fetch });
+
+  try {
+    const config = await getHandbookHierarchyConfig(storyblok, version);
+
+    return {
+      hierarchy: config.content.hierarchy
+    };
+  } catch (err) {
+    console.error('Failed to get Handbook content for the index page', err);
+    throw error(404, 'Not found');
+  }
 };

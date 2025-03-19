@@ -1,4 +1,3 @@
-import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { getStoryblok } from '$lib/storyblok';
 import type { BlogPostStoryblok } from '$types/bloks';
@@ -7,28 +6,23 @@ export const GET: RequestHandler = async () => {
   const baseUrl = 'https://www.significa.co/blog/';
   const storyblok = getStoryblok();
 
-  try {
-    const posts: BlogPostStoryblok[] = await storyblok.getAll('cdn/stories', {
-      version: 'published',
-      content_type: 'blog-post',
-      sort_by: 'first_published_at:desc'
-    });
+  const posts: BlogPostStoryblok[] = await storyblok.getAll('cdn/stories', {
+    version: 'published',
+    content_type: 'blog-post',
+    sort_by: 'first_published_at:desc'
+  });
 
-    const { data } = await storyblok.get('cdn/stories/blog');
-    const { seo_title, seo_description } = data.story.content;
+  const { data } = await storyblok.get('cdn/stories/blog');
+  const { seo_title, seo_description } = data.story.content;
 
-    const body = render(baseUrl, seo_title, seo_description, posts);
+  const body = render(baseUrl, seo_title, seo_description, posts);
 
-    const headers = {
-      'Cache-Control': `max-age=0, s-max-age=600`,
-      'Content-Type': 'application/xml'
-    };
+  const headers = {
+    'Cache-Control': `max-age=0, s-max-age=600`,
+    'Content-Type': 'application/xml'
+  };
 
-    return new Response(body, { headers });
-  } catch (err) {
-    console.error(err);
-    throw error(500, 'Unable to fetch RSS feed');
-  }
+  return new Response(body, { headers });
 };
 
 const render = (baseUrl: string, title: string, desc: string, posts: BlogPostStoryblok[]) =>

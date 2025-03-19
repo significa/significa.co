@@ -18,7 +18,7 @@
   import EggHatching from './canvas-items/egg-hatching.svelte';
 
   const MINIMAP_W = 128;
-  const MINIMAP_PADDING = 8;
+  const MINIMAP_PADDING = 0;
 
   export let withMouseDragScroll = false;
   export let title: string | undefined = undefined;

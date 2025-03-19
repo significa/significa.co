@@ -1,5 +1,5 @@
 import type { ISbResult, ISbStoriesParams, ISbStoryData } from '@storyblok/js';
-import { getStoryblok } from '$lib/storyblok';
+import { getStoryblok, handleStoryblokError } from '$lib/storyblok';
 import type {
   BlogPostStoryblok,
   CareerStoryblok,
@@ -7,14 +7,16 @@ import type {
   ProjectStoryblok,
   TeamMemberStoryblok,
   LandingPageStoryblok,
-  RecognitionStoryblok
+  RecognitionStoryblok,
+  HandbookStoryblok
 } from '$types/bloks';
 import { HOME_SLUG } from './constants';
+import { error } from '@sveltejs/kit';
 
 export const PAGE_PARAMS = {
   resolve_links: 'url',
   resolve_relations:
-    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects,blog-post.authors,hero.small_highlights,work-recognitions.small_highlights,projects.projects'
+    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects,blog-post.authors,hero.small_highlights,work-recognitions.small_highlights,projects.projects,highlights.small_highlights,projects-two-columns.projects'
 } as const;
 
 export const BLOG_PARAMS = {
@@ -111,6 +113,43 @@ export const fetchBlogPosts = async (
   });
 };
 
+export const fetchHomeBlogPosts = async (
+  options: { version?: 'draft' | 'published'; fetch?: typeof fetch; url?: URL } = {}
+) => {
+  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
+
+  const res = await storyblok.get('cdn/stories', {
+    content_type: 'blog-post',
+    sort_by: 'first_published_at:desc',
+    resolve_relations: 'blog-post.author,blog-post.authors',
+    per_page: 3,
+    page: 1,
+    version: options.version || 'published'
+  });
+
+  return res.data.stories;
+};
+
+export const fetchTeamMembers = async (
+  options: { version?: 'draft' | 'published'; fetch?: typeof fetch; url?: URL } = {}
+) => {
+  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
+
+  const res = await storyblok.get('cdn/stories', {
+    ...TEAM_MEMBER_PARAMS,
+    per_page: 100,
+    page: 1,
+    filter_query: {
+      is_active: {
+        is: true
+      }
+    },
+    version: options.version || 'published'
+  });
+
+  return res.data.stories;
+};
+
 export const fetchProjects = async (
   options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
 ) => {
@@ -136,13 +175,10 @@ export type BlogPostPage = ISbStoryData<
     project: ISbStoryData<ProjectStoryblok>;
   }
 >;
-export type ProjectPage = ISbStoryData<
-  Omit<ProjectStoryblok, 'team'> & {
-    team: ISbStoryData<TeamMemberStoryblok>[];
-  }
->;
+export type ProjectPage = ISbStoryData<ProjectStoryblok>;
 export type TeamMemberPage = ISbStoryData<TeamMemberStoryblok>;
 export type LandingPage = ISbStoryData<LandingPageStoryblok>;
+export type HandbookPage = ISbStoryData<HandbookStoryblok>;
 
 export type DynamicPage =
   | Page
@@ -150,7 +186,8 @@ export type DynamicPage =
   | ProjectPage
   | TeamMemberPage
   | CareerPage
-  | LandingPage;
+  | LandingPage
+  | HandbookPage;
 
 export type PageResult = {
   story: DynamicPage;
@@ -175,132 +212,136 @@ export async function fetchPage(options: {
 
   const storyblok = getStoryblok({ fetch: options.fetch || fetch });
 
+  if (slug === HOME_SLUG) throw error(404);
+
+  let story: ISbResult;
   try {
-    // home is in '/', so '/home' should 404
-    if (slug === HOME_SLUG) throw new Error();
-
-    const { data }: { data: { story?: DynamicPage } } = await storyblok.get(
-      `cdn/stories/${slug || HOME_SLUG}`,
-      {
-        version: options.version || 'published',
-        ...PAGE_PARAMS
-      }
-    );
-
-    // 404
-    if (!data.story?.id) throw new Error();
-
-    // Index pages (blog, projects) have their own route but they need to be able to be rendered in the drawer as well
-    if (
-      data.story.content.component === 'page' &&
-      data.story.content.page?.[0].component === 'blog-index'
-    ) {
-      return {
-        story: data.story,
-        blogIndex: await fetchBlogPosts(options)
-      };
-    }
-
-    if (
-      data.story.content.component === 'page' &&
-      data.story.content.page?.[0].component === 'projects-index'
-    ) {
-      return {
-        story: data.story,
-        projectsIndex: await fetchProjects(options)
-      };
-    }
-
-    // home page data
-    if (
-      data.story.content.component === 'page' &&
-      data.story.content.page?.[0].component === 'home-page'
-    ) {
-      return {
-        story: data.story,
-        homePosts: await fetchEntries<BlogPostPage>(options, {
-          ...BLOG_PARAMS,
-          per_page: 3,
-          page: 1
-        })
-      };
-    }
-
-    // Blog posts need to fetch related posts
-    if (data.story.content.component === 'blog-post') {
-      return {
-        story: data.story,
-        relatedPosts: await fetchEntries<BlogPostPage>(options, {
-          ...BLOG_PARAMS,
-          per_page: 3,
-          page: 1,
-          excluding_ids: data.story.id.toString(),
-          with_tag: data.story.tag_list.join(',')
-        })
-      };
-    }
-
-    // Projects need to fetch related projects
-    if (data.story.content.component === 'project') {
-      return {
-        story: data.story,
-        relatedProjects: await fetchEntries<ProjectPage>(options, PROJECT_PARAMS)
-      };
-    }
-
-    // Team members need to fetch related posts and projects
-    if (data.story.content.component === 'team-member') {
-      return {
-        story: data.story,
-        authorPosts: await fetchEntries<BlogPostPage>(options, {
-          ...BLOG_PARAMS,
-          per_page: 50,
-          page: 1,
-          filter_query: {
-            author: {
-              in: data.story.uuid
-            }
-          }
-        }),
-        authorProjects: await fetchEntries<ProjectPage>(options, {
-          ...PROJECT_PARAMS,
-          filter_query: {
-            team: {
-              any_in_array: data.story.uuid
-            }
-          }
-        })
-      };
-    }
-
-    // Careers canvas needs access to team members in order to fill "Team" component
-    if (
-      data.story.content.component === 'page' &&
-      data.story.content.page?.[0].component === 'careers-page'
-    ) {
-      return {
-        story: data.story,
-        teamMembers: await fetchEntries<TeamMemberPage>(options, {
-          ...TEAM_MEMBER_PARAMS,
-          per_page: 100,
-          page: 1,
-          filter_query: {
-            is_active: {
-              is: true
-            }
-          }
-        })
-      };
-    }
-
-    return { story: data.story };
+    story = await storyblok.get(`cdn/stories/${slug || HOME_SLUG}`, {
+      version: options.version || 'published',
+      ...PAGE_PARAMS
+    });
   } catch (err) {
-    console.error(err);
-    throw new Error('Not found', { cause: err });
+    throw handleStoryblokError(err);
   }
+
+  const { data }: { data: { story?: DynamicPage } } = story;
+  if (!data.story?.id) throw error(404, `Storyblok story for ${slug} has no id`);
+
+  // Index pages (blog, projects) have their own route but they need to be able to be rendered in the drawer as well
+  if (
+    data.story.content.component === 'page' &&
+    data.story.content.page.length > 0 &&
+    data.story.content.page?.[0].component === 'blog-index'
+  ) {
+    return {
+      story: data.story,
+      blogIndex: await fetchBlogPosts(options)
+    };
+  }
+
+  if (
+    data.story.content.component === 'page' &&
+    data.story.content.page.length > 0 &&
+    data.story.content.page?.[0].component === 'projects-index'
+  ) {
+    return {
+      story: data.story,
+      projectsIndex: await fetchProjects(options)
+    };
+  }
+
+  // home page data
+  if (
+    data.story.content.component === 'page' &&
+    data.story.content.page.length > 0 &&
+    data.story.content.page?.[0].component === 'home-page'
+  ) {
+    return {
+      story: data.story,
+      homePosts: await fetchEntries<BlogPostPage>(options, {
+        ...BLOG_PARAMS,
+        per_page: 3,
+        page: 1
+      })
+    };
+  }
+
+  // Blog posts need to fetch related posts
+  if (data.story.content.component === 'blog-post') {
+    return {
+      story: data.story,
+      relatedPosts: await fetchEntries<BlogPostPage>(options, {
+        ...BLOG_PARAMS,
+        per_page: 3,
+        page: 1,
+        excluding_ids: data.story.id.toString(),
+        with_tag: data.story.tag_list.join(',')
+      })
+    };
+  }
+
+  // Projects need to fetch related projects
+  if (data.story.content.component === 'project') {
+    return {
+      story: data.story,
+      relatedProjects: await fetchEntries<ProjectPage>(options, PROJECT_PARAMS)
+    };
+  }
+
+  // Team members need to fetch related posts and projects
+  if (data.story.content.component === 'team-member') {
+    return {
+      story: data.story,
+      authorPosts: await fetchEntries<BlogPostPage>(options, {
+        ...BLOG_PARAMS,
+        per_page: 50,
+        page: 1,
+        filter_query: {
+          authors: {
+            any_in_array: data.story.uuid
+          }
+        }
+      }),
+      authorProjects: await fetchEntries<ProjectPage>(options, {
+        ...PROJECT_PARAMS,
+        filter_query: {
+          team: {
+            any_in_array: data.story.uuid
+          }
+        }
+      })
+    };
+  }
+
+  // Careers canvas needs access to team members in order to fill "Team" component
+  if (
+    data.story.content.component === 'page' &&
+    data.story.content.page.length > 0 &&
+    data.story.content.page?.[0].component === 'careers-page'
+  ) {
+    return {
+      story: data.story,
+      teamMembers: await fetchEntries<TeamMemberPage>(options, {
+        ...TEAM_MEMBER_PARAMS,
+        per_page: 100,
+        page: 1,
+        filter_query: {
+          is_active: {
+            is: true
+          }
+        }
+      })
+    };
+  }
+
+  if (data.story.content.component === 'handbook') {
+    return { story: data.story };
+  }
+
+  return { story: data.story };
 }
 
-async function fetchEntries<T>(
+export async function fetchEntries<T>(
   options: {
     version?: 'draft' | 'published';
     fetch?: typeof fetch;
@@ -320,7 +361,7 @@ async function fetchEntries<T>(
 
     return stories;
   } catch (error) {
-    console.error(error);
+    console.error('Unknown error fetching entries', error);
     return [];
   }
 }

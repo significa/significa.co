@@ -26,16 +26,16 @@
 <div class="mb-px h-[--topnav-height]">
   <header
     class={clsx(
-      'fixed ease-[cubic-bezier(0.90, 0, 0.05, 1)] z-30 w-full border-b bg-background/95 backdrop-blur-md transition-[transform,border-color] duration-300',
+      'ease-[cubic-bezier(0.90, 0, 0.05, 1)] fixed z-30 w-full border-b bg-background/95 backdrop-blur-md transition-[transform,border-color] duration-300',
       !$scrollStatus.isPastZero ? 'border-b-transparent' : 'border-b-border',
       !$scrollStatus.isPastThreshold
         ? 'translate-y-0'
         : $scrollStatus.direction === 'down' || isNavHidden
-        ? '-translate-y-full'
-        : 'translate-y-0'
+          ? '-translate-y-full'
+          : 'translate-y-0'
     )}
   >
-    <div class="flex items-center justify-between py-4 container mx-auto px-container">
+    <div class="container mx-auto flex items-center justify-between px-container py-4">
       <div class="flex items-center gap-2">
         <a aria-label="Go to homepage" href="/">
           <Logo class="mt-1" variant="wordmark" />
@@ -78,12 +78,12 @@
       role="button"
       tabindex="0"
       on:keydown={onkeydown}
-      transition:fade|global={{ duration: 200 }}
+      transition:fade={{ duration: 200 }}
       class="fixed inset-0 z-50 bg-black/50"
       on:click={() => (panel = false)}
     />
     <div
-      transition:fly|global={{ x: 1000, duration: 300 }}
+      transition:fly={{ x: 1000, duration: 300 }}
       use:clickOutside={() => (panel = false)}
       class={clsx(
         'px-container pl-6',

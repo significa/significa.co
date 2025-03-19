@@ -4,11 +4,19 @@
   "framework": "sveltekit",
   "headers": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "headers": [
         {
           "key": "X-Frame-Options",
           "value": "DENY"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "script-src * 'unsafe-inline' blob:; script-src-attr 'none'; img-src 'self' *.storyblok.com data: blob:; media-src 'self' *.storyblok.com; object-src *; child-src 'none'; frame-src 'none'; frame-ancestors https://app.storyblok.com; upgrade-insecure-requests"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "fullscreen=*, picture-in-picture=*, autoplay=*, accelerometer=(), ambient-light-sensor=(), battery=(), camera=(), display-capture=(), encrypted-media=(), geolocation=(), gyroscope=(), idle-detection=(), magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), web-share=()"
         },
         {
           "key": "X-Content-Type-Options",
@@ -47,6 +55,14 @@
     {
       "source": "/blog/dark-ui--why-when--where",
       "destination": "/blog/dark-ui-why-when-where"
+    },
+    {
+      "source": "/labs",
+      "destination": "/blog"
+    },
+    {
+      "source": "/labs/css-only-slider",
+      "destination": "/blog/css-only-slider"
     }
   ]
 }

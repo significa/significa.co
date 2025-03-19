@@ -20,7 +20,7 @@
   <div class="container mx-auto flex gap-6 px-container py-8 @container">
     <div
       class={twMerge(
-        'hidden flex-1 @6xl:grid @6xl:grid-rows-2 @6xl:grid-flow-col @6xl:gap-6 @6xl:h-fit',
+        'hidden flex-1 @6xl:grid @6xl:h-fit @6xl:grid-flow-col @6xl:grid-rows-2 @6xl:gap-6',
         post.content.authors?.length > 2 && '@6xl:grid-cols-2'
       )}
     >
@@ -36,9 +36,20 @@
       {/if}
     </div>
     <div class="w-full max-w-xl">
-      <p class="mb-2 text-base font-medium text-foreground-secondary">
-        {formatDate(new Date(post.first_published_at || post.published_at || post.created_at))}
-      </p>
+      <div class="flex gap-2">
+        <p class="mb-2 text-base font-medium text-foreground-secondary">
+          {formatDate(new Date(post.first_published_at || post.published_at || post.created_at))}
+        </p>
+        {#if post.first_published_at && post.content.reading_time}
+          <p class="text-base text-foreground-secondary/80">•</p>
+        {/if}
+        {#if post.content.reading_time}
+          <p class="text-base text-foreground-secondary/80">
+            {`${post.content.reading_time} min read`}
+          </p>
+        {/if}
+      </div>
+
       <Link href={`/blog/${post.slug}`} class="max-w-2xl text-4xl elevated-link">{post.name}</Link>
       {#if post.tag_list.length}
         <div class="mt-5 flex flex-wrap gap-2">

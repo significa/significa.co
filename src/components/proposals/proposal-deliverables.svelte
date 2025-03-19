@@ -5,12 +5,13 @@
   import type { ProposalDeliverableStoryblok } from '$types/bloks';
 
   export let data: ProposalDeliverableStoryblok[];
+  export let showManpower = true;
 
   $: totalManpower = data.reduce((acc, entry) => (acc += +entry.manpower), 0);
 </script>
 
-<div class="overflow-x-scroll mt-10 md:mt-14 lg:mt-20">
-  <div class="border-b border-foreground-secondary min-w-[780px]">
+<div class="mt-10 overflow-x-scroll md:mt-14 lg:mt-20">
+  <div class="min-w-[780px] border-b border-foreground-secondary">
     <div
       class={clsx(
         'container mx-auto px-container py-2',
@@ -25,28 +26,30 @@
         {t('proposals.scope.service')}
       </p>
 
-      <p class="text-2xs uppercase text-foreground-secondary text-right">
-        {t('proposals.deliverables.manpower')}
-      </p>
+      {#if showManpower}
+        <p class="text-right text-2xs uppercase text-foreground-secondary">
+          {t('proposals.deliverables.manpower')}
+        </p>
+      {/if}
     </div>
   </div>
 
   <div>
     {#each data as entry}
       <div
-        class="border-b border-foreground-tertiary last:border-foreground-secondary min-w-[780px]"
+        class="min-w-[780px] border-b border-foreground-tertiary last:border-foreground-secondary"
       >
         <div
           class={clsx(
-            'container md:mx-auto px-container',
+            'container px-container md:mx-auto',
             'grid grid-cols-[1fr_2fr_1fr] gap-10 md:gap-12'
           )}
         >
-          <div class="-ml-3.5 my-4">
+          <div class="my-4 -ml-3.5">
             <p class="text-sm font-bold">
               <span
                 style="background-color: {entry.color}"
-                class="w-2 h-2 mr-1 rounded-full inline-block"
+                class="mr-1 inline-block h-2 w-2 rounded-full"
               ></span>
               {entry.title}
             </p>
@@ -61,36 +64,40 @@
                 <p class="text-sm font-bold">
                   {service.title}
                 </p>
-                <p class="text-sm text-foreground-secondary max-w-[28rem]">
+                <p class="max-w-[28rem] text-sm text-foreground-secondary">
                   {service.description}
                 </p>
               </div>
             {/each}
           </div>
 
-          <p class="my-4 text-sm text-right">
-            {entry.manpower}
-            {+entry.manpower > 1 ? t('proposals.months') : t('proposals.month')}
-          </p>
+          {#if showManpower}
+            <p class="my-4 text-right text-sm">
+              {entry.manpower}
+              {+entry.manpower > 1 ? t('proposals.months') : t('proposals.month')}
+            </p>
+          {/if}
         </div>
       </div>
     {/each}
   </div>
 
-  <div class="bg-background-offset/50 min-w-[780px]">
-    <div
-      class={clsx(
-        'md:container md:mx-auto px-container',
-        'flex gap-x-2 py-2 justify-end items-baseline font-semibold'
-      )}
-    >
-      <span class="font-normal text-2xs uppercase text-foreground-secondary"
-        >{t('proposals.deliverables.total')}</span
+  {#if showManpower}
+    <div class="min-w-[780px] bg-background-offset/50">
+      <div
+        class={clsx(
+          'px-container md:container md:mx-auto',
+          'flex items-baseline justify-end gap-x-2 py-2 font-semibold'
+        )}
       >
-      <span>
-        {totalManpower}
-        {totalManpower > 1 ? t('proposals.months') : t('proposals.month')}
-      </span>
+        <span class="text-2xs font-normal uppercase text-foreground-secondary"
+          >{t('proposals.deliverables.total')}</span
+        >
+        <span>
+          {totalManpower}
+          {totalManpower > 1 ? t('proposals.months') : t('proposals.month')}
+        </span>
+      </div>
     </div>
-  </div>
+  {/if}
 </div>

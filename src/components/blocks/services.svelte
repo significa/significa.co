@@ -18,7 +18,7 @@
 </section>
 
 <section>
-  <div class="flex mt-11 md:mt-0">
+  <div class="mt-11 flex md:mt-0">
     {#if block.services}
       <div class="w-full justify-between lg:border-b lg:border-t">
         <div class="container relative mx-auto grid grid-cols-1 px-container md:grid-cols-3">
@@ -31,7 +31,7 @@
           />
           {#each block.services as service}
             <div
-              class="flex flex-col border-t mt-11 md:mt-0 last:border-b last:pb-11 pb-0 md:border-t-0 md:last:border-b-0 lg:border-r lg:p-8 lg:last:border-r-0 lg:first-of-type:pl-0"
+              class="mt-11 flex flex-col border-t pb-0 last:border-b last:pb-11 md:mt-0 md:border-t-0 md:last:border-b-0 lg:border-r lg:p-8 lg:last:border-r-0 lg:first-of-type:pl-0"
             >
               <p class="mb-2 mt-11 text-3xl font-semibold lg:mt-0">{service.title}</p>
               {#if service.entry}

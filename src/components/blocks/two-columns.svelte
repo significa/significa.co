@@ -9,7 +9,7 @@
 
 <div
   class={clsx(
-    'relative my-10 grid items-start gap-10 @4xl:my-20 @4xl:grid-cols-2',
+    'relative my-10 grid items-start gap-10 @lg:my-20 @lg:grid-cols-2',
     $$restProps.class
   )}
   use:storyblokEditable={block}

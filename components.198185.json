@@ -3449,14 +3449,18 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-02-15T13:51:55.247Z",
-      "updated_at": "2023-02-15T13:52:44.426Z",
+      "updated_at": "2025-03-20T14:22:49.345Z",
       "id": 3442775,
       "schema": {
         "label": {
-          "type": "text"
+          "type": "text",
+          "id": "4UWtzA-kTLyXySYnzC5Zdg"
         },
         "link": {
-          "type": "multilink"
+          "type": "multilink",
+          "allow_target_blank": true,
+          "allow_custom_attributes": true,
+          "id": "0JSdcXc6TnG1wAihM0Hsag"
         }
       },
       "image": null,

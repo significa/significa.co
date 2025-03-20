@@ -9,14 +9,19 @@
   import { richTextBlockWidths } from '$lib/constants';
 
   export let block: BoxStoryblok;
-  $: ({ href } = getAnchorFromCmsLink(block.link?.[0]?.link) || { href: undefined });
+  $: ({ href, target, rel, custom } = getAnchorFromCmsLink(block.link?.[0]?.link) || {
+    href: undefined
+  });
 </script>
 
 <svelte:element
   this={href ? 'a' : 'div'}
   use:storyblokEditable={block}
   use:drawerLinks
+  {rel}
+  {target}
   {...href ? { href } : {}}
+  {...custom}
   class={clsx(
     'not-rich-text mx-auto my-6 block rounded-2xl bg-background-panel p-4  md:my-10',
     href && 'transition-all hover:border-border-active hover:ring-2',

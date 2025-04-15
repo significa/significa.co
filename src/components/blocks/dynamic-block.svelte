@@ -11,6 +11,7 @@
     'blog-list': BlogList,
     image: Image,
     'careers-list': CareersList,
+    faqs: FaqsList,
     'contact-us-form': ContactUsForm,
     comparison: Comparison,
     canvas: Canvas,
@@ -83,6 +84,7 @@
   import Timeline from './timeline.svelte';
   import Physics from './physics.svelte';
   import CareersList from './careers-list.svelte';
+  import FaqsList from './faqs-list.svelte';
   import BlogList from './blog-list.svelte';
   import AboutGrid from './about-grid.svelte';
   import Newton from './newton.svelte';

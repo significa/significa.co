@@ -2331,6 +2331,79 @@
       "component_group_name": "Blocks"
     },
     {
+      "name": "faq",
+      "display_name": null,
+      "description": "",
+      "created_at": "2025-04-11T14:11:58.333Z",
+      "updated_at": "2025-04-11T14:12:08.261Z",
+      "id": 7207895,
+      "schema": {
+        "question": {
+          "type": "text",
+          "pos": 0,
+          "id": "s5aytvY0Sk-tLTTL3fYT6g"
+        },
+        "answer": {
+          "type": "textarea",
+          "pos": 1,
+          "id": "CyjVPJuOSqCt9L9AmhJr7A"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "faq",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "Single"
+    },
+    {
+      "name": "faqs",
+      "display_name": null,
+      "description": "",
+      "created_at": "2025-04-11T14:12:35.995Z",
+      "updated_at": "2025-04-11T14:14:40.473Z",
+      "id": 7207900,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0,
+          "id": "Y4r6gtSAR1Sat88iglpNoA"
+        },
+        "questions": {
+          "type": "bloks",
+          "pos": 1,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["faq"],
+          "id": "LCmwgkrcR7iEOrnLHvIQog"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "faqs",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "footer-column-external",
       "display_name": "Footer external links",
       "description": null,
@@ -3174,7 +3247,7 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-02-16T10:44:18.022Z",
-      "updated_at": "2023-03-29T15:31:23.095Z",
+      "updated_at": "2025-04-15T10:54:39.912Z",
       "id": 3446843,
       "schema": {
         "width": {
@@ -3202,15 +3275,27 @@
               "name": "full"
             }
           ],
-          "default_value": "narrow"
+          "default_value": "narrow",
+          "pos": 0,
+          "id": "O1RLihpgTie3Wd9fle5ZkQ"
         },
         "image": {
           "type": "asset",
           "filetypes": ["images"],
-          "required": true
+          "required": true,
+          "pos": 1,
+          "id": "3PdW2gwKTLCyO1Ufh88ilw"
+        },
+        "image_dark": {
+          "type": "asset",
+          "pos": 2,
+          "id": "M-wBNT8HREiyz3T4YRqnhg",
+          "filetypes": ["images"]
         },
         "expandable": {
-          "type": "boolean"
+          "type": "boolean",
+          "pos": 3,
+          "id": "74-z6wAmToKfpv7Ef34fpA"
         }
       },
       "image": "//a.storyblok.com/f/198185/x/94b8136fef/screenshot-2023-03-22-at-10-39-48.png",
@@ -3850,28 +3935,32 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-03-03T13:41:50.937Z",
-      "updated_at": "2024-08-13T14:21:23.054Z",
+      "updated_at": "2025-04-15T10:32:55.672Z",
       "id": 3520995,
       "schema": {
         "seo_title": {
           "type": "text",
           "required": false,
-          "pos": 0
+          "pos": 0,
+          "id": "3eVvx395SK-DARatmwxwOg"
         },
         "seo_description": {
           "type": "text",
           "required": false,
-          "pos": 1
+          "pos": 1,
+          "id": "yP3ybCYtTuquhh1LiST0Pg"
         },
         "seo_og_image": {
           "type": "asset",
           "filetypes": ["images"],
-          "pos": 2
+          "pos": 2,
+          "id": "OcnI5Q9wR4iFnUjJv3wSGA"
         },
         "seo_canonical_url": {
           "type": "text",
           "pos": 3,
-          "description": "The default is the page URL"
+          "description": "The default is the page URL",
+          "id": "TdsGBU1HTECWESqylLVORQ"
         },
         "change_frequency": {
           "type": "option",
@@ -3915,20 +4004,23 @@
               "name": "Never"
             }
           ],
-          "pos": 4
+          "pos": 4,
+          "id": "0h5kpWoIQ02Ne5n0Cb1jhQ"
         },
         "priority": {
           "type": "number",
           "description": "The priority of the page relative to other pages on your site, where 0.1 is the lowest priority and 1.0 is the highest priority.\n\n1.0-0.8\nHomepage, product information, landing pages.\n\n0.7-0.4\nNews articles, some weather services, blog posts, pages that no site would be complete without.\n\n0.3-0.0\nFAQs, outdated info, old press releases, completely static pages that are still relevant enough to keep from deleting entirely.",
           "decimals": 1,
-          "pos": 5
+          "pos": 5,
+          "id": "U5jybdrHTqmBWHZVObhP_Q"
         },
         "structure_data_markup": {
           "type": "textarea",
           "display_name": "Structure Data Markup",
           "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
           "tooltip": true,
-          "pos": 6
+          "pos": 6,
+          "id": "P2M8jW3YSo6k8JUw3Y0NWg"
         },
         "page": {
           "type": "bloks",
@@ -3937,7 +4029,8 @@
           "component_whitelist": [],
           "component_group_whitelist": ["78726ff5-00c6-4ddb-bfef-551b83977e54"],
           "maximum": 1,
-          "pos": 7
+          "pos": 7,
+          "id": "n12uoIcXRr-DegZJVTwy4Q"
         },
         "tab-b1b4aa1b-2d5c-436e-ac16-09e30b9de047": {
           "display_name": "SEO",
@@ -3951,15 +4044,20 @@
             "seo_canonical_url"
           ],
           "pos": 8,
-          "type": "tab"
+          "type": "tab",
+          "id": "sbSqGy1cQ26sFgnjC53gRw"
         },
         "blocks": {
           "type": "bloks",
           "restrict_type": "groups",
           "restrict_components": true,
           "component_whitelist": [],
-          "component_group_whitelist": ["c9011224-9690-43bd-b686-e8f60ef6c7f6"],
-          "pos": 9
+          "component_group_whitelist": [
+            "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+            "76b6a3af-a1fa-4ffe-b980-52a2da9245ca"
+          ],
+          "pos": 9,
+          "id": "nQ6WO6MwQdq__L4tX_vR-w"
         }
       },
       "image": null,

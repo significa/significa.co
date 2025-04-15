@@ -548,6 +548,22 @@ export interface EstimationStoryblok {
   [k: string]: any;
 }
 
+export interface FaqStoryblok {
+  question?: string;
+  answer?: string;
+  _uid: string;
+  component: 'faq';
+  [k: string]: any;
+}
+
+export interface FaqsStoryblok {
+  title?: string;
+  questions?: FaqStoryblok[];
+  _uid: string;
+  component: 'faqs';
+  [k: string]: any;
+}
+
 export interface FooterColumnExternalStoryblok {
   title?: string;
   links?: LinkStoryblok[];
@@ -711,6 +727,7 @@ export interface HomePageStoryblok {
 export interface ImageStoryblok {
   width?: '' | 'narrow' | 'medium' | 'wide' | 'full';
   image: AssetStoryblok;
+  image_dark?: AssetStoryblok;
   expandable: boolean;
   _uid: string;
   component: 'image';
@@ -750,6 +767,7 @@ export interface LandingPageStoryblok {
     | CtaCardStoryblok
     | DrawSeggStoryblok
     | EstimationStoryblok
+    | FaqsStoryblok
     | FormBudgetRangeStoryblok
     | HandbookLevelStoryblok
     | HeroStoryblok
@@ -911,6 +929,7 @@ export interface PageStoryblok {
     | CtaCardStoryblok
     | DrawSeggStoryblok
     | EstimationStoryblok
+    | FaqsStoryblok
     | FormBudgetRangeStoryblok
     | HandbookLevelStoryblok
     | HeroStoryblok
@@ -933,6 +952,12 @@ export interface PageStoryblok {
     | TimezoneStoryblok
     | VerticalListStoryblok
     | WorkRecognitionsStoryblok
+    | ComparisonStoryblok
+    | ImageStoryblok
+    | ImageGridStoryblok
+    | TableStoryblok
+    | TwoColumnsStoryblok
+    | VideoStoryblok
   )[];
   _uid: string;
   component: 'page';

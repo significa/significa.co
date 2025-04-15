@@ -12,7 +12,7 @@
 {#if block?.image?.filename}
   <figure
     class={clsx(
-      'not-rich-text mx-auto my-8 h-auto w-full md:my-14',
+      'not-rich-text mx-auto my-8 h-auto w-full dark:hidden md:my-14',
       $$restProps.class,
       richTextBlockWidths[block?.width || 'full']
     )}
@@ -27,6 +27,29 @@
     {#if block?.image?.title}
       <figcaption class="mt-2 text-center text-sm text-foreground-secondary">
         {block.image.title}
+      </figcaption>
+    {/if}
+  </figure>
+{/if}
+
+{#if block?.image_dark?.filename}
+  <figure
+    class={clsx(
+      'not-rich-text mx-auto my-8 hidden h-auto w-full dark:block md:my-14',
+      $$restProps.class,
+      richTextBlockWidths[block?.width || 'full']
+    )}
+    use:storyblokEditable={block}
+  >
+    <ExpandableImage
+      image={block.image_dark}
+      enabled={!!block.expandable}
+      on:expand={(e) =>
+        open([{ ...e.detail, alt: e.detail.alt || '', title: e.detail.title || '' }])}
+    />
+    {#if block?.image?.title}
+      <figcaption class="mt-2 text-center text-sm text-foreground-secondary">
+        {block.image_dark.title}
       </figcaption>
     {/if}
   </figure>

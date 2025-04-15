@@ -21,7 +21,6 @@
   let version = versions.length > 0 ? versions[0].version_name : '';
 
   $: content = versions.find((v) => v.version_name === version);
-  $: console.log(content);
   $: type = content?.component === 'proposal-version-package' ? 'package' : 'rate';
   $: sections = (content?.body || []).map((section) => section.title || '').filter(Boolean);
 

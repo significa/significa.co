@@ -3,6 +3,8 @@
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { Icon } from '@significa/svelte-ui';
   import { slide } from 'svelte/transition';
+  import RichText from '$components/rich-text.svelte';
+  import { drawerLinks } from '$lib/actions/drawer-links';
 
   export let block: FaqsStoryblok;
   let openQuestionIndex: number | null = null;
@@ -35,7 +37,11 @@
                   transition:slide={{ duration: 200 }}
                   class="pb-4 text-lg text-foreground-secondary"
                 >
-                  {question.answer}
+                  {#if question.body}
+                    <div use:drawerLinks>
+                      <RichText doc={question.body} />
+                    </div>
+                  {/if}
                 </div>
               {/if}
             </li>

@@ -15,7 +15,7 @@
 <section
   use:storyblokEditable={block}
   id={block._uid}
-  class="container mx-auto px-container @container"
+  class="container mx-auto mt-10 px-container @container"
 >
   <div class="grid grid-cols-3 overflow-hidden rounded-lg border">
     <div class="col-span-1 hidden flex-col bg-background-panel @5xl:flex">

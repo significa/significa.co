@@ -551,6 +551,7 @@ export interface EstimationStoryblok {
 export interface FaqStoryblok {
   question?: string;
   answer?: string;
+  body?: RichtextStoryblok;
   _uid: string;
   component: 'faq';
   [k: string]: any;

@@ -90,7 +90,8 @@ async function main() {
             story.content.component === 'page' ||
             story.content.component === 'project' ||
             story.content.component === 'team-member' ||
-            story.content.component === 'handbook'
+            story.content.component === 'handbook' ||
+            story.content.component === 'landing-page'
           );
         })
         .map((story: ISbStoryData) => {

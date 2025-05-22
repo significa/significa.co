@@ -43,7 +43,7 @@
     "openapi-typescript": "^7.6.1",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
-    "prettier-plugin-svelte": "3.3.3",
+    "prettier-plugin-svelte": "3.4.0",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "prismjs": "^1.29.0",
     "svelte": "^4.2.19",
@@ -54,7 +54,8 @@
     "typescript": "^5.7.2",
     "vite": "^4.5.5",
     "vite-plugin-mkcert": "^1.17.6",
-    "vitest": "^0.33.0"
+    "vitest": "^0.33.0",
+    "lint-staged": "^15.2.2"
   },
   "type": "module",
   "dependencies": {

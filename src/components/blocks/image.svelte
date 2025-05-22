@@ -12,7 +12,8 @@
 {#if block?.image?.filename}
   <figure
     class={clsx(
-      'not-rich-text mx-auto my-8 h-auto w-full dark:hidden md:my-14',
+      'not-rich-text mx-auto my-8 h-auto w-full md:my-14',
+      block?.image_dark?.filename && 'dark:hidden',
       $$restProps.class,
       richTextBlockWidths[block?.width || 'full']
     )}

@@ -550,7 +550,6 @@ export interface EstimationStoryblok {
 
 export interface FaqStoryblok {
   question?: string;
-  answer?: string;
   body?: RichtextStoryblok;
   _uid: string;
   component: 'faq';
@@ -794,6 +793,7 @@ export interface LandingPageStoryblok {
     | ComparisonStoryblok
     | ImageStoryblok
     | ImageGridStoryblok
+    | MeasurementsStoryblok
     | TableStoryblok
     | TwoColumnsStoryblok
     | VideoStoryblok
@@ -834,6 +834,13 @@ export interface MeasurementEntryStoryblok {
   icon?: AssetStoryblok;
   _uid: string;
   component: 'measurement_entry';
+  [k: string]: any;
+}
+
+export interface MeasurementsStoryblok {
+  blocks?: MeasurementEntryStoryblok[];
+  _uid: string;
+  component: 'measurements';
   [k: string]: any;
 }
 
@@ -956,6 +963,7 @@ export interface PageStoryblok {
     | ComparisonStoryblok
     | ImageStoryblok
     | ImageGridStoryblok
+    | MeasurementsStoryblok
     | TableStoryblok
     | TwoColumnsStoryblok
     | VideoStoryblok

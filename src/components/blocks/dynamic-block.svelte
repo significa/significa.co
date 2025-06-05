@@ -47,7 +47,8 @@
     clients: Clients,
     projects: Projects,
     'cta-card': CtaCard,
-    box: Box
+    box: Box,
+    measurements: Measurements
   };
 
   export type Blocks = keyof typeof map;
@@ -101,6 +102,7 @@
   import VerticalList from './vertical-list.svelte';
   import Table from './table.svelte';
   import Box from './box.svelte';
+  import Measurements from './measurements.svelte';
 
   export let block: { component: string };
 

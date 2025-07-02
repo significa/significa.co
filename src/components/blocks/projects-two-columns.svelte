@@ -26,7 +26,7 @@
           <div class="flex flex-wrap gap-8 gap-y-4 py-6 first:border-r first:pr-8 last:pl-8">
             {#each measurement.measurements || [] as measurements}
               <div class="flex flex-col whitespace-nowrap">
-                <Popover variant={'fit-content'}>
+                <Popover variant={'fit-content'} alignment="auto">
                   <div slot="target">
                     <p class="text-xs font-medium uppercase">
                       {measurements.title}

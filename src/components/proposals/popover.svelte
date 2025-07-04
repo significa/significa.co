@@ -1,5 +1,6 @@
 <script lang="ts">
   import clsx from 'clsx';
+  import { onMount } from 'svelte';
 
   export let variant: 'fit-content' | 'default' = 'default';
   export let alignment: 'auto' | 'default' | 'left' | 'center' | 'right' = 'default';
@@ -9,7 +10,7 @@
   let popoverRef: HTMLDivElement | null = null;
   let autoAlignment: 'left' | 'center' | 'right' = 'center';
 
-  function chooseBestAlignment() {
+  const choosePopoverPosition = () => {
     if (!targetRef || !popoverRef) return;
     const targetRect = targetRef.getBoundingClientRect();
     const popoverRect = popoverRef.getBoundingClientRect();
@@ -29,11 +30,11 @@
     } else {
       autoAlignment = 'right';
     }
-  }
+  };
 
-  $: if (alignment === 'auto' && visible) {
-    chooseBestAlignment();
-  }
+  onMount(() => {
+    if (alignment === 'auto') choosePopoverPosition();
+  });
 
   $: alignmentClass =
     alignment === 'left' || (alignment === 'auto' && autoAlignment === 'left')
@@ -47,7 +48,7 @@
             : 'left-1/2 -translate-x-1/2 ';
 </script>
 
-<div class="{$$restProps.class || ''} relative">
+<div class={clsx($$restProps.class, visible && 'relative')}>
   <button
     bind:this={targetRef}
     class="cursor-pointer text-left"
@@ -65,12 +66,14 @@
     <div
       bind:this={popoverRef}
       class={clsx(
-        'absolute top-0 z-10 p-4',
+        'absolute top-0 p-4',
         'bg-background text-foreground-secondary',
         'rounded-2xs border transition-all',
         alignmentClass,
-        visible ? 'block opacity-100' : 'top-4 opacity-0',
-        variant === 'default' ? 'w-72 lg:-top-[90%]' : 'w-auto -translate-y-full text-center '
+        visible ? 'block opacity-100' : 'top-4 opacity-0 ',
+        variant === 'default'
+          ? 'w-72 lg:-top-[90%]'
+          : 'w-[200px] -translate-y-full text-center md:w-auto '
       )}
     >
       <slot name="popover" />

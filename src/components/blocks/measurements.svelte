@@ -24,7 +24,9 @@
             </div>
           </div>
           <div slot="popover">
-            <p class="whitespace-nowrap text-sm">{measurements.popover}</p>
+            <p class="whitespace-pre-wrap text-sm md:whitespace-nowrap">
+              {measurements.popover}
+            </p>
           </div>
         </Popover>
       </div>

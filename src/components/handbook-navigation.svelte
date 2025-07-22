@@ -50,6 +50,8 @@
         'col-span-2 row-start-2 w-full md:col-span-1 md:col-start-2 md:row-start-1 lg:max-w-[450px]'
       )}
     >
+      <!-- ADD AI BUTTON HERE -->
+
       {#if $page.url.pathname !== '/handbook'}
         <form
           id="search-form"

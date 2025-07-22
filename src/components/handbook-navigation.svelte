@@ -10,6 +10,7 @@
   import { goto } from '$app/navigation';
   import { fade } from 'svelte/transition';
   import { SEARCH_QUERY_PARAM } from '$lib/constants';
+  import AiButton from './ai-chatbot/ai-chatbot-button.svelte';
 
   export let configuration: ConfigurationStoryblok;
 
@@ -50,7 +51,7 @@
         'col-span-2 row-start-2 w-full md:col-span-1 md:col-start-2 md:row-start-1 lg:max-w-[450px]'
       )}
     >
-      <!-- ADD AI BUTTON HERE -->
+      <AiButton variant="primary">Ask Shellby</AiButton>
 
       {#if $page.url.pathname !== '/handbook'}
         <form

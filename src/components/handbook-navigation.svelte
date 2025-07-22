@@ -52,9 +52,11 @@
         'col-span-2 row-start-2 w-full md:col-span-1 md:col-start-2 md:row-start-1 lg:max-w-[450px]'
       )}
     >
-      <div class="flex items-start gap-4">
-        <img src={shellby} alt="Shellby" class="h-11" />
-        <AiButton>Ask Shellby</AiButton>
+      <div class="flex justify-around">
+        <div class="flex items-start gap-4">
+          <img src={shellby} alt="Shellby" class="h-11" />
+          <AiButton>Ask Shellby</AiButton>
+        </div>
       </div>
 
       {#if $page.url.pathname !== '/handbook'}

@@ -54,7 +54,9 @@
     >
       <div class="flex justify-around">
         <div class="mt-4 flex h-11 items-start gap-2 overflow-visible md:mt-0">
-          <Shellby class="h-[53.3px] w-auto" />
+          <Shellby
+            class="duration-250 h-[53.3px] w-auto transition-transform hover:rotate-12 hover:scale-110"
+          />
           <AiButton>Ask Shellby</AiButton>
         </div>
       </div>

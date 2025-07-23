@@ -11,7 +11,7 @@
   import { fade } from 'svelte/transition';
   import { SEARCH_QUERY_PARAM } from '$lib/constants';
   import AiButton from './ai-chatbot/ai-chatbot-button.svelte';
-  import shellby from '$assets/aiChatbot/shellby.svg';
+  import Shellby from '$assets/aiChatbot/shellby.svelte';
 
   export let configuration: ConfigurationStoryblok;
 
@@ -53,8 +53,8 @@
       )}
     >
       <div class="flex justify-around">
-        <div class="flex items-start gap-4">
-          <img src={shellby} alt="Shellby" class="h-11" />
+        <div class="mt-4 flex h-11 items-start gap-2 overflow-visible md:mt-0">
+          <Shellby class="h-[53.3px] w-auto" />
           <AiButton>Ask Shellby</AiButton>
         </div>
       </div>

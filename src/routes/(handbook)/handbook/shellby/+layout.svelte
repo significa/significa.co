@@ -168,7 +168,9 @@
       </nav>
     </aside>
 
-    <main class="mt-36 flex-1 md:mt-20 lg:mt-10">
+    <main
+      class="mt-36 flex-1 md:mt-20 lg:fixed lg:bottom-0 lg:left-72 lg:right-0 lg:top-0 lg:mt-0 lg:overflow-y-auto lg:pt-10"
+    >
       <slot />
     </main>
   </div>

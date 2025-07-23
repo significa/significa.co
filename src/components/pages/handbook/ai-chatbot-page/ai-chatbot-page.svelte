@@ -12,5 +12,25 @@
 <div use:drawerLinks class="container mx-auto px-container">
   <div class="rich-text mx-auto mb-20 mt-10 max-w-2xl lg:mt-20">
     <h1 class="[&:first-of-type]:mt-0">placeholder</h1>
+    <span>oi sig</span><br /> <span>oi sig</span><br /><span>oi sig</span><br /><span>oi sig</span
+    ><br /><span>oi sig</span><br /><span>oi sig</span><br /><span>oi sig</span><br /><span
+      >oi sig</span
+    ><br /><span>oi sig</span><br /><span>oi sig</span><br /><span>oi sig</span><br /><span
+      >oi sig</span
+    ><br /><span>oi sig</span><br /><span>oi sig</span><br /><span>oi sig</span><br /><span
+      >oi sig</span
+    ><br /><span>oi sig</span><br /><span>oi sig</span><br /><span>oi sig</span><br /><span
+      >oi sig</span
+    ><br /><span>oi sig</span><br /><span>oi sig</span><br /><span>oi sig</span><br /><span
+      >oi sig</span
+    ><br /><span>oi sig</span><br /><span>oi sig</span><br /><span>oi sig</span><br /><span
+      >oi sig</span
+    ><br /><span>oi sig</span><br /><span>oi sig</span><br /><span>oi sig</span><br /><span
+      >oi sig</span
+    ><br /><span>oi sig</span><br /><span>oi sig</span><br /><span>oi sig</span><br /><span
+      >oi sig</span
+    ><br /><span>oi sig</span><br /><span>oi sig</span><br /><span>oi sig</span><br /><span
+      >oi sig</span
+    ><br /><span>oi sig</span><br /><span>oi sig</span><br />
   </div>
 </div>

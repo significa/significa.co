@@ -8,7 +8,6 @@
   import { t } from '$lib/i18n';
   import { page } from '$app/stores';
   import AiButton from './ai-chatbot/ai-chatbot-button.svelte';
-  import Shellby from '$components/ai-chatbot/shellby.svelte';
 
   export let configuration: ConfigurationStoryblok;
 </script>
@@ -35,12 +34,7 @@
       )}
     >
       <div class="flex justify-around">
-        <div class="mt-4 flex h-11 items-start gap-2 overflow-visible md:mt-0">
-          <Shellby
-            class="duration-250 h-[53.3px] w-auto transition-transform hover:rotate-12 hover:scale-110"
-          />
-          <AiButton>Ask Shellby</AiButton>
-        </div>
+        <AiButton>Ask Shellby</AiButton>
       </div>
     </div>
 

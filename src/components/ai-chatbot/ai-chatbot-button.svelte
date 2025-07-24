@@ -2,6 +2,7 @@
   import { Spinner } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import { twMerge } from 'tailwind-merge';
+  import Shellby from '$components/ai-chatbot/shellby.svelte';
 
   const button = `
     group
@@ -51,49 +52,54 @@
   export let arrow: undefined | boolean = false;
 </script>
 
-<svelte:element
-  this={as}
-  role="button"
-  tabindex={0}
-  on:click
-  on:mouseenter
-  on:mouseleave
-  on:keydown
-  on:keyup
-  on:keypress
-  on:focus
-  on:blur
-  {disabled}
-  class={twMerge(button, loading && '[&>*:not(.btn-spinner)]:opacity-0', className)}
-  {...$$restProps}
->
-  {#if $$slots.default}
-    <span
-      class={clsx(
-        arrow && [
-          'transition-all',
-          'duration-300',
-          'ease-motion',
-          'group-hover:-translate-x-5',
-          'group-focus-visible:-translate-x-5'
-        ]
-      )}
-    >
-      <slot />
-    </span>
-  {/if}
-  {#if loading}
-    <div
-      class={clsx(
-        'btn-spinner',
-        'absolute',
-        'left-1/2',
-        'top-1/2',
-        '-translate-x-1/2',
-        '-translate-y-1/2'
-      )}
-    >
-      <Spinner size="xs" />
-    </div>
-  {/if}
-</svelte:element>
+<div class="group/button mt-4 flex h-11 items-start gap-2 overflow-visible md:mt-0">
+  <Shellby
+    class="duration-250 h-[53.3px] w-auto transition-transform hover:rotate-12 hover:scale-110 group-hover/button:rotate-12 group-hover/button:scale-110"
+  />
+  <svelte:element
+    this={as}
+    role="button"
+    tabindex={0}
+    on:click
+    on:mouseenter
+    on:mouseleave
+    on:keydown
+    on:keyup
+    on:keypress
+    on:focus
+    on:blur
+    {disabled}
+    class={twMerge(button, loading && '[&>*:not(.btn-spinner)]:opacity-0', className)}
+    {...$$restProps}
+  >
+    {#if $$slots.default}
+      <span
+        class={clsx(
+          arrow && [
+            'transition-all',
+            'duration-300',
+            'ease-motion',
+            'group-hover:-translate-x-5',
+            'group-focus-visible:-translate-x-5'
+          ]
+        )}
+      >
+        <slot />
+      </span>
+    {/if}
+    {#if loading}
+      <div
+        class={clsx(
+          'btn-spinner',
+          'absolute',
+          'left-1/2',
+          'top-1/2',
+          '-translate-x-1/2',
+          '-translate-y-1/2'
+        )}
+      >
+        <Spinner size="xs" />
+      </div>
+    {/if}
+  </svelte:element>
+</div>

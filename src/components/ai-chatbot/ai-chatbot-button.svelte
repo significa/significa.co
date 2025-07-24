@@ -84,6 +84,7 @@
 <div class="group/button h-11">
   <!-- Desktop layout: Shellby outside button -->
   <div class="hidden h-11 items-start gap-2 md:flex">
+    <!-- TODO: Remove hover on shellby itself-->
     <Shellby
       class="duration-250 h-[53.3px] w-auto transition-transform hover:rotate-12 hover:scale-110 group-hover/button:rotate-12 group-hover/button:scale-110"
     />

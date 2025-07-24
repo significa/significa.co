@@ -8,7 +8,7 @@
   import { t } from '$lib/i18n';
   import { page } from '$app/stores';
   import AiButton from './ai-chatbot/ai-chatbot-button.svelte';
-  import Shellby from '$assets/aiChatbot/shellby.svelte';
+  import Shellby from '$components/ai-chatbot/shellby.svelte';
 
   export let configuration: ConfigurationStoryblok;
 </script>

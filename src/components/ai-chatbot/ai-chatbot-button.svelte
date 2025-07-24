@@ -151,7 +151,7 @@
     {disabled}
     class={twMerge(
       mobileButton,
-      'mt-2 md:hidden',
+      'mt-2.5 md:hidden',
       loading && '[&>*:not(.btn-spinner)]:opacity-0',
       className
     )}

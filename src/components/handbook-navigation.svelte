@@ -21,7 +21,7 @@
     class={clsx(
       'container mx-auto grid items-center px-container py-4',
       'grid-cols-[1fr_1fr] grid-rows-[auto_auto] md:grid-rows-1',
-      'gap-8 gap-y-4 md:grid-cols-[1fr_1fr_1fr]',
+      'gap-8 gap-y-0 md:grid-cols-[1fr_1fr_1fr] md:gap-y-4',
       $page.url.pathname == '/handbook/shellby' && '!gap-y-0'
     )}
   >

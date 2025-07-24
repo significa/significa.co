@@ -1,32 +1,17 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import type { ConfigurationStoryblok } from '$types/bloks';
-  import { Button, Icon, Input, Link, Logo } from '@significa/svelte-ui';
+  import { Button, Icon, Link, Logo } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import AnHandAndABook from './an-hand-and-a-book.svelte';
   import { sanitizeSlug } from '$lib/utils/paths';
   import { t } from '$lib/i18n';
-  import { page } from '$app/stores';
-  import { goto } from '$app/navigation';
-  import { fade } from 'svelte/transition';
-  import { SEARCH_QUERY_PARAM } from '$lib/constants';
+  import AiButton from './ai-chatbot/ai-chatbot-button.svelte';
 
   export let configuration: ConfigurationStoryblok;
 
-  let searchInputValue = '';
-
-  async function handleSearch() {
-    const sanitizedQuery = searchInputValue.trim();
-    if (sanitizedQuery) {
-      await goto(`/handbook/search?q=${encodeURIComponent(sanitizedQuery)}`, { keepFocus: true });
-    }
-  }
-
-  $: urlSearchTerm = $page?.url.searchParams.get(SEARCH_QUERY_PARAM) || '';
-
-  $: if (urlSearchTerm) {
-    searchInputValue = urlSearchTerm;
-  }
+  $: isShellbyRoute = $page.url.pathname === '/handbook/shellby';
 </script>
 
 <header
@@ -34,10 +19,10 @@
 >
   <div
     class={clsx(
-      'container mx-auto grid items-center px-container py-4',
+      'container mx-auto grid items-center px-container pb-1 pt-4 md:pb-4',
       'grid-cols-[1fr_1fr] grid-rows-[auto_auto] md:grid-rows-1',
-      'gap-8 gap-y-4 md:grid-cols-[1fr_1fr_1fr]',
-      $page.url.pathname == '/handbook' && '!gap-y-0'
+      'gap-8 gap-y-2 md:grid-cols-[1fr_1fr_1fr] md:gap-y-4',
+      isShellbyRoute && '!gap-y-0 pb-4'
     )}
   >
     <a class="flex items-center gap-2" aria-label="Go to homepage" href="/handbook">
@@ -50,28 +35,12 @@
         'col-span-2 row-start-2 w-full md:col-span-1 md:col-start-2 md:row-start-1 lg:max-w-[450px]'
       )}
     >
-      {#if $page.url.pathname !== '/handbook'}
-        <form
-          id="search-form"
-          class="relative"
-          on:submit|preventDefault={() => handleSearch()}
-          transition:fade={{ duration: 200 }}
-        >
-          <Input
-            bind:value={searchInputValue}
-            class={clsx('pr-14')}
-            placeholder={'Search! Because asking in Slack is overrated.'}
-            size="md"
-          />
-          {#if searchInputValue}
-            <div
-              transition:fade={{ duration: 100 }}
-              class="absolute right-1.5 top-1/2 -translate-y-1/2"
-            >
-              <Button type="submit" size="sm" icon="arrow-right" variant="primary"></Button>
-            </div>
-          {/if}
-        </form>
+      {#if !isShellbyRoute}
+        <div class="md:flex md:justify-around">
+          <AiButton mobileText="Hey there, ask Shellby something..." as="a" href="/handbook/shellby"
+            >Ask Shellby</AiButton
+          >
+        </div>
       {/if}
     </div>
 

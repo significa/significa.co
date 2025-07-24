@@ -34,7 +34,7 @@
       )}
     >
       <div class="flex justify-around">
-        <AiButton>Ask Shellby</AiButton>
+        <AiButton as="a" href="/handbook/shellby">Ask Shellby</AiButton>
       </div>
     </div>
 

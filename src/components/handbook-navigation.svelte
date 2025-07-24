@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import type { ConfigurationStoryblok } from '$types/bloks';
   import { Button, Icon, Link, Logo } from '@significa/svelte-ui';
@@ -9,6 +10,8 @@
   import AiButton from './ai-chatbot/ai-chatbot-button.svelte';
 
   export let configuration: ConfigurationStoryblok;
+
+  $: isShellbyRoute = $page.url.pathname === '/handbook/shellby';
 </script>
 
 <header
@@ -18,7 +21,8 @@
     class={clsx(
       'container mx-auto grid items-center px-container py-4',
       'grid-cols-[1fr_1fr] grid-rows-[auto_auto] md:grid-rows-1',
-      'gap-8 gap-y-4 md:grid-cols-[1fr_1fr_1fr]'
+      'gap-8 gap-y-4 md:grid-cols-[1fr_1fr_1fr]',
+      $page.url.pathname == '/handbook/shellby' && '!gap-y-0'
     )}
   >
     <a class="flex items-center gap-2" aria-label="Go to homepage" href="/handbook">
@@ -31,9 +35,13 @@
         'col-span-2 row-start-2 w-full md:col-span-1 md:col-start-2 md:row-start-1 lg:max-w-[450px]'
       )}
     >
-      <div class="md:flex md:justify-around">
-        <AiButton as="a" href="/handbook/shellby">Ask Shellby</AiButton>
-      </div>
+      {#if !isShellbyRoute}
+        <div class="md:flex md:justify-around">
+          <AiButton mobileText="Hey there, ask Shellby something..." as="a" href="/handbook/shellby"
+            >Ask Shellby</AiButton
+          >
+        </div>
+      {/if}
     </div>
 
     <div class="flex items-center justify-end gap-8">

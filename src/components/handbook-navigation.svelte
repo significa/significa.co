@@ -1,34 +1,16 @@
 <script lang="ts">
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import type { ConfigurationStoryblok } from '$types/bloks';
-  import { Button, Icon, Input, Link, Logo } from '@significa/svelte-ui';
+  import { Button, Icon, Link, Logo } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import AnHandAndABook from './an-hand-and-a-book.svelte';
   import { sanitizeSlug } from '$lib/utils/paths';
   import { t } from '$lib/i18n';
   import { page } from '$app/stores';
-  import { goto } from '$app/navigation';
-  import { fade } from 'svelte/transition';
-  import { SEARCH_QUERY_PARAM } from '$lib/constants';
   import AiButton from './ai-chatbot/ai-chatbot-button.svelte';
   import Shellby from '$assets/aiChatbot/shellby.svelte';
 
   export let configuration: ConfigurationStoryblok;
-
-  let searchInputValue = '';
-
-  async function handleSearch() {
-    const sanitizedQuery = searchInputValue.trim();
-    if (sanitizedQuery) {
-      await goto(`/handbook/search?q=${encodeURIComponent(sanitizedQuery)}`, { keepFocus: true });
-    }
-  }
-
-  $: urlSearchTerm = $page?.url.searchParams.get(SEARCH_QUERY_PARAM) || '';
-
-  $: if (urlSearchTerm) {
-    searchInputValue = urlSearchTerm;
-  }
 </script>
 
 <header
@@ -60,30 +42,6 @@
           <AiButton>Ask Shellby</AiButton>
         </div>
       </div>
-
-      {#if $page.url.pathname !== '/handbook'}
-        <form
-          id="search-form"
-          class="relative"
-          on:submit|preventDefault={() => handleSearch()}
-          transition:fade={{ duration: 200 }}
-        >
-          <Input
-            bind:value={searchInputValue}
-            class={clsx('pr-14')}
-            placeholder={'Search! Because asking in Slack is overrated.'}
-            size="md"
-          />
-          {#if searchInputValue}
-            <div
-              transition:fade={{ duration: 100 }}
-              class="absolute right-1.5 top-1/2 -translate-y-1/2"
-            >
-              <Button type="submit" size="sm" icon="arrow-right" variant="primary"></Button>
-            </div>
-          {/if}
-        </form>
-      {/if}
     </div>
 
     <div class="flex items-center justify-end gap-8">

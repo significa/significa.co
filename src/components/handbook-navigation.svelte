@@ -6,7 +6,6 @@
   import AnHandAndABook from './an-hand-and-a-book.svelte';
   import { sanitizeSlug } from '$lib/utils/paths';
   import { t } from '$lib/i18n';
-  import { page } from '$app/stores';
   import AiButton from './ai-chatbot/ai-chatbot-button.svelte';
 
   export let configuration: ConfigurationStoryblok;
@@ -19,8 +18,7 @@
     class={clsx(
       'container mx-auto grid items-center px-container py-4',
       'grid-cols-[1fr_1fr] grid-rows-[auto_auto] md:grid-rows-1',
-      'gap-8 gap-y-4 md:grid-cols-[1fr_1fr_1fr]',
-      $page.url.pathname == '/handbook' && '!gap-y-0'
+      'gap-8 gap-y-4 md:grid-cols-[1fr_1fr_1fr]'
     )}
   >
     <a class="flex items-center gap-2" aria-label="Go to homepage" href="/handbook">
@@ -33,7 +31,7 @@
         'col-span-2 row-start-2 w-full md:col-span-1 md:col-start-2 md:row-start-1 lg:max-w-[450px]'
       )}
     >
-      <div class="flex justify-around">
+      <div class="md:flex md:justify-around">
         <AiButton as="a" href="/handbook/shellby">Ask Shellby</AiButton>
       </div>
     </div>

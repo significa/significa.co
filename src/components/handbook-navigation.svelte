@@ -19,10 +19,10 @@
 >
   <div
     class={clsx(
-      'container mx-auto grid items-center px-container py-4',
+      'container mx-auto grid items-center px-container pb-1 pt-4 md:pb-4',
       'grid-cols-[1fr_1fr] grid-rows-[auto_auto] md:grid-rows-1',
-      'gap-8 gap-y-0 md:grid-cols-[1fr_1fr_1fr] md:gap-y-4',
-      $page.url.pathname == '/handbook/shellby' && '!gap-y-0'
+      'gap-8 gap-y-2 md:grid-cols-[1fr_1fr_1fr] md:gap-y-4',
+      isShellbyRoute && '!gap-y-0 pb-4'
     )}
   >
     <a class="flex items-center gap-2" aria-label="Go to homepage" href="/handbook">

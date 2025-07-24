@@ -81,7 +81,7 @@
   export let mobileText: undefined | string = undefined;
 </script>
 
-<div class="group/button h-11 overflow-visible">
+<div class="group/button h-11">
   <!-- Desktop layout: Shellby outside button -->
   <div class="hidden h-11 items-start gap-2 md:flex">
     <Shellby
@@ -151,7 +151,7 @@
     {disabled}
     class={twMerge(
       mobileButton,
-      'mt-2.5 md:hidden',
+      'md:hidden',
       loading && '[&>*:not(.btn-spinner)]:opacity-0',
       className
     )}

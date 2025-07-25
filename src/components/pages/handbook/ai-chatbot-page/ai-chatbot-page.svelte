@@ -19,7 +19,7 @@
 <div use:drawerLinks class="container mx-auto px-container">
   <div class="rich-text mx-auto mb-20 mt-10 max-w-2xl lg:mt-20">
     <!-- MESSAGE INPUT -->
-    <form id="search-form" class="relative m-auto mb-6 flex max-w-[600px] gap-2">
+    <form id="search-form" class="relative mb-6 flex gap-2">
       <Input
         bind:value={searchInputValue}
         class={clsx('pr-20')}

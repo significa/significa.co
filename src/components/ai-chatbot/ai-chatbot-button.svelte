@@ -81,13 +81,10 @@
   export let mobileText: undefined | string = undefined;
 </script>
 
-<div class="group/button h-11">
+<div class="h-11">
   <!-- Desktop layout: Shellby outside button -->
-  <div class="hidden h-11 items-start gap-2 md:flex">
-    <!-- TODO: Remove hover on shellby itself-->
-    <Shellby
-      class="duration-250 h-[53.3px] w-auto transition-transform hover:rotate-12 hover:scale-110 group-hover/button:rotate-12 group-hover/button:scale-110"
-    />
+  <!-- For peer to work, the peer must come before the element it is peer of. That's why the icon is after the element and why we use flex-row-reverse -->
+  <div class="hidden h-11 items-start gap-2 md:flex md:flex-row-reverse">
     <svelte:element
       this={as}
       role="button"
@@ -101,21 +98,11 @@
       on:focus
       on:blur
       {disabled}
-      class={twMerge(button, loading && '[&>*:not(.btn-spinner)]:opacity-0', className)}
+      class={twMerge(button, loading && '[&>*:not(.btn-spinner)]:opacity-0', className, 'peer')}
       {...$$restProps}
     >
       {#if $$slots.default}
-        <span
-          class={clsx(
-            arrow && [
-              'transition-all',
-              'duration-300',
-              'ease-motion',
-              'group-hover:-translate-x-5',
-              'group-focus-visible:-translate-x-5'
-            ]
-          )}
-        >
+        <span>
           <slot />
         </span>
       {/if}
@@ -134,6 +121,10 @@
         </div>
       {/if}
     </svelte:element>
+
+    <Shellby
+      class="duration-250 h-[53.3px] w-auto transition-transform peer-hover:rotate-12 peer-hover:scale-110"
+    />
   </div>
 
   <!-- Mobile layout: Shellby inside button, full width -->
@@ -159,21 +150,9 @@
     {...$$restProps}
   >
     <div class="flex h-full items-center gap-1.5">
-      <Shellby
-        class="duration-250 h-11 w-auto transition-transform hover:rotate-12 hover:scale-110 group-hover/button:rotate-12 group-hover/button:scale-110"
-      />
+      <Shellby class=" h-11 w-auto  " />
       {#if $$slots.default || mobileText}
-        <span
-          class={clsx(
-            arrow && [
-              'transition-all',
-              'duration-300',
-              'ease-motion',
-              'group-hover:-translate-x-5',
-              'group-focus-visible:-translate-x-5'
-            ]
-          )}
-        >
+        <span>
           {#if mobileText}
             {mobileText}
           {:else}
@@ -196,16 +175,6 @@
         <Spinner size="xs" />
       </div>
     {/if}
-    <Icon
-      icon="arrow-right"
-      class={clsx(
-        'transition-transform',
-        'duration-300',
-        'ease-motion',
-        'group-hover:-translate-x-2',
-        'group-focus-visible:-translate-x-2',
-        arrow && 'opacity-100'
-      )}
-    />
+    <Icon icon="arrow-right" class={clsx(arrow && 'opacity-100')} />
   </svelte:element>
 </div>

@@ -18,25 +18,6 @@
 />
 <div use:drawerLinks class="container mx-auto px-container">
   <div class="rich-text mx-auto mb-20 mt-10 max-w-2xl lg:mt-20">
-    <!-- MESSAGE INPUT -->
-    <form id="search-form" class="relative mb-6 flex gap-2">
-      <Input
-        bind:value={searchInputValue}
-        class={clsx('pr-20')}
-        placeholder={$desktop ? 'Search! Because asking in Slack is overrated.' : 'Search!'}
-        size="lg"
-      />
-
-      {#if searchInputValue}
-        <div
-          transition:fade={{ duration: 100 }}
-          class="absolute right-1.5 top-1/2 -translate-y-1/2"
-        >
-          <Button type="submit" size="md" icon="handbook" variant="primary">Send</Button>
-        </div>
-      {/if}
-    </form>
-
     <!-- CHAT MESSAGES -->
     <div class="space-y-4">
       <!-- Shellby message (left) -->
@@ -108,6 +89,27 @@
           <span class="text-sm">user 5</span>
         </div>
       </div>
+    </div>
+    <!-- MESSAGE INPUT -->
+
+    <div class="sticky bottom-10 mt-6">
+      <form id="search-form" class="relative mb-6 flex gap-2">
+        <Input
+          bind:value={searchInputValue}
+          class={clsx('pr-20')}
+          placeholder={$desktop ? 'Search! Because asking in Slack is overrated.' : 'Search!'}
+          size="lg"
+        />
+
+        {#if searchInputValue}
+          <div
+            transition:fade={{ duration: 100 }}
+            class="absolute right-1.5 top-1/2 -translate-y-1/2"
+          >
+            <Button type="submit" size="md" icon="handbook" variant="primary">Send</Button>
+          </div>
+        {/if}
+      </form>
     </div>
   </div>
 </div>

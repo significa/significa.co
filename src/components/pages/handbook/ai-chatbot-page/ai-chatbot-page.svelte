@@ -16,82 +16,155 @@
   image="placeholder"
   structureDataMarkup="placeholder"
 />
-<div use:drawerLinks class="container mx-auto px-container">
-  <div class="rich-text mx-auto mb-20 mt-10 max-w-2xl lg:mt-20">
-    <!-- CHAT MESSAGES -->
-    <div class="space-y-4">
-      <!-- Shellby message (left) -->
-      <div class="flex justify-start">
-        <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
-          <span class="text-sm">shellby 1</span>
-        </div>
-      </div>
-
-      <!-- User message (right) -->
-      <div class="flex justify-end">
-        <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
-          <span class="text-sm">user 1</span>
-        </div>
-      </div>
-
-      <!-- Shellby message (left) -->
-      <div class="flex justify-start">
-        <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
-          <span class="text-sm">shellby 2</span>
-        </div>
-      </div>
-
-      <!-- User message (right) -->
-      <div class="flex justify-end">
-        <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
-          <span class="text-sm">user 2</span>
-        </div>
-      </div>
-
-      <!-- Shellby message (left) -->
-      <div class="flex justify-start">
-        <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
-          <span class="text-sm">shellby 3</span>
-        </div>
-      </div>
-
-      <!-- User message (right) -->
-      <div class="flex justify-end">
-        <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
-          <span class="text-sm">user 3</span>
-        </div>
-      </div>
-
-      <!-- Shellby message (left) -->
-      <div class="flex justify-start">
-        <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
-          <span class="text-sm">shellby 4</span>
-        </div>
-      </div>
-
-      <!-- User message (right) -->
-      <div class="flex justify-end">
-        <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
-          <span class="text-sm">user 4</span>
-        </div>
-      </div>
-
-      <!-- Shellby message (left) -->
-      <div class="flex justify-start">
-        <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
-          <span class="text-sm">shellby 5</span>
-        </div>
-      </div>
-
-      <!-- User message (right) -->
-      <div class="flex justify-end">
-        <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
-          <span class="text-sm">user 5</span>
-        </div>
+<div
+  use:drawerLinks
+  class="container mx-auto h-full overflow-y-auto bg-[#a00] px-container py-5 lg:py-10"
+>
+  <!-- CHAT MESSAGES -->
+  <div class="space-y-4">
+    <!-- Shellby message (left) -->
+    <div class="flex justify-start">
+      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+        <span class="text-sm">shellby 1</span>
       </div>
     </div>
-    <!-- MESSAGE INPUT -->
+
+    <!-- User message (right) -->
+    <div class="flex justify-end">
+      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+        <span class="text-sm">user 1</span>
+      </div>
+    </div>
   </div>
+  <!-- CHAT MESSAGES -->
+  <div class="space-y-4">
+    <!-- Shellby message (left) -->
+    <div class="flex justify-start">
+      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+        <span class="text-sm">shellby 1</span>
+      </div>
+    </div>
+
+    <!-- User message (right) -->
+    <div class="flex justify-end">
+      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+        <span class="text-sm">user 1</span>
+      </div>
+    </div>
+  </div>
+  <!-- CHAT MESSAGES -->
+  <div class="space-y-4">
+    <!-- Shellby message (left) -->
+    <div class="flex justify-start">
+      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+        <span class="text-sm">shellby 1</span>
+      </div>
+    </div>
+
+    <!-- User message (right) -->
+    <div class="flex justify-end">
+      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+        <span class="text-sm">user 1</span>
+      </div>
+    </div>
+  </div>
+  <!-- CHAT MESSAGES -->
+  <div class="space-y-4">
+    <!-- Shellby message (left) -->
+    <div class="flex justify-start">
+      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+        <span class="text-sm">shellby 1</span>
+      </div>
+    </div>
+
+    <!-- User message (right) -->
+    <div class="flex justify-end">
+      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+        <span class="text-sm">user 1</span>
+      </div>
+    </div>
+  </div>
+  <!-- CHAT MESSAGES -->
+  <div class="space-y-4">
+    <!-- Shellby message (left) -->
+    <div class="flex justify-start">
+      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+        <span class="text-sm">shellby 1</span>
+      </div>
+    </div>
+
+    <!-- User message (right) -->
+    <div class="flex justify-end">
+      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+        <span class="text-sm">user 1</span>
+      </div>
+    </div>
+  </div>
+  <!-- CHAT MESSAGES -->
+  <div class="space-y-4">
+    <!-- Shellby message (left) -->
+    <div class="flex justify-start">
+      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+        <span class="text-sm">shellby 1</span>
+      </div>
+    </div>
+
+    <!-- User message (right) -->
+    <div class="flex justify-end">
+      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+        <span class="text-sm">user 1</span>
+      </div>
+    </div>
+  </div>
+  <!-- CHAT MESSAGES -->
+  <div class="space-y-4">
+    <!-- Shellby message (left) -->
+    <div class="flex justify-start">
+      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+        <span class="text-sm">shellby 1</span>
+      </div>
+    </div>
+
+    <!-- User message (right) -->
+    <div class="flex justify-end">
+      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+        <span class="text-sm">user 1</span>
+      </div>
+    </div>
+  </div>
+  <!-- CHAT MESSAGES -->
+  <div class="space-y-4">
+    <!-- Shellby message (left) -->
+    <div class="flex justify-start">
+      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+        <span class="text-sm">shellby 1</span>
+      </div>
+    </div>
+
+    <!-- User message (right) -->
+    <div class="flex justify-end">
+      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+        <span class="text-sm">user 1</span>
+      </div>
+    </div>
+  </div>
+  <!-- CHAT MESSAGES -->
+  <div class="space-y-4">
+    <!-- Shellby message (left) -->
+    <div class="flex justify-start">
+      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+        <span class="text-sm">shellby 1</span>
+      </div>
+    </div>
+
+    <!-- User message (right) -->
+    <div class="flex justify-end">
+      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+        <span class="text-sm">user 1</span>
+      </div>
+    </div>
+  </div>
+  <!-- MESSAGE INPUT -->
 </div>
 
 <!-- <div class="sticky bottom-10 mt-6">

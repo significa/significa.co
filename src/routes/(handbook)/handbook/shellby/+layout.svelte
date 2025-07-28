@@ -51,7 +51,7 @@
     </TextButton>
   </div>
 
-  <div class="flex flex-col gap-5 lg:flex-row">
+  <div class="relative flex flex-col gap-5 lg:flex-row">
     <aside
       class={clsx(
         'fixed bottom-0 top-[--topnav-handbook-mobile-height] z-10 w-full overflow-y-auto bg-background md:top-[--topnav-height]',
@@ -168,7 +168,7 @@
       </nav>
     </aside>
 
-    <main class="mt-20 flex-1 lg:mt-10">
+    <main class="sticky right-0 top-0 flex h-screen flex-1 pt-[var(--topnav-height)]">
       <slot />
     </main>
   </div>

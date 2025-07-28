@@ -54,11 +54,10 @@
   <div class="flex flex-col gap-5 lg:flex-row">
     <aside
       class={clsx(
-        'sidebar-scroll fixed bottom-0 top-[--topnav-height] z-10 w-full overflow-y-auto bg-background',
-        'lg:relative lg:bottom-auto lg:top-auto lg:mt-24 lg:block lg:max-h-[calc(100vh-6rem)] lg:w-72 lg:overflow-y-auto',
+        'fixed bottom-0 top-[--topnav-handbook-mobile-height] z-10 w-full overflow-y-auto bg-background md:top-[--topnav-height]',
+        'lg:relative lg:bottom-auto lg:top-auto lg:mt-24 lg:block lg:h-auto lg:w-72 lg:overflow-y-visible',
         $sidebar ? 'block' : 'hidden'
       )}
-      style="scrollbar-width: none; -ms-overflow-style: none;"
     >
       <!-- Mobile: close menu -->
       <div
@@ -169,16 +168,8 @@
       </nav>
     </aside>
 
-    <main
-      class="mt-36 flex-1 md:mt-20 lg:fixed lg:bottom-0 lg:left-72 lg:right-0 lg:top-0 lg:mt-0 lg:overflow-y-auto lg:pt-10"
-    >
+    <main class="mt-20 flex-1 lg:mt-10">
       <slot />
     </main>
   </div>
 </div>
-
-<style>
-  .sidebar-scroll::-webkit-scrollbar {
-    display: none;
-  }
-</style>

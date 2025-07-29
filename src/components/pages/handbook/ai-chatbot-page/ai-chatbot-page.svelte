@@ -8,6 +8,15 @@
 
   let searchInputValue = '';
   const desktop = createBreakpointMediaQueryStore('md');
+
+  let messagesContainer: HTMLDivElement;
+
+  // Scroll to bottom when messages change
+  $: {
+    if (messagesContainer) {
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+  }
 </script>
 
 <Seo
@@ -17,15 +26,71 @@
   structureDataMarkup="placeholder"
 />
 <div use:drawerLinks class="container mx-auto flex h-full flex-col px-container py-5 lg:py-10">
-  <div class="space-y-4 overflow-y-auto pb-8">
+  <div
+    class="flex flex-col space-y-4 space-y-reverse overflow-y-auto pb-8"
+    style="scroll-behavior: smooth;"
+    bind:this={messagesContainer}
+  >
+    <!-- User message (right, latest) -->
+    <div class="flex justify-end">
+      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+        <span class="text-sm">user question</span>
+      </div>
+    </div>
     <!-- Shellby message (left) -->
     <div class="flex justify-start">
       <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
         <span class="text-sm">shellby message</span>
       </div>
     </div>
-
     <!-- User message (right) -->
+    <div class="flex justify-end">
+      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+        <span class="text-sm">user question</span>
+      </div>
+    </div>
+    <!-- Shellby message (left) -->
+    <div class="flex justify-start">
+      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+        <span class="text-sm">shellby message</span>
+      </div>
+    </div>
+    <!-- User message (right) -->
+    <div class="flex justify-end">
+      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+        <span class="text-sm">user question</span>
+      </div>
+    </div>
+    <!-- Shellby message (left) -->
+    <div class="flex justify-start">
+      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+        <span class="text-sm">shellby message</span>
+      </div>
+    </div>
+    <!-- User message (right) -->
+    <div class="flex justify-end">
+      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+        <span class="text-sm">user question</span>
+      </div>
+    </div>
+    <!-- Shellby message (left) -->
+    <div class="flex justify-start">
+      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+        <span class="text-sm">shellby message</span>
+      </div>
+    </div>
+    <!-- User message (right) -->
+    <div class="flex justify-end">
+      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+        <span class="text-sm">user question</span>
+      </div>
+    </div>
+    <!-- Shellby message (left, oldest) -->
+    <div class="flex justify-start">
+      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+        <span class="text-sm">shellby message</span>
+      </div>
+    </div>
     <div class="flex justify-end">
       <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
         <span class="text-sm">user question</span>
@@ -40,98 +105,7 @@
 
     <!-- User message (right) -->
     <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
-        <span class="text-sm">user question</span>
-      </div>
-    </div>
-    <!-- Shellby message (left) -->
-    <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
-    <!-- User message (right) -->
-    <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
-        <span class="text-sm">user question</span>
-      </div>
-    </div>
-    <!-- Shellby message (left) -->
-    <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
-    <!-- User message (right) -->
-    <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
-        <span class="text-sm">user question</span>
-      </div>
-    </div>
-    <!-- Shellby message (left) -->
-    <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
-    <!-- User message (right) -->
-    <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
-        <span class="text-sm">user question</span>
-      </div>
-    </div>
-    <!-- Shellby message (left) -->
-    <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
-    <!-- User message (right) -->
-    <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
-        <span class="text-sm">user question</span>
-      </div>
-    </div>
-    <!-- Shellby message (left) -->
-    <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
-    <!-- User message (right) -->
-    <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
-        <span class="text-sm">user question</span>
-      </div>
-    </div>
-    <!-- Shellby message (left) -->
-    <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
-    <!-- User message (right) -->
-    <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
-        <span class="text-sm">user question</span>
-      </div>
-    </div>
-    <!-- Shellby message (left) -->
-    <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
-    <!-- User message (right) -->
-    <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#a00] p-3">
         <span class="text-sm">user question</span>
       </div>
     </div>

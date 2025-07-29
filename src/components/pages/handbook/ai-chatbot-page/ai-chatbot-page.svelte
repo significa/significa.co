@@ -31,94 +31,130 @@
 >
   <div class="space-y-4 overflow-y-auto pb-8" bind:this={messagesContainer}>
     <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">shellby message</span>
       </div>
     </div>
     <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">user question</span>
       </div>
     </div>
     <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">shellby message</span>
       </div>
     </div>
     <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">user question</span>
       </div>
     </div>
     <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">shellby message</span>
       </div>
     </div>
     <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">user question</span>
       </div>
     </div>
     <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">shellby message</span>
       </div>
     </div>
     <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">user question</span>
       </div>
     </div>
     <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">shellby message</span>
       </div>
     </div>
     <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">user question</span>
       </div>
     </div>
     <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">shellby message</span>
       </div>
     </div>
     <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">user question</span>
       </div>
     </div>
     <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">shellby message</span>
       </div>
     </div>
     <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">user question</span>
       </div>
     </div>
     <!-- Shellby message (left, oldest) -->
     <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">shellby message</span>
       </div>
     </div>
     <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#cce4f5] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">user question</span>
       </div>
     </div>
     <div class="flex justify-start">
-      <div class="border-gray-200 max-w-xs rounded-lg border bg-[#ecdaa6] p-3">
+      <div
+        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
         <span class="text-sm">shellby message</span>
       </div>
     </div>
     <div class="flex justify-end">
-      <div class="border-blue-200 max-w-xs rounded-lg border bg-[#a00] p-3">
-        <span class="text-sm">user question</span>
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">latest message here</span>
       </div>
     </div>
   </div>

@@ -41,7 +41,7 @@
     }));
 </script>
 
-<div class="pb-20 lg:container lg:mx-auto lg:px-container" use:bodyLock={sidebar}>
+<div class="lg:container lg:mx-auto lg:px-container" use:bodyLock={sidebar}>
   <!-- Mobile: open menu -->
   <div
     class="sticky top-[--topnav-height] z-10 flex h-12 items-center border-b bg-background px-container py-2 lg:hidden lg:px-0"

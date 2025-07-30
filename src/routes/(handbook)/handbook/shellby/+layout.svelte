@@ -168,7 +168,7 @@
       </nav>
     </aside>
 
-    <main class="sticky right-0 top-0 flex h-screen flex-1 pt-[var(--topnav-height)]">
+    <main class="sticky right-0 top-0 flex h-screen pt-[var(--topnav-height)] lg:flex-1">
       <slot />
     </main>
   </div>

@@ -5,6 +5,8 @@
   import clsx from 'clsx';
   import { fade } from 'svelte/transition';
   import { createBreakpointMediaQueryStore } from '$lib/stores/media';
+  import Shellby from '$components/ai-chatbot/shellby.svelte';
+  import SeggBinoculars from '$components/ai-chatbot/segg-binoculars.svelte';
 
   let searchInputValue = '';
   const desktop = createBreakpointMediaQueryStore('md');
@@ -29,133 +31,178 @@
   use:drawerLinks
   class="container mx-auto flex h-full flex-col justify-between px-container py-5 lg:py-10"
 >
-  <div class="space-y-4 overflow-y-auto pb-8" bind:this={messagesContainer}>
-    <div class="flex justify-start">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-    <div class="flex justify-end">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-    </div>
-    <div class="flex justify-start">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-    <div class="flex justify-end">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-    </div>
-    <div class="flex justify-start">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-    <div class="flex justify-end">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-    </div>
-    <div class="flex justify-start">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-    <div class="flex justify-end">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-    </div>
-    <div class="flex justify-start">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-    <div class="flex justify-end">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-    </div>
-    <div class="flex justify-start">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-    <div class="flex justify-end">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-    </div>
-    <div class="flex justify-start">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-    <div class="flex justify-end">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-    </div>
-    <!-- Shellby message (left, oldest) -->
-    <div class="flex justify-start">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-    <div class="flex justify-end">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-    </div>
-    <div class="flex justify-start">
-      <div
-        class=" max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-    <div class="flex justify-end">
+  <div class="hide-scrollbar space-y-4 overflow-y-auto pb-8" bind:this={messagesContainer}>
+    <!-- Shellby message (bot) -->
+    <div class="flex items-start gap-2">
+      <Shellby class="h-14 w-auto shrink-0" />
       <div
         class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
       >
-        <span class="text-sm">latest message here</span>
+        <span class="text-sm">shellby message</span>
       </div>
+    </div>
+
+    <!-- User message -->
+    <div class="flex items-start justify-end gap-2">
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">user question</span>
+      </div>
+      <SeggBinoculars class="h-12 w-auto shrink-0" />
+    </div>
+
+    <!-- Shellby message (bot) -->
+    <div class="flex items-start gap-2">
+      <Shellby class="h-14 w-auto shrink-0" />
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">shellby message</span>
+      </div>
+    </div>
+
+    <!-- User message -->
+    <div class="flex items-start justify-end gap-2">
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">user question</span>
+      </div>
+      <SeggBinoculars class="h-12 w-auto shrink-0" />
+    </div>
+    <!-- Shellby message (bot) -->
+    <div class="flex items-start gap-2">
+      <Shellby class="h-14 w-auto shrink-0" />
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">shellby message</span>
+      </div>
+    </div>
+
+    <!-- User message -->
+    <div class="flex items-start justify-end gap-2">
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">user question</span>
+      </div>
+      <SeggBinoculars class="h-12 w-auto shrink-0" />
+    </div>
+    <!-- Shellby message (bot) -->
+    <div class="flex items-start gap-2">
+      <Shellby class="h-14 w-auto shrink-0" />
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">shellby message</span>
+      </div>
+    </div>
+
+    <!-- User message -->
+    <div class="flex items-start justify-end gap-2">
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">user question</span>
+      </div>
+      <SeggBinoculars class="h-12 w-auto shrink-0" />
+    </div>
+    <!-- Shellby message (bot) -->
+    <div class="flex items-start gap-2">
+      <Shellby class="h-14 w-auto shrink-0" />
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">shellby message</span>
+      </div>
+    </div>
+
+    <!-- User message -->
+    <div class="flex items-start justify-end gap-2">
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">user question</span>
+      </div>
+      <SeggBinoculars class="h-12 w-auto shrink-0" />
+    </div>
+    <!-- Shellby message (bot) -->
+    <div class="flex items-start gap-2">
+      <Shellby class="h-14 w-auto shrink-0" />
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">shellby message</span>
+      </div>
+    </div>
+
+    <!-- User message -->
+    <div class="flex items-start justify-end gap-2">
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">user question</span>
+      </div>
+      <SeggBinoculars class="h-12 w-auto shrink-0" />
+    </div>
+    <!-- Shellby message (bot) -->
+    <div class="flex items-start gap-2">
+      <Shellby class="h-14 w-auto shrink-0" />
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">shellby message</span>
+      </div>
+    </div>
+
+    <!-- User message -->
+    <div class="flex items-start justify-end gap-2">
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">user question</span>
+      </div>
+      <SeggBinoculars class="h-12 w-auto shrink-0" />
+    </div>
+    <!-- Shellby message (bot) -->
+    <div class="flex items-start gap-2">
+      <Shellby class="h-14 w-auto shrink-0" />
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">shellby message</span>
+      </div>
+    </div>
+
+    <!-- User message -->
+    <div class="flex items-start justify-end gap-2">
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">user question</span>
+      </div>
+      <SeggBinoculars class="h-12 w-auto shrink-0" />
+    </div>
+    <!-- Shellby message (bot) -->
+    <div class="flex items-start gap-2">
+      <Shellby class="h-14 w-auto shrink-0" />
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">shellby message</span>
+      </div>
+    </div>
+
+    <!-- User message -->
+    <div class="flex items-start justify-end gap-2">
+      <div
+        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+      >
+        <span class="text-sm">last message here</span>
+      </div>
+      <SeggBinoculars class="h-12 w-auto shrink-0" />
     </div>
   </div>
   <div class="sticky bottom-0 mt-4">

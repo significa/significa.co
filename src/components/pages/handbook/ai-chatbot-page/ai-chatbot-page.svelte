@@ -29,118 +29,9 @@
 />
 <div
   use:drawerLinks
-  class="container mx-auto flex h-full flex-col justify-between px-container py-5 lg:py-10"
+  class="container mx-auto flex h-full flex-col justify-end px-container pb-0 lg:pb-8"
 >
-  <div
-    class="hide-scrollbar mb-8 space-y-4 overflow-y-auto lg:mb-0 lg:pb-8"
-    bind:this={messagesContainer}
-  >
-    <!-- Shellby message (bot) -->
-    <div class="flex items-start gap-2">
-      <Shellby class="h-14 w-auto shrink-0" />
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
-    <!-- User message -->
-    <div class="flex items-start justify-end gap-2">
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-      <SeggBinoculars class="h-12 w-auto shrink-0" />
-    </div>
-
-    <!-- Shellby message (bot) -->
-    <div class="flex items-start gap-2">
-      <Shellby class="h-14 w-auto shrink-0" />
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
-    <!-- User message -->
-    <div class="flex items-start justify-end gap-2">
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-      <SeggBinoculars class="h-12 w-auto shrink-0" />
-    </div>
-    <!-- Shellby message (bot) -->
-    <div class="flex items-start gap-2">
-      <Shellby class="h-14 w-auto shrink-0" />
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
-    <!-- User message -->
-    <div class="flex items-start justify-end gap-2">
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-      <SeggBinoculars class="h-12 w-auto shrink-0" />
-    </div>
-    <!-- Shellby message (bot) -->
-    <div class="flex items-start gap-2">
-      <Shellby class="h-14 w-auto shrink-0" />
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
-    <!-- User message -->
-    <div class="flex items-start justify-end gap-2">
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-      <SeggBinoculars class="h-12 w-auto shrink-0" />
-    </div>
-    <!-- Shellby message (bot) -->
-    <div class="flex items-start gap-2">
-      <Shellby class="h-14 w-auto shrink-0" />
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
-    <!-- User message -->
-    <div class="flex items-start justify-end gap-2">
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-      <SeggBinoculars class="h-12 w-auto shrink-0" />
-    </div>
-    <!-- Shellby message (bot) -->
-    <div class="flex items-start gap-2">
-      <Shellby class="h-14 w-auto shrink-0" />
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
+  <div class="hide-scrollbar space-y-4 overflow-y-auto px-2 py-8" bind:this={messagesContainer}>
     <!-- User message -->
     <div class="flex items-start justify-end gap-2">
       <div
@@ -208,23 +99,19 @@
       <SeggBinoculars class="h-12 w-auto shrink-0" />
     </div>
   </div>
-  <div class="sticky bottom-0 mt-4">
-    <form id="search-form" class="relative mb-6 flex gap-2">
-      <Input
-        bind:value={searchInputValue}
-        class={clsx('pr-20')}
-        placeholder={$desktop ? 'Search! Because asking in Slack is overrated.' : 'Search!'}
-        size="lg"
-      />
 
-      {#if searchInputValue}
-        <div
-          transition:fade={{ duration: 100 }}
-          class="absolute right-1.5 top-1/2 -translate-y-1/2"
-        >
-          <Button type="submit" size="md" icon="handbook" variant="primary">Send</Button>
-        </div>
-      {/if}
-    </form>
-  </div>
+  <form id="search-form" class="relative flex gap-2">
+    <Input
+      bind:value={searchInputValue}
+      class={clsx('pr-20')}
+      placeholder={$desktop ? 'Search! Because asking in Slack is overrated.' : 'Search!'}
+      size="lg"
+    />
+
+    {#if searchInputValue}
+      <div transition:fade={{ duration: 100 }} class="absolute right-1.5 top-1/2 -translate-y-1/2">
+        <Button type="submit" size="md" icon="handbook" variant="primary">Send</Button>
+      </div>
+    {/if}
+  </form>
 </div>

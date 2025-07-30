@@ -13,6 +13,29 @@
 
   let messagesContainer: HTMLDivElement;
 
+  // Message array: type = 'user' | 'shellby', text = string
+  let messages = [
+    {
+      type: 'user',
+      text: 'big user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum '
+    },
+    {
+      type: 'shellby',
+      text: 'shellby message, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum '
+    },
+    {
+      type: 'user',
+      text: 'big user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum '
+    },
+    { type: 'shellby', text: 'shellby message' },
+    {
+      type: 'user',
+      text: 'big user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum '
+    },
+    { type: 'shellby', text: 'shellby message' },
+    { type: 'user', text: 'last message here' }
+  ];
+
   // Scroll to bottom when messages change
   $: {
     if (messagesContainer) {
@@ -32,72 +55,27 @@
   class="container mx-auto flex h-full flex-col justify-end px-container pb-0 lg:pb-8"
 >
   <div class="hide-scrollbar space-y-4 overflow-y-auto px-2 py-8" bind:this={messagesContainer}>
-    <!-- User message -->
-    <div class="flex items-start justify-end gap-2">
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-      <SeggBinoculars class="h-12 w-auto shrink-0" />
-    </div>
-    <!-- Shellby message (bot) -->
-    <div class="flex items-start gap-2">
-      <Shellby class="h-14 w-auto shrink-0" />
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
-    <!-- User message -->
-    <div class="flex items-start justify-end gap-2">
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-      <SeggBinoculars class="h-12 w-auto shrink-0" />
-    </div>
-    <!-- Shellby message (bot) -->
-    <div class="flex items-start gap-2">
-      <Shellby class="h-14 w-auto shrink-0" />
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
-    <!-- User message -->
-    <div class="flex items-start justify-end gap-2">
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">user question</span>
-      </div>
-      <SeggBinoculars class="h-12 w-auto shrink-0" />
-    </div>
-    <!-- Shellby message (bot) -->
-    <div class="flex items-start gap-2">
-      <Shellby class="h-14 w-auto shrink-0" />
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">shellby message</span>
-      </div>
-    </div>
-
-    <!-- User message -->
-    <div class="flex items-start justify-end gap-2">
-      <div
-        class="max-w-xs rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
-      >
-        <span class="text-sm">last message here</span>
-      </div>
-      <SeggBinoculars class="h-12 w-auto shrink-0" />
-    </div>
+    {#each messages as message}
+      {#if message.type === 'user'}
+        <div class="flex items-start justify-end gap-2">
+          <div
+            class="max-w-lg rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+          >
+            <span class="text-sm">{message.text}</span>
+          </div>
+          <SeggBinoculars class="h-12 w-auto shrink-0" />
+        </div>
+      {:else}
+        <div class="flex items-start gap-2">
+          <Shellby class="h-14 w-auto shrink-0" />
+          <div
+            class="max-w-lg rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
+          >
+            <span class="text-sm">{message.text}</span>
+          </div>
+        </div>
+      {/if}
+    {/each}
   </div>
 
   <form id="search-form" class="relative flex gap-2">

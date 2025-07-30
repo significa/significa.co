@@ -63,11 +63,11 @@
           >
             <span class="text-sm">{message.text}</span>
           </div>
-          <SeggBinoculars class="h-12 w-auto shrink-0" />
+          <SeggBinoculars class="h-10 w-auto shrink-0 lg:h-12" />
         </div>
       {:else}
         <div class="flex items-start gap-2">
-          <Shellby class="h-14 w-auto shrink-0" />
+          <Shellby class="h-12 w-auto shrink-0 lg:h-14" />
           <div
             class="max-w-lg rounded-[18px] border-2 border-background-offset bg-background-panel p-3"
           >

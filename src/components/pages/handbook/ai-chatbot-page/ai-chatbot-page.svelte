@@ -31,7 +31,10 @@
   use:drawerLinks
   class="container mx-auto flex h-full flex-col justify-between px-container py-5 lg:py-10"
 >
-  <div class="hide-scrollbar space-y-4 overflow-y-auto pb-8" bind:this={messagesContainer}>
+  <div
+    class="hide-scrollbar mb-8 space-y-4 overflow-y-auto lg:mb-0 lg:pb-8"
+    bind:this={messagesContainer}
+  >
     <!-- Shellby message (bot) -->
     <div class="flex items-start gap-2">
       <Shellby class="h-14 w-auto shrink-0" />

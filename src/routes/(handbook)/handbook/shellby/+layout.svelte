@@ -73,7 +73,7 @@
         </div>
       </div>
 
-      <nav class="px-container pt-[calc(var(--topnav-height))] lg:px-0 lg:pt-4">
+      <nav class="px-container pt-[calc(var(--topnav-shellby-height))] lg:px-0 lg:pt-4">
         <ul>
           {#each data.hierarchy as chapter, i}
             <li

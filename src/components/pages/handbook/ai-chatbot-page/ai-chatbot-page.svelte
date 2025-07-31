@@ -4,12 +4,10 @@
   import { Button, Input } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import { fade } from 'svelte/transition';
-  import { createBreakpointMediaQueryStore } from '$lib/stores/media';
   import Shellby from '$components/ai-chatbot/shellby.svelte';
   import SeggBinoculars from '$components/ai-chatbot/segg-binoculars.svelte';
 
   let searchInputValue = '';
-  const desktop = createBreakpointMediaQueryStore('md');
 
   let messagesContainer: HTMLDivElement;
 
@@ -82,7 +80,7 @@
     <Input
       bind:value={searchInputValue}
       class={clsx('pr-20')}
-      placeholder={$desktop ? 'Search! Because asking in Slack is overrated.' : 'Search!'}
+      placeholder={'Enter a prompt here'}
       size="lg"
     />
 

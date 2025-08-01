@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
 ::selection {
   color: theme('colors.background.DEFAULT');
   background-color: theme('colors.foreground.DEFAULT');
@@ -10,4 +22,5 @@
 :root {
   --topnav-height: 76px;
   --topnav-handbook-mobile-height: 116px;
+  --topnav-shellby-height: 26px;
 }

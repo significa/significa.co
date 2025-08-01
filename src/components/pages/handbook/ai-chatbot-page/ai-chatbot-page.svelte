@@ -12,7 +12,7 @@
     loading?: boolean;
     error?: boolean;
   };
-  import { tick, afterUpdate } from 'svelte';
+  import { afterUpdate } from 'svelte';
 
   let searchInputValue = '';
 
@@ -28,27 +28,17 @@
     if (!trimmed) return;
     messages = [...messages, { type: 'user', text: trimmed }];
     searchInputValue = '';
-    await tick();
     // Add a small delay before showing Shellby loading message
     setTimeout(async () => {
       messages = [...messages, { type: 'shellby', text: '', loading: true, error: false }];
-      await tick();
       // Simulate Shellby reply after 3s
-      setTimeout(async () => {
-        // Replace the last message (loading) with the real reply
-
-        // Simulate error: set error to true and text to error message
-        // messages[messages.length - 1].loading = false;
-        // messages[messages.length - 1].error = true;
-        // messages[messages.length - 1].text = "Oops! Something went wrong.";
-
-        // Normal reply (no error)
-        messages[messages.length - 1].loading = false;
-        messages[messages.length - 1].text = SHELLBY_REPLY;
-
-        await tick();
-      }, 3000);
     }, 400);
+
+    setTimeout(async () => {
+      // Normal reply (no error)
+      messages[messages.length - 1].loading = false;
+      messages[messages.length - 1].text = SHELLBY_REPLY;
+    }, 3000);
   }
 
   // Message array: type = 'user' | 'shellby', text = string, loading?: boolean
@@ -56,7 +46,7 @@
   let messages: Message[] = [
     {
       type: 'user',
-      text: 'big user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum '
+      text: 'big user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum '
     },
     { type: 'shellby', text: 'shellby message', error: true },
     { type: 'user', text: 'last message here' }

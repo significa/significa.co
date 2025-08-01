@@ -5,10 +5,12 @@
   import clsx from 'clsx';
   import { fade } from 'svelte/transition';
   import MessageCard from '$components/ai-chatbot/message-card.svelte';
+
   type Message = {
     type: 'user' | 'shellby';
     text: string;
     loading?: boolean;
+    error?: boolean;
   };
   import { tick } from 'svelte';
 
@@ -30,13 +32,19 @@
     scrollToBottom();
     // Show loading message
 
-    messages = [...messages, { type: 'shellby', text: '', loading: true }];
+    messages = [...messages, { type: 'shellby', text: '', loading: true, error: false }];
     await tick();
     scrollToBottom();
     // Simulate Shellby reply after 3s
     setTimeout(async () => {
       // Replace the last message (loading) with the real reply
 
+      // Simulate error: set error to true and text to error message
+      // messages[messages.length - 1].loading = false;
+      // messages[messages.length - 1].error = true;
+      // messages[messages.length - 1].text = "Oops! Something went wrong.";
+
+      // Normal reply (no error)
       messages[messages.length - 1].loading = false;
       messages[messages.length - 1].text = SHELLBY_REPLY;
 
@@ -65,7 +73,7 @@
       type: 'user',
       text: 'big user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum '
     },
-    { type: 'shellby', text: 'shellby message' },
+    { type: 'shellby', text: 'shellby message', error: true },
     { type: 'user', text: 'last message here' }
   ];
 
@@ -84,7 +92,12 @@
 >
   <div class="hide-scrollbar space-y-4 overflow-y-auto px-2 py-8" bind:this={messagesContainer}>
     {#each messages as message}
-      <MessageCard type={message.type} text={message.text} loading={message.loading} />
+      <MessageCard
+        type={message.type}
+        text={message.text}
+        loading={message.loading}
+        error={message.error}
+      />
     {/each}
   </div>
 

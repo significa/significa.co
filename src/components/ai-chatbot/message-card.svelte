@@ -1,9 +1,11 @@
 <script lang="ts">
   import Shellby from '$components/ai-chatbot/icons/shellby.svelte';
   import SeggBinoculars from '$components/ai-chatbot/icons/segg-binoculars.svelte';
+  import { Icon } from '@significa/svelte-ui';
 
   export let type: 'user' | 'shellby';
   export let loading: boolean = false;
+  export let error: boolean = false;
   export let text: string | undefined = undefined;
 </script>
 
@@ -29,6 +31,11 @@
           <div
             class="h-2.5 w-24 animate-pulse rounded-xs bg-background-offset md:h-3 md:w-36 lg:h-3.5 lg:w-72"
           ></div>
+        </div>
+      {:else if error}
+        <div class="flex items-center gap-1.5">
+          <Icon icon="info" class="text-error" />
+          <span class="text-sm text-error">Something went wrong</span>
         </div>
       {:else}
         <span class="text-sm">{text}</span>

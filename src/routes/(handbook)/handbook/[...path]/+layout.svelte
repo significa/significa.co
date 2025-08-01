@@ -10,7 +10,6 @@
   import { t } from '$lib/i18n';
   import { circOut } from 'svelte/easing';
   import { sanitizeSlug } from '$lib/utils/paths.js';
-  import type { HandbookLevelStoryblok } from '$types/bloks';
   export let data;
 
   let sidebar = writable(false);
@@ -19,26 +18,9 @@
     sidebar.set(false);
   });
 
-  $: openPanes = data.hierarchy
-    .map((chapter: HandbookLevelStoryblok) => chapter.children)
-    .map((subchapters: HandbookLevelStoryblok[]) => ({
-      open: subchapters.some(
-        (subchapter: HandbookLevelStoryblok) =>
-          $pageStore.url.pathname === sanitizeSlug(subchapter.homepage.full_slug) ||
-          subchapter.children?.some(
-            (childrenPage: HandbookLevelStoryblok) =>
-              $pageStore.url.pathname === sanitizeSlug(childrenPage.homepage.full_slug)
-          )
-      ),
-      children: subchapters.map(
-        (subchapter) =>
-          $pageStore.url.pathname === sanitizeSlug(subchapter.homepage.full_slug) ||
-          subchapter.children?.some(
-            (childrenPage) =>
-              $pageStore.url.pathname === sanitizeSlug(childrenPage.homepage.full_slug)
-          )
-      )
-    }));
+  import { getOpenPanes } from '$lib/utils/handbookNavHelpers';
+
+  $: openPanes = getOpenPanes(data.hierarchy, pageStore);
 </script>
 
 <div class="pb-20 lg:container lg:mx-auto lg:px-container" use:bodyLock={sidebar}>

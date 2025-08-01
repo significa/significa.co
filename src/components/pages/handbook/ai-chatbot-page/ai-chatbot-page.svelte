@@ -4,8 +4,8 @@
   import { Button, Input } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import { fade } from 'svelte/transition';
-  import Shellby from '$components/ai-chatbot/shellby.svelte';
-  import SeggBinoculars from '$components/ai-chatbot/segg-binoculars.svelte';
+  import Shellby from '$components/ai-chatbot/icons/shellby.svelte';
+  import SeggBinoculars from '$components/ai-chatbot/icons/segg-binoculars.svelte';
 
   let searchInputValue = '';
 

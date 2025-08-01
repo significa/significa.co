@@ -30,27 +30,28 @@
     searchInputValue = '';
     await tick();
     scrollToBottom();
-    // Show loading message
-
-    messages = [...messages, { type: 'shellby', text: '', loading: true, error: false }];
-    await tick();
-    scrollToBottom();
-    // Simulate Shellby reply after 3s
+    // Add a small delay before showing Shellby loading message
     setTimeout(async () => {
-      // Replace the last message (loading) with the real reply
-
-      // Simulate error: set error to true and text to error message
-      // messages[messages.length - 1].loading = false;
-      // messages[messages.length - 1].error = true;
-      // messages[messages.length - 1].text = "Oops! Something went wrong.";
-
-      // Normal reply (no error)
-      messages[messages.length - 1].loading = false;
-      messages[messages.length - 1].text = SHELLBY_REPLY;
-
+      messages = [...messages, { type: 'shellby', text: '', loading: true, error: false }];
       await tick();
       scrollToBottom();
-    }, 3000);
+      // Simulate Shellby reply after 3s
+      setTimeout(async () => {
+        // Replace the last message (loading) with the real reply
+
+        // Simulate error: set error to true and text to error message
+        // messages[messages.length - 1].loading = false;
+        // messages[messages.length - 1].error = true;
+        // messages[messages.length - 1].text = "Oops! Something went wrong.";
+
+        // Normal reply (no error)
+        messages[messages.length - 1].loading = false;
+        messages[messages.length - 1].text = SHELLBY_REPLY;
+
+        await tick();
+        scrollToBottom();
+      }, 3000);
+    }, 400);
   }
 
   // Message array: type = 'user' | 'shellby', text = string, loading?: boolean

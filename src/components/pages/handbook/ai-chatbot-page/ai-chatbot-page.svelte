@@ -5,10 +5,31 @@
   import clsx from 'clsx';
   import { fade } from 'svelte/transition';
   import MessageCard from '$components/ai-chatbot/message-card.svelte';
+  import { tick } from 'svelte';
 
   let searchInputValue = '';
 
   let messagesContainer: HTMLDivElement;
+
+  // Simple shellby reply message
+  const SHELLBY_REPLY = "This is Shellby's default reply.";
+
+  // Handle form submit
+  async function handleSendMessage(event: Event) {
+    event.preventDefault();
+    const trimmed = searchInputValue.trim();
+    if (!trimmed) return;
+    messages = [...messages, { type: 'user', text: trimmed }];
+    searchInputValue = '';
+    await tick();
+    scrollToBottom();
+    // Simulate Shellby reply after 2s
+    setTimeout(async () => {
+      messages = [...messages, { type: 'shellby', text: SHELLBY_REPLY }];
+      await tick();
+      scrollToBottom();
+    }, 2000);
+  }
 
   // Message array: type = 'user' | 'shellby', text = string
   type Message = { type: 'user' | 'shellby'; text: string };
@@ -34,8 +55,8 @@
     { type: 'user', text: 'last message here' }
   ];
 
-  // Scroll to bottom when messages change
-  $: {
+  // Scroll to bottom helper
+  function scrollToBottom() {
     if (messagesContainer) {
       messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
@@ -56,7 +77,7 @@
     <MessageCard {messages} />
   </div>
 
-  <form id="search-form" class="relative flex gap-2">
+  <form id="search-form" class="relative flex gap-2" on:submit|preventDefault={handleSendMessage}>
     <Input
       bind:value={searchInputValue}
       class={clsx('pr-20')}

@@ -104,7 +104,12 @@
 
     {#if searchInputValue}
       <div transition:fade={{ duration: 100 }} class="absolute right-1.5 top-1/2 -translate-y-1/2">
-        <Button type="submit" size="md" icon="arrow-right" variant="primary">Send</Button>
+        <Button class="md:hidden" type="submit" size="md" icon="arrow-right" variant="primary"
+        ></Button>
+
+        <Button class="hidden md:flex" type="submit" size="md" icon="arrow-right" variant="primary"
+          >Send</Button
+        >
       </div>
     {/if}
   </form>

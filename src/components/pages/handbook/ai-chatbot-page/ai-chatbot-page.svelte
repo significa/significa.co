@@ -77,12 +77,7 @@
   }
 </script>
 
-<Seo
-  title="placeholder"
-  description="placeholder"
-  image="placeholder"
-  structureDataMarkup="placeholder"
-/>
+<Seo title="Shellby - AI Chatbot🥚" />
 <div
   use:drawerLinks
   class="container mx-auto flex h-full flex-col justify-end px-container pb-0 lg:pb-8"

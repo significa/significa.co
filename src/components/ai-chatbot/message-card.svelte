@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Shellby from '$components/ai-chatbot/shellby.svelte';
-  import SeggBinoculars from '$components/ai-chatbot/segg-binoculars.svelte';
+  import Shellby from '$components/ai-chatbot/icons/shellby.svelte';
+  import SeggBinoculars from '$components/ai-chatbot/icons/segg-binoculars.svelte';
 
   export let type: 'user' | 'shellby';
   export let loading: boolean = false;

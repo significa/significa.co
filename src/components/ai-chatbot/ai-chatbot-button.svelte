@@ -2,7 +2,7 @@
   import { Icon, Spinner } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import { twMerge } from 'tailwind-merge';
-  import Shellby from '$components/ai-chatbot/shellby.svelte';
+  import Shellby from '$components/ai-chatbot/icons/shellby.svelte';
 
   const button = `
     group

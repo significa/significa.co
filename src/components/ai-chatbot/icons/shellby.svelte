@@ -1,7 +1,6 @@
 <svg
   width="102"
   height="134"
-  preserveAspectRatio="true"
   viewBox="0 0 102 134"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"

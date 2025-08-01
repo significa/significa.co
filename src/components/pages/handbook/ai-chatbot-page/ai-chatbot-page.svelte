@@ -12,7 +12,7 @@
     loading?: boolean;
     error?: boolean;
   };
-  import { tick } from 'svelte';
+  import { tick, afterUpdate } from 'svelte';
 
   let searchInputValue = '';
 
@@ -29,12 +29,10 @@
     messages = [...messages, { type: 'user', text: trimmed }];
     searchInputValue = '';
     await tick();
-    scrollToBottom();
     // Add a small delay before showing Shellby loading message
     setTimeout(async () => {
       messages = [...messages, { type: 'shellby', text: '', loading: true, error: false }];
       await tick();
-      scrollToBottom();
       // Simulate Shellby reply after 3s
       setTimeout(async () => {
         // Replace the last message (loading) with the real reply
@@ -49,7 +47,6 @@
         messages[messages.length - 1].text = SHELLBY_REPLY;
 
         await tick();
-        scrollToBottom();
       }, 3000);
     }, 400);
   }
@@ -59,19 +56,6 @@
   let messages: Message[] = [
     {
       type: 'user',
-      text: 'big user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum '
-    },
-    {
-      type: 'shellby',
-      text: 'shellby message, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum '
-    },
-    {
-      type: 'user',
-      text: 'big user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum '
-    },
-    { type: 'shellby', text: 'shellby message' },
-    {
-      type: 'user',
       text: 'big user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum '
     },
     { type: 'shellby', text: 'shellby message', error: true },
@@ -79,11 +63,17 @@
   ];
 
   // Scroll to bottom helper
-  function scrollToBottom() {
-    if (messagesContainer) {
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  // Scroll to bottom helper with smooth behavior
+  function scrollToBottom(node: HTMLDivElement) {
+    if (node) {
+      node.scroll({ top: node.scrollHeight, behavior: 'smooth' });
     }
   }
+
+  // Scroll to bottom after messages update
+  afterUpdate(() => {
+    if (messagesContainer) scrollToBottom(messagesContainer);
+  });
 </script>
 
 <Seo title="Shellby - AI Chatbot🥚" />
@@ -93,12 +83,14 @@
 >
   <div class="hide-scrollbar space-y-4 overflow-y-auto px-2 py-8" bind:this={messagesContainer}>
     {#each messages as message}
-      <MessageCard
-        type={message.type}
-        text={message.text}
-        loading={message.loading}
-        error={message.error}
-      />
+      <div transition:fade={{ duration: 200 }}>
+        <MessageCard
+          type={message.type}
+          text={message.text}
+          loading={message.loading}
+          error={message.error}
+        />
+      </div>
     {/each}
   </div>
 

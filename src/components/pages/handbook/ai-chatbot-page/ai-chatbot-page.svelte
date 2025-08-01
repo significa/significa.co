@@ -5,6 +5,11 @@
   import clsx from 'clsx';
   import { fade } from 'svelte/transition';
   import MessageCard from '$components/ai-chatbot/message-card.svelte';
+  type Message = {
+    type: 'user' | 'shellby';
+    text: string;
+    loading?: boolean;
+  };
   import { tick } from 'svelte';
 
   let searchInputValue = '';
@@ -23,16 +28,25 @@
     searchInputValue = '';
     await tick();
     scrollToBottom();
-    // Simulate Shellby reply after 2s
+    // Show loading message
+
+    messages = [...messages, { type: 'shellby', text: '', loading: true }];
+    await tick();
+    scrollToBottom();
+    // Simulate Shellby reply after 3s
     setTimeout(async () => {
-      messages = [...messages, { type: 'shellby', text: SHELLBY_REPLY }];
+      // Replace the last message (loading) with the real reply
+
+      messages[messages.length - 1].loading = false;
+      messages[messages.length - 1].text = SHELLBY_REPLY;
+
       await tick();
       scrollToBottom();
-    }, 2000);
+    }, 3000);
   }
 
-  // Message array: type = 'user' | 'shellby', text = string
-  type Message = { type: 'user' | 'shellby'; text: string };
+  // Message array: type = 'user' | 'shellby', text = string, loading?: boolean
+
   let messages: Message[] = [
     {
       type: 'user',
@@ -74,7 +88,9 @@
   class="container mx-auto flex h-full flex-col justify-end px-container pb-0 lg:pb-8"
 >
   <div class="hide-scrollbar space-y-4 overflow-y-auto px-2 py-8" bind:this={messagesContainer}>
-    <MessageCard {messages} />
+    {#each messages as message}
+      <MessageCard type={message.type} text={message.text} loading={message.loading} />
+    {/each}
   </div>
 
   <form id="search-form" class="relative flex gap-2" on:submit|preventDefault={handleSendMessage}>

@@ -34,6 +34,16 @@
           />
         {/each}
       {/if}
+      {#if post.content?.external_authors?.length}
+        {#each post.content?.external_authors as external_authors}
+          <Person
+            isActive={external_authors.is_active}
+            name={external_authors.name}
+            position={external_authors.position}
+            photo={external_authors.photo}
+          />
+        {/each}
+      {/if}
     </div>
     <div class="w-full max-w-xl">
       <div class="flex gap-2">

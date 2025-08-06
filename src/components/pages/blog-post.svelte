@@ -1,6 +1,6 @@
 <script lang="ts">
   import { richTextBlockWidths } from '$lib/constants';
-  import { getImageAttributes } from '$lib/utils/cms';
+  import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import { formatDate } from '$lib/utils/dates';
   import { Button, Tag } from '@significa/svelte-ui';
   import RichText from '$components/rich-text.svelte';
@@ -86,24 +86,53 @@
   {/if}
 
   <!-- Author -->
-  {#if story.content.authors?.length}
+  {#if story.content.authors?.length || story.content.external_authors?.length}
     <div class="mx-auto max-w-2xl border-b border-t">
-      {#each story.content.authors as author}
-        <div use:drawerLinks class="mx-auto max-w-2xl py-8">
-          <div class="flex justify-between">
-            <Person
-              isActive={author.content.is_active}
-              name={author.name}
-              position={author.content.position}
-              photo={author.content.photo}
-            />
-            <Button variant="secondary" as="a" href={`/about/${author.slug}`} arrow icon="document">
-              {t('author-page')}
-            </Button>
+      {#if story.content.authors?.length}
+        {#each story.content.authors as author}
+          <div use:drawerLinks class="mx-auto max-w-2xl py-8">
+            <div class="flex justify-between">
+              <Person
+                isActive={author.content.is_active}
+                name={author.name}
+                position={author.content.position}
+                photo={author.content.photo}
+              />
+              <Button
+                variant="secondary"
+                as="a"
+                href={`/about/${author.slug}`}
+                arrow
+                icon="document"
+              >
+                {t('author-page')}
+              </Button>
+            </div>
+            <p class="mt-6 text-xl text-foreground-secondary">{author.content.bio}</p>
           </div>
-          <p class="mt-6 text-xl text-foreground-secondary">{author.content.bio}</p>
-        </div>
-      {/each}
+        {/each}
+      {/if}
+      {#if story.content.external_authors?.length}
+        {#each story.content.external_authors as external_author}
+          <div use:drawerLinks class="mx-auto max-w-2xl py-8">
+            <div class="flex justify-between">
+              <Person
+                isActive={external_author.is_active}
+                name={external_author.name}
+                position={external_author.position}
+                photo={external_author.photo}
+              />
+              {#if external_author.button_label && external_author.button_link}
+                {@const { href, target, rel } = getAnchorFromCmsLink(external_author.button_link)}
+                <Button variant="secondary" as="a" {href} {target} {rel} arrow icon="document">
+                  {external_author.button_label}
+                </Button>
+              {/if}
+            </div>
+            <p class="mt-6 text-xl text-foreground-secondary">{external_author.bio}</p>
+          </div>
+        {/each}
+      {/if}
     </div>
   {/if}
 </div>

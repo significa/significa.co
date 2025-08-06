@@ -476,7 +476,7 @@
       "display_name": "Author",
       "description": null,
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2025-02-11T09:38:09.431Z",
+      "updated_at": "2025-08-06T15:06:02.602Z",
       "id": 3442347,
       "schema": {
         "cover": {
@@ -503,24 +503,34 @@
           "type": "options",
           "source": "internal_stories",
           "filter_content_type": ["team-member"],
-          "required": true,
-          "min_options": "1",
+          "required": false,
+          "min_options": "0",
           "max_options": "4",
           "pos": 3,
           "id": "vlcOr1lSSkynG2QKXt4YJg"
+        },
+        "external_authors": {
+          "type": "bloks",
+          "pos": 4,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["external-author"],
+          "id": "XdA2QGCBQEqUKy-NITfjTw",
+          "minimum": 0,
+          "maximum": 4
         },
         "services": {
           "type": "options",
           "source": "internal",
           "datasource_slug": "services",
-          "pos": 4,
+          "pos": 5,
           "id": "SmiU9YHQQFmiu3YKGdcK9w"
         },
         "deliverables": {
           "type": "options",
           "source": "internal",
           "datasource_slug": "deliverables",
-          "pos": 5,
+          "pos": 6,
           "id": "vF2l7ScsRUuUNq_nOYroKg"
         },
         "tech": {
@@ -528,49 +538,49 @@
           "display_name": "",
           "source": "internal",
           "datasource_slug": "tech-stack",
-          "pos": 6,
+          "pos": 7,
           "id": "uHMZJfCDR06MV30J7QHzKA"
         },
         "industry": {
           "type": "options",
           "source": "internal",
           "datasource_slug": "industry",
-          "pos": 7,
+          "pos": 8,
           "id": "CssUjMEXTo6Kjnn86kwajA"
         },
         "seo_title": {
           "type": "text",
-          "pos": 8,
+          "pos": 9,
           "id": "BOQalEUqQiyk1md3F5xIVA"
         },
         "seo_description": {
           "type": "text",
-          "pos": 9,
+          "pos": 10,
           "id": "7NAqowg8QR2aKKFF5RhbXQ"
         },
         "seo_og_image": {
           "type": "asset",
           "filetypes": ["images"],
           "asset_folder_id": 212285,
-          "pos": 10,
+          "pos": 11,
           "id": "aKZDfkIZSByFgTOpanjZyg"
         },
         "seo_canonical_url": {
           "type": "text",
-          "pos": 11,
+          "pos": 12,
           "description": "The default is the page URL",
           "id": "uti5hsDBSF6WaKtICvmJ3Q"
         },
         "structure_data_markup": {
           "type": "textarea",
           "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
-          "pos": 12,
+          "pos": 13,
           "id": "jlD5mft8RjCpiuV3jnrKQA"
         },
         "tab-9a5d9933-3840-42d8-aa24-d87e83a9eb5d": {
           "display_name": "Content",
           "keys": ["body"],
-          "pos": 13,
+          "pos": 14,
           "type": "tab",
           "id": "ml2ZMzhAQtiqJNh-g6nrXQ"
         },
@@ -583,7 +593,7 @@
             "structure_data_markup",
             "seo_canonical_url"
           ],
-          "pos": 14,
+          "pos": 15,
           "type": "tab",
           "id": "wbZiBjNNRHCplsqaoHTiPA"
         },
@@ -616,7 +626,7 @@
             "redo",
             "color"
           ],
-          "pos": 15,
+          "pos": 16,
           "allow_custom_attributes": true,
           "id": "5ed-PQo1Sv6G4smOLUMFNg",
           "allow_target_blank": true
@@ -2374,6 +2384,77 @@
       "content_type_asset_preview": null,
       "metadata": {},
       "component_group_name": "Blocks"
+    },
+    {
+      "name": "external-author",
+      "display_name": null,
+      "description": "",
+      "created_at": "2025-08-06T15:02:50.554Z",
+      "updated_at": "2025-08-06T15:13:24.428Z",
+      "id": 77016967399784,
+      "schema": {
+        "is_active": {
+          "type": "boolean",
+          "pos": 0,
+          "id": "nEZrL5tzRJi6dqWE_PQ2Ow"
+        },
+        "name": {
+          "type": "text",
+          "pos": 1,
+          "id": "vtYfrURPQgie8mcbJf_8Lg",
+          "required": true
+        },
+        "position": {
+          "type": "text",
+          "pos": 2,
+          "id": "N69jaMvDRx-_cl0uLTTfHw",
+          "required": true
+        },
+        "photo": {
+          "type": "asset",
+          "pos": 3,
+          "filetypes": ["images"],
+          "id": "D6JI6dyqRcy_1OJj3hatFQ"
+        },
+        "email": {
+          "type": "text",
+          "pos": 4,
+          "id": "7Bo58uwPQ3ujLV3D9kpWqg"
+        },
+        "button_label": {
+          "type": "text",
+          "pos": 5,
+          "id": "FSTs2B0VSZCwVfTPjqJyuw"
+        },
+        "button_link": {
+          "type": "multilink",
+          "pos": 6,
+          "id": "MnlfBahGRvyIRCVQWj5lzg",
+          "allow_target_blank": true
+        },
+        "bio": {
+          "type": "textarea",
+          "pos": 7,
+          "required": true,
+          "id": "fw4ohqSbSu-ByMu9_GwGlA"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "external-author",
+      "component_group_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+      "color": null,
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "metadata": {},
+      "component_group_name": "Single"
     },
     {
       "name": "faq",

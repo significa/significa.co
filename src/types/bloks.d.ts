@@ -160,7 +160,8 @@ export interface BlogPostStoryblok {
   cover?: AssetStoryblok;
   reading_time?: string;
   intro: string;
-  authors: (StoryblokStory<TeamMemberStoryblok> | string)[];
+  authors?: (StoryblokStory<TeamMemberStoryblok> | string)[];
+  external_authors?: ExternalAuthorStoryblok[];
   services?: (number | string)[];
   deliverables?: (number | string)[];
   tech?: (number | string)[];
@@ -545,6 +546,20 @@ export interface EstimationStoryblok {
   form_description?: string;
   _uid: string;
   component: 'estimation';
+  [k: string]: any;
+}
+
+export interface ExternalAuthorStoryblok {
+  is_active: boolean;
+  name: string;
+  position: string;
+  photo?: AssetStoryblok;
+  email?: string;
+  button_label?: string;
+  button_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+  bio: string;
+  _uid: string;
+  component: 'external-author';
   [k: string]: any;
 }
 

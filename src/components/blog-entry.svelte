@@ -18,12 +18,7 @@
   class="border-b transition-colors elevated-links first:border-t hover:bg-foreground-tertiary/10"
 >
   <div class="container mx-auto flex gap-6 px-container py-8 @container">
-    <div
-      class={twMerge(
-        'hidden flex-1 @6xl:grid @6xl:h-fit @6xl:grid-flow-col @6xl:grid-rows-2 @6xl:gap-6',
-        post.content.authors?.length > 2 && '@6xl:grid-cols-2'
-      )}
-    >
+    <div class={twMerge('hidden flex-1 @6xl:flex @6xl:h-fit  @6xl:flex-col  @6xl:gap-6')}>
       {#if post.content.authors?.length}
         {#each post.content.authors as author}
           <Person

@@ -124,7 +124,7 @@
               />
               {#if external_author.button_label && external_author.button_link}
                 {@const { href, target, rel } = getAnchorFromCmsLink(external_author.button_link)}
-                <Button variant="secondary" as="a" {href} {target} {rel} arrow icon="document">
+                <Button variant="secondary" as="a" {href} {target} {rel} arrow icon="link">
                   {external_author.button_label}
                 </Button>
               {/if}

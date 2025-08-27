@@ -7,6 +7,7 @@
   export let loading: boolean = false;
   export let error: boolean = false;
   export let text: string | undefined = undefined;
+  export let errorText: string | undefined = undefined;
 </script>
 
 {#if type === 'user'}
@@ -35,7 +36,7 @@
       {:else if error}
         <div class="flex items-center gap-1.5">
           <Icon icon="info" class="text-error" />
-          <span class="text-sm text-error">Something went wrong</span>
+          <span class="text-sm text-error">{errorText ?? 'Something went wrong'}</span>
         </div>
       {:else}
         <span class="text-sm">{text}</span>

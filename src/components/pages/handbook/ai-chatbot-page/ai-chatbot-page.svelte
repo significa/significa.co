@@ -11,6 +11,7 @@
     text: string;
     loading?: boolean;
     error?: boolean;
+    errorText?: string;
   };
   import { afterUpdate } from 'svelte';
 
@@ -47,13 +48,20 @@
     } catch {
       messages[messages.length - 1].loading = false;
       messages[messages.length - 1].error = true;
-      messages[messages.length - 1].text = 'Sorry, something went wrong.';
+      messages[messages.length - 1].errorText = 'Sorry, something went wrong.';
+      messages[messages.length - 1].text = '';
     }
   }
 
   // Message array: type = 'user' | 'shellby', text = string, loading?: boolean
 
   let messages: Message[] = [
+    {
+      type: 'shellby',
+      text: "I'm in beta stage. I can only answer one message at a time :(",
+      errorText: "I'm in beta stage. I can only answer one message at a time :(",
+      error: true
+    },
     { type: 'shellby', text: 'Hello! I am Shellby, your AI assistant. How can I help you today?' }
   ];
 
@@ -77,13 +85,17 @@
   class="container mx-auto flex h-full flex-col justify-end px-container pb-0 lg:pb-8"
 >
   <div class="hide-scrollbar space-y-4 overflow-y-auto px-2 py-8" bind:this={messagesContainer}>
-    {#each messages as message}
-      <div transition:fade={{ duration: 200 }}>
+    {#each messages as message, i}
+      <div
+        transition:fade={{ duration: 200 }}
+        class={i < messages.length - 2 ? 'opacity-35 transition-opacity duration-300' : ''}
+      >
         <MessageCard
           type={message.type}
           text={message.text}
           loading={message.loading}
           error={message.error}
+          errorText={message.errorText}
         />
       </div>
     {/each}

@@ -19,6 +19,7 @@
 
   let messagesContainer: HTMLDivElement;
 
+  $: isLoading = messages.some((m) => m.loading);
   // Handle form submit
   async function handleSendMessage(event: Event) {
     event.preventDefault();
@@ -107,6 +108,7 @@
       class={clsx('pr-20')}
       placeholder={'Enter a prompt here'}
       size="lg"
+      disabled={isLoading}
     />
 
     {#if searchInputValue}

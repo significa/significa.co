@@ -18,9 +18,6 @@
 
   let messagesContainer: HTMLDivElement;
 
-  // Simple shellby reply message
-  const SHELLBY_REPLY = "This is Shellby's default reply.";
-
   // Handle form submit
   async function handleSendMessage(event: Event) {
     event.preventDefault();
@@ -28,28 +25,36 @@
     if (!trimmed) return;
     messages = [...messages, { type: 'user', text: trimmed }];
     searchInputValue = '';
-    // Add a small delay before showing Shellby loading message
-    setTimeout(async () => {
-      messages = [...messages, { type: 'shellby', text: '', loading: true, error: false }];
-      // Simulate Shellby reply after 3s
-    }, 400);
-
-    setTimeout(async () => {
-      // Normal reply (no error)
+    messages = [...messages, { type: 'shellby', text: '', loading: true, error: false }];
+    try {
+      const response = await fetch('https://handbook-search-staging.significa.dev/api/chat/query', {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ prompt: trimmed })
+      });
+      if (!response.ok) throw new Error('Network response was not ok');
+      const data = await response.json();
       messages[messages.length - 1].loading = false;
-      messages[messages.length - 1].text = SHELLBY_REPLY;
-    }, 3000);
+      const answer = data?.data?.answer;
+      if (typeof answer === 'string' && answer.trim() !== '') {
+        messages[messages.length - 1].text = answer;
+      } else {
+        messages[messages.length - 1].text = 'No reply received.';
+      }
+    } catch {
+      messages[messages.length - 1].loading = false;
+      messages[messages.length - 1].error = true;
+      messages[messages.length - 1].text = 'Sorry, something went wrong.';
+    }
   }
 
   // Message array: type = 'user' | 'shellby', text = string, loading?: boolean
 
   let messages: Message[] = [
-    {
-      type: 'user',
-      text: 'big user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsumbig user question, ipsum dolor sit amet? ipsum dolor sit amet, consectetur adipiscing elit. Ipsum '
-    },
-    { type: 'shellby', text: 'shellby message', error: true },
-    { type: 'user', text: 'last message here' }
+    { type: 'shellby', text: 'Hello! I am Shellby, your AI assistant. How can I help you today?' }
   ];
 
   // Scroll to bottom helper

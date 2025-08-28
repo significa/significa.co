@@ -23,6 +23,7 @@
   // Handle form submit
   async function handleSendMessage(event: Event) {
     event.preventDefault();
+    if (isLoading) return;
     const trimmed = searchInputValue.trim();
     if (!trimmed) return;
     messages = [...messages, { type: 'user', text: trimmed }];
@@ -102,7 +103,6 @@
       class={clsx('pr-20')}
       placeholder={'Enter a prompt here'}
       size="lg"
-      disabled={isLoading}
     />
 
     {#if searchInputValue}
@@ -110,8 +110,13 @@
         <Button class="md:hidden" type="submit" size="md" icon="arrow-right" variant="primary"
         ></Button>
 
-        <Button class="hidden md:flex" type="submit" size="md" icon="arrow-right" variant="primary"
-          >Send</Button
+        <Button
+          class="hidden md:flex"
+          type="submit"
+          size="md"
+          icon="arrow-right"
+          variant="primary"
+          disabled={isLoading}>Send</Button
         >
       </div>
     {/if}

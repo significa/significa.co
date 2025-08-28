@@ -1,7 +1,7 @@
 <script lang="ts">
   import Seo from '$components/seo.svelte';
   import { drawerLinks } from '$lib/actions/drawer-links.js';
-  import { Button, Input } from '@significa/svelte-ui';
+  import { Button, Icon, Input } from '@significa/svelte-ui';
   import clsx from 'clsx';
   import { fade } from 'svelte/transition';
   import MessageCard from '$components/ai-chatbot/message-card.svelte';
@@ -57,12 +57,6 @@
   // Message array: type = 'user' | 'shellby', text = string, loading?: boolean
 
   let messages: Message[] = [
-    {
-      type: 'shellby',
-      text: "I'm in beta stage. I can only answer one message at a time :(",
-      errorText: "I'm in beta stage. I can only answer one message at a time :(",
-      error: true
-    },
     { type: 'shellby', text: 'Hello! I am Shellby, your AI assistant. How can I help you today?' }
   ];
 
@@ -122,4 +116,9 @@
       </div>
     {/if}
   </form>
+
+  <div class="mt-4 flex items-center gap-2 text-sm text-foreground-secondary">
+    <Icon icon="info" />
+    <span>I'm in beta stage. I can only answer one message at a time :(</span>
+  </div>
 </div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { PUBLIC_AI_CHATBOT_API_URL } from '$env/static/public';
   import Seo from '$components/seo.svelte';
   import { drawerLinks } from '$lib/actions/drawer-links.js';
   import { Button, Icon, Input } from '@significa/svelte-ui';
@@ -30,7 +31,7 @@
     searchInputValue = '';
     messages = [...messages, { type: 'shellby', text: '', loading: true, error: false }];
     try {
-      const response = await fetch('https://handbook-search-staging.significa.dev/api/chat/query', {
+      const response = await fetch(PUBLIC_AI_CHATBOT_API_URL, {
         method: 'POST',
         headers: {
           accept: 'application/json',

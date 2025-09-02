@@ -15,13 +15,13 @@
   export let email: AssetStoryblok | undefined = undefined;
 </script>
 
-<div class={clsx('flex items-center gap-3 overflow-hidden', className)}>
+<div class={clsx('flex items-center gap-3', className)}>
   <Avatar
     class="flex-shrink-0"
     image={photo?.filename ? getImageAttributes(photo, { size: [100, 100] }).src : undefined}
     size="sm"
   />
-  <div class="overflow-hidden">
+  <div>
     {#if name}
       <p class="text-base font-semibold leading-none">{name}</p>
     {/if}
@@ -29,7 +29,7 @@
       {@const newPosition = !isActive ? `${t('team.former')} ${position}` : position}
       <p
         title={newPosition}
-        class="mt-1 overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold leading-none text-foreground-secondary"
+        class="mt-1 text-ellipsis whitespace-nowrap text-base font-semibold leading-none text-foreground-secondary"
       >
         {newPosition}
       </p>

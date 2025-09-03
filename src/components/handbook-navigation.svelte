@@ -10,6 +10,8 @@
   import AiButton from './ai-chatbot/ai-chatbot-button.svelte';
 
   export let configuration: ConfigurationStoryblok;
+  //FLAG TO DISPLAY AIBUTTON
+  export let showAiButton: boolean = true;
 
   $: isShellbyRoute = $page.url.pathname === '/handbook/shellby';
 </script>
@@ -35,7 +37,7 @@
         'col-span-2 row-start-2 w-full md:col-span-1 md:col-start-2 md:row-start-1 lg:max-w-[450px]'
       )}
     >
-      {#if !isShellbyRoute}
+      {#if !isShellbyRoute && showAiButton}
         <div class="md:flex md:justify-around">
           <AiButton mobileText="Hey there, ask Shellby something..." as="a" href="/handbook/shellby"
             >Ask Shellby</AiButton

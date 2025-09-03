@@ -16,7 +16,10 @@
     <script>
       function setTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
-        document.documentElement.styled.colorScheme = theme;
+        if (document.documentElement.styled) {
+          document.documentElement.styled.colorScheme = theme;
+        }
+
         localStorage.setItem('theme', theme);
         window.dispatchEvent(new CustomEvent('theme-change', { detail: theme }));
       }

@@ -2,6 +2,9 @@
   "name": "significa.co",
   "version": "0.0.1-development",
   "private": true,
+  "engines": {
+    "node": "20.19.0"
+  },
   "scripts": {
     "dev": "vite dev",
     "prebuild": "npm run datasources && npm run sitemap",

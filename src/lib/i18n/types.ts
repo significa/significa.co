@@ -175,7 +175,8 @@ export const TranslationKeys = [
   'estimate.clear',
   'blog.x_minutes',
   'blog.est-reading-time',
-  'blog.x_min_read'
+  'blog.x_min_read',
+  'contact.feedback.error.message.description'
 ] as const;
 
 export type TranslationKey = (typeof TranslationKeys)[number];

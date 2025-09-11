@@ -175,5 +175,6 @@
   "estimate.clear": "Clear",
   "blog.x_minutes": "{{value}} minutes",
   "blog.est-reading-time": "Est. reading time",
-  "blog.x_min_read": "{{value}} min read"
+  "blog.x_min_read": "{{value}} min read",
+  "contact.feedback.error.message.description": "Message exceeds maximum length of 2000 characters"
 }

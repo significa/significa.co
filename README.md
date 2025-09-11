@@ -37,9 +37,9 @@ databases, etc.
 
 Here's how everything is connected (arrows represent the request initiator):
 
-<!-- TODO: Update this diagram and leave here the link to figma -->
+<!-- Source: https://www.figma.com/design/FGnb9qYhXJo8w0tuHPveVF/Significa-Site-%E2%80%93-Design?node-id=4280-23782&p=f&t=ZAotyfyhPfWLmRnn-0 -->
 
-![infrastructure diagram](./docs/architecture-diagram.png)
+![infrastructure diagram](./docs/architecture-diagram.jpg)
 
 ## Contributing
 

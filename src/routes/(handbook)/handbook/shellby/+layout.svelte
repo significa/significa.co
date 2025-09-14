@@ -23,17 +23,17 @@
   $: openPanes = getOpenPanes(data.hierarchy, pageStore);
 </script>
 
-<div class="pb-20 lg:container lg:mx-auto lg:px-container" use:bodyLock={sidebar}>
+<div class="lg:container lg:mx-auto lg:px-container" use:bodyLock={sidebar}>
   <!-- Mobile: open menu -->
   <div
-    class="sticky top-[--topnav-handbook-mobile-height] z-10 flex h-12 items-center border-b bg-background px-container py-2 md:top-[--topnav-height] lg:hidden lg:px-0"
+    class="sticky top-[--topnav-height] z-10 flex h-12 items-center border-b bg-background px-container py-2 lg:hidden lg:px-0"
   >
     <TextButton iconLeft="hamburger" on:click={() => sidebar.set(true)}>
       {t('handbook')}
     </TextButton>
   </div>
 
-  <div class="flex flex-col gap-5 lg:flex-row">
+  <div class="relative flex flex-col gap-5 lg:flex-row">
     <aside
       class={clsx(
         'fixed bottom-0 top-[--topnav-handbook-mobile-height] z-10 w-full overflow-y-auto bg-background md:top-[--topnav-height]',
@@ -43,7 +43,7 @@
     >
       <!-- Mobile: close menu -->
       <div
-        class="fixed top-[--topnav-handbook-mobile-height] z-10 flex h-12 w-full items-center justify-between border-b bg-background px-container py-2 md:top-[--topnav-height] lg:hidden"
+        class="fixed top-[--topnav-height] z-10 flex h-12 w-full items-center justify-between border-b bg-background px-container py-2 lg:hidden"
       >
         <TextButton iconLeft="close" on:click={() => sidebar.set(false)}>{t('close')}</TextButton>
 
@@ -55,7 +55,7 @@
         </div>
       </div>
 
-      <nav class="px-container pt-[calc(var(--topnav-height))] lg:px-0 lg:pt-4">
+      <nav class="px-container pt-[calc(var(--topnav-shellby-height))] lg:px-0 lg:pt-4">
         <ul>
           {#each data.hierarchy as chapter, i}
             <li
@@ -150,7 +150,9 @@
       </nav>
     </aside>
 
-    <main class="mt-36 flex-1 md:mt-20 lg:mt-10">
+    <main
+      class="h-[calc(100vh-var(--topnav-height))] w-full pt-[var(--topnav-height)] lg:sticky lg:right-0 lg:top-0 lg:h-screen"
+    >
       <slot />
     </main>
   </div>

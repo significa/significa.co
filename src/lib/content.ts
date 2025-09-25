@@ -109,7 +109,12 @@ export const fetchBlogPosts = async (
     ...BLOG_PARAMS,
     with_tag: options.url?.searchParams.getAll('t').join(',') || '',
     page: 1,
-    version: options.version || 'published'
+    version: options.version || 'published',
+    filter_query: {
+      hide_from_listings: {
+        is: false
+      }
+    }
   });
 };
 
@@ -124,7 +129,12 @@ export const fetchHomeBlogPosts = async (
     resolve_relations: 'blog-post.author,blog-post.authors',
     per_page: 3,
     page: 1,
-    version: options.version || 'published'
+    version: options.version || 'published',
+    filter_query: {
+      hide_from_listings: {
+        is: false
+      }
+    }
   });
 
   return res.data.stories;
@@ -275,7 +285,12 @@ export async function fetchPage(options: {
         per_page: 3,
         page: 1,
         excluding_ids: data.story.id.toString(),
-        with_tag: data.story.tag_list.join(',')
+        with_tag: data.story.tag_list.join(','),
+        filter_query: {
+          hide_from_listings: {
+            is: false
+          }
+        }
       })
     };
   }

@@ -453,8 +453,7 @@ export interface ConfigurationStoryblok {
   primary_navigation?: any[];
   call_to_action?: LinkStoryblok[];
   footer?: (FooterColumnInternalStoryblok | FooterColumnExternalStoryblok)[];
-  footer_logo_two?: ClientLogoStoryblok[];
-  footer_logo?: ClientLogoStoryblok[];
+  footer_partners?: ClientLogoStoryblok[];
   _uid: string;
   component: 'configuration';
   [k: string]: any;

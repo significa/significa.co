@@ -6,6 +6,7 @@
   import { Badge, Link, Logo } from '@significa/svelte-ui';
   import Slogan from './slogan.svelte';
   import { intersectionObserver } from '@significa/svelte-ui/actions';
+  import clsx from 'clsx';
 
   export let configuration: ConfigurationStoryblok;
   let animate = false;
@@ -28,64 +29,42 @@
         <Slogan {animate} class="hidden font-bold md:block" />
       </span>
 
-      {#if !!configuration.footer_logo_two?.length || !!configuration.footer_logo?.length}
-        <div class="-ml-2 hidden h-20 items-center gap-7 md:flex">
-          {#if !!configuration.footer_logo_two}
-            {#each configuration.footer_logo_two || [] as logo}
-              {#if logo.light_mode?.filename}
-                {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
-                  size: [0, 720]
-                })}
-                <img
-                  {src}
-                  {alt}
-                  {width}
-                  {height}
-                  class="mt-[7px] h-auto max-h-24 w-auto object-contain dark:hidden"
-                />
-              {/if}
-              {#if logo.dark_mode?.filename}
-                {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
-                  size: [0, 720]
-                })}
-                <img
-                  {src}
-                  {alt}
-                  {width}
-                  {height}
-                  class="mt-[7px] hidden h-auto max-h-24 w-auto object-contain dark:block"
-                />
-              {/if}
-            {/each}
-          {/if}
-          {#if !!configuration.footer_logo}
-            {#each configuration.footer_logo || [] as logo}
-              {#if logo.light_mode?.filename}
-                {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
-                  size: [0, 720]
-                })}
-                <img
-                  {src}
-                  {alt}
-                  {width}
-                  {height}
-                  class="h-auto max-h-12 w-auto object-contain dark:hidden"
-                />
-              {/if}
-              {#if logo.dark_mode?.filename}
-                {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
-                  size: [0, 720]
-                })}
-                <img
-                  {src}
-                  {alt}
-                  {width}
-                  {height}
-                  class="hidden h-auto max-h-12 w-auto object-contain dark:block"
-                />
-              {/if}
-            {/each}
-          {/if}
+      {#if !!configuration.footer_partners?.length}
+        <div class="-ml-2 hidden h-20 items-center gap-3 md:flex lg:gap-7">
+          {#each configuration.footer_partners as partner, i}
+            {#if partner.light_mode?.filename}
+              {@const { src, alt, width, height } = getImageAttributes(partner.light_mode, {
+                size: [0, 720]
+              })}
+              <img
+                {src}
+                {alt}
+                {width}
+                {height}
+                class={clsx(
+                  i === 0 && 'mt-[7px] h-auto max-h-24 w-auto object-contain dark:hidden',
+                  i === 1 && 'h-auto max-h-12 w-auto object-contain dark:hidden',
+                  i === 2 && 'mb-1 h-auto max-h-[72px] w-auto object-contain dark:hidden'
+                )}
+              />
+            {/if}
+            {#if partner.dark_mode?.filename}
+              {@const { src, alt, width, height } = getImageAttributes(partner.dark_mode, {
+                size: [0, 720]
+              })}
+              <img
+                {src}
+                {alt}
+                {width}
+                {height}
+                class={clsx(
+                  i === 0 && 'mt-[7px] h-auto max-h-24 w-auto object-contain dark:block',
+                  i === 1 && 'h-auto max-h-12 w-auto object-contain dark:block',
+                  i === 2 && 'mb-1 h-auto max-h-[72px] w-auto object-contain dark:block'
+                )}
+              />
+            {/if}
+          {/each}
         </div>
       {/if}
     </div>
@@ -131,64 +110,42 @@
       {/each}
     </div>
 
-    {#if !!configuration.footer_logo_two?.length || !!configuration.footer_logo?.length}
+    {#if !!configuration.footer_partners?.length}
       <div class="col-span-3 -ml-2 flex h-20 items-center gap-7 md:hidden">
-        {#if !!configuration.footer_logo_two?.length}
-          {#each configuration.footer_logo_two || [] as logo}
-            {#if logo.light_mode?.filename}
-              {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
-                size: [0, 720]
-              })}
-              <img
-                {src}
-                {alt}
-                {width}
-                {height}
-                class="mt-[7px] h-auto max-h-24 w-auto object-contain dark:hidden"
-              />
-            {/if}
-            {#if logo.dark_mode?.filename}
-              {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
-                size: [0, 720]
-              })}
-              <img
-                {src}
-                {alt}
-                {width}
-                {height}
-                class="mt-[7px] hidden h-auto max-h-24 w-auto object-contain dark:block"
-              />
-            {/if}
-          {/each}
-        {/if}
-        {#if !!configuration.footer_logo?.length}
-          {#each configuration.footer_logo || [] as logo}
-            {#if logo.light_mode?.filename}
-              {@const { src, alt, width, height } = getImageAttributes(logo.light_mode, {
-                size: [0, 720]
-              })}
-              <img
-                {src}
-                {alt}
-                {width}
-                {height}
-                class="h-auto max-h-12 w-auto object-contain dark:hidden"
-              />
-            {/if}
-            {#if logo.dark_mode?.filename}
-              {@const { src, alt, width, height } = getImageAttributes(logo.dark_mode, {
-                size: [0, 720]
-              })}
-              <img
-                {src}
-                {alt}
-                {width}
-                {height}
-                class="hidden h-auto max-h-12 w-auto object-contain dark:block"
-              />
-            {/if}
-          {/each}
-        {/if}
+        {#each configuration.footer_partners as partner, i}
+          {#if partner.light_mode?.filename}
+            {@const { src, alt, width, height } = getImageAttributes(partner.light_mode, {
+              size: [0, 720]
+            })}
+            <img
+              {src}
+              {alt}
+              {width}
+              {height}
+              class={clsx(
+                i === 0 && 'mt-[7px] h-auto max-h-24 w-auto object-contain dark:hidden',
+                i === 1 && 'h-auto max-h-12 w-auto object-contain dark:hidden',
+                i === 2 && 'mb-1 h-auto max-h-[72px] w-auto object-contain dark:hidden'
+              )}
+            />
+          {/if}
+          {#if partner.dark_mode?.filename}
+            {@const { src, alt, width, height } = getImageAttributes(partner.dark_mode, {
+              size: [0, 720]
+            })}
+            <img
+              {src}
+              {alt}
+              {width}
+              {height}
+              class={clsx(
+                i === 0 && 'mt-[7px] h-auto max-h-24 w-auto object-contain dark:block',
+                i === 1 && 'h-auto max-h-12 w-auto object-contain dark:block',
+                i === 2 && 'mb-1 h-auto max-h-[72px] w-auto object-contain dark:block'
+              )}
+            />
+          {/if}
+        {/each}
       </div>
     {/if}
   </div>

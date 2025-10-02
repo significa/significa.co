@@ -58,9 +58,9 @@
                 {width}
                 {height}
                 class={clsx(
-                  i === 0 && 'mt-[7px] h-auto max-h-24 w-auto object-contain dark:block',
-                  i === 1 && 'h-auto max-h-12 w-auto object-contain dark:block',
-                  i === 2 && 'mb-1 h-auto max-h-[72px] w-auto object-contain dark:block'
+                  i === 0 && 'mt-[7px] hidden h-auto max-h-24 w-auto object-contain dark:block',
+                  i === 1 && 'hidden h-auto max-h-12 w-auto object-contain dark:block',
+                  i === 2 && 'mb-1 hidden h-auto max-h-[72px] w-auto object-contain dark:block'
                 )}
               />
             {/if}
@@ -139,9 +139,9 @@
               {width}
               {height}
               class={clsx(
-                i === 0 && 'mt-[7px] h-auto max-h-24 w-auto object-contain dark:block',
-                i === 1 && 'h-auto max-h-12 w-auto object-contain dark:block',
-                i === 2 && 'mb-1 h-auto max-h-[72px] w-auto object-contain dark:block'
+                i === 0 && 'mt-[7px] hidden h-auto max-h-24 w-auto object-contain dark:block',
+                i === 1 && 'hidden h-auto max-h-12 w-auto object-contain dark:block',
+                i === 2 && 'mb-1 hidden h-auto max-h-[72px] w-auto object-contain dark:block'
               )}
             />
           {/if}

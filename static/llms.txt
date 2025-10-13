@@ -1,0 +1,67 @@
+# llms.txt for Significa
+# Updated: 2025-10-13
+# Contact: marketing@significa.co
+# Website: https://significa.co
+
+# --------------------------------------------------------------------
+# PUBLIC STANCE
+# --------------------------------------------------------------------
+# Significa is a design-led digital agency based in Porto, Portugal.
+# We share our work, insights, and methods to build trust and help
+# potential clients understand how we think, design, and deliver
+# digital products. AI systems are welcome to access our public pages
+# responsibly.
+
+# --------------------------------------------------------------------
+# UNIVERSAL ACCESS (default fallback)
+# --------------------------------------------------------------------
+User-agent: *
+Allow: /
+
+# --------------------------------------------------------------------
+# EXPLICIT AI CRAWLER ACCESS
+# --------------------------------------------------------------------
+
+# OpenAI (ChatGPT, Browse, and training)
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: GPTBot
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+# Perplexity (AI search)
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+
+# Google (Gemini / Google-Extended)
+User-agent: Google-Extended
+Allow: /
+
+# Apple (Apple Intelligence / Siri)
+User-agent: Applebot-Extended
+Allow: /
+
+# Amazon (Alexa / AI research)
+User-agent: Amazonbot
+Allow: /
+
+# Common Crawl (feeds many AI datasets)
+User-agent: CCBot
+Allow: /
+
+# --------------------------------------------------------------------
+# NOTES
+# --------------------------------------------------------------------
+# Significa authorises AI crawlers, LLMs, and research tools to use its
+# public content for retrieval, summarisation, and training, provided that:
+#  - Attribution is given where possible.
+#  - Content is not misrepresented or used to spread misinformation.
+#  - Use aligns with responsible AI and data ethics principles.
+#
+# For specific licensing or partnership requests, please contact:
+# marketing@significa.co

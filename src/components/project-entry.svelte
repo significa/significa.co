@@ -3,15 +3,13 @@
   import { t } from '$lib/i18n';
   import { getImageAttributes } from '$lib/utils/cms';
   import { getFileExtension } from '$lib/utils/strings';
-  import type { ProjectStoryblok } from '$types/bloks';
+  import type { WordPressProject } from '$lib/types/wordpress';
   import { Button, CircleButton } from '@significa/svelte-ui';
-  import type { ISbStoryData } from '@storyblok/js';
   import clsx from 'clsx';
   import Recognitions from './recognitions.svelte';
-  import type { ProjectPage } from '$lib/content';
   import { page } from '$app/stores';
 
-  export let project: ISbStoryData<ProjectStoryblok> | ProjectPage;
+  export let project: WordPressProject;
   export let variant: 'featured' | 'default' = 'default';
   export let as: 'h2' | 'h3' = 'h3';
 
@@ -26,7 +24,18 @@
     if (video) video.pause();
   };
 
-  $: recognitions = $page.data.awards.filter((aw) => aw.content.project.id === project.id);
+  // Filter recognitions for this project
+  $: recognitions = $page.data.awards?.filter((aw: any) => {
+    // WordPress recognition relationship
+    const projectId = aw.acf?.project;
+    return projectId === project.id;
+  }) || [];
+
+  // Extract ACF fields with fallbacks
+  $: tagline = project.acf?.tagline || '';
+  $: reel = project.acf?.reel;
+  $: cover = project.acf?.cover;
+  $: thumbnail = project.acf?.thumbnail || [];
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -45,10 +54,10 @@
       <div class="mr-6">
         <a class="elevated-link" href={`/projects/${project.slug}`}>
           <svelte:element this={as} class="text-5xl text-foreground-secondary">
-            {project.name}
+            {project.title?.rendered || ''}
           </svelte:element>
           <p class={clsx('text-5xl', variant === 'default' ? 'max-w-lg' : 'max-w-3xl')}>
-            {project.content.tagline}
+            {tagline}
           </p>
         </a>
         {#if recognitions?.length}
@@ -68,7 +77,7 @@
     </div>
 
     {#if variant === 'featured'}
-      {#if project.content.reel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(project.content.reel.filename))}
+      {#if reel?.url && VIDEO_EXTENSIONS.includes(getFileExtension(reel.url))}
         <video
           bind:this={video}
           class="pointer-events-none mt-8 aspect-video h-auto w-full rounded-md bg-background-offset"
@@ -76,10 +85,10 @@
           playsinline
           autoplay
           loop
-          src={project.content.reel.filename}
+          src={reel.url}
         />
-      {:else if project.content.cover?.filename}
-        {@const { src, alt, width, height } = getImageAttributes(project.content.cover, {
+      {:else if cover?.url}
+        {@const { src, alt, width, height } = getImageAttributes(cover, {
           size: [1440 * 2, 0]
         })}
         <img
@@ -92,9 +101,9 @@
       {/if}
     {/if}
 
-    {#if variant === 'default' && project.content.thumbnail.length}
-      {@const image = project.content.thumbnail[index]}
-      {#if image?.filename}
+    {#if variant === 'default' && thumbnail.length}
+      {@const image = thumbnail[index]}
+      {#if image?.url}
         {@const { src, alt, width, height } = getImageAttributes(image, {
           size: [720 * 2, 540 * 2]
         })}
@@ -106,16 +115,16 @@
             {width}
             {height}
           />
-          {#if project.content.thumbnail.length > 1}
+          {#if thumbnail.length > 1}
             <CircleButton
               alt="Previous image"
               data-theme="light"
               class="pointer-events-auto absolute left-2 top-1/2 z-10 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 [@media(hover:none)]:opacity-100"
               on:mouseenter={() => {
                 // preload image
-                const nextIndex = index === 0 ? project.content.thumbnail.length - 1 : index - 1;
-                const nextImage = project.content.thumbnail[nextIndex];
-                if (nextImage?.filename) {
+                const nextIndex = index === 0 ? thumbnail.length - 1 : index - 1;
+                const nextImage = thumbnail[nextIndex];
+                if (nextImage?.url) {
                   const img = new Image();
                   img.src = getImageAttributes(nextImage, {
                     size: [720 * 2, 540 * 2]
@@ -123,7 +132,7 @@
                 }
               }}
               on:click={() => {
-                index = index === 0 ? project.content.thumbnail.length - 1 : index - 1;
+                index = index === 0 ? thumbnail.length - 1 : index - 1;
               }}
               icon="arrow-left"
               aria-label={t('a11y.gallery-left')}
@@ -134,9 +143,9 @@
               class="pointer-events-auto absolute right-2 top-1/2 z-10 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100 [@media(hover:none)]:opacity-100"
               on:mouseenter={() => {
                 // preload image
-                const nextIndex = index === project.content.thumbnail.length - 1 ? 0 : index + 1;
-                const nextImage = project.content.thumbnail[nextIndex];
-                if (nextImage?.filename) {
+                const nextIndex = index === thumbnail.length - 1 ? 0 : index + 1;
+                const nextImage = thumbnail[nextIndex];
+                if (nextImage?.url) {
                   const img = new Image();
                   img.src = getImageAttributes(nextImage, {
                     size: [720 * 2, 540 * 2]
@@ -144,7 +153,7 @@
                 }
               }}
               on:click={() => {
-                index = index === project.content.thumbnail.length - 1 ? 0 : index + 1;
+                index = index === thumbnail.length - 1 ? 0 : index + 1;
               }}
               icon="arrow-right"
               aria-label={t('a11y.gallery-right')}

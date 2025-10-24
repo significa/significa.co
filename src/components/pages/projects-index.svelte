@@ -2,26 +2,25 @@
   import ProjectEntry from '$components/project-entry.svelte';
   import Seo from '$components/seo.svelte';
   import { t } from '$lib/i18n';
-  import type { ProjectStoryblok } from '$types/bloks';
+  import type { WordPressProject } from '$lib/types/wordpress';
   import { Badge, Tag, TextButton } from '@significa/svelte-ui';
-  import type { ISbStoryData } from '@storyblok/js';
   import clsx from 'clsx';
   import { slide } from 'svelte/transition';
   import { page } from '$app/stores';
 
-  export let projects: ISbStoryData<ProjectStoryblok>[];
+  export let projects: WordPressProject[];
 
   let filteredProjects = projects;
   let services: string[] = [];
   let deliverables: string[] = [];
   $: {
     projects.forEach((project) => {
-      project.content.services?.forEach((item) => {
+      project.acf?.services?.forEach((item) => {
         if (typeof item === 'string' && !services.includes(item)) {
           services.push(item);
         }
       });
-      project.content.deliverables?.forEach((item) => {
+      project.acf?.deliverables?.forEach((item) => {
         if (typeof item === 'string' && !deliverables.includes(item)) {
           deliverables.push(item);
         }
@@ -44,15 +43,15 @@
 
     return filters.some((f) => {
       if (f.type === 'service') {
-        return p.content.services?.includes(f.value);
+        return p.acf?.services?.includes(f.value);
       }
 
-      return p.content.deliverables?.includes(f.value);
+      return p.acf?.deliverables?.includes(f.value);
     });
   });
 </script>
 
-<Seo structureDataMarkup={$page.data.page.story.content.structure_data_markup} />
+<Seo />
 <main>
   <h1 class="container mx-auto mt-10 px-container text-7xl md:mt-14 lg:mt-20">
     {t('projects.title')}

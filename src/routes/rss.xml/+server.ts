@@ -1,19 +1,25 @@
 import type { RequestHandler } from './$types';
-import { getStoryblok } from '$lib/storyblok';
-import type { BlogPostStoryblok } from '$types/bloks';
+import { fetchBlogPosts, fetchPage } from '$lib/content';
+import type { WordPressBlogPost } from '$lib/types/wordpress';
 
-export const GET: RequestHandler = async () => {
+export const GET: RequestHandler = async ({ fetch }) => {
   const baseUrl = 'https://www.significa.co/blog/';
-  const storyblok = getStoryblok();
 
-  const posts: BlogPostStoryblok[] = await storyblok.getAll('cdn/stories', {
-    version: 'published',
-    content_type: 'blog-post',
-    sort_by: 'first_published_at:desc'
-  });
+  // Fetch all blog posts from WordPress
+  const posts = await fetchBlogPosts({ per_page: 100, fetch });
 
-  const { data } = await storyblok.get('cdn/stories/blog');
-  const { seo_title, seo_description } = data.story.content;
+  // Try to fetch blog page for meta information
+  let seo_title = 'Blog';
+  let seo_description = '';
+
+  try {
+    const blogPage = await fetchPage('blog', { fetch });
+    seo_title = blogPage.acf?.seo_title || blogPage.title?.rendered || 'Blog';
+    seo_description = blogPage.acf?.seo_description || blogPage.excerpt?.rendered || '';
+  } catch (error) {
+    // If blog page doesn't exist, use defaults
+    console.error('Could not fetch blog page for RSS feed:', error);
+  }
 
   const body = render(baseUrl, seo_title, seo_description, posts);
 
@@ -25,7 +31,7 @@ export const GET: RequestHandler = async () => {
   return new Response(body, { headers });
 };
 
-const render = (baseUrl: string, title: string, desc: string, posts: BlogPostStoryblok[]) =>
+const render = (baseUrl: string, title: string, desc: string, posts: WordPressBlogPost[]) =>
   `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
       <channel>
@@ -39,11 +45,11 @@ const render = (baseUrl: string, title: string, desc: string, posts: BlogPostSto
             (post) =>
               `<item>
               <guid>${baseUrl}${post.slug}</guid>
-              <title>${post.name}</title>
+              <title>${post.title?.rendered || ''}</title>
               <link>${baseUrl}${post.slug}</link>
-              <description>${post?.content?.seo_description}</description>
-              <pubDate>${new Date(post.published_at).toUTCString()}</pubDate>
-              <category>${post.tag_list.join(', ')}</category>
+              <description>${post.acf?.seo_description || post.excerpt?.rendered || ''}</description>
+              <pubDate>${new Date(post.date).toUTCString()}</pubDate>
+              <category></category>
           </item>`
           )
           .join('')}

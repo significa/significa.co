@@ -1,11 +1,10 @@
 <script lang="ts">
   import ProjectEntry from '$components/project-entry.svelte';
-  import type { ProjectStoryblok } from '$types/bloks';
-  import type { ISbStoryData } from '@storyblok/js';
+  import type { WordPressProject } from '$lib/types/wordpress';
   import { t } from '$lib/i18n';
   import { drawerLinks } from '$lib/actions/drawer-links';
 
-  export let projects: ISbStoryData<ProjectStoryblok>[];
+  export let projects: WordPressProject[];
 </script>
 
 {#if projects?.length > 0}

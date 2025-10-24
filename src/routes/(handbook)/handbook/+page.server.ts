@@ -1,18 +1,22 @@
-import { getStoryblok } from '$lib/storyblok';
 import { error } from '@sveltejs/kit';
-
-import { getHandbookHierarchyConfig } from '$components/pages/handbook/common/data.js';
+import { fetchHandbookPages } from '$lib/content';
 
 export const load = async ({ locals, fetch }) => {
   const version = locals.version;
-  const storyblok = getStoryblok({ fetch });
 
   try {
-    const config = await getHandbookHierarchyConfig(storyblok, version);
+    const pages = await fetchHandbookPages({ version, fetch });
 
-    return {
-      hierarchy: config.content.hierarchy
-    };
+    // Build hierarchy from WordPress pages
+    const hierarchy = pages.map(page => ({
+      id: page.id,
+      slug: page.slug,
+      title: page.title?.rendered || '',
+      parent: page.acf?.parent_page || null,
+      order: page.acf?.order || 0
+    }));
+
+    return { hierarchy };
   } catch (err) {
     console.error('Failed to get Handbook content for the index page', err);
     throw error(404, 'Not found');

@@ -1,6 +1,3 @@
-import { getStoryblok } from '$lib/storyblok';
-import type { ConfigurationStoryblok } from '$types/bloks';
-import type { ISbStoryData } from '@storyblok/js';
 import {
   fetchAwards,
   fetchAwardsTypes,
@@ -11,16 +8,11 @@ import {
 
 export const load = async ({ locals, fetch }) => {
   const version = locals.version;
-  const storyblok = getStoryblok({ fetch });
-
-  const res = await storyblok.get('cdn/stories/configuration', {
-    version,
-    resolve_relations:
-      'configuration.primary_navigation,configuration.secondary_navigation,footer-column-internal.links'
-  });
 
   return {
-    configuration: res.data.story as ISbStoryData<ConfigurationStoryblok>,
+    // Note: WordPress doesn't have a "configuration" concept like Storyblok
+    // Site configuration would need to come from WordPress options or a specific page
+    configuration: null,
     careers: await fetchCareers({ version, fetch }),
     awards: await fetchAwards({ version, fetch }),
     awardsTypes: await fetchAwardsTypes({ version, fetch }),

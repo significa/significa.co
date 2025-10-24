@@ -1,382 +1,293 @@
-import type { ISbResult, ISbStoriesParams, ISbStoryData } from '@storyblok/js';
-import { getStoryblok, handleStoryblokError } from '$lib/storyblok';
+/**
+ * Content Fetching - WordPress Integration
+ *
+ * This module provides a compatible API with the previous Storyblok integration
+ * but fetches data from WordPress instead.
+ */
+
+import {
+  fetchPage as wpFetchPage,
+  fetchPages as wpFetchPages,
+  fetchBlogPosts as wpFetchBlogPosts,
+  fetchBlogPost as wpFetchBlogPost,
+  fetchProjects as wpFetchProjects,
+  fetchProject as wpFetchProject,
+  fetchTeamMembers as wpFetchTeamMembers,
+  fetchTeamMember as wpFetchTeamMember,
+  fetchCareers as wpFetchCareers,
+  fetchCareer as wpFetchCareer,
+  fetchHandbookPages as wpFetchHandbookPages,
+  fetchHandbookPage as wpFetchHandbookPage,
+  fetchAwards as wpFetchAwards,
+  getRelatedBlogPosts,
+  getRelatedProjects
+} from './wordpress';
+
 import type {
-  BlogPostStoryblok,
-  CareerStoryblok,
-  PageStoryblok,
-  ProjectStoryblok,
-  TeamMemberStoryblok,
-  LandingPageStoryblok,
-  RecognitionStoryblok,
-  HandbookStoryblok
-} from '$types/bloks';
-import { HOME_SLUG } from './constants';
-import { error } from '@sveltejs/kit';
+  WordPressPage,
+  WordPressBlogPost,
+  WordPressProject,
+  WordPressTeamMember,
+  WordPressCareer,
+  WordPressHandbook,
+  WordPressRecognition
+} from './types/wordpress';
 
-export const PAGE_PARAMS = {
-  resolve_links: 'url',
-  resolve_relations:
-    'blog-post.author,blog-post.project,project.team,home-page.small_highlights,home-page.projects,blog-post.authors,hero.small_highlights,work-recognitions.small_highlights,projects.projects,highlights.small_highlights,projects-two-columns.projects'
-} as const;
+// Constants
+export const HOME_SLUG = 'home';
 
-export const BLOG_PARAMS = {
-  per_page: 10,
-  content_type: 'blog-post',
-  sort_by: 'first_published_at:desc',
-  resolve_relations: 'blog-post.author,blog-post.authors'
-} as const;
-
-export const PROJECT_PARAMS = {
-  per_page: 50,
-  content_type: 'project'
-};
-
-export const CAREERS_PARAMS = {
-  per_page: 50,
-  content_type: 'career'
-};
-
-export const TEAM_MEMBER_PARAMS = {
-  per_page: 100,
-  content_type: 'team-member'
-};
-
-export const AWARDS_PARAMS = {
-  per_page: 100,
-  content_type: 'recognition-entry',
-  resolve_relations: 'recognition-entry.project,recognition-entry.recognition'
-};
-
-export const AWARDS_TYPES_PARAMS = {
-  per_page: 100,
-  content_type: 'recognition-type'
-};
-
-export const fetchCareers = async (
+/**
+ * Fetch page by slug (home or any page)
+ */
+export async function fetchPage(
+  slug: string,
   options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
-) => {
-  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
-
-  const {
-    data: { stories }
-  } = await storyblok.get('cdn/stories', {
-    ...CAREERS_PARAMS,
-    version: options.version || 'published'
-  });
-
-  return stories as ISbStoryData<CareerStoryblok>[];
-};
-
-// awards
-export const fetchAwards = async (
-  options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
-) => {
-  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
-
-  const {
-    data: { stories }
-  } = await storyblok.get('cdn/stories', {
-    ...AWARDS_PARAMS,
-    version: options.version || 'published'
-  });
-
-  return stories as ISbStoryData<RecognitionStoryblok>[];
-};
-
-// awards types
-export const fetchAwardsTypes = async (
-  options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
-) => {
-  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
-
-  const {
-    data: { stories }
-  } = await storyblok.get('cdn/stories', {
-    ...AWARDS_TYPES_PARAMS,
-    version: options.version || 'published'
-  });
-
-  return stories as ISbStoryData<RecognitionStoryblok>[];
-};
-
-// blog posts use other data from the response, so we need to return the whole response
-export const fetchBlogPosts = async (
-  options: { version?: 'draft' | 'published'; fetch?: typeof fetch; url?: URL } = {}
-) => {
-  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
-
-  return storyblok.get('cdn/stories', {
-    ...BLOG_PARAMS,
-    with_tag: options.url?.searchParams.getAll('t').join(',') || '',
-    page: 1,
-    version: options.version || 'published',
-    filter_query: {
-      hide_from_listings: {
-        is: false
-      }
-    }
-  });
-};
-
-export const fetchHomeBlogPosts = async (
-  options: { version?: 'draft' | 'published'; fetch?: typeof fetch; url?: URL } = {}
-) => {
-  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
-
-  const res = await storyblok.get('cdn/stories', {
-    content_type: 'blog-post',
-    sort_by: 'first_published_at:desc',
-    resolve_relations: 'blog-post.author,blog-post.authors',
-    per_page: 3,
-    page: 1,
-    version: options.version || 'published',
-    filter_query: {
-      hide_from_listings: {
-        is: false
-      }
-    }
-  });
-
-  return res.data.stories;
-};
-
-export const fetchTeamMembers = async (
-  options: { version?: 'draft' | 'published'; fetch?: typeof fetch; url?: URL } = {}
-) => {
-  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
-
-  const res = await storyblok.get('cdn/stories', {
-    ...TEAM_MEMBER_PARAMS,
-    per_page: 100,
-    page: 1,
-    filter_query: {
-      is_active: {
-        is: true
-      }
-    },
-    version: options.version || 'published'
-  });
-
-  return res.data.stories;
-};
-
-export const fetchProjects = async (
-  options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
-) => {
-  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
-
-  const res: { data: { stories: ISbStoryData<ProjectStoryblok>[] } } = await storyblok.get(
-    'cdn/stories',
-    {
-      ...PROJECT_PARAMS,
-      version: options.version || 'published'
-    }
-  );
-
-  return res.data.stories;
-};
-
-// Dynamic Pages
-export type Page = ISbStoryData<PageStoryblok>;
-export type CareerPage = ISbStoryData<CareerStoryblok>;
-export type BlogPostPage = ISbStoryData<
-  Omit<BlogPostStoryblok, 'author' | 'project'> & {
-    author: ISbStoryData<TeamMemberStoryblok>;
-    project: ISbStoryData<ProjectStoryblok>;
-  }
->;
-export type ProjectPage = ISbStoryData<ProjectStoryblok>;
-export type TeamMemberPage = ISbStoryData<TeamMemberStoryblok>;
-export type LandingPage = ISbStoryData<LandingPageStoryblok>;
-export type HandbookPage = ISbStoryData<HandbookStoryblok>;
-
-export type DynamicPage =
-  | Page
-  | BlogPostPage
-  | ProjectPage
-  | TeamMemberPage
-  | CareerPage
-  | LandingPage
-  | HandbookPage;
-
-export type PageResult = {
-  story: DynamicPage;
-  homePosts?: BlogPostPage[];
-  blogIndex?: ISbResult;
-  projectsIndex?: ISbStoryData<ProjectStoryblok>[];
-  relatedPosts?: BlogPostPage[];
-  relatedProjects?: ProjectPage[];
-  authorPosts?: BlogPostPage[];
-  authorProjects?: ProjectPage[];
-  teamMembers?: TeamMemberPage[];
-};
-
-export async function fetchPage(options: {
-  slug: string;
-  version?: 'draft' | 'published';
-  fetch?: typeof fetch;
-  url?: URL;
-}): Promise<PageResult> {
-  // remove leading slashes. svelte-kit's path params start with no slash, but links will have a leading slash
-  const slug = options.slug.replace(/^\/+/, '');
-
-  const storyblok = getStoryblok({ fetch: options.fetch || fetch });
-
-  if (slug === HOME_SLUG) throw error(404);
-
-  let story: ISbResult;
+) {
   try {
-    story = await storyblok.get(`cdn/stories/${slug || HOME_SLUG}`, {
-      version: options.version || 'published',
-      ...PAGE_PARAMS
-    });
-  } catch (err) {
-    throw handleStoryblokError(err);
+    return await wpFetchPage(slug);
+  } catch (error) {
+    console.error(`Error fetching page: ${slug}`, error);
+    throw error;
   }
-
-  const { data }: { data: { story?: DynamicPage } } = story;
-  if (!data.story?.id) throw error(404, `Storyblok story for ${slug} has no id`);
-
-  // Index pages (blog, projects) have their own route but they need to be able to be rendered in the drawer as well
-  if (
-    data.story.content.component === 'page' &&
-    data.story.content.page.length > 0 &&
-    data.story.content.page?.[0].component === 'blog-index'
-  ) {
-    return {
-      story: data.story,
-      blogIndex: await fetchBlogPosts(options)
-    };
-  }
-
-  if (
-    data.story.content.component === 'page' &&
-    data.story.content.page.length > 0 &&
-    data.story.content.page?.[0].component === 'projects-index'
-  ) {
-    return {
-      story: data.story,
-      projectsIndex: await fetchProjects(options)
-    };
-  }
-
-  // home page data
-  if (
-    data.story.content.component === 'page' &&
-    data.story.content.page.length > 0 &&
-    data.story.content.page?.[0].component === 'home-page'
-  ) {
-    return {
-      story: data.story,
-      homePosts: await fetchEntries<BlogPostPage>(options, {
-        ...BLOG_PARAMS,
-        per_page: 3,
-        page: 1
-      })
-    };
-  }
-
-  // Blog posts need to fetch related posts
-  if (data.story.content.component === 'blog-post') {
-    return {
-      story: data.story,
-      relatedPosts: await fetchEntries<BlogPostPage>(options, {
-        ...BLOG_PARAMS,
-        per_page: 3,
-        page: 1,
-        excluding_ids: data.story.id.toString(),
-        with_tag: data.story.tag_list.join(','),
-        filter_query: {
-          hide_from_listings: {
-            is: false
-          }
-        }
-      })
-    };
-  }
-
-  // Projects need to fetch related projects
-  if (data.story.content.component === 'project') {
-    return {
-      story: data.story,
-      relatedProjects: await fetchEntries<ProjectPage>(options, PROJECT_PARAMS)
-    };
-  }
-
-  // Team members need to fetch related posts and projects
-  if (data.story.content.component === 'team-member') {
-    return {
-      story: data.story,
-      authorPosts: await fetchEntries<BlogPostPage>(options, {
-        ...BLOG_PARAMS,
-        per_page: 50,
-        page: 1,
-        filter_query: {
-          authors: {
-            any_in_array: data.story.uuid
-          }
-        }
-      }),
-      authorProjects: await fetchEntries<ProjectPage>(options, {
-        ...PROJECT_PARAMS,
-        filter_query: {
-          team: {
-            any_in_array: data.story.uuid
-          }
-        }
-      })
-    };
-  }
-
-  // Careers canvas needs access to team members in order to fill "Team" component
-  if (
-    data.story.content.component === 'page' &&
-    data.story.content.page.length > 0 &&
-    data.story.content.page?.[0].component === 'careers-page'
-  ) {
-    return {
-      story: data.story,
-      teamMembers: await fetchEntries<TeamMemberPage>(options, {
-        ...TEAM_MEMBER_PARAMS,
-        per_page: 100,
-        page: 1,
-        filter_query: {
-          is_active: {
-            is: true
-          }
-        }
-      })
-    };
-  }
-
-  if (data.story.content.component === 'handbook') {
-    return { story: data.story };
-  }
-
-  return { story: data.story };
 }
 
-export async function fetchEntries<T>(
-  options: {
-    version?: 'draft' | 'published';
-    fetch?: typeof fetch;
-  },
-  params: ISbStoriesParams
-): Promise<T[]> {
+/**
+ * Fetch all careers/job openings
+ */
+export async function fetchCareers(
+  options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
+): Promise<WordPressCareer[]> {
   try {
-    const storyblok = getStoryblok({ fetch: options.fetch || fetch });
-
-    const {
-      data: { stories }
-    } = await storyblok.get('cdn/stories', {
-      version: options.version || 'published',
-      excluding_fields: 'body',
-      ...params
-    });
-
-    return stories;
+    return await wpFetchCareers({ active_only: options.version === 'published' });
   } catch (error) {
-    console.error('Unknown error fetching entries', error);
+    console.error('Error fetching careers', error);
     return [];
   }
+}
+
+/**
+ * Fetch all awards/recognition
+ */
+export async function fetchAwards(
+  options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
+): Promise<WordPressRecognition[]> {
+  try {
+    return await wpFetchAwards();
+  } catch (error) {
+    console.error('Error fetching awards', error);
+    return [];
+  }
+}
+
+/**
+ * Fetch award types (for WordPress, we don't have separate types)
+ */
+export async function fetchAwardsTypes(
+  options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
+): Promise<any[]> {
+  // In WordPress, we don't have separate award types
+  // Return empty array for compatibility
+  return [];
+}
+
+/**
+ * Fetch team members
+ */
+export async function fetchTeamMembers(
+  options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
+): Promise<WordPressTeamMember[]> {
+  try {
+    return await wpFetchTeamMembers({ active_only: options.version === 'published' });
+  } catch (error) {
+    console.error('Error fetching team members', error);
+    return [];
+  }
+}
+
+/**
+ * Fetch projects with optional filtering
+ */
+export async function fetchProjects(
+  params?: {
+    per_page?: number;
+    filter_by_tag?: string;
+    version?: 'draft' | 'published';
+    fetch?: typeof fetch;
+  }
+): Promise<WordPressProject[]> {
+  try {
+    return await wpFetchProjects({
+      per_page: params?.per_page || 50,
+      exclude_hidden: params?.version === 'published'
+    });
+  } catch (error) {
+    console.error('Error fetching projects', error);
+    return [];
+  }
+}
+
+/**
+ * Fetch blog posts with filtering and pagination
+ */
+export async function fetchBlogPosts(
+  params?: {
+    per_page?: number;
+    page?: number;
+    filter_query?: {
+      author?: { in_array?: string };
+      hide_from_listings?: { is?: string };
+    };
+    version?: 'draft' | 'published';
+    fetch?: typeof fetch;
+  }
+): Promise<WordPressBlogPost[]> {
+  try {
+    return await wpFetchBlogPosts({
+      per_page: params?.per_page || 10,
+      page: params?.page || 1,
+      exclude_hidden: params?.filter_query?.hide_from_listings?.is !== 'true'
+    });
+  } catch (error) {
+    console.error('Error fetching blog posts', error);
+    return [];
+  }
+}
+
+/**
+ * Fetch handbook pages
+ */
+export async function fetchHandbookPages(
+  options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {}
+): Promise<WordPressHandbook[]> {
+  try {
+    return await wpFetchHandbookPages();
+  } catch (error) {
+    console.error('Error fetching handbook pages', error);
+    return [];
+  }
+}
+
+/**
+ * PageResult type for compatibility
+ * This matches the structure used by the page routes
+ */
+export type PageResult = {
+  story: WordPressPage | WordPressBlogPost | WordPressProject | WordPressTeamMember | WordPressCareer | WordPressHandbook;
+  index?: {
+    posts?: WordPressBlogPost[];
+    projects?: WordPressProject[];
+    team?: WordPressTeamMember[];
+    careers?: WordPressCareer[];
+    handbook?: WordPressHandbook[];
+  };
+  related?: {
+    posts?: WordPressBlogPost[];
+    projects?: WordPressProject[];
+  };
+};
+
+/**
+ * Build a PageResult object from WordPress data
+ * This is used by the page routes to structure the data
+ */
+export async function buildPageResult(
+  story: any,
+  options: {
+    includePosts?: boolean;
+    includeProjects?: boolean;
+    includeTeam?: boolean;
+    includeCareers?: boolean;
+    includeHandbook?: boolean;
+    includeRelated?: boolean;
+  } = {}
+): Promise<PageResult> {
+  const result: PageResult = {
+    story
+  };
+
+  // Build index data
+  const index: any = {};
+
+  if (options.includePosts) {
+    index.posts = await fetchBlogPosts({ per_page: 10 });
+  }
+
+  if (options.includeProjects) {
+    index.projects = await fetchProjects({ per_page: 50 });
+  }
+
+  if (options.includeTeam) {
+    index.team = await fetchTeamMembers();
+  }
+
+  if (options.includeCareers) {
+    index.careers = await fetchCareers();
+  }
+
+  if (options.includeHandbook) {
+    index.handbook = await fetchHandbookPages();
+  }
+
+  if (Object.keys(index).length > 0) {
+    result.index = index;
+  }
+
+  // Build related data
+  if (options.includeRelated && story.id) {
+    const related: any = {};
+
+    if (story.type === 'blog_post') {
+      related.posts = await getRelatedBlogPosts(story.id, 3);
+    }
+
+    if (story.type === 'project') {
+      related.projects = await getRelatedProjects(story.id, 3);
+    }
+
+    if (Object.keys(related).length > 0) {
+      result.related = related;
+    }
+  }
+
+  return result;
+}
+
+/**
+ * Helper to determine content component/type
+ */
+export function getContentComponent(post: any): string {
+  // Map WordPress post types to component names
+  const typeMap: Record<string, string> = {
+    'page': 'page',
+    'blog_post': 'blog-post',
+    'project': 'project',
+    'team_member': 'team-member',
+    'career': 'career',
+    'handbook': 'handbook',
+    'landing_page': 'landing-page',
+    'recognition': 'recognition-entry'
+  };
+
+  return typeMap[post.type] || 'page';
+}
+
+/**
+ * Convert WordPress post to story-like structure for compatibility
+ */
+export function normalizeWordPressPost(post: any) {
+  return {
+    ...post,
+    name: post.title?.rendered || '',
+    full_slug: post.slug,
+    content: {
+      component: getContentComponent(post),
+      body: post.acf?.content_blocks || [],
+      ...post.acf
+    },
+    first_published_at: post.date,
+    published_at: post.date,
+    created_at: post.date,
+    uuid: `wp-${post.id}`,
+    is_startpage: post.slug === HOME_SLUG
+  };
 }

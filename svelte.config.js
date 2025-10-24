@@ -8,16 +8,21 @@ const config = {
   preprocess: vitePreprocess(),
 
   kit: {
-    adapter: adapter(),
-    alias: {
-      $assets: './src/assets',
-      $components: './src/components',
-      $lib: './src/lib',
-      $types: './src/types',
-      $styles: './src/styles',
-      $root: '.'
-    }
+  adapter: adapter(),
+  alias: {
+    $assets: './src/assets',
+    $components: './src/components',
+    $lib: './src/lib',
+    $types: './src/types',
+    $styles: './src/styles',
+    $root: '.'
+  },
+  prerender: {
+    handleHttpError: 'warn',
+    handleMissingId: 'warn',
+    origin: 'https://stachly.vercel.app',
+    bypassToken: process.env.PRERENDER_BYPASS_TOKEN || 'wordpress-preview-bypass-token-secure-min-32-chars'
   }
-};
+}
 
 export default config;

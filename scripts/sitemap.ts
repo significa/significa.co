@@ -4,8 +4,16 @@ import { ISbResult, ISbStoryData, apiPlugin, storyblokInit } from '@storyblok/js
 
 dotenv.config();
 
+const PUBLIC_STORYBLOK_TOKEN = process.env.PUBLIC_STORYBLOK_TOKEN;
+
+if (!PUBLIC_STORYBLOK_TOKEN) {
+  console.warn('⚠️  PUBLIC_STORYBLOK_TOKEN not found - skipping sitemap generation');
+  console.warn('   Using existing sitemap.xml (for WordPress migration branch)');
+  process.exit(0);
+}
+
 const { storyblokApi } = storyblokInit({
-  accessToken: process.env.PUBLIC_STORYBLOK_TOKEN,
+  accessToken: PUBLIC_STORYBLOK_TOKEN,
   use: [apiPlugin],
   apiOptions: {
     https: true

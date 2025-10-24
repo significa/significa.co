@@ -8,7 +8,9 @@ dotenv.config();
 const PUBLIC_STORYBLOK_TOKEN = process.env.PUBLIC_STORYBLOK_TOKEN;
 
 if (!PUBLIC_STORYBLOK_TOKEN) {
-  throw new Error('Missing required env var: PUBLIC_STORYBLOK_TOKEN');
+  console.warn('⚠️  PUBLIC_STORYBLOK_TOKEN not found - skipping datasource update');
+  console.warn('   Using existing data.json files (for WordPress migration branch)');
+  process.exit(0);
 }
 
 const { storyblokApi } = storyblokInit({

@@ -5,13 +5,12 @@
   import type { BlogPostPage, ProjectPage } from '$lib/content';
   import { t } from '$lib/i18n';
   import { getImageAttributes } from '$lib/utils/cms';
-  import type { TeamButtonsStoryblok, TeamMemberStoryblok } from '$types/bloks';
-  import type { ISbStoryData } from '@storyblok/js';
+  import type { WordPressTeamMember } from '$lib/types/wordpress';
   import clsx from 'clsx';
   import { theme } from '$lib/stores/theme';
   import { Button } from '@significa/svelte-ui';
 
-  export let story: ISbStoryData<TeamMemberStoryblok>;
+  export let story: WordPressTeamMember;
   export let posts: BlogPostPage[];
   export let projects: ProjectPage[];
 
@@ -32,7 +31,7 @@
   ] as const;
 
   const handleLinkType = (
-    linkType: TeamButtonsStoryblok['link_type'],
+    linkType: 'email' | 'phone' | 'url',
     link?: string,
     emailSubject?: string
   ) => {
@@ -50,14 +49,14 @@
 </script>
 
 <Seo
-  title={story.content.seo_title || story.name}
-  description={story.content.seo_description || story.content.bio}
-  image={story.content.seo_og_image || story.content.cover_image_light}
+  title={story.acf?.seo_title || story.title?.rendered}
+  description={story.acf?.seo_description || story.acf?.bio}
+  image={story.acf?.seo_og_image || story.acf?.cover_image_light}
 />
 
 <div class="container mx-auto mt-10 px-container md:mt-14 lg:mt-20">
   <h1 class="text-6xl">
-    {story.name}
+    {story.title?.rendered || ''}
   </h1>
 </div>
 
@@ -65,12 +64,12 @@
   <div class="flex flex-col items-start justify-between gap-8 @4xl:flex-row @4xl:gap-16">
     <div class="flex-[0_0_50%]">
       <p class="text-6xl text-foreground-secondary">
-        {!story.content.is_active ? `${t('team.former')} ` : ''}{story.content.position}
+        {!story.acf?.is_active ? `${t('team.former')} ` : ''}{story.acf?.position}
       </p>
-      <p class="mt-6 text-2xl @4xl:max-w-xl">{story.content.bio}</p>
-      {#if story.content.buttons}
+      <p class="mt-6 text-2xl @4xl:max-w-xl">{story.acf?.bio}</p>
+      {#if story.acf?.buttons}
         <div class="mt-8 flex flex-wrap gap-4">
-          {#each story.content.buttons as item}
+          {#each story.acf.buttons as item}
             <Button
               variant="secondary"
               as="a"
@@ -83,9 +82,9 @@
         </div>
       {/if}
     </div>
-    {#if story.content.cover_image_light && story.content.cover_image_dark && story.content.is_active}
+    {#if story.acf?.cover_image_light && story.acf?.cover_image_dark && story.acf?.is_active}
       {@const img =
-        $theme === 'light' ? story.content.cover_image_light : story.content.cover_image_dark}
+        $theme === 'light' ? story.acf.cover_image_light : story.acf.cover_image_dark}
       {@const { src, alt } = getImageAttributes(img, { size: [720 * 2, 0] })}
       <div>
         <img {src} {alt} class="block flex-[0_0_50%] object-contain" />

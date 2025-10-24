@@ -2,9 +2,9 @@
   import RichText from '$components/rich-text.svelte';
   import Seo from '$components/seo.svelte';
   import { richTextBlockWidths } from '$lib/constants';
-  import type { ISbRichtext } from '@storyblok/js';
 
-  export let body: ISbRichtext;
+  // WordPress content can be a string or an object with rendered property
+  export let body: string | { rendered: string };
 </script>
 
 <Seo />

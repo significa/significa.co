@@ -17,6 +17,11 @@ import type {
 // WordPress API URL from environment
 const WP_API_URL = import.meta.env.VITE_WORDPRESS_API_URL || 'https://dev.shoutmedia.nl/wp-json/wp/v2';
 
+// Type aliases for compatibility
+export type HandbookPage = WordPressHandbook;
+export type BlogPostPage = WordPressBlogPost;
+export type ProjectPage = WordPressProject;
+
 // Constants for compatibility with existing code
 export const HOME_SLUG = 'home';
 
@@ -336,6 +341,35 @@ export async function fetchHandbookPage(
   }
 
   return pages[0];
+}
+
+/**
+ * Generic search/fetch function for entries
+ * Used by handbook search and other search functionality
+ */
+export async function fetchEntries<T = any>(
+  options: { version?: 'draft' | 'published'; fetch?: typeof fetch } = {},
+  searchParams: { starts_with?: string; search_term?: string } = {}
+): Promise<T[]> {
+  // For WordPress, we'll use the handbook endpoint with search parameter
+  const wpParams: any = {
+    per_page: 100,
+    _embed: true
+  };
+
+  // WordPress REST API uses 'search' parameter for text search
+  if (searchParams.search_term) {
+    wpParams.search = searchParams.search_term;
+  }
+
+  // For now, we assume starts_with refers to handbook content
+  // You can extend this to support other content types
+  const endpoint = searchParams.starts_with === 'handbook' ? '/handbook' : '/pages';
+
+  const results = await fetchFromWordPress<any[]>(endpoint, wpParams, options.fetch);
+
+  // Normalize results to have Storyblok-like structure for compatibility
+  return results.map(normalizeWordPressPost) as T[];
 }
 
 /**

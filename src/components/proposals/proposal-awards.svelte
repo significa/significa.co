@@ -3,10 +3,9 @@
   import clsx from 'clsx';
   import { t } from '$lib/i18n';
   import AwardsEntry from '$components/awards-entry.svelte';
-  import type { ISbStoryData } from '@storyblok/js';
-  import type { RecognitionStoryblok } from '$types/bloks';
 
-  export let awards: ISbStoryData<RecognitionStoryblok>[];
+  // Awards from WordPress
+  export let awards: any[];
 </script>
 
 {#if awards?.length > 0}
@@ -23,7 +22,9 @@
         <div class="w-full flex-1">
           <ul use:drawerLinks>
             {#each awards as award}
-              {@const href = `/${award.content.project.full_slug}`}
+              {@const project = award.acf?.project}
+              {@const recognition = award.acf?.recognition}
+              {@const href = project?.slug ? `/projects/${project.slug}` : '#'}
               <li
                 class={clsx(
                   'block border-b first:border-t',
@@ -36,11 +37,11 @@
                 >
                   <AwardsEntry
                     linkHref={href}
-                    image={award.content.recognition.content.image}
-                    label={award.content.recognition.content.label}
-                    name={award.content.recognition.content.title}
-                    year={award.content.year}
-                    project={award.content.project.name}
+                    image={recognition?.image}
+                    label={recognition?.label}
+                    name={recognition?.title}
+                    year={award.acf?.year}
+                    project={project?.title || ''}
                   ></AwardsEntry>
                 </a>
               </li>

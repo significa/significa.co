@@ -1,6 +1,5 @@
 <script lang="ts">
-  import type { PageStoryblok } from '$types/bloks';
-  import type { ISbStoryData } from '@storyblok/js';
+  import type { WordPressPage } from '$lib/types/wordpress';
   import BlogIndex from './blog-index.svelte';
   import type { PageResult } from '$lib/content';
   import ProjectsIndex from './projects-index.svelte';
@@ -9,27 +8,27 @@
   import DynamicBlock from '$components/blocks/dynamic-block.svelte';
 
   /**
-   * This is the "Page" content-type that is used to render all of the "static content" pages.
-   * It has a "page" field that will contain one specific page type (e.g. "static-page", "home-page", etc.)
+   * WordPress page component
+   * Renders content blocks from ACF flexible content fields
    */
-  export let story: ISbStoryData<PageStoryblok>;
+  export let story: WordPressPage;
   export let blogIndex: PageResult['blogIndex'] = undefined;
   export let projectsIndex: PageResult['projectsIndex'] = undefined;
+
+  // Extract content blocks from ACF
+  $: contentBlocks = story.acf?.content_blocks || [];
+  $: pageType = story.acf?.page_type || 'default';
 </script>
 
-{#if story.content.blocks?.length}
-  <Seo structureDataMarkup={story.content.structure_data_markup} />
-  {#each story.content.blocks as block}
+{#if contentBlocks.length}
+  <Seo />
+  {#each contentBlocks as block}
     <DynamicBlock {block} />
   {/each}
-{:else if story.content.page?.length}
-  {#each story.content.page || [] as page}
-    {#if page.component === 'static-page' && page.body}
-      <StaticPage body={page.body} />
-    {:else if page.component === 'blog-index' && blogIndex}
-      <BlogIndex data={blogIndex} />
-    {:else if page.component === 'projects-index' && projectsIndex}
-      <ProjectsIndex projects={projectsIndex} />
-    {/if}
-  {/each}
+{:else if pageType === 'static-page'}
+  <StaticPage body={story.content?.rendered || ''} />
+{:else if pageType === 'blog-index' && blogIndex}
+  <BlogIndex data={blogIndex} />
+{:else if pageType === 'projects-index' && projectsIndex}
+  <ProjectsIndex projects={projectsIndex} />
 {/if}

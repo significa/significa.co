@@ -1,21 +1,18 @@
-import { storyblokEditable as sbEdit, type SbBlokData } from '@storyblok/js';
+/**
+ * Storyblok Editable Action - STUB
+ *
+ * This action is no longer used since we migrated from Storyblok to WordPress.
+ * It's kept as a no-op to prevent breaking existing components that reference it.
+ */
 
-export const storyblokEditable = (node: HTMLElement, value: SbBlokData) => {
-  const updateDom = (value: SbBlokData) => {
-    const options = sbEdit(value);
-    if (options['data-blok-c']) {
-      node.setAttribute('data-blok-c', options['data-blok-c']);
-      node.setAttribute('data-blok-uid', options['data-blok-uid']);
-      node.classList.add('storyblok__outline');
-    }
-  };
-
-  updateDom(value); // when is mounted
-
+export const storyblokEditable = (node: HTMLElement, _value: any) => {
+  // No-op: WordPress doesn't have live editing like Storyblok
   return {
-    update(newValue: SbBlokData) {
-      // when value changes
-      updateDom(newValue);
+    update(_newValue: any) {
+      // No-op
+    },
+    destroy() {
+      // No cleanup needed
     }
   };
 };

@@ -1,12 +1,9 @@
 <script lang="ts">
   import DynamicPage from '$components/pages/dynamic-page.svelte';
-  import { startStoryblokBridge } from '$lib/storyblok';
 
   export let data;
 
-  startStoryblokBridge(data.page.story?.id, (newStory) => {
-    data.page.story = newStory;
-  });
+  // Note: Storyblok bridge (live editing) not needed with WordPress
 </script>
 
 {#key data.page.story?.uuid}

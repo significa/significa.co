@@ -25,6 +25,6 @@ const config = {
       origin: 'https://stachly.vercel.app'
     }
   }
-}
+};
 
 export default config;

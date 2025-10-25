@@ -8,7 +8,9 @@ const config = {
   preprocess: vitePreprocess(),
 
   kit: {
-    adapter: adapter(),
+    adapter: adapter({
+      runtime: 'nodejs20.x'
+    }),
     alias: {
       $assets: './src/assets',
       $components: './src/components',
@@ -16,8 +18,14 @@ const config = {
       $types: './src/types',
       $styles: './src/styles',
       $root: '.'
+    },
+    prerender: {
+      handleHttpError: 'warn',
+      handleMissingId: 'warn',
+      origin: 'https://stachly.vercel.app',
+      bypassToken: process.env.PRERENDER_BYPASS_TOKEN || 'wordpress-preview-bypass-token-secure-min-32-chars'
     }
   }
-};
+}
 
 export default config;

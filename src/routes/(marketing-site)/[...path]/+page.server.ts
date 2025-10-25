@@ -1,17 +1,13 @@
 import { error } from '@sveltejs/kit';
-import { fetchPage } from '$lib/content';
+import { fetchPage, normalizeWordPressPost } from '$lib/content';
 
 export const load = async ({ params, locals, fetch, url }) => {
   const version = locals.version;
   // don't catch paths that end with an extension
   if (/\..+$/.test(params.path)) throw error(404);
 
-  const page = await fetchPage({
-    slug: params.path,
-    version,
-    fetch,
-    url
-  });
+  const wpPage = await fetchPage(params.path, { version, fetch });
+  const page = { story: normalizeWordPressPost(wpPage) };
 
   return { page };
 };

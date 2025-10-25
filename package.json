@@ -68,5 +68,9 @@
     "posthog-js": "^1.242.2",
     "prism-svelte": "^0.5.0",
     "svelte-confetti": "^1.4.0"
+  },
+  "optionalDependencies": {
+    "encoding": "^0.1.13",
+    "fsevents": "^2.3.3"
   }
 }

@@ -15,14 +15,8 @@
           {@const { src, alt, width, height } = getImageAttributes(client.light_mode)}
           {#if block.links && block.links[i]?.link}
             {@const { href, target, rel } = getAnchorFromCmsLink(block.links[i].link)}
-            <a {href} {target} {rel}>
-              <img
-                {src}
-                {alt}
-                {width}
-                {height}
-                class="h-auto max-h-9 w-auto object-contain dark:hidden"
-              />
+            <a {href} {target} {rel} class="dark:hidden">
+              <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
             </a>
           {:else}
             <img
@@ -39,14 +33,8 @@
           {@const { src, alt, width, height } = getImageAttributes(client.dark_mode)}
           {#if block.links && block.links[i]?.link}
             {@const { href, target, rel } = getAnchorFromCmsLink(block.links[i].link)}
-            <a {rel} {href} {target}>
-              <img
-                {src}
-                {alt}
-                {width}
-                {height}
-                class="hidden h-auto max-h-9 w-auto object-contain dark:block"
-              />
+            <a {rel} {href} {target} class="hidden dark:block">
+              <img {src} {alt} {width} {height} class="h-auto max-h-9 w-auto object-contain" />
             </a>
           {:else}
             <img

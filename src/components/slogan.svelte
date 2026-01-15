@@ -10,7 +10,7 @@
   export let animate: undefined | boolean = undefined;
   const dispatch = createEventDispatcher<{ end: undefined }>();
 
-  let source: string[] = ['Think.', 'Design.', 'Develop.', 'Launch.', 'Scale!'];
+  let source: string[] = ['Think.', 'Design.', 'Develop.', 'Launch.', 'Scale.'];
   let target: string[] = typeof animate === 'undefined' ? source : [];
 
   if (typeof animate === 'undefined') {

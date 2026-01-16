@@ -2,60 +2,63 @@
   import { page } from '$app/stores';
   import BlogEntry from '$components/blog-entry.svelte';
   import Seo from '$components/seo.svelte';
-  import { BLOG_PARAMS } from '$lib/content';
+  import { BLOG_PARAMS, fetchBlogPosts } from '$lib/content';
   import { t } from '$lib/i18n';
-  import { getStoryblok } from '$lib/storyblok';
-  import type { BlogPostStoryblok } from '$types/bloks';
+  import type { WordPressBlogPost } from '$lib/types/wordpress';
   import { Badge, Button, Tag, TextButton } from '@significa/svelte-ui';
-  import type { ISbResult, ISbStoryData } from '@storyblok/js';
   import clsx from 'clsx';
-  import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
   import { slide } from 'svelte/transition';
 
-  export let data: ISbResult;
+  export let data: {
+    posts: WordPressBlogPost[];
+    total: number;
+  };
 
-  const storyblok = getStoryblok();
   const isFetching = writable(false);
-  const total = writable(data.total);
-  const posts = writable<ISbStoryData<BlogPostStoryblok>[]>([]);
+  const total = writable(data.total || data.posts.length);
+  const posts = writable<WordPressBlogPost[]>(data.posts || []);
 
   let allTags: string[] = [];
   let filters: string[] = [];
   let filtersOpen: boolean;
 
-  // sync load function with local store (that will store "load more" posts)
-  $: posts.set(data.data.stories);
-  $: total.set(data.total);
-  $: version = $page.data.version || 'published';
+  // sync load function with local store
+  $: posts.set(data.posts);
+  $: total.set(data.total || data.posts.length);
   $: paramsTags = $page.url.searchParams.getAll('t');
 
-  const fetchStories = async (page: number) => {
+  const fetchMorePosts = async (pageNum: number) => {
     isFetching.set(true);
-    const queryTags = paramsTags.length > 0 ? paramsTags.join(',') : filters.join(',');
-    const res = await storyblok.get('cdn/stories', {
-      version,
-      with_tag: queryTags,
-      page,
-      ...BLOG_PARAMS
-    });
-    isFetching.set(false);
+    try {
+      const newPosts = await fetchBlogPosts({
+        page: pageNum,
+        per_page: BLOG_PARAMS.per_page
+      });
 
-    if (page === 1) {
-      posts.set(res.data.stories);
-    } else {
-      posts.update((n) => [...n, ...res.data.stories]);
+      if (pageNum === 1) {
+        posts.set(newPosts);
+      } else {
+        posts.update((n) => [...n, ...newPosts]);
+      }
+
+      // WordPress doesn't always return total, so estimate based on response
+      if (newPosts.length < BLOG_PARAMS.per_page) {
+        total.set($posts.length);
+      }
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    } finally {
+      isFetching.set(false);
     }
-
-    total.set(res.total);
   };
 
   const getPageTitle = (tags: string[]): string => {
     if (tags.length === 0) {
-      return $page.data.page?.story?.content?.seo_title;
+      return $page.data.page?.story?.content?.seo_title || t('blog.title');
     }
 
-    const titlePrefix = ($page.data.page?.story?.content?.seo_title || '').replace(
+    const titlePrefix = ($page.data.page?.story?.content?.seo_title || t('blog.title')).replace(
       /\s[-–]\s.*/,
       ''
     );
@@ -63,23 +66,35 @@
     return `${titlePrefix} - ${tags.join(', ')}`;
   };
 
-  onMount(async () => {
-    const blogTags = await storyblok.get('cdn/tags', {
-      version,
-      cv: Date.now(),
-      starts_with: 'blog/',
-      per_page: 100
-    });
-
-    allTags = blogTags.data.tags.map((tag: { name: string }) => tag.name);
-  });
+  // Note: WordPress doesn't have built-in tags API like Storyblok
+  // Tags would need to be fetched from WordPress taxonomies
+  // For now, we'll extract tags from the posts themselves
+  $: {
+    if ($posts.length > 0) {
+      const tagSet = new Set<string>();
+      $posts.forEach(post => {
+        // If your WordPress posts have tags in the response
+        if (post._embedded?.['wp:term']) {
+          const terms = post._embedded['wp:term'];
+          terms.forEach((termArray: any[]) => {
+            termArray.forEach((term: any) => {
+              if (term.taxonomy === 'post_tag') {
+                tagSet.add(term.name);
+              }
+            });
+          });
+        }
+      });
+      allTags = Array.from(tagSet);
+    }
+  }
 </script>
 
 <Seo
   title={getPageTitle(paramsTags)}
   description={paramsTags.length
     ? t('blog.tag-meta-description', { tags: paramsTags.join(', ') })
-    : $page.data.page?.story?.content?.seo_description}
+    : $page.data.page?.story?.content?.seo_description || ''}
   structureDataMarkup={$page.data.page?.story?.content?.structure_data_markup}
 />
 
@@ -135,7 +150,7 @@
                           filters = [...rest, tag];
                         }
 
-                        fetchStories(1);
+                        fetchMorePosts(1);
                       }}
                     />
                   {/each}
@@ -158,7 +173,7 @@
         class="mt-10"
         variant="secondary"
         on:click={() => {
-          fetchStories($posts.length / BLOG_PARAMS.per_page + 1);
+          fetchMorePosts(Math.floor($posts.length / BLOG_PARAMS.per_page) + 1);
         }}
         loading={$isFetching}
       >

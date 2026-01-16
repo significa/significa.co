@@ -1,17 +1,30 @@
 <script lang="ts">
   import { formatDate } from '$lib/utils/dates';
-  import type { BlogPostStoryblok, TeamMemberStoryblok } from '$types/bloks';
+  import type { WordPressBlogPost } from '$lib/types/wordpress';
   import { Button, Link, Tag } from '@significa/svelte-ui';
-  import type { ISbStoryData } from '@storyblok/js';
   import Person from './person.svelte';
   import { t } from '$lib/i18n';
   import { twMerge } from 'tailwind-merge';
 
-  export let post: ISbStoryData<
-    Omit<BlogPostStoryblok, 'author'> & {
-      author?: ISbStoryData<TeamMemberStoryblok>;
-    }
-  >;
+  export let post: WordPressBlogPost;
+
+  // Extract tags from WordPress embedded data
+  $: tags = (() => {
+    if (!post._embedded?.['wp:term']) return [];
+    const tagTerms: string[] = [];
+    post._embedded['wp:term'].forEach((termArray: any[]) => {
+      termArray.forEach((term: any) => {
+        if (term.taxonomy === 'post_tag') {
+          tagTerms.push(term.name);
+        }
+      });
+    });
+    return tagTerms;
+  })();
+
+  // Extract authors from WordPress
+  $: authors = post.acf?.authors || [];
+  $: externalAuthors = post.acf?.external_authors || [];
 </script>
 
 <div
@@ -19,23 +32,23 @@
 >
   <div class="container mx-auto flex gap-6 px-container py-8 @container">
     <div class={twMerge('hidden flex-1 @6xl:flex @6xl:h-fit  @6xl:flex-col  @6xl:gap-6')}>
-      {#if post.content.authors?.length}
-        {#each post.content.authors as author}
+      {#if authors?.length}
+        {#each authors as author}
           <Person
-            isActive={author.content.is_active}
+            isActive={author.is_active}
             name={author.name}
-            position={author.content.position}
-            photo={author.content?.photo}
+            position={author.position}
+            photo={author.photo}
           />
         {/each}
       {/if}
-      {#if post.content?.external_authors?.length}
-        {#each post.content?.external_authors as external_authors}
+      {#if externalAuthors?.length}
+        {#each externalAuthors as externalAuthor}
           <Person
-            isActive={external_authors.is_active}
-            name={external_authors.name}
-            position={external_authors.position}
-            photo={external_authors.photo}
+            isActive={externalAuthor.is_active}
+            name={externalAuthor.name}
+            position={externalAuthor.position}
+            photo={externalAuthor.photo}
           />
         {/each}
       {/if}
@@ -43,22 +56,22 @@
     <div class="w-full max-w-xl">
       <div class="flex gap-2">
         <p class="mb-2 text-base font-medium text-foreground-secondary">
-          {formatDate(new Date(post.first_published_at || post.published_at || post.created_at))}
+          {formatDate(new Date(post.date))}
         </p>
-        {#if post.first_published_at && post.content.reading_time}
+        {#if post.acf?.reading_time}
           <p class="text-base text-foreground-secondary/80">•</p>
-        {/if}
-        {#if post.content.reading_time}
           <p class="text-base text-foreground-secondary/80">
-            {`${post.content.reading_time} min read`}
+            {`${post.acf.reading_time} min read`}
           </p>
         {/if}
       </div>
 
-      <Link href={`/blog/${post.slug}`} class="max-w-2xl text-4xl elevated-link">{post.name}</Link>
-      {#if post.tag_list.length}
+      <Link href={`/blog/${post.slug}`} class="max-w-2xl text-4xl elevated-link">
+        {post.title?.rendered || ''}
+      </Link>
+      {#if tags.length}
         <div class="mt-5 flex flex-wrap gap-2">
-          {#each post.tag_list as tag}
+          {#each tags as tag}
             <Tag href="/blog?t={encodeURIComponent(tag)}" label={tag} />
           {/each}
         </div>

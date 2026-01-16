@@ -21,7 +21,7 @@
     Radio,
     toast
   } from '@significa/svelte-ui';
-  import type { ISbStoryData } from '@storyblok/js';
+  import type { WordPressCareer } from '$lib/types/wordpress';
   import clsx from 'clsx';
   import { createEventDispatcher } from 'svelte';
   import { budgetRange } from './pages/get-a-quote/budgetRange';
@@ -78,7 +78,7 @@
 
   const careers = [
     DEFAULT_POSITION,
-    ...($page.data.careers || []).map((j: ISbStoryData) => j.name)
+    ...($page.data.careers || []).map((j: WordPressCareer) => j.title?.rendered || '')
   ];
 
   let loading = false;

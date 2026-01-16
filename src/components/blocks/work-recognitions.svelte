@@ -1,23 +1,25 @@
 <script lang="ts">
-  import type { RecognitionEntryStoryblok, WorkRecognitionsStoryblok } from '$types/bloks';
-
   import { page } from '$app/stores';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import SmallHighlights from '$components/pages/home/small-highlights.svelte';
   import { t } from '$lib/i18n';
-  import type { ISbStoryData } from '@storyblok/js';
   import EggChicken from '../illustrations/assets/egg-chicken.webp';
   import SeggChicken from '../illustrations/assets/segg-chicken.webp';
   import BG from '../illustrations/assets/bg-work-recognitions.webp';
   import BGWhite from '../illustrations/assets/bg-work-recognitions-white.webp';
   import { theme } from '$lib/stores/theme';
 
-  export let block: WorkRecognitionsStoryblok;
+  // Block comes from ACF flexible content
+  export let block: any;
 
+  // Group WordPress awards by recognition
   const awardsArray = Object.values(
-    $page.data.awards.reduce<Record<string, ISbStoryData<RecognitionEntryStoryblok>[]>>(
+    ($page.data.awards || []).reduce<Record<string, any[]>>(
       (acc, currentValue) => {
-        let groupKey = currentValue.content.recognition.name;
+        // WordPress: recognition is in ACF
+        const recognitionId = currentValue.acf?.recognition?.ID || currentValue.acf?.recognition;
+        let groupKey = recognitionId ? String(recognitionId) : 'unknown';
+
         if (!acc[groupKey]) {
           acc[groupKey] = [];
         }
@@ -56,26 +58,31 @@
       </h4>
       <div class="grid grid-cols-3 gap-4 md:gap-6">
         {#each awardsArray as award}
-          <div
-            class="relative flex w-full max-w-fit flex-col items-start md:flex-row md:items-center"
-          >
+          {#if award[0]?.acf?.recognition}
+            {@const recognition = award[0].acf.recognition}
             <div
-              class="flex h-11 w-[92px] items-center rounded-sm border border-background-offset bg-background-panel"
+              class="relative flex w-full max-w-fit flex-col items-start md:flex-row md:items-center"
             >
-              <p class="ml-3.5 mr-3.5 text-sm font-medium text-foreground-secondary">
-                {award.length}
-              </p>
+              <div
+                class="flex h-11 w-[92px] items-center rounded-sm border border-background-offset bg-background-panel"
+              >
+                <p class="ml-3.5 mr-3.5 text-sm font-medium text-foreground-secondary">
+                  {award.length}
+                </p>
+              </div>
+              {#if recognition.image?.url}
+                <img
+                  class="absolute left-10 h-auto w-14 rounded-md border-2 border-background bg-background-offset"
+                  src={recognition.image.url}
+                  alt="award"
+                />
+              {/if}
+              <div class="mt-3 flex flex-col md:ml-3 md:mt-0">
+                <p class="text-xs font-medium text-foreground-secondary">{t('recognitions.award')}</p>
+                <p class="text-base font-medium">{recognition.title || ''}</p>
+              </div>
             </div>
-            <img
-              class="absolute left-10 h-auto w-14 rounded-md border-2 border-background bg-background-offset"
-              src={award[0].content.recognition.content.image?.filename}
-              alt="award"
-            />
-            <div class="mt-3 flex flex-col md:ml-3 md:mt-0">
-              <p class="text-xs font-medium text-foreground-secondary">{t('recognitions.award')}</p>
-              <p class="text-base font-medium">{award[0].content.recognition.content.title}</p>
-            </div>
-          </div>
+          {/if}
         {/each}
       </div>
     </section>

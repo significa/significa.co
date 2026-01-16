@@ -9,7 +9,7 @@
   import { bodyLock, escapeKey } from '@significa/svelte-ui/actions';
 
   import { t } from '$lib/i18n';
-  import { fetchPage } from '$lib/content';
+  import { fetchPage, normalizeWordPressPost } from '$lib/content';
   import { drawer } from '$lib/stores/drawer';
 
   import DynamicPage from '$components/pages/dynamic-page.svelte';
@@ -66,7 +66,10 @@
       <Button class="bg-background" variant="ghost" icon="close" on:click={drawer.close} />
     </header>
     <div>
-      {#await fetchPage({ slug: $drawer, version: $page.data.version || 'published' })}
+      {#await (async () => {
+        const wpPage = await fetchPage($drawer, { version: $page.data.version || 'published' });
+        return { story: normalizeWordPressPost(wpPage) };
+      })()}
         <div class="flex justify-center p-10">
           <Spinner size="md" />
         </div>

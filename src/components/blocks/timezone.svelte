@@ -1,12 +1,17 @@
 <script lang="ts">
   import Clock from '$components/clock.svelte';
-  import { RichTextResolver } from '@storyblok/js';
   import clsx from 'clsx';
-  import type { TimezoneStoryblok } from '$types/bloks';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
 
-  export let block: TimezoneStoryblok;
-  const resolver = new RichTextResolver();
+  // Block comes from ACF flexible content
+  export let block: any;
+
+  // WordPress content is HTML string
+  const getTextContent = () => {
+    if (typeof block.text === 'string') return block.text;
+    if (block.text?.rendered) return block.text.rendered;
+    return '';
+  };
 </script>
 
 <div use:storyblokEditable={block} class="border-y">
@@ -44,7 +49,7 @@
           '[&_b]:font-normal [&_b]:text-foreground'
         )}
       >
-        {@html resolver.render(block.text)}
+        {@html getTextContent()}
       </div>
     </div>
   </div>

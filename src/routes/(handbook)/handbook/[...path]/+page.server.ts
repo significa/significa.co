@@ -1,4 +1,4 @@
-import { fetchPage } from '$lib/content.js';
+import { fetchHandbookPage, normalizeWordPressPost } from '$lib/content.js';
 import type { DynamicPage, HandbookPage } from '$lib/content.js';
 import { error } from '@sveltejs/kit';
 
@@ -8,14 +8,11 @@ const isHandbookStory = (story: DynamicPage): story is HandbookPage =>
 export const load = async ({ locals, fetch, url }) => {
   const version = locals.version;
 
-  const page = await fetchPage({
-    slug: url.pathname,
-    version,
-    fetch,
-    url
-  });
+  // Remove leading /handbook/ from the path to get the slug
+  const slug = url.pathname.replace(/^\/handbook\//, '') || 'index';
 
-  const story = page.story;
+  const wpPage = await fetchHandbookPage(slug, { fetch });
+  const story = normalizeWordPressPost(wpPage);
 
   if (isHandbookStory(story)) {
     return { story };

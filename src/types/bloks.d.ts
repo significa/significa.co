@@ -370,6 +370,7 @@ export interface CareersListStoryblok {
   title?: string;
   cta_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   cta_label?: string;
+  handbook_image?: AssetStoryblok;
   handbook_title?: string;
   handbook_description?: string;
   handbook_cta_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;

@@ -1560,36 +1560,49 @@
       "display_name": null,
       "description": null,
       "created_at": "2024-03-14T10:56:07.056Z",
-      "updated_at": "2024-03-21T15:33:41.241Z",
+      "updated_at": "2026-01-23T15:25:05.285Z",
       "id": 5495548,
       "schema": {
         "title": {
           "type": "text",
-          "pos": 0
+          "pos": 0,
+          "id": "lQpxgsHtTpqrUUgbVRRrqg"
         },
         "cta_link": {
           "type": "multilink",
-          "pos": 1
+          "pos": 1,
+          "id": "SdgIosEeQN2Z78p2JfUGpQ"
         },
         "cta_label": {
           "type": "text",
-          "pos": 2
+          "pos": 2,
+          "id": "O5XVqNetQxSYDnFiC2_Zvg"
+        },
+        "handbook_image": {
+          "type": "asset",
+          "pos": 3,
+          "filetypes": ["images"],
+          "id": "3Jrr9wx8RQybS4KJOLbhaw"
         },
         "handbook_title": {
           "type": "text",
-          "pos": 3
+          "pos": 4,
+          "id": "kltV0zjER3G_45g76hlFAQ"
         },
         "handbook_description": {
           "type": "textarea",
-          "pos": 4
+          "pos": 5,
+          "id": "5aKlyDAWQrG13CfZ95nqUQ"
         },
         "handbook_cta_link": {
           "type": "multilink",
-          "pos": 5
+          "pos": 6,
+          "id": "m7WCs9cwR6-SChAbPouoQA"
         },
         "handbook_cta_text": {
           "type": "text",
-          "pos": 6
+          "pos": 7,
+          "id": "STt6UVzCRC2Q-Te4lRNh9w"
         }
       },
       "image": "//a.storyblok.com/f/198185/x/cd4ffc917e/screenshot-2024-03-14-at-16-01-01.png",

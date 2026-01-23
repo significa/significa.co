@@ -1,12 +1,9 @@
 <script lang="ts">
-  import { t } from '$lib/i18n';
-  import type { ComponentProps } from 'svelte';
-  import PreFooterAsset from '../illustrations/assets/pre-footer.webp';
-  import PreFooterAssetLight from '../illustrations/assets/pre-footer-light.webp';
-  import { theme } from '$lib/stores/theme';
   import ContactForm from '$components/contact-form.svelte';
-  import type { PrefooterFormStoryblok } from '$types/bloks';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
+  import { t } from '$lib/i18n';
+  import type { PrefooterFormStoryblok } from '$types/bloks';
+  import type { ComponentProps } from 'svelte';
 
   let variant: ComponentProps<ContactForm>['variant'] = undefined;
   export let block: PrefooterFormStoryblok;
@@ -28,9 +25,12 @@
           {t('prefooter.description')}
         </p>
       </div>
-      <div class="flex flex-1 flex-col justify-end">
-        <img src={$theme === 'dark' ? PreFooterAsset : PreFooterAssetLight} alt="" />
-      </div>
+      <!-- 
+        NOTE: TIRAR BONECADA
+        <div class="flex flex-1 flex-col justify-end">
+          <img src={$theme === 'dark' ? PreFooterAsset : PreFooterAssetLight} alt="" />
+        </div>
+       -->
     </div>
     <div class="col-span-3 bg-background-panel p-4 pt-8 @5xl:col-span-2 @5xl:border-l @5xl:p-8">
       <ContactForm {variant} />

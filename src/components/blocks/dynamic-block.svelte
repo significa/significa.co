@@ -48,7 +48,8 @@
     projects: Projects,
     'cta-card': CtaCard,
     box: Box,
-    measurements: Measurements
+    measurements: Measurements,
+    'text-with-media': TextWithMedia
   };
 
   export type Blocks = keyof typeof map;
@@ -103,6 +104,7 @@
   import Table from './table.svelte';
   import Box from './box.svelte';
   import Measurements from './measurements.svelte';
+  import TextWithMedia from './text-with-media.svelte';
 
   export let block: { component: string };
 

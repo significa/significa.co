@@ -800,6 +800,7 @@ export interface LandingPageStoryblok {
     | SloganStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
+    | TextWithMediaStoryblok
     | TimelineStoryblok
     | TimelineServicesStoryblok
     | TimezoneStoryblok
@@ -970,6 +971,7 @@ export interface PageStoryblok {
     | SloganStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
+    | TextWithMediaStoryblok
     | TimelineStoryblok
     | TimelineServicesStoryblok
     | TimezoneStoryblok
@@ -1584,6 +1586,18 @@ export interface TestimonialsStoryblok {
   testimonials?: RichtextTestimonialStoryblok[];
   _uid: string;
   component: 'testimonials';
+  [k: string]: any;
+}
+
+export interface TextWithMediaStoryblok {
+  revert_orientation: boolean;
+  media: AssetStoryblok;
+  eyebrow?: string;
+  title: string;
+  description: string;
+  cta?: LinkStoryblok[];
+  _uid: string;
+  component: 'text-with-media';
   [k: string]: any;
 }
 

@@ -8,11 +8,8 @@
   import { sanitizeSlug } from '$lib/utils/paths';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
-  import { theme } from '$lib/stores/theme';
 
   export let block: CareersListStoryblok;
-
-  $: console.log($theme);
 </script>
 
 {#if $page.data.careers.length}

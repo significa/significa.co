@@ -271,7 +271,12 @@ export async function fetchPage(options: {
       homePosts: await fetchEntries<BlogPostPage>(options, {
         ...BLOG_PARAMS,
         per_page: 3,
-        page: 1
+        page: 1,
+        filter_query: {
+          hide_from_listings: {
+            is: false
+          }
+        }
       })
     };
   }

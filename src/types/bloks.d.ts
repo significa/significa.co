@@ -520,6 +520,7 @@ export interface DeliverablesEntryStoryblok {
 
 export interface DeliverablesEntryBlockStoryblok {
   icon?: AssetStoryblok;
+  icon_light?: AssetStoryblok;
   deliverable?: number | string;
   description?: string;
   link_title?: string;

@@ -2270,28 +2270,44 @@
       "display_name": "deliverables-entry-block",
       "description": null,
       "created_at": "2024-03-13T11:59:49.202Z",
-      "updated_at": "2024-03-20T11:15:04.305Z",
+      "updated_at": "2026-01-23T15:50:58.947Z",
       "id": 5490353,
       "schema": {
         "icon": {
           "type": "asset",
-          "filetypes": ["images"]
+          "filetypes": ["images"],
+          "pos": 0,
+          "id": "13Ju5vzwSue0w0RVfprmpw"
+        },
+        "icon_light": {
+          "type": "asset",
+          "pos": 1,
+          "filetypes": ["images"],
+          "id": "jCpyJzEJS_-rSjspvJsXOg"
         },
         "deliverable": {
           "type": "option",
           "use_uuid": true,
           "source": "internal",
           "datasource_slug": "deliverables",
-          "exclude_empty_option": true
+          "exclude_empty_option": true,
+          "pos": 2,
+          "id": "HyUzvUHITIebWoO2YvWRtw"
         },
         "description": {
-          "type": "textarea"
+          "type": "textarea",
+          "pos": 3,
+          "id": "JCuulCYkTNia34lTbqVR_A"
         },
         "link_title": {
-          "type": "text"
+          "type": "text",
+          "pos": 4,
+          "id": "upQpdsOQTY2i5jurG00K4Q"
         },
         "link": {
-          "type": "multilink"
+          "type": "multilink",
+          "pos": 5,
+          "id": "vv5Plc2IQBGDW5030wG1Ug"
         }
       },
       "image": null,

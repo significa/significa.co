@@ -6959,6 +6959,64 @@
       "component_group_name": "Blocks"
     },
     {
+      "name": "split-text",
+      "display_name": null,
+      "description": "",
+      "created_at": "2026-01-23T14:47:30.288Z",
+      "updated_at": "2026-01-23T15:02:27.162Z",
+      "id": 137175245987230,
+      "schema": {
+        "has_border_top": {
+          "type": "boolean",
+          "pos": 0,
+          "id": "60aoTpYmTZyri0NtdscBSA"
+        },
+        "eyebrow": {
+          "type": "text",
+          "pos": 1,
+          "id": "OSIgj8CzQZaiaz0gvebReg"
+        },
+        "title": {
+          "type": "text",
+          "pos": 2,
+          "id": "ztUpB76kSbK9psa1zJ8rwQ",
+          "required": true
+        },
+        "description": {
+          "type": "text",
+          "pos": 3,
+          "id": "jhwVKNzyRW2nOH87y3uQmQ",
+          "required": true
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [
+        {
+          "id": 137179207487025,
+          "name": "Split Text",
+          "component_id": 137175245987230,
+          "image": "//a.storyblok.com/f/198185/x/83e3664830/screenshot-2026-01-23-at-15-03-19.png",
+          "icon": "",
+          "color": "",
+          "description": ""
+        }
+      ],
+      "preset_id": null,
+      "real_name": "split-text",
+      "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+      "color": null,
+      "icon": "layout-panel-left",
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "metadata": {},
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "static-page",
       "display_name": null,
       "description": null,
@@ -7555,7 +7613,17 @@
       "is_root": false,
       "preview_tmpl": null,
       "is_nestable": true,
-      "all_presets": [],
+      "all_presets": [
+        {
+          "id": 137178723921456,
+          "name": "Text With Media",
+          "component_id": 137130098588107,
+          "image": "//a.storyblok.com/f/198185/x/bb95b856ce/screenshot-2026-01-23-at-15-01-25.png",
+          "icon": "",
+          "color": "",
+          "description": ""
+        }
+      ],
       "preset_id": null,
       "real_name": "text-with-media",
       "component_group_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",

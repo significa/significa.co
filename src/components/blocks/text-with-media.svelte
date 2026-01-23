@@ -16,7 +16,7 @@
 <section
   use:storyblokEditable={block}
   class={clsx(
-    'lg:container lg:mx-auto lg:px-container',
+    'min-h-[500px] lg:container lg:mx-auto lg:px-container',
     'flex flex-col-reverse lg:flex-row',
     isVideo && 'h-full',
     block.revert_orientation && 'lg:flex-row-reverse'

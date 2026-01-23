@@ -798,6 +798,7 @@ export interface LandingPageStoryblok {
     | ServicesStoryblok
     | SlideshowStoryblok
     | SloganStoryblok
+    | SplitTextStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
     | TextWithMediaStoryblok
@@ -969,6 +970,7 @@ export interface PageStoryblok {
     | ServicesStoryblok
     | SlideshowStoryblok
     | SloganStoryblok
+    | SplitTextStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
     | TextWithMediaStoryblok
@@ -1475,6 +1477,16 @@ export interface SloganStoryblok {
   subheading?: string;
   _uid: string;
   component: 'slogan';
+  [k: string]: any;
+}
+
+export interface SplitTextStoryblok {
+  has_border_top: boolean;
+  eyebrow?: string;
+  title: string;
+  description: string;
+  _uid: string;
+  component: 'split-text';
   [k: string]: any;
 }
 

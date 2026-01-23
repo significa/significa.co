@@ -157,6 +157,7 @@ export interface RichtextStoryblok {
 }
 
 export interface BlogPostStoryblok {
+  hide_from_listings: boolean;
   cover?: AssetStoryblok;
   reading_time?: string;
   intro: string;
@@ -1666,6 +1667,7 @@ export interface TwoColumnsStoryblok {
 }
 
 export interface ValueStoryblok {
+  image?: AssetStoryblok;
   illustration:
     | 'people'
     | 'teamwork'

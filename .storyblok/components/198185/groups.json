@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Blocks",
+    "id": 109818,
+    "uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6",
+    "parent_id": null,
+    "parent_uuid": "c9011224-9690-43bd-b686-e8f60ef6c7f6"
+  },
+  {
+    "name": "Blocks & Rich Text",
+    "id": 109819,
+    "uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
+    "parent_id": null,
+    "parent_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca"
+  },
+  {
+    "name": "Canvas",
+    "id": 142134,
+    "uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72",
+    "parent_id": null,
+    "parent_uuid": "3c80dc73-98c3-4c97-a2b2-44541c933f72"
+  },
+  {
+    "name": "Configuration",
+    "id": 109825,
+    "uuid": "f789ade7-9cf4-4fd4-b95a-56b2cbe5844f",
+    "parent_id": null,
+    "parent_uuid": "f789ade7-9cf4-4fd4-b95a-56b2cbe5844f"
+  },
+  {
+    "name": "Content Types",
+    "id": 109822,
+    "uuid": "a8397001-eca6-4f46-8edb-833d6924db9f",
+    "parent_id": null,
+    "parent_uuid": "a8397001-eca6-4f46-8edb-833d6924db9f"
+  },
+  {
+    "name": "Pages",
+    "id": 115747,
+    "uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54",
+    "parent_id": null,
+    "parent_uuid": "78726ff5-00c6-4ddb-bfef-551b83977e54"
+  },
+  {
+    "name": "Proposals",
+    "id": 203541,
+    "uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48",
+    "parent_id": null,
+    "parent_uuid": "58d1fff3-e431-4dca-98bc-32cb8c2c9c48"
+  },
+  {
+    "name": "Rich Text",
+    "id": 109820,
+    "uuid": "1ef77ef8-466a-4b74-a076-f4554004e128",
+    "parent_id": null,
+    "parent_uuid": "1ef77ef8-466a-4b74-a076-f4554004e128"
+  },
+  {
+    "name": "Single",
+    "id": 109821,
+    "uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3",
+    "parent_id": null,
+    "parent_uuid": "a0e45743-888c-44ef-a39f-0d8b7b6defa3"
+  }
+]

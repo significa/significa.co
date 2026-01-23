@@ -1,15 +1,12 @@
 <script lang="ts">
+  import RichTextTestimonial from '$components/blocks/rich-text-testimonial.svelte';
+  import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import type { TestimonialsStoryblok } from '$types/bloks';
   import { Button } from '@significa/svelte-ui';
-  import RichTextTestimonial from '$components/blocks/rich-text-testimonial.svelte';
-  import BalloonRound from '../illustrations/stickers/balloon-round.svelte';
-  import BalloonRectangle from '../illustrations/stickers/balloon-rectangle.svelte';
-  import Combo from '../illustrations/stickers/combo.svelte';
   import clsx from 'clsx';
-  import People from '../illustrations/stickers/people.svelte';
+  import Combo from '../illustrations/stickers/combo.svelte';
   import FriedEgg from '../illustrations/stickers/fried-egg.svelte';
-  import { storyblokEditable } from '$lib/actions/storyblok-editable';
 
   export let block: TestimonialsStoryblok;
 
@@ -59,22 +56,25 @@
                 i === 1 && 'lg:flex-col'
               )}
             >
-              {#if i === 1}
-                <BalloonRound
-                  class="mr-12 hidden shrink-0 -translate-y-20 self-start drop-shadow-md lg:block"
-                />
-              {/if}
-              {#if i === 2}
-                {#if block.variant === 'one'}
-                  <BalloonRectangle
-                    class="hidden shrink-0 -translate-y-2 self-end drop-shadow-md lg:block"
-                  />
-                {:else if block.variant === 'two'}
-                  <People
-                    class="ml-20 hidden shrink-0 -translate-y-2 self-end drop-shadow-md lg:block 2xl:mr-20"
+              <!-- 
+                NOTE: Tirar bonecada
+                {#if i === 1}
+                  <BalloonRound
+                    class="mr-12 hidden shrink-0 -translate-y-20 self-start drop-shadow-md lg:block"
                   />
                 {/if}
-              {/if}
+                {#if i === 2}
+                  {#if block.variant === 'one'}
+                    <BalloonRectangle
+                      class="hidden shrink-0 -translate-y-2 self-end drop-shadow-md lg:block"
+                    />
+                  {:else if block.variant === 'two'}
+                    <People
+                      class="ml-20 hidden shrink-0 -translate-y-2 self-end drop-shadow-md lg:block 2xl:mr-20"
+                    />
+                  {/if}
+                {/if} 
+              -->
               <div style:transform="translateY({-value * speedFactors[i]}px)">
                 <RichTextTestimonial
                   block={testimonial}

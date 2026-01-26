@@ -3,7 +3,6 @@
   import type { TimelineStoryblok } from '$types/bloks';
   import clsx from 'clsx';
   import Timeline from '../pages/about/timeline.svelte';
-
   export let block: TimelineStoryblok;
 </script>
 

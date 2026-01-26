@@ -2,6 +2,50 @@
   import Comparison from './comparison.svelte';
   import ImageGrid from './image-grid.svelte';
   import Image from './image.svelte';
+  import RichTextCodeBlock from './rich-text-code-block.svelte';
+  import TwoColumns from './two-columns.svelte';
+  import RichTextTestimonial from './rich-text-testimonial.svelte';
+  import Video from './video.svelte';
+  import RichTextBox from './rich-text-box.svelte';
+  import Hero from './hero.svelte';
+  import Packages from './packages.svelte';
+  import WorkRecognitions from './work-recognitions.svelte';
+  import Estimation from './estimation.svelte';
+  import Steps from './steps.svelte';
+  import Services from './services.svelte';
+  import Testimonials from './testimonials.svelte';
+  import Clients from './clients.svelte';
+  import Projects from './projects.svelte';
+  import CtaCard from './cta-card.svelte';
+  import OfficeCards from './office-cards.svelte';
+  import PrefooterForm from './prefooter-form.svelte';
+  import CoreValues from './core-values.svelte';
+  import AwardsList from './awards-list.svelte';
+  import AwardsGrid from './awards-grid.svelte';
+  import TimelineServices from './timeline-services.svelte';
+  import Timeline from './timeline.svelte';
+  import Physics from './physics.svelte';
+  import CareersList from './careers-list.svelte';
+  import FaqsList from './faqs-list.svelte';
+  import BlogList from './blog-list.svelte';
+  import AboutGrid from './about-grid.svelte';
+  import Newton from './newton.svelte';
+  import Slogan from './slogan.svelte';
+  import Slideshow from './slideshow.svelte';
+  import Timezone from './timezone.svelte';
+  import FormBudgetRange from './form-budget-range.svelte';
+  import List from './list.svelte';
+  import ContactUsForm from './contact-us-form.svelte';
+  import OpenPositions from './open-positions.svelte';
+  import DrawSegg from './draw-segg.svelte';
+  import Canvas from './canvas.svelte';
+  import ProjectsTwoColumns from './projects-two-columns.svelte';
+  import VerticalList from './vertical-list.svelte';
+  import Table from './table.svelte';
+  import Box from './box.svelte';
+  import Measurements from './measurements.svelte';
+  import TextWithMedia from './text-with-media.svelte';
+  import SplitText from './split-text.svelte';
 
   const map = {
     'about-grid': AboutGrid,
@@ -48,7 +92,9 @@
     projects: Projects,
     'cta-card': CtaCard,
     box: Box,
-    measurements: Measurements
+    measurements: Measurements,
+    'text-with-media': TextWithMedia,
+    'split-text': SplitText
   };
 
   export type Blocks = keyof typeof map;
@@ -61,48 +107,6 @@
 <script lang="ts">
   import { dev } from '$app/environment';
   import type { ComponentType } from 'svelte';
-  import RichTextCodeBlock from './rich-text-code-block.svelte';
-  import TwoColumns from './two-columns.svelte';
-  import RichTextTestimonial from './rich-text-testimonial.svelte';
-  import Video from './video.svelte';
-  import RichTextBox from './rich-text-box.svelte';
-  import Hero from './hero.svelte';
-  import Packages from './packages.svelte';
-  import WorkRecognitions from './work-recognitions.svelte';
-  import Estimation from './estimation.svelte';
-  import Steps from './steps.svelte';
-  import Services from './services.svelte';
-  import Testimonials from './testimonials.svelte';
-  import Clients from './clients.svelte';
-  import Projects from './projects.svelte';
-  import CtaCard from './cta-card.svelte';
-  import OfficeCards from './office-cards.svelte';
-  import PrefooterForm from './prefooter-form.svelte';
-  import CoreValues from './core-values.svelte';
-  import AwardsList from './awards-list.svelte';
-  import AwardsGrid from './awards-grid.svelte';
-  import TimelineServices from './timeline-services.svelte';
-  import Timeline from './timeline.svelte';
-  import Physics from './physics.svelte';
-  import CareersList from './careers-list.svelte';
-  import FaqsList from './faqs-list.svelte';
-  import BlogList from './blog-list.svelte';
-  import AboutGrid from './about-grid.svelte';
-  import Newton from './newton.svelte';
-  import Slogan from './slogan.svelte';
-  import Slideshow from './slideshow.svelte';
-  import Timezone from './timezone.svelte';
-  import FormBudgetRange from './form-budget-range.svelte';
-  import List from './list.svelte';
-  import ContactUsForm from './contact-us-form.svelte';
-  import OpenPositions from './open-positions.svelte';
-  import DrawSegg from './draw-segg.svelte';
-  import Canvas from './canvas.svelte';
-  import ProjectsTwoColumns from './projects-two-columns.svelte';
-  import VerticalList from './vertical-list.svelte';
-  import Table from './table.svelte';
-  import Box from './box.svelte';
-  import Measurements from './measurements.svelte';
 
   export let block: { component: string };
 

@@ -50,6 +50,7 @@
     "prettier-plugin-svelte": "3.4.0",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "prismjs": "^1.29.0",
+    "storyblok": "^3.35.2",
     "svelte": "^4.2.19",
     "svelte-check": "^4.1.6",
     "tailwind-merge": "^1.14.0",

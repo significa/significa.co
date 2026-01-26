@@ -1,7 +1,4 @@
 <script lang="ts">
-  import Duck from '$components/pages/services/illustrations/duck.svelte';
-  import Hand from '$components/pages/services/illustrations/hand.svelte';
-  import Square from '$components/pages/services/illustrations/square.svelte';
   import type { ServiceStoryblok } from '$types/bloks';
 
   export let block: ServiceStoryblok;
@@ -22,13 +19,16 @@
     {#if block.services}
       <div class="w-full justify-between lg:border-b lg:border-t">
         <div class="container relative mx-auto grid grid-cols-1 px-container md:grid-cols-3">
-          <Square class="absolute -bottom-10 left-[20%] hidden drop-shadow-md lg:block" />
-          <Hand
-            class="absolute -top-[76px] left-[54%] hidden drop-shadow-md md:-top-[60px] lg:block"
-          />
-          <Duck
-            class="absolute -bottom-14 right-[20%] hidden drop-shadow-md md:right-[7%] lg:block"
-          />
+          <!-- 
+            NOTE: Tirar bonecada
+            <Square class="absolute -bottom-10 left-[20%] hidden drop-shadow-md lg:block" />
+            <Hand
+              class="absolute -top-[76px] left-[54%] hidden drop-shadow-md md:-top-[60px] lg:block"
+            />
+            <Duck
+              class="absolute -bottom-14 right-[20%] hidden drop-shadow-md md:right-[7%] lg:block"
+            /> 
+          -->
           {#each block.services as service}
             <div
               class="mt-11 flex flex-col border-t pb-0 last:border-b last:pb-11 md:mt-0 md:border-t-0 md:last:border-b-0 lg:border-r lg:p-8 lg:last:border-r-0 lg:first-of-type:pl-0"

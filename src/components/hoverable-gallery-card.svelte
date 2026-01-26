@@ -4,7 +4,6 @@
 
 <script lang="ts">
   import SplitLines from '$components/split-lines.svelte';
-  import Bird from './illustrations/stickers/bird.svelte';
   import { getImageAttributes } from '$lib/utils/cms';
 
   import type { NotepadCardStoryblok, PhotoCardStoryblok } from '$types/bloks';
@@ -55,23 +54,30 @@
     }}
   >
     <div class="h-full rounded-xs bg-background-panel text-base/[2rem] shadow-md lg:text-notebook">
-      <div class="mb-[3em] grid h-[10px] grid-cols-12 gap-[4%] p-4 lg:p-[1em]">
-        {#each [...Array(12)] as _}
-          <div class="aspect-square rounded-full bg-background shadow-inner" />
-        {/each}
-      </div>
+      <!-- 
+        NOTE: Tirar bonecada
+        <div class="mb-[3em] grid h-[10px] grid-cols-12 gap-[4%] p-4 lg:p-[1em]">
+          {#each [...Array(12)] as _}
+            <div class="aspect-square rounded-full bg-background shadow-inner" />
+          {/each}
+        </div>
+      -->
 
-      <div
-        class="mt-[2em] flex h-full flex-col justify-between"
-        style="background-image: linear-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 2em 2em"
-      >
-        <div class="-mt-[2em] px-4 lg:px-[1em]">
-          <SplitLines text={card.text} class="relative font-comic font-bold" />
+      <!-- 
+        NOTE: Tirar bonecada
+        style="background-image: linear-gradient(hsl(var(--color-border)) 1px, transparent 1px); background-size: 2em 2em" 
+      -->
+      <div class="mt-[2em] flex h-full flex-col justify-between">
+        <div class="mt-4 px-4 lg:px-[1em]">
+          <SplitLines text={card.text} class="relative font-bold" />
         </div>
 
-        <div class="relative mb-12 flex h-1/2 justify-end">
-          <Bird class="relative mr-6 block w-1/2 drop-shadow-md" />
-        </div>
+        <!-- 
+          NOTE: Tirar bonecada
+          <div class="relative mb-12 flex h-1/2 justify-end">
+            <Bird class="relative mr-6 block w-1/2 drop-shadow-md" />
+          </div> 
+        -->
       </div>
     </div>
   </div>

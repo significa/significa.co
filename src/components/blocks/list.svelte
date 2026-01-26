@@ -51,10 +51,23 @@
                 {alt}
                 class={clsx(
                   block.type === 'regular' ? 'max-h-14' : 'max-h-12',
-                  'mb-3 object-contain drop-shadow-md'
+                  'mb-3 object-contain drop-shadow-md light:hidden'
                 )}
               />
             {/if}
+
+            {#if item.icon_light?.filename}
+              {@const { src, alt } = getImageAttributes(item.icon_light)}
+              <img
+                {src}
+                {alt}
+                class={clsx(
+                  block.type === 'regular' ? 'max-h-14' : 'max-h-12',
+                  'mb-3 object-contain drop-shadow-md dark:hidden'
+                )}
+              />
+            {/if}
+
             <div
               class={clsx(block.type === 'regular' ? 'text-lg' : 'mt-4 text-2xl', 'font-semibold')}
             >

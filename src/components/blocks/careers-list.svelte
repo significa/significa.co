@@ -47,14 +47,19 @@
           </Button>
         {/if}
       </div>
+
       <aside
-        data-theme="yellow"
+        data-theme={!block.handbook_image?.filename && 'yellow'}
         class="mt-10 flex flex-col items-start justify-between rounded-lg p-8 lg:mt-0 lg:min-h-[500px] lg:max-w-md"
+        style={block.handbook_image?.filename
+          ? `background-image: url('${block.handbook_image.filename}'); background-size: cover; background-position: center;`
+          : undefined}
       >
         <div class="flex-1">
           <h3 class="text-4xl">{block.handbook_title}</h3>
           <p class="mt-4 text-xl text-foreground-secondary">{block.handbook_description}</p>
         </div>
+
         {#if block.handbook_cta_text && block.handbook_cta_link}
           {@const { href } = getAnchorFromCmsLink(block.handbook_cta_link)}
           <Button variant="secondary" as="a" {href} class="mt-10" icon="handbook" arrow>

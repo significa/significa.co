@@ -1,23 +1,22 @@
 <script lang="ts">
-  import type { CtaCardStoryblok } from '$types/bloks';
-  import { Button } from '@significa/svelte-ui';
-  import CtaLight from '$components/illustrations/assets/cta-card-light.webp';
-  import CtaDark from '$components/illustrations/assets/cta-card-dark.webp';
   import { theme } from '$lib/stores/theme';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
+  import type { CtaCardStoryblok } from '$types/bloks';
+  import { Button } from '@significa/svelte-ui';
 
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
 
   export let block: CtaCardStoryblok;
 
-  $: src =
-    $theme === 'dark'
-      ? block.theme === 'in-theme'
-        ? CtaLight
-        : CtaDark
-      : block.theme === 'contrast'
-        ? CtaLight
-        : CtaDark;
+  // NOTE: Tirar bonecada
+  // $: src =
+  //   $theme === 'dark'
+  //     ? block.theme === 'in-theme'
+  //       ? CtaLight
+  //       : CtaDark
+  //     : block.theme === 'contrast'
+  //       ? CtaLight
+  //       : CtaDark;
 </script>
 
 <section
@@ -70,9 +69,12 @@
         {/if}
       </div>
     </div>
-    <div
-      class="ml-16 hidden flex-1 flex-col justify-end bg-cover bg-center bg-no-repeat lg:flex"
-      style="background-image: url({src});"
-    />
+    <!-- 
+        NOTE: Tirar bonecada
+        <div
+          class="ml-16 hidden flex-1 flex-col justify-end bg-cover bg-center bg-no-repeat lg:flex"
+          style="background-image: url({src});"
+        />
+     -->
   </div>
 </section>

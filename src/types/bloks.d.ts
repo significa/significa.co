@@ -157,6 +157,7 @@ export interface RichtextStoryblok {
 }
 
 export interface BlogPostStoryblok {
+  hide_from_listings: boolean;
   cover?: AssetStoryblok;
   reading_time?: string;
   intro: string;
@@ -369,6 +370,7 @@ export interface CareersListStoryblok {
   title?: string;
   cta_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
   cta_label?: string;
+  handbook_image?: AssetStoryblok;
   handbook_title?: string;
   handbook_description?: string;
   handbook_cta_link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
@@ -518,6 +520,7 @@ export interface DeliverablesEntryStoryblok {
 
 export interface DeliverablesEntryBlockStoryblok {
   icon?: AssetStoryblok;
+  icon_light?: AssetStoryblok;
   deliverable?: number | string;
   description?: string;
   link_title?: string;
@@ -797,8 +800,10 @@ export interface LandingPageStoryblok {
     | ServicesStoryblok
     | SlideshowStoryblok
     | SloganStoryblok
+    | SplitTextStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
+    | TextWithMediaStoryblok
     | TimelineStoryblok
     | TimelineServicesStoryblok
     | TimezoneStoryblok
@@ -967,8 +972,10 @@ export interface PageStoryblok {
     | ServicesStoryblok
     | SlideshowStoryblok
     | SloganStoryblok
+    | SplitTextStoryblok
     | StepsStoryblok
     | TestimonialsStoryblok
+    | TextWithMediaStoryblok
     | TimelineStoryblok
     | TimelineServicesStoryblok
     | TimezoneStoryblok
@@ -1475,6 +1482,16 @@ export interface SloganStoryblok {
   [k: string]: any;
 }
 
+export interface SplitTextStoryblok {
+  has_border_top: boolean;
+  eyebrow?: string;
+  title: string;
+  description: string;
+  _uid: string;
+  component: 'split-text';
+  [k: string]: any;
+}
+
 export interface StaticPageStoryblok {
   body?: RichtextStoryblok;
   _uid: string;
@@ -1586,6 +1603,18 @@ export interface TestimonialsStoryblok {
   [k: string]: any;
 }
 
+export interface TextWithMediaStoryblok {
+  revert_orientation: boolean;
+  media: AssetStoryblok;
+  eyebrow?: string;
+  title: string;
+  description: string;
+  cta?: LinkStoryblok[];
+  _uid: string;
+  component: 'text-with-media';
+  [k: string]: any;
+}
+
 export interface TimelineStoryblok {
   has_border_top: boolean;
   title1?: string;
@@ -1666,6 +1695,7 @@ export interface TwoColumnsStoryblok {
 }
 
 export interface ValueStoryblok {
+  image?: AssetStoryblok;
   illustration:
     | 'people'
     | 'teamwork'

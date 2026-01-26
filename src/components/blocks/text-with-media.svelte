@@ -9,8 +9,8 @@
 
   export let block: TextWithMediaStoryblok;
 
-  $: isVideo =
-    block.media?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(block.media.filename));
+  $: hasMedia = block?.media?.filename;
+  $: isVideo = hasMedia && VIDEO_EXTENSIONS.includes(getFileExtension(block.media.filename));
 </script>
 
 <section
@@ -19,33 +19,43 @@
     'min-h-[500px] lg:container lg:mx-auto lg:px-container',
     'flex flex-col-reverse lg:flex-row',
     isVideo && 'h-full',
-    block.revert_orientation && 'lg:flex-row-reverse'
+    hasMedia && block?.revert_orientation && 'lg:flex-row-reverse'
   )}
 >
+  {#if hasMedia}
+    <div
+      class={clsx(
+        'hidden w-1/2 justify-center py-12 lg:flex lg:py-12',
+        hasMedia &&
+          (block?.revert_orientation
+            ? 'lg:border-l lg:border-r-0 lg:pl-12'
+            : 'lg:border-r lg:pr-12')
+      )}
+    >
+      {#if isVideo}
+        <video
+          class="pointer-events-none aspect-auto h-auto w-auto rounded-md bg-background-offset"
+          muted
+          playsinline
+          autoplay
+          loop
+          src={block.media.filename}
+        />
+      {:else if block.media?.filename}
+        {@const { src, alt, width, height } = getImageAttributes(block.media, {
+          size: [1440 * 2, 0]
+        })}
+        <img class="h-auto w-full rounded-md bg-background-offset" {src} {alt} {width} {height} />
+      {/if}
+    </div>
+  {/if}
+
   <div
     class={clsx(
-      'hidden w-1/2 justify-center py-12 lg:flex lg:py-12',
-      block.revert_orientation ? 'lg:border-l lg:border-r-0 lg:pl-12' : 'lg:border-r lg:pr-12'
+      'flex items-center border-b px-container py-14 lg:w-1/2 lg:border-none',
+      !hasMedia && 'lg:pl-0'
     )}
   >
-    {#if isVideo}
-      <video
-        class="pointer-events-none aspect-auto h-auto w-auto rounded-md bg-background-offset"
-        muted
-        playsinline
-        autoplay
-        loop
-        src={block.media.filename}
-      />
-    {:else if block.media?.filename}
-      {@const { src, alt, width, height } = getImageAttributes(block.media, {
-        size: [1440 * 2, 0]
-      })}
-      <img class="h-auto w-full rounded-md bg-background-offset" {src} {alt} {width} {height} />
-    {/if}
-  </div>
-
-  <div class="flex items-center border-b px-container py-14 lg:w-1/2 lg:border-none">
     <div>
       <h3 class="mb-6 text-5xl lg:max-w-2xl">
         <span class="text-foreground-secondary">{block.eyebrow}</span> <br />

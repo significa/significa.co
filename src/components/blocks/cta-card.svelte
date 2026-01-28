@@ -32,6 +32,8 @@
         ? 'dark'
         : 'light'}
     class="flex overflow-hidden rounded-lg border bg-background"
+    style="background-image: url({block.bg_image
+      ?.filename}); background-size: cover; background-position: center; background-repeat: no-repeat;"
   >
     <div class="flex flex-col p-3 md:p-8">
       <p class="text-xl font-semibold md:text-2xl">{block.title}</p>

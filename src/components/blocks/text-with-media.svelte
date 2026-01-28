@@ -10,7 +10,10 @@
   export let block: TextWithMediaStoryblok;
 
   $: hasMedia = block?.media?.filename;
-  $: isVideo = hasMedia && VIDEO_EXTENSIONS.includes(getFileExtension(block.media.filename));
+  $: isVideo =
+    block?.media?.filename &&
+    hasMedia &&
+    VIDEO_EXTENSIONS.includes(getFileExtension(block?.media?.filename));
 </script>
 
 <section
@@ -39,7 +42,7 @@
           playsinline
           autoplay
           loop
-          src={block.media.filename}
+          src={block?.media?.filename}
         />
       {:else if block.media?.filename}
         {@const { src, alt, width, height } = getImageAttributes(block.media, {

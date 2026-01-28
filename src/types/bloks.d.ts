@@ -492,6 +492,7 @@ export interface CoreValuesStoryblok {
 
 export interface CtaCardStoryblok {
   theme?: 'in-theme' | 'contrast';
+  bg_image?: AssetStoryblok;
   title?: string;
   description?: string;
   link_text?: string;
@@ -1605,7 +1606,7 @@ export interface TestimonialsStoryblok {
 
 export interface TextWithMediaStoryblok {
   revert_orientation: boolean;
-  media: AssetStoryblok;
+  media?: AssetStoryblok;
   eyebrow?: string;
   title: string;
   description: string;

@@ -15,7 +15,7 @@
 </script>
 
 {#if block.questions?.length}
-  <section use:storyblokEditable={block} class="mt-10 md:mt-14 lg:mt-20">
+  <section use:storyblokEditable={block} class="my-10 md:mt-14 lg:my-20">
     <div class="container mx-auto justify-between gap-12 px-container lg:flex">
       <div class="w-full">
         <h2 class="text-5xl">{block.title}</h2>

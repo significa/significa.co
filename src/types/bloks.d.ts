@@ -108,6 +108,7 @@ export interface AwardsGridStoryblok {
 export interface AwardsListStoryblok {
   title?: string;
   description?: string;
+  items_per_page?: string;
   _uid: string;
   component: 'awards-list';
   [k: string]: any;
@@ -492,6 +493,7 @@ export interface CoreValuesStoryblok {
 
 export interface CtaCardStoryblok {
   theme?: 'in-theme' | 'contrast';
+  bg_image?: AssetStoryblok;
   title?: string;
   description?: string;
   link_text?: string;
@@ -1605,7 +1607,7 @@ export interface TestimonialsStoryblok {
 
 export interface TextWithMediaStoryblok {
   revert_orientation: boolean;
-  media: AssetStoryblok;
+  media?: AssetStoryblok;
   eyebrow?: string;
   title: string;
   description: string;

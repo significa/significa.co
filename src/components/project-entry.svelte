@@ -55,7 +55,7 @@
           <div
             class={clsx(
               'mt-6 grid grid-flow-col grid-cols-2 grid-rows-3 gap-4',
-              variant === 'featured' && '@5xl:grid-rows-1'
+              variant === 'featured' && '@5xl:flex'
             )}
           >
             <Recognitions as={as === 'h2' ? 'h3' : 'h4'} {recognitions} />

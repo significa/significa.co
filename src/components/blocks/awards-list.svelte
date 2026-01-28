@@ -61,33 +61,28 @@
         <ul use:drawerLinks>
           {#if $query.isLoading && !hasResults}
             {#each Array(itemsPerPage) as _}
-              <!-- Awards Skeleton   -->
+              <!-- Award Skeleton   -->
               <li class="block border-b first:border-t">
                 <div
                   class="container mx-auto flex flex-col items-center justify-between px-container py-5 lg:flex-row"
                 >
                   <div class="flex w-full flex-col-reverse items-center lg:flex-row">
                     <div class="mb-4 flex w-full items-center lg:mb-0">
-                      <!-- Image skeleton -->
                       <div
                         class="mr-2 h-14 w-14 animate-pulse rounded-xs bg-foreground-tertiary/20"
                       ></div>
                       <div class="ml-4 flex-col">
-                        <!-- Label skeleton -->
                         <div
                           class="rounded mb-1 h-4 w-24 animate-pulse bg-foreground-tertiary/20"
                         ></div>
-                        <!-- Name + Year skeleton -->
                         <div class="rounded h-4 w-32 animate-pulse bg-foreground-tertiary/20"></div>
                       </div>
                     </div>
                     <div class="mb-4 w-full lg:mb-0">
-                      <!-- Project name skeleton -->
                       <div class="rounded h-8 w-48 animate-pulse bg-foreground-tertiary/20"></div>
                     </div>
                   </div>
                   <div class="w-1/3">
-                    <!-- Button skeleton -->
                     <div class="flex-1 justify-end text-foreground-tertiary xl:flex">
                       <div class="rounded h-10 w-32 animate-pulse bg-foreground-tertiary/20"></div>
                     </div>

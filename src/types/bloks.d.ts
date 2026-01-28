@@ -108,6 +108,7 @@ export interface AwardsGridStoryblok {
 export interface AwardsListStoryblok {
   title?: string;
   description?: string;
+  items_per_page?: string;
   _uid: string;
   component: 'awards-list';
   [k: string]: any;

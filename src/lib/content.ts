@@ -1,17 +1,19 @@
-import type { ISbResult, ISbStoriesParams, ISbStoryData } from '@storyblok/js';
-import { getStoryblok, handleStoryblokError } from '$lib/storyblok';
+import { page } from '$app/stores';
+import { getStoryblok, handleStoryblokError, storyblok } from '$lib/storyblok';
 import type {
   BlogPostStoryblok,
   CareerStoryblok,
+  HandbookStoryblok,
+  LandingPageStoryblok,
   PageStoryblok,
   ProjectStoryblok,
-  TeamMemberStoryblok,
-  LandingPageStoryblok,
   RecognitionStoryblok,
-  HandbookStoryblok
+  TeamMemberStoryblok
 } from '$types/bloks';
-import { HOME_SLUG } from './constants';
+import type { ISbResult, ISbStoriesParams, ISbStoryData } from '@storyblok/js';
 import { error } from '@sveltejs/kit';
+import { get } from 'svelte/store';
+import { HOME_SLUG } from './constants';
 
 export const PAGE_PARAMS = {
   resolve_links: 'url',
@@ -81,6 +83,18 @@ export const fetchAwards = async (
   });
 
   return stories as ISbStoryData<RecognitionStoryblok>[];
+};
+
+export const getAwards = async (params: Omit<ISbStoriesParams, 'content_type'> = {}) => {
+  return await storyblok?.get('cdn/stories', {
+    starts_with: 'database/',
+    content_type: 'recognition-entry',
+    version: get(page).data.version,
+    sort_by: 'published_at:desc',
+    cv: Date.now(),
+    resolve_relations: 'recognition-entry.project,recognition-entry.recognition',
+    ...params
+  });
 };
 
 // awards types

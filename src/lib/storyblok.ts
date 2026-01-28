@@ -6,8 +6,8 @@ import {
   type ISbStoryData,
   type SbSDKOptions
 } from '@storyblok/js';
-import { error } from '@sveltejs/kit';
 import type { HttpError } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import { onMount } from 'svelte';
 
 export const getStoryblok = (
@@ -26,6 +26,8 @@ export const getStoryblok = (
 
   return storyblokApi as NonNullable<ReturnType<typeof storyblokInit>['storyblokApi']>;
 };
+
+export const storyblok = getStoryblok();
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function startStoryblokBridge<T extends { story: ISbStoryData<any> }>(

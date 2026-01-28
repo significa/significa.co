@@ -11,6 +11,8 @@
   import { PUBLIC_POSTHOG_PROJECT_TOKEN } from '$env/static/public';
   import posthog from 'posthog-js';
 
+  import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
+
   if (browser) {
     posthog.init(PUBLIC_POSTHOG_PROJECT_TOKEN, {
       api_host: 'https://eu.posthog.com',
@@ -22,11 +24,15 @@
   beforeNavigate(() => {
     toast.clearAll();
   });
+
+  const queryClient = new QueryClient();
 </script>
 
-<Toaster component={ToastNotification} />
-<DraftMode />
+<QueryClientProvider client={queryClient}>
+  <Toaster component={ToastNotification} />
+  <DraftMode />
 
-<PageDrawer />
-<ImageGallery />
-<slot />
+  <PageDrawer />
+  <ImageGallery />
+  <slot />
+</QueryClientProvider>

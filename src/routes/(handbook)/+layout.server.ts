@@ -2,6 +2,7 @@ import { getStoryblok } from '$lib/storyblok';
 import type { ConfigurationStoryblok } from '$types/bloks';
 import type { ISbStoryData } from '@storyblok/js';
 import { fetchCareers } from '$lib/content';
+import { getHandbookHierarchyConfig } from '$components/pages/handbook/common/data.js';
 
 export const load = async ({ fetch, locals }) => {
   const version = locals.version;
@@ -13,9 +14,12 @@ export const load = async ({ fetch, locals }) => {
       'configuration.primary_navigation,configuration.secondary_navigation,footer-column-internal.links'
   });
 
+  const config = await getHandbookHierarchyConfig(storyblok, version, 'sidebar');
+
   return {
     configuration: res.data.story as ISbStoryData<ConfigurationStoryblok>,
     careers: await fetchCareers({ version, fetch }),
-    version
+    version,
+    hierarchy: config.content.hierarchy
   };
 };

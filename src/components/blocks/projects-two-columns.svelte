@@ -40,7 +40,7 @@
                     </div>
                   </div>
                   <div slot="popover">
-                    <p class="hitespace-pre-wrap text-sm md:whitespace-nowrap">
+                    <p class="whitespace-pre-wrap text-sm md:whitespace-nowrap">
                       {measurements.popover}
                     </p>
                   </div>

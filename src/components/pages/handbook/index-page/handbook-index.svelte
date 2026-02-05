@@ -1,18 +1,17 @@
 <script lang="ts">
-  import HandbookIndexItem from './HandbookIndexItem.svelte';
   import { goto } from '$app/navigation';
-  import handbook from '$assets/handbook/handbook_illustration.svg';
   import { fade } from 'svelte/transition';
+  import HandbookIndexItem from './HandbookIndexItem.svelte';
 
-  import Seo from '$components/seo.svelte';
   import handbookOG from '$assets/handbook/HandbookOG.jpg';
+  import Seo from '$components/seo.svelte';
 
-  import { structureDataMarkup } from './structure-data-markup';
   import type { HandbookLevelStoryblok } from '$types/bloks';
   import { Button, Input } from '@significa/svelte-ui';
+  import { structureDataMarkup } from './structure-data-markup';
 
-  import clsx from 'clsx';
   import { createBreakpointMediaQueryStore } from '$lib/stores/media';
+  import clsx from 'clsx';
 
   export let hierarchy: HandbookLevelStoryblok[];
 
@@ -35,11 +34,14 @@
 />
 <div class="container mx-auto px-container">
   <h1 class="sr-only">Handbook by Significa</h1>
-  <img alt="Handbook" src={handbook} class="mx-auto mb-20 mt-28 w-80" />
+  <!--
+    NOTE: Tirar bonecada
+    <img alt="Handbook" src={handbook} class="mx-auto mb-20 mt-28 w-80" />
+  -->
 
   <form
     id="search-form"
-    class="relative m-auto mb-6 flex max-w-[600px] gap-2"
+    class="relative m-auto mb-6 mt-32 flex max-w-[600px] gap-2 lg:mt-40"
     on:submit|preventDefault={() => handleSearch()}
   >
     <Input

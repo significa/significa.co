@@ -1,0 +1,69 @@
+---
+import { getEntry } from "astro:content";
+import { cdnUrl, DEFAULT_QUALITY } from "../../lib/cdn";
+import { contentError } from "../../lib/content-errors";
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+
+if (!slug) {
+  contentError("ProjectCrossSell", Astro.url.pathname, "Missing required prop: slug");
+}
+
+const project = await getEntry("projects", slug);
+
+if (!project) {
+  contentError(
+    "ProjectCrossSell",
+    Astro.url.pathname,
+    `Project "${slug}" not found. Check the slug exists in src/content/projects/.`
+  );
+}
+
+const thumbnailSrc = cdnUrl(project.data.thumbnail, {
+  width: 640,
+  quality: DEFAULT_QUALITY,
+});
+---
+
+<a href={`/projects/${project.id}`} class="cross-sell">
+  <img
+    src={thumbnailSrc}
+    alt={project.data.title}
+    loading="lazy"
+    decoding="async"
+  />
+  <span class="cross-sell-title">{project.data.title}</span>
+  {project.data.tagline && (
+    <span class="cross-sell-tagline">{project.data.tagline}</span>
+  )}
+</a>
+
+<style>
+  .cross-sell {
+    display: block;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .cross-sell img {
+    width: 100%;
+    height: auto;
+  }
+
+  .cross-sell-title {
+    display: block;
+    margin-top: var(--space-2);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-lg);
+  }
+
+  .cross-sell-tagline {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+</style>

@@ -1,0 +1,40 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Base from "../layouts/Base.astro";
+
+const allHighlights = await getCollection("highlights");
+const sorted = allHighlights.sort((a, b) => a.data.order - b.data.order);
+
+const resolved = await Promise.all(
+  sorted.map(async (h) => {
+    const entry = await getEntry(
+      h.data.source.collection,
+      h.data.source.entry.id
+    );
+    return { ...h.data, entry, collection: h.data.source.collection };
+  })
+);
+---
+
+<Base title="Significa" description="Digital product studio crafting meaningful experiences.">
+  <section>
+    <h1>Significa</h1>
+    <p>Digital product studio.</p>
+  </section>
+
+  {resolved.length > 0 && (
+    <section>
+      <h2>Highlights</h2>
+      <ul>
+        {resolved.map((highlight) => (
+          <li>
+            {highlight.label && <span>{highlight.label}</span>}
+            <a href={`/${highlight.collection}/${highlight.entry?.id}`}>
+              {highlight.entry?.data.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</Base>

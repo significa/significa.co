@@ -96,7 +96,7 @@ const transforms = (w: number) =>
 
 **Recommendation:** Define the image pipeline before writing any content. Build a CLI tool or script that uploads to R2 and generates the MDX snippet.
 
-**Team Decision:** Use `public/` folder during development. External image service (ImageKit, Cloudinary, or S3 integration) will be evaluated later. Not a blocker for development.
+**Team Decision (Updated):** Media is managed via the internal asset manager app, which uploads to S3. Bunny.net CDN (`https://significa.b-cdn.net`) serves media with the Bunny Optimizer Engine for real-time image transforms (resize, quality, format conversion via URL query parameters). See `docs/04-MEDIA-ASSETS.md` for the full technical reference.
 
 ---
 
@@ -444,7 +444,7 @@ Ship it. Iterate. Don't add complexity until the content demands it.
 | Topic | Decision |
 |---|---|
 | Astro version | v6 latest stable |
-| Media pipeline | `public/` for now; ImageKit/Cloudinary/S3 evaluated later |
+| Media pipeline | S3 + Bunny.net CDN with Optimizer Engine (`significa.b-cdn.net`) |
 | CMS | No CMS; marketing uses git + AI assistance |
 | MDX components | Start with 5, grow as content demands |
 | Conversion architecture | Evolves with real data; marketing owns it |

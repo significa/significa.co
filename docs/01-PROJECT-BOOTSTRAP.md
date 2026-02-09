@@ -62,15 +62,15 @@ src/
 public/
 ├── favicon.svg
 ├── fonts/
-├── images/                   # Media during development (see 04-MEDIA-ASSETS.md)
 └── robots.txt
+# Images/videos served via S3 + Bunny CDN (see 04-MEDIA-ASSETS.md)
 ```
 
 ## Key Principles
 
 1. **No database.** Content lives in MDX/YAML files with typed frontmatter. Content Collections are the database.
 2. **No client-side JS by default.** Astro renders everything at build time. Only add `client:load` or `client:visible` to React components that genuinely need interactivity.
-3. **Media in `public/` for now.** During development, images and videos go in `public/images/`. An external CDN/image service will be evaluated later.
+3. **Media via S3 + Bunny CDN.** Images and videos are uploaded through the internal asset manager to S3 and served via Bunny.net CDN (`https://significa.b-cdn.net`) with real-time image optimization. See `docs/04-MEDIA-ASSETS.md`.
 4. **Relationships via `reference()`.** Collections reference each other using Astro's `reference()` for build-time validation. Broken slugs break the build, not production.
 5. **Keep it simple.** If you're reaching for a library, stop and check if plain HTML/CSS or an Astro component can do it.
 6. **Fail at build time.** The site is managed by marketing and non-technical people. Every error caught at build time is one less bug in production.

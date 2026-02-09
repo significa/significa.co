@@ -1,0 +1,48 @@
+---
+import { ClientRouter } from "astro:transitions";
+import SEO from "../components/SEO.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import { organizationJsonLd } from "../lib/seo";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  type?: "website" | "article";
+  publishedAt?: Date;
+}
+
+const { title, description, ogImage, type, publishedAt } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <SEO
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      type={type}
+      publishedAt={publishedAt}
+    />
+    <ClientRouter />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(organizationJsonLd())}
+    />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

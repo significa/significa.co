@@ -1,0 +1,62 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import MediaImage from "../../components/mdx/MediaImage.astro";
+import MediaVideo from "../../components/mdx/MediaVideo.astro";
+import ComparisonBlock from "../../components/mdx/ComparisonBlock.astro";
+import Metrics from "../../components/mdx/Metrics.astro";
+import ProjectCrossSell from "../../components/mdx/ProjectCrossSell.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects", ({ data }) => !data.draft);
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+const mdxComponents = {
+  MediaImage,
+  MediaVideo,
+  ComparisonBlock,
+  Metrics,
+  ProjectCrossSell,
+};
+
+const seo = project.data.seo;
+const title = seo?.metaTitle ?? project.data.title;
+const description =
+  seo?.metaDescription ?? project.data.tagline ?? `${project.data.title} — Significa`;
+
+const relatedProjects = project.data.relatedProjects?.length
+  ? await Promise.all(
+      project.data.relatedProjects.map((ref) => getEntry(ref))
+    )
+  : [];
+---
+
+<Base title={title} description={description} ogImage={seo?.ogImage}>
+  <article>
+    <header>
+      <h1>{project.data.title}</h1>
+      {project.data.tagline && <p>{project.data.tagline}</p>}
+      {project.data.client && <p>Client: {project.data.client}</p>}
+    </header>
+    <Content components={mdxComponents} />
+    {relatedProjects.length > 0 && (
+      <aside>
+        <h2>Related Projects</h2>
+        <ul>
+          {relatedProjects.map((related) => related && (
+            <li>
+              <a href={`/projects/${related.id}`}>{related.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    )}
+  </article>
+</Base>

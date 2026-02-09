@@ -18,6 +18,6 @@ Reference documentation for the Significa website project. For AI agent instruct
 2. **Astro v6 (latest stable).** Always use latest stable to avoid near-future breaking changes.
 3. **Content Collections are the database.** Use `getCollection()` and `getEntry()`. Never `import.meta.glob`.
 4. **References use `reference()`.** Build-time validated cross-collection links. Broken slugs break the build, not production.
-5. **Media in `public/` for now.** External CDN/image service will be evaluated later.
+5. **Media via S3 + Bunny CDN.** Uploaded via asset manager, served from `https://significa.b-cdn.net` with Bunny Optimizer transforms.
 6. **Astro components first.** React only for interactive islands.
 7. **When unsure, read the Astro docs.** Do not guess. https://docs.astro.build

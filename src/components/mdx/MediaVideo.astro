@@ -1,0 +1,63 @@
+---
+import { cdnUrl, DEFAULT_QUALITY } from "../../lib/cdn";
+import { contentError } from "../../lib/content-errors";
+
+interface Props {
+  /** Video asset path without CDN hostname */
+  src: string;
+  /** Optional poster image path (goes through Bunny Optimizer) */
+  poster?: string;
+  /** Optional figure caption */
+  caption?: string;
+  /** Auto-play muted (for showreels) */
+  autoplay?: boolean;
+  /** Show playback controls */
+  controls?: boolean;
+}
+
+const {
+  src,
+  poster,
+  caption,
+  autoplay = false,
+  controls = true,
+} = Astro.props;
+
+if (!src) contentError("MediaVideo", Astro.url.pathname, "Missing required prop: src");
+
+const videoSrc = cdnUrl(src);
+const posterSrc = poster
+  ? cdnUrl(poster, { width: 1280, quality: DEFAULT_QUALITY })
+  : undefined;
+---
+
+{caption ? (
+  <figure>
+    <video
+      src={videoSrc}
+      poster={posterSrc}
+      controls={controls}
+      autoplay={autoplay}
+      muted={autoplay}
+      loop={autoplay}
+      playsinline={autoplay}
+      preload={autoplay ? "auto" : "metadata"}
+    >
+      <p>Your browser does not support the video element.</p>
+    </video>
+    <figcaption>{caption}</figcaption>
+  </figure>
+) : (
+  <video
+    src={videoSrc}
+    poster={posterSrc}
+    controls={controls}
+    autoplay={autoplay}
+    muted={autoplay}
+    loop={autoplay}
+    playsinline={autoplay}
+    preload={autoplay ? "auto" : "metadata"}
+  >
+    <p>Your browser does not support the video element.</p>
+  </video>
+)}

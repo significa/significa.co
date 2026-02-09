@@ -1,0 +1,63 @@
+---
+import { cdnUrl, DEFAULT_QUALITY } from "../../lib/cdn";
+import { contentError } from "../../lib/content-errors";
+
+interface ComparisonItem {
+  src: string;
+  label: string;
+  alt?: string;
+}
+
+interface Props {
+  before: ComparisonItem;
+  after: ComparisonItem;
+}
+
+const { before, after } = Astro.props;
+
+if (!before?.src) contentError("ComparisonBlock", Astro.url.pathname, "Missing before.src");
+if (!after?.src) contentError("ComparisonBlock", Astro.url.pathname, "Missing after.src");
+
+const beforeSrc = cdnUrl(before.src, { width: 960, quality: DEFAULT_QUALITY });
+const afterSrc = cdnUrl(after.src, { width: 960, quality: DEFAULT_QUALITY });
+---
+
+<div class="comparison-block" role="group" aria-label="Before and after comparison">
+  <figure>
+    <img
+      src={beforeSrc}
+      alt={before.alt ?? before.label}
+      loading="lazy"
+      decoding="async"
+    />
+    <figcaption>{before.label}</figcaption>
+  </figure>
+  <figure>
+    <img
+      src={afterSrc}
+      alt={after.alt ?? after.label}
+      loading="lazy"
+      decoding="async"
+    />
+    <figcaption>{after.label}</figcaption>
+  </figure>
+</div>
+
+<style>
+  .comparison-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .comparison-block img {
+    width: 100%;
+    height: auto;
+  }
+
+  .comparison-block figcaption {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+</style>

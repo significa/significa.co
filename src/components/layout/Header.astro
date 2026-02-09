@@ -1,0 +1,21 @@
+---
+// Header component — static navigation, no client JS needed.
+const navItems = [
+  { label: "Projects", href: "/projects" },
+  { label: "Blog", href: "/blog" },
+  { label: "Labs", href: "/labs" },
+];
+---
+
+<header>
+  <nav aria-label="Main navigation">
+    <a href="/" aria-label="Significa — Home">Significa</a>
+    <ul>
+      {navItems.map((item) => (
+        <li>
+          <a href={item.href}>{item.label}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>

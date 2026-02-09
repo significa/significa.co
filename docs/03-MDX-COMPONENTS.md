@@ -34,11 +34,13 @@ const mdxComponents = {
 
 ### MediaImage
 
-Renders an image with optional caption. Always use this instead of raw `![alt](url)` for captions, sizing control, and future CDN migration.
+Renders an optimized image via Bunny CDN with responsive `srcset`. Always use this instead of raw `![alt](url)` for captions, sizing control, and automatic image optimization.
+
+The `src` prop takes the asset path (as returned by the asset manager). The component prepends the Bunny CDN hostname (`https://significa.b-cdn.net`) and appends optimization query parameters automatically.
 
 ```mdx
 <MediaImage
-  src="/images/projects/cool-project/hero.jpg"
+  src="/projects/cool-project/hero.jpg"
   alt="Dashboard overview"
   width={1200}
   height={630}
@@ -47,15 +49,16 @@ Renders an image with optional caption. Always use this instead of raw `![alt](u
 ```
 
 **Required props:** `src`, `alt`, `width`, `height`
-**Optional:** `caption`, `eager` (for above-the-fold images)
+**Optional:** `caption`, `eager` (for above-the-fold images), `sizes` (responsive sizes attr), `quality` (0-100, default 80)
 
 ### MediaVideo
 
-Embeds a video.
+Embeds a video served via Bunny CDN. The `poster` image goes through the same optimization pipeline as `MediaImage`.
 
 ```mdx
 <MediaVideo
-  src="/images/projects/cool-project/demo.mp4"
+  src="/projects/cool-project/demo.mp4"
+  poster="/projects/cool-project/demo-poster.jpg"
   caption="Prototype walkthrough"
 />
 ```

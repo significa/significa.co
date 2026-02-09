@@ -1,0 +1,47 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import MediaImage from "../../components/mdx/MediaImage.astro";
+import MediaVideo from "../../components/mdx/MediaVideo.astro";
+import ComparisonBlock from "../../components/mdx/ComparisonBlock.astro";
+import Metrics from "../../components/mdx/Metrics.astro";
+import ProjectCrossSell from "../../components/mdx/ProjectCrossSell.astro";
+
+export async function getStaticPaths() {
+  const labs = await getCollection("labs", ({ data }) => !data.draft);
+  return labs.map((lab) => ({
+    params: { slug: lab.id },
+    props: { lab },
+  }));
+}
+
+const { lab } = Astro.props;
+const { Content } = await render(lab);
+
+const mdxComponents = {
+  MediaImage,
+  MediaVideo,
+  ComparisonBlock,
+  Metrics,
+  ProjectCrossSell,
+};
+
+const seo = lab.data.seo;
+const title = seo?.metaTitle ?? lab.data.title;
+const description = seo?.metaDescription ?? lab.data.description;
+---
+
+<Base title={title} description={description} ogImage={seo?.ogImage}>
+  <article>
+    <header>
+      <h1>{lab.data.title}</h1>
+      <p>{lab.data.description}</p>
+      {lab.data.repoUrl && (
+        <a href={lab.data.repoUrl} rel="noopener noreferrer">
+          View on GitHub
+        </a>
+      )}
+    </header>
+    <Content components={mdxComponents} />
+  </article>
+</Base>

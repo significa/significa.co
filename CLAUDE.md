@@ -20,7 +20,7 @@ These override all defaults. Follow them exactly.
 2. **Astro components first.** React only for interactive islands with explicit `client:*` directives. If it can be done without JS, do it without JS.
 3. **Content Collections are the database.** Use `getCollection()` and `getEntry()` from `astro:content`. Never `import.meta.glob`. Never raw file reads.
 4. **References use `reference()`.** Cross-collection links must use Astro's `reference()` for build-time validation. Broken slugs break the build, not production.
-5. **Media lives in `public/` for now.** During development, images and videos go in `public/`. An external CDN/image service (ImageKit, Cloudinary, or similar integrated with S3) will be evaluated later. SVG icons, favicons, and fonts also live in `public/`.
+5. **Media served via S3 + Bunny CDN.** Images and videos are uploaded through the internal asset manager to S3 and served via Bunny.net CDN (`https://significa.b-cdn.net`). The `MediaImage` component constructs optimized URLs using Bunny Optimizer query parameters (width, quality, format). SVG icons, favicons, and fonts live in `public/`. See `docs/04-MEDIA-ASSETS.md` for the full parameter reference.
 6. **Always use latest stable Astro.** We use Astro v6 (latest stable) to avoid near-future breaking changes. Keep dependencies up to date.
 
 ### Code Quality
@@ -88,6 +88,7 @@ public/
 ├── favicon.svg
 ├── fonts/
 └── robots.txt
+# Note: images/videos are NOT in public/. They are served via S3 + Bunny CDN.
 ```
 
 ---
@@ -242,34 +243,37 @@ Define once in `global.css`, use consistently:
 
 ## Image Handling
 
-### Current Approach (Development Phase)
+### Media Pipeline: S3 + Bunny CDN
 
-Images live in `public/` during development. This keeps things simple while we evaluate external image services (ImageKit, Cloudinary, or similar with S3 integration).
+Media is uploaded via the internal asset manager to S3 and served through **Bunny.net CDN** with the **Bunny Optimizer Engine** for real-time image transforms.
 
-```
-public/
-├── images/
-│   ├── projects/
-│   │   └── cool-project/
-│   │       ├── hero.jpg
-│   │       └── screenshot-01.jpg
-│   └── blog/
-│       └── post-name/
-│           └── cover.jpg
-```
+- **CDN hostname:** `https://significa.b-cdn.net`
+- **Optimizer:** append query params for transforms (`?width=800&quality=80`)
+- Content authors reference assets by path (e.g. `/projects/cool-project/hero.jpg`)
+- `MediaImage` prepends the CDN hostname and generates responsive `srcset` automatically
 
-Reference in content: `/images/projects/cool-project/hero.jpg`
+### Key Bunny Optimizer Parameters
 
-### Future: External Image Service
+| Parameter | Example | Purpose |
+|---|---|---|
+| `width` | `?width=800` | Resize to width (maintains aspect ratio) |
+| `height` | `?height=600` | Resize to height (maintains aspect ratio) |
+| `quality` | `?quality=80` | Compression (0-100, default 85) |
+| `aspect_ratio` | `?aspect_ratio=16:9` | Auto-crop to ratio |
+| `format` | `?format=webp` | Force output format |
+| `blur` | `?blur=80` | Blur effect (0-100) |
+| `sharpen` | `?sharpen=true` | Enhance sharpness |
 
-When an image service is adopted, `MediaImage` will be updated to use transformation URLs. The content references will be migrated. Design components now with this migration in mind: always use `MediaImage` instead of raw `<img>` tags.
+Full parameter reference: `docs/04-MEDIA-ASSETS.md`
 
 ### MediaImage Requirements
 
+- `src` path is **required** (asset path without CDN hostname)
 - `width` and `height` are **required** (prevents layout shift)
 - `alt` is **required** (accessibility)
 - Use `eager` prop for above-the-fold images (hero images)
 - Default is `loading="lazy"` with `decoding="async"`
+- Always use `MediaImage`, never raw `<img>` tags in content
 
 ---
 
@@ -358,11 +362,11 @@ Use Astro's native View Transitions for smooth page navigation:
 
 ```astro
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 ---
 
 <head>
-  <ViewTransitions />
+  <ClientRouter />
 </head>
 ```
 

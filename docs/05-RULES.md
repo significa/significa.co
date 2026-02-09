@@ -10,7 +10,7 @@
 - **Use `reference()` for cross-collection links.** Build-time validated. Broken slugs break the build, not production.
 - **Use `pnpm`.** Not npm, not yarn.
 - **Use design tokens.** Every value comes from `global.css` custom properties. No magic numbers, no magic colors.
-- **Use `MediaImage` for all images in content.** Never raw `<img>` tags. Prepares for future CDN migration.
+- **Use `MediaImage` for all images in content.** Never raw `<img>` tags. It constructs Bunny CDN URLs with responsive `srcset` and optimization parameters automatically.
 - **Filter drafts at query time.** `getCollection('blog', ({ data }) => !data.draft)`. Never in the schema.
 
 ## DO NOT

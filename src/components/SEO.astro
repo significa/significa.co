@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  type?: "website" | "article";
+  publishedAt?: Date;
+}
+
+const {
+  title,
+  description,
+  ogImage,
+  type = "website",
+  publishedAt,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteName = "Significa";
+const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL.href} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL.href} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:site_name" content={siteName} />
+{ogImage && <meta property="og:image" content={ogImage} />}
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+{ogImage && <meta name="twitter:image" content={ogImage} />}
+
+<!-- Article metadata -->
+{type === "article" && publishedAt && (
+  <meta
+    property="article:published_time"
+    content={publishedAt.toISOString()}
+  />
+)}

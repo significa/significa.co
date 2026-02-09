@@ -1,0 +1,46 @@
+---
+import { contentError } from "../../lib/content-errors";
+
+interface MetricItem {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  items: MetricItem[];
+}
+
+const { items } = Astro.props;
+
+if (!items || items.length === 0) {
+  contentError("Metrics", Astro.url.pathname, "Metrics requires at least one item");
+}
+---
+
+<dl class="metrics">
+  {items.map((item) => (
+    <div class="metric">
+      <dt>{item.label}</dt>
+      <dd>{item.value}</dd>
+    </div>
+  ))}
+</dl>
+
+<style>
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: var(--space-6);
+  }
+
+  .metric dt {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .metric dd {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+  }
+</style>

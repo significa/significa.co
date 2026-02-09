@@ -1,0 +1,5 @@
+order: 3
+label: From the Blog
+source:
+  collection: blog
+  entry: designing-for-fintech

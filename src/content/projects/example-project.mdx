@@ -1,12 +1,85 @@
 ---
-title: Example Project
-tagline: A sample case study for testing the build
-client: Acme Corp
-date: 2024-06-01
-thumbnail: /projects/example-project/thumb.jpg
+title: Shelf — Banking Reimagined
+tagline: A digital bank that puts people first
+client: Shelf Inc.
+date: 2024-06-15
+thumbnail: benfica.png
 tags:
-  - design
+  - fintech
+  - product-design
   - development
+relatedProjects:
+  - planit-app
 ---
 
-This is an example project used to validate the build pipeline. Replace with real content.
+Shelf came to us with a bold ambition: build a banking experience that feels nothing like a bank. Over six months, we designed and shipped a product that turned heads in the fintech space.
+
+## The challenge
+
+Traditional banking apps are built around transactions. Shelf wanted to build around goals — helping people understand where their money goes and where it should go next.
+
+<Metrics
+  items={[
+    { value: "6mo", label: "Design to launch" },
+    { value: "4.8", label: "App Store rating" },
+    { value: "120k", label: "Users in first year" },
+  ]}
+/>
+
+## Research and discovery
+
+We started with two weeks of user interviews, talking to 30 people about their relationship with money. The insight that shaped everything: people don't think in transactions, they think in intentions.
+
+<MediaImage
+  src="rangers.png"
+  alt="Research synthesis wall with clustered sticky notes showing user pain points and opportunities"
+  width={1260}
+  height={2260}
+  caption="Research synthesis — clustering pain points into opportunity areas"
+/>
+
+## Design exploration
+
+The visual direction went through three distinct phases before landing on something that felt right — warm, confident, approachable.
+
+<ComparisonBlock
+  before={{
+    src: "benfica.png",
+    label: "Early exploration — too corporate"
+  }}
+  after={{
+    src: "rangers.png",
+    label: "Final direction — warm and approachable"
+  }}
+/>
+
+## The product
+
+The final product centers around three pillars: clarity, goals, and nudges. Every screen answers one question: what should I do with my money right now?
+
+<MediaImage
+  src="basket.png"
+  alt="Three mobile screens showing the Shelf app: home dashboard, goals view, and spending insights"
+  width={1260}
+  height={2260}
+  eager
+/>
+
+## Results
+
+Six months after launch, the numbers told the story better than we could.
+
+<Metrics
+  items={[
+    { value: "3.2x", label: "Conversion vs. industry avg" },
+    { value: "40%", label: "Monthly active users" },
+    { value: "72", label: "Net Promoter Score" },
+    { value: "98", label: "Lighthouse performance" },
+  ]}
+/>
+
+---
+
+See more of our work:
+
+<ProjectCrossSell slug="planit-app" />

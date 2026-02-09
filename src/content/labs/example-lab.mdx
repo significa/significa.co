@@ -1,10 +1,44 @@
 ---
-title: Example Lab
-description: A sample open source project for testing the build
-date: 2024-06-01
+title: svelte-ui
+description: An accessible, unstyled component library for Svelte
+date: 2024-04-15
 repoUrl: https://github.com/nicholasgasior/gopher-eyewear
+thumbnail: basket.png
 tags:
   - open-source
+  - svelte
+  - accessibility
 ---
 
-This is an example lab entry used to validate the build pipeline. Replace with real content.
+We kept rebuilding the same accessible primitives across client projects. So we extracted them into a library.
+
+## What it is
+
+A collection of unstyled, fully accessible UI components for Svelte. Dialogs, dropdowns, tabs, toggles — the boring stuff that's surprisingly hard to get right.
+
+<MediaImage
+  src="basket.png"
+  alt="Grid showing all available components: Dialog, Dropdown, Tabs, Toggle, Tooltip, Accordion, and Combobox"
+  width={1260}
+  height={2260}
+  caption="The full component set — unstyled, ready to customize"
+/>
+
+## Why unstyled?
+
+Styled component libraries are great until your design doesn't match. We wanted primitives that handle all the hard parts — keyboard navigation, focus management, ARIA attributes — while leaving visuals entirely to you.
+
+<Metrics
+  items={[
+    { value: "12", label: "Components" },
+    { value: "100%", label: "Keyboard accessible" },
+    { value: "0kb", label: "CSS included" },
+    { value: "WAI-ARIA", label: "Compliance" },
+  ]}
+/>
+
+## Usage
+
+Install it, import a component, style it however you want. Every component follows the WAI-ARIA authoring practices and handles edge cases like focus trapping, scroll locking, and screen reader announcements.
+
+Built from the patterns we refined over dozens of client projects. Battle-tested in production.

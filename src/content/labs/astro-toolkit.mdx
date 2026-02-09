@@ -1,0 +1,35 @@
+---
+title: astro-toolkit
+description: Utilities and helpers for building Astro static sites
+date: 2024-08-01
+repoUrl: https://github.com/nicholasgasior/gopher-eyewear
+thumbnail: benfica.png
+tags:
+  - open-source
+  - astro
+  - tooling
+---
+
+A small collection of utilities we extracted from building this very site.
+
+## What's inside
+
+<Metrics
+  items={[
+    { value: "SEO", label: "JSON-LD generators" },
+    { value: "CDN", label: "Image URL builder with srcset" },
+    { value: "Zod", label: "Shared content schemas" },
+  ]}
+/>
+
+Helpers for the things we found ourselves rewriting on every Astro project: SEO structured data, responsive image URL generation for CDN-hosted assets, and reusable Zod schema fragments for content collections.
+
+<MediaImage
+  src="rangers.png"
+  alt="Code snippet showing the toolkit API: cdnUrl, cdnSrcset, articleJsonLd, and breadcrumbJsonLd functions"
+  width={1260}
+  height={2260}
+  caption="Clean API surface — four functions that cover 90% of needs"
+/>
+
+Nothing groundbreaking. Just the boring glue code, done once and done well.

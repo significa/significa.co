@@ -1,0 +1,62 @@
+---
+title: What We Learned Designing for Fintech
+date: 2024-07-20
+author: Significa
+tags:
+  - design
+  - fintech
+  - case-study
+relatedProjects:
+  - example-project
+---
+
+After shipping Shelf, we reflected on what makes fintech design different from everything else we do. Here are the patterns that worked.
+
+## Trust is designed, not declared
+
+You can't slap a padlock icon on a screen and call it trustworthy. Trust in fintech is built through consistency, transparency, and reducing cognitive load at every step.
+
+<MediaImage
+  src="benfica.png"
+  alt="Diagram showing three trust-building patterns: progressive disclosure, confirmation steps, and status transparency"
+  width={1260}
+  height={2260}
+  caption="The three trust patterns we kept coming back to"
+/>
+
+## Numbers need context
+
+A balance of 1,847.32 means nothing without context. Is that good? Bad? Compared to what? The best fintech interfaces tell a story with numbers, not just display them.
+
+<Metrics
+  items={[
+    { value: "+12%", label: "Engagement with contextualized numbers" },
+    { value: "3x", label: "Faster comprehension of financial health" },
+    { value: "−28%", label: "Support tickets about account status" },
+  ]}
+/>
+
+## Mistakes must be reversible
+
+In most apps, an undo is a nice-to-have. In fintech, it's essential. We designed every destructive action with a grace period and a clear escape hatch.
+
+<ComparisonBlock
+  before={{
+    src: "rangers.png",
+    label: "Before — Immediate confirmation dialog"
+  }}
+  after={{
+    src: "basket.png",
+    label: "After — Undo toast with 10s grace period"
+  }}
+/>
+
+## The takeaway
+
+Fintech design isn't about making banking look pretty. It's about removing every possible source of anxiety between a person and their money.
+
+The work we did with Shelf reinforced something we already believed: the best design is the one you don't notice. You just feel confident.
+
+---
+
+*This post relates to our work on [Shelf — Banking Reimagined](/projects/example-project).*

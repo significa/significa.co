@@ -3,7 +3,7 @@ import { cdnUrl, cdnSrcset, DEFAULT_QUALITY } from "../../lib/cdn";
 import { contentError } from "../../lib/content-errors";
 
 interface Props {
-  /** Asset path without CDN hostname (e.g. /projects/cool-project/hero.jpg) */
+  /** Asset path or full URL. Relative paths get the CDN hostname prepended. */
   src: string;
   /** Accessible alt text (required) */
   alt: string;
@@ -39,6 +39,8 @@ if (!height) contentError("MediaImage", Astro.url.pathname, "Missing required pr
 
 const imgSrc = cdnUrl(src, { width: 960, quality });
 const srcset = cdnSrcset(src, { quality });
+// Only set sizes when we have a srcset
+const imgSizes = srcset ? sizes : undefined;
 ---
 
 {caption ? (
@@ -46,7 +48,7 @@ const srcset = cdnSrcset(src, { quality });
     <img
       src={imgSrc}
       srcset={srcset}
-      sizes={sizes}
+      sizes={imgSizes}
       alt={alt}
       width={width}
       height={height}

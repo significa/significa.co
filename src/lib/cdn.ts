@@ -23,9 +23,19 @@ interface CdnImageOptions {
 }
 
 /**
- * Build a full Bunny CDN URL with optional optimizer parameters.
+ * Check whether a src is already an absolute URL (external or full CDN link).
  */
-export function cdnUrl(path: string, options: CdnImageOptions = {}): string {
+function isAbsoluteUrl(src: string): boolean {
+  return src.startsWith("http://") || src.startsWith("https://");
+}
+
+/**
+ * Build a full Bunny CDN URL with optional optimizer parameters.
+ *
+ * If `src` is already an absolute URL it's used as-is (no hostname prepended).
+ * Optimizer query params are still appended when the URL points to our CDN.
+ */
+export function cdnUrl(src: string, options: CdnImageOptions = {}): string {
   const params = new URLSearchParams();
 
   if (options.width) params.set("width", String(options.width));
@@ -36,22 +46,43 @@ export function cdnUrl(path: string, options: CdnImageOptions = {}): string {
   if (options.aspect_ratio) params.set("aspect_ratio", options.aspect_ratio);
 
   const query = params.toString();
-  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+
+  // Already a full URL — return as-is (with params only for our own CDN)
+  if (isAbsoluteUrl(src)) {
+    if (!query) return src;
+    // Only append optimizer params to our own CDN URLs
+    if (src.startsWith(CDN_HOSTNAME)) {
+      const separator = src.includes("?") ? "&" : "?";
+      return `${src}${separator}${query}`;
+    }
+    return src;
+  }
+
+  // Relative path — prepend CDN hostname
+  const normalizedPath = src.startsWith("/") ? src : `/${src}`;
   return `${CDN_HOSTNAME}${normalizedPath}${query ? `?${query}` : ""}`;
 }
 
 /**
  * Generate a srcset string for responsive images.
+ *
+ * Returns `undefined` for external URLs that aren't on our CDN,
+ * since we can't generate width variants for those.
  */
 export function cdnSrcset(
-  path: string,
+  src: string,
   options: { quality?: number; widths?: number[] } = {}
-): string {
+): string | undefined {
+  // External URL not on our CDN — no srcset possible
+  if (isAbsoluteUrl(src) && !src.startsWith(CDN_HOSTNAME)) {
+    return undefined;
+  }
+
   const quality = options.quality ?? DEFAULT_QUALITY;
   const widths = options.widths ?? SRCSET_WIDTHS;
 
   return widths
-    .map((w) => `${cdnUrl(path, { width: w, quality })} ${w}w`)
+    .map((w) => `${cdnUrl(src, { width: w, quality })} ${w}w`)
     .join(", ");
 }
 

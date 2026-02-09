@@ -475,13 +475,22 @@ We always use `reference()` instead of `z.string()` for cross-collection links. 
 
 ## Reference Documentation
 
+### External
+
 - **Astro docs:** https://docs.astro.build
 - **Content Collections:** https://docs.astro.build/en/guides/content-collections/
 - **MDX in Astro:** https://docs.astro.build/en/guides/markdown-content/
 - **View Transitions:** https://docs.astro.build/en/guides/view-transitions/
 - **Islands Architecture:** https://docs.astro.build/en/concepts/islands/
-- **Astro Skill (local):** See `astro-skill.md` in this repo
-- **Team Discussion:** See `team-discussion.md` in this repo
-- **Plan Documents:** See `significa-website-plan/` directory
+
+### Local (in `docs/`)
+
+- `docs/01-PROJECT-BOOTSTRAP.md`: Stack, commands, project structure
+- `docs/02-CONTENT-SCHEMA.md`: Collection schemas, Zod types, relationship patterns
+- `docs/03-MDX-COMPONENTS.md`: Component catalog and usage examples
+- `docs/04-MEDIA-ASSETS.md`: Image handling and media strategy
+- `docs/05-RULES.md`: Do's, don'ts, common mistakes
+- `docs/06-ASTRO-REFERENCE.md`: Astro framework deep reference
+- `docs/07-TEAM-DECISIONS.md`: Architectural decisions and team discussion log
 
 **Rule: Do not hallucinate APIs.** If you're unsure whether a method or config option exists, check the docs. Astro's API surface is small.

@@ -1,35 +1,64 @@
 # Media & Assets
 
-## Rule: No Large Files in Git
+## Current Approach (Development Phase)
 
-Do **not** commit images, videos, or other media to the repository. Git is not designed for binary files — the repo will bloat and cloning will become painfully slow.
+Images and videos live in `public/images/` during development. This keeps things simple while we evaluate external image services (ImageKit, Cloudinary, or similar with S3 integration).
 
-## Strategy: External URLs
-
-All media (images, videos) is hosted externally and referenced by URL. The hosting infrastructure is managed separately — this project only cares about URLs.
+```
+public/
+├── images/
+│   ├── projects/
+│   │   └── cool-project/
+│   │       ├── hero.jpg
+│   │       └── screenshot-01.jpg
+│   └── blog/
+│       └── post-name/
+│           └── cover.jpg
+├── favicon.svg
+├── fonts/
+└── robots.txt
+```
 
 ### Referencing in Content
 
 In frontmatter:
 
 ```yaml
-thumbnail: https://cdn.significa.co/projects/cool-project/thumb.jpg
+thumbnail: /images/projects/cool-project/thumb.jpg
 ```
 
 In MDX body:
 
 ```mdx
-<MediaImage src="https://cdn.significa.co/projects/cool-project/hero.jpg" alt="Hero" />
+<MediaImage
+  src="/images/projects/cool-project/hero.jpg"
+  alt="Dashboard overview"
+  width={1200}
+  height={630}
+/>
 ```
 
-The `thumbnail` field in schemas is typed as `z.string().url()` — Zod validates it's a valid URL at build time.
+## What Lives in the Repo
 
-## What CAN Live in the Repo
+- **Images and videos** in `public/images/` (during development phase)
+- **Icons and logos** (SVG): small, text-based, version-controlled
+- **Favicons** in `public/`
+- **Fonts** in `public/fonts/`
 
-- **Icons and logos** (SVG) — small, text-based, version-controlled
-- **Favicons** — in `public/`
-- **Fonts** — in `public/fonts/` if self-hosting
+## Future: External Image Service
 
-## Image Rendering
+When an image service is adopted, `MediaImage` will be updated to use transformation URLs. The content references will be migrated. Design components now with this migration in mind: always use `MediaImage` instead of raw `<img>` tags.
 
-Use plain `<img>` tags with `loading="lazy"` and explicit `width`/`height` attributes to prevent layout shift. Image optimization (resizing, format conversion) is handled at the CDN/infrastructure level, not by Astro.
+## MediaImage Requirements
+
+- `width` and `height` are **required** (prevents layout shift)
+- `alt` is **required** (accessibility)
+- Use `eager` prop for above-the-fold images (hero images)
+- Default is `loading="lazy"` with `decoding="async"`
+
+## Image Best Practices
+
+- Always provide `width` and `height` to prevent Cumulative Layout Shift (CLS)
+- Use `eager` prop and `fetchpriority="high"` for hero/LCP images
+- All other images default to `loading="lazy"` and `decoding="async"`
+- Always use `MediaImage` component, never raw `<img>` tags in content

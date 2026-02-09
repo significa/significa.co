@@ -1,7 +1,8 @@
-# Astro Skill: Production Website Development
+# Astro Reference
 
 > Deep reference for building production static sites with Astro.
 > Based on Astro v5/v6 source code analysis and real-world patterns. Use latest stable (v6).
+> For project-specific patterns, see `02-CONTENT-SCHEMA.md` and `03-MDX-COMPONENTS.md`.
 
 ---
 

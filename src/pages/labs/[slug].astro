@@ -36,11 +36,13 @@ const description = seo?.metaDescription ?? lab.data.description;
     <header>
       <h1>{lab.data.title}</h1>
       <p>{lab.data.description}</p>
-      {lab.data.repoUrl && (
-        <a href={lab.data.repoUrl} rel="noopener noreferrer">
-          View on GitHub
-        </a>
-      )}
+      {
+        lab.data.repoUrl && (
+          <a href={lab.data.repoUrl} rel="noopener noreferrer">
+            View on GitHub
+          </a>
+        )
+      }
     </header>
     <Content components={mdxComponents} />
   </article>

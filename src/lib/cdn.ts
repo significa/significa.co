@@ -71,7 +71,7 @@ export function cdnUrl(src: string, options: CdnImageOptions = {}): string {
  */
 export function cdnSrcset(
   src: string,
-  options: { quality?: number; widths?: number[] } = {}
+  options: { quality?: number; widths?: number[] } = {},
 ): string | undefined {
   // External URL not on our CDN — no srcset possible
   if (isAbsoluteUrl(src) && !src.startsWith(CDN_HOSTNAME)) {

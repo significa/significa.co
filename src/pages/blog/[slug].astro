@@ -29,12 +29,11 @@ const mdxComponents = {
 
 const seo = post.data.seo;
 const title = seo?.metaTitle ?? post.data.title;
-const description = seo?.metaDescription ?? `${post.data.title} — Significa Blog`;
+const description =
+  seo?.metaDescription ?? `${post.data.title} — Significa Blog`;
 
 const relatedProjects = post.data.relatedProjects?.length
-  ? await Promise.all(
-      post.data.relatedProjects.map((ref) => getEntry(ref))
-    )
+  ? await Promise.all(post.data.relatedProjects.map((ref) => getEntry(ref)))
   : [];
 ---
 
@@ -49,27 +48,34 @@ const relatedProjects = post.data.relatedProjects?.length
     <header>
       <h1>{post.data.title}</h1>
       <time datetime={post.data.date.toISOString()}>
-        {post.data.date.toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
+        {
+          post.data.date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+        }
       </time>
       {post.data.author && <p>By {post.data.author}</p>}
     </header>
     <Content components={mdxComponents} />
-    {relatedProjects.length > 0 && (
-      <aside>
-        <h2>Related Projects</h2>
-        <ul>
-          {relatedProjects.map((project) => project && (
-            <li>
-              <a href={`/projects/${project.id}`}>{project.data.title}</a>
-            </li>
-          ))}
-        </ul>
-      </aside>
-    )}
+    {
+      relatedProjects.length > 0 && (
+        <aside>
+          <h2>Related Projects</h2>
+          <ul>
+            {relatedProjects.map(
+              (project) =>
+                project && (
+                  <li>
+                    <a href={`/projects/${project.id}`}>{project.data.title}</a>
+                  </li>
+                ),
+            )}
+          </ul>
+        </aside>
+      )
+    }
   </article>
   <script
     is:inline
@@ -82,7 +88,7 @@ const relatedProjects = post.data.relatedProjects?.length
         publishedAt: post.data.date,
         author: post.data.author,
         image: seo?.ogImage,
-      })
+      }),
     )}
   />
 </Base>

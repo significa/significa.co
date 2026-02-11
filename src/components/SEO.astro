@@ -39,9 +39,11 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
 {ogImage && <meta name="twitter:image" content={ogImage} />}
 
 <!-- Article metadata -->
-{type === "article" && publishedAt && (
-  <meta
-    property="article:published_time"
-    content={publishedAt.toISOString()}
-  />
-)}
+{
+  type === "article" && publishedAt && (
+    <meta
+      property="article:published_time"
+      content={publishedAt.toISOString()}
+    />
+  )
+}

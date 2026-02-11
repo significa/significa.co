@@ -7,437 +7,431 @@ const testimonials = await getTestimonials();
 ---
 
 <Base
-    title="Who we are"
-    description="Significa is a digital product studio based in Porto, Portugal. We design and build products for companies that care about craft."
+  title="Who we are"
+  description="Significa is a digital product studio based in Porto, Portugal. We design and build products for companies that care about craft."
 >
-    <!-- Intro -->
-    <section class="intro">
-        <div class="intro-inner">
-            <h1>
-                <span class="intro-muted">We're a product studio based in Porto.</span>{" "}
-                We design and build digital products that people genuinely enjoy using.
-            </h1>
-        </div>
-    </section>
+  <!-- Intro -->
+  <section class="intro">
+    <div class="intro-inner">
+      <h1>
+        <span class="intro-muted">We're a product studio based in Porto.</span>{
+          " "
+        }
+        We design and build digital products that people genuinely enjoy using.
+      </h1>
+    </div>
+  </section>
 
-    <!-- Values -->
-    <section class="values">
-        <div class="values-inner">
-            <div class="values-grid">
-                <div class="value-card">
-                    <h2 class="value-title">Craft</h2>
-                    <p class="value-description">
-                        Every pixel, every interaction, every line of code — we
-                        care about the details because users feel them even when
-                        they can't name them.
-                    </p>
-                </div>
-                <div class="value-card">
-                    <h2 class="value-title">Honesty</h2>
-                    <p class="value-description">
-                        We tell you what we think, not what you want to hear. If
-                        something won't work, we say so early — before it costs
-                        time and money.
-                    </p>
-                </div>
-                <div class="value-card">
-                    <h2 class="value-title">Ownership</h2>
-                    <p class="value-description">
-                        Small teams, high accountability. Everyone involved in a
-                        project owns the outcome, not just their slice of it.
-                    </p>
-                </div>
-                <div class="value-card">
-                    <h2 class="value-title">Simplicity</h2>
-                    <p class="value-description">
-                        The best solution is usually the simplest one. We resist
-                        complexity and fight feature bloat on behalf of the
-                        people who use what we build.
-                    </p>
-                </div>
-            </div>
+  <!-- Values -->
+  <section class="values">
+    <div class="values-inner">
+      <div class="values-grid">
+        <div class="value-card">
+          <h2 class="value-title">Craft</h2>
+          <p class="value-description">
+            Every pixel, every interaction, every line of code — we care about
+            the details because users feel them even when they can't name them.
+          </p>
         </div>
-    </section>
-
-    <!-- Numbers -->
-    <section class="numbers">
-        <div class="numbers-inner">
-            <dl class="numbers-grid">
-                <div class="number-item">
-                    <dt>Founded</dt>
-                    <dd>2015</dd>
-                </div>
-                <div class="number-item">
-                    <dt>Team members</dt>
-                    <dd>20+</dd>
-                </div>
-                <div class="number-item">
-                    <dt>Projects delivered</dt>
-                    <dd>80+</dd>
-                </div>
-                <div class="number-item">
-                    <dt>Based in</dt>
-                    <dd>Porto</dd>
-                </div>
-            </dl>
+        <div class="value-card">
+          <h2 class="value-title">Honesty</h2>
+          <p class="value-description">
+            We tell you what we think, not what you want to hear. If something
+            won't work, we say so early — before it costs time and money.
+          </p>
         </div>
-    </section>
+        <div class="value-card">
+          <h2 class="value-title">Ownership</h2>
+          <p class="value-description">
+            Small teams, high accountability. Everyone involved in a project
+            owns the outcome, not just their slice of it.
+          </p>
+        </div>
+        <div class="value-card">
+          <h2 class="value-title">Simplicity</h2>
+          <p class="value-description">
+            The best solution is usually the simplest one. We resist complexity
+            and fight feature bloat on behalf of the people who use what we
+            build.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Team photo -->
-    <section class="team-photo">
-        <div class="team-photo-inner">
-            <!--
+  <!-- Numbers -->
+  <section class="numbers">
+    <div class="numbers-inner">
+      <dl class="numbers-grid">
+        <div class="number-item">
+          <dt>Founded</dt>
+          <dd>2015</dd>
+        </div>
+        <div class="number-item">
+          <dt>Team members</dt>
+          <dd>20+</dd>
+        </div>
+        <div class="number-item">
+          <dt>Projects delivered</dt>
+          <dd>80+</dd>
+        </div>
+        <div class="number-item">
+          <dt>Based in</dt>
+          <dd>Porto</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Team photo -->
+  <section class="team-photo">
+    <div class="team-photo-inner">
+      <!--
                 Replace with actual team photo via CDN:
                 <img src={cdnUrl("team/office.jpg", { width: 1920, quality: 80 })} ... />
             -->
-            <div class="team-photo-placeholder">
-                <p>Team photo</p>
-            </div>
+      <div class="team-photo-placeholder">
+        <p>Team photo</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  {
+    testimonials.length > 0 && (
+      <section class="testimonials">
+        <div class="testimonials-inner">
+          <h2 class="section-heading">What our clients say</h2>
+          <div class="testimonials-grid">
+            {testimonials.map((t) => (
+              <blockquote class="testimonial-card">
+                <p class="testimonial-quote">{t.data.quote}</p>
+                <footer class="testimonial-author">
+                  <cite>
+                    <strong>{t.data.author}</strong>
+                    <span>
+                      {t.data.role} at {t.data.company}
+                    </span>
+                  </cite>
+                </footer>
+              </blockquote>
+            ))}
+          </div>
         </div>
-    </section>
+      </section>
+    )
+  }
 
-    <!-- Testimonials -->
-    {
-        testimonials.length > 0 && (
-            <section class="testimonials">
-                <div class="testimonials-inner">
-                    <h2 class="section-heading">What our clients say</h2>
-                    <div class="testimonials-grid">
-                        {testimonials.map((t) => (
-                            <blockquote class="testimonial-card">
-                                <p class="testimonial-quote">
-                                    {t.data.quote}
-                                </p>
-                                <footer class="testimonial-author">
-                                    <cite>
-                                        <strong>{t.data.author}</strong>
-                                        <span>
-                                            {t.data.role} at {t.data.company}
-                                        </span>
-                                    </cite>
-                                </footer>
-                            </blockquote>
-                        ))}
-                    </div>
-                </div>
-            </section>
-        )
-    }
-
-    <!-- Clients -->
-    {
-        clients.length > 0 && (
-            <section class="clients">
-                <div class="clients-inner">
-                    <h2 class="section-heading">Companies we've worked with</h2>
-                    <ul>
-                        {clients.map((client) => (
-                            <li>
-                                {client.data.url ? (
-                                    <a
-                                        href={client.data.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        title={client.data.name}
-                                    >
-                                        <span class="client-name">
-                                            {client.data.name}
-                                        </span>
-                                    </a>
-                                ) : (
-                                    <span class="client-name">
-                                        {client.data.name}
-                                    </span>
-                                )}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </section>
-        )
-    }
-
-    <!-- CTA -->
-    <section class="cta">
-        <div class="cta-inner">
-            <h2>Want to work with us?</h2>
-            <p>
-                We're always looking for interesting projects and good people to
-                collaborate with.
-            </p>
-            <a href="/work-with-us" class="cta-link">Get in touch →</a>
+  <!-- Clients -->
+  {
+    clients.length > 0 && (
+      <section class="clients">
+        <div class="clients-inner">
+          <h2 class="section-heading">Companies we've worked with</h2>
+          <ul>
+            {clients.map((client) => (
+              <li>
+                {client.data.url ? (
+                  <a
+                    href={client.data.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={client.data.name}
+                  >
+                    <span class="client-name">{client.data.name}</span>
+                  </a>
+                ) : (
+                  <span class="client-name">{client.data.name}</span>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
-    </section>
+      </section>
+    )
+  }
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-inner">
+      <h2>Want to work with us?</h2>
+      <p>
+        We're always looking for interesting projects and good people to
+        collaborate with.
+      </p>
+      <a href="/work-with-us" class="cta-link">Get in touch →</a>
+    </div>
+  </section>
 </Base>
 
 <style>
-    /* --------------------------------------------------------
+  /* --------------------------------------------------------
        Intro
        -------------------------------------------------------- */
-    .intro {
-        padding: var(--space-32) var(--gutter) var(--space-16);
-    }
+  .intro {
+    padding: var(--space-32) var(--gutter) var(--space-16);
+  }
 
-    .intro-inner {
-        max-width: var(--max-width-narrow);
-        margin: 0 auto;
-    }
+  .intro-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+  }
 
-    .intro h1 {
-        font-size: var(--text-3xl);
-        font-weight: var(--weight-normal);
-        line-height: var(--leading-tight);
-    }
+  .intro h1 {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-normal);
+    line-height: var(--leading-tight);
+  }
 
-    .intro-muted {
-        color: var(--color-text-muted);
-    }
+  .intro-muted {
+    color: var(--color-text-muted);
+  }
 
-    /* --------------------------------------------------------
+  /* --------------------------------------------------------
        Values
        -------------------------------------------------------- */
-    .values {
-        padding: 0 var(--gutter) var(--space-16);
-    }
+  .values {
+    padding: 0 var(--gutter) var(--space-16);
+  }
 
-    .values-inner {
-        max-width: var(--max-width);
-        margin: 0 auto;
-    }
+  .values-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
 
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+
+  .value-card {
+    background: var(--color-surface-alt);
+    padding: var(--space-8);
+    border-radius: var(--space-2);
+  }
+
+  .value-title {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    margin-bottom: var(--space-3);
+  }
+
+  .value-description {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+  }
+
+  @media (max-width: 640px) {
     .values-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-4);
+      grid-template-columns: 1fr;
     }
+  }
 
-    .value-card {
-        background: var(--color-surface-alt);
-        padding: var(--space-8);
-        border-radius: var(--space-2);
-    }
-
-    .value-title {
-        font-size: var(--text-lg);
-        font-weight: var(--weight-semibold);
-        margin-bottom: var(--space-3);
-    }
-
-    .value-description {
-        font-size: var(--text-base);
-        color: var(--color-text-muted);
-        line-height: var(--leading-normal);
-    }
-
-    @media (max-width: 640px) {
-        .values-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    /* --------------------------------------------------------
+  /* --------------------------------------------------------
        Numbers
        -------------------------------------------------------- */
-    .numbers {
-        padding: 0 var(--gutter) var(--space-16);
-    }
+  .numbers {
+    padding: 0 var(--gutter) var(--space-16);
+  }
 
-    .numbers-inner {
-        max-width: var(--max-width);
-        margin: 0 auto;
-    }
+  .numbers-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
 
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+
+  .number-item {
+    text-align: center;
+    padding: var(--space-8) var(--space-4);
+  }
+
+  .number-item dt {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .number-item dd {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    line-height: 1;
+  }
+
+  @media (max-width: 768px) {
     .numbers-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: var(--space-4);
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
 
-    .number-item {
-        text-align: center;
-        padding: var(--space-8) var(--space-4);
-    }
-
-    .number-item dt {
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-        margin-bottom: var(--space-2);
-    }
-
-    .number-item dd {
-        font-size: var(--text-2xl);
-        font-weight: var(--weight-bold);
-        line-height: 1;
-    }
-
-    @media (max-width: 768px) {
-        .numbers-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    /* --------------------------------------------------------
+  /* --------------------------------------------------------
        Team photo
        -------------------------------------------------------- */
-    .team-photo {
-        padding: 0 var(--gutter) var(--space-16);
-    }
+  .team-photo {
+    padding: 0 var(--gutter) var(--space-16);
+  }
 
-    .team-photo-inner {
-        max-width: var(--max-width);
-        margin: 0 auto;
-    }
+  .team-photo-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
 
-    .team-photo-placeholder {
-        aspect-ratio: 16 / 9;
-        background: var(--color-surface-alt);
-        border-radius: var(--space-2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--color-text-muted);
-        font-size: var(--text-sm);
-    }
+  .team-photo-placeholder {
+    aspect-ratio: 16 / 9;
+    background: var(--color-surface-alt);
+    border-radius: var(--space-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
 
-    /* --------------------------------------------------------
+  /* --------------------------------------------------------
        Section heading
        -------------------------------------------------------- */
-    .section-heading {
-        font-size: var(--text-sm);
-        font-weight: var(--weight-medium);
-        color: var(--color-text-muted);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: var(--space-8);
-    }
+  .section-heading {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-8);
+  }
 
-    /* --------------------------------------------------------
+  /* --------------------------------------------------------
        Testimonials
        -------------------------------------------------------- */
-    .testimonials {
-        padding: 0 var(--gutter) var(--space-16);
-    }
+  .testimonials {
+    padding: 0 var(--gutter) var(--space-16);
+  }
 
-    .testimonials-inner {
-        max-width: var(--max-width);
-        margin: 0 auto;
-    }
+  .testimonials-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
 
-    .testimonials-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-        gap: var(--space-4);
-    }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: var(--space-4);
+  }
 
-    .testimonial-card {
-        background: var(--color-surface-alt);
-        padding: var(--space-8);
-        border-radius: var(--space-2);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
+  .testimonial-card {
+    background: var(--color-surface-alt);
+    padding: var(--space-8);
+    border-radius: var(--space-2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
-    .testimonial-quote {
-        font-size: var(--text-lg);
-        line-height: var(--leading-normal);
-        margin-bottom: var(--space-8);
-    }
+  .testimonial-quote {
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    margin-bottom: var(--space-8);
+  }
 
-    .testimonial-author cite {
-        font-style: normal;
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-1);
-    }
+  .testimonial-author cite {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
 
-    .testimonial-author strong {
-        font-size: var(--text-base);
-        font-weight: var(--weight-medium);
-    }
+  .testimonial-author strong {
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+  }
 
-    .testimonial-author span {
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-    }
+  .testimonial-author span {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
 
-    /* --------------------------------------------------------
+  /* --------------------------------------------------------
        Clients
        -------------------------------------------------------- */
-    .clients {
-        padding: 0 var(--gutter) var(--space-16);
-    }
+  .clients {
+    padding: 0 var(--gutter) var(--space-16);
+  }
 
-    .clients-inner {
-        max-width: var(--max-width);
-        margin: 0 auto;
-    }
+  .clients-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
 
-    .clients ul {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: var(--space-8);
-        list-style: none;
-    }
+  .clients ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-8);
+    list-style: none;
+  }
 
-    .clients li a {
-        color: var(--color-text);
-        text-decoration: none;
-        opacity: 0.7;
-        transition: opacity var(--duration-fast) var(--ease-out);
-    }
+  .clients li a {
+    color: var(--color-text);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
 
-    .clients li a:hover {
-        opacity: 1;
-        color: var(--color-text);
-    }
+  .clients li a:hover {
+    opacity: 1;
+    color: var(--color-text);
+  }
 
-    .client-name {
-        font-size: var(--text-sm);
-        font-weight: var(--weight-semibold);
-        white-space: nowrap;
-    }
+  .client-name {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    white-space: nowrap;
+  }
 
-    /* --------------------------------------------------------
+  /* --------------------------------------------------------
        CTA
        -------------------------------------------------------- */
-    .cta {
-        padding: var(--space-16) var(--gutter) var(--space-32);
-    }
+  .cta {
+    padding: var(--space-16) var(--gutter) var(--space-32);
+  }
 
-    .cta-inner {
-        max-width: var(--max-width-narrow);
-        margin: 0 auto;
-        text-align: center;
-    }
+  .cta-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+    text-align: center;
+  }
 
-    .cta h2 {
-        font-size: var(--text-2xl);
-        margin-bottom: var(--space-4);
-    }
+  .cta h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-4);
+  }
 
-    .cta p {
-        font-size: var(--text-lg);
-        color: var(--color-text-muted);
-        margin-bottom: var(--space-8);
-        line-height: var(--leading-normal);
-    }
+  .cta p {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-8);
+    line-height: var(--leading-normal);
+  }
 
-    .cta-link {
-        display: inline-block;
-        font-size: var(--text-base);
-        font-weight: var(--weight-medium);
-        color: var(--color-text);
-        text-decoration: underline;
-        text-underline-offset: 0.15em;
-        text-decoration-thickness: 1px;
-        transition: text-decoration-thickness var(--duration-fast) var(--ease-out);
-    }
+  .cta-link {
+    display: inline-block;
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-thickness var(--duration-fast) var(--ease-out);
+  }
 
-    .cta-link:hover {
-        color: var(--color-text);
-        text-decoration-thickness: 2px;
-    }
+  .cta-link:hover {
+    color: var(--color-text);
+    text-decoration-thickness: 2px;
+  }
 </style>

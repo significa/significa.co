@@ -32,10 +32,22 @@ const {
   quality = DEFAULT_QUALITY,
 } = Astro.props;
 
-if (!src) contentError("MediaImage", Astro.url.pathname, "Missing required prop: src");
-if (!alt) contentError("MediaImage", Astro.url.pathname, "Missing required prop: alt");
-if (!width) contentError("MediaImage", Astro.url.pathname, "Missing required prop: width");
-if (!height) contentError("MediaImage", Astro.url.pathname, "Missing required prop: height");
+if (!src)
+  contentError("MediaImage", Astro.url.pathname, "Missing required prop: src");
+if (!alt)
+  contentError("MediaImage", Astro.url.pathname, "Missing required prop: alt");
+if (!width)
+  contentError(
+    "MediaImage",
+    Astro.url.pathname,
+    "Missing required prop: width",
+  );
+if (!height)
+  contentError(
+    "MediaImage",
+    Astro.url.pathname,
+    "Missing required prop: height",
+  );
 
 const imgSrc = cdnUrl(src, { width: 960, quality });
 const srcset = cdnSrcset(src, { quality });
@@ -43,12 +55,27 @@ const srcset = cdnSrcset(src, { quality });
 const imgSizes = srcset ? sizes : undefined;
 ---
 
-{caption ? (
-  <figure>
+{
+  caption ? (
+    <figure>
+      <img
+        src={imgSrc}
+        srcset={srcset}
+        sizes={imgSizes}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={eager ? "eager" : "lazy"}
+        fetchpriority={eager ? "high" : "auto"}
+        decoding={eager ? "sync" : "async"}
+      />
+      <figcaption>{caption}</figcaption>
+    </figure>
+  ) : (
     <img
       src={imgSrc}
       srcset={srcset}
-      sizes={imgSizes}
+      sizes={sizes}
       alt={alt}
       width={width}
       height={height}
@@ -56,18 +83,5 @@ const imgSizes = srcset ? sizes : undefined;
       fetchpriority={eager ? "high" : "auto"}
       decoding={eager ? "sync" : "async"}
     />
-    <figcaption>{caption}</figcaption>
-  </figure>
-) : (
-  <img
-    src={imgSrc}
-    srcset={srcset}
-    sizes={sizes}
-    alt={alt}
-    width={width}
-    height={height}
-    loading={eager ? "eager" : "lazy"}
-    fetchpriority={eager ? "high" : "auto"}
-    decoding={eager ? "sync" : "async"}
-  />
-)}
+  )
+}

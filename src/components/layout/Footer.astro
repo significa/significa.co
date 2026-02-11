@@ -5,247 +5,242 @@ const recentPosts = (await getPublishedPosts()).slice(0, 2);
 const currentYear = new Date().getFullYear();
 
 const significaLinks = [
-    { label: "Home", href: "/" },
-    { label: "Who we are", href: "/who-we-are" },
-    { label: "What we do", href: "/what-we-do" },
-    { label: "Projects", href: "/projects" },
-    { label: "Work with us", href: "/work-with-us" },
-    { label: "Blog", href: "/blog" },
+  { label: "Home", href: "/" },
+  { label: "Who we are", href: "/who-we-are" },
+  { label: "What we do", href: "/what-we-do" },
+  { label: "Projects", href: "/projects" },
+  { label: "Work with us", href: "/work-with-us" },
+  { label: "Blog", href: "/blog" },
 ];
 
 const handbookLinks = [
-    { label: "Handbook", href: "/handbook" },
-    { label: "Playbook", href: "/playbook" },
-    { label: "Mission & Values", href: "/mission-and-values" },
-    { label: "Culture", href: "/culture" },
-    { label: "How we collaborate", href: "/how-we-collaborate" },
+  { label: "Handbook", href: "/handbook" },
+  { label: "Playbook", href: "/playbook" },
+  { label: "Mission & Values", href: "/mission-and-values" },
+  { label: "Culture", href: "/culture" },
+  { label: "How we collaborate", href: "/how-we-collaborate" },
 ];
 ---
 
 <footer class="site-footer">
-    <div class="footer-inner">
-        <!-- Top: CTA + navigation columns -->
-        <div class="footer-top">
-            <div class="footer-cta">
-                <span class="footer-logo">Significa®</span>
-                <h2 class="footer-headline">
-                    We are ready to grow your business. Are you?
-                </h2>
-                <div class="footer-email">
-                    <a href="mailto:hello@significa.co">hello@significa.co</a>
-                </div>
-            </div>
+  <div class="footer-inner">
+    <!-- Top: CTA + navigation columns -->
+    <div class="footer-top">
+      <div class="footer-cta">
+        <span class="footer-logo">Significa®</span>
+        <h2 class="footer-headline">
+          We are ready to grow your business. Are you?
+        </h2>
+        <div class="footer-email">
+          <a href="mailto:hello@significa.co">hello@significa.co</a>
+        </div>
+      </div>
 
-            <nav class="footer-nav" aria-label="Footer navigation">
-                <div class="footer-nav-column">
-                    <h3>Significa</h3>
-                    <ul>
-                        {
-                            significaLinks.map((link) => (
-                                <li>
-                                    <a href={link.href}>{link.label}</a>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                </div>
-
-                <div class="footer-nav-column">
-                    <h3>Handbook</h3>
-                    <ul>
-                        {
-                            handbookLinks.map((link) => (
-                                <li>
-                                    <a href={link.href}>{link.label}</a>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                </div>
-
-                <div class="footer-nav-column">
-                    <h3>Latest from blog</h3>
-                    <ul>
-                        {
-                            recentPosts.map((post) => (
-                                <li>
-                                    <a href={`/blog/${post.id}`}>
-                                        {post.data.title}
-                                    </a>
-                                </li>
-                            ))
-                        }
-                        <li>
-                            <a href="/blog">See all</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div class="footer-nav-column">
+          <h3>Significa</h3>
+          <ul>
+            {
+              significaLinks.map((link) => (
+                <li>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))
+            }
+          </ul>
         </div>
 
-        <!-- Bottom: certifications + legal -->
-        <div class="footer-bottom">
-            <div class="footer-certifications">
-                <!--
+        <div class="footer-nav-column">
+          <h3>Handbook</h3>
+          <ul>
+            {
+              handbookLinks.map((link) => (
+                <li>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="footer-nav-column">
+          <h3>Latest from blog</h3>
+          <ul>
+            {
+              recentPosts.map((post) => (
+                <li>
+                  <a href={`/blog/${post.id}`}>{post.data.title}</a>
+                </li>
+              ))
+            }
+            <li>
+              <a href="/blog">See all</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Bottom: certifications + legal -->
+    <div class="footer-bottom">
+      <div class="footer-certifications">
+        <!--
                     Replace with actual certification badge images when available.
                     e.g. B Corporation, 1% for the Planet
                 -->
-                <span
-                    class="certification-badge"
-                    title="Certified B Corporation">B Corp</span
-                >
-                <span class="certification-badge" title="1% for the Planet"
-                    >1%</span
-                >
-            </div>
-            <p class="footer-legal">
-                &copy; {currentYear} Significa. All rights reserved.
-            </p>
-        </div>
+        <span class="certification-badge" title="Certified B Corporation"
+          >B Corp</span
+        >
+        <span class="certification-badge" title="1% for the Planet">1%</span>
+      </div>
+      <p class="footer-legal">
+        &copy; {currentYear} Significa. All rights reserved.
+      </p>
     </div>
+  </div>
 </footer>
 
 <style>
-    .site-footer {
-        border-top: 1px solid var(--color-border);
-        padding: var(--space-16) var(--gutter) var(--space-8);
-        margin-top: var(--space-16);
-    }
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-16) var(--gutter) var(--space-8);
+    margin-top: var(--space-16);
+  }
 
-    .footer-inner {
-        max-width: var(--max-width);
-        margin: 0 auto;
-    }
+  .footer-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
 
-    /* --------------------------------------------------------
+  /* --------------------------------------------------------
        Top section: CTA + nav columns
        -------------------------------------------------------- */
-    .footer-top {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        gap: var(--space-16);
-        padding-bottom: var(--space-16);
-    }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: var(--space-16);
+    padding-bottom: var(--space-16);
+  }
 
-    .footer-logo {
-        display: block;
-        font-weight: var(--weight-medium);
-        font-size: var(--text-base);
-        margin-bottom: var(--space-8);
-    }
+  .footer-logo {
+    display: block;
+    font-weight: var(--weight-medium);
+    font-size: var(--text-base);
+    margin-bottom: var(--space-8);
+  }
 
-    .footer-headline {
-        font-size: var(--text-2xl);
-        font-weight: var(--weight-bold);
-        line-height: var(--leading-tight);
-        margin-bottom: var(--space-6);
-        max-width: 14ch;
-    }
+  .footer-headline {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-6);
+    max-width: 14ch;
+  }
 
-    .footer-email a {
-        display: inline-block;
-        font-size: var(--text-sm);
-        color: var(--color-text);
-        text-decoration: none;
-        padding: var(--space-2) var(--space-4);
-        border: 1px solid var(--color-border);
-        border-radius: 2rem;
-        transition: border-color var(--duration-fast) var(--ease-out);
-    }
+  .footer-email a {
+    display: inline-block;
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    text-decoration: none;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: 2rem;
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
 
-    .footer-email a:hover {
-        border-color: var(--color-text);
-        color: var(--color-text);
-    }
+  .footer-email a:hover {
+    border-color: var(--color-text);
+    color: var(--color-text);
+  }
 
-    /* --------------------------------------------------------
+  /* --------------------------------------------------------
        Navigation columns
        -------------------------------------------------------- */
-    .footer-nav {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--space-8);
-    }
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
 
-    .footer-nav-column h3 {
-        font-size: var(--text-sm);
-        font-weight: var(--weight-normal);
-        color: var(--color-text-muted);
-        margin-bottom: var(--space-4);
-    }
+  .footer-nav-column h3 {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-normal);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
 
-    .footer-nav-column ul {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-3);
-    }
+  .footer-nav-column ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
 
-    .footer-nav-column a {
-        font-size: var(--text-sm);
-        color: var(--color-text);
-        text-decoration: none;
-        transition: color var(--duration-fast) var(--ease-out);
-    }
+  .footer-nav-column a {
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
 
-    .footer-nav-column a:hover {
-        color: var(--color-text-muted);
-    }
+  .footer-nav-column a:hover {
+    color: var(--color-text-muted);
+  }
 
-    /* --------------------------------------------------------
+  /* --------------------------------------------------------
        Bottom section: certifications + legal
        -------------------------------------------------------- */
-    .footer-bottom {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-top: var(--space-8);
-        border-top: 1px solid var(--color-border);
-    }
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
 
-    .footer-certifications {
-        display: flex;
-        gap: var(--space-4);
-    }
+  .footer-certifications {
+    display: flex;
+    gap: var(--space-4);
+  }
 
-    .certification-badge {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        border: 1px solid var(--color-border);
-        font-size: 0.625rem;
-        font-weight: var(--weight-bold);
-        color: var(--color-text);
-    }
+  .certification-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    font-size: 0.625rem;
+    font-weight: var(--weight-bold);
+    color: var(--color-text);
+  }
 
-    .footer-legal {
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-    }
+  .footer-legal {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
 
-    /* --------------------------------------------------------
+  /* --------------------------------------------------------
        Responsive
        -------------------------------------------------------- */
-    @media (max-width: 1024px) {
-        .footer-top {
-            grid-template-columns: 1fr;
-            gap: var(--space-12);
-        }
+  @media (max-width: 1024px) {
+    .footer-top {
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer-nav {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
     }
 
-    @media (max-width: 640px) {
-        .footer-nav {
-            grid-template-columns: 1fr;
-            gap: var(--space-8);
-        }
-
-        .footer-bottom {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: var(--space-4);
-        }
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-4);
     }
+  }
 </style>

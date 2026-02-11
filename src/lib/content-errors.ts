@@ -5,9 +5,9 @@
 export function contentError(
   component: string,
   file: string,
-  message: string
+  message: string,
 ): never {
   throw new Error(
-    `[${component}] in ${file}: ${message}\nFix the content and rebuild.`
+    `[${component}] in ${file}: ${message}\nFix the content and rebuild.`,
   );
 }

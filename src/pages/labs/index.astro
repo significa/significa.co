@@ -5,22 +5,27 @@ import { getPublishedLabs } from "../../lib/collections";
 const labs = await getPublishedLabs();
 ---
 
-<Base title="Labs" description="Open source projects and experiments by Significa.">
+<Base
+  title="Labs"
+  description="Open source projects and experiments by Significa."
+>
   <section>
     <h1>Labs</h1>
-    {labs.length === 0 ? (
-      <p>No experiments yet.</p>
-    ) : (
-      <ul>
-        {labs.map((lab) => (
-          <li>
-            <a href={`/labs/${lab.id}`}>
-              <h2>{lab.data.title}</h2>
-              <p>{lab.data.description}</p>
-            </a>
-          </li>
-        ))}
-      </ul>
-    )}
+    {
+      labs.length === 0 ? (
+        <p>No experiments yet.</p>
+      ) : (
+        <ul>
+          {labs.map((lab) => (
+            <li>
+              <a href={`/labs/${lab.id}`}>
+                <h2>{lab.data.title}</h2>
+                <p>{lab.data.description}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
   </section>
 </Base>

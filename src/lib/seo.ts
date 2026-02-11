@@ -44,9 +44,7 @@ export function articleJsonLd(options: {
 /**
  * Generate JSON-LD BreadcrumbList.
  */
-export function breadcrumbJsonLd(
-  items: Array<{ name: string; url: string }>
-) {
+export function breadcrumbJsonLd(items: Array<{ name: string; url: string }>) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

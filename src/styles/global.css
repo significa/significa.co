@@ -89,16 +89,16 @@ h6 {
    ============================================================ */
 
 :root {
-  --space-1: 0.25rem;  /* 4px */
-  --space-2: 0.5rem;   /* 8px */
-  --space-3: 0.75rem;  /* 12px */
-  --space-4: 1rem;     /* 16px */
-  --space-6: 1.5rem;   /* 24px */
-  --space-8: 2rem;     /* 32px */
-  --space-12: 3rem;    /* 48px */
-  --space-16: 4rem;    /* 64px */
-  --space-24: 6rem;    /* 96px */
-  --space-32: 8rem;    /* 128px */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+  --space-24: 6rem; /* 96px */
+  --space-32: 8rem; /* 128px */
 }
 
 /* ============================================================
@@ -107,7 +107,9 @@ h6 {
 
 :root {
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, monospace;
+  --font-mono:
+    ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo,
+    monospace;
 
   --text-sm: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem);
   --text-base: clamp(0.9375rem, 0.875rem + 0.2vw, 1rem);
@@ -130,7 +132,7 @@ h6 {
    ============================================================ */
 
 :root {
-  --max-width: 72rem;       /* 1152px */
+  --max-width: 72rem; /* 1152px */
   --max-width-narrow: 48rem; /* 768px */
   --gutter: var(--space-6);
 }
@@ -166,12 +168,16 @@ a:hover {
   color: var(--color-primary-hover);
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   line-height: var(--leading-tight);
   font-weight: var(--weight-bold);
 }
 
-code, pre {
+code,
+pre {
   font-family: var(--font-mono);
 }
 

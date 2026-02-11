@@ -439,6 +439,42 @@ Ship it. Iterate. Don't add complexity until the content demands it.
 
 ---
 
+## Hybrid Page Architecture
+
+### Decision
+
+Marketing pages with bespoke layouts (homepage, who-we-are, what-we-do, work-with-us) are **custom `.astro` files** in `src/pages/`. Content-heavy prose pages (handbook, playbook, etc.) remain **MDX via the `pages` collection** and the `[...slug].astro` catch-all route.
+
+Both page types pull dynamic data from content collections. The difference is who controls the layout: the developer (custom pages) or the content author (MDX pages).
+
+### Why not MDX for everything?
+
+MDX gives you a linear content flow. Marketing pages need grid layouts, full-bleed sections, asymmetric columns, stats blocks alongside testimonials — the kind of layout that fights MDX's grain. You'd end up with an MDX file that's just `<Hero /><Stats /><Clients />` with zero actual markdown, which is indirection for nothing.
+
+Custom Astro pages with scoped `<style>` are simpler, more explicit, and give full layout control. The data still comes from collections — that's the important part.
+
+### When to use which
+
+| Use case | Approach | Where it lives |
+|---|---|---|
+| Homepage, landing pages | Custom `.astro` page | `src/pages/` |
+| Who we are, What we do, Work with us | Custom `.astro` page | `src/pages/` |
+| Blog posts | MDX via `blog` collection | `src/content/blog/` → `src/pages/blog/[slug].astro` |
+| Project case studies | MDX via `projects` collection | `src/content/projects/` → `src/pages/projects/[slug].astro` |
+| Handbook, playbook, culture pages | MDX via `pages` collection | `src/content/pages/` → `src/pages/[...slug].astro` |
+
+### New collections added
+
+**`clients`** (YAML) — client logo strip data. Used on homepage, who-we-are, what-we-do, work-with-us. Fields: `name`, `logo` (SVG path in `public/`), `url` (optional), `order`.
+
+**`testimonials`** (YAML) — customer quotes. Used on homepage, who-we-are, work-with-us. Fields: `quote`, `author`, `role`, `company`, `avatar` (optional CDN path), `order`.
+
+### Reserved routes
+
+The `[...slug].astro` catch-all now checks against: `blog`, `projects`, `labs`, `who-we-are`, `what-we-do`, `work-with-us`. Any `pages` collection entry with a matching slug will break the build with a clear error.
+
+---
+
 ## Appendix: Team Decisions Summary
 
 | Topic | Decision |
@@ -452,3 +488,11 @@ Ship it. Iterate. Don't add complexity until the content demands it.
 | CSS tokens | Required from day one; no magic values |
 | Slug collision check | Included; maximize compile-time validation |
 | `reference()` vs plain slugs | Always `reference()`; build-time validation is non-negotiable |
+| Page architecture | Hybrid: custom `.astro` for marketing pages, MDX for prose content |
+| `clients` collection | YAML; logo strip and social proof across custom pages |
+| `testimonials` collection | YAML; customer quotes reused across multiple pages |
+| `awards` collection | YAML; each entry references a project via `reference()`. Build-time validated. |
+| Project metrics | Optional `metrics` array in project frontmatter (`value` + `label`). Shown on homepage showcase cards. |
+| Project heroImage | Optional `heroImage` field on projects for full-bleed homepage showcase (falls back to `thumbnail`) |
+| Showreel cursor | Vanilla `<script>` with `requestAnimationFrame` lerp, not a React island. Respects `prefers-reduced-motion`. Falls back to static centered button on touch devices. Re-inits on View Transition via `astro:after-swap`. |
+| Industries/capabilities | Hardcoded arrays on homepage — not collections. They rarely change and are only used in one place. |

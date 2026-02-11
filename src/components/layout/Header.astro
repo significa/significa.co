@@ -1,21 +1,100 @@
 ---
-// Header component — static navigation, no client JS needed.
 const navItems = [
-  { label: "Projects", href: "/projects" },
-  { label: "Blog", href: "/blog" },
-  { label: "Labs", href: "/labs" },
+    { label: "Who we are", href: "/who-we-are" },
+    { label: "What we do", href: "/what-we-do" },
+    { label: "Projects", href: "/projects" },
+    { label: "Work with us", href: "/work-with-us" },
 ];
+
+const currentPath = Astro.url.pathname;
 ---
 
-<header>
-  <nav aria-label="Main navigation">
-    <a href="/" aria-label="Significa — Home">Significa</a>
-    <ul>
-      {navItems.map((item) => (
-        <li>
-          <a href={item.href}>{item.label}</a>
-        </li>
-      ))}
-    </ul>
-  </nav>
+<header class="site-header">
+    <nav aria-label="Main navigation">
+        <a href="/" class="logo" aria-label="Significa — Home">
+            <span class="logo-dot" aria-hidden="true">●</span>
+            Significa®
+        </a>
+        <ul>
+            {
+                navItems.map((item) => (
+                    <li>
+                        <a
+                            href={item.href}
+                            aria-current={
+                                currentPath.startsWith(item.href)
+                                    ? "page"
+                                    : undefined
+                            }
+                        >
+                            {item.label}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </nav>
 </header>
+
+<style>
+    .site-header {
+        padding: var(--space-4) var(--gutter);
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: var(--max-width);
+        margin: 0 auto;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        font-weight: var(--weight-medium);
+        font-size: var(--text-base);
+        color: var(--color-text);
+        text-decoration: none;
+    }
+
+    .logo:hover {
+        color: var(--color-text);
+    }
+
+    .logo-dot {
+        font-size: 0.625rem;
+    }
+
+    ul {
+        display: flex;
+        gap: var(--space-6);
+        list-style: none;
+    }
+
+    li a {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        text-decoration: none;
+        transition: color var(--duration-fast) var(--ease-out);
+    }
+
+    li a:hover,
+    li a[aria-current="page"] {
+        color: var(--color-text);
+    }
+
+    @media (max-width: 768px) {
+        ul {
+            gap: var(--space-4);
+        }
+    }
+
+    @media (max-width: 640px) {
+        nav {
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+    }
+</style>

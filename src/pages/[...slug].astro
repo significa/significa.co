@@ -8,34 +8,41 @@ import Metrics from "../components/mdx/Metrics.astro";
 import ProjectCrossSell from "../components/mdx/ProjectCrossSell.astro";
 
 export async function getStaticPaths() {
-  const pages = await getCollection("pages");
+    const pages = await getCollection("pages");
 
-  // Validate no slug collisions with reserved routes
-  const reserved = ["blog", "projects", "labs"];
-  for (const page of pages) {
-    const topSegment = page.id.split("/")[0];
-    if (reserved.includes(topSegment)) {
-      throw new Error(
-        `Page "${page.id}" collides with reserved route /${topSegment}. Rename it.`
-      );
+    // Validate no slug collisions with reserved routes
+    const reserved = [
+        "blog",
+        "projects",
+        "labs",
+        "who-we-are",
+        "what-we-do",
+        "work-with-us",
+    ];
+    for (const page of pages) {
+        const topSegment = page.id.split("/")[0];
+        if (reserved.includes(topSegment)) {
+            throw new Error(
+                `Page "${page.id}" collides with reserved route /${topSegment}. Rename it.`,
+            );
+        }
     }
-  }
 
-  return pages.map((page) => ({
-    params: { slug: page.id },
-    props: { page },
-  }));
+    return pages.map((page) => ({
+        params: { slug: page.id },
+        props: { page },
+    }));
 }
 
 const { page } = Astro.props;
 const { Content } = await render(page);
 
 const mdxComponents = {
-  MediaImage,
-  MediaVideo,
-  ComparisonBlock,
-  Metrics,
-  ProjectCrossSell,
+    MediaImage,
+    MediaVideo,
+    ComparisonBlock,
+    Metrics,
+    ProjectCrossSell,
 };
 
 const seo = page.data.seo;
@@ -44,8 +51,8 @@ const description = seo?.metaDescription ?? `${page.data.title} — Significa`;
 ---
 
 <Base title={title} description={description} ogImage={seo?.ogImage}>
-  <article>
-    <h1>{page.data.title}</h1>
-    <Content components={mdxComponents} />
-  </article>
+    <article>
+        <h1>{page.data.title}</h1>
+        <Content components={mdxComponents} />
+    </article>
 </Base>

@@ -4,27 +4,32 @@ Custom components used inside `.mdx` content files. These are **Astro components
 
 ## Registering Components for MDX
 
-Components must be passed explicitly when rendering. In your `[slug].astro` page:
+All MDX components are registered in a single file: `src/components/mdx/components.ts`. Every `[slug].astro` page imports from there — no duplication.
+
+```ts
+// src/components/mdx/components.ts
+import MediaImage from "./MediaImage.astro";
+import MediaVideo from "./MediaVideo.astro";
+import ComparisonBlock from "./ComparisonBlock.astro";
+import Metrics from "./Metrics.astro";
+import ProjectCrossSell from "./ProjectCrossSell.astro";
+
+export const mdxComponents = {
+  MediaImage,
+  MediaVideo,
+  ComparisonBlock,
+  Metrics,
+  ProjectCrossSell,
+};
+```
+
+In your `[slug].astro` page, import and pass:
 
 ```astro
 ---
-import ProjectCrossSell from "../../components/mdx/ProjectCrossSell.astro";
-import ComparisonBlock from "../../components/mdx/ComparisonBlock.astro";
-import Metrics from "../../components/mdx/Metrics.astro";
-import MediaImage from "../../components/mdx/MediaImage.astro";
-import MediaVideo from "../../components/mdx/MediaVideo.astro";
+import { mdxComponents } from "../../components/mdx/components";
 
-const { project } = Astro.props;
-const { Content } = await render(project);
-
-const mdxComponents = {
-  ProjectCrossSell,
-  ComparisonBlock,
-  Metrics,
-  MediaImage,
-  MediaVideo,
-  // Add new components here as they are created
-};
+const { Content } = await render(entry);
 ---
 
 <Content components={mdxComponents} />
@@ -121,9 +126,11 @@ We start with 5 components. New components are added when content demands them, 
 
 1. Create the `.astro` file in `src/components/mdx/`
 2. Define `interface Props` with TypeScript
-3. Import and add to `mdxComponents` in every `[slug].astro` that needs it
+3. Import and add to the `mdxComponents` map in `src/components/mdx/components.ts`
 4. Add usage example to this documentation
 5. Test with `pnpm build` to verify
+
+All slug pages import from `components.ts`, so step 3 is the only wiring needed.
 
 ## Rules for MDX Components
 

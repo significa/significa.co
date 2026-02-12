@@ -107,25 +107,32 @@ The `MediaImage` component prepends the Bunny CDN hostname and appends optimizat
 3. Generates `srcset` with multiple widths for responsive loading
 4. Appends `quality` and lets Bunny auto-negotiate format (WebP/AVIF when supported)
 
-Example output:
+Example output (without caption):
 
 ```html
-<picture>
-  <img
-    src="https://significa.b-cdn.net/projects/cool-project/hero.jpg?width=960&quality=80"
-    srcset="
-      https://significa.b-cdn.net/projects/cool-project/hero.jpg?width=640&quality=80 640w,
-      https://significa.b-cdn.net/projects/cool-project/hero.jpg?width=960&quality=80 960w,
-      https://significa.b-cdn.net/projects/cool-project/hero.jpg?width=1280&quality=80 1280w,
-      https://significa.b-cdn.net/projects/cool-project/hero.jpg?width=1920&quality=80 1920w"
-    sizes="100vw"
-    alt="Dashboard overview"
-    width="1200"
-    height="630"
-    loading="lazy"
-    decoding="async"
-  />
-</picture>
+<img
+  src="https://significa.b-cdn.net/projects/cool-project/hero.jpg?width=960&quality=80"
+  srcset="
+    https://significa.b-cdn.net/projects/cool-project/hero.jpg?width=640&quality=80 640w,
+    https://significa.b-cdn.net/projects/cool-project/hero.jpg?width=960&quality=80 960w,
+    https://significa.b-cdn.net/projects/cool-project/hero.jpg?width=1280&quality=80 1280w,
+    https://significa.b-cdn.net/projects/cool-project/hero.jpg?width=1920&quality=80 1920w"
+  sizes="100vw"
+  alt="Dashboard overview"
+  width="1200"
+  height="630"
+  loading="lazy"
+  decoding="async"
+/>
+```
+
+When a `caption` is provided, the output wraps in `<figure>` with a `<figcaption>`:
+
+```html
+<figure>
+  <img src="..." srcset="..." sizes="..." alt="..." width="1200" height="630" loading="lazy" decoding="async" />
+  <figcaption>The main dashboard after redesign</figcaption>
+</figure>
 ```
 
 ## MediaImage Props

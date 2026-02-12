@@ -5,7 +5,7 @@
 Significa's company website. Static site built with Astro (latest stable), MDX for rich content, TypeScript strict. No CMS, no database, no server. Content lives in git as typed MDX/YAML files. Marketing team manages content directly with AI assistance.
 
 **Live site:** significa.co
-**Stack:** Astro v6 (latest stable), MDX, TypeScript strict, Content Collections with Zod, React (islands only)
+**Stack:** Astro v5 (latest stable), MDX, TypeScript strict, Content Collections with Zod, React (islands only)
 **Deploy:** Cloudflare Pages (static output to `dist/`)
 
 ---
@@ -21,7 +21,7 @@ These override all defaults. Follow them exactly.
 3. **Content Collections are the database.** Use `getCollection()` and `getEntry()` from `astro:content`. Never `import.meta.glob`. Never raw file reads.
 4. **References use `reference()`.** Cross-collection links must use Astro's `reference()` for build-time validation. Broken slugs break the build, not production.
 5. **Media served via S3 + Bunny CDN.** Images and videos are uploaded through the internal asset manager to S3 and served via Bunny.net CDN (`https://significa.b-cdn.net`). The `MediaImage` component constructs optimized URLs using Bunny Optimizer query parameters (width, quality, format). SVG icons, favicons, and fonts live in `public/`. See `docs/04-MEDIA-ASSETS.md` for the full parameter reference.
-6. **Always use latest stable Astro.** We use Astro v6 (latest stable) to avoid near-future breaking changes. Keep dependencies up to date.
+6. **Always use latest stable Astro.** We use Astro v5 (latest stable). Astro 6 is in beta (requires Node 22+, Zod 4, removes legacy APIs) — do not upgrade until it reaches stable. Keep dependencies up to date within the v5 range.
 
 ### Code Quality
 
@@ -56,13 +56,16 @@ src/
 │   │   └── ProjectCrossSell.astro
 │   ├── ui/                   # Reusable UI components
 │   └── layout/               # Header, Footer, Nav
+├── content.config.ts         # Collection schemas (the "database")
 ├── content/
-│   ├── content.config.ts     # Collection schemas (the "database")
 │   ├── projects/             # .mdx per project case study
 │   ├── blog/                 # .md or .mdx per blog post
 │   ├── labs/                 # .mdx per open source project
 │   ├── pages/                # .mdx per misc page (about, services, etc.)
-│   └── highlights/           # .yaml per homepage highlight
+│   ├── highlights/           # .yaml per homepage highlight
+│   ├── clients/              # .yaml per client (logo strip)
+│   ├── testimonials/         # .yaml per testimonial
+│   └── awards/               # .yaml per award
 ├── layouts/
 │   └── Base.astro            # Main HTML layout with SEO component
 ├── pages/
@@ -108,6 +111,9 @@ public/
 | `labs` | MDX | `**/*.mdx` | Open source projects |
 | `pages` | MDX | `**/*.mdx` | Misc pages (about, services) |
 | `highlights` | YAML | `**/*.yaml` | Homepage curation |
+| `clients` | YAML | `**/*.yaml` | Client logo strip |
+| `testimonials` | YAML | `**/*.yaml` | Customer quotes |
+| `awards` | YAML | `**/*.yaml` | Awards & recognition |
 
 ### Key Patterns
 
@@ -151,23 +157,18 @@ All MDX components are Astro components (not React). They run at build time with
 
 ### Registration
 
-Components must be passed explicitly when rendering MDX:
+Components are registered in a single file (`src/components/mdx/components.ts`) and passed when rendering MDX:
 
 ```astro
 ---
-// Import all MDX components and pass them when rendering
-const mdxComponents = {
-  MediaImage,
-  MediaVideo,
-  ComparisonBlock,
-  Metrics,
-  ProjectCrossSell,
-  // Add new components here as they are created
-};
+import { mdxComponents } from "../components/mdx/components";
+const { Content } = await render(entry);
 ---
 
 <Content components={mdxComponents} />
 ```
+
+When adding a new MDX component, add it to `components.ts` — all slug pages pick it up automatically.
 
 ### Component Growth Strategy
 
@@ -185,7 +186,7 @@ We start with a lean set of 5 components. New components are added when content 
 
 1. Create the `.astro` file in `src/components/mdx/`
 2. Define `interface Props` with TypeScript
-3. Import and add to `mdxComponents` in every `[slug].astro` that needs it
+3. Import and add to the `mdxComponents` map in `src/components/mdx/components.ts`
 4. Add usage example to the component documentation
 5. Test with `pnpm build` to verify
 

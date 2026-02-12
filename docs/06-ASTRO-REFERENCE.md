@@ -1,7 +1,7 @@
 # Astro Reference
 
 > Deep reference for building production static sites with Astro.
-> Based on Astro v5/v6 source code analysis and real-world patterns. Use latest stable (v6).
+> Based on Astro v5 (latest stable). Astro 6 is in beta — do not upgrade until stable.
 > For project-specific patterns, see `02-CONTENT-SCHEMA.md` and `03-MDX-COMPONENTS.md`.
 
 ---
@@ -73,7 +73,7 @@ The content system. Define schemas with Zod, load content with loaders, query wi
 
 ### Schema Definition
 
-File: `src/content/content.config.ts` (or `src/content.config.ts`)
+File: `src/content.config.ts` (at root of `src/`; `src/content/content.config.ts` also works)
 
 ```typescript
 import { defineCollection, reference, z } from 'astro:content';
@@ -341,13 +341,15 @@ Smooth page transitions without full reload:
 ```astro
 ---
 // In layout
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 ---
 
 <head>
-  <ViewTransitions />
+  <ClientRouter />
 </head>
 ```
+
+> **Note:** In Astro v4, this was called `<ViewTransitions />`. It was renamed to `<ClientRouter />` in Astro v5. The old name is deprecated and will be removed in Astro v6.
 
 ### Transition Animations
 
@@ -405,10 +407,6 @@ import { Image } from 'astro:assets';
 ```astro
 <!-- Preload critical fonts -->
 <link rel="preload" href="/fonts/main.woff2" as="font" type="font/woff2" crossorigin />
-
-<!-- Astro v6 Fonts API -->
-import { Font } from 'astro:assets';
-<Font cssVariable="--font-body" preload />
 ```
 
 ### Critical Patterns
@@ -424,35 +422,44 @@ import { Font } from 'astro:assets';
 
 ```
 src/
-├── assets/              # Local images processed by Astro
 ├── components/
 │   ├── mdx/             # Components available in MDX
 │   │   ├── MediaImage.astro
-│   │   └── Metrics.astro
+│   │   ├── Metrics.astro
+│   │   └── components.ts  # Centralized MDX component registry
 │   ├── ui/              # Reusable UI components
-│   │   ├── Button.astro
-│   │   └── Card.astro
-│   └── layout/          # Layout pieces
-│       ├── Header.astro
-│       ├── Footer.astro
-│       └── Nav.astro
+│   ├── layout/          # Layout pieces
+│   │   ├── Header.astro
+│   │   └── Footer.astro
+│   └── SEO.astro
+├── content.config.ts    # Collection schemas (the "database")
 ├── content/
-│   ├── content.config.ts
 │   ├── blog/
-│   └── projects/
+│   ├── projects/
+│   ├── highlights/      # YAML
+│   ├── clients/         # YAML
+│   ├── testimonials/    # YAML
+│   └── awards/          # YAML
 ├── layouts/
 │   └── Base.astro
 ├── pages/
 │   ├── index.astro
 │   ├── blog/
 │   │   ├── index.astro
+│   │   ├── [slug].astro
+│   │   └── rss.xml.ts
+│   ├── projects/
+│   │   ├── index.astro
 │   │   └── [slug].astro
+│   ├── 404.astro
 │   └── [...slug].astro
 ├── styles/
 │   └── global.css
-└── utils/               # Shared utilities
-    ├── dates.ts
-    └── seo.ts
+└── lib/                 # Shared utilities
+    ├── collections.ts
+    ├── cdn.ts
+    ├── seo.ts
+    └── content-errors.ts
 public/
 ├── favicon.svg
 ├── fonts/
@@ -494,7 +501,7 @@ const published = await getCollection('blog', ({ data }) => !data.draft);
 ```
 
 ### 7. Content Config Location
-In Astro v5+, the config can be at `src/content/content.config.ts` OR `src/content.config.ts`. Both work.
+In Astro v5+, the config can be at `src/content.config.ts` OR `src/content/content.config.ts`. Both work. This project uses `src/content.config.ts`.
 
 ### 8. Async in Astro Components
 All `getCollection()` and `getEntry()` calls are async. Always `await` them in frontmatter.
@@ -517,10 +524,8 @@ astro preview           # Preview built site locally
 astro check            # Run TypeScript checks on .astro files
 ```
 
-### Deploy Targets
-- **Cloudflare Pages**: `dist/` directory, build command `astro build`
-- **Vercel**: Static mode (no adapter needed for static)
-- **Netlify**: Static mode, `dist/` publish directory
+### Deploy Target
+- **Cloudflare Pages**: `dist/` directory, build command `astro build`. Push to main triggers build and deploy. Branch pushes create preview deployments.
 
 ### CI/CD Essentials
 ```bash
@@ -535,17 +540,19 @@ pnpm run build          # Build static site
 
 ## Integration Checklist for Production Sites
 
-- [ ] MDX integration (`@astrojs/mdx`)
-- [ ] React integration (`@astrojs/react`) if using islands
-- [ ] Sitemap (`@astrojs/sitemap`) for SEO
-- [ ] RSS feed (`@astrojs/rss`) for blog
-- [ ] View Transitions for smooth navigation
-- [ ] Robots.txt in `public/`
-- [ ] Favicon set in `public/`
-- [ ] Open Graph / Twitter meta tags
-- [ ] `astro check` in CI pipeline
-- [ ] Image optimization strategy (CDN or Astro Image)
+- [x] MDX integration (`@astrojs/mdx`)
+- [x] React integration (`@astrojs/react`) for interactive islands
+- [x] Sitemap (`@astrojs/sitemap`) for SEO
+- [x] RSS feed (`@astrojs/rss`) for blog
+- [x] Client Router (View Transitions) for smooth navigation
+- [x] Robots.txt in `public/`
+- [x] Favicon set in `public/`
+- [x] Open Graph / Twitter meta tags (SEO component)
+- [x] `astro check` in CI pipeline
+- [x] Image optimization strategy (Bunny CDN Optimizer)
+- [x] 404 page (`src/pages/404.astro`)
+- [x] Canonical URLs in head
+- [x] Structured data (JSON-LD: Organization, Article, BreadcrumbList)
+- [x] Skip link for accessibility
+- [x] Centralized MDX component registry
 - [ ] Analytics integration (script in layout)
-- [ ] 404 page (`src/pages/404.astro`)
-- [ ] Canonical URLs in head
-- [ ] Structured data (JSON-LD) for rich search results

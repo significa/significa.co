@@ -1,11 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
-import MediaImage from "../../components/mdx/MediaImage.astro";
-import MediaVideo from "../../components/mdx/MediaVideo.astro";
-import ComparisonBlock from "../../components/mdx/ComparisonBlock.astro";
-import Metrics from "../../components/mdx/Metrics.astro";
-import ProjectCrossSell from "../../components/mdx/ProjectCrossSell.astro";
+import { mdxComponents } from "../../components/mdx/components";
 
 export async function getStaticPaths() {
   const labs = await getCollection("labs", ({ data }) => !data.draft);
@@ -17,14 +13,6 @@ export async function getStaticPaths() {
 
 const { lab } = Astro.props;
 const { Content } = await render(lab);
-
-const mdxComponents = {
-  MediaImage,
-  MediaVideo,
-  ComparisonBlock,
-  Metrics,
-  ProjectCrossSell,
-};
 
 const seo = lab.data.seo;
 const title = seo?.metaTitle ?? lab.data.title;

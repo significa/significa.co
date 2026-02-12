@@ -1,11 +1,7 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
-import MediaImage from "../../components/mdx/MediaImage.astro";
-import MediaVideo from "../../components/mdx/MediaVideo.astro";
-import ComparisonBlock from "../../components/mdx/ComparisonBlock.astro";
-import Metrics from "../../components/mdx/Metrics.astro";
-import ProjectCrossSell from "../../components/mdx/ProjectCrossSell.astro";
+import { mdxComponents } from "../../components/mdx/components";
 import { articleJsonLd } from "../../lib/seo";
 
 export async function getStaticPaths() {
@@ -19,18 +15,12 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-const mdxComponents = {
-  MediaImage,
-  MediaVideo,
-  ComparisonBlock,
-  Metrics,
-  ProjectCrossSell,
-};
-
 const seo = post.data.seo;
 const title = seo?.metaTitle ?? post.data.title;
 const description =
-  seo?.metaDescription ?? `${post.data.title} — Significa Blog`;
+  seo?.metaDescription ??
+  post.data.description ??
+  `${post.data.title} — Significa Blog`;
 
 const relatedProjects = post.data.relatedProjects?.length
   ? await Promise.all(post.data.relatedProjects.map((ref) => getEntry(ref)))

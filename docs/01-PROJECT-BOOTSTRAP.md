@@ -2,7 +2,7 @@
 
 ## Stack
 
-- **Astro v6** (latest stable): static site generator, zero JS by default
+- **Astro v5** (latest stable): static site generator, zero JS by default. Astro 6 is in beta (requires Node 22+, Zod 4, removes legacy APIs) — do not upgrade until stable.
 - **MDX**: markdown with custom components for case studies and rich content
 - **TypeScript**: strict mode, no `any`
 - **Content Collections**: Astro's built-in content layer with Zod schemas
@@ -24,27 +24,36 @@ pnpm astro add mdx react
 src/
 ├── components/
 │   ├── mdx/                  # Components available inside MDX files
-│   │   ├── MediaImage.astro    # Starting set. New components
-│   │   ├── MediaVideo.astro    # are added as content needs
-│   │   ├── ComparisonBlock.astro # arise. Start lean, grow
-│   │   ├── Metrics.astro       # with the content.
-│   │   └── ProjectCrossSell.astro
+│   │   ├── MediaImage.astro
+│   │   ├── MediaVideo.astro
+│   │   ├── ComparisonBlock.astro
+│   │   ├── Metrics.astro
+│   │   ├── ProjectCrossSell.astro
+│   │   └── components.ts      # Centralized MDX component registry
 │   ├── ui/                   # Reusable UI components
-│   └── layout/               # Header, Footer, Nav
+│   ├── layout/               # Header, Footer, Nav
+│   └── SEO.astro             # SEO meta tags component
+├── content.config.ts         # Collection schemas (the "database")
 ├── content/
-│   ├── content.config.ts     # Collection schemas (the "database")
 │   ├── projects/             # .mdx per project case study
 │   ├── blog/                 # .md or .mdx per blog post
 │   ├── labs/                 # .mdx per open source project
 │   ├── pages/                # .mdx per misc page (about, services, etc.)
-│   └── highlights/           # .yaml per homepage highlight
+│   ├── highlights/           # .yaml per homepage highlight
+│   ├── clients/              # .yaml per client (logo strip)
+│   ├── testimonials/         # .yaml per testimonial
+│   └── awards/               # .yaml per award
 ├── layouts/
 │   └── Base.astro            # Main HTML layout with SEO component
 ├── pages/
 │   ├── index.astro           # Homepage
+│   ├── who-we-are.astro      # About page (hybrid: Astro page, not MDX)
+│   ├── what-we-do.astro      # Services page (hybrid)
+│   ├── work-with-us.astro    # Contact page (hybrid)
 │   ├── blog/
 │   │   ├── index.astro       # Blog listing
-│   │   └── [slug].astro      # Blog post detail
+│   │   ├── [slug].astro      # Blog post detail
+│   │   └── rss.xml.ts        # RSS feed
 │   ├── projects/
 │   │   ├── index.astro       # Projects listing
 │   │   └── [slug].astro      # Project detail
@@ -52,12 +61,13 @@ src/
 │   │   ├── index.astro       # Labs listing
 │   │   └── [slug].astro      # Lab detail
 │   ├── 404.astro             # Custom 404 page
-│   └── [...slug].astro       # Catch-all for misc pages
+│   └── [...slug].astro       # Catch-all for misc content pages
 ├── styles/
 │   └── global.css            # Design tokens, resets, typography
 └── lib/
     ├── collections.ts        # Helper functions for content queries
-    ├── seo.ts                # Structured data generation
+    ├── cdn.ts                # Bunny CDN URL helpers and srcset generation
+    ├── seo.ts                # Structured data generation (JSON-LD)
     └── content-errors.ts     # Build-time error formatting
 public/
 ├── favicon.svg
@@ -65,6 +75,12 @@ public/
 └── robots.txt
 # Images/videos served via S3 + Bunny CDN (see 04-MEDIA-ASSETS.md)
 ```
+
+### Hybrid page architecture
+
+Some pages are hardcoded Astro files (`who-we-are.astro`, `what-we-do.astro`, `work-with-us.astro`) because they have complex layouts that don't fit the MDX pattern. Other pages (about, services, etc.) live as MDX in `src/content/pages/` and are rendered by the catch-all `[...slug].astro`.
+
+The reserved routes list in `[...slug].astro` prevents collisions between the two approaches.
 
 ## Key Principles
 
@@ -74,6 +90,7 @@ public/
 4. **Relationships via `reference()`.** Collections reference each other using Astro's `reference()` for build-time validation. Broken slugs break the build, not production.
 5. **Keep it simple.** If you're reaching for a library, stop and check if plain HTML/CSS or an Astro component can do it.
 6. **Fail at build time.** The site is managed by marketing and non-technical people. Every error caught at build time is one less bug in production.
+7. **Centralized MDX registration.** All MDX components are registered in `src/components/mdx/components.ts`. Add new components there — all slug pages pick them up automatically.
 
 ## Build & Deploy
 

@@ -1,6 +1,6 @@
 ---
-import Base from "../layouts/Base.astro";
-import { getClients, getTestimonials } from "../lib/collections";
+import Base from "@/layouts/Base.astro";
+import { getClients, getTestimonials } from "@/lib/collections";
 
 const clients = await getClients();
 const testimonials = await getTestimonials();

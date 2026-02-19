@@ -1,13 +1,13 @@
 ---
-import Base from "../layouts/Base.astro";
+import Base from "@/layouts/Base.astro";
 import {
   getClients,
   getTestimonials,
   getPublishedPosts,
   getPublishedProjects,
   getAwards,
-} from "../lib/collections";
-import { cdnUrl } from "../lib/cdn";
+} from "@/lib/collections";
+import { cdnUrl } from "@/lib/cdn";
 
 const clients = await getClients();
 const testimonials = await getTestimonials();

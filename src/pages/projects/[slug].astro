@@ -1,7 +1,7 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
-import Base from "../../layouts/Base.astro";
-import { mdxComponents } from "../../components/mdx/components";
+import Base from "@/layouts/Base.astro";
+import { mdxComponents } from "@/components/mdx/components";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects", ({ data }) => !data.draft);

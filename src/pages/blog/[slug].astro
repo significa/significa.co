@@ -1,8 +1,8 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
-import Base from "../../layouts/Base.astro";
-import { mdxComponents } from "../../components/mdx/components";
-import { articleJsonLd } from "../../lib/seo";
+import Base from "@/layouts/Base.astro";
+import { mdxComponents } from "@/components/mdx/components";
+import { articleJsonLd } from "@/lib/seo";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);

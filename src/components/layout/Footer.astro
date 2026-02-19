@@ -1,5 +1,5 @@
 ---
-import { getPublishedPosts } from "../../lib/collections";
+import { getPublishedPosts } from "@/lib/collections";
 
 const recentPosts = (await getPublishedPosts()).slice(0, 2);
 const currentYear = new Date().getFullYear();

@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
-import Base from "@/layouts/base.astro";
+import BaseLayout from "@/layouts/base.astro";
 import { mdxComponents } from "@/components/mdx/components";
 
 export async function getStaticPaths() {
@@ -19,7 +19,7 @@ const title = seo?.metaTitle ?? lab.data.title;
 const description = seo?.metaDescription ?? lab.data.description;
 ---
 
-<Base title={title} description={description} ogImage={seo?.ogImage}>
+<BaseLayout title={title} description={description} ogImage={seo?.ogImage}>
   <article>
     <header>
       <h1>{lab.data.title}</h1>
@@ -34,4 +34,4 @@ const description = seo?.metaDescription ?? lab.data.description;
     </header>
     <Content components={mdxComponents} />
   </article>
-</Base>
+</BaseLayout>

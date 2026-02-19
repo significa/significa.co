@@ -1,12 +1,12 @@
 ---
-import Base from "@/layouts/base.astro";
+import BaseLayout from "@/layouts/base.astro";
 import { getPublishedProjects, getClients } from "@/lib/collections";
 
 const featuredProjects = (await getPublishedProjects()).slice(0, 3);
 const clients = await getClients();
 ---
 
-<Base
+<BaseLayout
   title="What we do"
   description="Product design, development, and strategy. We help companies build digital products people love."
 >
@@ -194,7 +194,7 @@ const clients = await getClients();
       <a href="/work-with-us" class="cta-link">Work with us →</a>
     </div>
   </section>
-</Base>
+</BaseLayout>
 
 <style>
   /* --------------------------------------------------------

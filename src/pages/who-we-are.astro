@@ -1,12 +1,12 @@
 ---
-import Base from "@/layouts/base.astro";
+import BaseLayout from "@/layouts/base.astro";
 import { getClients, getTestimonials } from "@/lib/collections";
 
 const clients = await getClients();
 const testimonials = await getTestimonials();
 ---
 
-<Base
+<BaseLayout
   title="Who we are"
   description="Significa is a digital product studio based in Porto, Portugal. We design and build products for companies that care about craft."
 >
@@ -150,7 +150,7 @@ const testimonials = await getTestimonials();
       <a href="/work-with-us" class="cta-link">Get in touch →</a>
     </div>
   </section>
-</Base>
+</BaseLayout>
 
 <style>
   /* --------------------------------------------------------

@@ -1,6 +1,6 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
-import Base from "@/layouts/base.astro";
+import BaseLayout from "@/layouts/base.astro";
 import { mdxComponents } from "@/components/mdx/components";
 import { articleJsonLd } from "@/lib/seo";
 
@@ -24,7 +24,7 @@ const relatedProjects = post.data.relatedProjects?.length
   : [];
 ---
 
-<Base title={title} description={description} ogImage={seo?.ogImage} type="article" publishedAt={post.data.date}>
+<BaseLayout title={title} description={description} ogImage={seo?.ogImage} type="article" publishedAt={post.data.date}>
   <article>
     <header>
       <h1>{post.data.title}</h1>
@@ -72,4 +72,4 @@ const relatedProjects = post.data.relatedProjects?.length
       })
     )}
   />
-</Base>
+</BaseLayout>

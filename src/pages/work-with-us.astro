@@ -1,12 +1,12 @@
 ---
-import Base from "@/layouts/base.astro";
+import BaseLayout from "@/layouts/base.astro";
 import { getClients, getTestimonials } from "@/lib/collections";
 
 const clients = await getClients();
 const testimonials = await getTestimonials();
 ---
 
-<Base
+<BaseLayout
   title="Work with us"
   description="Let's build something meaningful together. Get in touch to start a conversation about your next digital product."
 >
@@ -171,7 +171,7 @@ const testimonials = await getTestimonials();
       </section>
     )
   }
-</Base>
+</BaseLayout>
 
 <style>
   /* --------------------------------------------------------

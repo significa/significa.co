@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
-import Base from "@/layouts/base.astro";
+import BaseLayout from "@/layouts/base.astro";
 import { mdxComponents } from "@/components/mdx/components";
 
 export async function getStaticPaths() {
@@ -8,6 +8,7 @@ export async function getStaticPaths() {
 
   // Validate no slug collisions with reserved routes
   const reserved = ["blog", "projects", "labs", "who-we-are", "what-we-do", "work-with-us"];
+
   for (const page of pages) {
     const topSegment = page.id.split("/")[0];
     if (reserved.includes(topSegment)) {
@@ -29,9 +30,9 @@ const title = seo?.metaTitle ?? page.data.title;
 const description = seo?.metaDescription ?? `${page.data.title} — Significa`;
 ---
 
-<Base title={title} description={description} ogImage={seo?.ogImage}>
+<BaseLayout title={title} description={description} ogImage={seo?.ogImage}>
   <article>
     <h1>{page.data.title}</h1>
     <Content components={mdxComponents} />
   </article>
-</Base>
+</BaseLayout>

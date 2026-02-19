@@ -1,5 +1,5 @@
 ---
-import Base from "@/layouts/base.astro";
+import BaseLayout from "@/layouts/base.astro";
 import { getClients, getTestimonials, getPublishedPosts, getPublishedProjects, getAwards } from "@/lib/collections";
 import { cdnUrl } from "@/lib/cdn";
 
@@ -29,7 +29,7 @@ const industries = [
 const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watch & TV Apps", "Mobile Apps", "Kiosks"];
 ---
 
-<Base
+<BaseLayout
   title="Significa"
   description="Building apps, websites, and e-commerce platforms that triple revenue, 5x sales, and improve conversions."
 >
@@ -267,7 +267,7 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
       </div>
     </div>
   </section>
-</Base>
+</BaseLayout>
 
 <!-- Showreel cursor-following button — vanilla JS, no island needed -->
 <script>

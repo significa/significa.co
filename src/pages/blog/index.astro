@@ -1,11 +1,11 @@
 ---
-import Base from "@/layouts/base.astro";
+import BaseLayout from "@/layouts/base.astro";
 import { getPublishedPosts } from "@/lib/collections";
 
 const posts = await getPublishedPosts();
 ---
 
-<Base title="Blog" description="Thoughts on design, engineering, and building products.">
+<BaseLayout title="Blog" description="Thoughts on design, engineering, and building products.">
   <section>
     <h1>Blog</h1>
     {
@@ -31,4 +31,4 @@ const posts = await getPublishedPosts();
       )
     }
   </section>
-</Base>
+</BaseLayout>

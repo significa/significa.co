@@ -1,6 +1,6 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
-import Base from "@/layouts/base.astro";
+import BaseLayout from "@/layouts/base.astro";
 import { mdxComponents } from "@/components/mdx/components";
 
 export async function getStaticPaths() {
@@ -23,7 +23,7 @@ const relatedProjects = project.data.relatedProjects?.length
   : [];
 ---
 
-<Base title={title} description={description} ogImage={seo?.ogImage}>
+<BaseLayout title={title} description={description} ogImage={seo?.ogImage}>
   <article>
     <header>
       <h1>{project.data.title}</h1>
@@ -49,4 +49,4 @@ const relatedProjects = project.data.relatedProjects?.length
       )
     }
   </article>
-</Base>
+</BaseLayout>

@@ -24,15 +24,15 @@ pnpm astro add mdx react
 src/
 ├── components/
 │   ├── mdx/                  # Components available inside MDX files
-│   │   ├── MediaImage.astro
-│   │   ├── MediaVideo.astro
-│   │   ├── ComparisonBlock.astro
-│   │   ├── Metrics.astro
-│   │   ├── ProjectCrossSell.astro
+│   │   ├── media-image.astro
+│   │   ├── media-video.astro
+│   │   ├── comparison-block.astro
+│   │   ├── metrics.astro
+│   │   ├── project-cross-sell.astro
 │   │   └── components.ts      # Centralized MDX component registry
 │   ├── ui/                   # Reusable UI components
 │   ├── layout/               # Header, Footer, Nav
-│   └── SEO.astro             # SEO meta tags component
+│   └── seo.astro             # SEO meta tags component
 ├── content.config.ts         # Collection schemas (the "database")
 ├── content/
 │   ├── projects/             # .mdx per project case study
@@ -44,7 +44,7 @@ src/
 │   ├── testimonials/         # .yaml per testimonial
 │   └── awards/               # .yaml per award
 ├── layouts/
-│   └── Base.astro            # Main HTML layout with SEO component
+│   └── base.astro            # Main HTML layout with SEO component
 ├── pages/
 │   ├── index.astro           # Homepage
 │   ├── who-we-are.astro      # About page (hybrid: Astro page, not MDX)

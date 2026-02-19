@@ -1,5 +1,5 @@
 ---
-import Base from "@/layouts/Base.astro";
+import Base from "@/layouts/base.astro";
 import { getPublishedProjects, getClients } from "@/lib/collections";
 
 const featuredProjects = (await getPublishedProjects()).slice(0, 3);

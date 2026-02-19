@@ -1,8 +1,8 @@
-import MediaImage from "./MediaImage.astro";
-import MediaVideo from "./MediaVideo.astro";
-import ComparisonBlock from "./ComparisonBlock.astro";
-import Metrics from "./Metrics.astro";
-import ProjectCrossSell from "./ProjectCrossSell.astro";
+import MediaImage from "./media-image.astro";
+import MediaVideo from "./media-video.astro";
+import ComparisonBlock from "./comparison-block.astro";
+import Metrics from "./metrics.astro";
+import ProjectCrossSell from "./project-cross-sell.astro";
 
 /**
  * MDX component registry.

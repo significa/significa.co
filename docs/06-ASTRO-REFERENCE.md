@@ -233,8 +233,8 @@ export default defineConfig({
 
 ```astro
 ---
-import MediaImage from '../components/mdx/MediaImage.astro';
-import Metrics from '../components/mdx/Metrics.astro';
+import MediaImage from '../components/mdx/media-image.astro';
+import Metrics from '../components/mdx/metrics.astro';
 
 const { Content } = await render(post);
 
@@ -424,14 +424,14 @@ import { Image } from 'astro:assets';
 src/
 ├── components/
 │   ├── mdx/             # Components available in MDX
-│   │   ├── MediaImage.astro
-│   │   ├── Metrics.astro
+│   │   ├── media-image.astro
+│   │   ├── metrics.astro
 │   │   └── components.ts  # Centralized MDX component registry
 │   ├── ui/              # Reusable UI components
 │   ├── layout/          # Layout pieces
-│   │   ├── Header.astro
-│   │   └── Footer.astro
-│   └── SEO.astro
+│   │   ├── header.astro
+│   │   └── footer.astro
+│   └── seo.astro
 ├── content.config.ts    # Collection schemas (the "database")
 ├── content/
 │   ├── blog/
@@ -441,7 +441,7 @@ src/
 │   ├── testimonials/    # YAML
 │   └── awards/          # YAML
 ├── layouts/
-│   └── Base.astro
+│   └── base.astro
 ├── pages/
 │   ├── index.astro
 │   ├── blog/

@@ -12,6 +12,7 @@
 - **Use design tokens.** Every value comes from `global.css` custom properties. No magic numbers, no magic colors.
 - **Use `MediaImage` for all images in content.** Never raw `<img>` tags. It constructs Bunny CDN URLs with responsive `srcset` and optimization parameters automatically.
 - **Filter drafts at query time.** `getCollection('blog', ({ data }) => !data.draft)`. Never in the schema.
+- **Use kebab-case for all filenames.** Components, pages, utilities, styles, content — everything is kebab-case (`media-image.astro`, `content-errors.ts`, `global.css`). Enforced by ESLint via `eslint-plugin-check-file`.
 
 ## DO NOT
 
@@ -27,6 +28,7 @@
 - **Do not hardcode pixel values.** Use the spacing scale via custom properties.
 - **Do not use hex colors.** Use OKLCH via custom properties.
 - **Do not use arbitrary spacing.** Use the scale. `margin: 13px` is never acceptable.
+- **Do not use PascalCase or camelCase for filenames.** All files are kebab-case. `MediaImage.astro` → `media-image.astro`. `formatDate.ts` → `format-date.ts`. The ESLint rule will catch violations.
 
 ## Common Mistakes to Avoid
 

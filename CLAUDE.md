@@ -49,13 +49,13 @@ These override all defaults. Follow them exactly.
 src/
 ├── components/
 │   ├── mdx/                  # Components available inside MDX files
-│   │   ├── MediaImage.astro    # Starting set. New components
-│   │   ├── MediaVideo.astro    # are added as content needs
-│   │   ├── ComparisonBlock.astro # arise. Start lean, grow
-│   │   ├── Metrics.astro       # with the content.
-│   │   └── ProjectCrossSell.astro
+│   │   ├── media-image.astro   # Starting set. New components
+│   │   ├── media-video.astro   # are added as content needs
+│   │   ├── comparison-block.astro # arise. Start lean, grow
+│   │   ├── metrics.astro       # with the content.
+│   │   └── project-cross-sell.astro
 │   ├── ui/                   # Reusable UI components
-│   └── layout/               # Header, Footer, Nav
+│   └── layout/               # header, footer, nav
 ├── content.config.ts         # Collection schemas (the "database")
 ├── content/
 │   ├── projects/             # .mdx per project case study
@@ -67,7 +67,7 @@ src/
 │   ├── testimonials/         # .yaml per testimonial
 │   └── awards/               # .yaml per award
 ├── layouts/
-│   └── Base.astro            # Main HTML layout with SEO component
+│   └── base.astro            # Main HTML layout with SEO component
 ├── pages/
 │   ├── index.astro           # Homepage
 │   ├── blog/
@@ -458,10 +458,12 @@ We always use `reference()` instead of `z.string()` for cross-collection links. 
 
 ## File Naming Conventions
 
-- **Components:** PascalCase (`MediaImage.astro`, `ProjectCard.astro`)
-- **Pages:** kebab-case or `[slug].astro` for dynamic routes
+**All files use kebab-case. No exceptions.** This is enforced by ESLint via `eslint-plugin-check-file`.
+
+- **Components:** kebab-case (`media-image.astro`, `project-card.astro`)
+- **Pages:** kebab-case or `[slug].astro` / `[...slug].astro` for dynamic routes
 - **Content:** kebab-case slugs (`cool-project.mdx`, `how-we-design.md`)
-- **Utilities:** camelCase (`formatDate.ts`, `collections.ts`)
+- **Utilities:** kebab-case (`collections.ts`, `content-errors.ts`)
 - **Styles:** kebab-case (`global.css`)
 
 ---

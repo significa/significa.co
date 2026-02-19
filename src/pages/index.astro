@@ -1,12 +1,12 @@
 ---
 import BaseLayout from "@/layouts/base.astro";
-import { getClients, getTestimonials, getPublishedPosts, getPublishedProjects, getAwards } from "@/lib/collections";
+import { getClients, getTestimonials, getPosts, getProjects, getAwards } from "@/lib/collections";
 import { cdnUrl } from "@/lib/cdn";
 
 const clients = await getClients();
 const testimonials = await getTestimonials();
-const recentPosts = (await getPublishedPosts()).slice(0, 4);
-const featuredProjects = (await getPublishedProjects()).slice(0, 3);
+const recentPosts = (await getPosts()).slice(0, 4);
+const featuredProjects = (await getProjects()).slice(0, 3);
 const awards = await getAwards();
 
 // Rough reading time estimate

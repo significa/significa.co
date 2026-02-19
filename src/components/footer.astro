@@ -1,7 +1,7 @@
 ---
-import { getPublishedPosts } from "@/lib/collections";
+import { getPosts } from "@/lib/collections";
 
-const recentPosts = (await getPublishedPosts()).slice(0, 2);
+const recentPosts = (await getPosts()).slice(0, 2);
 const currentYear = new Date().getFullYear();
 
 const significaLinks = [

@@ -38,7 +38,7 @@ These override all defaults. Follow them exactly.
 1. **MDX for case studies and rich content.** Blog posts that don't need custom components can use plain `.md`.
 2. **YAML for structured data without prose.** Highlights, team data, config-like content.
 3. **Frontmatter is the schema.** Every field in frontmatter must match the Zod schema in `content.config.ts`. The build enforces this.
-4. **Drafts filter at query time.** Use `getCollection('blog', ({ data }) => !data.draft)`. Never in the schema.
+4. **Drafts use the `.draft` filename convention.** A file named `my-post.draft.mdx` is a draft. In production builds, drafts are excluded at the glob level — they never enter the content layer. In development, drafts are included so authors can preview locally. Publishing a draft is a simple file rename: `my-post.draft.mdx` → `my-post.mdx`. No frontmatter field needed.
 5. **Marketing team writes content.** The team has the project set up locally with AI assistance. MDX is the authoring format. Content templates and documentation must be clear enough for non-developers to follow. AI fills any gaps.
 
 ---
@@ -100,26 +100,28 @@ public/
 
 ### Schema Location
 
-`src/content/content.config.ts`
+`src/content.config.ts`
 
 ### Collections
 
-| Collection | Format | Loader Pattern | Purpose |
+All collections use the shared `contentLoader()` helper which handles glob patterns and draft filtering automatically. In production, files matching `*.draft.*` are excluded at the glob level. In development, all files (including drafts) are included for preview.
+
+| Collection | Format | Extensions | Purpose |
 |---|---|---|---|
-| `projects` | MDX | `**/*.mdx` | Case studies |
-| `blog` | MD/MDX | `**/*.{md,mdx}` | Blog posts |
-| `labs` | MDX | `**/*.mdx` | Open source projects |
-| `pages` | MDX | `**/*.mdx` | Misc pages (about, services) |
-| `highlights` | YAML | `**/*.yaml` | Homepage curation |
-| `clients` | YAML | `**/*.yaml` | Client logo strip |
-| `testimonials` | YAML | `**/*.yaml` | Customer quotes |
-| `awards` | YAML | `**/*.yaml` | Awards & recognition |
+| `projects` | MDX | `mdx` | Case studies |
+| `blog` | MD/MDX | `md, mdx` | Blog posts |
+| `labs` | MDX | `md, mdx` | Open source projects |
+| `pages` | MDX | `mdx` | Misc pages (about, services) |
+| `highlights` | YAML | `yaml` | Homepage curation |
+| `clients` | YAML | `yaml` | Client logo strip |
+| `testimonials` | YAML | `yaml` | Customer quotes |
+| `awards` | YAML | `yaml` | Awards & recognition |
 
 ### Key Patterns
 
 ```typescript
-// Get published entries
-const posts = await getCollection('blog', ({ data }) => !data.draft);
+// Get all entries (drafts already excluded in production by the loader)
+const posts = await getCollection('blog');
 
 // Get single entry
 const project = await getEntry('projects', slug);
@@ -141,7 +143,7 @@ const { Content } = await render(post);
 ```typescript
 // Only [slug].astro and [...slug].astro need getStaticPaths()
 export async function getStaticPaths() {
-  const items = await getCollection('projects', ({ data }) => !data.draft);
+  const items = await getCollection('projects');
   return items.map(item => ({
     params: { slug: item.id },
     props: { item },
@@ -450,9 +452,10 @@ We always use `reference()` instead of `z.string()` for cross-collection links. 
 2. **`reference()` returns stubs.** You get `{ id, collection }`, not the full entry. Resolve with `getEntry(ref)`.
 3. **MDX components must be passed explicitly.** They're not auto-available. Pass via `components` prop.
 4. **Catch-all route collision.** If a page in `src/content/pages/` has a slug matching `blog`, `projects`, or `labs`, the build-time check throws. See Build-Time Validation above.
-5. **Draft filtering is manual.** Always filter with `({ data }) => !data.draft` in `getCollection()` calls.
-6. **Static paths must be exhaustive.** Every URL must be returned by `getStaticPaths()`. Missing = 404.
-7. **Async everywhere.** All `getCollection()` and `getEntry()` calls are async. Always `await`.
+5. **Drafts are filename-based.** Use `my-post.draft.mdx` — not a frontmatter field. Drafts are excluded in production builds at the glob level and included in dev for preview. No query-time filtering needed.
+6. **References to drafts break the prod build.** If a highlight or award references a `.draft` entry, the build fails in production (the entry doesn't exist). This is correct — it prevents shipping pages that link to nothing.
+7. **Static paths must be exhaustive.** Every URL must be returned by `getStaticPaths()`. Missing = 404.
+8. **Async everywhere.** All `getCollection()` and `getEntry()` calls are async. Always `await`.
 
 ---
 

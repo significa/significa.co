@@ -80,11 +80,10 @@ import { defineCollection, reference, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const blog = defineCollection({
-  loader: glob({ pattern: '**/*.mdx', base: 'src/content/blog' }),
+  loader: contentLoader({ extensions: ['md', 'mdx'], base: 'src/content/blog' }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
-    draft: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
     thumbnail: z.string().url().optional(),
     // Cross-collection reference: build fails if slug doesn't exist
@@ -121,8 +120,8 @@ file('src/data/authors.json')
 ```typescript
 import { getCollection, getEntry, render } from 'astro:content';
 
-// Get all entries (with optional filter)
-const posts = await getCollection('blog', ({ data }) => !data.draft);
+// Get all entries (drafts already excluded in production by the loader)
+const posts = await getCollection('blog');
 
 // Get single entry
 const post = await getEntry('blog', 'my-post-slug');
@@ -177,7 +176,7 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const posts = await getCollection('blog');
   return posts.map(post => ({
     params: { slug: post.id },
     props: { post },
@@ -494,10 +493,11 @@ const fullEntry = await getEntry(ref); // Now you have the data
 ### 5. MDX Components Must Be Passed Explicitly
 Components aren't automatically available in MDX. Pass them via the `components` prop when rendering.
 
-### 6. Draft Filtering Is Manual
+### 6. Drafts Are Filename-Based
+Drafts use the `.draft` filename suffix (e.g. `my-post.draft.mdx`), not a frontmatter field. The `contentLoader()` helper excludes `*.draft.*` files at the glob level in production builds. In development, drafts are included for preview. No query-time filtering is needed:
 ```typescript
-// Filter drafts in getCollection, not in schema
-const published = await getCollection('blog', ({ data }) => !data.draft);
+// No draft filter needed — the loader handles it
+const posts = await getCollection('blog');
 ```
 
 ### 7. Content Config Location

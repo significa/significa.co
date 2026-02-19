@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "@/layouts/base.astro";
-import { getPublishedProjects } from "@/lib/collections";
+import { getProjects } from "@/lib/collections";
 
-const projects = await getPublishedProjects();
+const projects = await getProjects();
 ---
 
 <BaseLayout title="Projects" description="Selected work from Significa's portfolio.">

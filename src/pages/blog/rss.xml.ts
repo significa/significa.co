@@ -1,9 +1,9 @@
 import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
-import { getPublishedPosts } from "@/lib/collections";
+import { getPosts } from "@/lib/collections";
 
 export async function GET(context: APIContext) {
-  const posts = await getPublishedPosts();
+  const posts = await getPosts();
 
   return rss({
     title: "Significa Blog",

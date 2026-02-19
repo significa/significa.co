@@ -10,7 +10,7 @@ File: `src/content.config.ts` (at the root of `src/`, not inside `src/content/`)
 
 ```ts
 import { defineCollection, reference, z } from "astro:content";
-import { glob } from "astro/loaders";
+import { glob, type Loader } from "astro/loaders";
 
 const seoSchema = z.object({
   metaTitle: z.string().optional(),
@@ -24,17 +24,35 @@ const metricSchema = z.object({
 });
 ```
 
-### ID Generation
+### Content Loader
 
-All collections use a `generateId` function that strips file extensions for clean URL slugs:
+All collections use a shared `contentLoader()` helper that centralizes glob patterns, ID generation, and **draft filtering**:
 
 ```ts
-function stripExtension({ entry }: { entry: string }) {
-  return entry.replace(/\.(mdx?|yaml)$/, "");
-}
+const contentLoader = ({ base, extensions }: { extensions: string[]; base: string }): Loader => {
+  const stripExtension = ({ entry }: { entry: string }) => {
+    return entry.replace(/\.(mdx?|yaml)$/, "");
+  };
+
+  // In development: include all files (drafts visible for preview)
+  // In production: exclude *.draft.* files at the glob level
+  const draftFilter = import.meta.env.MODE === "development" ? "**" : "!(*.draft)";
+  const extensionFilter = extensions.length > 1 ? `{${extensions.join(",")}}` : extensions[0];
+
+  return glob({
+    pattern: `**/${draftFilter}.${extensionFilter}`,
+    base,
+    generateId: stripExtension,
+  });
+};
 ```
 
-This means `example-project.mdx` gets the ID `example-project`, used in URLs and references.
+This means:
+
+- **Development** (`pnpm dev`): all files are loaded, including `*.draft.*` files, so authors can preview drafts locally.
+- **Production** (`pnpm build`): files matching `*.draft.*` are excluded at the glob level — they never enter the content layer.
+- **Publishing a draft** is a file rename: `my-post.draft.mdx` → `my-post.mdx`.
+- **ID generation** strips file extensions for clean URL slugs: `example-project.mdx` → `example-project`.
 
 ## Collections
 
@@ -44,17 +62,15 @@ Case studies. The richest content type.
 
 ```ts
 const projects = defineCollection({
-  loader: glob({
-    pattern: "**/*.mdx",
+  loader: contentLoader({
     base: "src/content/projects",
-    generateId: stripExtension,
+    extensions: ["mdx"],
   }),
   schema: z.object({
     title: z.string(),
     tagline: z.string().optional(),
     client: z.string().optional(),
     date: z.coerce.date(),
-    draft: z.boolean().default(false),
     thumbnail: z.string(),
     heroImage: z.string().optional(),
     tags: z.array(z.string()).default([]),
@@ -71,7 +87,6 @@ const projects = defineCollection({
 | `tagline` | string | no | Short description for cards |
 | `client` | string | no | Client company name |
 | `date` | date | yes | Project date (used for sorting) |
-| `draft` | boolean | no | Default `false`. Filter at query time, not schema |
 | `thumbnail` | string | yes | CDN path for listing cards |
 | `heroImage` | string | no | CDN path for showcase/detail header |
 | `tags` | string[] | no | Categorization tags |
@@ -85,16 +100,14 @@ Blog posts. Supports both `.md` (no components) and `.mdx` (with components).
 
 ```ts
 const blog = defineCollection({
-  loader: glob({
-    pattern: "**/*.{md,mdx}",
+  loader: contentLoader({
+    extensions: ["md", "mdx"],
     base: "src/content/blog",
-    generateId: stripExtension,
   }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
     date: z.coerce.date(),
-    draft: z.boolean().default(false),
     author: z.string().optional(),
     thumbnail: z.string().optional(),
     tags: z.array(z.string()).default([]),
@@ -109,29 +122,26 @@ const blog = defineCollection({
 | `title` | string | yes | Post title |
 | `description` | string | no | Short description for SEO and RSS. Falls back to title-based string if missing |
 | `date` | date | yes | Publication date |
-| `draft` | boolean | no | Default `false` |
 | `author` | string | no | Author name |
 | `thumbnail` | string | no | CDN path for listing cards |
 | `tags` | string[] | no | Categorization tags |
 | `seo` | object | no | Override meta title, description, OG image |
 | `relatedProjects` | reference[] | no | Cross-sell to project case studies |
 
-### Labs (MDX)
+### Labs (MD/MDX)
 
 Open source projects and experiments.
 
 ```ts
 const labs = defineCollection({
-  loader: glob({
-    pattern: "**/*.mdx",
+  loader: contentLoader({
+    extensions: ["md", "mdx"],
     base: "src/content/labs",
-    generateId: stripExtension,
   }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
-    draft: z.boolean().default(false),
     repoUrl: z.string().url().optional(),
     thumbnail: z.string().optional(),
     tags: z.array(z.string()).default([]),
@@ -146,10 +156,9 @@ Miscellaneous content pages (about, services, etc.) rendered by the catch-all `[
 
 ```ts
 const pages = defineCollection({
-  loader: glob({
-    pattern: "**/*.mdx",
+  loader: contentLoader({
+    extensions: ["mdx"],
     base: "src/content/pages",
-    generateId: stripExtension,
   }),
   schema: z.object({
     title: z.string(),
@@ -164,10 +173,9 @@ Homepage curation. Each entry references an item in another collection using a d
 
 ```ts
 const highlights = defineCollection({
-  loader: glob({
-    pattern: "**/*.yaml",
+  loader: contentLoader({
+    extensions: ["yaml"],
     base: "src/content/highlights",
-    generateId: stripExtension,
   }),
   schema: z.object({
     label: z.string().optional(),
@@ -192,7 +200,7 @@ source:
   entry: example-project
 ```
 
-If `example-project` doesn't exist in `src/content/projects/`, **the build fails** with a clear error.
+If `example-project` doesn't exist in `src/content/projects/`, **the build fails** with a clear error. If the referenced file is a draft (e.g. `example-project.draft.mdx`), it works in dev but **fails the production build** — preventing links to unpublished content.
 
 ### Clients (YAML)
 
@@ -200,10 +208,9 @@ Client logo strip and references across the site.
 
 ```ts
 const clients = defineCollection({
-  loader: glob({
-    pattern: "**/*.yaml",
+  loader: contentLoader({
+    extensions: ["yaml"],
     base: "src/content/clients",
-    generateId: stripExtension,
   }),
   schema: z.object({
     name: z.string(),
@@ -227,10 +234,9 @@ Customer quotes for social proof sections.
 
 ```ts
 const testimonials = defineCollection({
-  loader: glob({
-    pattern: "**/*.yaml",
+  loader: contentLoader({
+    extensions: ["yaml"],
     base: "src/content/testimonials",
-    generateId: stripExtension,
   }),
   schema: z.object({
     quote: z.string(),
@@ -258,10 +264,9 @@ Recognition and validation. Each award references a project.
 
 ```ts
 const awards = defineCollection({
-  loader: glob({
-    pattern: "**/*.yaml",
+  loader: contentLoader({
+    extensions: ["yaml"],
     base: "src/content/awards",
-    generateId: stripExtension,
   }),
   schema: z.object({
     award: z.string(),
@@ -298,6 +303,32 @@ export const collections = {
 };
 ```
 
+## Draft System
+
+Drafts are managed via the **`.draft` filename suffix**, not a frontmatter field.
+
+### How It Works
+
+| File | Dev (`pnpm dev`) | Prod (`pnpm build`) |
+|---|---|---|
+| `cool-project.mdx` | ✅ Loaded | ✅ Loaded |
+| `cool-project.draft.mdx` | ✅ Loaded (preview) | ❌ Excluded at glob level |
+
+### Workflow
+
+1. **Create a draft:** name it `my-post.draft.mdx` (or `.draft.md`, `.draft.yaml`)
+2. **Preview locally:** run `pnpm dev` — drafts are included in the content layer
+3. **Publish:** rename `my-post.draft.mdx` → `my-post.mdx`
+4. **Unpublish:** rename `my-post.mdx` → `my-post.draft.mdx`
+
+### Important: References to Drafts
+
+If a non-draft entry (e.g. a highlight or award) references a draft entry:
+- **In dev:** works fine — the draft is in the collection
+- **In prod build:** fails with a build error — the draft is excluded, so the reference is broken
+
+This is intentional. It prevents shipping pages that link to unpublished content.
+
 ## How Relationships Work
 
 All cross-content references use `reference()` from Astro for compile-time validation. `reference()` returns `{ id, collection }` objects, **not** full entries. You must resolve them with `getEntry()`.
@@ -328,7 +359,7 @@ import { getCollection, getEntry, render } from "astro:content";
 import { mdxComponents } from "../../components/mdx/components";
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects", ({ data }) => !data.draft);
+  const projects = await getCollection("projects");
   return projects.map((project) => ({
     params: { slug: project.id },
     props: { project },
@@ -411,13 +442,13 @@ The component resolves the slug with `getEntry()` and throws at build time if no
 
 ## Collection Helper Functions
 
-All query helpers live in `src/lib/collections.ts`. These handle filtering, sorting, and reference resolution:
+All query helpers live in `src/lib/collections.ts`. These handle sorting and reference resolution. **No draft filtering is needed** — drafts are already excluded by the content loader in production.
 
 | Function | Returns |
 |---|---|
-| `getPublishedProjects()` | Non-draft projects, sorted by date desc |
-| `getPublishedPosts()` | Non-draft blog posts, sorted by date desc |
-| `getPublishedLabs()` | Non-draft labs, sorted by date desc |
+| `getProjects()` | All projects, sorted by date desc |
+| `getPosts()` | All blog posts, sorted by date desc |
+| `getLabs()` | All labs, sorted by date desc |
 | `getClients()` | All clients, sorted by order asc |
 | `getTestimonials()` | All testimonials, sorted by order asc |
 | `getResolvedHighlights()` | Highlights with referenced entries resolved |
@@ -426,7 +457,7 @@ All query helpers live in `src/lib/collections.ts`. These handle filtering, sort
 ## Important Notes
 
 - **`reference()` returns `{ id, collection }` objects**, not the full entry. Resolve with `getEntry(ref)`.
-- **Drafts:** filter with `({ data }) => !data.draft` in `getCollection()` calls. Never in the schema.
+- **Drafts use the `.draft` filename suffix.** No frontmatter field, no query-time filtering. The content loader handles it automatically.
 - **Blog supports both `.md` and `.mdx`.** Blog posts that don't need custom components can use plain `.md`.
 - **YAML for structured data without prose.** Highlights, clients, testimonials, awards.
 - **Config file location:** `src/content.config.ts` (at root of `src/`, both this path and `src/content/content.config.ts` work in Astro v5+, but we use the root path).

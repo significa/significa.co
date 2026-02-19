@@ -88,9 +88,10 @@ The reserved routes list in `[...slug].astro` prevents collisions between the tw
 2. **No client-side JS by default.** Astro renders everything at build time. Only add `client:load` or `client:visible` to React components that genuinely need interactivity.
 3. **Media via S3 + Bunny CDN.** Images and videos are uploaded through the internal asset manager to S3 and served via Bunny.net CDN (`https://significa.b-cdn.net`) with real-time image optimization. See `docs/04-MEDIA-ASSETS.md`.
 4. **Relationships via `reference()`.** Collections reference each other using Astro's `reference()` for build-time validation. Broken slugs break the build, not production.
-5. **Keep it simple.** If you're reaching for a library, stop and check if plain HTML/CSS or an Astro component can do it.
-6. **Fail at build time.** The site is managed by marketing and non-technical people. Every error caught at build time is one less bug in production.
-7. **Centralized MDX registration.** All MDX components are registered in `src/components/mdx/components.ts`. Add new components there — all slug pages pick them up automatically.
+5. **Drafts via `.draft` filename suffix.** Name a file `my-post.draft.mdx` to mark it as a draft. The shared `contentLoader()` excludes `*.draft.*` files in production builds at the glob level. In development, drafts are included for preview. Publishing is a file rename — no frontmatter field needed.
+6. **Keep it simple.** If you're reaching for a library, stop and check if plain HTML/CSS or an Astro component can do it.
+7. **Fail at build time.** The site is managed by marketing and non-technical people. Every error caught at build time is one less bug in production.
+8. **Centralized MDX registration.** All MDX components are registered in `src/components/mdx/components.ts`. Add new components there — all slug pages pick them up automatically.
 
 ## Build & Deploy
 

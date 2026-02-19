@@ -1,5 +1,5 @@
 import { defineCollection, reference, z } from "astro:content";
-import { glob } from "astro/loaders";
+import { glob, type Loader } from "astro/loaders";
 
 // ============================================================
 // Shared schemas (reusable across collections)
@@ -21,22 +21,34 @@ const metricSchema = z.object({
 });
 
 // ============================================================
-// ID generation: strip file extensions for clean URLs
+// Loader
 // ============================================================
+const contentLoader = ({ base, extensions }: { extensions: string[]; base: string }): Loader => {
+  // id generation: strip file extensions for clean URLs
+  const stripExtension = ({ entry }: { entry: string }) => {
+    return entry.replace(/\.(mdx?|yaml)$/, "");
+  };
 
-function stripExtension({ entry }: { entry: string }) {
-  return entry.replace(/\.(mdx?|yaml)$/, "");
-}
+  // filter drafts only in production
+  const draftFilter = import.meta.env.MODE === "development" ? "**" : "!(*.draft)";
+  // filter extensions
+  const extensionFilter = extensions.length > 1 ? `{${extensions.join(",")}}` : extensions[0];
+
+  return glob({
+    pattern: `**/${draftFilter}.${extensionFilter}`,
+    base,
+    generateId: stripExtension,
+  });
+};
 
 // ============================================================
 // Collections
 // ============================================================
 
 const projects = defineCollection({
-  loader: glob({
-    pattern: "**/*.mdx",
+  loader: contentLoader({
     base: "src/content/projects",
-    generateId: stripExtension,
+    extensions: ["mdx"],
   }),
   schema: z.object({
     title: z.string(),
@@ -56,10 +68,9 @@ const projects = defineCollection({
 });
 
 const blog = defineCollection({
-  loader: glob({
-    pattern: "**/*.{md,mdx}",
+  loader: contentLoader({
+    extensions: ["md", "mdx"],
     base: "src/content/blog",
-    generateId: stripExtension,
   }),
   schema: z.object({
     title: z.string(),
@@ -75,10 +86,9 @@ const blog = defineCollection({
 });
 
 const labs = defineCollection({
-  loader: glob({
-    pattern: "**/*.mdx",
+  loader: contentLoader({
+    extensions: ["md", "mdx"],
     base: "src/content/labs",
-    generateId: stripExtension,
   }),
   schema: z.object({
     title: z.string(),
@@ -93,10 +103,9 @@ const labs = defineCollection({
 });
 
 const pages = defineCollection({
-  loader: glob({
-    pattern: "**/*.mdx",
+  loader: contentLoader({
+    extensions: ["mdx"],
     base: "src/content/pages",
-    generateId: stripExtension,
   }),
   schema: z.object({
     title: z.string(),
@@ -111,10 +120,9 @@ const pages = defineCollection({
 // Astro validates every slug at build time: typos break the build, not prod.
 
 const highlights = defineCollection({
-  loader: glob({
-    pattern: "**/*.yaml",
+  loader: contentLoader({
+    extensions: ["yaml"],
     base: "src/content/highlights",
-    generateId: stripExtension,
   }),
   schema: z.object({
     label: z.string().optional(),
@@ -143,10 +151,9 @@ const highlights = defineCollection({
 // project pages, and anywhere we need to show who we work with.
 
 const clients = defineCollection({
-  loader: glob({
-    pattern: "**/*.yaml",
+  loader: contentLoader({
+    extensions: ["yaml"],
     base: "src/content/clients",
-    generateId: stripExtension,
   }),
   schema: z.object({
     name: z.string(),
@@ -164,10 +171,9 @@ const clients = defineCollection({
 // and potentially on project pages or a dedicated social proof section.
 
 const testimonials = defineCollection({
-  loader: glob({
-    pattern: "**/*.yaml",
+  loader: contentLoader({
+    extensions: ["yaml"],
     base: "src/content/testimonials",
-    generateId: stripExtension,
   }),
   schema: z.object({
     quote: z.string(),
@@ -187,10 +193,9 @@ const testimonials = defineCollection({
 // in a scrollable list. Each award references the project it was for.
 
 const awards = defineCollection({
-  loader: glob({
-    pattern: "**/*.yaml",
+  loader: contentLoader({
+    extensions: ["yaml"],
     base: "src/content/awards",
-    generateId: stripExtension,
   }),
   schema: z.object({
     /** Award name (e.g. "Red Dot", "Awwwards Site of the Day") */

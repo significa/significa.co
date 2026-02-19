@@ -496,3 +496,4 @@ The `[...slug].astro` catch-all now checks against: `blog`, `projects`, `labs`, 
 | Project heroImage | Optional `heroImage` field on projects for full-bleed homepage showcase (falls back to `thumbnail`) |
 | Showreel cursor | Vanilla `<script>` with `requestAnimationFrame` lerp, not a React island. Respects `prefers-reduced-motion`. Falls back to static centered button on touch devices. Re-inits on View Transition via `astro:after-swap`. |
 | Industries/capabilities | Hardcoded arrays on homepage — not collections. They rarely change and are only used in one place. |
+| Draft system | `.draft` filename suffix (e.g. `my-post.draft.mdx`) instead of frontmatter `draft: true`. Excluded at glob level in production via `contentLoader()`, included in dev for preview. Publishing = file rename. No query-time filtering needed. |

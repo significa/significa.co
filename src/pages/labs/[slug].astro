@@ -1,10 +1,11 @@
 ---
-import { getCollection, render } from "astro:content";
+import { render } from "astro:content";
 import BaseLayout from "@/layouts/base.astro";
 import { mdxComponents } from "@/components/mdx/components";
+import { getLabs } from "@/lib/collections";
 
 export async function getStaticPaths() {
-  const labs = await getCollection("labs", ({ data }) => !data.draft);
+  const labs = await getLabs();
   return labs.map((lab) => ({
     params: { slug: lab.id },
     props: { lab },

@@ -1,26 +1,26 @@
 import { getCollection, getEntry } from "astro:content";
 
 /**
- * Get all published projects (non-draft), sorted by date descending.
+ * Get all projects, sorted by date descending.
  */
-export async function getPublishedProjects() {
-  const projects = await getCollection("projects", ({ data }) => !data.draft);
+export async function getProjects() {
+  const projects = await getCollection("projects");
   return projects.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
 /**
- * Get all published blog posts (non-draft), sorted by date descending.
+ * Get all blog posts, sorted by date descending.
  */
-export async function getPublishedPosts() {
-  const posts = await getCollection("blog", ({ data }) => !data.draft);
+export async function getPosts() {
+  const posts = await getCollection("blog");
   return posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
 /**
- * Get all published labs entries (non-draft), sorted by date descending.
+ * Get all labs entries, sorted by date descending.
  */
-export async function getPublishedLabs() {
-  const labs = await getCollection("labs", ({ data }) => !data.draft);
+export async function getLabs() {
+  const labs = await getCollection("labs");
   return labs.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 

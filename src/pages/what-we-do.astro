@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "@/layouts/base.astro";
-import { getPublishedProjects, getClients } from "@/lib/collections";
+import { getClients, getProjects } from "@/lib/collections";
 
-const featuredProjects = (await getPublishedProjects()).slice(0, 3);
+const featuredProjects = (await getProjects()).slice(0, 3);
 const clients = await getClients();
 ---
 

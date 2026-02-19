@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "@/layouts/base.astro";
-import { getPublishedPosts } from "@/lib/collections";
+import { getPosts } from "@/lib/collections";
 
-const posts = await getPublishedPosts();
+const posts = await getPosts();
 ---
 
 <BaseLayout title="Blog" description="Thoughts on design, engineering, and building products.">

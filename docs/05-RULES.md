@@ -11,7 +11,7 @@
 - **Use `pnpm`.** Not npm, not yarn.
 - **Use design tokens.** Every value comes from `global.css` custom properties. No magic numbers, no magic colors.
 - **Use `MediaImage` for all images in content.** Never raw `<img>` tags. It constructs Bunny CDN URLs with responsive `srcset` and optimization parameters automatically.
-- **Filter drafts at query time.** `getCollection('blog', ({ data }) => !data.draft)`. Never in the schema.
+- **Drafts use the `.draft` filename suffix.** Name a file `my-post.draft.mdx` to mark it as a draft. In production builds, `.draft` files are excluded at the glob level — they never enter the content layer. In development (`pnpm dev`), drafts are included so authors can preview them locally. Publishing is a file rename: `my-post.draft.mdx` → `my-post.mdx`. No frontmatter field needed.
 - **Use kebab-case for all filenames.** Components, pages, utilities, styles, content — everything is kebab-case (`media-image.astro`, `content-errors.ts`, `global.css`). Enforced by ESLint via `eslint-plugin-check-file`.
 
 ## DO NOT
@@ -29,6 +29,7 @@
 - **Do not use hex colors.** Use OKLCH via custom properties.
 - **Do not use arbitrary spacing.** Use the scale. `margin: 13px` is never acceptable.
 - **Do not use PascalCase or camelCase for filenames.** All files are kebab-case. `MediaImage.astro` → `media-image.astro`. `formatDate.ts` → `format-date.ts`. The ESLint rule will catch violations.
+- **Do not use a `draft` frontmatter field.** Drafts are managed via the `.draft` filename suffix (e.g. `my-post.draft.mdx`), not a boolean in frontmatter. The content loader excludes `.draft` files in production automatically.
 
 ## Common Mistakes to Avoid
 
@@ -40,3 +41,4 @@
 6. **Frontmatter is server-only.** No `window`, `document`, or `localStorage` in the `---` block.
 7. **`reference()` returns stubs.** You get `{ id, collection }`, not the full entry. Resolve with `getEntry(ref)`.
 8. **MDX components aren't auto-available.** Pass them explicitly via the `components` prop when rendering.
+9. **Referencing a draft from non-draft content.** If a highlight or award references a `.draft` project, the dev server works fine but `pnpm build` fails because the draft is excluded from the collection. This is correct behavior — it prevents shipping pages that link to nothing.

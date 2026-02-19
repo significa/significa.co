@@ -14,9 +14,7 @@ const testimonials = await getTestimonials();
   <section class="intro">
     <div class="intro-inner">
       <h1>
-        <span class="intro-muted">We're a product studio based in Porto.</span>{
-          " "
-        }
+        <span class="intro-muted">We're a product studio based in Porto.</span>{" "}
         We design and build digital products that people genuinely enjoy using.
       </h1>
     </div>
@@ -29,30 +27,28 @@ const testimonials = await getTestimonials();
         <div class="value-card">
           <h2 class="value-title">Craft</h2>
           <p class="value-description">
-            Every pixel, every interaction, every line of code — we care about
-            the details because users feel them even when they can't name them.
+            Every pixel, every interaction, every line of code — we care about the details because users feel them even when
+            they can't name them.
           </p>
         </div>
         <div class="value-card">
           <h2 class="value-title">Honesty</h2>
           <p class="value-description">
-            We tell you what we think, not what you want to hear. If something
-            won't work, we say so early — before it costs time and money.
+            We tell you what we think, not what you want to hear. If something won't work, we say so early — before it costs
+            time and money.
           </p>
         </div>
         <div class="value-card">
           <h2 class="value-title">Ownership</h2>
           <p class="value-description">
-            Small teams, high accountability. Everyone involved in a project
-            owns the outcome, not just their slice of it.
+            Small teams, high accountability. Everyone involved in a project owns the outcome, not just their slice of it.
           </p>
         </div>
         <div class="value-card">
           <h2 class="value-title">Simplicity</h2>
           <p class="value-description">
-            The best solution is usually the simplest one. We resist complexity
-            and fight feature bloat on behalf of the people who use what we
-            build.
+            The best solution is usually the simplest one. We resist complexity and fight feature bloat on behalf of the people
+            who use what we build.
           </p>
         </div>
       </div>
@@ -132,12 +128,7 @@ const testimonials = await getTestimonials();
             {clients.map((client) => (
               <li>
                 {client.data.url ? (
-                  <a
-                    href={client.data.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={client.data.name}
-                  >
+                  <a href={client.data.url} target="_blank" rel="noopener noreferrer" title={client.data.name}>
                     <span class="client-name">{client.data.name}</span>
                   </a>
                 ) : (
@@ -155,10 +146,7 @@ const testimonials = await getTestimonials();
   <section class="cta">
     <div class="cta-inner">
       <h2>Want to work with us?</h2>
-      <p>
-        We're always looking for interesting projects and good people to
-        collaborate with.
-      </p>
+      <p>We're always looking for interesting projects and good people to collaborate with.</p>
       <a href="/work-with-us" class="cta-link">Get in touch →</a>
     </div>
   </section>

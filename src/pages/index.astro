@@ -1,12 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
-import {
-  getClients,
-  getTestimonials,
-  getPublishedPosts,
-  getPublishedProjects,
-  getAwards,
-} from "@/lib/collections";
+import { getClients, getTestimonials, getPublishedPosts, getPublishedProjects, getAwards } from "@/lib/collections";
 import { cdnUrl } from "@/lib/cdn";
 
 const clients = await getClients();
@@ -32,15 +26,7 @@ const industries = [
 ];
 
 // Capabilities — hardcoded
-const capabilities = [
-  "Ecommerce",
-  "Websites",
-  "Desktop Apps",
-  "Web Apps",
-  "Watch & TV Apps",
-  "Mobile Apps",
-  "Kiosks",
-];
+const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watch & TV Apps", "Mobile Apps", "Kiosks"];
 ---
 
 <Base
@@ -52,8 +38,7 @@ const capabilities = [
     <div class="hero-inner">
       <h1>
         <span class="hero-muted"
-          >Building apps, websites, and e&#8209;commerce platforms that triple
-          revenue, 5x sales, and improve conversions.</span
+          >Building apps, websites, and e&#8209;commerce platforms that triple revenue, 5x sales, and improve conversions.</span
         >{" "}
         <a href="/work-with-us" class="hero-cta">Work with us</a>
       </h1>
@@ -99,12 +84,7 @@ const capabilities = [
                          loading="eager" decoding="async" />
                 -->
         <div class="showreel-placeholder" aria-label="Showreel video"></div>
-        <button
-          class="showreel-cursor"
-          type="button"
-          data-showreel-cursor
-          aria-label="Play showreel video"
-        >
+        <button class="showreel-cursor" type="button" data-showreel-cursor aria-label="Play showreel video">
           <span class="showreel-cursor-icon" aria-hidden="true">▶</span>
           Play showreel
         </button>
@@ -118,25 +98,15 @@ const capabilities = [
       <section class="project-showcase">
         <div class="project-showcase-inner">
           {featuredProjects.map((project, i) => (
-            <article
-              class:list={[
-                "showcase-project",
-                { "showcase-project--wide": i === 2 },
-              ]}
-            >
+            <article class:list={["showcase-project", { "showcase-project--wide": i === 2 }]}>
               <a href={`/projects/${project.id}`}>
-                <div class="showcase-project-label">
-                  {project.data.client ?? project.data.title}
-                </div>
+                <div class="showcase-project-label">{project.data.client ?? project.data.title}</div>
                 <div class="showcase-project-image">
                   <img
-                    src={cdnUrl(
-                      project.data.heroImage ?? project.data.thumbnail,
-                      {
-                        width: i === 2 ? 1280 : 640,
-                        quality: 80,
-                      },
-                    )}
+                    src={cdnUrl(project.data.heroImage ?? project.data.thumbnail, {
+                      width: i === 2 ? 1280 : 640,
+                      quality: 80,
+                    })}
                     alt={project.data.title}
                     width={i === 2 ? "1280" : "640"}
                     height={i === 2 ? "800" : "480"}
@@ -177,17 +147,13 @@ const capabilities = [
                   <a href={a.url} target="_blank" rel="noopener noreferrer">
                     <span class="award-name">{a.award}</span>
                     <span class="award-year">{a.year}</span>
-                    <span class="award-project">
-                      {a.project?.data.client ?? a.project?.data.title}
-                    </span>
+                    <span class="award-project">{a.project?.data.client ?? a.project?.data.title}</span>
                   </a>
                 ) : (
                   <span class="award-item-inner">
                     <span class="award-name">{a.award}</span>
                     <span class="award-year">{a.year}</span>
-                    <span class="award-project">
-                      {a.project?.data.client ?? a.project?.data.title}
-                    </span>
+                    <span class="award-project">{a.project?.data.client ?? a.project?.data.title}</span>
                   </span>
                 )}
               </li>
@@ -202,9 +168,7 @@ const capabilities = [
   <section class="expertise">
     <div class="expertise-inner">
       <div class="expertise-block">
-        <h2>
-          Transforming insights into interfaces people love, across industries.
-        </h2>
+        <h2>Transforming insights into interfaces people love, across industries.</h2>
         <ul class="expertise-list">
           {
             industries.map((item) => (
@@ -243,9 +207,8 @@ const capabilities = [
         <span class="stats-label">Customer experience</span>
         <span class="stats-value">84.7%</span>
         <p class="stats-description">
-          Bring your specs to Significa but give them the creative freedom to
-          unleash the best possible design and solution for your product needs
-          and users.
+          Bring your specs to Significa but give them the creative freedom to unleash the best possible design and solution for
+          your product needs and users.
         </p>
       </div>
 
@@ -276,12 +239,7 @@ const capabilities = [
             {clients.map((client) => (
               <li>
                 {client.data.url ? (
-                  <a
-                    href={client.data.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={client.data.name}
-                  >
+                  <a href={client.data.url} target="_blank" rel="noopener noreferrer" title={client.data.name}>
                     <span class="client-name">{client.data.name}</span>
                   </a>
                 ) : (
@@ -315,9 +273,7 @@ const capabilities = [
 <script>
   function initShowreel() {
     const section = document.querySelector<HTMLElement>("[data-showreel]");
-    const cursor = document.querySelector<HTMLButtonElement>(
-      "[data-showreel-cursor]",
-    );
+    const cursor = document.querySelector<HTMLButtonElement>("[data-showreel-cursor]");
     if (!section || !cursor) return;
 
     let rafId: number | null = null;
@@ -361,9 +317,7 @@ const capabilities = [
     });
 
     // Respect reduced motion
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    );
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (prefersReducedMotion.matches) {
       cursor.style.display = "none";
     }

@@ -18,7 +18,7 @@ We wanted something that gets out of the way — fast builds, typed content, and
 
 We landed on Astro with MDX for content, TypeScript for safety, and Cloudflare Pages for deployment. Zero JavaScript by default. Content lives in the repo as typed files, validated at build time.
 
-The key insight: for a studio website, content *is* the product. Everything else should be invisible infrastructure.
+The key insight: for a studio website, content _is_ the product. Everything else should be invisible infrastructure.
 
 ## What changed
 

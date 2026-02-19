@@ -50,16 +50,13 @@ export async function getResolvedHighlights() {
 
   const resolved = await Promise.all(
     sorted.map(async (h) => {
-      const entry = await getEntry(
-        h.data.source.collection,
-        h.data.source.entry.id,
-      );
+      const entry = await getEntry(h.data.source.collection, h.data.source.entry.id);
       return {
         label: h.data.label,
         collection: h.data.source.collection,
         entry,
       };
-    }),
+    })
   );
 
   return resolved;
@@ -82,7 +79,7 @@ export async function getAwards() {
         url: a.data.url,
         project,
       };
-    }),
+    })
   );
 
   return resolved;

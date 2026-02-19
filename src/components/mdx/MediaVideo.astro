@@ -17,13 +17,10 @@ interface Props {
 
 const { src, poster, caption, autoplay = false, controls = true } = Astro.props;
 
-if (!src)
-  contentError("MediaVideo", Astro.url.pathname, "Missing required prop: src");
+if (!src) contentError("MediaVideo", Astro.url.pathname, "Missing required prop: src");
 
 const videoSrc = cdnUrl(src);
-const posterSrc = poster
-  ? cdnUrl(poster, { width: 1280, quality: DEFAULT_QUALITY })
-  : undefined;
+const posterSrc = poster ? cdnUrl(poster, { width: 1280, quality: DEFAULT_QUALITY }) : undefined;
 ---
 
 {

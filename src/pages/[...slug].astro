@@ -7,20 +7,11 @@ export async function getStaticPaths() {
   const pages = await getCollection("pages");
 
   // Validate no slug collisions with reserved routes
-  const reserved = [
-    "blog",
-    "projects",
-    "labs",
-    "who-we-are",
-    "what-we-do",
-    "work-with-us",
-  ];
+  const reserved = ["blog", "projects", "labs", "who-we-are", "what-we-do", "work-with-us"];
   for (const page of pages) {
     const topSegment = page.id.split("/")[0];
     if (reserved.includes(topSegment)) {
-      throw new Error(
-        `Page "${page.id}" collides with reserved route /${topSegment}. Rename it.`,
-      );
+      throw new Error(`Page "${page.id}" collides with reserved route /${topSegment}. Rename it.`);
     }
   }
 

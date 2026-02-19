@@ -107,9 +107,7 @@ h6 {
 
 :root {
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono:
-    ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo,
-    monospace;
+  --font-mono: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, monospace;
 
   --text-sm: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem);
   --text-base: clamp(0.9375rem, 0.875rem + 0.2vw, 1rem);

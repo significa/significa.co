@@ -69,10 +69,7 @@ export function cdnUrl(src: string, options: CdnImageOptions = {}): string {
  * Returns `undefined` for external URLs that aren't on our CDN,
  * since we can't generate width variants for those.
  */
-export function cdnSrcset(
-  src: string,
-  options: { quality?: number; widths?: number[] } = {},
-): string | undefined {
+export function cdnSrcset(src: string, options: { quality?: number; widths?: number[] } = {}): string | undefined {
   // External URL not on our CDN — no srcset possible
   if (isAbsoluteUrl(src) && !src.startsWith(CDN_HOSTNAME)) {
     return undefined;
@@ -81,9 +78,7 @@ export function cdnSrcset(
   const quality = options.quality ?? DEFAULT_QUALITY;
   const widths = options.widths ?? SRCSET_WIDTHS;
 
-  return widths
-    .map((w) => `${cdnUrl(src, { width: w, quality })} ${w}w`)
-    .join(", ");
+  return widths.map((w) => `${cdnUrl(src, { width: w, quality })} ${w}w`).join(", ");
 }
 
 export { CDN_HOSTNAME, DEFAULT_QUALITY, SRCSET_WIDTHS };

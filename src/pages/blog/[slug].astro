@@ -17,23 +17,14 @@ const { Content } = await render(post);
 
 const seo = post.data.seo;
 const title = seo?.metaTitle ?? post.data.title;
-const description =
-  seo?.metaDescription ??
-  post.data.description ??
-  `${post.data.title} — Significa Blog`;
+const description = seo?.metaDescription ?? post.data.description ?? `${post.data.title} — Significa Blog`;
 
 const relatedProjects = post.data.relatedProjects?.length
   ? await Promise.all(post.data.relatedProjects.map((ref) => getEntry(ref)))
   : [];
 ---
 
-<Base
-  title={title}
-  description={description}
-  ogImage={seo?.ogImage}
-  type="article"
-  publishedAt={post.data.date}
->
+<Base title={title} description={description} ogImage={seo?.ogImage} type="article" publishedAt={post.data.date}>
   <article>
     <header>
       <h1>{post.data.title}</h1>
@@ -60,7 +51,7 @@ const relatedProjects = post.data.relatedProjects?.length
                   <li>
                     <a href={`/projects/${project.id}`}>{project.data.title}</a>
                   </li>
-                ),
+                )
             )}
           </ul>
         </aside>
@@ -78,7 +69,7 @@ const relatedProjects = post.data.relatedProjects?.length
         publishedAt: post.data.date,
         author: post.data.author,
         image: seo?.ogImage,
-      }),
+      })
     )}
   />
 </Base>

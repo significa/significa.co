@@ -14,9 +14,7 @@ const clients = await getClients();
   <section class="intro">
     <div class="intro-inner">
       <h1>
-        <span class="intro-muted"
-          >We don't do everything. We do a few things very well.</span
-        >{" "}
+        <span class="intro-muted">We don't do everything. We do a few things very well.</span>{" "}
         Strategy, design, and engineering for digital products.
       </h1>
     </div>
@@ -30,9 +28,8 @@ const clients = await getClients();
           <span class="service-number" aria-hidden="true">01</span>
           <h2 class="service-title">Strategy</h2>
           <p class="service-description">
-            Research, workshops, and roadmaps. Sometimes you need to step back
-            before you build forward. We help you figure out what to build and
-            why — before a single pixel is pushed.
+            Research, workshops, and roadmaps. Sometimes you need to step back before you build forward. We help you figure out
+            what to build and why — before a single pixel is pushed.
           </p>
           <ul class="service-details">
             <li>User research</li>
@@ -46,9 +43,8 @@ const clients = await getClients();
           <span class="service-number" aria-hidden="true">02</span>
           <h2 class="service-title">Design</h2>
           <p class="service-description">
-            UI, UX, branding, and prototyping. From first sketch to
-            production-ready screens. Interfaces that are clear, accessible, and
-            built around real user needs — not assumptions.
+            UI, UX, branding, and prototyping. From first sketch to production-ready screens. Interfaces that are clear,
+            accessible, and built around real user needs — not assumptions.
           </p>
           <ul class="service-details">
             <li>Product design</li>
@@ -62,9 +58,8 @@ const clients = await getClients();
           <span class="service-number" aria-hidden="true">03</span>
           <h2 class="service-title">Engineering</h2>
           <p class="service-description">
-            Web, mobile, and infrastructure. We build what we design. Our stack
-            choices serve the product, not the other way around. Clean code,
-            tested, ready for the real world.
+            Web, mobile, and infrastructure. We build what we design. Our stack choices serve the product, not the other way
+            around. Clean code, tested, ready for the real world.
           </p>
           <ul class="service-details">
             <li>Web applications</li>
@@ -85,30 +80,29 @@ const clients = await getClients();
         <div class="process-step">
           <h3 class="process-step-title">Discover</h3>
           <p class="process-step-description">
-            Understand the problem, the users, and the business context. We
-            challenge assumptions and align on what success looks like before we
-            start building.
+            Understand the problem, the users, and the business context. We challenge assumptions and align on what success
+            looks like before we start building.
           </p>
         </div>
         <div class="process-step">
           <h3 class="process-step-title">Define</h3>
           <p class="process-step-description">
-            Turn insights into a clear plan. Information architecture, user
-            flows, and a design direction that everyone believes in.
+            Turn insights into a clear plan. Information architecture, user flows, and a design direction that everyone believes
+            in.
           </p>
         </div>
         <div class="process-step">
           <h3 class="process-step-title">Build</h3>
           <p class="process-step-description">
-            Design and engineering work in parallel, not in sequence. Short
-            cycles, constant feedback, working software every week.
+            Design and engineering work in parallel, not in sequence. Short cycles, constant feedback, working software every
+            week.
           </p>
         </div>
         <div class="process-step">
           <h3 class="process-step-title">Launch</h3>
           <p class="process-step-description">
-            Ship it. We handle the details — performance, SEO, analytics,
-            accessibility — so you launch with confidence, not anxiety.
+            Ship it. We handle the details — performance, SEO, analytics, accessibility — so you launch with confidence, not
+            anxiety.
           </p>
         </div>
       </div>
@@ -152,9 +146,7 @@ const clients = await getClients();
                 <a href={`/projects/${project.id}`}>
                   <div class="work-item-content">
                     <h3 class="work-item-title">{project.data.title}</h3>
-                    {project.data.tagline && (
-                      <p class="work-item-tagline">{project.data.tagline}</p>
-                    )}
+                    {project.data.tagline && <p class="work-item-tagline">{project.data.tagline}</p>}
                   </div>
                   <div class="work-item-tags">
                     {project.data.tags.slice(0, 3).map((tag) => (
@@ -180,12 +172,7 @@ const clients = await getClients();
             {clients.map((client) => (
               <li>
                 {client.data.url ? (
-                  <a
-                    href={client.data.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={client.data.name}
-                  >
+                  <a href={client.data.url} target="_blank" rel="noopener noreferrer" title={client.data.name}>
                     <span class="client-name">{client.data.name}</span>
                   </a>
                 ) : (
@@ -203,9 +190,7 @@ const clients = await getClients();
   <section class="cta">
     <div class="cta-inner">
       <h2>Have a project in mind?</h2>
-      <p>
-        Tell us about it. We'll figure out together whether we're the right fit.
-      </p>
+      <p>Tell us about it. We'll figure out together whether we're the right fit.</p>
       <a href="/work-with-us" class="cta-link">Work with us →</a>
     </div>
   </section>

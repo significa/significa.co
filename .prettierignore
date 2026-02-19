@@ -1,0 +1,23 @@
+# Dependencies
+node_modules
+src/assets
+
+# Build output
+dist
+.astro
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Lock files
+pnpm-lock.yaml
+package-lock.json
+yarn.lock

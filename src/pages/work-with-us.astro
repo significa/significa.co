@@ -14,9 +14,7 @@ const testimonials = await getTestimonials();
   <section class="intro">
     <div class="intro-inner">
       <h1>
-        <span class="intro-muted"
-          >We partner with companies that care about craft.</span
-        >
+        <span class="intro-muted">We partner with companies that care about craft.</span>
         {" "}
         Let's build something meaningful together.
       </h1>
@@ -28,13 +26,8 @@ const testimonials = await getTestimonials();
     <div class="contact-inner">
       <div class="contact-card">
         <h2>Get in touch</h2>
-        <p>
-          Drop us a line and tell us about your project. We'll get back to you
-          within two business days.
-        </p>
-        <a href="mailto:hello@significa.co" class="contact-email">
-          hello@significa.co
-        </a>
+        <p>Drop us a line and tell us about your project. We'll get back to you within two business days.</p>
+        <a href="mailto:hello@significa.co" class="contact-email"> hello@significa.co </a>
       </div>
       <div class="contact-details">
         <div class="contact-detail">
@@ -62,44 +55,40 @@ const testimonials = await getTestimonials();
           <span class="step-number">01</span>
           <h3>Conversation</h3>
           <p>
-            We start by listening. Tell us about your business, your users, and
-            what you're trying to achieve. No commitments, no pitches — just an
-            honest conversation about whether we're the right fit.
+            We start by listening. Tell us about your business, your users, and what you're trying to achieve. No commitments,
+            no pitches — just an honest conversation about whether we're the right fit.
           </p>
         </li>
         <li class="process-step">
           <span class="step-number">02</span>
           <h3>Proposal</h3>
           <p>
-            If there's a fit, we scope the work together. You get a clear
-            proposal with timeline, deliverables, and pricing. No surprises, no
-            hidden costs.
+            If there's a fit, we scope the work together. You get a clear proposal with timeline, deliverables, and pricing. No
+            surprises, no hidden costs.
           </p>
         </li>
         <li class="process-step">
           <span class="step-number">03</span>
           <h3>Kick-off</h3>
           <p>
-            A small, dedicated team gets assigned to your project. We set up
-            communication channels, align on goals, and hit the ground running.
+            A small, dedicated team gets assigned to your project. We set up communication channels, align on goals, and hit the
+            ground running.
           </p>
         </li>
         <li class="process-step">
           <span class="step-number">04</span>
           <h3>Build</h3>
           <p>
-            Design and engineering work in tight loops. You see progress weekly,
-            give feedback early, and stay involved throughout. No big reveals —
-            just steady, visible progress.
+            Design and engineering work in tight loops. You see progress weekly, give feedback early, and stay involved
+            throughout. No big reveals — just steady, visible progress.
           </p>
         </li>
         <li class="process-step">
           <span class="step-number">05</span>
           <h3>Launch & iterate</h3>
           <p>
-            We ship, measure, and improve. The work doesn't end at launch — we
-            stick around to make sure what we built actually works in the real
-            world.
+            We ship, measure, and improve. The work doesn't end at launch — we stick around to make sure what we built actually
+            works in the real world.
           </p>
         </li>
       </ol>
@@ -112,26 +101,22 @@ const testimonials = await getTestimonials();
       <div class="criteria-text">
         <h2>Projects we're a good fit for</h2>
         <p>
-          We're selective about the work we take on. Not because we're precious
-          about it, but because focus produces better outcomes for everyone.
+          We're selective about the work we take on. Not because we're precious about it, but because focus produces better
+          outcomes for everyone.
         </p>
       </div>
       <ul class="criteria-list">
         <li>
-          <strong>Digital products</strong> — apps, platforms, and tools that solve
-          real problems for real users.
+          <strong>Digital products</strong> — apps, platforms, and tools that solve real problems for real users.
         </li>
         <li>
-          <strong>E-commerce</strong> — online stores and platforms where design directly
-          impacts revenue.
+          <strong>E-commerce</strong> — online stores and platforms where design directly impacts revenue.
         </li>
         <li>
-          <strong>Design systems</strong> — scalable component libraries and design
-          foundations that grow with your team.
+          <strong>Design systems</strong> — scalable component libraries and design foundations that grow with your team.
         </li>
         <li>
-          <strong>Websites</strong> — marketing sites, corporate sites, and web experiences
-          where craft matters.
+          <strong>Websites</strong> — marketing sites, corporate sites, and web experiences where craft matters.
         </li>
       </ul>
     </div>
@@ -173,12 +158,7 @@ const testimonials = await getTestimonials();
             {clients.map((client) => (
               <li>
                 {client.data.url ? (
-                  <a
-                    href={client.data.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={client.data.name}
-                  >
+                  <a href={client.data.url} target="_blank" rel="noopener noreferrer" title={client.data.name}>
                     <span class="client-name">{client.data.name}</span>
                   </a>
                 ) : (

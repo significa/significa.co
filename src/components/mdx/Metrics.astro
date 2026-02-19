@@ -13,11 +13,7 @@ interface Props {
 const { items } = Astro.props;
 
 if (!items || items.length === 0) {
-  contentError(
-    "Metrics",
-    Astro.url.pathname,
-    "Metrics requires at least one item",
-  );
+  contentError("Metrics", Astro.url.pathname, "Metrics requires at least one item");
 }
 ---
 

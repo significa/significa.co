@@ -10,11 +10,7 @@ interface Props {
 const { slug } = Astro.props;
 
 if (!slug) {
-  contentError(
-    "ProjectCrossSell",
-    Astro.url.pathname,
-    "Missing required prop: slug",
-  );
+  contentError("ProjectCrossSell", Astro.url.pathname, "Missing required prop: slug");
 }
 
 const project = await getEntry("projects", slug);
@@ -23,7 +19,7 @@ if (!project) {
   contentError(
     "ProjectCrossSell",
     Astro.url.pathname,
-    `Project "${slug}" not found. Check the slug exists in src/content/projects/.`,
+    `Project "${slug}" not found. Check the slug exists in src/content/projects/.`
   );
 }
 
@@ -34,18 +30,9 @@ const thumbnailSrc = cdnUrl(project.data.thumbnail, {
 ---
 
 <a href={`/projects/${project.id}`} class="cross-sell">
-  <img
-    src={thumbnailSrc}
-    alt={project.data.title}
-    loading="lazy"
-    decoding="async"
-  />
+  <img src={thumbnailSrc} alt={project.data.title} loading="lazy" decoding="async" />
   <span class="cross-sell-title">{project.data.title}</span>
-  {
-    project.data.tagline && (
-      <span class="cross-sell-tagline">{project.data.tagline}</span>
-    )
-  }
+  {project.data.tagline && <span class="cross-sell-tagline">{project.data.tagline}</span>}
 </a>
 
 <style>

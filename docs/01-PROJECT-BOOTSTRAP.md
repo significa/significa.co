@@ -95,17 +95,22 @@ The reserved routes list in `[...slug].astro` prevents collisions between the tw
 ## Build & Deploy
 
 ```bash
-pnpm dev        # Development server with HMR
-pnpm build      # Build static site to dist/
-pnpm preview    # Preview built site locally
-pnpm check      # TypeScript + content validation
+pnpm dev          # Development server with HMR
+pnpm build        # Build static site to dist/
+pnpm preview      # Preview built site locally
+pnpm check        # TypeScript + content validation (astro check)
+pnpm lint         # Full lint pipeline: Prettier + type check + ESLint
+pnpm lint:check   # ESLint only
+pnpm lint:fix     # ESLint auto-fix
+pnpm format       # Prettier auto-format src/
+pnpm format:check # Prettier check (no write)
 ```
 
 ### CI Pipeline
 
 ```bash
 pnpm install --frozen-lockfile
-pnpm check      # Type safety + content validation
+pnpm lint       # Prettier + type check + ESLint (catches all code quality issues)
 pnpm build      # Full build (catches MDX errors, broken references)
 ```
 
@@ -115,7 +120,7 @@ Cloudflare Pages: push to main triggers build and deploy of `dist/`. Branch push
 
 ### Pre-Push Checklist
 
-Before pushing, run `pnpm check && pnpm build` locally. Content errors caught locally are 10x faster than waiting for CI.
+Before pushing, run `pnpm lint && pnpm build` locally. This runs Prettier, type checking, and ESLint before building. Content errors caught locally are 10x faster than waiting for CI.
 
 ## Reference Documentation
 

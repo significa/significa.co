@@ -16,10 +16,7 @@ const { Content } = await render(project);
 
 const seo = project.data.seo;
 const title = seo?.metaTitle ?? project.data.title;
-const description =
-  seo?.metaDescription ??
-  project.data.tagline ??
-  `${project.data.title} — Significa`;
+const description = seo?.metaDescription ?? project.data.tagline ?? `${project.data.title} — Significa`;
 
 const relatedProjects = project.data.relatedProjects?.length
   ? await Promise.all(project.data.relatedProjects.map((ref) => getEntry(ref)))
@@ -45,7 +42,7 @@ const relatedProjects = project.data.relatedProjects?.length
                   <li>
                     <a href={`/projects/${related.id}`}>{related.data.title}</a>
                   </li>
-                ),
+                )
             )}
           </ul>
         </aside>

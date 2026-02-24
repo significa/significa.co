@@ -73,9 +73,9 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
   }
 
   <!-- Showreel -->
-  <section class="showreel" data-showreel>
+  <section class="showreel">
     <div class="showreel-inner">
-      <div class="showreel-media">
+      <div class="showreel-media" data-showreel>
         <!--
                     Replace with actual showreel thumbnail via CDN:
                     <img src={cdnUrl("showreel/thumbnail.jpg", { width: 1920, quality: 85 })}
@@ -276,44 +276,25 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
     const cursor = document.querySelector<HTMLButtonElement>("[data-showreel-cursor]");
     if (!section || !cursor) return;
 
-    let rafId: number | null = null;
-    let mouseX = 0;
-    let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
-    let isInside = false;
-
-    // Lerp factor — lower = smoother trailing
-    const ease = 0.15;
-
-    function animate() {
-      cursorX += (mouseX - cursorX) * ease;
-      cursorY += (mouseY - cursorY) * ease;
-      cursor!.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
-      rafId = requestAnimationFrame(animate);
+    function positionAt(e: MouseEvent) {
+      const x = e.clientX - cursor.offsetWidth / 2;
+      const y = e.clientY - cursor.offsetHeight / 2;
+      cursor.style.translate = `${x}px ${y}px`;
     }
 
-    section.addEventListener("mouseenter", () => {
-      isInside = true;
+    section.addEventListener("mouseenter", (e: MouseEvent) => {
+      positionAt(e);
       cursor.style.opacity = "1";
-      rafId = requestAnimationFrame(animate);
+      cursor.style.scale = "1";
     });
 
     section.addEventListener("mouseleave", () => {
-      isInside = false;
       cursor.style.opacity = "0";
-      if (rafId !== null) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
-      }
+      cursor.style.scale = "0.5";
     });
 
     section.addEventListener("mousemove", (e: MouseEvent) => {
-      if (!isInside) return;
-      const rect = section.getBoundingClientRect();
-      // Position relative to section center, offset by half cursor size
-      mouseX = e.clientX - rect.left - cursor.offsetWidth / 2;
-      mouseY = e.clientY - rect.top - cursor.offsetHeight / 2;
+      positionAt(e);
     });
 
     // Respect reduced motion
@@ -452,10 +433,10 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
   }
 
   .showreel-cursor {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 10;
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
@@ -468,8 +449,11 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
     font-weight: var(--weight-medium);
     pointer-events: none;
     opacity: 0;
-    transition: opacity var(--duration-fast) var(--ease-out);
-    will-change: transform;
+    scale: 0.5;
+    transition:
+      opacity var(--duration-fast) var(--ease-out),
+      scale var(--duration-fast) cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: translate, scale;
     white-space: nowrap;
   }
 

@@ -25,7 +25,12 @@ export const BLOG_PARAMS = {
   per_page: 10,
   content_type: 'blog-post',
   sort_by: 'first_published_at:desc',
-  resolve_relations: 'blog-post.author,blog-post.authors'
+  resolve_relations: 'blog-post.author,blog-post.authors',
+  filter_query: {
+    hide_from_listings: {
+      is: false
+    }
+  }
 } as const;
 
 export const PROJECT_PARAMS = {

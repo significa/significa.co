@@ -19,7 +19,7 @@
     "@astrojs/react": "^4.4.2",
     "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.7.0",
-    "astro": "^5.17.1",
+    "astro": "^5.17.3",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
@@ -31,14 +31,14 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
-    "@types/react": "^19.2.13",
+    "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@typescript-eslint/parser": "^8.53.0",
-    "eslint": "^9.39.2",
+    "@typescript-eslint/parser": "^8.56.1",
+    "eslint": "^10.0.2",
     "eslint-plugin-astro": "^1.6.0",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.53.0"
+    "typescript-eslint": "^8.56.1"
   }
 }

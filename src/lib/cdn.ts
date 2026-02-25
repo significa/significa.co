@@ -1,11 +1,12 @@
 /**
- * Bunny CDN configuration and URL helpers.
+ * CDN configuration and URL helpers.
  *
- * All media is served through Bunny.net CDN with the Optimizer Engine
- * for real-time image transforms via URL query parameters.
+ * All media is served through our self-hosted image transform service
+ * at cdn.significa.co (Cloudflare → Fly.io → S3), with on-the-fly
+ * sharp-based image transforms via URL query parameters.
  */
 
-const CDN_HOSTNAME = "https://significa.b-cdn.net";
+const CDN_HOSTNAME = "https://cdn.significa.co";
 
 /** Default responsive breakpoints for srcset generation */
 const SRCSET_WIDTHS = [640, 960, 1280, 1920];
@@ -17,9 +18,6 @@ interface CdnImageOptions {
   width?: number;
   quality?: number;
   format?: "webp" | "avif" | "jpeg" | "png";
-  blur?: number;
-  sharpen?: boolean;
-  aspect_ratio?: string;
 }
 
 /**
@@ -30,10 +28,10 @@ function isAbsoluteUrl(src: string): boolean {
 }
 
 /**
- * Build a full Bunny CDN URL with optional optimizer parameters.
+ * Build a full CDN URL with optional image transform parameters.
  *
  * If `src` is already an absolute URL it's used as-is (no hostname prepended).
- * Optimizer query params are still appended when the URL points to our CDN.
+ * Transform query params are still appended when the URL points to our CDN.
  */
 export function cdnUrl(src: string, options: CdnImageOptions = {}): string {
   const params = new URLSearchParams();
@@ -41,16 +39,12 @@ export function cdnUrl(src: string, options: CdnImageOptions = {}): string {
   if (options.width) params.set("width", String(options.width));
   if (options.quality) params.set("quality", String(options.quality));
   if (options.format) params.set("format", options.format);
-  if (options.blur) params.set("blur", String(options.blur));
-  if (options.sharpen) params.set("sharpen", "true");
-  if (options.aspect_ratio) params.set("aspect_ratio", options.aspect_ratio);
 
   const query = params.toString();
 
   // Already a full URL — return as-is (with params only for our own CDN)
   if (isAbsoluteUrl(src)) {
     if (!query) return src;
-    // Only append optimizer params to our own CDN URLs
     if (src.startsWith(CDN_HOSTNAME)) {
       const separator = src.includes("?") ? "&" : "?";
       return `${src}${separator}${query}`;

@@ -5,7 +5,7 @@ import { contentError } from "@/lib/content-errors";
 interface Props {
   /** Video asset path without CDN hostname */
   src: string;
-  /** Optional poster image path (goes through Bunny Optimizer) */
+  /** Optional poster image path (goes through CDN image transforms) */
   poster?: string;
   /** Optional figure caption */
   caption?: string;

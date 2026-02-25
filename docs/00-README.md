@@ -7,7 +7,7 @@ Reference documentation for the Significa website project. For AI agent instruct
 | `01-PROJECT-BOOTSTRAP.md` | Stack, commands, project structure, key principles |
 | `02-CONTENT-SCHEMA.md` | Content collections, Zod schemas, relationships, draft system |
 | `03-MDX-COMPONENTS.md` | Custom components for use inside MDX files |
-| `04-MEDIA-ASSETS.md` | S3 + Bunny CDN pipeline, MediaImage/MediaVideo, optimizer parameters |
+| `04-MEDIA-ASSETS.md` | S3 + CDN pipeline, MediaImage/MediaVideo, image transform parameters |
 | `05-RULES.md` | Do's, don'ts, build-time validation, common mistakes |
 | `06-ASTRO-REFERENCE.md` | Astro framework deep reference (components, collections, islands, transitions) |
 | `07-TEAM-DECISIONS.md` | Team discussion log and architectural decisions |
@@ -20,6 +20,6 @@ Reference documentation for the Significa website project. For AI agent instruct
 2. **Astro v5 (latest stable).** Astro 6 is in beta — upgrade when it reaches stable. Stay on latest v5 until then.
 3. **Content Collections are the database.** Use `getCollection()` and `getEntry()`. Never `import.meta.glob`.
 4. **References use `reference()`.** Build-time validated cross-collection links. Broken slugs break the build, not production.
-5. **Media via S3 + Bunny CDN.** Uploaded via asset manager, served from `https://significa.b-cdn.net` with Bunny Optimizer transforms.
+5. **Media via S3 + self-hosted CDN.** Uploaded via asset manager, served from `https://cdn.significa.co` with sharp-based image transforms.
 6. **Astro components first.** React only for interactive islands.
 7. **When unsure, read the Astro docs.** Do not guess. https://docs.astro.build

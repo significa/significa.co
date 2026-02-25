@@ -96,7 +96,7 @@ const transforms = (w: number) =>
 
 **Recommendation:** Define the image pipeline before writing any content. Build a CLI tool or script that uploads to R2 and generates the MDX snippet.
 
-**Team Decision (Updated):** Media is managed via the internal asset manager app, which uploads to S3. Bunny.net CDN (`https://significa.b-cdn.net`) serves media with the Bunny Optimizer Engine for real-time image transforms (resize, quality, format conversion via URL query parameters). See `docs/04-MEDIA-ASSETS.md` for the full technical reference.
+**Team Decision (Updated):** Media is managed via the internal asset manager app (`assets.significa.co`), which uploads to S3. A self-hosted image transform service on Fly.io serves media through `https://cdn.significa.co` (Cloudflare edge cache → Fly.io → S3) with sharp-based image transforms (resize, quality, format conversion via URL query parameters). See `docs/04-MEDIA-ASSETS.md` for the full technical reference.
 
 ---
 
@@ -480,7 +480,7 @@ The `[...slug].astro` catch-all now checks against: `blog`, `projects`, `labs`, 
 | Topic | Decision |
 |---|---|
 | Astro version | v6 latest stable |
-| Media pipeline | S3 + Bunny.net CDN with Optimizer Engine (`significa.b-cdn.net`) |
+| Media pipeline | S3 + self-hosted CDN (`cdn.significa.co`: Cloudflare → Fly.io sharp transforms → S3) |
 | CMS | No CMS; marketing uses git + AI assistance |
 | MDX components | Start with 5, grow as content demands |
 | Conversion architecture | Evolves with real data; marketing owns it |

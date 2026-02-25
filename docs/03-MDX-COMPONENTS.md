@@ -39,9 +39,9 @@ const { Content } = await render(entry);
 
 ### MediaImage
 
-Renders an optimized image via Bunny CDN with responsive `srcset`. Always use this instead of raw `![alt](url)` for captions, sizing control, and automatic image optimization.
+Renders an optimized image via the CDN with responsive `srcset`. Always use this instead of raw `![alt](url)` for captions, sizing control, and automatic image optimization.
 
-The `src` prop takes the asset path (as returned by the asset manager). The component prepends the Bunny CDN hostname (`https://significa.b-cdn.net`) and appends optimization query parameters automatically.
+The `src` prop takes the asset path (as returned by the asset manager). The component prepends the CDN hostname (`https://cdn.significa.co`) and appends optimization query parameters automatically.
 
 ```mdx
 <MediaImage
@@ -58,7 +58,7 @@ The `src` prop takes the asset path (as returned by the asset manager). The comp
 
 ### MediaVideo
 
-Embeds a video served via Bunny CDN. The `poster` image goes through the same optimization pipeline as `MediaImage`.
+Embeds a video served via the CDN. The `poster` image goes through the same transform pipeline as `MediaImage`.
 
 ```mdx
 <MediaVideo

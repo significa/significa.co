@@ -10,7 +10,7 @@
 - **Use `reference()` for cross-collection links.** Build-time validated. Broken slugs break the build, not production.
 - **Use `pnpm`.** Not npm, not yarn.
 - **Use design tokens for colors and typography.** Colors and font sizes come from `tokens.css` custom properties. No hex colors, no arbitrary font sizes. Spacing uses raw values (4px grid guideline, `rem` for vertical, `px` for horizontal when appropriate). See `docs/08-DESIGN-TOKENS.md`.
-- **Use `MediaImage` for all images in content.** Never raw `<img>` tags. It constructs Bunny CDN URLs with responsive `srcset` and optimization parameters automatically.
+- **Use `MediaImage` for all images in content.** Never raw `<img>` tags. It constructs CDN URLs with responsive `srcset` and optimization parameters automatically.
 - **Drafts use the `.draft` filename suffix.** Name a file `my-post.draft.mdx` to mark it as a draft. In production builds, `.draft` files are excluded at the glob level — they never enter the content layer. In development (`pnpm dev`), drafts are included so authors can preview them locally. Publishing is a file rename: `my-post.draft.mdx` → `my-post.mdx`. No frontmatter field needed.
 - **Use kebab-case for all filenames.** Components, pages, utilities, styles, content — everything is kebab-case (`media-image.astro`, `content-errors.ts`, `global.css`). Enforced by ESLint via `eslint-plugin-check-file`.
 

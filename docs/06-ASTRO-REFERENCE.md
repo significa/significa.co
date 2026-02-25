@@ -549,7 +549,7 @@ pnpm run build          # Build static site
 - [x] Favicon set in `public/`
 - [x] Open Graph / Twitter meta tags (SEO component)
 - [x] `astro check` in CI pipeline
-- [x] Image optimization strategy (Bunny CDN Optimizer)
+- [x] Image optimization strategy (self-hosted sharp transform service at cdn.significa.co)
 - [x] 404 page (`src/pages/404.astro`)
 - [x] Canonical URLs in head
 - [x] Structured data (JSON-LD: Organization, Article, BreadcrumbList)

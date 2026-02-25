@@ -69,14 +69,14 @@ src/
 │   └── tokens.css            # Design tokens (colors, typography, layout, transitions)
 └── lib/
     ├── collections.ts        # Helper functions for content queries
-    ├── cdn.ts                # Bunny CDN URL helpers and srcset generation
+    ├── cdn.ts                # CDN URL helpers and srcset generation
     ├── seo.ts                # Structured data generation (JSON-LD)
     └── content-errors.ts     # Build-time error formatting
 public/
 ├── favicon.svg
 ├── fonts/
 └── robots.txt
-# Images/videos served via S3 + Bunny CDN (see 04-MEDIA-ASSETS.md)
+# Images/videos served via S3 + CDN (cdn.significa.co) (see 04-MEDIA-ASSETS.md)
 ```
 
 ### Hybrid page architecture
@@ -89,7 +89,7 @@ The reserved routes list in `[...slug].astro` prevents collisions between the tw
 
 1. **No database.** Content lives in MDX/YAML files with typed frontmatter. Content Collections are the database.
 2. **No client-side JS by default.** Astro renders everything at build time. Only add `client:load` or `client:visible` to React components that genuinely need interactivity.
-3. **Media via S3 + Bunny CDN.** Images and videos are uploaded through the internal asset manager to S3 and served via Bunny.net CDN (`https://significa.b-cdn.net`) with real-time image optimization. See `docs/04-MEDIA-ASSETS.md`.
+3. **Media via S3 + self-hosted CDN.** Images and videos are uploaded through the internal asset manager to S3 and served via `https://cdn.significa.co` (Cloudflare → Fly.io transform service → S3) with sharp-based image optimization. See `docs/04-MEDIA-ASSETS.md`.
 4. **Relationships via `reference()`.** Collections reference each other using Astro's `reference()` for build-time validation. Broken slugs break the build, not production.
 5. **Drafts via `.draft` filename suffix.** Name a file `my-post.draft.mdx` to mark it as a draft. The shared `contentLoader()` excludes `*.draft.*` files in production builds at the glob level. In development, drafts are included for preview. Publishing is a file rename — no frontmatter field needed.
 6. **Keep it simple.** If you're reaching for a library, stop and check if plain HTML/CSS or an Astro component can do it.

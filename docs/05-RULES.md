@@ -9,7 +9,7 @@
 - **Use TypeScript everywhere.** Type your props with `interface Props`, type your data, type your utils. No `any`.
 - **Use `reference()` for cross-collection links.** Build-time validated. Broken slugs break the build, not production.
 - **Use `pnpm`.** Not npm, not yarn.
-- **Use design tokens.** Every value comes from `global.css` custom properties. No magic numbers, no magic colors.
+- **Use design tokens.** Every value comes from `global.css` custom properties. No magic numbers, no magic colors. See `docs/08-DESIGN-TOKENS.md`.
 - **Use `MediaImage` for all images in content.** Never raw `<img>` tags. It constructs Bunny CDN URLs with responsive `srcset` and optimization parameters automatically.
 - **Drafts use the `.draft` filename suffix.** Name a file `my-post.draft.mdx` to mark it as a draft. In production builds, `.draft` files are excluded at the glob level — they never enter the content layer. In development (`pnpm dev`), drafts are included so authors can preview them locally. Publishing is a file rename: `my-post.draft.mdx` → `my-post.mdx`. No frontmatter field needed.
 - **Use kebab-case for all filenames.** Components, pages, utilities, styles, content — everything is kebab-case (`media-image.astro`, `content-errors.ts`, `global.css`). Enforced by ESLint via `eslint-plugin-check-file`.
@@ -31,7 +31,52 @@
 - **Do not use PascalCase or camelCase for filenames.** All files are kebab-case. `MediaImage.astro` → `media-image.astro`. `formatDate.ts` → `format-date.ts`. The ESLint rule will catch violations.
 - **Do not use a `draft` frontmatter field.** Drafts are managed via the `.draft` filename suffix (e.g. `my-post.draft.mdx`), not a boolean in frontmatter. The content loader excludes `.draft` files in production automatically.
 
-## Common Mistakes to Avoid
+## Build-Time Validation
+
+This site is managed by marketing and non-technical people. Every error caught at build time is one less bug in production.
+
+### Slug Collision Check
+
+The catch-all `[...slug].astro` must validate that no page slug collides with reserved routes:
+
+```typescript
+// In src/pages/[...slug].astro getStaticPaths()
+const reserved = ['blog', 'projects', 'labs'];
+for (const page of pages) {
+  const topSegment = page.id.split('/')[0];
+  if (reserved.includes(topSegment)) {
+    throw new Error(
+      `Page "${page.id}" collides with reserved route /${topSegment}. Rename it.`
+    );
+  }
+}
+```
+
+### Content Error Helper
+
+Wrap build-time errors with actionable messages:
+
+```typescript
+// src/lib/content-errors.ts
+export function contentError(
+  component: string,
+  file: string,
+  message: string
+): never {
+  throw new Error(
+    `[${component}] in ${file}: ${message}\nFix the content and rebuild.`
+  );
+}
+```
+
+### Why `reference()` Over Plain Slugs
+
+We always use `reference()` instead of `z.string()` for cross-collection links. The trade-off (Astro lock-in) is worth it because:
+- Build fails immediately on broken references
+- Non-technical content editors get instant feedback
+- No runtime errors reach production
+
+## Common Mistakes and Gotchas
 
 1. **Wrapping everything in React.** An Astro component with a `<style>` tag is simpler, faster, and has zero JS overhead.
 2. **Over-abstracting.** Don't create a component that handles 15 variants. Start with the simplest thing that works.
@@ -42,3 +87,5 @@
 7. **`reference()` returns stubs.** You get `{ id, collection }`, not the full entry. Resolve with `getEntry(ref)`.
 8. **MDX components aren't auto-available.** Pass them explicitly via the `components` prop when rendering.
 9. **Referencing a draft from non-draft content.** If a highlight or award references a `.draft` project, the dev server works fine but `pnpm build` fails because the draft is excluded from the collection. This is correct behavior — it prevents shipping pages that link to nothing.
+10. **Catch-all route collision.** If a page in `src/content/pages/` has a slug matching `blog`, `projects`, or `labs`, the build-time check throws. See Build-Time Validation above.
+11. **Static paths must be exhaustive.** Every URL must be returned by `getStaticPaths()`. Missing = 404.

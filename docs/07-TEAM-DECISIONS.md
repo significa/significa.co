@@ -316,9 +316,9 @@ Nothing mentioned in the plan. Unanimous recommendation:
 - **Google Search Console** (free, non-negotiable for SEO)
 - Track: page views, traffic sources, conversions, content performance
 
-### ~~Version Pinning~~ Resolved: Use Astro v6
+### Version Pinning: Astro v5 Now, v6 When Stable
 
-**Team Decision:** Use latest stable Astro (v6 when stable). We want to work with the latest versions of everything to avoid breaking changes in the near future.
+**Team Decision:** Use latest stable Astro. Currently on **v5** — Astro 6 is in beta (requires Node 22+, Zod 4, removes legacy APIs). Upgrade to v6 as soon as it reaches stable. Until then, keep dependencies up to date within the v5 range.
 
 ### CSS Token System (Raised by Devil's Advocate, UX/UI)
 

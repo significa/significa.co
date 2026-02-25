@@ -5,17 +5,19 @@ Reference documentation for the Significa website project. For AI agent instruct
 | File | What it covers |
 |------|---------------|
 | `01-PROJECT-BOOTSTRAP.md` | Stack, commands, project structure, key principles |
-| `02-CONTENT-SCHEMA.md` | Content collections, Zod schemas, relationships |
+| `02-CONTENT-SCHEMA.md` | Content collections, Zod schemas, relationships, draft system |
 | `03-MDX-COMPONENTS.md` | Custom components for use inside MDX files |
-| `04-MEDIA-ASSETS.md` | Where media lives, image handling strategy |
-| `05-RULES.md` | Do's, don'ts, and common mistakes |
+| `04-MEDIA-ASSETS.md` | S3 + Bunny CDN pipeline, MediaImage/MediaVideo, optimizer parameters |
+| `05-RULES.md` | Do's, don'ts, build-time validation, common mistakes |
 | `06-ASTRO-REFERENCE.md` | Astro framework deep reference (components, collections, islands, transitions) |
 | `07-TEAM-DECISIONS.md` | Team discussion log and architectural decisions |
+| `08-DESIGN-TOKENS.md` | CSS custom properties: spacing, typography, colors, breakpoints |
+| `09-SEO-ACCESSIBILITY.md` | SEO checklist and accessibility baseline |
 
 ## Quick Reminders
 
 1. **Static site.** No server, no API, no database. HTML generated at build time.
-2. **Astro v5 (latest stable).** Astro 6 is in beta — do not upgrade until stable. Stay on latest v5.
+2. **Astro v5 (latest stable).** Astro 6 is in beta — upgrade when it reaches stable. Stay on latest v5 until then.
 3. **Content Collections are the database.** Use `getCollection()` and `getEntry()`. Never `import.meta.glob`.
 4. **References use `reference()`.** Build-time validated cross-collection links. Broken slugs break the build, not production.
 5. **Media via S3 + Bunny CDN.** Uploaded via asset manager, served from `https://significa.b-cdn.net` with Bunny Optimizer transforms.

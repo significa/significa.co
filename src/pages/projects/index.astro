@@ -1,28 +1,220 @@
 ---
 import BaseLayout from "@/layouts/base.astro";
 import { getProjects } from "@/lib/collections";
+import { getCollection } from "astro:content";
+import { cdnUrl } from "@/lib/cdn";
 
 const projects = await getProjects();
+const allAwards = await getCollection("awards");
+
+// Group awards by project
+const awardsByProject = new Map<string, Array<{ award: string; year: number; url?: string }>>();
+for (const award of allAwards) {
+  const projectId = award.data.project.id;
+  if (!awardsByProject.has(projectId)) {
+    awardsByProject.set(projectId, []);
+  }
+  awardsByProject.get(projectId)!.push({
+    award: award.data.award,
+    year: award.data.year,
+    url: award.data.url,
+  });
+}
 ---
 
-<BaseLayout title="Projects" description="Selected work from Significa's portfolio.">
-  <section>
-    <h1>Projects</h1>
-    {
-      projects.length === 0 ? (
-        <p>No projects yet.</p>
-      ) : (
-        <ul>
-          {projects.map((project) => (
-            <li>
-              <a href={`/projects/${project.id}`}>
-                <h2>{project.data.title}</h2>
-                {project.data.tagline && <p>{project.data.tagline}</p>}
+<BaseLayout title="Projects — Significa" description="Selected work from Significa's portfolio.">
+  <div class="page">
+    <header class="page-header">
+      <h1>Projects.</h1>
+    </header>
+
+    <div class="projects-grid">
+      {
+        projects.map((project) => {
+          const projectAwards = awardsByProject.get(project.id) || [];
+          const thumbnailUrl = project.data.thumbnail ? cdnUrl(project.data.thumbnail, { width: 800, quality: 85 }) : null;
+
+          return (
+            <article class="project-card">
+              <a href={`/projects/${project.id}`} class="project-link">
+                {thumbnailUrl && (
+                  <div class="project-thumbnail">
+                    <img src={thumbnailUrl} alt={project.data.title} loading="lazy" decoding="async" />
+                  </div>
+                )}
+
+                <div class="project-info">
+                  <h2 class="project-title">{project.data.title}</h2>
+                  {project.data.tagline && <p class="project-tagline">{project.data.tagline}</p>}
+
+                  {projectAwards.length > 0 && (
+                    <ul class="awards-list" role="list">
+                      {projectAwards.slice(0, 5).map((award) => (
+                        <li class="award-badge">
+                          <span class="award-name">{award.award}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  <span class="view-project">View project →</span>
+                </div>
               </a>
-            </li>
-          ))}
-        </ul>
-      )
-    }
-  </section>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
 </BaseLayout>
+
+<style>
+  .page {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    padding-block: 4rem 6rem;
+  }
+
+  .page-header {
+    margin-block-end: 3rem;
+  }
+
+  .page-header h1 {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr));
+    gap: 3rem 2rem;
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .project-link:hover {
+    transform: translateY(-4px);
+  }
+
+  .project-thumbnail {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--color-surface-alt);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-block-end: 1.25rem;
+  }
+
+  .project-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .project-link:hover .project-thumbnail img {
+    transform: scale(1.05);
+  }
+
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .project-title {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    margin: 0;
+  }
+
+  .project-tagline {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    margin: 0;
+  }
+
+  .awards-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+  }
+
+  .award-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: var(--text-xs);
+    padding: 0.375rem 0.75rem;
+    background: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .project-link:hover .award-badge {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+  }
+
+  .award-name {
+    font-weight: var(--weight-medium);
+  }
+
+  .view-project {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-primary);
+    margin-top: auto;
+    padding-top: 0.5rem;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .project-link:hover .view-project {
+    color: var(--color-primary-hover);
+  }
+
+  @media (max-width: 768px) {
+    .page {
+      padding-block: 3rem 4rem;
+    }
+
+    .page-header h1 {
+      font-size: var(--text-2xl);
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .project-title {
+      font-size: var(--text-lg);
+    }
+
+    .project-tagline {
+      font-size: var(--text-sm);
+    }
+  }
+</style>

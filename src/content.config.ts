@@ -247,6 +247,8 @@ const handbook = defineCollection({
     description: z.string().optional(),
     /** Last updated date */
     date: z.coerce.date(),
+    /** Cover image displayed at the top of the page (CDN path) */
+    coverImage: z.string().optional(),
     /** Reference to a handbook-groups entry */
     group: reference("handbook-groups"),
     /** Sort order within the group on the index page */

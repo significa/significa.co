@@ -175,3 +175,42 @@ During development, CDN URLs work directly since they're public. No local proxy 
 - Always use `MediaImage` component, never raw `<img>` tags in content
 - Use the `sizes` prop when images don't span the full viewport
 - Format auto-negotiation is handled by the transform service via `Accept` header — no need to specify format
+
+## Handbook Cover Images
+
+Handbook pages support optional cover images via the `coverImage` frontmatter field. These are rendered directly using CDN helpers (not the `MediaImage` component) for optimal LCP performance.
+
+### Usage
+
+```yaml
+---
+title: Code of Ethics
+coverImage: https://cdn.significa.co/handbook/code-of-ethics-cover.jpg
+# ... other fields
+---
+```
+
+### URL Format
+
+The `coverImage` field accepts **full URLs**:
+- **CDN URLs:** `https://cdn.significa.co/handbook/image.jpg` (recommended)
+- **External URLs:** `https://images.unsplash.com/photo-xyz`
+- **Any public image URL**
+
+CDN URLs get automatic optimization; external URLs are used as-is.
+
+### Implementation
+
+Cover images are rendered in `src/pages/handbook/[...slug].astro` using:
+- `cdnUrl()` for the main src (handles all URL formats)
+- `cdnSrcset()` for responsive variants (CDN URLs only)
+- Eager loading with high fetchpriority
+- No alt text (decorative images)
+
+### Guidelines
+
+- **Dimensions**: 1200×630px or larger (16:9 or 2:1 aspect ratio)
+- **Format**: JPEG for photos, PNG for graphics
+- **URL**: Use full URLs (CDN URLs recommended for optimization)
+- **Optimization**: Automatic for CDN URLs via transform service
+- **Display**: Full-width within content area (max 840px), 8px border-radius

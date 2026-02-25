@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 import BaseLayout from "@/layouts/base.astro";
 import { mdxComponents } from "@/components/mdx/components";
 import { getHandbookIndex, getHandbookBreadcrumbs, getHandbookChildren } from "@/lib/collections";
+import { cdnUrl, cdnSrcset, DEFAULT_QUALITY } from "@/lib/cdn";
 
 export async function getStaticPaths() {
   const pages = await getCollection("handbook");
@@ -127,6 +128,23 @@ function formatDate(date: Date) {
           <h1>{page.data.title}</h1>
           {page.data.description && <p class="page-description">{page.data.description}</p>}
         </header>
+
+        <!-- Cover image (if provided) -->
+        {
+          page.data.coverImage && (
+            <div class="cover-image">
+              <img
+                src={cdnUrl(page.data.coverImage, { width: 1200, quality: DEFAULT_QUALITY })}
+                srcset={cdnSrcset(page.data.coverImage, { quality: DEFAULT_QUALITY })}
+                sizes="(max-width: 768px) 100vw, 840px"
+                alt=""
+                loading="eager"
+                fetchpriority="high"
+                decoding="sync"
+              />
+            </div>
+          )
+        }
 
         <div class="prose">
           <Content components={mdxComponents} />
@@ -331,6 +349,19 @@ function formatDate(date: Date) {
   .page-header h1 {
     font-size: var(--text-2xl);
     margin-block-end: 0.5rem;
+  }
+
+  /* Cover image */
+  .cover-image {
+    margin-block-end: 2.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .cover-image img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   .page-description {

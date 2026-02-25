@@ -286,6 +286,76 @@ const awards = defineCollection({
 | `url` | string | no | External link to award page |
 | `order` | number | no | Sort order (ascending). Default `0` |
 
+### Handbook Groups (YAML)
+
+Visual categories shown on the handbook index page. Each handbook page references one group.
+
+```ts
+const handbookGroups = defineCollection({
+  loader: contentLoader({
+    extensions: ["yaml"],
+    base: "src/content/handbook-groups",
+  }),
+  schema: z.object({
+    title: z.string(),
+    order: z.number(),
+  }),
+});
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `title` | string | yes | Display name shown on the index page |
+| `order` | number | yes | Sort order of the group on the index page |
+
+Filenames act as slugs referenced by handbook pages (e.g. `engineering.yaml` → `group: engineering`).
+
+### Handbook (MDX)
+
+Internal company documentation. File path determines both the URL and the parent-child hierarchy.
+
+```ts
+const handbook = defineCollection({
+  loader: contentLoader({
+    extensions: ["mdx"],
+    base: "src/content/handbook",
+  }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    date: z.coerce.date(),
+    group: reference("handbook-groups"),
+    order: z.number().default(0),
+    seo: seoSchema.optional(),
+  }),
+});
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `title` | string | yes | Page title |
+| `description` | string | no | Short description for SEO and child page listings |
+| `date` | date | yes | Last updated date |
+| `group` | reference | yes | Which group this page belongs to — build-time validated |
+| `order` | number | no | Sort order within the group on the index. Default `0` |
+| `seo` | object | no | Override meta title, description, OG image |
+
+**File structure determines hierarchy:**
+
+```
+src/content/handbook/
+├── culture.mdx                              → /handbook/culture          (top-level)
+├── how-we-build-software.mdx               → /handbook/how-we-build-software  (top-level, has children)
+└── how-we-build-software/
+    ├── front-end-development.mdx           → /handbook/how-we-build-software/front-end-development
+    └── back-end-development.mdx            → /handbook/how-we-build-software/back-end-development
+```
+
+- A page becomes a **parent** when a sibling directory shares its name and contains MDX files.
+- Children inherit their parent's URL as a prefix.
+- Nesting beyond one level is supported but should be used sparingly.
+- The `group` field is still required on child pages — it controls which group they appear under in sidebar navigation.
+
 ## Export
 
 All collections must be exported from `src/content.config.ts`:
@@ -300,6 +370,8 @@ export const collections = {
   clients,
   testimonials,
   awards,
+  "handbook-groups": handbookGroups,
+  handbook,
 };
 ```
 
@@ -453,10 +525,19 @@ All query helpers live in `src/lib/collections.ts`. These handle sorting and ref
 | `getTestimonials()` | All testimonials, sorted by order asc |
 | `getResolvedHighlights()` | Highlights with referenced entries resolved |
 | `getAwards()` | Awards with referenced projects resolved |
+| `getHandbookGroups()` | All handbook groups, sorted by order asc |
+| `getHandbookPages()` | All handbook pages, sorted by order asc |
+| `getTopLevelHandbookPages()` | Handbook pages without a parent |
+| `getHandbookChildren(parentId)` | Direct children of a handbook page |
+| `getHandbookParent(entry)` | Parent entry for a handbook page, or null |
+| `getHandbookBreadcrumbs(entry)` | Ancestor chain from root to the current page |
+| `getHandbookIndex()` | Full grouped structure for the index page |
 
 ## Important Notes
 
 - **`reference()` returns `{ id, collection }` objects**, not the full entry. Resolve with `getEntry(ref)`.
+- **Handbook parent-child hierarchy is file-path derived.** A page at `how-we-build-software/front-end.mdx` is automatically a child of `how-we-build-software.mdx`. No `parent` field in frontmatter — the relationship is implicit in the directory structure.
+- **Handbook groups use `reference("handbook-groups")`**, so a typo in `group:` breaks the build, not production.
 - **Drafts use the `.draft` filename suffix.** No frontmatter field, no query-time filtering. The content loader handles it automatically.
 - **Blog supports both `.md` and `.mdx`.** Blog posts that don't need custom components can use plain `.md`.
 - **YAML for structured data without prose.** Highlights, clients, testimonials, awards.

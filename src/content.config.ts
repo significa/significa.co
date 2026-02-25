@@ -206,6 +206,55 @@ const awards = defineCollection({
   }),
 });
 
+// ============================================================
+// Handbook groups — visual categories on the handbook index
+// ============================================================
+// Each group has a title and an order. Handbook pages reference
+// a group by its filename slug (e.g. "engineering", "design").
+
+const handbookGroups = defineCollection({
+  loader: contentLoader({
+    extensions: ["yaml"],
+    base: "src/content/handbook-groups",
+  }),
+  schema: z.object({
+    title: z.string(),
+    order: z.number(),
+  }),
+});
+
+// ============================================================
+// Handbook — internal company documentation
+// ============================================================
+// MDX files in src/content/handbook/, organized in directories
+// for parent-child nesting. File path determines URL:
+//   culture.mdx                      → /handbook/culture
+//   how-we-build-software.mdx        → /handbook/how-we-build-software
+//   how-we-build-software/front-end.mdx → /handbook/how-we-build-software/front-end
+//
+// `group` references a handbook-groups entry (validated at build time).
+// `order` controls sort position within a group on the index page.
+// Parent pages (those with children) are identified at query time
+// by checking if any other entry's id starts with their id + "/".
+
+const handbook = defineCollection({
+  loader: contentLoader({
+    extensions: ["mdx"],
+    base: "src/content/handbook",
+  }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    /** Last updated date */
+    date: z.coerce.date(),
+    /** Reference to a handbook-groups entry */
+    group: reference("handbook-groups"),
+    /** Sort order within the group on the index page */
+    order: z.number().default(0),
+    seo: seoSchema.optional(),
+  }),
+});
+
 export const collections = {
   projects,
   blog,
@@ -215,4 +264,6 @@ export const collections = {
   clients,
   testimonials,
   awards,
+  "handbook-groups": handbookGroups,
+  handbook,
 };

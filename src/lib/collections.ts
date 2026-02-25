@@ -1,4 +1,5 @@
 import { getCollection, getEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 /**
  * Get all projects, sorted by date descending.
@@ -83,4 +84,109 @@ export async function getAwards() {
   );
 
   return resolved;
+}
+
+// ============================================================
+// Handbook helpers
+// ============================================================
+
+export type HandbookEntry = CollectionEntry<"handbook">;
+export type HandbookGroupEntry = CollectionEntry<"handbook-groups">;
+
+/**
+ * Get all handbook groups, sorted by order ascending.
+ */
+export async function getHandbookGroups() {
+  const groups = await getCollection("handbook-groups");
+  return groups.sort((a, b) => a.data.order - b.data.order);
+}
+
+/**
+ * Get all handbook pages, sorted by order ascending within each group.
+ */
+export async function getHandbookPages() {
+  const pages = await getCollection("handbook");
+  return pages.sort((a, b) => a.data.order - b.data.order);
+}
+
+/**
+ * Get only top-level handbook pages (no "/" in their id).
+ * These are the pages shown directly under groups on the index.
+ */
+export async function getTopLevelHandbookPages() {
+  const pages = await getHandbookPages();
+  return pages.filter((p) => !p.id.includes("/"));
+}
+
+/**
+ * Get child pages of a given parent handbook page.
+ * Children are pages whose id starts with `parentId + "/"`.
+ */
+export async function getHandbookChildren(parentId: string) {
+  const pages = await getHandbookPages();
+  const prefix = parentId + "/";
+  // Only direct children — one level deep (no nested slashes after the prefix)
+  return pages.filter((p) => {
+    if (!p.id.startsWith(prefix)) return false;
+    const remainder = p.id.slice(prefix.length);
+    return !remainder.includes("/");
+  });
+}
+
+/**
+ * Get the parent page of a handbook entry, if it has one.
+ * Returns null for top-level pages.
+ */
+export async function getHandbookParent(entry: HandbookEntry) {
+  const parts = entry.id.split("/");
+  if (parts.length < 2) return null;
+  const parentId = parts.slice(0, -1).join("/");
+  const pages = await getHandbookPages();
+  return pages.find((p) => p.id === parentId) ?? null;
+}
+
+/**
+ * Build the breadcrumb trail for a handbook page.
+ * Returns entries from root to the current page (exclusive).
+ */
+export async function getHandbookBreadcrumbs(entry: HandbookEntry) {
+  const parts = entry.id.split("/");
+  if (parts.length < 2) return [];
+
+  const pages = await getHandbookPages();
+  const breadcrumbs: HandbookEntry[] = [];
+
+  for (let i = 1; i < parts.length; i++) {
+    const ancestorId = parts.slice(0, i).join("/");
+    const ancestor = pages.find((p) => p.id === ancestorId);
+    if (ancestor) breadcrumbs.push(ancestor);
+  }
+
+  return breadcrumbs;
+}
+
+/**
+ * Get the full grouped handbook structure for the index page.
+ * Returns groups in order, each with their top-level pages.
+ * Pages with children have a `children` array attached.
+ */
+export async function getHandbookIndex() {
+  const [groups, allPages] = await Promise.all([getHandbookGroups(), getHandbookPages()]);
+
+  const topLevel = allPages.filter((p) => !p.id.includes("/"));
+
+  return groups.map((group) => {
+    const pages = topLevel
+      .filter((p) => p.data.group.id === group.id)
+      .map((page) => {
+        const prefix = page.id + "/";
+        const children = allPages.filter((p) => {
+          if (!p.id.startsWith(prefix)) return false;
+          return !p.id.slice(prefix.length).includes("/");
+        });
+        return { page, children };
+      });
+
+    return { group, pages };
+  });
 }

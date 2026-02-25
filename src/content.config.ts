@@ -59,6 +59,10 @@ const projects = defineCollection({
     /** Large hero image for homepage showcase and project detail header */
     heroImage: z.string().optional(),
     tags: z.array(z.string()).default([]),
+    /** Industry categories for filtering (e.g., "fintech", "e-commerce", "healthcare") */
+    industry: z.array(z.string()).default([]),
+    /** Deliverable types for filtering (e.g., "website", "mobile-app", "design-system") */
+    deliverable: z.array(z.string()).default([]),
     /** Key metrics shown on project cards (e.g. conversion uplift, NPS) */
     metrics: z.array(metricSchema).default([]),
     seo: seoSchema.optional(),

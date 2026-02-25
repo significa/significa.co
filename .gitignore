@@ -30,3 +30,4 @@ pnpm-debug.log*
 
 # claude
 .claude/
+.entire

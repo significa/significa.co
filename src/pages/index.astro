@@ -277,6 +277,8 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
     if (!section || !cursor) return;
 
     function positionAt(e: MouseEvent) {
+      if (!cursor) return;
+
       const x = e.clientX - cursor.offsetWidth / 2;
       const y = e.clientY - cursor.offsetHeight / 2;
       cursor.style.translate = `${x}px ${y}px`;

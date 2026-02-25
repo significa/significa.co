@@ -14,6 +14,7 @@
   export let project: ISbStoryData<ProjectStoryblok> | ProjectPage;
   export let variant: 'featured' | 'default' = 'default';
   export let as: 'h2' | 'h3' = 'h3';
+  export let autoplayReel = true;
 
   let index = 0;
   let video: HTMLVideoElement;
@@ -74,7 +75,7 @@
           class="pointer-events-none mt-8 aspect-video h-auto w-full rounded-md bg-background-offset"
           muted
           playsinline
-          autoplay
+          autoplay={autoplayReel}
           loop
           src={project.content.reel.filename}
         />

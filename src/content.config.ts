@@ -55,7 +55,6 @@ const projects = defineCollection({
     tagline: z.string().optional(),
     client: z.string().optional(),
     date: z.coerce.date(),
-    draft: z.boolean().default(false),
     thumbnail: z.string(),
     /** Large hero image for homepage showcase and project detail header */
     heroImage: z.string().optional(),
@@ -76,7 +75,6 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     date: z.coerce.date(),
-    draft: z.boolean().default(false),
     author: z.string().optional(),
     thumbnail: z.string().optional(),
     tags: z.array(z.string()).default([]),
@@ -94,7 +92,6 @@ const labs = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
-    draft: z.boolean().default(false),
     repoUrl: z.string().url().optional(),
     thumbnail: z.string().optional(),
     tags: z.array(z.string()).default([]),

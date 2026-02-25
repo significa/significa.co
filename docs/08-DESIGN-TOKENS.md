@@ -1,25 +1,26 @@
 # Design Token System
 
-All design values live in `src/styles/global.css` as CSS custom properties. The token system evolves as the design develops, but the principle is absolute: **no magic numbers, no magic colors**.
+All design values live in `src/styles/tokens.css` as CSS custom properties (imported by `global.css`). The token system covers **colors**, **typography**, **layout**, and **transitions**. Spacing uses raw values — no tokens.
 
 ## How the Token System Works
 
-Tokens are defined in `global.css` and used everywhere via `var()`. The system grows with the design. When you need a value that doesn't exist as a token, ask the designer to add it to the system rather than hardcoding it.
+Tokens are defined in `tokens.css` and used everywhere via `var()`. The system grows with the design. When you need a color or typography value that doesn't exist as a token, add it to the system rather than hardcoding it.
 
-## Spacing Scale
+## Spacing
 
-Use rem values based on a 4px grid: `--space-1` (0.25rem / 4px) through `--space-16` (4rem / 64px).
+No spacing tokens. Use raw values following a 4px grid as a guideline.
 
-```
-4, 8, 12, 16, 24, 32, 48, 64
-```
+- **Vertical spacing:** prefer `rem` — scales with user font size preferences.
+- **Horizontal spacing:** prefer `px` when appropriate — horizontal padding in `px` preserves line length regardless of browser font size, which helps legibility.
+
+This is a guideline, not a law. Use your judgment.
 
 ## Typography
 
 - Maximum 2–3 font sizes per view
 - Hierarchy through weight and color, not size explosion
 - Use `clamp()` for fluid sizing: `clamp(1rem, 0.5rem + 1.5vw, 1.5rem)`
-- No arbitrary font sizes
+- No arbitrary font sizes — use the `--text-*` tokens
 
 ## Colors
 
@@ -29,18 +30,17 @@ Use rem values based on a 4px grid: `--space-1` (0.25rem / 4px) through `--space
 
 ## Breakpoints
 
-Define once in `global.css`, use consistently:
+Use consistently in media queries:
 
 ```css
 /* sm: 640px, md: 768px, lg: 1024px, xl: 1280px */
 ```
 
-## Rules (Non-Negotiable)
+## Rules
 
-- **No hardcoded pixel values.** Use the spacing scale via custom properties.
 - **No hex colors.** Use OKLCH via custom properties.
-- **No arbitrary spacing.** Use the scale. `margin: 13px` is never acceptable.
 - **No inline color values.** Always reference a token: `color: var(--color-text)`, never `color: #333`.
+- **No arbitrary font sizes.** Use the `--text-*` scale.
 - Whitespace is a feature. When in doubt, add more space.
 - WCAG AA contrast minimum. Always.
-- If a design token doesn't exist for what you need, flag it rather than inventing a value.
+- If a color or typography token doesn't exist for what you need, flag it rather than inventing a value.

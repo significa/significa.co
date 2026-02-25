@@ -31,7 +31,7 @@ const currentPath = Astro.url.pathname;
 
 <style>
   .site-header {
-    padding: var(--space-4) var(--gutter);
+    padding: 1rem var(--gutter);
   }
 
   nav {
@@ -45,7 +45,7 @@ const currentPath = Astro.url.pathname;
   .logo {
     display: flex;
     align-items: center;
-    gap: var(--space-2);
+    gap: 0.5rem;
     font-weight: var(--weight-medium);
     font-size: var(--text-base);
     color: var(--color-text);
@@ -62,7 +62,7 @@ const currentPath = Astro.url.pathname;
 
   ul {
     display: flex;
-    gap: var(--space-6);
+    gap: 1.5rem;
     list-style: none;
   }
 
@@ -80,14 +80,14 @@ const currentPath = Astro.url.pathname;
 
   @media (max-width: 768px) {
     ul {
-      gap: var(--space-4);
+      gap: 1rem;
     }
   }
 
   @media (max-width: 640px) {
     nav {
       flex-direction: column;
-      gap: var(--space-4);
+      gap: 1rem;
     }
   }
 </style>

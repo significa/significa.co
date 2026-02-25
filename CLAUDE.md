@@ -37,7 +37,7 @@ These always apply, regardless of the task.
 5. **Fail at build time. Always.** The site is managed by marketing and non-technical people. Runtime errors are unacceptable. Use `reference()`, require fields, throw on invalid data.
 6. **TypeScript strict.** Type all props with `interface Props`. No `any`.
 7. **Semantic HTML.** `<article>`, `<nav>`, `<section>`, `<header>`, `<footer>`, `<main>`, `<time>`. Not everything is a `<div>`.
-8. **No CSS framework.** Scoped `<style>` in Astro components + `global.css` for design tokens. No magic numbers, no magic colors — every value must come from the token system.
+8. **No CSS framework.** Scoped `<style>` in Astro components + `global.css` for design tokens. No magic colors — colors and typography must come from the token system. Spacing uses raw values (4px grid guideline, `rem` for vertical, `px` for horizontal when appropriate).
 9. **Media via S3 + Bunny CDN.** Images and videos served from `https://significa.b-cdn.net`. Use `MediaImage` component, never raw `<img>` tags in content.
 10. **Minimal dependencies.** Every `pnpm add` needs a clear reason.
 11. **Astro v5 (latest stable).** Astro 6 is in beta — upgrade to v6 as soon as it reaches stable. Until then, stay on latest v5.
@@ -59,7 +59,9 @@ src/
 │   │   ├── project-cross-sell.astro
 │   │   └── components.ts      # Centralized MDX component registry
 │   ├── ui/                   # Reusable UI components
-│   └── layout/               # Header, Footer, Nav
+│   ├── header.astro
+│   ├── footer.astro
+│   └── seo.astro             # SEO meta tags component
 ├── content.config.ts         # Collection schemas (the "database")
 ├── content/
 │   ├── projects/             # .mdx per project case study
@@ -86,7 +88,9 @@ src/
 │   ├── 404.astro             # Custom 404 page
 │   └── [...slug].astro       # Catch-all for misc pages
 ├── styles/
-│   └── global.css            # Design tokens, resets, typography
+│   ├── global.css            # Entry point: imports reset + tokens, base styles
+│   ├── reset.css             # CSS reset
+│   └── tokens.css            # Design tokens (colors, typography, layout, transitions)
 └── lib/
     ├── collections.ts        # Helper functions for content queries
     ├── cdn.ts                # Bunny CDN URL helpers and srcset generation

@@ -9,7 +9,7 @@
 - **Use TypeScript everywhere.** Type your props with `interface Props`, type your data, type your utils. No `any`.
 - **Use `reference()` for cross-collection links.** Build-time validated. Broken slugs break the build, not production.
 - **Use `pnpm`.** Not npm, not yarn.
-- **Use design tokens.** Every value comes from `global.css` custom properties. No magic numbers, no magic colors. See `docs/08-DESIGN-TOKENS.md`.
+- **Use design tokens for colors and typography.** Colors and font sizes come from `tokens.css` custom properties. No hex colors, no arbitrary font sizes. Spacing uses raw values (4px grid guideline, `rem` for vertical, `px` for horizontal when appropriate). See `docs/08-DESIGN-TOKENS.md`.
 - **Use `MediaImage` for all images in content.** Never raw `<img>` tags. It constructs Bunny CDN URLs with responsive `srcset` and optimization parameters automatically.
 - **Drafts use the `.draft` filename suffix.** Name a file `my-post.draft.mdx` to mark it as a draft. In production builds, `.draft` files are excluded at the glob level — they never enter the content layer. In development (`pnpm dev`), drafts are included so authors can preview them locally. Publishing is a file rename: `my-post.draft.mdx` → `my-post.mdx`. No frontmatter field needed.
 - **Use kebab-case for all filenames.** Components, pages, utilities, styles, content — everything is kebab-case (`media-image.astro`, `content-errors.ts`, `global.css`). Enforced by ESLint via `eslint-plugin-check-file`.
@@ -25,9 +25,7 @@
 - **Do not use `import.meta.glob`.** Content Collections exist for this. Don't reinvent them.
 - **Do not guess Astro APIs.** Check the docs. Astro's API surface is small.
 - **Do not add dependencies without justification.** Every `pnpm add` should have a clear reason.
-- **Do not hardcode pixel values.** Use the spacing scale via custom properties.
 - **Do not use hex colors.** Use OKLCH via custom properties.
-- **Do not use arbitrary spacing.** Use the scale. `margin: 13px` is never acceptable.
 - **Do not use PascalCase or camelCase for filenames.** All files are kebab-case. `MediaImage.astro` → `media-image.astro`. `formatDate.ts` → `format-date.ts`. The ESLint rule will catch violations.
 - **Do not use a `draft` frontmatter field.** Drafts are managed via the `.draft` filename suffix (e.g. `my-post.draft.mdx`), not a boolean in frontmatter. The content loader excludes `.draft` files in production automatically.
 
@@ -41,7 +39,7 @@ The catch-all `[...slug].astro` must validate that no page slug collides with re
 
 ```typescript
 // In src/pages/[...slug].astro getStaticPaths()
-const reserved = ['blog', 'projects', 'labs'];
+const reserved = ['blog', 'projects', 'labs', 'who-we-are', 'what-we-do', 'work-with-us'];
 for (const page of pages) {
   const topSegment = page.id.split('/')[0];
   if (reserved.includes(topSegment)) {

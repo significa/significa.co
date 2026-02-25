@@ -31,7 +31,8 @@ src/
 │   │   ├── project-cross-sell.astro
 │   │   └── components.ts      # Centralized MDX component registry
 │   ├── ui/                   # Reusable UI components
-│   ├── layout/               # Header, Footer, Nav
+│   ├── header.astro
+│   ├── footer.astro
 │   └── seo.astro             # SEO meta tags component
 ├── content.config.ts         # Collection schemas (the "database")
 ├── content/
@@ -63,7 +64,9 @@ src/
 │   ├── 404.astro             # Custom 404 page
 │   └── [...slug].astro       # Catch-all for misc content pages
 ├── styles/
-│   └── global.css            # Design tokens, resets, typography
+│   ├── global.css            # Entry point: imports reset + tokens, base styles
+│   ├── reset.css             # CSS reset
+│   └── tokens.css            # Design tokens (colors, typography, layout, transitions)
 └── lib/
     ├── collections.ts        # Helper functions for content queries
     ├── cdn.ts                # Bunny CDN URL helpers and srcset generation

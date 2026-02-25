@@ -178,7 +178,7 @@ const testimonials = await getTestimonials();
        Intro
        -------------------------------------------------------- */
   .intro {
-    padding: var(--space-32) var(--gutter) var(--space-16);
+    padding: 8rem var(--gutter) 4rem;
   }
 
   .intro-inner {
@@ -200,34 +200,34 @@ const testimonials = await getTestimonials();
        Contact
        -------------------------------------------------------- */
   .contact {
-    padding: 0 var(--gutter) var(--space-16);
+    padding: 0 var(--gutter) 4rem;
   }
 
   .contact-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-4);
+    gap: 1rem;
     max-width: var(--max-width);
     margin: 0 auto;
   }
 
   .contact-card {
     background: var(--color-surface-alt);
-    padding: var(--space-8);
-    border-radius: var(--space-2);
+    padding: 2rem;
+    border-radius: 0.5rem;
   }
 
   .contact-card h2 {
     font-size: var(--text-xl);
     font-weight: var(--weight-bold);
-    margin-bottom: var(--space-4);
+    margin-bottom: 1rem;
   }
 
   .contact-card p {
     font-size: var(--text-base);
     color: var(--color-text-muted);
     line-height: var(--leading-normal);
-    margin-bottom: var(--space-6);
+    margin-bottom: 1.5rem;
   }
 
   .contact-email {
@@ -248,13 +248,13 @@ const testimonials = await getTestimonials();
   .contact-details {
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
+    gap: 1rem;
   }
 
   .contact-detail {
     background: var(--color-surface-alt);
-    padding: var(--space-6);
-    border-radius: var(--space-2);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
     flex: 1;
   }
 
@@ -262,7 +262,7 @@ const testimonials = await getTestimonials();
     font-size: var(--text-sm);
     font-weight: var(--weight-normal);
     color: var(--color-text-muted);
-    margin-bottom: var(--space-1);
+    margin-bottom: 0.25rem;
   }
 
   .contact-detail p {
@@ -280,7 +280,7 @@ const testimonials = await getTestimonials();
        Process
        -------------------------------------------------------- */
   .process {
-    padding: 0 var(--gutter) var(--space-16);
+    padding: 0 var(--gutter) 4rem;
   }
 
   .process-inner {
@@ -294,22 +294,22 @@ const testimonials = await getTestimonials();
     color: var(--color-text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: var(--space-8);
+    margin-bottom: 2rem;
   }
 
   .process-steps {
     list-style: none;
     display: grid;
-    gap: var(--space-4);
+    gap: 1rem;
   }
 
   .process-step {
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto;
-    column-gap: var(--space-6);
-    row-gap: var(--space-2);
-    padding: var(--space-6) 0;
+    column-gap: 1.5rem;
+    row-gap: 0.5rem;
+    padding: 1.5rem 0;
     border-bottom: 1px solid var(--color-border);
   }
 
@@ -318,7 +318,7 @@ const testimonials = await getTestimonials();
     font-size: var(--text-sm);
     font-weight: var(--weight-medium);
     color: var(--color-text-muted);
-    padding-top: var(--space-1);
+    padding-top: 0.25rem;
   }
 
   .process-step h3 {
@@ -337,13 +337,13 @@ const testimonials = await getTestimonials();
        Criteria
        -------------------------------------------------------- */
   .criteria {
-    padding: 0 var(--gutter) var(--space-16);
+    padding: 0 var(--gutter) 4rem;
   }
 
   .criteria-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-16);
+    gap: 4rem;
     max-width: var(--max-width);
     margin: 0 auto;
   }
@@ -352,7 +352,7 @@ const testimonials = await getTestimonials();
     font-size: var(--text-2xl);
     font-weight: var(--weight-bold);
     line-height: var(--leading-tight);
-    margin-bottom: var(--space-4);
+    margin-bottom: 1rem;
   }
 
   .criteria-text p {
@@ -365,7 +365,7 @@ const testimonials = await getTestimonials();
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: var(--space-6);
+    gap: 1.5rem;
   }
 
   .criteria-list li {
@@ -382,7 +382,7 @@ const testimonials = await getTestimonials();
   @media (max-width: 768px) {
     .criteria-inner {
       grid-template-columns: 1fr;
-      gap: var(--space-8);
+      gap: 2rem;
     }
   }
 
@@ -390,7 +390,7 @@ const testimonials = await getTestimonials();
        Testimonials
        -------------------------------------------------------- */
   .testimonials {
-    padding: 0 var(--gutter) var(--space-16);
+    padding: 0 var(--gutter) 4rem;
   }
 
   .testimonials-inner {
@@ -401,13 +401,13 @@ const testimonials = await getTestimonials();
   .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    gap: var(--space-4);
+    gap: 1rem;
   }
 
   .testimonial-card {
     background: var(--color-surface-alt);
-    padding: var(--space-8);
-    border-radius: var(--space-2);
+    padding: 2rem;
+    border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -416,14 +416,14 @@ const testimonials = await getTestimonials();
   .testimonial-quote {
     font-size: var(--text-lg);
     line-height: var(--leading-normal);
-    margin-bottom: var(--space-8);
+    margin-bottom: 2rem;
   }
 
   .testimonial-author cite {
     font-style: normal;
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
+    gap: 0.25rem;
   }
 
   .testimonial-author strong {
@@ -440,7 +440,7 @@ const testimonials = await getTestimonials();
        Clients
        -------------------------------------------------------- */
   .clients {
-    padding: 0 var(--gutter) var(--space-16);
+    padding: 0 var(--gutter) 4rem;
   }
 
   .clients-inner {
@@ -453,7 +453,7 @@ const testimonials = await getTestimonials();
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: var(--space-8);
+    gap: 2rem;
     list-style: none;
   }
 

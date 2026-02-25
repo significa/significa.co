@@ -1111,6 +1111,7 @@ export interface ProjectsStoryblok {
 }
 
 export interface ProjectsIndexStoryblok {
+  autoplay_reel: boolean;
   _uid: string;
   component: 'projects-index';
   [k: string]: any;

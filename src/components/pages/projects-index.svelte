@@ -10,6 +10,7 @@
   import { page } from '$app/stores';
 
   export let projects: ISbStoryData<ProjectStoryblok>[];
+  export let autoplayReel = true;
 
   let filteredProjects = projects;
   let services: string[] = [];
@@ -108,6 +109,11 @@
   </div>
 
   {#each filteredProjects as project, i}
-    <ProjectEntry as="h2" {project} variant={i === 0 && !filters.length ? 'featured' : 'default'} />
+    <ProjectEntry
+      as="h2"
+      {project}
+      {autoplayReel}
+      variant={i === 0 && !filters.length ? 'featured' : 'default'}
+    />
   {/each}
 </main>

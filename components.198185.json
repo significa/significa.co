@@ -1891,7 +1891,7 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-02-16T10:41:06.792Z",
-      "updated_at": "2023-03-22T11:05:45.912Z",
+      "updated_at": "2026-01-30T11:14:07.790Z",
       "id": 3446841,
       "schema": {
         "width": {
@@ -1927,7 +1927,7 @@
           "required": true
         }
       },
-      "image": "//a.storyblok.com/f/198185/x/8514279d68/screenshot-2023-03-22-at-11-05-27.png",
+      "image": "//a.storyblok.com/f/198185/x/c0cff448e1/screenshot-2026-01-30-at-11-13-04.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -1936,8 +1936,8 @@
       "preset_id": null,
       "real_name": "comparison",
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
-      "color": "#fbce41",
-      "icon": "block-table",
+      "color": "var(--sb-color-accent-background-papaya-whip)",
+      "icon": "image",
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
@@ -2796,7 +2796,7 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-02-15T13:50:12.113Z",
-      "updated_at": "2025-01-27T09:45:53.842Z",
+      "updated_at": "2026-02-23T10:59:42.193Z",
       "id": 3442773,
       "schema": {
         "last_updated": {
@@ -2809,7 +2809,7 @@
         "cover": {
           "type": "asset",
           "filetypes": ["images"],
-          "asset_folder_id": 640205,
+          "asset_folder_id": null,
           "key": "cover",
           "pos": 2,
           "required": true,
@@ -3881,7 +3881,7 @@
       "display_name": null,
       "description": "",
       "created_at": "2025-06-05T09:21:58.231Z",
-      "updated_at": "2025-06-05T09:23:04.222Z",
+      "updated_at": "2026-01-30T11:11:41.489Z",
       "id": 7421133,
       "schema": {
         "blocks": {
@@ -3893,7 +3893,7 @@
           "id": "mv1xbWDMSl-lzY_TdeZUSQ"
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/a701ec062e/screenshot-2026-01-30-at-11-11-11.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -3902,8 +3902,8 @@
       "preset_id": null,
       "real_name": "measurements",
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
-      "color": null,
-      "icon": null,
+      "color": "var(--sb-color-accent-background-papaya-whip)",
+      "icon": "shopping-cart",
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
@@ -4964,9 +4964,16 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-04-06T13:42:56.259Z",
-      "updated_at": "2023-04-06T13:42:56.259Z",
+      "updated_at": "2026-02-25T15:28:25.419Z",
       "id": 3757617,
-      "schema": {},
+      "schema": {
+        "autoplay_reel": {
+          "type": "boolean",
+          "pos": 0,
+          "default_value": true,
+          "id": "kPabqjtQScKLJvmecVdtqw"
+        }
+      },
       "image": null,
       "preview_field": null,
       "is_root": false,
@@ -8279,7 +8286,7 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-02-16T10:45:31.449Z",
-      "updated_at": "2023-03-22T11:51:33.816Z",
+      "updated_at": "2026-01-30T11:12:48.038Z",
       "id": 3446844,
       "schema": {
         "width": {
@@ -8326,7 +8333,7 @@
           "type": "boolean"
         }
       },
-      "image": "//a.storyblok.com/f/198185/x/d53670833a/screenshot-2023-03-22-at-11-50-59.png",
+      "image": "//a.storyblok.com/f/198185/x/5d80c7d071/screenshot-2026-01-30-at-11-12-20.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -8336,7 +8343,7 @@
       "real_name": "video",
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
       "color": "#fbce41",
-      "icon": "block-text-img-c",
+      "icon": "image",
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,

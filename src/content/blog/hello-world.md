@@ -34,4 +34,4 @@ Three things we did differently this time:
 
 This is version one. We'll be iterating on the design, adding case studies, and sharing more about our process here on the blog.
 
-If you're curious about the technical details, keep an eye on our [Labs](/labs) — we plan to open source some of the tools we built along the way.
+If you're curious about the technical details, keep an eye on our [Playground](/playground) — we plan to open source some of the tools we built along the way.

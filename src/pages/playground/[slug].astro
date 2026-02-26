@@ -1,0 +1,38 @@
+---
+import { render } from "astro:content";
+import BaseLayout from "@/layouts/base.astro";
+import { mdxComponents } from "@/components/mdx/components";
+import { getPlayground } from "@/lib/collections";
+
+export async function getStaticPaths() {
+  const playground = await getPlayground();
+  return playground.map((item) => ({
+    params: { slug: item.id },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+
+const seo = item.data.seo;
+const title = seo?.metaTitle ?? item.data.title;
+const description = seo?.metaDescription ?? item.data.description;
+---
+
+<BaseLayout title={title} description={description} ogImage={seo?.ogImage}>
+  <article>
+    <header>
+      <h1>{item.data.title}</h1>
+      <p>{item.data.description}</p>
+      {
+        item.data.repoUrl && (
+          <a href={item.data.repoUrl} rel="noopener noreferrer">
+            View on GitHub
+          </a>
+        )
+      }
+    </header>
+    <Content components={mdxComponents} />
+  </article>
+</BaseLayout>

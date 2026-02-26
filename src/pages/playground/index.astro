@@ -1,0 +1,535 @@
+---
+import BaseLayout from "@/layouts/base.astro";
+---
+
+<BaseLayout
+  title="Playground"
+  description="Coding, fun and simple. Experimenting with open source tools and contributions by Significa."
+>
+  <!-- Intro -->
+  <section class="intro">
+    <div class="intro-inner">
+      <h1>Coding, fun and simple.</h1>
+      <p class="intro-text">
+        At Significa, we write uncomplicated software, prioritise education and believe shared knowledge is a big part of
+        building a better world. Our Playground is where our team gets to experiment different solutions having some fun along
+        the way.
+      </p>
+      <div class="intro-image">
+        <img
+          src="https://assets.significa.co/website/test-TKzoOc.png"
+          alt="Playful coding illustrations"
+          width="1920"
+          height="1080"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Source -->
+  <section class="open-source">
+    <div class="open-source-inner">
+      <h2 class="section-title">Open Source</h2>
+      <p class="section-description">
+        Our stack is built on <strong>open-source software</strong>, and we contribute fixes, documentation, and new tools in
+        return. Work created during company time is published under the Significa name with individual credit, and we allocate
+        time for our team to contribute.
+      </p>
+
+      <div class="callout-grid">
+        <a href="https://significa.co/blog/advantages-of-open-source-software" class="callout-card">
+          <span class="callout-label">Blog</span>
+          <span class="callout-title">What is open source →</span>
+        </a>
+        <a href="/handbook" class="callout-card">
+          <span class="callout-label">Handbook</span>
+          <span class="callout-title">Open Source →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Significa Foundations -->
+  <section class="foundations">
+    <div class="foundations-inner">
+      <h2 class="section-title">
+        <a href="https://foundations.significa.co/about">Significa Foundations</a>
+      </h2>
+
+      <p class="section-description">
+        Foundations is one of our biggest <strong>open-source contributions</strong>, used daily by our design and development
+        teams. It's Significa's opinionated, practical toolkit for building <strong>modern digital products</strong>. It goes
+        beyond a
+        <strong>UI library</strong>, combining components, interaction patterns, state management, content modelling and
+        performance optimisations. Spanning from UI parts to full application architectures, it favours complete,
+        production-ready solutions grounded in real use, with clear documentation and learning resources instead of opaque,
+        dependency-heavy kits. Everything is tested and ready for production so teams can ship faster without compromising
+        accessibility, UX or quality, and patterns are flexible to understand, adapt and apply end to end.
+      </p>
+
+      <div class="video-container">
+        <img
+          src="https://assets.significa.co/website/test-TKzoOc.png"
+          alt="Design foundations video"
+          width="1920"
+          height="1080"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <blockquote class="quote">
+        <p>Insert a quote from Brandão</p>
+      </blockquote>
+
+      <h3 class="subsection-title">Anyone can use it.</h3>
+      <p class="subsection-text">
+        Either copy and customise self-contained solutions for full control over the code, or as a learning resource to study
+        how and why patterns work in real products. The emphasis is on complete, real-world solutions rather than isolated
+        snippets. Code is written to be read, adapted and improved, which means no lock-in, no version constraints and a clear
+        view of the trade-offs behind each decision.
+      </p>
+    </div>
+  </section>
+
+  <!-- Significa Commons -->
+  <section class="commons">
+    <div class="commons-inner">
+      <h2 class="section-title">Significa Commons.</h2>
+
+      <div class="commons-grid">
+        <div class="commons-item">
+          <h3><a href="https://github.com/significa/fly-pg-dump-to-s3">Fly pg_dump to s3.</a></h3>
+          <p>Automates pg_dump backups of Fly.io Postgres databases to AWS S3.</p>
+        </div>
+
+        <div class="commons-item">
+          <h3><a href="https://github.com/significa/storyblok-assets-cleanup">Storyblok assets clean-up.</a></h3>
+          <p>Utility to find and delete unused Storyblok assets.</p>
+        </div>
+
+        <div class="commons-item">
+          <h3><a href="https://github.com/significa/palette-generator">Palette generator.</a></h3>
+          <p>A Svelte monochromatic palette generator.</p>
+        </div>
+
+        <div class="commons-item">
+          <h3><a href="https://github.com/significa/1password-secrets">1Password secrets.</a></h3>
+          <p>1password-secrets is a CLI utility to sync 1Password secrets to local env files and Fly apps.</p>
+        </div>
+
+        <blockquote class="quote commons-quote">
+          <p>Insert a quote from Francisco</p>
+        </blockquote>
+
+        <div class="commons-item">
+          <h3><a href="https://si.gnifi.ca/s187">Variable icon font.</a></h3>
+          <p>Signals is an icon font based on Inter which includes a keyboard map.</p>
+        </div>
+
+        <blockquote class="quote commons-quote">
+          <p>Insert a quote from Elisa</p>
+        </blockquote>
+
+        <div class="commons-item">
+          <h3><a href="https://github.com/significa/frontend-challenge">Front-end challenge.</a></h3>
+          <p>Design-driven challenges for those looking to join our team.</p>
+        </div>
+
+        <div class="commons-item">
+          <h3><a href="https://github.com/significa/significa-svelte-ui">Svelte UI.</a></h3>
+          <p>Our internal Svelte UI library.</p>
+        </div>
+
+        <div class="commons-item">
+          <h3><a href="https://github.com/significa/absinthe_utils">Absinthe Utils.</a></h3>
+          <p>A collection of utilities for Absinthe (Elixir's GraphQL library).</p>
+        </div>
+
+        <div class="commons-item">
+          <h3><a href="https://github.com/significa/app-distribution-server">App distribution server.</a></h3>
+          <p>A self-hosted tool for easily sharing internal iOS .ipa builds without TestFlight nor Expo.</p>
+        </div>
+      </div>
+
+      <div class="how-we-built">
+        <h3 class="subsection-title">How we built some of these contributions.</h3>
+        <div class="callout-grid">
+          <a href="https://significa.co/blog/how-to-distribute-ios-ipa-builds" class="callout-card">
+            <span class="callout-label">Blog</span>
+            <span class="callout-title">How to distribute iOS IPA builds →</span>
+          </a>
+          <a href="https://significa.co/blog/secure-your-secrets-1password-cli-for-devs" class="callout-card">
+            <span class="callout-label">Blog</span>
+            <span class="callout-title">Secure your secrets: 1Password CLI for Devs →</span>
+          </a>
+          <a href="https://significa.co/blog/signals-by-significa" class="callout-card">
+            <span class="callout-label">Blog</span>
+            <span class="callout-title">Signals Font →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DoDia -->
+  <section class="dodia">
+    <div class="dodia-inner">
+      <h2 class="section-title">DoDia, a menus-of-the-day web app.</h2>
+
+      <p class="section-description">
+        <a href="http://dodia.pt/">DoDia.pt</a> is a web app that centralises daily menus. Restaurants and diners can upload theirs,
+        set a date so it remains live until updated, or add a new one each day.
+      </p>
+
+      <div class="dodia-image">
+        <img
+          src="https://assets.significa.co/website/test-TKzoOc.png"
+          alt="DoDia web app screenshot"
+          width="1920"
+          height="1080"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <p class="section-description">
+        The app supports search by restaurant or postal code, community-led updates, and favouriting go-to places for quick
+        access. Built in-house at Significa to make rainy-day lunches in Porto easier, it's free for diners and restaurant
+        owners, and we're continuing to grow it.
+      </p>
+
+      <blockquote class="quote">
+        <p>Insert a quote from Julieta</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- AI Section -->
+  <section class="ai-section">
+    <div class="ai-inner">
+      <h2 class="section-title">AI AI AI</h2>
+      <div class="callout-card callout-large">
+        <p>Callout to AI page TBD copy</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-inner">
+      <h2>Explore our GitHub, have some fun and if you spot something to improve, patch it and pass it on</h2>
+      <a href="https://github.com/significa" class="cta-link" target="_blank" rel="noopener noreferrer"> Visit our GitHub → </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* --------------------------------------------------------
+       Intro
+       -------------------------------------------------------- */
+  .intro {
+    padding: 8rem var(--gutter) 4rem;
+  }
+
+  .intro-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+  }
+
+  .intro h1 {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-text {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    margin-bottom: 3rem;
+  }
+
+  .intro-image {
+    margin-top: 2rem;
+  }
+
+  .intro-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    display: block;
+  }
+
+  /* --------------------------------------------------------
+       Section styles (reused)
+       -------------------------------------------------------- */
+  .section-title {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .section-title a:hover {
+    color: var(--color-text-muted);
+  }
+
+  .subsection-title {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    margin-bottom: 1rem;
+    margin-top: 3rem;
+  }
+
+  .section-description {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    margin-bottom: 2rem;
+  }
+
+  .subsection-text {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+  }
+
+  /* --------------------------------------------------------
+       Open Source
+       -------------------------------------------------------- */
+  .open-source {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .open-source-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+  }
+
+  /* --------------------------------------------------------
+       Callout cards
+       -------------------------------------------------------- */
+  .callout-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .callout-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background: var(--color-surface-alt);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background var(--duration-fast) var(--ease-out);
+  }
+
+  .callout-card:hover {
+    background: var(--color-border);
+  }
+
+  .callout-label {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .callout-title {
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+  }
+
+  .callout-large {
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .callout-large p {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+  }
+
+  /* --------------------------------------------------------
+       Foundations
+       -------------------------------------------------------- */
+  .foundations {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .foundations-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+  }
+
+  .video-container,
+  .dodia-image {
+    margin: 2rem 0;
+  }
+
+  .video-container img,
+  .dodia-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    display: block;
+  }
+
+  /* --------------------------------------------------------
+       Quotes
+       -------------------------------------------------------- */
+  .quote {
+    border-left: 3px solid var(--color-text);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--color-text-muted);
+    font-size: var(--text-lg);
+  }
+
+  /* --------------------------------------------------------
+       Commons
+       -------------------------------------------------------- */
+  .commons {
+    padding: 0 var(--gutter) 4rem;
+    background: var(--color-surface-alt);
+  }
+
+  .commons-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 4rem 0;
+  }
+
+  .commons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .commons-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .commons-item h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+  }
+
+  .commons-item h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .commons-item h3 a:hover {
+    color: var(--color-text-muted);
+  }
+
+  .commons-item p {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+  }
+
+  .commons-quote {
+    grid-column: 1 / -1;
+    border-left-color: var(--color-text-muted);
+  }
+
+  .how-we-built {
+    margin-top: 4rem;
+  }
+
+  /* --------------------------------------------------------
+       DoDia
+       -------------------------------------------------------- */
+  .dodia {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .dodia-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+  }
+
+  /* --------------------------------------------------------
+       AI Section
+       -------------------------------------------------------- */
+  .ai-section {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .ai-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+  }
+
+  /* --------------------------------------------------------
+       CTA
+       -------------------------------------------------------- */
+  .cta {
+    padding: 4rem var(--gutter) 8rem;
+  }
+
+  .cta-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cta h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    margin-bottom: 2rem;
+  }
+
+  .cta-link {
+    display: inline-block;
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-thickness var(--duration-fast) var(--ease-out);
+  }
+
+  .cta-link:hover {
+    color: var(--color-text);
+    text-decoration-thickness: 2px;
+  }
+
+  /* --------------------------------------------------------
+       Responsive
+       -------------------------------------------------------- */
+  @media (max-width: 768px) {
+    .commons-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .callout-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

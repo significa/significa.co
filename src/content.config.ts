@@ -87,10 +87,10 @@ const blog = defineCollection({
   }),
 });
 
-const labs = defineCollection({
+const playground = defineCollection({
   loader: contentLoader({
     extensions: ["md", "mdx"],
-    base: "src/content/labs",
+    base: "src/content/playground",
   }),
   schema: z.object({
     title: z.string(),
@@ -137,8 +137,8 @@ const highlights = defineCollection({
         entry: reference("blog"),
       }),
       z.object({
-        collection: z.literal("labs"),
-        entry: reference("labs"),
+        collection: z.literal("playground"),
+        entry: reference("playground"),
       }),
     ]),
     order: z.number(),
@@ -264,7 +264,7 @@ const handbook = defineCollection({
 export const collections = {
   projects,
   blog,
-  labs,
+  playground,
   pages,
   highlights,
   clients,

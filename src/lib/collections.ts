@@ -18,11 +18,11 @@ export async function getPosts() {
 }
 
 /**
- * Get all labs entries, sorted by date descending.
+ * Get all playground entries, sorted by date descending.
  */
-export async function getLabs() {
-  const labs = await getCollection("labs");
-  return labs.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+export async function getPlayground() {
+  const playground = await getCollection("playground");
+  return playground.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
 /**

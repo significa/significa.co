@@ -76,17 +76,16 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
   <section class="showreel">
     <div class="showreel-inner">
       <div class="showreel-media" data-showreel>
-        <!--
-                    Replace with actual showreel thumbnail via CDN:
-                    <img src={cdnUrl("showreel/thumbnail.jpg", { width: 1920, quality: 85 })}
-                         alt="Significa showreel preview"
-                         width="1920" height="1200"
-                         loading="eager" decoding="async" />
-                -->
-        <div class="showreel-placeholder" aria-label="Showreel video"></div>
+        <img
+          src="https://assets.significa.co/website/test-TKzoOc.png"
+          alt="Significa showreel preview"
+          width="1920"
+          height="1200"
+          loading="eager"
+          decoding="async"
+        />
         <button class="showreel-cursor" type="button" data-showreel-cursor aria-label="Play showreel video">
           <span class="showreel-cursor-icon" aria-hidden="true">▶</span>
-          Play showreel
         </button>
       </div>
     </div>
@@ -256,15 +255,14 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
   <!-- Team photo -->
   <section class="team-photo">
     <div class="team-photo-inner">
-      <!--
-                Replace with actual team photo via CDN:
-                <img src={cdnUrl("team/office.jpg", { width: 1920, quality: 80 })}
-                     alt="The Significa team collaborating at their Porto studio"
-                     width="1920" height="1080" loading="lazy" decoding="async" />
-            -->
-      <div class="team-photo-placeholder">
-        <p>Team photo</p>
-      </div>
+      <img
+        src="https://assets.significa.co/website/test-TKzoOc.png"
+        alt="The Significa team collaborating at their Porto studio"
+        width="1920"
+        height="1080"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   </section>
 </BaseLayout>
@@ -429,9 +427,10 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
     cursor: none;
   }
 
-  .showreel-placeholder {
-    aspect-ratio: 16 / 10;
-    background-color: var(--color-surface-alt);
+  .showreel-media img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   .showreel-cursor {
@@ -835,14 +834,10 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
     margin: 0 auto;
   }
 
-  .team-photo-placeholder {
-    aspect-ratio: 16 / 9;
-    background: var(--color-surface-alt);
+  .team-photo-inner img {
+    width: 100%;
+    height: auto;
     border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text-muted);
-    font-size: var(--text-sm);
+    display: block;
   }
 </style>

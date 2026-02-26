@@ -1,5 +1,5 @@
 order: 4
 label: Open Source
 source:
-  collection: labs
+  collection: playground
   entry: example-lab

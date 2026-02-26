@@ -82,13 +82,14 @@ const testimonials = await getTestimonials();
   <!-- Team photo -->
   <section class="team-photo">
     <div class="team-photo-inner">
-      <!--
-                Replace with actual team photo via CDN:
-                <img src={cdnUrl("team/office.jpg", { width: 1920, quality: 80 })} ... />
-            -->
-      <div class="team-photo-placeholder">
-        <p>Team photo</p>
-      </div>
+      <img
+        src="https://assets.significa.co/website/test-TKzoOc.png"
+        alt="The Significa team"
+        width="1920"
+        height="1080"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   </section>
 
@@ -270,15 +271,11 @@ const testimonials = await getTestimonials();
     margin: 0 auto;
   }
 
-  .team-photo-placeholder {
-    aspect-ratio: 16 / 9;
-    background: var(--color-surface-alt);
+  .team-photo-inner img {
+    width: 100%;
+    height: auto;
     border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text-muted);
-    font-size: var(--text-sm);
+    display: block;
   }
 
   /* --------------------------------------------------------

@@ -1,0 +1,620 @@
+---
+import BaseLayout from "@/layouts/base.astro";
+
+const benefits = [
+  {
+    title: "Welcome pack",
+    description:
+      "Welcome aboard! To get you started, we'll have you looking the part with a Significa hoodie and other surprises.",
+  },
+  {
+    title: "Flexible hours and location",
+    description: "We are an office-first team, but you have freedom to come and go as you wish.",
+  },
+  {
+    title: "Unlimited learning stipend",
+    description: "We encourage personal growth and will cover the costs of any course or learning opportunities you desire.",
+  },
+  {
+    title: "All the equipment you need",
+    description: "Anything and everything you need to excel in your life at Significa.",
+  },
+  {
+    title: "Career plan and growth opportunities",
+    description:
+      "We'll work with you closely to help you reach your growth goals through one-on-ones, group workshops and OKRs.",
+  },
+  {
+    title: "Annual company retreat",
+    description:
+      "Leave your Macbook at home, this annual 3-night retreat is purely about relaxation and enjoying each other's company.",
+  },
+  {
+    title: "Health insurance",
+    description: "Health always comes first, you shouldn't ever need to worry about it for you or your kids.",
+  },
+  {
+    title: "Public transport subsidy",
+    description: "We encourage green travel, that's why we are proud to reimburse you on your public transport costs.",
+  },
+  {
+    title: "Corporate Social Responsibility",
+    description: "We're a proud 1% for the Planet member, meaning your work benefits people and planet, beyond Significa.",
+  },
+  {
+    title: "Gym membership",
+    description:
+      "Healthy body, healthy mind. With a gym a few meters from our office, you can make the most of every office day to keep fit and healthy.",
+  },
+  {
+    title: "25 vacation days",
+    description:
+      "That all-important Rest & Recharge. You get 22 days of your choice, plus 3 days extra (your birthday, 24 and 31 of December). Our birthday gift to you is time for you!",
+  },
+  {
+    title: "Baby kit",
+    description:
+      "If you have a new arrival joining your family, congratulations! We'll help you out with a baby box full of goodies to help welcome your little one to the world.",
+  },
+  {
+    title: "Referral bonus programme",
+    description:
+      "Refer a buddy to Significa and if they are hired, you'll receive an immediate bonus of 1000€. If you're both here one year later, you'll get a further 1000€.",
+  },
+  {
+    title: "1 extra vacation day per year at Significa",
+    description:
+      "From your second year onwards, you'll get an extra vacation day per annum. Downtime is important. Enjoy more and more time for yourself and your family, up to a maximum of 30 days per year.",
+  },
+  {
+    title: "Period leave",
+    description: "All women at Significa are entitled to 1 day per month for period leave. If you feel unwell, rest up.",
+  },
+  {
+    title: "Support structures",
+    description:
+      "We've partnered with an organisation to offer 24/7 support to you and your family regarding anything and everything you may need, from legal, fiscal, nutrition and mental health.",
+  },
+];
+
+const values = [
+  {
+    title: "We trust each other and take ownership",
+    description:
+      "Freedom comes with responsibility. You have room to decide, room to make mistakes, and the team to learn with. We move fast because we trust each other to do what is right.",
+  },
+  {
+    title: "We raise the bar, together",
+    description:
+      "Excellence is a team effort. Clear, frequent feedback keeps us sharp and our egos in check. We hold ourselves to high standards and act with integrity.",
+  },
+  {
+    title: "We do business for good",
+    description:
+      "We are a certified B Corp and a member of 1% for the Planet. We build products and relationships that create long-term value for people and the planet.",
+  },
+  {
+    title: "We lead with design and curiosity",
+    description:
+      "We ask better questions, try new ideas and keep things fun. Be who you are while making the most of your career. Ambition is welcome here.",
+  },
+  {
+    title: "We choose empathy",
+    description:
+      "We listen first and assume good intent. Compassion shapes how we work with clients and each other, and it shows in the products we build.",
+  },
+];
+---
+
+<BaseLayout
+  title="Careers"
+  description="Join our team of curiosity-driven go-getters. We're a tight-knit, office-first team in Porto city centre building digital products together."
+>
+  <!-- Intro -->
+  <section class="intro">
+    <div class="intro-inner">
+      <h1>Join our team of curiosity-driven go-getters.</h1>
+      <p class="intro-description">
+        We're a tight-knit, office-first team in Porto city centre where designers, developers, producers and strategists build
+        <strong>digital products</strong> together. Expect a plant-filled office, good conversations and the occasional barbecue.
+      </p>
+    </div>
+  </section>
+
+  <!-- Open positions -->
+  <section class="positions">
+    <div class="positions-inner">
+      <h2 class="section-heading">Open Positions</h2>
+      <div class="no-positions-card">
+        <p class="no-positions-title">There are no open positions right now.</p>
+        <p class="no-positions-description">
+          But we are always on the lookout for talented folks! Submit your spontaneous application.
+        </p>
+        <a href="mailto:jobs@significa.co" class="apply-link">Send your application →</a>
+      </div>
+
+      <div class="internships">
+        <h3 class="internships-heading">Internships</h3>
+        <p class="internships-description">
+          We're not accepting internship applications at the moment; meanwhile, you can read about past intern experiences and
+          how we foster creativity and strengthen our design culture.
+        </p>
+        <ul class="internships-links">
+          <li>
+            <a href="/blog/interning-at-a-digital-product-agency">Interning at a digital product agency →</a>
+          </li>
+          <li>
+            <a href="/blog/can-creativity-be-tamed">Can creativity be tamed? →</a>
+          </li>
+          <li>
+            <a href="/blog/how-we-improved-our-design-culture">How we improved our design culture →</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="values">
+    <div class="values-inner">
+      <h2 class="section-heading">What we stand for</h2>
+      <div class="values-grid">
+        {
+          values.map((value) => (
+            <article class="value-card">
+              <h3 class="value-title">{value.title}</h3>
+              <p class="value-description">{value.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Culture -->
+  <section class="culture">
+    <div class="culture-inner">
+      <h2 class="section-heading">Our culture</h2>
+      <div class="culture-content">
+        <div class="culture-text">
+          <p>
+            We do our best work with the spontaneity, closeness and serendipity that come from all kinds of conversations, even
+            the hard ones. Closeness gives us momentum, and diverse thinking gives us an edge. We make space for honest debate,
+            challenge without ego and back our views with data. We listen, learn and build digital products people love.
+          </p>
+          <ul class="culture-links">
+            <li>
+              <a href="/handbook/culture">Culture →</a>
+            </li>
+            <li>
+              <a href="/handbook/design-ethos">Our Design Ethos →</a>
+            </li>
+            <li>
+              <a href="/handbook/how-we-build-software">How we build Software →</a>
+            </li>
+          </ul>
+        </div>
+        <div class="culture-image">
+          <img
+            src="https://assets.significa.co/website/test-TKzoOc.png"
+            alt="Significa team retreat"
+            width="1920"
+            height="1440"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="benefits">
+    <div class="benefits-inner">
+      <h2 class="section-heading">Healthy team, happy team!</h2>
+      <p class="benefits-intro">We offer a set of benefits to empower you to do your best work.</p>
+      <ul class="benefits-grid">
+        {
+          benefits.map((benefit) => (
+            <li class="benefit-item">
+              <h3 class="benefit-title">{benefit.title}</h3>
+              <p class="benefit-description">{benefit.description}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Engagement -->
+  <section class="engagement">
+    <div class="engagement-inner">
+      <h2 class="engagement-title">We'll want your input.</h2>
+      <p class="engagement-description">
+        We run engagement surveys every six months to track wellbeing, collaboration, career growth and more. This gives us time
+        to act, review progress and keep improving how we work.
+      </p>
+      <a href="/handbook/culture/team-satisfaction-reports" class="engagement-link">Team satisfaction reports →</a>
+    </div>
+  </section>
+
+  <!-- Hiring process -->
+  <section class="hiring">
+    <div class="hiring-inner">
+      <h2 class="hiring-title">Our hiring process.</h2>
+      <p class="hiring-description">
+        If you made it this far on this page, it probably means you are really keen to join our team, so we've gathered a few
+        more information below.
+      </p>
+      <ul class="hiring-links">
+        <li>
+          <a href="/handbook/hiring-criteria">Hiring Criteria →</a>
+        </li>
+        <li>
+          <a href="/handbook/mission-and-values/equal-opportunities-statement">Equal Opportunities Statement →</a>
+        </li>
+        <li>
+          <a href="/handbook/recruitment-process">Recruitment Process →</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* --------------------------------------------------------
+       Intro
+       -------------------------------------------------------- */
+  .intro {
+    padding: 8rem var(--gutter) 4rem;
+  }
+
+  .intro-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+  }
+
+  .intro h1 {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-description {
+    font-size: var(--text-xl);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+  }
+
+  .intro-description strong {
+    color: var(--color-text);
+    font-weight: var(--weight-medium);
+  }
+
+  /* --------------------------------------------------------
+       Section heading (reused)
+       -------------------------------------------------------- */
+  .section-heading {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+  }
+
+  /* --------------------------------------------------------
+       Open positions
+       -------------------------------------------------------- */
+  .positions {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .positions-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .no-positions-card {
+    background: var(--color-surface-alt);
+    padding: 2.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .no-positions-title {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    margin-bottom: 0.75rem;
+  }
+
+  .no-positions-description {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    margin-bottom: 1.5rem;
+  }
+
+  .apply-link {
+    display: inline-block;
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-thickness var(--duration-fast) var(--ease-out);
+  }
+
+  .apply-link:hover {
+    color: var(--color-text);
+    text-decoration-thickness: 2px;
+  }
+
+  .internships {
+    border-top: 1px solid var(--color-border);
+    padding-top: 2rem;
+  }
+
+  .internships-heading {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    margin-bottom: 1rem;
+  }
+
+  .internships-description {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    margin-bottom: 1rem;
+  }
+
+  .internships-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .internships-links a {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .internships-links a:hover {
+    color: var(--color-text);
+  }
+
+  /* --------------------------------------------------------
+       Values
+       -------------------------------------------------------- */
+  .values {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .values-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: 1rem;
+  }
+
+  .value-card {
+    background: var(--color-surface-alt);
+    padding: 2rem;
+    border-radius: 0.5rem;
+  }
+
+  .value-title {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    margin-bottom: 0.75rem;
+    line-height: var(--leading-tight);
+  }
+
+  .value-description {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+  }
+
+  /* --------------------------------------------------------
+       Culture
+       -------------------------------------------------------- */
+  .culture {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .culture-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .culture-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .culture-text p {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    margin-bottom: 1.5rem;
+  }
+
+  .culture-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .culture-links a {
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .culture-links a:hover {
+    opacity: 0.7;
+    color: var(--color-text);
+  }
+
+  .culture-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .culture-content {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* --------------------------------------------------------
+       Benefits
+       -------------------------------------------------------- */
+  .benefits {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .benefits-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .benefits-intro {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+    line-height: var(--leading-normal);
+  }
+
+  .benefits-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1rem;
+  }
+
+  .benefit-item {
+    background: var(--color-surface-alt);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+  }
+
+  .benefit-title {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit-description {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+  }
+
+  /* --------------------------------------------------------
+       Engagement
+       -------------------------------------------------------- */
+  .engagement {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .engagement-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+    text-align: center;
+    background: var(--color-surface-alt);
+    padding: 3rem 2rem;
+    border-radius: 0.5rem;
+  }
+
+  .engagement-title {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    margin-bottom: 1rem;
+  }
+
+  .engagement-description {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    margin-bottom: 1.5rem;
+  }
+
+  .engagement-link {
+    display: inline-block;
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-thickness var(--duration-fast) var(--ease-out);
+  }
+
+  .engagement-link:hover {
+    color: var(--color-text);
+    text-decoration-thickness: 2px;
+  }
+
+  /* --------------------------------------------------------
+       Hiring process
+       -------------------------------------------------------- */
+  .hiring {
+    padding: 0 var(--gutter) 8rem;
+  }
+
+  .hiring-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hiring-title {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    margin-bottom: 1rem;
+  }
+
+  .hiring-description {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    margin-bottom: 2rem;
+  }
+
+  .hiring-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hiring-links a {
+    font-size: var(--text-base);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .hiring-links a:hover {
+    opacity: 0.7;
+    color: var(--color-text);
+  }
+</style>

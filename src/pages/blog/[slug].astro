@@ -4,6 +4,7 @@ import BaseLayout from "@/layouts/base.astro";
 import { mdxComponents } from "@/components/mdx/components";
 import { articleJsonLd } from "@/lib/seo";
 import { getPosts } from "@/lib/collections";
+import { cdnUrl } from "@/lib/cdn";
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -23,42 +24,123 @@ const description = seo?.metaDescription ?? post.data.description ?? `${post.dat
 const relatedProjects = post.data.relatedProjects?.length
   ? await Promise.all(post.data.relatedProjects.map((ref) => getEntry(ref)))
   : [];
+
+// Calculate reading time (rough estimate: 200 words per minute)
+const wordCount = post.body?.split(/\s+/).length ?? 0;
+const readingTime = wordCount > 0 ? Math.ceil(wordCount / 200) : 5;
+
+// Format date
+const formattedDate = post.data.date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 ---
 
 <BaseLayout title={title} description={description} ogImage={seo?.ogImage} type="article" publishedAt={post.data.date}>
-  <article>
-    <header>
-      <h1>{post.data.title}</h1>
-      <time datetime={post.data.date.toISOString()}>
+  <article class="blog-post">
+    <header class="blog-header">
+      <div class="blog-header-inner">
+        <div class="blog-meta">
+          <time datetime={post.data.date.toISOString()}>{formattedDate}</time>
+          <span class="meta-separator">•</span>
+          <span class="reading-time">{readingTime} min read</span>
+        </div>
+        <h1 class="blog-title">{post.data.title}</h1>
+        {post.data.description && <p class="blog-description">{post.data.description}</p>}
         {
-          post.data.date.toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })
+          post.data.tags && post.data.tags.length > 0 && (
+            <ul class="blog-tags">
+              {post.data.tags.map((tag) => (
+                <li class="blog-tag">{tag}</li>
+              ))}
+            </ul>
+          )
         }
-      </time>
-      {post.data.author && <p>By {post.data.author}</p>}
+      </div>
     </header>
-    <Content components={mdxComponents} />
+
+    {
+      post.data.thumbnail && (
+        <div class="blog-hero">
+          <img
+            src={cdnUrl(post.data.thumbnail, { width: 1600, quality: 85 })}
+            alt={post.data.title}
+            width="1600"
+            height="900"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      )
+    }
+
+    <div class="blog-content">
+      <div class="blog-content-inner">
+        <Content components={mdxComponents} />
+      </div>
+    </div>
+
+    {
+      post.data.author && (
+        <footer class="blog-footer">
+          <div class="blog-footer-inner">
+            <div class="author-card">
+              <div class="author-info">
+                <strong class="author-name">{post.data.author}</strong>
+                <span class="author-role">Author</span>
+              </div>
+            </div>
+          </div>
+        </footer>
+      )
+    }
+
     {
       relatedProjects.length > 0 && (
-        <aside>
-          <h2>Related Projects</h2>
-          <ul>
-            {relatedProjects.map(
-              (project) =>
-                project && (
-                  <li>
-                    <a href={`/projects/${project.id}`}>{project.data.title}</a>
-                  </li>
-                )
-            )}
-          </ul>
+        <aside class="related-projects">
+          <div class="related-projects-inner">
+            <h2 class="related-title">Related Work</h2>
+            <ul class="related-list">
+              {relatedProjects.map(
+                (project) =>
+                  project && (
+                    <li class="related-item">
+                      <a href={`/projects/${project.id}`} class="related-link">
+                        {project.data.thumbnail && (
+                          <div class="related-image">
+                            <img
+                              src={cdnUrl(project.data.thumbnail, { width: 600, quality: 80 })}
+                              alt={project.data.title}
+                              width="600"
+                              height="400"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          </div>
+                        )}
+                        <div class="related-content">
+                          <h3 class="related-project-title">{project.data.title}</h3>
+                          {project.data.tagline && <p class="related-tagline">{project.data.tagline}</p>}
+                        </div>
+                      </a>
+                    </li>
+                  )
+              )}
+            </ul>
+          </div>
         </aside>
       )
     }
+
+    <div class="blog-cta">
+      <div class="blog-cta-inner">
+        <h2>We build and launch functional digital products.</h2>
+        <a href="/work-with-us" class="cta-button">Get a quote</a>
+      </div>
+    </div>
   </article>
+
   <script
     is:inline
     type="application/ld+json"
@@ -69,8 +151,377 @@ const relatedProjects = post.data.relatedProjects?.length
         url: new URL(`/blog/${post.id}`, Astro.site).href,
         publishedAt: post.data.date,
         author: post.data.author,
-        image: seo?.ogImage,
+        image: seo?.ogImage || post.data.thumbnail,
       })
     )}
   />
 </BaseLayout>
+
+<style>
+  /* ============================================================
+     Blog Header
+     ============================================================ */
+  .blog-header {
+    padding: 8rem var(--gutter) 3rem;
+    background: var(--color-surface);
+  }
+
+  .blog-header-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+  }
+
+  .blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .meta-separator {
+    opacity: 0.5;
+  }
+
+  .blog-title {
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-description {
+    font-size: var(--text-xl);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .blog-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+  }
+
+  .blog-tag {
+    padding: 0.375rem 0.75rem;
+    background: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-transform: capitalize;
+  }
+
+  @media (max-width: 768px) {
+    .blog-title {
+      font-size: var(--text-3xl);
+    }
+
+    .blog-description {
+      font-size: var(--text-lg);
+    }
+  }
+
+  /* ============================================================
+     Blog Hero
+     ============================================================ */
+  .blog-hero {
+    padding: 0 var(--gutter) 4rem;
+    background: var(--color-surface);
+  }
+
+  .blog-hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.5rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  /* ============================================================
+     Blog Content
+     ============================================================ */
+  .blog-content {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .blog-content-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+  }
+
+  .blog-content-inner :global(h2) {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-content-inner :global(h3) {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .blog-content-inner :global(h4) {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .blog-content-inner :global(p) {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-content-inner :global(a) {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    text-decoration-thickness: 1px;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .blog-content-inner :global(a:hover) {
+    opacity: 0.7;
+  }
+
+  .blog-content-inner :global(ul),
+  .blog-content-inner :global(ol) {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .blog-content-inner :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-content-inner :global(blockquote) {
+    border-left: 4px solid var(--color-border);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
+
+  .blog-content-inner :global(blockquote p) {
+    font-size: var(--text-xl);
+    line-height: var(--leading-normal);
+  }
+
+  .blog-content-inner :global(blockquote strong) {
+    display: block;
+    font-style: normal;
+    font-weight: var(--weight-semibold);
+    color: var(--color-text);
+    margin-top: 0.5rem;
+  }
+
+  .blog-content-inner :global(code) {
+    background: var(--color-surface-alt);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+    font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  }
+
+  .blog-content-inner :global(pre) {
+    background: var(--color-surface-alt);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-content-inner :global(pre code) {
+    background: none;
+    padding: 0;
+  }
+
+  .blog-content-inner :global(hr) {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 3rem 0;
+  }
+
+  .blog-content-inner :global(strong) {
+    font-weight: var(--weight-semibold);
+    color: var(--color-text);
+  }
+
+  .blog-content-inner :global(em) {
+    font-style: italic;
+  }
+
+  /* ============================================================
+     Blog Footer
+     ============================================================ */
+  .blog-footer {
+    padding: 0 var(--gutter) 4rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .blog-footer-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+    padding-top: 3rem;
+  }
+
+  .author-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    background: var(--color-surface-alt);
+    border-radius: 0.5rem;
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .author-name {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text);
+  }
+
+  .author-role {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  /* ============================================================
+     Related Projects
+     ============================================================ */
+  .related-projects {
+    padding: 4rem var(--gutter);
+    background: var(--color-surface-alt);
+  }
+
+  .related-projects-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .related-title {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .related-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .related-link {
+    display: block;
+    text-decoration: none;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: var(--color-surface);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .related-link:hover {
+    border-color: var(--color-text);
+  }
+
+  .related-image {
+    background: var(--color-surface-alt);
+  }
+
+  .related-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .related-link:hover .related-image img {
+    transform: scale(1.05);
+  }
+
+  .related-content {
+    padding: 1.5rem;
+  }
+
+  .related-project-title {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    margin-bottom: 0.5rem;
+  }
+
+  .related-tagline {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+  }
+
+  /* ============================================================
+     Blog CTA
+     ============================================================ */
+  .blog-cta {
+    padding: 6rem var(--gutter);
+  }
+
+  .blog-cta-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .blog-cta h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    margin-bottom: 2rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    background: var(--color-text);
+    color: var(--color-surface);
+    border: 2px solid var(--color-text);
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .cta-button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+</style>

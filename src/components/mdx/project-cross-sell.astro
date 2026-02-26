@@ -4,13 +4,15 @@ import { cdnUrl, DEFAULT_QUALITY } from "@/lib/cdn";
 import { contentError } from "@/lib/content-errors";
 
 interface Props {
-  slug: string;
+  project: string;
+  title?: string;
+  description?: string;
 }
 
-const { slug } = Astro.props;
+const { project: slug, title, description } = Astro.props;
 
 if (!slug) {
-  contentError("ProjectCrossSell", Astro.url.pathname, "Missing required prop: slug");
+  contentError("ProjectCrossSell", Astro.url.pathname, "Missing required prop: project");
 }
 
 const project = await getEntry("projects", slug);
@@ -29,34 +31,93 @@ const thumbnailSrc = cdnUrl(project.data.thumbnail, {
 });
 ---
 
-<a href={`/projects/${project.id}`} class="cross-sell">
-  <img src={thumbnailSrc} alt={project.data.title} loading="lazy" decoding="async" />
-  <span class="cross-sell-title">{project.data.title}</span>
-  {project.data.tagline && <span class="cross-sell-tagline">{project.data.tagline}</span>}
-</a>
+<aside class="cross-sell">
+  <a href={`/projects/${project.id}`} class="cross-sell-link">
+    {
+      project.data.thumbnail && (
+        <img src={thumbnailSrc} alt={project.data.title} loading="lazy" decoding="async" class="cross-sell-image" />
+      )
+    }
+    <div class="cross-sell-content">
+      {title && <span class="cross-sell-label">{title}</span>}
+      <span class="cross-sell-title">{project.data.title}</span>
+      {(description || project.data.tagline) && <span class="cross-sell-tagline">{description || project.data.tagline}</span>}
+      <span class="cross-sell-cta">View case study →</span>
+    </div>
+  </a>
+</aside>
 
 <style>
   .cross-sell {
-    display: block;
-    text-decoration: none;
-    color: var(--color-text);
+    margin: 3rem 0;
+    padding: 2rem;
+    background: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
   }
 
-  .cross-sell img {
-    width: 100%;
+  .cross-sell-link {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .cross-sell-link:hover {
+    opacity: 0.8;
+  }
+
+  .cross-sell-image {
+    flex-shrink: 0;
+    width: 200px;
     height: auto;
+    border-radius: 0.25rem;
+    object-fit: cover;
+  }
+
+  .cross-sell-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .cross-sell-label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
   }
 
   .cross-sell-title {
-    display: block;
-    margin-top: 0.5rem;
-    font-weight: var(--weight-semibold);
-    font-size: var(--text-lg);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
   }
 
   .cross-sell-tagline {
-    display: block;
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
     color: var(--color-text-muted);
+  }
+
+  .cross-sell-cta {
+    margin-top: 0.5rem;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+  }
+
+  @media (max-width: 768px) {
+    .cross-sell-link {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .cross-sell-image {
+      width: 100%;
+    }
   }
 </style>

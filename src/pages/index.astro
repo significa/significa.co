@@ -1,76 +1,31 @@
 ---
 import BaseLayout from "@/layouts/base.astro";
-import { getClients, getTestimonials, getPosts, getProjects, getAwards } from "@/lib/collections";
+import { getClients, getTestimonials, getPosts, getAwards, getPlayground, getResolvedHighlights } from "@/lib/collections";
 import { cdnUrl } from "@/lib/cdn";
 
 const clients = await getClients();
 const testimonials = await getTestimonials();
-const recentPosts = (await getPosts()).slice(0, 4);
-const featuredProjects = (await getProjects()).slice(0, 3);
-const awards = await getAwards();
+const recentPosts = (await getPosts()).slice(0, 3);
+const highlights = await getResolvedHighlights();
+const awards = (await getAwards()).slice(0, 18);
+const playgroundProjects = (await getPlayground()).slice(0, 3);
 
-// Rough reading time estimate
-function readingTime(_post: (typeof recentPosts)[number]): string {
-  // Placeholder — real implementation would use word count from rendered content
-  return "5 min read";
-}
-
-// Industries — hardcoded, unlikely to change often
-const industries = [
-  "Sports and entertainment",
-  "Education and Tech",
-  "Commerce",
-  "Hospitality",
-  "Health and wellness",
-  "Real Estate and Finance",
-];
-
-// Capabilities — hardcoded
-const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watch & TV Apps", "Mobile Apps", "Kiosks"];
+// Get featured highlight projects (can be projects, blog, or playground)
+const featuredHighlights = highlights.slice(0, 3);
 ---
 
 <BaseLayout
-  title="Significa"
-  description="Building apps, websites, and e-commerce platforms that triple revenue, 5x sales, and improve conversions."
+  title="Significa — Design and Development Agency"
+  description="We are a design and development agency building digital products that work beautifully. From strategy to code, we deliver user-centred platforms for ambitious businesses."
 >
   <!-- Hero -->
   <section class="hero">
     <div class="hero-inner">
       <h1>
-        <span class="hero-muted"
-          >Building apps, websites, and e&#8209;commerce platforms that triple revenue, 5x sales, and improve conversions.</span
-        >{" "}
-        <a href="/work-with-us" class="hero-cta">Work with us</a>
+        We are a <strong>design and development agency</strong> building digital products that work beautifully.
       </h1>
     </div>
   </section>
-
-  <!-- Highlights / recent articles -->
-  {
-    recentPosts.length > 0 && (
-      <section class="highlights">
-        <div class="highlights-inner">
-          <ul>
-            {recentPosts.map((post, i) => (
-              <li class:list={["highlight-item", { first: i === 0 }]}>
-                <a href={`/blog/${post.id}`}>
-                  <span class="highlight-title">{post.data.title}</span>
-                  <span class="highlight-meta">
-                    {readingTime(post)}
-                    {i === 0 && (
-                      <span class="highlight-arrow" aria-hidden="true">
-                        →
-                      </span>
-                    )}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    )
-  }
 
   <!-- Showreel -->
   <section class="showreel">
@@ -91,45 +46,285 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
     </div>
   </section>
 
-  <!-- Featured projects showcase -->
+  <!-- Section: Strategy -->
+  <section class="section-intro">
+    <div class="section-intro-inner">
+      <h2>From strategy to code, we deliver user-centred platforms for ambitious businesses.</h2>
+    </div>
+  </section>
+
+  <!-- Selected Highlights -->
   {
-    featuredProjects.length > 0 && (
-      <section class="project-showcase">
-        <div class="project-showcase-inner">
-          {featuredProjects.map((project, i) => (
-            <article class:list={["showcase-project", { "showcase-project--wide": i === 2 }]}>
-              <a href={`/projects/${project.id}`}>
-                <div class="showcase-project-label">{project.data.client ?? project.data.title}</div>
-                <div class="showcase-project-image">
-                  <img
-                    src={cdnUrl(project.data.heroImage ?? project.data.thumbnail, {
-                      width: i === 2 ? 1280 : 640,
-                      quality: 80,
-                    })}
-                    alt={project.data.title}
-                    width={i === 2 ? "1280" : "640"}
-                    height={i === 2 ? "800" : "480"}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                {project.data.metrics.length > 0 && (
-                  <ul class="showcase-project-metrics">
-                    {project.data.metrics.map((m) => (
-                      <li class="metric-pill">
-                        <span class="metric-value">{m.value}</span>
-                        <span class="metric-label">{m.label}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </a>
-            </article>
-          ))}
+    featuredHighlights.length > 0 && (
+      <section class="highlights-grid">
+        <div class="highlights-grid-inner">
+          {featuredHighlights.map((highlight) => {
+            const entry = highlight.entry;
+            if (!entry) return null;
+
+            const href =
+              highlight.collection === "projects"
+                ? `/projects/${entry.id}`
+                : highlight.collection === "blog"
+                  ? `/blog/${entry.id}`
+                  : `/playground/${entry.id}`;
+
+            // Get thumbnail based on collection type
+            let thumbnail: string | undefined;
+            if (highlight.collection === "projects") {
+              const data = entry.data as unknown as { thumbnail?: string; heroImage?: string };
+              thumbnail = data.thumbnail || data.heroImage;
+            } else {
+              const data = entry.data as unknown as { thumbnail?: string };
+              thumbnail = data.thumbnail;
+            }
+
+            // Get tagline/description based on collection type
+            const subtitle =
+              highlight.collection === "projects"
+                ? (entry.data as unknown as { tagline?: string }).tagline
+                : (entry.data as unknown as { description?: string }).description;
+
+            return (
+              <article class="highlight-card">
+                <a href={href}>
+                  {thumbnail && (
+                    <div class="highlight-image">
+                      <img
+                        src={cdnUrl(thumbnail, { width: 800, quality: 80 })}
+                        alt={entry.data.title}
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  )}
+                  <div class="highlight-content">
+                    {highlight.label && <span class="highlight-label">{highlight.label}</span>}
+                    <h3 class="highlight-title">{entry.data.title}</h3>
+                    {subtitle && <p class="highlight-tagline">{subtitle}</p>}
+                  </div>
+                </a>
+              </article>
+            );
+          })}
+        </div>
+        <div class="cta-container">
+          <a href="/projects" class="cta-link">
+            View all projects →
+          </a>
         </div>
       </section>
     )
   }
+
+  <!-- Service Pillars Intro -->
+  <section class="services-intro">
+    <div class="services-intro-inner">
+      <h2>
+        When you work with us, you get our whole team to <strong>Think</strong>, <strong>Design</strong>,{" "}
+        <strong>Develop</strong>, <strong>Launch</strong> and <strong>Scale</strong> your ideas into seamless digital experiences.
+      </h2>
+      <p class="services-description">
+        Whether it's an <strong>e-commerce shop</strong>, a <strong>mobile app</strong>, a{" "}
+        <strong>ticketing platform</strong>, or a <strong>design system</strong>, we'll build it with care and curiosity, backed
+        by +10 years of expertise, recognised by +20 international awards.
+      </p>
+      <a href="/services" class="cta-button">Explore our Services</a>
+    </div>
+  </section>
+
+  <!-- Service Pillars -->
+  <section class="service-pillars">
+    <div class="service-pillars-inner">
+      <article class="pillar">
+        <h3 class="pillar-title">Think.</h3>
+        <p class="pillar-description">
+          We ask the right questions to uncover the real challenges and set a clear plan, spanning product strategy, UX audits
+          and technical planning, so you know what to build and why.
+        </p>
+      </article>
+
+      <article class="pillar">
+        <h3 class="pillar-title">Design.</h3>
+        <p class="pillar-description">
+          We transform insights into impact through UI, brands and Design Systems that function beautifully, scale purposefully
+          and guide users.
+        </p>
+      </article>
+
+      <article class="pillar">
+        <h3 class="pillar-title">Develop.</h3>
+        <p class="pillar-description">
+          We apply critical thinking, agility and curiosity to write clear, reliable code that turns solid products into
+          seamless experiences.
+        </p>
+      </article>
+
+      <article class="pillar">
+        <h3 class="pillar-title">Launch.</h3>
+        <p class="pillar-description">
+          We build robust, easy to maintain software that's ready to scale, with efficient, consistent frameworks and clear
+          documentation for a smooth handover.
+        </p>
+      </article>
+
+      <article class="pillar">
+        <h3 class="pillar-title">Scale.</h3>
+        <p class="pillar-description">
+          We track performance and user behaviour, defining evidence-led features and technical improvements for continuous
+          growth.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Team CTA -->
+  <section class="team-intro">
+    <div class="team-intro-inner">
+      <h2>We are a team of designers, developers, and product managers working as one.</h2>
+      <a href="/work-with-us" class="cta-button">Work with us</a>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  {
+    recentPosts.length > 0 && (
+      <section class="blog-section">
+        <div class="blog-section-inner">
+          <h2 class="section-title">We think things through.</h2>
+          <div class="blog-grid">
+            {recentPosts.map((post) => (
+              <article class="blog-card">
+                <a href={`/blog/${post.id}`}>
+                  {post.data.thumbnail && (
+                    <div class="blog-image">
+                      <img
+                        src={cdnUrl(post.data.thumbnail, { width: 600, quality: 80 })}
+                        alt={post.data.title}
+                        width="600"
+                        height="400"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  )}
+                  <div class="blog-content">
+                    <h3 class="blog-title">{post.data.title}</h3>
+                    {post.data.description && <p class="blog-description">{post.data.description}</p>}
+                    <time class="blog-date" datetime={post.data.date.toISOString()}>
+                      {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                    </time>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+          <div class="cta-container">
+            <a href="/blog" class="cta-link">
+              View all posts →
+            </a>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Impact Section -->
+  <section class="impact-section">
+    <div class="impact-section-inner">
+      <h2>
+        We do business for good, <strong>building with impact in mind.</strong>
+      </h2>
+      <p class="impact-description">
+        As a <strong>certified B Corp</strong> and member of 1% for the Planet, we are committed to designing and building ethically,
+        inclusively, and sustainably.
+      </p>
+      <a href="/impact" class="cta-button-outline">Learn more about our impact</a>
+    </div>
+  </section>
+
+  <!-- Playground Section -->
+  {
+    playgroundProjects.length > 0 && (
+      <section class="playground-section">
+        <div class="playground-section-inner">
+          <h2 class="section-title">We have fun! Our Playground is where we let our creativity run wild.</h2>
+          <p class="section-description">
+            As avid contributors to the Open Source community, we are proud to share some of the tools we've built.
+          </p>
+          <div class="playground-grid">
+            {playgroundProjects.map((project) => (
+              <article class="playground-card">
+                <a href={`/playground/${project.id}`}>
+                  {project.data.thumbnail && (
+                    <div class="playground-image">
+                      <img
+                        src={cdnUrl(project.data.thumbnail, { width: 600, quality: 80 })}
+                        alt={project.data.title}
+                        width="600"
+                        height="400"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  )}
+                  <div class="playground-content">
+                    <h3 class="playground-title">{project.data.title}</h3>
+                    <p class="playground-description">{project.data.description}</p>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+          <div class="cta-container">
+            <a href="/playground" class="cta-link">
+              View all projects →
+            </a>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Social Proof / Testimonials -->
+  <section class="social-proof">
+    <div class="social-proof-inner">
+      <h2 class="section-title">We love what we do, and so do our clients.</h2>
+      <p class="section-description">
+        Our clients enjoy our process as much as they enjoy the products we build for them. An independent entity runs customer
+        satisfaction surveys and interviews to help us understand how we can keep continuously improving.
+      </p>
+
+      <div class="social-proof-content">
+        <div class="stats-card">
+          <span class="stats-label">Customer experience</span>
+          <span class="stats-value">84.7%</span>
+          <p class="stats-description">
+            Bring your specs to Significa but give them the creative freedom to unleash the best possible design and solution
+            for your product needs and users.
+          </p>
+        </div>
+
+        {
+          testimonials[0] && (
+            <blockquote class="testimonial-card">
+              <p class="testimonial-quote">{testimonials[0].data.quote}</p>
+              <footer class="testimonial-author">
+                <cite>
+                  <strong>{testimonials[0].data.author}</strong>
+                  <span>
+                    {testimonials[0].data.role} at {testimonials[0].data.company}
+                  </span>
+                </cite>
+              </footer>
+            </blockquote>
+          )
+        }
+      </div>
+    </div>
+  </section>
 
   <!-- Awards -->
   {
@@ -137,7 +332,7 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
       <section class="awards">
         <div class="awards-inner">
           <div class="awards-header">
-            <h2>Ah, awards. Who doesn't like validation?</h2>
+            <h2>International recognition.</h2>
           </div>
           <ul class="awards-list">
             {awards.map((a) => (
@@ -163,73 +358,66 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
     )
   }
 
-  <!-- Industries -->
-  <section class="expertise">
-    <div class="expertise-inner">
-      <div class="expertise-block">
-        <h2>Transforming insights into interfaces people love, across industries.</h2>
-        <ul class="expertise-list">
-          {
-            industries.map((item) => (
-              <li class="expertise-item">
-                <span>{item}</span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="final-cta-inner">
+      <h2>We are ready to grow your business.</h2>
+      <p class="final-cta-description">
+        Are you? Let's get the conversation going… or keep browsing and see if we're the right fit!
+      </p>
+      <a href="/work-with-us" class="cta-button-large">Get in touch</a>
     </div>
   </section>
 
-  <!-- Capabilities -->
-  <section class="expertise">
-    <div class="expertise-inner">
-      <div class="expertise-block">
-        <h2>Writing code that does what it's supposed to, whenever it runs.</h2>
-        <ul class="expertise-list">
-          {
-            capabilities.map((item) => (
-              <li class="expertise-item">
-                <span>{item}</span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+  <!-- FAQs Section -->
+  <section class="faqs">
+    <div class="faqs-inner">
+      <h2 class="section-title">Frequently asked questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt class="faq-question">What services do you offer?</dt>
+          <dd class="faq-answer">
+            We offer end-to-end product development: strategy, UX/UI design, development, and ongoing support. We specialize in
+            web and mobile applications, e-commerce platforms, and design systems.
+          </dd>
+        </div>
+
+        <div class="faq-item">
+          <dt class="faq-question">How long does a typical project take?</dt>
+          <dd class="faq-answer">
+            Project timelines vary based on scope and complexity. A typical project ranges from 8-16 weeks, but we'll provide a
+            detailed timeline during our initial discovery phase.
+          </dd>
+        </div>
+
+        <div class="faq-item">
+          <dt class="faq-question">What's your process like?</dt>
+          <dd class="faq-answer">
+            We follow a collaborative, iterative approach: Think (strategy and planning), Design (UI/UX and prototyping),
+            Develop (engineering and QA), Launch (deployment and handover), and Scale (optimization and growth).
+          </dd>
+        </div>
+
+        <div class="faq-item">
+          <dt class="faq-question">Do you work with startups or enterprises?</dt>
+          <dd class="faq-answer">
+            Both! We've partnered with ambitious startups and established enterprises across various industries. What matters
+            most is shared ambition and a commitment to building something exceptional.
+          </dd>
+        </div>
+
+        <div class="faq-item">
+          <dt class="faq-question">Where are you based?</dt>
+          <dd class="faq-answer">
+            We're based in Porto, Portugal, but we work with clients globally. We're experienced in remote collaboration and
+            have processes in place to ensure seamless communication across time zones.
+          </dd>
+        </div>
+      </dl>
     </div>
   </section>
 
-  <!-- Stats + Testimonial -->
-  <section class="social-proof">
-    <div class="social-proof-inner">
-      <div class="stats-card">
-        <span class="stats-label">Customer experience</span>
-        <span class="stats-value">84.7%</span>
-        <p class="stats-description">
-          Bring your specs to Significa but give them the creative freedom to unleash the best possible design and solution for
-          your product needs and users.
-        </p>
-      </div>
-
-      {
-        testimonials[0] && (
-          <blockquote class="testimonial-card">
-            <p class="testimonial-quote">{testimonials[0].data.quote}</p>
-            <footer class="testimonial-author">
-              <cite>
-                <strong>{testimonials[0].data.author}</strong>
-                <span>
-                  {testimonials[0].data.role} at {testimonials[0].data.company}
-                </span>
-              </cite>
-            </footer>
-          </blockquote>
-        )
-      }
-    </div>
-  </section>
-
-  <!-- Client logos -->
+  <!-- Client Logos -->
   {
     clients.length > 0 && (
       <section class="clients">
@@ -251,20 +439,6 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
       </section>
     )
   }
-
-  <!-- Team photo -->
-  <section class="team-photo">
-    <div class="team-photo-inner">
-      <img
-        src="https://assets.significa.co/website/test-TKzoOc.png"
-        alt="The Significa team collaborating at their Porto studio"
-        width="1920"
-        height="1080"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-  </section>
 </BaseLayout>
 
 <!-- Showreel cursor-following button — vanilla JS, no island needed -->
@@ -358,83 +532,11 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
     font-size: var(--text-3xl);
     font-weight: var(--weight-normal);
     line-height: var(--leading-tight);
-  }
-
-  .hero-muted {
-    color: var(--color-text-muted);
-  }
-
-  .hero-cta {
-    color: var(--color-text);
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
-    text-decoration-thickness: 1px;
-  }
-
-  .hero-cta:hover {
-    color: var(--color-text);
-    text-decoration-thickness: 2px;
-  }
-
-  /* ============================================================
-       Highlights
-       ============================================================ */
-  .highlights {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .highlights-inner {
-    max-width: var(--max-width-narrow);
-    margin: 0 auto;
-  }
-
-  .highlights ul {
-    list-style: none;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .highlight-item a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--color-border);
-    text-decoration: none;
-    color: var(--color-text-muted);
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-
-  .highlight-item a:hover {
     color: var(--color-text);
   }
 
-  .highlight-item.first a {
-    color: var(--color-text);
-    font-weight: var(--weight-medium);
-  }
-
-  .highlight-title {
-    font-size: var(--text-base);
-  }
-
-  .highlight-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: var(--text-sm);
-    white-space: nowrap;
-  }
-
-  .highlight-arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 50%;
-    border: 1px solid var(--color-border);
-    font-size: 0.75rem;
+  .hero h1 strong {
+    font-weight: var(--weight-semibold);
   }
 
   /* ============================================================
@@ -456,7 +558,6 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
     cursor: none;
   }
 
-  .showreel-media img,
   .showreel-media video {
     width: 100%;
     height: auto;
@@ -492,7 +593,6 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
     font-size: 0.625rem;
   }
 
-  /* Fallback: on touch devices, show a static centered button */
   @media (hover: none) {
     .showreel-media {
       cursor: default;
@@ -509,242 +609,383 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
   }
 
   /* ============================================================
-       Project showcase
+       Section Intro
        ============================================================ */
-  .project-showcase {
-    padding: 0 var(--gutter) 4rem;
+  .section-intro {
+    padding: 4rem var(--gutter) 2rem;
   }
 
-  .project-showcase-inner {
-    max-width: var(--max-width);
+  .section-intro-inner {
+    max-width: var(--max-width-narrow);
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
   }
 
-  .showcase-project a {
-    display: block;
-    text-decoration: none;
+  .section-intro h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-tight);
     color: var(--color-text);
   }
 
-  .showcase-project--wide {
-    grid-column: 1 / -1;
+  /* ============================================================
+       Highlights Grid
+       ============================================================ */
+  .highlights-grid {
+    padding: 2rem var(--gutter) 4rem;
   }
 
-  .showcase-project-label {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-medium);
-    padding: 0.75rem 0;
+  .highlights-grid-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
   }
 
-  .showcase-project-image {
+  .highlight-card a {
+    display: block;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .highlight-card a:hover {
+    opacity: 0.8;
+  }
+
+  .highlight-image {
     border-radius: 0.5rem;
     overflow: hidden;
     background: var(--color-surface-alt);
+    margin-bottom: 1rem;
   }
 
-  .showcase-project-image img {
+  .highlight-image img {
     width: 100%;
     height: auto;
     display: block;
     transition: transform var(--duration-slow) var(--ease-out);
   }
 
-  .showcase-project a:hover .showcase-project-image img {
+  .highlight-card a:hover .highlight-image img {
     transform: scale(1.02);
   }
 
-  .showcase-project-metrics {
-    display: flex;
-    gap: 0.75rem;
-    list-style: none;
-    padding: 1rem 0;
-    flex-wrap: wrap;
+  .highlight-label {
+    display: block;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
   }
 
-  .metric-pill {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
+  .highlight-title {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    margin-bottom: 0.5rem;
   }
 
-  .metric-value {
+  .highlight-tagline {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+  }
+
+  /* ============================================================
+       Services Intro
+       ============================================================ */
+  .services-intro {
+    padding: 4rem var(--gutter);
+    background: var(--color-surface-alt);
+  }
+
+  .services-intro-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .services-intro h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-normal);
+    line-height: var(--leading-tight);
+    margin-bottom: 1.5rem;
+  }
+
+  .services-intro h2 strong {
+    font-weight: var(--weight-semibold);
+  }
+
+  .services-description {
     font-size: var(--text-lg);
-    font-weight: var(--weight-bold);
-    line-height: 1;
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
   }
 
-  .metric-label {
-    font-size: var(--text-sm);
+  .services-description strong {
+    color: var(--color-text);
+    font-weight: var(--weight-medium);
+  }
+
+  /* ============================================================
+       Service Pillars
+       ============================================================ */
+  .service-pillars {
+    padding: 0 var(--gutter) 4rem;
+    background: var(--color-surface-alt);
+  }
+
+  .service-pillars-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+  }
+
+  .pillar {
+    border-top: 2px solid var(--color-border);
+    padding-top: 1.5rem;
+  }
+
+  .pillar-title {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  .pillar-description {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
     color: var(--color-text-muted);
   }
 
-  @media (max-width: 640px) {
-    .project-showcase-inner {
+  @media (max-width: 768px) {
+    .service-pillars-inner {
       grid-template-columns: 1fr;
-    }
-
-    .showcase-project--wide {
-      grid-column: auto;
+      gap: 2rem;
     }
   }
 
   /* ============================================================
-       Awards
+       Team Intro
        ============================================================ */
-  .awards {
+  .team-intro {
     padding: 4rem var(--gutter);
   }
 
-  .awards-inner {
+  .team-intro-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .team-intro h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-tight);
+    margin-bottom: 2rem;
+  }
+
+  /* ============================================================
+       Blog Section
+       ============================================================ */
+  .blog-section {
+    padding: 4rem var(--gutter);
+  }
+
+  .blog-section-inner {
     max-width: var(--max-width);
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
   }
 
-  .awards-header h2 {
-    font-size: var(--text-xl);
+  .section-title {
+    font-size: var(--text-2xl);
     font-weight: var(--weight-bold);
     line-height: var(--leading-tight);
-    max-width: 18ch;
-    position: sticky;
-    top: 2rem;
+    margin-bottom: 3rem;
+    text-align: center;
   }
 
-  .awards-list {
-    list-style: none;
+  .section-description {
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+    margin-bottom: 3rem;
+    text-align: center;
+    max-width: 60ch;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .award-item {
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .award-item:first-child {
-    border-top: 1px solid var(--color-border);
-  }
-
-  .award-item a,
-  .award-item-inner {
+  .blog-grid {
     display: grid;
-    grid-template-columns: 1fr auto auto;
-    gap: 1rem;
-    align-items: center;
-    padding: 0.75rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .blog-card a {
+    display: block;
     text-decoration: none;
     color: var(--color-text);
     transition: opacity var(--duration-fast) var(--ease-out);
   }
 
-  .award-item a:hover {
-    opacity: 0.6;
-    color: var(--color-text);
+  .blog-card a:hover {
+    opacity: 0.8;
   }
 
-  .award-name {
+  .blog-image {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: var(--color-surface-alt);
+    margin-bottom: 1rem;
+  }
+
+  .blog-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .blog-title {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-description {
     font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-date {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  /* ============================================================
+       Impact Section
+       ============================================================ */
+  .impact-section {
+    padding: 4rem var(--gutter);
+    background: var(--color-surface-alt);
+  }
+
+  .impact-section-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .impact-section h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-normal);
+    line-height: var(--leading-tight);
+    margin-bottom: 1.5rem;
+  }
+
+  .impact-section h2 strong {
+    font-weight: var(--weight-semibold);
+  }
+
+  .impact-description {
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .impact-description strong {
+    color: var(--color-text);
     font-weight: var(--weight-medium);
   }
 
-  .award-year {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-  }
-
-  .award-project {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    text-align: right;
-  }
-
-  @media (max-width: 768px) {
-    .awards-inner {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .awards-header h2 {
-      position: static;
-    }
-
-    .award-item a,
-    .award-item-inner {
-      grid-template-columns: 1fr auto;
-    }
-
-    .award-project {
-      grid-column: 1 / -1;
-    }
-  }
-
   /* ============================================================
-       Expertise (industries + capabilities)
+       Playground Section
        ============================================================ */
-  .expertise {
-    padding: 0 var(--gutter) 4rem;
+  .playground-section {
+    padding: 4rem var(--gutter);
   }
 
-  .expertise-inner {
+  .playground-section-inner {
     max-width: var(--max-width);
     margin: 0 auto;
   }
 
-  .expertise-block {
+  .playground-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
   }
 
-  .expertise-block h2 {
-    font-size: var(--text-2xl);
-    font-weight: var(--weight-bold);
-    line-height: var(--leading-tight);
-    max-width: 20ch;
-  }
-
-  .expertise-list {
-    list-style: none;
-  }
-
-  .expertise-item {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--color-border);
-    font-size: var(--text-base);
-    color: var(--color-text-muted);
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-
-  .expertise-item:first-child {
-    border-top: 1px solid var(--color-border);
-  }
-
-  .expertise-item:hover {
+  .playground-card a {
+    display: block;
+    text-decoration: none;
     color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: border-color var(--duration-fast) var(--ease-out);
   }
 
-  @media (max-width: 768px) {
-    .expertise-block {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
+  .playground-card a:hover {
+    border-color: var(--color-text);
+  }
+
+  .playground-image {
+    background: var(--color-surface-alt);
+  }
+
+  .playground-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .playground-content {
+    padding: 1.5rem;
+  }
+
+  .playground-title {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    margin-bottom: 0.5rem;
+  }
+
+  .playground-description {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
   }
 
   /* ============================================================
-       Social proof (stats + testimonial)
+       Social Proof
        ============================================================ */
   .social-proof {
-    padding: 0 var(--gutter) 4rem;
+    padding: 4rem var(--gutter);
   }
 
   .social-proof-inner {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    gap: 1rem;
     max-width: var(--max-width);
     margin: 0 auto;
+  }
+
+  .social-proof-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
   }
 
   .stats-card {
@@ -808,16 +1049,151 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
   }
 
   @media (max-width: 768px) {
-    .social-proof-inner {
+    .social-proof-content {
       grid-template-columns: 1fr;
     }
+  }
+
+  /* ============================================================
+       Awards
+       ============================================================ */
+  .awards {
+    padding: 4rem var(--gutter);
+    background: var(--color-surface-alt);
+  }
+
+  .awards-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .awards-header {
+    margin-bottom: 3rem;
+  }
+
+  .awards-header h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+  }
+
+  .awards-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .award-item {
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background: var(--color-surface);
+  }
+
+  .award-item a,
+  .award-item-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: opacity var(--duration-fast) var(--ease-out);
+    height: 100%;
+  }
+
+  .award-item a:hover {
+    opacity: 0.7;
+  }
+
+  .award-name {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+  }
+
+  .award-year {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .award-project {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-top: auto;
+  }
+
+  /* ============================================================
+       Final CTA
+       ============================================================ */
+  .final-cta {
+    padding: 6rem var(--gutter);
+  }
+
+  .final-cta-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .final-cta h2 {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    margin-bottom: 1rem;
+  }
+
+  .final-cta-description {
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  /* ============================================================
+       FAQs
+       ============================================================ */
+  .faqs {
+    padding: 4rem var(--gutter);
+    background: var(--color-surface-alt);
+  }
+
+  .faqs-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+  }
+
+  .faq-list {
+    margin-top: 3rem;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+    padding: 2rem 0;
+  }
+
+  .faq-item:first-child {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .faq-question {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  .faq-answer {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
   }
 
   /* ============================================================
        Clients
        ============================================================ */
   .clients {
-    padding: 0 var(--gutter) 4rem;
+    padding: 4rem var(--gutter);
   }
 
   .clients-inner {
@@ -837,13 +1213,12 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
   .clients li a {
     color: var(--color-text);
     text-decoration: none;
-    opacity: 0.7;
+    opacity: 0.6;
     transition: opacity var(--duration-fast) var(--ease-out);
   }
 
   .clients li a:hover {
     opacity: 1;
-    color: var(--color-text);
   }
 
   .client-name {
@@ -853,21 +1228,73 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
   }
 
   /* ============================================================
-       Team photo
+       CTA Components
        ============================================================ */
-  .team-photo {
-    padding: 0 var(--gutter) 4rem;
+  .cta-container {
+    text-align: center;
+    margin-top: 3rem;
   }
 
-  .team-photo-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
+  .cta-link {
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: opacity var(--duration-fast) var(--ease-out);
   }
 
-  .team-photo-inner img {
-    width: 100%;
-    height: auto;
+  .cta-link:hover {
+    opacity: 0.7;
+  }
+
+  .cta-button,
+  .cta-button-outline {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    text-decoration: none;
     border-radius: 0.5rem;
-    display: block;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .cta-button {
+    background: var(--color-text);
+    color: var(--color-surface);
+    border: 2px solid var(--color-text);
+  }
+
+  .cta-button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  .cta-button-outline {
+    background: transparent;
+    color: var(--color-text);
+    border: 2px solid var(--color-border);
+  }
+
+  .cta-button-outline:hover {
+    border-color: var(--color-text);
+    transform: translateY(-2px);
+  }
+
+  .cta-button-large {
+    display: inline-block;
+    padding: 1.25rem 3rem;
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    background: var(--color-text);
+    color: var(--color-surface);
+    border: 2px solid var(--color-text);
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .cta-button-large:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
   }
 </style>

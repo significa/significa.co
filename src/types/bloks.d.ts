@@ -1065,6 +1065,7 @@ export interface PrefooterFormStoryblok {
 
 export interface ProjectStoryblok {
   cover?: AssetStoryblok;
+  show_cover_image: boolean;
   reel?: AssetStoryblok;
   reel_button?: any;
   show_reel_controls: boolean;

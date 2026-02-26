@@ -28,6 +28,13 @@
   };
 
   $: recognitions = $page.data.awards.filter((aw) => aw.content.project.id === project.id);
+
+  $: preferCover = project.content.show_cover_image && project.content.cover?.filename;
+  $: showReel =
+    !preferCover &&
+    project.content.reel?.filename &&
+    VIDEO_EXTENSIONS.includes(getFileExtension(project.content.reel.filename));
+  $: showCover = preferCover || (project.content.cover?.filename && !showReel);
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -69,7 +76,8 @@
     </div>
 
     {#if variant === 'featured'}
-      {#if project.content.reel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(project.content.reel.filename))}
+      {#if showReel && project.content.reel}
+        {@const reelSrc = project.content.reel.filename}
         <video
           bind:this={video}
           class="pointer-events-none mt-8 aspect-video h-auto w-full rounded-md bg-background-offset"
@@ -77,9 +85,9 @@
           playsinline
           autoplay={autoplayReel}
           loop
-          src={project.content.reel.filename}
+          src={reelSrc}
         />
-      {:else if project.content.cover?.filename}
+      {:else if showCover && project.content.cover?.filename}
         {@const { src, alt, width, height } = getImageAttributes(project.content.cover, {
           size: [1440 * 2, 0]
         })}

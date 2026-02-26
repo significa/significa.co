@@ -51,6 +51,10 @@
       return p.content.deliverables?.includes(f.value);
     });
   });
+
+  $: {
+    console.log('projects:', projects);
+  }
 </script>
 
 <Seo structureDataMarkup={$page.data.page.story.content.structure_data_markup} />

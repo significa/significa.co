@@ -32,7 +32,7 @@
   image={handbookOG}
   {structureDataMarkup}
 />
-<div class="container mx-auto px-container">
+<div class="container mx-auto mb-10 mt-36 flex-1 px-container md:mb-20 md:mt-20 lg:mt-10">
   <h1 class="sr-only">Handbook by Significa</h1>
   <!--
     NOTE: Tirar bonecada

@@ -1,0 +1,670 @@
+---
+import BaseLayout from "@/layouts/base.astro";
+
+const partners = [
+  { name: "Smart Shelter Foundation", logo: "SSF logo" },
+  { name: "Light Humanity", logo: "Light Humanity logo" },
+  { name: "Rewilding Portugal", logo: "Rewilding Portugal logo" },
+];
+---
+
+<BaseLayout
+  title="Impact"
+  description="We build products that transform businesses and improve people's lives. Building digital products with impact means accountability, reducing our environmental footprint, and contributing to a better future."
+>
+  <!-- Intro -->
+  <section class="intro">
+    <div class="intro-inner">
+      <h1>Building digital products with impact.</h1>
+      <p class="intro-description">
+        We build products that transform businesses and improve people's lives. Because the way we operate affects people
+        and the planet, we use data to stay accountable, continually refine our processes, reduce our environmental footprint
+        and grow our contribution to a better future.
+      </p>
+    </div>
+  </section>
+
+  <!-- Hero image -->
+  <section class="hero-image">
+    <div class="hero-image-inner">
+      <img
+        src="https://assets.significa.co/website/test-TKzoOc.png"
+        alt="Impact metrics visualization"
+        width="1920"
+        height="1080"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+  </section>
+
+  <!-- Product impact -->
+  <section class="product-impact">
+    <div class="product-impact-inner">
+      <h2>Building digital products with impact.</h2>
+      <p class="impact-description">
+        Our work directly impacts how users feel. Whether that's a shopping experience, navigating a healthcare platform or
+        purchasing a ticket, we design accessible flows and clear UIs, optimise for quick response times, and set
+        security-first, privacy-respecting defaults. Across our process — Think, Design, Develop, Launch and Scale — we talk
+        to real people, run quality assurance and usability tests, and let what we learn shape what comes next, built to
+        last.
+      </p>
+      <a href="/handbook/how-we-collaborate" class="impact-link">How we collaborate →</a>
+
+      <div class="impact-images">
+        <div class="impact-image">
+          <img
+            src="https://assets.significa.co/website/test-TKzoOc.png"
+            alt="Team collaboration"
+            width="960"
+            height="640"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="impact-image">
+          <img
+            src="https://assets.significa.co/website/test-TKzoOc.png"
+            alt="Office workspace"
+            width="960"
+            height="640"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B Corp -->
+  <section class="bcorp">
+    <div class="bcorp-inner">
+      <div class="bcorp-content">
+        <h2>B Corp</h2>
+        <p>
+          We became a <strong>Certified B Corp</strong> early 2025, underlining our dedication to creating a positive impact.
+          From workplace culture and company governance to environmental responsibility and client partnerships, it is a
+          declaration of our values and a commitment to ensure everything we build today fosters a better tomorrow. It inspires
+          us to continue creating work that simultaneously serves business goals, enriches people's lives, and protects our
+          planet.
+        </p>
+        <a href="https://www.bcorporation.net" target="_blank" rel="noopener noreferrer" class="bcorp-link"
+          >Learn about B Corp →</a
+        >
+      </div>
+
+      <div class="bcorp-images">
+        <div class="bcorp-badge">
+          <img
+            src="https://assets.significa.co/website/test-TKzoOc.png"
+            alt="B Corp Certification badge"
+            width="400"
+            height="400"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="bcorp-certificate">
+          <img
+            src="https://assets.significa.co/website/test-TKzoOc.png"
+            alt="B Corp Certificate"
+            width="960"
+            height="640"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1% for the Planet -->
+  <section class="one-percent">
+    <div class="one-percent-inner">
+      <h2>1% for the Planet</h2>
+      <p class="one-percent-description">
+        Each year, we give 1% of our gross revenue to vetted environmental partners through 1% for the Planet. Our team helps
+        choose where our contributions go, and we often support those institutions with design and development services, too.
+        Recently, we've partnered with Smart Shelter Foundation, Rewilding Portugal, and Light Humanity.
+      </p>
+
+      <div class="partners">
+        <p class="partners-label">Our environmental partners</p>
+        <ul class="partners-list">
+          {
+            partners.map((partner) => (
+              <li class="partner-item">
+                <span class="partner-name">{partner.name}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="one-percent-links">
+        <a href="/blog/continuing-our-commitment-with-1-for-the-planet">Continuing our commitment →</a>
+        <a href="/blog/we-partnered-with-1-for-the-planet">We partnered with 1% for the Planet →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Operations & Environment -->
+  <section class="operations">
+    <div class="operations-inner">
+      <div class="operations-grid">
+        <article class="operations-card">
+          <h3>Responsible operations</h3>
+          <p>
+            Our office runs on renewable electricity, and we recycle, dispose of e-waste responsibly, and limit high-impact
+            travel. When working from home, we uphold the same standards. We favour low-impact suppliers and help the team
+            switch to better options.
+          </p>
+          <a href="/handbook/sustainability" class="operations-link">Sustainability →</a>
+        </article>
+
+        <article class="operations-card">
+          <h3>Environmental management</h3>
+          <p>
+            We track our environmental footprint and actively work to reduce it. Having measured Scopes 1, 2 and 3 emissions,
+            we follow a Carbon Reduction Plan with year-on-year reduction targets. Our goal is to reach net zero by 2050 or
+            sooner, with a verified net-zero target set by 2027.
+          </p>
+          <div class="operations-links">
+            <a href="/handbook/sustainability/environmental-management">Environmental Management →</a>
+            <a
+              href="https://a.storyblok.com/f/198185/x/1d008574fd/significa_public-carbon-reduction-plan.pdf"
+              target="_blank"
+              rel="noopener noreferrer">Carbon Reduction Plan →</a
+            >
+          </div>
+        </article>
+      </div>
+
+      <div class="operations-images">
+        <div class="operations-image">
+          <img
+            src="https://assets.significa.co/website/test-TKzoOc.png"
+            alt="Carbon Footprint Standard certification"
+            width="960"
+            height="640"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="operations-image">
+          <img
+            src="https://assets.significa.co/website/test-TKzoOc.png"
+            alt="Environmental impact metrics"
+            width="960"
+            height="640"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team welfare -->
+  <section class="team-welfare">
+    <div class="team-welfare-inner">
+      <h2>Looking after our team</h2>
+      <p>
+        Twice a year we ask our team how everyone feels we're doing. We share key learning points, turn those into clear
+        actions with assigned responsibilities and timelines, and follow up regularly so everyone feels supported and seen.
+      </p>
+      <a href="/careers" class="welfare-link">Learn about careers at Significa →</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-inner">
+      <h2>Ready to build with impact in mind?</h2>
+      <a href="/work-with-us" class="cta-button">Work with us</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* --------------------------------------------------------
+       Intro
+       -------------------------------------------------------- */
+  .intro {
+    padding: 8rem var(--gutter) 4rem;
+  }
+
+  .intro-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+  }
+
+  .intro h1 {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-description {
+    font-size: var(--text-xl);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+  }
+
+  /* --------------------------------------------------------
+       Hero image
+       -------------------------------------------------------- */
+  .hero-image {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .hero-image-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    display: block;
+  }
+
+  /* --------------------------------------------------------
+       Product impact
+       -------------------------------------------------------- */
+  .product-impact {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .product-impact-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .product-impact h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    margin-bottom: 1.5rem;
+  }
+
+  .impact-description {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    margin-bottom: 1.5rem;
+    max-width: 65ch;
+  }
+
+  .impact-link {
+    display: inline-block;
+    font-size: var(--text-base);
+    color: var(--color-text);
+    text-decoration: none;
+    margin-bottom: 3rem;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .impact-link:hover {
+    opacity: 0.7;
+    color: var(--color-text);
+  }
+
+  .impact-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .impact-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .impact-images {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* --------------------------------------------------------
+       B Corp
+       -------------------------------------------------------- */
+  .bcorp {
+    padding: 4rem var(--gutter);
+    background: var(--color-surface-alt);
+  }
+
+  .bcorp-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .bcorp-content h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    margin-bottom: 1.5rem;
+  }
+
+  .bcorp-content p {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    margin-bottom: 1.5rem;
+  }
+
+  .bcorp-content strong {
+    color: var(--color-text);
+    font-weight: var(--weight-semibold);
+  }
+
+  .bcorp-link {
+    display: inline-block;
+    font-size: var(--text-base);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .bcorp-link:hover {
+    opacity: 0.7;
+    color: var(--color-text);
+  }
+
+  .bcorp-images {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .bcorp-badge {
+    width: 8rem;
+  }
+
+  .bcorp-badge img,
+  .bcorp-certificate img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    display: block;
+  }
+
+  @media (max-width: 1024px) {
+    .bcorp-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .bcorp-images {
+      grid-template-columns: 1fr;
+    }
+
+    .bcorp-badge {
+      width: 6rem;
+      margin: 0 auto;
+    }
+  }
+
+  /* --------------------------------------------------------
+       1% for the Planet
+       -------------------------------------------------------- */
+  .one-percent {
+    padding: 4rem var(--gutter);
+  }
+
+  .one-percent-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+  }
+
+  .one-percent h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    margin-bottom: 1.5rem;
+  }
+
+  .one-percent-description {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    margin-bottom: 2rem;
+  }
+
+  .partners {
+    background: var(--color-surface-alt);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .partners-label {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  .partners-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .partner-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .partner-item:last-child {
+    border-bottom: none;
+  }
+
+  .partner-name {
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+  }
+
+  .one-percent-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .one-percent-links a {
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .one-percent-links a:hover {
+    opacity: 0.7;
+    color: var(--color-text);
+  }
+
+  /* --------------------------------------------------------
+       Operations & Environment
+       -------------------------------------------------------- */
+  .operations {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .operations-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .operations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .operations-card {
+    background: var(--color-surface-alt);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .operations-card h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    margin-bottom: 1rem;
+  }
+
+  .operations-card p {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .operations-link {
+    display: inline-block;
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .operations-link:hover {
+    opacity: 0.7;
+    color: var(--color-text);
+  }
+
+  .operations-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .operations-links a {
+    display: inline-block;
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .operations-links a:hover {
+    opacity: 0.7;
+    color: var(--color-text);
+  }
+
+  .operations-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .operations-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .operations-grid,
+    .operations-images {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* --------------------------------------------------------
+       Team welfare
+       -------------------------------------------------------- */
+  .team-welfare {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .team-welfare-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+    text-align: center;
+    background: var(--color-surface-alt);
+    padding: 3rem 2rem;
+    border-radius: 0.5rem;
+  }
+
+  .team-welfare h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    margin-bottom: 1rem;
+  }
+
+  .team-welfare p {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    margin-bottom: 1.5rem;
+  }
+
+  .welfare-link {
+    display: inline-block;
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-thickness var(--duration-fast) var(--ease-out);
+  }
+
+  .welfare-link:hover {
+    color: var(--color-text);
+    text-decoration-thickness: 2px;
+  }
+
+  /* --------------------------------------------------------
+       CTA
+       -------------------------------------------------------- */
+  .cta {
+    padding: 4rem var(--gutter) 8rem;
+  }
+
+  .cta-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cta h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    margin-bottom: 2rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    color: var(--color-surface);
+    background: var(--color-text);
+    padding: 0.75rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .cta-button:hover {
+    opacity: 0.9;
+    color: var(--color-surface);
+  }
+</style>

@@ -76,14 +76,14 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
   <section class="showreel">
     <div class="showreel-inner">
       <div class="showreel-media" data-showreel>
-        <img
-          src="https://assets.significa.co/website/test-TKzoOc.png"
-          alt="Significa showreel preview"
+        <video
+          src="https://assets.significa.co/fcp-reel-w-subtitles-2cDmSH.mp4"
           width="1920"
-          height="1200"
-          loading="eager"
-          decoding="async"
-        />
+          height="1080"
+          loop
+          muted
+          playsinline
+          data-showreel-video></video>
         <button class="showreel-cursor" type="button" data-showreel-cursor aria-label="Play showreel video">
           <span class="showreel-cursor-icon" aria-hidden="true">▶</span>
         </button>
@@ -272,7 +272,10 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
   function initShowreel() {
     const section = document.querySelector<HTMLElement>("[data-showreel]");
     const cursor = document.querySelector<HTMLButtonElement>("[data-showreel-cursor]");
-    if (!section || !cursor) return;
+    const video = document.querySelector<HTMLVideoElement>("[data-showreel-video]");
+    if (!section || !cursor || !video) return;
+
+    let isPlaying = false;
 
     function positionAt(e: MouseEvent) {
       if (!cursor) return;
@@ -280,6 +283,26 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
       const x = e.clientX - cursor.offsetWidth / 2;
       const y = e.clientY - cursor.offsetHeight / 2;
       cursor.style.translate = `${x}px ${y}px`;
+    }
+
+    function updateCursorIcon() {
+      if (!cursor) return;
+      const icon = cursor.querySelector(".showreel-cursor-icon");
+      if (icon) {
+        icon.textContent = isPlaying ? "❚❚" : "▶";
+      }
+    }
+
+    function toggleVideo() {
+      if (!video) return;
+      if (isPlaying) {
+        video.pause();
+        isPlaying = false;
+      } else {
+        video.play();
+        isPlaying = true;
+      }
+      updateCursorIcon();
     }
 
     section.addEventListener("mouseenter", (e: MouseEvent) => {
@@ -295,6 +318,12 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
 
     section.addEventListener("mousemove", (e: MouseEvent) => {
       positionAt(e);
+    });
+
+    section.addEventListener("click", toggleVideo);
+    cursor.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleVideo();
     });
 
     // Respect reduced motion
@@ -427,7 +456,8 @@ const capabilities = ["Ecommerce", "Websites", "Desktop Apps", "Web Apps", "Watc
     cursor: none;
   }
 
-  .showreel-media img {
+  .showreel-media img,
+  .showreel-media video {
     width: 100%;
     height: auto;
     display: block;

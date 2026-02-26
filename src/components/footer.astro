@@ -9,6 +9,7 @@ const significaLinks = [
   { label: "Who we are", href: "/who-we-are" },
   { label: "What we do", href: "/what-we-do" },
   { label: "Projects", href: "/projects" },
+  { label: "Impact", href: "/impact" },
   { label: "Work with us", href: "/work-with-us" },
   { label: "Careers", href: "/careers" },
   { label: "Blog", href: "/blog" },
@@ -92,7 +93,7 @@ const handbookLinks = [
         <span class="certification-badge" title="1% for the Planet">1%</span>
       </div>
       <p class="footer-legal">
-        &copy; {currentYear} Significa. All rights reserved.
+        &copy; {currentYear} Significa. All rights reserved. · <a href="/legal">Terms & Privacy</a>
       </p>
     </div>
   </div>
@@ -217,6 +218,17 @@ const handbookLinks = [
   .footer-legal {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .footer-legal a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .footer-legal a:hover {
+    color: var(--color-text);
   }
 
   /* --------------------------------------------------------

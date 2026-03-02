@@ -1,11 +1,6 @@
 import { HOME_SLUG } from '$lib/constants';
 
-export const sanitizeSlug = (slug?: string | null) => {
-  if (!slug) {
-    console.warn('[sanitizeSlug] Missing slug');
-    return '/';
-  }
-
+export const sanitizeSlug = (slug: string) => {
   if (slug === HOME_SLUG) return '/';
 
   // nothing for now, but it's good to have a centralized function that we pass all slugs through

@@ -19,25 +19,41 @@
     sidebar.set(false);
   });
 
+  const pathFromLevel = (level?: HandbookLevelStoryblok) => {
+    const slug = level?.homepage?.full_slug;
+
+    if (!slug || typeof slug !== 'string') return null;
+
+    return sanitizeSlug(slug);
+  };
+
   $: openPanes = data.hierarchy
-    .map((chapter: HandbookLevelStoryblok) => chapter.children)
+    .map((chapter: HandbookLevelStoryblok) => chapter.children ?? [])
     .map((subchapters: HandbookLevelStoryblok[]) => ({
-      open: subchapters.some(
-        (subchapter: HandbookLevelStoryblok) =>
-          $pageStore.url.pathname === sanitizeSlug(subchapter.homepage.full_slug) ||
-          subchapter.children?.some(
-            (childrenPage: HandbookLevelStoryblok) =>
-              $pageStore.url.pathname === sanitizeSlug(childrenPage.homepage.full_slug)
-          )
-      ),
-      children: subchapters.map(
-        (subchapter) =>
-          $pageStore.url.pathname === sanitizeSlug(subchapter.homepage.full_slug) ||
-          subchapter.children?.some(
-            (childrenPage) =>
-              $pageStore.url.pathname === sanitizeSlug(childrenPage.homepage.full_slug)
-          )
-      )
+      open: subchapters.some((subchapter: HandbookLevelStoryblok) => {
+        const subchapterPath = pathFromLevel(subchapter);
+
+        return (
+          (subchapterPath !== null && $pageStore.url.pathname === subchapterPath) ||
+          subchapter.children?.some((childrenPage: HandbookLevelStoryblok) => {
+            const childrenPagePath = pathFromLevel(childrenPage);
+
+            return childrenPagePath !== null && $pageStore.url.pathname === childrenPagePath;
+          })
+        );
+      }),
+      children: subchapters.map((subchapter) => {
+        const subchapterPath = pathFromLevel(subchapter);
+
+        return (
+          (subchapterPath !== null && $pageStore.url.pathname === subchapterPath) ||
+          subchapter.children?.some((childrenPage: HandbookLevelStoryblok) => {
+            const childrenPagePath = pathFromLevel(childrenPage);
+
+            return childrenPagePath !== null && $pageStore.url.pathname === childrenPagePath;
+          })
+        );
+      })
     }));
 </script>
 
@@ -76,6 +92,7 @@
       <nav class="px-container pt-[calc(var(--topnav-height))] lg:px-0 lg:pt-4">
         <ul>
           {#each data.hierarchy as chapter, i}
+            {@const chapterPath = pathFromLevel(chapter)}
             <li
               transition:slide
               class={clsx(
@@ -86,14 +103,13 @@
                   : 'border-border text-foreground-secondary'
               )}
             >
-              {#if chapter.homepage}
+              {#if chapterPath}
                 <a
                   class={clsx(
                     'transition-color mr-2 flex w-full duration-300 hover:text-foreground',
-                    $pageStore.url.pathname === sanitizeSlug(chapter.homepage.full_slug) &&
-                      'text-foreground'
+                    $pageStore.url.pathname === chapterPath && 'text-foreground'
                   )}
-                  href={sanitizeSlug(chapter.homepage.full_slug)}
+                  href={chapterPath}
                 >
                   <span class="shrink-0">
                     {chapter.name}
@@ -104,11 +120,12 @@
               {/if}
             </li>
             <ul class="mb-6" transition:slide={{ duration: 400, easing: circOut }}>
-              {#each chapter.children as subchapter, j}
+              {#each chapter.children ?? [] as subchapter, j}
+                {@const subchapterPath = pathFromLevel(subchapter)}
                 <li
                   class={clsx(
                     'group flex items-center border-l py-1.5 pl-6 text-sm font-medium transition-all duration-300',
-                    $pageStore.url.pathname === sanitizeSlug(subchapter.homepage.full_slug)
+                    subchapterPath !== null && $pageStore.url.pathname === subchapterPath
                       ? 'text-foreground'
                       : 'border-border text-foreground-secondary'
                   )}
@@ -130,33 +147,44 @@
                       {@html plus}
                     </div>
                   {/if}
-                  <a
-                    class="transition-color mr-2 flex w-full duration-300 hover:text-foreground"
-                    href={sanitizeSlug(subchapter.homepage.full_slug)}
-                  >
+                  {#if subchapterPath}
+                    <a
+                      class="transition-color mr-2 flex w-full duration-300 hover:text-foreground"
+                      href={subchapterPath}
+                    >
+                      <span class="shrink-0">
+                        {subchapter.name}
+                      </span>
+                    </a>
+                  {:else}
                     <span class="shrink-0">
                       {subchapter.name}
                     </span>
-                  </a>
+                  {/if}
                 </li>
 
                 {#if subchapter.children?.length && openPanes[i].children[j] === true}
                   <ul transition:slide class="flex flex-col border-l pb-2 pl-7">
                     {#each subchapter.children as child}
+                      {@const childPath = pathFromLevel(child)}
                       <li
                         class={clsx(
                           'cursor-pointer border-l py-2 pl-6 text-sm font-medium transition-all duration-300',
-                          $pageStore.url.pathname === sanitizeSlug(child.homepage.full_slug)
+                          childPath !== null && $pageStore.url.pathname === childPath
                             ? 'text-foreground-primary border-foreground'
                             : 'border-border text-foreground-secondary'
                         )}
                       >
-                        <a
-                          class="transition-color duration-300 hover:text-foreground"
-                          href={sanitizeSlug(child.homepage.full_slug)}
-                        >
+                        {#if childPath}
+                          <a
+                            class="transition-color duration-300 hover:text-foreground"
+                            href={childPath}
+                          >
+                            {child.name}
+                          </a>
+                        {:else}
                           {child.name}
-                        </a>
+                        {/if}
                       </li>
                     {/each}
                   </ul>

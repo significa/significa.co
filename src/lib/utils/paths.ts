@@ -1,7 +1,10 @@
 import { HOME_SLUG } from '$lib/constants';
 
 export const sanitizeSlug = (slug?: string | null) => {
-  if (!slug) return '/';
+  if (!slug) {
+    console.warn('[sanitizeSlug] Missing slug');
+    return '/';
+  }
 
   if (slug === HOME_SLUG) return '/';
 

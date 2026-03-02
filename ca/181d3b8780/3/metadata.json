@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "ca181d3b8780",
+  "session_id": "a087caaa-00f0-4194-b88f-31c81650b5c7",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-02T15:25:16.60813Z",
+  "branch": "chore/docs-synthesis",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "docs/plans/2026-03-02-docs-synthesis-design.md"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "cfc1477be8a2",
+  "transcript_identifier_at_start": "4c898313-6f05-4c36-a044-355a426287b9",
+  "token_usage": {
+    "input_tokens": 20511,
+    "cache_creation_tokens": 165717,
+    "cache_read_tokens": 1848963,
+    "output_tokens": 43489,
+    "api_call_count": 19
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-02T15:25:16.418158Z",
+    "agent_lines": 0,
+    "human_added": 48778,
+    "human_modified": 50,
+    "human_removed": 0,
+    "total_committed": 48778,
+    "agent_percentage": 0
+  },
+  "transcript_path": ".claude/projects/-Users-andrefurt-code-significa-co/a087caaa-00f0-4194-b88f-31c81650b5c7.jsonl"
+}

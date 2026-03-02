@@ -1,0 +1,52 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "2df2169ecfc1",
+  "session_id": "1094592a-b7d2-4f4b-a343-e51eb9e9d0b0",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-02T16:10:56.067829Z",
+  "branch": "chore/docs-synthesis",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "docs/03-MDX-COMPONENTS.md",
+    "docs/05-RULES.md",
+    "docs/06-ASTRO-REFERENCE.md",
+    "docs/07-TEAM-DECISIONS.md",
+    "docs/BLOG-POST-IMPROVEMENTS.md",
+    "docs/COVER-IMAGES-SUMMARY.md",
+    "docs/01-PROJECT-BOOTSTRAP.md",
+    "docs/10-BLOG-POST-TEMPLATE.md",
+    "docs/10-PARENT-CHILD-PAGES.md",
+    "docs/URL-FORMAT-CONFIRMED.md",
+    "docs/11-BLOG-INDEX.md",
+    "docs/HOMEPAGE-RESTRUCTURE.md",
+    "docs/MISHMASH-MIGRATION.md",
+    "docs/PROJECTS-PAGE-REDESIGN.md",
+    "docs/00-README.md",
+    "docs/04-MEDIA-ASSETS.md",
+    "docs/08-DESIGN-TOKENS.md",
+    "docs/09-SEO-ACCESSIBILITY.md",
+    "docs/PARENT-CHILD-SETUP.md",
+    "docs/QUICK-PARENT-CHILD-GUIDE.md",
+    "docs/02-CONTENT-SCHEMA.md"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "0380ee2da388",
+  "transcript_identifier_at_start": "a16dacfc-0f42-4020-bc64-8668e8c27a56",
+  "token_usage": {
+    "input_tokens": 134,
+    "cache_creation_tokens": 275115,
+    "cache_read_tokens": 10125473,
+    "output_tokens": 43843,
+    "api_call_count": 115
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-02T16:10:55.197008Z",
+    "agent_lines": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 5844,
+    "total_committed": 0,
+    "agent_percentage": 0
+  },
+  "transcript_path": ".claude/projects/-Users-andrefurt-code-significa-co/1094592a-b7d2-4f4b-a343-e51eb9e9d0b0.jsonl"
+}

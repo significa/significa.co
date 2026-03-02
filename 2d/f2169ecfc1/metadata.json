@@ -1,0 +1,46 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "2df2169ecfc1",
+  "strategy": "manual-commit",
+  "branch": "chore/docs-synthesis",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "docs/00-README.md",
+    "docs/01-PROJECT-BOOTSTRAP.md",
+    "docs/02-CONTENT-SCHEMA.md",
+    "docs/03-MDX-COMPONENTS.md",
+    "docs/04-MEDIA-ASSETS.md",
+    "docs/05-RULES.md",
+    "docs/06-ASTRO-REFERENCE.md",
+    "docs/07-TEAM-DECISIONS.md",
+    "docs/08-DESIGN-TOKENS.md",
+    "docs/09-SEO-ACCESSIBILITY.md",
+    "docs/10-BLOG-POST-TEMPLATE.md",
+    "docs/10-PARENT-CHILD-PAGES.md",
+    "docs/11-BLOG-INDEX.md",
+    "docs/BLOG-POST-IMPROVEMENTS.md",
+    "docs/COVER-IMAGES-SUMMARY.md",
+    "docs/HOMEPAGE-RESTRUCTURE.md",
+    "docs/MISHMASH-MIGRATION.md",
+    "docs/PARENT-CHILD-SETUP.md",
+    "docs/PROJECTS-PAGE-REDESIGN.md",
+    "docs/QUICK-PARENT-CHILD-GUIDE.md",
+    "docs/URL-FORMAT-CONFIRMED.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/2d/f2169ecfc1/0/metadata.json",
+      "transcript": "/2d/f2169ecfc1/0/full.jsonl",
+      "context": "/2d/f2169ecfc1/0/context.md",
+      "content_hash": "/2d/f2169ecfc1/0/content_hash.txt",
+      "prompt": "/2d/f2169ecfc1/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 134,
+    "cache_creation_tokens": 275115,
+    "cache_read_tokens": 10125473,
+    "output_tokens": 43843,
+    "api_call_count": 115
+  }
+}

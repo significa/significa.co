@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "c939b86a7d2d",
+  "strategy": "manual-commit",
+  "branch": "chore/docs-synthesis",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "docs/01-CONTENT-SCHEMA.md",
+    "docs/02-COMPONENTS.md",
+    "docs/03-MEDIA-ASSETS.md",
+    "docs/04-HANDBOOK.md",
+    "docs/05-BLOG.md",
+    "docs/06-SEO-ACCESSIBILITY.md",
+    "docs/07-DECISIONS.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/c9/39b86a7d2d/0/metadata.json",
+      "transcript": "/c9/39b86a7d2d/0/full.jsonl",
+      "context": "/c9/39b86a7d2d/0/context.md",
+      "content_hash": "/c9/39b86a7d2d/0/content_hash.txt",
+      "prompt": "/c9/39b86a7d2d/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 63,
+    "cache_creation_tokens": 126619,
+    "cache_read_tokens": 5884216,
+    "output_tokens": 27716,
+    "api_call_count": 54
+  }
+}

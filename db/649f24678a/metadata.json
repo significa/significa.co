@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "db649f24678a",
+  "strategy": "manual-commit",
+  "branch": "design",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "CLAUDE.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/db/649f24678a/0/metadata.json",
+      "transcript": "/db/649f24678a/0/full.jsonl",
+      "context": "/db/649f24678a/0/context.md",
+      "content_hash": "/db/649f24678a/0/content_hash.txt",
+      "prompt": "/db/649f24678a/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 146,
+    "cache_creation_tokens": 290949,
+    "cache_read_tokens": 11383997,
+    "output_tokens": 49372,
+    "api_call_count": 127
+  }
+}

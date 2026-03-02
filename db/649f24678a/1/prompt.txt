@@ -1,0 +1,612 @@
+Claude vamos fazer alterações ao design que implementamos na execução anterior. vamos nos focar no hero da index.astro. figma link: https://www.figma.REDACTED?node-id=4990-97136&t=uxxNN4mZXQ3ct1B8-4
+
+Specs:
+- Hero tem quase viewport width, revelando apenas um bocado da secção abaixo (showreel) uns 50px(rem) visiveis do showrell em percentage de ecrã.
+- Titulo e subtitulo: titulocolor: #1E1A15;
+font-family: "Google Sans Flex";
+font-size: 1.75rem;
+font-style: normal;
+font-weight: 500;
+line-height: 115%; /* 2.0125rem */
+letter-spacing: -0.0175rem;; subtitulo:color: #888581;
+font-family: "Google Sans Flex";
+font-size: 1.75rem;
+font-style: normal;
+font-weight: 400;
+line-height: 115%; /* 2.0125rem */
+letter-spacing: -0.0175rem;. estão grouped, 0 de gap, e com 16px(rem) padding. Alinhado no canto superior esquerdo do hero sections.
+- Highlights articles from blog: estes elementos vem do blog e são highlighted aqui no hero. figma: https://www.figma.REDACTED?node-id=4990-97156&t=uxxNN4mZXQ3ct1B8-4
+tem um icon opcional no lado esquerdo de cada row que simboliza que tipo de artigo é "ecommerce, ui, dev, Product..", o nome do artigo, e do lado esquerdo da row tem o reading time e o icon arrow. Hover state adiciona um bg muito smooth e a arrow muda de cor. specs da tipografia do titulo: color: #1E1A15;
+font-family: N27;
+font-size: 0.875rem;
+font-style: normal;
+font-weight: 500;
+line-height: 130%; /* 1.1375rem */
+letter-spacing: 0.035rem;
+text-transform: uppercase;, do reading time color: #1E1A15;
+font-family: N27;
+font-size: 0.6875rem;
+font-style: normal;
+font-weight: 500;
+line-height: 124%; /* 0.8525rem */
+letter-spacing: 0.03438rem;
+text-transform: uppercase;.
+
+- o hero section tem uma border border-radius: 0.75rem;
+border: 0.5px solid rgba(30, 26, 21, 0.12); e tem 8px(rem) de padding para os edges do screen top e right left. tal como os outros elementos.
+
+- space between dentro do hero section.
+---
+requisitos:
+Não uses valores arbitrários. segue as rules, specs, e standards do projeto.
+- Age como senior front-end dev.
+- pensa antes de executar.
+
+---
+
+[Image: source: REDACTED de ecrã 2026-03-02, às 14.22.23.png]
+
+---
+
+This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation.
+
+Analysis:
+Let me chronologically analyze the conversation:
+
+1. The user connected to the Figma MCP server and then made a detailed request about modifying the hero section of the homepage (index.astro) based on a Figma design.
+
+2. The user's request included very specific specs:
+   - Hero takes almost viewport height, showing ~50px of showreel below
+   - Title "Significa®" and subtitle "Mean something." with specific typography (Google Sans Flex, 1.75rem, specific weights, line-height 115%, letter-spacing)
+   - Blog highlight articles from highlights collection in the hero
+   - Each highlight row: optional icon (left), article title (center), reading time + arrow icon (right)
+   - Hover state with smooth bg change and arrow color change
+   - Hero has border-radius 0.75rem, border 0.5px solid rgba(30,26,21,0.12)
+   - 8px padding from screen edges (top, right, left)
+   - Space-between layout inside hero
+
+3. My approach:
+   - Fetched Figma design context for two nodes (hero and highlight row)
+   - Read current index.astro, tokens.css, global.css, content.config.ts, collections.ts
+   - Read blog post frontmatter examples
+   - Read highlight YAML files
+   - Read base layout and header component
+   - Made changes to tokens.css and index.astro
+
+4. Key decisions:
+   - Added --color-border-subtle token using color-mix()
+   - Used getResolvedHighlights() from existing collections.ts
+   - Used 1.75rem directly for hero title (no exact token match)
+   - Simple SVG arrow instead of pixel-art arrow from Figma
+   - Empty colored squares for category icons (no icon system exists)
+   - Reading time computed from entry.body with ~200 words/min
+   - Hero height: calc(100svh - 7.5rem)
+
+5. Files modified:
+   - src/styles/tokens.css: Added --color-border-subtle
+   - src/pages/index.astro: Major rewrite of hero section
+
+6. Build passed with 0 errors, 0 warnings. astro check passed clean.
+
+7. No errors were encountered during implementation.
+
+8. The user has not yet provided feedback on the implementation. The last message was my summary of changes.
+
+Let me verify what's pending - the user's request was specifically about the hero section changes. The implementation appears complete. The user hasn't asked for anything else yet.
+
+Summary:
+1. Primary Request and Intent:
+   The user (André, Chief of Design @ Significa) requested modifications to the hero section of the homepage (index.astro) based on a Figma design (file key: 8Ksp6uOkihH7DtcW71NeG9, node: 4990-97136). Specific requirements:
+   - Hero takes almost viewport height, showing ~50px of the showreel section below
+   - Title "Significa®" and subtitle "Mean something." with exact typography specs (Google Sans Flex, 1.75rem, weight 500/400, line-height 115%, letter-spacing -0.0175rem), grouped with 0 gap, 16px padding, aligned top-left
+   - Blog highlight articles from the highlights collection displayed as rows in the hero with: optional category icon (left, 20px rounded square), article title (N27, 0.875rem, weight 500, uppercase), reading time (N27, 0.6875rem, weight 500, uppercase) + arrow icon (right)
+   - Hover state: smooth bg change, arrow color change, text darkens
+   - Hero border: border-radius 0.75rem, border 0.5px solid rgba(30,26,21,0.12)
+   - 8px padding from screen edges (top, right, left)
+   - Space-between layout inside hero section
+   - No arbitrary values, follow project rules/specs/standards
+   - "Age como senior front-end dev. pensa antes de executar."
+
+2. Key Technical Concepts:
+   - Astro v5 static site with scoped CSS and CSS custom property design tokens (OKLCH color space)
+   - Content Collections with Zod schemas and `reference()` for cross-collection links
+   - Highlights collection resolves entries from blog/projects/playground via `getResolvedHighlights()`
+   - No CSS framework (Tailwind output from Figma MCP must be converted to scoped CSS + tokens)
+   - `color-mix(in oklch, ...)` for derived color tokens
+   - Reading time estimation from raw markdown body (~200 words/min)
+   - `100svh` for viewport-relative hero height
+   - Semantic HTML (`<nav>`, `<section>`, `<a>` for highlight rows)
+
+3. Files and Code Sections:
+
+   - **src/styles/tokens.css** (modified)
+     - Added `--color-border-subtle` semantic token for the subtle 12% opacity border
+     ```css
+     --color-border-subtle: color-mix(in oklch, var(--color-text) 12%, transparent);
+     ```
+
+   - **src/pages/index.astro** (modified - hero section rewrite)
+     - Core file being modified. Hero section completely rewritten.
+     - Added frontmatter imports and data preparation:
+     ```astro
+     import { getResolvedHighlights } from "@/lib/collections";
+     
+     const highlights = await getResolvedHighlights();
+     
+     const collectionPathMap: Record<string, string> = {
+       blog: "/blog",
+       projects: "/projects",
+       playground: "/labs",
+     };
+     
+     function estimateReadingTime(body: string | undefined): number | null {
+       if (!body) return null;
+       const words = body.trim().split(/\s+/).filter(Boolean).length;
+       return Math.max(1, Math.ceil(words / 200));
+     }
+     
+     const heroHighlights = highlights.map((h) => ({
+       title: h.entry?.data.title ?? "Untitled",
+       href: `${collectionPathMap[h.collection] ?? ""}/${h.entry?.id}`,
+       label: h.label,
+       readingTime: estimateReadingTime((h.entry as { body?: string })?.body),
+     }));
+     ```
+     - Hero HTML template:
+     ```astro
+     <section class="hero">
+       <div class="hero-heading">
+         <h1 class="hero-title">Significa®</h1>
+         <p class="hero-subtitle">Mean something.</p>
+       </div>
+       <nav class="hero-highlights" aria-label="Featured articles">
+         {heroHighlights.map((item) => (
+           <a class="highlight-row" href={item.href}>
+             {item.label && <span class="highlight-icon" aria-hidden="true" />}
+             <span class="highlight-title">{item.title}</span>
+             <span class="highlight-meta">
+               {item.readingTime && (
+                 <span class="highlight-time">{item.readingTime} min</span>
+               )}
+               <svg class="highlight-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                 <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+               </svg>
+             </span>
+           </a>
+         ))}
+       </nav>
+     </section>
+     ```
+     - Page container CSS changed from `padding: 0 8px` to `padding: 0.5rem 0.5rem 0` and gap from `8px` to `0.5rem`
+     - Full hero CSS (replaced old hero styles completely):
+     ```css
+     .hero {
+       display: flex;
+       flex-direction: column;
+       justify-content: space-between;
+       min-height: calc(100svh - 7.5rem);
+       background: var(--color-surface);
+       border-radius: 0.75rem;
+       border: 0.5px solid var(--color-border-subtle);
+       overflow: hidden;
+     }
+     .hero-heading { padding: 1rem; }
+     .hero-title {
+       font-family: var(--font-sans);
+       font-size: 1.75rem;
+       font-weight: var(--weight-medium);
+       line-height: 1.15;
+       letter-spacing: -0.0175rem;
+       color: var(--color-text);
+       margin: 0;
+     }
+     .hero-subtitle {
+       font-family: var(--font-sans);
+       font-size: 1.75rem;
+       font-weight: var(--weight-normal);
+       line-height: 1.15;
+       letter-spacing: -0.0175rem;
+       color: var(--color-text-muted);
+       margin: 0;
+     }
+     .hero-highlights { display: flex; flex-direction: column; }
+     .highlight-row {
+       display: flex;
+       align-items: center;
+       gap: 1rem;
+       padding: 22px 1rem;
+       border-top: 0.5px solid var(--color-border-subtle);
+       text-decoration: none;
+       color: inherit;
+       transition: background var(--duration-fast) var(--ease-out);
+     }
+     .highlight-row:hover { background: var(--color-surface-alt); }
+     .highlight-icon {
+       width: 20px; height: 20px; border-radius: 4px;
+       background: var(--gray-300); flex-shrink: 0;
+       transition: background var(--duration-fast) var(--ease-out);
+     }
+     .highlight-row:hover .highlight-icon { background: var(--color-text); }
+     .highlight-title {
+       flex: 1;
+       font-family: var(--font-display);
+       font-size: 0.875rem;
+       font-weight: var(--weight-medium);
+       line-height: 1.3;
+       letter-spacing: 0.035rem;
+       text-transform: uppercase;
+       color: var(--color-text-muted);
+       min-width: 0;
+       transition: color var(--duration-fast) var(--ease-out);
+     }
+     .highlight-row:hover .highlight-title { color: var(--color-text); }
+     .highlight-meta { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+     .highlight-time {
+       font-family: var(--font-display);
+       font-size: 0.6875rem;
+       font-weight: var(--weight-medium);
+       line-height: 1.24;
+       letter-spacing: 0.03438rem;
+       text-transform: uppercase;
+       color: var(--color-text-muted);
+       white-space: nowrap;
+       transition: color var(--duration-fast) var(--ease-out);
+     }
+     .highlight-row:hover .highlight-time { color: var(--color-text); }
+     .highlight-arrow {
+       width: 14px; height: 14px;
+       color: var(--color-text-muted); flex-shrink: 0;
+       transition: color var(--duration-fast) var(--ease-out);
+     }
+     .highlight-row:hover .highlight-arrow { color: var(--orange-500); }
+     ```
+     - Responsive: mobile hero height `calc(100svh - 6rem)`, smaller highlight title `0.75rem`
+
+   - **src/content.config.ts** (read only)
+     - Defines all collections: projects, blog, playground, pages, highlights, clients, testimonials, awards, handbook
+     - Blog schema: title, description, date, author, thumbnail, tags, seo, relatedProjects
+     - Highlights schema: label (optional), source (discriminated union of collection+entry reference), order
+
+   - **src/lib/collections.ts** (read only)
+     - `getResolvedHighlights()` resolves highlight entries: returns `{ label, collection, entry }` sorted by order
+
+   - **src/content/highlights/*.yaml** (read only, 4 files)
+     - 01-example-project.yaml: order 1, label "Featured Project", projects/mishmash
+     - 02-planit.yaml: order 2, no label, projects/planit-app
+     - 03-fintech-blog.yaml: order 3, label "From the Blog", blog/designing-for-fintech
+     - 04-svelte-ui.yaml: order 4, label "Open Source", playground/example-lab
+
+   - **src/layouts/base.astro** (read only) - Header sits above main content
+   - **src/components/header.astro** (read only) - Header with `padding: 1rem var(--gutter)`, ~56px height
+   - **src/styles/global.css** (read only) - Font faces for N27 and base styles
+   - **src/content/blog/designing-complex-products.mdx** and **designing-for-fintech.mdx** (read only) - Blog post frontmatter examples
+
+4. Errors and fixes:
+   - No errors encountered. Build passed cleanly (0 errors, 0 warnings). `pnpm check` passed with 0 diagnostics.
+
+5. Problem Solving:
+   - **Token mapping**: Mapped Figma hex colors to existing semantic tokens (#1E1A15 → --color-text, #888581 → --color-text-muted). Created new --color-border-subtle for the 12% opacity border using color-mix().
+   - **Font size**: 1.75rem doesn't match any existing fluid token (text-xl maxes at 1.5rem, text-2xl at 2rem). Used 1.75rem directly per Figma spec. Flagged to user.
+   - **Reading time**: Blog schema lacks readingTime field. Implemented build-time estimation from entry.body markdown content at 200 words/min.
+   - **URL routing**: Created collectionPathMap to map collection names to URL paths (blog→/blog, projects→/projects, playground→/labs).
+   - **Hero height**: Calculated as `calc(100svh - 7.5rem)` accounting for header (~56px) + page top padding (8px) + gap (8px) + showreel peek (~50px).
+   - **Arrow icon**: Figma pixel-art arrow is complex (7x7 grid of 2px dot containers). Used simplified SVG diagonal arrow as placeholder.
+   - **Category icon**: No icon system exists. Used empty 20px colored rounded square with hover color transition.
+
+6. All user messages:
+   - Message 1: "Claude vamos fazer alterações ao design que implementamos na execução anterior. vamos nos focar no hero da index.astro. figma link: https://www.figma.REDACTED?node-id=4990-97136&t=uxxNN4mZXQ3ct1B8-4" followed by detailed specs for: hero viewport height, title/subtitle typography, highlight rows from blog with icon/title/readingtime/arrow, hero border and padding, space-between layout. Requirements: no arbitrary values, follow project rules, act as senior front-end dev, think before executing. Included a screenshot of the current implementation.
+
+7. Pending Tasks:
+   - No explicit pending tasks. The hero implementation is complete and builds successfully. The user has not yet provided feedback or requested additional changes.
+
+8. Current Work:
+   The hero section of index.astro was fully rewritten per the Figma design specs. Changes were made to two files: tokens.css (new --color-border-subtle token) and index.astro (complete hero section rewrite with dynamic highlight data, new markup, and new CSS). The build was verified passing. A summary of changes and flagged decisions was presented to the user, including:
+   - 1.75rem font size used directly (no matching token)
+   - SVG arrow as placeholder for pixel-art arrow
+   - Empty colored squares for category icons
+   - 22px row padding per Figma spec (not on 4px grid)
+
+9. Optional Next Step:
+   Wait for user feedback on the hero implementation. The user may want to:
+   - Visually review the result in the dev server and request adjustments
+   - Add actual category icons to the highlight rows
+   - Replace the placeholder SVG arrow with the Figma pixel-art arrow
+   - Adjust the hero height or spacing values after visual inspection
+   - Continue to other sections of the homepage design
+
+If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/andrefurt/.REDACTED.jsonl
+
+---
+
+Icons: tenho um conceito pensado e queria testar. Eu construi um systema que assenta em mosaico. cada mosaico tem um ovo que pode ter 4 tamanhos, um minimo e um máximo do tamanho do mosaico. esse mosaico vai ser usado para compor uma grid 1/1 (14px usado no hero ao lado do reading time). com esta grid construo os icons aumentando e reduzindo o ovo no mosaico nos sitios certos para formar um icon no conjunto (uma seta como no figma). estão aqui os links. https://www.figma.REDACTED?node-id=4946-81220&t=uxxNN4mZXQ3ct1B8-4
+https://www.figma.REDACTED?node-id=4946-82082&t=uxxNN4mZXQ3ct1B8-4
+
+O que achas? como podemos standardizar isso? age como top front-end developer senior. Quero que penses, iinvestigues, e propunhas uma solução para construir icons sistematicamente utilizando a mesma foundation.
+
+---
+
+1- ovos são ovais como o logo.<svg width="2" height="2" viewBox="0 0 2 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.73854 1.13073C1.73854 1.61081 1.34935 2 0.86927 2C0.389185 2 0 1.61081 0 1.13073C0 0.650646 0.389185 0 0.86927 0C1.34935 0 1.73854 0.650646 1.73854 1.13073Z" fill="#1E1A15"/>
+</svg>
+
+2-base 2px mas posso escalar, se quiser um icon a 16px ou a 20 a cell escala com o pai uniformemente.
+3-as transições tem que ser controladas separadamente, padronizadas porque a maior parte das vezes a transição ou animação no icon vai ser indireta (faço hover num card, numa row etc.. raramente sobre o icon.
+4-sim
+
+---
+
+arranca o server para ver isso.
+
+---
+
+Fix:
+- O icon de arrow e consequentemente a grid está um pouco diferente do que tenho no design. como vez comparando as duas imgs acima, eu tenho sempre o mosaico no minimo a cinza quando não tem informação. Para alem disso parece haver ovos que estão srwinked, deformados.
+
+investiga e resolve isso com uma solução inteligente
+
+---
+
+[Image: source: REDACTED de ecrã 2026-03-02, às 15.51.37.png]
+
+[Image: source: REDACTED de ecrã 2026-03-02, às 15.51.58.png]
+
+---
+
+Fix…
+Agora parece que tens dois icons e grid de icons overlap uma por cima da outra (ver img.). Deve ser: 1 icon, composto por uma grid de ovos. cada celula tem x tamanhos de ovos e 2 cores, mutted  e preto, consoante se estão "ligados ao deligados e a intensidade(ovos maiores.)Resultado final expected é algo muito semelhante ao da img #7
+
+---
+
+[Image: source: REDACTED de ecrã 2026-03-02, às 16.00.41.png]
+
+[Image: source: REDACTED de ecrã 2026-03-02, às 16.03.02.png]
+
+---
+
+This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation.
+
+Analysis:
+Let me chronologically analyze the conversation:
+
+1. **Session Start**: This session continues from a previous conversation that ran out of context. The summary provided indicates work was done on the hero section of index.astro based on a Figma design, but those changes were never committed.
+
+2. **User's First Request**: The user describes a mosaic icon system concept. Each mosaic tile has an "egg" (oval) that can have 4 sizes. These tiles compose a 7x7 grid (14px icon). By varying egg sizes across positions, icons are formed. Two Figma links provided:
+   - Node 4946:81220 (PixelContainer - the tile)
+   - Node 4946:82082 (IconArrow - the composed arrow icon)
+
+3. **Figma Analysis**: I fetched both Figma nodes and analyzed the system:
+   - PixelContainer: 2px x 2px cell with ellipse at 4 sizes (xs, s, m, l)
+   - IconArrow: 7x7 grid with idle/hover states - the arrow shifts 1 column right on hover
+   - Traced all 49 cells for both states
+
+4. **Proposal**: I proposed a data-driven approach with CSS Grid rendering, CSS custom properties for state transitions, currentColor for theming.
+
+5. **User Feedback on Proposal**: User confirmed:
+   - Eggs are oval like the logo (provided SVG path)
+   - Base 2px but scales uniformly
+   - Transitions controlled separately by parent
+   - Grids are correct
+
+6. **Implementation Phase**:
+   - Discovered we were on wrong git branch (`chore/docs-synthesis` instead of `design`)
+   - Switched to `design` branch
+   - Found that previous session's hero changes were never committed (lost)
+   - Created mosaic-icons.ts and mosaic-icon.astro
+   - Applied hero section rewrite with highlights + mosaic arrow
+   - Added --color-border-subtle token
+   - Build passed (0 errors, 0 warnings)
+
+7. **User asks to start dev server**: Server started at localhost:4321
+
+8. **First Bug Report**: User reports:
+   - No background dots (Figma shows ALL cells with gray dots)
+   - Eggs are deformed/squished
+   - I fixed by: switching from CSS mask to inline SVGs, adding aspect-ratio:1 to cells, adding two SVGs per cell (bg + egg)
+
+9. **Second Bug Report**: User reports:
+   - Two overlapping grids visible (bg dots grid + active eggs grid)
+   - Expected: ONE grid with ONE egg per cell, varying size and color
+   - Reference image shows orange arrow with gray background dots as ONE unified grid
+
+10. **Current Fix**: Simplified to ONE SVG per cell with:
+    - `max(0.275, var(--s))` for minimum xs size
+    - `clamp(0, var(--s) * 10000, 1)` to detect active state
+    - Opacity: 0.2 for inactive, 1.0 for active
+    - Single SVG with currentColor fill
+
+The user hasn't confirmed if this latest fix works yet. The dev server is running and should have hot-reloaded.
+
+Summary:
+1. Primary Request and Intent:
+   The user (André, Chief of Design @ Significa) wants to build a **mosaic icon system** for the Significa website. The concept: icons are composed from a grid of "mosaic tiles," each containing an oval ("egg") matching the Significa logo shape. Each egg can be one of 4 sizes within its 2px cell. By varying sizes across a 7x7 grid, icons like arrows are formed with a sub-pixel anti-aliasing effect. The system must support idle/hover state transitions controlled indirectly by parent elements (cards, rows), use `currentColor` for theming, and scale uniformly. Additionally, the hero section of the homepage needed to be rewritten (from a previous lost session) to include highlight rows with the mosaic arrow icon.
+
+2. Key Technical Concepts:
+   - Astro v5 static site with scoped CSS and design tokens (OKLCH)
+   - Mosaic icon grid system: 7x7 grid of 2px cells, each with a Significa oval at variable scale
+   - 5 scale levels: 0 (invisible/background), 1(xs=27.5%), 2(s=57.5%), 3(m=87.5%), 4(l=100%)
+   - Two states per icon (idle/hover) defined as flat arrays of scale values
+   - CSS custom property `--mosaic-state: 0|1` inherited from parent to drive transitions
+   - Inline SVG with the Significa egg path for pixel-perfect rendering at any size
+   - CSS `max()` for minimum visible size, `clamp()` for active state detection, opacity for color differentiation
+   - Content Collections with `getResolvedHighlights()` for dynamic hero highlight data
+   - `color-mix(in oklch, ...)` for `--color-border-subtle` token
+   - Reading time estimation from markdown body at build time
+
+3. Files and Code Sections:
+
+   - **`/Users/andrefurt/code/significa.co/src/lib/mosaic-icons.ts`** (CREATED)
+     - Defines the data model for mosaic icons: type definitions, scale constants, and icon grid definitions
+     ```typescript
+     export type MosaicLevel = 0 | 1 | 2 | 3 | 4;
+     export interface MosaicIconDef {
+       cols: number;
+       idle: MosaicLevel[];
+       hover?: MosaicLevel[];
+     }
+     export const MOSAIC_SCALES: readonly number[] = [0, 0.275, 0.575, 0.875, 1];
+     export const mosaicIcons = {
+       arrow: {
+         cols: 7,
+         idle: [
+           0, 0, 2, 0, 0, 0, 0,
+           0, 0, 3, 3, 0, 0, 0,
+           2, 3, 3, 4, 4, 0, 0,
+           2, 3, 3, 4, 4, 4, 0,
+           2, 3, 3, 4, 4, 0, 0,
+           0, 0, 0, 3, 3, 0, 0,
+           0, 0, 0, 2, 0, 0, 0,
+         ],
+         hover: [
+           0, 0, 0, 2, 0, 0, 0,
+           0, 0, 0, 3, 3, 0, 0,
+           1, 2, 3, 3, 4, 4, 0,
+           1, 2, 3, 3, 4, 4, 4,
+           1, 2, 3, 3, 4, 4, 0,
+           0, 0, 0, 0, 3, 3, 0,
+           0, 0, 0, 0, 2, 0, 0,
+         ],
+       },
+     } as const satisfies Record<string, MosaicIconDef>;
+     export type MosaicIconName = keyof typeof mosaicIcons;
+     ```
+
+   - **`/Users/andrefurt/code/significa.co/src/components/mosaic-icon.astro`** (CREATED, revised 3 times)
+     - The renderer component. Most recent version (v3) uses ONE inline SVG per cell with opacity-based color differentiation:
+     ```astro
+     ---
+     import { mosaicIcons, MOSAIC_SCALES, type MosaicIconName } from "@/lib/mosaic-icons";
+     interface Props {
+       name: MosaicIconName;
+       class?: string;
+     }
+     const { name, class: className } = Astro.props;
+     const icon = mosaicIcons[name];
+     const cells = icon.idle.map((idleLevel, i) => {
+       const hoverLevel = icon.hover?.[i] ?? idleLevel;
+       return {
+         idle: MOSAIC_SCALES[idleLevel],
+         hover: MOSAIC_SCALES[hoverLevel],
+       };
+     });
+     const EGG_PATH = "M1.73854 1.13073C1.73854 1.61081 1.34935 2 0.86927 2C0.389185 2 0 1.61081 0 1.13073C0 0.650646 0.389185 0 0.86927 0C1.34935 0 1.73854 0.650646 1.73854 1.13073Z";
+     ---
+     <span class:list={["mosaic-icon", className]} style={`--cols:${icon.cols}`} aria-hidden="true">
+       {cells.map((cell) => (
+         <span class="mosaic-cell" style={`--i:${cell.idle};--h:${cell.hover}`}>
+           <svg class="mosaic-egg" viewBox="0 0 1.73854 2">
+             <path d={EGG_PATH} fill="currentColor" />
+           </svg>
+         </span>
+       ))}
+     </span>
+     <style>
+       .mosaic-icon {
+         display: inline-grid;
+         grid-template-columns: repeat(var(--cols), 1fr);
+         grid-auto-rows: 1fr;
+         width: calc(var(--cols) * 2px);
+         aspect-ratio: 1;
+         flex-shrink: 0;
+       }
+       .mosaic-cell {
+         position: relative;
+         aspect-ratio: 1;
+       }
+       .mosaic-egg {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         display: block;
+         overflow: visible;
+         --s: calc(var(--i) + (var(--h) - var(--i)) * var(--mosaic-state, 0));
+         --visual-s: max(0.275, var(--s));
+         width: calc(100% * var(--visual-s));
+         height: calc(100% * var(--visual-s));
+         --active: clamp(0, var(--s) * 10000, 1);
+         opacity: calc(0.2 + var(--active) * 0.8);
+         transition:
+           width var(--mosaic-duration, var(--duration-fast)) var(--mosaic-ease, var(--ease-out)),
+           height var(--mosaic-duration, var(--duration-fast)) var(--mosaic-ease, var(--ease-out)),
+           opacity var(--mosaic-duration, var(--duration-fast)) var(--mosaic-ease, var(--ease-out));
+       }
+     </style>
+     ```
+
+   - **`/Users/andrefurt/code/significa.co/src/styles/tokens.css`** (EDITED)
+     - Added `--color-border-subtle` semantic token for the hero's subtle border
+     - Change: added `--color-border-subtle: color-mix(in oklch, var(--color-text) 12%, transparent);` after `--color-border`
+
+   - **`/Users/andrefurt/code/significa.co/src/pages/index.astro`** (EDITED)
+     - Hero section completely rewritten with highlight rows from content collection + mosaic arrow icon
+     - Added imports: `MosaicIcon`, `getResolvedHighlights`
+     - Added frontmatter: highlight data preparation with `estimateReadingTime()`, `collectionPathMap`
+     - Hero HTML: heading (Significa® / Mean something.), nav with highlight rows, each row has icon placeholder + title + reading time + MosaicIcon arrow
+     - Hero CSS: `calc(100svh - 7.5rem)` height, `0.75rem` border-radius, `0.5px solid var(--color-border-subtle)` border, `--mosaic-state: 0/1` on highlight-row for arrow transition
+     - Page container padding changed to `0.5rem 0.5rem 0`, gap `0.5rem`
+     - Responsive: mobile hero `calc(100svh - 6rem)`, smaller highlight-title `0.75rem`
+
+   - **`/Users/andrefurt/code/significa.co/src/lib/collections.ts`** (READ ONLY)
+     - Contains `getResolvedHighlights()` which fetches highlights collection, sorts by order, resolves referenced entries
+
+   - **`/Users/andrefurt/code/significa.co/src/components/header.astro`** (READ ONLY)
+     - Header with `padding: 1rem var(--gutter)`, ~56px height used to calculate hero min-height
+
+   - **Significa egg SVG path** (provided by user):
+     ```svg
+     <svg width="2" height="2" viewBox="0 0 2 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <path d="M1.73854 1.13073C1.73854 1.61081 1.34935 2 0.86927 2C0.389185 2 0 1.61081 0 1.13073C0 0.650646 0.389185 0 0.86927 0C1.34935 0 1.73854 0.650646 1.73854 1.13073Z" fill="#1E1A15"/>
+     </svg>
+     ```
+
+4. Errors and fixes:
+   - **Wrong git branch**: Started on `chore/docs-synthesis` (SvelteKit codebase) instead of `design` (Astro codebase). Fixed by running `git checkout design`. The design branch had been reset to `9a1d6751` per reflog.
+   - **Lost hero changes**: Previous session's hero section rewrite was never committed and lost. Re-applied all changes as part of this session.
+   - **Bug: No background dots (user feedback)**: In Figma, ALL 49 cells show an egg (inactive ones show xs gray dot). My v1 used CSS mask with `::before` pseudo-element where cells with value 0 were invisible. User showed screenshot comparing my implementation (missing dots) vs Figma (all dots visible).
+   - **Bug: Deformed eggs (user feedback)**: Eggs looked squished/distorted. Root cause: cells lacked `aspect-ratio: 1`, so `100%` resolved to different values for width vs height. Also, CSS mask approach had rendering issues at sub-pixel sizes.
+   - **Fix v2 (two SVGs per cell)**: Added `aspect-ratio: 1` to cells, switched from CSS mask to inline SVGs (one for bg dot, one for active egg). User reported this created a "double grid" overlap effect.
+   - **Bug: Two overlapping grids (user feedback)**: "Agora parece que tens dois icons e grid de icons overlap uma por cima da outra." Two SVG elements per cell created a visually distinct double-layer effect instead of a unified single grid.
+   - **Fix v3 (single SVG per cell)**: Simplified to ONE SVG per cell using `max(0.275, var(--s))` for minimum xs size and `opacity: calc(0.2 + var(--active) * 0.8)` for color differentiation. Inactive cells show at 20% opacity (muted), active at 100%.
+
+5. Problem Solving:
+   - **Git branch confusion**: The `design` branch had been reset in a previous session. `chore/docs-synthesis` was on SvelteKit code while `design` was on Astro code. Resolved by checking reflog and switching branches.
+   - **Mosaic icon rendering**: Went through 3 iterations: v1 (CSS mask, single pseudo-element), v2 (two inline SVGs per cell), v3 (single inline SVG with opacity). Each iteration addressed user feedback from visual testing.
+   - **Egg shape fidelity**: User explicitly provided the Significa oval SVG path. Used it directly in inline SVGs with `viewBox="0 0 1.73854 2"` to maintain exact proportions at any scale.
+   - **Parent-controlled transitions**: Implemented `--mosaic-state` CSS custom property pattern that cascades from parent to icon. Parent sets `--mosaic-state: 0` or `1`, icon interpolates via `calc()`.
+
+6. All user messages:
+   - "Icons: tenho um conceito pensado e queria testar. Eu construi um systema que assenta em mosaico. cada mosaico tem um ovo que pode ter 4 tamanhos, um minimo e um máximo do tamanho do mosaico. esse mosaico vai ser usado para compor uma grid 1/1 (14px usado no hero ao lado do reading time). com esta grid construo os icons aumentando e reduzindo o ovo no mosaico nos sitios certos para formar um icon no conjunto (uma seta como no figma). estão aqui os links. [two Figma links] O que achas? como podemos standardizar isso? age como top front-end developer senior. Quero que penses, iinvestigues, e propunhas uma solução para construir icons sistematicamente utilizando a mesma foundation."
+   - "1- ovos são ovais como o logo. [SVG provided] 2-base 2px mas posso escalar, se quiser um icon a 16px ou a 20 a cell escala com o pai uniformemente. 3-as transições tem que ser controladas separadamente, padronizadas porque a maior parte das vezes a transição ou animação no icon vai ser indireta (faço hover num card, numa row etc.. raramente sobre o icon. 4-sim"
+   - "arranca o server para ver isso."
+   - "Fix: - O icon de arrow e consequentemente a grid está um pouco diferente do que tenho no design. como vez comparando as duas imgs acima, eu tenho sempre o mosaico no minimo a cinza quando não tem informação. Para alem disso parece haver ovos que estão srwinked, deformados. investiga e resolve isso com uma solução inteligente" [with two comparison screenshots]
+   - "Fix… Agora parece que tens dois icons e grid de icons overlap uma por cima da outra (ver img.). Deve ser: 1 icon, composto por uma grid de ovos. cada celula tem x tamanhos de ovos e 2 cores, mutted e preto, consoante se estão "ligados ao deligados e a intensidade(ovos maiores.) Resultado final expected é algo muito semelhante ao da img #7" [with two screenshots - current broken state and target reference]
+
+7. Pending Tasks:
+   - Verify that the v3 single-SVG fix renders correctly (user hasn't confirmed yet)
+   - Dev server is running at localhost:4321 for visual verification
+
+8. Current Work:
+   Immediately before this summary, I wrote the third iteration of `mosaic-icon.astro` to fix the "two overlapping grids" bug. The fix uses a single SVG per cell with:
+   - `--visual-s: max(0.275, var(--s))` to ensure every cell always shows at minimum an xs-sized egg
+   - `--active: clamp(0, var(--s) * 10000, 1)` to detect active vs inactive cells
+   - `opacity: calc(0.2 + var(--active) * 0.8)` for color differentiation (20% = muted gray appearance, 100% = full currentColor)
+   
+   The dev server (background task `bgdtogvdy`) is running and should have hot-reloaded. The user hasn't yet confirmed if this fix resolves the visual issues.
+
+9. Optional Next Step:
+   Wait for user to visually verify the v3 fix at http://localhost:4321/. The user's most recent request was: "Fix… Agora parece que tens dois icons e grid de icons overlap uma por cima da outra... Resultado final expected é algo muito semelhante ao da img #7". The fix has been applied but not yet confirmed by the user. If issues remain, further adjustments to the mosaic-icon component may be needed (particularly around the opacity values, egg sizing, or the visual differentiation between active/inactive cells).
+
+If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/andrefurt/.REDACTED.jsonl
+Please continue the conversation from where we left off without asking the user any further questions. Continue with the last task that you were asked to work on.
+
+---
+
+[Image: source: REDACTED de ecrã 2026-03-02, às 16.10.23.png]
+
+---
+
+No. we are seing the old homepage prior to thouse changes, (icon, font, hero etc..)
+
+---
+
+[Image: source: REDACTED de ecrã 2026-03-02, às 16.13.10.png]

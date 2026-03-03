@@ -1,3 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-size="24">S</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <style>
+    path { fill: #000; }
+    @media (prefers-color-scheme: dark) {
+      path { fill: #fff; }
+    }
+  </style>
+  <path d="M400 635.175C289.742 635.175 200 548.29 200 440.642C200 319.269 296.564 165 400 165C503.436 165 600 319.269 600 440.642C600 548.29 510.258 635.175 400 635.175ZM400 590.819C486.38 590.819 556.044 523.372 556.044 440.642C556.044 340.694 473.834 209.356 400 209.356C326.166 209.356 243.956 340.694 243.956 440.642C243.956 523.372 313.62 590.819 400 590.819Z"/>
 </svg>

@@ -10,6 +10,72 @@
  */
 
 /* ============================================================
+   Switzer — served via Fontshare CDN (cdn.fontshare.com)
+   Weights loaded: 300 400 500 600 700
+   font-display: swap ensures text stays visible during load
+   ============================================================ */
+
+@font-face {
+  font-family: "Switzer";
+  src:
+    url("//cdn.fontshare.com/wf/EW5HJEX6O4L64XUWQA2XU7Q6BZ3B4JA4/ZWUP4SQYHHMMSS5LFHFFBX6DXL7C3DTU/H5EOHLIZH5K7IZK6SGYJI75L4KV6FUO7.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/EW5HJEX6O4L64XUWQA2XU7Q6BZ3B4JA4/ZWUP4SQYHHMMSS5LFHFFBX6DXL7C3DTU/H5EOHLIZH5K7IZK6SGYJI75L4KV6FUO7.woff")
+      format("woff");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src:
+    url("//cdn.fontshare.com/wf/BLNB4FAQFNK56DWWNF7PMGTCOTZHOEII/ST3WKSSDMBK2MIQQO3MAVYWLF4FTOLFV/6IN5WOLRCYP4G4MOCOHOMXNON6Q7MDAR.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/BLNB4FAQFNK56DWWNF7PMGTCOTZHOEII/ST3WKSSDMBK2MIQQO3MAVYWLF4FTOLFV/6IN5WOLRCYP4G4MOCOHOMXNON6Q7MDAR.woff")
+      format("woff");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src:
+    url("//cdn.fontshare.com/wf/OYB4CXKJQXKTNSLJMTDQOIVUL2V5EL7S/WYO2P7DQVV5RNXGMCUO2HL4RJP4VFUAS/6XPIMU23OJVRY676OG5YVJMWEHWICATX.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/OYB4CXKJQXKTNSLJMTDQOIVUL2V5EL7S/WYO2P7DQVV5RNXGMCUO2HL4RJP4VFUAS/6XPIMU23OJVRY676OG5YVJMWEHWICATX.woff")
+      format("woff");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src:
+    url("//cdn.fontshare.com/wf/5SZVFDB7V52TI6ULVC6J3WQZQCIZVDV5/ODYPSTCUDMKSTYIPTV4CLQ7URIK7XYBJ/YS3VPNVO4B3TOJMEXDGFZQ4TLZGGSRZC.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/5SZVFDB7V52TI6ULVC6J3WQZQCIZVDV5/ODYPSTCUDMKSTYIPTV4CLQ7URIK7XYBJ/YS3VPNVO4B3TOJMEXDGFZQ4TLZGGSRZC.woff")
+      format("woff");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src:
+    url("//cdn.fontshare.com/wf/HBNTRIISA5MEXGL5WPYI7CV2HIWTDV3Q/YDPDINVT673XLXNSTMLG4JNCZZMVVNPN/Y7SCNZJOT2MW5ADSGOFLDGH4TNL4JCQY.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/HBNTRIISA5MEXGL5WPYI7CV2HIWTDV3Q/YDPDINVT673XLXNSTMLG4JNCZZMVVNPN/Y7SCNZJOT2MW5ADSGOFLDGH4TNL4JCQY.woff")
+      format("woff");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* ============================================================
    Colors (OKLCH)
    ============================================================ */
 
@@ -37,18 +103,21 @@
    ============================================================ */
 
 :root {
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Switzer", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, monospace;
 
-  --text-sm: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem);
-  --text-base: clamp(0.9375rem, 0.875rem + 0.2vw, 1rem);
-  --text-lg: clamp(1.125rem, 1rem + 0.4vw, 1.25rem);
-  --text-xl: clamp(1.25rem, 1rem + 0.8vw, 1.5rem);
-  --text-2xl: clamp(1.5rem, 1rem + 1.5vw, 2rem);
-  --text-3xl: clamp(2rem, 1rem + 3vw, 3rem);
+  --text-xs: clamp(0.6875rem, 0.625rem + 0.2vw, 0.75rem); /* 11–12px */
+  --text-sm: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem); /* 13–14px */
+  --text-base: clamp(0.9375rem, 0.875rem + 0.2vw, 1rem); /* 15–16px */
+  --text-lg: clamp(1.125rem, 1rem + 0.4vw, 1.25rem); /* 18–20px */
+  --text-xl: clamp(1.25rem, 1rem + 0.8vw, 1.5rem); /* 20–24px */
+  --text-2xl: clamp(1.5rem, 1rem + 1.5vw, 2rem); /* 24–32px */
+  --text-3xl: clamp(2rem, 1rem + 3vw, 3rem); /* 32–48px */
+  --text-4xl: clamp(2.5rem, 1.5rem + 4vw, 4rem); /* 40–64px */
 
   --leading-tight: 1.2;
   --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
 
   --weight-normal: 400;
   --weight-medium: 500;

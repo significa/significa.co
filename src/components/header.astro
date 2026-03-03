@@ -3,45 +3,155 @@ const navItems = [
   { label: "Who we are", href: "/who-we-are" },
   { label: "What we do", href: "/what-we-do" },
   { label: "Projects", href: "/projects" },
-  { label: "Work with us", href: "/work-with-us" },
+  { label: "Blog", href: "/blog" },
+  { label: "Handbook", href: "/handbook" },
 ];
 
+const ctaLink = { label: "Work with us", href: "/work-with-us" };
+
 const currentPath = Astro.url.pathname;
+
+function isActive(href: string): boolean {
+  if (href === "/") return currentPath === "/";
+  return currentPath === href || currentPath.startsWith(href + "/");
+}
 ---
 
 <header class="site-header">
-  <nav aria-label="Main navigation">
+  <nav class="nav-bar" aria-label="Main navigation">
     <a href="/" class="logo" aria-label="Significa — Home">
       <span class="logo-dot" aria-hidden="true">●</span>
       Significa®
     </a>
-    <ul>
+
+    {/* Desktop nav */}
+    <ul class="nav-links" role="list">
       {
         navItems.map((item) => (
           <li>
-            <a href={item.href} aria-current={currentPath.startsWith(item.href) ? "page" : undefined}>
+            <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
               {item.label}
             </a>
           </li>
         ))
       }
     </ul>
+
+    <a href={ctaLink.href} class="nav-cta nav-cta--desktop" aria-current={isActive(ctaLink.href) ? "page" : undefined}>
+      {ctaLink.label}
+    </a>
+
+    {/* Mobile menu toggle */}
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+      <span class="menu-toggle-bar" aria-hidden="true"></span>
+      <span class="menu-toggle-bar" aria-hidden="true"></span>
+    </button>
   </nav>
+
+  {/* Mobile menu panel */}
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <ul role="list">
+        {
+          navItems.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mobile-nav-footer">
+        <a href={ctaLink.href} class="nav-cta" aria-current={isActive(ctaLink.href) ? "page" : undefined}>
+          {ctaLink.label}
+        </a>
+      </div>
+    </nav>
+  </div>
 </header>
 
-<style>
-  .site-header {
-    padding: 1rem var(--gutter);
+<script>
+  function initMobileMenu() {
+    const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    const header = document.querySelector<HTMLElement>(".site-header");
+
+    if (!toggle || !menu || !header) return;
+
+    function openMenu() {
+      toggle!.setAttribute("aria-expanded", "true");
+      toggle!.setAttribute("aria-label", "Close menu");
+      menu!.setAttribute("aria-hidden", "false");
+      header!.classList.add("is-menu-open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMenu() {
+      toggle!.setAttribute("aria-expanded", "false");
+      toggle!.setAttribute("aria-label", "Open menu");
+      menu!.setAttribute("aria-hidden", "true");
+      header!.classList.remove("is-menu-open");
+      document.body.style.overflow = "";
+    }
+
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    // Close on Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+        closeMenu();
+        toggle.focus();
+      }
+    });
+
+    // Close when clicking a link inside the mobile menu
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        closeMenu();
+      });
+    });
   }
 
-  nav {
+  // Run on initial load
+  initMobileMenu();
+
+  // Re-run after Astro view transitions
+  document.addEventListener("astro:after-swap", initMobileMenu);
+</script>
+
+<style>
+  /* ============================================================
+     Header shell
+     ============================================================ */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     max-width: var(--max-width);
     margin: 0 auto;
+    padding: 1rem var(--gutter);
   }
 
+  /* ============================================================
+     Logo
+     ============================================================ */
   .logo {
     display: flex;
     align-items: center;
@@ -50,6 +160,8 @@ const currentPath = Astro.url.pathname;
     font-size: var(--text-base);
     color: var(--color-text);
     text-decoration: none;
+    white-space: nowrap;
+    z-index: 110;
   }
 
   .logo:hover {
@@ -60,34 +172,173 @@ const currentPath = Astro.url.pathname;
     font-size: 0.625rem;
   }
 
-  ul {
+  /* ============================================================
+     Nav links (desktop)
+     ============================================================ */
+  .nav-links {
     display: flex;
     gap: 1.5rem;
     list-style: none;
   }
 
-  li a {
+  .nav-links a {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
     text-decoration: none;
     transition: color var(--duration-fast) var(--ease-out);
   }
 
-  li a:hover,
-  li a[aria-current="page"] {
+  .nav-links a:hover,
+  .nav-links a[aria-current="page"] {
     color: var(--color-text);
   }
 
-  @media (max-width: 768px) {
-    ul {
-      gap: 1rem;
-    }
+  /* ============================================================
+     CTA button
+     ============================================================ */
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-surface);
+    background-color: var(--color-text);
+    text-decoration: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 2rem;
+    transition:
+      background-color var(--duration-fast) var(--ease-out),
+      opacity var(--duration-fast) var(--ease-out);
+    white-space: nowrap;
   }
 
-  @media (max-width: 640px) {
-    nav {
-      flex-direction: column;
-      gap: 1rem;
+  .nav-cta:hover {
+    opacity: 0.85;
+    color: var(--color-surface);
+  }
+
+  .nav-cta[aria-current="page"] {
+    background-color: var(--color-primary);
+  }
+
+  .nav-cta--desktop {
+    z-index: 110;
+  }
+
+  /* ============================================================
+     Mobile menu toggle (hamburger)
+     ============================================================ */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 110;
+  }
+
+  .menu-toggle-bar {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background-color: var(--color-text);
+    border-radius: 1px;
+    transition:
+      transform var(--duration-normal) var(--ease-out),
+      opacity var(--duration-fast) var(--ease-out);
+    transform-origin: center;
+  }
+
+  /* Animate to X when open */
+  .is-menu-open .menu-toggle-bar:nth-child(1) {
+    transform: translateY(3.25px) rotate(45deg);
+  }
+
+  .is-menu-open .menu-toggle-bar:nth-child(2) {
+    transform: translateY(-3.25px) rotate(-45deg);
+  }
+
+  /* ============================================================
+     Mobile menu panel
+     ============================================================ */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background-color: var(--color-surface);
+    padding: 5rem var(--gutter) 2rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-out);
+  }
+
+  .is-menu-open .mobile-menu {
+    opacity: 1;
+  }
+
+  .mobile-nav {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 7rem);
+  }
+
+  .mobile-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .mobile-nav ul a {
+    display: block;
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 0.5rem 0;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .mobile-nav ul a:hover {
+    color: var(--color-text-muted);
+  }
+
+  .mobile-nav ul a[aria-current="page"] {
+    color: var(--color-primary);
+  }
+
+  .mobile-nav-footer {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* ============================================================
+     Responsive breakpoints
+     ============================================================ */
+  @media (max-width: 768px) {
+    .nav-links,
+    .nav-cta--desktop {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: flex;
+    }
+
+    .mobile-menu[aria-hidden="false"] {
+      display: block;
+      opacity: 1;
     }
   }
 </style>

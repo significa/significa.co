@@ -85,11 +85,7 @@ const handbookLinks = [
     <!-- Bottom: certifications + legal -->
     <div class="footer-bottom">
       <div class="footer-certifications">
-        <!--
-                    Replace with actual certification badge images when available.
-                    e.g. B Corporation, 1% for the Planet
-                -->
-        <span class="certification-badge" title="Certified B Corporation">B Corp</span>
+        <a href="/b-corp" class="certification-badge certification-badge--link" title="Certified B Corporation">B Corp</a>
         <span class="certification-badge" title="1% for the Planet">1%</span>
       </div>
       <p class="footer-legal">
@@ -212,6 +208,16 @@ const handbookLinks = [
     border: 1px solid var(--color-border);
     font-size: 0.625rem;
     font-weight: var(--weight-bold);
+    color: var(--color-text);
+  }
+
+  .certification-badge--link {
+    text-decoration: none;
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .certification-badge--link:hover {
+    border-color: var(--color-text);
     color: var(--color-text);
   }
 

@@ -1,0 +1,405 @@
+---
+// No props — this component is self-contained.
+// The search index is fetched from /handbook/search-index.json on first interaction.
+---
+
+<div class="search-wrapper" id="handbook-search">
+  <label for="handbook-search-input" class="sr-only">Search handbook</label>
+  <div class="input-wrapper">
+    <svg
+      class="search-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+    <input
+      id="handbook-search-input"
+      class="search-input"
+      type="search"
+      placeholder="Search handbook…"
+      autocomplete="off"
+      spellcheck="false"
+    />
+    <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+  </div>
+
+  <!-- Results overlay — hidden until there is a query -->
+  <div class="results" id="handbook-search-results" role="region" aria-label="Search results" aria-live="polite" hidden>
+    <ul class="results-list" id="handbook-search-results-list" role="list"></ul>
+    <p class="no-results" id="handbook-search-no-results" hidden>
+      No results for <strong id="handbook-search-query-echo"></strong>
+    </p>
+  </div>
+</div>
+
+<script>
+  interface SearchIndexEntry {
+    id: string;
+    title: string;
+    description: string;
+    body: string;
+    url: string;
+  }
+
+  const SEARCH_INDEX_URL = "/handbook/search-index.json";
+  const MIN_QUERY_LENGTH = 2;
+
+  let index: SearchIndexEntry[] | null = null;
+  let fetchPromise: Promise<SearchIndexEntry[]> | null = null;
+
+  async function loadIndex(): Promise<SearchIndexEntry[]> {
+    if (index) return index;
+    if (fetchPromise) return fetchPromise;
+
+    fetchPromise = fetch(SEARCH_INDEX_URL)
+      .then((r) => r.json() as Promise<SearchIndexEntry[]>)
+      .then((data) => {
+        index = data;
+        return data;
+      });
+
+    return fetchPromise;
+  }
+
+  /**
+   * Split a query into individual keywords, filtering empty strings.
+   */
+  function tokenize(query: string): string[] {
+    return query
+      .toLowerCase()
+      .split(/\s+/)
+      .filter((t) => t.length > 0);
+  }
+
+  /**
+   * Score an entry against a list of keyword tokens.
+   * Returns 0 if any token is not found anywhere.
+   * Higher score = better match.
+   */
+  function score(entry: SearchIndexEntry, tokens: string[]): number {
+    const titleLower = entry.title.toLowerCase();
+    const descLower = entry.description.toLowerCase();
+    const bodyLower = entry.body.toLowerCase();
+
+    let total = 0;
+
+    for (const token of tokens) {
+      const inTitle = titleLower.includes(token);
+      const inDesc = descLower.includes(token);
+      const inBody = bodyLower.includes(token);
+
+      if (!inTitle && !inDesc && !inBody) return 0; // must match all tokens
+
+      if (inTitle) total += 10;
+      if (inDesc) total += 5;
+      if (inBody) total += 1;
+    }
+
+    return total;
+  }
+
+  /**
+   * Wrap every occurrence of `tokens` in the text with a <mark> tag.
+   * Returns an HTML string safe for innerHTML.
+   */
+  function highlight(text: string, tokens: string[]): string {
+    // Escape special HTML characters first
+    const escaped = text.replace(
+      /[&<>"']/g,
+      (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] ?? c
+    );
+
+    if (tokens.length === 0) return escaped;
+
+    const pattern = tokens.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|");
+
+    return escaped.replace(new RegExp(`(${pattern})`, "gi"), "<mark>$1</mark>");
+  }
+
+  function renderResults(results: SearchIndexEntry[], tokens: string[]) {
+    const list = document.getElementById("handbook-search-results-list")!;
+    list.innerHTML = "";
+
+    results.forEach((entry) => {
+      const li = document.createElement("li");
+      li.className = "result-item";
+
+      const a = document.createElement("a");
+      a.href = entry.url;
+      a.className = "result-link";
+
+      const titleEl = document.createElement("span");
+      titleEl.className = "result-title";
+      titleEl.innerHTML = highlight(entry.title, tokens);
+
+      a.appendChild(titleEl);
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+  }
+
+  async function handleSearch(query: string) {
+    const resultsEl = document.getElementById("handbook-search-results")!;
+    const noResultsEl = document.getElementById("handbook-search-no-results")!;
+    const queryEchoEl = document.getElementById("handbook-search-query-echo")!;
+
+    const trimmed = query.trim();
+
+    if (trimmed.length < MIN_QUERY_LENGTH) {
+      resultsEl.hidden = true;
+      return;
+    }
+
+    resultsEl.hidden = false;
+
+    const data = await loadIndex();
+    const tokens = tokenize(trimmed);
+
+    const scored = data
+      .map((entry) => ({ entry, score: score(entry, tokens) }))
+      .filter((r) => r.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 20)
+      .map((r) => r.entry);
+
+    const list = document.getElementById("handbook-search-results-list")!;
+
+    if (scored.length === 0) {
+      list.innerHTML = "";
+      queryEchoEl.textContent = `"${trimmed}"`;
+      noResultsEl.hidden = false;
+    } else {
+      noResultsEl.hidden = true;
+      renderResults(scored, tokens);
+    }
+  }
+
+  function init() {
+    const input = document.getElementById("handbook-search-input") as HTMLInputElement | null;
+    const resultsEl = document.getElementById("handbook-search-results")!;
+
+    if (!input) return;
+
+    // Preload index when the input is first focused
+    input.addEventListener("focus", () => loadIndex(), { once: true });
+
+    // Keyboard shortcut: "/" focuses the search input
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "/" && !(e.target instanceof HTMLInputElement) && !(e.target instanceof HTMLTextAreaElement)) {
+        e.preventDefault();
+        input.focus();
+        input.select();
+      }
+      // Escape clears + blurs
+      if (e.key === "Escape" && document.activeElement === input) {
+        input.value = "";
+        resultsEl.hidden = true;
+        input.blur();
+      }
+    });
+
+    let debounceTimer: ReturnType<typeof setTimeout>;
+
+    input.addEventListener("input", () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        handleSearch(input.value);
+      }, 150);
+    });
+
+    // Hide results when clicking outside
+    document.addEventListener("click", (e) => {
+      const wrapper = document.getElementById("handbook-search");
+      if (wrapper && !wrapper.contains(e.target as Node)) {
+        resultsEl.hidden = true;
+      }
+    });
+
+    // Restore results when re-focusing the input if there's already a value
+    input.addEventListener("focus", () => {
+      if (input.value.trim().length >= MIN_QUERY_LENGTH) {
+        resultsEl.hidden = false;
+      }
+    });
+  }
+
+  // Run after the DOM is ready — works with Astro view transitions too
+  document.addEventListener("astro:page-load", init);
+  // Fallback for non-transition navigations
+  if (document.readyState !== "loading") {
+    init();
+  } else {
+    document.addEventListener("DOMContentLoaded", init);
+  }
+</script>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .search-wrapper {
+    position: relative;
+  }
+
+  /* ── Input ── */
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 0.75rem;
+    color: var(--color-text-muted);
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.625rem 2.5rem 0.625rem 2.375rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    outline: none;
+    transition:
+      border-color var(--duration-fast) var(--ease-out),
+      box-shadow var(--duration-fast) var(--ease-out);
+    /* Remove browser-native "x" clear button — we handle clearing via Escape */
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .search-input::-webkit-search-cancel-button {
+    display: none;
+  }
+
+  .search-input::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  .search-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px oklch(45% 0.15 264 / 0.12);
+  }
+
+  .search-shortcut {
+    position: absolute;
+    right: 0.625rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.125rem 0.375rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    background: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    pointer-events: none;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .search-input:focus ~ .search-shortcut {
+    opacity: 0;
+  }
+
+  /* ── Results ── */
+
+  .results {
+    position: absolute;
+    top: calc(100% + 0.375rem);
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    box-shadow:
+      0 4px 6px -1px oklch(0% 0 0 / 0.06),
+      0 10px 24px -4px oklch(0% 0 0 / 0.1);
+    z-index: 50;
+    max-height: 28rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+  }
+
+  .results-list {
+    list-style: none;
+    padding: 0.375rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .result-item {
+    /* intentionally empty — styling on the anchor */
+  }
+
+  .result-link {
+    display: block;
+    padding: 0.625rem 0.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: background var(--duration-fast) var(--ease-out);
+  }
+
+  .result-link:hover,
+  .result-link:focus-visible {
+    background: var(--color-surface-alt);
+    outline: none;
+  }
+
+  .result-title {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-tight);
+  }
+
+  /* Highlighted matches */
+  .results :global(mark) {
+    background: oklch(45% 0.15 264 / 0.15);
+    color: var(--color-primary);
+    border-radius: 2px;
+    padding-inline: 0.1em;
+  }
+
+  /* No results */
+  .no-results {
+    padding: 1rem 1.125rem;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .no-results strong {
+    color: var(--color-text);
+    font-weight: var(--weight-medium);
+  }
+</style>

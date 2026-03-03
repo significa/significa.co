@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/base.astro";
 import { getHandbookIndex } from "@/lib/collections";
+import HandbookSearch from "@/components/handbook-search.astro";
 
 const groups = await getHandbookIndex();
 
@@ -13,14 +14,14 @@ function formatDate(date: Date) {
 }
 ---
 
-<BaseLayout
-  title="Handbook — Significa"
-  description="How we work, what we believe in, and everything in between."
->
+<BaseLayout title="Handbook — Significa" description="How we work, what we believe in, and everything in between.">
   <div class="page">
     <header class="hero">
       <h1>Handbook</h1>
       <p>How we work, what we believe in, and everything in between.</p>
+      <div class="search">
+        <HandbookSearch />
+      </div>
     </header>
 
     <div class="groups">
@@ -85,6 +86,11 @@ function formatDate(date: Date) {
   .hero p {
     font-size: var(--text-lg);
     color: var(--color-text-muted);
+    margin-block-end: 1.5rem;
+  }
+
+  .search {
+    max-width: 28rem;
   }
 
   .groups {

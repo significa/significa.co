@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "6b3e7b9f47de",
+  "strategy": "manual-commit",
+  "branch": "design",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "CLAUDE.md",
+    "src/components/mosaic-icon.astro",
+    "src/lib/mosaic-icons.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/6b/3e7b9f47de/0/metadata.json",
+      "transcript": "/6b/3e7b9f47de/0/full.jsonl",
+      "context": "/6b/3e7b9f47de/0/context.md",
+      "content_hash": "/6b/3e7b9f47de/0/content_hash.txt",
+      "prompt": "/6b/3e7b9f47de/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 182,
+    "cache_creation_tokens": 303987,
+    "cache_read_tokens": 15232363,
+    "output_tokens": 55499,
+    "api_call_count": 159
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "d914ac58e76a",
+  "strategy": "manual-commit",
+  "branch": "design",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/components/mosaic-icon.astro",
+    "src/lib/mosaic-icons.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/d9/14ac58e76a/0/metadata.json",
+      "transcript": "/d9/14ac58e76a/0/full.jsonl",
+      "context": "/d9/14ac58e76a/0/context.md",
+      "content_hash": "/d9/14ac58e76a/0/content_hash.txt",
+      "prompt": "/d9/14ac58e76a/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 182,
+    "cache_creation_tokens": 303987,
+    "cache_read_tokens": 15232363,
+    "output_tokens": 55499,
+    "api_call_count": 159
+  }
+}

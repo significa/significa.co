@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "d914ac58e76a",
+  "session_id": "1094592a-b7d2-4f4b-a343-e51eb9e9d0b0",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-04T11:50:27.373609Z",
+  "branch": "design",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/components/mosaic-icon.astro",
+    "src/lib/mosaic-icons.ts"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "0380ee2da388",
+  "transcript_identifier_at_start": "a16dacfc-0f42-4020-bc64-8668e8c27a56",
+  "token_usage": {
+    "input_tokens": 182,
+    "cache_creation_tokens": 303987,
+    "cache_read_tokens": 15232363,
+    "output_tokens": 55499,
+    "api_call_count": 159
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-04T11:50:26.422935Z",
+    "agent_lines": 149,
+    "human_added": 376,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 525,
+    "agent_percentage": 28.38095238095238
+  },
+  "transcript_path": ".claude/projects/-Users-andrefurt-code-significa-co/1094592a-b7d2-4f4b-a343-e51eb9e9d0b0.jsonl"
+}

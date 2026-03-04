@@ -1,0 +1,530 @@
+claude: Do a full audit of this repository. Read everything before reporting. Do not modify any file.
+
+## What to map
+
+### 1. Project structure
+- Framework and version (Next.js? Astro? Remix? Vite?)
+- Package manager (confirm pnpm)
+- TypeScript config — strict mode, path aliases
+- List every directory under src/ (or app/, pages/) with a one-line description of what lives there
+
+### 2. Routing
+- What router is in use?
+- Where is the homepage rendered? (file path)
+- What layout wraps it?
+
+### 3. Styling system
+- What CSS approach is used? (Tailwind? CSS Modules? vanilla CSS? a mix?)
+- Where are global styles defined?
+- List every CSS custom property (--variable) currently defined, grouped by category (color, spacing, typography, radius, etc.)
+- Are there any Tailwind config extensions (tailwind.config)?
+- Is there a tokens file or design tokens system?
+
+### 4. Typography
+- What fonts are loaded? How? (next/font, @font-face, Google Fonts CDN?)
+- Is `Google Sans Flex` configured?
+- Is `N27` configured?
+- How are font families referenced in CSS/components?
+
+### 5. Components
+- List every file in the components directory with a one-line description
+- Are there any existing ui/ or primitives/ subdirectories?
+- Is there an icon system? (SVG components, icon font, sprite?)
+- Are there any animation utilities or motion libraries installed?
+
+### 6. Data layer
+- Is there a CMS? (Contentful, Sanity, Prismic?)
+- Is there a content/ or data/ directory with static files?
+- How is the highlights/articles data likely to be structured?
+
+### 7. Dependencies
+- List all relevant dependencies from package.json (skip devDeps unless relevant)
+- Any animation lib (framer-motion, motion, GSAP)?
+- Any component lib (Radix, shadcn, headless)?
+
+## Output format
+Report everything as a structured audit. End with a "Gaps & Risks" section flagging:
+- Missing tokens that will be needed (typography scale, specific colors)
+- Missing fonts
+- Anything that will need to be created from scratch vs. extended from existing patterns
+
+Do not implement anything.
+
+---
+
+Antes de escrever qualquer ficheiro, lê tudo o que está listado abaixo. Depois faz o audit, depois escreve.
+
+---
+
+## FASE 1 — Leitura (não toques em nada)
+
+Lê estes ficheiros por esta ordem:
+
+1. CLAUDE.md (raiz) — se existir
+2. .claude/settings.json — se existir
+3. .cursorrules / agent.md / .windsurfrules — qualquer ficheiro de agent config que encontres
+4. src/styles/tokens.css
+5. src/styles/global.css
+6. src/styles/reset.css
+7. astro.config.mjs
+8. tsconfig.json
+9. .prettierrc.mjs ou .prettierrc — se existir
+10. src/content.config.ts
+11. src/lib/collections.ts
+12. src/lib/mosaic-icons.ts
+13. src/components/mosaic-icon.astro
+14. src/components/header.astro
+15. src/components/highlight-card.astro
+16. src/components/blog-card.astro
+17. src/pages/index.astro
+18. package.json
+
+---
+
+## FASE 2 — Audit report (ainda não tocas em nada)
+
+Produz um report estruturado com:
+
+**CLAUDE.md atual**
+- Existe? Se sim, o que cobre?
+- O que está em falta, desatualizado, ou errado?
+
+**Mosaic icon system**
+- Como funciona o hover atualmente? (CSS custom property? :has()? data attribute? outra coisa?)
+- O size prop já existe ou está hardcoded a 14px?
+- Como estão estruturadas as definições de icons em mosaic-icons.ts?
+- Qual é exatamente o formato de cada célula/frame?
+
+**Regras implícitas não documentadas**
+- Convenções que existem no código mas não estão escritas em lado nenhum
+
+**Inconsistências encontradas**
+- Valores hardcoded que violam o sistema de tokens
+- Referências a collections ou ficheiros que não existem (ex: labs/ vs playground/)
+- Qualquer outra coisa que pareça errada
+
+Mostra-me este report e para. Não avanças para a Fase 3 sem eu confirmar.
+
+---
+
+## FASE 3 — Implementação (só depois da minha confirmação)
+
+### 1. Cria ou reescreve CLAUDE.md na raiz do projeto
+
+O ficheiro deve ter estas secções:
+
+**Project Overview**
+- O que é o projeto
+- Stack: Astro v5, vanilla CSS, pnpm, TypeScript strict, output estático para Cloudflare Pages
+- Path alias: @/* → ./src/*
+- Sem Tailwind, sem framework CSS, sem component library, sem animation library
+
+**Design Fidelity Standard**
+Inclui exatamente isto:
+
+> Todo o trabalho de UI tem de corresponder exatamente ao design do Figma.
+>
+> Antes de considerar um componente concluído:
+> 1. Corre pnpm dev
+> 2. Tira screenshot do componente no browser
+> 3. Compara com a referência do Figma
+> 4. Verifica: espaçamento, tipografia, cores, border-radius, peso das bordas, alinhamento
+> 5. Se houver qualquer diferença visual — corrige, não faças commit
+>
+> O critério é: um designer a olhar para os dois não consegue ver diferença.
+>
+> Checklist de verificação visual:
+> - [ ] Font family correto (--font-sans vs --font-display)
+> - [ ] Font weight correto (regular vs medium)
+> - [ ] Tamanho de texto usa token da escala
+> - [ ] Cor usa token semântico
+> - [ ] Espaçamentos/padding corretos
+> - [ ] Bordas com peso correto (0.5px hairlines)
+> - [ ] Border-radius correto
+> - [ ] Hover states transitam corretamente
+> - [ ] Alinhamento correto
+
+**Token System — Regras não negociáveis**
+
+> NUNCA hardcodes:
+> - Cores (sem hex, sem rgb(), sem oklch() em ficheiros de componentes)
+> - Font families (sem strings "Google Sans Flex" ou "N27" em estilos de componentes)
+> - Font sizes (sem valores px ou rem literais — usa tokens da escala)
+> - Espaçamentos (sem valores px arbitrários — usa tokens ou múltiplos de 0.25rem)
+> - Transições (sem "150ms" literais — usa --duration-fast, --duration-normal, etc.)
+> - Border-radius (sem "12px" literais — usa tokens ou documenta a exceção)
+>
+> USA SEMPRE:
+> - Cores → var(--color-*) tokens semânticos, nunca tokens de paleta raw (var(--gray-*)) em componentes
+> - Tipografia → var(--text-*) para tamanho, var(--font-*) para família, var(--weight-*) para peso
+> - Transições → var(--duration-*) e var(--ease-*)
+>
+> ATENÇÃO — os nomes dos tokens de fonte são contra-intuitivos:
+> - var(--font-sans) = Google Sans Flex → fonte de corpo/hero/UI geral
+> - var(--font-display) = N27 → fonte de labels, caps, metadados
+> Não os troquem.
+>
+> Se precisas de um valor que não existe como token:
+> 1. Verifica se existe com outro nome
+> 2. Se não existe, adiciona o token a tokens.css primeiro
+> 3. NUNCA adiciona um valor one-off diretamente a um componente
+
+**Component Patterns**
+
+> Framework: Astro components (.astro). Sem React a menos que seja explicitamente necessário client-side.
+> Styling: blocos <style> scoped dentro de ficheiros .astro. Um componente, um ficheiro.
+> Estado e interatividade: CSS-only por defeito.
+> - Hover: pseudo-classe :hover
+> - Estado driven pelo pai: CSS custom properties definidas no pai, lidas pelo filho
+> - Classes condicionais: class:list={[{ 'is-active': condition }]}
+> - JavaScript/React: só se o CSS genuinamente não conseguir fazer o que é preciso
+>
+> Não introduzir JS client-side para nada que CSS consiga fazer.
+> O sistema de animação dos mosaic icons é CSS-only. Este é o padrão a seguir.
+>
+> Props: sempre tipadas com interface. Sem any implícito.
+> Conteúdo: nunca hardcoded em componentes. Dados vêm de props.
+
+**Mosaic Icon System**
+
+> Os icons são grids 7×7 de elipses CSS ("eggs").
+> Ficheiros do sistema:
+> - src/components/mosaic-icon.astro — o componente renderer
+> - src/lib/mosaic-icons.ts — definições dos icons (frames idle + hover)
+>
+> Para usar um icon: <MosaicIcon icon={icons.arrow} size={16} />
+> Para adicionar um icon novo: adicionar definição a mosaic-icons.ts seguindo o padrão existente.
+>
+> Nunca criar SVG icons para elementos de UI que pertencem ao sistema mosaic.
+> O sistema mosaic é a linguagem de icons deste projeto.
+>
+> [Documenta aqui o formato exato de definição de células/frames descoberto na Fase 2]
+
+**Content & Data**
+
+> Todo o conteúdo vive em src/content/ como ficheiros MDX/YAML tipados.
+> Acesso via src/lib/collections.ts — nunca chamar getCollection() diretamente em páginas.
+> Schema validado por Zod em src/content.config.ts.
+> Nunca hardcodes conteúdo que pertence a uma collection.
+
+**Git Workflow**
+
+> CADA sessão termina com commit. Sem exceções.
+>
+> Depois de cada unidade de trabalho significativa:
+>   git add -A
+>   git commit -m "<verb> <what>: <brief description>"
+>
+> Formato da mensagem de commit:
+> - Inglês, modo imperativo
+> - Específico: "add highlight-row component with CSS hover states"
+> - Não genérico: "update components", "fix stuff", "wip"
+>
+> Uma mudança lógica por commit. Não agrupar mudanças não relacionadas.
+>
+> Branching:
+>   feature/<short-description>
+>   fix/<short-description>
+>   chore/<short-description>
+>
+> Após cada sessão:
+>   git status ← confirmar que nada ficou untracked
+
+**Workflow Rules**
+
+> Antes de escrever código:
+> 1. Lê os ficheiros relevantes existentes. Entende o padrão antes de adicionar.
+> 2. Verifica se existe um token para o valor que precisas.
+> 3. Verifica se já existe um componente que faz o que precisas.
+>
+> Quando algo é ambíguo: pergunta. Não adivinhas. Não inventas.
+> "Não tinha a certeza, por isso usei X" não é aceitável. Para e clarifica.
+>
+> Quando terminares:
+> - Tira screenshot e compara com a referência de design
+> - Grep nos ficheiros modificados por valores hardcoded
+> - Corre git diff e lê cada linha antes de fazer commit
+> - Commit
+
+**Quirks & Decisões conhecidas**
+
+> Documenta aqui o que descobriste na Fase 2 sobre:
+> - Porquê --font-sans = Google Sans Flex e --font-display = N27 (naming contra-intuitivo)
+> - N27 servido como OTF em vez de WOFF2 (dívida de performance, marcar para resolver)
+> - React instalado mas sem componentes em uso (configurado para futuros islands)
+> - Qualquer outro quirk relevante encontrado no audit
+
+---
+
+### 2. Corrige a inconsistência labs/ vs playground/
+
+Encontra todas as referências a "labs" em ficheiros de documentação/config e substitui por "playground" onde aplicável.
+
+---
+
+### 3. Cria ou atualiza .claude/settings.json
+```json
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm dev:*)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm typecheck:*)"
+    ]
+  }
+}
+```
+
+---
+
+### 4. Commit
+```bash
+git add -A
+git commit -m "chore: add CLAUDE.md with design fidelity standards and token guardrails"
+```
+
+---
+
+## Output final
+
+Mostra-me:
+1. O conteúdo completo do CLAUDE.md criado
+2. O conteúdo do .claude/settings.json
+3. Lista de todos os ficheiros modificados com diff
+4. O hash do commit
+
+---
+
+Confirmo. Avança para a Fase 3.
+
+## Decisões tomadas
+
+**Tokens a adicionar em tokens.css** (breaking — referenciados mas indefinidos):
+- --text-xs → clamp(0.6875rem, 0.625rem + 0.2vw, 0.75rem)
+- --leading-relaxed → 1.8
+- --radius-sm → 0.5rem
+- --radius-md → 0.75rem
+
+Não tocas nos valores hardcoded existentes em index.astro — esses ficam para mais tarde.
+
+---
+
+## Fase 3 — O que fazer
+
+### 1. Adiciona os 4 tokens em falta a tokens.css
+
+Coloca-os na secção correta (typography scale para os dois primeiros, e cria uma secção "Border Radius" para os radius tokens se não existir).
+
+---
+
+### 2. Reescreve CLAUDE.md
+
+Mantém tudo o que já existe e estava correto. Adiciona, corrige, ou substitui o seguinte:
+
+**Corrige a tree do projeto:**
+- Remove todas as referências a labs/ — substitui por playground/ onde aplicável
+- Remove src/components/ui/ da tree — o diretório não existe
+- Adiciona à tree os ficheiros que faltam: mosaic-icon.astro, mosaic-icons.ts, award-row.astro, blog-card.astro, highlight-card.astro, project-card.astro, service-list.astro
+- Adiciona handbook/ e handbook-groups/ às collections
+
+**Adiciona a secção: Design Fidelity Standard**
+
+Todo o trabalho de UI tem de corresponder exatamente ao design de referência.
+
+Antes de considerar um componente concluído:
+1. Corre pnpm dev
+2. Abre o browser e navega até ao componente
+3. Tira screenshot
+4. Compara contra a referência do Figma
+5. Verifica cada propriedade:
+   - Font family correto (--font-sans vs --font-display — ver nota abaixo)
+   - Font weight correto
+   - Tamanho de texto usa token da escala (--text-*)
+   - Cor usa token semântico (--color-*)
+   - Espaçamentos corretos (sem px arbitrários)
+   - Bordas com 0.5px onde o design especifica
+   - Border-radius usa token (--radius-sm, --radius-md)
+   - Hover states transitam corretamente
+   - Alinhamento correto
+6. Se qualquer propriedade estiver errada — corrige antes de fazer commit.
+
+O critério é: um designer a comparar os dois não consegue ver diferença.
+
+**Adiciona a secção: Token System — Regras**
+
+NUNCA hardcodes em ficheiros de componentes:
+- Cores: sem hex, rgb(), oklch() literals
+- Font families: sem strings "Google Sans Flex" ou "N27"
+- Font sizes: sem px ou rem literals — usa var(--text-*)
+- Espaçamentos: sem px arbitrários — usa rem em múltiplos de 0.25 ou tokens
+- Transições: sem "150ms" literals — usa var(--duration-fast), var(--duration-normal)
+- Border-radius: usa var(--radius-sm) ou var(--radius-md)
+
+USA SEMPRE tokens semânticos (--color-*) em componentes. Nunca tokens de paleta raw (--gray-*, --beige-*, etc.) diretamente em componentes.
+
+EXCEÇÃO DOCUMENTADA: Os card components (highlight-card, blog-card, project-card) recebem palette tokens como props de cor e consomem-nos via CSS custom properties internas (--card-bg, --card-fg). Este padrão é intencional e permitido — o componente em si usa a custom property, não o token raw.
+
+ATENÇÃO — os nomes dos font tokens são contra-intuitivos:
+- var(--font-sans) = Google Sans Flex → corpo, hero, UI geral
+- var(--font-display) = N27 → labels, caps, metadados
+Não trocar. Este naming existe por razões históricas e não vai mudar.
+
+Se precisas de um valor que não existe como token:
+1. Verifica se existe com outro nome
+2. Se não existe, adiciona primeiro a tokens.css
+3. Nunca um valor one-off diretamente num componente
+
+**Adiciona a secção: Component Patterns**
+
+Framework: Astro components (.astro). Sem React a menos que seja explicitamente necessário client-side.
+Styling: blocos scoped dentro de .astro. Um componente, um ficheiro.
+Estado e interatividade: CSS-only por defeito.
+
+Hover states: pseudo-classe :hover
+Estado driven pelo pai: CSS custom properties definidas no pai, lidas pelo filho
+Classes condicionais: class:list={[{ 'is-active': condition }]}
+Link vs bloco: const Tag = href ? "a" : "div" — padrão usado em todos os cards
+JS/React: só se o CSS genuinamente não conseguir fazer o que é preciso
+
+Props: sempre tipadas com interface Props {}. Sem any implícito.
+Conteúdo: nunca hardcoded. Vem de props ou da content collection.
+
+**Adiciona a secção: Mosaic Icon System**
+
+Icons são grids 7×7 de elipses CSS renderizadas como "eggs".
+
+Ficheiros:
+- src/components/mosaic-icon.astro — renderer
+- src/lib/mosaic-icons.ts — definições de icons
+
+Formato de cada icon:
+```ts
+interface MosaicIconDef {
+  cols: number           // normalmente 7
+  idle: MosaicLevel[]   // flat array, length = cols × rows
+  hover?: MosaicLevel[] // opcional, mesmo tamanho
+}
+
+type MosaicLevel = 0 | 1 | 2 | 3 | 4
+// 0 = invisível | 1 = 27.5% | 2 = 57.5% | 3 = 87.5% | 4 = 100% da célula
+```
+
+Array é row-major: primeiros `cols` valores = primeira linha, left-to-right, top-to-bottom.
+
+Hover mechanism: CSS custom property no pai.
+- Pai define --mosaic-state: 0 (idle) ou --mosaic-state: 1 (hover) via :hover
+- O MosaicIcon interpola automaticamente via calc()
+- Zero JS. Zero React. Zero data attributes.
+
+Tamanho: atualmente hardcoded a 2px/célula (14px para grid 7×7).
+TODO (Session 2): adicionar prop size para suportar 14, 16, 20, 24px.
+
+Para adicionar um icon novo: seguir o padrão exato do arrow existente em mosaic-icons.ts.
+Nunca criar SVG icons para elementos que pertencem ao sistema mosaic.
+
+Cor: os icons herdam cor do pai via currentColor. Sem prop de cor.
+
+**Adiciona a secção: Content & Data**
+
+Todo o conteúdo vive em src/content/ como ficheiros MDX/YAML tipados.
+Acesso via src/lib/collections.ts — nunca chamar getCollection() diretamente em pages.
+Exceção documentada: getEntry() pode ser chamado diretamente em MDX components.
+Schema validado por Zod em src/content.config.ts.
+IDs de content não têm extensão (mishmash, não mishmash.mdx) — o loader remove-as.
+
+**Adiciona a secção: Git Workflow**
+
+Cada sessão de trabalho termina com commit. Sem exceções.
+
+Após cada unidade de trabalho:
+  git add -A
+  git commit -m "<verb> <what>: <descrição breve>"
+
+Formato: inglês, modo imperativo, específico.
+- Correto: "add highlight-row component with CSS hover states"
+- Errado: "update components", "fix stuff", "wip"
+
+Uma mudança lógica por commit.
+
+Branching:
+  feature/<short-description>
+  fix/<short-description>
+  chore/<short-description>
+
+**Adiciona a secção: Quirks & Decisões**
+
+- Font token naming: --font-sans = Google Sans Flex (corpo), --font-display = N27 (labels). Naming herdado, não vai mudar.
+- N27 servido como OTF (não WOFF2). Dívida de performance. ~210KB vs ~90KB estimado em WOFF2. Marcar para resolver.
+- React instalado (@astrojs/react, react, react-dom) mas zero componentes React existem. Configurado para futuros islands se necessário.
+- Homepage (index.astro) usa dados hardcoded em 6 de 7 secções. Só highlights vem do content system. Trabalho em curso.
+- src/components/ui/ não existe apesar de referenciado em documentação antiga.
+- 0.5px borders não têm token. É um valor de design intencional. Usar literal 0.5px é a exceção aceite.
+
+**Adiciona a secção: Workflow Rules**
+
+Antes de escrever código:
+1. Lê os ficheiros relevantes existentes. Entende o padrão antes de adicionar.
+2. Verifica se existe um token para o valor que precisas.
+3. Verifica se já existe um componente que faz o que precisas.
+4. Para tarefas com mais de um ficheiro: escreve o plano antes de executar.
+
+Quando algo é ambíguo: para e pergunta. Não adivinhas. Não inventas.
+
+Quando terminares qualquer componente:
+- Tira screenshot, compara com referência de design
+- Grep nos ficheiros modificados por valores hardcoded
+- git diff antes de commitar — lê cada linha
+
+---
+
+### 3. Corrige as referências labs/ nos docs/
+
+Nos ficheiros docs/01-PROJECT-BOOTSTRAP.md, docs/02-CONTENT-SCHEMA.md, docs/05-RULES.md, docs/07-TEAM-DECISIONS.md:
+- Substitui labs/ por playground/ onde o contexto se refere à collection/pages existente
+- Se alguma referência for histórica e o contexto for claro, mantém com uma nota "(agora playground/)"
+
+---
+
+### 4. Cria .claude/settings.json
+```json
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm dev:*)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm typecheck:*)"
+    ]
+  }
+}
+```
+
+---
+
+### 5. Commit
+```bash
+git add -A
+git commit -m "chore: audit and rewrite CLAUDE.md with token and design standards"
+```
+
+---
+
+## Output
+
+Mostra-me:
+1. O conteúdo completo do CLAUDE.md final
+2. O conteúdo do .claude/settings.json
+3. O diff de tokens.css
+4. Lista dos docs/ modificados
+5. O hash do commit

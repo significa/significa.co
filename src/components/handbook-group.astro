@@ -1,0 +1,266 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface PageWithChildren {
+  page: CollectionEntry<"handbook">;
+  children: CollectionEntry<"handbook">[];
+}
+
+interface Props {
+  groupTitle: string;
+  groupId: string;
+  pages: PageWithChildren[];
+}
+
+const { groupTitle, groupId, pages } = Astro.props;
+
+const RECENT_DAYS = 30;
+
+function isRecent(date: Date): boolean {
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+  return diffDays <= RECENT_DAYS;
+}
+
+function hasRecentContent(page: PageWithChildren): boolean {
+  if (isRecent(page.page.data.date)) return true;
+  return page.children.some((child) => isRecent(child.data.date));
+}
+
+// All collapsibles are closed by default
+const defaultExpanded: string[] = [];
+---
+
+<section class="handbook-group" aria-labelledby={`group-${groupId}`}>
+  <h2 id={`group-${groupId}`} class="group-title">
+    {groupTitle}
+  </h2>
+  <ul class="page-list" role="list">
+    {
+      pages.map(({ page, children }) => (
+        <li class="page-item">
+          <div class={`page-item-header ${children.length > 0 ? "collapsible" : ""}`}>
+            <a href={`/handbook/${page.id}`} class="page-link">
+              <span class="page-title">{page.data.title}</span>
+              {isRecent(page.data.date) && <span class="badge">Recently updated</span>}
+            </a>
+            {children.length > 0 && (
+              <button
+                class="expand-button"
+                data-toggle={`children-${page.id}`}
+                aria-expanded="false"
+                aria-controls={`children-${page.id}`}
+                aria-label={`Expand ${page.data.title}`}
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="6 9 10 13 14 9" />
+                </svg>
+              </button>
+            )}
+          </div>
+          {children.length > 0 && (
+            <ul id={`children-${page.id}`} class="children-list" role="list">
+              {children.map((child) => (
+                <li>
+                  <a href={`/handbook/${child.id}`} class="child-link">
+                    <span class="page-title">{child.data.title}</span>
+                    {isRecent(child.data.date) && <span class="badge">Recently updated</span>}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .handbook-group {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .handbook-group:last-child {
+    border-bottom: none;
+  }
+
+  .group-title {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin-block-end: 0.75rem;
+  }
+
+  .page-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .page-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-item-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .page-item-header.collapsible {
+    position: relative;
+  }
+
+  .page-link {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex: 1;
+    padding-block: 0.875rem;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .page-link:hover {
+    color: var(--color-primary);
+  }
+
+  .page-title {
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+  }
+
+  .badge {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    color: var(--color-primary);
+    background: oklch(45% 0.15 264 / 0.08);
+    border: 1px solid oklch(45% 0.15 264 / 0.2);
+    border-radius: 99px;
+    padding: 0.15em 0.6em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .expand-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    transition: all var(--duration-fast) var(--ease-out);
+    flex-shrink: 0;
+    margin-inline-end: -0.5rem;
+  }
+
+  .expand-button:hover {
+    color: var(--color-text);
+  }
+
+  .expand-button svg {
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .expand-button[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+
+  .children-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-inline-start: 1.25rem;
+    border-top: 1px solid var(--color-border);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--duration-normal) var(--ease-out);
+  }
+
+  .children-list.expanded {
+    max-height: 9999px;
+  }
+
+  .child-link {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.75rem;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .child-link:hover {
+    color: var(--color-primary);
+  }
+
+  .child-link .page-title {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-normal);
+    color: var(--color-text-muted);
+  }
+
+  .child-link:hover .page-title {
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 640px) {
+    .page-link,
+    .child-link {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+  }
+</style>
+
+<script>
+  function initializeHandbookGroups() {
+    const buttons = document.querySelectorAll("[data-toggle]");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetId = button.getAttribute("data-toggle");
+        if (!targetId) return;
+        const target = document.getElementById(targetId);
+
+        if (!target) return;
+
+        const isExpanded = button.getAttribute("aria-expanded") === "true";
+        button.setAttribute("aria-expanded", isExpanded ? "false" : "true");
+        target.classList.toggle("expanded");
+
+        // Update aria-label
+        const parentText = button.closest(".page-item-header")?.querySelector(".page-title")?.textContent || "";
+        button.setAttribute("aria-label", `${isExpanded ? "Expand" : "Collapse"} ${parentText}`);
+      });
+    });
+  }
+
+  // Run on page load and after navigation
+  document.addEventListener("DOMContentLoaded", initializeHandbookGroups);
+  document.addEventListener("astro:after-swap", initializeHandbookGroups);
+</script>

@@ -2,16 +2,9 @@
 import BaseLayout from "@/layouts/base.astro";
 import { getHandbookIndex } from "@/lib/collections";
 import HandbookSearch from "@/components/handbook-search.astro";
+import HandbookGroup from "@/components/handbook-group.astro";
 
 const groups = await getHandbookIndex();
-
-function formatDate(date: Date) {
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
 ---
 
 <BaseLayout title="Handbook — Significa" description="How we work, what we believe in, and everything in between.">
@@ -27,39 +20,7 @@ function formatDate(date: Date) {
     <div class="groups">
       {
         groups.map(({ group, pages }) =>
-          pages.length > 0 ? (
-            <section class="group" aria-labelledby={`group-${group.id}`}>
-              <h2 id={`group-${group.id}`} class="group-title">
-                {group.data.title}
-              </h2>
-              <ul class="page-list" role="list">
-                {pages.map(({ page, children }) => (
-                  <li class="page-item">
-                    <a href={`/handbook/${page.id}`} class="page-link">
-                      <span class="page-title">{page.data.title}</span>
-                      <time class="page-date" datetime={page.data.date.toISOString()}>
-                        Last updated · {formatDate(page.data.date)}
-                      </time>
-                    </a>
-                    {children.length > 0 && (
-                      <ul class="children-list" role="list">
-                        {children.map((child) => (
-                          <li>
-                            <a href={`/handbook/${child.id}`} class="child-link">
-                              <span class="page-title">{child.data.title}</span>
-                              <time class="page-date" datetime={child.data.date.toISOString()}>
-                                Last updated · {formatDate(child.data.date)}
-                              </time>
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ) : null
+          pages.length > 0 ? <HandbookGroup groupTitle={group.data.title} groupId={group.id} pages={pages} /> : null
         )
       }
     </div>
@@ -97,88 +58,5 @@ function formatDate(date: Date) {
     display: flex;
     flex-direction: column;
     gap: 3rem;
-  }
-
-  .group-title {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-semibold);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-text-muted);
-    margin-block-end: 0.75rem;
-  }
-
-  .page-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .page-item {
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .page-link,
-  .child-link {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    padding-block: 0.875rem;
-    text-decoration: none;
-    color: var(--color-text);
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-
-  .page-link:hover,
-  .child-link:hover {
-    color: var(--color-primary);
-  }
-
-  .page-title {
-    font-size: var(--text-base);
-    font-weight: var(--weight-medium);
-  }
-
-  .page-date {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .children-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    padding-inline-start: 1.25rem;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .child-link {
-    padding-block: 0.75rem;
-  }
-
-  .child-link .page-title {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-normal);
-    color: var(--color-text-muted);
-  }
-
-  .child-link:hover .page-title {
-    color: var(--color-primary);
-  }
-
-  @media (max-width: 640px) {
-    .page-link,
-    .child-link {
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    .page-date {
-      font-size: var(--text-sm);
-    }
   }
 </style>

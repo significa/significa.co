@@ -43,6 +43,7 @@ These always apply, regardless of the task.
 11. **Astro v5 (latest stable).** Astro 6 is in beta — upgrade to v6 as soon as it reaches stable. Until then, stay on latest v5.
 12. **kebab-case for all filenames.** Enforced by ESLint via `eslint-plugin-check-file`. No exceptions.
 13. **Drafts use the `.draft` filename suffix.** `my-post.draft.mdx` is a draft. Publishing is a file rename. No frontmatter field.
+14. **Handbook pages with children use `index.mdx`.** If a handbook page has child pages, its content lives at `my-page/index.mdx` inside its own folder. Standalone pages with no children stay as flat `.mdx` files at the top level. Never have `my-page.mdx` alongside a `my-page/` folder — that's the old forbidden pattern. The `generateId` loader strips `/index` suffixes so URLs are identical either way. See `docs/02-CONTENT-SCHEMA.md`.
 
 ---
 
@@ -71,7 +72,13 @@ src/
 │   ├── highlights/           # .yaml per homepage highlight
 │   ├── clients/              # .yaml per client (logo strip)
 │   ├── testimonials/         # .yaml per testimonial
-│   └── awards/               # .yaml per award
+│   ├── awards/               # .yaml per award
+│   ├── handbook-groups/      # .yaml per sidebar group (e.g. design.yaml, engineering.yaml)
+│   └── handbook/             # .mdx per handbook page
+│       ├── manifesto.mdx     #   standalone (no children) → /handbook/manifesto
+│       └── career/           #   page with children
+│           ├── index.mdx     #     parent page → /handbook/career
+│           └── side-gigs.mdx #     child page → /handbook/career/side-gigs
 ├── layouts/
 │   └── base.astro            # Main HTML layout with SEO component
 ├── pages/
@@ -85,6 +92,10 @@ src/
 │   ├── labs/
 │   │   ├── index.astro       # Labs listing
 │   │   └── [slug].astro      # Lab detail
+│   ├── handbook/
+│   │   ├── index.astro       # Handbook index (grouped sidebar)
+│   │   ├── [...slug].astro   # Handbook page detail
+│   │   └── search-index.json.ts # Search index endpoint
 │   ├── 404.astro             # Custom 404 page
 │   └── [...slug].astro       # Catch-all for misc pages
 ├── styles/

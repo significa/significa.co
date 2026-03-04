@@ -31,7 +31,7 @@ All collections use a shared `contentLoader()` helper that centralizes glob patt
 ```ts
 const contentLoader = ({ base, extensions }: { extensions: string[]; base: string }): Loader => {
   const stripExtension = ({ entry }: { entry: string }) => {
-    return entry.replace(/\.(mdx?|yaml)$/, "");
+    return entry.replace(/\.(mdx?|yaml)$/, "").replace(/\/index$/, "");
   };
 
   // In development: include all files (drafts visible for preview)
@@ -52,7 +52,7 @@ This means:
 - **Development** (`pnpm dev`): all files are loaded, including `*.draft.*` files, so authors can preview drafts locally.
 - **Production** (`pnpm build`): files matching `*.draft.*` are excluded at the glob level — they never enter the content layer.
 - **Publishing a draft** is a file rename: `my-post.draft.mdx` → `my-post.mdx`.
-- **ID generation** strips file extensions for clean URL slugs: `example-project.mdx` → `example-project`.
+- **ID generation** strips file extensions and `/index` suffixes for clean URL slugs: `example-project.mdx` → `example-project`, `career/index.mdx` → `career`.
 
 ## Collections
 
@@ -344,17 +344,29 @@ const handbook = defineCollection({
 
 ```
 src/content/handbook/
-├── culture.mdx                              → /handbook/culture          (top-level)
-├── how-we-build-software.mdx               → /handbook/how-we-build-software  (top-level, has children)
+├── manifesto.mdx                            → /handbook/manifesto         (standalone, no children)
 └── how-we-build-software/
-    ├── front-end-development.mdx           → /handbook/how-we-build-software/front-end-development
+    ├── index.mdx                            → /handbook/how-we-build-software  (parent page)
+    ├── front-end-development.mdx            → /handbook/how-we-build-software/front-end-development
     └── back-end-development.mdx            → /handbook/how-we-build-software/back-end-development
 ```
 
-- A page becomes a **parent** when a sibling directory shares its name and contains MDX files.
+**Convention: `index.mdx` for parent pages**
+
+- Pages that have children live inside their own folder as `index.mdx`.
+- Standalone pages with no children remain as flat `.mdx` files at the top level.
+- The `generateId` loader strips `/index` suffixes, so `how-we-build-software/index.mdx` produces the ID `how-we-build-software` — identical URL to what a flat file would produce.
 - Children inherit their parent's URL as a prefix.
 - Nesting beyond one level is supported but should be used sparingly.
 - The `group` field is still required on child pages — it controls which group they appear under in sidebar navigation.
+
+**When to use which pattern:**
+
+| Situation | File location |
+|---|---|
+| Page with no children | `handbook/my-page.mdx` |
+| Page with children | `handbook/my-page/index.mdx` |
+| Child of a parent | `handbook/my-page/child.mdx` |
 
 ## Export
 
@@ -536,7 +548,7 @@ All query helpers live in `src/lib/collections.ts`. These handle sorting and ref
 ## Important Notes
 
 - **`reference()` returns `{ id, collection }` objects**, not the full entry. Resolve with `getEntry(ref)`.
-- **Handbook parent-child hierarchy is file-path derived.** A page at `how-we-build-software/front-end.mdx` is automatically a child of `how-we-build-software.mdx`. No `parent` field in frontmatter — the relationship is implicit in the directory structure.
+- **Handbook parent-child hierarchy is file-path derived.** A page at `how-we-build-software/front-end.mdx` is automatically a child of `how-we-build-software/index.mdx`. No `parent` field in frontmatter — the relationship is implicit in the directory structure.
 - **Handbook groups use `reference("handbook-groups")`**, so a typo in `group:` breaks the build, not production.
 - **Drafts use the `.draft` filename suffix.** No frontmatter field, no query-time filtering. The content loader handles it automatically.
 - **Blog supports both `.md` and `.mdx`.** Blog posts that don't need custom components can use plain `.md`.

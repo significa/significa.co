@@ -178,20 +178,22 @@ const featuredHighlights = highlights.slice(0, 3);
       <section class="awards">
         <div class="awards-inner">
           <h2>International recognition.</h2>
-          <ul class="awards-list">
+          <ul class="awards-list" role="list">
             {awards.map((a) => (
-              <li class="award-item">
+              <li class="award-row">
                 {a.url ? (
-                  <a href={a.url} target="_blank" rel="noopener noreferrer">
+                  <a href={a.url} target="_blank" rel="noopener noreferrer" class="award-link">
                     <span class="award-name">{a.award}</span>
-                    <span class="award-year">{a.year}</span>
+                    <span class="award-divider" aria-hidden="true" />
                     <span class="award-project">{a.project?.data.client ?? a.project?.data.title}</span>
+                    <span class="award-year">{a.year}</span>
                   </a>
                 ) : (
-                  <span class="award-item-inner">
+                  <span class="award-link">
                     <span class="award-name">{a.award}</span>
-                    <span class="award-year">{a.year}</span>
+                    <span class="award-divider" aria-hidden="true" />
                     <span class="award-project">{a.project?.data.client ?? a.project?.data.title}</span>
+                    <span class="award-year">{a.year}</span>
                   </span>
                 )}
               </li>
@@ -670,6 +672,7 @@ const featuredHighlights = highlights.slice(0, 3);
      ============================================================ */
   .awards {
     padding: 4rem var(--gutter);
+    border-top: 1px solid var(--color-border);
   }
 
   .awards-inner {
@@ -681,53 +684,62 @@ const featuredHighlights = highlights.slice(0, 3);
     font-size: var(--text-2xl);
     font-weight: var(--weight-bold);
     line-height: var(--leading-tight);
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   .awards-list {
     list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1rem;
+    padding: 0;
+    margin: 0;
   }
 
-  .award-item {
-    border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
-    background: var(--color-surface-alt);
+  .award-row {
+    border-top: 1px solid var(--color-border);
   }
 
-  .award-item a,
-  .award-item-inner {
+  .award-row:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .award-link {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1.5rem;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding-block: 0.75rem;
     text-decoration: none;
     color: var(--color-text);
     transition: opacity var(--duration-fast) var(--ease-out);
-    height: 100%;
   }
 
-  .award-item a:hover {
-    opacity: 0.7;
+  a.award-link:hover {
+    opacity: 0.6;
   }
 
   .award-name {
-    font-size: var(--text-base);
-    font-weight: var(--weight-semibold);
-    line-height: var(--leading-tight);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    flex-shrink: 0;
   }
 
-  .award-year {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
+  .award-divider {
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+    align-self: center;
+    min-width: 1rem;
   }
 
   .award-project {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
-    margin-top: auto;
+    flex-shrink: 0;
+  }
+
+  .award-year {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
   }
 
   /* ============================================================

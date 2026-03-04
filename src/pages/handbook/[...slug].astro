@@ -47,10 +47,17 @@ function formatDate(date: Date) {
 
       <div class="nav-groups">
         {
-          indexGroups.map(({ group, pages }) =>
-            pages.length > 0 ? (
-              <div class="nav-group">
-                <p class="nav-group-title">{group.data.title}</p>
+          indexGroups.map(({ group, pages }) => {
+            if (pages.length === 0) return null;
+
+            const isActiveGroup = pages.some(
+              ({ page: navPage, children: navChildren }) =>
+                navPage.id === page.id || parentId === navPage.id || navChildren.some((child) => child.id === page.id)
+            );
+
+            return (
+              <details class="nav-group" open={isActiveGroup || undefined}>
+                <summary class="nav-group-title">{group.data.title}</summary>
                 <ul role="list" class="nav-list">
                   {pages.map(({ page: navPage, children: navChildren }) => {
                     const isActivePage = navPage.id === page.id;
@@ -58,16 +65,38 @@ function formatDate(date: Date) {
                     const isExpanded = isActivePage || isActiveParent;
 
                     return (
-                      <li>
+                      <li data-nav-item>
                         <a
                           href={`/handbook/${navPage.id}`}
-                          class:list={["nav-link", { active: isActivePage }]}
+                          class:list={["nav-link", { active: isActivePage, "has-children": navChildren.length > 0 }]}
                           aria-current={isActivePage ? "page" : undefined}
+                          data-expanded={navChildren.length > 0 ? isExpanded : undefined}
                         >
                           {navPage.data.title}
+                          {navChildren.length > 0 && (
+                            <svg
+                              class="nav-link-chevron"
+                              width="12"
+                              height="12"
+                              viewBox="0 0 12 12"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="1.75"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              aria-hidden="true"
+                            >
+                              <polyline points="2 4 6 8 10 4" />
+                            </svg>
+                          )}
                         </a>
-                        {navChildren.length > 0 && isExpanded && (
-                          <ul role="list" class="nav-children">
+                        {navChildren.length > 0 && (
+                          <ul
+                            role="list"
+                            class="nav-children"
+                            data-children-for={navPage.id}
+                            data-open={isExpanded ? "true" : "false"}
+                          >
                             {navChildren.map((child) => {
                               const isActiveChild = child.id === page.id;
                               return (
@@ -88,9 +117,9 @@ function formatDate(date: Date) {
                     );
                   })}
                 </ul>
-              </div>
-            ) : null
-          )
+              </details>
+            );
+          })
         }
       </div>
     </nav>
@@ -171,6 +200,37 @@ function formatDate(date: Date) {
       </article>
     </div>
   </div>
+  <script>
+    function initSidebar() {
+      // Make parent nav-links with children toggle their child list on click
+      document.querySelectorAll<HTMLAnchorElement>(".nav-link.has-children").forEach((link) => {
+        // Remove any previously attached listener by cloning
+        const fresh = link.cloneNode(true) as HTMLAnchorElement;
+        link.parentNode!.replaceChild(fresh, link);
+
+        fresh.addEventListener("click", (e) => {
+          const childrenList = fresh.parentElement?.querySelector<HTMLElement>(".nav-children");
+          if (!childrenList) return;
+
+          const isOpen = childrenList.dataset.open === "true";
+
+          if (isOpen) {
+            // Only intercept the click to collapse — don't navigate
+            e.preventDefault();
+            childrenList.dataset.open = "false";
+            fresh.dataset.expanded = "false";
+          } else {
+            // Expand first, then let the link navigate normally
+            childrenList.dataset.open = "true";
+            fresh.dataset.expanded = "true";
+          }
+        });
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", initSidebar);
+    document.addEventListener("astro:after-swap", initSidebar);
+  </script>
 </BaseLayout>
 
 <style>
@@ -223,6 +283,12 @@ function formatDate(date: Date) {
     gap: 1.5rem;
   }
 
+  .nav-group {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
   .nav-group-title {
     font-size: var(--text-sm);
     font-weight: var(--weight-semibold);
@@ -230,6 +296,42 @@ function formatDate(date: Date) {
     letter-spacing: 0.08em;
     color: var(--color-text-muted);
     margin: 0 0 0.375rem;
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .nav-group-title:hover {
+    color: var(--color-text);
+  }
+
+  .nav-group-title::-webkit-details-marker {
+    display: none;
+  }
+
+  .nav-group-title::after {
+    content: "";
+    display: block;
+    width: 0.375rem;
+    height: 0.375rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg) translateY(-1px);
+    transition: transform var(--duration-fast) var(--ease-out);
+    flex-shrink: 0;
+  }
+
+  .nav-group[open] > .nav-group-title::after {
+    transform: rotate(225deg) translateY(-1px);
+  }
+
+  .nav-group:not([open]) > .nav-list {
+    display: none;
   }
 
   .nav-list {
@@ -242,13 +344,26 @@ function formatDate(date: Date) {
   }
 
   .nav-link {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.375rem;
     font-size: var(--text-sm);
     padding-block: 0.25rem;
     color: var(--color-text-muted);
     text-decoration: none;
     transition: color var(--duration-fast) var(--ease-out);
     border-radius: 4px;
+  }
+
+  .nav-link-chevron {
+    flex-shrink: 0;
+    opacity: 0.5;
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .nav-link[data-expanded="true"] > .nav-link-chevron {
+    transform: rotate(180deg);
   }
 
   .nav-link:hover {
@@ -269,6 +384,11 @@ function formatDate(date: Date) {
     gap: 0.125rem;
     border-left: 1px solid var(--color-border);
     padding-left: 0.75rem;
+    overflow: hidden;
+  }
+
+  .nav-children[data-open="false"] {
+    display: none;
   }
 
   .nav-child-link {

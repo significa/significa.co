@@ -26,7 +26,7 @@ const metricSchema = z.object({
 const contentLoader = ({ base, extensions }: { extensions: string[]; base: string }): Loader => {
   // id generation: strip file extensions for clean URLs
   const stripExtension = ({ entry }: { entry: string }) => {
-    return entry.replace(/\.(mdx?|yaml)$/, "");
+    return entry.replace(/\.(mdx?|yaml)$/, "").replace(/\/index$/, "");
   };
 
   // filter drafts only in production

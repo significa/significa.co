@@ -1,0 +1,34 @@
+---
+title: Software security
+description: Security is a fundamental element of software development, essential for protecting against vulnerabilities and ensuring trust.
+date: 2024-10-29
+coverImage: https://assets.significa.co/website/test-TKzoOc.png
+group: engineering
+order: 9
+---
+
+Security is a fundamental element of software development, essential for protecting against vulnerabilities and ensuring trust. If the software is insecure or compromised, it can cause substantial damage to Significa, our clients, and beyond. To uphold the highest security standards, we prioritise using up-to-date software and aim to minimise reinventing the proverbial software wheel.
+
+### Secrets across environments
+
+Passwords and keys should be unique across different environments. For instance, an API key used locally should come from a different account than the one used in staging (our testing environment).
+
+While this might seem challenging, it's almost always achievable — even if it means creating multiple accounts for third-party services, whether an API or another service.
+
+### Local development secrets
+
+It's inevitable that you'll need secrets on your local machines, especially when connecting to external APIs. Importantly, local development secrets must never match those used in the deployed environment.
+
+To sync secrets across developer machines, we use a handy tool we created called 1password-secrets. This allows us to store secrets in 1Password, keeping everything secure and outside of code repositories.
+
+### Networking
+
+Applications should only be exposed to the internet if they need to receive traffic. Databases, for example, should not be accessible from the internet; only the applications that require connectivity should have access. This is standard industry practice, but it's important to reinforce.
+
+### API keys and permissions
+
+Permissions for services and APIs should always be set to the minimum necessary for an application to function. Assume that any application you build or use could be compromised, and develop with the mindset of minimising the potential impact of any attack.
+
+Some practices might seem obvious, yet they're often overlooked in the industry outside of Significa. For example, an application that sends emails from noreply@example.com shouldn't be allowed to send from admin@example.com. We prioritise this to ensure that, when building solutions for our clients, we do not compromise their email security.
+
+And lastly, don't leave the office door open!

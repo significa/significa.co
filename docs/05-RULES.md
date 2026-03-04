@@ -13,6 +13,7 @@
 - **Use `MediaImage` for all images in content.** Never raw `<img>` tags. It constructs CDN URLs with responsive `srcset` and optimization parameters automatically.
 - **Drafts use the `.draft` filename suffix.** Name a file `my-post.draft.mdx` to mark it as a draft. In production builds, `.draft` files are excluded at the glob level — they never enter the content layer. In development (`pnpm dev`), drafts are included so authors can preview them locally. Publishing is a file rename: `my-post.draft.mdx` → `my-post.mdx`. No frontmatter field needed.
 - **Use kebab-case for all filenames.** Components, pages, utilities, styles, content — everything is kebab-case (`media-image.astro`, `content-errors.ts`, `global.css`). Enforced by ESLint via `eslint-plugin-check-file`.
+- **Handbook pages with children use `index.mdx`.** If a handbook page has child pages, its content lives at `my-page/index.mdx` (not `my-page.mdx` alongside a `my-page/` folder). Standalone pages with no children stay as flat `.mdx` files. The `generateId` loader strips `/index` suffixes so URLs are identical either way. See `02-CONTENT-SCHEMA.md` for the full convention table.
 
 ## DO NOT
 
@@ -28,6 +29,7 @@
 - **Do not use hex colors.** Use OKLCH via custom properties.
 - **Do not use PascalCase or camelCase for filenames.** All files are kebab-case. `MediaImage.astro` → `media-image.astro`. `formatDate.ts` → `format-date.ts`. The ESLint rule will catch violations.
 - **Do not use a `draft` frontmatter field.** Drafts are managed via the `.draft` filename suffix (e.g. `my-post.draft.mdx`), not a boolean in frontmatter. The content loader excludes `.draft` files in production automatically.
+- **Do not create `my-page.mdx` alongside a `my-page/` folder for handbook entries.** This was the old pattern and is now forbidden. If a handbook page gains children, move `my-page.mdx` into `my-page/index.mdx` — do not leave the flat file next to the folder.
 
 ## Build-Time Validation
 
@@ -87,3 +89,4 @@ We always use `reference()` instead of `z.string()` for cross-collection links. 
 9. **Referencing a draft from non-draft content.** If a highlight or award references a `.draft` project, the dev server works fine but `pnpm build` fails because the draft is excluded from the collection. This is correct behavior — it prevents shipping pages that link to nothing.
 10. **Catch-all route collision.** If a page in `src/content/pages/` has a slug matching `blog`, `projects`, or `labs`, the build-time check throws. See Build-Time Validation above.
 11. **Static paths must be exhaustive.** Every URL must be returned by `getStaticPaths()`. Missing = 404.
+12. **Handbook flat file + folder coexistence is forbidden.** Never have both `handbook/career.mdx` and `handbook/career/` at the same time. Pages with children always use `handbook/career/index.mdx`. Pages without children use `handbook/career.mdx`. Pick one — the loader cannot produce correct IDs for both simultaneously.

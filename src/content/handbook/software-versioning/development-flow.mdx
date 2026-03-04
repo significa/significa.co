@@ -1,0 +1,22 @@
+---
+title: Development flow
+description: How we manage branches, releases, and deployments at Significa — and why we chose Release Flow over Git Flow.
+date: 2024-10-29
+coverImage: https://assets.significa.co/website/test-TKzoOc.png
+group: engineering
+order: 3
+---
+
+Back in the old days, we used the "Git flow" development style. It's a very common approach across the industry, but we switched it up and started using a slightly different method called "Release Flow".
+
+## What is Release Flow?
+
+Features and fixes still have their own branches, and our staging — main deployed development environment — is linked to the main branch. When it's time to release to production, we create a release/tag.
+
+## Why the shift?
+
+Because we are release-driven. We aim to package our software for delivery, and while we release often, we also want to communicate the changelog and announce new versions. Although any development flow can support this, we found Release Flow aligns best with our strategy.
+
+We utilise GitHub releases and Actions, meaning our deployments are triggered automatically when a release is created. Check out our website repository to see how it works — it's nicely detailed in the README.
+
+For more on shipping, you can head over to Project management or dive into Delivery to learn about our release trains — choo choo!

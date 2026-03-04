@@ -1,0 +1,53 @@
+---
+title: Accessibility
+description: How we build inclusive digital experiences at Significa — from WCAG guidelines to semantic HTML, component design, and testing.
+date: 2024-10-29
+coverImage: https://assets.significa.co/website/test-TKzoOc.png
+group: engineering
+order: 3
+---
+
+## Building inclusive digital experiences
+
+Accessibility is not just a legal requirement or a box to tick; it's our guiding principle for inclusivity. By integrating accessibility into our designs, we expand our reach to a broader audience, including individuals with disabilities. But it doesn't stop there — accessibility features often enhance the overall user experience, making our sites more intuitive and user-friendly for everyone. At Significa, we believe in equal access to information for all and strive to practice what we preach.
+
+## Navigating the WCAG guidelines
+
+The Web Content Accessibility Guidelines (WCAG) provide a roadmap for creating accessible content based on four key principles:
+
+- **Perceivable:** Ensure that information and UI components are accessible to all senses.
+- **Operable:** Guarantee that all functionality is available via keyboard and provide users ample time to interact with content.
+- **Understandable:** Keep text clear, readable, and predictable.
+- **Robust:** Ensure compatibility with current and future technologies, including assistive devices.
+
+## Semantic HTML
+
+Writing semantically is the cornerstone of accessible web development, ensuring the appropriate use of HTML tags for their intended purposes. This practice enhances compatibility with screen readers, providing meaningful context to assistive technologies, and improves SEO by helping search engines understand content better.
+
+To facilitate keyboard navigation, ensure all interactive elements are focusable, manage focus order with the `tabindex` attribute, and provide visible focus indicators (preferably `focus-visible` over `focus`). Additionally, correctly using ARIA attributes can enhance accessibility, but remember that ARIA should complement, not replace, semantic HTML. In fact, its incorrect usage can inadvertently hinder accessibility.
+
+## Building components
+
+When creating design systems, it's vital to bake accessibility into the process from the outset. Develop systems and tools that help other developers maintain a baseline of accessibility.
+
+For example, consider a Field component that automatically includes essential attributes like `id`, `for`, `aria-describedby`, and `aria-errormessage`, ensuring all necessary elements are connected and described for assistive technology.
+
+Also, ensure that any dependencies you choose adhere to valid accessibility standards. For more on building components, check out Tokens, Primitives, and Components.
+
+## Testing for accessibility
+
+Utilise tools like Axe and Lighthouse to quickly pinpoint common accessibility issues, providing a solid foundation for your work. However, manual testing remains crucial. Use screen readers and keyboard navigation to assess the user experience, as these methods can reveal problems that automated tools might overlook.
+
+If possible, engage users with disabilities for feedback; their insights are invaluable and can lead to more inclusive design solutions.
+
+## Balancing with aesthetics
+
+As a design-led agency, we're passionate about crafting visually stunning interfaces. However, beauty must never compromise accessibility. As Front-end developers, we bridge ideation and delivery, ensuring that even the most aesthetically pleasing designs remain accessible to all users.
+
+Collaboration with designers allows us to find creative solutions that uphold both visual appeal and accessibility while maintaining a solid accessibility baseline. We can achieve this balance by focusing on these essential guidelines:
+
+- Ensure sufficient colour contrast for text and interactive elements to enhance readability.
+- Avoid relying solely on colour to convey information; incorporate additional indicators such as icons or text to improve understanding.
+- Design intuitive navigation structures that facilitate seamless interactions between mouse and keyboard users.
+
+Ultimately, we want to make the web a place where everyone can participate equally.

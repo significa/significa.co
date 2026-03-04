@@ -1,0 +1,38 @@
+---
+title: Tokens, Primitives, and Components
+description: How we structure front-end architecture at Significa — from design tokens to primitive UI elements to complex reusable components.
+date: 2024-10-29
+coverImage: https://assets.significa.co/website/test-TKzoOc.png
+group: engineering
+order: 2
+---
+
+In Front-end Development, creating a cohesive and maintainable user interface requires a thoughtful approach to component architecture. At Significa, we harness the power of tokens, primitives, and components to build applications that are not only functional but also visually consistent, versatile and adaptable.
+
+## Tokens: The foundation of consistency
+
+Tokens are the smallest entities in a design system, representing values like colours, typography, and spacing. They form the foundation for maintaining visual consistency across an application and bridge the gap between design and development, ensuring we're all on the same page.
+
+Not everything needs to be abstracted into reusable components. With tokens, even ad-hoc markup remains consistent and on-brand. This scalability allows multiple team members to work in parallel while achieving similar results from a solid baseline.
+
+If changes are needed, adapting to new branding requirements is simple — just update a single value in a centralised location.
+
+## Primitives: The building blocks of UI
+
+Primitives are UI elements that mimic native markup but come with embedded styles. These fundamental components, like buttons and inputs, provide the essential building blocks for creating applications with the right look and feel.
+
+Here are a few key principles to consider when building these components:
+
+- **No business logic:** Primitives should be purely presentational, maintaining reusability. For example, instead of creating separate variants for "user" and "organisation," simply use descriptive terms like "circle" and "square" for an Avatar.
+- **Controlled vs uncontrolled:** Ideally, primitives should work well as uncontrolled components. If state management is required, they should maintain an internal state while allowing an external state to take precedence, similar to a native input.
+- **Markup consistency:** Strive to keep the markup as close to native as possible. Use composition over props and avoid unnecessary wrapping elements, which can complicate prop spreading. Instead of exposing a label prop in an Input component, create a separate Label primitive.
+
+## Components: from primitives to complex features
+
+While building with primitives establishes a solid foundation, it can become verbose quickly. This is where components shine, allowing us to abstract repetitive patterns into reusable parts, reducing code duplication and enhancing maintainability.
+
+We fully embrace the DRY principle (Don't Repeat Yourself), but it's vital not to over-componentise too early. Reuse primitives and create ad-hoc solutions until repetition becomes excessive, then abstract them into components.
+
+In some cases, you may want to create more opinionated components that are designed for ease of use, not extensibility. When this happens, a composition API may not be the best fit, as our focus shifts to developer experience and simplicity.
+
+With the above in mind and keeping in touch with The designer's eye, we can craft exceptional experiences efficiently. But next up for you, dear Front-end developer, is to make sure that everybody has a great experience interacting with our work. So from here, head to Accessibility.

@@ -1,0 +1,49 @@
+---
+title: Quality assurance
+description: How project managers approach QA at Significa — testing strategies, bug prioritisation, and the tools we use.
+date: 2025-09-30
+coverImage: https://assets.significa.co/website/test-TKzoOc.png
+group: strategy-and-product
+order: 5
+---
+
+## QA as a Project Manager
+
+As the project manager, it'll be your responsibility to pitch in to test all major new features before they're released to production. For web projects, you can preview all branches and review all releases on Fly. For mobile projects, you'll have access to the staging environments through your personal devices or the company's test devices.
+
+Project managers approach QA differently from other teams. As the project manager, it's your responsibility to make sure that the entire product works well — not only for individual features and flows, but also as a unified product experience. Here are some of our tips for project managers doing QA reviews:
+
+- When testing new features, test any other pages or content that might be affected by changes in addition to the feature itself. It's a good idea to always test the main flows in the app in addition to the other changes to make sure everything is working as expected before deploying an update to production.
+- Take your testing a step further by trying to think like both a first-time user and an engaged daily user. New users will be seeing your app with fresh eyes, while experienced users will expect everything to look and work like it always has. Explore the app with different user personas in mind and then attempt to find as many usability issues and app-breaking bugs as possible. For example:
+  - If you click or tap on an element in the app, does it take you to the content you'd expect to see as a user? Is it clear what the user should do next or how they can go back to where they were?
+  - How's the app usability? Is the click or tap area large enough around the buttons?
+  - How is the app's performance — does it respond quickly to your input? Are the loading times too long?
+  - A specific e-commerce-related example: If you add and remove items from your shopping cart several times, do the prices update correctly? If the cart is empty, does it display an empty state?
+
+You can be sure that your users will use products in ways you never expected once updates are released to the public. Therefore, the more you can get into their mindset while testing, the more usability issues and bugs you'll be able to find and fix before release!
+
+Our project managers use the following tools to manage the QA process:
+
+### Linear
+
+Every project should already be set up in Linear. Within each Linear project, there is a Triage section where all bugs related to the project that could potentially be added to future sprints will appear. The bugs may be reported by the client, QA, the project manager, or any other team members.
+
+Next, the team will have to sort through the tickets in the Triage section to determine which ones to accept or reject. If the tickets are accepted, they will be moved into the Issues section of the Linear project, and then the project manager have to prioritise them and add them to future sprints.
+
+Prioritisation is more of an art than a science, but here are some things we think are good to keep in mind while prioritising bugs:
+
+- **How much pain the bug could cause:** The reality is that the bugs that have dollar signs connected to them are the ones that will be prioritised more highly. Issues that affect the payment system, for example, will likely cause more damage to the business than other types of bugs, and so they will probably be assigned higher priority and urgency.
+- **How many users are affected:** If the bug is affecting only a small number of users, and especially if the pain it's causing them is relatively low, then the bug may not be worth prioritising at all.
+- **How much effort it will take:** If the bug will only take five minutes to fix, then it may be worth spending a few minutes on it, even if it's not too important. However, a bug that could take 5 hours to fix is a completely different story. Be careful that your 5-minute bug doesn't turn into a 5-hour one without realising it. It's best to time-box the developer's work on a bug, perhaps at 15 minutes, so you can reevaluate the decision to continue to fix it if it hasn't been completed within the allocated time.
+
+### Sentry
+
+The app monitoring platform Sentry is one of the first tools developers should add to new projects. It automatically tracks app errors and crashes across its user base along with detailed metadata on each crash so the team can find and prioritise the most troublesome bugs to fix in upcoming development cycles.
+
+We often set up Sentry to provide us with alerts through Slack or automate ticket creation in the project's Triage section in Linear to help the team stay on top of the most pressing issues.
+
+### Bug reporter
+
+Because clients do not have access to Linear, they need a way to share information about any bugs they find in their products so that they can also be on our radar to fix in future sprints. This is where our internal bug reporter comes into play!
+
+This tool needs to be set up for each new development project. Once it's live, clients can use it to report any bugs they are experiencing along with more detailed information to help us track the issues down. When a bug is reported using this tool, a new ticket will be created automatically in the project's Triage section in Linear.

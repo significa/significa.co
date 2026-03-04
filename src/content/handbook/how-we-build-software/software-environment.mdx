@@ -1,0 +1,22 @@
+---
+title: Software environment
+description: How we structure, isolate, and replicate software environments at Significa — from local development to production.
+date: 2024-10-29
+coverImage: https://assets.significa.co/website/test-TKzoOc.png
+group: engineering
+order: 6
+---
+
+At Significa, we believe that when you're building software, it's crucial to identify and separate the persistence and computing layers. For example, the persistent layer might be a database or a storage bucket, while the application consists of the code that serves an API or website.
+
+This separation grants you greater control, facilitating architectural decisions. Typically, the application is ephemeral, allowing for the creation or destruction of servers or applications without affecting the client. This flexibility enables easy horizontal scaling of the application.
+
+## Isolation
+
+Applications should be isolated and easily replicable. It should be a breeze to start up a new project, and creating additional server replicas should be trivial and even automated based on usage. Using Docker containers is key, as they enable you to create a replicable recipe for the software environment (the Docker image).
+
+## Local development
+
+For applications relying on multiple components or specific dependencies, always opt for containers during local development. Usually, a simple `docker-compose up` is all you need to kick things off. In some cases, especially with Node-based projects, developers may choose to work directly on their machines without a virtualisation layer. You'll provide the recipe to replicate the exact environment, often using `.nvmrc` to specify the Node version and relying on the `package-lock.json`.
+
+For local secrets, be sure to check out Software security.

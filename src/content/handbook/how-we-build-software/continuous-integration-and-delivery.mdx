@@ -1,0 +1,16 @@
+---
+title: Continuous integration and delivery
+description: How we automate deployment and testing at Significa through CI/CD pipelines — and why we never deploy from a local machine.
+date: 2024-10-29
+coverImage: https://assets.significa.co/website/test-TKzoOc.png
+group: engineering
+order: 4
+---
+
+At Significa, we believe that all software built by a team should be deployed and tested automatically through a CI/CD pipeline. This means developers do not deploy code from their own computers; instead, deployment occurs automatically following the development flow, such as after a release or code push.
+
+This approach helps prevent mistakes and the familiar "it works on my machine" scenario, as everything is scripted and visible to the entire team.
+
+Implementing CI/CD simplifies onboarding for new developers, allowing them to understand the validation process and deployment requirements. Visibility into the pipeline means that if checks fail — be it linting or tests — everyone can see it and help resolve the issue. Plus, we know we can't always trust that developers will run linting and testing on their own hardware, so having it enforced removes any escape routes.
+
+In summary, CI/CD is essential for our workflow. To learn how we aim to continuously deliver from a project perspective, check out Delivery.

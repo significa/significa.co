@@ -12,9 +12,15 @@ interface Props {
   ogImage?: string;
   type?: "website" | "article";
   publishedAt?: Date;
+  structuredData?: object | object[];
 }
 
-const { title, description, ogImage, type, publishedAt } = Astro.props;
+const { title, description, ogImage, type, publishedAt, structuredData } = Astro.props;
+
+// Include Organization schema on all pages, plus any custom schemas
+const allSchemas = structuredData
+  ? [organizationJsonLd(), ...(Array.isArray(structuredData) ? structuredData : [structuredData])]
+  : organizationJsonLd();
 ---
 
 <!doctype html>
@@ -24,9 +30,15 @@ const { title, description, ogImage, type, publishedAt } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <SEO title={title} description={description} ogImage={ogImage} type={type} publishedAt={publishedAt} />
+    <SEO
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      type={type}
+      publishedAt={publishedAt}
+      jsonLd={allSchemas}
+    />
     <ClientRouter />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationJsonLd())} />
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>

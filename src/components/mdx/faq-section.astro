@@ -1,0 +1,214 @@
+---
+/**
+ * FAQSection Component
+ * Renders an FAQ accordion section with proper semantic HTML
+ * Integrates with JSON-LD for search engine rich snippets
+ *
+ * Usage:
+ * <FAQSection
+ *   title="Common Questions"
+ *   items={[
+ *     {
+ *       question: "What services do you offer?",
+ *       answer: "We offer design, development, and strategy services..."
+ *     }
+ *   ]}
+ * />
+ */
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export interface Props {
+  title?: string;
+  items: FAQItem[];
+}
+
+const { title = "Frequently Asked Questions", items } = Astro.props;
+---
+
+<section class="faq-section" aria-labelledby="faq-title">
+  {
+    title && (
+      <h2 id="faq-title" class="faq-title">
+        {title}
+      </h2>
+    )
+  }
+
+  <dl class="faq-list">
+    {
+      items.map((item, index) => (
+        <div class="faq-item" itemscope itemtype="https://schema.org/Question">
+          <dt class="faq-question">
+            <button class="faq-trigger" aria-expanded="false" aria-controls={`faq-answer-${index}`} type="button">
+              <span itemprop="name">{item.question}</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path
+                  d="M7.5 7.5l5 5 5-5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </dt>
+
+          <dd
+            id={`faq-answer-${index}`}
+            class="faq-answer"
+            hidden
+            itemprop="acceptedAnswer"
+            itemscope
+            itemtype="https://schema.org/Answer"
+          >
+            <div class="faq-answer-content" itemprop="text">
+              {item.answer}
+            </div>
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>
+
+<script>
+  // Initialize FAQ accordion functionality
+  function initFAQ() {
+    const triggers = document.querySelectorAll(".faq-trigger");
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+        const answerId = trigger.getAttribute("aria-controls");
+
+        if (!answerId) return;
+
+        const answer = document.getElementById(answerId);
+
+        if (isExpanded) {
+          trigger.setAttribute("aria-expanded", "false");
+          answer?.setAttribute("hidden", "");
+        } else {
+          trigger.setAttribute("aria-expanded", "true");
+          answer?.removeAttribute("hidden");
+        }
+      });
+
+      // Keyboard support (Enter/Space)
+      trigger.addEventListener("keydown", (e: Event) => {
+        const event = e as KeyboardEvent;
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          (trigger as HTMLButtonElement).click();
+        }
+      });
+    });
+  }
+
+  // Run on page load
+  initFAQ();
+
+  // Re-run after Astro view transitions
+  document.addEventListener("astro:after-swap", initFAQ);
+</script>
+
+<style>
+  .faq-section {
+    padding: 2rem 0;
+  }
+
+  .faq-title {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    margin-bottom: 2rem;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    list-style: none;
+  }
+
+  .faq-item {
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    margin: 0;
+  }
+
+  .faq-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--color-surface);
+    border: none;
+    cursor: pointer;
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+    transition:
+      background-color var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out);
+    text-align: left;
+  }
+
+  .faq-trigger:hover {
+    background-color: var(--color-surface-alt);
+    color: var(--color-text);
+  }
+
+  .faq-trigger:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    transition: transform var(--duration-normal) var(--ease-out);
+    color: var(--color-text-muted);
+  }
+
+  .faq-trigger[aria-expanded="true"] .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    padding: 1.25rem;
+    background: var(--color-surface-alt);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .faq-answer-content {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+  }
+
+  .faq-answer-content :first-child {
+    margin-top: 0;
+  }
+
+  .faq-answer-content :last-child {
+    margin-bottom: 0;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .faq-trigger,
+    .faq-icon {
+      transition: none;
+    }
+  }
+</style>

@@ -1,0 +1,75 @@
+---
+title: Back-end development
+description: How we approach back-end development at Significa — architecture, tooling, and the standards we hold ourselves to.
+date: 2024-10-29
+coverImage: https://assets.significa.co/website/test-TKzoOc.png
+group: engineering
+order: 3
+---
+
+Back-end development at Significa is guided by the same principles that run through everything we build: simplicity, quality, and long-term maintainability. The stack changes depending on the project, but the standards don't.
+
+## Languages and frameworks
+
+Our primary back-end languages are **Elixir** and **Python**, with **Node.js** where the project calls for it.
+
+Elixir is our default for new products that need reliability and concurrency — the actor model, fault tolerance, and the Phoenix framework make it a strong choice for real-time features, APIs, and long-running processes. Python is our go-to for data-heavy work, machine learning integrations, and projects where the ecosystem matters more than runtime characteristics.
+
+We don't use a language because it's trendy. We use it because it's the right tool for the job.
+
+## API design
+
+We build RESTful APIs by default. GraphQL is used selectively, when the client genuinely benefits from flexible querying — not as a default because it feels modern.
+
+APIs should be:
+
+- **Consistent** — naming, casing, error shapes, and pagination should follow the same conventions throughout.
+- **Versioned** — breaking changes are introduced in new versions, not silently in existing ones.
+- **Well-documented** — OpenAPI specs are not optional. They are the contract between back-end and front-end, and between us and the client.
+
+## Database
+
+PostgreSQL is our default database. It covers the vast majority of what we need, and we know it well.
+
+We use migrations for every schema change — no manual alterations in production. Migrations are reviewed like any other code, because a bad migration in production is significantly worse than a bad feature.
+
+Indexes are considered upfront, not added reactively when performance becomes a problem.
+
+## Code quality
+
+The same standards that apply to front-end apply here:
+
+- Strict linting and formatting from day one (no "we'll clean it up later")
+- Code reviews on every pull request — back-end is not exempt because fewer people see it
+- Tests for business logic, edge cases, and anything that would be painful to debug in production
+
+We don't aim for 100% coverage as a metric. We aim for confidence. Tests should make you more confident deploying, not less willing to delete dead code.
+
+## Security
+
+Security is not a phase. It is a continuous practice:
+
+- Secrets live in environment variables, never in code or version control
+- Dependencies are kept up to date — see the [Engineering community](/handbook/engineering-community) for our Dependency Eggspert initiative
+- Input is validated at the boundary
+- Authentication and authorisation are implemented correctly the first time, not patched reactively
+
+When in doubt, follow [OWASP](https://owasp.org/).
+
+## Infrastructure and deployment
+
+We default to managed infrastructure where it reduces operational burden without introducing unacceptable cost or lock-in. Fly.io, Railway, and AWS are common choices depending on the project's scale and requirements.
+
+Every project has a replicable local development environment. New team members should be able to run the project within 30 minutes of reading the README.
+
+Continuous integration runs on every pull request. Continuous deployment to staging is automatic. Production deployments are deliberate.
+
+## Observability
+
+You cannot improve what you cannot see. Every production service should have:
+
+- **Structured logging** — logs that can be queried, not walls of text
+- **Error tracking** — we use Sentry; exceptions in production should be noticed within minutes, not days
+- **Health checks** — endpoints and uptime monitoring so we know before the client does
+
+More on this in the [Observability](/handbook/observability) page.

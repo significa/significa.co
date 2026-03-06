@@ -2,9 +2,9 @@
 import { getEntry, render } from "astro:content";
 import BaseLayout from "@/layouts/base.astro";
 import { mdxComponents } from "@/components/mdx/components";
-import { getProjects } from "@/lib/collections";
+import { getProjects, getAwardsForProject } from "@/lib/collections";
 import { cdnUrl } from "@/lib/cdn";
-import { breadcrumbJsonLd } from "@/lib/seo";
+import { pageWithProjectJsonLd } from "@/lib/seo";
 
 export async function getStaticPaths() {
   const projects = await getProjects();
@@ -18,12 +18,36 @@ const { project } = Astro.props;
 const { Content } = await render(project);
 
 const seo = project.data.seo;
-const title = seo?.metaTitle ?? `${project.data.title} — Significa`;
-const description = seo?.metaDescription ?? project.data.tagline ?? `${project.data.title} — Significa`;
+const title = seo?.metaTitle ?? project.data.title;
+const description = seo?.metaDescription ?? project.data.tagline ?? project.data.title;
+const ogImage = seo?.ogImage ?? project.data.heroImage ?? project.data.thumbnail;
 
-const relatedProjects = project.data.relatedProjects?.length
-  ? await Promise.all(project.data.relatedProjects.map((ref) => getEntry(ref)))
-  : [];
+const [relatedProjects, projectAwards] = await Promise.all([
+  project.data.relatedProjects?.length
+    ? Promise.all(project.data.relatedProjects.map((ref) => getEntry(ref)))
+    : Promise.resolve([]),
+  getAwardsForProject(project.id),
+]);
+
+const structuredData = pageWithProjectJsonLd(
+  {
+    title: project.data.title,
+    description: project.data.tagline ?? project.data.title,
+    url: `https://significa.co/projects/${project.id}`,
+    image: ogImage,
+    datePublished: project.data.date,
+    client: project.data.client,
+    tags: project.data.tags,
+    deliverable: project.data.deliverable,
+    industry: project.data.industry,
+    awards: projectAwards.map((a) => `${a.data.award} ${a.data.year}`),
+  },
+  [
+    { name: "Home", url: "https://significa.co" },
+    { name: "Projects", url: "https://significa.co/projects" },
+    { name: project.data.title, url: `https://significa.co/projects/${project.id}` },
+  ]
+);
 
 const formattedDate = project.data.date.toLocaleDateString("en-US", {
   year: "numeric",
@@ -38,7 +62,7 @@ function formatLabel(str: string): string {
 }
 ---
 
-<BaseLayout title={title} description={description} ogImage={seo?.ogImage ?? project.data.heroImage}>
+<BaseLayout title={title} description={description} ogImage={ogImage} structuredData={structuredData}>
   <article class="project">
     <!-- Hero -->
     <header class="project-hero">
@@ -170,22 +194,10 @@ function formatLabel(str: string): string {
       <div class="project-cta-inner">
         <p class="project-cta-label">Ready to build something?</p>
         <h2 class="project-cta-heading">We design and build digital products that matter.</h2>
-        <a href="/work-with-us" class="project-cta-button">Get a quote</a>
+        <a href="/say-hello" class="project-cta-button">Get a quote</a>
       </div>
     </div>
   </article>
-
-  <script
-    is:inline
-    type="application/ld+json"
-    set:html={JSON.stringify(
-      breadcrumbJsonLd([
-        { name: "Significa", url: "https://significa.co" },
-        { name: "Projects", url: "https://significa.co/projects" },
-        { name: project.data.title, url: `https://significa.co/projects/${project.id}` },
-      ])
-    )}
-  />
 </BaseLayout>
 
 <style>

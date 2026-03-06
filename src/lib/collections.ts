@@ -64,6 +64,15 @@ export async function getResolvedHighlights() {
 }
 
 /**
+ * Get awards for a specific project by its id.
+ * Returns awards sorted by order.
+ */
+export async function getAwardsForProject(projectId: string) {
+  const allAwards = await getCollection("awards");
+  return allAwards.filter((a) => a.data.project.id === projectId).sort((a, b) => a.data.order - b.data.order);
+}
+
+/**
  * Get all awards with their referenced projects resolved.
  * Returns awards sorted by order, with the full project entry attached.
  */

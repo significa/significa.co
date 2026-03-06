@@ -3,6 +3,7 @@ import MediaVideo from "./media-video.astro";
 import ComparisonBlock from "./comparison-block.astro";
 import Metrics from "./metrics.astro";
 import ProjectCrossSell from "./project-cross-sell.astro";
+import FAQSection from "./faq-section.astro";
 
 /**
  * MDX component registry.
@@ -21,4 +22,5 @@ export const mdxComponents = {
   ComparisonBlock,
   Metrics,
   ProjectCrossSell,
+  FAQSection,
 };

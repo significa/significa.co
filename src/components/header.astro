@@ -18,7 +18,19 @@ function isActive(href: string): boolean {
 <header class="site-header">
   <nav class="nav-bar" aria-label="Main navigation">
     <a href="/" class="logo" aria-label="Significa — Home">
-      <span class="logo-dot" aria-hidden="true">●</span>
+      <svg
+        class="logo-icon"
+        width="10"
+        height="12"
+        viewBox="0 0 81 95"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M40.0781 94.2188C17.9835 94.2188 0 76.8077 0 55.2361C0 30.9141 19.3505 0 40.0781 0C60.8058 0 80.1562 30.9141 80.1562 55.2361C80.1562 76.8077 62.1728 94.2188 40.0781 94.2188Z"
+          fill="currentColor"></path>
+      </svg>
       Significa®
     </a>
 
@@ -166,8 +178,8 @@ function isActive(href: string): boolean {
     color: var(--color-text);
   }
 
-  .logo-dot {
-    font-size: 0.625rem;
+  .logo-icon {
+    flex-shrink: 0;
   }
 
   /* ============================================================

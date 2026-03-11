@@ -35,7 +35,12 @@ const featuredHighlights = highlights.slice(0, 3);
           loop
           muted
           playsinline
+          preload="none"
           data-showreel-video></video>
+        <!-- Cover image: replace with the real reel poster when available -->
+        <div class="showreel-cover" data-showreel-cover aria-hidden="true">
+          <img src="https://assets.significa.co/website/test-TKzoOc.png" alt="" draggable="false" />
+        </div>
         <button class="showreel-cursor" type="button" data-showreel-cursor aria-label="Play showreel video">
           <span class="showreel-cursor-icon" aria-hidden="true">▶</span>
         </button>
@@ -329,6 +334,8 @@ const featuredHighlights = highlights.slice(0, 3);
       }
     }
 
+    const cover = document.querySelector<HTMLElement>("[data-showreel-cover]");
+
     function toggleVideo() {
       if (!video) return;
       if (isPlaying) {
@@ -337,6 +344,7 @@ const featuredHighlights = highlights.slice(0, 3);
       } else {
         video.play();
         isPlaying = true;
+        if (cover) cover.style.display = "none";
       }
       updateCursorIcon();
     }
@@ -421,6 +429,19 @@ const featuredHighlights = highlights.slice(0, 3);
   .showreel-media video {
     width: 100%;
     height: auto;
+    display: block;
+  }
+
+  .showreel-cover {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .showreel-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
   }
 

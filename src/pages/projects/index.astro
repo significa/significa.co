@@ -121,7 +121,7 @@ function formatLabel(value: string): string {
               <a href={`/projects/${project.id}`} class="project-link">
                 {thumbnailUrl && (
                   <div class="project-thumbnail">
-                    <img src={thumbnailUrl} alt={project.data.title} loading="lazy" decoding="async" />
+                    <img src={thumbnailUrl} alt={project.data.title} width="800" height="600" loading="lazy" decoding="async" />
                   </div>
                 )}
 
@@ -516,7 +516,7 @@ function formatLabel(value: string): string {
   .project-thumbnail {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 4 / 3;
     background: var(--color-surface-alt);
     border-radius: 12px;
     overflow: hidden;

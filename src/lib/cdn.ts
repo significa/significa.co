@@ -16,6 +16,7 @@ const DEFAULT_QUALITY = 80;
 
 interface CdnImageOptions {
   width?: number;
+  height?: number;
   quality?: number;
   format?: "webp" | "avif" | "jpeg" | "png";
 }
@@ -37,6 +38,7 @@ export function cdnUrl(src: string, options: CdnImageOptions = {}): string {
   const params = new URLSearchParams();
 
   if (options.width) params.set("width", String(options.width));
+  if (options.height) params.set("height", String(options.height));
   if (options.quality) params.set("quality", String(options.quality));
   if (options.format) params.set("format", options.format);
 

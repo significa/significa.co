@@ -1,63 +1,67 @@
 ---
-title: What We Learned Designing for Fintech
-date: 2024-07-20
-author: Significa
+title: "Designing for complexity: lessons from an insurance platform."
+description: We worked with Diesta to turn one of the most complex back-office processes in finance into something intuitive. Here's what we learned.
+date: 2026-01-07
+author: Significa Team
 thumbnail: https://assets.significa.co/website/test-TKzoOc.png
 tags:
   - design
-  - fintech
-  - case-study
+  - learning
+  - strategy
 relatedProjects:
-  - mishmash
+  - diesta
+seo:
+  metaTitle: "Designing for complexity: lessons from an insurance platform — Significa"
+  metaDescription: "How we turned dense insurance reconciliation workflows into intuitive design — without becoming domain experts ourselves."
+  ogImage: https://cdn.significa.co/blog/designing-for-complexity/og-image.jpg
 ---
 
-After shipping Shelf, we reflected on what makes fintech design different from everything else we do. Here are the patterns that worked.
+We recently worked with Diesta, a company automating insurance premium payments. They challenged us to turn one of the most complex back-office processes in finance into something intuitive.
 
-## Trust is designed, not declared
+Insurance payments are dense with impenetrable terminology, unless you've spent years in the industry. The flows are complex, the regulations strict, and the consequences of getting it wrong are serious. This domain was new to us, and we didn't have months to become experts. But as it turned out, we didn't need to. We just had to find common ground.
 
-You can't slap a padlock icon on a screen and call it trustworthy. Trust in fintech is built through consistency, transparency, and reducing cognitive load at every step.
-
-<MediaImage
-  src="https://assets.significa.co/website/test-TKzoOc.png"
-  alt="Diagram showing three trust-building patterns: progressive disclosure, confirmation steps, and status transparency"
-  width={1260}
-  height={2260}
-  caption="The three trust patterns we kept coming back to"
+<ProjectCrossSell
+  project="diesta"
+  title="Streamlining insurance payments"
+  description="Before you uncover all the insights from this article, discover the project behind it."
 />
 
-## Numbers need context
+## Finding common ground.
 
-A balance of 1,847.32 means nothing without context. Is that good? Bad? Compared to what? The best fintech interfaces tell a story with numbers, not just display them.
+When you work on products across different industries, you regularly encounter this conundrum. One month you're designing an e-commerce platform, the next you're building a ticketing app for a sports club, then comes a project about insurance reconciliation and suddenly you're staring at Miro boards the size of small countries, trying to decode what a "facilitator" does versus a "broker" versus an "intermediary."
 
-<Metrics
-  items={[
-    { value: "+12%", label: "Engagement with contextualized numbers" },
-    { value: "3x", label: "Faster comprehension of financial health" },
-    { value: "−28%", label: "Support tickets about account status" },
-  ]}
-/>
+Domain knowledge matters: you need to know enough to avoid fundamentally misunderstanding the problem. But you don't need to become an expert. The client is the expert, and with trust and clear communication, they'll help you understand what you need to know. Diesta was brilliant at this: we ran workshops together where they walked us through the complexity on whiteboards, sent detailed videos explaining flows, and were patient with our questions. Our job as designers is to find the universal structure underneath the specific problem, and that only works when both sides trust each other to do what they do best.
 
-## Mistakes must be reversible
+## Recognising patterns across domains.
 
-In most apps, an undo is a nice-to-have. In fintech, it's essential. We designed every destructive action with a grace period and a clear escape hatch.
+Here's what Diesta does, stripped back: when someone pays £100 for insurance, that money fragments across taxes, commissions, brokers, and insurers. Finance teams at insurance companies, brokerages, and MGAs have to reconcile all of it. They match incoming payments to policies, track where every portion went, resolve exceptions, and keep trust accounts clean. At scale — thousands of policies, hundreds of thousands of payments — the manual process breaks down. Diesta automates it.
 
-<ComparisonBlock
-  before={{
-    src: "https://assets.significa.co/website/test-TKzoOc.png",
-    label: "Before — Immediate confirmation dialog",
-  }}
-  after={{
-    src: "https://assets.significa.co/website/test-TKzoOc.png",
-    label: "After — Undo toast with 10s grace period",
-  }}
-/>
+We'd never designed a reconciliation platform before. But once we understood what the user was actually trying to do, the unfamiliarity became less intimidating. A finance professional opening Diesta needs to see what requires attention, understand what's already been matched, resolve exceptions when something doesn't add up, and get confirmation that everything's allocated correctly.
 
-## The takeaway
+Strip away "insurance premium reconciliation" and you're left with workflow patterns we'd solved in other contexts: showing status at a glance, making the next action obvious, handling errors without panic, confirming success clearly. The domain was new, but the design principles weren't. We could see where users got stuck, where the interface made simple tasks feel complicated, where important information was buried. That gave us concrete problems to solve, even when we didn't fully understand the insurance mechanics behind them.
 
-Fintech design isn't about making banking look pretty. It's about removing every possible source of anxiety between a person and their money.
+Recognising familiar workflow patterns got us moving quickly. But pattern recognition didn't solve everything. Some challenges were genuinely specific to Diesta's world, and we had to adapt rather than just apply what we already knew.
 
-The work we did with Shelf reinforced something we already believed: the best design is the one you don't notice. You just feel confident.
+## Understanding your scope.
 
----
+One assumption we made early on was that we'd be able to design a standardised onboarding flow, which seemed reasonable considering most platforms have one. But Diesta's reality was different because each user had a unique setup. Some onboarding processes took months, involving the migration of thousands of insurance policies and integration with 20 or 30 different bank accounts. Bottom line: there was no universal flow we could design for.
 
-_This post relates to our work on [mishmash e-commerce redesign](/projects/mishmash)._
+The platform had to be flexible in ways that weren't immediately obvious because it had to accommodate radically different use cases without breaking. Flexibility became our constraint, and that forced us to be clearer about where our expertise applied and where it didn't.
+
+We rolled up our sleeves and pushed back on interaction patterns, because that's where our expertise lies: when to use a modal, whether a table row should be clickable, what users expect from familiar behaviours. But when Diesta said "this needs to work this way," we trusted them.
+
+**Challenge where you have expertise. Defer where you don't. Be honest about which is which.**
+
+## Translator mindset.
+
+You don't need to learn every new domain that comes your way — you need to learn enough about it to translate it. For Diesta, that meant understanding the basic product sequence: a payment arrives, the system identifies the sender, splits the amount, distributes to recipients, confirms success. We didn't get our heads wrapped around regulatory frameworks or tax implications.
+
+We focused on asking questions about what the user was trying to accomplish and what was getting in their way:
+
+- "Is this step necessary, or is it a workaround?"
+- "Does the user need this information here?"
+- "What happens if this fails?"
+
+This inquisitive approach works because good design principles apply across contexts, even unfamiliar ones. But only if you're honest about what you don't know and clear about where your expertise ends. Strip it back, find the overarching structure, apply your wisdom and defer where you should.
+
+Trust that the patterns you've solved before will surface again, as unexpected as that might seem.

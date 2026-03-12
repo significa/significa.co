@@ -1,0 +1,82 @@
+---
+title: "The Storyblok cleanup tool we forgot we built."
+description: There's something humbling about finding the perfect solution to a problem, clicking through, and realising the repository owner is your own team.
+date: 2025-12-16
+author: Julieta Frade
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+  - open-source
+seo:
+  metaTitle: "The Storyblok cleanup tool we forgot we built — Significa"
+  metaDescription: "We Googled a Storyblok cleanup solution, found the perfect tool on GitHub, and then realised we'd built it ourselves. Here's the story."
+  ogImage: https://cdn.significa.co/blog/storyblok-cleanup-tool/og-image.jpg
+---
+
+There's something oddly satisfying about finding the perfect solution to a problem on the first page of Google results. There's something far more humbling about realising that the solution came from your own team, and you'd completely forgotten it existed.
+
+That's exactly what happened when I was knee-deep in a Storyblok project, staring at a media library bloated with thousands of unused assets. Image variants, outdated files, test uploads that should have been deleted months ago. The kind of mess that accumulates when you're moving fast and cleaning up later keeps getting pushed to "later."
+
+So I did what any developer does: Googled "storyblok unused assets cleanup" and started scanning through results.
+
+The third result down was `storyblok-assets-cleanup` on GitHub. Perfect! Whoever wrote this had thought through the edge cases: rate limiting, dry runs, confirmation prompts before deletion, and detailed logging. Good documentation, sensible defaults, proper error handling. I click through, start reading the README, and then I see it.
+
+The repository owner: `significa`.
+
+Surprise! We had built it already!
+
+## The original problem.
+
+This tool was born from necessity on a client project back in 2023. We were working with Storyblok's media library, and like most content management systems, it doesn't automatically clean up after itself. Every time you upload a new version of an image, Storyblok keeps the old one. Basically every test asset, every iteration, every "just trying something" upload stays in your library until you manually remove it.
+
+For small projects, this is manageable. For larger ones with multiple content editors and months of iteration? It becomes a nightmare. Storage costs creep up (each plan caps your assets, so cleanup matters), the media library becomes impossible to navigate, and finding what you actually need feels like archaeology.
+
+My colleague Francisco had built a solution: a CLI tool that connects to Storyblok's API, compares your assets against what's actually referenced in your content, and safely removes everything unused. It worked brilliantly. We used it on that project, pushed it to GitHub, shared it on Slack (this happened during my first days at Significa so I probably missed it) and moved on.
+
+Fast-forward to a few weeks ago.
+
+## How it works.
+
+The tool is refreshingly straightforward. You give it your Storyblok space credentials, it pulls your content and assets, compares them, and shows you what's not being used. Then, if you're brave enough to confirm, it removes the unused assets. It's published on [npm as `@significa/storyblok-assets-cleanup`](https://www.npmjs.com/package/@significa/storyblok-assets-cleanup).
+
+```sh
+npx @significa/storyblok-assets-cleanup \
+  --token YOUR_TOKEN \
+  --space YOUR_SPACE_ID
+```
+
+It handles the annoying bits properly: rate limiting so you don't hammer Storyblok's API, a dry-run mode so you can see what would be deleted before committing, and logging that's actually useful for debugging.
+
+The code does what it needs to do without trying to be clever. No unnecessary abstractions, no over-engineering. Hey Harper was getting dangerously close to needing a plan upgrade. We ran the cleanup and their assets dropped by half.
+
+## What we learned… again.
+
+This entire experience reinforced a few things we already knew but apparently needed reminding of.
+
+**Document internal tools publicly.** If we'd kept this private, I would have rebuilt it from scratch. Publishing it meant that when I Googled the problem, I found our existing solution. The fact that it was open-source was incidental to its value as documentation of "we've solved this already."
+
+**Good README files are worth their weight in gold.** The reason I immediately understood what the tool did and how to use it was that past-us had written clear documentation. If it had been a cryptic repo with no context, I might have moved on to rebuild it anyway.
+
+**Build things that solve real problems.** This wasn't a side project someone built because they thought it might be useful someday. It was built because we had a specific, annoying problem that needed solving. Those are the tools that end up being genuinely useful later.
+
+**Your team's collective memory is shorter than you think.** Even in a relatively small team, knowledge gets lost fast. Projects end, people move to different work, and suddenly nobody remembers that thing you built eighteen months ago. Writing it down, publishing it, making it searchable — that's how it survives.
+
+## Using it yourself.
+
+If you're working with Storyblok and your media library is getting out of hand, you can use this too. It's published on npm, MIT licensed, and the source is available if you want to understand exactly what it's doing before running it.
+
+The full documentation is in the [GitHub repository](https://github.com/significa/storyblok-assets-cleanup), but the short version is: install it, give it your credentials, let it analyse your space, review what it found, and confirm deletion if you're happy with the results.
+
+We've open-sourced a number of other internal tools too — you can find them all on [Significa's GitHub](https://github.com/significa).
+
+We've used it on multiple projects now (including the one where I rediscovered it), and it's saved us significant storage costs and made content management considerably less frustrating.
+
+## The bigger picture.
+
+This story isn't really about a Storyblok cleanup tool, but about how easy it is to lose track of solutions you've already built, especially when you're focused on moving forward with new projects.
+
+Open-sourcing internal tools isn't about altruism or building a portfolio. It's also a form of documentation and a commitment to maintain (and sometimes shepherd) a community. Sometimes you'll build something that other people find useful, which is great. Other times, you'll build something that sits quietly on GitHub with a dozen stars and is only ever used by your own team. And sometimes, you'll build something so useful that you'll Google for it later, find your own solution, and feel briefly clever before remembering you're just rediscovering your own work.
+
+All three outcomes are valid. The important bit is that you built something, documented it, and made it findable when the problem came up again.
+
+Now, if you'll excuse me, I'm going to go audit our GitHub repos and make sure I actually know what we've already built.

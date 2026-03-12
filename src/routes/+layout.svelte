@@ -9,13 +9,15 @@
   import { browser } from '$app/environment';
 
   import { PUBLIC_POSTHOG_PROJECT_TOKEN } from '$env/static/public';
+  import { env } from '$env/dynamic/private';
+
   import posthog from 'posthog-js';
 
   import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 
   if (browser) {
     posthog.init(PUBLIC_POSTHOG_PROJECT_TOKEN, {
-      api_host: 'https://eu.posthog.com',
+      api_host: env.POSTHOG_API_HOST || 'https://eu.posthog.com',
       persistence: 'localStorage',
       person_profiles: 'always'
     });

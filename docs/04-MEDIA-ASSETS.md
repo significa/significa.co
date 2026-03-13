@@ -8,13 +8,13 @@ Media files are managed through Significa's internal asset manager (`assets.sign
 - **CDN** (`cdn.significa.co`): Cloudflare edge cache → Fly.io transform service → S3
 - **Image transforms**: sharp-based, triggered via URL query parameters
 
-Content authors reference media by their S3 path. The `MediaImage` component constructs optimized CDN URLs with transform parameters automatically.
+Content authors reference media by their S3 path. The `MediaBlock` component constructs optimized CDN URLs with transform parameters automatically.
 
 ```
 Author uploads via asset manager
   -> File stored in S3
   -> Referenced in MDX as path (e.g. /projects/cool-project/hero.jpg)
-  -> MediaImage builds CDN URL with transforms
+  -> MediaBlock builds CDN URL with transforms
   -> Cloudflare edge serves cached version (or Fly transforms on cache miss)
 ```
 
@@ -77,20 +77,21 @@ thumbnail: /projects/cool-project/thumb.jpg
 ### In MDX body
 
 ```mdx
-<MediaImage
+<MediaBlock
   src="/projects/cool-project/hero.jpg"
   alt="Dashboard overview"
-  width={1200}
-  height={630}
+  width={1920}
+  height={1080}
+  layout="full"
   caption="The main dashboard after redesign"
 />
 ```
 
-The `MediaImage` component prepends the CDN hostname and appends optimization parameters automatically. Content authors only need to provide the asset path as returned by the asset manager.
+The `MediaBlock` component prepends the CDN hostname and appends optimization parameters automatically. Content authors only need to provide the asset path as returned by the asset manager.
 
-## MediaImage Component Behavior
+## MediaBlock Component Behavior
 
-`MediaImage` constructs responsive image URLs using the transform service:
+`MediaBlock` constructs responsive image URLs using the transform service (for images) or passes the URL through directly (for videos):
 
 1. Takes the `src` path (e.g. `/projects/cool-project/hero.jpg`)
 2. Prepends the CDN hostname: `https://cdn.significa.co/projects/cool-project/hero.jpg`
@@ -125,18 +126,32 @@ When a `caption` is provided, the output wraps in `<figure>` with a `<figcaption
 </figure>
 ```
 
-## MediaImage Props
+## MediaBlock Props
 
 | Prop | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `src` | string | yes | - | Asset path (without CDN hostname) |
-| `alt` | string | yes | - | Accessible description |
-| `width` | number | yes | - | Intrinsic width (prevents CLS) |
-| `height` | number | yes | - | Intrinsic height (prevents CLS) |
-| `caption` | string | no | - | Optional figure caption |
-| `eager` | boolean | no | false | Use `loading="eager"` + `fetchpriority="high"` for above-the-fold |
-| `sizes` | string | no | `100vw` | Responsive sizes attribute |
-| `quality` | number | no | 80 | Image quality parameter (0-100) |
+| `src` | string | yes | — | Asset path or full CDN URL. `.mp4`/`.webm`/`.mov` renders a video; anything else renders an image. |
+| `alt` | string | no | `""` | Accessible description. Leave empty for decorative/ambient media (videos, atmosphere shots). |
+| `width` | number | yes | — | Intrinsic width in pixels (prevents CLS) |
+| `height` | number | yes | — | Intrinsic height in pixels (prevents CLS) |
+| `layout` | `full` \| `wide` \| `medium` \| `small` | yes | — | Controls rendered width. **Always set explicitly.** See layout table below. |
+| `caption` | string | no | — | Optional figure caption |
+| `eager` | boolean | no | false | Use `loading="eager"` + `fetchpriority="high"` for above-the-fold images |
+| `sizes` | string | no | `100vw` | Responsive sizes attribute (images only) |
+| `quality` | number | no | 80 | Image quality 0–100 (images only) |
+
+### Layout values
+
+| Value | Width | Use when |
+|---|---|---|
+| `full` | 100vw — edge to edge | Hero shots, full-bleed atmosphere images, wide video reels |
+| `wide` | 1152px centered | Multi-screen compositions, before/after, wide UI screenshots |
+| `medium` | 768px — stays in prose column | Single screen, inline illustration, no breakout needed |
+| `small` | ~384px centered | Detail shot, mobile screenshot, supporting visual |
+
+### Video behaviour
+
+If `src` ends in `.mp4`, `.webm`, or `.mov`, `MediaBlock` renders a `<video>` that autoplays muted, loops silently, and never shows controls. This is intentional — videos in case studies serve as ambient motion, not primary content requiring user control. Use `MediaVideo` if you need explicit playback controls.
 
 ## MediaVideo
 
@@ -150,7 +165,7 @@ Videos are also served via the CDN but without image transforms (video optimizat
 />
 ```
 
-The `poster` image goes through the same transform pipeline as `MediaImage`.
+The `poster` image goes through the same transform pipeline as `MediaBlock`.
 
 ## What Lives in the Repo
 
@@ -172,13 +187,14 @@ During development, CDN URLs work directly since they're public. No local proxy 
 - Always provide `width` and `height` to prevent Cumulative Layout Shift (CLS)
 - Use `eager` prop and `fetchpriority="high"` for hero/LCP images
 - All other images default to `loading="lazy"` and `decoding="async"`
-- Always use `MediaImage` component, never raw `<img>` tags in content
+- Always use `MediaBlock` component, never raw `<img>` or `<video>` tags in content
+- Always set `layout` explicitly on every `<MediaBlock>` — it is a content decision, not a default
 - Use the `sizes` prop when images don't span the full viewport
 - Format auto-negotiation is handled by the transform service via `Accept` header — no need to specify format
 
 ## Handbook Cover Images
 
-Handbook pages support optional cover images via the `coverImage` frontmatter field. These are rendered directly using CDN helpers (not the `MediaImage` component) for optimal LCP performance.
+Handbook pages support optional cover images via the `coverImage` frontmatter field. These are rendered directly using CDN helpers (not the `MediaBlock` component) for optimal LCP performance.
 
 ### Usage
 

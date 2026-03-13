@@ -17,6 +17,9 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 
+const showreelVideo = project.data.showreelVideo;
+const showreelCover = project.data.showreelCover ?? project.data.heroImage;
+
 const seo = project.data.seo;
 const title = seo?.metaTitle ?? project.data.title;
 const description = seo?.metaDescription ?? project.data.tagline ?? project.data.title;
@@ -73,7 +76,7 @@ function formatLabel(str: string): string {
       </div>
 
       {
-        project.data.heroImage && (
+        project.data.heroImage && !showreelVideo && (
           <div class="project-hero-image">
             <img
               src={cdnUrl(project.data.heroImage, { width: 1920, quality: 85 })}
@@ -94,6 +97,29 @@ function formatLabel(str: string): string {
         )
       }
     </header>
+
+    <!-- Showreel -->
+    {
+      showreelVideo && (
+        <section class="project-showreel">
+          <div class="project-showreel-inner">
+            <div class="project-showreel-media" data-showreel>
+              <video src={showreelVideo} width="1920" height="1080" loop muted playsinline preload="none" data-showreel-video />
+              {showreelCover && (
+                <div class="showreel-cover" data-showreel-cover aria-hidden="true">
+                  <img src={cdnUrl(showreelCover, { width: 1920, quality: 85 })} alt="" draggable="false" />
+                </div>
+              )}
+              <button class="showreel-cursor" type="button" data-showreel-cursor aria-label="Play showreel video">
+                <span class="showreel-cursor-icon" aria-hidden="true">
+                  ▶
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+      )
+    }
 
     <!-- Metadata bar -->
     <div class="project-meta-bar">
@@ -200,7 +226,163 @@ function formatLabel(str: string): string {
   </article>
 </BaseLayout>
 
+<!-- Showreel cursor-following button — vanilla JS, no island needed -->
+<script>
+  function initShowreel() {
+    const section = document.querySelector<HTMLElement>("[data-showreel]");
+    const cursor = document.querySelector<HTMLButtonElement>("[data-showreel-cursor]");
+    const video = document.querySelector<HTMLVideoElement>("[data-showreel-video]");
+    if (!section || !cursor || !video) return;
+
+    let isPlaying = false;
+
+    function positionAt(e: MouseEvent) {
+      if (!cursor) return;
+      const x = e.clientX - cursor.offsetWidth / 2;
+      const y = e.clientY - cursor.offsetHeight / 2;
+      cursor.style.translate = `${x}px ${y}px`;
+    }
+
+    function updateCursorIcon() {
+      if (!cursor) return;
+      const icon = cursor.querySelector(".showreel-cursor-icon");
+      if (icon) {
+        icon.textContent = isPlaying ? "❚❚" : "▶";
+      }
+    }
+
+    const cover = document.querySelector<HTMLElement>("[data-showreel-cover]");
+
+    function toggleVideo() {
+      if (!video) return;
+      if (isPlaying) {
+        video.pause();
+        isPlaying = false;
+      } else {
+        video.play();
+        isPlaying = true;
+        if (cover) cover.style.display = "none";
+      }
+      updateCursorIcon();
+    }
+
+    section.addEventListener("mouseenter", (e: MouseEvent) => {
+      positionAt(e);
+      cursor.style.opacity = "1";
+      cursor.style.scale = "1";
+    });
+
+    section.addEventListener("mouseleave", () => {
+      cursor.style.opacity = "0";
+      cursor.style.scale = "0.5";
+    });
+
+    section.addEventListener("mousemove", (e: MouseEvent) => {
+      positionAt(e);
+    });
+
+    section.addEventListener("click", toggleVideo);
+    cursor.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleVideo();
+    });
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (prefersReducedMotion.matches) {
+      cursor.style.display = "none";
+    }
+    prefersReducedMotion.addEventListener("change", (e) => {
+      cursor.style.display = e.matches ? "none" : "";
+    });
+  }
+
+  initShowreel();
+  document.addEventListener("astro:after-swap", initShowreel);
+</script>
+
 <style>
+  /* ============================================================
+     Showreel
+     ============================================================ */
+  .project-showreel {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .project-showreel-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .project-showreel-media {
+    position: relative;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    cursor: none;
+  }
+
+  .project-showreel-media video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .project-showreel-media .showreel-cover {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .project-showreel-media .showreel-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .showreel-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-text);
+    color: var(--color-surface);
+    border: none;
+    border-radius: 2rem;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    pointer-events: none;
+    opacity: 0;
+    scale: 0.5;
+    transition:
+      opacity var(--duration-fast) var(--ease-out),
+      scale var(--duration-fast) cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: translate, scale;
+    white-space: nowrap;
+  }
+
+  .showreel-cursor-icon {
+    font-size: 0.625rem;
+  }
+
+  @media (hover: none) {
+    .project-showreel-media {
+      cursor: default;
+    }
+
+    .showreel-cursor {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) !important;
+      opacity: 1 !important;
+      pointer-events: auto;
+    }
+  }
+
   /* ============================================================
      Hero
      ============================================================ */
@@ -472,20 +654,59 @@ function formatLabel(str: string): string {
     min-width: 1rem;
   }
 
-  /* Break media components and metrics out of the narrow column */
+  /* ============================================================
+     Media layout — data-layout on figure / div / img
+     full   = full viewport width (default)
+     wide   = --max-width (1152px), centered
+     medium = prose column width, no breakout
+     small  = half prose column, centered
+     ============================================================ */
+
+  /* Consistent vertical spacing around all media — above and below, always */
   .project-content-inner :global(figure),
-  .project-content-inner :global(img:not(figure img)),
+  .project-content-inner :global(div:has(> video)),
+  .project-content-inner :global(img[data-layout]) {
+    margin-block: 3rem;
+  }
+
+  /* Images and videos inside wrappers always fill their wrapper */
+  .project-content-inner :global(figure img),
+  .project-content-inner :global(figure video),
+  .project-content-inner :global(div:has(> video) video),
+  .project-content-inner :global(img[data-layout]) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* full — break out to full viewport width (default for all media) */
+  .project-content-inner :global([data-layout="full"]),
+  .project-content-inner :global(figure:not([data-layout])),
+  .project-content-inner :global(img:not([data-layout]):not(figure img)),
+  .project-content-inner :global(div:has(> video):not([data-layout])),
   .project-content-inner :global(.metrics),
   .project-content-inner :global(.cross-sell) {
     width: 100vw;
-    margin-inline-start: calc(50% - 50vw);
     max-width: 100vw;
+    margin-inline-start: calc(50% - 50vw);
   }
 
-  .project-content-inner :global(figure img),
-  .project-content-inner :global(img:not(figure img)) {
+  /* wide — centered at --max-width, still breaks out of prose column */
+  .project-content-inner :global([data-layout="wide"]) {
+    width: min(var(--max-width), 100vw);
+    max-width: 100vw;
+    margin-inline-start: calc(50% - min(var(--max-width), 100vw) / 2);
+  }
+
+  /* medium — stays within the prose column, no breakout */
+  .project-content-inner :global([data-layout="medium"]) {
     width: 100%;
-    height: auto;
+  }
+
+  /* small — half the prose column width, centered */
+  .project-content-inner :global([data-layout="small"]) {
+    width: 50%;
+    margin-inline: auto;
     display: block;
   }
 

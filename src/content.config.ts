@@ -58,6 +58,10 @@ const projects = defineCollection({
     thumbnail: z.string(),
     /** Large hero image for homepage showcase and project detail header */
     heroImage: z.string().optional(),
+    /** Video URL for the project showreel (plays inline on the project page) */
+    showreelVideo: z.string().optional(),
+    /** Cover image shown over the showreel before playback (defaults to heroImage if omitted) */
+    showreelCover: z.string().optional(),
     tags: z.array(z.string()).default([]),
     /** Industry categories for filtering (e.g., "fintech", "e-commerce", "healthcare") */
     industry: z.array(z.string()).default([]),

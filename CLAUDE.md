@@ -38,7 +38,7 @@ These always apply, regardless of the task.
 6. **TypeScript strict.** Type all props with `interface Props`. No `any`.
 7. **Semantic HTML.** `<article>`, `<nav>`, `<section>`, `<header>`, `<footer>`, `<main>`, `<time>`. Not everything is a `<div>`.
 8. **No CSS framework.** Scoped `<style>` in Astro components + `global.css` for design tokens. No magic colors — colors and typography must come from the token system. Spacing uses raw values (4px grid guideline, `rem` for vertical, `px` for horizontal when appropriate).
-9. **Media via S3 + self-hosted CDN.** Images and videos served from `https://cdn.significa.co` (Cloudflare → Fly.io transform service → S3). Use `MediaImage` component, never raw `<img>` tags in content.
+9. **Media via S3 + self-hosted CDN.** Images and videos served from `https://cdn.significa.co` (Cloudflare → Fly.io transform service → S3). Use `MediaBlock` component, never raw `<img>` or `<video>` tags in content.
 10. **Minimal dependencies.** Every `pnpm add` needs a clear reason.
 11. **Astro v5 (latest stable).** Astro 6 is in beta — upgrade to v6 as soon as it reaches stable. Until then, stay on latest v5.
 12. **kebab-case for all filenames.** Enforced by ESLint via `eslint-plugin-check-file`. No exceptions.
@@ -53,7 +53,7 @@ These always apply, regardless of the task.
 src/
 ├── components/
 │   ├── mdx/                  # Components available inside MDX files
-│   │   ├── media-image.astro
+│   │   ├── media-block.astro
 │   │   ├── media-video.astro
 │   │   ├── comparison-block.astro
 │   │   ├── metrics.astro
@@ -132,7 +132,7 @@ Read the docs relevant to your task. Don't load everything.
 | Project setup, structure, commands, key principles | `docs/01-PROJECT-BOOTSTRAP.md` |
 | Content schemas, collections, Zod types, relationships, drafts | `docs/02-CONTENT-SCHEMA.md` |
 | MDX components (creating, registering, catalog) | `docs/03-MDX-COMPONENTS.md` |
-| Images, videos, CDN, MediaImage/MediaVideo | `docs/04-MEDIA-ASSETS.md` |
+| Images, videos, CDN, MediaBlock/MediaVideo | `docs/04-MEDIA-ASSETS.md` |
 | Rules, anti-patterns, build-time validation, common gotchas | `docs/05-RULES.md` |
 | Astro framework reference (components, islands, transitions, routing) | `docs/06-ASTRO-REFERENCE.md` |
 | Architectural decisions, team discussion log | `docs/07-TEAM-DECISIONS.md` |

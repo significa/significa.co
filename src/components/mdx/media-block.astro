@@ -1,0 +1,131 @@
+---
+import { cdnUrl, cdnSrcset, DEFAULT_QUALITY } from "@/lib/cdn";
+import { contentError } from "@/lib/content-errors";
+
+/**
+ * Controls how wide the media renders inside the narrow prose column.
+ *
+ *  full   — breaks out to full viewport width
+ *  wide   — breaks out to --max-width (1152px), centered
+ *  medium — stays within the prose column (--max-width-narrow, 768px)
+ *  small  — half the prose column width, centered
+ */
+type Layout = "full" | "wide" | "medium" | "small";
+
+interface Props {
+  /** Asset path or full URL. Relative paths get the CDN hostname prepended.
+   *  If the src ends with a video extension (.mp4, .webm, .mov) a <video> is rendered instead of an <img>. */
+  src: string;
+  /** Accessible alt text. Leave empty for decorative/ambient media. */
+  alt?: string;
+  /** Intrinsic width in pixels (prevents CLS) */
+  width: number;
+  /** Intrinsic height in pixels (prevents CLS) */
+  height: number;
+  /**
+   * Controls the rendered width of the media. Required — always set this explicitly.
+   * - full   — full viewport width
+   * - wide   — max-width (1152px), centered
+   * - medium — prose column width (768px), no breakout
+   * - small  — half the prose column, centered
+   */
+  layout: Layout;
+  /** Optional figure caption */
+  caption?: string;
+  /** Set true for above-the-fold / LCP images */
+  eager?: boolean;
+  /** Responsive sizes attribute (images only) */
+  sizes?: string;
+  /** Image quality 0-100 (images only) */
+  quality?: number;
+}
+
+const {
+  src,
+  alt = "",
+  width,
+  height,
+  // Fall back to "full" at runtime so existing content without layout doesn't break,
+  // but layout is required in the Props interface so new usage gets a TS error in-editor.
+  layout = "full" as Layout,
+  caption,
+  eager = false,
+  sizes = "100vw",
+  quality = DEFAULT_QUALITY,
+} = Astro.props;
+
+if (!src) contentError("MediaBlock", Astro.url.pathname, "Missing required prop: src");
+if (!width) contentError("MediaBlock", Astro.url.pathname, "Missing required prop: width");
+if (!height) contentError("MediaBlock", Astro.url.pathname, "Missing required prop: height");
+
+const isVideo = /\.(mp4|webm|mov)(\?.*)?$/i.test(src);
+
+const videoSrc = isVideo ? cdnUrl(src) : undefined;
+
+const imgSrc = !isVideo ? cdnUrl(src, { width: 960, quality }) : undefined;
+const srcset = !isVideo ? cdnSrcset(src, { quality }) : undefined;
+const imgSizes = srcset ? sizes : undefined;
+---
+
+{
+  isVideo ? (
+    caption ? (
+      <figure data-layout={layout}>
+        <video
+          src={videoSrc}
+          width={width}
+          height={height}
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          aria-label={alt || undefined}
+        />
+        <figcaption>{caption}</figcaption>
+      </figure>
+    ) : (
+      <div data-layout={layout}>
+        <video
+          src={videoSrc}
+          width={width}
+          height={height}
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          aria-label={alt || undefined}
+        />
+      </div>
+    )
+  ) : caption ? (
+    <figure data-layout={layout}>
+      <img
+        src={imgSrc}
+        srcset={srcset}
+        sizes={imgSizes}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={eager ? "eager" : "lazy"}
+        fetchpriority={eager ? "high" : "auto"}
+        decoding={eager ? "sync" : "async"}
+      />
+      <figcaption>{caption}</figcaption>
+    </figure>
+  ) : (
+    <img
+      data-layout={layout}
+      src={imgSrc}
+      srcset={srcset}
+      sizes={imgSizes}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={eager ? "eager" : "lazy"}
+      fetchpriority={eager ? "high" : "auto"}
+      decoding={eager ? "sync" : "async"}
+    />
+  )
+}

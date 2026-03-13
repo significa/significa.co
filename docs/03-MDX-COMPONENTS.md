@@ -8,18 +8,23 @@ All MDX components are registered in a single file: `src/components/mdx/componen
 
 ```ts
 // src/components/mdx/components.ts
-import MediaImage from "./media-image.astro";
+import MediaBlock from "./media-block.astro";
 import MediaVideo from "./media-video.astro";
 import ComparisonBlock from "./comparison-block.astro";
 import Metrics from "./metrics.astro";
 import ProjectCrossSell from "./project-cross-sell.astro";
+import FAQSection from "./faq-section.astro";
+import Callout from "./callout.astro";
 
 export const mdxComponents = {
-  MediaImage,
+  MediaBlock,
+  MediaImage: MediaBlock, // deprecated alias — use MediaBlock
   MediaVideo,
   ComparisonBlock,
   Metrics,
   ProjectCrossSell,
+  FAQSection,
+  Callout,
 };
 ```
 
@@ -37,28 +42,60 @@ const { Content } = await render(entry);
 
 ## Component Catalog
 
-### MediaImage
+### MediaBlock
 
-Renders an optimized image via the CDN with responsive `srcset`. Always use this instead of raw `![alt](url)` for captions, sizing control, and automatic image optimization.
+The primary component for all media — images **and** videos. Always use this instead of raw `![alt](url)` markdown or bare `<img>`/`<video>` tags. It handles CDN URL generation, responsive `srcset`, and layout width in one place.
 
-The `src` prop takes the asset path (as returned by the asset manager). The component prepends the CDN hostname (`https://cdn.significa.co`) and appends optimization query parameters automatically.
+**Auto-detects media type:** if `src` ends in `.mp4`, `.webm`, or `.mov`, a looping muted autoplay `<video>` is rendered. Otherwise an optimised `<img>` with `srcset` is rendered. The MDX syntax is identical for both.
+
+#### layout (required)
+
+`layout` is **required** on every `<MediaBlock>` call. It controls how wide the media renders relative to the narrow prose column. Never omit it — it forces you to make a conscious choice about the visual weight of each piece of media.
+
+| Value | Width | Use when |
+|---|---|---|
+| `full` | 100vw — edge to edge | Hero shots, full-bleed atmosphere images, wide video reels |
+| `wide` | 1152px centered | Multi-screen compositions, before/after, wide UI screenshots |
+| `medium` | 768px — stays in prose column | Single screen, inline illustration, no breakout needed |
+| `small` | ~384px centered | Detail shot, mobile screenshot, supporting visual |
+
+#### Image example
 
 ```mdx
-<MediaImage
-  src="/projects/cool-project/hero.jpg"
-  alt="Dashboard overview"
-  width={1200}
-  height={630}
-  caption="The main dashboard after redesign"
+<MediaBlock
+  src="https://cdn.significa.co/website/projects/mishmash/mishmash-website-cover-GKU6Zl.jpg"
+  alt="mishmash e-commerce homepage showing redesigned product grid"
+  width={1920}
+  height={1080}
+  layout="full"
+  caption="The redesigned homepage — clean, product-first."
 />
 ```
 
-**Required props:** `src`, `alt`, `width`, `height`
-**Optional:** `caption`, `eager` (for above-the-fold images), `sizes` (responsive sizes attr), `quality` (0-100, default 80)
+#### Video example
+
+```mdx
+<MediaBlock
+  src="https://cdn.significa.co/website/projects/mishmash/mismash-1-landing-page-4zhh1q.mp4"
+  alt="mishmash landing page scroll animation"
+  width={1920}
+  height={1080}
+  layout="wide"
+/>
+```
+
+Videos autoplay muted and loop silently — no controls, no sound. This is intentional: they serve as ambient motion, not primary content.
+
+**Required props:** `src`, `width`, `height`, `layout`
+**Optional:** `alt` (empty by default — leave empty for decorative/ambient media), `caption`, `eager` (for above-the-fold LCP images), `sizes` (responsive sizes attr, images only), `quality` (0–100, default 80, images only)
+
+> **Migrating from `MediaImage`?** Just rename to `MediaBlock` and add `layout="full"` (or whatever width is appropriate). `MediaImage` still works as a deprecated alias but will be removed in a future cleanup.
+
+---
 
 ### MediaVideo
 
-Embeds a video served via the CDN. The `poster` image goes through the same transform pipeline as `MediaImage`.
+> **Prefer `MediaBlock` for new content.** Use `MediaVideo` only when you need explicit playback controls or a poster image — e.g. a long-form demo or tutorial video where the user should control playback.
 
 ```mdx
 <MediaVideo
@@ -67,6 +104,8 @@ Embeds a video served via the CDN. The `poster` image goes through the same tran
   caption="Prototype walkthrough"
 />
 ```
+
+---
 
 ### ComparisonBlock
 
@@ -85,9 +124,11 @@ Side-by-side before/after or A/B comparison.
 />
 ```
 
+---
+
 ### Metrics
 
-Key numbers/stats display.
+Key numbers/stats display. Breaks out of the prose column with a tinted background.
 
 ```mdx
 <Metrics
@@ -99,6 +140,8 @@ Key numbers/stats display.
 />
 ```
 
+---
+
 ### ProjectCrossSell
 
 Card linking to another project. See `02-CONTENT-SCHEMA.md` for the implementation pattern.
@@ -107,28 +150,42 @@ Card linking to another project. See `02-CONTENT-SCHEMA.md` for the implementati
 <ProjectCrossSell slug="another-project" />
 ```
 
-## Component Growth Strategy
+---
 
-We start with 5 components. New components are added when content demands them, not eagerly. When a content author needs a pattern that doesn't exist, that's the signal to build it.
+### Callout
 
-**Components to consider adding (by priority):**
+Highlighted note or tip within prose.
 
-| Component | Justification | Priority |
-|---|---|---|
-| `ImageGrid` | Show multiple screens side by side (2-4 columns) | Must-have |
-| `Section` | Background color changes, full-bleed, visual chapters | Must-have |
-| `Testimonial` | Client voice: quote, name, role, company | Must-have |
-| `CTA` | Conversion points within content | Must-have |
-| `PullQuote` / `Callout` | Break monotony, highlight insights | Should-have |
-| `DeviceFrame` | Contextualize screenshots (phone/desktop) | Should-have |
+```mdx
+<Callout>
+  This approach works best when you have more than 3 product variants.
+</Callout>
+```
+
+---
+
+### FAQSection
+
+Accordion-style FAQ block.
+
+```mdx
+<FAQSection
+  items={[
+    { question: "How long does a project take?", answer: "Typically 8–16 weeks." },
+    { question: "Do you work remotely?", answer: "Yes, fully remote-capable." },
+  ]}
+/>
+```
+
+---
 
 ## Adding New MDX Components
 
 1. Create the `.astro` file in `src/components/mdx/`
-2. Define `interface Props` with TypeScript
+2. Define `interface Props` with TypeScript — every prop documented
 3. Import and add to the `mdxComponents` map in `src/components/mdx/components.ts`
-4. Add usage example to this documentation
-5. Test with `pnpm build` to verify
+4. Add a usage example to this file
+5. Run `pnpm build` to verify — broken slugs or missing required props must fail at build time, not runtime
 
 All slug pages import from `components.ts`, so step 3 is the only wiring needed.
 
@@ -139,3 +196,4 @@ All slug pages import from `components.ts`, so step 3 is the only wiring needed.
 3. **No data fetching.** All data comes from props or content collections.
 4. **Keep them simple.** Render what they receive. Business logic stays in page templates.
 5. **Document the props interface.** Every component needs a clear `interface Props`.
+6. **`layout` is always required on `MediaBlock`.** Never omit it. It is a content decision, not a default.

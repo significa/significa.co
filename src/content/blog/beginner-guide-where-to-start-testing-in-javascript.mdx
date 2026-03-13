@@ -1,0 +1,132 @@
+---
+title: "Beginner guide: where to start testing in JavaScript."
+description: A methodology for those aiming to start writing unit tests in JavaScript but still need to figure out where to start — covering purpose, avoiding errors, and improvements.
+date: 2021-03-07
+author: Danilo Woznica
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+seo:
+  metaTitle: "Beginner guide: where to start testing in JavaScript — Significa"
+  metaDescription: "A methodology for those aiming to start writing unit tests in JavaScript but still need to figure out where to start — covering purpose, avoiding errors, and improvements."
+  ogImage: https://cdn.significa.co/blog/beginner-guide-where-to-start-testing-in-javascript/og-image.jpg
+---
+
+One of the most common questions I've been asked by my colleagues recently — when they start writing unit tests — is: "Well, what should I test?" Regardless of the language, one of the main challenges is knowing what to check and how to be sure that it covers all possible bugs — which is almost an impossible task.
+
+In the following, I would like to introduce you to one possible way to write tests, making you feel more confident and productive while writing unit tests in JavaScript.
+
+It's worth mentioning that the goal here is not to discuss how much unit testing will make your application bug-free, nor what kind of technology or library you should use — that conversation is for another time. However, I'm assuming you do want to write unit tests in JavaScript and you're looking for a guide to writing useful tests.
+
+## The nature of the unit test
+
+First, you'll need to set up your stack to support unit tests. From vanilla JavaScript to React, many excellent tools can provide APIs to make it easier — I'm going to leave a few useful links like [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
+
+Afterwards, there is some consensus in the community on how a unit test should look and its anatomy:
+
+- **Atomic:** each assertion must have a clear purpose and test only one result or piece of the function.
+- **Independent:** it needs to be dependency-free, or in cases where that's not possible, it must be mocked. The dependency here means everything in this particular assertion needs to work correctly — like a submit form that dispatches a request. In this case, the request doesn't belong to the submit test.
+- **Pure:** the assertion must not have any side effects that are not handled by the return of the function. Given specific parameters, the returned values should be predictable.
+- **Business logic only:** write assertions that ensure the methods, rules, and the primary purpose of the function are working as expected and do not cause side effects, reactions in other modules, or UI changes.
+
+## The three steps
+
+The best way I've found to describe this idea shortly is to split it into three steps, which will guide you when writing unit tests.
+
+## Purpose
+
+It might sound obvious, but the most important thing about writing unit tests is ensuring that the implementation is working as expected and preventing regressions as development continues. In other words, the test will let you know if some future change breaks the functionality of your tested functions.
+
+So to achieve this goal, ask yourself what the purpose of the function is:
+
+- What is this supposed to do? And what is it not supposed to do?
+- Given "these" arguments, what is the return?
+- Are the values returned predictable enough?
+- On a date implementation: performing the test in a different timezone, what's the result? Does it still work?
+- On a React component: what does it render? Are the events fired?
+- Also, in React components, does it support internationalisation, click events, state updates, or any kind of dynamic variation that would be worth testing?
+
+```js
+describe('pxToRem - Purpose', () => {
+  it('should receive a number and return the value in rem', () => {
+    const result = pxToRem(16)
+
+    expect(result).toBe('1rem')
+  })
+
+  it('should round the number to keep only one decimal', () => {
+    const result = pxToRem(22)
+
+    expect(result).toBe('1.3rem')
+  })
+
+  it('should try to convert a string to a number', () => {
+    const result = pxToRem('16')
+
+    expect(result).toBe('1rem')
+  })
+
+  it('should convert a number to rem with the body font-size argument', () => {
+    const input = 16
+    const bodyFontSize = 20
+
+    const result = pxToRem(input, bodyFontSize)
+
+    expect(result).toBe('0.8em')
+  })
+})
+```
+
+Here is where you can spend more time writing assertions, since you need to cover all internal conditionals, branches, and variations of your implementations. It will make you more confident that your application works.
+
+## Avoiding errors
+
+Once you are sure everything is working correctly and returning the expected results, the next goal is to try to break your function as hard as possible. Focus on covering all unhandled errors and create real-world scenarios.
+
+For instance, sometimes you don't have control over arguments and contexts, so it's good to know how your implementation will behave:
+
+- Pass wrong arguments (like `undefined`, `null`, or an invalid date), or don't pass some (even required ones).
+- Execute in different contexts or perform the function more times than expected.
+- Regardless of type-checking (like TypeScript or Flow), try to mix up all arguments — in some cases, we don't control the data flow.
+- Test as close to the real scenario as possible — any way to throw an error here is valid.
+
+```js
+describe('pxToRem - Avoiding errors', () => {
+  it('should return 1rem if the argument is null', () => {
+    const result = pxToRem(null)
+
+    expect(result).toBe('1rem')
+  })
+
+  it('should return 1rem if the argument is not a number', () => {
+    const result = pxToRem(NaN)
+
+    expect(result).toBe('1rem')
+  })
+
+  it('should work correctly when the 2nd argument is invalid', () => {
+    const result = pxToRem(16, null)
+
+    expect(result).toBe('1rem')
+  })
+})
+```
+
+Of course, after finding all those errors and uncovered places, it's time to fix them!
+
+## Improvements — Maintenance
+
+Sometimes, writing unit tests might lead to other tasks. Indeed, you'll realise while writing tests that your implementation could be improved or even split into smaller pieces — but keep in mind these changes enhance maintainability and ensure all parts of the code are touched by assertions. Think about these questions:
+
+- Is there a way to make it simpler to maintain?
+- Could it be split into smaller pieces?
+- Is every part of the code tested?
+- Is there a way to make it faster?
+
+I once read that if it is worth testing, it is also worth documenting. I'd strongly suggest trying to describe *how* and mostly *why* you've built it the way you have. Would your future self understand this implementation?
+
+## Next steps
+
+I like to think of unit testing not only as writing assertions with your favourite framework, but rather as a whole mindset. You need to be willing to refactor many files in order to achieve your goal. On the other hand, you need a starting point — and I hope this provides a good direction, from which you can go further with more complex tests and find your favourite way to write assertions.
+
+Once you're comfortable with all the content introduced here, I'd recommend looking at some methodologies like [TDD](https://en.wikipedia.org/wiki/Test-driven_development) and [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development), as well as some different approaches to testing applications like [end-to-end](https://en.wikipedia.org/wiki/System_testing) and [integration tests](https://en.wikipedia.org/wiki/Integration_testing).

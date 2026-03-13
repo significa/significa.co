@@ -1,0 +1,82 @@
+---
+title: "How we use PostHog to improve UX."
+description: If you've ever built a digital product without user data, you'll know the feeling — endless debates over button placements and no real way to tell if the latest redesign actually improved anything.
+date: 2025-07-24
+author: Tiago Duarte
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - learning
+  - strategy
+seo:
+  metaTitle: "How we use PostHog to improve UX — Significa"
+  metaDescription: "At Significa, PostHog gives us the visibility we need to make better design decisions, catch usability issues early, and push back when clients ask for things they might not need."
+  ogImage: https://cdn.significa.co/blog/how-we-use-posthog-to-improve-ux/og-image.jpg
+---
+
+If you've ever built a digital product without user data, you'll know the feeling: endless debates over button placements, assumptions about what users want, and no real way to tell if the latest redesign actually improved anything.
+
+At Significa, understanding how people actually use what we build is key to designing great digital experiences. More than just another analytics tool, [PostHog](https://posthog.com/) gives us the visibility we need to make better design decisions, catch usability issues early, and (gently) push back when clients ask for things they might not actually need. We use it not just to optimise experiences, but to build a shared language between design, development, and product — from early prototypes to post-launch refinements.
+
+## From analytics to answers.
+
+When you're managing a digital product, whether it's an e-commerce store or a SaaS platform, you're dealing with constant trade-offs: time, budget, scope, and impact. The more visibility you have into what's actually happening, the more confident you can be in those decisions.
+
+We've worked with tools like [Google Analytics](https://analytics.google.com/) and [Hotjar](https://www.hotjar.com/) before, but PostHog is different. It's open-source, privacy-conscious by design, and gives us full control over what we track and how we act on it. Unlike Google Analytics, which focuses heavily on marketing metrics, PostHog is designed for product teams.
+
+That means we can watch anonymised session replays to see where users get stuck, define events early directly from our wireframes, and track how flows perform. We can set up funnels, retention charts, and feature adoption metrics, build cohorts of power users or test groups, and run targeted in-product surveys to ask the right people the right questions. We can even mark major design changes with annotations to track their impact over time. It's developer-friendly, doesn't require a heavy setup to get started, and with most features available on the free tier, it's accessible even for smaller projects.
+
+## Defining the right events from the start.
+
+Ideally, we introduce PostHog during the wireframing phase. At that point, we're already defining key flows, so it makes sense to define key events and how granular we need the data to be. If the checkout process is critical, we don't just ask whether the UX is smooth. We ask: what do we need to track to know if it's working?
+
+- Product added to cart
+- Discount applied
+- Checkout started
+- Payment method selected
+- Order confirmed
+
+This upfront thinking means we're not just designing screens, but defining what success looks like — and ensuring we can keep measuring it once the product is live.
+
+### Beyond dashboards.
+
+One of the most powerful ways PostHog supports us is by helping teams develop good habits. We encourage our designers, developers, and producers to dedicate at least a couple of hours per week to monitoring PostHog, raising questions like:
+
+- Are users dropping off after a particular step?
+- Does the layout influence which products get clicked most?
+- Is that search bar people keep requesting necessary, or are there only 10 items to browse?
+
+Session recordings surface frictions we'd never spot in Figma. Funnels and events help us challenge assumptions. Instead of final verdicts, the data sparks conversations about what's working and what isn't.
+
+### Beyond user interviews.
+
+Let's be honest: people behave differently when they know they're being watched. PostHog's session replays give us a glimpse into real, unscripted usage — complete with pauses, rage clicks, and abandoned checkouts.
+
+To give you an example, that's how we caught a flow where users were being asked for payment even when their order total was zero. It made no sense, and yet it slipped through. Watching it happen was what finally made the issue click. It's also how we realised a particular onboarding step was blocking 90% of users from ever reaching the product. In another case, we tracked how a misleading countdown timer (that restarted at midnight) actually increased conversion. It went against our design instincts, but the data didn't lie.
+
+Bottom line: sometimes, PostHog proves our ideas right. Other times, it shows us where we've missed the mark. Either way, it's a win-win situation for us and our clients alike.
+
+## Helping clients prioritise features.
+
+PostHog has also helped us become better partners to our clients.
+
+Depending on the product, we track conversion rates, feature adoption, time to first value, or drop-off points within critical flows. PostHog helps us map these metrics directly to behaviour — so we're not optimising for vanity stats.
+
+By giving us visibility over real user behaviour, it helps us justify (or challenge) feature requests. Want to add a filter or pagination component? Great — if there are 100+ items to browse. But if there are only 12? PostHog helps us say, "maybe it's not worth the extra time and budget."
+
+This transparency prevents unnecessary work: instead of designing blindly and waiting for complaints to surface, we can catch issues earlier and evolve the product with more confidence. Their open-source roots and [self-hosting options](https://posthog.com/docs/self-host) give us the control we need to work responsibly, especially in GDPR-sensitive contexts — without cookies or creepy tracking.
+
+> "Having access to real user behaviour through PostHog helps us make decisions that actually reflect how people use the product, not how we think they do."
+>
+> **Inês Gomes** — Producer at Significa
+
+### The magic hedgehog.
+
+PostHog alone doesn't replace user interviews, design reviews, or QA testing. It complements them. For brand-new features without traffic, it can't give you answers. But once data flows in, it becomes a powerful tool for iteration — with the right events setup, implementation, and team buy-in, especially when it becomes a habit.
+
+Of course, what we've described here is a best-case scenario. Product development is rarely this tidy. It's full of ambiguity, trade-offs, and constraints that no dashboard (no matter how powerful) can fully resolve. Tools like PostHog don't replace the hard work of product thinking, collaboration, or iteration. But when used well, they create just enough clarity to make better decisions, sooner. And in our experience, that makes all the difference.
+
+It elevates the game in long-term projects, where we can refine flows, track improvements, and iterate based on real behaviour. But even in shorter engagements, there's value in setting it up early and collecting insights over time. Worst case? You leave the client with a clearer picture of what's working. Best case? You ship better UX, faster.
+
+Besides being fans of PostHog's product, we're also fans of their culture. From offering a generous free tier, to writing [one of the most transparent company handbooks we've seen](https://posthog.com/handbook), to reducing prices when their infrastructure improved — they walk the talk.
+
+At Significa, we're always looking for better ways to build digital products. Better products start with better questions, and PostHog helps us ask them. It keeps us curious, data-informed, and focused on what really matters: designing and building for the people behind the screens, not just the metrics in the dashboard.

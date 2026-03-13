@@ -1,0 +1,182 @@
+---
+title: "An introduction to Svelte for ReactJS developers."
+description: Svelte is a JavaScript framework that compiles your code at build time, resulting in highly-optimised vanilla JavaScript. Here's what a React developer can expect when getting into it.
+date: 2023-04-10
+author: Rui Sousa
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+seo:
+  metaTitle: "An introduction to Svelte for ReactJS developers — Significa"
+  metaDescription: "Svelte is a JavaScript framework that compiles your code at build time, resulting in highly-optimised vanilla JavaScript. Here's what a React developer can expect when getting into it."
+  ogImage: https://cdn.significa.co/blog/an-intro-to-svelte-for-reactjs-developers/og-image.jpg
+---
+
+Svelte is a JavaScript framework that compiles your code when you build your app, which results in highly-optimised vanilla JavaScript.
+
+While we mostly use ReactJS for our front-end web development here at Significa, we're always looking for ways to improve our code by testing new tools and frameworks. After playing around with Svelte and doing some projects, it seemed only fair to share my experience with it, how different it felt from ReactJS, and what a React developer can expect when getting into it.
+
+## What is Svelte?
+
+For those who might be out of the loop, Svelte is a JavaScript framework that compiles your code when you build your app, which results in highly-optimised vanilla JavaScript. This means you'll end up with smaller bundle sizes and better performance. Svelte also sticks very close to raw HTML, CSS, and JavaScript (as we'll see further down). All of this might as well justify the fact that Svelte was voted the second most-loved web framework of 2022.
+
+While this post will cover some of Svelte's major features, I invite you to do the [Svelte tutorial](https://learn.svelte.dev/), as it will fully guide you through everything the framework offers.
+
+## `"Hello, World!"`, says Svelte
+
+Let me first introduce you to the code before we dive into it.
+
+```svelte
+<script>
+  let name = 'world'
+</script>
+
+<h1>Hello, {name}!</h1>
+
+<style>
+  h1 {
+    color: #546659;
+    font-size: 24px;
+  }
+</style>
+```
+
+Yeah, you're looking at it right. It looks like plain JavaScript, HTML, and CSS. How cool is that?
+
+So, it seems that the Svelte convention is to have your `<script>`, then your HTML, and finally your `<style>` tag. On your `<script>`, you'll have most of your logic and state (as expected), and your `<style>` will deal with any CSS that you might need — and the coolest part is that these styles are scoped to the component. It's just built-in! For this to work on ReactJS, we would probably need to use CSS Modules or styled-components.
+
+Now, the HTML might look like regular HTML, but it's not. There are specific features in Svelte, like `if` statements (that look like `{#if}`) and `map()` (that looks like `{#each}`). Personally, I've grown tired of React's conditional rendering since it just blends too well with the rest of the code, so seeing how Svelte deals with that was really interesting. Here's an example showing the same code in React and Svelte:
+
+```jsx
+// React
+{ isDarkMode
+    ? <h1>Dark Mode Zone</h1>
+    : <h1>Light Mode Zone</h1>
+}
+```
+
+```svelte
+<!-- Svelte -->
+{#if isDarkMode}
+  <h1>Dark Mode Zone</h1>
+{:else}
+  <h1>Light Mode Zone</h1>
+{/if}
+```
+
+While the React code looks more compact, I personally feel like our conditions end up extremely messy when we have a lot of logic in them (like several conditions and then nested ones). The simplicity of Svelte here somewhat baffled me. While it does increase the number of lines, I'm now fully aware of what I'm doing and where the `if/else` starts and ends.
+
+I hope that this short intro to Svelte's structure was enough to entice you — remember, there's always the Svelte tutorial to dive deeper — because we're jumping into…
+
+## State management
+
+In 2018 we were introduced to Hooks in React, which completely revolutionised the way we write code. However, sometimes we end up battling with our own `useState` and its updates, and I'm fairly sure that everybody working with React got their fair share of headaches with it (let's throw `useEffect` and `useMemo` into the mix while we're at it).
+
+Svelte deals with state in a simpler way. Our `useState` from React is a simple variable assignment in Svelte. Here's a comparison:
+
+```jsx
+// React
+import { useState } from 'react'
+
+export default const Counter = () => {
+  const [count, setCount] = useState(0);
+  return (
+    <>
+      <h1>Count at: {count}</h1>
+      <button onClick={() => setCount(count++)}>Increase</button>
+      <button onClick={() => setCount(count--)}>Decrease</button>
+    </>
+  )
+}
+```
+
+```svelte
+<!-- Svelte -->
+<script>
+  let count = 0;
+</script>
+
+<h1>Count at: {count}</h1>
+<button on:click={() => count++}>Increase</button>
+<button on:click={() => count--}>Decrease</button>
+```
+
+Svelte will simply update your code! 🪄
+
+## But what about complex state management?
+
+In React, we have several options to deal with state that is controlled or listened to across different components (like Redux, `useContext`, and `useReducer`), and they are great at what they do.
+
+Svelte has two approaches to its state.
+
+### Context API
+
+For simpler states, Svelte has its Context API, which makes the state available to the component and its descendants. This basically means that you don't have to prop-drill from a `Parent` to several grand-grand-children. Instead, you can use Context. The Context API has two built-in functions: `getContext` and `setContext`. As the names clearly say, `getContext` will retrieve the values, and `setContext` sets the values. With this, we have a great way of managing the state of components within the same component tree.
+
+### Stores
+
+There are times when local and component-tree states just can't do the job, and Svelte has Stores to deal with it. Stores are objects with a special method called `subscribe` that allows components to be notified whenever one of the values of these objects changes. Svelte has two types of stores: `writable` ones and `readable` ones.
+
+### Writable stores
+
+Writable stores create objects with values that can be set from components subscribed to them. They come with two methods: `set` and `update`. `set` will overwrite the value on the store, while `update` receives a callback function as an argument, takes the existing value on the store as its argument, and — well — updates it. The following code shows the application of `set` and `update` with two files, `store.js` and `App.svelte`:
+
+```js
+// store.js
+import { writable } from 'svelte/store';
+
+let counter = writable(1);
+
+export { counter };
+```
+
+```svelte
+<!-- App.svelte -->
+<script>
+  import { counter } from './store.js'
+
+  function incrementCounter() {
+    counter.update(n => n + 1);
+  }
+
+  function setCounter() {
+    counter.set(2)
+  }
+</script>
+
+<h1>{$counter}</h1>
+<button on:click={incrementCounter}>Increment Counter</button>
+<button on:click={setCounter}>Set counter as 2</button>
+```
+
+Notice the dollar sign `$` used when calling `counter`. That's how you access the values of your store!
+
+### Readable stores
+
+Like writable stores, readable stores also hold objects. While they cannot be updated by external components, they can be updated from within the store itself. This means readable stores are great for dealing with immutable data that you still need to access from several spots in your app! You work with them by creating your store using the `readable` method, then accessing them using `$`, as we've seen in the example above.
+
+```js
+// store.js
+import { readable } from 'svelte/store'
+
+let startingSeconds = 0;
+
+export const seconds = readable(startingSeconds, set => {
+  setInterval(() => {
+    set(startingSeconds++)
+  }, 1000)
+})
+```
+
+```svelte
+<!-- App.svelte -->
+<script>
+  import { seconds } from './store'
+</script>
+
+<h1>{$seconds} have passed</h1>
+```
+
+## And that's it.
+
+These are, for me, the starting bricks of Svelte, but there's so much more to it — like [SvelteKit](https://kit.svelte.dev/), and quirky things like two-way data binding. Honestly, the more I play with Svelte, the more I get marvelled by how easy it is to work with and get something up-and-running. I'm surely going to keep using it!

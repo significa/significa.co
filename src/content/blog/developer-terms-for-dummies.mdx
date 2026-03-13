@@ -1,0 +1,135 @@
+---
+title: "Developer terms for Dummies."
+description: Developers have a language of their own. Between all the stacks, commits, and pipelines, it can feel like you're listening to a podcast on 2x speed in a language you kinda-sorta recognise, but don't actually speak.
+date: 2025-08-11
+author: Julieta Frade
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+  - learning
+seo:
+  metaTitle: "Developer terms for Dummies — Significa"
+  metaDescription: "A plain-English glossary of developer terms — from stacks and commits to deploys and refactors. Now you can nod along with slightly less panic behind the eyes."
+  ogImage: https://cdn.significa.co/blog/developer-terms-for-dummies/og-image.jpg
+---
+
+Let's face it: developers have a language of their own. They're not trying to confuse you (promise), but between all the stacks, commits, and pipelines, it can feel like you're listening to a podcast on 2x speed in a language you kinda-sorta recognise, but don't actually speak.
+
+For one of our All-hands sessions — those Friday afternoon meet-ups where we cram into the office kitchen with snacks in hand and beer within reach — I pulled together a guided glossary of dev terms the team had heard, nodded at, and quietly pretended to understand. Everyone had a week to submit anonymous questions, and I did my best to make sense of them in plain English. Now it's here for you too. So grab a cold drink, find a shady spot, and let's decode this together.
+
+## 1. So… what's a stack?
+
+When developers talk about a stack, they're referring to the combo of technologies used to build a product. Think of it as the recipe for your app or website:
+
+- **Front-end** = what you see
+- **Back-end** = the behind-the-scenes logic (like logging in)
+- **Database** = where your info lives
+
+An example? A stack could be React (Front-end), Python (Back-end), and MongoDB (Database). Voilà.
+
+## 2. OK then, what's React?
+
+[React](https://react.dev/) (and other tools like [Svelte](https://svelte.dev/)) help developers build interactive stuff. Not just pretty buttons — buttons that *do things* without reloading the whole page.
+
+And it's not just about making things dynamic. React also lets us build components like buttons, cards, or tags only once, and reuse them across the site, making our work more efficient, tidy, and ultimately satisfying.
+
+## 3. Why does the code break over a missing bracket?
+
+This is a great question!
+
+Programming languages have strict grammar rules. Miss a bracket, quote, or semicolon, and it's like leaving a sentence hanging without a full sto..
+
+Exactly! Your human brain may complete that sentence, but computers don't guess what you meant — so every little symbol matters.
+
+## 4. What's with all the colours in code?
+
+Those colourful lines in a developer's code editor aren't just for fun… although yes, some of us do enjoy a good neon disco theme.
+
+The colours actually help us scan and understand what's going on, highlighting things like functions, variables, or comments at a glance. It's the same reason we use different sizes, opacities, or text styles on websites: to guide the eye and make things easier to read.
+
+Think of it like reading a book with no punctuation, paragraphs, or headings. You could get through it, but it would be slow, painful, and you'd probably miss the point. Syntax highlighting does the same job for code: helping the structure click faster.
+
+## 5. What does it mean to "update dependencies"?
+
+Dependencies are external packages of code maintained by other developers that your project relies on — like React. Updating them means installing newer versions that might include bug fixes, performance improvements, or new features.
+
+Each version is made up of three numbers, separated by dots:
+
+- The **first** number is the major version: big changes, possibly breaking things
+- The **second** is the minor version: new features, but still compatible
+- The **third** is the patch version: small fixes and tweaks
+
+It's like updating your phone… except you don't want anything to crash mid-update.
+
+## 6. What is a commit?
+
+A commit is like hitting save… but with context.
+
+It doesn't just save your work — it logs what changed, when, and who made the change. Each commit includes a short message explaining what was done, so future-you (or anyone else on the team) can understand what happened without having to read through all the code.
+
+Let's say we changed the page title from `Hello World` to `Hello Significa`. The commit message might be something like:
+
+```
+Change title copy
+```
+
+Behind the scenes, the commit shows that "World" was removed and "Significa" was added. That update is now recorded, like a mini checkpoint. We can always go back to it, undo it, or build on it — without losing track of anything.
+
+Think of commits as the version history of your code: small but mighty!
+
+## 7. Git? GitHub? Git what?
+
+- **[Git](https://git-scm.com/)** is a version control tool. It keeps track of all those commits, like a time machine for your code. But Git lives locally on your computer.
+- **[GitHub](https://github.com/)** is like Google Drive for Git. It brings your code online so you can collaborate with your team, review changes, and not panic if your laptop catches fire.
+
+## 8. What's a Pull Request?
+
+Let's say you want to update something. You create a branch (a copy of the code), make some commits, then ask your team to review your changes.
+
+That request is a PR: Pull Request.
+
+The commit is the actual change. The PR is the conversation around it: "Hey, can we merge this in?"
+
+All of this lives in the repository, which entails the full codebase and its history.
+
+## 9. What does "deploy" really mean?
+
+Deploying is when code leaves the safe zone and goes live — like releasing a song, but with more testing and fewer dance moves. Before anything reaches users, it usually goes through different environments:
+
+- **Staging** is the dress rehearsal. It updates automatically when developers finish a task and merge it into the main branch, so the team can test everything before it's out in the wild.
+- **Production** is the real deal. This is the live version of the site — the one that actual users see. Updates here don't happen automatically. Someone has to hit the release button, usually in a planned moment, to make sure everything goes smoothly.
+
+The act of moving code from a local or staging environment to production is called a deployment. It's what makes your changes accessible at the public URL… ideally without breaking anything along the way.
+
+## 10. What's a refactor?
+
+Refactoring means rewriting code so it's cleaner — not different. You're not adding anything new; you're just ensuring what's already there is easier to understand and maintain.
+
+Think of it like reorganising your kitchen drawers. The drawers are the same, but now you can find the can opener without digging through a mess of mismatched utensils.
+
+Refactors help prevent bugs, save time down the line, and reduce technical debt — the hidden cost of messy, rushed code that eventually comes back to bite you. If something's confusing, hard to maintain, or looks like a rushed shortcut… it's probably time to refactor.
+
+## Quickfire questions.
+
+Not every question I received was about code. These next ones aren't super technical, but they're not always that obvious either.
+
+- **Where are the things you send to the cloud stored? In a cloud?** The "cloud" means real servers in data centres run by hosting companies like [AWS](https://aws.amazon.com/) or [Azure](https://azure.microsoft.com/). It's just someone else's computer.
+- **What is Scrum?** A way of working in short sprints of 1–2 weeks, with daily stand-ups, sprint planning, and reviews.
+- **What's the process when developers start to implement the design?** We start with components and build our way up according to priority. We may begin with login and logout or with a more important page, such as a Product Page.
+- **What is a Pipeline?** A sequence of automated steps that test and ship code. Like a digital conveyor belt.
+- **Can we use opacities in colour scales?** Opacity and blur effects cause browsers to do extra work blending layers and pixels, which can slow down rendering, especially on complex pages or animations. Use them carefully to avoid performance hits.
+- **Worst dev tasks?** Documenting. Refactoring. Testing. Yes, it's part of the job, but it's still dull.
+- **Is an incognito window truly anonymous?** No. It only hides your browsing history from you! Your provider and websites can still see your activity.
+- **What is a bodge job?** A quick fix or a hack — like using a hammer to just bang something together. It's usually a fast, temporary solution that might need a proper fix later.
+
+### Is the internet in the air? Or are there wires?
+
+This is one of my favourite quick-fire questions. It's easy to think the internet is just… floating around in the air with the Wi-Fi. But most of it travels through thousands of kilometres of fibre-optic cables, buried underground and stretching across the ocean floor. Seriously — there's even [an entire map of them](https://www.nytimes.com/interactive/2019/03/10/technology/internet-cables-oceans.html). Wi-Fi is just the final hop. The real infrastructure is way more physical (and fascinating) than people expect!
+
+## Got more questions?
+
+You're now officially qualified to smile knowingly the next time someone mentions deploying a PR to production from a staging branch via a custom pipeline with updated dependencies.
+
+Or at the very least, nod along with slightly less panic behind the eyes. I'll take that too.
+
+The truth is, no one knows everything — not even devs! We're all learning as we go, googling things mid-conversation, and occasionally pretending we remember what a semver is. So ask the questions. Pro tip: bring snacks! I guarantee it's the best way to get a dev to explain something twice. Stay curious!

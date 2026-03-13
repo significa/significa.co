@@ -1,0 +1,141 @@
+---
+title: "We built the coolest office door and doorbell setup."
+description: A door and doorbell are just like any other system that users interact with. Here's how we replaced a clunky legacy access system with a Slack-powered, self-service door setup that just works.
+date: 2023-06-09
+author: Francisco Marques
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+  - significa
+seo:
+  metaTitle: "We built the coolest office door and doorbell setup — Significa"
+  metaDescription: "How we replaced a clunky legacy access system with a Slack-powered, self-service door setup — complete with a smart doorbell that notifies the whole team."
+  ogImage: https://cdn.significa.co/blog/we-built-the-coolest-office-door-and-doorbell-setup/og-image.jpg
+---
+
+A door and doorbell are just like any other system that users interact with, and must be maintained, especially if in a shared space.
+
+They are indeed simple concepts that do not need re-inventing, but if you have ever worked in a small office, you might know that managing access with keys, codes, and even cards is cumbersome.
+
+Whenever the company scales, someone will be responsible for managing access, for example, via a security team. We are not at this scale and do not intend to give anybody more work. Our setup's purpose is to simplify things for all employees and management.
+
+## A quick recap on how access management is usually done
+
+Traditional metal keys are one of the best and simplest access control mechanisms — for small places like your home. Everyone knows how they work, they are cheap, available to everyone, and they don't need batteries or internet. But with a bigger user base, traditional keys pose an obvious risk and management hassle: when lost or stolen, they cannot be revoked, and all the keys need to be replaced. Even day-to-day operations, like making an extra copy, require a visit to the locksmith. Naturally, this is not an option as soon as you scale from being a micro-company.
+
+- **Pin code** is another method of access control that is simple to install and maintain. Although it cannot be lost, it is more likely to be shared between users. It is also less convenient as you need to memorise one more password, and typing it might be time-consuming.
+- **Key fobs/entry cards** are the standard for businesses of any size. It solves most of the management problems encountered by traditional keys and is pretty simple for the final user.
+
+## Our office door setup
+
+We have a door with an electromagnetic door lock that supports key fobs/entry cards and PIN codes. It worked okay — the main problem was the management hassle.
+
+We won't go very far on the specifics of the systems in use, but here's what we had to do to add a user to the system:
+
+- Login to a remote Windows machine
+- Open up a traditional desktop application
+- Manage users and then "sync" with the device
+
+<MediaImage src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/old-door-management-software.jpg" alt="The old system used to manage the door access" width={1200} height={630} caption="The old system used to manage the door access." />
+
+Adding a card/key fob is even more complex: you have first to scan the card on the device (near the door), then fetch the logs in the software to get the card identifier. Theoretically, you could run this program with a card reader attached to the computer directly, but that would require Windows with direct network access to the door lock. Frankly, both are quite complex.
+
+As you can imagine by now, in an environment where we focus on shipping products with great experiences, this is something no one wants to deal with. Not only was the onboarding tedious, but obviously, past employees were always forgotten and not removed from the user base.
+
+<MediaImage src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/door-setup-overview.jpg" alt="Overview of our office door setup" width={1200} height={630} caption="Our office door — electromagnetic lock with key fob and PIN code support." />
+
+## A modern solution
+
+We treated this like any other systems problem, similar to the ones we encounter every day at Significa. Indeed, we had a system that was terrible to use and was potentially a security hazard: we wanted something simple that just worked.
+
+In an ideal scenario, for a company our size, users would be able to self-service themselves getting access to the door when they arrive, and they would somehow be removed automatically as soon as they no longer work here.
+
+We searched for a few options, but were unhappy — specially because we don't want to get into big ecosystems, corporate solutions, or make complex installations.
+
+## Our take on designing a door solution
+
+As you can imagine by now, we developed our custom solution. We kept the existing hardware to simplify things, just made it more user-friendly. It was quite simple, and we believe that the solution is the best compromise between security and simplicity.
+
+You can open the door with any device with internet access — your phone, watch, or, for the geeks out there, with your favourite terminal. We primarily use Apple Shortcuts.
+
+Access control is automatic, and new employees can get access to the door by following instructions in an onboarding document. Access is automatically revoked whenever they leave Slack, our communication tool.
+
+### Setup — Meet our SlackBot
+
+Quite simply, first-timers just need to use Slack's slash commands to get a secret. The secret is unique for each user and will be used to configure the integration.
+
+Afterwards, users can use any of the pre-shared shortcuts, for example the Apple Shortcuts or IFTTT. We provide a nifty Apple Shortcuts link that can be seamlessly added and will prompt the secret during installation.
+
+<MediaImage src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/slackbot-setup-flow.jpg" alt="The SlackBot slash command flow for getting a door secret" width={1200} height={630} caption="First-timers use a Slack slash command to get their unique door secret." />
+
+### Works with everything
+
+This integration can be used with anything that can make an HTTP request. Phone, watch, desktop, laptop — you name it.
+
+### To top it all, the doorbell
+
+The doorbell is connected to Slack, meaning whenever you ring it, it takes a picture and sends it to a specific Slack channel, allowing anyone to open it directly with an interactive Slack message. So, if you are anxiously waiting for a package, you can join this channel and make sure you are the first to click the Open Door button.
+
+<MediaImage src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/doorbell-slack-message.jpg" alt="Interactive Slack message sent when someone rings the doorbell" width={1200} height={630} caption="The doorbell rings in Slack — anyone can open the door directly from the message." />
+
+## Tech talk: How it is all set up
+
+Our setup might look complex, but connecting all this is pretty straightforward.
+
+At the centre of everything is our Python + Flask + Peewee application. In essence, it's what connects it all up.
+
+<MediaImage src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/architecture-diagram.jpg" alt="Architecture diagram showing how all the components connect" width={1200} height={630} caption="How it all connects — Slack, Netatmo, Shelly, and our Flask app." />
+
+In our Slack workspace, there's an application installed that sends us HTTP requests whenever a user performs slash commands. We also use it to post doorbell messages, retrieve the user directory, and invalidate tokens for users that have left Slack.
+
+Thankfully, our Netatmo doorbell came with a nifty API, and we are able to configure Webhooks for whenever someone rings the doorbell.
+
+[Shelly](https://www.shelly.com/) is the IoT relay we added to our existing door setup, connecting it to the internet. We just need to send a request to their cloud, and the door will open. We thought about making the requests directly to the device, eliminating the third-party cloud, but that would require some kind of server running, which is one more thing to manage — maybe in the future.
+
+## FAQ
+
+### Why Slack and not Google Workspace for the identity provider?
+
+This decision, at first, might seem strange, but integrating with Slack means that we only have one third-party service. From the start, we wanted to make the doorbell ring in Slack, so a SlackBot was needed. Managing Slack applications is very simple, and the interaction is surprisingly great, too! Zero UI development — just develop as you would for a CLI application.
+
+Although Google Workspace makes sense if you want to go all out on the source of truth for the identity provider, our Slack users are already in sync via their integration — it is one less piece in the puzzle to manage: apps, permissions/authorisation, OAuth2, multiple environments, etc.
+
+### How do you deploy and test all of this?
+
+As with any modern software development project, we have multiple environments — in this case, staging, production, and a local environment. We have it all: a staging database, Slack application, Slack workspace, and to top it all, a miniature door. We use GitHub Actions to build, test, and deliver the software to [Fly.io](https://fly.io), our container hosting provider.
+
+<MediaImage src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/miniature-door.jpg" alt="The miniature door used for local development and testing" width={1200} height={630} caption="Our staging environment includes a miniature door for testing." />
+
+## Safety and redundancy
+
+### What if the power fails?
+
+We were quite lucky to find that the power to the door was already provided by the UPS, meaning that it should last a while in case of a power failure and will eventually become unlocked. This is quite normal as this setup is considered Safety-First (vs the opposite, Security-First). For those sneaky ones reading: we do have a gate outside this door that is closed at night, plus an alarm system in place.
+
+### What if the internet or the server stops working?
+
+The internet is also backed by UPS — the web server and database are redundant in two Fly.io regions. In case all fails, we would have to use a backup code or card to open the door from the outside. That's the main reason we kept the existing system. It works entirely offline, and we can keep a few codes for when all fails.
+
+From the inside, we have a switch that opens the door at any time.
+
+### How do you store the secrets?
+
+Secrets are extra long — maybe too long, to be honest — and are stored hashed with SHA256, so they cannot be recalled or read from the database. Whenever the user, for some reason, needs to rotate the secret, they can run the `/regenerate-door-secret` command.
+
+Note that we do not need password hashing algorithms like `Argon2`, `Bcrypt`, or `PBKDF2` because we know that the input is of big entropy, generated with a cryptographically secure number generator (not a user-generated password).
+
+Also, Slack does not index and forgets this message since the `response_type` is set to `ephemeral`.
+
+### How do you prevent opening the door by accident remotely?
+
+This is a double-edged sword — it's cool to be able to open the door remotely, but we want to avoid doing it by accident. Thus, the shared Apple Shortcuts template uses geolocation to check if you are near the office and prompts you if not.
+
+As you can see, there isn't a fancy geofencing system. It just checks if you are on the office's street. This restriction runs on the device, meaning that the system we built has nothing to do with geolocation. Restrictions must happen in the automation application — the server does not know the end user's location.
+
+<MediaImage src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/geolocation-check.jpg" alt="Apple Shortcuts geolocation check prompting when away from the office" width={1200} height={630} caption="The Apple Shortcut checks if you're near the office before opening the door." />
+
+---
+
+That's it — I probably went too in-depth for most readers, but I bet some of you would like even more details.
+
+All in all, we built a fantastic experience on top of an existing system with little work and complexity. It just works and has been running with no problems for more than a year. It is extensible — not only can it be used in multiple ways, but it is also a cool playground for us to try new things.

@@ -26,6 +26,8 @@ function formatDate(date: Date): string {
     day: "numeric",
   });
 }
+
+const INITIAL_COUNT = 6;
 ---
 
 <BaseLayout
@@ -109,8 +111,13 @@ function formatDate(date: Date): string {
     recentPosts.length > 0 ? (
       <section class="blog-grid">
         <div class="blog-grid-inner">
-          {recentPosts.map((post) => (
-            <article class="blog-card" data-tags={JSON.stringify(post.data.tags || [])}>
+          {recentPosts.map((post, index) => (
+            <article
+              class="blog-card"
+              data-tags={JSON.stringify(post.data.tags || [])}
+              data-index={index}
+              style={index >= INITIAL_COUNT ? "display: none;" : ""}
+            >
               <a href={`/blog/${post.id}`} class="card-link">
                 {post.data.thumbnail && (
                   <div class="card-image">
@@ -144,6 +151,15 @@ function formatDate(date: Date): string {
             </article>
           ))}
         </div>
+
+        <!-- Load More -->
+        {recentPosts.length > INITIAL_COUNT && (
+          <div class="load-more-wrapper">
+            <button class="load-more-button" id="load-more-btn">
+              Load more
+            </button>
+          </div>
+        )}
       </section>
     ) : (
       <section class="empty-state">
@@ -164,49 +180,98 @@ function formatDate(date: Date): string {
   </section>
 </BaseLayout>
 
-<!-- Tag filtering script -->
-<script>
-  function initTagFilter() {
-    const buttons = document.querySelectorAll<HTMLButtonElement>(".tag-button");
-    const cards = document.querySelectorAll<HTMLElement>(".blog-card");
+<script define:vars={{ INITIAL_COUNT }} is:inline>
+  const BATCH_SIZE = INITIAL_COUNT;
 
-    if (!buttons.length || !cards.length) return;
+  function init() {
+    const buttons = document.querySelectorAll(".tag-button");
+    const cards = document.querySelectorAll(".blog-card");
+    const loadMoreBtn = document.getElementById("load-more-btn");
 
+    if (!cards.length) return;
+
+    let activeTag = "all";
+    // How many cards in the current filtered set have been revealed
+    let visibleCount = BATCH_SIZE;
+
+    // ----------------------------------------------------------------
+    // Core helpers
+    // ----------------------------------------------------------------
+
+    /** Returns all cards that match the current tag filter, in DOM order */
+    function getFilteredCards() {
+      return Array.from(cards).filter((card) => {
+        if (activeTag === "all") return true;
+        try {
+          const tags = JSON.parse(card.dataset.tags || "[]");
+          return tags.includes(activeTag);
+        } catch {
+          return false;
+        }
+      });
+    }
+
+    /** Re-renders card visibility and load-more button state */
+    function render() {
+      const filtered = getFilteredCards();
+
+      cards.forEach((card) => {
+        card.style.display = "none";
+      });
+
+      filtered.slice(0, visibleCount).forEach((card) => {
+        card.style.display = "";
+      });
+
+      if (loadMoreBtn) {
+        if (filtered.length > visibleCount) {
+          loadMoreBtn.style.display = "";
+          const remaining = filtered.length - visibleCount;
+          loadMoreBtn.textContent =
+            remaining <= BATCH_SIZE
+              ? `Load ${remaining} more`
+              : `Load more`;
+        } else {
+          loadMoreBtn.style.display = "none";
+        }
+      }
+    }
+
+    // ----------------------------------------------------------------
+    // Tag filter
+    // ----------------------------------------------------------------
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
-        const selectedTag = button.dataset.tag;
-        if (!selectedTag) return;
+        const tag = button.dataset.tag;
+        if (!tag) return;
 
-        // Update active state
+        activeTag = tag;
+        visibleCount = BATCH_SIZE;
+
         buttons.forEach((btn) => btn.classList.remove("active"));
         button.classList.add("active");
 
-        // Filter cards
-        cards.forEach((card) => {
-          const cardTagsStr = card.dataset.tags;
-          if (!cardTagsStr) return;
-
-          try {
-            const cardTags = JSON.parse(cardTagsStr) as string[];
-
-            if (selectedTag === "all" || cardTags.includes(selectedTag)) {
-              card.style.display = "";
-              // Animate in
-              card.style.animation = "fadeIn 0.3s ease-out";
-            } else {
-              card.style.display = "none";
-            }
-          } catch (e) {
-            console.error("Error parsing tags:", e);
-          }
-        });
+        render();
       });
     });
+
+    // ----------------------------------------------------------------
+    // Load more
+    // ----------------------------------------------------------------
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener("click", () => {
+        visibleCount += BATCH_SIZE;
+        render();
+      });
+    }
+
+    // Initial render (respects the server-side hidden state but hands
+    // control fully to JS from this point on)
+    render();
   }
 
-  // Run on initial load and after View Transition navigation
-  initTagFilter();
-  document.addEventListener("astro:after-swap", initTagFilter);
+  init();
+  document.addEventListener("astro:after-swap", init);
 </script>
 
 <style>
@@ -427,6 +492,7 @@ function formatDate(date: Date): string {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2rem;
+    margin-bottom: 3rem;
   }
 
   .blog-card {
@@ -519,6 +585,35 @@ function formatDate(date: Date): string {
   }
 
   /* ============================================================
+     Load More
+     ============================================================ */
+  .load-more-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+  }
+
+  .load-more-button {
+    padding: 0.75rem 2.5rem;
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    font-family: inherit;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 2rem;
+    cursor: pointer;
+    transition:
+      border-color var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out);
+  }
+
+  .load-more-button:hover {
+    border-color: var(--color-text);
+    color: var(--color-text);
+  }
+
+  /* ============================================================
      Empty State
      ============================================================ */
   .empty-state {
@@ -580,19 +675,5 @@ function formatDate(date: Date): string {
   .cta-button:hover {
     opacity: 0.9;
     transform: translateY(-2px);
-  }
-
-  /* ============================================================
-     Animations
-     ============================================================ */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 </style>

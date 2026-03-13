@@ -1,0 +1,221 @@
+---
+title: "An example of SwiftUI + The Composable Architecture."
+description: An example of how to structure your SwiftUI projects using The Composable Architecture — covering folder structure, reducers, effects, and testing.
+date: 2021-03-29
+author: Daniel Almeida
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+  - learning
+seo:
+  metaTitle: "An example of SwiftUI + The Composable Architecture — Significa"
+  metaDescription: "An example of how to structure your SwiftUI projects using The Composable Architecture — covering folder structure, reducers, effects, and testing."
+  ogImage: https://cdn.significa.co/blog/an-example-of-swiftui-the-composable-architecture/og-image.jpg
+---
+
+## Context
+
+Our journey began when SwiftUI was launched. After years of UIKit, Apple's official declarative UI framework for iOS was finally out. Fortunately, one of our clients wanted to do a proof of concept for a fantastic business concept in an app, and they wanted the project to be built using SwiftUI.
+
+We've tried to find the best way to accommodate all these new concepts in our code. `@State`, `@Binding`, `@ObservedObject` — all these new `@`'s became our first concern when dealing with View state changes and deciding where in the code we should perform them.
+
+Finally, after some time investigating, André showed me the videos provided by [pointfree.co](https://www.pointfree.co/). They describe their proposal for a SwiftUI architecture in a very practical and clear way, always iterating solutions until the final one is achieved.
+
+The Composable Architecture (TCA) was adopted in the mentioned project and was a charm to work with, although we struggled to integrate this new approach at first. Their [example project](https://github.com/pointfreeco/swift-composable-architecture) is where you can check lots of use cases that can serve as inspiration for building your own products. Check them out and, if you feel like it, contribute.
+
+Since then, we decided to do a small example project to serve as a base for how we tackle small/medium SwiftUI projects using TCA at Significa. Next, we will try to sum up the structure and assumptions from our example project. Please note that the goal of this article is not to explain TCA — we think the authors' explanation is better than ours.
+
+## Pokemon TCG
+
+Our example project is an app that shows Pokémon cards. We use the V1 of the [Pokémon TCG API](https://pokemontcg.io/) to retrieve the card info. In the Cards tab, we retrieve the information from the server and show it in an infinite scroll list.
+
+<MediaImage src="/blog/an-example-of-swiftui-the-composable-architecture/pokemon-tcg-cards-screen.jpg" alt="Pokemon TCG app — Cards Screen" width={1200} height={800} caption="Pokemon TCG — Cards Screen." />
+
+The API documentation was fully open source but now requires a login to access it. The new V2 version also requires an API key to be generated. Either way, it's free for now.
+
+We also have a detail screen where the card image is shown at a larger size. Here, the user can toggle it as a favourite.
+
+<MediaImage src="/blog/an-example-of-swiftui-the-composable-architecture/pokemon-tcg-card-detail-screen.jpg" alt="Pokemon TCG app — Card Detail Screen" width={1200} height={800} caption="Pokemon TCG — Card Detail Screen." />
+
+Finally, the Favourites tab shows the favourite cards list in the same way as the Cards tab.
+
+## Xcode Project
+
+We always try to take a native approach as much as possible, avoiding unnecessary dependencies to do small things. Of course, we are not trying to reinvent the wheel, but we like not to rely too much on something that can be deprecated quickly — usually caused by a lack of support.
+
+Another key point is simplification. We always try to simplify our solutions. Begin with a simple basis and evolve from there. If we are not building a spaceship, why do we need the rocket boosters?
+
+### Dependencies
+
+We use the [Swift Package Manager (SPM)](https://www.swift.org/package-manager/) to manage dependencies. Most widely used packages are now also available via SPM, so there was no reason not to use the vanilla dependency manager for Swift. We should pay our respects to CocoaPods and Carthage, as they played a crucial role in solving the deps problem for years until SPM arrived. Check the example README for more details.
+
+## Folder Structure
+
+In this section, let's walk through what's inside the main folders.
+
+<MediaImage src="/blog/an-example-of-swiftui-the-composable-architecture/folder-structure-overview.jpg" alt="Xcode project folder structure overview" width={1200} height={800} caption="Folder Structure Overview." />
+
+### Data
+
+Inside the `Data` folder, you will find everything related to data itself: models, web service clients, `CoreData`, and other services you may need to handle data models.
+
+<MediaImage src="/blog/an-example-of-swiftui-the-composable-architecture/client-folder.jpg" alt="Contents of the Client folder inside Data" width={1200} height={800} caption="Client Folder." />
+
+The `CardsClient` and `FavoriteCardsClient` should be the only way TCA Reducers access and change data. Those clients follow a pattern well described in [this video](https://www.pointfree.co/), where there's always a live and a mock version of the client. This improves testability a lot, allowing our code to be fully mockable and removing the test dependency on external data providers (e.g. API calls).
+
+The `Provider` holds all the code to interact with the services that provide data. This includes request/response serialisation, `URLRequest`, `CoreData` queries, etc.
+
+## Design System
+
+This is where all the design components live. We usually add typography, buttons, table cells, fields, modals, etc. This is typically the first place to have UI code. Breaking the UI into reusable components helps with code clarity — main views will have the necessary code to glue all these components together, creating complex UIs with simple code.
+
+## Application
+
+The `Application` folder contains the app's main screen views. In our Pokémon example, it includes the cards list (`CardsView`), the favourite cards list (`FavoritesView`), and the card detail screen (`CardDetailView`). All the main views have their own "Core" file, which is where the TCA elements live. In almost every example project on the TCA repository, `View` and the `Core` are in the same file. We think this separation improves code readability — though there's an ongoing discussion around `Core` entity separation and the creation of a generator for those.
+
+Digging into some code, here are some highlights I'd like to share:
+
+### Main Reducer
+
+```swift
+// Main Reducer
+let mainReducer: Reducer<MainState, MainAction, MainEnvironment> = .combine(
+  cardsReducer.pullback(
+    state: \MainState.cardsState,
+    action: /MainAction.cards,
+    environment: { environment in
+      CardsEnvironment(
+        cardsClient: environment.cardsClient,
+        favoriteCardsClient: environment.favoriteCardsClient,
+        mainQueue: environment.mainQueue,
+        uuid: environment.uuid
+      )
+    }
+  ),
+  favoritesReducer.pullback(
+    state: \MainState.favoritesState,
+    action: /MainAction.favorites,
+    environment: { environment in
+      FavoritesEnvironment(
+        favoriteCardsClient: environment.favoriteCardsClient,
+        mainQueue: environment.mainQueue,
+        uuid: environment.uuid
+      )
+    }
+  ),
+  .init { state, action, environment in
+
+    switch action {
+    // Update favorites on Cards State
+    case .cards(.card(id: _, action: .toggleFavoriteResponse(.success(let favorites)))):
+      state.favoritesState.cards = .init(
+        favorites.map {
+          CardDetailState(
+            id: environment.uuid(),
+            card: $0
+          )
+        }
+      )
+      return .none
+
+    case .cards:
+      return .none
+
+    // Update favorites on Favorites State
+    case .favorites(.card(id: _, action: .toggleFavoriteResponse(.success(let favorites)))):
+      state.cardsState.favorites = favorites
+      return .none
+
+    case .favorites:
+      return .none
+
+    case .selectedTabChange(let selectedTab):
+      state.selectedTab = selectedTab
+      return .none
+    }
+  }
+)
+```
+
+Note that `mainReducer` combines the `cardsReducer` and the `favoritesReducer`. This allows the `mainReducer` to handle all the actions that are also handled by those child reducers. This is useful, for example, to update the main state so that the favourites are consistent across all screens when we perform an add/remove favourite action.
+
+### Cancel Effects
+
+Cancelling effects is very important, especially for network-related tasks.
+
+Here's a quick example from the `favoritesReducer`:
+
+```swift
+// Favorites Reducer
+switch action {
+case .onAppear:
+  guard state.cards.isEmpty else { return .none }
+  return .init(value: .retrieveFavorites)
+
+case .retrieveFavorites:
+  return environment.favoriteCardsClient
+    .all()
+    .receive(on: environment.mainQueue)
+    .catchToEffect()
+    .map(FavoritesAction.favoritesResponse)
+    .cancellable(id: FavoritesCancelId())
+
+case .favoritesResponse(.success(let favorites)):
+  state.cards = .init(
+    favorites.map {
+      CardDetailState(
+        id: environment.uuid(),
+        card: $0
+      )
+    }
+  )
+  return .none
+
+case .card(id: _, action: .onDisappear):
+  return .init(value: .retrieveFavorites)
+
+case .card(id: _, action: _):
+  return .none
+
+case .onDisappear:
+  return .cancel(id: FavoritesCancelId())
+}
+```
+
+```swift
+// Favorites view
+struct FavoritesView: View {
+  var store: Store<FavoritesState, FavoritesAction>
+
+  var body: some View {
+    WithViewStore(store) { viewStore in
+      NavigationView {
+        ScrollView {
+          itemsList(viewStore)
+            .padding()
+        }
+        .edgesIgnoringSafeArea(.bottom)
+        .navigationBarTitle(Localization.Cards.title)
+      }
+      .onAppear { viewStore.send(.onAppear) }
+      .onDisappear { viewStore.send(.onDisappear) }
+    }
+  }
+}
+```
+
+The first time the view appears, it triggers the `.retrieveFavorites` action, which fires the fetch request for the favourite cards — later returned to the `.favoritesResponse` action. Notice that a cancel ID is assigned to this effect. If the user dismisses the screen, this ID allows any other action to cancel an in-progress effect that no longer needs to be running.
+
+## Testing
+
+One of the main reasons we adopted TCA is testability. TCA definitely changed the way we approach testing.
+
+In our `PokemonCards` example, we have tests to ensure the reducer business logic is correctly implemented.
+
+We also want to highlight the [SnapshotTesting](https://github.com/pointfreeco/swift-snapshot-testing) package, which fits in nicely with TCA. You can check some simple examples in the `PokemonCardsSnapshotTests.swift` file.
+
+## Conclusion
+
+We think SwiftUI is one of the biggest changes in recent years, and it will definitely improve code quality and overall development speed going forward. This is just the beginning — new architectures will emerge, and we should always keep an eye on updates and support these kinds of community projects.
+
+In the end, it's a relief to have the technology to automate our manual testing, which helps developers build better products.

@@ -1,0 +1,203 @@
+---
+title: "Deploy Previews with AWS and Github Actions."
+description: Build Netlify-like Deploy Previews with AWS and Github Actions.
+date: 2020-02-01
+author: Pedro Brandão
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+  - learning
+seo:
+  metaTitle: "Deploy Previews with AWS and Github Actions — Significa"
+  metaDescription: "Build Netlify-like Deploy Previews with AWS and Github Actions."
+  ogImage: https://cdn.significa.co/blog/deploy-previews-aws/og-image.jpg
+---
+
+We love [AWS](https://aws.amazon.com/), and it's, without a doubt, our go-to choice for building our infrastructures. It's flexible, powerful and very capable but – if we're honest – sometimes it's a bit daunting. The ease of use of services like [Netlify](https://www.netlify.com/) or [Heroku](https://www.heroku.com/) can go a long way to improve the overall developer experience.
+
+One of the things we missed the most from Netlify was its [Deploy Previews](https://docs.netlify.com/site-deploys/deploy-previews/). For marketing websites, there is no better way to quickly iterate: as soon as there is an open Pull Request against our master branch, we can gather feedback, do proper Quality Assurance sessions and simply keep on improving the current branch with all-team collaboration instead of the usual "code review first > merge to a staging branch > gather feedback > new branch > rinse and repeat".
+
+That's why we needed to bring it to AWS. This quick tutorial is an example of how to achieve this behaviour with Github Actions and AWS for a [Gatsby](https://www.gatsbyjs.com/) website (although it could easily be adapted to something else).
+
+## Main goal
+
+When a Pull Request is opened, or someone commits to it, we should make a new build, deploy it to `somedomain.com/preview/<pr-number>` and post back the URL as a commit status.
+
+<MediaImage src="/blog/deploy-previews-aws/deploy-preview-example-placeholder.jpg" alt="Deploy Preview example showing a PR with a commit status linking to the preview URL" width={1200} height={630} caption="A commit status on the Pull Request links directly to the deploy preview URL." />
+
+## AWS
+
+This tutorial is not about setting up AWS to host websites, so we'll just go through it as quickly as possible. We recommend automating these steps with a [CloudFormation](https://aws.amazon.com/cloudformation/) template, but for the sake of simplicity, we'll just go over it in the console.
+
+You're going to need at least an [S3 Bucket](https://aws.amazon.com/s3/) for public web hosting and an [IAM](https://aws.amazon.com/iam/) user with the necessary permissions. We recommend at least setting up Route 53 for a custom domain and — if you want HTTPS — CloudFront with a certificate from Certificate Manager.
+
+Feel free to skip this part if you already have what you need.
+
+### S3 Bucket
+
+- Go to S3 and click on **+ Create Bucket**. If you're not planning on adding HTTPS, make sure the DNS-compliant name of the bucket is the domain you wish to use (e.g., `somedomain.com`). This way, we can create a record directly to this bucket on Route 53.
+- Go over to step 3 of the modal and unselect **Block all public access**.
+- After the bucket is created, go over to **Properties**, then to **Static website hosting** and select **Use this bucket to host a website**. Your index and error documents probably are `index.html` and `404.html`, respectively.
+- Go over to **Permissions**, then to **Bucket Policy**, and paste this policy (changing the bucket name).
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::YOUR_BUCKET_NAME/*"
+        }
+    ]
+}
+```
+
+### Deploy Preview Expiration
+
+Optionally, you can also make S3 automatically delete your Deploy Previews after a while:
+
+- Go to **Management > Lifecycle** and click **+ Add lifecycle rule**;
+- Give it a name (e.g., `Deploy Preview Expire`);
+- In the **Prefix/tags** filter, add `preview/` as a prefix;
+- Skip transitions and in the **Expiration** tab, tick all the boxes and add the desired values.
+
+### Route 53
+
+If you want to route directly to the bucket without HTTPS, you just need to create a new A Record Set for your bucket:
+
+- Go over to Route53 and open your hosted zone;
+- Add a new **A Record Set**;
+- Select **Alias**;
+- Select your bucket from the S3 list.
+
+### CloudFront and HTTPS (Optional)
+
+If you want HTTPS, you must first request a Certificate from Certificate Manager.
+
+Then, go over to CloudFront, create a new **Web Distribution** and:
+
+- Paste your bucket public URL in **Origin Domain Name**;
+- Select **Redirect HTTP to HTTPS**;
+- Given we're just using CloudFront for the HTTPS, select **Customize** in **Object Caching** and make them all `0`;
+- Select **Yes** for **Compress Objects Automatically**;
+- Add your desired CNAMEs and select your newly created Certificate.
+
+Finally, go over to Route 53 and change the value of the recently created A Record to point to CloudFront instead of S3.
+
+## Relative links and assets
+
+Most times, websites are built to be deployed to the root of the domain but here we have a problem: given we are not deploying to `/`, our relative links and links to resources (e.g., images) won't work.
+
+The first thing we thought of was using the HTML5 `base` tag. Luckily we didn't have to (feel free to try it anyway and let us know your results!)
+
+Instead of having to conditionally add some markup, Gatsby provides a very helpful [Path Prefix](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/) feature that does exactly what we were looking for. Our path prefix needs to change with every PR, so we just leveraged environment variables to define it.
+
+```js
+// gatsby.config.js
+module.exports = {
+  pathPrefix: process.env.PATH_PREFIX,
+  ...
+}
+```
+
+For Gatsby to look at this path, we just need to build the website with `gatsby build --prefix-paths`. Perfect!
+
+## Github Actions
+
+We'll use [jakejarvis/s3-sync-action](https://github.com/jakejarvis/s3-sync-action) to deploy and [pbrandone/create-status-action](https://github.com/pbrandone/create-status-action) to add the deployed URL as a commit status.
+
+The configuration for the workflow is very straightforward. We just have to remember to build with `PATH_PREFIX=preview/${{ github.event.number }} npm run build -- --prefix-paths`.
+
+Just make sure you have the necessary environment variables in your repo's **Settings > Secrets** and you are good to go!
+
+```yaml
+name: Deploy Preview
+
+on: pull_request
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Cache npm
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Set deployment status
+        uses: pbrandone/create-status-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: pending
+          description: Preparing deploy preview
+          context: Deploy Preview URL
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: PATH_PREFIX=preview/${{ github.event.number }} npm run build -- --prefix-paths
+
+      - name: Deploy
+        if: success()
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --delete
+        env:
+          AWS_S3_BUCKET: YOUR_BUCKET_NAME # Could also come from github secrets
+          AWS_ACCESS_KEY_ID: ${{ secrets.DEPLOY_PREVIEW_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.DEPLOY_PREVIEW_SECRET }}
+          AWS_REGION: "eu-west-1"
+          SOURCE_DIR: "public"
+          DEST_DIR: preview/${{ github.event.number }}
+
+      - name: Set success deployment status
+        if: success()
+        uses: pbrandone/create-status-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: success
+          description: Deploy preview ready!
+          url: https://yourdomain.com/preview/${{ github.event.number }}
+          context: Deploy Preview URL
+
+      - name: Set failed deployment status
+        if: failure()
+        uses: pbrandone/create-status-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: failure
+          description: Failed to deploy preview
+          context: Deploy Preview URL
+```
+
+Feel free to check our [website's open-source repo](https://github.com/significa/significa.co) and see it in the wild.
+
+### Update
+
+In a tweet, [@swyx](https://twitter.com/swyx) and [@sebastienlorber](https://twitter.com/sebastienlorber) were kind enough to correctly point out that commenting on the deployed URL per commit will easily clutter the Pull Request's discussion. The snippet above was updated to use GitHub Status instead of commenting.
+
+<MediaImage src="/blog/deploy-previews-aws/github-status-placeholder.jpg" alt="GitHub commit status showing the deploy preview URL" width={1200} height={630} caption="Using GitHub Status keeps your PR clean while still surfacing the deploy preview URL." />
+
+If you still want to go with the comments approach using [unsplash/comment-on-pr](https://github.com/unsplash/comment-on-pr) to post the URL comment back to the PR, this is what we had:
+
+```yaml
+- name: Deploy message
+  if: success()
+  uses: unsplash/comment-on-pr@master
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  with:
+    msg: |
+      Deploy preview ready!
+      https://yourdomain.com/preview/${{ github.event.number }}
+      built from ${{ github.sha }}
+```

@@ -1,0 +1,473 @@
+---
+title: "CSS-only Slider."
+description: Today I'd like to guide you on how to create a responsive card slider using CSS and HTML only – not a single JavaScript line!
+date: 2017-01-03
+author: Rui Sereno
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+  - learning
+seo:
+  metaTitle: "CSS-only Slider — Significa"
+  metaDescription: "Today I'd like to guide you on how to create a responsive card slider using CSS and HTML only – not a single JavaScript line!"
+  ogImage: https://cdn.significa.co/blog/css-only-slider/og-image.jpg
+---
+
+Today I'd like to guide you on how to create a responsive card slider using CSS and HTML only – not a single JavaScript line! On this tutorial we'll make use of radio buttons to achieve a fully-working CSS-only slider.
+
+You can check the [demo here](https://significa.github.io/css-only-slider/) and access the [source code here](https://github.com/Significa/css-only-slider/).
+
+## Pros
+
+- No dependencies.
+- Works on all browsers.
+- Works without JavaScript.
+- Very performative.
+
+## Cons
+
+- Not the greatest solution to use with CMS.
+- Not very DRY.
+
+This is a step-by-step tutorial for anyone with a reasonable amount of knowledge of HTML and SCSS. If you don't want to do it step by step, scroll faster! Plus, I'll be using [BEM](https://getbem.com/introduction) – if you're not familiar with how BEM should be written, take a look at that link.
+
+Ok, ready to go! First of all, let's take a look at the design.
+
+## Conceptual aside: Radio buttons
+
+Before starting with the actual tutorial, let me tell you a bit about radio buttons' features and how to use them properly. If you already know how to handle them, feel free to skip this part.
+
+First of all, this is how an input type radio basic markup looks like:
+
+```html
+<input type="radio">
+```
+
+A very important feature about radio buttons that we'll be leveraging during this tutorial is the fact that only one can be checked at the time.
+
+However, in order to make that happen, all of them require the same `name`:
+
+```html
+<input type="radio" name="slider">
+```
+
+Another relevant feature about radio buttons is that you can define which one is checked directly on the HTML. This will be very useful later on.
+
+```html
+<input type="radio" name="slider" checked>
+```
+
+A cool fact is that you don't actually need to click on the radio button itself to make it checked, you might as well click on its label. And in order to get that working, you need this:
+
+```html
+<label for="">This is a clickable label</label>
+```
+
+In order for the label to check a specific radio, you need to identify each radio button, this way the label knows which one it is referring to. For this tutorial, we'll use IDs but you may use classes as well — classes work with radio buttons but not with checkboxes.
+
+```html
+<input type="radio" name="slider" id="slider-1">
+```
+
+And then we'll make the label refer to it:
+
+```html
+<label for="slider-1">This is clickable</label>
+```
+
+That's all we'll need to know regarding radio buttons for now!
+
+## 1. The markup
+
+**Step 1 — Wrappers**
+
+Let's start by having a parent `section` which we'll call `slider`. And then let's set up a `div` inside `slider` which we can call `slider__holder`. The inner one will wrap the slider itself and the outer one will hold the inner, plus the titling content.
+
+```html
+<section class="section slider">
+    
+    <div class="slider__holder">
+
+    </div><!-- slider__holder -->
+    
+</section>
+```
+
+**Step 2 — Radio buttons**
+
+Done that, let's mark up the radio buttons. We got to put them as a `slider__holder` sibling so we can easily refer to it later on. We'll need 5 of them, so:
+
+```html
+<section class="section slider">
+
+    <input type="radio" name="slider" id="slide-1" class="slider__radio">
+    <input type="radio" name="slider" id="slide-2" class="slider__radio">
+    <input type="radio" name="slider" id="slide-3" class="slider__radio" checked>
+    <input type="radio" name="slider" id="slide-4" class="slider__radio">
+    <input type="radio" name="slider" id="slide-5" class="slider__radio">
+    
+    <div class="slider__holder">
+
+    </div><!-- slider__holder -->
+    
+</section>
+```
+
+Don't forget to change the IDs number on each radio button. Plus, I want the middle one to be the visible one on page load, that's why I defined it as `checked`.
+
+**Step 3 — Cards as labels**
+
+We want all cards to be clickable, so each one of them will be a label for each one of the 5 radios. Mind that each `label for="slide-X"` has to refer to each radio button, so don't forget to change the number when you copy and paste.
+
+```html
+<section class="section slider">
+
+    <input type="radio" name="slider" id="slide-1" class="slider__radio">
+    <input type="radio" name="slider" id="slide-2" class="slider__radio">
+    <input type="radio" name="slider" id="slide-3" class="slider__radio" checked>
+    <input type="radio" name="slider" id="slide-4" class="slider__radio">
+    <input type="radio" name="slider" id="slide-5" class="slider__radio">
+    
+    <div class="slider__holder">
+
+       <label for="slide-1" class="slider__item slider__item--1 card">
+            <!-- Card Content goes here -->
+       </label>
+        
+        <label for="slide-2" class="slider__item slider__item--2 card">
+            <!-- Card Content goes here -->
+       </label>
+        
+        <label for="slide-3" class="slider__item slider__item--3 card">
+            <!-- Card Content goes here -->
+       </label>
+        
+        <label for="slide-4" class="slider__item slider__item--4 card">
+            <!-- Card Content goes here -->
+       </label>
+        
+        <label for="slide-5" class="slider__item slider__item--5 card">
+            <!-- Card Content goes here -->
+       </label>
+
+    </div><!-- slider__holder -->
+    
+</section>
+```
+
+You might have noticed that each slide has a modifier `slider__item--n`. We'll be using it as soon as we need to refer to each `slider__item`.
+
+**Step 4 — Cards content**
+
+For the content of each card, I'll leave it up to you. It doesn't influence the slider's functionality in any way, so this is up to your creative designer skills.
+
+**Step 5 — Navigation bullets**
+
+Besides giving an important visual clue of the current card selected, the bullets below the cards should be clickable to help the navigation between the slides. Which is the same as saying that each bullet has to be a label for the radios as well.
+
+Also, let's make `bullets` as a new element rather than have it as a `slider` element:
+
+```html
+<div class="bullets">
+  
+  <label for="slide-1" class="bullets__item bullets__item--1"></label>
+  <label for="slide-2" class="bullets__item bullets__item--2"></label>
+  <label for="slide-3" class="bullets__item bullets__item--3"></label>
+  <label for="slide-4" class="bullets__item bullets__item--4"></label>
+  <label for="slide-5" class="bullets__item bullets__item--5"></label>
+  
+</div> <!-- Bullets -->
+```
+
+Once again we're using the `bullets__item--n` modifier since we'll be referring to each one of them separately in the future.
+
+Just place them under `<div class="slider__holder"></div>` as a sibling.
+
+Done that, we're done with the markup. Here's the whole snippet:
+
+```html
+<section class="section slider">
+    
+    <div class="section__entry section__entry--center">
+        
+      <h1 class="section__title heading-2">SCSS Only Slider</h1>
+      <p class="section__text text">This tutorial will teach you how to 
+      create a SCSS only responsive slider.</p>
+        
+    </div>
+
+    <input type="radio" name="slider" id="slide-1" class="slider__radio">
+    <input type="radio" name="slider" id="slide-2" class="slider__radio">
+    <input type="radio" name="slider" id="slide-3" class="slider__radio" checked>
+    <input type="radio" name="slider" id="slide-4" class="slider__radio">
+    <input type="radio" name="slider" id="slide-5" class="slider__radio">
+    
+    <div class="slider__holder">
+
+       <label for="slide-1" class="slider__item slider__item--1 card">
+            <!-- Card Content goes here -->
+       </label>
+        
+        <label for="slide-2" class="slider__item slider__item--2 card">
+            <!-- Card Content goes here -->
+       </label>
+        
+        <label for="slide-3" class="slider__item slider__item--3 card">
+            <!-- Card Content goes here -->
+       </label>
+        
+        <label for="slide-4" class="slider__item slider__item--4 card">
+            <!-- Card Content goes here -->
+       </label>
+        
+        <label for="slide-5" class="slider__item slider__item--5 card">
+            <!-- Card Content goes here -->
+       </label>
+
+    </div><!-- slider__holder -->
+  
+    <div class="bullets">
+      
+        <label for="slide-1" class="bullets__item bullets__item--1"></label>
+        <label for="slide-2" class="bullets__item bullets__item--2"></label>
+        <label for="slide-3" class="bullets__item bullets__item--3"></label>
+        <label for="slide-4" class="bullets__item bullets__item--4"></label>
+        <label for="slide-5" class="bullets__item bullets__item--5"></label>
+      
+    </div> <!-- Bullets -->
+    
+</section>
+```
+
+## 2. The functionality
+
+Before anything else, we should make sure the labels are in fact checking the radio buttons. The best option would be to write some text inside the cards and inside the bullet's `label` tag and click on them. If the checked input changes, then it's ok.
+
+**Step 1 — Active Slide**
+
+First of all, we need to set each card's default style. Feel free to write your own styles as long as you include a `transform: scale(0.85)` among them.
+
+```scss
+.slider {
+  // Your styles
+  
+  &__item {
+    transform: scale(0.85);
+    
+    // Your styles
+  }
+ 
+}
+```
+
+Then we need to define how it will look when a certain slide is active. And that's when the fun part starts.
+
+So, when `#slide-1` is checked we want `.slider__item--1` to be 100% scaled:
+
+```scss
+.slider {
+  
+  // .slider__item
+  &__item {
+    z-index: 2;
+    
+    transform: scale(0.85);
+    
+    // .slider__item--1
+    &--1 {
+      
+      // #slide-1:checked ~ .slider__holder .slider__item--1
+      #slide-1:checked ~ .slider__holder & { 
+        transform: scale(1);
+      }
+      
+    }
+  }
+  
+}
+```
+
+In plain language: when `#slide-1` is checked, its sibling's (`~`) `.slider__holder` child `.slider__item--1` will be 100% scaled. Basically when you click on Card 1 it will get 100% scaled.
+
+Then we must replicate it for the remainder cards:
+
+```scss
+.slider {
+  
+  // .slider__item
+  &__item {
+    transform: scale(0.85);
+    
+    &--1 {
+      #slide-1:checked ~ .slider__holder & { 
+        transform: scale(1);
+      }
+    }
+    
+    &--2 {
+      #slide-2:checked ~ .slider__holder & { 
+        transform: scale(1);
+      }
+    }
+    
+    &--3 {
+      #slide-3:checked ~ .slider__holder & { 
+        transform: scale(1);
+      }
+    }
+    
+    &--4 {
+      #slide-4:checked ~ .slider__holder & { 
+        transform: scale(1);
+      }
+    }
+    
+    &--5 {
+      #slide-5:checked ~ .slider__holder & { 
+        transform: scale(1);
+      }
+    }
+  }
+  
+}
+```
+
+At this point, when you click on a card it will get 100% scaled and all the other ones will get smaller — 85% scaled.
+
+**Step 2 — Non Active Slides**
+
+Now, we'll have to define each slide position for when a certain slide is active. For example, when `#slide-1` is checked/active, `.slider__item--2` is 0.85 scaled and translated 100px, and `.slider__item--3` is 0.65 scaled, translated 210px and with `z-index: 0`.
+
+Imagine doing this for all the active slides — defining each card position when a certain slide is active. It would be plain crazy! Especially because there's a pattern: at certain active cards, some of the remainder ones behave the same way. For example, when card 1 is active, cards 4 and 5 assume the same position — behind card 3.
+
+<MediaImage src="/blog/css-only-slider/slider-positions-placeholder.jpg" alt="Diagram showing card positions for each active slide state" width={1200} height={630} caption="At certain active cards, some of the remainder ones behave the same way." />
+
+**Step 3 — Loop it!**
+
+To tackle this kind of madness, let's use SCSS loops. The following code does exactly the same but saves 90% of trouble!
+
+```scss
+.slider {
+
+  // .slider__item
+  &__item {
+    @include default-transition(all);
+
+    // Loop through .slider__item--(slide-number)
+    @for $slide from 1 through 5 {
+
+      // .slider__item--(slide-number)
+      &--#{$slide} {
+
+        // Within each .slider__item--(slide-number) loop through #slide-(number)
+        @for $i from 1 through 5 {
+
+          @if $i <= $slide - 3 {
+            // For the slides 3 or more positions on the right
+            #slide-#{$i}:checked ~ .slider__holder & {
+              z-index: -1;
+              opacity: 0;
+              transform: translateX(210px) scale(0.65);
+            }
+          }
+
+          @if $i == $slide - 2 {
+            // For the slide 2 positions on the right
+            #slide-#{$i}:checked ~ .slider__holder & {
+              z-index: 0;
+              transform: translateX(210px) scale(0.65);
+            }
+          }
+
+          @if $i == $slide - 1 {
+            // For the slide 1 position on the right
+            #slide-#{$i}:checked ~ .slider__holder & {
+              z-index: 1;
+              transform: translateX(100px) scale(0.85);
+            }
+          }
+
+          @if $i == $slide {
+            // For the active slide
+            #slide-#{$i}:checked ~ .slider__holder & {
+              position: relative;
+              z-index: 2;
+              transform: translate(0) scale(1);
+            }
+          }
+
+          @if $i == $slide + 1 {
+            // For the slide 1 position on the left
+            #slide-#{$i}:checked ~ .slider__holder & {
+              z-index: 1;
+              transform: translateX(-100px) scale(0.85);
+            }
+          }
+
+          @if $i == $slide + 2 {
+            // For the slide 2 positions on the left
+            #slide-#{$i}:checked ~ .slider__holder & {
+              z-index: 0;
+              transform: translateX(-210px) scale(0.65);
+            }
+          }
+
+          @if $i >= $slide + 3 {
+            // For the slides 3 or more positions on the left
+            #slide-#{$i}:checked ~ .slider__holder & {
+              z-index: -1;
+              opacity: 0;
+              transform: translateX(-210px) scale(0.65);
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
+```
+
+Let me explain:
+
+- We loop through each slide.
+- Inside each loop iteration, we loop again through all slides, validating if the current slide is 3 or more positions to the right, 2 positions to the right, 1 position to the right, is the current (active) slide, 1 position to the left, 2 positions to the left, or 3 or more positions to the left.
+
+This way, we can tackle all the possibilities and give them style accordingly.
+
+**Step 4 — Bullets**
+
+Now, we have to have a loop for the bullets as well:
+
+```scss
+.bullets {
+
+  // .bullets__item
+  &__item {
+    @include default-transition();
+
+    // Loops through all the bullet points
+    @for $bullet from 1 through 5 {
+      // .bullets__item--(bullet-number)
+      &--#{$bullet} {
+        // #slide-(number):checked ~ .bullets .bullets__item--(bullet-number)
+        #slide-#{$bullet}:checked ~ .bullets & {
+          background: $white;
+        }
+      }
+    }
+  }
+}
+```
+
+This is a much simpler loop since you just have to define the active one. Don't forget to style it.
+
+## Conclusion
+
+We just built a card slider that works on any browser and any device, highly performative (using GPU transitions) without the need of a single line of JavaScript.
+
+The same logic can be applied to build image sliders, tabbed content, and many more.
+
+We hope everything was easy to follow and if you have any questions or comments, drop us a line!
+
+**Update:** we've seen some comments regarding the pertinence of this tutorial and we just want to make clear that JavaScript isn't, by any mean, a bad choice to achieve something like this. In fact, JavaScript probably IS the way to go. This tutorial is intended to stretch the boundaries of CSS a bit and learn some cool things like Sass loops while we're at it.

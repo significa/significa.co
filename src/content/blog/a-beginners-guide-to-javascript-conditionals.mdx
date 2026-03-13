@@ -1,0 +1,257 @@
+---
+title: "A Beginner's Guide to JavaScript Conditionals."
+description: Learn and understand the different Javascript conditional functions - like if/else and switch/case - and how to use them in everyday scenarios.
+date: 2020-08-01
+author: Joaquim Rosa
+thumbnail: https://cdn.significa.co/blog/a-beginners-guide-to-javascript-conditionals/thumbnail.jpg
+tags:
+  - development
+  - learning
+seo:
+  metaTitle: "A Beginner's Guide to JavaScript Conditionals — Significa"
+  metaDescription: "Learn and understand the different Javascript conditional functions - like if/else and switch/case - and how to use them in everyday scenarios."
+  ogImage: https://cdn.significa.co/blog/a-beginners-guide-to-javascript-conditionals/og-image.jpg
+---
+
+Since the dawn of the digital era, programmers have been picking sides in several wars. We've got the Tabs vs Spaces, Emacs vs Vim, MacOS vs Windows vs Linux, white mode vs dark mode and many more. There's one that really caught my interest. It's one that I can't really pick a side on. The one I'll talk about is the war between the `if/else` statement and the `switch case` statement.
+
+There are a lot – and I really mean _a lot_ – of new Front-end Developers. People get the hang of HTML/CSS, they learn a bit of JavaScript, and they are hooked. There's just one problem. Usually, they tend to skip ahead a lot of steps while learning something. Front-end developers that didn't learn JavaScript in depth never truly learned how `if/else` and `switch` truly work and how they manage data. I once fitted into this category – I struggled over studying the subject and will try to make it simple for you, explaining as I wish someone had explained it to me.
+
+Both these statements in JavaScript are **constructs that generate a result depending on a condition**.
+
+## The if/else statement
+
+The if/else statement is the more newbie friendly one.
+
+```js
+function ifSearchFor(person) {
+  if (person === "Fred") {
+    return "Fred's here"
+  }
+  if (person === "Danilo") {
+    return "Danilo's here"
+  }
+  if (person === "Brandão") {
+    return "Brandão's here"
+  } else {
+    return "We are Significa"
+  }
+}
+
+ifSearchFor("Danilo")
+
+//Danilo's here
+```
+
+It takes a condition, returns a result and if we want, we can program the result we want to have in case that condition is false.
+
+## The switch case statement
+
+The switch case, unlike the if/else statement, looks a bit more complex.
+
+```js
+function switchSearchFor(person) {
+  switch (person) {
+    case "Fred":
+      return "Fred's here"
+    case "Danilo":
+      return "Danilo's here"
+    case "Brandão":
+      return "Brandão's here"
+    default:
+      return "We are Significa"
+  }
+}
+
+switchSearchFor("Danilo")
+
+//Danilo's here
+```
+
+In this case, we have a main condition that might have one of many values. The code that is run is the one inside the case that is found to be true.
+
+## Comparison
+
+Now, you might think, _"Ok, they are pretty much alike but the if/else looks easier to use..."_. That's true, and that's why newbies love if/else over the switch. If/else statements are pretty straightforward, easier to debug and better to use when the result of the condition is boolean (true or false).
+
+In terms of speed, if we compare running three conditions in both if/else and switch case, we can see that the if/else is faster.
+
+```js
+const iterations = 10000
+console.time("If/else")
+for (var i = 0; i < iterations; i++) {
+  ifSearchFor()
+}
+console.timeEnd("If/else")
+
+console.time("Switch case")
+for (var i = 0; i < iterations; i++) {
+  switchSearchFor()
+}
+console.timeEnd("Switch case")
+
+// If/else: 1.1689453125ms
+// Switch case: 1.181884765625ms
+```
+
+If/else is, in theory, and in most cases, faster than the switch (by some nanoseconds). _"Ok, if/else is always faster than the switch"_. Wait a minute! Let's increase the number of conditions in both functions:
+
+```js
+function ifSearchForBig(person) {
+  if (person === "Fred") {
+    return "Fred's here"
+  }
+  if (person === "Brandão") {
+    return "Brandão's here"
+  }
+  if (person === "João") {
+    return "João's here"
+  }
+  if (person === "Lisa") {
+    return "Lisa's here"
+  }
+  if (person === "Catarina") {
+    return "Catarina's here"
+  }
+  if (person === "Márcio") {
+    return "Márcio's here"
+  }
+  if (person === "Rui") {
+    return "Rui's here"
+  }
+  if (person === "Danilo") {
+    return "Danilo's here"
+  } else {
+    return "We are Significa"
+  }
+}
+
+function switchSearchForBig(person) {
+  switch (person) {
+    case "Fred":
+      return "Fred's here"
+    case "Brandão":
+      return "Brandão's here"
+    case "João":
+      return "João's here"
+    case "Lisa":
+      return "Lisa's here"
+    case "Catarina":
+      return "Catarina's here"
+    case "Danilo":
+      return "Danilo's here"
+    case "Márcio":
+      return "Márcio's here"
+    case "Rui":
+      return "Rui's here"
+    default:
+      return "We are Significa"
+  }
+}
+```
+
+Now, let's run the same type of test we did before and see which one is faster:
+
+```js
+const iterations = 10000
+console.time("If/else")
+for (var i = 0; i < iterations; i++) {
+  ifSearchForBig()
+}
+console.timeEnd("If/else")
+
+console.time("Switch case")
+for (var i = 0; i < iterations; i++) {
+  switchSearchForBig()
+}
+console.timeEnd("Switch case")
+
+// If/else: 3.76513671875ms
+// Switch case: 2.365966796875ms
+```
+
+Generally speaking, when if/else statements are used with more than three conditions, the code starts looking a bit more complex, difficult to manage and the whole function's speed is affected. The difference can be more noticeable, by all means, once the condition's logic gets even more complex. Therefore, the if/else statement will be a lot slower than a switch case. Crazy, right? Well, that's just the way the compiler reads and digests your code. But I'll get there in a sec.
+
+## What to use
+
+So, which one should I use? This question probably gets in your head every time you need to deal with a conditional.
+
+Honestly, I believe there's a place for both, as they both have their pros and cons. The objective is to use them on the right occasions.
+
+You should probably use if/else if:
+
+- The condition result is a boolean.
+- The condition has up to three results.
+- You have some results that return the same.
+
+On the other hand, you should use the switch case if you:
+
+- Have a big array of possible results for your condition.
+- Are working with Big Data.
+- Have a lot of results that return the same.
+
+So, all this sums up this eternal war for you. Have you picked a side? Don't do it yet!
+
+You see, there's a third champion that is sometimes forgotten when dealing with data flow control.
+
+## The third champion
+
+This third way of managing data flow introduces a concept that few JavaScript programmers know, which is **Branchless Programming**. This concept, highly known in languages like C, C++ and Java, is mostly known for its high-performance value. The objective is to create functions that don't use branches. In the case of `if/else` and `switch`, each condition is a new branch. We can stop using so many conditions by using an **Array Lookup**.
+
+The way data is controlled in `if/else` and `switch` situations is designated as "**linear search**". As the name suggests, the data follows a line and has several "checkpoints" that might dictate how it will flow next.
+
+The Array Lookup controls data in a way that can be called a "**specific search**".
+
+To do so, we need an array or an object, and, to call a specific result, we run an array result.
+
+```js
+const team = {
+  "Fred": "I'm Fred",
+  "Brandão": "I'm Brandão",
+  "João": "I'm João",
+  "Danilo": "I'm Danilo",
+  "Lisa": "I'm Lisa",
+  "Catarina": "I'm Catarina",
+  "Márcio": "I'm Márcio",
+  "Rui": "I'm Rui",
+  default: "We are Significa"
+}
+
+function arrayLookup(person) {
+  return team[person] || team.default
+}
+
+arrayLookup('Danilo')
+
+// I'm Danilo
+```
+
+Clean, less code and most importantly, it's super **easy to maintain**! If you have to add a team member by any chance, you just have to edit the object. The function is pure and never needs to be updated. But what about performance speed? Let's take it for another run and test the function speed using the console.
+
+```js
+const iterations = 10000
+
+console.time("Array Lookup")
+for (var i = 0; i < iterations; i++) {
+  arrayLookup("Danilo")
+}
+console.timeEnd("Array Lookup")
+
+// Array Lookup: 0.85791015625ms
+```
+
+It's way faster than the `if/else` and `switch case`. This happens because what it does 'behind the scenes' is to call for the result. In this method, we call for a specific result — instead of trying to search for someone by going through each option one by one, we can simply call for them directly. Using this in conditional functions will highly increase their performance. This way, you will skip the other conditions and go right to the one you need. It's a more **efficient way of writing code**.
+
+## Ending Statement
+
+As the web keeps evolving and our databases/structures keep growing, we need our code to be as fast as possible. A few milliseconds might look too small to care, but on the whole, these small changes can shorten the speed data is handled. By using the **array lookup** method, you will get faster results, and still keep your code simple and easy to understand. Basically, it's the best of if/else and switch case. Even though this is what I conclude with my search, there's no "right way" to do it.
+
+Every case requires a specific solution, and I hope that, when a problem comes up, you will cast this war aside and pick the right champion for that situation.
+
+## References
+
+- [High-Performance JavaScript](https://www.oreilly.com/library/view/high-performance-javascript/9781449382308/)
+- [Switch statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
+- [If...else statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)
+- [Difference between if/else and switch](https://www.geeksforgeeks.org/switch-vs-else/)
+- [Switch vs if/else](https://stackoverflow.com/questions/2922948/javascript-switch-vs-if-else-if-else)

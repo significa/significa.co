@@ -1,0 +1,113 @@
+---
+title: "Storyblok best practices."
+description: A structured organization of content on Storyblok has a positive impact on its users. To maximize this experience and avoid possible issues, here's a list of how to deliver a cleaner and more organized CMS.
+date: 2023-08-10
+author: Ricardo Reis
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+  - learning
+seo:
+  metaTitle: "Storyblok best practices — Significa"
+  metaDescription: "A structured organization of content on Storyblok has a positive impact on its users. To maximize this experience and avoid possible issues, here's a list of how to deliver a cleaner and more organized CMS."
+  ogImage: https://cdn.significa.co/blog/storyblok-best-practices/og-image.jpg
+---
+
+A structured organization of content on Storyblok has a positive impact on its users. To maximize this experience and avoid possible issues, I made a list of how to deliver a cleaner and more organized CMS.
+
+## Block preview
+
+In order to maintain a good presentation, and for better access, a good preview makes it much easier for the user.
+
+Let's picture creating a block with:
+
+- Image
+- Title
+- Description
+
+By default, Storyblok will only display the Title in the block's preview. What if we could make all the information available in that block in advance? It would be great, and it is, in fact, possible!
+
+<MediaImage src="/blog/storyblok-best-practices/block-preview-default.jpg" alt="Block preview default state in Storyblok" width={1200} height={630} caption="By default, Storyblok only shows the Title in the block preview." />
+
+<MediaImage src="/blog/storyblok-best-practices/block-preview-custom.jpg" alt="Block preview with custom template applied in Storyblok" width={1200} height={630} caption="With a custom preview template, image, title, and description are all visible at a glance." />
+
+To customise the preview, navigate to **Block Edit → Config** and use the following code:
+
+```handlebars
+{{image(options.icon.filename)/}}
+<div class="field-type-bloks__title">{{title}}</div>
+<div>{{description}}</div>
+```
+
+### Styling
+
+To help with styling, we can use some classes previously injected into Storyblok's CSS to make it easier to read.
+
+Here are some class examples:
+
+```
+field-type-bloks__title
+field-type-bloks__sub-title
+```
+
+Here's the whole CSS file provided by Storyblok: https://app.storyblok.com/css/index-latest.css
+
+### Display images
+
+```handlebars
+{{image(options.image.filename)/}}
+```
+
+### Documentation
+
+Preview templates use [Squirrelly](https://squirrelly.js.org/). You can check both their docs and [Storyblok's dedicated page](https://www.storyblok.com/) on this subject.
+
+## Create unique sub-blocks
+
+I advise against the reuse of sub-blocks as much as possible. At first, these may be advantageous to reuse, but in my experience, most of the time it turns out not to be such a great practice.
+
+In this context, sub-blocks represent blocks that are included in an array of another block.
+
+For example, a sub-block with the simple purpose of having a title and description can create doubts about its reusability. This is because although the content of the block does not change in the future, we may need to put the description as "not required" or "not translatable", or even limit the number of characters in the description of a certain block only. Therefore, my suggestion is to not reuse.
+
+However, some sub-blocks may make sense to reuse, such as a block destined to "Link", which is normally used by the entire CMS and always has the same objective.
+
+## Rename sub-block title
+
+If you follow the previous approach, you will end up with blocks with names like this:
+
+```
+<block-section>-<sub-block> → partners-section-logo
+```
+
+By default, the title of your sub-block will be `Partners Section Logo`. Although this is not incorrect, it has duplicate information from your parent block, and to avoid this, I recommend changing the name to just `Logo`.
+
+## Editable sub-blocks
+
+In order for the CMS's user (client) to be able to interact with the blocks, even with the sub-blocks, it is important not to forget to pass the necessary props from `StoryblokEditable`.
+
+It is very common to use props in the section block (primary), but the experience is much better if you add them to the sub-blocks. Imagine a block with more than 50 sub-blocks — if we add this functionality, it makes it much simpler to find and click directly on any element on the page, rather than scrolling through a long list.
+
+<MediaImage src="/blog/storyblok-best-practices/editable-sub-blocks.jpg" alt="Every sub-block element is clickable and editable directly on the page in Storyblok" width={1200} height={630} caption="With StoryblokEditable props on sub-blocks, every element on the page becomes directly clickable." />
+
+## Assets
+
+I don't have the perfect formula, and there may even be better solutions. However, my recommendation goes something like this.
+
+On the first level, I arrange folders by type of file/content. For example:
+
+- Icons
+- Images
+- Files (documents)
+- SEO Images
+
+Within these folders, if necessary, we can create subfolders to separate the contents better. Usually, there is more need in the images folder, which is where there will be more assets.
+
+Later, if we have a block that will fetch only a certain type of content, we must say that the `Default assets folder` is the folder in question to make it more obvious for the client to place new assets there.
+
+## Conclusion
+
+By implementing these practices, we are able to distribute a clean, organized and easy-to-maintain CMS. We also guarantee greater satisfaction on the part of our customers, providing more quality, professionalism and security.
+```
+
+Now creating the second file:

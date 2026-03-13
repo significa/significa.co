@@ -1,0 +1,212 @@
+---
+title: "Using WebSockets With Cookie-Based Authentication."
+description: WebSockets, by keeping a two-way communication channel, allow servers to continuously push information/content into the webpage.
+date: 2020-05-04
+author: Tiago Duarte
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+seo:
+  metaTitle: "Using WebSockets With Cookie-Based Authentication — Significa"
+  metaDescription: "WebSockets, by keeping a two-way communication channel, allow servers to continuously push information/content into the webpage."
+  ogImage: https://cdn.significa.co/blog/using-websockets-with-cookie-based-authentication/og-image.jpg
+---
+
+Before diving into the details of the problem lets first have a small recap about these two topics: WebSockets and cookie-based authentication.
+
+## WebSockets
+
+According to the MDN web docs:
+
+> The WebSocket API is an advanced technology that makes it possible to open a two-way interactive communication session between the user's browser and a server. With this API, you can send messages to a server and receive event-driven responses without having to poll the server for a reply.
+
+Long days are gone since webpages were just a mixture of text and hyperlinks.
+
+With the evolution of the world wide web, and computers & smartphones in general, we started seeing richer experiences. Ajax came into play and webpages started to interact with servers without the need for a full reload.
+
+Well, evolution never stops! And we are once again seeing webpages morphing into (near) real-time experiences.
+
+WebSockets, by keeping a two-way communication channel, allow servers to continuously push information/content into the webpage without the need for expensive mechanisms like long-polling.
+
+As a side note, these concepts also apply to mobile applications as well. It is just that it is funnier to look at the early infancy of the web and compare it to its current status.
+
+## Cookie-based authentication
+
+Cookie-based authentication has been the default, battle-tested method for handling user authentication for a long time.
+
+Cookie-based authentication is stateful. This means that a record or session is kept both server (optional) and client-side.
+
+The server can, optionally, keep track of active sessions. While on the front-end a cookie is created that holds a session identifier, thus the name cookie-based authentication.
+
+Let's look at the flow of traditional cookie-based authentication:
+
+- A user enters their login credentials
+- The server verifies the credentials are correct and creates a session which is then stored (e.g.: database)
+- A cookie with the session ID is placed in the user's browser
+- On subsequent requests, the session ID is verified against the database and if valid, the request is processed
+- Once a user logs out of the app, the session is destroyed both client-side and server-side
+
+<MediaImage src="/blog/using-websockets-with-cookie-based-authentication/cookie-auth-flow-placeholder.jpg" alt="Cookie-based authentication flow" width={1200} height={630} caption="Cookie-based authentication flow." />
+
+## Problem: How do we authenticate Elixir GraphQL subscriptions?
+
+In a new Elixir based backend we are working on, we created a GraphQL based API and used a cookie-based authentication.
+
+Nothing new up to this point and everything was going according to plan until we decided to provide a richer experience to the user by having the server push data directly to the page. As we were using GraphQL, subscriptions were the obvious choice.
+
+According to the documentation:
+
+> Subscriptions are a GraphQL feature that allows a server to send data to its clients when a specific event happens. Subscriptions are usually implemented with WebSockets. In that setup, the server maintains a steady connection to its subscribed client.
+
+GraphQL subscriptions on their own are quite easy to implement. But, in our case, the subscription could only be done if the user was authenticated, which was something we haven't done before.
+
+Like most developers, we started looking for solutions first on the Apollo docs, then on the [Craft GraphQL APIs in Elixir with Absinthe](https://pragprog.com/titles/wwgraphql/craft-graphql-apis-in-elixir-with-absinthe/) book.
+
+Problem was that both cases, as well as most of the articles on the web, were pointing towards token-based auth. Or so we thought, as we were blindly looking for explanations on how to do it using cookie-based authentication.
+
+## Solution
+
+We were missing something basic: Secure WebSockets (WSS) use a different protocol than regular based connections which use HTTPS.
+
+Although, in theory, one could use cookies, as all WebSocket connections start with an HTTP request (with an upgrade header on it), and the cookies for the domain you are connecting to, will be sent with that initial HTTP request to open the WebSocket. It is not recommended as WebSockets are not restrained by the same-origin policy.
+
+<MediaImage src="/blog/using-websockets-with-cookie-based-authentication/websocket-lifetime-placeholder.jpg" alt="Lifetime of a WebSocket connection" width={1200} height={630} caption="Lifetime of a WebSocket connection." />
+
+Using cookies could actually leave users vulnerable to cross-site scripting attacks (xss).
+
+There is a very good article on [Cross-Site WebSocket Hijacking (CSWSH)](https://christian-schneider.net/CrossSiteWebSocketHijacking.html) that lead us to a solution:
+
+> As you've already noticed, securing an application against Cross-Site WebSocket Hijacking attacks can be performed using two countermeasures:
+>
+> - Check the `Origin` header of the WebSocket handshake request on the server, since that header was designed to protect the server against attacker-initiated cross-site connections of victim browsers!
+> - Use session-individual random tokens (like CSRF-Tokens) on the handshake request and verify them on the server.
+
+Actually, this is exactly what Phoenix Live View does. When using live view there is an initial webpage render that contains a `<meta>` tag with a `csrf` token. We then read the token via javascript, and send it via params to create the WebSocket connection:
+
+```js
+import { Socket } from 'phoenix'
+import LiveSocket from 'phoenix_live_view'
+
+let csrfToken = document
+  .querySelector("meta[name='csrf-token']")
+  .getAttribute('content')
+
+let liveSocket = new LiveSocket('/live', Socket, {
+  params: { _csrf_token: csrfToken },
+})
+liveSocket.connect()
+```
+
+## Possible implementation
+
+So to prove our concept of "how to authenticate subscriptions in a cookie-based authentication system", we created a small based backend elixir project.
+
+The project is very simple, it contains a user table and all the necessary endpoints (`login`, `logout`, `register`, and `me`) to perform user registration and authentication via API using cookies with Absinthe GraphQL.
+
+We won't get into the details on how to fully setup and configure subscriptions on a project, you can follow the [official Absinthe subscription documentation](https://hexdocs.pm/absinthe/subscriptions.html) for that.
+
+Besides the usual setup we did the following:
+
+**1. Create a subscription** that expects the `user_count:#{user_id}` as a topic that we want to subscribe to:
+
+```elixir
+object :accounts_subscriptions do
+  field :accounts_user_count, :integer do
+    config(fn
+      _args, %{context: %{current_user: %{id: user_id}}} ->
+        {:ok, topic: "user_count:#{user_id}"}
+
+      _args, _context ->
+        {:error, Responses.get(:user_unauthorized)}
+    end)
+
+    resolve(fn value, _, _res ->
+      {:ok, value}
+    end)
+  end
+end
+```
+
+**2. Change the `me` endpoint**, to allows the user to get a `token` containing his `user_id` that will allow us to authenticate the subscription and make sure a user can only subscribe to its own data:
+
+```elixir
+def me(_, _, %{context: %{current_user: user}}),
+    do:
+      {:ok,
+       %{
+         user: user,
+         token: Phoenix.Token.sign(PhoenixAbsintheAuthenticatedSubscriptionsWeb.Endpoint, "user sesion", user.id)
+       }}
+```
+
+**3. Create a `handle_connect` function** on the socket. The function expects a token to be sent, validates that the `user_id` contained inside the token belongs to the current user so that the current user can only subscribe to data from himself:
+
+```elixir
+def connect(%{"token" => token}, socket) do
+  with {:ok, user_id} <-
+         Phoenix.Token.verify(PhoenixAbsintheAuthenticatedSubscriptionsWeb.Endpoint, "user sesion", token,
+           max_age: 86_400
+         ),
+       %Accounts.User{} = current_user <- Accounts.lookup_user(user_id) do
+    socket =
+      Absinthe.Phoenix.Socket.put_options(socket,
+        context: %{
+          current_user: current_user
+        }
+      )
+
+    {:ok, socket}
+  else
+    _ ->
+      :error
+  end
+end
+
+def connect(_, _), do: :error
+```
+
+**4. For the sake of this example** and to test our solution, we created a Worker that every 10 seconds publishes to all user topic possibles a random number:
+
+```elixir
+def handle_info(:reschedule, state) do
+  Accounts.list_users()
+  |> Enum.map(fn %{id: id} ->
+    Absinthe.Subscription.publish(PhoenixAbsintheAuthenticatedSubscriptionsWeb.Endpoint, Enum.random(1..10),
+      accounts_user_count: "user_count:#{id}"
+    )
+  end)
+
+  schedule_user_worker()
+
+  {:noreply, state}
+end
+```
+
+To test the solution you can follow the readme:
+
+- Install the dependencies with `mix deps.get`
+- Create and migrate the database with `mix ecto.setup`
+- Start the Phoenix server with `iex -S mix phx.server`
+- Open the GraphiQL Interface and import the workspace
+- Run the `mutation - accountsLogin`
+- Run the `query - accountsMe` and copy the token returned
+- Change the ws url token on `subscription - accountsUserCount` and run the query
+- Verify `accountsUserCount` value changing every 10 seconds on the result panel
+
+## Final notes.
+
+The problem with the csrf token solution is that the token gets sent as a query string value when the WebSocket handshake takes place.
+
+We are not worried about man-in-the-middle attacks as the connection is made securely by using `wss`.
+
+The problem is that query string values are often stored in log files on servers and that potentially means we have a log file full of authentication tokens that can be reused, which is a security risk.
+
+Please do not forget to check your loggers and take measures so that they do not store these parameters or even these requests at all.
+
+## Sources.
+
+- [The WebSocket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+- [WebSocket RFC](https://datatracker.ietf.org/doc/html/rfc6455)
+- [Cookies vs. Tokens: The Definitive Guide](https://auth0.com/blog/cookies-vs-tokens-definitive-guide/)
+- [Accessing cookies in Phoenix.Socket connect](https://elixirforum.com/t/accessing-cookies-in-phoenix-socket-connect/6761)
+- [Cross-Site WebSocket Hijacking (CSWSH)](https://christian-schneider.net/CrossSiteWebSocketHijacking.html)

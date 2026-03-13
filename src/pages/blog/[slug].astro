@@ -237,9 +237,11 @@ const formattedDate = post.data.date.toLocaleDateString("en-US", {
   .blog-hero img {
     width: 100%;
     height: auto;
+    max-height: 480px;
+    object-fit: cover;
     display: block;
     border-radius: 0.5rem;
-    max-width: var(--max-width);
+    max-width: var(--max-width-narrow);
     margin: 0 auto;
   }
 

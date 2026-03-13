@@ -1,0 +1,153 @@
+---
+title: "Automating releases for UI Kits."
+description: How to automate release logs and builds for your style guides.
+date: 2019-07-03
+author: Isabel Sá
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - design
+  - development
+seo:
+  metaTitle: "Automating releases for UI Kits — Significa"
+  metaDescription: "How to automate release logs and builds for your style guides using conventional commits, pre-commit hooks, and semantic-release."
+  ogImage: https://cdn.significa.co/blog/automating-releases-for-ui-kits/og-image.jpg
+---
+
+As of lately design systems have been all the rage and the benefits of producing one seem to be clear. Buying into a system might seem like a straight forward decision, but keeping everyone in the loop of changes is exponentially more complicated. If you work on the development end of any type of component library you know the silent difficulties of building and publishing processes.
+
+The boring parts are a crucial part of the process. If you maintain projects that rely on versioning you'll probably find yourself repeatedly doing the same task. And while [semver](https://semver.org/) as general practise is great, it's difficult to enforce and to not decide on versions arbitrarily. When the time comes to inform stakeholders of choices and implementation details one month has gone by, and you've forgotten about most of the features and fixes implemented. And what good is a system that no one remembers?
+
+> "What's the status on this component? Did we ship this already? When did we start getting this Type Error?"
+
+This article covers a small part of that process, giving you a few practical tips on how to maintain a clear log and automatically build changes. This method can be applied to anything, from UI Kits, to packages and apps.
+
+In order to create this flow we'll go through a few steps:
+
+- Creating good commit messages — using conventional commits.
+- Enforcing good practises — with pre-commit hooks.
+- Creating releases — our release cookbook.
+
+## Creating good commit messages
+
+The first step is to follow a commit convention so you can generate your changelog without any manual work. Your contributions will be grouped by commit type and will look a bit like this `type(scope): short description for commit` with the type ranging from `FEAT` to `TEST`, determining what type of changes went into your code. To generate a template for commit messages we'll be using [commitizen's CLI](https://github.com/commitizen/cz-cli).
+
+Since we're going to want this to be used on all of your projects right out of the gate we're going to do some global installation with `npm install -g commitizen`.
+
+Every project requires different things, and commit messages are part of that. So depending on the format you need you can install one of several adapters. From [emoji filled commit messages](https://github.com/ngryman/cz-emoji) to [JIRA integrations](https://github.com/digitalroute/cz-conventional-changelog-for-jira). For the purposes of this guide, we'll use `cz-conventional-changelog`. We'll now initiate the adapter.
+
+```bash
+commitizen init cz-conventional-changelog --save-dev --save-exact
+```
+
+Then create a `.czrc` on your root folder (`~`) with the following content:
+
+```json
+{ "path": "cz-conventional-changelog" }
+```
+
+Now, every time you're in a git repository if you use the command `git cz` the CLI will show up, asking you to catalogue your commit according to the type of changes you made.
+
+<MediaImage src="/blog/automating-releases-for-ui-kits/commitizen-cli-placeholder.jpg" alt="Commitizen CLI prompt showing commit type selection" width={1200} height={630} caption="The commitizen CLI guides you through structuring your commit message." />
+
+## Enforcing good practises
+
+This is all great, but it won't add up to much if you write `DID_STUFF` as the scope of your change. That's certainly invalid and won't help much when generating your logs. To solve this problem we'll put into place a commit validator and a pre-commit hook which will validate our commit messages before they go through. To create the hook we'll use [commitlint](https://commitlint.js.org/) and [husky](https://typicode.github.io/husky/).
+
+Add the extra layer of security to be run on pre-commit with `npm install -g @commitlint/cli @commitlint/config-conventional`. And now your pre-commit checker with `npm install husky --save-dev`.
+
+Create a `.huskyrc` file with the commitlint reference on `"commit-msg"`.
+
+```json
+{
+  "hooks": {
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+    "pre-commit": "npm run lint"
+  }
+}
+```
+
+And create a configuration file to hold your preferred tests, in any of the following formats:
+
+- `commitlint.config.js`
+- `.commitlintrc.js` / `.commitlintrc.json`
+- `.commitlintrc.yml`
+
+Then add a reference to the adapter you chose on the first step:
+
+```js
+module.exports = { extends: ["@commitlint/config-conventional"] };
+```
+
+This will result in a verification triggering the `husky > commit-msg` validation, which might either pass or return a message with the problem at fault. Bear in mind that if you use flags such as `--no-verify` this validation won't occur.
+
+<MediaImage src="/blog/automating-releases-for-ui-kits/commitlint-validation-placeholder.jpg" alt="Commitlint validation output in the terminal" width={1200} height={630} caption="Commitlint catches invalid commit messages before they go through." />
+
+## Creating releases
+
+With the message formatting sorted we can now focus on the actual bundling and releasing of your UI. We'll now create a script to be executed on your CI (or locally with `dry-mode` environment), that'll look at your commit history and do all the magic. We're going to create a script with the dependency in your `package.json`:
+
+```json
+{
+  "name": "automation-for-ui-kits",
+  "version": "0.1.0",
+  "main": "dist/bundle.js",
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/automation/automation-for-ui-kits"
+  },
+  "scripts": {
+    "build": "YOUR_METHOD_OF_CHOICE",
+    "release": "semantic-release",
+    "lint": "eslint src/ --fix"
+  },
+  "devDependencies": {
+    "@semantic-release/commit-analyzer": "^6.1.0",
+    "@semantic-release/git": "^7.0.8",
+    "@semantic-release/github": "^5.2.10",
+    "@semantic-release/release-notes-generator": "^7.1.4",
+    "semantic-release": "^15.13.12"
+  }
+}
+```
+
+Now we'll create our recipe for releases. These will vary depending on the project, technologies and implementation details but our core recipe revolves around these plugins:
+
+```json
+{
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    ["@semantic-release/github", {
+      "assets": [
+        {"path": "dist/bundle.js", "label": "JS distribution"}
+      ]
+    }],
+    ["@semantic-release/git", {
+      "assets": ["dist/**/*.{js,css}"],
+      "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+    }]
+  ]
+}
+```
+
+## Why all the @semantic-release plugins?
+
+**`/COMMIT-ANALYZER`**: This is what powers all of the release, and this is why our commits must be formatted exactly as specified by the chosen convention. This will ensure that certain `types` will be associated with a `patch`, `minor` or `major` release. This will be visible in your terminal or the virtual environment you're running.
+
+<MediaImage src="/blog/automating-releases-for-ui-kits/commit-analyzer-placeholder.jpg" alt="Commit analyzer output showing release type determination" width={1200} height={630} caption="The commit analyzer determines whether a release is a patch, minor, or major bump." />
+
+**`/RELEASE-NOTES-GENERATOR`**: What generates your changelog based on the conventional commit standard defined above, resulting in a release log grouped by type of change.
+
+<MediaImage src="/blog/automating-releases-for-ui-kits/release-notes-placeholder.jpg" alt="Generated release notes changelog example" width={1200} height={630} caption="Auto-generated release notes based on your commit history." />
+
+**`/GIT` and `/GITHUB`**: This is the final part of the configuration enabling you to push commits with the bundled code to your folder of choice, with the format defined on the `.releaserc`. It'll also release, comment and tag your pull requests and issues. Magical isn't it?
+
+## Conclusion
+
+Like most automation scripts the configuration is cumbersome, but the time and stability you'll gain in the long run is worth the effort. Since we're using computers we might as well use that to our advantage and do things in a smart and efficient way.
+
+All the examples here were quickly built for the purpose of this article and should be adapted to your project's reality, so feel free to adapt your build scripts and the message conventions to the format that'll best suit your needs.
+
+<MediaImage src="/blog/automating-releases-for-ui-kits/conclusion-placeholder.jpg" alt="Overview of the full automated release pipeline" width={1200} height={630} caption="The full pipeline: conventional commits → commitlint → semantic-release → changelog." />

@@ -4,6 +4,7 @@ import ComparisonBlock from "./comparison-block.astro";
 import Metrics from "./metrics.astro";
 import ProjectCrossSell from "./project-cross-sell.astro";
 import FAQSection from "./faq-section.astro";
+import Callout from "./callout.astro";
 
 /**
  * MDX component registry.
@@ -23,4 +24,5 @@ export const mdxComponents = {
   Metrics,
   ProjectCrossSell,
   FAQSection,
+  Callout,
 };

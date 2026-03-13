@@ -305,25 +305,64 @@ That's what made this project work… and that's what I'll carry into the next u
 
 ### Links
 
-**Internal links:**
+#### Internal links
+
+Use root-relative paths (no domain) for anything on significa.co:
+
 ```mdx
-[related project](/projects/mishmash)
+[related blog post](/blog/designing-complex-products)
+[a project case study](/projects/mishmash)
 [our services](/services)
+[handbook page](/handbook/how-we-build-software)
 ```
 
-**External links:**
+**Rules:**
+- Always use root-relative paths, never full `https://significa.co/...` URLs
+- The path must match an existing page — test with `pnpm dev` before publishing
+- If the target page hasn't been migrated yet, do **not** link to it (see Pending Links below)
+
+#### External links
+
+Use full `https://` URLs for anything outside significa.co:
+
 ```mdx
-[external resource](https://example.com)
+[CultureAmp](https://www.cultureamp.com)
+[Ladies, Wine & Design](https://ladieswinedesign.com/)
+[project documentation](https://github.com/significa/app-distribution-server)
 ```
 
-**Project references:**
+**Rules:**
+- Always use `https://` — never `http://`
+- Link to the most specific, canonical URL (e.g. a specific docs page rather than the homepage)
+- Do **not** link to `significa.co` with a full URL — use a root-relative path instead
+
+#### Project references (frontmatter)
+
+Cross-sell related projects via the `relatedProjects` frontmatter field:
+
 ```yaml
 relatedProjects:
   - mishmash
   - planit-app
 ```
 
-Build validates these at compile time. Typos break the build.
+These are validated by Astro's `reference()` at build time. Typos or unrecognised slugs **break the build**, not production — which is intentional.
+
+#### Pending links (migration scenario)
+
+When migrating older articles, the original may reference other blog posts that haven't been migrated yet. **Do not link to a 404.**
+
+Pattern to follow:
+1. Check if the target article exists: `pnpm dev` and visit the URL, or look in `src/content/blog/`.
+2. If it exists → use the internal link normally.
+3. If it does **not** exist yet → keep the anchor text as plain text, without a link. Add an inline comment so it can be wired up later:
+
+```mdx
+{/* TODO: link to /blog/target-slug once migrated */}
+Keen to dive deeper? Take a look at our journey towards happiness in this article.
+```
+
+4. Never link to the old Storyblok-powered site (`significa.co` URLs that 404 in the new Astro build) as a fallback. A missing link is better than a broken one.
 
 ### Images via CDN
 

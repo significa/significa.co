@@ -1,0 +1,110 @@
+---
+title: "Enabling PostgreSQL cron jobs on AWS RDS."
+description: A database cron job is a process for scheduling a procedure or command on your database to automate repetitive tasks. By default, cron jobs are disabled on PostgreSQL RDS instances — here's how to enable them.
+date: 2021-11-04
+author: Nuno Marinho
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+  - learning
+seo:
+  metaTitle: "Enabling PostgreSQL cron jobs on AWS RDS — Significa"
+  metaDescription: "By default, cron jobs are disabled on PostgreSQL RDS instances. Here's how to enable them on the AWS RDS console and start scheduling repetitive database tasks."
+  ogImage: https://cdn.significa.co/blog/enabling-postgresql-cron-jobs-on-aws-rds/og-image.jpg
+---
+
+A database cron job is a process for scheduling a procedure or command on your database to automate repetitive tasks. In our case, we needed to bulk delete a huge set of records, and cron jobs came in handy.
+
+By default, cron jobs are disabled on PostgreSQL RDS instances, so to use them on our database we need to enable them on the Amazon Web Services (AWS) RDS console.
+
+## Add `pg_cron` to your database on AWS
+
+Let's configure the `pg_cron` extension on our AWS Console for the database we want to use cron jobs on.
+
+### Create a parameter group
+
+To add the `pg_cron` extension, we need to create a parameter group — a copy of the default parameter group — and add the desired extension to it.
+
+Access your AWS RDS Console and open the **Parameter Groups** tab on the left panel.
+
+<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/parameter-groups-tab.jpg" alt="AWS RDS Console with the Parameter Groups tab highlighted in the left panel" width={1200} height={630} />
+
+Click on **Create parameter group** and fill in the details.
+
+<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/create-parameter-group.jpg" alt="Create parameter group form in AWS RDS Console" width={1200} height={630} />
+
+### Edit parameter group parameters
+
+Access your parameter group and search for the `shared_preload_libraries` parameter. You can use the search bar at the top of the parameters list to find it quickly.
+
+<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/shared-preload-libraries-search.jpg" alt="Searching for shared_preload_libraries in the parameter group editor" width={1200} height={630} />
+
+Add the value `pg_cron` to the `shared_preload_libraries` parameter. Apply the changes — it should look something like this.
+
+<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/shared-preload-libraries-value.jpg" alt="shared_preload_libraries parameter with pg_cron value applied" width={1200} height={630} />
+
+Now, in the same parameter group, find the field `cron.database_name` and change it to the name of your database.
+
+<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/cron-database-name.jpg" alt="cron.database_name field set to the target database name" width={1200} height={630} />
+
+Save the changes. Now let's jump to our DB instances.
+
+### Add parameter group to our DB instance
+
+Access the DB Instance of the database you want to change, and click on the **Configuration** tab.
+
+<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/db-instance-configuration-tab.jpg" alt="DB Instance configuration tab in AWS RDS Console" width={1200} height={630} />
+
+Scroll down and you'll find that the Parameter Group for that instance is not the one we just created. Normally, if you've never edited parameter groups before, yours should be `default-postgres{POSTGRES_VERSION}` — in my case, `default-postgres12`.
+
+We'll change the parameter group to the one we just created. Click on **Modify** in the top right corner, then scroll down until you find where to change the DB parameter group.
+
+<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/modify-db-parameter-group.jpg" alt="Changing the DB parameter group in the Modify DB Instance screen" width={1200} height={630} />
+
+Save the changes by pressing **Continue** at the end of the page. You'll be asked to confirm the fields you're changing in the Summary of modifications. Choose whether to apply the changes right away or schedule a maintenance window.
+
+> ⚠️ **Warning:** Applying changes immediately will trigger a database reboot and cause downtime. Plan accordingly.
+
+After confirming, click on **Modify DB Instance** and you're good to go!
+
+### Reboot database instance
+
+If you chose to apply the changes immediately, go to your DB Instance, click on **Actions**, and select **Reboot**.
+
+<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/reboot-db-instance.jpg" alt="Rebooting the DB instance from the Actions menu in AWS RDS Console" width={1200} height={630} />
+
+Congratulations — you've successfully installed `pg_cron` on your database instance! Here's a recap of what we've covered so far:
+
+- How to create parameter groups
+- How to edit parameter group fields
+- How to change parameter groups on a database instance on RDS
+
+Now let's look at some commands you can run on your database with `cron`.
+
+## Working with `cron` on the database
+
+### Enable `pg_cron` extension
+
+Before you can work with cron jobs, you need to tell your database to load the extension. Run the following command:
+
+```sql
+/* Enable pg_cron extension */
+CREATE EXTENSION pg_cron;
+```
+
+### Example job you can do with `pg_cron`
+
+Imagine you have an `events` table that gets flooded with new records every millisecond. That table will accumulate a huge amount of data very fast. To keep it manageable, you can schedule a cron job to delete all events every 5 minutes:
+
+```sql
+/* Delete all events every 5 minutes */
+SELECT cron.schedule('5 * * * *', $$DELETE FROM events$$);
+```
+
+## Useful commands
+
+- List all cron jobs → `SELECT * FROM cron.job;`
+- List run details → `SELECT jobid, username, status, return_message, start_time FROM cron.job_run_details;`
+- Stop/delete a job → `SELECT cron.unschedule(job_id)`
+
+Hope this article helps you in your daily work — and thank you for following along to the end!

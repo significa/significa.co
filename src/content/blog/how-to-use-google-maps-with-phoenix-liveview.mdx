@@ -1,0 +1,265 @@
+---
+title: "How to use Google Maps with Phoenix LiveView."
+description: We have been building a platform where using LiveView made a lot of sense. Here's how we integrated Google Maps with Phoenix LiveView for a real-time live map experience.
+date: 2020-07-30
+author: Tiago Duarte
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+  - learning
+seo:
+  metaTitle: "How to use Google Maps with Phoenix LiveView — Significa"
+  metaDescription: "We have been building a platform where using LiveView made a lot of sense. Here's how we integrated Google Maps with Phoenix LiveView for a real-time live map experience."
+  ogImage: https://cdn.significa.co/blog/how-to-use-google-maps-with-phoenix-liveview/og-image.jpg
+---
+
+Howdy dear reader, hope you are safe and healthy during these troubled times. During the past 3 years, we have developed a few projects using the Phoenix Framework for Elixir. And as soon as LiveView was announced, we could not wait to use it!
+
+We have been building a platform where using LiveView made a lot of sense since we wanted some of our features to use an interface that could be updated in real-time. For example, we wanted administrators of the platform to be able to see, on a map, the sightings that the users of the app were reporting on certain places as they happen. Let's call it a live map.
+
+## Understanding the technology.
+
+Before digging into the problem, let's take a look at the technologies we are using. We are assuming that you are familiar with Elixir and Phoenix.
+
+### Phoenix LiveView
+
+According to the documentation:
+
+> LiveView provides rich, real-time user experiences with server-rendered HTML. The LiveView programming model is declarative: instead of saying "once event X happens, change Y on the page", events in LiveView are regular messages which may cause changes to its state. Once the state changes, LiveView will re-render the relevant parts of its HTML template and push it to the browser, (…) LiveView does the hard work of tracking changes and sending the relevant diffs to the browser.
+
+### Google Maps for JavaScript
+
+Once again, according to the documentation:
+
+> The Maps JavaScript API lets you customise maps with your own content and imagery for display on web pages and mobile devices.
+
+For you to get up and running and have a page that displays a map centered in Sydney, you just need to do the following:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      (function(exports) {
+        "use strict";
+
+        function initMap() {
+          exports.map = new google.maps.Map(document.getElementById("map"), {
+            center: {
+              lat: -34.397,
+              lng: 150.644
+            },
+            zoom: 8
+          });
+        }
+
+        exports.initMap = initMap;
+      })((this.window = this.window || {}));
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>
+```
+
+## Challenge
+
+In our live map, we will need a bit more than just showing a static map. We will need the map also to show markers, indicating where the users are reporting the sightings.
+
+Also, the markers need to show up as soon as users report them. You might be thinking: "well, we have LiveView, so it should be easy". Let's try it out and see for ourselves.
+
+## Solution
+
+We have prepared a [repository](https://github.com/significa/live-view-google-maps) that you can use and jump to specific parts of the article, to avoid doing the boilerplate for yourself.
+
+### a) Initial Setup
+
+The initial setup contains the LiveView automatically generated project. We opted to use the `--no-ecto` option when generating the project as we won't be needing Ecto.
+
+### b) Adding the map to a LiveView page
+
+We simply added the `HTML` + `CSS` + `JS` code described in the section above for the Google Map to show up.
+
+Please don't forget to add your Google Maps API key to the project if you want to see it working.
+
+If you now run the project (`mix phx.server`), you will see that the map shows for a brief moment, disappearing right after. Where did the map go?
+
+### c) Keeping the map on the LiveView page
+
+To understand our problem, we first need to understand the life-cycle of a LiveView:
+
+> A LiveView begins as a regular HTTP request and HTML response, and then upgrades to a stateful view on client connect, guaranteeing a regular HTML page even if JavaScript is disabled. Any time a stateful view changes or updates its socket assigns, it is automatically re-rendered and the updates are pushed to the client.
+>
+> (…)
+>
+> After rendering the static page, LiveView connects from the client to the server where stateful views are spawned to push rendered updates to the browser, and receive client events via `phx-` bindings. Just like the first rendering, `mount/3` is invoked with params, session, and socket state, where mount assigns values for rendering.
+
+In our case, what is happening is that:
+
+- There is an initial page render;
+- The Google Maps script is loaded and calls our `initMap` function;
+- The `initMap` function initialises the map. Which causes the `div` with the `id="map"` to be filled with all the necessary markup to represent the map;
+- At the same time, the webpage connects to the LiveView on the server. And as the documentation states: "Just like the first rendering, `mount/3` is invoked with params, session, and socket state, where mount assigns values for rendering.";
+- The LiveView (JavaScript) on the browser side, then does the diffing of what should the HTML be and what it is now;
+- And, surprise, surprise! The current HTML contains the map markup, which wasn't there when the page initially rendered, and it also wasn't added by the LiveView. As such the LiveView on the client-side reverts that change.
+
+The good part is that the creators of LiveView thought about these cases and give you the possibility to control the patching mechanism:
+
+> A container can be marked with `phx-update`, allowing the DOM patch operations to avoid updating or removing portions of the LiveView, or to append or prepend the updates rather than replacing the existing contents. This is useful for client-side interop with existing libraries that do their own DOM operations.
+>
+> (…)
+>
+> The "ignore" behaviour is frequently used when you need to integrate with another JS library.
+
+In practical terms, we only need to add a `phx-update="ignore"` to the map container, to inform LiveView that the contents of that container are controlled by us. You should now see the following result:
+
+<MediaImage src="/blog/how-to-use-google-maps-with-phoenix-liveview/google-map-liveview-placeholder.jpg" alt="Google Map rendered in a LiveView page." width={1200} height={630} caption="Google Map rendered in a LiveView page." />
+
+### d) How to dynamically push elements to the map from the server.
+
+Only the last step is missing: sightings need to show up as soon as users report them.
+
+In order to simulate a sighting being reported by a user, stored in the database and then broadcasted to other users, we added a button to randomly generate one. This button sends an event to the server as if a user actually reported a sighting. The LiveView then takes care of informing the browser that we have a new sighting.
+
+The end result should look something like this:
+
+<MediaImage src="/blog/how-to-use-google-maps-with-phoenix-liveview/live-map-markers-placeholder.jpg" alt="Adding server side generated markers to the live map." width={1200} height={630} caption="Adding server side generated markers to the live map." />
+
+To sum up the important parts, what we did was:
+
+#### d.1) Create a JavaScript hook
+
+```js
+Hooks.MapSightingsHandler = {
+  mounted() {
+    const handleNewSightingFunction = ({ sighting }) => {
+      var markerPosition = { lat: sighting.latitude, lng: sighting.longitude }
+
+      const marker = new google.maps.Marker({
+        position: markerPosition,
+        animation: google.maps.Animation.DROP,
+      })
+
+      // To add the marker to the map, call setMap();
+      marker.setMap(window.map)
+    }
+
+    // handle new sightings as they show up
+    this.handleEvent('new_sighting', handleNewSightingFunction)
+  },
+}
+
+let csrfToken = document
+  .querySelector("meta[name='csrf-token']")
+  .getAttribute('content')
+let liveSocket = new LiveSocket('/live', Socket, {
+  hooks: Hooks,
+  params: { _csrf_token: csrfToken },
+})
+```
+
+We are making use of the `handleEvent` / `pushEvent` feature of hooks. This method is available since LiveView version 0.14:
+
+> The hook can push events to the LiveView by using the `pushEvent` function and receive a reply from the server via a `{:reply, map, socket}` return value. The reply payload will be passed to the optional pushEvent response callback.
+>
+> Communication with the hook from the server can be done by reading data attributes on the hook element, or by using `push_event` on the server and `handleEvent` on the client.
+
+#### d.2) Use the JavaScript hook on the map markup
+
+In order to use / attach the newly created hook we just had to do the following:
+
+```html
+<section class="row" phx-update="ignore" phx-hook="MapSightingsHandler">
+```
+
+As soon as the element is mounted and the LiveView GenServer pushes an event with the name `new_sighting`, the `handleEvent` callback is triggered and a map marker is added.
+
+#### d.3) Update the LiveView GenServer to push the events/sightings
+
+The server part that actually receives orders to create a random sighting, via an event sent by a `phx-click="add_random_sighting"` on a button for the sake of simulation, and pushes the event to the browser's socket:
+
+```elixir
+defmodule LiveViewGoogleMapsWeb.PageLive do
+  use LiveViewGoogleMapsWeb, :live_view
+
+  @impl true
+  def mount(_params, _session, socket) do
+    {:ok, socket}
+  end
+
+  @impl true
+  def handle_event("add_random_sighting", _params, socket) do
+    random_sighting = generate_random_sighting()
+
+    # inform the browser / client that there is a new sighting
+    {:noreply, push_event(socket, "new_sighting", %{sighting: random_sighting})}
+  end
+
+  defp generate_random_sighting() do
+    # https://developers.google.com/maps/documentation/javascript/reference/coordinates
+    # Latitude ranges between -90 and 90 degrees, inclusive.
+    # Longitude ranges between -180 and 180 degrees, inclusive
+    %{
+      latitude: Enum.random(-90..90),
+      longitude: Enum.random(-180..180)
+    }
+  end
+end
+```
+
+If you apply all the changes and run the code you should now be able to randomly create markers on your map.
+
+## Improvements
+
+We had to cut some corners for the sake of keeping the article focused on topic. There are a few points that we will probably address in another article:
+
+#### How to display on the map the already stored sightings?
+
+One might think "this seems very easy, on the first `mount` we could send / schedule a `pushEvent`!".
+
+The problem here is that the Google Map script might be rendered before or after we call that `pushEvent`. Meaning that if the script is loaded after, the `handleEvent` function that creates markers won't have access to the map and as such it will fail and won't render the markers!
+
+#### Properly store and broadcast sightings creation, updates and deletions?
+
+We only handle sightings additions and we don't even store them on a database nor broadcast it to all users.
+
+How would one receive a new sighting, store it in a database and then broadcast this information to all users?
+
+#### How to better structure the code?
+
+In order to keep the article focused, once again we decided to go for the shortest solution and focus on the technology itself.
+
+For instance, we are exposing the `map` object to the hook by adding it directly to the `window`. Please don't do this in production!
+
+Feel free to tackle the problems mentioned and do pull requests with your suggested solutions. We will be very happy to learn from you as well!
+
+## Conclusion
+
+We are very happy with the solutions and results we are achieving with LiveView. Please keep in mind that, as with any other tool, it has its own use cases and you should first understand the problem you have at hand before committing to it.
+
+The biggest downside we still have with LiveView is the code structuring / organisation. We haven't yet found a structure that we feel 100% confident with, so we are continuing to iterate until we get there.
+
+The community is already working on solutions for this, and there are already libraries like [Surface](https://surface-ui.org/) that address this issue. Surface is on our "test / research / learning" list and we will certainly give it a try.
+
+Also LiveView is still in an alpha stage. We have to keep upgrading the dependency quite often, as new releases with breaking changes are made available. The bright side of this is that it keeps getting better with every new release!

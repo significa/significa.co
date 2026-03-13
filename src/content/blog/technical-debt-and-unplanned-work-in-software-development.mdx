@@ -1,0 +1,83 @@
+---
+title: "Technical debt and unplanned work in software development."
+description: Technical debt reflects the implied cost of additional rework caused by choosing an easy limited solution now instead of using a better approach that would take longer to develop.
+date: 2023-04-21
+author: Tiago Duarte
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+  - strategy
+seo:
+  metaTitle: "Technical debt and unplanned work in software development — Significa"
+  metaDescription: "Technical debt reflects the implied cost of additional rework caused by choosing an easy limited solution now instead of using a better approach that would take longer to develop."
+  ogImage: https://cdn.significa.co/blog/technical-debt-and-unplanned-work-in-software-development/og-image.jpg
+---
+
+If you have ever been part of a software development project, chances are that you have experienced the consequences of technical debt.
+
+Technical debt is a software development concept that reflects the implied cost of additional rework caused by choosing an easy limited solution now instead of pursuing a more resilient solution that would take longer to develop — in other words, technical debt represents the tradeoff between the short-term benefits of rapid delivery and long-term value.
+
+## Understanding technical debt
+
+The truth is taking shortcuts to expedite the delivery of features in the short term incurs technical debt.
+
+Similar to monetary debt, if technical debt is not repaid, it can accumulate "interest", making it harder to implement changes. This causes additional costs and rework over the software lifecycle.
+
+Understanding and managing technical debt is an important goal for many teams, and Significa is no exception. Technical debt can cause many side effects, and unplanned work is one of them. Before digging into the relationship between both topics, let's distinguish between planned and unplanned work.
+
+Planned work is what was planned to be done — usually, very detailed and specific tasks that take into account the resources available (e.g. time), while unplanned work is what prevents you from doing the actual work you had planned on doing.
+
+In this article, we are going to approach the relationship between technical debt and unplanned work and suggest possible solutions to tackle and reduce technical debt.
+
+## Technical debt and unplanned work
+
+One of the biggest issues of technical debt is that it will ensure that the only work that gets done is unplanned work.
+
+You may think this is an over-statement, but have you questioned how many times a proof of concept ended up in production with you having to interrupt what you had planned to do because it wasn't working anymore?
+
+How many times does a quick and dirty code patch end up not being refactored, causing failures in the system and making you pause your work to fix it? Ultimately, these quick and dirty fixes lead to unplanned work that forces you to postpone the work you had planned to do.
+
+Unplanned work has another side effect: when you spend all your time firefighting, there is little time or energy left for planning.
+
+When all you do is react, there's not enough time to do the hard mental work of figuring out whether you can accept new work — more projects are crammed into the plate, leading to more multitasking, escalations from poor code, and more shortcuts. Around and around we go, sucked into the capacity death spiral.
+
+## How do we tackle technical debt?
+
+To reduce the amount of unplanned work that your team has to deal with, we need to tackle the root problem that caused it in the first place: technical debt.
+
+### Preventive work
+
+We strongly suggest to our teams they dedicate some time to preventive work. And by preventive work, we mean: refactoring, creating proper documentation, reducing code complexity, reducing compile times, or whatever task helps increase the code quality, speed and happiness of the development team.
+
+Properly elevating preventive work is at the heart of programs like [Total Productive Maintenance](https://en.wikipedia.org/wiki/Total_productive_maintenance) (TPM), which has been embraced by the Lean Community. TPM insists that we do whatever it takes to ensure machine availability by elevating maintenance. Improving daily work is even more important than doing daily work.
+
+It almost doesn't matter what you improve as long as you're improving something. Why? Because if you are not improving, entropy guarantees that you are actually getting worse.
+
+You might be thinking, "Yes, yes! All your code is bulletproof, and you never take shortcuts, bla bla bla…". Don't get me wrong — sometimes, we actually trade quality for velocity, which is fine! As long as the team documents all the shortcuts taken, creates follow-up tasks, and understands that they will have to pay the technical debt back in the near future.
+
+### Throw less at the problem
+
+From our experience, when a product tries to do too many things, technical debt tends to emerge.
+
+When a project isn't working, the natural inclination is to throw more at the problem. More people, time, features and money. All that ends up making the problem bigger. The right way to go is the opposite direction: cut back.
+
+Being able to take needless work out of the system is more important than being able to put more work into the system.
+
+## Good and bad technical debt
+
+While technical debt can have terrible consequences, it is not always as menacing as it may sound. You can look at it as part of an overall investment strategy — a strategic software design choice.
+
+If you find yourself spending all your time dealing with debt, or you reach the point where you cannot repay it, you have incurred bad debt. When you borrow or leverage time and effort that you can and will repay in the future, you may have incurred good debt.
+
+If the software product is successful, this strategy can provide you with greater returns than if you had remained debt free. In addition, you might also have the option to simply walk away from your debt if the software is not successful. This dual nature of technical debt makes it confusing for many project stakeholders.
+
+We should never take on technical debt on purpose, and we should pay it back as soon as we know how. Also, you should always consider doing less, or at least making a pause and analysing if a certain feature is actually important for the overall goal you are trying to achieve.
+
+## References
+
+- [A Field Study of Technical Debt](https://dl.acm.org/doi/10.1145/2851581.2892398)
+- [Managing the Consequences of Technical Debt: 5 Stories from the Field](https://insights.sei.cmu.edu/blog/managing-the-consequences-of-technical-debt-5-stories-from-the-field/)
+- [The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win](https://itrevolution.com/product/the-phoenix-project/)
+- [Rework](https://basecamp.com/books/rework)
+- [Technical Debt — Bad metaphor or worst metaphor?](https://www.infoq.com/news/2013/11/technical-debt-metaphor/)
+- [Technical Debt (Ward Cunningham)](https://wiki.c2.com/?TechnicalDebt)

@@ -1,0 +1,109 @@
+---
+title: "Generating TypeScript types and React Hooks based on GraphQL endpoint."
+description: Autogenerate Typescript types and custom React Hooks with GraphQL Code Generator in React applications.
+date: 2020-07-01
+author: Danilo Woznica
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+seo:
+  metaTitle: "Generating TypeScript types and React Hooks based on GraphQL endpoint — Significa"
+  metaDescription: "Autogenerate Typescript types and custom React Hooks with GraphQL Code Generator in React applications."
+  ogImage: https://cdn.significa.co/blog/generating-typescript-types-and-react-hooks-based-on-graphql-endpoint/og-image.jpg
+---
+
+Nowadays, developing ReactJS with TypeScript gives us a solid way to write applications: it adds the advantage of type safety, component auto-documentation, error handling, and accurate autocomplete in the editor code. However, writing types and keeping them maintainable still requires considerable effort. Moreover, when the data provider is a GraphQL server, it makes you feel like you're doing a useless job, given the server already has its own schemas for types. Seems redundant, right?
+
+With this in mind, [GraphQL Code Generator](https://the-guild.dev/graphql/codegen) allows us to generate TypeScript typing out of GraphQL schemas. Beyond that, it gives us a couple of plugins to create custom React hooks that don't require any kind of maintenance or workaround to fit into your application.
+
+Among many others, some of the benefits of using this tool:
+
+- **Codeless:** forget about creating the interfaces/types for every GraphQL endpoint; save time and spend effort on what matters.
+- **Development experience:** as a result of having the types always available, your editor will provide meaningful autocomplete and error checking.
+- **Types always up-to-date:** if your GraphQL endpoint schemas change, your application will be updated, and TypeScript will help you make sure you make the necessary changes.
+
+## Setup
+
+First of all, let's install the dependencies needed:
+
+```bash
+npm i @apollo/react-hooks graphql
+```
+
+```bash
+npm i @graphql-codegen/cli @graphql-codegen/import-types-preset @graphql-codegen/typescript @graphql-codegen/typescript-operations @graphql-codegen/typescript-react-apollo --save-dev
+```
+
+I'm considering the following folder structure, but of course, feel free to adapt it to your liking. Just keep in mind that it needs a place to store the schemas that will be fetched by the Code Generator:
+
+```
+📦 my-project
+ ┣ 📂 src
+ ┃ ┣ 📂 pages
+ ┃ ┃ ┗ index.tsx
+ ┃ ┣ 📂 queries
+ ┃ ┃ ┣ 📂 autogenerate
+ ┃ ┃ ┗ my-query.gql
+ ┃ ┗ apollo-client.ts
+ ┣ codegen.yml
+ ┗ package.json
+```
+
+Then, you'll need to create a configuration file at the root of the project, named `codegen.yml`. The following snippet shows how I usually set it up in my projects, where it generates different files for its own purpose – in other words, split by concerns like GraphQL operations and server schemas:
+
+```yaml
+# Endpoint API, the following URL is an example
+schema: https://countries-274616.ew.r.appspot.com/graphql/
+overwrite: true
+
+# Format files
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+
+generates:
+  # Get schemas from server
+  src/queries/autogenerate/schemas.tsx:
+    documents: 'src/queries/**/**.gql'
+    plugins:
+      - typescript
+
+  # Create operations based on queries
+  src/queries/autogenerate/operations.tsx:
+    documents: 'src/queries/**/**.gql'
+    preset: import-types
+    presetConfig:
+      typesPath: ./schemas
+    plugins:
+      - typescript-operations
+
+  # 1. Export GraphQL documents
+  # 2. React interface
+  src/queries/autogenerate/hooks.tsx:
+    documents: 'src/queries/**/**.gql'
+    preset: import-types
+    presetConfig:
+      typesPath: ./operations
+    plugins:
+      - typescript-react-apollo
+    config:
+      # Optionals
+      withHOC: false
+      withComponent: false
+      withHooks: true
+```
+
+Also, let's add the scripts to generate the schemas and watch the files change in `package.json`:
+
+```json
+"scripts": {
+  "schemas": "graphql-codegen --config codegen.yml",
+  "schemas:watch": "npm run schemas -- --watch"
+}
+```
+
+<MediaImage src="/blog/generating-typescript-types-and-react-hooks-based-on-graphql-endpoint/editor-autocomplete-placeholder.jpg" alt="Editor autocomplete with generated TypeScript types" width={1200} height={630} caption="Generated types give your editor meaningful autocomplete and error checking." />
+
+This is only one of the possible ways to use it, since it has many plugins, presets, integrations, and configurations for different purposes such as generating React higher-order components, Gatsby integration, prettier and lint the files, among other cool things. Feel free to check out the [documentation](https://the-guild.dev/graphql/codegen/docs/getting-started).
+
+A repository with the full code is also available for you to [check out](https://github.com/significa/graphql-codegen-example).

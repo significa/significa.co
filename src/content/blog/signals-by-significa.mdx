@@ -1,0 +1,78 @@
+---
+title: "Signals by Significa, a variable icon font."
+description: We've always been fans of open-source communities. We've been taking what's readily available and looking into ways of giving back — and this variable icon font is one of our contributions.
+date: 2024-03-22
+author: Elisa Sampaio
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - design
+  - open-source
+seo:
+  metaTitle: "Signals by Significa, a variable icon font — Significa"
+  metaDescription: "We've always been fans of open-source communities. We've been taking what's readily available and looking into ways of giving back — and this variable icon font is one of our contributions."
+  ogImage: https://cdn.significa.co/blog/signals-by-significa/og-image.jpg
+---
+
+We've always been fans of open-source communities. We've been taking what's readily available and looking into ways of giving back to the community, and this icon font is one of our contributions.
+
+## How it all started
+
+On the date of this writing, variable fonts are still a relatively new technology, but they're growing on us with fewer font files, improved accessibility, support for CSS transitions and animations, and enhanced responsiveness, to name a few. This has lit a fire on us to design a font, but truth be told, that's one for the experts, a lot of work, and thus, not for us (yet).
+
+However, a variable icon font is a great way to start with the variable font technology and the font design itself. Two birds, one stone. On we go.
+
+## The foundation
+
+First, we had to learn how variable fonts work, how they are built, how they are used, how they are exported, and which software would fit its design effort better, among other things that we'll save you from the trouble of reading. The bottom line is we chose [Glyphs](https://glyphsapp.com/).
+
+Since we wanted to make this still-nameless font open-source, we based it upon the metrics of one of the best open-source fonts available: [Inter](https://rsms.me/inter/), by Rasmus Anderson. This means that both fonts would pair up perfectly.
+
+We started by inferring Inter's metrics and observing the visual and mathematical relations between the ascender, cap height, x-height, and the descender. This foundational work became the basis of the icons' design.
+
+With this in mind, we set up a grid (to avoid the total anarchy of the SF Symbols) loosely based on the layout of the icon design principles of [Material Design](https://m3.material.io/styles/icons/overview). In hindsight, this saved us a lot of trouble in the later design stages. Thumbs up to "past me" for making a good decision!
+
+<MediaImage src="/blog/signals-by-significa/icon-grid-material-design-principles.jpg" alt="Icon grid setup based on Material Design principles" caption="The icon grid, loosely based on Material Design's icon layout principles." width={1200} height={630} />
+
+Also, in hindsight, we were a bit conservative with the icon family size as it currently sits at a modest 62-icon count. Glad we did so because little did we know how time-consuming variable font design is. "Past me" was in great shape!
+
+We started by designing all the icons in Figma, probably because we are really comfortable with it, at their Regular weight. From there, we created the two extreme versions: the thinner weight and the thickest one. We'll get back to this later.
+
+<MediaImage src="/blog/signals-by-significa/icons-figma-thin-regular-thick-weights.jpg" alt="Signals icons designed in Figma at Regular, thin and thick weights" caption="Icons designed in Figma across three weights: thin, regular, and thick." width={1200} height={630} />
+
+Figma is great, and all that jazz, but unfortunately, vectors can't be pasted into Glyphs. We went to the old, reliable Illustrator. We exported all icons as SVG from Figma, imported them to Illustrator, converted all the lines into shapes, merged them into a singular object, and copied them into Glyphs.
+
+<MediaImage src="/blog/signals-by-significa/icons-figma-illustrator-glyphs-workflow.jpg" alt="Icons imported into Glyphs via Illustrator" caption="Moving icons from Figma → Illustrator → Glyphs." width={1200} height={630} />
+
+Glyphs interpolates the desired weights based on a system of Masters, where we define the thinnest, medium, and thickest weights so the program can do its magical math to define the intermediate instances.
+
+<MediaImage src="/blog/signals-by-significa/glyphs-masters-weight-interpolation.jpg" alt="Glyphs Masters system showing thin, medium and thick weight instances" caption="Glyphs interpolating weights from Masters." width={1200} height={630} />
+
+Now, things get complicated, time-consuming and even more boring to read about. Again, we'll save you from that. In a nutshell, we had to ensure all masters were compatible with each other, with the same anchor points, handles, and paths tidied and following the same direction.
+
+<MediaImage src="/blog/signals-by-significa/glyphs-compatible-masters-anchor-points.jpg" alt="Compatible masters with matching anchor points and paths" caption="Ensuring masters are compatible across all icons." width={1200} height={630} />
+
+## How to use the font
+
+Spoiler alert: font designers will hate us for eternity. We mapped the icons to the keyboard keys. Shame on us.
+
+If you want to use the font, download it and install it on your computer. It will be ready to use as any other font with any software you may use.
+
+<Callout title="Signals by Significa" href="https://si.gnifi.ca/s187" cta="Download">
+  Download and try our variable icon font!
+</Callout>
+
+And here's the font map if you wish to use the keys on your keyboard.
+
+<MediaImage src="/blog/signals-by-significa/signals-keyboard-map.jpg" alt="Signals keyboard map showing icon-to-key mappings" caption="The Signals keyboard map (US, UK & PT)." width={1200} height={630} />
+
+<Callout title="Keyboard Maps" href="https://si.gnifi.ca/s187" cta="Download">
+  Download the Signals keyboard maps (US, UK & PT).
+</Callout>
+
+## What's next
+
+- Create a community where everyone can suggest more icons.
+- Continue designing more icons, including those suggested by the community.
+- Continue to improve the existing icons, enhancing and polishing them further.
+- Create a website to host this still-homeless family.
+- Make Signals fully open-source and available on Github, allowing others to contribute at their own will.

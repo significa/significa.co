@@ -1,0 +1,110 @@
+---
+title: "Master JavaScript web animations with requestAnimationFrame."
+description: With the evolution of web design, static websites gave way to more fluid, visually appealing experiences. Learn how requestAnimationFrame solves the performance pitfalls of setInterval for web animations.
+date: 2024-10-18
+author: Nuno Polónia
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+  - learning
+seo:
+  metaTitle: "Master JavaScript web animations with requestAnimationFrame — Significa"
+  metaDescription: "Learn how requestAnimationFrame solves the performance pitfalls of setInterval, how the Event Loop works under the hood, and best practices for smooth web animations."
+  ogImage: https://cdn.significa.co/blog/master-javascript-web-animations/og-image.jpg
+---
+
+With the evolution of web design and its associated technologies, static websites gave way to more fluid, visually appealing websites. This made web animations a crucial part of modern web design, providing users with a more engaging and interactive experience.
+
+## 1. Introduction.
+
+The most commonly used method to create such animations is using methods like nested `setTimeouts` or `setInterval`. This normally comes with some associated misconceptions and performance penalties. There's an alternative to that — `requestAnimationFrame` — which is not only similar to work with but also solves most of these issues. In this blog post, you'll learn more about how `setInterval` and `requestAnimationFrame` work under the hood and how they differ.
+
+## 2. Let's start by looking at `setTimeout` and `setInterval`.
+
+While most JavaScript developers have probably used `setTimeout` or `setInterval`, unless they used it extensively, bumped against some edge cases, or read the manual (no one ever reads it!), they probably have the common misconception that these timer-based functions allow you to execute a function after a set amount of time has passed. The reality, however, is that because of how JavaScript's Event Loop works, you only guarantee that the callback is scheduled to run after that interval — not that it will run precisely at that time.
+
+### So, what is the Event Loop?
+
+<Callout title="Event loop" href="https://www.youtube.com/watch?v=8aGhZQkoFbQ" cta="Watch now">
+  This will only be a small primer on the event loop. If you want to learn more about it, you can watch talks like this one by Philip Roberts.
+</Callout>
+
+Unlike C or Java, JavaScript isn't multithreaded. This means it can only execute one piece of code at a time, so it needs to orchestrate how it chooses what and when to run. The mechanism that manages this is called the Event Loop. It handles code execution, collecting and processing events, and executing queued tasks. In simpler terms, its main parts are:
+
+- **Call Stack:** JavaScript keeps track of function calls in the call stack. When a function is called, it is added to the stack, and when it is executed, it is removed from the stack.
+- **Task Queue:** When events occur (e.g., a `setTimeout` or `setInterval` callback or an I/O operation completes), the associated callbacks are added to the task queue.
+- **Microtask Queue:** Before processing tasks on the Task Queue, or when the Call Stack is free, the event loop processes micro-tasks, which mainly include `Promise`, `MutationObserver` or `queueMicrotask` callbacks.
+
+The way it coordinates work between these moving parts is:
+
+- If the Call Stack is empty, it checks the Microtask Queue for items:
+  - If it isn't empty, it will process every item in this queue until it is empty.
+  - If empty, it will move on to the Task Queue.
+- It checks the Task Queue for items:
+  - If it isn't empty, it will process the first task on that queue and loop back to the Microtask Queue.
+  - If empty, it will loop back to the Microtask Queue.
+
+Armed with this knowledge, you can better correlate some issues in development with how the event loop works.
+
+For example, the webpage freezes if you have a really heavy synchronous function. Nothing happens when you try to click buttons or scroll, but suddenly, it finishes running, and every action you take runs immediately. Under the hood, you blocked JavaScript's main thread running your slow function, but the other parts kept working, scheduling every click, scroll, and page repaint until the main thread was free.
+
+Or a `Maximum call stack size exceeded` when you accidentally flood the Call Stack with function calls exceeding its allotted amount.
+
+### So why isn't the `setInterval` timing guaranteed?
+
+Now that you have a primer on how the event loop works, let's work out what happens when you do a `setInterval` function call:
+
+1. The `setInterval(callback, interval)` is added to the Call Stack.
+2. Once it gets to its turn, the `setInterval` function runs. It starts a timer on the browser.
+3. Once that timer interval has elapsed, the `setInterval` callback is added to the Task Queue.
+4. Once the Call Stack is empty, the event loop starts processing the tasks on the Task Queue.
+5. Once the `setInterval` callback is on the top of the queue, it is sent to the Call Stack and it can run.
+
+This means that depending on how many items are in front of it to be processed on the task queue, or how long it takes for the code that is on the call stack to run, the Event Loop cannot immediately execute the `setInterval` callback even if the interval has elapsed. So, `setInterval` doesn't guarantee an exact time to execution but a minimum time to execution. Depending on the context where that animation is being run, you continuously introduce small time drifts to the animation, basing your animation update function on an unstable clock.
+
+Besides that, since the objective of an animation is to show movement on the screen, wouldn't it make sense for each animation step to be calculated before each screen repaint?
+
+## 3. Rendering things to screen.
+
+Besides the components of the Event Loop we addressed until now, there's another important part of the equation we haven't explored in detail yet: rendering to screen.
+
+If we're using JavaScript in a browser context, a big part of the Event Loop is rendering updates to the screen. This update rate depends on both hardware and software limits, like your screen refresh rate, your system display settings, or your energy-saving settings. Typically, most browsers run at 60 frames per second, meaning they refresh every 16.67ms.
+
+This means that browsers have time slots of 16.67ms to try to run as much code as they can before trying to render a new frame, which also takes some time to do itself. This is done by the Render Queue, also orchestrated by the Event Loop. The rendering process consists of running the following steps:
+
+- **RequestAnimationFrame:** `requestAnimationFrame` is a browser API that allows you to tap into the browser rendering cycle. You can perform calculations before the next frame render, which helps to ensure your animations are synchronised with the browser refresh clock.
+- **Style:** The browser computes styles and applies them to every node in the DOM tree.
+- **Layout:** Calculates the page Z-index layers, element positions, and size for every element in the DOM tree, along with their computed styles.
+- **Paint:** After calculating the position and size of each element on the DOM tree, the browser draws all those elements into actual pixels on the screen, including text, colours, borders, shadows, images, etc. The first occurrence of this phase on a page is called `First Meaningful Paint` and is normally a good metric for how soon the page is useful to the user.
+- **Compositing:** When nodes of the DOM tree are drawn in different layers and overlap, or when images for which the browser doesn't have size information before they are loaded finally finish loading, compositing is needed to ensure they are drawn correctly on screen. The browser can trigger `reflows`, triggering a repaint and a re-composite.
+
+Now, instead of doing animation calculations in the middle of your code — which, besides the already mentioned disadvantages, also has the downside of wasting processing cycles calculating intermediate positions that aren't ever being used (if your `setInterval` interval is less than the browser repaint interval) — we have a dedicated API that gives us interesting features and advantages:
+
+- Your animation is synced with the browser rendering phase and only runs when the browser is rendering, which is good from a separation of concerns standpoint.
+- `requestAnimationFrame` callback gives you as an argument a `DOMHighResTimeStamp`, which is the number of milliseconds passed since the start of the document lifetime. This allows you to not only fine-tune your animation updates but also synchronise different animations.
+- `requestAnimationFrame` returns an ID that allows you to use `cancelAnimationFrame` to cancel the animation update callback from anywhere in your code, allowing you outside control over running animations.
+- If your animation function takes more time to run than the allocated time for that frame, or the browser can't keep up with the frame rate (due to other heavy tasks), it will drop frames rather than try to catch up.
+- If the tab where the animation is running isn't visible (is minimised or in the background), you won't have re-renders and subsequently won't have any `requestAnimationFrame` calls, saving CPU and battery resources.
+
+Despite the advantages mentioned above, with your newfound knowledge about the Event Loop's inner workings, you can understand that `requestAnimationFrame` isn't a panacea, and you can still bump into performance issues with your animations. It's good to consider some good practices while designing your animation update functions:
+
+- Implement boundary condition checks to ensure your animation variables (like position or size) do not exceed expected limits and/or run indefinitely.
+- Include error logging within your animation loop to catch and record unexpected behaviours or performance issues.
+- Minimise the number of animations on a page to avoid overloading the browser.
+- Use easing functions to create more natural and visually appealing animations.
+- Use the Performance tab on your developer tools to learn what parts of your application are taking too long to run and see a representation of your browser going through all the steps we talked about in this blog post.
+- Some users are sensitive to motion and flashing content; in those cases, all devices have a setting called "reduced motion." Since the browser has access to this setting, you can use it to your advantage by skipping animation-related calls — being accessible and saving some performance, since some users also activate that setting on slow devices.
+
+## Conclusion.
+
+JavaScript exposes many different APIs for developing functionalities. Many of them aren't well known, in part because they aren't well publicised and are rolled out at different times by different browsers, thus complicating their adoption.
+
+This causes developers to fall back on always using the same common, more general-purpose tools, which, while allowing you to create the behaviour you need, don't have the optimisations that other more targeted APIs have built into them.
+
+As we add functionalities and complexity to our websites without understanding how the browser works under the hood, we clog it up with calculations and, because JavaScript is single-threaded, experience performance issues. While these performance issues can be hidden in a static website, animations — because of their need to update smoothly and regularly — put these bottlenecks front and centre.
+
+In short, knowing how the Event Loop orchestrates and schedules function calls can help you become more aware of how your code works and avoid some common pitfalls.
+
+<Callout title="Engineering Handbook" href="/handbook" cta="Learn more">
+  Discover how we build software and other deeds in the Engineering section of our Handbook.
+</Callout>

@@ -1,0 +1,101 @@
+---
+title: "Elixir — Sort Lists by Date."
+description: If you need to use Enum.sort on your Elixir project and want to sort lists by date, you may experience problems depending on the Elixir version you are using.
+date: 2020-04-16
+author: Nuno Marinho
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+  - learning
+seo:
+  metaTitle: "Elixir — Sort Lists by Date — Significa"
+  metaDescription: "If you need to use Enum.sort on your Elixir project and want to sort lists by date, you may experience problems depending on the Elixir version you are using."
+  ogImage: https://cdn.significa.co/blog/elixir-sort-lists-by-date/og-image.jpg
+---
+
+Recently, while working on a project, I needed to sort a list containing structs by their creation date.
+
+```elixir
+iex(2)> items
+[
+  %{id: 2, inserted_at: ~D[2019-01-01]},
+  %{id: 1, inserted_at: ~D[2018-01-31]},
+  %{id: 3, inserted_at: ~D[2020-03-01]}
+]
+```
+
+## First Try
+
+My first approach was to use the `Enum.sort` function and compare the struct's inserted date property:
+
+```elixir
+[…] |> Enum.sort(&(&1.inserted_at > &2.inserted_at))
+```
+
+After some tests, I found that the sorting was not working. Why? It was supposed to be an easy fix.
+
+Let's go to IEx to do some tests.
+
+```elixir
+Erlang/OTP 21 [erts-10.0.8] [source] [64-bit]
+
+Interactive Elixir (1.7.3) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)> dates = [~D[2018-01-31],~D[2019-02-01],~D[2020-03-01]]
+[~D[2018-01-31], ~D[2019-02-01], ~D[2020-03-01]]
+iex(2)> dates |> Enum.sort()
+[~D[2019-02-01], ~D[2020-03-01], ~D[2018-01-31]]
+iex(3)> dates |> Enum.sort(& &1 > &2)
+[~D[2018-01-31], ~D[2020-03-01], ~D[2019-02-01]]
+iex(4)> dates |> Enum.sort(& &1 < &2)
+[~D[2019-02-01], ~D[2020-03-01], ~D[2018-01-31]]
+```
+
+Strange…
+
+## Second Try
+
+After some investigation, I found the possible problem. The collection types are compared using the following rules:
+
+- Tuples are compared by size, then element by element.
+- Maps are compared by size, then by keys in ascending term order, then by values in key order. In the specific case of maps' key ordering, integers are always considered to be less than floats.
+- Lists are compared element by element.
+- Bitstrings are compared byte by byte, incomplete bytes are compared bit by bit.
+
+Considering that a date is a struct, it's normal that the order was wrong. So the possible solution is:
+
+```elixir
+iex(5)> dates |> Enum.sort_by(fn d -> {d.year, d.month, d.day} end)
+[~D[2018-01-31], ~D[2019-02-01], ~D[2020-03-01]]
+```
+
+For previous versions of Elixir (like Elixir v1.7.3), this is the solution. A little rudimentary but it works.
+
+## Third Try
+
+In Elixir v1.10, José Valim and his team introduced [improvements to sort-based APIs in Enum](https://elixir-lang.org/blog/2020/01/27/elixir-v1-10-0-released/).
+
+Let's go to IEx again to do some tests…
+
+```elixir
+Erlang/OTP 21 [erts-10.0.8] [source] [64-bit]
+
+Interactive Elixir (1.10.1) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)> dates = [~D[2018-01-31],~D[2019-02-01],~D[2020-03-01]]
+[~D[2018-01-31], ~D[2019-02-01], ~D[2020-03-01]]
+iex(2)> dates |> Enum.sort()
+[~D[2019-02-01], ~D[2020-03-01], ~D[2018-01-31]]
+iex(3)> dates |> Enum.sort(&(Date.compare(&1, &2) != :lt))
+[~D[2020-03-01], ~D[2019-02-01], ~D[2018-01-31]]
+iex(4)> dates |> Enum.sort(Date)
+[~D[2018-01-31], ~D[2019-02-01], ~D[2020-03-01]]
+iex(5)> dates |> Enum.sort({:desc, Date})
+[~D[2020-03-01], ~D[2019-02-01], ~D[2018-01-31]]
+iex(6)> dates |> Enum.sort({:asc, Date})
+[~D[2018-01-31], ~D[2019-02-01], ~D[2020-03-01]]
+```
+
+Voilá! The improvements to sort-based APIs in `Enum` made sorting by date a much more beautiful and clean solution.
+
+## Lesson learned
+
+In Elixir, as well as in programming in general, the quick solutions don't always have the expected result and we have to carefully test each solution to make sure it behaves as expected.

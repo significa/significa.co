@@ -1,0 +1,82 @@
+---
+import { contentError } from "@/lib/content-errors";
+
+interface Props {
+  title: string;
+  href?: string;
+  cta?: string;
+}
+
+const { title, href, cta } = Astro.props;
+
+if (!title) {
+  contentError("Callout", Astro.url.pathname, "Callout requires a title prop");
+}
+
+if (href && !cta) {
+  contentError("Callout", Astro.url.pathname, 'Callout with href requires a cta prop (e.g. cta="Learn more")');
+}
+
+const isExternal = href?.startsWith("http://") || href?.startsWith("https://");
+---
+
+<aside class="callout">
+  <span class="callout-title">{title}</span>
+  <div class="callout-body">
+    <slot />
+  </div>
+  {
+    href && cta && (
+      <a href={href} class="callout-cta" {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+        {cta} →
+      </a>
+    )
+  }
+</aside>
+
+<style>
+  .callout {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 2rem 0;
+    padding: 1.25rem 1.5rem;
+    background: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-text);
+    border-radius: 0.375rem;
+  }
+
+  .callout-title {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+  }
+
+  .callout-body {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--color-text);
+  }
+
+  .callout-body :global(p) {
+    margin: 0;
+  }
+
+  .callout-cta {
+    align-self: flex-start;
+    margin-top: 0.25rem;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .callout-cta:hover {
+    opacity: 0.7;
+  }
+</style>

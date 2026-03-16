@@ -4,7 +4,6 @@ import { getClients, getProjects, getAwards, getTestimonials, getPosts, getPlayg
 import { cdnUrl } from "@/lib/cdn";
 
 const featuredProjects = (await getProjects()).slice(0, 3);
-const clients = await getClients();
 const awards = await getAwards();
 const testimonials = await getTestimonials();
 const recentPost = (await getPosts())[0];
@@ -17,6 +16,7 @@ const pillars = [
     description:
       "We ask the right questions to help you iterate, uncover critical challenges, and define a clear path forward. From product strategy to UX audits and technical planning, we work with you to map out what to build and why.",
     deliverables: ["Product Definition", "Migrations", "Operations"],
+    href: "/services/think",
   },
   {
     id: "design",
@@ -24,6 +24,7 @@ const pillars = [
     description:
       "We transform insights into impact through design. From user interface design to brands and Design Systems, our work is built to function beautifully, scale purposefully, and guide users intentionally. Design decisions are business decisions, so our developers are involved early to align UI with technical possibilities.",
     deliverables: ["UI / UX Design", "Design Systems", "Branding"],
+    href: "/services/design",
   },
   {
     id: "develop",
@@ -31,6 +32,7 @@ const pillars = [
     description:
       "We combine critical thinking, agility, and curiosity to write code that goes beyond functionality, turning solid products into seamless, memorable experiences. Our custom development services follow two principles: clarity and speed.",
     deliverables: ["IT Architecture", "Headless", "Dev Ops", "Shopify"],
+    href: "/services/develop",
   },
   {
     id: "launch",
@@ -38,6 +40,7 @@ const pillars = [
     description:
       "We launch with confidence. We build software that's robust, easy to maintain, and ready to grow. Frameworks are set up for efficiency and consistency, while clear documentation and onboarding ensure smooth handover to your team and partners.",
     deliverables: ["Quality Assurance", "Product Governance", "On-call Maintenance"],
+    href: "/services/launch",
   },
   {
     id: "scale",
@@ -45,12 +48,17 @@ const pillars = [
     description:
       "Growth is a continuous process. We track performance, monitor user behaviour, and surface friction points to help you evolve based on evidence, not assumptions. From new features to technical improvements, we keep your product moving forward with momentum.",
     deliverables: ["Performance Insights", "Optimisations", "Retainers"],
+    href: "/services/scale",
   },
 ] as const;
 
 const productTypes = [
-  { label: "E-commerce", description: "Shopify online shops to sell and manage all your products." },
-  { label: "Websites", description: "Corporate or marketing websites." },
+  {
+    label: "E-commerce",
+    description: "Shopify online shops to sell and manage all your products.",
+    href: "/services/e-commerce",
+  },
+  { label: "Websites", description: "Corporate or marketing websites.", href: "/services/websites" },
   { label: "Desktop Apps", description: "Apps that run natively on computers." },
   { label: "Web Apps", description: "Apps that run on web browsers." },
   { label: "Watch & TV Apps", description: "Apps that run natively on smart watches and TVs." },
@@ -92,37 +100,11 @@ const industries = [
   </section>
 
   <!-- ============================================================
-       STATS STRIP
-       ============================================================ -->
-  <section class="stats-strip">
-    <div class="stats-strip-inner">
-      <dl class="stats-grid">
-        <div class="stat-item">
-          <dd class="stat-value">10+</dd>
-          <dt class="stat-label">Years of experience</dt>
-        </div>
-        <div class="stat-item">
-          <dd class="stat-value">100+</dd>
-          <dt class="stat-label">Projects delivered</dt>
-        </div>
-        <div class="stat-item">
-          <dd class="stat-value">20+</dd>
-          <dt class="stat-label">International awards</dt>
-        </div>
-        <div class="stat-item">
-          <dd class="stat-value">84.7%</dd>
-          <dt class="stat-label">Customer satisfaction</dt>
-        </div>
-      </dl>
-    </div>
-  </section>
-
-  <!-- ============================================================
        SERVICES INTRO
        ============================================================ -->
   <section class="services-intro">
     <div class="services-intro-inner">
-      <p class="eyebrow">Our services</p>
+      <p class="eyebrow">Our Design and Development services</p>
       <div class="services-intro-layout">
         <h2 class="services-intro-heading">Your go-to partner to think, design, develop and scale.</h2>
         <div class="services-intro-aside">
@@ -158,6 +140,9 @@ const industries = [
                   <li>{d}</li>
                 ))}
               </ul>
+              <a href={pillar.href} class="pillar-link">
+                Learn more →
+              </a>
             </div>
           </article>
         ))
@@ -193,28 +178,18 @@ const industries = [
        ============================================================ -->
   <section class="how-we-work">
     <div class="how-we-work-inner">
-      <div class="how-we-work-text">
-        <p class="eyebrow">How we work</p>
+      <p class="eyebrow">How we work</p>
+      <div class="how-we-work-layout">
         <h2>Collaborative, hands-on, and jargon-free.</h2>
-        <p>
-          Whether you're re-platforming an e-commerce business, launching a new mobile app, or refining a digital product, we
-          bring clarity, focus, and intent to our process. There's no room for micromanaging or technical jargon — just good
-          work, done together.
-        </p>
-        <a href="/handbook/how-we-build-software" class="link-arrow">Read our playbook →</a>
+        <div class="how-we-work-body">
+          <p>
+            Whether you're re-platforming an e-commerce business, launching a new mobile app, or refining a digital product, we
+            bring clarity, focus, and intent to our process. We follow a hands-on collaborative approach where there's no room
+            for micromanaging or technical jargon.
+          </p>
+          <a href="/handbook/how-we-collaborate" class="link-arrow">See how we collaborate →</a>
+        </div>
       </div>
-      <nav class="how-we-work-steps" aria-label="Service phases">
-        {
-          pillars.map((pillar) => (
-            <a href={`#${pillar.id}`} class="step-item">
-              <span class="step-label">{pillar.label}</span>
-              <span class="step-arrow" aria-hidden="true">
-                ↗
-              </span>
-            </a>
-          ))
-        }
-      </nav>
     </div>
   </section>
 
@@ -230,12 +205,21 @@ const industries = [
       </div>
       <ul class="deliverables-grid">
         {
-          productTypes.map((type) => (
-            <li class="deliverable-item">
-              <h3 class="deliverable-label">{type.label}</h3>
-              <p class="deliverable-description">{type.description}</p>
-            </li>
-          ))
+          productTypes.map((type) =>
+            type.href ? (
+              <li class="deliverable-item deliverable-item--linked">
+                <a href={type.href}>
+                  <h3 class="deliverable-label">{type.label} →</h3>
+                  <p class="deliverable-description">{type.description}</p>
+                </a>
+              </li>
+            ) : (
+              <li class="deliverable-item">
+                <h3 class="deliverable-label">{type.label}</h3>
+                <p class="deliverable-description">{type.description}</p>
+              </li>
+            )
+          )
         }
       </ul>
     </div>
@@ -265,113 +249,6 @@ const industries = [
       </ul>
     </div>
   </section>
-
-  <!-- ============================================================
-       SELECTED WORK
-       ============================================================ -->
-  {
-    featuredProjects.length > 0 && (
-      <section class="featured-work">
-        <div class="featured-work-inner">
-          <div class="featured-work-header">
-            <p class="eyebrow">Selected work</p>
-            <a href="/projects" class="link-arrow">
-              All projects →
-            </a>
-          </div>
-          <ul class="work-list">
-            {featuredProjects.map((project) => (
-              <li class="work-item">
-                <a href={`/projects/${project.id}`}>
-                  {project.data.thumbnail && (
-                    <div class="work-item-image">
-                      <img
-                        src={cdnUrl(project.data.thumbnail, { width: 120, quality: 80 })}
-                        alt={project.data.title}
-                        width="120"
-                        height="90"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                  )}
-                  <div class="work-item-content">
-                    <h3 class="work-item-title">{project.data.client ?? project.data.title}</h3>
-                    {project.data.tagline && <p class="work-item-tagline">{project.data.tagline}</p>}
-                  </div>
-                  <ul class="work-item-tags" aria-label="Tags">
-                    {project.data.tags.slice(0, 3).map((tag) => (
-                      <li class="work-tag">{tag}</li>
-                    ))}
-                  </ul>
-                  <span class="work-item-arrow" aria-hidden="true">
-                    →
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    )
-  }
-
-  <!-- ============================================================
-       FROM OUR TEAM (blog + playground crosssell)
-       ============================================================ -->
-  {
-    (recentPost || recentPlayground) && (
-      <section class="crosssell">
-        <div class="crosssell-inner">
-          <p class="eyebrow">From our team</p>
-          <div class="crosssell-grid">
-            {recentPost && (
-              <a href={`/blog/${recentPost.id}`} class="crosssell-card">
-                {recentPost.data.thumbnail && (
-                  <div class="crosssell-image">
-                    <img
-                      src={cdnUrl(recentPost.data.thumbnail, { width: 600, quality: 80 })}
-                      alt={recentPost.data.title}
-                      width="600"
-                      height="400"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                )}
-                <div class="crosssell-content">
-                  <span class="crosssell-type">Blog</span>
-                  <h3 class="crosssell-title">{recentPost.data.title}</h3>
-                  {recentPost.data.description && <p class="crosssell-description">{recentPost.data.description}</p>}
-                </div>
-              </a>
-            )}
-            {recentPlayground && (
-              <a href={`/playground/${recentPlayground.id}`} class="crosssell-card">
-                {recentPlayground.data.thumbnail && (
-                  <div class="crosssell-image">
-                    <img
-                      src={cdnUrl(recentPlayground.data.thumbnail, { width: 600, quality: 80 })}
-                      alt={recentPlayground.data.title}
-                      width="600"
-                      height="400"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                )}
-                <div class="crosssell-content">
-                  <span class="crosssell-type">Playground</span>
-                  <h3 class="crosssell-title">{recentPlayground.data.title}</h3>
-                  <p class="crosssell-description">{recentPlayground.data.description}</p>
-                </div>
-              </a>
-            )}
-          </div>
-        </div>
-      </section>
-    )
-  }
 
   <!-- ============================================================
        AWARDS
@@ -410,30 +287,90 @@ const industries = [
   }
 
   <!-- ============================================================
-       CLIENTS
+       PROJECTS + BLOG + PLAYGROUND
        ============================================================ -->
-  {
-    clients.length > 0 && (
-      <section class="clients">
-        <div class="clients-inner">
-          <p class="eyebrow clients-eyebrow">Companies we've worked with</p>
-          <ul class="clients-list">
-            {clients.map((client) => (
-              <li>
-                {client.data.url ? (
-                  <a href={client.data.url} target="_blank" rel="noopener noreferrer" title={client.data.name}>
-                    <span class="client-name">{client.data.name}</span>
-                  </a>
-                ) : (
-                  <span class="client-name">{client.data.name}</span>
+  <section class="content-crosssell">
+    <div class="content-crosssell-inner">
+      <p class="eyebrow">From Significa</p>
+      <div class="content-crosssell-grid">
+        {
+          featuredProjects[0] && (
+            <a href={`/projects/${featuredProjects[0].id}`} class="crosssell-card crosssell-card--project">
+              {featuredProjects[0].data.thumbnail && (
+                <div class="crosssell-image">
+                  <img
+                    src={cdnUrl(featuredProjects[0].data.thumbnail, { width: 800, quality: 80 })}
+                    alt={featuredProjects[0].data.title}
+                    width="800"
+                    height="500"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              )}
+              <div class="crosssell-content">
+                <span class="crosssell-type">Project</span>
+                <h3 class="crosssell-title">{featuredProjects[0].data.client ?? featuredProjects[0].data.title}</h3>
+                {featuredProjects[0].data.tagline && <p class="crosssell-description">{featuredProjects[0].data.tagline}</p>}
+              </div>
+            </a>
+          )
+        }
+        <div class="crosssell-secondary">
+          {
+            recentPost && (
+              <a href={`/blog/${recentPost.id}`} class="crosssell-card">
+                {recentPost.data.thumbnail && (
+                  <div class="crosssell-image">
+                    <img
+                      src={cdnUrl(recentPost.data.thumbnail, { width: 600, quality: 80 })}
+                      alt={recentPost.data.title}
+                      width="600"
+                      height="400"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
                 )}
-              </li>
-            ))}
-          </ul>
+                <div class="crosssell-content">
+                  <span class="crosssell-type">Blog</span>
+                  <h3 class="crosssell-title">{recentPost.data.title}</h3>
+                  {recentPost.data.description && <p class="crosssell-description">{recentPost.data.description}</p>}
+                </div>
+              </a>
+            )
+          }
+          {
+            recentPlayground && (
+              <a href={`/playground/${recentPlayground.id}`} class="crosssell-card">
+                {recentPlayground.data.thumbnail && (
+                  <div class="crosssell-image">
+                    <img
+                      src={cdnUrl(recentPlayground.data.thumbnail, { width: 600, quality: 80 })}
+                      alt={recentPlayground.data.title}
+                      width="600"
+                      height="400"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                )}
+                <div class="crosssell-content">
+                  <span class="crosssell-type">Playground</span>
+                  <h3 class="crosssell-title">{recentPlayground.data.title}</h3>
+                  <p class="crosssell-description">{recentPlayground.data.description}</p>
+                </div>
+              </a>
+            )
+          }
         </div>
-      </section>
-    )
-  }
+      </div>
+      <div class="content-crosssell-cta">
+        <a href="/projects" class="link-arrow">All projects →</a>
+        <a href="/blog" class="link-arrow">All posts →</a>
+      </div>
+    </div>
+  </section>
 
   <!-- ============================================================
        FINAL CTA
@@ -442,28 +379,16 @@ const industries = [
     <div class="final-cta-inner">
       <h2>Ready to build something great together?</h2>
       <p>Tell us about your project. We'll figure out whether we're the right fit — no pressure, no jargon.</p>
-      <a href="/work-with-us" class="cta-button-large">Get in touch</a>
+      <a href="/say-hello" class="cta-button-large">Get in touch</a>
     </div>
   </section>
 </BaseLayout>
 
 <style>
   /* ============================================================
-     Design tokens (local shorthands)
-     ============================================================ */
-
-  /*
-     Section rhythm:
-       - Every section has a symmetric block-padding of --section-py
-       - "Wide" sections (alt background) use --section-py-wide
-       - Inner wrappers constrain content to --max-width or --max-width-narrow
-  */
-
-  /* ============================================================
      Shared utilities
      ============================================================ */
 
-  /* Eyebrow label that sits above section headings */
   .eyebrow {
     font-size: var(--text-xs);
     font-weight: var(--weight-semibold);
@@ -473,7 +398,6 @@ const industries = [
     margin-bottom: 1.25rem;
   }
 
-  /* Small inline arrow link */
   .link-arrow {
     display: inline-block;
     font-size: var(--text-sm);
@@ -486,7 +410,6 @@ const industries = [
     color: var(--color-text);
   }
 
-  /* Filled CTA button */
   .cta-button {
     display: inline-block;
     padding: 0.8125rem 1.75rem;
@@ -505,7 +428,6 @@ const industries = [
     transform: translateY(-1px);
   }
 
-  /* Large filled CTA (for final CTA section) */
   .cta-button-large {
     display: inline-block;
     padding: 1rem 2.5rem;
@@ -548,7 +470,6 @@ const industries = [
     font-weight: var(--weight-bold);
   }
 
-  /* Thin rule between h1 and the two-line sub-copy */
   .hero-sub {
     font-size: var(--text-base);
     font-weight: var(--weight-semibold);
@@ -566,74 +487,11 @@ const industries = [
   }
 
   /* ============================================================
-     STATS STRIP
-     ============================================================ */
-  .stats-strip {
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    background: var(--color-surface-alt);
-  }
-
-  .stats-strip-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 var(--gutter);
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .stat-item {
-    padding: 2.5rem 2rem;
-    border-right: 1px solid var(--color-border);
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem;
-  }
-
-  .stat-item:last-child {
-    border-right: none;
-  }
-
-  .stat-value {
-    font-size: clamp(1.75rem, 1.25rem + 2vw, 2.75rem);
-    font-weight: var(--weight-bold);
-    line-height: 1;
-    color: var(--color-text);
-  }
-
-  .stat-label {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    line-height: var(--leading-normal);
-  }
-
-  @media (max-width: 768px) {
-    .stats-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .stat-item:nth-child(2) {
-      border-right: none;
-    }
-    .stat-item:nth-child(3),
-    .stat-item:nth-child(4) {
-      border-top: 1px solid var(--color-border);
-    }
-  }
-
-  @media (max-width: 480px) {
-    .stats-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  /* ============================================================
      SERVICES INTRO
      ============================================================ */
   .services-intro {
     padding: 7rem var(--gutter);
+    border-top: 1px solid var(--color-border);
   }
 
   .services-intro-inner {
@@ -692,10 +550,6 @@ const industries = [
     align-items: start;
   }
 
-  .pillar:first-child {
-    border-top: none;
-  }
-
   .pillar:last-child {
     border-bottom: none;
   }
@@ -726,8 +580,8 @@ const industries = [
   .pillar-body {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
-    padding-top: 0.25rem; /* optical alignment with the sticky title */
+    gap: 2rem;
+    padding-top: 0.25rem;
   }
 
   .pillar-description {
@@ -757,6 +611,19 @@ const industries = [
 
   .pillar-deliverables li:hover {
     border-color: var(--color-text);
+  }
+
+  .pillar-link {
+    align-self: flex-start;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .pillar-link:hover {
+    color: var(--color-text);
   }
 
   @media (max-width: 860px) {
@@ -831,20 +698,22 @@ const industries = [
   .how-we-work-inner {
     max-width: var(--max-width);
     margin: 0 auto;
+  }
+
+  .how-we-work-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
     align-items: start;
   }
 
-  .how-we-work-text h2 {
+  .how-we-work-layout h2 {
     font-size: clamp(1.5rem, 1.25rem + 1.5vw, 2.25rem);
     font-weight: var(--weight-bold);
     line-height: var(--leading-tight);
-    margin-bottom: 1.25rem;
   }
 
-  .how-we-work-text p {
+  .how-we-work-body p {
     font-size: var(--text-lg);
     line-height: var(--leading-relaxed);
     color: var(--color-text-muted);
@@ -852,50 +721,10 @@ const industries = [
     max-width: 50ch;
   }
 
-  .how-we-work-steps {
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .step-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.375rem 0;
-    border-bottom: 1px solid var(--color-border);
-    text-decoration: none;
-    color: var(--color-text-muted);
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-
-  .step-item:hover {
-    color: var(--color-text);
-  }
-
-  .step-label {
-    font-size: var(--text-xl);
-    font-weight: var(--weight-semibold);
-  }
-
-  .step-arrow {
-    font-size: var(--text-sm);
-    opacity: 0;
-    transform: translateX(-4px);
-    transition:
-      opacity var(--duration-fast) var(--ease-out),
-      transform var(--duration-fast) var(--ease-out);
-  }
-
-  .step-item:hover .step-arrow {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
   @media (max-width: 860px) {
-    .how-we-work-inner {
+    .how-we-work-layout {
       grid-template-columns: 1fr;
-      gap: 3rem;
+      gap: 2rem;
     }
   }
 
@@ -928,7 +757,6 @@ const industries = [
     color: var(--color-text-muted);
   }
 
-  /* Border-gap grid — 1px gaps achieved with background on the wrapper */
   .deliverables-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -951,6 +779,20 @@ const industries = [
 
   .deliverable-item:hover {
     background: var(--color-surface-alt);
+  }
+
+  .deliverable-item--linked {
+    padding: 0;
+  }
+
+  .deliverable-item--linked a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 2.25rem 2rem;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
   }
 
   .deliverable-label {
@@ -1047,210 +889,6 @@ const industries = [
     .industry-item {
       font-size: var(--text-lg);
     }
-  }
-
-  /* ============================================================
-     SELECTED WORK
-     ============================================================ */
-  .featured-work {
-    padding: 7rem var(--gutter);
-  }
-
-  .featured-work-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-
-  .featured-work-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.5rem; /* eyebrow sits above the list, close to it */
-  }
-
-  .work-list {
-    list-style: none;
-    border-top: 1px solid var(--color-border);
-    margin-top: 2rem;
-  }
-
-  .work-item a {
-    display: grid;
-    grid-template-columns: auto 1fr auto auto;
-    align-items: center;
-    gap: 1.75rem;
-    padding: 1.625rem 0;
-    border-bottom: 1px solid var(--color-border);
-    text-decoration: none;
-    color: var(--color-text);
-    transition: opacity var(--duration-fast) var(--ease-out);
-  }
-
-  .work-item a:hover {
-    opacity: 0.65;
-  }
-
-  .work-item-image {
-    flex-shrink: 0;
-    width: 90px;
-    height: 68px;
-    border-radius: 0.25rem;
-    overflow: hidden;
-    background: var(--color-surface-alt);
-  }
-
-  .work-item-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .work-item-content {
-    min-width: 0;
-  }
-
-  .work-item-title {
-    font-size: var(--text-xl);
-    font-weight: var(--weight-semibold);
-    line-height: var(--leading-tight);
-  }
-
-  .work-item-tagline {
-    font-size: var(--text-base);
-    color: var(--color-text-muted);
-    margin-top: 0.25rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .work-item-tags {
-    display: flex;
-    gap: 0.5rem;
-    list-style: none;
-    flex-shrink: 0;
-  }
-
-  .work-tag {
-    font-size: var(--text-xs);
-    font-weight: var(--weight-medium);
-    color: var(--color-text-muted);
-    padding: 0.3125rem 0.75rem;
-    border: 1px solid var(--color-border);
-    border-radius: 2rem;
-    background: var(--color-surface-alt);
-    white-space: nowrap;
-  }
-
-  .work-item-arrow {
-    font-size: var(--text-base);
-    color: var(--color-text-muted);
-    flex-shrink: 0;
-    transition: transform var(--duration-fast) var(--ease-out);
-  }
-
-  .work-item a:hover .work-item-arrow {
-    transform: translateX(3px);
-  }
-
-  @media (max-width: 860px) {
-    .work-item-tags {
-      display: none;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .work-item a {
-      grid-template-columns: 1fr auto;
-    }
-
-    .work-item-image {
-      display: none;
-    }
-  }
-
-  /* ============================================================
-     CROSSSELL (blog + playground)
-     ============================================================ */
-  .crosssell {
-    background: var(--color-surface-alt);
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    padding: 7rem var(--gutter);
-  }
-
-  .crosssell-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-
-  .crosssell-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-  }
-
-  .crosssell-card {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
-    overflow: hidden;
-    background: var(--color-surface);
-    transition: border-color var(--duration-fast) var(--ease-out);
-  }
-
-  .crosssell-card:hover {
-    border-color: var(--color-text);
-  }
-
-  .crosssell-image {
-    overflow: hidden;
-    background: var(--color-surface-alt);
-  }
-
-  .crosssell-image img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
-    transition: transform var(--duration-slow) var(--ease-out);
-  }
-
-  .crosssell-card:hover .crosssell-image img {
-    transform: scale(1.04);
-  }
-
-  .crosssell-content {
-    padding: 1.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-    flex: 1;
-  }
-
-  .crosssell-type {
-    font-size: var(--text-xs);
-    font-weight: var(--weight-semibold);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-text-muted);
-  }
-
-  .crosssell-title {
-    font-size: var(--text-xl);
-    font-weight: var(--weight-semibold);
-    line-height: var(--leading-tight);
-  }
-
-  .crosssell-description {
-    font-size: var(--text-base);
-    line-height: var(--leading-normal);
-    color: var(--color-text-muted);
   }
 
   /* ============================================================
@@ -1354,53 +992,117 @@ const industries = [
   }
 
   /* ============================================================
-     CLIENTS
+     CONTENT CROSSSELL (project + blog + playground)
      ============================================================ */
-  .clients {
+  .content-crosssell {
     background: var(--color-surface-alt);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
-    padding: 4rem var(--gutter);
+    padding: 7rem var(--gutter);
   }
 
-  .clients-inner {
+  .content-crosssell-inner {
     max-width: var(--max-width);
     margin: 0 auto;
   }
 
-  .clients-eyebrow {
-    text-align: center;
-    margin-bottom: 2rem;
+  .content-crosssell-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
   }
 
-  .clients-list {
+  .crosssell-secondary {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem 3rem;
-    list-style: none;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
-  .clients-list li a {
-    color: var(--color-text);
+  .crosssell-card {
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
-    opacity: 0.45;
-    transition: opacity var(--duration-fast) var(--ease-out);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: var(--color-surface);
+    transition: border-color var(--duration-fast) var(--ease-out);
   }
 
-  .clients-list li a:hover {
-    opacity: 1;
+  .crosssell-card:hover {
+    border-color: var(--color-text);
   }
 
-  .clients-list li span {
-    opacity: 0.45;
+  .crosssell-card--project {
+    height: 100%;
   }
 
-  .client-name {
-    font-size: var(--text-sm);
+  .crosssell-card--project .crosssell-image img {
+    height: 300px;
+  }
+
+  .crosssell-image {
+    overflow: hidden;
+    background: var(--color-surface-alt);
+    flex-shrink: 0;
+  }
+
+  .crosssell-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .crosssell-card:hover .crosssell-image img {
+    transform: scale(1.04);
+  }
+
+  .crosssell-content {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    flex: 1;
+  }
+
+  .crosssell-type {
+    font-size: var(--text-xs);
     font-weight: var(--weight-semibold);
-    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+  }
+
+  .crosssell-title {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+  }
+
+  .crosssell-description {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+  }
+
+  .content-crosssell-cta {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .content-crosssell-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .crosssell-card--project .crosssell-image img {
+      height: 200px;
+    }
   }
 
   /* ============================================================

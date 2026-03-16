@@ -35,7 +35,16 @@ const thumbnailSrc = cdnUrl(project.data.thumbnail, {
   <a href={`/projects/${project.id}`} class="cross-sell-link">
     {
       project.data.thumbnail && (
-        <img src={thumbnailSrc} alt={project.data.title} loading="lazy" decoding="async" class="cross-sell-image" />
+        <div class="cross-sell-image-wrap">
+          <img
+            src={thumbnailSrc}
+            alt={project.data.title}
+            loading="lazy"
+            decoding="async"
+            class="cross-sell-image"
+            style="width:100%;height:100%;object-fit:cover;display:block;margin:0;max-width:100%;"
+          />
+        </div>
       )
     }
     <div class="cross-sell-content">
@@ -50,16 +59,16 @@ const thumbnailSrc = cdnUrl(project.data.thumbnail, {
 <style>
   .cross-sell {
     margin: 3rem 0;
-    padding: 2rem;
     background: var(--color-surface-alt);
     border: 1px solid var(--color-border);
     border-radius: 0.5rem;
+    overflow: hidden;
   }
 
   .cross-sell-link {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    align-items: stretch;
     text-decoration: none;
     color: var(--color-text);
     transition: opacity var(--duration-fast) var(--ease-out);
@@ -69,18 +78,19 @@ const thumbnailSrc = cdnUrl(project.data.thumbnail, {
     opacity: 0.8;
   }
 
-  .cross-sell-image {
+  .cross-sell-image-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3 / 2;
     flex-shrink: 0;
-    width: 200px;
-    height: auto;
-    border-radius: 0.25rem;
-    object-fit: cover;
   }
 
   .cross-sell-content {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 0.5rem;
+    padding: 2rem;
   }
 
   .cross-sell-label {
@@ -110,13 +120,13 @@ const thumbnailSrc = cdnUrl(project.data.thumbnail, {
     color: var(--color-text);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 640px) {
     .cross-sell-link {
-      flex-direction: column;
-      align-items: flex-start;
+      grid-template-columns: 1fr;
     }
 
-    .cross-sell-image {
+    .cross-sell-image-wrap {
+      aspect-ratio: 16 / 9;
       width: 100%;
     }
   }

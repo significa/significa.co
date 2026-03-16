@@ -107,6 +107,23 @@ const playground = defineCollection({
   }),
 });
 
+const services = defineCollection({
+  loader: contentLoader({
+    extensions: ["mdx"],
+    base: "src/content/services",
+  }),
+  schema: z.object({
+    title: z.string(),
+    tagline: z.string(),
+    /** Short punchy sub-tagline shown under the hero heading */
+    heroTagline: z.string().optional(),
+    thumbnail: z.string().optional(),
+    /** Projects to feature prominently on this service page */
+    featuredProjects: z.array(reference("projects")).default([]),
+    seo: seoSchema.optional(),
+  }),
+});
+
 const pages = defineCollection({
   loader: contentLoader({
     extensions: ["mdx"],
@@ -270,6 +287,7 @@ export const collections = {
   blog,
   playground,
   pages,
+  services,
   highlights,
   clients,
   testimonials,

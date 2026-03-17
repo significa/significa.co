@@ -30,15 +30,13 @@ const allSchemas = structuredData
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <SEO
-      title={title}
-      description={description}
-      ogImage={ogImage}
-      type={type}
-      publishedAt={publishedAt}
-      jsonLd={allSchemas}
-    />
+    <SEO title={title} description={description} ogImage={ogImage} type={type} publishedAt={publishedAt} jsonLd={allSchemas} />
     <ClientRouter />
+    <script>
+      // Always scroll to top on hard refresh and on every view transition
+      window.history.scrollRestoration = "manual";
+      document.addEventListener("astro:after-swap", () => window.scrollTo(0, 0));
+    </script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>

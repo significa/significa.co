@@ -1,5 +1,10 @@
 # SEO & Accessibility
 
+For structured data implementation (JSON-LD, schema functions, code patterns) → `docs/10-STRUCTURED-DATA.md`
+For SEO strategy (keywords, GEO, market targets, content principles) → `docs/12-SEO-STRATEGY.md`
+
+---
+
 ## SEO Checklist
 
 Every page must have:
@@ -11,6 +16,7 @@ Every page must have:
 - [ ] Twitter card tags (`twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`)
 - [ ] Proper heading hierarchy (`h1` > `h2` > `h3`, never skip levels)
 - [ ] `lang` attribute on `<html>`
+- [ ] JSON-LD structured data via `structuredData` prop on `BaseLayout` — see `docs/10-STRUCTURED-DATA.md`
 
 ### Site-Level SEO (Include From Inception)
 
@@ -23,6 +29,36 @@ These should be set up from the start of the project, not bolted on before launc
 - [ ] `404.astro` page
 - [ ] Canonical URLs in every page head
 - [ ] Reusable `<SEO>` component in Base layout
+
+### Meta title rules
+
+- 50–60 characters
+- Primary keyword near the start
+- Always ends with `— Significa`
+- Action-oriented where possible: *Discover our work — Significa*
+
+### Meta description rules
+
+- 120–160 characters
+- Unique per page — including handbook pages
+- Target secondary keywords
+- Never duplicate the title
+
+### URL rules
+
+- Clean, lowercase, dash-separated
+- No query params
+- Never change a published URL — broken URLs destroy backlinks
+
+### Link rules
+
+- Minimum 2–3 internal links per page
+- External links: check Domain Authority at https://ahrefs.com/website-authority-checker
+  - DA < 40 → `rel="nofollow noopener"`
+  - DA ≥ 40 → `rel="noopener"` only
+- Always `https` — never `http`
+
+---
 
 ## Accessibility
 

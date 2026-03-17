@@ -1,7 +1,10 @@
 ---
 import BaseLayout from "@/layouts/base.astro";
 import { getClients, getTestimonials, getAwards, getResolvedHighlights } from "@/lib/collections";
+import { getEntry } from "astro:content";
 import { cdnUrl } from "@/lib/cdn";
+import { webSiteJsonLd, faqPageJsonLd } from "@/lib/seo";
+import type { FAQItem } from "@/lib/seo";
 
 const clients = await getClients();
 const testimonials = await getTestimonials();
@@ -9,17 +12,66 @@ const highlights = await getResolvedHighlights();
 const awards = (await getAwards()).slice(0, 18);
 
 const featuredHighlights = highlights.slice(0, 3);
+
+// Hand-pick the 4 projects you want to feature — swap slugs anytime
+const featuredProjects = (
+  await Promise.all([
+    getEntry("projects", "dia"),
+    getEntry("projects", "hey-harper"),
+    getEntry("projects", "cometchat"),
+    getEntry("projects", "mishmash"),
+  ])
+).filter(Boolean);
+
+const faqs: FAQItem[] = [
+  {
+    question: "What services do you offer?",
+    answer:
+      "We offer end-to-end product development: strategy, UX/UI design, development, and ongoing support. We specialise in web and mobile applications, e-commerce platforms, and design systems.",
+  },
+  {
+    question: "How long does a typical project take?",
+    answer:
+      "Project timelines vary based on scope and complexity. A typical project ranges from 8–16 weeks, but we'll provide a detailed timeline during our initial discovery phase.",
+  },
+  {
+    question: "What's your process like?",
+    answer:
+      "We follow a collaborative, iterative approach: Think (strategy and planning), Design (UI/UX and prototyping), Develop (engineering and QA), Launch (deployment and handover), and Scale (optimisation and growth).",
+  },
+  {
+    question: "Do you work with startups or enterprises?",
+    answer:
+      "Both! We've partnered with ambitious startups and established enterprises across various industries. What matters most is shared ambition and a commitment to building something great.",
+  },
+  {
+    question: "Where are you based?",
+    answer:
+      "We're based in Porto, Portugal, but we work with clients globally. We're experienced in remote collaboration and have processes in place to ensure clear communication across time zones.",
+  },
+];
+
+const structuredData = [
+  webSiteJsonLd(),
+  faqPageJsonLd({
+    title: "Frequently Asked Questions | Significa",
+    description: "Common questions about working with Significa, a digital product design and development agency.",
+    url: "https://significa.co",
+    items: faqs,
+  }),
+];
 ---
 
 <BaseLayout
-  title="Significa — Design and Development Agency"
-  description="We are a design and development agency building digital products that work beautifully. From strategy to code, we deliver user-centred platforms for ambitious businesses."
+  title="Design and Development Agency"
+  description="Significa is a digital product design and development agency building e-commerce stores, web and mobile apps for ambitious scale-ups worldwide."
+  structuredData={structuredData}
 >
   <!-- Hero -->
   <section class="hero">
     <div class="hero-inner">
       <h1>
-        We are a <strong>design and development agency</strong> building digital products that work beautifully.
+        We are a <strong>design and development agency</strong> building digital products people love to use.
       </h1>
     </div>
   </section>
@@ -48,10 +100,69 @@ const featuredHighlights = highlights.slice(0, 3);
     </div>
   </section>
 
+  <!-- Selected Projects -->
+  {
+    featuredProjects.length > 0 && (
+      <section class="selected-projects">
+        <div class="selected-projects-inner">
+          <h2 class="selected-projects-heading">
+            From strategy to code, we deliver user-centred platforms for ambitious businesses.
+          </h2>
+          <ul class="selected-projects-grid" role="list">
+            {featuredProjects.map((project) => {
+              if (!project) return null;
+              const image = project.data.thumbnail;
+              const metrics = project.data.metrics?.slice(0, 3) ?? [];
+              return (
+                <li>
+                  <a href={`/projects/${project.id}`} class="project-card">
+                    {image && (
+                      <img
+                        src={cdnUrl(image, { width: 1200, quality: 85 })}
+                        alt={project.data.title}
+                        width="1200"
+                        height="800"
+                        loading="lazy"
+                        decoding="async"
+                        class="project-card-img"
+                      />
+                    )}
+                    <div class="project-card-overlay">
+                      <div class="project-card-header">
+                        <h3 class="project-card-title">{project.data.title}</h3>
+                        {project.data.tagline && <p class="project-card-tagline">{project.data.tagline}</p>}
+                      </div>
+                      {metrics.length > 0 && (
+                        <ul class="project-card-metrics" role="list">
+                          {metrics.map((m) => (
+                            <li class="project-card-metric">
+                              <span class="metric-value">{m.value}</span>
+                              <span class="metric-label">{m.label}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+          <div class="cta-container">
+            <a href="/projects" class="cta-link">
+              See all projects <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   <!-- Selected Highlights -->
   {
     featuredHighlights.length > 0 && (
       <section class="highlights-grid">
+        <h2 class="sr-only">Selected work</h2>
         <div class="highlights-grid-inner">
           {featuredHighlights.map((highlight) => {
             const entry = highlight.entry;
@@ -105,7 +216,7 @@ const featuredHighlights = highlights.slice(0, 3);
         </div>
         <div class="cta-container">
           <a href="/projects" class="cta-link">
-            View all projects →
+            See all product design projects <span aria-hidden="true">→</span>
           </a>
         </div>
       </section>
@@ -116,15 +227,17 @@ const featuredHighlights = highlights.slice(0, 3);
   <section class="services">
     <div class="services-inner">
       <h2>
-        When you work with us, you get our whole team to <strong>Think</strong>, <strong>Design</strong>,{" "}
-        <strong>Develop</strong>, <strong>Launch</strong> and <strong>Scale</strong> your ideas into seamless digital experiences.
+        When you work with us, you get our whole <strong>UX/UI design and product development</strong> team to Think, Design,{
+          " "
+        }
+        Develop, Launch and Scale your product.
       </h2>
       <p class="services-description">
         Whether it's an <strong>e-commerce shop</strong>, a <strong>mobile app</strong>, a{" "}
         <strong>ticketing platform</strong>, or a <strong>design system</strong>, we'll build it with care and curiosity, backed
         by +10 years of expertise, recognised by +20 international awards.
       </p>
-      <a href="/services" class="cta-button">Explore our services</a>
+      <a href="/services" class="cta-button">Explore our design and development services</a>
     </div>
   </section>
 
@@ -214,45 +327,14 @@ const featuredHighlights = highlights.slice(0, 3);
     <div class="faqs-inner">
       <h2>Frequently asked questions</h2>
       <div class="faq-list">
-        <details class="faq-item">
-          <summary class="faq-question">What services do you offer?</summary>
-          <p class="faq-answer">
-            We offer end-to-end product development: strategy, UX/UI design, development, and ongoing support. We specialise in
-            web and mobile applications, e-commerce platforms, and design systems.
-          </p>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">How long does a typical project take?</summary>
-          <p class="faq-answer">
-            Project timelines vary based on scope and complexity. A typical project ranges from 8–16 weeks, but we'll provide a
-            detailed timeline during our initial discovery phase.
-          </p>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">What's your process like?</summary>
-          <p class="faq-answer">
-            We follow a collaborative, iterative approach: Think (strategy and planning), Design (UI/UX and prototyping),
-            Develop (engineering and QA), Launch (deployment and handover), and Scale (optimisation and growth).
-          </p>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">Do you work with startups or enterprises?</summary>
-          <p class="faq-answer">
-            Both! We've partnered with ambitious startups and established enterprises across various industries. What matters
-            most is shared ambition and a commitment to building something exceptional.
-          </p>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">Where are you based?</summary>
-          <p class="faq-answer">
-            We're based in Porto, Portugal, but we work with clients globally. We're experienced in remote collaboration and
-            have processes in place to ensure seamless communication across time zones.
-          </p>
-        </details>
+        {
+          faqs.map((faq) => (
+            <details class="faq-item">
+              <summary class="faq-question">{faq.question}</summary>
+              <p class="faq-answer">{faq.answer}</p>
+            </details>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -302,7 +384,7 @@ const featuredHighlights = highlights.slice(0, 3);
     <div class="final-cta-inner">
       <h2>We are ready to grow your business.</h2>
       <p class="final-cta-description">
-        Are you? Let's get the conversation going — or keep browsing and see if we're the right fit.
+        Are you? Let's get the conversation going, or <a href="/blog">read our thinking</a> and see if we're the right fit.
       </p>
       <a href="/say-hello" class="cta-button-large">Get in touch</a>
     </div>
@@ -384,6 +466,18 @@ const featuredHighlights = highlights.slice(0, 3);
 </script>
 
 <style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   /* ============================================================
      Hero
      ============================================================ */
@@ -410,6 +504,121 @@ const featuredHighlights = highlights.slice(0, 3);
   /* ============================================================
      Showreel
      ============================================================ */
+  /* ============================================================
+     Selected Projects
+     ============================================================ */
+  .selected-projects {
+    padding: 0 var(--gutter) 6rem;
+  }
+
+  .selected-projects-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .selected-projects-heading {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.02em;
+    max-width: 36rem;
+    margin-block-end: 2.5rem;
+  }
+
+  .selected-projects-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.375rem;
+    margin-block-end: 2rem;
+  }
+
+  .project-card {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: var(--color-white);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: var(--color-black);
+  }
+
+  .project-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--duration-slow) var(--ease-out);
+    opacity: 0.9;
+  }
+
+  .project-card:hover .project-card-img {
+    transform: scale(1.03);
+    opacity: 0.75;
+  }
+
+  .project-card-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+    background:
+      linear-gradient(to bottom, oklch(0% 0 0 / 0.45) 0%, transparent 40%),
+      linear-gradient(to top, oklch(0% 0 0 / 0.55) 0%, transparent 45%);
+  }
+
+  .project-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .project-card-title {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    color: var(--color-white);
+  }
+
+  .project-card-tagline {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-normal);
+    color: oklch(100% 0 0 / 0.7);
+    line-height: var(--leading-tight);
+  }
+
+  .project-card-metrics {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  .project-card-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .metric-value {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    color: var(--color-white);
+    line-height: 1;
+  }
+
+  .metric-label {
+    font-size: var(--text-xs);
+    color: oklch(100% 0 0 / 0.65);
+  }
+
+  @media (max-width: 640px) {
+    .selected-projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
   .showreel {
     padding: 0 var(--gutter) 4rem;
   }

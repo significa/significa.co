@@ -263,33 +263,37 @@
   /* ── Input ── */
 
   .input-wrapper {
-    position: relative;
     display: flex;
     align-items: center;
+    gap: 0.625rem;
+    border-bottom: 1px solid var(--color-border);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .input-wrapper:focus-within {
+    border-color: var(--color-text);
   }
 
   .search-icon {
-    position: absolute;
-    left: 0.75rem;
     color: var(--color-text-muted);
     pointer-events: none;
     flex-shrink: 0;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .input-wrapper:focus-within .search-icon {
+    color: var(--color-text);
   }
 
   .search-input {
-    width: 100%;
-    padding: 0.625rem 2.5rem 0.625rem 2.375rem;
+    flex: 1;
+    padding-block: 0.625rem;
     font-family: var(--font-sans);
     font-size: var(--text-sm);
     color: var(--color-text);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
+    background: transparent;
+    border: none;
     outline: none;
-    transition:
-      border-color var(--duration-fast) var(--ease-out),
-      box-shadow var(--duration-fast) var(--ease-out);
-    /* Remove browser-native "x" clear button — we handle clearing via Escape */
     -webkit-appearance: none;
     appearance: none;
   }
@@ -302,14 +306,7 @@
     color: var(--color-text-muted);
   }
 
-  .search-input:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px oklch(45% 0.15 264 / 0.12);
-  }
-
   .search-shortcut {
-    position: absolute;
-    right: 0.625rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -317,10 +314,10 @@
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-text-muted);
-    background: var(--color-surface-alt);
     border: 1px solid var(--color-border);
     border-radius: 4px;
     pointer-events: none;
+    flex-shrink: 0;
     transition: opacity var(--duration-fast) var(--ease-out);
   }
 

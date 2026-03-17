@@ -17,8 +17,8 @@ const { page } = Astro.props;
 const { Content } = await render(page);
 
 const seo = page.data.seo;
-const title = seo?.metaTitle ?? `${page.data.title} — Significa Handbook`;
-const description = seo?.metaDescription ?? page.data.description ?? `${page.data.title} — Significa Handbook`;
+const title = seo?.metaTitle ?? `${page.data.title} - Handbook`;
+const description = seo?.metaDescription ?? page.data.description ?? `${page.data.title} - Significa Handbook`;
 
 const [breadcrumbs, children, indexGroups] = await Promise.all([
   getHandbookBreadcrumbs(page),
@@ -480,7 +480,8 @@ function formatDate(date: Date) {
 
   .cover-image img {
     width: 100%;
-    height: auto;
+    height: 340px;
+    object-fit: cover;
     display: block;
   }
 

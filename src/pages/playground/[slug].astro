@@ -3,6 +3,7 @@ import { render } from "astro:content";
 import BaseLayout from "@/layouts/base.astro";
 import { mdxComponents } from "@/components/mdx/components";
 import { getPlayground } from "@/lib/collections";
+import { cdnUrl } from "@/lib/cdn";
 
 export async function getStaticPaths() {
   const playground = await getPlayground();
@@ -18,21 +19,278 @@ const { Content } = await render(item);
 const seo = item.data.seo;
 const title = seo?.metaTitle ?? item.data.title;
 const description = seo?.metaDescription ?? item.data.description;
+
+const formattedDate = item.data.date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 ---
 
 <BaseLayout title={title} description={description} ogImage={seo?.ogImage}>
-  <article>
-    <header>
-      <h1>{item.data.title}</h1>
-      <p>{item.data.description}</p>
-      {
-        item.data.repoUrl && (
-          <a href={item.data.repoUrl} rel="noopener noreferrer">
-            View on GitHub
-          </a>
-        )
-      }
+  <article class="lab-post">
+    <header class="lab-header">
+      <div class="lab-header-inner">
+        <div class="lab-meta">
+          <time datetime={item.data.date.toISOString()}>{formattedDate}</time>
+          {
+            item.data.repoUrl && (
+              <>
+                <span class="meta-separator">•</span>
+                <a href={item.data.repoUrl} class="repo-link" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </a>
+              </>
+            )
+          }
+        </div>
+
+        <h1 class="lab-title">{item.data.title}</h1>
+
+        {item.data.description && <p class="lab-description">{item.data.description}</p>}
+      </div>
     </header>
-    <Content components={mdxComponents} />
+
+    {
+      item.data.thumbnail && (
+        <div class="lab-hero">
+          <img
+            src={cdnUrl(item.data.thumbnail, { width: 1600, quality: 85 })}
+            alt={item.data.title}
+            width="1600"
+            height="900"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      )
+    }
+
+    <div class="lab-content">
+      <div class="lab-content-inner">
+        <Content components={mdxComponents} />
+      </div>
+    </div>
   </article>
 </BaseLayout>
+
+<style>
+  /* ============================================================
+     Header
+     ============================================================ */
+
+  .lab-header {
+    padding: 8rem var(--gutter) 3rem;
+  }
+
+  .lab-header-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+  }
+
+  .lab-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .meta-separator {
+    opacity: 0.5;
+  }
+
+  .repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .repo-link:hover {
+    color: var(--color-text);
+  }
+
+  .lab-title {
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+  }
+
+  .lab-description {
+    font-size: var(--text-xl);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .lab-title {
+      font-size: var(--text-3xl);
+    }
+
+    .lab-description {
+      font-size: var(--text-lg);
+    }
+  }
+
+  /* ============================================================
+     Hero image
+     ============================================================ */
+
+  .lab-hero {
+    padding: 0 var(--gutter) 4rem;
+  }
+
+  .lab-hero img {
+    width: 100%;
+    height: auto;
+    max-height: 480px;
+    object-fit: cover;
+    display: block;
+    border-radius: 0.5rem;
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+  }
+
+  /* ============================================================
+     Content / prose
+     ============================================================ */
+
+  .lab-content {
+    padding: 0 var(--gutter) 6rem;
+  }
+
+  .lab-content-inner {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto;
+  }
+
+  .lab-content-inner :global(h2) {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .lab-content-inner :global(h3) {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .lab-content-inner :global(h4) {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .lab-content-inner :global(p) {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+  }
+
+  .lab-content-inner :global(a) {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    text-decoration-thickness: 1px;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .lab-content-inner :global(a:hover) {
+    opacity: 0.7;
+  }
+
+  .lab-content-inner :global(ul),
+  .lab-content-inner :global(ol) {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .lab-content-inner :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .lab-content-inner :global(blockquote) {
+    border-left: 4px solid var(--color-border);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
+
+  .lab-content-inner :global(blockquote p) {
+    font-size: var(--text-xl);
+    line-height: var(--leading-normal);
+  }
+
+  .lab-content-inner :global(strong) {
+    font-weight: var(--weight-semibold);
+    color: var(--color-text);
+  }
+
+  .lab-content-inner :global(em) {
+    font-style: italic;
+  }
+
+  .lab-content-inner :global(code) {
+    background: var(--color-surface-alt);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+    font-family: var(--font-mono);
+  }
+
+  .lab-content-inner :global(pre) {
+    background: var(--color-surface-alt);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .lab-content-inner :global(pre code) {
+    background: none;
+    padding: 0;
+  }
+
+  .lab-content-inner :global(hr) {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 3rem 0;
+  }
+</style>

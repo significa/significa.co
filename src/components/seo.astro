@@ -12,7 +12,7 @@ const { title, description, ogImage, type = "website", publishedAt, jsonLd } = A
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteName = "Significa";
-const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
 ---
 
 <title>{fullTitle}</title>
@@ -29,6 +29,8 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@significadotco" />
+<meta name="twitter:creator" content="@significadotco" />
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
 {ogImage && <meta name="twitter:image" content={ogImage} />}

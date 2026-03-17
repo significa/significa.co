@@ -43,6 +43,7 @@ These always apply, regardless of the task.
 11. **Astro v5 (latest stable).** Astro 6 is in beta — upgrade to v6 as soon as it reaches stable. Until then, stay on latest v5.
 12. **kebab-case for all filenames.** Enforced by ESLint via `eslint-plugin-check-file`. No exceptions.
 13. **Drafts use the `.draft` filename suffix.** `my-post.draft.mdx` is a draft. Publishing is a file rename. No frontmatter field.
+15. **No em-dashes.** Never use `—` in any content or copy. Use a comma, period, or rewrite the sentence instead.
 14. **Handbook pages with children use `index.mdx`.** If a handbook page has child pages, its content lives at `my-page/index.mdx` inside its own folder. Standalone pages with no children stay as flat `.mdx` files at the top level. Never have `my-page.mdx` alongside a `my-page/` folder — that's the old forbidden pattern. The `generateId` loader strips `/index` suffixes so URLs are identical either way. See `docs/02-CONTENT-SCHEMA.md`.
 
 ---
@@ -137,7 +138,9 @@ Read the docs relevant to your task. Don't load everything.
 | Astro framework reference (components, islands, transitions, routing) | `docs/06-ASTRO-REFERENCE.md` |
 | Architectural decisions, team discussion log | `docs/07-TEAM-DECISIONS.md` |
 | Design tokens (spacing, typography, colors, breakpoints) | `docs/08-DESIGN-TOKENS.md` |
-| SEO checklist, accessibility baseline | `docs/09-SEO-ACCESSIBILITY.md` |
+| SEO checklist, accessibility baseline, link rules | `docs/09-SEO-ACCESSIBILITY.md` |
+| Structured data, JSON-LD schemas, schema functions, code patterns | `docs/10-STRUCTURED-DATA.md` |
+| SEO strategy, keyword clusters, GEO principles, target markets | `docs/12-SEO-STRATEGY.md` |
 
 ### External References
 

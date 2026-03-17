@@ -17,7 +17,7 @@ const { service } = Astro.props;
 const { Content } = await render(service);
 
 const seo = service.data.seo;
-const title = seo?.metaTitle ?? `${service.data.title} — Significa`;
+const title = seo?.metaTitle ?? service.data.title;
 const description = seo?.metaDescription ?? service.data.tagline;
 const ogImage = seo?.ogImage ?? service.data.thumbnail;
 

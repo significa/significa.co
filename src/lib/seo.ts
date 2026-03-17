@@ -44,11 +44,12 @@ export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": "https://significa.co/#organization",
     name: "Significa",
     url: "https://significa.co",
     logo: "https://significa.co/favicon.svg",
     description:
-      "Digital product agency based in Porto, Portugal. We design and build digital products for companies that care about craft.",
+      "Significa is a product design and engineering agency based in Porto, building high-quality digital products and e-commerce stores for ambitious scale-ups worldwide.",
     foundingDate: "2015",
     numberOfEmployees: {
       "@type": "QuantitativeValue",
@@ -61,11 +62,39 @@ export function organizationJsonLd() {
       email: "hello@significa.co",
     },
     sameAs: [
-      "https://www.linkedin.com/company/significa",
+      "https://www.linkedin.com/company/significadotco/",
       "https://github.com/significa",
-      "https://twitter.com/significaco",
-      "https://instagram.com/significaco",
+      "https://twitter.com/significadotco",
+      "https://instagram.com/significadotco/",
+      "https://www.behance.net/significa",
+      "https://www.youtube.com/@SignificaDotCo",
     ],
+  };
+}
+
+// ============================================================
+// WEBSITE (homepage only — enables Sitelinks Searchbox)
+// ============================================================
+
+/**
+ * WebSite schema for the homepage.
+ * Required on the homepage to enable Google Sitelinks Searchbox and
+ * establish the site entity linked to the Organization.
+ *
+ * @example
+ * // In pages/index.astro only
+ * structuredData={[webSiteJsonLd(), faqPageJsonLd({ ... })]}
+ */
+export function webSiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://significa.co/#website",
+    name: "Significa",
+    url: "https://significa.co",
+    publisher: {
+      "@id": "https://significa.co/#organization",
+    },
   };
 }
 
@@ -344,7 +373,7 @@ export function portfolioCollectionJsonLd(options: {
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Projects — Significa",
+    name: "Projects | Significa",
     description:
       "Case studies and portfolio work from Significa. Digital product design and engineering for companies that care about craft.",
     url: "https://significa.co/projects",

@@ -27,7 +27,7 @@ const { Content } = await render(page);
 
 const seo = page.data.seo;
 const title = seo?.metaTitle ?? page.data.title;
-const description = seo?.metaDescription ?? `${page.data.title} — Significa`;
+const description = seo?.metaDescription ?? `${page.data.title} - Significa`;
 ---
 
 <BaseLayout title={title} description={description} ogImage={seo?.ogImage}>

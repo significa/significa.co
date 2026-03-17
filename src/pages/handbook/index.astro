@@ -2,62 +2,148 @@
 import BaseLayout from "@/layouts/base.astro";
 import { getHandbookIndex } from "@/lib/collections";
 import HandbookSearch from "@/components/handbook-search.astro";
-import HandbookGroup from "@/components/handbook-group.astro";
 
 const groups = await getHandbookIndex();
 ---
 
-<BaseLayout title="Handbook — Significa" description="How we work, what we believe in, and everything in between.">
+<BaseLayout title="Handbook" description="How we work, what we believe in, and everything in between.">
   <div class="page">
     <header class="hero">
-      <h1>Handbook</h1>
-      <p>How we work, what we believe in, and everything in between.</p>
-      <div class="search">
+      <h1>
+        <span class="hero-label">Handbook.</span> An overview of our culture, values, and guiding principles. Everything you need
+        to know about Significa can be found here.
+      </h1>
+      <div class="search-wrapper">
         <HandbookSearch />
       </div>
     </header>
 
-    <div class="groups">
+    <nav aria-label="Handbook pages">
       {
         groups.map(({ group, pages }) =>
-          pages.length > 0 ? <HandbookGroup groupTitle={group.data.title} groupId={group.id} pages={pages} /> : null
+          pages.length > 0 ? (
+            <section class="group" aria-labelledby={`group-${group.id}`}>
+              <h2 id={`group-${group.id}`} class="group-title">
+                {group.data.title}
+              </h2>
+              <ul role="list" class="entries">
+                {pages.map(({ page, children }) => (
+                  <>
+                    <li class="entry">
+                      <a href={`/handbook/${page.id}`} class="entry-link">
+                        <span class="entry-title">{page.data.title}</span>
+                      </a>
+                    </li>
+                    {children.map((child) => (
+                      <li class="entry entry--child">
+                        <a href={`/handbook/${child.id}`} class="entry-link">
+                          <span class="entry-title">{child.data.title}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </>
+                ))}
+              </ul>
+            </section>
+          ) : null
         )
       }
-    </div>
+    </nav>
   </div>
 </BaseLayout>
 
 <style>
   .page {
-    max-width: var(--max-width-narrow);
+    max-width: var(--max-width);
     margin-inline: auto;
     padding-inline: var(--gutter);
-    padding-block: 4rem 6rem;
-    overflow-x: hidden;
+    padding-block: 5rem 8rem;
   }
 
+  /* ── Hero ── */
+
   .hero {
-    margin-block-end: 4rem;
+    margin-block-end: 5rem;
+    max-width: 56rem;
   }
 
   .hero h1 {
-    font-size: var(--text-3xl);
-    margin-block-end: 0.5rem;
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.02em;
+    margin-block-end: 2rem;
   }
 
-  .hero p {
-    font-size: var(--text-lg);
+  .hero-label {
     color: var(--color-text-muted);
-    margin-block-end: 1.5rem;
   }
 
-  .search {
+  .search-wrapper {
     max-width: 28rem;
   }
 
-  .groups {
+  /* ── Groups ── */
+
+  .group {
+    margin-block-end: 3rem;
+  }
+
+  .group:last-child {
+    margin-block-end: 0;
+  }
+
+  .group-title {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin-block-end: 0.75rem;
+  }
+
+  /* ── Entries list ── */
+
+  .entries {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .entry {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .entry-link {
     display: flex;
-    flex-direction: column;
-    gap: 3rem;
+    align-items: baseline;
+    gap: 2rem;
+    padding-block: 0.875rem;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .entry-link:hover {
+    color: var(--color-primary);
+  }
+
+  .entry-title {
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+  }
+
+  .entry--child .entry-link {
+    padding-inline-start: 1.25rem;
+  }
+
+  .entry--child .entry-title {
+    font-weight: var(--weight-normal);
+    color: var(--color-text-muted);
+  }
+
+  .entry--child .entry-link:hover .entry-title {
+    color: var(--color-primary);
   }
 </style>

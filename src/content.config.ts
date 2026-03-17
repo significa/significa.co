@@ -130,17 +130,6 @@ const services = defineCollection({
   }),
 });
 
-const pages = defineCollection({
-  loader: contentLoader({
-    extensions: ["mdx"],
-    base: "src/content/pages",
-  }),
-  schema: z.object({
-    title: z.string(),
-    seo: seoSchema.optional(),
-  }),
-});
-
 // ============================================================
 // Homepage highlights
 // ============================================================
@@ -292,7 +281,7 @@ export const collections = {
   projects,
   blog,
   playground,
-  pages,
+
   services,
   highlights,
   clients,

@@ -56,6 +56,8 @@ const projects = defineCollection({
     client: z.string().optional(),
     date: z.coerce.date(),
     thumbnail: z.string(),
+    /** Alt text for thumbnail and hero image, used by the subagent alt text generator */
+    altText: z.string().optional(),
     /** Large hero image for homepage showcase and project detail header */
     heroImage: z.string().optional(),
     /** Video URL for the project showreel (plays inline on the project page) */
@@ -85,6 +87,8 @@ const blog = defineCollection({
     date: z.coerce.date(),
     author: z.string().optional(),
     thumbnail: z.string().optional(),
+    /** Alt text for the thumbnail image, used by the subagent alt text generator */
+    altText: z.string().optional(),
     tags: z.array(z.string()).default([]),
     seo: seoSchema.optional(),
     relatedProjects: z.array(reference("projects")).default([]),
@@ -102,6 +106,8 @@ const playground = defineCollection({
     date: z.coerce.date(),
     repoUrl: z.string().url().optional(),
     thumbnail: z.string().optional(),
+    /** Alt text for the thumbnail image, used by the subagent alt text generator */
+    altText: z.string().optional(),
     tags: z.array(z.string()).default([]),
     seo: seoSchema.optional(),
   }),

@@ -1,4 +1,6 @@
 ---
+const DEFAULT_OG_IMAGE = "https://cdn.significa.co/website/og-default-qaeF3s.png";
+
 interface Props {
   title: string;
   description: string;
@@ -9,6 +11,8 @@ interface Props {
 }
 
 const { title, description, ogImage, type = "website", publishedAt, jsonLd } = Astro.props;
+
+const resolvedOgImage = ogImage ?? DEFAULT_OG_IMAGE;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteName = "Significa";
@@ -25,7 +29,7 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:site_name" content={siteName} />
-{ogImage && <meta property="og:image" content={ogImage} />}
+<meta property="og:image" content={resolvedOgImage} />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -33,7 +37,7 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
 <meta name="twitter:creator" content="@significadotco" />
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
-{ogImage && <meta name="twitter:image" content={ogImage} />}
+<meta name="twitter:image" content={resolvedOgImage} />
 
 <!-- Article metadata -->
 {type === "article" && publishedAt && <meta property="article:published_time" content={publishedAt.toISOString()} />}

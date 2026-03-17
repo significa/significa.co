@@ -36,7 +36,13 @@ const thumbnailSrc = cdnUrl(project.data.thumbnail, {
     {
       project.data.thumbnail && (
         <div class="cross-sell-image-wrap">
-          <img src={thumbnailSrc} alt={project.data.title} loading="lazy" decoding="async" class="cross-sell-image" />
+          <img
+            src={thumbnailSrc}
+            alt={project.data.altText ?? project.data.title}
+            loading="lazy"
+            decoding="async"
+            class="cross-sell-image"
+          />
         </div>
       )
     }

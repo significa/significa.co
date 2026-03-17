@@ -54,7 +54,7 @@ const INITIAL_COUNT = 6;
               <div class="featured-image">
                 <img
                   src={cdnUrl(featuredPost.data.thumbnail, { width: 1200, quality: 85 })}
-                  alt={featuredPost.data.title}
+                  alt={featuredPost.data.altText ?? featuredPost.data.title}
                   width="1200"
                   height="675"
                   loading="eager"
@@ -123,7 +123,7 @@ const INITIAL_COUNT = 6;
                   <div class="card-image">
                     <img
                       src={cdnUrl(post.data.thumbnail, { width: 600, quality: 80 })}
-                      alt={post.data.title}
+                      alt={post.data.altText ?? post.data.title}
                       width="600"
                       height="400"
                       loading="lazy"

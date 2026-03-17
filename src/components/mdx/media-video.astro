@@ -7,6 +7,8 @@ interface Props {
   src: string;
   /** Optional poster image path (goes through CDN image transforms) */
   poster?: string;
+  /** Accessible label for screen readers — equivalent to alt text for video */
+  label?: string;
   /** Optional figure caption */
   caption?: string;
   /** Auto-play muted (for showreels) */
@@ -15,7 +17,7 @@ interface Props {
   controls?: boolean;
 }
 
-const { src, poster, caption, autoplay = false, controls = true } = Astro.props;
+const { src, poster, label, caption, autoplay = false, controls = true } = Astro.props;
 
 if (!src) contentError("MediaVideo", Astro.url.pathname, "Missing required prop: src");
 
@@ -35,6 +37,7 @@ const posterSrc = poster ? cdnUrl(poster, { width: 1280, quality: DEFAULT_QUALIT
         loop={autoplay}
         playsinline={autoplay}
         preload={autoplay ? "auto" : "metadata"}
+        aria-label={label || undefined}
       >
         <p>Your browser does not support the video element.</p>
       </video>
@@ -50,6 +53,7 @@ const posterSrc = poster ? cdnUrl(poster, { width: 1280, quality: DEFAULT_QUALIT
       loop={autoplay}
       playsinline={autoplay}
       preload={autoplay ? "auto" : "metadata"}
+      aria-label={label || undefined}
     >
       <p>Your browser does not support the video element.</p>
     </video>

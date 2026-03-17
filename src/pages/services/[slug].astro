@@ -65,7 +65,7 @@ const allAwards = await getAwards();
                                 `${cdnUrl(project.data.thumbnail, { width: 1200, quality: 85 })} 1200w`,
                               ].join(", ")}
                               sizes="(max-width: 768px) 100vw, 50vw"
-                              alt={project.data.title}
+                              alt={project.data.altText ?? project.data.title}
                               width="1200"
                               height="800"
                               loading="lazy"

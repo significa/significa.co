@@ -86,7 +86,7 @@ function formatLabel(str: string): string {
                 `${cdnUrl(project.data.heroImage, { width: 1920, quality: 85 })} 1920w`,
               ].join(", ")}
               sizes="100vw"
-              alt={`${project.data.title} hero`}
+              alt={project.data.altText ?? project.data.title}
               width="1920"
               height="1080"
               loading="eager"

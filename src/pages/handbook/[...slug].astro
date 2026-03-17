@@ -39,7 +39,7 @@ function formatDate(date: Date) {
 }
 ---
 
-<BaseLayout title={title} description={description} ogImage={seo?.ogImage}>
+<BaseLayout title={title} description={description} ogImage={seo?.ogImage ?? page.data.coverImage}>
   <div class="layout">
     <!-- Sidebar -->
     <nav class="sidebar" aria-label="Handbook navigation">

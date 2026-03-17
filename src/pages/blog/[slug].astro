@@ -37,7 +37,13 @@ const formattedDate = post.data.date.toLocaleDateString("en-US", {
 });
 ---
 
-<BaseLayout title={title} description={description} ogImage={seo?.ogImage} type="article" publishedAt={post.data.date}>
+<BaseLayout
+  title={title}
+  description={description}
+  ogImage={seo?.ogImage ?? post.data.thumbnail}
+  type="article"
+  publishedAt={post.data.date}
+>
   <article class="blog-post">
     <header class="blog-header">
       <div class="blog-header-inner">
@@ -65,7 +71,7 @@ const formattedDate = post.data.date.toLocaleDateString("en-US", {
         <div class="blog-hero">
           <img
             src={cdnUrl(post.data.thumbnail, { width: 1600, quality: 85 })}
-            alt={post.data.title}
+            alt={post.data.altText ?? post.data.title}
             width="1600"
             height="900"
             loading="eager"
@@ -111,7 +117,7 @@ const formattedDate = post.data.date.toLocaleDateString("en-US", {
                           <div class="related-image">
                             <img
                               src={cdnUrl(project.data.thumbnail, { width: 600, quality: 80 })}
-                              alt={project.data.title}
+                              alt={project.data.altText ?? project.data.title}
                               width="600"
                               height="400"
                               loading="lazy"

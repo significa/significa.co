@@ -119,7 +119,7 @@ const structuredData = [
                     {image && (
                       <img
                         src={cdnUrl(image, { width: 1200, quality: 85 })}
-                        alt={project.data.title}
+                        alt={project.data.altText ?? project.data.title}
                         width="1200"
                         height="800"
                         loading="lazy"

@@ -121,7 +121,14 @@ function formatLabel(value: string): string {
               <a href={`/projects/${project.id}`} class="project-link">
                 {thumbnailUrl && (
                   <div class="project-thumbnail">
-                    <img src={thumbnailUrl} alt={project.data.title} width="800" height="600" loading="lazy" decoding="async" />
+                    <img
+                      src={thumbnailUrl}
+                      alt={project.data.altText ?? project.data.title}
+                      width="800"
+                      height="600"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
                 )}
 

@@ -50,12 +50,12 @@
   "contact.label.position": "Position",
   "contact.label.message": "Message",
   "contact.footer.title": "Hate contact forms?",
-  "contact.footer.email": "hi@significa.co",
+  "contact.footer.email": "newbusiness@significa.co",
   "contact.submit": "Send message",
   "blog.pre-footer.title": "We build and launch functional digital products.",
   "blog.pre-footer.cta": "Get a quote",
   "contact.feedback.error.title": "Could not submit your message",
-  "contact.feedback.error.description": "Please contact us directly at hi@significa.co",
+  "contact.feedback.error.description": "Please contact us directly at newbusiness@significa.co",
   "contact.label.attachment.quote": "Relevant documents",
   "contact.label.attachment.position": "CV, portfolio, or other documents",
   "seo.title": "Significa — Digital Product Design & Development Agency",
@@ -176,5 +176,8 @@
   "blog.x_minutes": "{{value}} minutes",
   "blog.est-reading-time": "Est. reading time",
   "blog.x_min_read": "{{value}} min read",
-  "contact.feedback.error.message.description": "Message exceeds maximum length of 2000 characters"
+  "contact.feedback.error.message.description": "Message exceeds maximum length of 2000 characters",
+  "contact.email": "hello@significa.co",
+  "careers.contact.email": "jobs@significa.co",
+  "quote.contact.email": "newbusiness@significa.co"
 }

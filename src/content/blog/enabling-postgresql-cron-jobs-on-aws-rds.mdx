@@ -27,25 +27,35 @@ To add the `pg_cron` extension, we need to create a parameter group — a copy o
 
 Access your AWS RDS Console and open the **Parameter Groups** tab on the left panel.
 
-<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/parameter-groups-tab.jpg" alt="AWS RDS Console with the Parameter Groups tab highlighted in the left panel" width={1200} height={630} />
+<MediaBlock src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/parameter-groups-tab.jpg" alt="AWS RDS Console with the Parameter Groups tab highlighted in the left panel" width={1200} height={630}
+  layout="full"
+/>
 
 Click on **Create parameter group** and fill in the details.
 
-<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/create-parameter-group.jpg" alt="Create parameter group form in AWS RDS Console" width={1200} height={630} />
+<MediaBlock src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/create-parameter-group.jpg" alt="Create parameter group form in AWS RDS Console" width={1200} height={630}
+  layout="full"
+/>
 
 ### Edit parameter group parameters
 
 Access your parameter group and search for the `shared_preload_libraries` parameter. You can use the search bar at the top of the parameters list to find it quickly.
 
-<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/shared-preload-libraries-search.jpg" alt="Searching for shared_preload_libraries in the parameter group editor" width={1200} height={630} />
+<MediaBlock src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/shared-preload-libraries-search.jpg" alt="Searching for shared_preload_libraries in the parameter group editor" width={1200} height={630}
+  layout="full"
+/>
 
 Add the value `pg_cron` to the `shared_preload_libraries` parameter. Apply the changes — it should look something like this.
 
-<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/shared-preload-libraries-value.jpg" alt="shared_preload_libraries parameter with pg_cron value applied" width={1200} height={630} />
+<MediaBlock src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/shared-preload-libraries-value.jpg" alt="shared_preload_libraries parameter with pg_cron value applied" width={1200} height={630}
+  layout="full"
+/>
 
 Now, in the same parameter group, find the field `cron.database_name` and change it to the name of your database.
 
-<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/cron-database-name.jpg" alt="cron.database_name field set to the target database name" width={1200} height={630} />
+<MediaBlock src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/cron-database-name.jpg" alt="cron.database_name field set to the target database name" width={1200} height={630}
+  layout="full"
+/>
 
 Save the changes. Now let's jump to our DB instances.
 
@@ -53,13 +63,17 @@ Save the changes. Now let's jump to our DB instances.
 
 Access the DB Instance of the database you want to change, and click on the **Configuration** tab.
 
-<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/db-instance-configuration-tab.jpg" alt="DB Instance configuration tab in AWS RDS Console" width={1200} height={630} />
+<MediaBlock src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/db-instance-configuration-tab.jpg" alt="DB Instance configuration tab in AWS RDS Console" width={1200} height={630}
+  layout="full"
+/>
 
 Scroll down and you'll find that the Parameter Group for that instance is not the one we just created. Normally, if you've never edited parameter groups before, yours should be `default-postgres{POSTGRES_VERSION}` — in my case, `default-postgres12`.
 
 We'll change the parameter group to the one we just created. Click on **Modify** in the top right corner, then scroll down until you find where to change the DB parameter group.
 
-<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/modify-db-parameter-group.jpg" alt="Changing the DB parameter group in the Modify DB Instance screen" width={1200} height={630} />
+<MediaBlock src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/modify-db-parameter-group.jpg" alt="Changing the DB parameter group in the Modify DB Instance screen" width={1200} height={630}
+  layout="full"
+/>
 
 Save the changes by pressing **Continue** at the end of the page. You'll be asked to confirm the fields you're changing in the Summary of modifications. Choose whether to apply the changes right away or schedule a maintenance window.
 
@@ -71,7 +85,9 @@ After confirming, click on **Modify DB Instance** and you're good to go!
 
 If you chose to apply the changes immediately, go to your DB Instance, click on **Actions**, and select **Reboot**.
 
-<MediaImage src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/reboot-db-instance.jpg" alt="Rebooting the DB instance from the Actions menu in AWS RDS Console" width={1200} height={630} />
+<MediaBlock src="/blog/enabling-postgresql-cron-jobs-on-aws-rds/reboot-db-instance.jpg" alt="Rebooting the DB instance from the Actions menu in AWS RDS Console" width={1200} height={630}
+  layout="full"
+/>
 
 Congratulations — you've successfully installed `pg_cron` on your database instance! Here's a recap of what we've covered so far:
 

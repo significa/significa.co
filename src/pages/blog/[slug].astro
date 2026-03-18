@@ -1,9 +1,9 @@
 ---
-import { getEntry, render } from "astro:content";
+import { render } from "astro:content";
 import BaseLayout from "@/layouts/base.astro";
 import { mdxComponents } from "@/components/mdx/components";
 import { articleJsonLd } from "@/lib/seo";
-import { getPosts } from "@/lib/collections";
+import { getPosts, getRelatedPosts } from "@/lib/collections";
 import { cdnUrl } from "@/lib/cdn";
 
 export async function getStaticPaths() {
@@ -21,9 +21,7 @@ const seo = post.data.seo;
 const title = seo?.metaTitle ?? post.data.title;
 const description = seo?.metaDescription ?? post.data.description ?? `${post.data.title} — Significa Blog`;
 
-const relatedProjects = post.data.relatedProjects?.length
-  ? await Promise.all(post.data.relatedProjects.map((ref) => getEntry(ref)))
-  : [];
+const relatedPosts = await getRelatedPosts(post);
 
 // Calculate reading time (rough estimate: 200 words per minute)
 const wordCount = post.body?.split(/\s+/).length ?? 0;
@@ -103,36 +101,46 @@ const formattedDate = post.data.date.toLocaleDateString("en-US", {
     }
 
     {
-      relatedProjects.length > 0 && (
-        <aside class="related-projects">
-          <div class="related-projects-inner">
-            <h2 class="related-title">Related Work</h2>
+      relatedPosts.length > 0 && (
+        <aside class="related-posts">
+          <div class="related-posts-inner">
+            <p class="related-label">More articles</p>
             <ul class="related-list">
-              {relatedProjects.map(
-                (project) =>
-                  project && (
-                    <li class="related-item">
-                      <a href={`/projects/${project.id}`} class="related-link">
-                        {project.data.thumbnail && (
-                          <div class="related-image">
-                            <img
-                              src={cdnUrl(project.data.thumbnail, { width: 600, quality: 80 })}
-                              alt={project.data.altText ?? project.data.title}
-                              width="600"
-                              height="400"
-                              loading="lazy"
-                              decoding="async"
-                            />
-                          </div>
-                        )}
-                        <div class="related-content">
-                          <h3 class="related-project-title">{project.data.title}</h3>
-                          {project.data.tagline && <p class="related-tagline">{project.data.tagline}</p>}
+              {relatedPosts.map((related) => {
+                const relatedWordCount = related.body?.split(/\s+/).length ?? 0;
+                const relatedReadingTime = relatedWordCount > 0 ? Math.ceil(relatedWordCount / 200) : 5;
+                const relatedDate = related.data.date.toLocaleDateString("en-US", { year: "numeric", month: "short" });
+                return (
+                  <li class="related-item">
+                    <a href={`/blog/${related.id}`} class="related-link">
+                      {related.data.thumbnail && (
+                        <div class="related-thumb">
+                          <img
+                            src={cdnUrl(related.data.thumbnail, { width: 160, quality: 80 })}
+                            alt={related.data.altText ?? related.data.title}
+                            width="80"
+                            height="56"
+                            loading="lazy"
+                            decoding="async"
+                          />
                         </div>
-                      </a>
-                    </li>
-                  )
-              )}
+                      )}
+                      <div class="related-text">
+                        <span class="related-post-title">{related.data.title}</span>
+                        <span class="related-meta">
+                          <time datetime={related.data.date.toISOString()}>{relatedDate}</time>
+                          <span class="related-meta-sep">·</span>
+                          <span>{relatedReadingTime} min read</span>
+                          {related.data.tags?.slice(0, 2).map((tag) => (
+                            <span class="related-tag">{tag}</span>
+                          ))}
+                        </span>
+                      </div>
+                      <span class="related-arrow">→</span>
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </aside>
@@ -420,79 +428,119 @@ const formattedDate = post.data.date.toLocaleDateString("en-US", {
   }
 
   /* ============================================================
-     Related Projects
+     Related Posts
      ============================================================ */
-  .related-projects {
-    padding: 4rem var(--gutter);
-    background: var(--color-surface-alt);
+  .related-posts {
+    padding: 2.5rem var(--gutter);
+    border-top: 1px solid var(--color-border);
   }
 
-  .related-projects-inner {
-    max-width: var(--max-width);
+  .related-posts-inner {
+    max-width: var(--max-width-narrow);
     margin: 0 auto;
   }
 
-  .related-title {
-    font-size: var(--text-2xl);
-    font-weight: var(--weight-bold);
-    line-height: var(--leading-tight);
-    color: var(--color-text);
-    margin-bottom: 2rem;
-    text-align: center;
+  .related-label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin-bottom: 1.25rem;
   }
 
   .related-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
     list-style: none;
   }
 
+  .related-item {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .related-item:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+
   .related-link {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem 0;
     text-decoration: none;
     color: var(--color-text);
-    border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
-    overflow: hidden;
-    background: var(--color-surface);
-    transition: border-color var(--duration-fast) var(--ease-out);
+    transition: opacity var(--duration-fast) var(--ease-out);
   }
 
   .related-link:hover {
-    border-color: var(--color-text);
+    opacity: 0.6;
   }
 
-  .related-image {
+  .related-thumb {
+    flex-shrink: 0;
+    width: 80px;
+    height: 56px;
+    border-radius: 0.375rem;
+    overflow: hidden;
     background: var(--color-surface-alt);
   }
 
-  .related-image img {
+  .related-thumb img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    transition: transform var(--duration-slow) var(--ease-out);
   }
 
-  .related-link:hover .related-image img {
-    transform: scale(1.05);
+  .related-text {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
   }
 
-  .related-content {
-    padding: 1.5rem;
-  }
-
-  .related-project-title {
-    font-size: var(--text-lg);
+  .related-post-title {
+    font-size: var(--text-base);
     font-weight: var(--weight-semibold);
     line-height: var(--leading-tight);
-    margin-bottom: 0.5rem;
   }
 
-  .related-tagline {
-    font-size: var(--text-base);
-    line-height: var(--leading-normal);
+  .related-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    font-size: var(--text-xs);
     color: var(--color-text-muted);
+  }
+
+  .related-meta-sep {
+    opacity: 0.5;
+  }
+
+  .related-tag {
+    padding: 0.2rem 0.5rem;
+    background: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-muted);
+    text-transform: capitalize;
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+
+  .related-arrow {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .related-link:hover .related-arrow {
+    transform: translateX(3px);
+    color: var(--color-text);
   }
 
   /* ============================================================

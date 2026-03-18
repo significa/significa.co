@@ -18,10 +18,12 @@ interface Props {
   src: string;
   /** Accessible alt text. Leave empty for decorative/ambient media. */
   alt?: string;
-  /** Intrinsic width in pixels (prevents CLS) */
-  width: number;
-  /** Intrinsic height in pixels (prevents CLS) */
-  height: number;
+  /** Intrinsic width in pixels. Used only to reserve space before load (prevents CLS).
+   *  If unknown, omit it — the image will still render correctly, just without space reservation. */
+  width?: number;
+  /** Intrinsic height in pixels. Used only to reserve space before load (prevents CLS).
+   *  If unknown, omit it — the image will still render correctly, just without space reservation. */
+  height?: number;
   /**
    * Controls the rendered width of the media. Required — always set this explicitly.
    * - full   — full viewport width
@@ -43,8 +45,8 @@ interface Props {
 const {
   src,
   alt = "",
-  width,
-  height,
+  width = undefined,
+  height = undefined,
   // Fall back to "full" at runtime so existing content without layout doesn't break,
   // but layout is required in the Props interface so new usage gets a TS error in-editor.
   layout = "full" as Layout,
@@ -55,8 +57,6 @@ const {
 } = Astro.props;
 
 if (!src) contentError("MediaBlock", Astro.url.pathname, "Missing required prop: src");
-if (!width) contentError("MediaBlock", Astro.url.pathname, "Missing required prop: width");
-if (!height) contentError("MediaBlock", Astro.url.pathname, "Missing required prop: height");
 
 const isVideo = /\.(mp4|webm|mov)(\?.*)?$/i.test(src);
 
@@ -115,17 +115,44 @@ const imgSizes = srcset ? sizes : undefined;
       <figcaption>{caption}</figcaption>
     </figure>
   ) : (
-    <img
-      data-layout={layout}
-      src={imgSrc}
-      srcset={srcset}
-      sizes={imgSizes}
-      alt={alt}
-      width={width}
-      height={height}
-      loading={eager ? "eager" : "lazy"}
-      fetchpriority={eager ? "high" : "auto"}
-      decoding={eager ? "sync" : "async"}
-    />
+    <figure data-layout={layout}>
+      <img
+        src={imgSrc}
+        srcset={srcset}
+        sizes={imgSizes}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={eager ? "eager" : "lazy"}
+        fetchpriority={eager ? "high" : "auto"}
+        decoding={eager ? "sync" : "async"}
+      />
+    </figure>
   )
 }
+
+<style>
+  figure {
+    margin: 0;
+  }
+
+  /* Always preserve natural proportions — width/height props only reserve space, never force dimensions */
+  figure img,
+  figure video,
+  :global(img[data-layout]) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  figcaption {
+    max-width: var(--max-width-narrow);
+    margin-inline: auto;
+    padding-block-start: 0.75rem;
+    padding-inline: var(--gutter);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+</style>

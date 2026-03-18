@@ -2,6 +2,34 @@ import { getCollection, getEntry } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
 /**
+ * Get up to 3 recent posts that share at least one tag with the given post.
+ * Excludes the current post. Falls back to the 3 most recent posts if no tag matches are found.
+ */
+export async function getRelatedPosts(currentPost: CollectionEntry<"blog">, limit = 3): Promise<CollectionEntry<"blog">[]> {
+  const allPosts = await getPosts();
+  const currentTags = currentPost.data.tags ?? [];
+
+  const otherPosts = allPosts.filter((p) => p.id !== currentPost.id);
+
+  if (currentTags.length === 0) {
+    return otherPosts.slice(0, limit);
+  }
+
+  const withScore = otherPosts.map((p) => {
+    const sharedTags = (p.data.tags ?? []).filter((t) => currentTags.includes(t)).length;
+    return { post: p, sharedTags };
+  });
+
+  const matched = withScore
+    .filter(({ sharedTags }) => sharedTags > 0)
+    .map(({ post }) => post)
+    .slice(0, limit);
+
+  // Fall back to most recent posts if no tag matches
+  return matched.length > 0 ? matched : otherPosts.slice(0, limit);
+}
+
+/**
  * Get all projects, sorted by date descending.
  */
 export async function getProjects() {

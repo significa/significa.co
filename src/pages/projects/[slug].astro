@@ -510,12 +510,12 @@ function formatLabel(str: string): string {
      ============================================================ */
   .project-content {
     padding-block: 5rem;
-    padding-inline: var(--gutter);
   }
 
   .project-content-inner {
     max-width: var(--max-width-narrow);
     margin-inline: auto;
+    padding-inline: var(--gutter);
   }
 
   /* Prose typography */
@@ -664,16 +664,14 @@ function formatLabel(str: string): string {
 
   /* Consistent vertical spacing around all media — above and below, always */
   .project-content-inner :global(figure),
-  .project-content-inner :global(div:has(> video)),
-  .project-content-inner :global(img[data-layout]) {
+  .project-content-inner :global(div:has(> video)) {
     margin-block: 3rem;
   }
 
   /* Images and videos inside wrappers always fill their wrapper */
   .project-content-inner :global(figure img),
   .project-content-inner :global(figure video),
-  .project-content-inner :global(div:has(> video) video),
-  .project-content-inner :global(img[data-layout]) {
+  .project-content-inner :global(div:has(> video) video) {
     width: 100%;
     height: auto;
     display: block;
@@ -681,21 +679,16 @@ function formatLabel(str: string): string {
 
   /* full — break out to full viewport width (default for all media) */
   .project-content-inner :global([data-layout="full"]),
-  .project-content-inner :global(figure:not([data-layout])),
-  .project-content-inner :global(img:not([data-layout]):not(figure img)),
-  .project-content-inner :global(div:has(> video):not([data-layout])),
   .project-content-inner :global(.metrics),
   .project-content-inner :global(.cross-sell) {
     width: 100vw;
-    max-width: 100vw;
-    margin-inline-start: calc(50% - 50vw);
+    margin-inline: calc(50% - 50vw);
   }
 
   /* wide — centered at --max-width, still breaks out of prose column */
   .project-content-inner :global([data-layout="wide"]) {
     width: min(var(--max-width), 100vw);
-    max-width: 100vw;
-    margin-inline-start: calc(50% - min(var(--max-width), 100vw) / 2);
+    margin-inline: calc(50% - min(var(--max-width), 100vw) / 2);
   }
 
   /* medium — stays within the prose column, no breakout */

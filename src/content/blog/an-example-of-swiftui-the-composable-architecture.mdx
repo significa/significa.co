@@ -29,13 +29,17 @@ Since then, we decided to do a small example project to serve as a base for how 
 
 Our example project is an app that shows Pokémon cards. We use the V1 of the [Pokémon TCG API](https://pokemontcg.io/) to retrieve the card info. In the Cards tab, we retrieve the information from the server and show it in an infinite scroll list.
 
-<MediaImage src="/blog/an-example-of-swiftui-the-composable-architecture/pokemon-tcg-cards-screen.jpg" alt="Pokemon TCG app — Cards Screen" width={1200} height={800} caption="Pokemon TCG — Cards Screen." />
+<MediaBlock src="/blog/an-example-of-swiftui-the-composable-architecture/pokemon-tcg-cards-screen.jpg" alt="Pokemon TCG app — Cards Screen" width={1200} height={800} caption="Pokemon TCG — Cards Screen."
+  layout="full"
+/>
 
 The API documentation was fully open source but now requires a login to access it. The new V2 version also requires an API key to be generated. Either way, it's free for now.
 
 We also have a detail screen where the card image is shown at a larger size. Here, the user can toggle it as a favourite.
 
-<MediaImage src="/blog/an-example-of-swiftui-the-composable-architecture/pokemon-tcg-card-detail-screen.jpg" alt="Pokemon TCG app — Card Detail Screen" width={1200} height={800} caption="Pokemon TCG — Card Detail Screen." />
+<MediaBlock src="/blog/an-example-of-swiftui-the-composable-architecture/pokemon-tcg-card-detail-screen.jpg" alt="Pokemon TCG app — Card Detail Screen" width={1200} height={800} caption="Pokemon TCG — Card Detail Screen."
+  layout="full"
+/>
 
 Finally, the Favourites tab shows the favourite cards list in the same way as the Cards tab.
 
@@ -53,13 +57,17 @@ We use the [Swift Package Manager (SPM)](https://www.swift.org/package-manager/)
 
 In this section, let's walk through what's inside the main folders.
 
-<MediaImage src="/blog/an-example-of-swiftui-the-composable-architecture/folder-structure-overview.jpg" alt="Xcode project folder structure overview" width={1200} height={800} caption="Folder Structure Overview." />
+<MediaBlock src="/blog/an-example-of-swiftui-the-composable-architecture/folder-structure-overview.jpg" alt="Xcode project folder structure overview" width={1200} height={800} caption="Folder Structure Overview."
+  layout="full"
+/>
 
 ### Data
 
 Inside the `Data` folder, you will find everything related to data itself: models, web service clients, `CoreData`, and other services you may need to handle data models.
 
-<MediaImage src="/blog/an-example-of-swiftui-the-composable-architecture/client-folder.jpg" alt="Contents of the Client folder inside Data" width={1200} height={800} caption="Client Folder." />
+<MediaBlock src="/blog/an-example-of-swiftui-the-composable-architecture/client-folder.jpg" alt="Contents of the Client folder inside Data" width={1200} height={800} caption="Client Folder."
+  layout="full"
+/>
 
 The `CardsClient` and `FavoriteCardsClient` should be the only way TCA Reducers access and change data. Those clients follow a pattern well described in [this video](https://www.pointfree.co/), where there's always a live and a mock version of the client. This improves testability a lot, allowing our code to be fully mockable and removing the test dependency on external data providers (e.g. API calls).
 

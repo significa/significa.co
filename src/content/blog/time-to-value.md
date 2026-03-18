@@ -3,7 +3,7 @@ title: "Time to Value: how fast should your product deliver results?"
 description: Time and value, and how they relate to each other, sit at the core of building products people love. The answer to how fast you need to deliver is — faster than you think.
 date: 2025-12-23
 author: Ana Fernandes
-thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+thumbnail: https://cdn.significa.co/website/blog/time-to-value/cover-test-j8z74n.png
 tags:
   - learning
   - strategy

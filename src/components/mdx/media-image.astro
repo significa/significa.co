@@ -64,3 +64,20 @@ const imgSizes = srcset ? sizes : undefined;
     />
   )
 }
+
+<style>
+  figure {
+    margin: 0;
+  }
+
+  figcaption {
+    max-width: var(--max-width-narrow);
+    margin-inline: auto;
+    padding-block-start: 0.75rem;
+    padding-inline: var(--gutter);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+</style>

@@ -46,7 +46,9 @@ Let's look at the flow of traditional cookie-based authentication:
 - On subsequent requests, the session ID is verified against the database and if valid, the request is processed
 - Once a user logs out of the app, the session is destroyed both client-side and server-side
 
-<MediaImage src="/blog/using-websockets-with-cookie-based-authentication/cookie-auth-flow-placeholder.jpg" alt="Cookie-based authentication flow" width={1200} height={630} caption="Cookie-based authentication flow." />
+<MediaBlock src="/blog/using-websockets-with-cookie-based-authentication/cookie-auth-flow-placeholder.jpg" alt="Cookie-based authentication flow" width={1200} height={630} caption="Cookie-based authentication flow."
+  layout="full"
+/>
 
 ## Problem: How do we authenticate Elixir GraphQL subscriptions?
 
@@ -70,7 +72,9 @@ We were missing something basic: Secure WebSockets (WSS) use a different protoco
 
 Although, in theory, one could use cookies, as all WebSocket connections start with an HTTP request (with an upgrade header on it), and the cookies for the domain you are connecting to, will be sent with that initial HTTP request to open the WebSocket. It is not recommended as WebSockets are not restrained by the same-origin policy.
 
-<MediaImage src="/blog/using-websockets-with-cookie-based-authentication/websocket-lifetime-placeholder.jpg" alt="Lifetime of a WebSocket connection" width={1200} height={630} caption="Lifetime of a WebSocket connection." />
+<MediaBlock src="/blog/using-websockets-with-cookie-based-authentication/websocket-lifetime-placeholder.jpg" alt="Lifetime of a WebSocket connection" width={1200} height={630} caption="Lifetime of a WebSocket connection."
+  layout="full"
+/>
 
 Using cookies could actually leave users vulnerable to cross-site scripting attacks (xss).
 

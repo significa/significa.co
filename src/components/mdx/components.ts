@@ -1,4 +1,6 @@
+import BlogCrossSell from "./blog-cross-sell.astro";
 import MediaBlock from "./media-block.astro";
+import MediaGrid from "./media-grid.astro";
 import MediaVideo from "./media-video.astro";
 import ComparisonBlock from "./comparison-block.astro";
 import Metrics from "./metrics.astro";
@@ -18,7 +20,9 @@ import Callout from "./callout.astro";
  * 3. That's it — all slug pages pick it up automatically
  */
 export const mdxComponents = {
+  BlogCrossSell,
   MediaBlock,
+  MediaGrid,
   /** @deprecated Use MediaBlock instead */
   MediaImage: MediaBlock,
   MediaVideo,

@@ -27,9 +27,13 @@ Let's picture creating a block with:
 
 By default, Storyblok will only display the Title in the block's preview. What if we could make all the information available in that block in advance? It would be great, and it is, in fact, possible!
 
-<MediaImage src="/blog/storyblok-best-practices/block-preview-default.jpg" alt="Block preview default state in Storyblok" width={1200} height={630} caption="By default, Storyblok only shows the Title in the block preview." />
+<MediaBlock src="/blog/storyblok-best-practices/block-preview-default.jpg" alt="Block preview default state in Storyblok" width={1200} height={630} caption="By default, Storyblok only shows the Title in the block preview."
+  layout="full"
+/>
 
-<MediaImage src="/blog/storyblok-best-practices/block-preview-custom.jpg" alt="Block preview with custom template applied in Storyblok" width={1200} height={630} caption="With a custom preview template, image, title, and description are all visible at a glance." />
+<MediaBlock src="/blog/storyblok-best-practices/block-preview-custom.jpg" alt="Block preview with custom template applied in Storyblok" width={1200} height={630} caption="With a custom preview template, image, title, and description are all visible at a glance."
+  layout="full"
+/>
 
 To customise the preview, navigate to **Block Edit → Config** and use the following code:
 
@@ -88,7 +92,9 @@ In order for the CMS's user (client) to be able to interact with the blocks, eve
 
 It is very common to use props in the section block (primary), but the experience is much better if you add them to the sub-blocks. Imagine a block with more than 50 sub-blocks — if we add this functionality, it makes it much simpler to find and click directly on any element on the page, rather than scrolling through a long list.
 
-<MediaImage src="/blog/storyblok-best-practices/editable-sub-blocks.jpg" alt="Every sub-block element is clickable and editable directly on the page in Storyblok" width={1200} height={630} caption="With StoryblokEditable props on sub-blocks, every element on the page becomes directly clickable." />
+<MediaBlock src="/blog/storyblok-best-practices/editable-sub-blocks.jpg" alt="Every sub-block element is clickable and editable directly on the page in Storyblok" width={1200} height={630} caption="With StoryblokEditable props on sub-blocks, every element on the page becomes directly clickable."
+  layout="full"
+/>
 
 ## Assets
 

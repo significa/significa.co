@@ -1,0 +1,105 @@
+---
+import { cdnUrl, cdnSrcset, DEFAULT_QUALITY } from "@/lib/cdn";
+import { contentError } from "@/lib/content-errors";
+
+interface GridItem {
+  /** Asset path or full URL. Relative paths get the CDN hostname prepended. */
+  src: string;
+  /** Accessible alt text. Leave empty for decorative/ambient media. */
+  alt?: string;
+  /** Intrinsic width in pixels */
+  width?: number;
+  /** Intrinsic height in pixels */
+  height?: number;
+}
+
+interface Props {
+  /** Array of images to display in the grid */
+  items: GridItem[];
+  /** Number of columns (2 or 3). Defaults to 3. */
+  columns?: 2 | 3;
+  /** Image quality 0-100 */
+  quality?: number;
+  /** Optional caption below the grid */
+  caption?: string;
+}
+
+const { items, columns = 3, quality = DEFAULT_QUALITY, caption } = Astro.props;
+
+if (!items || items.length === 0) {
+  contentError("MediaGrid", Astro.url.pathname, "MediaGrid requires at least one item");
+}
+---
+
+<figure class="media-grid" data-columns={columns}>
+  <div class="media-grid-inner">
+    {
+      items.map((item) => {
+        const src = cdnUrl(item.src, { width: 640, quality });
+        const srcset = cdnSrcset(item.src, { quality, widths: [320, 480, 640, 960] });
+        return (
+          <div class="media-grid-item">
+            <img
+              src={src}
+              srcset={srcset}
+              sizes={columns === 2 ? "(max-width: 640px) 100vw, 50vw" : "(max-width: 640px) 100vw, 33vw"}
+              alt={item.alt ?? ""}
+              width={item.width ?? 640}
+              height={item.height ?? 640}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        );
+      })
+    }
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .media-grid {
+    margin: 2rem 0;
+  }
+
+  .media-grid-inner {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .media-grid[data-columns="2"] .media-grid-inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .media-grid-item {
+    overflow: hidden;
+    border-radius: 0.75rem;
+    background: var(--color-surface-alt);
+    aspect-ratio: 1;
+  }
+
+  .media-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  figcaption {
+    margin-top: 0.75rem;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .media-grid-inner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .media-grid[data-columns="2"] .media-grid-inner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

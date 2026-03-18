@@ -36,13 +36,17 @@ We won't go very far on the specifics of the systems in use, but here's what we 
 - Open up a traditional desktop application
 - Manage users and then "sync" with the device
 
-<MediaImage src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/old-door-management-software.jpg" alt="The old system used to manage the door access" width={1200} height={630} caption="The old system used to manage the door access." />
+<MediaBlock src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/old-door-management-software.jpg" alt="The old system used to manage the door access" width={1200} height={630} caption="The old system used to manage the door access."
+  layout="full"
+/>
 
 Adding a card/key fob is even more complex: you have first to scan the card on the device (near the door), then fetch the logs in the software to get the card identifier. Theoretically, you could run this program with a card reader attached to the computer directly, but that would require Windows with direct network access to the door lock. Frankly, both are quite complex.
 
 As you can imagine by now, in an environment where we focus on shipping products with great experiences, this is something no one wants to deal with. Not only was the onboarding tedious, but obviously, past employees were always forgotten and not removed from the user base.
 
-<MediaImage src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/door-setup-overview.jpg" alt="Overview of our office door setup" width={1200} height={630} caption="Our office door — electromagnetic lock with key fob and PIN code support." />
+<MediaBlock src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/door-setup-overview.jpg" alt="Overview of our office door setup" width={1200} height={630} caption="Our office door — electromagnetic lock with key fob and PIN code support."
+  layout="full"
+/>
 
 ## A modern solution
 
@@ -66,7 +70,9 @@ Quite simply, first-timers just need to use Slack's slash commands to get a secr
 
 Afterwards, users can use any of the pre-shared shortcuts, for example the Apple Shortcuts or IFTTT. We provide a nifty Apple Shortcuts link that can be seamlessly added and will prompt the secret during installation.
 
-<MediaImage src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/slackbot-setup-flow.jpg" alt="The SlackBot slash command flow for getting a door secret" width={1200} height={630} caption="First-timers use a Slack slash command to get their unique door secret." />
+<MediaBlock src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/slackbot-setup-flow.jpg" alt="The SlackBot slash command flow for getting a door secret" width={1200} height={630} caption="First-timers use a Slack slash command to get their unique door secret."
+  layout="full"
+/>
 
 ### Works with everything
 
@@ -76,7 +82,9 @@ This integration can be used with anything that can make an HTTP request. Phone,
 
 The doorbell is connected to Slack, meaning whenever you ring it, it takes a picture and sends it to a specific Slack channel, allowing anyone to open it directly with an interactive Slack message. So, if you are anxiously waiting for a package, you can join this channel and make sure you are the first to click the Open Door button.
 
-<MediaImage src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/doorbell-slack-message.jpg" alt="Interactive Slack message sent when someone rings the doorbell" width={1200} height={630} caption="The doorbell rings in Slack — anyone can open the door directly from the message." />
+<MediaBlock src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/doorbell-slack-message.jpg" alt="Interactive Slack message sent when someone rings the doorbell" width={1200} height={630} caption="The doorbell rings in Slack — anyone can open the door directly from the message."
+  layout="full"
+/>
 
 ## Tech talk: How it is all set up
 
@@ -84,7 +92,9 @@ Our setup might look complex, but connecting all this is pretty straightforward.
 
 At the centre of everything is our Python + Flask + Peewee application. In essence, it's what connects it all up.
 
-<MediaImage src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/architecture-diagram.jpg" alt="Architecture diagram showing how all the components connect" width={1200} height={630} caption="How it all connects — Slack, Netatmo, Shelly, and our Flask app." />
+<MediaBlock src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/architecture-diagram.jpg" alt="Architecture diagram showing how all the components connect" width={1200} height={630} caption="How it all connects — Slack, Netatmo, Shelly, and our Flask app."
+  layout="full"
+/>
 
 In our Slack workspace, there's an application installed that sends us HTTP requests whenever a user performs slash commands. We also use it to post doorbell messages, retrieve the user directory, and invalidate tokens for users that have left Slack.
 
@@ -104,7 +114,9 @@ Although Google Workspace makes sense if you want to go all out on the source of
 
 As with any modern software development project, we have multiple environments — in this case, staging, production, and a local environment. We have it all: a staging database, Slack application, Slack workspace, and to top it all, a miniature door. We use GitHub Actions to build, test, and deliver the software to [Fly.io](https://fly.io), our container hosting provider.
 
-<MediaImage src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/miniature-door.jpg" alt="The miniature door used for local development and testing" width={1200} height={630} caption="Our staging environment includes a miniature door for testing." />
+<MediaBlock src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/miniature-door.jpg" alt="The miniature door used for local development and testing" width={1200} height={630} caption="Our staging environment includes a miniature door for testing."
+  layout="full"
+/>
 
 ## Safety and redundancy
 
@@ -132,7 +144,9 @@ This is a double-edged sword — it's cool to be able to open the door remotely,
 
 As you can see, there isn't a fancy geofencing system. It just checks if you are on the office's street. This restriction runs on the device, meaning that the system we built has nothing to do with geolocation. Restrictions must happen in the automation application — the server does not know the end user's location.
 
-<MediaImage src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/geolocation-check.jpg" alt="Apple Shortcuts geolocation check prompting when away from the office" width={1200} height={630} caption="The Apple Shortcut checks if you're near the office before opening the door." />
+<MediaBlock src="/blog/we-built-the-coolest-office-door-and-doorbell-setup/geolocation-check.jpg" alt="Apple Shortcuts geolocation check prompting when away from the office" width={1200} height={630} caption="The Apple Shortcut checks if you're near the office before opening the door."
+  layout="full"
+/>
 
 ---
 

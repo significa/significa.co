@@ -35,7 +35,9 @@ We had never done such a project, so we went to the blackboard and started scrib
 
 ## Version 1: Source-oriented Approach
 
-<MediaImage src="PLACEHOLDER_scraping-otp/v1-solution.jpg" alt="v1 Solution – Source-oriented approach." width={1200} height={630} caption="v1 Solution – Source-oriented approach." />
+<MediaBlock src="PLACEHOLDER_scraping-otp/v1-solution.jpg" alt="v1 Solution – Source-oriented approach." width={1200} height={630} caption="v1 Solution – Source-oriented approach."
+  layout="full"
+/>
 
 Our initial approach was to scrape each source (e.g. Kickstarter) on its own GenServer. Each GenServer would fetch all the projects every 4 hours from the database and, project by project, fetch the correspondent source data.
 
@@ -61,7 +63,9 @@ At a certain point, we wanted to allow the admin users to trigger scrapes for a 
 
 ## Version 2: Project-oriented solution, a GenServer per each project
 
-<MediaImage src="PLACEHOLDER_scraping-otp/v2-solution.jpg" alt="v2 Project oriented solution, a GenServer per each project." width={1200} height={630} caption="v2 Project oriented solution, a GenServer per each project." />
+<MediaBlock src="PLACEHOLDER_scraping-otp/v2-solution.jpg" alt="v2 Project oriented solution, a GenServer per each project." width={1200} height={630} caption="v2 Project oriented solution, a GenServer per each project."
+  layout="full"
+/>
 
 Luckily by the time we were drawing alternatives to our initial version, the [DynamicSupervisor](https://hexdocs.pm/elixir/DynamicSupervisor.html) was released on [Elixir v1.6](https://elixir-lang.org/blog/2018/01/17/elixir-v1-6-0-released/).
 
@@ -77,13 +81,17 @@ When an admin adds a new project, the dynamic supervisor starts a new child proc
 
 This data stored on ETS will be later used when the admin user archives a project or triggers a scrape for a single project.
 
-<MediaImage src="PLACEHOLDER_scraping-otp/add-project-flow.jpg" alt="Add project flow." width={1200} height={630} caption="Add project flow." />
+<MediaBlock src="PLACEHOLDER_scraping-otp/add-project-flow.jpg" alt="Add project flow." width={1200} height={630} caption="Add project flow."
+  layout="full"
+/>
 
 ### Archiving a project
 
 When an admin archives a project, the flow is basically the reverse of adding a new project: the application retrieves the PID responsible for the project, the Dynamic Supervisor then deletes the entry for the ETS and using the retrieved PID terminates the child project responsible for the project.
 
-<MediaImage src="PLACEHOLDER_scraping-otp/archive-project-flow.jpg" alt="Archive project flow." width={1200} height={630} caption="Archive project flow." />
+<MediaBlock src="PLACEHOLDER_scraping-otp/archive-project-flow.jpg" alt="Archive project flow." width={1200} height={630} caption="Archive project flow."
+  layout="full"
+/>
 
 ### Triggering a scrape on a single project
 
@@ -232,7 +240,9 @@ Once again, we had to improve the current solution. This time, the change was no
 
 ## Version 3: A mix of the previous solutions
 
-<MediaImage src="PLACEHOLDER_scraping-otp/v3-solution.jpg" alt="v3 – Mix of previous solutions." width={1200} height={630} caption="v3 – Mix of previous solutions." />
+<MediaBlock src="PLACEHOLDER_scraping-otp/v3-solution.jpg" alt="v3 – Mix of previous solutions." width={1200} height={630} caption="v3 – Mix of previous solutions."
+  layout="full"
+/>
 
 Picking up on the initial idea of having a source worker per each platform, we simply added a source worker responsible for fetching the data point needed with a much higher frequency (every 5 minutes).
 
@@ -240,7 +250,9 @@ If this worker fails, no big problems arise, as the regular scrapers will still 
 
 ## The solution
 
-<MediaImage src="PLACEHOLDER_scraping-otp/dashboard-snapshot.jpg" alt="Snapshot of the dashboard with fake data." width={1200} height={630} caption="Snapshot of the dashboard with fake data." />
+<MediaBlock src="PLACEHOLDER_scraping-otp/dashboard-snapshot.jpg" alt="Snapshot of the dashboard with fake data." width={1200} height={630} caption="Snapshot of the dashboard with fake data."
+  layout="full"
+/>
 
 At the time of writing, we don't have big drawbacks to the current solution, and the feedback from our dashboard users has been great. But from our experience, we know that projects evolve, more features are added, and current ones are changed, which may lead to newer versions of the current architecture. Also, we are still learning and experimenting a lot with the Elixir / Phoenix ecosystem, which keeps giving us new ideas and improvements to our projects.
 

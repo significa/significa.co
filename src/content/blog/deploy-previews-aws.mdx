@@ -23,7 +23,9 @@ That's why we needed to bring it to AWS. This quick tutorial is an example of ho
 
 When a Pull Request is opened, or someone commits to it, we should make a new build, deploy it to `somedomain.com/preview/<pr-number>` and post back the URL as a commit status.
 
-<MediaImage src="/blog/deploy-previews-aws/deploy-preview-example-placeholder.jpg" alt="Deploy Preview example showing a PR with a commit status linking to the preview URL" width={1200} height={630} caption="A commit status on the Pull Request links directly to the deploy preview URL." />
+<MediaBlock src="/blog/deploy-previews-aws/deploy-preview-example-placeholder.jpg" alt="Deploy Preview example showing a PR with a commit status linking to the preview URL" width={1200} height={630} caption="A commit status on the Pull Request links directly to the deploy preview URL."
+  layout="full"
+/>
 
 ## AWS
 
@@ -185,7 +187,9 @@ Feel free to check our [website's open-source repo](https://github.com/significa
 
 In a tweet, [@swyx](https://twitter.com/swyx) and [@sebastienlorber](https://twitter.com/sebastienlorber) were kind enough to correctly point out that commenting on the deployed URL per commit will easily clutter the Pull Request's discussion. The snippet above was updated to use GitHub Status instead of commenting.
 
-<MediaImage src="/blog/deploy-previews-aws/github-status-placeholder.jpg" alt="GitHub commit status showing the deploy preview URL" width={1200} height={630} caption="Using GitHub Status keeps your PR clean while still surfacing the deploy preview URL." />
+<MediaBlock src="/blog/deploy-previews-aws/github-status-placeholder.jpg" alt="GitHub commit status showing the deploy preview URL" width={1200} height={630} caption="Using GitHub Status keeps your PR clean while still surfacing the deploy preview URL."
+  layout="full"
+/>
 
 If you still want to go with the comments approach using [unsplash/comment-on-pr](https://github.com/unsplash/comment-on-pr) to post the URL comment back to the PR, this is what we had:
 

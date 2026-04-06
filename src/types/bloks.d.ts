@@ -1064,6 +1064,7 @@ export interface PrefooterFormStoryblok {
 }
 
 export interface ProjectStoryblok {
+  hide_from_listings: boolean;
   cover?: AssetStoryblok;
   show_cover_image: boolean;
   reel?: AssetStoryblok;

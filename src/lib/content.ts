@@ -188,7 +188,12 @@ export const fetchProjects = async (
     'cdn/stories',
     {
       ...PROJECT_PARAMS,
-      version: options.version || 'published'
+      version: options.version || 'published',
+      filter_query: {
+        hide_from_listings: {
+          is: false
+        }
+      }
     }
   );
 
@@ -323,7 +328,14 @@ export async function fetchPage(options: {
   if (data.story.content.component === 'project') {
     return {
       story: data.story,
-      relatedProjects: await fetchEntries<ProjectPage>(options, PROJECT_PARAMS)
+      relatedProjects: await fetchEntries<ProjectPage>(options, {
+        ...PROJECT_PARAMS,
+        filter_query: {
+          hide_from_listings: {
+            is: false
+          }
+        }
+      })
     };
   }
 
@@ -344,6 +356,9 @@ export async function fetchPage(options: {
       authorProjects: await fetchEntries<ProjectPage>(options, {
         ...PROJECT_PARAMS,
         filter_query: {
+          hide_from_listings: {
+            is: false
+          },
           team: {
             any_in_array: data.story.uuid
           }

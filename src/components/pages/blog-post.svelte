@@ -21,6 +21,7 @@
   description={story.content.seo_description || story.content.intro}
   image={story.content.seo_og_image || story.content.cover}
   structureDataMarkup={story.content.structure_data_markup}
+  noIndex={story.content.no_index}
   twitterExtraFields={story?.content?.reading_time
     ? [
         {

@@ -158,6 +158,12 @@ export interface RichtextStoryblok {
 }
 
 export interface BlogPostStoryblok {
+  seo_title?: string;
+  seo_description?: string;
+  seo_og_image?: AssetStoryblok;
+  seo_canonical_url?: string;
+  no_index: boolean;
+  structure_data_markup?: string;
   hide_from_listings: boolean;
   cover?: AssetStoryblok;
   reading_time?: string;
@@ -168,11 +174,6 @@ export interface BlogPostStoryblok {
   deliverables?: (number | string)[];
   tech?: (number | string)[];
   industry?: (number | string)[];
-  seo_title?: string;
-  seo_description?: string;
-  seo_og_image?: AssetStoryblok;
-  seo_canonical_url?: string;
-  structure_data_markup?: string;
   body?: RichtextStoryblok;
   _uid: string;
   component: 'blog-post';
@@ -1064,6 +1065,11 @@ export interface PrefooterFormStoryblok {
 }
 
 export interface ProjectStoryblok {
+  seo_title?: string;
+  seo_description?: string;
+  seo_og_image?: AssetStoryblok;
+  no_index: boolean;
+  structure_data_markup?: string;
   hide_from_listings: boolean;
   cover?: AssetStoryblok;
   show_cover_image: boolean;
@@ -1081,10 +1087,6 @@ export interface ProjectStoryblok {
   deliverables?: (number | string)[];
   services?: (number | string)[];
   links?: LinkStoryblok[];
-  seo_title?: string;
-  seo_description?: string;
-  seo_og_image?: AssetStoryblok;
-  structure_data_markup?: string;
   body?: RichtextStoryblok;
   _uid: string;
   component: 'project';

@@ -483,12 +483,46 @@
       "display_name": "Author",
       "description": null,
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2025-09-25T10:06:22.146Z",
+      "updated_at": "2026-04-07T14:04:46.091Z",
       "id": 3442347,
       "schema": {
+        "seo_title": {
+          "type": "text",
+          "pos": 0,
+          "id": "BOQalEUqQiyk1md3F5xIVA"
+        },
+        "seo_description": {
+          "type": "text",
+          "pos": 1,
+          "id": "7NAqowg8QR2aKKFF5RhbXQ"
+        },
+        "seo_og_image": {
+          "type": "asset",
+          "filetypes": ["images"],
+          "asset_folder_id": 212285,
+          "pos": 2,
+          "id": "aKZDfkIZSByFgTOpanjZyg"
+        },
+        "seo_canonical_url": {
+          "type": "text",
+          "pos": 3,
+          "description": "The default is the page URL",
+          "id": "uti5hsDBSF6WaKtICvmJ3Q"
+        },
+        "no_index": {
+          "type": "boolean",
+          "pos": 4,
+          "id": "QdaowBuQToac3Oh6NS2DQA"
+        },
+        "structure_data_markup": {
+          "type": "textarea",
+          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
+          "pos": 5,
+          "id": "jlD5mft8RjCpiuV3jnrKQA"
+        },
         "hide_from_listings": {
           "type": "boolean",
-          "pos": 0,
+          "pos": 6,
           "inline_label": true,
           "description": "Hide this blog post from anywhere that lists posts automatically (Blog index, recommendations, etc.)",
           "id": "CbspcL_HRb6xEaUOUnDMDw",
@@ -499,19 +533,19 @@
           "filetypes": ["images"],
           "asset_folder_id": 212285,
           "required": false,
-          "pos": 1,
+          "pos": 7,
           "id": "8dLyaE42R3GwiQWEMB9ZkQ"
         },
         "reading_time": {
           "type": "number",
-          "pos": 2,
+          "pos": 8,
           "display_name": "Reading Time (mins)",
           "id": "MiPFnbyLSjCWHlOysdIV2A"
         },
         "intro": {
           "type": "textarea",
           "required": true,
-          "pos": 3,
+          "pos": 9,
           "id": "ki2PS1dbQ7a2MqWpUWPImw"
         },
         "authors": {
@@ -521,12 +555,12 @@
           "required": false,
           "min_options": "0",
           "max_options": "4",
-          "pos": 4,
+          "pos": 10,
           "id": "vlcOr1lSSkynG2QKXt4YJg"
         },
         "external_authors": {
           "type": "bloks",
-          "pos": 5,
+          "pos": 11,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["external-author"],
@@ -538,14 +572,14 @@
           "type": "options",
           "source": "internal",
           "datasource_slug": "services",
-          "pos": 6,
+          "pos": 12,
           "id": "SmiU9YHQQFmiu3YKGdcK9w"
         },
         "deliverables": {
           "type": "options",
           "source": "internal",
           "datasource_slug": "deliverables",
-          "pos": 7,
+          "pos": 13,
           "id": "vF2l7ScsRUuUNq_nOYroKg"
         },
         "tech": {
@@ -553,49 +587,20 @@
           "display_name": "",
           "source": "internal",
           "datasource_slug": "tech-stack",
-          "pos": 8,
+          "pos": 14,
           "id": "uHMZJfCDR06MV30J7QHzKA"
         },
         "industry": {
           "type": "options",
           "source": "internal",
           "datasource_slug": "industry",
-          "pos": 9,
+          "pos": 15,
           "id": "CssUjMEXTo6Kjnn86kwajA"
-        },
-        "seo_title": {
-          "type": "text",
-          "pos": 10,
-          "id": "BOQalEUqQiyk1md3F5xIVA"
-        },
-        "seo_description": {
-          "type": "text",
-          "pos": 11,
-          "id": "7NAqowg8QR2aKKFF5RhbXQ"
-        },
-        "seo_og_image": {
-          "type": "asset",
-          "filetypes": ["images"],
-          "asset_folder_id": 212285,
-          "pos": 12,
-          "id": "aKZDfkIZSByFgTOpanjZyg"
-        },
-        "seo_canonical_url": {
-          "type": "text",
-          "pos": 13,
-          "description": "The default is the page URL",
-          "id": "uti5hsDBSF6WaKtICvmJ3Q"
-        },
-        "structure_data_markup": {
-          "type": "textarea",
-          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
-          "pos": 14,
-          "id": "jlD5mft8RjCpiuV3jnrKQA"
         },
         "tab-9a5d9933-3840-42d8-aa24-d87e83a9eb5d": {
           "display_name": "Content",
           "keys": ["body"],
-          "pos": 15,
+          "pos": 16,
           "type": "tab",
           "id": "ml2ZMzhAQtiqJNh-g6nrXQ"
         },
@@ -606,9 +611,10 @@
             "seo_description",
             "seo_og_image",
             "structure_data_markup",
-            "seo_canonical_url"
+            "seo_canonical_url",
+            "no_index"
           ],
-          "pos": 16,
+          "pos": 17,
           "type": "tab",
           "id": "wbZiBjNNRHCplsqaoHTiPA"
         },
@@ -641,7 +647,7 @@
             "redo",
             "color"
           ],
-          "pos": 17,
+          "pos": 18,
           "allow_custom_attributes": true,
           "id": "5ed-PQo1Sv6G4smOLUMFNg",
           "allow_target_blank": true
@@ -4632,12 +4638,43 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-02-15T13:07:44.621Z",
-      "updated_at": "2026-04-06T14:49:52.588Z",
+      "updated_at": "2026-04-07T14:05:04.447Z",
       "id": 3442356,
       "schema": {
+        "seo_title": {
+          "type": "text",
+          "pos": 0,
+          "key": "seo_title",
+          "id": "IAubVawWRP6I66D5pr26zg"
+        },
+        "seo_description": {
+          "type": "text",
+          "pos": 1,
+          "key": "seo_description",
+          "id": "3i3zrdtORPmaNmrOH5Tz3Q"
+        },
+        "seo_og_image": {
+          "type": "asset",
+          "filetypes": ["images"],
+          "asset_folder_id": 238159,
+          "pos": 2,
+          "key": "seo_og_image",
+          "id": "1f2qC26RQA6L8T1VxxNhRA"
+        },
+        "no_index": {
+          "type": "boolean",
+          "pos": 3,
+          "id": "l9ava016RlKPnLg06RmHHQ"
+        },
+        "structure_data_markup": {
+          "type": "textarea",
+          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
+          "pos": 4,
+          "id": "ZxgiQebySJO3YsQUZiqq7A"
+        },
         "hide_from_listings": {
           "type": "boolean",
-          "pos": 0,
+          "pos": 5,
           "id": "EJmHcbz9Stqs_CHeqwIAFQ",
           "description": "Hide this project from anywhere that lists projects automatically",
           "tooltip": true,
@@ -4647,13 +4684,13 @@
           "type": "asset",
           "filetypes": ["images"],
           "asset_folder_id": 212286,
-          "pos": 1,
+          "pos": 6,
           "key": "cover",
           "id": "K4bPe8P3TSyanaB86SdEAQ"
         },
         "show_cover_image": {
           "type": "boolean",
-          "pos": 2,
+          "pos": 7,
           "default_value": false,
           "description": "This prioritises showing the cover image over the reel video.\nSo if this toggled on the reel won't show instead you have the cover image show if there is one set",
           "tooltip": true,
@@ -4661,14 +4698,14 @@
         },
         "reel": {
           "type": "asset",
-          "pos": 3,
+          "pos": 8,
           "filetypes": ["videos"],
           "key": "reel",
           "id": "S2e1YKgjRBOVvymDY0GuBw"
         },
         "reel_button": {
           "type": "section",
-          "pos": 4,
+          "pos": 9,
           "keys": ["reel_button_theme", "reel_button_label", "show_reel_controls"],
           "key": "reel_button",
           "display_name": "Reel Options",
@@ -4676,14 +4713,14 @@
         },
         "show_reel_controls": {
           "type": "boolean",
-          "pos": 5,
+          "pos": 10,
           "default_value": true,
           "id": "pYYJ-A-XQDmgVfNO66q20g"
         },
         "reel_button_theme": {
           "type": "option",
           "use_uuid": true,
-          "pos": 6,
+          "pos": 11,
           "options": [
             {
               "_uid": "ed9c0d33-e7d4-42de-a790-9adfca55481a",
@@ -4704,7 +4741,7 @@
         },
         "reel_button_label": {
           "type": "text",
-          "pos": 7,
+          "pos": 12,
           "display_name": "Reel Button Label (optional)",
           "key": "reel_button_label",
           "id": "j-F8L5tQSD2vhsuCJSmFvA"
@@ -4714,21 +4751,21 @@
           "filetypes": ["images"],
           "required": true,
           "asset_folder_id": 212286,
-          "pos": 8,
+          "pos": 13,
           "key": "thumbnail",
           "id": "gZGWhNMXSBCYDBaXqpwvmA"
         },
         "tagline": {
           "type": "text",
           "required": true,
-          "pos": 9,
+          "pos": 14,
           "key": "tagline",
           "id": "_Ada4_5uQ1erYNdMD1zyug"
         },
         "intro": {
           "type": "textarea",
           "required": true,
-          "pos": 10,
+          "pos": 15,
           "key": "intro",
           "id": "oC9vSdLEQBOkqBzSzklJaA"
         },
@@ -4736,13 +4773,13 @@
           "type": "options",
           "source": "internal_stories",
           "filter_content_type": ["team-member"],
-          "pos": 11,
+          "pos": 16,
           "key": "team",
           "id": "df5X6-EbT4mBJRNnehLikA"
         },
         "measurements": {
           "type": "bloks",
-          "pos": 12,
+          "pos": 17,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["measurement_entry"],
@@ -4753,13 +4790,13 @@
           "use_uuid": true,
           "source": "internal_stories",
           "filter_content_type": ["client"],
-          "pos": 13,
+          "pos": 18,
           "key": "client",
           "id": "xMZPyZMMQ_CmsvBzjMNlOQ"
         },
         "deliverables": {
           "type": "options",
-          "pos": 14,
+          "pos": 19,
           "source": "internal",
           "datasource_slug": "deliverables",
           "key": "deliverables",
@@ -4767,7 +4804,7 @@
         },
         "services": {
           "type": "options",
-          "pos": 15,
+          "pos": 20,
           "source": "internal",
           "datasource_slug": "services",
           "key": "services_data",
@@ -4778,40 +4815,14 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["link"],
-          "pos": 16,
+          "pos": 21,
           "key": "links",
           "id": "kj9itQzJR4adEdmWQ7LWyA"
-        },
-        "seo_title": {
-          "type": "text",
-          "pos": 17,
-          "key": "seo_title",
-          "id": "IAubVawWRP6I66D5pr26zg"
-        },
-        "seo_description": {
-          "type": "text",
-          "pos": 18,
-          "key": "seo_description",
-          "id": "3i3zrdtORPmaNmrOH5Tz3Q"
-        },
-        "seo_og_image": {
-          "type": "asset",
-          "filetypes": ["images"],
-          "asset_folder_id": 238159,
-          "pos": 19,
-          "key": "seo_og_image",
-          "id": "1f2qC26RQA6L8T1VxxNhRA"
-        },
-        "structure_data_markup": {
-          "type": "textarea",
-          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
-          "pos": 20,
-          "id": "ZxgiQebySJO3YsQUZiqq7A"
         },
         "tab-734adeb1-00ef-48e6-aa53-a3001ad39201": {
           "display_name": "Content",
           "keys": ["body"],
-          "pos": 21,
+          "pos": 22,
           "type": "tab",
           "key": "tab-734adeb1-00ef-48e6-aa53-a3001ad39201",
           "id": "c0resQDvSOaqU6MAGtOSAQ"
@@ -4843,14 +4854,20 @@
             "h4",
             "color"
           ],
-          "pos": 22,
+          "pos": 23,
           "key": "body",
           "id": "0ZABAogMSpqMzkXwAN-5GQ"
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image", "structure_data_markup"],
-          "pos": 23,
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image",
+            "structure_data_markup",
+            "no_index"
+          ],
+          "pos": 24,
           "type": "tab",
           "key": "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9",
           "id": "RR1WvdNlTfCKYSAHuLIqqQ"

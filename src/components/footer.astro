@@ -1,95 +1,100 @@
 ---
-import { getPosts } from "@/lib/collections";
+/**
+ * Footer
+ *
+ * Editorial close. Same paper as the page (no separate gray surface).
+ * Three-cell top with the pull quote as the visual centerpiece, then
+ * a mono nav row, then legal/marks. Contact email gets prominence;
+ * the manifesto line provides the moment.
+ *
+ * No "ready to grow your business" CTA. We close on point of view +
+ * direct contact, not on a sales line.
+ */
 
-const recentPosts = (await getPosts()).slice(0, 2);
+import Egg from "@/components/ui/egg.astro";
+
 const currentYear = new Date().getFullYear();
 
-const significaLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
+const navItems = [
+  { label: "Work", href: "/projects" },
+  { label: "Studio", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Projects", href: "/projects" },
-  { label: "Impact", href: "/impact" },
-  { label: "Say hello", href: "/say-hello" },
-  { label: "Careers", href: "/careers" },
-  { label: "Blog", href: "/blog" },
-  { label: "Playground", href: "/playground" },
-];
-
-const handbookLinks = [
+  { label: "Journal", href: "/blog" },
   { label: "Handbook", href: "/handbook" },
-  { label: "Playbook", href: "/playbook" },
-  { label: "Mission & Values", href: "/mission-and-values" },
-  { label: "Culture", href: "/culture" },
-  { label: "How we collaborate", href: "/how-we-collaborate" },
+  { label: "Hello", href: "/say-hello" },
 ];
 ---
 
 <footer class="site-footer">
-  <div class="footer-inner">
-    <!-- Top: CTA + navigation columns -->
+  <div class="footer-shell">
+    <!-- Top: 3-cell editorial -->
     <div class="footer-top">
-      <div class="footer-cta">
-        <span class="footer-logo">Significa®</span>
-        <h2 class="footer-headline">We are ready to grow your business. Are you?</h2>
-        <div class="footer-email">
-          <a href="mailto:newbusiness@significa.co">newbusiness@significa.co</a>
-        </div>
+      <!-- Note (left) -->
+      <div class="footer-cell footer-cell-note">
+        <p class="footer-eyebrow">A studio in Porto</p>
+        <p class="footer-note">
+          Designers and engineers working as one team. We take on complex
+          problems for clients who want them solved with care.
+        </p>
       </div>
 
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <div class="footer-nav-column">
-          <h3>Significa</h3>
-          <ul>
-            {
-              significaLinks.map((link) => (
-                <li>
-                  <a href={link.href}>{link.label}</a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+      <!-- Pull quote (centerpiece) -->
+      <div class="footer-cell footer-cell-quote">
+        <p class="footer-quote"><em>The deciding<br />is the work.</em></p>
+        <p class="footer-quote-attr">
+          <Egg variant="fill" class="footer-quote-egg" />
+          North Star
+        </p>
+      </div>
 
-        <div class="footer-nav-column">
-          <h3>Handbook</h3>
-          <ul>
-            {
-              handbookLinks.map((link) => (
-                <li>
-                  <a href={link.href}>{link.label}</a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <div class="footer-nav-column">
-          <h3>Latest from blog</h3>
-          <ul>
-            {
-              recentPosts.map((post) => (
-                <li>
-                  <a href={`/blog/${post.id}`}>{post.data.title}</a>
-                </li>
-              ))
-            }
-            <li>
-              <a href="/blog">See all</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <!-- Contact (right) -->
+      <div class="footer-cell footer-cell-contact">
+        <p class="footer-eyebrow">Hello</p>
+        <p class="footer-contact-line">
+          <a href="mailto:newbusiness@significa.co" class="footer-email">newbusiness@significa.co</a>
+        </p>
+        <dl class="footer-rows">
+          <div class="footer-row">
+            <dt class="footer-eyebrow">Studio</dt>
+            <dd>
+              <a
+                href="https://maps.app.goo.gl/Y9fLYR12K7iKjYpA9"
+                target="_blank"
+                rel="noopener noreferrer">Rua de Cândido dos Reis 80, Porto</a
+              >
+            </dd>
+          </div>
+          <div class="footer-row">
+            <dt class="footer-eyebrow">Currently</dt>
+            <dd class="footer-current">designing for healthcare</dd>
+          </div>
+        </dl>
+      </div>
     </div>
 
-    <!-- Bottom: certifications + legal -->
-    <div class="footer-bottom">
-      <div class="footer-certifications">
-        <a href="/b-corp" class="certification-badge certification-badge--link" title="Certified B Corporation">B Corp</a>
-        <span class="certification-badge" title="1% for the Planet">1%</span>
+    <!-- Mono nav row -->
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <ul role="list">
+        {
+          navItems.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <!-- Legal + marks -->
+    <div class="footer-legal">
+      <div class="footer-marks">
+        <a href="/b-corp" class="footer-mark">B Corp</a>
+        <span class="footer-mark">1% for the Planet</span>
       </div>
-      <p class="footer-legal">
-        &copy; {currentYear} Significa. All rights reserved. · <a href="/legal">Terms & Privacy</a>
+      <p class="footer-legal-text">
+        <Egg variant="fill" class="footer-legal-egg" />
+        &copy; {currentYear} Significa <span class="footer-sep">/</span>
+        <a href="/legal">Terms &amp; privacy</a>
       </p>
     </div>
   </div>
@@ -97,166 +102,282 @@ const handbookLinks = [
 
 <style>
   .site-footer {
-    border-top: 1px solid var(--color-border);
-    padding: 4rem var(--gutter) 2rem;
-    margin-top: 4rem;
+    border-top: 1px solid var(--color-rule);
+    background: var(--color-paper);
+    padding-block: clamp(5rem, 10vw, 9rem) clamp(2rem, 4vw, 4rem);
+    margin-top: clamp(4rem, 8vw, 8rem);
   }
 
-  .footer-inner {
-    max-width: var(--max-width);
+  .footer-shell {
+    max-width: var(--max-width-wide);
     margin: 0 auto;
+    padding-inline: var(--gutter);
   }
 
-  /* --------------------------------------------------------
-       Top section: CTA + nav columns
-       -------------------------------------------------------- */
-  .footer-top {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    gap: 4rem;
-    padding-bottom: 4rem;
-  }
+  /* ============================================================
+     Mono utility — used in eyebrows, nav, marks, legal
+     ============================================================ */
 
-  .footer-logo {
-    display: block;
-    font-weight: var(--weight-medium);
-    font-size: var(--text-base);
-    margin-bottom: 2rem;
-  }
-
-  .footer-headline {
-    font-size: var(--text-2xl);
-    font-weight: var(--weight-bold);
-    line-height: var(--leading-tight);
-    margin-bottom: 1.5rem;
-    max-width: 14ch;
-  }
-
-  .footer-email a {
-    display: inline-block;
-    font-size: var(--text-sm);
-    color: var(--color-text);
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: 2rem;
-    transition: border-color var(--duration-fast) var(--ease-out);
-  }
-
-  .footer-email a:hover {
-    border-color: var(--color-text);
-    color: var(--color-text);
-  }
-
-  /* --------------------------------------------------------
-       Navigation columns
-       -------------------------------------------------------- */
-  .footer-nav {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-
-  .footer-nav-column h3 {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-normal);
-    color: var(--color-text-muted);
-    margin-bottom: 1rem;
-  }
-
-  .footer-nav-column ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .footer-nav-column a {
-    font-size: var(--text-sm);
-    color: var(--color-text);
-    text-decoration: none;
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-
-  .footer-nav-column a:hover {
-    color: var(--color-text-muted);
-  }
-
-  /* --------------------------------------------------------
-       Bottom section: certifications + legal
-       -------------------------------------------------------- */
-  .footer-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 2rem;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .footer-certifications {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .certification-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    border: 1px solid var(--color-border);
-    font-size: 0.625rem;
-    font-weight: var(--weight-bold);
-    color: var(--color-text);
-  }
-
-  .certification-badge--link {
-    text-decoration: none;
-    transition: border-color var(--duration-fast) var(--ease-out);
-  }
-
-  .certification-badge--link:hover {
-    border-color: var(--color-text);
-    color: var(--color-text);
-  }
-
-  .footer-legal {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
+  .footer-eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    line-height: var(--leading-relaxed);
     margin: 0;
   }
 
-  .footer-legal a {
-    color: var(--color-text-muted);
-    text-decoration: none;
+  .footer-sep {
+    color: var(--color-ink-faint);
+    margin-inline: 0.35em;
+  }
+
+  /* ============================================================
+     Top: 3-cell editorial. Quote in the middle is the centerpiece.
+     ============================================================ */
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-bottom: clamp(4rem, 8vw, 6rem);
+  }
+
+  .footer-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-width: 0;
+  }
+
+  /* Note ---------------------------------------------- */
+
+  .footer-note {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--color-ink-muted);
+    margin: 0;
+    max-width: 32ch;
+  }
+
+  /* Pull quote ---------------------------------------- */
+
+  .footer-cell-quote {
+    align-items: flex-start;
+  }
+
+  .footer-quote {
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-style: italic;
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tighter);
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  .footer-quote-attr {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    margin: 0.5rem 0 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .footer-quote-egg {
+    color: var(--color-accent);
+    height: 0.85em;
+  }
+
+  /* Contact ------------------------------------------- */
+
+  .footer-cell-contact {
+    gap: 1.5rem;
+  }
+
+  .footer-contact-line {
+    margin: 0;
+  }
+
+  .footer-email {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    color: var(--color-ink);
     transition: color var(--duration-fast) var(--ease-out);
   }
 
-  .footer-legal a:hover {
-    color: var(--color-text);
+  .footer-email:hover {
+    color: var(--color-accent);
   }
 
-  /* --------------------------------------------------------
-       Responsive
-       -------------------------------------------------------- */
-  @media (max-width: 1024px) {
+  .footer-rows {
+    margin: 0.75rem 0 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .footer-row {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .footer-row dt {
+    margin: 0;
+  }
+
+  .footer-row dd {
+    margin: 0;
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--color-ink);
+  }
+
+  .footer-row dd a {
+    color: inherit;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .footer-row dd a:hover {
+    color: var(--color-accent);
+  }
+
+  .footer-current {
+    color: var(--color-accent) !important;
+  }
+
+  /* ============================================================
+     Mono nav row
+     ============================================================ */
+
+  .footer-nav {
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .footer-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .footer-nav a {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .footer-nav a:hover {
+    color: var(--color-ink);
+  }
+
+  /* ============================================================
+     Legal row — marks left, copyright right
+     ============================================================ */
+
+  .footer-legal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-marks {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .footer-mark {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  a.footer-mark:hover {
+    color: var(--color-ink);
+  }
+
+  .footer-legal-text {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+  }
+
+  .footer-legal-text a {
+    color: inherit;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .footer-legal-text a:hover {
+    color: var(--color-ink);
+  }
+
+  .footer-legal-egg {
+    height: 0.85em;
+    color: var(--color-accent);
+  }
+
+  /* ============================================================
+     Responsive
+     ============================================================ */
+
+  @media (max-width: 980px) {
     .footer-top {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 3rem;
+    }
+
+    .footer-cell-quote {
+      grid-column: 1 / -1;
+      order: -1;
+      align-items: flex-start;
+      margin-bottom: 1rem;
     }
   }
 
   @media (max-width: 640px) {
-    .footer-nav {
+    .footer-top {
       grid-template-columns: 1fr;
-      gap: 2rem;
     }
 
-    .footer-bottom {
+    .footer-cell-quote {
+      grid-column: auto;
+    }
+
+    .footer-quote {
+      font-size: var(--text-3xl);
+    }
+
+    .footer-legal {
       flex-direction: column;
       align-items: flex-start;
-      gap: 1rem;
+      gap: 1.25rem;
     }
   }
 </style>

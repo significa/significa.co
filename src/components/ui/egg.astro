@@ -1,0 +1,67 @@
+---
+/**
+ * Egg
+ *
+ * Significa's signature mark. The asymmetric egg shape is the brand's
+ * quiet signature across the site. Use it as:
+ *
+ *   - a list bullet (variant="fill", inline)
+ *   - an end-of-article mark (variant="fill", small)
+ *   - a section/header symbol (variant="outline" at large scale)
+ *   - an inline punctuation mark
+ *   - a loading state (with rotation)
+ *
+ * The canonical logo is the outlined egg (the brand mark as drawn). The
+ * fill variant is a stylistic derivation for inline / small contexts
+ * where a solid mark reads better than an outline (bullets, end marks,
+ * inline punctuation).
+ *
+ * Default sizing: 1em height, width auto. Drops into running text with
+ * proper baseline alignment.
+ */
+
+interface Props {
+  variant?: "outline" | "fill";
+  /** Accessible label. Omit to mark as decorative. */
+  label?: string;
+  class?: string;
+}
+
+const { variant = "outline", label, class: className } = Astro.props;
+const isDecorative = !label;
+
+/* Outlined egg — two subpaths wound in opposite directions; renders as
+   an outline under the default nonzero fill rule. */
+const outlinePath =
+  "M12 27.887c-6.39 0-11.59-5.04-11.59-11.285C.41 9.563 6.005.614 12 .614c5.995 0 11.591 8.948 11.591 15.988 0 6.245-5.2 11.285-11.59 11.285Zm0-2.573c5.006 0 9.044-3.913 9.044-8.712 0-5.797-4.765-13.415-9.044-13.415-4.279 0-9.043 7.618-9.043 13.415 0 4.8 4.037 8.712 9.043 8.712Z";
+
+/* Just the outer subpath — solid filled egg. */
+const fillPath =
+  "M12 27.887c-6.39 0-11.59-5.04-11.59-11.285C.41 9.563 6.005.614 12 .614c5.995 0 11.591 8.948 11.591 15.988 0 6.245-5.2 11.285-11.59 11.285Z";
+---
+
+<svg
+  viewBox="0 0 24 29"
+  xmlns="http://www.w3.org/2000/svg"
+  class:list={["egg", className]}
+  role={isDecorative ? "presentation" : "img"}
+  aria-hidden={isDecorative ? "true" : undefined}
+  aria-label={label}
+  focusable="false"
+>
+  <path d={variant === "fill" ? fillPath : outlinePath} fill="currentColor"></path>
+</svg>
+
+<style>
+  /* Sized to surrounding text by default; height-driven, width auto-derived
+     from the egg's true aspect ratio (24:29 ≈ 0.828). Slight optical lift
+     to sit on the text baseline like a letterform. */
+  .egg {
+    display: inline-block;
+    height: 1em;
+    width: auto;
+    fill: currentColor;
+    flex-shrink: 0;
+    vertical-align: -0.12em;
+  }
+</style>

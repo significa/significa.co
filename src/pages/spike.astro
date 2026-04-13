@@ -1,0 +1,1387 @@
+---
+/**
+ * /spike — Design Language Reference
+ *
+ * Not a public surface. Not part of the site. A single scrollable page
+ * showing the new design language at scale, with mono captions labelling
+ * every specimen so we can argue from concrete examples instead of
+ * abstract description.
+ *
+ * Sections, top to bottom:
+ *   1. Mast — wordmark, egg, mono UI labels
+ *   2. Editorial hero — display-1 with manifesto sentence
+ *   3. Type scale — every size, captioned
+ *   4. Three voices — display + body + mono shown together
+ *   5. Color — paper, ink, accent in real combinations
+ *   6. The egg — gallery of roles
+ *   7. Lists — egg bullets, mono numerals
+ *   8. Editorial column — narrow prose with pull moments
+ *   9. Manifesto moment — single sentence on space
+ *  10. Question-led services preview
+ *  11. Edges — 404 hint, footer treatment
+ */
+
+import "@/styles/global.css";
+import Egg from "@/components/ui/egg.astro";
+import Wordmark from "@/components/ui/wordmark.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Spike — Significa Design Language</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <!-- ============================================================
+         1. Mast
+         ============================================================ -->
+    <header class="mast">
+      <div class="mast-inner">
+        <a href="/" class="mast-brand" aria-label="Significa, home">
+          <Wordmark class="mast-wordmark" />
+        </a>
+        <div class="mast-meta">
+          <span class="mono-label">Spike <Egg variant="fill" class="mast-meta-egg" /> Design language</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============================================================
+           2. Editorial hero — display-1
+           ============================================================ -->
+      <section class="hero" aria-labelledby="hero-h">
+        <p class="mono-label hero-eyebrow">
+          <span class="ord">01</span> &nbsp; Display 1 / PP Editorial Old / Ultralight / 64–144px
+        </p>
+        <h1 id="hero-h" class="display-1">We give a damn.</h1>
+        <p class="mono-caption">
+          Used once. Maybe twice. Earns its scale by being the only thing on the screen.
+          Ultralight is what makes this weight refined instead of loud.
+        </p>
+      </section>
+
+      <hr class="rule" />
+
+      <!-- ============================================================
+           3. Type scale
+           ============================================================ -->
+      <section class="scale" aria-labelledby="scale-h">
+        <header class="section-header">
+          <p class="mono-label"><span class="ord">02</span> &nbsp; Type scale</p>
+          <h2 id="scale-h" class="section-title">Every size, on real text.</h2>
+        </header>
+
+        <ol class="scale-list" role="list">
+          <li class="scale-row">
+            <span class="mono-label">display-1 &middot; Editorial Old Ultralight &middot; 64–144px</span>
+            <span class="scale-sample" style="font-family: var(--font-display); font-weight: 200; font-size: var(--text-display-1); line-height: var(--leading-tight); letter-spacing: var(--tracking-tighter);">We give a damn.</span>
+          </li>
+          <li class="scale-row">
+            <span class="mono-label">display-2 &middot; Editorial Old Italic &middot; 48–96px</span>
+            <span class="scale-sample" style="font-family: var(--font-display); font-weight: 400; font-style: italic; font-size: var(--text-display-2); line-height: var(--leading-tight); letter-spacing: var(--tracking-tighter);">The deciding is the work.</span>
+          </li>
+          <li class="scale-row">
+            <span class="mono-label">4xl &middot; PP Neue Montreal Medium &middot; 40–64px</span>
+            <span class="scale-sample" style="font-size: var(--text-4xl); font-weight: var(--weight-medium); line-height: var(--leading-snug); letter-spacing: var(--tracking-tight);">Rigour and beauty are not opposites.</span>
+          </li>
+          <li class="scale-row">
+            <span class="mono-label">3xl &middot; PP Neue Montreal Medium &middot; 32–48px</span>
+            <span class="scale-sample" style="font-size: var(--text-3xl); font-weight: var(--weight-medium); line-height: var(--leading-snug);">Designers and engineers who think together.</span>
+          </li>
+          <li class="scale-row">
+            <span class="mono-label">2xl &middot; PP Neue Montreal Medium &middot; 24–32px</span>
+            <span class="scale-sample" style="font-size: var(--text-2xl); font-weight: var(--weight-medium); line-height: var(--leading-snug);">We are calm in complexity.</span>
+          </li>
+          <li class="scale-row">
+            <span class="mono-label">xl &middot; PP Neue Montreal Regular &middot; 20–24px</span>
+            <span class="scale-sample" style="font-size: var(--text-xl); line-height: var(--leading-snug);">A junior with the better idea overrides a partner.</span>
+          </li>
+          <li class="scale-row">
+            <span class="mono-label">lg &middot; PP Neue Montreal Regular &middot; 17–19px</span>
+            <span class="scale-sample" style="font-size: var(--text-lg); line-height: var(--leading-normal);">Lede paragraph. Slightly larger than body. Used at the opening of an article or section to invite the reader in.</span>
+          </li>
+          <li class="scale-row">
+            <span class="mono-label">base &middot; PP Neue Montreal Regular &middot; 15–16px</span>
+            <span class="scale-sample" style="font-size: var(--text-base); line-height: var(--leading-normal);">Body copy. The voice of the working text. This is what the site mostly is. Readability over expression. Content is king.</span>
+          </li>
+          <li class="scale-row">
+            <span class="mono-label">sm &middot; PP Neue Montreal Regular &middot; 13–14px</span>
+            <span class="scale-sample" style="font-size: var(--text-sm); line-height: var(--leading-normal);">Captions, secondary information, image credits. Used sparingly and with intent.</span>
+          </li>
+          <li class="scale-row">
+            <span class="mono-label">xs / mono &middot; PP Supply Mono &middot; 11–12px</span>
+            <span class="scale-sample" style="font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; line-height: var(--leading-relaxed);">Mono / labels / file references / footnotes — the engineer voice</span>
+          </li>
+        </ol>
+      </section>
+
+      <hr class="rule" />
+
+      <!-- ============================================================
+           4. Three voices — shown in a real layout
+           ============================================================ -->
+      <section class="voices" aria-labelledby="voices-h">
+        <header class="section-header">
+          <p class="mono-label"><span class="ord">03</span> &nbsp; Three voices, one room</p>
+          <h2 id="voices-h" class="section-title">How display, body, and mono coexist.</h2>
+        </header>
+
+        <article class="voices-specimen">
+          <p class="mono-tag">Case study &nbsp;/&nbsp; 2025 &nbsp;/&nbsp; Healthcare</p>
+          <h3 class="voices-display"><em>The brief said an app.</em> We built a back-office instead.</h3>
+          <p class="voices-body">
+            The original spec asked for a patient-facing app to schedule consultations. After two weeks
+            of discovery we recommended building a clinician scheduling tool first, because the
+            bottleneck was on the supply side, not the demand side. The patient app came later, and it
+            was smaller than the original brief because the back-office did most of the work.
+          </p>
+          <dl class="voices-meta">
+            <div class="voices-meta-row">
+              <dt class="mono-label">Role</dt>
+              <dd>Strategy, design, engineering</dd>
+            </div>
+            <div class="voices-meta-row">
+              <dt class="mono-label">Duration</dt>
+              <dd>14 weeks</dd>
+            </div>
+            <div class="voices-meta-row">
+              <dt class="mono-label">Team</dt>
+              <dd>2 designers, 3 engineers</dd>
+            </div>
+          </dl>
+        </article>
+
+        <p class="mono-caption voices-caption">
+          Display sets the editorial register. Body carries the argument. Mono carries metadata.
+          Each voice does one job. None of them do each other&rsquo;s.
+        </p>
+      </section>
+
+      <hr class="rule" />
+
+      <!-- ============================================================
+           5. Color
+           ============================================================ -->
+      <section class="color" aria-labelledby="color-h">
+        <header class="section-header">
+          <p class="mono-label"><span class="ord">04</span> &nbsp; Color</p>
+          <h2 id="color-h" class="section-title">Paper, ink, and one signature.</h2>
+        </header>
+
+        <div class="swatches">
+          <div class="swatch swatch-paper">
+            <div class="swatch-chip" style="background: var(--color-paper)"></div>
+            <p class="mono-label">paper &middot; oklch(97% 0.005 85)</p>
+            <p class="swatch-note">Main surface. Warm off-white. Reads as paper, not as &ldquo;white.&rdquo;</p>
+          </div>
+          <div class="swatch swatch-paper-alt">
+            <div class="swatch-chip" style="background: var(--color-paper-alt)"></div>
+            <p class="mono-label">paper-alt &middot; oklch(94% 0.006 85)</p>
+            <p class="swatch-note">Subtle alt surface for sectioning without using lines.</p>
+          </div>
+          <div class="swatch swatch-ink">
+            <div class="swatch-chip" style="background: var(--color-ink)"></div>
+            <p class="mono-label">ink &middot; oklch(18% 0 0)</p>
+            <p class="swatch-note">Near-black. Slightly softer than #000. Easier on the eye.</p>
+          </div>
+          <div class="swatch swatch-accent">
+            <div class="swatch-chip" style="background: var(--color-accent)"></div>
+            <p class="mono-label">accent &middot; oklch(58% 0.13 35)</p>
+            <p class="swatch-note">Muted terracotta. Moments of attention only. Never decoration.</p>
+          </div>
+        </div>
+
+        <p class="color-rules mono-caption">
+          Approximate budget: paper 80%, ink 18%, accent &lt; 2% of any given page. The accent
+          appears at the egg, link hover, focus ring, and the &ldquo;currently&rdquo; indicator.
+          Project case studies override these rules in their own context.
+        </p>
+
+        <!-- Inverse demo -->
+        <div class="inverse-demo">
+          <p class="mono-label inverse-label">Inverse &middot; for dark sections, project takeover</p>
+          <p class="inverse-quote">
+            <em>Beauty is not decoration. It is the visible evidence that someone made decisions
+            instead of accepting defaults.</em>
+          </p>
+          <p class="inverse-attr">
+            <Egg variant="fill" /> &nbsp; North Star &middot; 2025
+          </p>
+        </div>
+      </section>
+
+      <hr class="rule" />
+
+      <!-- ============================================================
+           6. The egg — gallery of roles
+           ============================================================ -->
+      <section class="egg-gallery" aria-labelledby="egg-h">
+        <header class="section-header">
+          <p class="mono-label"><span class="ord">05</span> &nbsp; The egg</p>
+          <h2 id="egg-h" class="section-title">The signature mark, in its roles.</h2>
+        </header>
+
+        <div class="egg-grid">
+          <div class="egg-cell">
+            <div class="egg-stage">
+              <Egg variant="outline" class="egg-display" />
+            </div>
+            <p class="mono-label">Header symbol &middot; outline</p>
+            <p class="egg-note">The brand mark at chrome scale. Outline because it has presence.</p>
+          </div>
+
+          <div class="egg-cell">
+            <div class="egg-stage">
+              <Egg variant="fill" class="egg-large" />
+            </div>
+            <p class="mono-label">End of article &middot; fill</p>
+            <p class="egg-note">Old print convention, eggified. Quiet wink, editorial register.</p>
+          </div>
+
+          <div class="egg-cell">
+            <div class="egg-stage egg-stage-text">
+              <p class="egg-inline-text">
+                We refuse to let complexity be an excuse for mediocrity. <Egg variant="fill" />
+              </p>
+            </div>
+            <p class="mono-label">Inline mark &middot; sized to text</p>
+            <p class="egg-note">Sits on the baseline like a letterform. 1em height, auto width.</p>
+          </div>
+
+          <div class="egg-cell">
+            <div class="egg-stage">
+              <ul class="egg-bullet-demo" role="list">
+                <li><Egg variant="fill" /> Purpose</li>
+                <li><Egg variant="fill" /> Culture</li>
+                <li><Egg variant="fill" /> Art</li>
+              </ul>
+            </div>
+            <p class="mono-label">List bullet &middot; fill, small</p>
+            <p class="egg-note">Replaces the standard disc bullet site-wide. Asymmetric, alive.</p>
+          </div>
+
+          <div class="egg-cell">
+            <div class="egg-stage">
+              <a href="#" class="egg-link-demo">
+                Read the manifesto <Egg variant="fill" />
+              </a>
+            </div>
+            <p class="mono-label">Inline call &middot; trailing mark</p>
+            <p class="egg-note">Link with a trailing egg signals &ldquo;this is a real destination.&rdquo;</p>
+          </div>
+
+          <div class="egg-cell">
+            <div class="egg-stage egg-stage-dark">
+              <Egg variant="outline" class="egg-rotating" label="Loading" />
+            </div>
+            <p class="mono-label">Loading &middot; slow rotation</p>
+            <p class="egg-note">When something actually loads. One rotation per ~3s. Restrained.</p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rule" />
+
+      <!-- ============================================================
+           7. Lists
+           ============================================================ -->
+      <section class="lists" aria-labelledby="lists-h">
+        <header class="section-header">
+          <p class="mono-label"><span class="ord">06</span> &nbsp; Lists</p>
+          <h2 id="lists-h" class="section-title">Egg bullets and mono numerals.</h2>
+        </header>
+
+        <div class="lists-pair">
+          <div>
+            <p class="mono-label">Unordered &middot; egg bullet</p>
+            <ul class="egg-list" role="list">
+              <li><Egg variant="fill" />Disagreement is the work.</li>
+              <li><Egg variant="fill" />A junior with the better idea overrides a partner.</li>
+              <li><Egg variant="fill" />If you need consensus to feel safe, this is the wrong place.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="mono-label">Ordered &middot; mono numerals</p>
+            <ol class="numeric-list" role="list">
+              <li><span class="num">01</span> Name the tension out loud.</li>
+              <li><span class="num">02</span> Set the ratio consciously.</li>
+              <li><span class="num">03</span> Protect the identity track structurally.</li>
+              <li><span class="num">04</span> Learn to say no to money.</li>
+              <li><span class="num">05</span> Treat this as a practice, not an exercise.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rule" />
+
+      <!-- ============================================================
+           8. Editorial column
+           ============================================================ -->
+      <section class="prose-section" aria-labelledby="prose-h">
+        <header class="section-header">
+          <p class="mono-label"><span class="ord">07</span> &nbsp; Editorial column</p>
+          <h2 id="prose-h" class="section-title">Long-form, in the prose width.</h2>
+        </header>
+
+        <div class="prose">
+          <p class="prose-lede">
+            This company exists by recurring decision, not by founding fact.
+          </p>
+          <p>
+            What Significa is gets re-decided every quarter, in every staffing call, in every
+            pitch we accept or refuse, in every project we let slip. There is no version of this
+            where the answer gets settled in 2015 and we move on to <em>the actual work.</em> The
+            deciding is the actual work.
+          </p>
+          <p>
+            Idealism without revenue is a hobby. Revenue without idealism is a vendor operation.
+            And the space between those two things is where all the actual decisions happen.
+          </p>
+          <blockquote class="prose-pull">
+            <p>
+              <em>The companies that sustain a creative identity over time are not the ones that
+              resolve the tension. They&rsquo;re the ones that refuse to stop managing it.</em>
+            </p>
+          </blockquote>
+          <p>
+            That&rsquo;s the work. Not the ads, not the apps, not the pitches. The work is
+            deciding, over and over, what this place is for. <Egg variant="fill" />
+          </p>
+        </div>
+      </section>
+
+      <hr class="rule" />
+
+      <!-- ============================================================
+           9. Manifesto moment
+           ============================================================ -->
+      <section class="moment" aria-labelledby="moment-h">
+        <p class="mono-label moment-eyebrow"><span class="ord">08</span> &nbsp; Manifesto moment &middot; display-2 italic</p>
+        <h2 id="moment-h" class="moment-quote">
+          <em>The deciding<br />is the work.</em>
+        </h2>
+        <p class="mono-caption moment-caption">
+          One sentence. A whole screen. The italic of PP Editorial Old earns this kind of room
+          because it&rsquo;s the most charged weight in the family. Use this treatment two or
+          three times across the entire site. No more.
+        </p>
+      </section>
+
+      <hr class="rule" />
+
+      <!-- ============================================================
+           10. Question-led services preview
+           ============================================================ -->
+      <section class="services-preview" aria-labelledby="services-h">
+        <header class="section-header">
+          <p class="mono-label"><span class="ord">09</span> &nbsp; Services, restructured</p>
+          <h2 id="services-h" class="section-title">Questions, not deliverables.</h2>
+          <p class="section-deck">
+            The current Services page sells a five-step process. The new register sells the
+            judgment that goes into the work. Same evidence, different spine.
+          </p>
+        </header>
+
+        <ol class="qa-list" role="list">
+          <li class="qa">
+            <p class="qa-num mono-label">Question 01</p>
+            <h3 class="qa-q"><em>How do you decide what to push back on?</em></h3>
+            <p class="qa-a">
+              We push back when the spec asks for a feature that solves the wrong problem, when
+              the deadline forces a choice the team will regret, or when the brief assumes a user
+              we have evidence doesn&rsquo;t exist. We don&rsquo;t push back to perform
+              cleverness. The test is whether the project is better in six months because we
+              said something now.
+            </p>
+          </li>
+          <li class="qa">
+            <p class="qa-num mono-label">Question 02</p>
+            <h3 class="qa-q"><em>When do you say no?</em></h3>
+            <p class="qa-a">
+              When the work would keep people busy and produce something nobody would be proud of.
+              When the budget forces shortcuts we couldn&rsquo;t defend later. When the client
+              relationship is structured to make honest feedback impossible. Saying no to one
+              project is how we stay capable of saying yes to a different one.
+            </p>
+          </li>
+          <li class="qa">
+            <p class="qa-num mono-label">Question 03</p>
+            <h3 class="qa-q"><em>What does it cost when we&rsquo;re wrong?</em></h3>
+            <p class="qa-a">
+              We&rsquo;re wrong sometimes. The cost shows up in extra rounds, missed assumptions,
+              or features that don&rsquo;t earn their place. We absorb that cost when it&rsquo;s
+              ours and we say so. We don&rsquo;t externalise it as scope creep or invoice it as
+              &ldquo;additional discovery.&rdquo;
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <hr class="rule" />
+
+      <!-- ============================================================
+           11. Edges — 404 hint, footer
+           ============================================================ -->
+      <section class="edges" aria-labelledby="edges-h">
+        <header class="section-header">
+          <p class="mono-label"><span class="ord">10</span> &nbsp; The edges</p>
+          <h2 id="edges-h" class="section-title">Where attention to detail shows most.</h2>
+        </header>
+
+        <div class="edges-grid">
+          <div class="edges-card edges-404">
+            <Egg variant="outline" class="edges-egg-cracked" />
+            <p class="edges-404-code mono-label">404</p>
+            <p class="edges-404-line">
+              <em>This page never hatched.</em>
+            </p>
+            <p class="edges-404-sub">
+              Or it did, and we moved it somewhere better. Either way:
+              <a href="/">try the homepage</a>.
+            </p>
+          </div>
+
+          <div class="edges-card edges-form">
+            <p class="mono-label">Get in touch</p>
+            <label class="form-field">
+              <span class="form-label"><em>Tell us about it.</em></span>
+              <textarea
+                rows="3"
+                placeholder="More than the spec already says, ideally."
+                class="form-input"></textarea>
+            </label>
+            <button class="form-submit" type="button">
+              Send <span class="form-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+         Footer — tall. Same paper as the page; the only chrome is the
+         hairline at the top. Closes with a megawordmark that clips at
+         the bottom edge. Quiet but present.
+         ============================================================ -->
+    <footer class="page-footer">
+      <div class="page-footer-content">
+        <div class="page-footer-cell">
+          <p class="mono-label">A note from the spike</p>
+          <p class="page-footer-note">
+            This page is a design language reference, not a public surface.
+            When the language is settled here, every other page applies it.
+            The homepage is next.
+          </p>
+        </div>
+
+        <div class="page-footer-cell page-footer-quote-cell">
+          <p class="page-footer-quote">
+            <em>The deciding<br />is the work.</em>
+          </p>
+          <p class="mono-label page-footer-attr">
+            North Star &middot; 2025
+          </p>
+        </div>
+
+        <div class="page-footer-cell">
+          <dl class="page-footer-currently">
+            <div class="page-footer-row">
+              <dt class="mono-label">Currently</dt>
+              <dd class="page-footer-current">designing the homepage</dd>
+            </div>
+            <div class="page-footer-row">
+              <dt class="mono-label">Spike</dt>
+              <dd>v0</dd>
+            </div>
+            <div class="page-footer-row">
+              <dt class="mono-label">Last move</dt>
+              <dd>typography wired</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Subtle, slow rotation on the loading-state egg specimen.
+      // Respects prefers-reduced-motion through the CSS itself.
+      const rot = document.querySelector(".egg-rotating");
+      if (rot && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        rot.animate([{ transform: "rotate(0deg)" }, { transform: "rotate(360deg)" }], {
+          duration: 3000,
+          iterations: Infinity,
+          easing: "linear",
+        });
+      }
+    </script>
+
+    <style>
+      /* ============================================================
+         Spike — Layout primitives
+         ============================================================ */
+
+      :root {
+        --spike-page-pad-y: clamp(3rem, 5vw, 6rem);
+        --spike-section-gap: clamp(2rem, 4vw, 4rem);
+      }
+
+      main {
+        display: block;
+      }
+
+      section {
+        padding-block: var(--spike-page-pad-y);
+        padding-inline: var(--gutter);
+      }
+
+      .rule {
+        height: 1px;
+        border: 0;
+        background: var(--color-rule);
+        margin: 0 var(--gutter);
+      }
+
+      .section-header {
+        max-width: var(--max-width);
+        margin: 0 auto var(--spike-section-gap);
+      }
+
+      .section-title {
+        font-size: var(--text-3xl);
+        font-weight: var(--weight-medium);
+        line-height: var(--leading-snug);
+        letter-spacing: var(--tracking-tight);
+        margin-block: 0.5rem 0;
+        max-width: 32rem;
+      }
+
+      .section-deck {
+        margin-block: 1rem 0;
+        font-size: var(--text-lg);
+        color: var(--color-ink-muted);
+        max-width: var(--max-width-prose);
+        line-height: var(--leading-normal);
+      }
+
+      /* ============================================================
+         Mono utilities — the engineer voice
+         ============================================================ */
+
+      .mono-label,
+      .mono-caption,
+      .mono-tag {
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: var(--tracking-wide);
+      }
+
+      .mono-label {
+        font-size: var(--text-xs);
+        color: var(--color-ink-muted);
+        line-height: var(--leading-relaxed);
+        margin: 0;
+      }
+
+      .mono-caption {
+        font-size: var(--text-xs);
+        color: var(--color-ink-muted);
+        line-height: var(--leading-relaxed);
+        margin-block: 1.25rem 0;
+      }
+
+      .mono-tag {
+        font-size: var(--text-xs);
+        color: var(--color-ink-muted);
+        margin: 0;
+      }
+
+      .ord {
+        color: var(--color-accent);
+        font-weight: var(--weight-medium);
+      }
+
+      /* ============================================================
+         1. Mast
+         ============================================================ */
+
+      .mast {
+        border-bottom: 1px solid var(--color-rule);
+      }
+
+      .mast-inner {
+        max-width: var(--max-width-wide);
+        margin: 0 auto;
+        padding: 1.25rem var(--gutter);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+      }
+
+      .mast-brand {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .mast-wordmark {
+        height: 1.5em;
+      }
+
+      .mast-meta {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .mast-meta-egg {
+        height: 0.75em;
+        margin-inline: 0.35em;
+        color: var(--color-accent);
+      }
+
+      /* ============================================================
+         2. Editorial hero
+         ============================================================ */
+
+      .hero {
+        max-width: var(--max-width-wide);
+        margin: 0 auto;
+        padding-block: clamp(4rem, 12vw, 12rem);
+      }
+
+      .hero-eyebrow {
+        margin-bottom: 2rem;
+      }
+
+      .display-1 {
+        font-family: var(--font-display);
+        font-weight: 200; /* Ultralight — earns its room */
+        font-size: var(--text-display-1);
+        line-height: var(--leading-tight);
+        letter-spacing: var(--tracking-tighter);
+        margin: 0;
+      }
+
+      /* ============================================================
+         3. Type scale
+         ============================================================ */
+
+      .scale {
+        max-width: var(--max-width-wide);
+        margin: 0 auto;
+      }
+
+      .scale-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-width: var(--max-width);
+      }
+
+      .scale-row {
+        display: grid;
+        grid-template-columns: 14rem 1fr;
+        gap: 2rem;
+        align-items: baseline;
+        padding-block: 1.5rem;
+        border-top: 1px solid var(--color-rule);
+      }
+
+      .scale-row:last-child {
+        border-bottom: 1px solid var(--color-rule);
+      }
+
+      .scale-sample {
+        display: block;
+        color: var(--color-ink);
+      }
+
+      @media (max-width: 720px) {
+        .scale-row {
+          grid-template-columns: 1fr;
+          gap: 0.5rem;
+        }
+      }
+
+      /* ============================================================
+         4. Three voices
+         ============================================================ */
+
+      .voices {
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+
+      .voices-specimen {
+        background: var(--color-paper-alt);
+        padding: clamp(2rem, 5vw, 4rem);
+        border-radius: 4px;
+        max-width: var(--max-width-narrow);
+      }
+
+      .voices-display {
+        font-family: var(--font-display);
+        font-weight: var(--weight-normal);
+        font-size: var(--text-3xl);
+        line-height: var(--leading-tight);
+        letter-spacing: var(--tracking-tight);
+        margin-block: 1rem 1.5rem;
+      }
+
+      .voices-body {
+        font-size: var(--text-lg);
+        line-height: var(--leading-normal);
+        color: var(--color-ink);
+        margin-block: 0 2rem;
+        max-width: 36rem;
+      }
+
+      .voices-meta {
+        display: grid;
+        gap: 0.75rem;
+        margin: 0;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--color-rule);
+      }
+
+      .voices-meta-row {
+        display: grid;
+        grid-template-columns: 8rem 1fr;
+        gap: 1rem;
+        align-items: baseline;
+      }
+
+      .voices-meta dt {
+        margin: 0;
+      }
+
+      .voices-meta dd {
+        margin: 0;
+        font-size: var(--text-sm);
+      }
+
+      .voices-caption {
+        max-width: var(--max-width-prose);
+      }
+
+      /* ============================================================
+         5. Color
+         ============================================================ */
+
+      .color {
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+
+      .swatches {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2rem;
+      }
+
+      .swatch {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .swatch-chip {
+        aspect-ratio: 4 / 3;
+        border-radius: 2px;
+        border: 1px solid var(--color-rule);
+      }
+
+      .swatch-note {
+        font-size: var(--text-sm);
+        color: var(--color-ink-muted);
+        line-height: var(--leading-normal);
+        margin: 0;
+      }
+
+      .color-rules {
+        margin-top: 2rem;
+        max-width: var(--max-width-prose);
+      }
+
+      .inverse-demo {
+        margin-top: 4rem;
+        padding: clamp(2rem, 6vw, 5rem);
+        background: var(--color-ink);
+        color: var(--color-ink-on-dark);
+        border-radius: 4px;
+      }
+
+      .inverse-label {
+        color: var(--color-ink-on-dark);
+        opacity: 0.6;
+      }
+
+      .inverse-quote {
+        font-family: var(--font-display);
+        font-size: var(--text-3xl);
+        line-height: var(--leading-tight);
+        letter-spacing: var(--tracking-tight);
+        margin-block: 1rem 2rem;
+        max-width: 36rem;
+      }
+
+      .inverse-attr {
+        font-family: var(--font-mono);
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: var(--tracking-wide);
+        margin: 0;
+        color: var(--color-ink-on-dark);
+        opacity: 0.7;
+      }
+
+      .inverse-attr :global(.egg) {
+        color: var(--color-accent);
+      }
+
+      /* ============================================================
+         6. The egg
+         ============================================================ */
+
+      .egg-gallery {
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+
+      .egg-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .egg-cell {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .egg-stage {
+        background: var(--color-paper-alt);
+        border-radius: 4px;
+        min-height: 12rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .egg-stage-text {
+        text-align: left;
+        align-items: flex-start;
+      }
+
+      .egg-stage-dark {
+        background: var(--color-ink);
+        color: var(--color-ink-on-dark);
+      }
+
+      .egg-display {
+        height: 5rem;
+      }
+
+      .egg-large {
+        height: 3rem;
+      }
+
+      .egg-rotating {
+        height: 2rem;
+        color: var(--color-accent);
+      }
+
+      .egg-inline-text {
+        font-size: var(--text-base);
+        line-height: var(--leading-normal);
+        margin: 0;
+      }
+
+      .egg-inline-text :global(.egg) {
+        color: var(--color-accent);
+        margin-left: 0.15em;
+      }
+
+      .egg-bullet-demo {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.5rem;
+        text-align: left;
+      }
+
+      .egg-bullet-demo li {
+        display: flex;
+        align-items: baseline;
+        gap: 0.65em;
+        font-size: var(--text-base);
+      }
+
+      .egg-bullet-demo :global(.egg) {
+        height: 0.7em;
+        color: var(--color-accent);
+      }
+
+      .egg-link-demo {
+        font-size: var(--text-lg);
+        color: inherit;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.4em;
+      }
+
+      .egg-link-demo :global(.egg) {
+        height: 0.7em;
+        color: var(--color-accent);
+        transition: transform var(--duration-slower) var(--ease-editorial);
+      }
+
+      .egg-link-demo:hover :global(.egg) {
+        transform: translateX(0.2em);
+      }
+
+      .egg-note {
+        font-size: var(--text-sm);
+        line-height: var(--leading-normal);
+        color: var(--color-ink-muted);
+        margin: 0;
+      }
+
+      /* ============================================================
+         7. Lists
+         ============================================================ */
+
+      .lists {
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+
+      .lists-pair {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 3rem;
+      }
+
+      .egg-list {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0 0;
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .egg-list li {
+        display: grid;
+        grid-template-columns: 1.25em 1fr;
+        gap: 0.65em;
+        align-items: baseline;
+        font-size: var(--text-lg);
+        line-height: var(--leading-normal);
+      }
+
+      .egg-list :global(.egg) {
+        color: var(--color-accent);
+        height: 0.65em;
+        align-self: center;
+      }
+
+      .numeric-list {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0 0;
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .numeric-list li {
+        display: grid;
+        grid-template-columns: 3rem 1fr;
+        gap: 0.75rem;
+        align-items: baseline;
+        font-size: var(--text-lg);
+        line-height: var(--leading-normal);
+      }
+
+      .num {
+        font-family: var(--font-mono);
+        font-size: var(--text-xs);
+        letter-spacing: var(--tracking-wide);
+        color: var(--color-ink-muted);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ============================================================
+         8. Editorial column (prose)
+         ============================================================ */
+
+      .prose-section {
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+
+      .prose {
+        max-width: var(--max-width-prose);
+      }
+
+      .prose p {
+        font-size: var(--text-lg);
+        line-height: var(--leading-normal);
+        margin-block: 0 1.25em;
+      }
+
+      .prose p:last-child {
+        margin-bottom: 0;
+      }
+
+      .prose-lede {
+        font-family: var(--font-display);
+        font-size: var(--text-2xl) !important;
+        line-height: var(--leading-tight) !important;
+        letter-spacing: var(--tracking-tight);
+        margin-block: 0 1.25em !important;
+      }
+
+      .prose-pull {
+        margin: 2.5rem 0;
+        padding-left: 1.25rem;
+        border-left: 2px solid var(--color-accent);
+      }
+
+      .prose-pull p {
+        font-family: var(--font-display);
+        font-size: var(--text-xl) !important;
+        line-height: var(--leading-snug);
+      }
+
+      .prose :global(.egg) {
+        color: var(--color-accent);
+        margin-left: 0.25em;
+      }
+
+      /* ============================================================
+         9. Manifesto moment
+         ============================================================ */
+
+      .moment {
+        max-width: var(--max-width-wide);
+        margin: 0 auto;
+        padding-block: clamp(6rem, 16vw, 16rem);
+        text-align: center;
+      }
+
+      .moment-eyebrow {
+        margin-bottom: 4rem;
+      }
+
+      .moment-quote {
+        font-family: var(--font-display);
+        font-weight: 400; /* Regular Italic — denser, more grounded than Ultralight here */
+        font-size: var(--text-display-2);
+        line-height: var(--leading-tight);
+        letter-spacing: var(--tracking-tighter);
+        margin: 0;
+      }
+
+      .moment-caption {
+        margin-top: 4rem;
+        max-width: var(--max-width-prose);
+        margin-inline: auto;
+        text-align: left;
+      }
+
+      /* ============================================================
+         10. Question-led services
+         ============================================================ */
+
+      .services-preview {
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+
+      .qa-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0;
+      }
+
+      .qa {
+        display: grid;
+        grid-template-columns: 12rem 1fr;
+        gap: 2rem;
+        padding-block: 2.5rem;
+        border-top: 1px solid var(--color-rule);
+        max-width: var(--max-width);
+      }
+
+      .qa:last-child {
+        border-bottom: 1px solid var(--color-rule);
+      }
+
+      .qa-num {
+        margin: 0;
+      }
+
+      .qa-q {
+        font-family: var(--font-display);
+        font-size: var(--text-2xl);
+        font-weight: var(--weight-normal);
+        line-height: var(--leading-snug);
+        letter-spacing: var(--tracking-tight);
+        margin: 0 0 1rem;
+      }
+
+      .qa-a {
+        font-size: var(--text-lg);
+        line-height: var(--leading-normal);
+        max-width: 36rem;
+        margin: 0;
+        color: var(--color-ink);
+      }
+
+      @media (max-width: 720px) {
+        .qa {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+      }
+
+      /* ============================================================
+         11. Edges
+         ============================================================ */
+
+      .edges {
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+
+      .edges-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .edges-card {
+        background: var(--color-paper-alt);
+        padding: clamp(2rem, 5vw, 3.5rem);
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .edges-404 {
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .edges-egg-cracked {
+        height: 4rem;
+        color: var(--color-accent);
+        /* A small rotation hints "cracked" — playful but restrained */
+        transform: rotate(-12deg) translateY(0.3rem);
+      }
+
+      .edges-404-code {
+        margin: 0.5rem 0 0;
+      }
+
+      .edges-404-line {
+        font-family: var(--font-display);
+        font-size: var(--text-2xl);
+        line-height: var(--leading-snug);
+        margin: 0;
+      }
+
+      .edges-404-sub {
+        font-size: var(--text-base);
+        color: var(--color-ink-muted);
+        line-height: var(--leading-normal);
+        margin: 0;
+      }
+
+      /* The form is editorial, not boxy. The textarea sits on a single
+         hairline rule with no background and no border — the input
+         disappears into the surface when empty, and the field is defined
+         by the label above and the rule below. */
+
+      .edges-form {
+        gap: 2rem;
+        padding: clamp(2.25rem, 5vw, 3.5rem);
+      }
+
+      .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .form-label {
+        font-family: var(--font-display);
+        font-size: var(--text-2xl);
+        line-height: var(--leading-snug);
+        letter-spacing: var(--tracking-tight);
+      }
+
+      .form-input {
+        font-family: var(--font-sans);
+        font-size: var(--text-lg);
+        line-height: var(--leading-normal);
+        padding: 0 0 0.75rem;
+        background: transparent;
+        border: 0;
+        border-bottom: 1px solid var(--color-rule-strong);
+        color: var(--color-ink);
+        resize: vertical;
+        min-height: 5rem;
+        width: 100%;
+        transition: border-color var(--duration-normal) var(--ease-out);
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-bottom-color: var(--color-ink);
+      }
+
+      .form-input::placeholder {
+        color: var(--color-ink-faint);
+        font-family: var(--font-display);
+        font-style: italic;
+      }
+
+      .form-submit {
+        align-self: flex-start;
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.4em;
+        padding: 0.15em 0;
+        background: transparent;
+        color: var(--color-ink);
+        border: 0;
+        border-bottom: 1px solid var(--color-ink);
+        font-family: var(--font-sans);
+        font-size: var(--text-lg);
+        font-weight: var(--weight-medium);
+        cursor: pointer;
+        transition: border-color var(--duration-fast) var(--ease-out);
+      }
+
+      .form-submit:hover {
+        border-bottom-color: var(--color-accent);
+      }
+
+      .form-arrow {
+        display: inline-block;
+        transition: transform var(--duration-slow) var(--ease-editorial);
+      }
+
+      .form-submit:hover .form-arrow {
+        transform: translateX(0.3em);
+      }
+
+      /* ============================================================
+         Footer — tall. Same paper as the page; the only top chrome
+         is a hairline. The whole thing closes with a wordmark that
+         clips at the bottom edge of the viewport — a typographic close
+         instead of a fade-to-grey.
+         ============================================================ */
+
+      .page-footer {
+        border-top: 1px solid var(--color-rule);
+        background: var(--color-paper);
+        padding-top: clamp(5rem, 10vw, 9rem);
+        padding-bottom: clamp(2rem, 4vw, 4rem);
+        margin-top: 4rem;
+      }
+
+      .page-footer-content {
+        max-width: var(--max-width-wide);
+        margin: 0 auto;
+        padding-inline: var(--gutter);
+        display: grid;
+        grid-template-columns: 1fr 1.4fr 1fr;
+        gap: 4rem 4rem;
+        align-items: start;
+        margin-bottom: clamp(5rem, 10vw, 8rem);
+      }
+
+      .page-footer-cell {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .page-footer-note {
+        font-size: var(--text-base);
+        color: var(--color-ink-muted);
+        line-height: var(--leading-normal);
+        margin: 0;
+        max-width: 32ch;
+      }
+
+      .page-footer-quote-cell {
+        gap: 1rem;
+      }
+
+      .page-footer-quote {
+        font-family: var(--font-display);
+        font-weight: 200;
+        font-size: var(--text-4xl);
+        line-height: var(--leading-tight);
+        letter-spacing: var(--tracking-tighter);
+        margin: 0;
+        color: var(--color-ink);
+      }
+
+      .page-footer-attr {
+        margin: 0;
+      }
+
+      .page-footer-currently {
+        margin: 0;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .page-footer-row {
+        display: grid;
+        gap: 0.25rem;
+      }
+
+      .page-footer-row dt {
+        margin: 0;
+      }
+
+      .page-footer-row dd {
+        margin: 0;
+        font-size: var(--text-base);
+        color: var(--color-ink);
+      }
+
+      .page-footer-row dd.page-footer-current {
+        color: var(--color-accent);
+      }
+
+      @media (max-width: 880px) {
+        .page-footer-content {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+      }
+    </style>
+  </body>
+</html>

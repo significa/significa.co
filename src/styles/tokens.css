@@ -1,127 +1,274 @@
 /*
- * Significa Design Token System
+ * Significa Design Tokens
  *
- * All design values live here as CSS custom properties.
- * No magic colors anywhere in the codebase.
+ * Three voices, two surfaces, one signature color.
+ * See docs/brand/north-star.md for the why behind this system.
  *
- * Color space: OKLCH
- * Spacing: use raw values (4px grid guideline, rem for vertical, px for horizontal when appropriate)
- * Breakpoints: sm 640px, md 768px, lg 1024px, xl 1280px
+ * Display:  PP Editorial Old   — used sparingly. Statements only.
+ * Body:     PP Neue Montreal   — paragraphs, headlines below display sizes.
+ * UI/meta:  PP Supply Mono     — labels, captions, footnotes, timestamps.
+ *
+ * Drop font files into /public/fonts/{family}/ matching the names below.
+ * PP Neue Montreal is free from pangrampangram.com.
+ * PP Editorial Old + PP Supply Mono are paid; trial weights are enough
+ * to evaluate this system before licensing.
  */
 
 /* ============================================================
-   Switzer — served via Fontshare CDN (cdn.fontshare.com)
-   Weights loaded: 300 400 500 600 700
-   font-display: swap ensures text stays visible during load
+   PP Neue Montreal — body voice (free)
+   Available: Thin 100, Book 350, Regular 400, Italic 400,
+              Medium 500, SemiBold Italic 600, Bold 700
    ============================================================ */
 
 @font-face {
-  font-family: "Switzer";
-  src:
-    url("//cdn.fontshare.com/wf/EW5HJEX6O4L64XUWQA2XU7Q6BZ3B4JA4/ZWUP4SQYHHMMSS5LFHFFBX6DXL7C3DTU/H5EOHLIZH5K7IZK6SGYJI75L4KV6FUO7.woff2")
-      format("woff2"),
-    url("//cdn.fontshare.com/wf/EW5HJEX6O4L64XUWQA2XU7Q6BZ3B4JA4/ZWUP4SQYHHMMSS5LFHFFBX6DXL7C3DTU/H5EOHLIZH5K7IZK6SGYJI75L4KV6FUO7.woff")
-      format("woff");
-  font-weight: 300;
-  font-display: swap;
+  font-family: "PP Neue Montreal";
+  src: url("/fonts/PPNeueMontreal-Thin.woff2") format("woff2");
+  font-weight: 100;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: "Switzer";
-  src:
-    url("//cdn.fontshare.com/wf/BLNB4FAQFNK56DWWNF7PMGTCOTZHOEII/ST3WKSSDMBK2MIQQO3MAVYWLF4FTOLFV/6IN5WOLRCYP4G4MOCOHOMXNON6Q7MDAR.woff2")
-      format("woff2"),
-    url("//cdn.fontshare.com/wf/BLNB4FAQFNK56DWWNF7PMGTCOTZHOEII/ST3WKSSDMBK2MIQQO3MAVYWLF4FTOLFV/6IN5WOLRCYP4G4MOCOHOMXNON6Q7MDAR.woff")
-      format("woff");
+  font-family: "PP Neue Montreal";
+  src: url("/fonts/PPNeueMontreal-Book.woff2") format("woff2");
+  font-weight: 350;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("/fonts/PPNeueMontreal-Regular.woff2") format("woff2");
   font-weight: 400;
-  font-display: swap;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: "Switzer";
-  src:
-    url("//cdn.fontshare.com/wf/OYB4CXKJQXKTNSLJMTDQOIVUL2V5EL7S/WYO2P7DQVV5RNXGMCUO2HL4RJP4VFUAS/6XPIMU23OJVRY676OG5YVJMWEHWICATX.woff2")
-      format("woff2"),
-    url("//cdn.fontshare.com/wf/OYB4CXKJQXKTNSLJMTDQOIVUL2V5EL7S/WYO2P7DQVV5RNXGMCUO2HL4RJP4VFUAS/6XPIMU23OJVRY676OG5YVJMWEHWICATX.woff")
-      format("woff");
+  font-family: "PP Neue Montreal";
+  src: url("/fonts/PPNeueMontreal-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("/fonts/PPNeueMontreal-Medium.woff2") format("woff2");
   font-weight: 500;
-  font-display: swap;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: "Switzer";
-  src:
-    url("//cdn.fontshare.com/wf/5SZVFDB7V52TI6ULVC6J3WQZQCIZVDV5/ODYPSTCUDMKSTYIPTV4CLQ7URIK7XYBJ/YS3VPNVO4B3TOJMEXDGFZQ4TLZGGSRZC.woff2")
-      format("woff2"),
-    url("//cdn.fontshare.com/wf/5SZVFDB7V52TI6ULVC6J3WQZQCIZVDV5/ODYPSTCUDMKSTYIPTV4CLQ7URIK7XYBJ/YS3VPNVO4B3TOJMEXDGFZQ4TLZGGSRZC.woff")
-      format("woff");
+  font-family: "PP Neue Montreal";
+  src: url("/fonts/PPNeueMontreal-SemiBolditalic.woff2") format("woff2");
   font-weight: 600;
+  font-style: italic;
   font-display: swap;
-  font-style: normal;
 }
 
 @font-face {
-  font-family: "Switzer";
-  src:
-    url("//cdn.fontshare.com/wf/HBNTRIISA5MEXGL5WPYI7CV2HIWTDV3Q/YDPDINVT673XLXNSTMLG4JNCZZMVVNPN/Y7SCNZJOT2MW5ADSGOFLDGH4TNL4JCQY.woff2")
-      format("woff2"),
-    url("//cdn.fontshare.com/wf/HBNTRIISA5MEXGL5WPYI7CV2HIWTDV3Q/YDPDINVT673XLXNSTMLG4JNCZZMVVNPN/Y7SCNZJOT2MW5ADSGOFLDGH4TNL4JCQY.woff")
-      format("woff");
+  font-family: "PP Neue Montreal";
+  src: url("/fonts/PPNeueMontreal-Bold.woff2") format("woff2");
   font-weight: 700;
-  font-display: swap;
   font-style: normal;
+  font-display: swap;
 }
 
 /* ============================================================
-   Colors (OKLCH)
+   PP Editorial Old — display voice (trial)
+   Available: Ultralight 200 + Italic, Regular 400 + Italic,
+              Ultrabold 800 + Italic
+   The italics earn this family its character. Use them.
+   ============================================================ */
+
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/fonts/PPEditorialOld-Ultralight.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/fonts/PPEditorialOld-UltralightItalic.woff2") format("woff2");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/fonts/PPEditorialOld-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/fonts/PPEditorialOld-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/fonts/PPEditorialOld-Ultrabold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/fonts/PPEditorialOld-UltraboldItalic.woff2") format("woff2");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ============================================================
+   PP Supply Mono — UI/meta voice (trial)
+   Available: Ultralight 200, Regular 400
+   ============================================================ */
+
+@font-face {
+  font-family: "PP Supply Mono";
+  src: url("/fonts/PPSupplyMono-Ultralight.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Supply Mono";
+  src: url("/fonts/PPSupplyMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   PP Supply Sans — loaded but not in the system today.
+   Available in case we want to A/B against Neue Montreal as body,
+   or build a Supply-only stack (Sans + Mono from same family).
+   ============================================================ */
+
+@font-face {
+  font-family: "PP Supply Sans";
+  src: url("/fonts/PPSupplySans-Ultralight.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Supply Sans";
+  src: url("/fonts/PPSupplySans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   Color — warm paper, near-black ink, one terracotta accent
+   Color space: OKLCH
    ============================================================ */
 
 :root {
-  /* Neutrals */
+  /* Surfaces — essentially gray with a whisper of warmth. Hue 70 means
+     "warm if anything," but chroma is kept very low (0.003–0.008) so it
+     reads as neutral, not as yellow or cream. You'd only notice the warmth
+     if you held it against a true neutral gray. */
+  --color-paper: oklch(97% 0.003 70);
+  --color-paper-alt: oklch(94% 0.006 70);
+  --color-paper-deep: oklch(91% 0.008 70);
+
+  /* Ink — near-black, slightly softer than #000 */
+  --color-ink: oklch(18% 0 0);
+  --color-ink-muted: oklch(45% 0 0);
+  --color-ink-faint: oklch(68% 0 0);
+
+  /* Rules — hairlines and borders */
+  --color-rule: oklch(86% 0 0);
+  --color-rule-strong: oklch(72% 0 0);
+
+  /* Signature — muted terracotta. Used at moments of attention only.
+     The egg, hover states, focus rings, current-section indicators.
+     Never decoratively, never as a "brand color splash". */
+  --color-accent: oklch(58% 0.13 35);
+  --color-accent-deep: oklch(46% 0.14 35);
+
+  /* Inverse — for dark sections / project case study takeover */
+  --color-ink-on-dark: oklch(96% 0.005 85);
+
+  /* Semantic aliases — preserve existing API surface */
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-ink-muted);
+  --color-surface: var(--color-paper);
+  --color-surface-alt: var(--color-paper-alt);
+  --color-border: var(--color-rule);
+  --color-primary: var(--color-accent);
+  --color-primary-hover: var(--color-accent-deep);
+
+  /* Legacy neutrals (kept for backward compatibility) */
   --color-black: oklch(0% 0 0);
   --color-white: oklch(100% 0 0);
-
-  /* Semantic */
-  --color-text: var(--color-black);
-  --color-text-muted: oklch(55% 0 0);
-  --color-surface: var(--color-white);
-  --color-surface-alt: oklch(97% 0 0);
-  --color-border: oklch(88% 0 0);
-  --color-primary: oklch(45% 0.15 264);
-  --color-primary-hover: oklch(38% 0.15 264);
-
-  /* Feedback */
-  --color-error: oklch(55% 0.2 27);
-  --color-success: oklch(55% 0.15 155);
 }
 
 /* ============================================================
-   Typography
+   Type families
    ============================================================ */
 
 :root {
-  --font-sans: "Switzer", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, monospace;
+  --font-display: "PP Editorial Old", "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --font-sans: "PP Neue Montreal", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "PP Supply Mono", ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+}
 
-  --text-xs: clamp(0.6875rem, 0.625rem + 0.2vw, 0.75rem); /* 11–12px */
-  --text-sm: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem); /* 13–14px */
-  --text-base: clamp(0.9375rem, 0.875rem + 0.2vw, 1rem); /* 15–16px */
-  --text-lg: clamp(1.125rem, 1rem + 0.4vw, 1.25rem); /* 18–20px */
-  --text-xl: clamp(1.25rem, 1rem + 0.8vw, 1.5rem); /* 20–24px */
-  --text-2xl: clamp(1.5rem, 1rem + 1.5vw, 2rem); /* 24–32px */
-  --text-3xl: clamp(2rem, 1rem + 3vw, 3rem); /* 32–48px */
-  --text-4xl: clamp(2.5rem, 1.5rem + 4vw, 4rem); /* 40–64px */
+/* ============================================================
+   Type scale
+   Existing scale (xs–4xl) stays for working type.
+   Display sizes exist for the rare moment a single sentence holds a screen.
+   Use them sparingly. Their existence changes what's possible.
+   ============================================================ */
 
-  --leading-tight: 1.2;
-  --leading-normal: 1.6;
-  --leading-relaxed: 1.75;
+:root {
+  --text-xs: clamp(0.6875rem, 0.625rem + 0.2vw, 0.75rem); /* 11–12  mono labels, footnotes */
+  --text-sm: clamp(0.8125rem, 0.75rem + 0.2vw, 0.875rem); /* 13–14  captions, meta */
+  --text-base: clamp(0.9375rem, 0.875rem + 0.2vw, 1rem); /* 15–16  body */
+  --text-lg: clamp(1.0625rem, 0.95rem + 0.4vw, 1.1875rem); /* 17–19  lede */
+  --text-xl: clamp(1.25rem, 1rem + 0.8vw, 1.5rem); /* 20–24  small heads */
+  --text-2xl: clamp(1.5rem, 1rem + 1.5vw, 2rem); /* 24–32  heads */
+  --text-3xl: clamp(2rem, 1rem + 3vw, 3rem); /* 32–48  large heads */
+  --text-4xl: clamp(2.5rem, 1.5rem + 4vw, 4rem); /* 40–64  section opens */
 
+  /* Editorial display sizes */
+  --text-display-2: clamp(3rem, 1.5rem + 6vw, 6rem); /* 48–96   pull moments */
+  --text-display-1: clamp(4rem, 2rem + 8vw, 9rem); /* 64–144  one sentence per screen */
+
+  /* Leading */
+  --leading-tight: 1.05; /* display copy */
+  --leading-snug: 1.2; /* heads */
+  --leading-normal: 1.55; /* body */
+  --leading-relaxed: 1.75; /* mono labels need air */
+
+  /* Tracking */
+  --tracking-tighter: -0.03em; /* display copy */
+  --tracking-tight: -0.015em; /* heads */
+  --tracking-normal: 0em; /* body */
+  --tracking-wide: 0.06em; /* mono labels */
+  --tracking-widest: 0.12em; /* uppercase eyebrows */
+
+  /* Weight */
+  --weight-light: 350;
   --weight-normal: 400;
   --weight-medium: 500;
-  --weight-semibold: 600;
+  --weight-semibold: 600; /* renders as Medium until SemiBold loaded */
   --weight-bold: 700;
 }
 
@@ -130,18 +277,27 @@
    ============================================================ */
 
 :root {
-  --max-width: 72rem; /* 1152px */
-  --max-width-narrow: 48rem; /* 768px */
-  --gutter: 1.5rem; /* 24px */
+  --max-width-prose: 36rem; /* 576   editorial reading column */
+  --max-width-narrow: 48rem; /* 768   single-column page max */
+  --max-width: 72rem; /* 1152  standard page max */
+  --max-width-wide: 90rem; /* 1440  full-bleed work, case study imagery */
+  --gutter: 1.5rem; /* 24    page edge */
+  --gutter-wide: 2.5rem; /* 40    larger viewports */
 }
 
 /* ============================================================
-   Transitions
+   Motion
+   Default is no motion. When motion happens it's slow and means something.
    ============================================================ */
 
 :root {
   --duration-fast: 150ms;
-  --duration-normal: 250ms;
-  --duration-slow: 400ms;
+  --duration-normal: 280ms;
+  --duration-slow: 480ms;
+  --duration-slower: 720ms;
+  --duration-slowest: 1100ms;
+
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-editorial: cubic-bezier(0.2, 0, 0.13, 1); /* slow, deliberate */
 }

@@ -1,11 +1,21 @@
 ---
-const navItems = [
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Projects", href: "/projects" },
-];
+/**
+ * Header
+ *
+ * Editorial chrome. Wordmark left, mono nav right. Not sticky — let the
+ * page breathe. The nav is short on purpose: four items, no CTA button.
+ * The contact ask lives in /hello, not in the chrome.
+ */
 
-const ctaLink = { label: "Say hello", href: "/say-hello" };
+import Wordmark from "@/components/ui/wordmark.astro";
+import Egg from "@/components/ui/egg.astro";
+
+const navItems = [
+  { label: "Work", href: "/projects" },
+  { label: "Studio", href: "/about" },
+  { label: "Journal", href: "/blog" },
+  { label: "Hello", href: "/say-hello" },
+];
 
 const currentPath = Astro.url.pathname;
 
@@ -16,51 +26,12 @@ function isActive(href: string): boolean {
 ---
 
 <header class="site-header">
-  <nav class="nav-bar" aria-label="Main navigation">
-    <a href="/" class="logo" aria-label="Significa — Home">
-      <svg
-        class="logo-icon"
-        width="10"
-        height="12"
-        viewBox="0 0 81 95"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <path
-          d="M40.0781 94.2188C17.9835 94.2188 0 76.8077 0 55.2361C0 30.9141 19.3505 0 40.0781 0C60.8058 0 80.1562 30.9141 80.1562 55.2361C80.1562 76.8077 62.1728 94.2188 40.0781 94.2188Z"
-          fill="currentColor"></path>
-      </svg>
-      Significa®
+  <div class="header-inner">
+    <a href="/" class="header-brand" aria-label="Significa, home">
+      <Wordmark class="header-wordmark" />
     </a>
 
-    {/* Desktop nav */}
-    <ul class="nav-links" role="list">
-      {
-        navItems.map((item) => (
-          <li>
-            <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-
-    <a href={ctaLink.href} class="nav-cta nav-cta--desktop" aria-current={isActive(ctaLink.href) ? "page" : undefined}>
-      {ctaLink.label}
-    </a>
-
-    {/* Mobile menu toggle */}
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
-      <span class="menu-toggle-bar" aria-hidden="true"></span>
-      <span class="menu-toggle-bar" aria-hidden="true"></span>
-    </button>
-  </nav>
-
-  {/* Mobile menu panel */}
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-    <nav class="mobile-nav" aria-label="Mobile navigation">
+    <nav class="header-nav" aria-label="Main navigation">
       <ul role="list">
         {
           navItems.map((item) => (
@@ -72,25 +43,47 @@ function isActive(href: string): boolean {
           ))
         }
       </ul>
+    </nav>
 
-      <div class="mobile-nav-footer">
-        <a href={ctaLink.href} class="nav-cta" aria-current={isActive(ctaLink.href) ? "page" : undefined}>
-          {ctaLink.label}
-        </a>
-      </div>
+    <button
+      class="header-menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Open menu"
+    >
+      <span class="header-menu-bar" aria-hidden="true"></span>
+      <span class="header-menu-bar" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <ul role="list">
+        {
+          navItems.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+                <span class="mobile-nav-label">{item.label}</span>
+                <Egg variant="fill" class="mobile-nav-mark" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </nav>
   </div>
 </header>
 
 <script>
   function initMobileMenu() {
-    const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
+    const toggle = document.querySelector<HTMLButtonElement>(".header-menu-toggle");
     const menu = document.getElementById("mobile-menu");
     const header = document.querySelector<HTMLElement>(".site-header");
 
     if (!toggle || !menu || !header) return;
 
-    function openMenu() {
+    function open() {
       toggle!.setAttribute("aria-expanded", "true");
       toggle!.setAttribute("aria-label", "Close menu");
       menu!.setAttribute("aria-hidden", "false");
@@ -98,7 +91,7 @@ function isActive(href: string): boolean {
       document.body.style.overflow = "hidden";
     }
 
-    function closeMenu() {
+    function close() {
       toggle!.setAttribute("aria-expanded", "false");
       toggle!.setAttribute("aria-label", "Open menu");
       menu!.setAttribute("aria-hidden", "true");
@@ -108,137 +101,88 @@ function isActive(href: string): boolean {
 
     toggle.addEventListener("click", () => {
       const isOpen = toggle.getAttribute("aria-expanded") === "true";
-      if (isOpen) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
+      isOpen ? close() : open();
     });
 
-    // Close on Escape
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
-        closeMenu();
+        close();
         toggle.focus();
       }
     });
 
-    // Close when clicking a link inside the mobile menu
     menu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        closeMenu();
-      });
+      link.addEventListener("click", () => close());
     });
   }
 
-  // Run on initial load
   initMobileMenu();
-
-  // Re-run after Astro view transitions
   document.addEventListener("astro:after-swap", initMobileMenu);
 </script>
 
 <style>
   /* ============================================================
-     Header shell
+     Header shell — editorial, not app-like. Not sticky.
      ============================================================ */
   .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background-color: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-paper);
   }
 
-  .nav-bar {
+  .header-inner {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding: 1.75rem var(--gutter);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 1rem var(--gutter);
+    gap: 2rem;
   }
 
-  /* ============================================================
-     Logo
-     ============================================================ */
-  .logo {
-    display: flex;
+  .header-brand {
+    display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-weight: var(--weight-medium);
-    font-size: var(--text-base);
-    color: var(--color-text);
     text-decoration: none;
-    white-space: nowrap;
-    z-index: 110;
+    color: var(--color-ink);
   }
 
-  .logo:hover {
-    color: var(--color-text);
-  }
-
-  .logo-icon {
-    flex-shrink: 0;
+  .header-wordmark {
+    height: 1.5em;
   }
 
   /* ============================================================
-     Nav links (desktop)
+     Nav — mono, uppercase, small. Active = ink. Inactive = muted.
      ============================================================ */
-  .nav-links {
-    display: flex;
-    gap: 1.5rem;
+  .header-nav ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 2rem;
   }
 
-  .nav-links a {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
+  .header-nav a {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
     text-decoration: none;
     transition: color var(--duration-fast) var(--ease-out);
   }
 
-  .nav-links a:hover,
-  .nav-links a[aria-current="page"] {
-    color: var(--color-text);
+  .header-nav a:hover,
+  .header-nav a[aria-current="page"] {
+    color: var(--color-ink);
+  }
+
+  .header-nav a[aria-current="page"] {
+    color: var(--color-accent);
   }
 
   /* ============================================================
-     CTA button
+     Mobile menu toggle — minimal, two-bar, animates to X
      ============================================================ */
-  .nav-cta {
-    display: inline-flex;
-    align-items: center;
-    font-size: var(--text-sm);
-    font-weight: var(--weight-medium);
-    color: var(--color-surface);
-    background-color: var(--color-text);
-    text-decoration: none;
-    padding: 0.5rem 1.25rem;
-    border-radius: 2rem;
-    transition:
-      background-color var(--duration-fast) var(--ease-out),
-      opacity var(--duration-fast) var(--ease-out);
-    white-space: nowrap;
-  }
-
-  .nav-cta:hover {
-    opacity: 0.85;
-    color: var(--color-surface);
-  }
-
-  .nav-cta[aria-current="page"] {
-    background-color: var(--color-primary);
-  }
-
-  .nav-cta--desktop {
-    z-index: 110;
-  }
-
-  /* ============================================================
-     Mobile menu toggle (hamburger)
-     ============================================================ */
-  .menu-toggle {
+  .header-menu-toggle {
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -252,39 +196,34 @@ function isActive(href: string): boolean {
     z-index: 110;
   }
 
-  .menu-toggle-bar {
+  .header-menu-bar {
     display: block;
     width: 100%;
     height: 1.5px;
-    background-color: var(--color-text);
-    border-radius: 1px;
-    transition:
-      transform var(--duration-normal) var(--ease-out),
-      opacity var(--duration-fast) var(--ease-out);
+    background-color: var(--color-ink);
+    transition: transform var(--duration-normal) var(--ease-out);
     transform-origin: center;
   }
 
-  /* Animate to X when open */
-  .is-menu-open .menu-toggle-bar:nth-child(1) {
+  .is-menu-open .header-menu-bar:nth-child(1) {
     transform: translateY(3.25px) rotate(45deg);
   }
 
-  .is-menu-open .menu-toggle-bar:nth-child(2) {
+  .is-menu-open .header-menu-bar:nth-child(2) {
     transform: translateY(-3.25px) rotate(-45deg);
   }
 
   /* ============================================================
-     Mobile menu panel
+     Mobile menu — full screen, editorial, egg marks per item
      ============================================================ */
   .mobile-menu {
     display: none;
     position: fixed;
     inset: 0;
     z-index: 100;
-    background-color: var(--color-surface);
-    padding: 5rem var(--gutter) 2rem;
+    background-color: var(--color-paper);
+    padding: 6rem var(--gutter) 2rem;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
     opacity: 0;
     transition: opacity var(--duration-normal) var(--ease-out);
   }
@@ -299,50 +238,64 @@ function isActive(href: string): boolean {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: calc(100vh - 7rem);
+    min-height: calc(100vh - 8rem);
   }
 
   .mobile-nav ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
   }
 
-  .mobile-nav ul a {
-    display: block;
-    font-size: var(--text-2xl);
-    font-weight: var(--weight-medium);
-    color: var(--color-text);
+  .mobile-nav a {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 0.65rem 0;
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    line-height: var(--leading-tight);
+    color: var(--color-ink);
     text-decoration: none;
-    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-rule);
     transition: color var(--duration-fast) var(--ease-out);
   }
 
-  .mobile-nav ul a:hover {
-    color: var(--color-text-muted);
+  .mobile-nav a:hover {
+    color: var(--color-accent);
   }
 
-  .mobile-nav ul a[aria-current="page"] {
-    color: var(--color-primary);
+  .mobile-nav a[aria-current="page"] {
+    color: var(--color-accent);
+    font-style: italic;
   }
 
-  .mobile-nav-footer {
-    margin-top: 2.5rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--color-border);
+  .mobile-nav-mark {
+    color: var(--color-accent);
+    height: 0.55em;
+    opacity: 0;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .mobile-nav a:hover .mobile-nav-mark,
+  .mobile-nav a[aria-current="page"] .mobile-nav-mark {
+    opacity: 1;
   }
 
   /* ============================================================
-     Responsive breakpoints
+     Responsive
      ============================================================ */
-  @media (max-width: 768px) {
-    .nav-links,
-    .nav-cta--desktop {
+  @media (max-width: 720px) {
+    .header-nav {
       display: none;
     }
 
-    .menu-toggle {
+    .header-menu-toggle {
       display: flex;
     }
 

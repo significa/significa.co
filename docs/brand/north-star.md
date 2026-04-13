@@ -8,7 +8,7 @@ We work on complex problems — enterprise systems, e-commerce at scale, tools t
 
 We're not a software house. We're not a creative agency playing at tech. We're a team of designers and engineers who think together, build together, and hold each other to a standard most agencies gave up on.
 
-Whether we're working with a global retailer or a non-profit changing how people access healthcare, the approach is the same: understand deeply, design with purpose, build with care. This means recommending what’s actually best for the client – even when a different answer would be easier for us.
+Whether the client is a global retailer or a non-profit rebuilding healthcare access, the job is the same: get inside the problem until we can see what's actually best for it, then say so out loud, even when a different answer would be easier for us, more profitable for us, or more comfortable to defend in the next meeting.
 
 ### What This Means in Practice
 
@@ -16,9 +16,9 @@ Every project — regardless of client size or budget — should pass through th
 
 | Keyword | What it means internally | What it means for clients |
 | --- | --- | --- |
-| **Purpose** | Every project needs a "why" beyond the spec. We need to understand and believe in what we're building. | We solve real problems for real users. |
-| **Culture** | We're not pixel pushers or code monkeys. We question, we push back, we care — and we can explain why. Our opinions aren't arbitrary; they're grounded in experience and reasoning. | We're partners, not vendors. We bring perspective, not just execution. |
-| **Art** | Not decoration. The obsession with how things feel, not just how they work. The trained eye that sees what others miss. The refusal to ship something you wouldn't be proud of. The chocolate on the side. | The output is noticeably better than alternatives. The output is noticeably better than what was expected. The cherry on top.  |
+| **Purpose** | The "why" has to survive the spec. If we can't articulate what this product makes possible that didn't exist before, we don't know enough to start building it. | We will turn down work that doesn't have a point. If we can't picture who's measurably better off when this ships, we'll say so before you spend money. |
+| **Culture** | Disagreement is the work. A junior with the better idea overrides a partner. If you need consensus to feel safe, this is the wrong place. | We will push back, sometimes hard. The version of this project where we agree with everything is the version that fails. |
+| **Art** | Beauty is not decoration. It's the visible evidence that someone made decisions instead of accepting defaults. If you can't explain a choice, it isn't one. | You will notice things you don't have words for. Rhythm, weight, restraint, the absence of clutter. That's what the budget is paying for, even when it's invisible on the spec. |
 
 If it fails some, we need to be honest about what we're trading and why.
 

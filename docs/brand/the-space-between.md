@@ -2,6 +2,16 @@
 
 ---
 
+## The thesis
+
+This company exists by recurring decision, not by founding fact. What Significa is gets re-decided every quarter, in every staffing call, in every pitch we accept or refuse, in every project we let slip. There is no version of this where the answer gets settled in 2015 and we move on to "the actual work." The deciding *is* the actual work.
+
+Everything below is why that's the case, what the drift looks like when we stop deciding, and what the practice of deciding looks like when we take it seriously. Read it as a description of a discipline we have to keep performing, not as a position we've already secured.
+
+---
+
+## Two versions of this company
+
 There is a version of this company that is very easy to run. It takes corporate clients with clear scopes and comfortable budgets. It delivers good work on time. It pays everyone well. The portfolio is respectable. Nobody is embarrassed. Nobody is inspired either, but that's the trade, and it's a perfectly legitimate business.
 
 There is another version of this company that does extraordinary things. Climate projects, human rights work, products built with obsessive care. The portfolio is the kind that makes talented people want to join. The work is the kind you'd talk about at dinner. It is also, frequently, the kind that doesn't pay enough, takes longer than planned, and makes the finance side of the conversation very uncomfortable.

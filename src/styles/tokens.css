@@ -283,6 +283,10 @@
   --max-width-wide: 90rem; /* 1440  full-bleed work, case study imagery */
   --gutter: 1.5rem; /* 24    page edge */
   --gutter-wide: 2.5rem; /* 40    larger viewports */
+
+  /* Radius — the "cared for" softening. Keep to a small set;
+     everything that isn't text either uses --radius-image or no radius. */
+  --radius-image: 0.5rem; /* hero + feature + thumbnail images */
 }
 
 /* ============================================================

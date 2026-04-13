@@ -47,13 +47,17 @@ const navItems = [
         </p>
       </div>
 
-      <!-- Contact (right) -->
-      <div class="footer-cell footer-cell-contact">
-        <p class="footer-eyebrow">Hello</p>
-        <p class="footer-contact-line">
-          <a href="mailto:newbusiness@significa.co" class="footer-email">newbusiness@significa.co</a>
-        </p>
+      <!-- Contact (right) — kept at body size. A display-size email
+           doesn't wrap cleanly (no break points in newbusiness@…) and
+           overflows narrow viewports. -->
+      <div class="footer-cell">
         <dl class="footer-rows">
+          <div class="footer-row">
+            <dt class="footer-eyebrow">Hello</dt>
+            <dd>
+              <a href="mailto:newbusiness@significa.co">newbusiness@significa.co</a>
+            </dd>
+          </div>
           <div class="footer-row">
             <dt class="footer-eyebrow">Studio</dt>
             <dd>
@@ -196,31 +200,10 @@ const navItems = [
     height: 0.85em;
   }
 
-  /* Contact ------------------------------------------- */
-
-  .footer-cell-contact {
-    gap: 1.5rem;
-  }
-
-  .footer-contact-line {
-    margin: 0;
-  }
-
-  .footer-email {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--text-xl);
-    line-height: var(--leading-snug);
-    color: var(--color-ink);
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-
-  .footer-email:hover {
-    color: var(--color-accent);
-  }
+  /* Contact rows -------------------------------------- */
 
   .footer-rows {
-    margin: 0.75rem 0 0;
+    margin: 0;
     display: grid;
     gap: 1rem;
   }

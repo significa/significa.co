@@ -265,9 +265,7 @@ const structuredData = [webSiteJsonLd()];
                 <span class="index-title">{p.data.title}</span>
                 <span class="index-tagline">{p.data.tagline}</span>
                 <span class="index-year">{new Date(p.data.date).getFullYear()}</span>
-                <span class="index-mark" aria-hidden="true">
-                  <Egg variant="fill" />
-                </span>
+                <span class="index-mark" aria-hidden="true">&rarr;</span>
               </a>
             </li>
           ))}
@@ -424,6 +422,7 @@ const structuredData = [webSiteJsonLd()];
   .featured-image {
     aspect-ratio: 3 / 2;
     overflow: hidden;
+    border-radius: var(--radius-image);
     background: var(--color-paper-alt);
   }
 
@@ -816,21 +815,22 @@ const structuredData = [webSiteJsonLd()];
     color: var(--color-accent);
   }
 
-  /* The accent egg appears on hover. Translates from -0.6em with fade,
-     resolves to 0 with full opacity. Slow editorial ease. */
+  /* Accent arrow appears on hover. Slides in from -0.6em with fade and
+     resolves at 0. Slow editorial ease. When we have a custom arrow
+     mark, swap the glyph without touching the motion. */
   .index-mark {
     display: inline-flex;
     align-items: center;
+    justify-content: flex-end;
     color: var(--color-accent);
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    line-height: 1;
     opacity: 0;
     transform: translateX(-0.6em);
     transition:
       opacity var(--duration-slow) var(--ease-editorial),
       transform var(--duration-slow) var(--ease-editorial);
-  }
-
-  .index-mark :global(.egg) {
-    height: 0.7em;
   }
 
   .index-link:hover .index-mark {

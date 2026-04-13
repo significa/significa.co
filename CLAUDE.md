@@ -130,6 +130,7 @@ Read the docs relevant to your task. Don't load everything.
 
 | Working on… | Read |
 |---|---|
+| **Anything touching copy, tone, content strategy, page structure, or "what should this section say"** | `docs/brand/north-star.md` AND `docs/brand/the-space-between.md` — both. These define the company's positioning and the trap the website keeps falling into. Read before writing or critiquing copy, before proposing a new section, and before approving design directions. |
 | Project setup, structure, commands, key principles | `docs/01-PROJECT-BOOTSTRAP.md` |
 | Content schemas, collections, Zod types, relationships, drafts | `docs/02-CONTENT-SCHEMA.md` |
 | MDX components (creating, registering, catalog) | `docs/03-MDX-COMPONENTS.md` |

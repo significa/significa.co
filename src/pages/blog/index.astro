@@ -66,7 +66,6 @@ function formatShortDate(date: Date): string {
               <a href={`/blog/${post.id}`} class="index-link">
                 <span class="index-num">{String(i + 1).padStart(2, "0")}</span>
                 <span class="index-title">{post.data.title}</span>
-                <span class="index-tagline">{post.data.description ?? ""}</span>
                 <span class="index-year">{formatShortDate(post.data.date)}</span>
                 <span class="index-mark" aria-hidden="true">
                   &rarr;

@@ -18,6 +18,7 @@
  * .link-call pattern (no underline, animated arrow on hover).
  */
 
+import { existsSync } from "node:fs";
 import BaseLayout from "@/layouts/base.astro";
 import Egg from "@/components/ui/egg.astro";
 import { getEntry } from "astro:content";
@@ -29,7 +30,62 @@ const featured = await getEntry("projects", "dia");
 const allProjects = (await getProjects()).filter((p) => p.id !== "dia").slice(0, 8);
 const clients = await getClients();
 
-const recognitions = ["Red Dot", "iF Design", "German Design Council", "European Design", "Good Design", "Awwwards"];
+const awardBodies = [
+  { name: "Red Dot", logo: "/logos/red-dot.webp", w: 168, h: 132 },
+  { name: "iF Design", logo: "/logos/if-design.webp", w: 168, h: 132 },
+  { name: "German Design", logo: "/logos/german-design.png", w: 168, h: 132 },
+  { name: "European Design", logo: "/logos/european-design.png", w: 112, h: 88 },
+  { name: "Good Design", logo: "/logos/good-design.png", w: 168, h: 132 },
+  { name: "Awwwards", logo: "/logos/awwwards.png", w: 112, h: 88 },
+];
+
+// Only show clients whose logo file actually exists in public/
+const clientsWithLogos = clients.filter((c) => existsSync(`./public${c.data.logo}`));
+
+// Logo measurements from scripts/measure-logos.mjs.
+// w/h = source dimensions, d = pixel density (0-1).
+// Re-run the script when logos change.
+const logoData: Record<string, { w: number; h: number; d: number }> = {
+  "/logos/allo.png": { w: 928, h: 520, d: 0.169 },
+  "/logos/mishmash.png": { w: 1055, h: 282, d: 0.064 },
+  "/logos/hey-harper.png": { w: 1980, h: 520, d: 0.05 },
+  "/logos/emma.png": { w: 1662, h: 520, d: 0.068 },
+  "/logos/rocket-chat.svg": { w: 1500, h: 272, d: 0.074 },
+  "/logos/boeing.svg": { w: 172, h: 40, d: 0.05 },
+  "/logos/delonghi.svg": { w: 1543, h: 200, d: 0.038 },
+  // fc-porto excluded — crest needs a proper monochrome version
+};
+
+/**
+ * PINF + density compensation.
+ * Based on sanity.io/blog/the-logo-soup-problem:
+ *
+ *  1. Aspect-ratio normalisation:
+ *     displayWidth = ratio^scaleFactor × base
+ *
+ *  2. Density compensation:
+ *     Dense logos (bold type) are scaled down, thin logos scaled up,
+ *     so perceived visual weight is consistent across the row.
+ *     densityScale = (refDensity / measured)^(densityFactor × 0.5)
+ */
+function normalise(
+  w: number,
+  h: number,
+  density: number,
+  base = 42,
+  scale = 0.5,
+  refDensity = 0.07,
+  densityFactor = 0.5,
+): number {
+  const ratio = w / h;
+  const pinfWidth = Math.pow(ratio, scale) * base;
+
+  // Density compensation — clamp scale to avoid extreme adjustments
+  const densityRatio = density / refDensity;
+  const densityScale = Math.max(0.6, Math.min(1.6, Math.pow(1 / densityRatio, densityFactor * 0.5)));
+
+  return Math.round(pinfWidth * densityScale);
+}
 
 // Metadata for the DIA feature. Kept here inline because it's curated copy,
 // not a straight dump of the project frontmatter (e.g. "Role" is a homepage
@@ -98,14 +154,37 @@ const structuredData = [webSiteJsonLd()];
     <dl class="proof-list">
       <div class="proof-row">
         <dt class="proof-label">Recognised by</dt>
-        <dd class="proof-values">
-          {recognitions.map((r) => <span class="proof-item">{r}</span>)}
+        <dd class="proof-values proof-logos">
+          {awardBodies.map((a) => (
+            <img
+              src={a.logo}
+              alt={a.name}
+              class="proof-logo proof-logo-badge"
+              style={`width: ${normalise(a.w, a.h, 0.78, 38, 0.5, 0.78)}px`}
+              loading="eager"
+              decoding="async"
+            />
+          ))}
         </dd>
       </div>
       <div class="proof-row">
         <dt class="proof-label">Trusted by</dt>
-        <dd class="proof-values">
-          {clients.map((c) => <span class="proof-item">{c.data.name}</span>)}
+        <dd class="proof-values proof-logos">
+          {clientsWithLogos.map((c) => {
+            const d = logoData[c.data.logo];
+            if (!d) return null;
+            const w = normalise(d.w, d.h, d.d);
+            return (
+              <img
+                src={c.data.logo}
+                alt={c.data.name}
+                class="proof-logo proof-logo-client"
+                style={`width: ${w}px`}
+                loading="eager"
+                decoding="async"
+              />
+            );
+          })}
         </dd>
       </div>
     </dl>
@@ -337,13 +416,33 @@ const structuredData = [webSiteJsonLd()];
   }
 
   /* ============================================================
-     2. Proof — layout only; pattern styles are global
+     2. Proof — logo strips
      ============================================================ */
 
   .proof {
     max-width: var(--max-width-wide);
     margin: 0 auto;
     padding-block: clamp(3rem, 6vw, 5rem);
+  }
+
+  .proof-logos {
+    align-items: center;
+    gap: 1.25rem 2.5rem;
+  }
+
+  .proof-logo {
+    display: block;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Award badges — full colour, slight rounding */
+  .proof-logo-badge {
+    border-radius: 3px;
+  }
+
+  /* Client logos — width set inline via PINF + density compensation */
+  .proof-logo-client {
   }
 
   /* ============================================================

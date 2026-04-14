@@ -35,6 +35,7 @@
     "eslint-plugin-check-file": "^3.3.1",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
+    "sharp": "^0.34.5",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.1"
   }

@@ -6,8 +6,8 @@
  *
  *   1. Hero — position statement + capability breadth in the deck.
  *   2. Proof — recognition + clients, thin mono strips.
- *   3. Featured — DIA, told richly: story prose + structured metadata
- *      + integrated client voice, ending with a case-study link.
+ *   3. Featured — DIA as linear narrative: hook → story → image
+ *      (proof) → client voice (coda) → metadata strip → link.
  *   4. Manifesto moment — "Judgement is the work." One line, standalone.
  *   5. Recent work — compact editorial index.
  *   6. Numbers — since / team / projects / recognitions.
@@ -118,10 +118,9 @@ const structuredData = [webSiteJsonLd()];
   </section>
 
   <!-- ============================================================
-       3. Featured project — rich. Eyebrow + statement + image,
-       then a two-column grid (prose + structured metadata), then
-       an integrated voice block from the client, then the link.
-       All one section so the rhythm reads as a single case.
+       3. Featured project — linear narrative: hook → story → image
+       (as proof) → client voice (coda) → metadata strip → link.
+       One reading direction, no grid splits.
        ============================================================ -->
   {
     featured && (
@@ -136,6 +135,20 @@ const structuredData = [webSiteJsonLd()];
             A period tracker brief that grew into a fertility companion.
           </h2>
 
+          <div class="featured-prose">
+            <p>
+              TFP came to us looking for a competitor in a market full of period trackers. Six
+              weeks of discovery reframed what the project was. The final product logs cycles,
+              forecasts fertility, teaches, and builds a relationship rather than a dataset,
+              a companion, not a tracker.
+            </p>
+            <p>
+              Five international design awards later, including a <em>Red Dot</em>, Dia stood
+              alone in its category. Not because it shouted louder, but because it understood
+              better.
+            </p>
+          </div>
+
           <figure class="featured-figure">
             <div class="featured-image">
               <img
@@ -149,41 +162,12 @@ const structuredData = [webSiteJsonLd()];
             </div>
           </figure>
 
-          <div class="featured-grid">
-            <div class="featured-prose">
-              <p>
-                TFP came to us looking for a competitor in a market full of period trackers. Six
-                weeks of discovery reframed what the project was. The final product logs cycles,
-                forecasts fertility, teaches, and builds a relationship rather than a dataset —
-                a companion, not a tracker.
-              </p>
-              <p>
-                Five international design awards later, including a <em>Red Dot</em>, Dia stood
-                alone in its category. Not because it shouted louder, but because it understood
-                better.
-              </p>
-            </div>
-
-            <dl class="featured-meta">
-              {featuredMeta.map((m) => (
-                <div class="featured-meta-row">
-                  <dt class="featured-meta-label">{m.label}</dt>
-                  <dd class="featured-meta-value">{m.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-
-          <!-- Integrated client voice. Sits below the 2-col grid,
-               aligned with the prose column width to read as an
-               attached coda, not a separate section. -->
           <aside class="featured-voice" aria-label="Client voice">
-            <p class="featured-voice-label">A voice from this project</p>
             <blockquote class="featured-voice-quote">
               <p>
                 Dia started as a simple tracker brief. Six weeks of discovery with Significa
-                reframed what we were building. We ended up with a product we&rsquo;re proud of
-                — bigger than we&rsquo;d scoped, and better for it.
+                reframed what we were building. We ended up with a product we&rsquo;re proud of,
+                bigger than we&rsquo;d scoped, and better for it.
               </p>
               <footer>
                 <cite>
@@ -193,6 +177,15 @@ const structuredData = [webSiteJsonLd()];
               </footer>
             </blockquote>
           </aside>
+
+          <dl class="featured-meta">
+            {featuredMeta.map((m) => (
+              <div class="featured-meta-item">
+                <dt class="featured-meta-label">{m.label}</dt>
+                <dd class="featured-meta-value">{m.value}</dd>
+              </div>
+            ))}
+          </dl>
 
           <p class="featured-link-row">
             <a href={`/projects/${featured.id}`} class="link-call">
@@ -489,13 +482,37 @@ const structuredData = [webSiteJsonLd()];
     font-size: var(--text-4xl);
     line-height: var(--leading-tight);
     letter-spacing: var(--tracking-tight);
-    margin: 0 0 clamp(3rem, 6vw, 5rem);
+    margin: 0 0 clamp(2rem, 4vw, 3rem);
     max-width: 22ch;
     color: var(--color-ink);
   }
 
+  /* Prose flows directly from the statement — tight coupling */
+
+  .featured-prose {
+    max-width: 52ch;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .featured-prose p {
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    margin-block: 0 1.25em;
+  }
+
+  .featured-prose p:last-child {
+    margin-bottom: 0;
+  }
+
+  .featured-prose em {
+    font-style: italic;
+    color: var(--color-ink);
+  }
+
+  /* Image comes after the story — proof, not decoration */
+
   .featured-figure {
-    margin: 0 0 clamp(3rem, 6vw, 5rem);
+    margin: 0 0 clamp(2.5rem, 5vw, 4rem);
   }
 
   .featured-image {
@@ -517,102 +534,25 @@ const structuredData = [webSiteJsonLd()];
     transform: scale(1.015);
   }
 
-  .featured-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 4rem;
-    align-items: start;
-    margin-bottom: clamp(3rem, 6vw, 5rem);
-  }
-
-  .featured-prose {
-    max-width: 44ch;
-  }
-
-  .featured-prose p {
-    font-size: var(--text-lg);
-    line-height: var(--leading-normal);
-    margin-block: 0 1.25em;
-  }
-
-  .featured-prose p:last-child {
-    margin-bottom: 0;
-  }
-
-  .featured-prose em {
-    font-style: italic;
-    color: var(--color-ink);
-  }
-
-  /* Structured metadata column */
-
-  .featured-meta {
-    margin: 0;
-    display: grid;
-    gap: 0;
-    border-top: 1px solid var(--color-rule);
-  }
-
-  .featured-meta-row {
-    display: grid;
-    grid-template-columns: 7rem 1fr;
-    gap: 1rem;
-    padding-block: 0.9rem;
-    border-bottom: 1px solid var(--color-rule);
-    align-items: baseline;
-  }
-
-  .featured-meta-label {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-ink-muted);
-    margin: 0;
-    line-height: var(--leading-relaxed);
-  }
-
-  .featured-meta-value {
-    font-size: var(--text-sm);
-    color: var(--color-ink);
-    line-height: var(--leading-normal);
-    margin: 0;
-  }
-
-  /* Integrated voice. Aligned with prose width — reads as a coda
-     to the story, not a separate section. */
+  /* Client voice — coda that closes the narrative */
 
   .featured-voice {
-    max-width: var(--max-width-prose);
-    margin: 0 0 clamp(2.5rem, 5vw, 4rem);
-  }
-
-  .featured-voice-label {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-ink-muted);
-    margin: 0 0 1.25rem;
+    max-width: 52ch;
+    margin: 0 0 clamp(2rem, 4vw, 3rem);
   }
 
   .featured-voice-quote {
     margin: 0;
   }
 
-  /* Body-sans italic rather than Editorial display — keeps this a
-     quieter coda that doesn't compete with the manifesto moment
-     immediately after. */
   .featured-voice-quote p {
     font-family: var(--font-sans);
     font-weight: var(--weight-normal);
-    font-style: italic;
     font-size: var(--text-xl);
     line-height: var(--leading-normal);
     letter-spacing: 0;
-    margin: 0 0 1.5rem;
+    margin: 0 0 1.25rem;
     color: var(--color-ink);
-    max-width: 52ch;
   }
 
   .featured-voice-quote footer {
@@ -640,22 +580,67 @@ const structuredData = [webSiteJsonLd()];
     margin-inline: 0.1em;
   }
 
+  /* Metadata as a compact horizontal strip — supplementary, not co-equal */
+
+  .featured-meta {
+    margin: 0 0 clamp(2rem, 4vw, 3rem);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .featured-meta-item {
+    flex: 1 1 auto;
+    padding: 1rem 2rem 1rem 0;
+  }
+
+  .featured-meta-item:last-child {
+    padding-right: 0;
+  }
+
+  .featured-meta-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    margin: 0 0 0.35rem;
+    line-height: var(--leading-relaxed);
+  }
+
+  .featured-meta-value {
+    font-size: var(--text-sm);
+    color: var(--color-ink);
+    line-height: var(--leading-normal);
+    margin: 0;
+  }
+
   .featured-link-row {
     margin: 0;
   }
 
   @media (max-width: 880px) {
-    .featured-grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-
     .featured-statement {
       font-size: var(--text-3xl);
     }
 
     .featured-voice-quote p {
       font-size: var(--text-lg);
+    }
+
+    .featured-meta {
+      flex-direction: column;
+    }
+
+    .featured-meta-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--color-rule);
+    }
+
+    .featured-meta-item:last-child {
+      border-bottom: 0;
     }
   }
 

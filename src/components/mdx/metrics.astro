@@ -32,17 +32,24 @@ if (!items || items.length === 0) {
   .metrics {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-    gap: 1.5rem;
+    gap: 2rem 3rem;
   }
 
   .metric dt {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    margin-block-end: 0.5rem;
   }
 
   .metric dd {
-    font-size: var(--text-2xl);
-    font-weight: var(--weight-bold);
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 400;
     line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-ink);
   }
 </style>

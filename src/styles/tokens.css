@@ -194,7 +194,7 @@
   --color-ink-faint: oklch(68% 0 0);
 
   /* Rules — hairlines and borders */
-  --color-rule: oklch(86% 0 0);
+  --color-rule: oklch(92% 0 0);
   --color-rule-strong: oklch(72% 0 0);
 
   /* Signature — muted terracotta. Used at moments of attention only.

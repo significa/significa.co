@@ -1,149 +1,275 @@
 ---
+/**
+ * /handbook — Handbook index
+ *
+ * Whitespace-driven hierarchy, no hairlines. Parent pages get display
+ * type treatment. Children are visually nested with a left accent border.
+ * Groups separated by generous vertical space and mono labels.
+ */
+
 import BaseLayout from "@/layouts/base.astro";
-import { getHandbookIndex } from "@/lib/collections";
+import Eyebrow from "@/components/ui/eyebrow.astro";
 import HandbookSearch from "@/components/handbook-search.astro";
+import { getHandbookIndex } from "@/lib/collections";
 
 const groups = await getHandbookIndex();
 ---
 
-<BaseLayout title="Handbook" description="How we work, what we believe in, and everything in between.">
-  <div class="page">
-    <header class="hero">
-      <h1>
-        <span class="hero-label">Handbook.</span> An overview of our culture, values, and guiding principles. Everything you need
-        to know about Significa can be found here.
+<BaseLayout
+  title="Handbook — Significa"
+  description="Culture, principles, process. The internal guide to being at Significa, written down so it survives the room it was said in."
+>
+  <section class="page" aria-labelledby="page-h">
+    <header class="page-header">
+      <Eyebrow>Handbook</Eyebrow>
+      <h1 id="page-h" class="page-heading">
+        The operating manual<br />we actually follow.
       </h1>
-      <div class="search-wrapper">
+      <p class="page-deck">
+        Culture, principles, process. Written down so it survives the room it was said in.
+      </p>
+      <div class="search-slot">
         <HandbookSearch />
       </div>
     </header>
 
-    <nav aria-label="Handbook pages">
+    <nav aria-label="Handbook pages" class="nav">
       {
-        groups.map(({ group, pages }) =>
+        groups.map(({ group, pages }, groupIdx) =>
           pages.length > 0 ? (
-            <section class="group" aria-labelledby={`group-${group.id}`}>
-              <h2 id={`group-${group.id}`} class="group-title">
-                {group.data.title}
-              </h2>
-              <ul role="list" class="entries">
+            <details class="group" open={groupIdx === 0 || undefined}>
+              <summary class="group-toggle" id={`group-${group.id}`}>
+                <span class="group-label">{group.data.title}</span>
+                <span class="group-count">{pages.length}</span>
+                <svg class="group-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="3 5 7 9 11 5" />
+                </svg>
+              </summary>
+              <ul class="entries" role="list">
                 {pages.map(({ page, children }) => (
-                  <>
-                    <li class="entry">
-                      <a href={`/handbook/${page.id}`} class="entry-link">
-                        <span class="entry-title">{page.data.title}</span>
-                      </a>
-                    </li>
-                    {children.map((child) => (
-                      <li class="entry entry--child">
-                        <a href={`/handbook/${child.id}`} class="entry-link">
-                          <span class="entry-title">{child.data.title}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </>
+                  <li class="entry">
+                    <a href={`/handbook/${page.id}`} class="entry-link">
+                      <span class="entry-title">{page.data.title}</span>
+                      {page.data.description && (
+                        <span class="entry-desc">{page.data.description}</span>
+                      )}
+                    </a>
+                    {children.length > 0 && (
+                      <ul class="children" role="list">
+                        {children.map((child) => (
+                          <li>
+                            <a href={`/handbook/${child.id}`} class="child-link">
+                              {child.data.title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
                 ))}
               </ul>
-            </section>
+            </details>
           ) : null
         )
       }
     </nav>
-  </div>
+  </section>
 </BaseLayout>
 
 <style>
   .page {
-    max-width: var(--max-width);
-    margin-inline: auto;
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
     padding-inline: var(--gutter);
-    padding-block: 5rem 8rem;
+    padding-block: clamp(4rem, 8vw, 7rem) clamp(5rem, 10vw, 10rem);
   }
 
-  /* ── Hero ── */
+  /* ── Header ── */
 
-  .hero {
-    margin-block-end: 5rem;
-    max-width: 56rem;
+  .page-header {
+    margin-block-end: clamp(5rem, 10vw, 8rem);
+    max-width: 52rem;
   }
 
-  .hero h1 {
-    font-size: var(--text-4xl);
-    font-weight: var(--weight-bold);
+  .page-heading {
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-size: var(--text-display-2);
     line-height: var(--leading-tight);
-    letter-spacing: -0.02em;
-    margin-block-end: 2rem;
+    letter-spacing: var(--tracking-tighter);
+    margin: 0;
+    max-width: 18ch;
+    color: var(--color-ink);
   }
 
-  .hero-label {
-    color: var(--color-text-muted);
+  .page-deck {
+    margin-block: 2rem 0;
+    font-size: var(--text-xl);
+    line-height: var(--leading-normal);
+    color: var(--color-ink-muted);
+    max-width: var(--max-width-prose);
   }
 
-  .search-wrapper {
+  .search-slot {
+    margin-block-start: 2.5rem;
     max-width: 28rem;
+  }
+
+  /* ── Nav ── */
+
+  .nav {
+    max-width: 56rem;
   }
 
   /* ── Groups ── */
 
   .group {
-    margin-block-end: 3rem;
+    margin-block-end: 0.5rem;
+    border: none;
   }
 
-  .group:last-child {
-    margin-block-end: 0;
+  .group-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    border-block-end: 1px solid var(--color-rule);
+    transition: color var(--duration-fast) var(--ease-out);
   }
 
-  .group-title {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-semibold);
+  .group-toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .group-toggle:hover {
+    color: var(--color-ink);
+  }
+
+  .group-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-normal);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-text-muted);
-    margin-block-end: 0.75rem;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
   }
 
-  /* ── Entries list ── */
+  .group-count {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-ink-faint);
+    margin-inline-start: auto;
+  }
+
+  .group-chevron {
+    color: var(--color-ink-faint);
+    flex-shrink: 0;
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .group[open] > .group-toggle .group-chevron {
+    transform: rotate(180deg);
+  }
+
+  .group:not([open]) > .entries {
+    display: none;
+  }
+
+  /* ── Entries ── */
 
   .entries {
     list-style: none;
     padding: 0;
-    margin: 0;
-    border-top: 1px solid var(--color-border);
+    margin: 0.75rem 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
   }
 
   .entry {
-    border-bottom: 1px solid var(--color-border);
+    /* no borders, whitespace drives separation */
   }
 
   .entry-link {
-    display: flex;
-    align-items: baseline;
-    gap: 2rem;
-    padding-block: 0.875rem;
-    text-decoration: none;
-    color: var(--color-text);
-    transition: color var(--duration-fast) var(--ease-out);
+    display: block;
+    padding: 0.85rem 1rem;
+    margin-inline: -1rem;
+    border-radius: 6px;
+    color: var(--color-ink);
+    transition:
+      background-color var(--duration-normal) var(--ease-out),
+      color var(--duration-normal) var(--ease-out);
   }
 
   .entry-link:hover {
-    color: var(--color-primary);
+    background: var(--color-paper-alt);
+    color: var(--color-accent);
   }
 
   .entry-title {
-    font-size: var(--text-base);
-    font-weight: var(--weight-medium);
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
   }
 
-  .entry--child .entry-link {
-    padding-inline-start: 1.25rem;
+  .entry-desc {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--color-ink-muted);
+    margin-block-start: 0.25rem;
+    line-height: var(--leading-normal);
+    transition: color var(--duration-normal) var(--ease-out);
   }
 
-  .entry--child .entry-title {
-    font-weight: var(--weight-normal);
-    color: var(--color-text-muted);
+  .entry-link:hover .entry-desc {
+    color: var(--color-ink-faint);
   }
 
-  .entry--child .entry-link:hover .entry-title {
-    color: var(--color-primary);
+  /* ── Children ── */
+
+  .children {
+    list-style: none;
+    padding: 0;
+    margin: 0.25rem 0 0.5rem 1.25rem;
+    border-inline-start: 1px solid var(--color-rule);
+    padding-inline-start: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .child-link {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-inline: -0.75rem;
+    border-radius: 4px;
+    font-size: var(--text-sm);
+    color: var(--color-ink-muted);
+    transition:
+      background-color var(--duration-normal) var(--ease-out),
+      color var(--duration-normal) var(--ease-out);
+  }
+
+  .child-link:hover {
+    background: var(--color-paper-alt);
+    color: var(--color-accent);
+  }
+
+  /* ── Responsive ── */
+
+  @media (max-width: 768px) {
+    .page-heading {
+      font-size: var(--text-4xl);
+    }
+
+    .entry-desc {
+      display: none;
+    }
   }
 </style>

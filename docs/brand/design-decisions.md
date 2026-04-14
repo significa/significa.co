@@ -100,6 +100,18 @@ Established in `src/pages/index.astro`. Reuse for other pages:
 
 ---
 
+## Positioning principles
+
+These are the strategic guardrails for every page, every section, every line of copy. They come from the brand docs and from explicit direction during the redesign.
+
+- **Balance business and creativity.** Every page needs both. A section that only sells is a vendor pitch. A section that only inspires is a mood board. The website must read as a studio that does extraordinary work AND can be trusted with serious money. Neither pole alone is enough. (See `the-space-between.md` for the full argument.)
+- **Not a commodity.** Especially in an AI-saturated market, nothing on this site should read like something a tool could replace. We sell taste, strategy, direction, and "calm in complexity". Those are human, experiential, and hard-won. If a section could appear on any agency website with a find-and-replace on the studio name, rewrite it or delete it.
+- **Sell value, solve problems.** Every section should answer "so what?" for a prospective client. Not "look how creative we are" but "here's what happens when someone with judgement and craft tackles your problem." The value proposition is judgment applied to complexity, not hours billed.
+- **Sophisticated humour, sometimes dark.** The voice has personality. Dry, occasionally sharp. Not whimsical, not "fun agency", not corporate. Think: the colleague who says the uncomfortable truth at the meeting but says it well. Self-aware without being self-deprecating.
+- **Not boring, not cookie-cutter.** If a design decision, a section structure, or a piece of copy could have come from a template, it's wrong. Every surface should feel like a specific studio made it, not like a theme was configured.
+
+---
+
 ## Voice rules
 
 These emerged from explicit iteration and are worth treating as hard rules:
@@ -134,36 +146,41 @@ These all got considered and explicitly rejected with reasons:
 
 As of 2026-04-14:
 
-**Rebuilt on this branch:**
+**All pages now use the new design language:**
 
-- `/` (homepage)
-- `/spike` (design language reference)
-- Header + Footer (apply to all pages via BaseLayout)
-
-**Still using old designs (need rebuild):**
-
-- `/about` — values are currently generic (Craft/Honesty/Ownership/Simplicity). Rewrite using brand-doc specifics.
-- `/services` — currently the Think/Design/Develop/Launch/Scale ladder. Rebuild around the three questions + "wrong-for-you" section that was pulled from the homepage.
-- `/projects/*` — case study template needs redesign around the call-we-made format, not deliverable-led.
-- `/projects` (index) — apply new design language.
-- `/blog/*` and `/blog` — editorial long-form register.
-- `/handbook/*` — internal docs register.
-- `/playground/*`, `/say-hello`, `/404`, `/legal`, `/b-corp`, `/careers`, `/impact` — smaller surfaces, apply language systematically.
+- `/` (homepage) — hero, proof strips, featured project narrative, manifesto moment, editorial index, three questions, numbers row.
+- `/projects` (index) — editorial index with eyebrow + section-header.
+- `/projects/*` (detail) — judgment-led: eyebrow hook, display heading, hero image/showreel, featured-meta strip, MDX prose, editorial index for related, link-call close.
+- `/blog` (index) — featured post as display heading + editorial index with load-more.
+- `/blog/*` (detail) — eyebrow meta, display title, prose body, author line, editorial related posts.
+- `/about` — position statement, the overlap named, 3 convictions (QaList), who-we're-not, manifesto moment, studio numbers + client voice.
+- `/services` — position statement, three questions (including wrong-for-you), discipline links, client voice, selected work index, numbers.
+- `/services/*` (sub-pages) — eyebrow + statement + MDX prose + featured projects index.
+- `/say-hello` — direct statement, contact strip, what-happens-next (QaList), client voice.
+- `/handbook` (index) — eyebrow, display heading, grouped entries with hairlines, arrow hover, search.
+- `/handbook/*` (detail) — eyebrow meta, display heading, prose.css body, sidebar nav, breadcrumbs, child-page sections.
+- `/b-corp` — eyebrow, display heading, five pillars as QaList, honest why section with image, recertification commitment.
+- `/careers` — eyebrow, display heading, benefits as QaList, hiring process as QaList, handbook link-calls.
+- `/impact` — eyebrow, display heading, commitments as QaList, team section as QaList, further reading link-calls.
+- `/playground` (index) — eyebrow, display heading, Foundations feature, commons as editorial index, labs as editorial index.
+- `/playground/*` (detail) — eyebrow meta, display title, prose.css body, link-call close.
+- `/legal` — eyebrow, display heading, legal prose.
+- `/404` — display heading, body, link-call nav.
+- Header + Footer — wordmark, mono nav, manifesto pull quote footer.
+- `/spike` — design language reference page.
 
 **Pre-existing issues unrelated to redesign:**
 
 - `src/pages/[...slug].astro` references a `"pages"` collection that no longer exists (left over from an earlier migration commit). Causes typecheck warnings. Needs separate fix.
-- Blog entry `designing-for-fintech` referenced in a related-posts query but missing. Data issue.
 
 ---
 
-## Next moves (suggested order)
+## Next moves
 
-1. `/about` — rewrite values and identity register. Use North Star section headings verbatim where they work.
-2. One case study (DIA or CometChat) — redesign the project template, lead with the call, imagery in service of argument.
-3. `/services` — rebuild around three questions + "wrong-for-you" content, restructure from deliverable ladder to question-led.
-4. `/projects` index — apply homepage index pattern at page scale.
-5. Editorial register for `/blog/*` and `/handbook/*`.
-6. Edges (`/404`, `/say-hello`, footer secondary surfaces) — the detail-attention surfaces.
+The design language sweep is complete across all pages. Remaining work:
 
-Design language is settled enough that these can be done as focused pair-work (copy + layout in one move per page). Each page should be defensible by pointing to a specific paragraph in the brand docs.
+1. **Content pass** — review copy on each page against the positioning principles above. Some pages (especially `/careers` and `/impact`) may benefit from a second pass with the marketing team.
+2. **Visual audit in-browser** — run `pnpm dev` and walk through every page. The design language is consistent in code, but spacing, rhythm, and hierarchy need a visual check.
+3. **Handbook sidebar on mobile** — currently dumps the full nav above content on small screens. Consider collapsing into a disclosure or moving after content.
+4. **Fix `[...slug].astro`** — remove the broken "pages" collection reference.
+5. **Image assets** — several pages (especially `/impact` and `/playground`) had placeholder images that were removed during the rebuild. Add real imagery as it becomes available.

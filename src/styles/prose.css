@@ -67,26 +67,34 @@
 }
 
 .prose blockquote {
-  border-inline-start: 1px solid var(--color-rule);
-  padding-inline-start: 1.5rem;
+  border-inline-start: 2px solid var(--color-accent);
+  padding-inline-start: 1.75rem;
   margin-block: 2.5rem;
   margin-inline: 0;
 }
 
 .prose blockquote p {
+  font-family: var(--font-display);
   font-size: var(--text-xl);
+  font-weight: 400;
   line-height: var(--leading-normal);
-  color: var(--color-ink-muted);
+  color: var(--color-ink);
   font-style: italic;
   margin-block-end: 0.75rem;
 }
 
+.prose blockquote p:last-of-type {
+  margin-block-end: 0;
+}
+
 .prose blockquote strong {
   display: block;
-  font-size: var(--text-base);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
   font-style: normal;
   font-weight: var(--weight-medium);
-  color: var(--color-ink);
+  color: var(--color-ink-muted);
+  margin-block-start: 1rem;
 }
 
 .prose strong {
@@ -147,22 +155,41 @@
   text-align: center;
 }
 
-/* Media layout breakouts (data-layout attribute on figure/div) */
+/* Media layout breakouts (data-layout attribute on figure/div)
+
+   Never true edge-to-edge. Even "full" keeps a gutter and gets rounded
+   corners. The site uses horizontal margin + radius as a signature —
+   edge-to-edge images feel like a different site. */
 
 .prose [data-layout="full"],
 .prose .metrics,
 .prose .cross-sell {
-  width: 100vw;
-  margin-inline: calc(50% - 50vw);
+  width: min(var(--max-width-wide), calc(100vw - var(--gutter) * 2));
+  margin-inline: calc(50% - min(var(--max-width-wide), calc(100vw - var(--gutter) * 2)) / 2);
+}
+
+.prose [data-layout="full"] img,
+.prose [data-layout="full"] video {
+  border-radius: var(--radius-image);
 }
 
 .prose [data-layout="wide"] {
-  width: min(var(--max-width), 100vw);
-  margin-inline: calc(50% - min(var(--max-width), 100vw) / 2);
+  width: min(var(--max-width), calc(100vw - var(--gutter) * 2));
+  margin-inline: calc(50% - min(var(--max-width), calc(100vw - var(--gutter) * 2)) / 2);
+}
+
+.prose [data-layout="wide"] img,
+.prose [data-layout="wide"] video {
+  border-radius: var(--radius-image);
 }
 
 .prose [data-layout="medium"] {
   width: 100%;
+}
+
+.prose [data-layout="medium"] img,
+.prose [data-layout="medium"] video {
+  border-radius: var(--radius-image);
 }
 
 .prose [data-layout="small"] {
@@ -171,11 +198,15 @@
   display: block;
 }
 
+.prose [data-layout="small"] img,
+.prose [data-layout="small"] video {
+  border-radius: var(--radius-image);
+}
+
 .prose .metrics {
-  padding-inline: var(--gutter);
-  padding-block: 3rem;
+  padding: clamp(2rem, 4vw, 3rem);
   background: var(--color-paper-alt);
-  border-block: 1px solid var(--color-rule);
+  border-radius: var(--radius-image);
   margin-block: 2.5rem;
 }
 

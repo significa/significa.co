@@ -85,7 +85,7 @@ function normalise(
   base = 42,
   scale = 0.5,
   refDensity = 0.07,
-  densityFactor = 0.5,
+  densityFactor = 0.5
 ): number {
   const ratio = w / h;
   const pinfWidth = Math.pow(ratio, scale) * base;
@@ -165,36 +165,40 @@ const structuredData = [webSiteJsonLd()];
       <div class="proof-row">
         <dt class="proof-label">Recognised by</dt>
         <dd class="proof-values proof-logos">
-          {awardBodies.map((a) => (
-            <img
-              src={a.logo}
-              alt={a.name}
-              class="proof-logo proof-logo-badge"
-              style={`width: ${normalise(a.w, a.h, 0.78, 38, 0.5, 0.78)}px`}
-              loading="eager"
-              decoding="async"
-            />
-          ))}
+          {
+            awardBodies.map((a) => (
+              <img
+                src={a.logo}
+                alt={a.name}
+                class="proof-logo proof-logo-badge"
+                style={`width: ${normalise(a.w, a.h, 0.78, 38, 0.5, 0.78)}px`}
+                loading="eager"
+                decoding="async"
+              />
+            ))
+          }
         </dd>
       </div>
       <div class="proof-row">
         <dt class="proof-label">Trusted by</dt>
         <dd class="proof-values proof-logos">
-          {clientsWithLogos.map((c) => {
-            const d = logoData[c.data.logo];
-            if (!d) return null;
-            const w = normalise(d.w, d.h, d.d);
-            return (
-              <img
-                src={c.data.logo}
-                alt={c.data.name}
-                class="proof-logo proof-logo-client"
-                style={`width: ${w}px`}
-                loading="eager"
-                decoding="async"
-              />
-            );
-          })}
+          {
+            clientsWithLogos.map((c) => {
+              const d = logoData[c.data.logo];
+              if (!d) return null;
+              const w = normalise(d.w, d.h, d.d);
+              return (
+                <img
+                  src={c.data.logo}
+                  alt={c.data.name}
+                  class="proof-logo proof-logo-client"
+                  style={`width: ${w}px`}
+                  loading="eager"
+                  decoding="async"
+                />
+              );
+            })
+          }
         </dd>
       </div>
     </ProofList>
@@ -264,7 +268,7 @@ const structuredData = [webSiteJsonLd()];
   <Moment id="moment-h">
     <em>Judgement<br />is the work.</em>
     <p slot="attr" class="moment-attr">
-      <Egg variant="fill" class="moment-egg" />
+      <Egg variant="outline" class="moment-egg" />
       &nbsp; From the North Star <span class="sep">/</span>
       <a href="/about" class="moment-link">read what we believe</a>
     </p>
@@ -278,18 +282,18 @@ const structuredData = [webSiteJsonLd()];
       <section class="index" aria-labelledby="index-h">
         <header class="index-header">
           <Eyebrow>More work</Eyebrow>
-          <SectionHeader id="index-h">
-            Recent projects.
-          </SectionHeader>
+          <SectionHeader id="index-h">Recent projects.</SectionHeader>
         </header>
 
-        <IndexList items={allProjects.map((p, i) => ({
-          href: `/projects/${p.id}`,
-          title: p.data.title,
-          tagline: p.data.tagline ?? "",
-          date: String(new Date(p.data.date).getFullYear()),
-          num: String(i + 2).padStart(2, "0"),
-        }))} />
+        <IndexList
+          items={allProjects.map((p, i) => ({
+            href: `/projects/${p.id}`,
+            title: p.data.title,
+            tagline: p.data.tagline ?? "",
+            date: String(new Date(p.data.date).getFullYear()),
+            num: String(i + 2).padStart(2, "0"),
+          }))}
+        />
 
         <p class="index-link-row">
           <LinkCall href="/projects">All work</LinkCall>
@@ -345,7 +349,7 @@ const structuredData = [webSiteJsonLd()];
   .hero {
     max-width: var(--max-width-wide);
     margin: 0 auto;
-    padding-block: clamp(5rem, 12vw, 12rem);
+    padding-block: clamp(5rem, 8vw, 10rem);
   }
 
   .hero-statement {

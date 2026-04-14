@@ -54,14 +54,16 @@ const fillPath =
 
 <style>
   /* Sized to surrounding text by default; height-driven, width auto-derived
-     from the egg's true aspect ratio (24:29 ≈ 0.828). Slight optical lift
-     to sit on the text baseline like a letterform. */
+     from the egg's true aspect ratio (24:29 ≈ 0.828). The vertical-align
+     is tuned for PP Neue Montreal body text. In mono contexts (Supply Mono),
+     the cap-height sits differently — use the .egg-mono modifier to
+     compensate, or wrap in a flex container with align-items: center. */
   .egg {
     display: inline-block;
     height: 1em;
     width: auto;
     fill: currentColor;
     flex-shrink: 0;
-    vertical-align: -0.12em;
+    vertical-align: -0.08em;
   }
 </style>

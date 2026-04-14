@@ -2,6 +2,9 @@
 /**
  * Editorial index — compact numbered list with hover states.
  *
+ * No hairline borders. Hierarchy comes from whitespace, type weight,
+ * and colour. Hover fills the row cleanly without bleeding.
+ *
  * Two modes:
  *   1. Pass `items` for standard rendering.
  *   2. Omit `items` and use <slot> for custom list items (e.g. load-more).
@@ -53,14 +56,14 @@ const { items, class: className } = Astro.props;
     grid-template-columns: 3rem minmax(10rem, 1fr) 2fr auto;
     align-items: baseline;
     column-gap: 2rem;
-    padding-block: 1.4rem;
+    padding-block: 1rem;
     padding-inline: 1rem;
+    margin-inline: -1rem;
+    border-radius: 6px;
     color: var(--color-ink);
     transition:
       background-color var(--duration-normal) var(--ease-out),
       color var(--duration-normal) var(--ease-out);
-    margin-inline: -1rem;
-    border-radius: 4px;
   }
 
   .index-list :global(.index-link:hover) {
@@ -73,7 +76,7 @@ const { items, class: className } = Astro.props;
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: var(--tracking-wide);
-    color: var(--color-ink-muted);
+    color: var(--color-ink-faint);
     font-variant-numeric: tabular-nums;
     transition: color var(--duration-normal) var(--ease-out);
   }
@@ -119,7 +122,7 @@ const { items, class: className } = Astro.props;
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: var(--tracking-wide);
-    color: var(--color-ink-muted);
+    color: var(--color-ink-faint);
     font-variant-numeric: tabular-nums;
     opacity: 1;
     transition:

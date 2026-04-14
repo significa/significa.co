@@ -46,11 +46,13 @@ const { id, class: className } = Astro.props;
     margin-top: 4rem;
     display: inline-flex;
     align-items: center;
+    gap: 0.1em;
   }
 
   .moment :global(.moment-egg) {
     color: var(--color-accent);
-    height: 0.85em;
+    height: 0.9em;
+    vertical-align: baseline;
   }
 
   .moment :global(.moment-link) {

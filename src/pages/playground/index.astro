@@ -1,658 +1,249 @@
 ---
+/**
+ * /playground — Open source and experiments
+ *
+ * Editorial register. Not a portfolio page. A curated view of
+ * what the studio builds when the client isn't watching.
+ *
+ *   1. Hero — what this section is.
+ *   2. Foundations — the flagship OSS contribution.
+ *   3. Commons — individual tools, editorial index.
+ *   4. Labs — content collection items, if any.
+ *   5. Close — GitHub link.
+ */
+
 import BaseLayout from "@/layouts/base.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import SectionHeader from "@/components/ui/section-header.astro";
+import LinkCall from "@/components/ui/link-call.astro";
+import IndexList from "@/components/ui/index-list.astro";
 import { getPlayground } from "@/lib/collections";
-import { cdnUrl } from "@/lib/cdn";
 
 const labs = await getPlayground();
+
+const commons = [
+  {
+    title: "Fly pg_dump to S3",
+    desc: "Automates pg_dump backups of Fly.io Postgres databases to AWS S3.",
+    href: "https://github.com/significa/fly-pg-dump-to-s3",
+  },
+  {
+    title: "Storyblok assets cleanup",
+    desc: "Utility to find and delete unused Storyblok assets.",
+    href: "https://github.com/significa/storyblok-assets-cleanup",
+  },
+  {
+    title: "Palette generator",
+    desc: "A Svelte monochromatic palette generator.",
+    href: "https://github.com/significa/palette-generator",
+  },
+  {
+    title: "1Password secrets",
+    desc: "CLI utility to sync 1Password secrets to local env files and Fly apps.",
+    href: "https://github.com/significa/1password-secrets",
+  },
+  { title: "Signals icon font", desc: "An icon font based on Inter, with a keyboard map.", href: "https://si.gnifi.ca/s187" },
+  {
+    title: "Frontend challenge",
+    desc: "Design-driven challenges for those looking to join our team.",
+    href: "https://github.com/significa/frontend-challenge",
+  },
+  { title: "Svelte UI", desc: "Our internal Svelte UI library.", href: "https://github.com/significa/significa-svelte-ui" },
+  {
+    title: "Absinthe Utils",
+    desc: "Utilities for Absinthe (Elixir's GraphQL library).",
+    href: "https://github.com/significa/absinthe_utils",
+  },
+  {
+    title: "App distribution server",
+    desc: "Self-hosted tool for sharing internal iOS .ipa builds without TestFlight.",
+    href: "https://github.com/significa/app-distribution-server",
+  },
+];
 ---
 
 <BaseLayout
-  title="Playground"
-  description="Coding, fun and simple. Experimenting with open source tools and contributions by Significa."
+  title="Playground — Significa"
+  description="Open source tools, experiments, and contributions from the Significa team. What we build when the client isn't watching."
 >
-  <!-- Intro -->
-  <section class="intro">
-    <div class="intro-inner">
-      <h1>Coding, fun and simple.</h1>
-      <p class="intro-text">
-        At Significa, we write uncomplicated software, prioritise education and believe shared knowledge is a big part of
-        building a better world. Our Playground is where our team gets to experiment different solutions having some fun along
-        the way.
-      </p>
-      <div class="intro-image">
-        <img
-          src="https://assets.significa.co/website/test-TKzoOc.png"
-          alt="Playful coding illustrations"
-          width="1920"
-          height="1080"
-          loading="eager"
-          decoding="async"
-        />
-      </div>
-    </div>
+  <!-- ============================================================
+       1. Hero
+       ============================================================ -->
+  <section class="hero" aria-labelledby="hero-h">
+    <Eyebrow>Playground</Eyebrow>
+    <h1 id="hero-h" class="hero-heading">What we build when nobody's paying.</h1>
+    <p class="hero-deck">
+      Open source tools, internal experiments, community contributions. Our stack runs on open source. We contribute fixes,
+      documentation, and new tools in return. Work created during company time is published under the Significa name with
+      individual credit.
+    </p>
   </section>
 
-  <!-- Open Source -->
-  <section class="open-source">
-    <div class="open-source-inner">
-      <h2 class="section-title">Open Source</h2>
-      <p class="section-description">
-        Our stack is built on <strong>open-source software</strong>, and we contribute fixes, documentation, and new tools in
-        return. Work created during company time is published under the Significa name with individual credit, and we allocate
-        time for our team to contribute.
-      </p>
-
-      <div class="callout-grid">
-        <a href="https://significa.co/blog/advantages-of-open-source-software" class="callout-card">
-          <span class="callout-label">Blog</span>
-          <span class="callout-title">What is open source →</span>
-        </a>
-        <a href="/handbook" class="callout-card">
-          <span class="callout-label">Handbook</span>
-          <span class="callout-title">Open Source →</span>
-        </a>
-      </div>
-    </div>
+  <!-- ============================================================
+       2. Foundations — flagship OSS
+       ============================================================ -->
+  <section class="foundations" aria-labelledby="foundations-h">
+    <Eyebrow>Flagship project</Eyebrow>
+    <h2 id="foundations-h" class="foundations-heading">Significa Foundations.</h2>
+    <p class="foundations-deck">
+      Our biggest open source contribution, used daily by our design and development teams. An opinionated, practical toolkit
+      for building modern digital products. Components, interaction patterns, state management, content modelling. Tested,
+      documented, production-ready.
+    </p>
+    <p class="foundations-link">
+      <LinkCall href="https://foundations.significa.co/about">Explore Foundations</LinkCall>
+    </p>
   </section>
 
-  <!-- Significa Foundations -->
-  <section class="foundations">
-    <div class="foundations-inner">
-      <h2 class="section-title">
-        <a href="https://foundations.significa.co/about">Significa Foundations</a>
-      </h2>
+  <!-- ============================================================
+       3. Commons — tools as editorial index
+       ============================================================ -->
+  <section class="commons" aria-labelledby="commons-h">
+    <header class="commons-header">
+      <Eyebrow>Open source tools</Eyebrow>
+      <SectionHeader id="commons-h">Significa Commons.</SectionHeader>
+    </header>
 
-      <p class="section-description">
-        Foundations is one of our biggest <strong>open-source contributions</strong>, used daily by our design and development
-        teams. It's Significa's opinionated, practical toolkit for building <strong>modern digital products</strong>. It goes
-        beyond a
-        <strong>UI library</strong>, combining components, interaction patterns, state management, content modelling and
-        performance optimisations. Spanning from UI parts to full application architectures, it favours complete,
-        production-ready solutions grounded in real use, with clear documentation and learning resources instead of opaque,
-        dependency-heavy kits. Everything is tested and ready for production so teams can ship faster without compromising
-        accessibility, UX or quality, and patterns are flexible to understand, adapt and apply end to end.
-      </p>
-
-      <div class="video-container">
-        <img
-          src="https://assets.significa.co/website/test-TKzoOc.png"
-          alt="Design foundations video"
-          width="1920"
-          height="1080"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-
-      <blockquote class="quote">
-        <p>Insert a quote from Brandão</p>
-      </blockquote>
-
-      <h3 class="subsection-title">Anyone can use it.</h3>
-      <p class="subsection-text">
-        Either copy and customise self-contained solutions for full control over the code, or as a learning resource to study
-        how and why patterns work in real products. The emphasis is on complete, real-world solutions rather than isolated
-        snippets. Code is written to be read, adapted and improved, which means no lock-in, no version constraints and a clear
-        view of the trade-offs behind each decision.
-      </p>
-    </div>
+    <IndexList
+      items={commons.map((item, i) => ({
+        href: item.href,
+        title: item.title,
+        tagline: item.desc,
+        date: "",
+        num: String(i + 1).padStart(2, "0"),
+      }))}
+    />
   </section>
 
-  <!-- Significa Commons -->
-  <section class="commons">
-    <div class="commons-inner">
-      <h2 class="section-title">Significa Commons.</h2>
-
-      <div class="commons-grid">
-        <div class="commons-item">
-          <h3><a href="https://github.com/significa/fly-pg-dump-to-s3">Fly pg_dump to s3.</a></h3>
-          <p>Automates pg_dump backups of Fly.io Postgres databases to AWS S3.</p>
-        </div>
-
-        <div class="commons-item">
-          <h3><a href="https://github.com/significa/storyblok-assets-cleanup">Storyblok assets clean-up.</a></h3>
-          <p>Utility to find and delete unused Storyblok assets.</p>
-        </div>
-
-        <div class="commons-item">
-          <h3><a href="https://github.com/significa/palette-generator">Palette generator.</a></h3>
-          <p>A Svelte monochromatic palette generator.</p>
-        </div>
-
-        <div class="commons-item">
-          <h3><a href="https://github.com/significa/1password-secrets">1Password secrets.</a></h3>
-          <p>1password-secrets is a CLI utility to sync 1Password secrets to local env files and Fly apps.</p>
-        </div>
-
-        <blockquote class="quote commons-quote">
-          <p>Insert a quote from Francisco</p>
-        </blockquote>
-
-        <div class="commons-item">
-          <h3><a href="https://si.gnifi.ca/s187">Variable icon font.</a></h3>
-          <p>Signals is an icon font based on Inter which includes a keyboard map.</p>
-        </div>
-
-        <blockquote class="quote commons-quote">
-          <p>Insert a quote from Elisa</p>
-        </blockquote>
-
-        <div class="commons-item">
-          <h3><a href="https://github.com/significa/frontend-challenge">Front-end challenge.</a></h3>
-          <p>Design-driven challenges for those looking to join our team.</p>
-        </div>
-
-        <div class="commons-item">
-          <h3><a href="https://github.com/significa/significa-svelte-ui">Svelte UI.</a></h3>
-          <p>Our internal Svelte UI library.</p>
-        </div>
-
-        <div class="commons-item">
-          <h3><a href="https://github.com/significa/absinthe_utils">Absinthe Utils.</a></h3>
-          <p>A collection of utilities for Absinthe (Elixir's GraphQL library).</p>
-        </div>
-
-        <div class="commons-item">
-          <h3><a href="https://github.com/significa/app-distribution-server">App distribution server.</a></h3>
-          <p>A self-hosted tool for easily sharing internal iOS .ipa builds without TestFlight nor Expo.</p>
-        </div>
-      </div>
-
-      <div class="how-we-built">
-        <h3 class="subsection-title">How we built some of these contributions.</h3>
-        <div class="callout-grid">
-          <a href="https://significa.co/blog/how-to-distribute-ios-ipa-builds" class="callout-card">
-            <span class="callout-label">Blog</span>
-            <span class="callout-title">How to distribute iOS IPA builds →</span>
-          </a>
-          <a href="https://significa.co/blog/secure-your-secrets-1password-cli-for-devs" class="callout-card">
-            <span class="callout-label">Blog</span>
-            <span class="callout-title">Secure your secrets: 1Password CLI for Devs →</span>
-          </a>
-          <a href="https://significa.co/blog/signals-by-significa" class="callout-card">
-            <span class="callout-label">Blog</span>
-            <span class="callout-title">Signals Font →</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DoDia -->
-  <section class="dodia">
-    <div class="dodia-inner">
-      <h2 class="section-title">DoDia, a menus-of-the-day web app.</h2>
-
-      <p class="section-description">
-        <a href="http://dodia.pt/">DoDia.pt</a> is a web app that centralises daily menus. Restaurants and diners can upload theirs,
-        set a date so it remains live until updated, or add a new one each day.
-      </p>
-
-      <div class="dodia-image">
-        <img
-          src="https://assets.significa.co/website/test-TKzoOc.png"
-          alt="DoDia web app screenshot"
-          width="1920"
-          height="1080"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-
-      <p class="section-description">
-        The app supports search by restaurant or postal code, community-led updates, and favouriting go-to places for quick
-        access. Built in-house at Significa to make rainy-day lunches in Porto easier, it's free for diners and restaurant
-        owners, and we're continuing to grow it.
-      </p>
-
-      <blockquote class="quote">
-        <p>Insert a quote from Julieta</p>
-      </blockquote>
-    </div>
-  </section>
-
-  <!-- AI Section -->
-  <section class="ai-section">
-    <div class="ai-inner">
-      <h2 class="section-title">AI AI AI</h2>
-      <div class="callout-card callout-large">
-        <p>Callout to AI page TBD copy</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Labs -->
+  <!-- ============================================================
+       4. Labs — content collection items
+       ============================================================ -->
   {
     labs.length > 0 && (
-      <section class="labs">
-        <div class="labs-inner">
-          <h2 class="section-title">From the lab</h2>
-          <ul class="labs-grid" role="list">
-            {labs.map((lab) => (
-              <li>
-                <a href={`/playground/${lab.id}`} class="lab-card">
-                  {lab.data.thumbnail && (
-                    <div class="lab-card-image">
-                      <img
-                        src={cdnUrl(lab.data.thumbnail, { width: 800, quality: 80 })}
-                        alt={lab.data.title}
-                        width="800"
-                        height="450"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                  )}
-                  <div class="lab-card-content">
-                    <h3 class="lab-card-title">{lab.data.title}</h3>
-                    {lab.data.description && <p class="lab-card-description">{lab.data.description}</p>}
-                  </div>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+      <section class="labs" aria-labelledby="labs-h">
+        <header class="labs-header">
+          <Eyebrow>From the lab</Eyebrow>
+          <SectionHeader id="labs-h">Experiments and write-ups.</SectionHeader>
+        </header>
+
+        <IndexList
+          items={labs.map((lab, i) => ({
+            href: `/playground/${lab.id}`,
+            title: lab.data.title,
+            tagline: lab.data.description ?? "",
+            date: String(new Date(lab.data.date).getFullYear()),
+            num: String(i + 1).padStart(2, "0"),
+          }))}
+        />
       </section>
     )
   }
 
-  <!-- CTA -->
-  <section class="cta">
-    <div class="cta-inner">
-      <h2>Explore our GitHub, have some fun and if you spot something to improve, patch it and pass it on</h2>
-      <a href="https://github.com/significa" class="cta-link" target="_blank" rel="noopener noreferrer"> Visit our GitHub → </a>
-    </div>
-  </section>
+  <!-- ============================================================
+       5. Close
+       ============================================================ -->
+  <footer class="close">
+    <LinkCall href="https://github.com/significa">See everything on GitHub</LinkCall>
+  </footer>
 </BaseLayout>
 
 <style>
-  /* --------------------------------------------------------
-       Intro
-       -------------------------------------------------------- */
-  .intro {
-    padding: 8rem var(--gutter) 4rem;
+  section {
+    padding-inline: var(--gutter);
+    padding-block: clamp(5rem, 10vw, 10rem);
   }
 
-  .intro-inner {
-    max-width: var(--max-width-narrow);
+  /* ── Hero ── */
+
+  .hero {
+    max-width: var(--max-width-wide);
     margin: 0 auto;
+    padding-block: clamp(5rem, 8vw, 10rem) clamp(5rem, 10vw, 10rem);
   }
 
-  .intro h1 {
-    font-size: var(--text-3xl);
-    font-weight: var(--weight-bold);
+  .hero-heading {
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-size: var(--text-display-2);
     line-height: var(--leading-tight);
-    margin-bottom: 1.5rem;
+    letter-spacing: var(--tracking-tighter);
+    margin: 0;
+    max-width: 18ch;
+    color: var(--color-ink);
   }
 
-  .intro-text {
-    font-size: var(--text-lg);
-    color: var(--color-text-muted);
-    line-height: var(--leading-normal);
-    margin-bottom: 3rem;
-  }
-
-  .intro-image {
-    margin-top: 2rem;
-  }
-
-  .intro-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 0.5rem;
-    display: block;
-  }
-
-  /* --------------------------------------------------------
-       Section styles (reused)
-       -------------------------------------------------------- */
-  .section-title {
-    font-size: var(--text-2xl);
-    font-weight: var(--weight-bold);
-    line-height: var(--leading-tight);
-    margin-bottom: 1.5rem;
-  }
-
-  .section-title a {
-    color: var(--color-text);
-    text-decoration: none;
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-
-  .section-title a:hover {
-    color: var(--color-text-muted);
-  }
-
-  .subsection-title {
+  .hero-deck {
+    margin-block: 2.5rem 0;
     font-size: var(--text-xl);
-    font-weight: var(--weight-semibold);
-    line-height: var(--leading-tight);
-    margin-bottom: 1rem;
-    margin-top: 3rem;
-  }
-
-  .section-description {
-    font-size: var(--text-lg);
-    color: var(--color-text-muted);
     line-height: var(--leading-normal);
-    margin-bottom: 2rem;
+    color: var(--color-ink-muted);
+    max-width: var(--max-width-prose);
   }
 
-  .subsection-text {
-    font-size: var(--text-base);
-    color: var(--color-text-muted);
-    line-height: var(--leading-normal);
-  }
-
-  /* --------------------------------------------------------
-       Open Source
-       -------------------------------------------------------- */
-  .open-source {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .open-source-inner {
-    max-width: var(--max-width-narrow);
-    margin: 0 auto;
-  }
-
-  /* --------------------------------------------------------
-       Callout cards
-       -------------------------------------------------------- */
-  .callout-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  .callout-card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1.5rem;
-    background: var(--color-surface-alt);
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: background var(--duration-fast) var(--ease-out);
-  }
-
-  .callout-card:hover {
-    background: var(--color-border);
-  }
-
-  .callout-label {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .callout-title {
-    font-size: var(--text-base);
-    font-weight: var(--weight-medium);
-    color: var(--color-text);
-  }
-
-  .callout-large {
-    padding: 3rem;
-    text-align: center;
-  }
-
-  .callout-large p {
-    font-size: var(--text-lg);
-    color: var(--color-text-muted);
-  }
-
-  /* --------------------------------------------------------
-       Foundations
-       -------------------------------------------------------- */
-  .foundations {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .foundations-inner {
-    max-width: var(--max-width-narrow);
-    margin: 0 auto;
-  }
-
-  .video-container,
-  .dodia-image {
-    margin: 2rem 0;
-  }
-
-  .video-container img,
-  .dodia-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 0.5rem;
-    display: block;
-  }
-
-  /* --------------------------------------------------------
-       Quotes
-       -------------------------------------------------------- */
-  .quote {
-    border-left: 3px solid var(--color-text);
-    padding-left: 1.5rem;
-    margin: 2rem 0;
-    font-style: italic;
-    color: var(--color-text-muted);
-    font-size: var(--text-lg);
-  }
-
-  /* --------------------------------------------------------
-       Commons
-       -------------------------------------------------------- */
-  .commons {
-    padding: 0 var(--gutter) 4rem;
-    background: var(--color-surface-alt);
-  }
-
-  .commons-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 4rem 0;
-  }
-
-  .commons-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .commons-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .commons-item h3 {
-    font-size: var(--text-lg);
-    font-weight: var(--weight-semibold);
-    line-height: var(--leading-tight);
-  }
-
-  .commons-item h3 a {
-    color: var(--color-text);
-    text-decoration: none;
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-
-  .commons-item h3 a:hover {
-    color: var(--color-text-muted);
-  }
-
-  .commons-item p {
-    font-size: var(--text-base);
-    color: var(--color-text-muted);
-    line-height: var(--leading-normal);
-  }
-
-  .commons-quote {
-    grid-column: 1 / -1;
-    border-left-color: var(--color-text-muted);
-  }
-
-  .how-we-built {
-    margin-top: 4rem;
-  }
-
-  /* --------------------------------------------------------
-       DoDia
-       -------------------------------------------------------- */
-  .dodia {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .dodia-inner {
-    max-width: var(--max-width-narrow);
-    margin: 0 auto;
-  }
-
-  /* --------------------------------------------------------
-       AI Section
-       -------------------------------------------------------- */
-  .ai-section {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .ai-inner {
-    max-width: var(--max-width-narrow);
-    margin: 0 auto;
-  }
-
-  /* --------------------------------------------------------
-       Labs
-       -------------------------------------------------------- */
-  .labs {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .labs-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-
-  .labs-grid {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
-    grid-auto-rows: 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .labs-grid li {
-    display: flex;
-  }
-
-  .lab-card {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    text-decoration: none;
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
-    overflow: hidden;
-    transition: border-color var(--duration-fast) var(--ease-out);
-  }
-
-  .lab-card:hover {
-    border-color: var(--color-text);
-  }
-
-  .lab-card-image {
-    background: var(--color-surface-alt);
-    overflow: hidden;
-  }
-
-  .lab-card-image img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-    transition: transform var(--duration-slow) var(--ease-out);
-  }
-
-  .lab-card:hover .lab-card-image img {
-    transform: scale(1.03);
-  }
-
-  .lab-card-content {
-    padding: 1.25rem 1.5rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem;
-    flex: 1;
-  }
-
-  .lab-card-title {
-    font-size: var(--text-base);
-    font-weight: var(--weight-semibold);
-    line-height: var(--leading-tight);
-  }
-
-  .lab-card-description {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    line-height: var(--leading-normal);
-  }
-
-  @media (max-width: 640px) {
-    .labs-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* --------------------------------------------------------
-       CTA
-       -------------------------------------------------------- */
-  .cta {
-    padding: 4rem var(--gutter) 8rem;
-  }
-
-  .cta-inner {
-    max-width: var(--max-width-narrow);
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .cta h2 {
-    font-size: var(--text-2xl);
-    font-weight: var(--weight-bold);
-    line-height: var(--leading-tight);
-    margin-bottom: 2rem;
-  }
-
-  .cta-link {
-    display: inline-block;
-    font-size: var(--text-base);
-    font-weight: var(--weight-medium);
-    color: var(--color-text);
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
-    text-decoration-thickness: 1px;
-    transition: text-decoration-thickness var(--duration-fast) var(--ease-out);
-  }
-
-  .cta-link:hover {
-    color: var(--color-text);
-    text-decoration-thickness: 2px;
-  }
-
-  /* --------------------------------------------------------
-       Responsive
-       -------------------------------------------------------- */
   @media (max-width: 768px) {
-    .commons-grid {
-      grid-template-columns: 1fr;
+    .hero-heading {
+      font-size: var(--text-4xl);
     }
+  }
 
-    .callout-grid {
-      grid-template-columns: 1fr;
-    }
+  /* ── Foundations ── */
+
+  .foundations {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    border-block-start: 1px solid var(--color-rule);
+  }
+
+  .foundations-heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--text-3xl);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 1.5rem;
+    color: var(--color-ink);
+  }
+
+  .foundations-deck {
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    color: var(--color-ink-muted);
+    max-width: var(--max-width-prose);
+  }
+
+  .foundations-link {
+    margin-block-start: 2rem;
+  }
+
+  /* ── Commons ── */
+
+  .commons {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+  }
+
+  .commons-header {
+    margin-block-end: clamp(3rem, 6vw, 5rem);
+  }
+
+  /* ── Labs ── */
+
+  .labs {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    border-block-start: 1px solid var(--color-rule);
+  }
+
+  .labs-header {
+    margin-block-end: clamp(3rem, 6vw, 5rem);
+  }
+
+  /* ── Close ── */
+
+  .close {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding-inline: var(--gutter);
+    padding-block: 0 clamp(5rem, 10vw, 8rem);
   }
 </style>

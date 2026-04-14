@@ -40,43 +40,64 @@ const isExternal = href?.startsWith("http://") || href?.startsWith("https://");
     flex-direction: column;
     gap: 0.5rem;
     margin: 2rem 0;
-    padding: 1.25rem 1.5rem;
-    background: var(--color-surface-alt);
-    border: 1px solid var(--color-border);
-    border-left: 3px solid var(--color-text);
-    border-radius: 0.375rem;
+    padding: 1.5rem;
+    background: var(--color-paper-alt);
+    border-radius: var(--radius-image);
   }
 
   .callout-title {
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
-    font-weight: var(--weight-semibold);
+    font-weight: var(--weight-normal);
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--color-text-muted);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
   }
 
   .callout-body {
     font-size: var(--text-base);
     line-height: var(--leading-normal);
-    color: var(--color-text);
+    color: var(--color-ink);
   }
 
   .callout-body :global(p) {
     margin: 0;
   }
 
-  .callout-cta {
-    align-self: flex-start;
-    margin-top: 0.25rem;
+  .callout-body :global(ul),
+  .callout-body :global(ol) {
+    margin: 0.75rem 0 0;
+    padding-inline-start: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .callout-body :global(li) {
     font-size: var(--text-sm);
     font-weight: var(--weight-medium);
-    color: var(--color-text);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    transition: opacity var(--duration-fast) var(--ease-out);
+    color: var(--color-ink);
+    margin: 0;
+    padding: 0.35rem 0.85rem;
+    background: var(--color-paper);
+    border-radius: 2rem;
+  }
+
+  .callout-body :global(strong) {
+    font-weight: var(--weight-medium);
+  }
+
+  .callout-cta {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-ink);
+    transition: color var(--duration-fast) var(--ease-out);
   }
 
   .callout-cta:hover {
-    opacity: 0.7;
+    color: var(--color-accent);
   }
 </style>

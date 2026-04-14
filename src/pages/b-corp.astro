@@ -1,466 +1,270 @@
 ---
+/**
+ * /b-corp — B Corp certification
+ *
+ * The B Corp story is a differentiator. Present it with editorial
+ * weight, not as a badge collection. Structure:
+ *   1. Position statement — what it means, not what it is.
+ *   2. Five pillars — numbered list, not cards.
+ *   3. Why — the honest reason, not the corporate one.
+ *   4. What's next — recertification commitment.
+ *   5. Close — link-call to impact page.
+ */
+
 import BaseLayout from "@/layouts/base.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import SectionHeader from "@/components/ui/section-header.astro";
+import QaList from "@/components/ui/qa-list.astro";
+import LinkCall from "@/components/ui/link-call.astro";
+import { cdnUrl } from "@/lib/cdn";
+
+const pillars = [
+  {
+    n: "01",
+    q: "Governance",
+    a: "Transparent decision-making and ethical leadership that serves all stakeholders. Not a board formality. An active constraint on how we make every call.",
+  },
+  {
+    n: "02",
+    q: "Workers",
+    a: "Fair compensation, career development, and a workplace where people genuinely thrive. Period leave, unlimited learning stipend, mental health support. The specifics matter more than the principles.",
+  },
+  {
+    n: "03",
+    q: "Community",
+    a: "Supporting local economies, diverse suppliers, and the communities around us. We're in Porto. The city shapes the studio, and the studio should give back.",
+  },
+  {
+    n: "04",
+    q: "Environment",
+    a: "Reducing our footprint, measuring our impact, contributing to a healthier planet. A digital studio's footprint is smaller than a factory's, but it's not zero, and pretending otherwise is dishonest.",
+  },
+  {
+    n: "05",
+    q: "Customers",
+    a: "Building products that are ethical, inclusive, accessible, and genuinely useful. The certification makes us prove it, not just claim it.",
+  },
+];
 ---
 
 <BaseLayout
-  title="B Corp Certified"
+  title="B Corp Certified — Significa"
   description="Significa is a Certified B Corporation. We meet the highest standards of social and environmental impact across Governance, Workers, Community, Environment, and Customers."
 >
   <!-- ============================================================
-       HERO
+       1. Position statement
        ============================================================ -->
-  <section class="hero">
-    <div class="hero-inner">
-      <p class="eyebrow">Certified B Corporation</p>
-      <h1>Significa is a <strong>B&nbsp;Corp Certified Digital&nbsp;Agency</strong>.</h1>
-    </div>
+  <section class="hero" aria-labelledby="hero-h">
+    <Eyebrow>Certified B Corporation</Eyebrow>
+    <h1 id="hero-h" class="hero-heading">
+      Certification is a constraint.<br />Constraints make better companies.
+    </h1>
+    <p class="hero-deck">
+      B Corp certification means an external body audits how we treat people, the planet, and the communities around us. We
+      sought it because accountability is easier when someone else is checking.
+    </p>
+    <p class="hero-link">
+      <LinkCall href="https://www.bcorporation.net/en-us/find-a-b-corp/company/significa/"> View our B Corp profile </LinkCall>
+    </p>
   </section>
 
   <!-- ============================================================
-       INTRO CARD
+       2. Five pillars — what gets measured
        ============================================================ -->
-  <section class="intro-card-section">
-    <div class="intro-card-inner">
-      <div class="intro-card">
-        <h2>What makes us a B Corp?</h2>
-        <p>Explore the steps we're taking to drive continuous improvement and positive change.</p>
-        <a
-          href="https://www.bcorporation.net/en-us/find-a-b-corp/company/significa/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="cta-button"
-        >
-          View our B Corp profile →
-        </a>
-      </div>
-    </div>
+  <section class="pillars" aria-labelledby="pillars-h">
+    <header class="pillars-header">
+      <Eyebrow>What gets measured</Eyebrow>
+      <SectionHeader id="pillars-h">Five areas, audited.</SectionHeader>
+    </header>
+    <QaList items={pillars} />
   </section>
 
   <!-- ============================================================
-       WHAT IS A B CORP
+       3. Why — with image
        ============================================================ -->
-  <section class="content-section">
-    <div class="content-section-inner">
-      <div class="content-block">
-        <h2>What's a B Corp?</h2>
-        <p>
-          A Certified B Corporation is a business that meets the highest standards of social and environmental impact across
-          five key areas: Governance, Workers, Community, Environment, and Customers. Certification ensures that Significa
-          operates with transparency, fairness, and accountability.
-        </p>
-      </div>
-
-      <ul class="pillars-grid">
-        <li class="pillar-card">
-          <span class="pillar-number" aria-hidden="true">01</span>
-          <h3 class="pillar-name">Governance</h3>
-          <p class="pillar-description">Transparent decision-making and ethical leadership that serves all stakeholders.</p>
-        </li>
-        <li class="pillar-card">
-          <span class="pillar-number" aria-hidden="true">02</span>
-          <h3 class="pillar-name">Workers</h3>
-          <p class="pillar-description">
-            Fair compensation, career development, and a workplace where people genuinely thrive.
-          </p>
-        </li>
-        <li class="pillar-card">
-          <span class="pillar-number" aria-hidden="true">03</span>
-          <h3 class="pillar-name">Community</h3>
-          <p class="pillar-description">Supporting local economies, diverse suppliers, and the communities around us.</p>
-        </li>
-        <li class="pillar-card">
-          <span class="pillar-number" aria-hidden="true">04</span>
-          <h3 class="pillar-name">Environment</h3>
-          <p class="pillar-description">
-            Reducing our footprint, measuring our impact, and contributing to a healthier planet.
-          </p>
-        </li>
-        <li class="pillar-card">
-          <span class="pillar-number" aria-hidden="true">05</span>
-          <h3 class="pillar-name">Customers</h3>
-          <p class="pillar-description">Building products that are ethical, inclusive, accessible, and genuinely useful.</p>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       WHY B CORP
-       ============================================================ -->
-  <section class="why-section">
-    <div class="why-section-inner">
+  <section class="why" aria-labelledby="why-h">
+    <div class="why-inner">
       <div class="why-text">
-        <h2>Why B Corp?</h2>
-        <p>
-          We strive to create meaningful experiences that improve lives. Becoming a B Corp reinforces our commitment to
-          designing and building products that are ethically, inclusively, and sustainably. It's about how we build, for whom,
-          and the positive impact we aim to create for our people, our clients, our users, and the communities we serve.
+        <Eyebrow>Why B Corp</Eyebrow>
+        <h2 id="why-h" class="why-heading">Because "we care" is easy to say and impossible to verify.</h2>
+        <p class="why-prose">
+          Every agency claims to care about impact. B Corp is the version where someone checks. The certification process forced
+          us to formalise things we were already doing, fix things we were neglecting, and commit to things we were avoiding.
+          That's the point.
         </p>
       </div>
-      <div class="why-image">
+      <figure class="why-figure">
         <img
-          src="https://cdn.significa.co/about/bcorp-certificate.jpg"
+          src={cdnUrl("https://cdn.significa.co/about/bcorp-certificate.jpg", { width: 960, quality: 85 })}
           alt="Significa B Corp certificate"
           width="960"
           height="640"
           loading="lazy"
           decoding="async"
         />
-      </div>
+      </figure>
     </div>
   </section>
 
   <!-- ============================================================
-       WHAT'S NEXT
+       4. What's next
        ============================================================ -->
-  <section class="next-section">
-    <div class="next-section-inner">
-      <h2>What's next?</h2>
-      <p>
-        Becoming certified is only the beginning. B Lab, like Significa, believes in continuous improvement, which is why we're
-        already working on increasing our score and impact towards recertification in 2028.
-      </p>
-      <a href="/impact" class="link-arrow">See how we build with impact →</a>
-    </div>
+  <section class="next" aria-labelledby="next-h">
+    <Eyebrow>What's next</Eyebrow>
+    <h2 id="next-h" class="next-heading">Recertification in 2028.</h2>
+    <p class="next-prose">
+      Certification is not a trophy. B Lab requires recertification because improvement is the point, not the badge. We're
+      already working on increasing our score and impact. The goal is to be measurably better at the next audit, not just to
+      pass it again.
+    </p>
   </section>
 
   <!-- ============================================================
-       FINAL CTA
+       5. Close
        ============================================================ -->
-  <section class="final-cta">
-    <div class="final-cta-inner">
-      <h2>Want to build something that does good?</h2>
-      <p>Work with a team that holds itself to a higher standard.</p>
-      <a href="/say-hello" class="cta-button">Get a quote</a>
-    </div>
-  </section>
+  <footer class="close">
+    <LinkCall href="/impact">See how we build with impact</LinkCall>
+  </footer>
 </BaseLayout>
 
 <style>
-  /* ============================================================
-     Shared utilities
-     ============================================================ */
-  .eyebrow {
-    font-size: var(--text-xs);
-    font-weight: var(--weight-semibold);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-text-muted);
-    margin-bottom: 1.25rem;
+  section {
+    padding-inline: var(--gutter);
+    padding-block: clamp(5rem, 10vw, 10rem);
   }
 
-  .link-arrow {
-    display: inline-block;
-    font-size: var(--text-base);
-    font-weight: var(--weight-medium);
-    color: var(--color-text-muted);
-    text-decoration: none;
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-  .link-arrow:hover {
-    color: var(--color-text);
-  }
+  /* ── Hero ── */
 
-  .cta-button {
-    display: inline-block;
-    padding: 0.8125rem 1.75rem;
-    font-size: var(--text-base);
-    font-weight: var(--weight-semibold);
-    text-decoration: none;
-    border-radius: 0.375rem;
-    background: var(--color-text);
-    color: var(--color-surface);
-    transition:
-      opacity var(--duration-fast) var(--ease-out),
-      transform var(--duration-fast) var(--ease-out);
-  }
-  .cta-button:hover {
-    opacity: 0.82;
-    transform: translateY(-1px);
-  }
-
-  .cta-button-large {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    font-size: var(--text-lg);
-    font-weight: var(--weight-semibold);
-    text-decoration: none;
-    border-radius: 0.375rem;
-    background: var(--color-text);
-    color: var(--color-surface);
-    transition:
-      opacity var(--duration-fast) var(--ease-out),
-      transform var(--duration-fast) var(--ease-out);
-  }
-  .cta-button-large:hover {
-    opacity: 0.82;
-    transform: translateY(-1px);
-  }
-
-  /* ============================================================
-     HERO
-     ============================================================ */
   .hero {
-    padding: 9rem var(--gutter) 6rem;
-  }
-
-  .hero-inner {
-    max-width: var(--max-width-narrow);
+    max-width: var(--max-width-wide);
     margin: 0 auto;
+    padding-block: clamp(5rem, 8vw, 10rem) clamp(5rem, 10vw, 10rem);
   }
 
-  .hero h1 {
-    font-size: clamp(2rem, 1.25rem + 3vw, 3.25rem);
-    font-weight: var(--weight-normal);
+  .hero-heading {
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-size: var(--text-display-2);
     line-height: var(--leading-tight);
-    color: var(--color-text);
+    letter-spacing: var(--tracking-tighter);
+    margin: 0;
+    max-width: 20ch;
+    color: var(--color-ink);
   }
 
-  .hero h1 strong {
-    font-weight: var(--weight-bold);
-  }
-
-  /* ============================================================
-     INTRO CARD
-     ============================================================ */
-  .intro-card-section {
-    padding: 0 var(--gutter) 7rem;
-  }
-
-  .intro-card-inner {
-    max-width: var(--max-width-narrow);
-    margin: 0 auto;
-  }
-
-  .intro-card {
-    background: var(--color-surface-alt);
-    border: 1px solid var(--color-border);
-    border-radius: 0.75rem;
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-
-  .intro-card h2 {
+  .hero-deck {
+    margin-block: 2.5rem 0;
     font-size: var(--text-xl);
-    font-weight: var(--weight-bold);
-    line-height: var(--leading-tight);
-    color: var(--color-text);
+    line-height: var(--leading-normal);
+    color: var(--color-ink-muted);
+    max-width: var(--max-width-prose);
   }
 
-  .intro-card p {
-    font-size: var(--text-lg);
-    line-height: var(--leading-relaxed);
-    color: var(--color-text-muted);
-    max-width: 50ch;
+  .hero-link {
+    margin-block-start: 2rem;
   }
 
-  .intro-card .cta-button {
-    margin-top: 0.5rem;
+  @media (max-width: 768px) {
+    .hero-heading {
+      font-size: var(--text-4xl);
+    }
   }
 
-  /* ============================================================
-     WHAT IS A B CORP
-     ============================================================ */
-  .content-section {
-    background: var(--color-surface-alt);
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    padding: 7rem var(--gutter);
-  }
+  /* ── Pillars ── */
 
-  .content-section-inner {
-    max-width: var(--max-width);
+  .pillars {
+    max-width: var(--max-width-wide);
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 5rem;
   }
 
-  .content-block h2 {
-    font-size: clamp(1.5rem, 1.25rem + 1.5vw, 2.25rem);
-    font-weight: var(--weight-bold);
-    line-height: var(--leading-tight);
-    margin-bottom: 1.25rem;
+  .pillars-header {
+    margin-block-end: clamp(3rem, 6vw, 5rem);
   }
 
-  .content-block p {
-    font-size: var(--text-lg);
-    line-height: var(--leading-relaxed);
-    color: var(--color-text-muted);
-    max-width: 65ch;
-  }
+  /* ── Why ── */
 
-  /* Five-pillar grid */
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1px;
-    list-style: none;
-    background: var(--color-border);
-    border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
-    overflow: hidden;
-  }
-
-  .pillar-card {
-    background: var(--color-surface);
-    padding: 2.25rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    transition: background var(--duration-fast) var(--ease-out);
-  }
-
-  .pillar-card:hover {
-    background: var(--color-surface-alt);
-  }
-
-  .pillar-number {
-    font-size: var(--text-xs);
-    font-weight: var(--weight-semibold);
-    letter-spacing: 0.08em;
-    color: var(--color-text-muted);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .pillar-name {
-    font-size: var(--text-lg);
-    font-weight: var(--weight-semibold);
-    line-height: var(--leading-tight);
-    color: var(--color-text);
-  }
-
-  .pillar-description {
-    font-size: var(--text-sm);
-    line-height: var(--leading-relaxed);
-    color: var(--color-text-muted);
-  }
-
-  @media (max-width: 1024px) {
-    .pillars-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  @media (max-width: 640px) {
-    .pillars-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 420px) {
-    .pillars-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* ============================================================
-     WHY B CORP
-     ============================================================ */
-  .why-section {
-    padding: 7rem var(--gutter);
-  }
-
-  .why-section-inner {
-    max-width: var(--max-width);
+  .why {
+    max-width: var(--max-width-wide);
     margin: 0 auto;
+  }
+
+  .why-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6rem;
+    gap: clamp(3rem, 6vw, 6rem);
     align-items: center;
   }
 
-  .why-text h2 {
-    font-size: clamp(1.5rem, 1.25rem + 1.5vw, 2.25rem);
-    font-weight: var(--weight-bold);
-    line-height: var(--leading-tight);
-    margin-bottom: 1.5rem;
+  .why-heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--text-3xl);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 1.5rem;
+    color: var(--color-ink);
   }
 
-  .why-text p {
+  .why-prose {
     font-size: var(--text-lg);
-    line-height: var(--leading-relaxed);
-    color: var(--color-text-muted);
-    max-width: 55ch;
+    line-height: var(--leading-normal);
+    color: var(--color-ink-muted);
+    max-width: 48ch;
   }
 
-  .why-image img {
+  .why-figure {
+    margin: 0;
+  }
+
+  .why-figure img {
     width: 100%;
     height: auto;
-    border-radius: 0.5rem;
     display: block;
+    border-radius: var(--radius-image);
   }
 
   @media (max-width: 860px) {
-    .why-section-inner {
+    .why-inner {
       grid-template-columns: 1fr;
       gap: 3rem;
     }
+
+    .why-heading {
+      font-size: var(--text-2xl);
+    }
   }
 
-  /* ============================================================
-     WHAT'S NEXT
-     ============================================================ */
-  .next-section {
-    background: var(--color-surface-alt);
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    padding: 7rem var(--gutter);
-  }
+  /* ── Next ── */
 
-  .next-section-inner {
-    max-width: var(--max-width-narrow);
+  .next {
+    max-width: var(--max-width-wide);
     margin: 0 auto;
+    border-block-start: 1px solid var(--color-rule);
   }
 
-  .next-section h2 {
-    font-size: clamp(1.5rem, 1.25rem + 1.5vw, 2.25rem);
-    font-weight: var(--weight-bold);
-    line-height: var(--leading-tight);
-    margin-bottom: 1.25rem;
+  .next-heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--text-3xl);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 1.5rem;
+    color: var(--color-ink);
   }
 
-  .next-section p {
+  .next-prose {
     font-size: var(--text-lg);
-    line-height: var(--leading-relaxed);
-    color: var(--color-text-muted);
-    max-width: 60ch;
-    margin-bottom: 2rem;
+    line-height: var(--leading-normal);
+    color: var(--color-ink-muted);
+    max-width: var(--max-width-prose);
   }
 
-  /* ============================================================
-     FINAL CTA
-     ============================================================ */
-  .final-cta {
-    padding: 9rem var(--gutter);
-  }
+  /* ── Close ── */
 
-  .final-cta-inner {
-    max-width: 36rem;
+  .close {
+    max-width: var(--max-width-wide);
     margin: 0 auto;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.25rem;
-  }
-
-  .final-cta h2 {
-    font-size: clamp(1.75rem, 1.25rem + 2vw, 2.75rem);
-    font-weight: var(--weight-bold);
-    line-height: var(--leading-tight);
-  }
-
-  .final-cta p {
-    font-size: var(--text-lg);
-    line-height: var(--leading-relaxed);
-    color: var(--color-text-muted);
-  }
-
-  .final-cta .cta-button-large {
-    margin-top: 0.5rem;
+    padding-inline: var(--gutter);
+    padding-block: 0 clamp(5rem, 10vw, 8rem);
   }
 </style>

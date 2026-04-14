@@ -41,7 +41,7 @@ function formatShortDate(date: Date): string {
           Journal <span class="sep">/</span> Latest <span class="sep">/</span>
           {formatShortDate(featuredPost.data.date)}
         </Eyebrow>
-        <h1 id="featured-h" class="featured-heading">
+        <h1 id="featured-h" class="featured-heading type-display-2">
           {featuredPost.data.title}
         </h1>
         {featuredPost.data.description && <p class="featured-description">{featuredPost.data.description}</p>}
@@ -131,14 +131,8 @@ function formatShortDate(date: Date): string {
   }
 
   .featured-heading {
-    font-family: var(--font-display);
-    font-weight: 200;
-    font-size: var(--text-display-2);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-tighter);
     margin: 0;
     max-width: 24ch;
-    color: var(--color-ink);
   }
 
   .featured-description {

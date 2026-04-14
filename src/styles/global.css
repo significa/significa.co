@@ -121,6 +121,71 @@ samp {
 }
 
 /* ============================================================
+   Typography utilities — single source of truth.
+   Use these classes instead of repeating font stacks in scoped styles.
+
+   Serif (display) only at display sizes. Sans for everything else.
+   Edit here, changes propagate everywhere.
+   ============================================================ */
+
+/* Page hero — the biggest text on the page. One per page. */
+.type-display-1 {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: var(--text-display-1);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-ink);
+}
+
+/* Page hero — most pages use this. Serif, ultralight. */
+.type-display-2 {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: var(--text-display-2);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-ink);
+}
+
+/* Featured statement — sub-hero, featured project hook. Serif. */
+.type-display-3 {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: var(--text-display-3);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-ink);
+}
+
+/* Large sans heading — section openers, overlap headings. */
+.type-heading-lg {
+  font-weight: var(--weight-normal);
+  font-size: var(--text-3xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+}
+
+/* Medium sans heading — sub-sections, QA questions, page titles. */
+.type-heading-md {
+  font-weight: var(--weight-medium);
+  font-size: var(--text-2xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+}
+
+/* Small sans heading — card titles, sidebar items. */
+.type-heading-sm {
+  font-weight: var(--weight-medium);
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+}
+
+/* ============================================================
    Reduced motion — respected absolutely, no exceptions
    ============================================================ */
 

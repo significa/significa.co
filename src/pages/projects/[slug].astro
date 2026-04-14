@@ -102,7 +102,7 @@ if (project.data.tags?.length) metaItems.push({ label: "Services", value: projec
         <span class="sep">/</span>
         {new Date(project.data.date).getFullYear()}
       </Eyebrow>
-      <h1 class="project-heading">
+      <h1 class="project-heading type-display-2">
         {project.data.hook ?? project.data.tagline ?? project.data.title}
       </h1>
     </header>
@@ -286,14 +286,8 @@ if (project.data.tags?.length) metaItems.push({ label: "Services", value: projec
   }
 
   .project-heading {
-    font-family: var(--font-display);
-    font-weight: 200;
-    font-size: var(--text-display-2);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-tighter);
     margin: 0;
     max-width: 24ch;
-    color: var(--color-ink);
   }
 
   /* ============================================================

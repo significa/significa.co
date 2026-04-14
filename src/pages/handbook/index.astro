@@ -22,7 +22,7 @@ const groups = await getHandbookIndex();
   <section class="page" aria-labelledby="page-h">
     <header class="page-header">
       <Eyebrow>Handbook</Eyebrow>
-      <h1 id="page-h" class="page-heading">
+      <h1 id="page-h" class="page-heading type-display-2">
         The operating manual<br />we actually follow.
       </h1>
       <p class="page-deck">
@@ -93,14 +93,8 @@ const groups = await getHandbookIndex();
   }
 
   .page-heading {
-    font-family: var(--font-display);
-    font-weight: 200;
-    font-size: var(--text-display-2);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-tighter);
     margin: 0;
     max-width: 18ch;
-    color: var(--color-ink);
   }
 
   .page-deck {

@@ -148,7 +148,7 @@ const structuredData = [webSiteJsonLd()];
        ============================================================ -->
   <section class="hero" aria-labelledby="hero-h">
     <Eyebrow>A design &amp; engineering studio <span class="sep">/</span> Porto</Eyebrow>
-    <h1 id="hero-h" class="hero-statement">
+    <h1 id="hero-h" class="hero-statement type-display-1">
       We exist to prove that <em>rigour</em> and <em>beauty</em> are not opposites.
     </h1>
     <p class="hero-deck">
@@ -217,7 +217,7 @@ const structuredData = [webSiteJsonLd()];
             Recent work <span class="sep">/</span> {featured.data.client} <span class="sep">/</span> 2022
           </Eyebrow>
 
-          <h2 id="featured-h" class="featured-statement">
+          <h2 id="featured-h" class="featured-statement type-heading-lg">
             A period tracker brief that grew into a fertility companion.
           </h2>
 
@@ -353,14 +353,8 @@ const structuredData = [webSiteJsonLd()];
   }
 
   .hero-statement {
-    font-family: var(--font-display);
-    font-weight: 200;
-    font-size: var(--text-display-1);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-tighter);
     margin: 0;
     max-width: 18ch;
-    color: var(--color-ink);
   }
 
   .hero-deck {
@@ -418,13 +412,8 @@ const structuredData = [webSiteJsonLd()];
   }
 
   .featured-statement {
-    font-weight: var(--weight-medium);
-    font-size: var(--text-3xl);
-    line-height: var(--leading-snug);
-    letter-spacing: var(--tracking-tight);
     margin: 0 0 clamp(2rem, 4vw, 3rem);
     max-width: 24ch;
-    color: var(--color-ink);
   }
 
   /* Prose flows directly from the statement — tight coupling */

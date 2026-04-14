@@ -8,18 +8,13 @@ interface Props {
 const { as: Tag = "h2", id, class: className } = Astro.props;
 ---
 
-<Tag id={id} class:list={["section-statement", className]}>
+<Tag id={id} class:list={["section-statement", "type-heading-md", className]}>
   <slot />
 </Tag>
 
 <style>
   .section-statement {
-    font-weight: var(--weight-medium);
-    font-size: var(--text-2xl);
-    line-height: var(--leading-snug);
-    letter-spacing: var(--tracking-tight);
     margin: 0;
     max-width: 28ch;
-    color: var(--color-ink);
   }
 </style>

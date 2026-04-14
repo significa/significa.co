@@ -7,7 +7,7 @@ import LinkCall from "@/components/ui/link-call.astro";
 <BaseLayout title="Page not found — Significa" description="The page you were looking for has moved or never existed.">
   <section class="lost" aria-labelledby="lost-h">
     <Eyebrow>Page not found</Eyebrow>
-    <h1 id="lost-h" class="lost-heading">Wrong turn,<br />same studio.</h1>
+    <h1 id="lost-h" class="lost-heading type-display-2">Wrong turn,<br />same studio.</h1>
     <p class="lost-body">The page you were looking for has moved or never existed. The work is still here.</p>
     <nav class="lost-nav" aria-label="Navigation">
       <LinkCall href="/">Back to the homepage</LinkCall>
@@ -25,13 +25,8 @@ import LinkCall from "@/components/ui/link-call.astro";
   }
 
   .lost-heading {
-    font-family: var(--font-display);
     font-weight: 300;
-    font-size: var(--text-display-2);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-tighter);
     margin: 0;
-    color: var(--color-ink);
   }
 
   .lost-body {

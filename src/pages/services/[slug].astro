@@ -45,7 +45,7 @@ const featuredProjects = service.data.featuredProjects?.length
         Services <span class="sep">/</span>
         {service.data.title}
       </Eyebrow>
-      <h1 class="service-heading">{service.data.title}</h1>
+      <h1 class="service-heading type-display-2">{service.data.title}</h1>
       {service.data.tagline && <p class="service-deck">{service.data.tagline}</p>}
     </header>
 
@@ -100,14 +100,8 @@ const featuredProjects = service.data.featuredProjects?.length
   }
 
   .service-heading {
-    font-family: var(--font-display);
-    font-weight: 200;
-    font-size: var(--text-display-2);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-tighter);
     margin: 0;
     max-width: 24ch;
-    color: var(--color-ink);
   }
 
   .service-deck {

@@ -71,7 +71,7 @@ const isExternal = href?.startsWith("http://") || href?.startsWith("https://");
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.25rem 1.25rem;
   }
 
   .callout-body :global(li) {
@@ -79,9 +79,6 @@ const isExternal = href?.startsWith("http://") || href?.startsWith("https://");
     font-weight: var(--weight-medium);
     color: var(--color-ink);
     margin: 0;
-    padding: 0.35rem 0.85rem;
-    background: var(--color-paper);
-    border-radius: 2rem;
   }
 
   .callout-body :global(strong) {

@@ -58,23 +58,15 @@ function formatShortDate(date: Date): string {
   {
     remainingPosts.length > 0 && (
       <section class="posts" aria-labelledby="posts-h">
-        <Eyebrow id="posts-h">
-          All articles
-        </Eyebrow>
+        <Eyebrow id="posts-h">All articles</Eyebrow>
 
-        <IndexList>
+        <IndexList stacked>
           {remainingPosts.map((post, i) => (
             <li class="post-item" data-index={i} style={i >= INITIAL_COUNT ? "display: none;" : ""}>
               <a href={`/blog/${post.id}`} class="index-link">
                 <span class="index-num">{String(i + 1).padStart(2, "0")}</span>
                 <span class="index-title">{post.data.title}</span>
-                <span class="index-tagline">
-                  {post.data.description
-                    ? post.data.description.length > 80
-                      ? post.data.description.slice(0, 80) + "..."
-                      : post.data.description
-                    : ""}
-                </span>
+                <span class="index-tagline">{post.data.description ?? ""}</span>
                 <span class="index-year">{formatShortDate(post.data.date)}</span>
                 <span class="index-mark" aria-hidden="true">
                   &rarr;
@@ -140,10 +132,10 @@ function formatShortDate(date: Date): string {
 
   .featured-heading {
     font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--text-4xl);
+    font-weight: 200;
+    font-size: var(--text-display-2);
     line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-tight);
+    letter-spacing: var(--tracking-tighter);
     margin: 0;
     max-width: 24ch;
     color: var(--color-ink);

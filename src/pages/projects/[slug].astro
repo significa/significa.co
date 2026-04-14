@@ -175,16 +175,16 @@ if (project.data.tags?.length) metaItems.push({ label: "Services", value: projec
       relatedProjects.length > 0 && (
         <aside class="related" aria-labelledby="related-h">
           <div class="related-inner">
-            <Eyebrow id="related-h">
-              More work
-            </Eyebrow>
-            <IndexList items={relatedProjects.filter(Boolean).map((related, i) => ({
-              href: `/projects/${related!.id}`,
-              title: related!.data.title,
-              tagline: related!.data.tagline ?? "",
-              date: String(new Date(related!.data.date).getFullYear()),
-              num: String(i + 1).padStart(2, "0"),
-            }))} />
+            <Eyebrow id="related-h">More work</Eyebrow>
+            <IndexList
+              items={relatedProjects.filter(Boolean).map((related, i) => ({
+                href: `/projects/${related!.id}`,
+                title: related!.data.title,
+                tagline: related!.data.tagline ?? "",
+                date: String(new Date(related!.data.date).getFullYear()),
+                num: String(i + 1).padStart(2, "0"),
+              }))}
+            />
           </div>
         </aside>
       )
@@ -287,10 +287,10 @@ if (project.data.tags?.length) metaItems.push({ label: "Services", value: projec
 
   .project-heading {
     font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--text-4xl);
+    font-weight: 200;
+    font-size: var(--text-display-2);
     line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-tight);
+    letter-spacing: var(--tracking-tighter);
     margin: 0;
     max-width: 24ch;
     color: var(--color-ink);

@@ -276,8 +276,9 @@
   --text-3xl: clamp(2rem, 1rem + 3vw, 3rem); /* 32–48  large heads */
   --text-4xl: clamp(2.5rem, 1.5rem + 4vw, 4rem); /* 40–64  section opens */
 
-  /* Editorial display sizes */
-  --text-display-2: clamp(3rem, 1.5rem + 6vw, 6rem); /* 48–96   pull moments */
+  /* Editorial display sizes — serif territory. If it uses a display token, it can use the serif. */
+  --text-display-3: clamp(2.5rem, 1.5rem + 4vw, 4rem); /* 40–64   featured statements, sub-heroes */
+  --text-display-2: clamp(3rem, 1.5rem + 6vw, 6rem); /* 48–96   page heroes */
   --text-display-1: clamp(4rem, 2rem + 8vw, 9rem); /* 64–144  one sentence per screen */
 
   /* Leading */

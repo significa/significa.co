@@ -130,18 +130,18 @@ const numbers = [
       <section class="work" aria-labelledby="work-h">
         <header class="work-header">
           <Eyebrow>Selected work</Eyebrow>
-          <SectionHeader id="work-h">
-            Proof, not promises.
-          </SectionHeader>
+          <SectionHeader id="work-h">Proof, not promises.</SectionHeader>
         </header>
 
-        <IndexList items={projects.map((p, i) => ({
-          href: `/projects/${p.id}`,
-          title: p.data.title,
-          tagline: p.data.tagline ?? "",
-          date: String(new Date(p.data.date).getFullYear()),
-          num: String(i + 1).padStart(2, "0"),
-        }))} />
+        <IndexList
+          items={projects.map((p, i) => ({
+            href: `/projects/${p.id}`,
+            title: p.data.title,
+            tagline: p.data.tagline ?? "",
+            date: String(new Date(p.data.date).getFullYear()),
+            num: String(i + 1).padStart(2, "0"),
+          }))}
+        />
 
         <p class="work-link-row">
           <LinkCall href="/projects">All work</LinkCall>
@@ -185,7 +185,7 @@ const numbers = [
   .hero-statement {
     font-family: var(--font-display);
     font-weight: 200;
-    font-size: var(--text-4xl);
+    font-size: var(--text-display-2);
     line-height: var(--leading-tight);
     letter-spacing: var(--tracking-tighter);
     margin: 0;
@@ -252,8 +252,7 @@ const numbers = [
   }
 
   .discipline-title {
-    font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: var(--weight-medium);
     font-size: var(--text-xl);
     line-height: var(--leading-snug);
     margin: 0;

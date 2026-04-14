@@ -21,26 +21,33 @@ interface IndexItem {
 
 interface Props {
   items?: IndexItem[];
+  /** Stacked layout: description below title instead of beside it. Better for long titles. */
+  stacked?: boolean;
   class?: string;
 }
 
-const { items, class: className } = Astro.props;
+const { items, stacked = false, class: className } = Astro.props;
 ---
 
-<ol class:list={["index-list", className]} role="list">
-  {items
-    ? items.map((item) => (
+<ol class:list={["index-list", { "index-list--stacked": stacked }, className]} role="list">
+  {
+    items ? (
+      items.map((item) => (
         <li>
           <a href={item.href} class="index-link">
             <span class="index-num">{item.num}</span>
             <span class="index-title">{item.title}</span>
             <span class="index-tagline">{item.tagline}</span>
             <span class="index-year">{item.date}</span>
-            <span class="index-mark" aria-hidden="true">&rarr;</span>
+            <span class="index-mark" aria-hidden="true">
+              &rarr;
+            </span>
           </a>
         </li>
       ))
-    : <slot />
+    ) : (
+      <slot />
+    )
   }
 </ol>
 
@@ -54,7 +61,7 @@ const { items, class: className } = Astro.props;
   .index-list :global(.index-link) {
     display: grid;
     grid-template-columns: 3rem minmax(10rem, 1fr) 2fr auto;
-    align-items: baseline;
+    align-items: center;
     column-gap: 2rem;
     padding-block: 1rem;
     padding-inline: 1rem;
@@ -86,10 +93,10 @@ const { items, class: className } = Astro.props;
   }
 
   .index-list :global(.index-title) {
-    font-family: var(--font-display);
+    font-family: var(--font-sans);
     font-weight: 400;
     font-size: var(--text-xl);
-    line-height: 1;
+    line-height: 1.2;
     color: var(--color-ink);
     transition: color var(--duration-normal) var(--ease-out);
   }
@@ -162,6 +169,41 @@ const { items, class: className } = Astro.props;
 
     .index-list :global(.index-tagline),
     .index-list :global(.index-mark) {
+      display: none;
+    }
+  }
+
+  /* ── Stacked variant: description below title ── */
+
+  .index-list--stacked :global(.index-link) {
+    grid-template-columns: 3rem 1fr auto;
+    grid-template-rows: auto auto;
+  }
+
+  .index-list--stacked :global(.index-title) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .index-list--stacked :global(.index-tagline) {
+    grid-column: 2;
+    grid-row: 2;
+    margin-block-start: 0.25rem;
+  }
+
+  .index-list--stacked :global(.index-year),
+  .index-list--stacked :global(.index-mark) {
+    grid-column: 3;
+    grid-row: 1 / 3;
+    align-self: center;
+  }
+
+  @media (max-width: 720px) {
+    .index-list--stacked :global(.index-link) {
+      grid-template-columns: 2.25rem 1fr auto;
+    }
+
+    .index-list--stacked :global(.index-tagline) {
       display: none;
     }
   }

@@ -269,6 +269,7 @@ const formattedDate = page.data.date.toLocaleDateString("en-GB", {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    padding-inline-end: 0.5rem;
     scrollbar-width: none;
   }
 
@@ -387,7 +388,9 @@ const formattedDate = page.data.date.toLocaleDateString("en-GB", {
 
   .nav-chevron {
     flex-shrink: 0;
-    opacity: 0.5;
+    width: 10px;
+    height: 10px;
+    opacity: 0.4;
     transition: transform var(--duration-fast) var(--ease-out);
   }
 
@@ -401,7 +404,6 @@ const formattedDate = page.data.date.toLocaleDateString("en-GB", {
 
   .nav-link.active {
     color: var(--color-accent);
-    font-weight: var(--weight-medium);
   }
 
   .nav-children {
@@ -433,7 +435,6 @@ const formattedDate = page.data.date.toLocaleDateString("en-GB", {
 
   .nav-child-link.active {
     color: var(--color-accent);
-    font-weight: var(--weight-medium);
   }
 
   /* ============================================================
@@ -453,9 +454,8 @@ const formattedDate = page.data.date.toLocaleDateString("en-GB", {
   }
 
   .page-title {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--text-3xl);
+    font-weight: var(--weight-medium);
+    font-size: var(--text-2xl);
     line-height: var(--leading-snug);
     letter-spacing: var(--tracking-tight);
     margin: 0;
@@ -588,9 +588,8 @@ const formattedDate = page.data.date.toLocaleDateString("en-GB", {
   }
 
   .page-nav-title {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--text-lg);
+    font-weight: var(--weight-medium);
+    font-size: var(--text-base);
     line-height: var(--leading-snug);
   }
 

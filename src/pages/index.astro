@@ -708,22 +708,21 @@ const structuredData = [webSiteJsonLd()];
     list-style: none;
     margin: 0;
     padding: 0;
-    border-top: 1px solid var(--color-rule);
-    border-bottom: 1px solid var(--color-rule);
   }
 
   .index-link {
     display: grid;
-    grid-template-columns: 3rem auto 1fr auto 1.5rem;
+    grid-template-columns: 3rem minmax(10rem, 1fr) 2fr auto;
     align-items: baseline;
-    column-gap: 1.5rem;
+    column-gap: 2rem;
     padding-block: 1.4rem;
-    padding-inline: 0.5rem;
+    padding-inline: 1rem;
     color: var(--color-ink);
     transition:
       background-color var(--duration-normal) var(--ease-out),
       color var(--duration-normal) var(--ease-out);
-    margin-inline: -0.5rem;
+    margin-inline: -1rem;
+    border-radius: 4px;
   }
 
   .index-link:hover {
@@ -761,15 +760,22 @@ const structuredData = [webSiteJsonLd()];
   .index-tagline {
     font-size: var(--text-sm);
     color: var(--color-ink-faint);
-    text-align: right;
     line-height: var(--leading-snug);
     transition: color var(--duration-normal) var(--ease-out);
-    max-width: 36ch;
-    justify-self: end;
   }
 
   .index-link:hover .index-tagline {
     color: var(--color-ink-muted);
+  }
+
+  /* Year and arrow share the same grid cell — crossfade on hover */
+
+  .index-year,
+  .index-mark {
+    grid-column: 4;
+    grid-row: 1;
+    text-align: right;
+    justify-self: end;
   }
 
   .index-year {
@@ -779,28 +785,27 @@ const structuredData = [webSiteJsonLd()];
     letter-spacing: var(--tracking-wide);
     color: var(--color-ink-muted);
     font-variant-numeric: tabular-nums;
-    min-width: 3rem;
-    text-align: right;
-    transition: color var(--duration-normal) var(--ease-out);
+    opacity: 1;
+    transition:
+      opacity var(--duration-normal) var(--ease-out),
+      transform var(--duration-normal) var(--ease-out);
   }
 
   .index-link:hover .index-year {
-    color: var(--color-accent);
+    opacity: 0;
+    transform: translateX(0.4em);
   }
 
   .index-mark {
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-end;
     color: var(--color-accent);
     font-size: var(--text-base);
     font-weight: var(--weight-medium);
     line-height: 1;
     opacity: 0;
-    transform: translateX(-0.6em);
+    transform: translateX(-0.4em);
     transition:
-      opacity var(--duration-slow) var(--ease-editorial),
-      transform var(--duration-slow) var(--ease-editorial);
+      opacity var(--duration-normal) var(--ease-editorial),
+      transform var(--duration-normal) var(--ease-editorial);
   }
 
   .index-link:hover .index-mark {
@@ -816,6 +821,8 @@ const structuredData = [webSiteJsonLd()];
     .index-link {
       grid-template-columns: 2.25rem 1fr auto;
       column-gap: 1rem;
+      padding-inline: 0.5rem;
+      margin-inline: -0.5rem;
     }
 
     .index-tagline,

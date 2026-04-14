@@ -27,30 +27,20 @@ const navItems = [
 
 <footer class="site-footer">
   <div class="footer-shell">
-    <!-- Top: 3-cell editorial -->
+    <!-- Top: pull quote on the left, contact info on the right, the
+         whole middle left as breathing room. Differentiated from the
+         homepage manifesto by using a different brand-doc axis —
+         steadiness, not judgment. -->
     <div class="footer-top">
-      <!-- Note (left) -->
-      <div class="footer-cell footer-cell-note">
-        <p class="footer-eyebrow">A studio in Porto</p>
-        <p class="footer-note">
-          Designers and engineers working as one team. We take on complex
-          problems for clients who want them solved with care.
-        </p>
-      </div>
-
-      <!-- Pull quote (centerpiece) -->
       <div class="footer-cell footer-cell-quote">
-        <p class="footer-quote"><em>The deciding<br />is the work.</em></p>
+        <p class="footer-quote"><em>Calm<br />in complexity.</em></p>
         <p class="footer-quote-attr">
           <Egg variant="fill" class="footer-quote-egg" />
           North Star
         </p>
       </div>
 
-      <!-- Contact (right) — kept at body size. A display-size email
-           doesn't wrap cleanly (no break points in newbusiness@…) and
-           overflows narrow viewports. -->
-      <div class="footer-cell">
+      <div class="footer-cell footer-cell-contact">
         <dl class="footer-rows">
           <div class="footer-row">
             <dt class="footer-eyebrow">Hello</dt>
@@ -141,11 +131,13 @@ const navItems = [
      Top: 3-cell editorial. Quote in the middle is the centerpiece.
      ============================================================ */
 
+  /* Two cells at opposite ends: quote left, contact right,
+     the middle is deliberate breathing room. */
   .footer-top {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr 1fr;
-    gap: 4rem;
-    align-items: start;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: clamp(3rem, 8vw, 8rem);
     margin-bottom: clamp(4rem, 8vw, 6rem);
   }
 
@@ -154,16 +146,6 @@ const navItems = [
     flex-direction: column;
     gap: 1.25rem;
     min-width: 0;
-  }
-
-  /* Note ---------------------------------------------- */
-
-  .footer-note {
-    font-size: var(--text-base);
-    line-height: var(--leading-normal);
-    color: var(--color-ink-muted);
-    margin: 0;
-    max-width: 32ch;
   }
 
   /* Pull quote ---------------------------------------- */
@@ -330,27 +312,10 @@ const navItems = [
      Responsive
      ============================================================ */
 
-  @media (max-width: 980px) {
-    .footer-top {
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-
-    .footer-cell-quote {
-      grid-column: 1 / -1;
-      order: -1;
-      align-items: flex-start;
-      margin-bottom: 1rem;
-    }
-  }
-
   @media (max-width: 640px) {
     .footer-top {
-      grid-template-columns: 1fr;
-    }
-
-    .footer-cell-quote {
-      grid-column: auto;
+      flex-direction: column;
+      gap: 3rem;
     }
 
     .footer-quote {

@@ -2,44 +2,63 @@
 /**
  * Homepage
  *
- * The position. Built per the brand docs (see docs/brand/), not as a
- * conventional agency hero+grid+CTA stack. Sections, top to bottom:
+ * Per the brand docs. Order optimised for narrative flow:
  *
- *   1. Hero — the manifesto opening sentence, set as a statement.
- *   2. Featured project — DIA, told as the call we made (not features).
- *   3. Services as questions — three honest questions, not a 5-step ladder.
- *   4. Manifesto moment — single line at display scale, italic.
- *   5. Wrong-for-you — anti-positioning, five honest disclosures.
- *   6. Recent work — compact editorial index, no metric overlays.
+ *   1. Hero — position statement + capability breadth in the deck.
+ *   2. Proof — recognition + clients, thin mono strips.
+ *   3. Featured — DIA, told richly: story prose + structured metadata
+ *      + integrated client voice, ending with a case-study link.
+ *   4. Manifesto moment — "Judgement is the work." One line, standalone.
+ *   5. Recent work — compact editorial index.
+ *   6. Numbers — since / team / projects / recognitions.
+ *   7. Three questions — the judgment layer, placed at the close where
+ *      a considering visitor is ready to read them.
  *
- * Italics are reserved for the manifesto moment (and the footer pull
- * quote). Italic-on-serif at heading sizes is hard to scan; we earn its
- * use by making it rare.
- *
- * Links are not underlined by default. UI affordances use `.link-call`
- * — text + arrow that translates on hover with a slow editorial ease.
+ * Italics are reserved for the manifesto moment only. Links use the
+ * .link-call pattern (no underline, animated arrow on hover).
  */
 
 import BaseLayout from "@/layouts/base.astro";
 import Egg from "@/components/ui/egg.astro";
 import { getEntry } from "astro:content";
-import { getProjects } from "@/lib/collections";
+import { getProjects, getClients } from "@/lib/collections";
 import { cdnUrl } from "@/lib/cdn";
 import { webSiteJsonLd } from "@/lib/seo";
 
 const featured = await getEntry("projects", "dia");
 const allProjects = (await getProjects()).filter((p) => p.id !== "dia").slice(0, 8);
+const clients = await getClients();
+
+const recognitions = [
+  "Red Dot",
+  "iF Design",
+  "German Design Council",
+  "European Design",
+  "Good Design",
+  "Awwwards",
+];
+
+// Metadata for the DIA feature. Kept here inline because it's curated copy,
+// not a straight dump of the project frontmatter (e.g. "Role" is a homepage
+// framing, not a field on the content entry).
+const featuredMeta = [
+  { label: "Client", value: "The Fertility Partnership" },
+  { label: "Role", value: "Strategy, Design, Engineering" },
+  { label: "Deliverables", value: "iOS + Android apps, CMS, Brand identity" },
+  { label: "Industry", value: "Healthcare, Femtech" },
+  { label: "Recognition", value: "Red Dot · iF · German Gold · Good Design · European Gold" },
+];
 
 const services = [
   {
     n: "01",
-    q: "How do you decide what to push back on?",
-    a: "We push back when the spec asks for a feature that solves the wrong problem, when the deadline forces a choice the team will regret, or when the brief assumes a user we have evidence doesn't exist. We don't push back to perform cleverness. The test is whether the project is better in six months because we said something now.",
+    q: "How do you know when the work is done?",
+    a: "When the thing does what it's meant to without extra — no leftover complexity, no speculative features, no visible seams. That takes more rounds than shipping the spec, but the result is work that ages better, breaks less, and doesn't need a rewrite in eighteen months. The test is whether we'd be happy to maintain this in year three.",
   },
   {
     n: "02",
-    q: "When do you say no?",
-    a: "When the work would keep people busy and produce something nobody would be proud of. When the budget forces shortcuts we couldn't defend later. When the relationship is structured to make honest feedback impossible. Saying no to one project is how we stay capable of saying yes to a different one.",
+    q: "How do you decide what not to build?",
+    a: "Every brief contains features that won't earn their place in the final product. Cutting them isn't about shipping less — it's about making what remains feel more considered. We identify what to trim early, say so out loud, and have the honest conversation. Saying no to a feature is how you get to say yes to craft.",
   },
   {
     n: "03",
@@ -48,66 +67,61 @@ const services = [
   },
 ];
 
-const wrongFor = [
-  {
-    n: "I.",
-    head: "You need someone to nod and ship the spec.",
-    body: "We argue. We push back. We will tell you when we think you're solving the wrong problem. If that's friction you don't want, we're not it.",
-  },
-  {
-    n: "II.",
-    head: "The timeline can't accommodate honest discovery.",
-    body: "Real understanding takes weeks, not days. If the launch date can't move, the discovery shrinks, and discovery is where the work earns its value.",
-  },
-  {
-    n: "III.",
-    head: "The budget assumes design and engineering are separate line items.",
-    body: "We don't subcontract design or hand off engineering. The team is one team. Splitting the budget kills the model that makes the work good.",
-  },
-  {
-    n: "IV.",
-    head: "“Just make it look better” is the brief.",
-    body: "Visual polish without a clear what-this-is-for is decoration. We do beauty in service of decisions, not as a finish.",
-  },
-  {
-    n: "V.",
-    head: "The decision-maker isn't in the room.",
-    body: "We don't sell things to people who then pitch them to the people who actually decide. Direct access changes what's possible.",
-  },
-];
-
-const featuredMeta = [
-  { label: "Client", value: "The Fertility Partnership" },
-  { label: "Year", value: "2022" },
-  { label: "Role", value: "Strategy, design, build" },
-  { label: "Awards", value: "Red Dot · iF · German Gold · Good Design · European Gold" },
+const numbers = [
+  { label: "Founded", value: "2015" },
+  { label: "Designers & engineers", value: "35+" },
+  { label: "Projects shipped", value: "80+" },
+  { label: "International recognitions", value: "20+" },
 ];
 
 const structuredData = [webSiteJsonLd()];
 ---
 
 <BaseLayout
-  title="Significa — A studio in Porto"
-  description="Significa is a studio of designers and engineers in Porto. We work on complex digital products with clients who want them solved with care."
+  title="Significa — A design & engineering studio in Porto"
+  description="Significa is a design and engineering studio in Porto. We make digital products — platforms, e-commerce, apps, design systems — for businesses that want complexity met with care."
   structuredData={structuredData}
 >
   <!-- ============================================================
-       1. Hero — the position. One sentence. Lots of room. Roman.
+       1. Hero — position + capability breadth
        ============================================================ -->
   <section class="hero" aria-labelledby="hero-h">
-    <p class="eyebrow">A studio in Porto <span class="eyebrow-sep">/</span> Since 2015</p>
+    <p class="eyebrow">A design &amp; engineering studio <span class="eyebrow-sep">/</span> Porto</p>
     <h1 id="hero-h" class="hero-statement">
       We exist to prove that rigour and beauty are not opposites.
     </h1>
     <p class="hero-deck">
-      Designers and engineers working as one team. We take on the kind of complex problems most
-      teams retreat from, and we refuse to let the complexity be an excuse for mediocrity.
+      Designers and engineers working as one team. We make digital products — platforms,
+      e-commerce, apps, design systems — for businesses that want complexity met with care, not
+      avoided.
     </p>
   </section>
 
   <!-- ============================================================
-       2. Featured project — DIA. Image earns its room.
-       Structured metadata grid alongside the prose.
+       2. Proof — two compact mono strips
+       ============================================================ -->
+  <section class="proof" aria-label="Credibility">
+    <dl class="proof-list">
+      <div class="proof-row">
+        <dt class="proof-label">Recognised by</dt>
+        <dd class="proof-values">
+          {recognitions.map((r) => <span class="proof-item">{r}</span>)}
+        </dd>
+      </div>
+      <div class="proof-row">
+        <dt class="proof-label">Trusted by</dt>
+        <dd class="proof-values">
+          {clients.map((c) => <span class="proof-item">{c.data.name}</span>)}
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ============================================================
+       3. Featured project — rich. Eyebrow + statement + image,
+       then a two-column grid (prose + structured metadata), then
+       an integrated voice block from the client, then the link.
+       All one section so the rhythm reads as a single case.
        ============================================================ -->
   {
     featured && (
@@ -119,7 +133,7 @@ const structuredData = [webSiteJsonLd()];
           </p>
 
           <h2 id="featured-h" class="featured-statement">
-            The brief asked for a period tracker. We argued for a fertility companion.
+            A period tracker brief that grew into a fertility companion.
           </h2>
 
           <figure class="featured-figure">
@@ -138,14 +152,15 @@ const structuredData = [webSiteJsonLd()];
           <div class="featured-grid">
             <div class="featured-prose">
               <p>
-                TFP came to us with a request for another player in a market already full of period
-                trackers. We pushed for a deeper product — daily logs, fertility forecasting,
-                education, a tone of voice that felt like a friend rather than a database. The
-                argument took weeks. The team agreed.
+                TFP came to us looking for a competitor in a market full of period trackers. Six
+                weeks of discovery reframed what the project was. The final product logs cycles,
+                forecasts fertility, teaches, and builds a relationship rather than a dataset —
+                a companion, not a tracker.
               </p>
               <p>
-                Five international design awards later, including a <em>Red Dot</em>, the case for
-                arguing back was clear.
+                Five international design awards later, including a <em>Red Dot</em>, Dia stood
+                alone in its category. Not because it shouted louder, but because it understood
+                better.
               </p>
             </div>
 
@@ -156,59 +171,46 @@ const structuredData = [webSiteJsonLd()];
                   <dd class="featured-meta-value">{m.value}</dd>
                 </div>
               ))}
-              <div class="featured-meta-link-row">
-                <a href={`/projects/${featured.id}`} class="link-call">
-                  <span class="link-label">Read the case study</span>
-                  <span class="link-arrow" aria-hidden="true">&rarr;</span>
-                </a>
-              </div>
             </dl>
           </div>
+
+          <!-- Integrated client voice. Sits below the 2-col grid,
+               aligned with the prose column width to read as an
+               attached coda, not a separate section. -->
+          <aside class="featured-voice" aria-label="Client voice">
+            <p class="featured-voice-label">A voice from this project</p>
+            <blockquote class="featured-voice-quote">
+              <p>
+                Dia started as a simple tracker brief. Six weeks of discovery with Significa
+                reframed what we were building. We ended up with a product we&rsquo;re proud of
+                — bigger than we&rsquo;d scoped, and better for it.
+              </p>
+              <footer>
+                <cite>
+                  <strong>Chakameh Shafii</strong>
+                  <span>Former Director at TFP, Head of Dia</span>
+                </cite>
+              </footer>
+            </blockquote>
+          </aside>
+
+          <p class="featured-link-row">
+            <a href={`/projects/${featured.id}`} class="link-call">
+              <span class="link-label">Read the case study</span>
+              <span class="link-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
         </div>
       </section>
     )
   }
 
   <!-- ============================================================
-       3. Services as questions. Roman heads (italics overused on serif
-       at this size). The question still does the work.
-       ============================================================ -->
-  <section class="services" aria-labelledby="services-h">
-    <header class="services-header">
-      <p class="eyebrow">What working with us means</p>
-      <h2 id="services-h" class="section-statement">Three questions worth answering before we start.</h2>
-      <p class="section-deck">
-        Most agencies sell a process. We sell the judgment that goes into the work. The deliverables
-        come from the answers below, not the other way round.
-      </p>
-    </header>
-
-    <ol class="qa-list" role="list">
-      {
-        services.map((s) => (
-          <li class="qa">
-            <p class="qa-num">{s.n}</p>
-            <h3 class="qa-q">{s.q}</h3>
-            <p class="qa-a">{s.a}</p>
-          </li>
-        ))
-      }
-    </ol>
-
-    <p class="services-link-row">
-      <a href="/services" class="link-call">
-        <span class="link-label">How we actually deliver</span>
-        <span class="link-arrow" aria-hidden="true">&rarr;</span>
-      </a>
-    </p>
-  </section>
-
-  <!-- ============================================================
-       4. Manifesto moment — display-2 italic. The one earned italic.
+       4. Manifesto moment — the one earned italic. Stands alone.
        ============================================================ -->
   <section class="moment" aria-labelledby="moment-h">
     <h2 id="moment-h" class="moment-line">
-      <em>Disagreement<br />is the work.</em>
+      <em>Judgement<br />is the work.</em>
     </h2>
     <p class="moment-attr">
       <Egg variant="fill" class="moment-egg" />
@@ -218,36 +220,7 @@ const structuredData = [webSiteJsonLd()];
   </section>
 
   <!-- ============================================================
-       5. Wrong-for-you. Roman heads. The list is doing the work.
-       ============================================================ -->
-  <section class="wrong" aria-labelledby="wrong-h">
-    <header class="wrong-header">
-      <p class="eyebrow">Honest disclosure</p>
-      <h2 id="wrong-h" class="section-statement">We&rsquo;re the wrong choice when&hellip;</h2>
-      <p class="section-deck">
-        Saying yes to everything is how a studio loses what makes it choose-able. The list below is
-        what we won&rsquo;t pretend to be. If any of it applies to your project, we&rsquo;ll save us
-        both the conversation.
-      </p>
-    </header>
-
-    <ol class="wrong-list" role="list">
-      {
-        wrongFor.map((w) => (
-          <li class="wrong-row">
-            <p class="wrong-num">{w.n}</p>
-            <h3 class="wrong-head">&hellip;{w.head}</h3>
-            <p class="wrong-body">{w.body}</p>
-          </li>
-        ))
-      }
-    </ol>
-  </section>
-
-  <!-- ============================================================
-       6. Recent work — compact editorial index. No leader line, no
-       per-row borders. Hover tints the row, shifts text colour, and
-       reveals an accent egg sliding in from the right.
+       5. Recent work — compact editorial index
        ============================================================ -->
   {
     allProjects.length > 0 && (
@@ -280,6 +253,58 @@ const structuredData = [webSiteJsonLd()];
       </section>
     )
   }
+
+  <!-- ============================================================
+       6. Three questions — what working with us means. Judgment
+       layer, depth after the index so a considering visitor finds
+       it with enough attention to read.
+       ============================================================ -->
+  <section class="questions" aria-labelledby="questions-h">
+    <header class="questions-header">
+      <p class="eyebrow">What working with us means</p>
+      <h2 id="questions-h" class="section-statement">Three questions we answer on every project.</h2>
+      <p class="section-deck">
+        We don&rsquo;t sell a process. We sell the judgment that goes into the work — the
+        decisions that determine whether a product ages well or needs a rewrite in eighteen
+        months. Below, the three we come back to.
+      </p>
+    </header>
+
+    <ol class="qa-list" role="list">
+      {
+        services.map((s) => (
+          <li class="qa">
+            <p class="qa-num">{s.n}</p>
+            <h3 class="qa-q">{s.q}</h3>
+            <p class="qa-a">{s.a}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="questions-link-row">
+      <a href="/services" class="link-call">
+        <span class="link-label">How we actually deliver</span>
+        <span class="link-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </p>
+  </section>
+
+  <!-- ============================================================
+       7. Numbers — single compact row. Quiet close before footer.
+       ============================================================ -->
+  <section class="numbers" aria-label="Studio in numbers">
+    <dl class="numbers-row">
+      {
+        numbers.map((n) => (
+          <div class="numbers-item">
+            <dt class="numbers-label">{n.label}</dt>
+            <dd class="numbers-value">{n.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
 </BaseLayout>
 
 <style>
@@ -293,7 +318,7 @@ const structuredData = [webSiteJsonLd()];
   }
 
   /* ============================================================
-     Eyebrow — mono small label, no eggs. Slash separators.
+     Eyebrow
      ============================================================ */
 
   .eyebrow {
@@ -312,7 +337,7 @@ const structuredData = [webSiteJsonLd()];
   }
 
   /* ============================================================
-     Section statement + deck
+     Section statement
      ============================================================ */
 
   .section-statement {
@@ -335,8 +360,7 @@ const structuredData = [webSiteJsonLd()];
   }
 
   /* ============================================================
-     link-call — UI affordance. No underline. Arrow translates on hover
-     with a slow editorial ease. Color shifts to accent.
+     link-call
      ============================================================ */
 
   .link-call {
@@ -363,7 +387,7 @@ const structuredData = [webSiteJsonLd()];
   }
 
   /* ============================================================
-     1. Hero — Roman, no italics. The line is the line.
+     1. Hero
      ============================================================ */
 
   .hero {
@@ -392,12 +416,67 @@ const structuredData = [webSiteJsonLd()];
   }
 
   /* ============================================================
-     2. Featured project — image full-width, prose + structured meta below
+     2. Proof
      ============================================================ */
 
-  .featured {
-    /* On paper, no gray container. The image is the centerpiece. */
+  .proof {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding-block: clamp(3rem, 6vw, 5rem);
   }
+
+  .proof-list {
+    margin: 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .proof-row {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    gap: 2rem;
+    align-items: center;
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .proof-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    margin: 0;
+    line-height: var(--leading-relaxed);
+  }
+
+  .proof-values {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+  }
+
+  .proof-item {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink);
+    line-height: var(--leading-relaxed);
+  }
+
+  @media (max-width: 720px) {
+    .proof-row {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      align-items: start;
+    }
+  }
+
+  /* ============================================================
+     3. Featured project — eyebrow + statement + image +
+     (prose | meta) + voice + link, all one section.
+     ============================================================ */
 
   .featured-inner {
     max-width: var(--max-width-wide);
@@ -440,16 +519,20 @@ const structuredData = [webSiteJsonLd()];
 
   .featured-grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
     gap: 4rem;
     align-items: start;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .featured-prose {
+    max-width: 44ch;
   }
 
   .featured-prose p {
     font-size: var(--text-lg);
     line-height: var(--leading-normal);
     margin-block: 0 1.25em;
-    max-width: 42ch;
   }
 
   .featured-prose p:last-child {
@@ -461,6 +544,8 @@ const structuredData = [webSiteJsonLd()];
     color: var(--color-ink);
   }
 
+  /* Structured metadata column */
+
   .featured-meta {
     margin: 0;
     display: grid;
@@ -471,8 +556,8 @@ const structuredData = [webSiteJsonLd()];
   .featured-meta-row {
     display: grid;
     grid-template-columns: 7rem 1fr;
-    gap: 1.5rem;
-    padding-block: 0.95rem;
+    gap: 1rem;
+    padding-block: 0.9rem;
     border-bottom: 1px solid var(--color-rule);
     align-items: baseline;
   }
@@ -494,8 +579,69 @@ const structuredData = [webSiteJsonLd()];
     margin: 0;
   }
 
-  .featured-meta-link-row {
-    margin-top: 1.75rem;
+  /* Integrated voice. Aligned with prose width — reads as a coda
+     to the story, not a separate section. */
+
+  .featured-voice {
+    max-width: var(--max-width-prose);
+    margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .featured-voice-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    margin: 0 0 1.25rem;
+  }
+
+  .featured-voice-quote {
+    margin: 0;
+  }
+
+  /* Body-sans italic rather than Editorial display — keeps this a
+     quieter coda that doesn't compete with the manifesto moment
+     immediately after. */
+  .featured-voice-quote p {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-normal);
+    font-style: italic;
+    font-size: var(--text-xl);
+    line-height: var(--leading-normal);
+    letter-spacing: 0;
+    margin: 0 0 1.5rem;
+    color: var(--color-ink);
+    max-width: 52ch;
+  }
+
+  .featured-voice-quote footer {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+  }
+
+  .featured-voice-quote cite {
+    font-style: normal;
+    display: inline;
+  }
+
+  .featured-voice-quote strong {
+    color: var(--color-ink);
+    font-weight: var(--weight-normal);
+  }
+
+  .featured-voice-quote strong::after {
+    content: " / ";
+    color: var(--color-ink-faint);
+    font-weight: var(--weight-normal);
+    margin-inline: 0.1em;
+  }
+
+  .featured-link-row {
+    margin: 0;
   }
 
   @media (max-width: 880px) {
@@ -507,87 +653,14 @@ const structuredData = [webSiteJsonLd()];
     .featured-statement {
       font-size: var(--text-3xl);
     }
-  }
 
-  /* ============================================================
-     3. Services as questions. Roman heads.
-     ============================================================ */
-
-  .services {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-
-  .services-header {
-    margin-bottom: clamp(3rem, 6vw, 5rem);
-  }
-
-  .qa-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .qa {
-    display: grid;
-    grid-template-columns: 4rem 1fr;
-    grid-template-rows: auto auto;
-    column-gap: 2rem;
-    row-gap: 1rem;
-    padding-block: 3rem;
-    border-top: 1px solid var(--color-rule);
-  }
-
-  .qa:last-child {
-    border-bottom: 1px solid var(--color-rule);
-  }
-
-  .qa-num {
-    grid-row: 1 / 3;
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-accent);
-    margin: 0;
-    line-height: var(--leading-relaxed);
-  }
-
-  .qa-q {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--text-2xl);
-    line-height: var(--leading-snug);
-    letter-spacing: var(--tracking-tight);
-    margin: 0;
-    color: var(--color-ink);
-  }
-
-  .qa-a {
-    font-size: var(--text-lg);
-    line-height: var(--leading-normal);
-    color: var(--color-ink);
-    margin: 0;
-    max-width: 56ch;
-  }
-
-  .services-link-row {
-    margin-top: 3rem;
-  }
-
-  @media (max-width: 720px) {
-    .qa {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    .qa-num {
-      grid-row: auto;
+    .featured-voice-quote p {
+      font-size: var(--text-lg);
     }
   }
 
   /* ============================================================
-     4. Manifesto moment — the only italic display on the page.
+     4. Manifesto moment
      ============================================================ */
 
   .moment {
@@ -599,7 +672,7 @@ const structuredData = [webSiteJsonLd()];
 
   .moment-line {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 200; /* Ultralight italic — what this face was cut for at scale */
     font-style: italic;
     font-size: var(--text-display-2);
     line-height: var(--leading-tight);
@@ -634,85 +707,11 @@ const structuredData = [webSiteJsonLd()];
   }
 
   /* ============================================================
-     5. Wrong-for-you. Roman heads.
-     ============================================================ */
-
-  .wrong {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-
-  .wrong-header {
-    margin-bottom: clamp(3rem, 6vw, 5rem);
-  }
-
-  .wrong-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .wrong-row {
-    display: grid;
-    grid-template-columns: 4rem 1fr;
-    grid-template-rows: auto auto;
-    column-gap: 2rem;
-    row-gap: 0.85rem;
-    padding-block: 2.5rem;
-    border-top: 1px solid var(--color-rule);
-  }
-
-  .wrong-row:last-child {
-    border-bottom: 1px solid var(--color-rule);
-  }
-
-  .wrong-num {
-    grid-row: 1 / 3;
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-accent);
-    margin: 0;
-    line-height: var(--leading-relaxed);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .wrong-head {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--text-xl);
-    line-height: var(--leading-snug);
-    margin: 0;
-    color: var(--color-ink);
-  }
-
-  .wrong-body {
-    font-size: var(--text-base);
-    line-height: var(--leading-normal);
-    color: var(--color-ink-muted);
-    margin: 0;
-    max-width: 56ch;
-  }
-
-  @media (max-width: 720px) {
-    .wrong-row {
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-    }
-
-    .wrong-num {
-      grid-row: auto;
-    }
-  }
-
-  /* ============================================================
-     6. Recent work index — no leader, no per-row borders, hover
-     fills the row and reveals an accent egg from the right.
+     5. Recent work index
      ============================================================ */
 
   .index {
-    max-width: var(--max-width);
+    max-width: var(--max-width-wide);
     margin: 0 auto;
   }
 
@@ -724,21 +723,10 @@ const structuredData = [webSiteJsonLd()];
     list-style: none;
     margin: 0;
     padding: 0;
-    /* Single hairline at the top of the list. The rows themselves
-       float on rhythm, not on per-row rules. */
     border-top: 1px solid var(--color-rule);
-  }
-
-  .index-row + .index-row {
-    /* No per-row border. Spacing alone defines the rhythm. */
-  }
-
-  .index-list:last-child {
     border-bottom: 1px solid var(--color-rule);
   }
 
-  /* The link is the row. Grid: number / title / tagline / year / mark.
-     The mark column is reserved at all times so hover doesn't shift layout. */
   .index-link {
     display: grid;
     grid-template-columns: 3rem auto 1fr auto 1.5rem;
@@ -815,9 +803,6 @@ const structuredData = [webSiteJsonLd()];
     color: var(--color-accent);
   }
 
-  /* Accent arrow appears on hover. Slides in from -0.6em with fade and
-     resolves at 0. Slow editorial ease. When we have a custom arrow
-     mark, swap the glyph without touching the motion. */
   .index-mark {
     display: inline-flex;
     align-items: center;
@@ -851,6 +836,143 @@ const structuredData = [webSiteJsonLd()];
     .index-tagline,
     .index-mark {
       display: none;
+    }
+  }
+
+  /* ============================================================
+     6. Numbers
+     ============================================================ */
+
+  /* Numbers redesigned as a confident close rather than a data strip.
+     No horizontal rules, bigger Editorial Ultralight values, mono
+     labels above. Sits as a final breath before the footer. */
+  .numbers {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding-block: clamp(5rem, 9vw, 8rem);
+  }
+
+  .numbers-row {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .numbers-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .numbers-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    margin: 0;
+    line-height: var(--leading-relaxed);
+  }
+
+  .numbers-value {
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-size: var(--text-4xl);
+    line-height: 1;
+    letter-spacing: var(--tracking-tighter);
+    color: var(--color-ink);
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 720px) {
+    .numbers-row {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .numbers-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ============================================================
+     7. Three questions (close of page)
+     ============================================================ */
+
+  .questions {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+  }
+
+  .questions-header {
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .qa-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .qa {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 2rem;
+    row-gap: 1rem;
+    padding-block: 3rem;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .qa:last-child {
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .qa-num {
+    grid-row: 1 / 3;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+    margin: 0;
+    line-height: var(--leading-relaxed);
+  }
+
+  .qa-q {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    margin: 0;
+    color: var(--color-ink);
+  }
+
+  .qa-a {
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    color: var(--color-ink);
+    margin: 0;
+    max-width: 56ch;
+  }
+
+  .questions-link-row {
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 720px) {
+    .qa {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .qa-num {
+      grid-row: auto;
     }
   }
 </style>

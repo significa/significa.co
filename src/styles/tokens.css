@@ -221,6 +221,35 @@
 }
 
 /* ============================================================
+   Dark theme — system preference, no toggle.
+   Same warmth, same accent, inverted lightness. The paper becomes
+   a warm near-black, the ink becomes warm near-white.
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-paper: oklch(14% 0.005 70);
+    --color-paper-alt: oklch(18% 0.007 70);
+    --color-paper-deep: oklch(22% 0.008 70);
+
+    --color-ink: oklch(86% 0.005 70);
+    --color-ink-muted: oklch(65% 0 0);
+    --color-ink-faint: oklch(42% 0 0);
+
+    --color-rule: oklch(22% 0.005 70);
+    --color-rule-strong: oklch(35% 0 0);
+
+    /* Accent lifts slightly in dark mode for legibility */
+    --color-accent: oklch(65% 0.14 35);
+    --color-accent-deep: oklch(55% 0.15 35);
+
+    --color-ink-on-dark: oklch(92% 0.005 85);
+
+    color-scheme: dark;
+  }
+}
+
+/* ============================================================
    Type families
    ============================================================ */
 

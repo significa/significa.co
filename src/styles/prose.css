@@ -162,8 +162,7 @@
    edge-to-edge images feel like a different site. */
 
 .prose [data-layout="full"],
-.prose .metrics,
-.prose .cross-sell {
+.prose .metrics {
   width: min(var(--max-width-wide), calc(100vw - var(--gutter) * 2));
   margin-inline: calc(50% - min(var(--max-width-wide), calc(100vw - var(--gutter) * 2)) / 2);
 }
@@ -204,10 +203,9 @@
 }
 
 .prose .metrics {
-  padding: clamp(2rem, 4vw, 3rem);
-  background: var(--color-paper-alt);
-  border-radius: var(--radius-image);
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
   margin-block: 2.5rem;
+  text-align: center;
 }
 
 .prose .metrics > * {
@@ -216,13 +214,7 @@
 }
 
 .prose .cross-sell {
-  padding-inline: var(--gutter);
   margin-block: 2.5rem;
-}
-
-.prose .cross-sell > * {
-  max-width: var(--max-width);
-  margin-inline: auto;
 }
 
 @media (max-width: 768px) {

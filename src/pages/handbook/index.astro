@@ -59,7 +59,8 @@ const groups = await getHandbookIndex();
                         {children.map((child) => (
                           <li>
                             <a href={`/handbook/${child.id}`} class="child-link">
-                              {child.data.title}
+                              <span class="child-text">{child.data.title}</span>
+                              <span class="child-arrow" aria-hidden="true">&rarr;</span>
                             </a>
                           </li>
                         ))}
@@ -118,7 +119,6 @@ const groups = await getHandbookIndex();
   /* ── Nav ── */
 
   .nav {
-    max-width: 56rem;
   }
 
   /* ── Groups ── */
@@ -245,7 +245,10 @@ const groups = await getHandbookIndex();
   }
 
   .child-link {
-    display: block;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
     padding: 0.5rem 0.75rem;
     margin-inline: -0.75rem;
     border-radius: 4px;
@@ -259,6 +262,22 @@ const groups = await getHandbookIndex();
   .child-link:hover {
     background: var(--color-paper-alt);
     color: var(--color-accent);
+  }
+
+  .child-arrow {
+    color: var(--color-accent);
+    font-size: var(--text-sm);
+    opacity: 0;
+    transform: translateX(-0.4em);
+    transition:
+      opacity var(--duration-normal) var(--ease-editorial),
+      transform var(--duration-normal) var(--ease-editorial);
+    flex-shrink: 0;
+  }
+
+  .child-link:hover .child-arrow {
+    opacity: 1;
+    transform: translateX(0);
   }
 
   /* ── Responsive ── */

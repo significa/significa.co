@@ -401,6 +401,12 @@ const structuredData = [webSiteJsonLd()];
   .proof-logo-client {
   }
 
+  @media (prefers-color-scheme: dark) {
+    .proof-logo-client {
+      filter: invert(1);
+    }
+  }
+
   /* ============================================================
      3. Featured project — eyebrow + statement + image +
      (prose | meta) + voice + link, all one section.

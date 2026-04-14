@@ -424,7 +424,8 @@ if (project.data.tags?.length) metaItems.push({ label: "Services", value: projec
     padding-inline: var(--gutter);
   }
 
-  /* Awards list — rendered from MDX under a "## Awards" heading */
+  /* Awards list — rendered from MDX under a "## Awards" heading.
+     Inline badges, no hairlines. */
   .project-content-inner :global(h2 + ul),
   .project-content-inner :global(h2 + ul li) {
     list-style: none;
@@ -433,34 +434,23 @@ if (project.data.tags?.length) metaItems.push({ label: "Services", value: projec
   }
 
   .project-content-inner :global(h2 + ul) {
-    border-block-start: 1px solid var(--color-rule);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     margin-block-end: 1.5rem;
   }
 
   .project-content-inner :global(h2 + ul li) {
-    display: flex;
-    align-items: baseline;
-    gap: 0.75rem;
     font-size: var(--text-sm);
     font-weight: var(--weight-medium);
-    padding-block: 0.625rem;
-    border-block-end: 1px solid var(--color-rule);
+    padding: 0.4rem 1rem;
+    background: var(--color-paper-alt);
+    border-radius: 2rem;
     color: var(--color-ink);
-    margin: 0;
   }
 
   .project-content-inner :global(h2 + ul li strong) {
     font-weight: var(--weight-medium);
-    flex-shrink: 0;
-  }
-
-  .project-content-inner :global(h2 + ul li::after) {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: var(--color-rule);
-    align-self: center;
-    min-width: 1rem;
   }
 
   /* ============================================================

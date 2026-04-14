@@ -133,8 +133,7 @@ samp {
   font-family: var(--font-display);
   font-weight: 200;
   font-size: var(--text-display-1);
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tighter);
+  line-height: 1.15;
   color: var(--color-ink);
 }
 
@@ -160,7 +159,7 @@ samp {
 
 /* Large sans heading — section openers, overlap headings. */
 .type-heading-lg {
-  font-weight: var(--weight-normal);
+  font-weight: var(--weight-medium);
   font-size: var(--text-3xl);
   line-height: var(--leading-snug);
   letter-spacing: var(--tracking-tight);

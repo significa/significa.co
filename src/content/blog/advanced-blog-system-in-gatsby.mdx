@@ -151,29 +151,29 @@ Now open your `gatsby-node.js` or create it in the root folder if you don't have
 But first of all, we need to define how the blog post URL should be. I prefer to use a WordPress friendly way, like `/blog/YEAR/MONTH/DAY/TITLE-SLUG`:
 
 ```js
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
+  const { createNodeField } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
+    const value = createFilePath({ node, getNode });
     const [month, day, year] = new Date(node.frontmatter.date)
-      .toLocaleDateString('en-EN', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
+      .toLocaleDateString("en-EN", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
       })
-      .split('/')
-    const slug = value.replace('/blog/', '').replace(/\/$/, '')
-    const url = `/blog/${year}/${month}/${day}${slug}`
+      .split("/");
+    const slug = value.replace("/blog/", "").replace(/\/$/, "");
+    const url = `/blog/${year}/${month}/${day}${slug}`;
     createNodeField({
       name: `slug`,
       node,
       value: url,
-    })
+    });
   }
-}
+};
 ```
 
 Putting this code in `gatsby-node.js`, every markdown node will have a field called `slug` which has the path to the blog post.
@@ -181,14 +181,14 @@ Putting this code in `gatsby-node.js`, every markdown node will have a field cal
 From now on you can query the content and create all the pages of the blog posts, which you can do by using the following code in the same file:
 
 ```js
-const path = require(`path`)
+const path = require(`path`);
 
 // 1. This is called once the data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = ({ graphql, actions }) => {
   // 1.1 Getting the method to create pages
-  const { createPage } = actions
+  const { createPage } = actions;
   // 1.2 Tell which layout Gatsby should use for these pages
-  const blogLayout = path.resolve(`./src/layouts/blog-post.js`)
+  const blogLayout = path.resolve(`./src/layouts/blog-post.js`);
 
   // 2. Return the method with the query
   return graphql(`
@@ -212,15 +212,15 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
     }
-  `).then(result => {
+  `).then((result) => {
     // 2.1 Handle the errors
     if (result.errors) {
-      console.error(result.errors)
-      reject(result.errors)
+      console.error(result.errors);
+      reject(result.errors);
     }
 
     // 2.2 Our posts are here
-    const posts = result.data.allMarkdownRemark.edges
+    const posts = result.data.allMarkdownRemark.edges;
 
     // 3. Loop through all posts
     posts.forEach((post, index) => {
@@ -231,10 +231,10 @@ exports.createPages = ({ graphql, actions }) => {
         context: {
           slug: post.node.fields.slug,
         },
-      })
-    })
-  })
-}
+      });
+    });
+  });
+};
 ```
 
 Run Gatsby and you can see that you've just created the pages programmatically only using `.md` files.
@@ -248,12 +248,12 @@ To do that, you need to use the `pageContext` (which are some variables from Gat
 The simplest way to load the blog post would be something like:
 
 ```jsx
-import React from "react"
-import { graphql } from "gatsby"
+import React from "react";
+import { graphql } from "gatsby";
 
 const BlogPost = ({ data }) => {
-  const { markdownRemark } = data
-  const imageSource = markdownRemark.frontmatter.image.childImageSharp.fluid.src
+  const { markdownRemark } = data;
+  const imageSource = markdownRemark.frontmatter.image.childImageSharp.fluid.src;
 
   return (
     <>
@@ -265,10 +265,10 @@ const BlogPost = ({ data }) => {
       <p>Tags: {markdownRemark.frontmatter.tags.join()}</p>
       <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
     </>
-  )
-}
+  );
+};
 
-export default BlogPost
+export default BlogPost;
 
 export const query = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -289,7 +289,7 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 ```
 
 So easy!
@@ -305,17 +305,17 @@ For me, infinite scroll (which I hated) or "Show more X posts" doesn't make much
 So instead of creating a file in the pages folder (the regular way), let's create another layout in the `/layouts` folder and set it in `gatsby-node.js`, above the blog post layout:
 
 ```js
-const blogListLayout = path.resolve(`./src/layouts/blog-list.js`)
+const blogListLayout = path.resolve(`./src/layouts/blog-list.js`);
 ```
 
 Then you have to decide how many posts you would like to show on each page. In my case, I think that 9 posts are of great value. Next, let's get the amount of blog posts and remove the featured post from this count, because probably you don't want to show this post twice — once in the hero and again in the list:
 
 ```js
-const postsPerPage = 9
+const postsPerPage = 9;
 const postsWithoutFeatured = posts.filter(({ node }) => {
-  return !node.frontmatter.featured
-})
-const numPages = Math.ceil(postsWithoutFeatured.length / postsPerPage)
+  return !node.frontmatter.featured;
+});
+const numPages = Math.ceil(postsWithoutFeatured.length / postsPerPage);
 ```
 
 Now, once the magic happens, you need to create an array with the same length as the number of pages, then pass through them as you create the pages:
@@ -331,8 +331,8 @@ Array.from({ length: numPages }).forEach((_, i) => {
       currentPage: i + 1,
       numPages,
     },
-  })
-})
+  });
+});
 ```
 
 ## The view part
@@ -342,16 +342,16 @@ Did you notice the keys `limit` and `skip` in the context in the last step? That
 Next, you will use this information to create the pagination component, with next and previous page, current page and navigation, via the `pageContext` prop:
 
 ```jsx
-import React from 'react'
-import { graphql, Link } from 'gatsby'
+import React from "react";
+import { graphql, Link } from "gatsby";
 
 const BlogPostList = ({ data, pageContext }) => {
-  const { allMarkdownRemark } = data
+  const { allMarkdownRemark } = data;
 
   return (
     <>
       {allMarkdownRemark.edges.map(({ node }) => {
-        const imageSource = node.frontmatter.image.childImageSharp.fluid.src
+        const imageSource = node.frontmatter.image.childImageSharp.fluid.src;
 
         return (
           <>
@@ -363,30 +363,22 @@ const BlogPostList = ({ data, pageContext }) => {
             <p>By {node.frontmatter.author}</p>
             <p>In: {node.frontmatter.category.join()}</p>
           </>
-        )
+        );
       })}
 
       <ul>
         {Array.from({ length: pageContext.numPages }).map((item, i) => {
-          const index = i + 1
-          const link = index === 1 ? '/blog' : `/blog/page/${index}`
+          const index = i + 1;
+          const link = index === 1 ? "/blog" : `/blog/page/${index}`;
 
-          return (
-            <li>
-              {pageContext.currentPage === index ? (
-                <span>{index}</span>
-              ) : (
-                <a href={link}>{index}</a>
-              )}
-            </li>
-          )
+          return <li>{pageContext.currentPage === index ? <span>{index}</span> : <a href={link}>{index}</a>}</li>;
         })}
       </ul>
     </>
-  )
-}
+  );
+};
 
-export default BlogPostList
+export default BlogPostList;
 
 export const query = graphql`
   query blogPostsList($skip: Int!, $limit: Int!) {
@@ -418,7 +410,7 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 ```
 
 ## Getting the categories
@@ -428,16 +420,16 @@ Once you build the main page with the pagination component done, it's quite easy
 The first step is to create a new layout as you've already made with the blog list and blog post:
 
 ```js
-const blogCategoryLayout = path.resolve(`./src/layouts/blog-category.js`)
+const blogCategoryLayout = path.resolve(`./src/layouts/blog-category.js`);
 ```
 
 Then, get all categories and save them in a new array:
 
 ```js
-const categories = []
+const categories = [];
 
 posts.forEach((post, index) => {
-  post.node.frontmatter.category.forEach(cat => categories.push(cat))
+  post.node.frontmatter.category.forEach((cat) => categories.push(cat));
 
   createPage({
     path: post.node.fields.slug,
@@ -445,28 +437,28 @@ posts.forEach((post, index) => {
     context: {
       slug: post.node.fields.slug,
     },
-  })
-})
+  });
+});
 ```
 
 After that, you need to know how many posts there are in each category (remember that the category field in the markdown file is an array):
 
 ```js
 const countCategories = categories.reduce((prev, curr) => {
-  prev[curr] = (prev[curr] || 0) + 1
-  return prev
-}, {})
+  prev[curr] = (prev[curr] || 0) + 1;
+  return prev;
+}, {});
 ```
 
 Now you have enough data to create the pages, by category and paginated:
 
 ```js
-const kebabCase = require(`lodash.kebabcase`)
+const kebabCase = require(`lodash.kebabcase`);
 
-const allCategories = Object.keys(countCategories)
+const allCategories = Object.keys(countCategories);
 
 allCategories.forEach((cat, i) => {
-  const link = `/blog/category/${kebabCase(cat)}`
+  const link = `/blog/category/${kebabCase(cat)}`;
 
   Array.from({
     length: Math.ceil(countCategories[cat] / postsPerPage),
@@ -482,31 +474,31 @@ allCategories.forEach((cat, i) => {
         currentPage: i + 1,
         numPages: Math.ceil(countCategories[cat] / postsPerPage),
       },
-    })
-  })
-})
+    });
+  });
+});
 ```
 
 Once again, the page context is very important to you, because it will tell GraphQL which category to query and show in the view. Please note that you're passing the `category` field in the context above. Now your view will look much similar to `/blog-list.js`, but with an important difference — you will filter the posts by category, which comes from the context:
 
 ```jsx
-import React from 'react'
-import kebabCase from 'lodash.kebabcase'
-import { graphql, Link } from 'gatsby'
+import React from "react";
+import kebabCase from "lodash.kebabcase";
+import { graphql, Link } from "gatsby";
 
 const BlogCategory = ({ data, pageContext }) => {
-  const { allMarkdownRemark } = data
+  const { allMarkdownRemark } = data;
 
   return (
     <>
       <h1>Categories:</h1>
-      {pageContext.allCategories.map(cat => (
+      {pageContext.allCategories.map((cat) => (
         <Link to={`/blog/category/${kebabCase(cat)}`}>{cat}</Link>
       ))}
       <br />
 
       {allMarkdownRemark.edges.map(({ node }) => {
-        const imageSource = node.frontmatter.image.childImageSharp.fluid.src
+        const imageSource = node.frontmatter.image.childImageSharp.fluid.src;
 
         return (
           <>
@@ -517,40 +509,29 @@ const BlogCategory = ({ data, pageContext }) => {
             <p>{node.frontmatter.date}</p>
             <p>By {node.frontmatter.author}</p>
             <p>
-              In:{' '}
-              {node.frontmatter.category.map(cat => (
+              In:{" "}
+              {node.frontmatter.category.map((cat) => (
                 <Link to={`/blog/category/${kebabCase(cat)}`}>{cat}</Link>
               ))}
             </p>
           </>
-        )
+        );
       })}
 
       <ul>
         {Array.from({ length: pageContext.numPages }).map((item, i) => {
-          const index = i + 1
-          const category = kebabCase(pageContext.category)
-          const link =
-            index === 1
-              ? `/blog/category/${category}`
-              : `/blog/category/${category}/page/${index}`
+          const index = i + 1;
+          const category = kebabCase(pageContext.category);
+          const link = index === 1 ? `/blog/category/${category}` : `/blog/category/${category}/page/${index}`;
 
-          return (
-            <li>
-              {pageContext.currentPage === index ? (
-                <span>{index}</span>
-              ) : (
-                <a href={link}>{index}</a>
-              )}
-            </li>
-          )
+          return <li>{pageContext.currentPage === index ? <span>{index}</span> : <a href={link}>{index}</a>}</li>;
         })}
       </ul>
     </>
-  )
-}
+  );
+};
 
-export default BlogCategory
+export default BlogCategory;
 
 export const query = graphql`
   query blogPostsListByCategory($category: String, $skip: Int!, $limit: Int!) {
@@ -582,7 +563,7 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 ```
 
 Note that only two things were updated:
@@ -604,10 +585,10 @@ As you can imagine, to solve this issue, you need to pass a new context when you
 
 ```js
 posts.forEach((post, index, arr) => {
-  post.node.frontmatter.category.forEach(cat => categories.push(cat))
+  post.node.frontmatter.category.forEach((cat) => categories.push(cat));
 
-  const prev = arr[index - 1]
-  const next = arr[index + 1]
+  const prev = arr[index - 1];
+  const next = arr[index + 1];
 
   createPage({
     path: post.node.fields.slug,
@@ -617,33 +598,33 @@ posts.forEach((post, index, arr) => {
       prev: prev,
       next: next,
     },
-  })
-})
+  });
+});
 ```
 
 And the view could be:
 
 ```jsx
 const BlogPost = ({ data, pageContext }) => {
-  const { markdownRemark } = data
-  const { prev, next } = pageContext
+  const { markdownRemark } = data;
+  const { prev, next } = pageContext;
 
   return (
     <>
       ...
       {prev && (
         <Link to={prev.node.fields.slug}>
-          {'<'} {prev.node.frontmatter.title}
+          {"<"} {prev.node.frontmatter.title}
         </Link>
       )}
       {next && (
         <Link to={next.node.fields.slug}>
-          {next.node.frontmatter.title} {'>'}
+          {next.node.frontmatter.title} {">"}
         </Link>
       )}
     </>
-  )
-}
+  );
+};
 ```
 
 Really easy, with no tricks!

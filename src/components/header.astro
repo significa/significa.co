@@ -12,7 +12,7 @@ import Egg from "@/components/ui/egg.astro";
 
 const navItems = [
   { label: "Work", href: "/projects" },
-  { label: "Studio", href: "/about" },
+  { label: "About", href: "/about" },
   { label: "Journal", href: "/blog" },
   { label: "Hello", href: "/say-hello" },
 ];
@@ -45,13 +45,7 @@ function isActive(href: string): boolean {
       </ul>
     </nav>
 
-    <button
-      class="header-menu-toggle"
-      type="button"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-      aria-label="Open menu"
-    >
+    <button class="header-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
       <span class="header-menu-bar" aria-hidden="true"></span>
       <span class="header-menu-bar" aria-hidden="true"></span>
     </button>

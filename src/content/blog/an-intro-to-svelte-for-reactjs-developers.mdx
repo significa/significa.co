@@ -49,9 +49,8 @@ Now, the HTML might look like regular HTML, but it's not. There are specific fea
 
 ```jsx
 // React
-{ isDarkMode
-    ? <h1>Dark Mode Zone</h1>
-    : <h1>Light Mode Zone</h1>
+{
+  isDarkMode ? <h1>Dark Mode Zone</h1> : <h1>Light Mode Zone</h1>;
 }
 ```
 
@@ -123,7 +122,7 @@ Writable stores create objects with values that can be set from components subsc
 
 ```js
 // store.js
-import { writable } from 'svelte/store';
+import { writable } from "svelte/store";
 
 let counter = writable(1);
 
@@ -157,15 +156,15 @@ Like writable stores, readable stores also hold objects. While they cannot be up
 
 ```js
 // store.js
-import { readable } from 'svelte/store'
+import { readable } from "svelte/store";
 
 let startingSeconds = 0;
 
-export const seconds = readable(startingSeconds, set => {
+export const seconds = readable(startingSeconds, (set) => {
   setInterval(() => {
-    set(startingSeconds++)
-  }, 1000)
-})
+    set(startingSeconds++);
+  }, 1000);
+});
 ```
 
 ```svelte

@@ -1,477 +1,175 @@
 ---
-import BaseLayout from "@/layouts/base.astro";
-import { getClients, getTestimonials } from "@/lib/collections";
+/**
+ * /say-hello — Contact
+ *
+ * Functional, direct. No manifesto moment. The page exists to
+ * convert a considering visitor into a conversation.
+ *
+ *   1. Direct statement — start with an email.
+ *   2. Contact strip — proof-strip pattern for details.
+ *   3. What happens next — 3 steps, not 5.
+ *   4. Client voice + proof strip.
+ */
 
-const clients = await getClients();
-const testimonials = await getTestimonials();
+import BaseLayout from "@/layouts/base.astro";
+
+const steps = [
+  {
+    n: "01",
+    q: "Conversation",
+    a: "No pitch deck. No sales call. A conversation about the problem, the timeline, and whether we're the right fit. If we're not, we'll say so.",
+  },
+  {
+    n: "02",
+    q: "Proposal",
+    a: "A clear scope with a price and a timeline. No hidden phases. No 'discovery as a prerequisite'. If we need discovery, the proposal says why.",
+  },
+  {
+    n: "03",
+    q: "One team",
+    a: "A small, dedicated team: designers and engineers working together from day one. Weekly check-ins. Direct access to the people making the decisions.",
+  },
+];
 ---
 
 <BaseLayout
-  title="Work with us"
-  description="Let's build something meaningful together. Get in touch to start a conversation about your next digital product."
+  title="Hello — Significa"
+  description="Tell us what you're building and why it matters. We'll reply within two working days with an honest answer about whether we're the right team."
 >
-  <!-- Intro -->
-  <section class="intro">
-    <div class="intro-inner">
-      <h1>
-        <span class="intro-muted">We partner with companies that care about craft.</span>
-        {" "}
-        Let's build something meaningful together.
-      </h1>
-    </div>
+  <!-- ============================================================
+       1. Direct statement
+       ============================================================ -->
+  <section class="hero" aria-labelledby="hero-h">
+    <p class="eyebrow">Hello</p>
+    <h1 id="hero-h" class="hero-statement">Start with an email.</h1>
+    <p class="hero-deck">
+      Tell us what you're building and why it matters. We'll read it, think about it, and reply within two working days with an
+      honest answer about whether we're the right team.
+    </p>
   </section>
 
-  <!-- Contact -->
-  <section class="contact">
-    <div class="contact-inner">
-      <div class="contact-card">
-        <h2>Get in touch</h2>
-        <p>Drop us a line and tell us about your project. We'll get back to you within two business days.</p>
-        <a href="mailto:hello@significa.co" class="contact-email"> hello@significa.co </a>
+  <!-- ============================================================
+       2. Contact strip
+       ============================================================ -->
+  <section class="contact" aria-label="Contact details">
+    <dl class="proof-list">
+      <div class="proof-row">
+        <dt class="proof-label">Email</dt>
+        <dd class="proof-values">
+          <a href="mailto:hello@significa.co" class="contact-link">hello@significa.co</a>
+        </dd>
       </div>
-      <div class="contact-details">
-        <div class="contact-detail">
-          <h3>Based in</h3>
-          <p>Porto, Portugal</p>
-        </div>
-        <div class="contact-detail">
-          <h3>Working hours</h3>
-          <p>Mon–Fri, 9am–6pm WET</p>
-        </div>
-        <div class="contact-detail">
-          <h3>Working with</h3>
-          <p>Teams worldwide, remotely and on-site</p>
-        </div>
+      <div class="proof-row">
+        <dt class="proof-label">Studio</dt>
+        <dd class="proof-values">
+          <span class="proof-item">Rua Morgado Mateus 45, Porto</span>
+        </dd>
       </div>
-    </div>
-  </section>
-
-  <!-- Process -->
-  <section class="process">
-    <div class="process-inner">
-      <h2 class="section-heading">How we work together</h2>
-      <ol class="process-steps">
-        <li class="process-step">
-          <span class="step-number">01</span>
-          <h3>Conversation</h3>
-          <p>
-            We start by listening. Tell us about your business, your users, and what you're trying to achieve. No commitments,
-            no pitches. Just an honest conversation about whether we're the right fit.
-          </p>
-        </li>
-        <li class="process-step">
-          <span class="step-number">02</span>
-          <h3>Proposal</h3>
-          <p>
-            If there's a fit, we scope the work together. You get a clear proposal with timeline, deliverables, and pricing. No
-            surprises, no hidden costs.
-          </p>
-        </li>
-        <li class="process-step">
-          <span class="step-number">03</span>
-          <h3>Kick-off</h3>
-          <p>
-            A small, dedicated team gets assigned to your project. We set up communication channels, align on goals, and hit the
-            ground running.
-          </p>
-        </li>
-        <li class="process-step">
-          <span class="step-number">04</span>
-          <h3>Build</h3>
-          <p>
-            Design and engineering work in tight loops. You see progress weekly, give feedback early, and stay involved
-            throughout. No big reveals. Just steady, visible progress.
-          </p>
-        </li>
-        <li class="process-step">
-          <span class="step-number">05</span>
-          <h3>Launch & iterate</h3>
-          <p>
-            We ship, measure, and improve. The work doesn't end at launch. We stick around to make sure what we built actually
-            works in the real world.
-          </p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- What we look for -->
-  <section class="criteria">
-    <div class="criteria-inner">
-      <div class="criteria-text">
-        <h2>Projects we're a good fit for</h2>
-        <p>
-          We're selective about the work we take on. Not because we're precious about it, but because focus produces better
-          outcomes for everyone.
-        </p>
+      <div class="proof-row">
+        <dt class="proof-label">Hours</dt>
+        <dd class="proof-values">
+          <span class="proof-item">Mon-Fri, 9am-6pm WET</span>
+        </dd>
       </div>
-      <ul class="criteria-list">
-        <li>
-          <strong>Digital products</strong>: apps, platforms, and tools that solve real problems for real users.
-        </li>
-        <li>
-          <strong>E-commerce</strong>: online stores and platforms where design directly impacts revenue.
-        </li>
-        <li>
-          <strong>Design systems</strong>: scalable component libraries and design foundations that grow with your team.
-        </li>
-        <li>
-          <strong>Websites</strong>: marketing sites, corporate sites, and web experiences where craft matters.
-        </li>
-      </ul>
-    </div>
+    </dl>
   </section>
 
-  <!-- Testimonials -->
-  {
-    testimonials.length > 0 && (
-      <section class="testimonials">
-        <div class="testimonials-inner">
-          <h2 class="section-heading">What our clients say</h2>
-          <div class="testimonials-grid">
-            {testimonials.map((t) => (
-              <blockquote class="testimonial-card">
-                <p class="testimonial-quote">{t.data.quote}</p>
-                <footer class="testimonial-author">
-                  <cite>
-                    <strong>{t.data.author}</strong>
-                    <span>
-                      {t.data.role} at {t.data.company}
-                    </span>
-                  </cite>
-                </footer>
-              </blockquote>
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
+  <!-- ============================================================
+       3. What happens next
+       ============================================================ -->
+  <section class="next" aria-labelledby="next-h">
+    <header class="next-header">
+      <p class="eyebrow">What happens next</p>
+      <h2 id="next-h" class="section-statement">From email to one team.</h2>
+    </header>
 
-  <!-- Clients -->
-  {
-    clients.length > 0 && (
-      <section class="clients">
-        <div class="clients-inner">
-          <h2 class="section-heading">Companies we've worked with</h2>
-          <ul>
-            {clients.map((client) => (
-              <li>
-                {client.data.url ? (
-                  <a href={client.data.url} target="_blank" rel="noopener noreferrer" title={client.data.name}>
-                    <span class="client-name">{client.data.name}</span>
-                  </a>
-                ) : (
-                  <span class="client-name">{client.data.name}</span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    )
-  }
+    <ol class="qa-list" role="list">
+      {
+        steps.map((s) => (
+          <li class="qa">
+            <p class="qa-num">{s.n}</p>
+            <h3 class="qa-q">{s.q}</h3>
+            <p class="qa-a">{s.a}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
 </BaseLayout>
 
 <style>
-  /* --------------------------------------------------------
-       Intro
-       -------------------------------------------------------- */
-  .intro {
-    padding: 8rem var(--gutter) 4rem;
+  /* ============================================================
+     Page rhythm
+     ============================================================ */
+
+  section {
+    padding-inline: var(--gutter);
+    padding-block: clamp(5rem, 10vw, 10rem);
   }
 
-  .intro-inner {
-    max-width: var(--max-width-narrow);
+  /* ============================================================
+     1. Hero
+     ============================================================ */
+
+  .hero {
+    max-width: var(--max-width-wide);
     margin: 0 auto;
+    padding-block: clamp(4rem, 8vw, 7rem);
   }
 
-  .intro h1 {
-    font-size: var(--text-3xl);
-    font-weight: var(--weight-normal);
+  .hero-statement {
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-size: var(--text-4xl);
     line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tighter);
+    margin: 0;
+    max-width: 22ch;
+    color: var(--color-ink);
   }
 
-  .intro-muted {
-    color: var(--color-text-muted);
-  }
-
-  /* --------------------------------------------------------
-       Contact
-       -------------------------------------------------------- */
-  .contact {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .contact-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-
-  .contact-card {
-    background: var(--color-surface-alt);
-    padding: 2rem;
-    border-radius: 0.5rem;
-  }
-
-  .contact-card h2 {
+  .hero-deck {
+    margin-top: 2.5rem;
     font-size: var(--text-xl);
-    font-weight: var(--weight-bold);
-    margin-bottom: 1rem;
-  }
-
-  .contact-card p {
-    font-size: var(--text-base);
-    color: var(--color-text-muted);
     line-height: var(--leading-normal);
-    margin-bottom: 1.5rem;
+    color: var(--color-ink-muted);
+    max-width: var(--max-width-prose);
   }
 
-  .contact-email {
-    display: inline-block;
-    font-size: var(--text-lg);
-    font-weight: var(--weight-medium);
-    color: var(--color-text);
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
-    text-decoration-thickness: 1px;
-  }
+  /* ============================================================
+     2. Contact strip
+     ============================================================ */
 
-  .contact-email:hover {
-    color: var(--color-text);
-    text-decoration-thickness: 2px;
-  }
-
-  .contact-details {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .contact-detail {
-    background: var(--color-surface-alt);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    flex: 1;
-  }
-
-  .contact-detail h3 {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-normal);
-    color: var(--color-text-muted);
-    margin-bottom: 0.25rem;
-  }
-
-  .contact-detail p {
-    font-size: var(--text-base);
-    font-weight: var(--weight-medium);
-  }
-
-  @media (max-width: 768px) {
-    .contact-inner {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* --------------------------------------------------------
-       Process
-       -------------------------------------------------------- */
-  .process {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .process-inner {
-    max-width: var(--max-width);
+  .contact {
+    max-width: var(--max-width-wide);
     margin: 0 auto;
+    padding-block: clamp(3rem, 6vw, 5rem);
   }
 
-  .section-heading {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-medium);
-    color: var(--color-text-muted);
+  .contact-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 2rem;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink);
+    line-height: var(--leading-relaxed);
+    transition: color var(--duration-fast) var(--ease-out);
   }
 
-  .process-steps {
-    list-style: none;
-    display: grid;
-    gap: 1rem;
+  .contact-link:hover {
+    color: var(--color-accent);
   }
 
-  .process-step {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto;
-    column-gap: 1.5rem;
-    row-gap: 0.5rem;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--color-border);
-  }
+  /* ============================================================
+     3. What happens next
+     ============================================================ */
 
-  .step-number {
-    grid-row: 1 / -1;
-    font-size: var(--text-sm);
-    font-weight: var(--weight-medium);
-    color: var(--color-text-muted);
-    padding-top: 0.25rem;
-  }
-
-  .process-step h3 {
-    font-size: var(--text-lg);
-    font-weight: var(--weight-semibold);
-  }
-
-  .process-step p {
-    font-size: var(--text-base);
-    color: var(--color-text-muted);
-    line-height: var(--leading-normal);
-    max-width: 50ch;
-  }
-
-  /* --------------------------------------------------------
-       Criteria
-       -------------------------------------------------------- */
-  .criteria {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .criteria-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    max-width: var(--max-width);
+  .next {
+    max-width: var(--max-width-wide);
     margin: 0 auto;
   }
 
-  .criteria-text h2 {
-    font-size: var(--text-2xl);
-    font-weight: var(--weight-bold);
-    line-height: var(--leading-tight);
-    margin-bottom: 1rem;
-  }
-
-  .criteria-text p {
-    font-size: var(--text-base);
-    color: var(--color-text-muted);
-    line-height: var(--leading-normal);
-  }
-
-  .criteria-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .criteria-list li {
-    font-size: var(--text-base);
-    line-height: var(--leading-normal);
-    color: var(--color-text-muted);
-  }
-
-  .criteria-list strong {
-    color: var(--color-text);
-    font-weight: var(--weight-medium);
-  }
-
-  @media (max-width: 768px) {
-    .criteria-inner {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-  }
-
-  /* --------------------------------------------------------
-       Testimonials
-       -------------------------------------------------------- */
-  .testimonials {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .testimonials-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    gap: 1rem;
-  }
-
-  .testimonial-card {
-    background: var(--color-surface-alt);
-    padding: 2rem;
-    border-radius: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .testimonial-quote {
-    font-size: var(--text-lg);
-    line-height: var(--leading-normal);
-    margin-bottom: 2rem;
-  }
-
-  .testimonial-author cite {
-    font-style: normal;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .testimonial-author strong {
-    font-size: var(--text-base);
-    font-weight: var(--weight-medium);
-  }
-
-  .testimonial-author span {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-  }
-
-  /* --------------------------------------------------------
-       Clients
-       -------------------------------------------------------- */
-  .clients {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .clients-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-
-  .clients ul {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .clients li a {
-    color: var(--color-text);
-    text-decoration: none;
-    opacity: 0.7;
-    transition: opacity var(--duration-fast) var(--ease-out);
-  }
-
-  .clients li a:hover {
-    opacity: 1;
-    color: var(--color-text);
-  }
-
-  .client-name {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-semibold);
-    white-space: nowrap;
+  .next-header {
+    margin-bottom: clamp(3rem, 6vw, 5rem);
   }
 </style>

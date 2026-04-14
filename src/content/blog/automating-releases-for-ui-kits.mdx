@@ -47,7 +47,12 @@ Then create a `.czrc` on your root folder (`~`) with the following content:
 
 Now, every time you're in a git repository if you use the command `git cz` the CLI will show up, asking you to catalogue your commit according to the type of changes you made.
 
-<MediaBlock src="/blog/automating-releases-for-ui-kits/commitizen-cli-placeholder.jpg" alt="Commitizen CLI prompt showing commit type selection" width={1200} height={630} caption="The commitizen CLI guides you through structuring your commit message."
+<MediaBlock
+  src="/blog/automating-releases-for-ui-kits/commitizen-cli-placeholder.jpg"
+  alt="Commitizen CLI prompt showing commit type selection"
+  width={1200}
+  height={630}
+  caption="The commitizen CLI guides you through structuring your commit message."
   layout="full"
 />
 
@@ -82,7 +87,12 @@ module.exports = { extends: ["@commitlint/config-conventional"] };
 
 This will result in a verification triggering the `husky > commit-msg` validation, which might either pass or return a message with the problem at fault. Bear in mind that if you use flags such as `--no-verify` this validation won't occur.
 
-<MediaBlock src="/blog/automating-releases-for-ui-kits/commitlint-validation-placeholder.jpg" alt="Commitlint validation output in the terminal" width={1200} height={630} caption="Commitlint catches invalid commit messages before they go through."
+<MediaBlock
+  src="/blog/automating-releases-for-ui-kits/commitlint-validation-placeholder.jpg"
+  alt="Commitlint validation output in the terminal"
+  width={1200}
+  height={630}
+  caption="Commitlint catches invalid commit messages before they go through."
   layout="full"
 />
 
@@ -123,15 +133,19 @@ Now we'll create our recipe for releases. These will vary depending on the proje
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
-    ["@semantic-release/github", {
-      "assets": [
-        {"path": "dist/bundle.js", "label": "JS distribution"}
-      ]
-    }],
-    ["@semantic-release/git", {
-      "assets": ["dist/**/*.{js,css}"],
-      "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-    }]
+    [
+      "@semantic-release/github",
+      {
+        "assets": [{ "path": "dist/bundle.js", "label": "JS distribution" }]
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": ["dist/**/*.{js,css}"],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ]
   ]
 }
 ```
@@ -140,13 +154,23 @@ Now we'll create our recipe for releases. These will vary depending on the proje
 
 **`/COMMIT-ANALYZER`**: This is what powers all of the release, and this is why our commits must be formatted exactly as specified by the chosen convention. This will ensure that certain `types` will be associated with a `patch`, `minor` or `major` release. This will be visible in your terminal or the virtual environment you're running.
 
-<MediaBlock src="/blog/automating-releases-for-ui-kits/commit-analyzer-placeholder.jpg" alt="Commit analyzer output showing release type determination" width={1200} height={630} caption="The commit analyzer determines whether a release is a patch, minor, or major bump."
+<MediaBlock
+  src="/blog/automating-releases-for-ui-kits/commit-analyzer-placeholder.jpg"
+  alt="Commit analyzer output showing release type determination"
+  width={1200}
+  height={630}
+  caption="The commit analyzer determines whether a release is a patch, minor, or major bump."
   layout="full"
 />
 
 **`/RELEASE-NOTES-GENERATOR`**: What generates your changelog based on the conventional commit standard defined above, resulting in a release log grouped by type of change.
 
-<MediaBlock src="/blog/automating-releases-for-ui-kits/release-notes-placeholder.jpg" alt="Generated release notes changelog example" width={1200} height={630} caption="Auto-generated release notes based on your commit history."
+<MediaBlock
+  src="/blog/automating-releases-for-ui-kits/release-notes-placeholder.jpg"
+  alt="Generated release notes changelog example"
+  width={1200}
+  height={630}
+  caption="Auto-generated release notes based on your commit history."
   layout="full"
 />
 
@@ -158,6 +182,11 @@ Like most automation scripts the configuration is cumbersome, but the time and s
 
 All the examples here were quickly built for the purpose of this article and should be adapted to your project's reality, so feel free to adapt your build scripts and the message conventions to the format that'll best suit your needs.
 
-<MediaBlock src="/blog/automating-releases-for-ui-kits/conclusion-placeholder.jpg" alt="Overview of the full automated release pipeline" width={1200} height={630} caption="The full pipeline: conventional commits → commitlint → semantic-release → changelog."
+<MediaBlock
+  src="/blog/automating-releases-for-ui-kits/conclusion-placeholder.jpg"
+  alt="Overview of the full automated release pipeline"
+  width={1200}
+  height={630}
+  caption="The full pipeline: conventional commits → commitlint → semantic-release → changelog."
   layout="full"
 />

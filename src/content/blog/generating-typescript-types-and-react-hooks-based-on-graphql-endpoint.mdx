@@ -64,13 +64,13 @@ hooks:
 generates:
   # Get schemas from server
   src/queries/autogenerate/schemas.tsx:
-    documents: 'src/queries/**/**.gql'
+    documents: "src/queries/**/**.gql"
     plugins:
       - typescript
 
   # Create operations based on queries
   src/queries/autogenerate/operations.tsx:
-    documents: 'src/queries/**/**.gql'
+    documents: "src/queries/**/**.gql"
     preset: import-types
     presetConfig:
       typesPath: ./schemas
@@ -80,7 +80,7 @@ generates:
   # 1. Export GraphQL documents
   # 2. React interface
   src/queries/autogenerate/hooks.tsx:
-    documents: 'src/queries/**/**.gql'
+    documents: "src/queries/**/**.gql"
     preset: import-types
     presetConfig:
       typesPath: ./operations
@@ -102,7 +102,12 @@ Also, let's add the scripts to generate the schemas and watch the files change i
 }
 ```
 
-<MediaBlock src="/blog/generating-typescript-types-and-react-hooks-based-on-graphql-endpoint/editor-autocomplete-placeholder.jpg" alt="Editor autocomplete with generated TypeScript types" width={1200} height={630} caption="Generated types give your editor meaningful autocomplete and error checking."
+<MediaBlock
+  src="/blog/generating-typescript-types-and-react-hooks-based-on-graphql-endpoint/editor-autocomplete-placeholder.jpg"
+  alt="Editor autocomplete with generated TypeScript types"
+  width={1200}
+  height={630}
+  caption="Generated types give your editor meaningful autocomplete and error checking."
   layout="full"
 />
 

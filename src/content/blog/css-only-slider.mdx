@@ -40,7 +40,7 @@ Before starting with the actual tutorial, let me tell you a bit about radio butt
 First of all, this is how an input type radio basic markup looks like:
 
 ```html
-<input type="radio">
+<input type="radio" />
 ```
 
 A very important feature about radio buttons that we'll be leveraging during this tutorial is the fact that only one can be checked at the time.
@@ -48,13 +48,13 @@ A very important feature about radio buttons that we'll be leveraging during thi
 However, in order to make that happen, all of them require the same `name`:
 
 ```html
-<input type="radio" name="slider">
+<input type="radio" name="slider" />
 ```
 
 Another relevant feature about radio buttons is that you can define which one is checked directly on the HTML. This will be very useful later on.
 
 ```html
-<input type="radio" name="slider" checked>
+<input type="radio" name="slider" checked />
 ```
 
 A cool fact is that you don't actually need to click on the radio button itself to make it checked, you might as well click on its label. And in order to get that working, you need this:
@@ -66,7 +66,7 @@ A cool fact is that you don't actually need to click on the radio button itself 
 In order for the label to check a specific radio, you need to identify each radio button, this way the label knows which one it is referring to. For this tutorial, we'll use IDs but you may use classes as well — classes work with radio buttons but not with checkboxes.
 
 ```html
-<input type="radio" name="slider" id="slider-1">
+<input type="radio" name="slider" id="slider-1" />
 ```
 
 And then we'll make the label refer to it:
@@ -85,11 +85,8 @@ Let's start by having a parent `section` which we'll call `slider`. And then let
 
 ```html
 <section class="section slider">
-    
-    <div class="slider__holder">
-
-    </div><!-- slider__holder -->
-    
+  <div class="slider__holder"></div>
+  <!-- slider__holder -->
 </section>
 ```
 
@@ -99,17 +96,14 @@ Done that, let's mark up the radio buttons. We got to put them as a `slider__hol
 
 ```html
 <section class="section slider">
+  <input type="radio" name="slider" id="slide-1" class="slider__radio" />
+  <input type="radio" name="slider" id="slide-2" class="slider__radio" />
+  <input type="radio" name="slider" id="slide-3" class="slider__radio" checked />
+  <input type="radio" name="slider" id="slide-4" class="slider__radio" />
+  <input type="radio" name="slider" id="slide-5" class="slider__radio" />
 
-    <input type="radio" name="slider" id="slide-1" class="slider__radio">
-    <input type="radio" name="slider" id="slide-2" class="slider__radio">
-    <input type="radio" name="slider" id="slide-3" class="slider__radio" checked>
-    <input type="radio" name="slider" id="slide-4" class="slider__radio">
-    <input type="radio" name="slider" id="slide-5" class="slider__radio">
-    
-    <div class="slider__holder">
-
-    </div><!-- slider__holder -->
-    
+  <div class="slider__holder"></div>
+  <!-- slider__holder -->
 </section>
 ```
 
@@ -121,37 +115,34 @@ We want all cards to be clickable, so each one of them will be a label for each 
 
 ```html
 <section class="section slider">
+  <input type="radio" name="slider" id="slide-1" class="slider__radio" />
+  <input type="radio" name="slider" id="slide-2" class="slider__radio" />
+  <input type="radio" name="slider" id="slide-3" class="slider__radio" checked />
+  <input type="radio" name="slider" id="slide-4" class="slider__radio" />
+  <input type="radio" name="slider" id="slide-5" class="slider__radio" />
 
-    <input type="radio" name="slider" id="slide-1" class="slider__radio">
-    <input type="radio" name="slider" id="slide-2" class="slider__radio">
-    <input type="radio" name="slider" id="slide-3" class="slider__radio" checked>
-    <input type="radio" name="slider" id="slide-4" class="slider__radio">
-    <input type="radio" name="slider" id="slide-5" class="slider__radio">
-    
-    <div class="slider__holder">
+  <div class="slider__holder">
+    <label for="slide-1" class="slider__item slider__item--1 card">
+      <!-- Card Content goes here -->
+    </label>
 
-       <label for="slide-1" class="slider__item slider__item--1 card">
-            <!-- Card Content goes here -->
-       </label>
-        
-        <label for="slide-2" class="slider__item slider__item--2 card">
-            <!-- Card Content goes here -->
-       </label>
-        
-        <label for="slide-3" class="slider__item slider__item--3 card">
-            <!-- Card Content goes here -->
-       </label>
-        
-        <label for="slide-4" class="slider__item slider__item--4 card">
-            <!-- Card Content goes here -->
-       </label>
-        
-        <label for="slide-5" class="slider__item slider__item--5 card">
-            <!-- Card Content goes here -->
-       </label>
+    <label for="slide-2" class="slider__item slider__item--2 card">
+      <!-- Card Content goes here -->
+    </label>
 
-    </div><!-- slider__holder -->
-    
+    <label for="slide-3" class="slider__item slider__item--3 card">
+      <!-- Card Content goes here -->
+    </label>
+
+    <label for="slide-4" class="slider__item slider__item--4 card">
+      <!-- Card Content goes here -->
+    </label>
+
+    <label for="slide-5" class="slider__item slider__item--5 card">
+      <!-- Card Content goes here -->
+    </label>
+  </div>
+  <!-- slider__holder -->
 </section>
 ```
 
@@ -169,14 +160,13 @@ Also, let's make `bullets` as a new element rather than have it as a `slider` el
 
 ```html
 <div class="bullets">
-  
   <label for="slide-1" class="bullets__item bullets__item--1"></label>
   <label for="slide-2" class="bullets__item bullets__item--2"></label>
   <label for="slide-3" class="bullets__item bullets__item--3"></label>
   <label for="slide-4" class="bullets__item bullets__item--4"></label>
   <label for="slide-5" class="bullets__item bullets__item--5"></label>
-  
-</div> <!-- Bullets -->
+</div>
+<!-- Bullets -->
 ```
 
 Once again we're using the `bullets__item--n` modifier since we'll be referring to each one of them separately in the future.
@@ -187,55 +177,48 @@ Done that, we're done with the markup. Here's the whole snippet:
 
 ```html
 <section class="section slider">
-    
-    <div class="section__entry section__entry--center">
-        
-      <h1 class="section__title heading-2">SCSS Only Slider</h1>
-      <p class="section__text text">This tutorial will teach you how to 
-      create a SCSS only responsive slider.</p>
-        
-    </div>
+  <div class="section__entry section__entry--center">
+    <h1 class="section__title heading-2">SCSS Only Slider</h1>
+    <p class="section__text text">This tutorial will teach you how to create a SCSS only responsive slider.</p>
+  </div>
 
-    <input type="radio" name="slider" id="slide-1" class="slider__radio">
-    <input type="radio" name="slider" id="slide-2" class="slider__radio">
-    <input type="radio" name="slider" id="slide-3" class="slider__radio" checked>
-    <input type="radio" name="slider" id="slide-4" class="slider__radio">
-    <input type="radio" name="slider" id="slide-5" class="slider__radio">
-    
-    <div class="slider__holder">
+  <input type="radio" name="slider" id="slide-1" class="slider__radio" />
+  <input type="radio" name="slider" id="slide-2" class="slider__radio" />
+  <input type="radio" name="slider" id="slide-3" class="slider__radio" checked />
+  <input type="radio" name="slider" id="slide-4" class="slider__radio" />
+  <input type="radio" name="slider" id="slide-5" class="slider__radio" />
 
-       <label for="slide-1" class="slider__item slider__item--1 card">
-            <!-- Card Content goes here -->
-       </label>
-        
-        <label for="slide-2" class="slider__item slider__item--2 card">
-            <!-- Card Content goes here -->
-       </label>
-        
-        <label for="slide-3" class="slider__item slider__item--3 card">
-            <!-- Card Content goes here -->
-       </label>
-        
-        <label for="slide-4" class="slider__item slider__item--4 card">
-            <!-- Card Content goes here -->
-       </label>
-        
-        <label for="slide-5" class="slider__item slider__item--5 card">
-            <!-- Card Content goes here -->
-       </label>
+  <div class="slider__holder">
+    <label for="slide-1" class="slider__item slider__item--1 card">
+      <!-- Card Content goes here -->
+    </label>
 
-    </div><!-- slider__holder -->
-  
-    <div class="bullets">
-      
-        <label for="slide-1" class="bullets__item bullets__item--1"></label>
-        <label for="slide-2" class="bullets__item bullets__item--2"></label>
-        <label for="slide-3" class="bullets__item bullets__item--3"></label>
-        <label for="slide-4" class="bullets__item bullets__item--4"></label>
-        <label for="slide-5" class="bullets__item bullets__item--5"></label>
-      
-    </div> <!-- Bullets -->
-    
+    <label for="slide-2" class="slider__item slider__item--2 card">
+      <!-- Card Content goes here -->
+    </label>
+
+    <label for="slide-3" class="slider__item slider__item--3 card">
+      <!-- Card Content goes here -->
+    </label>
+
+    <label for="slide-4" class="slider__item slider__item--4 card">
+      <!-- Card Content goes here -->
+    </label>
+
+    <label for="slide-5" class="slider__item slider__item--5 card">
+      <!-- Card Content goes here -->
+    </label>
+  </div>
+  <!-- slider__holder -->
+
+  <div class="bullets">
+    <label for="slide-1" class="bullets__item bullets__item--1"></label>
+    <label for="slide-2" class="bullets__item bullets__item--2"></label>
+    <label for="slide-3" class="bullets__item bullets__item--3"></label>
+    <label for="slide-4" class="bullets__item bullets__item--4"></label>
+    <label for="slide-5" class="bullets__item bullets__item--5"></label>
+  </div>
+  <!-- Bullets -->
 </section>
 ```
 
@@ -250,13 +233,12 @@ First of all, we need to set each card's default style. Feel free to write your 
 ```scss
 .slider {
   // Your styles
-  
+
   &__item {
     transform: scale(0.85);
-    
+
     // Your styles
   }
- 
 }
 ```
 
@@ -266,24 +248,20 @@ So, when `#slide-1` is checked we want `.slider__item--1` to be 100% scaled:
 
 ```scss
 .slider {
-  
   // .slider__item
   &__item {
     z-index: 2;
-    
+
     transform: scale(0.85);
-    
+
     // .slider__item--1
     &--1 {
-      
       // #slide-1:checked ~ .slider__holder .slider__item--1
-      #slide-1:checked ~ .slider__holder & { 
+      #slide-1:checked ~ .slider__holder & {
         transform: scale(1);
       }
-      
     }
   }
-  
 }
 ```
 
@@ -293,42 +271,40 @@ Then we must replicate it for the remainder cards:
 
 ```scss
 .slider {
-  
   // .slider__item
   &__item {
     transform: scale(0.85);
-    
+
     &--1 {
-      #slide-1:checked ~ .slider__holder & { 
+      #slide-1:checked ~ .slider__holder & {
         transform: scale(1);
       }
     }
-    
+
     &--2 {
-      #slide-2:checked ~ .slider__holder & { 
+      #slide-2:checked ~ .slider__holder & {
         transform: scale(1);
       }
     }
-    
+
     &--3 {
-      #slide-3:checked ~ .slider__holder & { 
+      #slide-3:checked ~ .slider__holder & {
         transform: scale(1);
       }
     }
-    
+
     &--4 {
-      #slide-4:checked ~ .slider__holder & { 
+      #slide-4:checked ~ .slider__holder & {
         transform: scale(1);
       }
     }
-    
+
     &--5 {
-      #slide-5:checked ~ .slider__holder & { 
+      #slide-5:checked ~ .slider__holder & {
         transform: scale(1);
       }
     }
   }
-  
 }
 ```
 
@@ -340,7 +316,12 @@ Now, we'll have to define each slide position for when a certain slide is active
 
 Imagine doing this for all the active slides — defining each card position when a certain slide is active. It would be plain crazy! Especially because there's a pattern: at certain active cards, some of the remainder ones behave the same way. For example, when card 1 is active, cards 4 and 5 assume the same position — behind card 3.
 
-<MediaBlock src="/blog/css-only-slider/slider-positions-placeholder.jpg" alt="Diagram showing card positions for each active slide state" width={1200} height={630} caption="At certain active cards, some of the remainder ones behave the same way."
+<MediaBlock
+  src="/blog/css-only-slider/slider-positions-placeholder.jpg"
+  alt="Diagram showing card positions for each active slide state"
+  width={1200}
+  height={630}
+  caption="At certain active cards, some of the remainder ones behave the same way."
   layout="full"
 />
 
@@ -350,20 +331,16 @@ To tackle this kind of madness, let's use SCSS loops. The following code does ex
 
 ```scss
 .slider {
-
   // .slider__item
   &__item {
     @include default-transition(all);
 
     // Loop through .slider__item--(slide-number)
     @for $slide from 1 through 5 {
-
       // .slider__item--(slide-number)
       &--#{$slide} {
-
         // Within each .slider__item--(slide-number) loop through #slide-(number)
         @for $i from 1 through 5 {
-
           @if $i <= $slide - 3 {
             // For the slides 3 or more positions on the right
             #slide-#{$i}:checked ~ .slider__holder & {
@@ -422,7 +399,6 @@ To tackle this kind of madness, let's use SCSS loops. The following code does ex
               transform: translateX(-210px) scale(0.65);
             }
           }
-
         }
       }
     }
@@ -443,7 +419,6 @@ Now, we have to have a loop for the bullets as well:
 
 ```scss
 .bullets {
-
   // .bullets__item
   &__item {
     @include default-transition();

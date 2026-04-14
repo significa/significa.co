@@ -28,9 +28,7 @@ if (!post) {
 const displayTitle = title ?? post.data.title;
 const displayDescription = description ?? post.data.description;
 
-const thumbnailSrc = post.data.thumbnail
-  ? cdnUrl(post.data.thumbnail, { width: 640, quality: DEFAULT_QUALITY })
-  : undefined;
+const thumbnailSrc = post.data.thumbnail ? cdnUrl(post.data.thumbnail, { width: 640, quality: DEFAULT_QUALITY }) : undefined;
 ---
 
 <aside class="cross-sell">

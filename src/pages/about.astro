@@ -1,422 +1,363 @@
 ---
-import BaseLayout from "@/layouts/base.astro";
-import { getClients, getTestimonials } from "@/lib/collections";
+/**
+ * /about — Who we are
+ *
+ * The identity page. The interesting thing about Significa is the
+ * tension they manage. This page names it.
+ *
+ *   1. Position statement — who, not what.
+ *   2. The overlap — the honest tension, named out loud.
+ *   3. How this shows up — 3 convictions with real teeth.
+ *   4. Who we're not — the three negations.
+ *   5. Manifesto moment — earned by the argument above.
+ *   6. The studio — numbers + team photo + client voice, one section.
+ */
 
-const clients = await getClients();
+import BaseLayout from "@/layouts/base.astro";
+import Egg from "@/components/ui/egg.astro";
+import { getTestimonials } from "@/lib/collections";
+import { cdnUrl } from "@/lib/cdn";
+
 const testimonials = await getTestimonials();
+const bestTestimonial = testimonials[0];
+
+const convictions = [
+  {
+    n: "01",
+    q: "We back our opinions with reasoning and work.",
+    a: "If we think the brief is solving the wrong problem, we'll say so in the first week, not after three months of billing. Every recommendation has a reason you can question. The trust isn't built by agreeing. It's built by being right often enough that disagreement carries weight.",
+  },
+  {
+    n: "02",
+    q: "We use AI to move faster, not to move cheaper.",
+    a: "AI can generate a hundred variations without knowing which one is right for this brand, this user, this moment. That judgement is what we've been building for years. The time AI saves us goes into craft and thinking, not into squeezing margins or cutting headcount.",
+  },
+  {
+    n: "03",
+    q: "We say no to money.",
+    a: "Not always. Not even often. But sometimes a project would keep people busy, pay the bills, and produce work nobody would be proud of. Every time we say yes to that, we make it harder to attract the work that defines us. The portfolio drifts. The reputation drifts. The people who joined because of what we stood for start looking elsewhere.",
+  },
+];
+
+const numbers = [
+  { label: "In business since", value: "2015" },
+  { label: "Team", value: "30+" },
+  { label: "Projects shipped", value: "100+" },
+  { label: "Outsourced work", value: "0%" },
+];
 ---
 
 <BaseLayout
-  title="Who we are"
-  description="Significa is a digital product agency based in Porto, Portugal. We design and build products for companies that care about craft."
+  title="About — Significa"
+  description="Significa is a design and engineering studio in Porto. We exist in the space between idealism and revenue. Designers and engineers who think together."
 >
-  <!-- Intro -->
-  <section class="intro">
-    <div class="intro-inner">
-      <h1>
-        <span class="intro-muted">We're a digital product agency based in Porto.</span>{" "}
-        We design and build digital products that people genuinely enjoy using.
-      </h1>
+  <!-- ============================================================
+       1. Position statement
+       ============================================================ -->
+  <section class="hero" aria-labelledby="hero-h">
+    <p class="eyebrow">About</p>
+    <h1 id="hero-h" class="hero-statement">Designers and engineers who think together.</h1>
+    <p class="hero-deck">
+      Significa is a design and engineering studio in Porto. A single team where design and engineering are equal partners in
+      solving problems. Everyone involved in a project owns the outcome, not just their slice of it. The person who made the
+      decision is the person you can talk to.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       2. The overlap — the honest tension, named
+       ============================================================ -->
+  <section class="overlap" aria-labelledby="overlap-h">
+    <p class="eyebrow">The space between</p>
+    <h2 id="overlap-h" class="overlap-heading">We live in the overlap between idealism and revenue.</h2>
+    <div class="overlap-prose">
+      <p>
+        There is a version of this company that is easy to run. It takes corporate clients with clear scopes and comfortable
+        budgets. It delivers good work on time. Nobody is embarrassed. Nobody is inspired either, but that's the trade.
+      </p>
+      <p>
+        There is another version that does extraordinary things. Products built with obsessive care. The portfolio is the kind
+        that makes talented people want to join. It is also, frequently, the kind of work that doesn't pay enough.
+      </p>
+      <p>
+        We live in the overlap. The commercial work funds the capacity to do ambitious, identity-defining projects. The
+        ambitious projects attract the clients who value what we actually do. The balance between those two tracks is a decision
+        we make together, every quarter, in every pitch we accept or refuse. That's the work. Not the apps, not the pitches. The
+        work is deciding, over and over, what this place is for.
+      </p>
     </div>
   </section>
 
-  <!-- Values -->
-  <section class="values">
-    <div class="values-inner">
-      <div class="values-grid">
-        <div class="value-card">
-          <h2 class="value-title">Craft</h2>
-          <p class="value-description">
-            Every pixel, every interaction, every line of code. We care about the details because users feel them even when
-            they can't name them.
-          </p>
-        </div>
-        <div class="value-card">
-          <h2 class="value-title">Honesty</h2>
-          <p class="value-description">
-            We tell you what we think, not what you want to hear. If something won't work, we say so early, before it costs
-            time and money.
-          </p>
-        </div>
-        <div class="value-card">
-          <h2 class="value-title">Ownership</h2>
-          <p class="value-description">
-            Small teams, high accountability. Everyone involved in a project owns the outcome, not just their slice of it.
-          </p>
-        </div>
-        <div class="value-card">
-          <h2 class="value-title">Simplicity</h2>
-          <p class="value-description">
-            The best solution is usually the simplest one. We resist complexity and fight feature bloat on behalf of the people
-            who use what we build.
-          </p>
-        </div>
-      </div>
-    </div>
+  <!-- ============================================================
+       3. Convictions — specific, with teeth
+       ============================================================ -->
+  <section class="convictions" aria-labelledby="convictions-h">
+    <header class="convictions-header">
+      <p class="eyebrow">How this shows up</p>
+      <h2 id="convictions-h" class="section-statement">Three things we actually do, not just believe.</h2>
+    </header>
+
+    <ol class="qa-list" role="list">
+      {
+        convictions.map((c) => (
+          <li class="qa">
+            <p class="qa-num">{c.n}</p>
+            <h3 class="qa-q">{c.q}</h3>
+            <p class="qa-a">{c.a}</p>
+          </li>
+        ))
+      }
+    </ol>
   </section>
 
-  <!-- Numbers -->
-  <section class="numbers">
-    <div class="numbers-inner">
-      <dl class="numbers-grid">
-        <div class="number-item">
-          <dt>Founded</dt>
-          <dd>2015</dd>
-        </div>
-        <div class="number-item">
-          <dt>Team members</dt>
-          <dd>20+</dd>
-        </div>
-        <div class="number-item">
-          <dt>Projects delivered</dt>
-          <dd>80+</dd>
-        </div>
-        <div class="number-item">
-          <dt>Based in</dt>
-          <dd>Porto</dd>
-        </div>
-      </dl>
-    </div>
+  <!-- ============================================================
+       4. Who we're not — the boundaries
+       ============================================================ -->
+  <section class="boundaries" aria-labelledby="boundaries-h">
+    <p class="eyebrow">Who we're not</p>
+    <h2 id="boundaries-h" class="section-statement">Three things we will never be.</h2>
+    <ol class="boundaries-list" role="list">
+      <li class="boundary">
+        <p class="boundary-head">A software house that churns out features to spec.</p>
+        <p class="boundary-body">
+          If you need a team that executes without questioning, we're the wrong choice. We will push back when we think the spec
+          is solving the wrong problem.
+        </p>
+      </li>
+      <li class="boundary">
+        <p class="boundary-head">A creative agency that hands off pretty pictures and walks away.</p>
+        <p class="boundary-body">
+          We build what we design. The person who made the design decision is in the room when it gets engineered. No handoffs
+          between departments, because there are no departments.
+        </p>
+      </li>
+      <li class="boundary">
+        <p class="boundary-head">Consultants who write decks instead of building things.</p>
+        <p class="boundary-body">
+          Strategy without execution is a hobby. We think, then we build, then we measure whether the thinking was right. If it
+          wasn't, we absorb that cost.
+        </p>
+      </li>
+    </ol>
   </section>
 
-  <!-- Team photo -->
-  <section class="team-photo">
-    <div class="team-photo-inner">
+  <!-- ============================================================
+       5. Manifesto moment — earned by the argument above
+       ============================================================ -->
+  <section class="moment" aria-labelledby="moment-h">
+    <h2 id="moment-h" class="moment-line">
+      <em>We give<br />a damn.</em>
+    </h2>
+    <p class="moment-attr">
+      <Egg variant="fill" class="moment-egg" />
+      &nbsp; From the North Star <span class="eyebrow-sep">/</span>
+      <a href="/say-hello" class="moment-link">say hello</a>
+    </p>
+  </section>
+
+  <!-- ============================================================
+       6. The studio — numbers, photo, client voice as one section
+       ============================================================ -->
+  <section class="studio" aria-labelledby="studio-h">
+    <p class="eyebrow" id="studio-h">The studio</p>
+
+    <dl class="numbers-row">
+      {
+        numbers.map((n) => (
+          <div class="numbers-item">
+            <dt class="numbers-label">{n.label}</dt>
+            <dd class="numbers-value">{n.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <div class="studio-photo">
       <img
-        src="https://assets.significa.co/website/test-TKzoOc.png"
-        alt="The Significa team"
+        src={cdnUrl("website/test-TKzoOc.png", { width: 1920, quality: 85 })}
+        alt="The Significa team at the Porto studio"
         width="1920"
         height="1080"
         loading="lazy"
         decoding="async"
       />
     </div>
-  </section>
 
-  <!-- Testimonials -->
-  {
-    testimonials.length > 0 && (
-      <section class="testimonials">
-        <div class="testimonials-inner">
-          <h2 class="section-heading">What our clients say</h2>
-          <div class="testimonials-grid">
-            {testimonials.map((t) => (
-              <blockquote class="testimonial-card">
-                <p class="testimonial-quote">{t.data.quote}</p>
-                <footer class="testimonial-author">
-                  <cite>
-                    <strong>{t.data.author}</strong>
-                    <span>
-                      {t.data.role} at {t.data.company}
-                    </span>
-                  </cite>
-                </footer>
-              </blockquote>
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
-
-  <!-- Clients -->
-  {
-    clients.length > 0 && (
-      <section class="clients">
-        <div class="clients-inner">
-          <h2 class="section-heading">Companies we've worked with</h2>
-          <ul>
-            {clients.map((client) => (
-              <li>
-                {client.data.url ? (
-                  <a href={client.data.url} target="_blank" rel="noopener noreferrer" title={client.data.name}>
-                    <span class="client-name">{client.data.name}</span>
-                  </a>
-                ) : (
-                  <span class="client-name">{client.data.name}</span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    )
-  }
-
-  <!-- CTA -->
-  <section class="cta">
-    <div class="cta-inner">
-      <h2>Want to work with us?</h2>
-      <p>We're always looking for interesting projects and good people to collaborate with.</p>
-      <a href="/say-hello" class="cta-link">Get in touch →</a>
-    </div>
+    {
+      bestTestimonial && (
+        <aside class="featured-voice studio-voice">
+          <blockquote class="featured-voice-quote">
+            <p>{bestTestimonial.data.quote}</p>
+            <footer>
+              <cite>
+                <strong>{bestTestimonial.data.author}</strong>
+                <span>
+                  {bestTestimonial.data.role} at {bestTestimonial.data.company}
+                </span>
+              </cite>
+            </footer>
+          </blockquote>
+        </aside>
+      )
+    }
   </section>
 </BaseLayout>
 
 <style>
-  /* --------------------------------------------------------
-       Intro
-       -------------------------------------------------------- */
-  .intro {
-    padding: 8rem var(--gutter) 4rem;
+  /* ============================================================
+     Page rhythm
+     ============================================================ */
+
+  section {
+    padding-inline: var(--gutter);
+    padding-block: clamp(5rem, 10vw, 10rem);
   }
 
-  .intro-inner {
-    max-width: var(--max-width-narrow);
+  /* ============================================================
+     1. Hero
+     ============================================================ */
+
+  .hero {
+    max-width: var(--max-width-wide);
     margin: 0 auto;
+    padding-block: clamp(4rem, 8vw, 7rem) clamp(3rem, 6vw, 5rem);
   }
 
-  .intro h1 {
-    font-size: var(--text-3xl);
-    font-weight: var(--weight-normal);
+  .hero-statement {
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-size: var(--text-4xl);
     line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tighter);
+    margin: 0;
+    max-width: 22ch;
+    color: var(--color-ink);
   }
 
-  .intro-muted {
-    color: var(--color-text-muted);
-  }
-
-  /* --------------------------------------------------------
-       Values
-       -------------------------------------------------------- */
-  .values {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .values-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .value-card {
-    background: var(--color-surface-alt);
-    padding: 2rem;
-    border-radius: 0.5rem;
-  }
-
-  .value-title {
-    font-size: var(--text-lg);
-    font-weight: var(--weight-semibold);
-    margin-bottom: 0.75rem;
-  }
-
-  .value-description {
-    font-size: var(--text-base);
-    color: var(--color-text-muted);
+  .hero-deck {
+    margin-top: 2.5rem;
+    font-size: var(--text-xl);
     line-height: var(--leading-normal);
+    color: var(--color-ink-muted);
+    max-width: var(--max-width-prose);
   }
 
-  @media (max-width: 640px) {
-    .values-grid {
-      grid-template-columns: 1fr;
-    }
-  }
+  /* ============================================================
+     2. The overlap
+     ============================================================ */
 
-  /* --------------------------------------------------------
-       Numbers
-       -------------------------------------------------------- */
-  .numbers {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .numbers-inner {
-    max-width: var(--max-width);
+  .overlap {
+    max-width: var(--max-width-wide);
     margin: 0 auto;
   }
 
-  .numbers-grid {
+  .overlap-heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--text-3xl);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 clamp(2rem, 4vw, 3rem);
+    max-width: 24ch;
+    color: var(--color-ink);
+  }
+
+  .overlap-prose {
+    max-width: 52ch;
+  }
+
+  .overlap-prose p {
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    margin-block: 0 1.25em;
+    color: var(--color-ink);
+  }
+
+  .overlap-prose p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ============================================================
+     3. Convictions
+     ============================================================ */
+
+  .convictions {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+  }
+
+  .convictions-header {
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  /* ============================================================
+     4. Boundaries / who we're not
+     ============================================================ */
+
+  .boundaries {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+  }
+
+  .boundaries-list {
+    list-style: none;
+    margin: clamp(3rem, 6vw, 5rem) 0 0;
+    padding: 0;
+  }
+
+  .boundary {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    grid-template-columns: 1fr;
+    row-gap: 0.75rem;
+    padding-block: 2.5rem;
+    border-top: 1px solid var(--color-rule);
   }
 
-  .number-item {
-    text-align: center;
-    padding: 2rem 1rem;
+  .boundary:last-child {
+    border-bottom: 1px solid var(--color-rule);
   }
 
-  .number-item dt {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    margin-bottom: 0.5rem;
+  .boundary-head {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    margin: 0;
+    color: var(--color-ink);
+    max-width: 36ch;
   }
 
-  .number-item dd {
-    font-size: var(--text-2xl);
-    font-weight: var(--weight-bold);
-    line-height: 1;
+  .boundary-body {
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    color: var(--color-ink-muted);
+    margin: 0;
+    max-width: 52ch;
   }
 
-  @media (max-width: 768px) {
-    .numbers-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
+  /* ============================================================
+     6. The studio — one cohesive section
+     ============================================================ */
 
-  /* --------------------------------------------------------
-       Team photo
-       -------------------------------------------------------- */
-  .team-photo {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .team-photo-inner {
-    max-width: var(--max-width);
+  .studio {
+    max-width: var(--max-width-wide);
     margin: 0 auto;
   }
 
-  .team-photo-inner img {
+  .studio-photo {
+    margin-block: clamp(3rem, 6vw, 5rem);
+    overflow: hidden;
+    border-radius: var(--radius-image);
+  }
+
+  .studio-photo img {
     width: 100%;
     height: auto;
-    border-radius: 0.5rem;
     display: block;
   }
 
-  /* --------------------------------------------------------
-       Section heading
-       -------------------------------------------------------- */
-  .section-heading {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-medium);
-    color: var(--color-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 2rem;
-  }
-
-  /* --------------------------------------------------------
-       Testimonials
-       -------------------------------------------------------- */
-  .testimonials {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .testimonials-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    gap: 1rem;
-  }
-
-  .testimonial-card {
-    background: var(--color-surface-alt);
-    padding: 2rem;
-    border-radius: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .testimonial-quote {
-    font-size: var(--text-lg);
-    line-height: var(--leading-normal);
-    margin-bottom: 2rem;
-  }
-
-  .testimonial-author cite {
-    font-style: normal;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .testimonial-author strong {
-    font-size: var(--text-base);
-    font-weight: var(--weight-medium);
-  }
-
-  .testimonial-author span {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-  }
-
-  /* --------------------------------------------------------
-       Clients
-       -------------------------------------------------------- */
-  .clients {
-    padding: 0 var(--gutter) 4rem;
-  }
-
-  .clients-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-
-  .clients ul {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .clients li a {
-    color: var(--color-text);
-    text-decoration: none;
-    opacity: 0.7;
-    transition: opacity var(--duration-fast) var(--ease-out);
-  }
-
-  .clients li a:hover {
-    opacity: 1;
-    color: var(--color-text);
-  }
-
-  .client-name {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-semibold);
-    white-space: nowrap;
-  }
-
-  /* --------------------------------------------------------
-       CTA
-       -------------------------------------------------------- */
-  .cta {
-    padding: 4rem var(--gutter) 8rem;
-  }
-
-  .cta-inner {
-    max-width: var(--max-width-narrow);
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .cta h2 {
-    font-size: var(--text-2xl);
-    margin-bottom: 1rem;
-  }
-
-  .cta p {
-    font-size: var(--text-lg);
-    color: var(--color-text-muted);
-    margin-bottom: 2rem;
-    line-height: var(--leading-normal);
-  }
-
-  .cta-link {
-    display: inline-block;
-    font-size: var(--text-base);
-    font-weight: var(--weight-medium);
-    color: var(--color-text);
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
-    text-decoration-thickness: 1px;
-    transition: text-decoration-thickness var(--duration-fast) var(--ease-out);
-  }
-
-  .cta-link:hover {
-    color: var(--color-text);
-    text-decoration-thickness: 2px;
+  .studio-voice {
+    margin-top: clamp(2rem, 4vw, 3rem);
   }
 </style>

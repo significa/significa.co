@@ -23,11 +23,11 @@ What brings us here is a problem we faced when we first started using hooks that
 Let's look at the following example:
 
 ```jsx
-const { useState } = React
+const { useState } = React;
 
 const Counter = () => {
-  const [count, setCount] = useState(0)
-  const [objectCount, setObjectCount] = useState({ count: 0 })
+  const [count, setCount] = useState(0);
+  const [objectCount, setObjectCount] = useState({ count: 0 });
 
   return (
     <div>
@@ -39,8 +39,8 @@ const Counter = () => {
       <p>You clicked {objectCount.count} times</p>
       <button
         onClick={() => {
-          objectCount.count += 1
-          setObjectCount(objectCount)
+          objectCount.count += 1;
+          setObjectCount(objectCount);
         }}
       >
         Broken increase of the object count
@@ -57,10 +57,10 @@ const Counter = () => {
         Functioning increase of the object count
       </button>
     </div>
-  )
-}
+  );
+};
 
-ReactDOM.render(<Counter />, document.getElementById('app'))
+ReactDOM.render(<Counter />, document.getElementById("app"));
 ```
 
 We prepared [this CodePen](https://codepen.io/) with the example — feel free to visit and play around with it.
@@ -93,7 +93,7 @@ It keeps the same object properties but creates a new object reference, so the h
 setObjectCount({
   ...objectCount,
   count: objectCount.count + 1,
-})
+});
 ```
 
 ### Use one `useState` hook per property

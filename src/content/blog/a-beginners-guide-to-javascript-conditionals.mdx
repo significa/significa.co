@@ -26,19 +26,19 @@ The if/else statement is the more newbie friendly one.
 ```js
 function ifSearchFor(person) {
   if (person === "Fred") {
-    return "Fred's here"
+    return "Fred's here";
   }
   if (person === "Danilo") {
-    return "Danilo's here"
+    return "Danilo's here";
   }
   if (person === "Brandão") {
-    return "Brandão's here"
+    return "Brandão's here";
   } else {
-    return "We are Significa"
+    return "We are Significa";
   }
 }
 
-ifSearchFor("Danilo")
+ifSearchFor("Danilo");
 
 //Danilo's here
 ```
@@ -53,17 +53,17 @@ The switch case, unlike the if/else statement, looks a bit more complex.
 function switchSearchFor(person) {
   switch (person) {
     case "Fred":
-      return "Fred's here"
+      return "Fred's here";
     case "Danilo":
-      return "Danilo's here"
+      return "Danilo's here";
     case "Brandão":
-      return "Brandão's here"
+      return "Brandão's here";
     default:
-      return "We are Significa"
+      return "We are Significa";
   }
 }
 
-switchSearchFor("Danilo")
+switchSearchFor("Danilo");
 
 //Danilo's here
 ```
@@ -77,18 +77,18 @@ Now, you might think, _"Ok, they are pretty much alike but the if/else looks eas
 In terms of speed, if we compare running three conditions in both if/else and switch case, we can see that the if/else is faster.
 
 ```js
-const iterations = 10000
-console.time("If/else")
+const iterations = 10000;
+console.time("If/else");
 for (var i = 0; i < iterations; i++) {
-  ifSearchFor()
+  ifSearchFor();
 }
-console.timeEnd("If/else")
+console.timeEnd("If/else");
 
-console.time("Switch case")
+console.time("Switch case");
 for (var i = 0; i < iterations; i++) {
-  switchSearchFor()
+  switchSearchFor();
 }
-console.timeEnd("Switch case")
+console.timeEnd("Switch case");
 
 // If/else: 1.1689453125ms
 // Switch case: 1.181884765625ms
@@ -99,53 +99,53 @@ If/else is, in theory, and in most cases, faster than the switch (by some nanose
 ```js
 function ifSearchForBig(person) {
   if (person === "Fred") {
-    return "Fred's here"
+    return "Fred's here";
   }
   if (person === "Brandão") {
-    return "Brandão's here"
+    return "Brandão's here";
   }
   if (person === "João") {
-    return "João's here"
+    return "João's here";
   }
   if (person === "Lisa") {
-    return "Lisa's here"
+    return "Lisa's here";
   }
   if (person === "Catarina") {
-    return "Catarina's here"
+    return "Catarina's here";
   }
   if (person === "Márcio") {
-    return "Márcio's here"
+    return "Márcio's here";
   }
   if (person === "Rui") {
-    return "Rui's here"
+    return "Rui's here";
   }
   if (person === "Danilo") {
-    return "Danilo's here"
+    return "Danilo's here";
   } else {
-    return "We are Significa"
+    return "We are Significa";
   }
 }
 
 function switchSearchForBig(person) {
   switch (person) {
     case "Fred":
-      return "Fred's here"
+      return "Fred's here";
     case "Brandão":
-      return "Brandão's here"
+      return "Brandão's here";
     case "João":
-      return "João's here"
+      return "João's here";
     case "Lisa":
-      return "Lisa's here"
+      return "Lisa's here";
     case "Catarina":
-      return "Catarina's here"
+      return "Catarina's here";
     case "Danilo":
-      return "Danilo's here"
+      return "Danilo's here";
     case "Márcio":
-      return "Márcio's here"
+      return "Márcio's here";
     case "Rui":
-      return "Rui's here"
+      return "Rui's here";
     default:
-      return "We are Significa"
+      return "We are Significa";
   }
 }
 ```
@@ -153,18 +153,18 @@ function switchSearchForBig(person) {
 Now, let's run the same type of test we did before and see which one is faster:
 
 ```js
-const iterations = 10000
-console.time("If/else")
+const iterations = 10000;
+console.time("If/else");
 for (var i = 0; i < iterations; i++) {
-  ifSearchForBig()
+  ifSearchForBig();
 }
-console.timeEnd("If/else")
+console.timeEnd("If/else");
 
-console.time("Switch case")
+console.time("Switch case");
 for (var i = 0; i < iterations; i++) {
-  switchSearchForBig()
+  switchSearchForBig();
 }
-console.timeEnd("Switch case")
+console.timeEnd("Switch case");
 
 // If/else: 3.76513671875ms
 // Switch case: 2.365966796875ms
@@ -206,22 +206,22 @@ To do so, we need an array or an object, and, to call a specific result, we run 
 
 ```js
 const team = {
-  "Fred": "I'm Fred",
-  "Brandão": "I'm Brandão",
-  "João": "I'm João",
-  "Danilo": "I'm Danilo",
-  "Lisa": "I'm Lisa",
-  "Catarina": "I'm Catarina",
-  "Márcio": "I'm Márcio",
-  "Rui": "I'm Rui",
-  default: "We are Significa"
-}
+  Fred: "I'm Fred",
+  Brandão: "I'm Brandão",
+  João: "I'm João",
+  Danilo: "I'm Danilo",
+  Lisa: "I'm Lisa",
+  Catarina: "I'm Catarina",
+  Márcio: "I'm Márcio",
+  Rui: "I'm Rui",
+  default: "We are Significa",
+};
 
 function arrayLookup(person) {
-  return team[person] || team.default
+  return team[person] || team.default;
 }
 
-arrayLookup('Danilo')
+arrayLookup("Danilo");
 
 // I'm Danilo
 ```
@@ -229,13 +229,13 @@ arrayLookup('Danilo')
 Clean, less code and most importantly, it's super **easy to maintain**! If you have to add a team member by any chance, you just have to edit the object. The function is pure and never needs to be updated. But what about performance speed? Let's take it for another run and test the function speed using the console.
 
 ```js
-const iterations = 10000
+const iterations = 10000;
 
-console.time("Array Lookup")
+console.time("Array Lookup");
 for (var i = 0; i < iterations; i++) {
-  arrayLookup("Danilo")
+  arrayLookup("Danilo");
 }
-console.timeEnd("Array Lookup")
+console.timeEnd("Array Lookup");
 
 // Array Lookup: 0.85791015625ms
 ```

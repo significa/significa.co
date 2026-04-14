@@ -35,7 +35,12 @@ We had never done such a project, so we went to the blackboard and started scrib
 
 ## Version 1: Source-oriented Approach
 
-<MediaBlock src="PLACEHOLDER_scraping-otp/v1-solution.jpg" alt="v1 Solution – Source-oriented approach." width={1200} height={630} caption="v1 Solution – Source-oriented approach."
+<MediaBlock
+  src="PLACEHOLDER_scraping-otp/v1-solution.jpg"
+  alt="v1 Solution – Source-oriented approach."
+  width={1200}
+  height={630}
+  caption="v1 Solution – Source-oriented approach."
   layout="full"
 />
 
@@ -63,7 +68,12 @@ At a certain point, we wanted to allow the admin users to trigger scrapes for a 
 
 ## Version 2: Project-oriented solution, a GenServer per each project
 
-<MediaBlock src="PLACEHOLDER_scraping-otp/v2-solution.jpg" alt="v2 Project oriented solution, a GenServer per each project." width={1200} height={630} caption="v2 Project oriented solution, a GenServer per each project."
+<MediaBlock
+  src="PLACEHOLDER_scraping-otp/v2-solution.jpg"
+  alt="v2 Project oriented solution, a GenServer per each project."
+  width={1200}
+  height={630}
+  caption="v2 Project oriented solution, a GenServer per each project."
   layout="full"
 />
 
@@ -81,7 +91,12 @@ When an admin adds a new project, the dynamic supervisor starts a new child proc
 
 This data stored on ETS will be later used when the admin user archives a project or triggers a scrape for a single project.
 
-<MediaBlock src="PLACEHOLDER_scraping-otp/add-project-flow.jpg" alt="Add project flow." width={1200} height={630} caption="Add project flow."
+<MediaBlock
+  src="PLACEHOLDER_scraping-otp/add-project-flow.jpg"
+  alt="Add project flow."
+  width={1200}
+  height={630}
+  caption="Add project flow."
   layout="full"
 />
 
@@ -89,7 +104,12 @@ This data stored on ETS will be later used when the admin user archives a projec
 
 When an admin archives a project, the flow is basically the reverse of adding a new project: the application retrieves the PID responsible for the project, the Dynamic Supervisor then deletes the entry for the ETS and using the retrieved PID terminates the child project responsible for the project.
 
-<MediaBlock src="PLACEHOLDER_scraping-otp/archive-project-flow.jpg" alt="Archive project flow." width={1200} height={630} caption="Archive project flow."
+<MediaBlock
+  src="PLACEHOLDER_scraping-otp/archive-project-flow.jpg"
+  alt="Archive project flow."
+  width={1200}
+  height={630}
+  caption="Archive project flow."
   layout="full"
 />
 
@@ -240,7 +260,12 @@ Once again, we had to improve the current solution. This time, the change was no
 
 ## Version 3: A mix of the previous solutions
 
-<MediaBlock src="PLACEHOLDER_scraping-otp/v3-solution.jpg" alt="v3 – Mix of previous solutions." width={1200} height={630} caption="v3 – Mix of previous solutions."
+<MediaBlock
+  src="PLACEHOLDER_scraping-otp/v3-solution.jpg"
+  alt="v3 – Mix of previous solutions."
+  width={1200}
+  height={630}
+  caption="v3 – Mix of previous solutions."
   layout="full"
 />
 
@@ -250,7 +275,12 @@ If this worker fails, no big problems arise, as the regular scrapers will still 
 
 ## The solution
 
-<MediaBlock src="PLACEHOLDER_scraping-otp/dashboard-snapshot.jpg" alt="Snapshot of the dashboard with fake data." width={1200} height={630} caption="Snapshot of the dashboard with fake data."
+<MediaBlock
+  src="PLACEHOLDER_scraping-otp/dashboard-snapshot.jpg"
+  alt="Snapshot of the dashboard with fake data."
+  width={1200}
+  height={630}
+  caption="Snapshot of the dashboard with fake data."
   layout="full"
 />
 

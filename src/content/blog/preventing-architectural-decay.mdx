@@ -33,9 +33,9 @@ The requirement is straightforward: display a card with statistics in a dashboar
 
 ```tsx
 interface StatsCardProps {
-  title: string
-  value: number
-  icon: ReactNode
+  title: string;
+  value: number;
+  icon: ReactNode;
 }
 
 function StatsCard({ title, value, icon }: StatsCardProps) {
@@ -45,16 +45,12 @@ function StatsCard({ title, value, icon }: StatsCardProps) {
       <h3>{title}</h3>
       <p className="value">{value}</p>
     </div>
-  )
+  );
 }
 ```
 
 ```tsx
-<StatsCard
-  title="Revenue"
-  value={45000}
-  icon={<DollarSign />}
-/>
+<StatsCard title="Revenue" value={45000} icon={<DollarSign />} />
 ```
 
 Everything looks good. The component has a single responsibility, no layout complexity, and limited well-defined variants. It's unlikely to need structural changes.
@@ -67,13 +63,13 @@ This seems reasonable. You add trend visualisation:
 
 ```tsx
 interface StatsCardProps {
-  title: string
-  value: number
-  icon: ReactNode
+  title: string;
+  value: number;
+  icon: ReactNode;
   trend?: {
-    value: number
-    direction: 'up' | 'down'
-  }
+    value: number;
+    direction: "up" | "down";
+  };
 }
 
 function StatsCard({ title, value, icon, trend }: StatsCardProps) {
@@ -89,7 +85,7 @@ function StatsCard({ title, value, icon, trend }: StatsCardProps) {
         </div>
       )}
     </div>
-  )
+  );
 }
 ```
 
@@ -109,35 +105,27 @@ The PM returns: "Some stakeholders want to see comparisons instead of trends. Oh
 
 ```tsx
 interface StatsCardProps {
-  title: string
-  value: number
-  icon: ReactNode
+  title: string;
+  value: number;
+  icon: ReactNode;
   trend?: {
-    value: number
-    direction: 'up' | 'down'
-  }
+    value: number;
+    direction: "up" | "down";
+  };
   comparison?: {
-    label: string
-    value: number
-  }
+    label: string;
+    value: number;
+  };
   action?: {
-    label: string
-    onClick: () => void
-  }
-  loading?: boolean
+    label: string;
+    onClick: () => void;
+  };
+  loading?: boolean;
 }
 ```
 
 ```tsx
-function StatsCard({
-  title,
-  value,
-  icon,
-  trend,
-  comparison,
-  action,
-  loading
-}: StatsCardProps) {
+function StatsCard({ title, value, icon, trend, comparison, action, loading }: StatsCardProps) {
   return (
     <div className="card">
       {loading && <Spinner />}
@@ -156,13 +144,9 @@ function StatsCard({
           <span>{comparison.value}</span>
         </div>
       )}
-      {action && (
-        <button onClick={action.onClick}>
-          {action.label}
-        </button>
-      )}
+      {action && <button onClick={action.onClick}>{action.label}</button>}
     </div>
-  )
+  );
 }
 ```
 
@@ -176,19 +160,19 @@ Designers need custom number formatting. The PM overhears and adds: "It should r
 
 ```tsx
 interface StatsCardProps {
-  title: string
-  value: number
-  icon: ReactNode
-  trend?: { value: number; direction: 'up' | 'down' }
-  comparison?: { label: string; value: number }
-  action?: { label: string; onClick: () => void; variant?: 'primary' | 'secondary' }
-  loading?: boolean
-  valueFormatter?: (value: number) => string
-  tooltip?: string
-  badge?: { text: string; variant: 'success' | 'warning' | 'error' }
-  titleIcon?: ReactNode
-  showBorder?: boolean
-  elevation?: 'none' | 'sm' | 'md' | 'lg'
+  title: string;
+  value: number;
+  icon: ReactNode;
+  trend?: { value: number; direction: "up" | "down" };
+  comparison?: { label: string; value: number };
+  action?: { label: string; onClick: () => void; variant?: "primary" | "secondary" };
+  loading?: boolean;
+  valueFormatter?: (value: number) => string;
+  tooltip?: string;
+  badge?: { text: string; variant: "success" | "warning" | "error" };
+  titleIcon?: ReactNode;
+  showBorder?: boolean;
+  elevation?: "none" | "sm" | "md" | "lg";
 }
 ```
 
@@ -221,33 +205,29 @@ The goal isn't predicting every future requirement. It's building components tha
 Here's the refactored approach using composition:
 
 ```tsx
-function StatsCardRoot({ asChild, children, className }: {
-  asChild?: boolean
-  children: ReactNode
-  className?: string
-}) {
-  const Comp = asChild ? Slot : 'div'
-  return <Comp className={cn('card', className)}>{children}</Comp>
+function StatsCardRoot({ asChild, children, className }: { asChild?: boolean; children: ReactNode; className?: string }) {
+  const Comp = asChild ? Slot : "div";
+  return <Comp className={cn("card", className)}>{children}</Comp>;
 }
 
 function StatsCardIcon({ children }: { children: ReactNode }) {
-  return <div className="card-icon">{children}</div>
+  return <div className="card-icon">{children}</div>;
 }
 
 function StatsCardTitle({ children }: { children: ReactNode }) {
-  return <h3 className="card-title">{children}</h3>
+  return <h3 className="card-title">{children}</h3>;
 }
 
 function StatsCardValue({ children }: { children: ReactNode }) {
-  return <div className="card-value">{children}</div>
+  return <div className="card-value">{children}</div>;
 }
 
 function StatsCardMeta({ children }: { children: ReactNode }) {
-  return <div className="card-meta">{children}</div>
+  return <div className="card-meta">{children}</div>;
 }
 
 function StatsCardFooter({ children }: { children: ReactNode }) {
-  return <div className="card-footer">{children}</div>
+  return <div className="card-footer">{children}</div>;
 }
 
 const StatsCard = Object.assign(StatsCardRoot, {
@@ -256,7 +236,7 @@ const StatsCard = Object.assign(StatsCardRoot, {
   Value: StatsCardValue,
   Meta: StatsCardMeta,
   Footer: StatsCardFooter,
-})
+});
 ```
 
 ### Week 1 with composition.
@@ -299,22 +279,20 @@ const StatsCard = Object.assign(StatsCardRoot, {
       Revenue <InfoIcon />
     </Tooltip>
   </StatsCard.Title>
-  <StatsCard.Value>
-    {formatCurrency(revenue)}
-  </StatsCard.Value>
+  <StatsCard.Value>{formatCurrency(revenue)}</StatsCard.Value>
   <StatsCard.Meta>
     <Trend direction="up" value={12} />
     <Separator orientation="vertical" />
-    <span className="text-muted">
-      vs {formatCurrency(lastMonth)}
-    </span>
+    <span className="text-muted">vs {formatCurrency(lastMonth)}</span>
   </StatsCard.Meta>
   <StatsCard.Footer>
     <Button variant="ghost" size="sm" onClick={handleViewDetails}>
       View details
     </Button>
     <Button variant="ghost" size="sm" asChild>
-      <a href="/export" download>Export</a>
+      <a href="/export" download>
+        Export
+      </a>
     </Button>
   </StatsCard.Footer>
 </StatsCard>
@@ -359,33 +337,27 @@ Consider a `MediaCard` component where the cover image needs to adapt based on t
 
 ```tsx
 const MediaCardContext = createContext<{
-  format: MediaFormat
-} | null>(null)
+  format: MediaFormat;
+} | null>(null);
 
 function MediaCardRoot({ format, children }: MediaCardProps) {
-  const context = useMemo(() => ({ format }), [format])
+  const context = useMemo(() => ({ format }), [format]);
 
   return (
     <MediaCardContext.Provider value={context}>
       <div className="media-card">{children}</div>
     </MediaCardContext.Provider>
-  )
+  );
 }
 
 function MediaCardCover({ children }: { children: ReactNode }) {
-  const { format } = useMediaCardContext()
+  const { format } = useMediaCardContext();
 
   return (
-    <div
-      className={cn(
-        'cover',
-        format === 'portrait' && 'aspect-[3/4]',
-        format === 'landscape' && 'aspect-[4/3]'
-      )}
-    >
+    <div className={cn("cover", format === "portrait" && "aspect-[3/4]", format === "landscape" && "aspect-[4/3]")}>
       {children}
     </div>
-  )
+  );
 }
 ```
 
@@ -413,16 +385,10 @@ Low-level design system components that rarely change:
   <Card.Title>{product.name}</Card.Title>
   <Card.Price>
     <span className="text-lg font-bold">${product.price}</span>
-    {product.originalPrice && (
-      <span className="line-through text-muted">
-        ${product.originalPrice}
-      </span>
-    )}
+    {product.originalPrice && <span className="line-through text-muted">${product.originalPrice}</span>}
   </Card.Price>
   <Card.Footer>
-    <Button onClick={() => addToCart(product)}>
-      Add to Cart
-    </Button>
+    <Button onClick={() => addToCart(product)}>Add to Cart</Button>
   </Card.Footer>
 </Card>
 ```
@@ -433,8 +399,8 @@ High-level, app-specific patterns that compose primitives:
 
 ```tsx
 interface ProductCardProps {
-  product: Product
-  onAddToCart: (product: Product) => void
+  product: Product;
+  onAddToCart: (product: Product) => void;
 }
 
 function ProductCard({ product, onAddToCart }: ProductCardProps) {
@@ -447,19 +413,13 @@ function ProductCard({ product, onAddToCart }: ProductCardProps) {
       <Card.Title>{product.name}</Card.Title>
       <Card.Price>
         <span className="text-lg font-bold">${product.price}</span>
-        {product.originalPrice && (
-          <span className="line-through text-muted">
-            ${product.originalPrice}
-          </span>
-        )}
+        {product.originalPrice && <span className="line-through text-muted">${product.originalPrice}</span>}
       </Card.Price>
       <Card.Footer>
-        <Button onClick={() => onAddToCart(product)}>
-          Add to Cart
-        </Button>
+        <Button onClick={() => onAddToCart(product)}>Add to Cart</Button>
       </Card.Footer>
     </Card>
-  )
+  );
 }
 ```
 
@@ -526,16 +486,20 @@ The component's internal markup tells its own story. Excessive branching logic b
 
 ```tsx
 // Excessive branching based on props
-if (variant === 'compact') {
+if (variant === "compact") {
   if (showAction) {
-    return <CompactWithAction />
+    return <CompactWithAction />;
   }
-  return <Compact />
+  return <Compact />;
 }
 
 // Mapping props to children
-{showIcon && icon}
-{showBadge && badge}
+{
+  showIcon && icon;
+}
+{
+  showBadge && badge;
+}
 ```
 
 Look at how the component fits into your broader architecture. If multiple developers have recently "enhanced" the same component, it's becoming a bottleneck. When pull requests touching the component require extensive review because nobody's confident about side effects, that's a problem. Component files that exceed 300 lines are usually trying to do too much. And if a component has developed its own state management infrastructure just to handle layout decisions, it's taken on responsibilities that should live elsewhere.
@@ -606,48 +570,45 @@ The extension point approach scales naturally. Need a badge instead of a close b
 
 ```tsx
 interface SearchBarProps {
-  placeholder: string       // ✅ Intrinsic behavior
-  value: string             // ✅ Intrinsic behavior
-  onChange: (v: string) => void  // ✅ Intrinsic behavior
-  showClearButton: boolean  // ❌ Should be composition
-  showSearchIcon: boolean   // ❌ Should be composition
-  loading: boolean          // ❌ Should be composition
-  suggestions: string[]     // 🤔 Separate component?
-  onSuggestionClick: (s: string) => void
-  maxSuggestions: number
-  renderSuggestion: (s: string) => ReactNode
+  placeholder: string; // ✅ Intrinsic behavior
+  value: string; // ✅ Intrinsic behavior
+  onChange: (v: string) => void; // ✅ Intrinsic behavior
+  showClearButton: boolean; // ❌ Should be composition
+  showSearchIcon: boolean; // ❌ Should be composition
+  loading: boolean; // ❌ Should be composition
+  suggestions: string[]; // 🤔 Separate component?
+  onSuggestionClick: (s: string) => void;
+  maxSuggestions: number;
+  renderSuggestion: (s: string) => ReactNode;
 }
 ```
 
 ### Refactoring.
 
 ```tsx
-<SearchBar
-  value={query}
-  onChange={setQuery}
-  placeholder="Search..."
->
-  <SearchBar.Icon><SearchIcon /></SearchBar.Icon>
+<SearchBar value={query} onChange={setQuery} placeholder="Search...">
+  <SearchBar.Icon>
+    <SearchIcon />
+  </SearchBar.Icon>
   {query && (
-    <SearchBar.Action onClick={() => setQuery('')}>
+    <SearchBar.Action onClick={() => setQuery("")}>
       <XIcon />
     </SearchBar.Action>
   )}
   {isLoading && <SearchBar.Loader />}
-</SearchBar>
+</SearchBar>;
 
-{suggestions.length > 0 && (
-  <SuggestionsList>
-    {suggestions.slice(0, maxResults).map(suggestion => (
-      <SuggestionItem
-        key={suggestion.id}
-        onClick={() => handleSelect(suggestion)}
-      >
-        {suggestion.title}
-      </SuggestionItem>
-    ))}
-  </SuggestionsList>
-)}
+{
+  suggestions.length > 0 && (
+    <SuggestionsList>
+      {suggestions.slice(0, maxResults).map((suggestion) => (
+        <SuggestionItem key={suggestion.id} onClick={() => handleSelect(suggestion)}>
+          {suggestion.title}
+        </SuggestionItem>
+      ))}
+    </SuggestionsList>
+  );
+}
 ```
 
 ## Trade-offs and when to choose composition.

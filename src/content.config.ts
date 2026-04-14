@@ -53,6 +53,8 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     tagline: z.string().optional(),
+    /** Editorial reframing for the case study hero — the judgment call, not the deliverable */
+    hook: z.string().optional(),
     client: z.string().optional(),
     date: z.coerce.date(),
     thumbnail: z.string(),

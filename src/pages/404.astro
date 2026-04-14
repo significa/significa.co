@@ -2,10 +2,54 @@
 import BaseLayout from "@/layouts/base.astro";
 ---
 
-<BaseLayout title="Page Not Found" description="The page you're looking for doesn't exist.">
-  <section>
-    <h1>404</h1>
-    <p>The page you're looking for doesn't exist.</p>
-    <a href="/">Go home</a>
+<BaseLayout title="Page not found — Significa" description="The page you were looking for has moved or never existed.">
+  <section class="lost" aria-labelledby="lost-h">
+    <p class="eyebrow">Page not found</p>
+    <h1 id="lost-h" class="lost-heading">Wrong turn,<br />same studio.</h1>
+    <p class="lost-body">The page you were looking for has moved or never existed. The work is still here.</p>
+    <nav class="lost-nav" aria-label="Navigation">
+      <a href="/" class="link-call">
+        <span class="link-label">Back to the homepage</span>
+        <span class="link-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a href="/projects" class="link-call">
+        <span class="link-label">See our work</span>
+        <span class="link-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </nav>
   </section>
 </BaseLayout>
+
+<style>
+  .lost {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding-inline: var(--gutter);
+    padding-block: clamp(8rem, 18vw, 18rem) clamp(6rem, 12vw, 12rem);
+  }
+
+  .lost-heading {
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-size: var(--text-display-2);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tighter);
+    margin: 0;
+    color: var(--color-ink);
+  }
+
+  .lost-body {
+    margin-block: 2.5rem 0;
+    font-size: var(--text-xl);
+    line-height: var(--leading-normal);
+    color: var(--color-ink-muted);
+    max-width: var(--max-width-prose);
+  }
+
+  .lost-nav {
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 3rem;
+  }
+</style>

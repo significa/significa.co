@@ -47,34 +47,34 @@ So to achieve this goal, ask yourself what the purpose of the function is:
 - Also, in React components, does it support internationalisation, click events, state updates, or any kind of dynamic variation that would be worth testing?
 
 ```js
-describe('pxToRem - Purpose', () => {
-  it('should receive a number and return the value in rem', () => {
-    const result = pxToRem(16)
+describe("pxToRem - Purpose", () => {
+  it("should receive a number and return the value in rem", () => {
+    const result = pxToRem(16);
 
-    expect(result).toBe('1rem')
-  })
+    expect(result).toBe("1rem");
+  });
 
-  it('should round the number to keep only one decimal', () => {
-    const result = pxToRem(22)
+  it("should round the number to keep only one decimal", () => {
+    const result = pxToRem(22);
 
-    expect(result).toBe('1.3rem')
-  })
+    expect(result).toBe("1.3rem");
+  });
 
-  it('should try to convert a string to a number', () => {
-    const result = pxToRem('16')
+  it("should try to convert a string to a number", () => {
+    const result = pxToRem("16");
 
-    expect(result).toBe('1rem')
-  })
+    expect(result).toBe("1rem");
+  });
 
-  it('should convert a number to rem with the body font-size argument', () => {
-    const input = 16
-    const bodyFontSize = 20
+  it("should convert a number to rem with the body font-size argument", () => {
+    const input = 16;
+    const bodyFontSize = 20;
 
-    const result = pxToRem(input, bodyFontSize)
+    const result = pxToRem(input, bodyFontSize);
 
-    expect(result).toBe('0.8em')
-  })
-})
+    expect(result).toBe("0.8em");
+  });
+});
 ```
 
 Here is where you can spend more time writing assertions, since you need to cover all internal conditionals, branches, and variations of your implementations. It will make you more confident that your application works.
@@ -91,25 +91,25 @@ For instance, sometimes you don't have control over arguments and contexts, so i
 - Test as close to the real scenario as possible — any way to throw an error here is valid.
 
 ```js
-describe('pxToRem - Avoiding errors', () => {
-  it('should return 1rem if the argument is null', () => {
-    const result = pxToRem(null)
+describe("pxToRem - Avoiding errors", () => {
+  it("should return 1rem if the argument is null", () => {
+    const result = pxToRem(null);
 
-    expect(result).toBe('1rem')
-  })
+    expect(result).toBe("1rem");
+  });
 
-  it('should return 1rem if the argument is not a number', () => {
-    const result = pxToRem(NaN)
+  it("should return 1rem if the argument is not a number", () => {
+    const result = pxToRem(NaN);
 
-    expect(result).toBe('1rem')
-  })
+    expect(result).toBe("1rem");
+  });
 
-  it('should work correctly when the 2nd argument is invalid', () => {
-    const result = pxToRem(16, null)
+  it("should work correctly when the 2nd argument is invalid", () => {
+    const result = pxToRem(16, null);
 
-    expect(result).toBe('1rem')
-  })
-})
+    expect(result).toBe("1rem");
+  });
+});
 ```
 
 Of course, after finding all those errors and uncovered places, it's time to fix them!
@@ -123,7 +123,7 @@ Sometimes, writing unit tests might lead to other tasks. Indeed, you'll realise 
 - Is every part of the code tested?
 - Is there a way to make it faster?
 
-I once read that if it is worth testing, it is also worth documenting. I'd strongly suggest trying to describe *how* and mostly *why* you've built it the way you have. Would your future self understand this implementation?
+I once read that if it is worth testing, it is also worth documenting. I'd strongly suggest trying to describe _how_ and mostly _why_ you've built it the way you have. Would your future self understand this implementation?
 
 ## Next steps
 

@@ -1,0 +1,30 @@
+---
+interface Props {
+  as?: "p" | "span";
+  id?: string;
+  class?: string;
+}
+
+const { as: Tag = "p", id, class: className } = Astro.props;
+---
+
+<Tag id={id} class:list={["eyebrow", className]}>
+  <slot />
+</Tag>
+
+<style>
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    line-height: var(--leading-relaxed);
+    margin: 0 0 2.5rem;
+  }
+
+  .eyebrow :global(.sep) {
+    color: var(--color-ink-faint);
+    margin-inline: 0.35em;
+  }
+</style>

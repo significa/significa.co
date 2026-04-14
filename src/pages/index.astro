@@ -21,6 +21,16 @@
 import { existsSync } from "node:fs";
 import BaseLayout from "@/layouts/base.astro";
 import Egg from "@/components/ui/egg.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import SectionHeader from "@/components/ui/section-header.astro";
+import LinkCall from "@/components/ui/link-call.astro";
+import ProofList from "@/components/ui/proof-list.astro";
+import NumbersRow from "@/components/ui/numbers-row.astro";
+import QaList from "@/components/ui/qa-list.astro";
+import Moment from "@/components/ui/moment.astro";
+import IndexList from "@/components/ui/index-list.astro";
+import FeaturedVoice from "@/components/ui/featured-voice.astro";
+import FeaturedMeta from "@/components/ui/featured-meta.astro";
 import { getEntry } from "astro:content";
 import { getProjects, getClients } from "@/lib/collections";
 import { cdnUrl } from "@/lib/cdn";
@@ -137,7 +147,7 @@ const structuredData = [webSiteJsonLd()];
        1. Hero — position + capability breadth
        ============================================================ -->
   <section class="hero" aria-labelledby="hero-h">
-    <p class="eyebrow">A design &amp; engineering studio <span class="eyebrow-sep">/</span> Porto</p>
+    <Eyebrow>A design &amp; engineering studio <span class="sep">/</span> Porto</Eyebrow>
     <h1 id="hero-h" class="hero-statement">
       We exist to prove that <em>rigour</em> and <em>beauty</em> are not opposites.
     </h1>
@@ -151,7 +161,7 @@ const structuredData = [webSiteJsonLd()];
        2. Proof — two compact mono strips
        ============================================================ -->
   <section class="proof" aria-label="Credibility">
-    <dl class="proof-list">
+    <ProofList>
       <div class="proof-row">
         <dt class="proof-label">Recognised by</dt>
         <dd class="proof-values proof-logos">
@@ -187,7 +197,7 @@ const structuredData = [webSiteJsonLd()];
           })}
         </dd>
       </div>
-    </dl>
+    </ProofList>
   </section>
 
   <!-- ============================================================
@@ -199,9 +209,9 @@ const structuredData = [webSiteJsonLd()];
     featured && (
       <section class="featured" aria-labelledby="featured-h">
         <div class="featured-inner">
-          <p class="eyebrow">
-            Recent work <span class="eyebrow-sep">/</span> {featured.data.client} <span class="eyebrow-sep">/</span> 2022
-          </p>
+          <Eyebrow>
+            Recent work <span class="sep">/</span> {featured.data.client} <span class="sep">/</span> 2022
+          </Eyebrow>
 
           <h2 id="featured-h" class="featured-statement">
             A period tracker brief that grew into a fertility companion.
@@ -232,37 +242,16 @@ const structuredData = [webSiteJsonLd()];
             </div>
           </figure>
 
-          <aside class="featured-voice" aria-label="Client voice">
-            <blockquote class="featured-voice-quote">
-              <p>
-                Dia started as a simple tracker brief. Six weeks of discovery with Significa reframed what we were building. We
-                ended up with a product we&rsquo;re proud of, bigger than we&rsquo;d scoped, and better for it.
-              </p>
-              <footer>
-                <cite>
-                  <strong>Chakameh Shafii</strong>
-                  <span>Former Director at TFP, Head of Dia</span>
-                </cite>
-              </footer>
-            </blockquote>
-          </aside>
+          <FeaturedVoice
+            quote="Dia started as a simple tracker brief. Six weeks of discovery with Significa reframed what we were building. We ended up with a product we're proud of, bigger than we'd scoped, and better for it."
+            author="Chakameh Shafii"
+            role="Former Director at TFP, Head of Dia"
+          />
 
-          <dl class="featured-meta">
-            {featuredMeta.map((m) => (
-              <div class="featured-meta-item">
-                <dt class="featured-meta-label">{m.label}</dt>
-                <dd class="featured-meta-value">{m.value}</dd>
-              </div>
-            ))}
-          </dl>
+          <FeaturedMeta items={featuredMeta} />
 
           <p class="featured-link-row">
-            <a href={`/projects/${featured.id}`} class="link-call">
-              <span class="link-label">Read the case study</span>
-              <span class="link-arrow" aria-hidden="true">
-                &rarr;
-              </span>
-            </a>
+            <LinkCall href={`/projects/${featured.id}`}>Read the case study</LinkCall>
           </p>
         </div>
       </section>
@@ -272,16 +261,14 @@ const structuredData = [webSiteJsonLd()];
   <!-- ============================================================
        4. Manifesto moment — the one earned italic. Stands alone.
        ============================================================ -->
-  <section class="moment" aria-labelledby="moment-h">
-    <h2 id="moment-h" class="moment-line">
-      <em>Judgement<br />is the work.</em>
-    </h2>
-    <p class="moment-attr">
+  <Moment id="moment-h">
+    <em>Judgement<br />is the work.</em>
+    <p slot="attr" class="moment-attr">
       <Egg variant="fill" class="moment-egg" />
-      &nbsp; From the North Star <span class="eyebrow-sep">/</span>
+      &nbsp; From the North Star <span class="sep">/</span>
       <a href="/about" class="moment-link">read what we believe</a>
     </p>
-  </section>
+  </Moment>
 
   <!-- ============================================================
        5. Recent work — compact editorial index
@@ -290,35 +277,22 @@ const structuredData = [webSiteJsonLd()];
     allProjects.length > 0 && (
       <section class="index" aria-labelledby="index-h">
         <header class="index-header">
-          <p class="eyebrow">More work</p>
-          <h2 id="index-h" class="section-statement">
+          <Eyebrow>More work</Eyebrow>
+          <SectionHeader id="index-h">
             Recent projects.
-          </h2>
+          </SectionHeader>
         </header>
 
-        <ol class="index-list" role="list">
-          {allProjects.map((p, i) => (
-            <li class="index-row">
-              <a href={`/projects/${p.id}`} class="index-link">
-                <span class="index-num">{String(i + 2).padStart(2, "0")}</span>
-                <span class="index-title">{p.data.title}</span>
-                <span class="index-tagline">{p.data.tagline}</span>
-                <span class="index-year">{new Date(p.data.date).getFullYear()}</span>
-                <span class="index-mark" aria-hidden="true">
-                  &rarr;
-                </span>
-              </a>
-            </li>
-          ))}
-        </ol>
+        <IndexList items={allProjects.map((p, i) => ({
+          href: `/projects/${p.id}`,
+          title: p.data.title,
+          tagline: p.data.tagline ?? "",
+          date: String(new Date(p.data.date).getFullYear()),
+          num: String(i + 2).padStart(2, "0"),
+        }))} />
 
         <p class="index-link-row">
-          <a href="/projects" class="link-call">
-            <span class="link-label">All work</span>
-            <span class="link-arrow" aria-hidden="true">
-              &rarr;
-            </span>
-          </a>
+          <LinkCall href="/projects">All work</LinkCall>
         </p>
       </section>
     )
@@ -331,31 +305,18 @@ const structuredData = [webSiteJsonLd()];
        ============================================================ -->
   <section class="questions" aria-labelledby="questions-h">
     <header class="questions-header">
-      <p class="eyebrow">What working with us means</p>
-      <h2 id="questions-h" class="section-statement">Three questions we answer on every project.</h2>
+      <Eyebrow>What working with us means</Eyebrow>
+      <SectionHeader id="questions-h">Three questions we answer on every project.</SectionHeader>
       <p class="section-deck">
         We don&rsquo;t sell a process. We sell the judgment that goes into the work — the decisions that determine whether a
         product ages well or needs a rewrite in eighteen months. Below, the three we come back to.
       </p>
     </header>
 
-    <ol class="qa-list" role="list">
-      {
-        services.map((s) => (
-          <li class="qa">
-            <p class="qa-num">{s.n}</p>
-            <h3 class="qa-q">{s.q}</h3>
-            <p class="qa-a">{s.a}</p>
-          </li>
-        ))
-      }
-    </ol>
+    <QaList items={services} />
 
     <p class="questions-link-row">
-      <a href="/services" class="link-call">
-        <span class="link-label">How we actually deliver</span>
-        <span class="link-arrow" aria-hidden="true">&rarr;</span>
-      </a>
+      <LinkCall href="/services">How we actually deliver</LinkCall>
     </p>
   </section>
 
@@ -363,16 +324,7 @@ const structuredData = [webSiteJsonLd()];
        7. Numbers — single compact row. Quiet close before footer.
        ============================================================ -->
   <section class="numbers" aria-label="Studio in numbers">
-    <dl class="numbers-row">
-      {
-        numbers.map((n) => (
-          <div class="numbers-item">
-            <dt class="numbers-label">{n.label}</dt>
-            <dd class="numbers-value">{n.value}</dd>
-          </div>
-        ))
-      }
-    </dl>
+    <NumbersRow items={numbers} />
   </section>
 </BaseLayout>
 
@@ -523,13 +475,9 @@ const structuredData = [webSiteJsonLd()];
     }
   }
 
-  /* 4. Manifesto moment — pattern styles are global */
-
   /* ============================================================
      5. Recent work index
      ============================================================ */
-
-  /* Index — layout only; pattern styles are global */
 
   .index {
     max-width: var(--max-width-wide);
@@ -544,8 +492,6 @@ const structuredData = [webSiteJsonLd()];
      6. Numbers
      ============================================================ */
 
-  /* Numbers — layout only; pattern styles are global */
-
   .numbers {
     max-width: var(--max-width-wide);
     margin: 0 auto;
@@ -555,8 +501,6 @@ const structuredData = [webSiteJsonLd()];
   /* ============================================================
      7. Three questions (close of page)
      ============================================================ */
-
-  /* Questions — layout only; QA pattern styles are global */
 
   .questions {
     max-width: var(--max-width-wide);
@@ -568,6 +512,18 @@ const structuredData = [webSiteJsonLd()];
   }
 
   .questions-link-row {
+    margin-top: 3rem;
+  }
+
+  .section-deck {
+    margin-block: 1.5rem 0;
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    color: var(--color-ink-muted);
+    max-width: var(--max-width-prose);
+  }
+
+  .index-link-row {
     margin-top: 3rem;
   }
 </style>

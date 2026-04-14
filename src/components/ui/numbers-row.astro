@@ -1,0 +1,66 @@
+---
+interface Props {
+  items: Array<{ label: string; value: string }>;
+  class?: string;
+}
+
+const { items, class: className } = Astro.props;
+---
+
+<dl class:list={["numbers-row", className]}>
+  {items.map((n) => (
+    <div class="numbers-item">
+      <dt class="numbers-label">{n.label}</dt>
+      <dd class="numbers-value">{n.value}</dd>
+    </div>
+  ))}
+</dl>
+
+<style>
+  .numbers-row {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .numbers-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .numbers-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    margin: 0;
+    line-height: var(--leading-relaxed);
+  }
+
+  .numbers-value {
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-size: var(--text-4xl);
+    line-height: 1;
+    letter-spacing: var(--tracking-tighter);
+    color: var(--color-ink);
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 720px) {
+    .numbers-row {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .numbers-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

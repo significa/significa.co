@@ -1,0 +1,26 @@
+---
+interface Props {
+  as?: "h1" | "h2" | "h3";
+  id?: string;
+  class?: string;
+}
+
+const { as: Tag = "h2", id, class: className } = Astro.props;
+---
+
+<Tag id={id} class:list={["section-statement", className]}>
+  <slot />
+</Tag>
+
+<style>
+  .section-statement {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--text-3xl);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    margin: 0;
+    max-width: 28ch;
+    color: var(--color-ink);
+  }
+</style>

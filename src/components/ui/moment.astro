@@ -1,0 +1,64 @@
+---
+/**
+ * Manifesto moment — centered, display italic, max one per page.
+ * The <slot> receives the line (wrapped in <em>), attribution goes in the `attr` slot.
+ */
+interface Props {
+  id?: string;
+  class?: string;
+}
+
+const { id, class: className } = Astro.props;
+---
+
+<section class:list={["moment", className]} aria-labelledby={id}>
+  <h2 id={id} class="moment-line">
+    <slot />
+  </h2>
+  <slot name="attr" />
+</section>
+
+<style>
+  .moment {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding-block: clamp(7rem, 16vw, 16rem);
+    text-align: center;
+  }
+
+  .moment-line {
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-style: italic;
+    font-size: var(--text-display-2);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tighter);
+    margin: 0;
+    color: var(--color-ink);
+  }
+
+  .moment :global(.moment-attr) {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    margin-top: 4rem;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .moment :global(.moment-egg) {
+    color: var(--color-accent);
+    height: 0.85em;
+  }
+
+  .moment :global(.moment-link) {
+    color: inherit;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .moment :global(.moment-link:hover) {
+    color: var(--color-accent);
+  }
+</style>

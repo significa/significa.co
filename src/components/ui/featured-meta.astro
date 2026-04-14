@@ -1,0 +1,69 @@
+---
+interface Props {
+  items: Array<{ label: string; value: string }>;
+  class?: string;
+}
+
+const { items, class: className } = Astro.props;
+---
+
+<dl class:list={["featured-meta", className]}>
+  {items.map((m) => (
+    <div class="featured-meta-item">
+      <dt class="featured-meta-label">{m.label}</dt>
+      <dd class="featured-meta-value">{m.value}</dd>
+    </div>
+  ))}
+</dl>
+
+<style>
+  .featured-meta {
+    margin: 0 0 clamp(2rem, 4vw, 3rem);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .featured-meta-item {
+    flex: 1 1 auto;
+    padding: 1rem 2rem 1rem 0;
+  }
+
+  .featured-meta-item:last-child {
+    padding-right: 0;
+  }
+
+  .featured-meta-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    margin: 0 0 0.35rem;
+    line-height: var(--leading-relaxed);
+  }
+
+  .featured-meta-value {
+    font-size: var(--text-sm);
+    color: var(--color-ink);
+    line-height: var(--leading-normal);
+    margin: 0;
+  }
+
+  @media (max-width: 880px) {
+    .featured-meta {
+      flex-direction: column;
+    }
+
+    .featured-meta-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--color-rule);
+    }
+
+    .featured-meta-item:last-child {
+      border-bottom: 0;
+    }
+  }
+</style>

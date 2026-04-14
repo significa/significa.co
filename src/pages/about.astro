@@ -15,6 +15,12 @@
 
 import BaseLayout from "@/layouts/base.astro";
 import Egg from "@/components/ui/egg.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import SectionHeader from "@/components/ui/section-header.astro";
+import NumbersRow from "@/components/ui/numbers-row.astro";
+import QaList from "@/components/ui/qa-list.astro";
+import Moment from "@/components/ui/moment.astro";
+import FeaturedVoice from "@/components/ui/featured-voice.astro";
 import { getTestimonials } from "@/lib/collections";
 import { cdnUrl } from "@/lib/cdn";
 
@@ -55,7 +61,7 @@ const numbers = [
        1. Position statement
        ============================================================ -->
   <section class="hero" aria-labelledby="hero-h">
-    <p class="eyebrow">About</p>
+    <Eyebrow>About</Eyebrow>
     <h1 id="hero-h" class="hero-statement">Designers and engineers who think together.</h1>
     <p class="hero-deck">
       Significa is a design and engineering studio in Porto. A single team where design and engineering are equal partners in
@@ -68,7 +74,7 @@ const numbers = [
        2. The overlap — the honest tension, named
        ============================================================ -->
   <section class="overlap" aria-labelledby="overlap-h">
-    <p class="eyebrow">The space between</p>
+    <Eyebrow>The space between</Eyebrow>
     <h2 id="overlap-h" class="overlap-heading">We live in the overlap between idealism and revenue.</h2>
     <div class="overlap-prose">
       <p>
@@ -93,29 +99,19 @@ const numbers = [
        ============================================================ -->
   <section class="convictions" aria-labelledby="convictions-h">
     <header class="convictions-header">
-      <p class="eyebrow">How this shows up</p>
-      <h2 id="convictions-h" class="section-statement">Three things we actually do, not just believe.</h2>
+      <Eyebrow>How this shows up</Eyebrow>
+      <SectionHeader id="convictions-h">Three things we actually do, not just believe.</SectionHeader>
     </header>
 
-    <ol class="qa-list" role="list">
-      {
-        convictions.map((c) => (
-          <li class="qa">
-            <p class="qa-num">{c.n}</p>
-            <h3 class="qa-q">{c.q}</h3>
-            <p class="qa-a">{c.a}</p>
-          </li>
-        ))
-      }
-    </ol>
+    <QaList items={convictions} />
   </section>
 
   <!-- ============================================================
        4. Who we're not — the boundaries
        ============================================================ -->
   <section class="boundaries" aria-labelledby="boundaries-h">
-    <p class="eyebrow">Who we're not</p>
-    <h2 id="boundaries-h" class="section-statement">Three things we will never be.</h2>
+    <Eyebrow>Who we're not</Eyebrow>
+    <SectionHeader id="boundaries-h">Three things we will never be.</SectionHeader>
     <ol class="boundaries-list" role="list">
       <li class="boundary">
         <p class="boundary-head">A software house that churns out features to spec.</p>
@@ -144,33 +140,22 @@ const numbers = [
   <!-- ============================================================
        5. Manifesto moment — earned by the argument above
        ============================================================ -->
-  <section class="moment" aria-labelledby="moment-h">
-    <h2 id="moment-h" class="moment-line">
-      <em>We give<br />a damn.</em>
-    </h2>
-    <p class="moment-attr">
+  <Moment id="moment-h">
+    <em>We give<br />a damn.</em>
+    <p slot="attr" class="moment-attr">
       <Egg variant="fill" class="moment-egg" />
-      &nbsp; From the North Star <span class="eyebrow-sep">/</span>
+      &nbsp; From the North Star <span class="sep">/</span>
       <a href="/say-hello" class="moment-link">say hello</a>
     </p>
-  </section>
+  </Moment>
 
   <!-- ============================================================
        6. The studio — numbers, photo, client voice as one section
        ============================================================ -->
   <section class="studio" aria-labelledby="studio-h">
-    <p class="eyebrow" id="studio-h">The studio</p>
+    <Eyebrow id="studio-h">The studio</Eyebrow>
 
-    <dl class="numbers-row">
-      {
-        numbers.map((n) => (
-          <div class="numbers-item">
-            <dt class="numbers-label">{n.label}</dt>
-            <dd class="numbers-value">{n.value}</dd>
-          </div>
-        ))
-      }
-    </dl>
+    <NumbersRow items={numbers} />
 
     <div class="studio-photo">
       <img
@@ -185,19 +170,12 @@ const numbers = [
 
     {
       bestTestimonial && (
-        <aside class="featured-voice studio-voice">
-          <blockquote class="featured-voice-quote">
-            <p>{bestTestimonial.data.quote}</p>
-            <footer>
-              <cite>
-                <strong>{bestTestimonial.data.author}</strong>
-                <span>
-                  {bestTestimonial.data.role} at {bestTestimonial.data.company}
-                </span>
-              </cite>
-            </footer>
-          </blockquote>
-        </aside>
+        <FeaturedVoice
+          quote={bestTestimonial.data.quote}
+          author={bestTestimonial.data.author}
+          role={`${bestTestimonial.data.role} at ${bestTestimonial.data.company}`}
+          class="studio-voice"
+        />
       )
     }
   </section>

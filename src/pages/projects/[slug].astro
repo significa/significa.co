@@ -13,6 +13,10 @@
 
 import { getEntry, render } from "astro:content";
 import BaseLayout from "@/layouts/base.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import LinkCall from "@/components/ui/link-call.astro";
+import IndexList from "@/components/ui/index-list.astro";
+import FeaturedMeta from "@/components/ui/featured-meta.astro";
 import { mdxComponents } from "@/components/mdx/components";
 import { getProjects, getAwardsForProject } from "@/lib/collections";
 import { cdnUrl } from "@/lib/cdn";
@@ -93,11 +97,11 @@ if (project.data.tags?.length) metaItems.push({ label: "Services", value: projec
          1. Hook
          ============================================================ -->
     <header class="project-header">
-      <p class="eyebrow">
+      <Eyebrow>
         {project.data.client ?? project.data.title}
-        <span class="eyebrow-sep">/</span>
+        <span class="sep">/</span>
         {new Date(project.data.date).getFullYear()}
-      </p>
+      </Eyebrow>
       <h1 class="project-heading">
         {project.data.hook ?? project.data.tagline ?? project.data.title}
       </h1>
@@ -152,16 +156,7 @@ if (project.data.tags?.length) metaItems.push({ label: "Services", value: projec
          3. Metadata strip
          ============================================================ -->
     <div class="project-meta">
-      <dl class="featured-meta">
-        {
-          metaItems.map((m) => (
-            <div class="featured-meta-item">
-              <dt class="featured-meta-label">{m.label}</dt>
-              <dd class="featured-meta-value">{m.value}</dd>
-            </div>
-          ))
-        }
-      </dl>
+      <FeaturedMeta items={metaItems} />
     </div>
 
     <!-- ============================================================
@@ -180,27 +175,16 @@ if (project.data.tags?.length) metaItems.push({ label: "Services", value: projec
       relatedProjects.length > 0 && (
         <aside class="related" aria-labelledby="related-h">
           <div class="related-inner">
-            <p class="eyebrow" id="related-h">
+            <Eyebrow id="related-h">
               More work
-            </p>
-            <ol class="index-list" role="list">
-              {relatedProjects.map(
-                (related, i) =>
-                  related && (
-                    <li>
-                      <a href={`/projects/${related.id}`} class="index-link">
-                        <span class="index-num">{String(i + 1).padStart(2, "0")}</span>
-                        <span class="index-title">{related.data.title}</span>
-                        <span class="index-tagline">{related.data.tagline}</span>
-                        <span class="index-year">{new Date(related.data.date).getFullYear()}</span>
-                        <span class="index-mark" aria-hidden="true">
-                          &rarr;
-                        </span>
-                      </a>
-                    </li>
-                  )
-              )}
-            </ol>
+            </Eyebrow>
+            <IndexList items={relatedProjects.filter(Boolean).map((related, i) => ({
+              href: `/projects/${related!.id}`,
+              title: related!.data.title,
+              tagline: related!.data.tagline ?? "",
+              date: String(new Date(related!.data.date).getFullYear()),
+              num: String(i + 1).padStart(2, "0"),
+            }))} />
           </div>
         </aside>
       )
@@ -210,10 +194,7 @@ if (project.data.tags?.length) metaItems.push({ label: "Services", value: projec
          6. Close
          ============================================================ -->
     <div class="project-close">
-      <a href="/say-hello" class="link-call">
-        <span class="link-label">Start a conversation</span>
-        <span class="link-arrow" aria-hidden="true">&rarr;</span>
-      </a>
+      <LinkCall href="/say-hello">Start a conversation</LinkCall>
     </div>
   </article>
 </BaseLayout>

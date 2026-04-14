@@ -1,0 +1,38 @@
+---
+interface Props {
+  href: string;
+  class?: string;
+}
+
+const { href, class: className } = Astro.props;
+---
+
+<a href={href} class:list={["link-call", className]}>
+  <span class="link-label"><slot /></span>
+  <span class="link-arrow" aria-hidden="true">&rarr;</span>
+</a>
+
+<style>
+  .link-call {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5em;
+    color: var(--color-ink);
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .link-call:hover {
+    color: var(--color-accent);
+  }
+
+  .link-arrow {
+    display: inline-block;
+    transition: transform var(--duration-slower) var(--ease-editorial);
+  }
+
+  .link-call:hover .link-arrow {
+    transform: translateX(0.45em);
+  }
+</style>

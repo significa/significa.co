@@ -8,6 +8,8 @@
 
 import { render } from "astro:content";
 import BaseLayout from "@/layouts/base.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import IndexList from "@/components/ui/index-list.astro";
 import { mdxComponents } from "@/components/mdx/components";
 import { articleJsonLd } from "@/lib/seo";
 import { getPosts, getRelatedPosts } from "@/lib/collections";
@@ -56,19 +58,19 @@ function formatShortDate(date: Date): string {
          Header
          ============================================================ -->
     <header class="post-header">
-      <p class="eyebrow">
+      <Eyebrow>
         <time datetime={post.data.date.toISOString()}>{formattedDate}</time>
-        <span class="eyebrow-sep">/</span>
+        <span class="sep">/</span>
         {readingTime} min read
         {
           post.data.tags?.[0] && (
             <>
-              <span class="eyebrow-sep">/</span>
+              <span class="sep">/</span>
               {post.data.tags[0]}
             </>
           )
         }
-      </p>
+      </Eyebrow>
       <h1 class="post-title">{post.data.title}</h1>
       {post.data.description && <p class="post-description">{post.data.description}</p>}
     </header>
@@ -106,7 +108,7 @@ function formatShortDate(date: Date): string {
     {
       post.data.author && (
         <footer class="post-author">
-          <p class="eyebrow">Written by {post.data.author}</p>
+          <Eyebrow>Written by {post.data.author}</Eyebrow>
         </footer>
       )
     }
@@ -117,30 +119,20 @@ function formatShortDate(date: Date): string {
     {
       relatedPosts.length > 0 && (
         <aside class="related" aria-labelledby="related-h">
-          <p class="eyebrow" id="related-h">
+          <Eyebrow id="related-h">
             More articles
-          </p>
-          <ol class="index-list" role="list">
-            {relatedPosts.map((related, i) => (
-              <li>
-                <a href={`/blog/${related.id}`} class="index-link">
-                  <span class="index-num">{String(i + 1).padStart(2, "0")}</span>
-                  <span class="index-title">{related.data.title}</span>
-                  <span class="index-tagline">
-                    {related.data.description
-                      ? related.data.description.length > 80
-                        ? related.data.description.slice(0, 80) + "..."
-                        : related.data.description
-                      : ""}
-                  </span>
-                  <span class="index-year">{formatShortDate(related.data.date)}</span>
-                  <span class="index-mark" aria-hidden="true">
-                    &rarr;
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ol>
+          </Eyebrow>
+          <IndexList items={relatedPosts.map((related, i) => ({
+            href: `/blog/${related.id}`,
+            title: related.data.title,
+            tagline: related.data.description
+              ? related.data.description.length > 80
+                ? related.data.description.slice(0, 80) + "..."
+                : related.data.description
+              : "",
+            date: formatShortDate(related.data.date),
+            num: String(i + 1).padStart(2, "0"),
+          }))} />
         </aside>
       )
     }

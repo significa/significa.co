@@ -1,21 +1,17 @@
 ---
 import BaseLayout from "@/layouts/base.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import LinkCall from "@/components/ui/link-call.astro";
 ---
 
 <BaseLayout title="Page not found — Significa" description="The page you were looking for has moved or never existed.">
   <section class="lost" aria-labelledby="lost-h">
-    <p class="eyebrow">Page not found</p>
+    <Eyebrow>Page not found</Eyebrow>
     <h1 id="lost-h" class="lost-heading">Wrong turn,<br />same studio.</h1>
     <p class="lost-body">The page you were looking for has moved or never existed. The work is still here.</p>
     <nav class="lost-nav" aria-label="Navigation">
-      <a href="/" class="link-call">
-        <span class="link-label">Back to the homepage</span>
-        <span class="link-arrow" aria-hidden="true">&rarr;</span>
-      </a>
-      <a href="/projects" class="link-call">
-        <span class="link-label">See our work</span>
-        <span class="link-arrow" aria-hidden="true">&rarr;</span>
-      </a>
+      <LinkCall href="/">Back to the homepage</LinkCall>
+      <LinkCall href="/projects">See our work</LinkCall>
     </nav>
   </section>
 </BaseLayout>

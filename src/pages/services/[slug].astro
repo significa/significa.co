@@ -9,6 +9,9 @@
 
 import { getCollection, getEntry, render } from "astro:content";
 import BaseLayout from "@/layouts/base.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import LinkCall from "@/components/ui/link-call.astro";
+import IndexList from "@/components/ui/index-list.astro";
 import { mdxComponents } from "@/components/mdx/components";
 
 export async function getStaticPaths() {
@@ -38,10 +41,10 @@ const featuredProjects = service.data.featuredProjects?.length
          Header
          ============================================================ -->
     <header class="service-header">
-      <p class="eyebrow">
-        Services <span class="eyebrow-sep">/</span>
+      <Eyebrow>
+        Services <span class="sep">/</span>
         {service.data.title}
-      </p>
+      </Eyebrow>
       <h1 class="service-heading">{service.data.title}</h1>
       {service.data.tagline && <p class="service-deck">{service.data.tagline}</p>}
     </header>
@@ -61,27 +64,16 @@ const featuredProjects = service.data.featuredProjects?.length
     {
       featuredProjects.length > 0 && (
         <section class="projects" aria-labelledby="projects-h">
-          <p class="eyebrow" id="projects-h">
+          <Eyebrow id="projects-h">
             Related work
-          </p>
-          <ol class="index-list" role="list">
-            {featuredProjects.map(
-              (project, i) =>
-                project && (
-                  <li>
-                    <a href={`/projects/${project.id}`} class="index-link">
-                      <span class="index-num">{String(i + 1).padStart(2, "0")}</span>
-                      <span class="index-title">{project.data.title}</span>
-                      <span class="index-tagline">{project.data.tagline}</span>
-                      <span class="index-year">{new Date(project.data.date).getFullYear()}</span>
-                      <span class="index-mark" aria-hidden="true">
-                        &rarr;
-                      </span>
-                    </a>
-                  </li>
-                )
-            )}
-          </ol>
+          </Eyebrow>
+          <IndexList items={featuredProjects.filter(Boolean).map((project, i) => ({
+            href: `/projects/${project!.id}`,
+            title: project!.data.title,
+            tagline: project!.data.tagline ?? "",
+            date: String(new Date(project!.data.date).getFullYear()),
+            num: String(i + 1).padStart(2, "0"),
+          }))} />
         </section>
       )
     }
@@ -90,10 +82,7 @@ const featuredProjects = service.data.featuredProjects?.length
          Close
          ============================================================ -->
     <div class="service-close">
-      <a href="/say-hello" class="link-call">
-        <span class="link-label">Start a conversation</span>
-        <span class="link-arrow" aria-hidden="true">&rarr;</span>
-      </a>
+      <LinkCall href="/say-hello">Start a conversation</LinkCall>
     </div>
   </article>
 </BaseLayout>

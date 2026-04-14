@@ -8,6 +8,9 @@
  */
 
 import BaseLayout from "@/layouts/base.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import SectionHeader from "@/components/ui/section-header.astro";
+import IndexList from "@/components/ui/index-list.astro";
 import { getProjects } from "@/lib/collections";
 
 const projects = await getProjects();
@@ -19,25 +22,17 @@ const projects = await getProjects();
 >
   <section class="page" aria-labelledby="page-h">
     <header class="page-header">
-      <p class="eyebrow">Work</p>
-      <h1 id="page-h" class="section-statement">Selected projects.</h1>
+      <Eyebrow>Work</Eyebrow>
+      <SectionHeader as="h1" id="page-h">Selected projects.</SectionHeader>
     </header>
 
-    <ol class="index-list" role="list">
-      {
-        projects.map((p, i) => (
-          <li>
-            <a href={`/projects/${p.id}`} class="index-link">
-              <span class="index-num">{String(i + 1).padStart(2, "0")}</span>
-              <span class="index-title">{p.data.title}</span>
-              <span class="index-tagline">{p.data.tagline}</span>
-              <span class="index-year">{new Date(p.data.date).getFullYear()}</span>
-              <span class="index-mark" aria-hidden="true">&rarr;</span>
-            </a>
-          </li>
-        ))
-      }
-    </ol>
+    <IndexList items={projects.map((p, i) => ({
+      href: `/projects/${p.id}`,
+      title: p.data.title,
+      tagline: p.data.tagline ?? "",
+      date: String(new Date(p.data.date).getFullYear()),
+      num: String(i + 1).padStart(2, "0"),
+    }))} />
   </section>
 </BaseLayout>
 

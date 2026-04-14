@@ -12,6 +12,10 @@
  */
 
 import BaseLayout from "@/layouts/base.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import SectionHeader from "@/components/ui/section-header.astro";
+import ProofList from "@/components/ui/proof-list.astro";
+import QaList from "@/components/ui/qa-list.astro";
 
 const steps = [
   {
@@ -40,7 +44,7 @@ const steps = [
        1. Direct statement
        ============================================================ -->
   <section class="hero" aria-labelledby="hero-h">
-    <p class="eyebrow">Hello</p>
+    <Eyebrow>Hello</Eyebrow>
     <h1 id="hero-h" class="hero-statement">Start with an email.</h1>
     <p class="hero-deck">
       Tell us what you're building and why it matters. We'll read it, think about it, and reply within two working days with an
@@ -52,7 +56,7 @@ const steps = [
        2. Contact strip
        ============================================================ -->
   <section class="contact" aria-label="Contact details">
-    <dl class="proof-list">
+    <ProofList>
       <div class="proof-row">
         <dt class="proof-label">Email</dt>
         <dd class="proof-values">
@@ -71,7 +75,7 @@ const steps = [
           <span class="proof-item">Mon-Fri, 9am-6pm WET</span>
         </dd>
       </div>
-    </dl>
+    </ProofList>
   </section>
 
   <!-- ============================================================
@@ -79,21 +83,11 @@ const steps = [
        ============================================================ -->
   <section class="next" aria-labelledby="next-h">
     <header class="next-header">
-      <p class="eyebrow">What happens next</p>
-      <h2 id="next-h" class="section-statement">From email to one team.</h2>
+      <Eyebrow>What happens next</Eyebrow>
+      <SectionHeader id="next-h">From email to one team.</SectionHeader>
     </header>
 
-    <ol class="qa-list" role="list">
-      {
-        steps.map((s) => (
-          <li class="qa">
-            <p class="qa-num">{s.n}</p>
-            <h3 class="qa-q">{s.q}</h3>
-            <p class="qa-a">{s.a}</p>
-          </li>
-        ))
-      }
-    </ol>
+    <QaList items={steps} />
   </section>
 </BaseLayout>
 

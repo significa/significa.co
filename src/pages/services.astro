@@ -15,6 +15,13 @@
  */
 
 import BaseLayout from "@/layouts/base.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import SectionHeader from "@/components/ui/section-header.astro";
+import LinkCall from "@/components/ui/link-call.astro";
+import NumbersRow from "@/components/ui/numbers-row.astro";
+import QaList from "@/components/ui/qa-list.astro";
+import IndexList from "@/components/ui/index-list.astro";
+import FeaturedVoice from "@/components/ui/featured-voice.astro";
 import { getCollection } from "astro:content";
 import { getProjects, getTestimonials } from "@/lib/collections";
 
@@ -57,7 +64,7 @@ const numbers = [
        1. Position statement — breadth folded into the deck
        ============================================================ -->
   <section class="hero" aria-labelledby="hero-h">
-    <p class="eyebrow">How we work</p>
+    <Eyebrow>How we work</Eyebrow>
     <h1 id="hero-h" class="hero-statement">One team from first conversation to well after launch.</h1>
     <p class="hero-deck">
       Strategy, design, and engineering working in tight loops. We make platforms, mobile apps, e-commerce, design systems, and
@@ -71,28 +78,18 @@ const numbers = [
        ============================================================ -->
   <section class="questions" aria-labelledby="questions-h">
     <header class="questions-header">
-      <p class="eyebrow">What you should know</p>
-      <h2 id="questions-h" class="section-statement">Three questions worth asking before you hire anyone.</h2>
+      <Eyebrow>What you should know</Eyebrow>
+      <SectionHeader id="questions-h">Three questions worth asking before you hire anyone.</SectionHeader>
     </header>
 
-    <ol class="qa-list" role="list">
-      {
-        questions.map((q) => (
-          <li class="qa">
-            <p class="qa-num">{q.n}</p>
-            <h3 class="qa-q">{q.q}</h3>
-            <p class="qa-a">{q.a}</p>
-          </li>
-        ))
-      }
-    </ol>
+    <QaList items={questions} />
   </section>
 
   <!-- ============================================================
        3. Disciplines — links to sub-pages
        ============================================================ -->
   <section class="disciplines" aria-labelledby="disciplines-h">
-    <p class="eyebrow" id="disciplines-h">What we do</p>
+    <Eyebrow id="disciplines-h">What we do</Eyebrow>
     <ul class="discipline-list" role="list">
       {
         services.map((s) => (
@@ -100,7 +97,7 @@ const numbers = [
             <a href={`/services/${s.id}`} class="discipline-link">
               <h2 class="discipline-title">{s.data.title}</h2>
               <p class="discipline-tagline">{s.data.tagline}</p>
-              <span class="link-arrow" aria-hidden="true">
+              <span class="discipline-arrow" aria-hidden="true">
                 &rarr;
               </span>
             </a>
@@ -116,19 +113,11 @@ const numbers = [
   {
     bestTestimonial && (
       <section class="voice" aria-label="Client testimonial">
-        <aside class="featured-voice">
-          <blockquote class="featured-voice-quote">
-            <p>{bestTestimonial.data.quote}</p>
-            <footer>
-              <cite>
-                <strong>{bestTestimonial.data.author}</strong>
-                <span>
-                  {bestTestimonial.data.role} at {bestTestimonial.data.company}
-                </span>
-              </cite>
-            </footer>
-          </blockquote>
-        </aside>
+        <FeaturedVoice
+          quote={bestTestimonial.data.quote}
+          author={bestTestimonial.data.author}
+          role={`${bestTestimonial.data.role} at ${bestTestimonial.data.company}`}
+        />
       </section>
     )
   }
@@ -140,35 +129,22 @@ const numbers = [
     projects.length > 0 && (
       <section class="work" aria-labelledby="work-h">
         <header class="work-header">
-          <p class="eyebrow">Selected work</p>
-          <h2 id="work-h" class="section-statement">
+          <Eyebrow>Selected work</Eyebrow>
+          <SectionHeader id="work-h">
             Proof, not promises.
-          </h2>
+          </SectionHeader>
         </header>
 
-        <ol class="index-list" role="list">
-          {projects.map((p, i) => (
-            <li>
-              <a href={`/projects/${p.id}`} class="index-link">
-                <span class="index-num">{String(i + 1).padStart(2, "0")}</span>
-                <span class="index-title">{p.data.title}</span>
-                <span class="index-tagline">{p.data.tagline}</span>
-                <span class="index-year">{new Date(p.data.date).getFullYear()}</span>
-                <span class="index-mark" aria-hidden="true">
-                  &rarr;
-                </span>
-              </a>
-            </li>
-          ))}
-        </ol>
+        <IndexList items={projects.map((p, i) => ({
+          href: `/projects/${p.id}`,
+          title: p.data.title,
+          tagline: p.data.tagline ?? "",
+          date: String(new Date(p.data.date).getFullYear()),
+          num: String(i + 1).padStart(2, "0"),
+        }))} />
 
         <p class="work-link-row">
-          <a href="/projects" class="link-call">
-            <span class="link-label">All work</span>
-            <span class="link-arrow" aria-hidden="true">
-              &rarr;
-            </span>
-          </a>
+          <LinkCall href="/projects">All work</LinkCall>
         </p>
       </section>
     )
@@ -178,22 +154,10 @@ const numbers = [
        6. Numbers + close
        ============================================================ -->
   <section class="numbers" aria-label="Studio in numbers">
-    <dl class="numbers-row">
-      {
-        numbers.map((n) => (
-          <div class="numbers-item">
-            <dt class="numbers-label">{n.label}</dt>
-            <dd class="numbers-value">{n.value}</dd>
-          </div>
-        ))
-      }
-    </dl>
+    <NumbersRow items={numbers} />
 
     <p class="close-link">
-      <a href="/say-hello" class="link-call">
-        <span class="link-label">Start a conversation</span>
-        <span class="link-arrow" aria-hidden="true">&rarr;</span>
-      </a>
+      <LinkCall href="/say-hello">Start a conversation</LinkCall>
     </p>
   </section>
 </BaseLayout>
@@ -309,7 +273,7 @@ const numbers = [
     color: var(--color-ink);
   }
 
-  .discipline-link .link-arrow {
+  .discipline-link .discipline-arrow {
     color: var(--color-accent);
     opacity: 0;
     transform: translateX(-0.4em);
@@ -329,7 +293,7 @@ const numbers = [
       gap: 0.5rem;
     }
 
-    .discipline-link .link-arrow {
+    .discipline-link .discipline-arrow {
       display: none;
     }
   }

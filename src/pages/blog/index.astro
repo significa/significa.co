@@ -11,6 +11,9 @@
  */
 
 import BaseLayout from "@/layouts/base.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import LinkCall from "@/components/ui/link-call.astro";
+import IndexList from "@/components/ui/index-list.astro";
 import { getPosts } from "@/lib/collections";
 
 const allPosts = await getPosts();
@@ -34,21 +37,16 @@ function formatShortDate(date: Date): string {
   {
     featuredPost && (
       <section class="featured" aria-labelledby="featured-h">
-        <p class="eyebrow">
-          Journal <span class="eyebrow-sep">/</span> Latest <span class="eyebrow-sep">/</span>
+        <Eyebrow>
+          Journal <span class="sep">/</span> Latest <span class="sep">/</span>
           {formatShortDate(featuredPost.data.date)}
-        </p>
+        </Eyebrow>
         <h1 id="featured-h" class="featured-heading">
           {featuredPost.data.title}
         </h1>
         {featuredPost.data.description && <p class="featured-description">{featuredPost.data.description}</p>}
         <p class="featured-link-row">
-          <a href={`/blog/${featuredPost.id}`} class="link-call">
-            <span class="link-label">Read</span>
-            <span class="link-arrow" aria-hidden="true">
-              &rarr;
-            </span>
-          </a>
+          <LinkCall href={`/blog/${featuredPost.id}`}>Read</LinkCall>
         </p>
       </section>
     )
@@ -60,11 +58,11 @@ function formatShortDate(date: Date): string {
   {
     remainingPosts.length > 0 && (
       <section class="posts" aria-labelledby="posts-h">
-        <p class="eyebrow" id="posts-h">
+        <Eyebrow id="posts-h">
           All articles
-        </p>
+        </Eyebrow>
 
-        <ol class="index-list" role="list">
+        <IndexList>
           {remainingPosts.map((post, i) => (
             <li class="post-item" data-index={i} style={i >= INITIAL_COUNT ? "display: none;" : ""}>
               <a href={`/blog/${post.id}`} class="index-link">
@@ -84,7 +82,7 @@ function formatShortDate(date: Date): string {
               </a>
             </li>
           ))}
-        </ol>
+        </IndexList>
 
         {remainingPosts.length > INITIAL_COUNT && (
           <p class="load-more-row">

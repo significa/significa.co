@@ -1,0 +1,74 @@
+---
+interface Props {
+  quote: string;
+  author: string;
+  role: string;
+  class?: string;
+}
+
+const { quote, author, role, class: className } = Astro.props;
+---
+
+<aside class:list={["featured-voice", className]} aria-label="Client voice">
+  <blockquote class="featured-voice-quote">
+    <p>{quote}</p>
+    <footer>
+      <cite>
+        <strong>{author}</strong>
+        <span>{role}</span>
+      </cite>
+    </footer>
+  </blockquote>
+</aside>
+
+<style>
+  .featured-voice {
+    max-width: 52ch;
+    margin: 0 0 clamp(2rem, 4vw, 3rem);
+  }
+
+  .featured-voice-quote {
+    margin: 0;
+  }
+
+  .featured-voice-quote p {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-normal);
+    font-size: var(--text-xl);
+    line-height: var(--leading-normal);
+    letter-spacing: 0;
+    margin: 0 0 1.25rem;
+    color: var(--color-ink);
+  }
+
+  .featured-voice-quote footer {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+  }
+
+  .featured-voice-quote cite {
+    font-style: normal;
+    display: inline;
+  }
+
+  .featured-voice-quote strong {
+    color: var(--color-ink);
+    font-weight: var(--weight-normal);
+  }
+
+  .featured-voice-quote strong::after {
+    content: " / ";
+    color: var(--color-ink-faint);
+    font-weight: var(--weight-normal);
+    margin-inline: 0.1em;
+  }
+
+  @media (max-width: 880px) {
+    .featured-voice-quote p {
+      font-size: var(--text-lg);
+    }
+  }
+</style>

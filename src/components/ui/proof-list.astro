@@ -1,0 +1,65 @@
+---
+/**
+ * Proof strip — dl with hairlines, mono labels + values.
+ * Pass <div slot="row"> children, each containing dt/dd.
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<dl class:list={["proof-list", className]}>
+  <slot />
+</dl>
+
+<style>
+  .proof-list {
+    margin: 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .proof-list :global(.proof-row) {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    gap: 2rem;
+    align-items: center;
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .proof-list :global(.proof-label) {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    margin: 0;
+    line-height: var(--leading-relaxed);
+  }
+
+  .proof-list :global(.proof-values) {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+  }
+
+  .proof-list :global(.proof-item) {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink);
+    line-height: var(--leading-relaxed);
+  }
+
+  @media (max-width: 720px) {
+    .proof-list :global(.proof-row) {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      align-items: start;
+    }
+  }
+</style>

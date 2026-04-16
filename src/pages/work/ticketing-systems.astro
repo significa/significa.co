@@ -1,0 +1,170 @@
+---
+/**
+ * /work/ticketing-systems — Solutions capability page
+ *
+ * SEO-targeted page for ticketing system work. Follows the pattern
+ * established by /work/e-commerce.
+ *
+ * Explicit route takes priority over [slug].astro.
+ */
+
+import BaseLayout from "@/layouts/base.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import SectionHeader from "@/components/ui/section-header.astro";
+import LinkCall from "@/components/ui/link-call.astro";
+import IndexList from "@/components/ui/index-list.astro";
+import QaList from "@/components/ui/qa-list.astro";
+import { getProjects } from "@/lib/collections";
+import { webPageJsonLd } from "@/lib/seo";
+
+const allProjects = await getProjects();
+const ticketingProjects = allProjects.filter(
+  (p) =>
+    p.data.deliverable.includes("ticketing-systems") ||
+    p.data.industry.includes("ticketing") ||
+    p.data.tags.includes("ticketing")
+);
+
+const capabilities = [
+  {
+    n: "01",
+    q: "Real-time inventory",
+    a: "Seat availability that updates the moment a ticket is held, reserved, or released. No overselling, no stale data, no disappointed customers arriving to find their seat taken.",
+  },
+  {
+    n: "02",
+    q: "Seat selection and venue mapping",
+    a: "Interactive seat maps built for speed. Venues with thousands of seats render and respond instantly, even on mobile. Accessibility seating, restricted views, and pricing tiers are part of the data model, not afterthoughts.",
+  },
+  {
+    n: "03",
+    q: "High-traffic resilience",
+    a: "On-sale moments generate traffic spikes that would take down most web applications. We architect for the peak, not the average, with queue management, progressive loading, and infrastructure that scales under pressure.",
+  },
+  {
+    n: "04",
+    q: "Payment and distribution integrations",
+    a: "Multi-currency checkout, fraud detection, digital ticket delivery, transfer and resale flows. The transaction layer is where most ticketing platforms lose customers. We build it to be fast, clear, and reliable.",
+  },
+];
+
+const structuredData = webPageJsonLd({
+  title: "Ticketing System Development — Significa",
+  description:
+    "Custom ticketing platforms built for scale. Real-time seat inventory, interactive venue maps, high-traffic resilience, and payment integrations for events, venues, and entertainment.",
+  url: "https://significa.co/work/ticketing-systems",
+});
+---
+
+<BaseLayout
+  title="Ticketing System Development — Significa"
+  description="Custom ticketing platforms built for scale. Real-time seat inventory, interactive venue maps, high-traffic resilience, and payment integrations for events, venues, and entertainment."
+  structuredData={structuredData}
+>
+  <!-- ============================================================
+       1. Hero
+       ============================================================ -->
+  <section class="hero" aria-labelledby="hero-h">
+    <Eyebrow>Work <span class="sep">/</span> Ticketing systems</Eyebrow>
+    <h1 id="hero-h" class="hero-heading type-display-2">Ticketing that works at scale.</h1>
+    <p class="hero-deck">
+      Custom ticketing platforms for events, venues, and entertainment. Real-time seat inventory, interactive venue maps, and
+      checkout flows that hold up when ten thousand people hit the page at the same moment. The hardest part of ticketing
+      isn't the happy path. It's the on-sale spike, the edge cases, and the refund at 2am.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       2. Projects in this capability
+       ============================================================ -->
+  {
+    ticketingProjects.length > 0 && (
+      <section class="projects" aria-labelledby="projects-h">
+        <header class="projects-header">
+          <Eyebrow>Selected work</Eyebrow>
+          <SectionHeader id="projects-h">Proof in production.</SectionHeader>
+        </header>
+
+        <IndexList
+          items={ticketingProjects.map((p, i) => ({
+            href: `/work/${p.id}`,
+            title: p.data.title,
+            tagline: p.data.tagline ?? "",
+            date: String(new Date(p.data.date).getFullYear()),
+            num: String(i + 1).padStart(2, "0"),
+          }))}
+        />
+      </section>
+    )
+  }
+
+  <!-- ============================================================
+       3. What we deliver
+       ============================================================ -->
+  <section class="capabilities" aria-labelledby="capabilities-h">
+    <header class="capabilities-header">
+      <Eyebrow>What we deliver</Eyebrow>
+      <SectionHeader id="capabilities-h">Built for the on-sale moment, not just the average Tuesday.</SectionHeader>
+    </header>
+
+    <QaList items={capabilities} />
+  </section>
+
+  <!-- ============================================================
+       4. Close
+       ============================================================ -->
+  <footer class="close">
+    <LinkCall href="/hello">Start a conversation about ticketing</LinkCall>
+  </footer>
+</BaseLayout>
+
+<style>
+  section {
+    padding-inline: var(--gutter);
+    padding-block: clamp(5rem, 10vw, 10rem);
+  }
+
+  .hero {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding-block: clamp(4rem, 8vw, 7rem) clamp(3rem, 6vw, 5rem);
+  }
+
+  .hero-heading {
+    margin: 0;
+    max-width: 22ch;
+  }
+
+  .hero-deck {
+    margin-top: 2.5rem;
+    font-size: var(--text-xl);
+    line-height: var(--leading-normal);
+    color: var(--color-ink-muted);
+    max-width: var(--max-width-prose);
+  }
+
+  .projects {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+  }
+
+  .projects-header {
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .capabilities {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+  }
+
+  .capabilities-header {
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .close {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding-inline: var(--gutter);
+    padding-block: 0 clamp(5rem, 10vw, 8rem);
+  }
+</style>

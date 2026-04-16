@@ -80,15 +80,33 @@ function formatLabel(str: string): string {
     .join(" ");
 }
 
+// Capability pages that exist under /work. When a project's industry,
+// deliverable, or tag matches a key here, the metadata strip links to it.
+const capabilityPages: Record<string, string> = {
+  "e-commerce": "/work/e-commerce",
+  "sports": "/work/sports",
+  "ticketing-systems": "/work/ticketing-systems",
+};
+
+type MetaValue = { text: string; href?: string };
+type MetaItem = { label: string; value: string | MetaValue[] };
+
+function toLinkedValues(values: string[]): MetaValue[] {
+  return values.map((v) => ({
+    text: formatLabel(v),
+    ...(capabilityPages[v] ? { href: capabilityPages[v] } : {}),
+  }));
+}
+
 // Build the metadata strip items
-const metaItems: Array<{ label: string; value: string }> = [];
+const metaItems: MetaItem[] = [];
 if (project.data.client) metaItems.push({ label: "Client", value: project.data.client });
 metaItems.push({ label: "Year", value: formattedDate });
 if (project.data.industry?.length)
-  metaItems.push({ label: "Industry", value: project.data.industry.map(formatLabel).join(", ") });
+  metaItems.push({ label: "Industry", value: toLinkedValues(project.data.industry) });
 if (project.data.deliverable?.length)
-  metaItems.push({ label: "Deliverables", value: project.data.deliverable.map(formatLabel).join(", ") });
-if (project.data.tags?.length) metaItems.push({ label: "Services", value: project.data.tags.map(formatLabel).join(", ") });
+  metaItems.push({ label: "Deliverables", value: toLinkedValues(project.data.deliverable) });
+if (project.data.tags?.length) metaItems.push({ label: "Services", value: toLinkedValues(project.data.tags) });
 ---
 
 <BaseLayout title={title} description={description} ogImage={ogImage} structuredData={structuredData}>

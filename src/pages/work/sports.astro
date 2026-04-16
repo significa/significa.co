@@ -1,0 +1,168 @@
+---
+/**
+ * /work/sports — Industry capability page
+ *
+ * SEO-targeted page for sports industry work. Follows the pattern
+ * established by /work/e-commerce.
+ *
+ * Explicit route takes priority over [slug].astro.
+ */
+
+import BaseLayout from "@/layouts/base.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import SectionHeader from "@/components/ui/section-header.astro";
+import LinkCall from "@/components/ui/link-call.astro";
+import IndexList from "@/components/ui/index-list.astro";
+import QaList from "@/components/ui/qa-list.astro";
+import { getProjects } from "@/lib/collections";
+import { webPageJsonLd } from "@/lib/seo";
+
+const allProjects = await getProjects();
+const sportsProjects = allProjects.filter(
+  (p) =>
+    p.data.industry.includes("sports") ||
+    p.data.tags.includes("sports")
+);
+
+const capabilities = [
+  {
+    n: "01",
+    q: "Performance platforms",
+    a: "Athlete tracking, training plans, biomechanics dashboards. We build the tools that turn raw data into decisions coaches and athletes can act on, not just review.",
+  },
+  {
+    n: "02",
+    q: "Fan-facing products",
+    a: "Match-day experiences, loyalty programmes, content platforms. Products that deepen engagement beyond the 90 minutes and give fans a reason to come back between fixtures.",
+  },
+  {
+    n: "03",
+    q: "Real-time data and live events",
+    a: "Scores, stats, seat maps, live video integrations. Systems that handle traffic spikes on match day without degrading, because the moment the data matters most is the moment load is highest.",
+  },
+  {
+    n: "04",
+    q: "Club and league operations",
+    a: "Membership management, scheduling, internal tooling. The back-office systems that keep organisations running, built with the same care as the fan-facing product.",
+  },
+];
+
+const structuredData = webPageJsonLd({
+  title: "Sports Technology — Significa",
+  description:
+    "Digital products for the sports industry. Performance platforms, fan engagement, real-time data systems, and club operations built by a team that understands both the technology and the context.",
+  url: "https://significa.co/work/sports",
+});
+---
+
+<BaseLayout
+  title="Sports Technology — Significa"
+  description="Digital products for the sports industry. Performance platforms, fan engagement, real-time data systems, and club operations built by a team that understands both the technology and the context."
+  structuredData={structuredData}
+>
+  <!-- ============================================================
+       1. Hero
+       ============================================================ -->
+  <section class="hero" aria-labelledby="hero-h">
+    <Eyebrow>Work <span class="sep">/</span> Sports</Eyebrow>
+    <h1 id="hero-h" class="hero-heading type-display-2">Digital products for sports.</h1>
+    <p class="hero-deck">
+      Performance platforms, fan engagement tools, real-time data systems, and the operational software that keeps clubs and
+      leagues running. We build for an industry where downtime is measured in missed goals and lost fans, not just lost revenue.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       2. Projects in this industry
+       ============================================================ -->
+  {
+    sportsProjects.length > 0 && (
+      <section class="projects" aria-labelledby="projects-h">
+        <header class="projects-header">
+          <Eyebrow>Selected work</Eyebrow>
+          <SectionHeader id="projects-h">Proof in production.</SectionHeader>
+        </header>
+
+        <IndexList
+          items={sportsProjects.map((p, i) => ({
+            href: `/work/${p.id}`,
+            title: p.data.title,
+            tagline: p.data.tagline ?? "",
+            date: String(new Date(p.data.date).getFullYear()),
+            num: String(i + 1).padStart(2, "0"),
+          }))}
+        />
+      </section>
+    )
+  }
+
+  <!-- ============================================================
+       3. What we deliver
+       ============================================================ -->
+  <section class="capabilities" aria-labelledby="capabilities-h">
+    <header class="capabilities-header">
+      <Eyebrow>What we deliver</Eyebrow>
+      <SectionHeader id="capabilities-h">Built for match day and every day between.</SectionHeader>
+    </header>
+
+    <QaList items={capabilities} />
+  </section>
+
+  <!-- ============================================================
+       4. Close
+       ============================================================ -->
+  <footer class="close">
+    <LinkCall href="/hello">Start a conversation about sports technology</LinkCall>
+  </footer>
+</BaseLayout>
+
+<style>
+  section {
+    padding-inline: var(--gutter);
+    padding-block: clamp(5rem, 10vw, 10rem);
+  }
+
+  .hero {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding-block: clamp(4rem, 8vw, 7rem) clamp(3rem, 6vw, 5rem);
+  }
+
+  .hero-heading {
+    margin: 0;
+    max-width: 22ch;
+  }
+
+  .hero-deck {
+    margin-top: 2.5rem;
+    font-size: var(--text-xl);
+    line-height: var(--leading-normal);
+    color: var(--color-ink-muted);
+    max-width: var(--max-width-prose);
+  }
+
+  .projects {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+  }
+
+  .projects-header {
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .capabilities {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+  }
+
+  .capabilities-header {
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .close {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding-inline: var(--gutter);
+    padding-block: 0 clamp(5rem, 10vw, 8rem);
+  }
+</style>

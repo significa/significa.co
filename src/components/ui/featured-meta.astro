@@ -1,19 +1,45 @@
 ---
+type MetaValue =
+  | { text: string; href?: string }
+
+interface MetaItem {
+  label: string;
+  /** Plain string (backwards-compatible) or array of values, each optionally linked. */
+  value: string | MetaValue[];
+}
+
 interface Props {
-  items: Array<{ label: string; value: string }>;
+  items: MetaItem[];
   class?: string;
 }
 
 const { items, class: className } = Astro.props;
+
+function normalise(value: string | MetaValue[]): MetaValue[] {
+  if (typeof value === "string") return [{ text: value }];
+  return value;
+}
 ---
 
 <dl class:list={["featured-meta", className]}>
-  {items.map((m) => (
-    <div class="featured-meta-item">
-      <dt class="featured-meta-label">{m.label}</dt>
-      <dd class="featured-meta-value">{m.value}</dd>
-    </div>
-  ))}
+  {items.map((m) => {
+    const parts = normalise(m.value);
+    return (
+      <div class="featured-meta-item">
+        <dt class="featured-meta-label">{m.label}</dt>
+        <dd class="featured-meta-value">
+          {parts.map((part, i) => (
+            <>
+              {part.href
+                ? <a href={part.href} class="meta-link">{part.text}</a>
+                : <span>{part.text}</span>}
+              {i < parts.length - 1 && <span class="meta-sep">, </span>}
+            </>
+          ))}
+        </dd>
+      </div>
+    );
+  })}
 </dl>
 
 <style>
@@ -50,6 +76,19 @@ const { items, class: className } = Astro.props;
     color: var(--color-ink);
     line-height: var(--leading-normal);
     margin: 0;
+  }
+
+  .meta-link {
+    color: var(--color-accent);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .meta-link:hover {
+    color: var(--color-ink);
+  }
+
+  .meta-sep {
+    color: var(--color-ink-muted);
   }
 
   @media (max-width: 880px) {

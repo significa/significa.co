@@ -16,7 +16,7 @@ const resolvedOgImage = ogImage ?? DEFAULT_OG_IMAGE;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteName = "Significa";
-const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+const fullTitle = title === siteName || title.includes(siteName) ? title : `${title} | ${siteName}`;
 ---
 
 <title>{fullTitle}</title>

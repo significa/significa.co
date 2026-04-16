@@ -1,6 +1,6 @@
 ---
 /**
- * /projects/[slug] — Case study
+ * /work/[slug] — Case study
  *
  * Judgment-led, not deliverable-led. Structure:
  *   1. Hook — eyebrow + editorial reframing.
@@ -52,7 +52,7 @@ const structuredData = pageWithProjectJsonLd(
   {
     title: project.data.title,
     description: project.data.tagline ?? project.data.title,
-    url: `https://significa.co/projects/${project.id}`,
+    url: `https://significa.co/work/${project.id}`,
     image: ogImage,
     datePublished: project.data.date,
     client: project.data.client,
@@ -63,8 +63,8 @@ const structuredData = pageWithProjectJsonLd(
   },
   [
     { name: "Home", url: "https://significa.co" },
-    { name: "Projects", url: "https://significa.co/projects" },
-    { name: project.data.title, url: `https://significa.co/projects/${project.id}` },
+    { name: "Work", url: "https://significa.co/work" },
+    { name: project.data.title, url: `https://significa.co/work/${project.id}` },
   ]
 );
 
@@ -178,7 +178,7 @@ if (project.data.tags?.length) metaItems.push({ label: "Services", value: projec
             <Eyebrow id="related-h">More work</Eyebrow>
             <IndexList
               items={relatedProjects.filter(Boolean).map((related, i) => ({
-                href: `/projects/${related!.id}`,
+                href: `/work/${related!.id}`,
                 title: related!.data.title,
                 tagline: related!.data.tagline ?? "",
                 date: String(new Date(related!.data.date).getFullYear()),
@@ -194,7 +194,7 @@ if (project.data.tags?.length) metaItems.push({ label: "Services", value: projec
          6. Close
          ============================================================ -->
     <div class="project-close">
-      <LinkCall href="/say-hello">Start a conversation</LinkCall>
+      <LinkCall href="/hello">Start a conversation</LinkCall>
     </div>
   </article>
 </BaseLayout>

@@ -66,10 +66,9 @@ src/
 │   └── seo.astro             # SEO meta tags component
 ├── content.config.ts         # Collection schemas (the "database")
 ├── content/
-│   ├── projects/             # .mdx per project case study
+│   ├── projects/             # .mdx per project case study (routes to /work/[slug])
 │   ├── blog/                 # .md or .mdx per blog post
-│   ├── labs/                 # .md or .mdx per open source project
-│   ├── pages/                # .mdx per misc page (about, services, etc.)
+│   ├── services/             # .mdx per service phase (think, build, launch, scale)
 │   ├── highlights/           # .yaml per homepage highlight
 │   ├── clients/              # .yaml per client (logo strip)
 │   ├── testimonials/         # .yaml per testimonial
@@ -87,18 +86,23 @@ src/
 │   ├── blog/
 │   │   ├── index.astro       # Blog listing
 │   │   └── [slug].astro      # Blog post detail
-│   ├── projects/
-│   │   ├── index.astro       # Projects listing
-│   │   └── [slug].astro      # Project detail
-│   ├── labs/
-│   │   ├── index.astro       # Labs listing
-│   │   └── [slug].astro      # Lab detail
+│   ├── work/
+│   │   ├── index.astro       # Work listing with filters
+│   │   ├── [slug].astro      # Case study detail
+│   │   └── e-commerce.astro  # Capability page (explicit route)
+│   ├── services/
+│   │   ├── index.astro       # Services overview (lifecycle narrative)
+│   │   └── [slug].astro      # Service phase detail
+│   ├── playground/
+│   │   ├── index.astro       # Playground listing
+│   │   └── [slug].astro      # Playground detail
 │   ├── handbook/
 │   │   ├── index.astro       # Handbook index (grouped sidebar)
 │   │   ├── [...slug].astro   # Handbook page detail
 │   │   └── search-index.json.ts # Search index endpoint
+│   ├── hello.astro           # Contact page
 │   ├── 404.astro             # Custom 404 page
-│   └── [...slug].astro       # Catch-all for misc pages
+│   └── [...slug].astro       # Catch-all (broken, references missing "pages" collection)
 ├── styles/
 │   ├── global.css            # Entry point: imports reset + tokens, base styles
 │   ├── reset.css             # CSS reset

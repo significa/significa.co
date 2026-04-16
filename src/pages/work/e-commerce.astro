@@ -1,0 +1,168 @@
+---
+/**
+ * /work/e-commerce — Capability page
+ *
+ * SEO-targeted page for e-commerce capability. Proves the pattern
+ * for future capability/industry pages under /work.
+ *
+ * Explicit route takes priority over [slug].astro.
+ */
+
+import BaseLayout from "@/layouts/base.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import SectionHeader from "@/components/ui/section-header.astro";
+import LinkCall from "@/components/ui/link-call.astro";
+import IndexList from "@/components/ui/index-list.astro";
+import QaList from "@/components/ui/qa-list.astro";
+import { getProjects } from "@/lib/collections";
+import { webPageJsonLd } from "@/lib/seo";
+
+const allProjects = await getProjects();
+const ecommerceProjects = allProjects.filter((p) =>
+  p.data.deliverable.includes("e-commerce") ||
+  p.data.industry.includes("e-commerce") ||
+  p.data.tags.includes("e-commerce")
+);
+
+const capabilities = [
+  {
+    n: "01",
+    q: "Fully headless with Shopify",
+    a: "We build on Shopify's Storefront API with fully custom front-end code. No plugins, no extensions, no bloated themes. Lean, performant code built to convert.",
+  },
+  {
+    n: "02",
+    q: "Inclusive and accessible",
+    a: "Every store is fully accessible for people with vision, hearing, or motor impairments. Inclusivity is a principle, not a checkbox.",
+  },
+  {
+    n: "03",
+    q: "24/7 monitoring and support",
+    a: "Automated real-time alerts via Sentry ensure 99.999% SLA uptime. We catch issues before your customers do and stay on call after launch.",
+  },
+  {
+    n: "04",
+    q: "Performance guaranteed",
+    a: "No off-the-shelf themes. No plugins. Every line of code is written for speed. Mobile-optimised, SEO-perfect, built to handle traffic spikes.",
+  },
+];
+
+const structuredData = webPageJsonLd({
+  title: "E-commerce Design & Development — Significa",
+  description: "We design and develop custom e-commerce stores on Shopify that convert. 10+ years of experience, headless architecture, 99.999% uptime.",
+  url: "https://significa.co/work/e-commerce",
+});
+---
+
+<BaseLayout
+  title="E-commerce Design & Development — Significa"
+  description="We design and develop custom e-commerce stores on Shopify that convert. 10+ years of experience, headless architecture, 99.999% uptime."
+  structuredData={structuredData}
+>
+  <!-- ============================================================
+       1. Hero
+       ============================================================ -->
+  <section class="hero" aria-labelledby="hero-h">
+    <Eyebrow>Work <span class="sep">/</span> E-commerce</Eyebrow>
+    <h1 id="hero-h" class="hero-heading type-display-2">E-commerce that converts.</h1>
+    <p class="hero-deck">
+      Custom e-commerce stores built on Shopify's headless architecture. No templates, no bloated themes, no plugins. Every
+      line of code is written for speed, accessibility, and conversion. Over ten years of e-commerce experience, from boutique
+      stores to high-volume retailers across Europe.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       2. Projects in this capability
+       ============================================================ -->
+  {
+    ecommerceProjects.length > 0 && (
+      <section class="projects" aria-labelledby="projects-h">
+        <header class="projects-header">
+          <Eyebrow>Selected work</Eyebrow>
+          <SectionHeader id="projects-h">Proof in production.</SectionHeader>
+        </header>
+
+        <IndexList
+          items={ecommerceProjects.map((p, i) => ({
+            href: `/work/${p.id}`,
+            title: p.data.title,
+            tagline: p.data.tagline ?? "",
+            date: String(new Date(p.data.date).getFullYear()),
+            num: String(i + 1).padStart(2, "0"),
+          }))}
+        />
+      </section>
+    )
+  }
+
+  <!-- ============================================================
+       3. What we deliver
+       ============================================================ -->
+  <section class="capabilities" aria-labelledby="capabilities-h">
+    <header class="capabilities-header">
+      <Eyebrow>What we deliver</Eyebrow>
+      <SectionHeader id="capabilities-h">Built for results, not for show.</SectionHeader>
+    </header>
+
+    <QaList items={capabilities} />
+  </section>
+
+  <!-- ============================================================
+       4. Close
+       ============================================================ -->
+  <footer class="close">
+    <LinkCall href="/hello">Start a conversation about e-commerce</LinkCall>
+  </footer>
+</BaseLayout>
+
+<style>
+  section {
+    padding-inline: var(--gutter);
+    padding-block: clamp(5rem, 10vw, 10rem);
+  }
+
+  .hero {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding-block: clamp(4rem, 8vw, 7rem) clamp(3rem, 6vw, 5rem);
+  }
+
+  .hero-heading {
+    margin: 0;
+    max-width: 22ch;
+  }
+
+  .hero-deck {
+    margin-top: 2.5rem;
+    font-size: var(--text-xl);
+    line-height: var(--leading-normal);
+    color: var(--color-ink-muted);
+    max-width: var(--max-width-prose);
+  }
+
+  .projects {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+  }
+
+  .projects-header {
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .capabilities {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+  }
+
+  .capabilities-header {
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .close {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding-inline: var(--gutter);
+    padding-block: 0 clamp(5rem, 10vw, 8rem);
+  }
+</style>

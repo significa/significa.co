@@ -70,7 +70,8 @@ Reduced-motion is respected absolutely in `global.css`. No exceptions.
 
 ### `components/header.astro`
 
-- Wordmark left, four mono nav items right (Work / Studio / Journal / Hello). Not sticky. No CTA button in the chrome.
+- Wordmark left, five mono nav items right (Work / Services / About / Blog / Hello). Not sticky. No CTA button in the chrome.
+- Services promoted to header nav (was footer-only).
 - Active page gets accent color in nav.
 - Mobile: menu toggle + full-screen overlay with display-Editorial nav and per-item egg mark on hover/current.
 
@@ -79,7 +80,7 @@ Reduced-motion is respected absolutely in `global.css`. No exceptions.
 - Two cells at opposite ends (flex space-between):
   - Left: manifesto pull quote (*"Calm in complexity."* — deliberately a different axis from the homepage manifesto moment to avoid identity collision)
   - Right: Hello / Studio / Currently rows (contact email + address + rotating current-focus)
-- Below: mono nav row, then legal row with B Corp + 1% + copyright + egg + terms link.
+- Below: mono nav row (Work / Services / About / Blog / Handbook / Hello), then legal row with B Corp + 1% + copyright + egg + terms link.
 
 ---
 
@@ -144,19 +145,23 @@ These all got considered and explicitly rejected with reasons:
 
 ## Current state of pages
 
-As of 2026-04-14:
+As of 2026-04-16:
 
-**All pages now use the new design language:**
+**All pages use the new design language. Routes restructured per IA strategy session (see below).**
 
 - `/` (homepage) — hero, proof strips, featured project narrative, manifesto moment, editorial index, three questions, numbers row.
-- `/projects` (index) — editorial index with eyebrow + section-header.
-- `/projects/*` (detail) — judgment-led: eyebrow hook, display heading, hero image/showreel, featured-meta strip, MDX prose, editorial index for related, link-call close.
+- `/work` (index) — editorial index with deliverable and industry filter pills (vanilla JS).
+- `/work/*` (detail) — judgment-led: eyebrow hook, display heading, hero image/showreel, featured-meta strip, MDX prose, editorial index for related, link-call close.
+- `/work/e-commerce` — first capability page. Proves the pattern for future deliverable/industry pages under /work.
+- `/services` — position statement, three questions (including wrong-for-you), lifecycle phases (Think/Build/Launch/Scale) linking to sub-pages, client voice, selected work index, numbers.
+- `/services/think` — strategy & discovery.
+- `/services/build` — design + engineering merged into one page (the "one team" signal).
+- `/services/launch` — QA, monitoring, deployment.
+- `/services/scale` — continuous development, growth, long-term partnership.
 - `/blog` (index) — featured post as display heading + editorial index with load-more.
 - `/blog/*` (detail) — eyebrow meta, display title, prose body, author line, editorial related posts.
 - `/about` — position statement, the overlap named, 3 convictions (QaList), who-we're-not, manifesto moment, studio numbers + client voice.
-- `/services` — position statement, three questions (including wrong-for-you), discipline links, client voice, selected work index, numbers.
-- `/services/*` (sub-pages) — eyebrow + statement + MDX prose + featured projects index.
-- `/say-hello` — direct statement, contact strip, what-happens-next (QaList), client voice.
+- `/hello` — direct statement, contact strip, what-happens-next (QaList).
 - `/handbook` (index) — eyebrow, display heading, grouped entries with hairlines, arrow hover, search.
 - `/handbook/*` (detail) — eyebrow meta, display heading, prose.css body, sidebar nav, breadcrumbs, child-page sections.
 - `/b-corp` — eyebrow, display heading, five pillars as QaList, honest why section with image, recertification commitment.
@@ -166,7 +171,8 @@ As of 2026-04-14:
 - `/playground/*` (detail) — eyebrow meta, display title, prose.css body, link-call close.
 - `/legal` — eyebrow, display heading, legal prose.
 - `/404` — display heading, body, link-call nav.
-- Header + Footer — wordmark, mono nav, manifesto pull quote footer.
+- Header — wordmark, 5 mono nav items (Work / Services / About / Blog / Hello).
+- Footer — manifesto pull quote, contact rows, mono nav (6 items), legal marks.
 - `/spike` — design language reference page.
 
 **Pre-existing issues unrelated to redesign:**
@@ -177,10 +183,11 @@ As of 2026-04-14:
 
 ## Next moves
 
-The design language sweep is complete across all pages. Remaining work:
+The design language sweep and IA restructure are complete. Remaining work:
 
-1. **Content pass** — review copy on each page against the positioning principles above. Some pages (especially `/careers` and `/impact`) may benefit from a second pass with the marketing team.
+1. **Content pass** — review copy on each page against the positioning principles above. Service phase pages (especially `/services/launch` and `/services/scale`) have spike-quality copy that needs a second pass with marketing.
 2. **Visual audit in-browser** — run `pnpm dev` and walk through every page. The design language is consistent in code, but spacing, rhythm, and hierarchy need a visual check.
 3. **Handbook sidebar on mobile** — currently dumps the full nav above content on small screens. Consider collapsing into a disclosure or moving after content.
 4. **Fix `[...slug].astro`** — remove the broken "pages" collection reference.
 5. **Image assets** — several pages (especially `/impact` and `/playground`) had placeholder images that were removed during the rebuild. Add real imagery as it becomes available.
+6. **More capability pages** — `/work/e-commerce` proves the pattern. Add more as needed when there's enough case study depth (e.g. `/work/ticketing-systems`, `/work/sports`).

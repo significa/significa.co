@@ -1,0 +1,291 @@
+---
+/**
+ * /work — Work index
+ *
+ * Editorial index with deliverable and industry filters.
+ * Filters use vanilla JS — no React island needed.
+ */
+
+import BaseLayout from "@/layouts/base.astro";
+import Eyebrow from "@/components/ui/eyebrow.astro";
+import SectionHeader from "@/components/ui/section-header.astro";
+import { getProjects } from "@/lib/collections";
+
+const projects = await getProjects();
+
+function formatLabel(str: string): string {
+  return str
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
+// Extract unique deliverables and industries from all projects
+const allDeliverables = [...new Set(projects.flatMap((p) => p.data.deliverable))].sort();
+const allIndustries = [...new Set(projects.flatMap((p) => p.data.industry))].sort();
+---
+
+<BaseLayout
+  title="Work — Significa"
+  description="Selected work from Significa. Design and engineering projects across healthcare, finance, commerce, and more."
+>
+  <section class="page" aria-labelledby="page-h">
+    <header class="page-header">
+      <Eyebrow>Work</Eyebrow>
+      <SectionHeader as="h1" id="page-h">The work that got us here.</SectionHeader>
+    </header>
+
+    <!-- Filters -->
+    {
+      (allDeliverables.length > 0 || allIndustries.length > 0) && (
+        <nav class="filters" aria-label="Filter projects">
+          <button class="filter-pill is-active" data-filter="all" type="button">
+            All
+          </button>
+          {allDeliverables.map((d) => (
+            <button class="filter-pill" data-filter={`deliverable:${d}`} type="button">
+              {formatLabel(d)}
+            </button>
+          ))}
+          {allIndustries.map((ind) => (
+            <button class="filter-pill" data-filter={`industry:${ind}`} type="button">
+              {formatLabel(ind)}
+            </button>
+          ))}
+        </nav>
+      )
+    }
+
+    <!-- Project list -->
+    <ol class="index-list" role="list" id="work-list">
+      {
+        projects.map((p, i) => (
+          <li
+            data-deliverables={p.data.deliverable.join(",")}
+            data-industries={p.data.industry.join(",")}
+          >
+            <a href={`/work/${p.id}`} class="index-link">
+              <span class="index-num">{String(i + 1).padStart(2, "0")}</span>
+              <span class="index-title">{p.data.title}</span>
+              <span class="index-tagline">{p.data.tagline ?? ""}</span>
+              <span class="index-year">{String(new Date(p.data.date).getFullYear())}</span>
+              <span class="index-mark" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+</BaseLayout>
+
+<script>
+  function initFilters() {
+    const pills = document.querySelectorAll<HTMLButtonElement>(".filter-pill");
+    const items = document.querySelectorAll<HTMLLIElement>("#work-list > li");
+
+    if (!pills.length || !items.length) return;
+
+    pills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        pills.forEach((p) => p.classList.remove("is-active"));
+        pill.classList.add("is-active");
+
+        const filter = pill.dataset.filter ?? "all";
+
+        if (filter === "all") {
+          items.forEach((item) => {
+            item.style.display = "";
+          });
+          return;
+        }
+
+        const [type, value] = filter.split(":");
+
+        items.forEach((item) => {
+          const data = type === "deliverable"
+            ? item.dataset.deliverables ?? ""
+            : item.dataset.industries ?? "";
+          const values = data.split(",");
+
+          item.style.display = values.includes(value) ? "" : "none";
+        });
+      });
+    });
+  }
+
+  initFilters();
+  document.addEventListener("astro:after-swap", initFilters);
+</script>
+
+<style>
+  .page {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding-inline: var(--gutter);
+    padding-block: clamp(4rem, 8vw, 7rem) clamp(5rem, 10vw, 10rem);
+  }
+
+  .page-header {
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  /* ── Filters ── */
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .filter-pill {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-muted);
+    background: none;
+    border: 1px solid var(--color-rule);
+    border-radius: 2rem;
+    padding: 0.5rem 1.25rem;
+    cursor: pointer;
+    transition:
+      color var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out),
+      background-color var(--duration-fast) var(--ease-out);
+  }
+
+  .filter-pill:hover {
+    color: var(--color-ink);
+    border-color: var(--color-ink-muted);
+  }
+
+  .filter-pill.is-active {
+    color: var(--color-paper);
+    background-color: var(--color-ink);
+    border-color: var(--color-ink);
+  }
+
+  /* ── Index list (inline, not using component, for data-attribute support) ── */
+
+  .index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .index-list :global(.index-link) {
+    display: grid;
+    grid-template-columns: 3rem minmax(10rem, 1fr) 2fr auto;
+    align-items: center;
+    column-gap: 2rem;
+    padding-block: 1rem;
+    padding-inline: 1rem;
+    margin-inline: -1rem;
+    border-radius: 6px;
+    color: var(--color-ink);
+    transition:
+      background-color var(--duration-normal) var(--ease-out),
+      color var(--duration-normal) var(--ease-out);
+  }
+
+  .index-list :global(.index-link:hover) {
+    background: var(--color-paper-alt);
+    color: var(--color-accent);
+  }
+
+  .index-list :global(.index-num) {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-faint);
+    font-variant-numeric: tabular-nums;
+    transition: color var(--duration-normal) var(--ease-out);
+  }
+
+  .index-list :global(.index-link:hover .index-num) {
+    color: var(--color-accent);
+  }
+
+  .index-list :global(.index-title) {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: var(--text-xl);
+    line-height: 1.2;
+    color: var(--color-ink);
+    transition: color var(--duration-normal) var(--ease-out);
+  }
+
+  .index-list :global(.index-link:hover .index-title) {
+    color: var(--color-accent);
+  }
+
+  .index-list :global(.index-tagline) {
+    font-size: var(--text-sm);
+    color: var(--color-ink-faint);
+    line-height: var(--leading-snug);
+    transition: color var(--duration-normal) var(--ease-out);
+  }
+
+  .index-list :global(.index-link:hover .index-tagline) {
+    color: var(--color-ink-muted);
+  }
+
+  .index-list :global(.index-year),
+  .index-list :global(.index-mark) {
+    grid-column: 4;
+    grid-row: 1;
+    text-align: right;
+    justify-self: end;
+  }
+
+  .index-list :global(.index-year) {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-ink-faint);
+    font-variant-numeric: tabular-nums;
+    opacity: 1;
+    transition:
+      opacity var(--duration-normal) var(--ease-out),
+      transform var(--duration-normal) var(--ease-out);
+  }
+
+  .index-list :global(.index-link:hover .index-year) {
+    opacity: 0;
+    transform: translateX(0.4em);
+  }
+
+  .index-list :global(.index-mark) {
+    color: var(--color-accent);
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    line-height: 1;
+    opacity: 0;
+    transform: translateX(-0.4em);
+    transition:
+      opacity var(--duration-normal) var(--ease-editorial),
+      transform var(--duration-normal) var(--ease-editorial);
+  }
+
+  .index-list :global(.index-link:hover .index-mark) {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @media (max-width: 720px) {
+    .index-list :global(.index-link) {
+      grid-template-columns: 2.25rem 1fr auto;
+      column-gap: 1rem;
+      padding-inline: 0.5rem;
+      margin-inline: -0.5rem;
+    }
+
+    .index-list :global(.index-tagline),
+    .index-list :global(.index-mark) {
+      display: none;
+    }
+  }
+</style>

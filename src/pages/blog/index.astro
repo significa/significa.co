@@ -1,6 +1,6 @@
 ---
 /**
- * /blog — Journal
+ * /blog — Blog
  *
  * Editorial index. Featured post as display heading, then a compact
  * numbered list. No tag filters, no card grid, no newsletter CTA.
@@ -28,7 +28,7 @@ function formatShortDate(date: Date): string {
 ---
 
 <BaseLayout
-  title="Journal — Significa"
+  title="Blog — Significa"
   description="Writing from the studio. On design, engineering, and the decisions between."
 >
   <!-- ============================================================
@@ -38,7 +38,7 @@ function formatShortDate(date: Date): string {
     featuredPost && (
       <section class="featured" aria-labelledby="featured-h">
         <Eyebrow>
-          Journal <span class="sep">/</span> Latest <span class="sep">/</span>
+          Blog <span class="sep">/</span> Latest <span class="sep">/</span>
           {formatShortDate(featuredPost.data.date)}
         </Eyebrow>
         <h1 id="featured-h" class="featured-heading type-display-2">

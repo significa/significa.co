@@ -8,7 +8,7 @@
  *
  *   1. Position statement — one team, breadth in the deck.
  *   2. Three questions — with edge, including wrong-for-you.
- *   3. Disciplines — links to service sub-pages.
+ *   3. Lifecycle — Think → Build → Launch → Scale, links to phase pages.
  *   4. Client voice.
  *   5. Selected work — editorial index.
  *   6. Numbers + close.
@@ -28,7 +28,13 @@ import { getProjects, getTestimonials } from "@/lib/collections";
 const projects = (await getProjects()).slice(0, 5);
 const testimonials = await getTestimonials();
 const bestTestimonial = testimonials[1] ?? testimonials[0];
-const services = await getCollection("services");
+const allServices = await getCollection("services");
+
+// Enforce lifecycle order: Think → Build → Launch → Scale
+const lifecycleOrder = ["think", "build", "launch", "scale"];
+const services = lifecycleOrder
+  .map((id) => allServices.find((s) => s.id === id))
+  .filter(Boolean) as typeof allServices;
 
 const questions = [
   {
@@ -89,12 +95,16 @@ const numbers = [
        3. Disciplines — links to sub-pages
        ============================================================ -->
   <section class="disciplines" aria-labelledby="disciplines-h">
-    <Eyebrow id="disciplines-h">What we do</Eyebrow>
-    <ul class="discipline-list" role="list">
+    <header class="disciplines-header">
+      <Eyebrow>The lifecycle</Eyebrow>
+      <SectionHeader id="disciplines-h">Every project moves through four phases.</SectionHeader>
+    </header>
+    <ol class="discipline-list" role="list">
       {
-        services.map((s) => (
+        services.map((s, i) => (
           <li class="discipline">
             <a href={`/services/${s.id}`} class="discipline-link">
+              <span class="discipline-num">{String(i + 1).padStart(2, "0")}</span>
               <h2 class="discipline-title">{s.data.title}</h2>
               <p class="discipline-tagline">{s.data.tagline}</p>
               <span class="discipline-arrow" aria-hidden="true">
@@ -104,7 +114,7 @@ const numbers = [
           </li>
         ))
       }
-    </ul>
+    </ol>
   </section>
 
   <!-- ============================================================
@@ -135,7 +145,7 @@ const numbers = [
 
         <IndexList
           items={projects.map((p, i) => ({
-            href: `/projects/${p.id}`,
+            href: `/work/${p.id}`,
             title: p.data.title,
             tagline: p.data.tagline ?? "",
             date: String(new Date(p.data.date).getFullYear()),
@@ -144,7 +154,7 @@ const numbers = [
         />
 
         <p class="work-link-row">
-          <LinkCall href="/projects">All work</LinkCall>
+          <LinkCall href="/work">All work</LinkCall>
         </p>
       </section>
     )
@@ -157,7 +167,7 @@ const numbers = [
     <NumbersRow items={numbers} />
 
     <p class="close-link">
-      <LinkCall href="/say-hello">Start a conversation</LinkCall>
+      <LinkCall href="/hello">Start a conversation</LinkCall>
     </p>
   </section>
 </BaseLayout>
@@ -217,9 +227,13 @@ const numbers = [
     margin: 0 auto;
   }
 
+  .disciplines-header {
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
   .discipline-list {
     list-style: none;
-    margin: clamp(2rem, 4vw, 3rem) 0 0;
+    margin: 0;
     padding: 0;
   }
 
@@ -231,9 +245,18 @@ const numbers = [
     border-bottom: 1px solid var(--color-rule);
   }
 
+  .discipline-num {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+    font-variant-numeric: tabular-nums;
+  }
+
   .discipline-link {
     display: grid;
-    grid-template-columns: minmax(10rem, 1fr) 2fr auto;
+    grid-template-columns: 3rem minmax(10rem, 1fr) 2fr auto;
     align-items: baseline;
     gap: 2rem;
     padding-block: 2rem;
@@ -275,18 +298,19 @@ const numbers = [
       transform var(--duration-normal) var(--ease-editorial);
   }
 
-  .discipline-link:hover .link-arrow {
+  .discipline-link:hover .discipline-arrow {
     opacity: 1;
     transform: translateX(0);
   }
 
   @media (max-width: 720px) {
     .discipline-link {
-      grid-template-columns: 1fr;
+      grid-template-columns: 2.25rem 1fr;
       gap: 0.5rem;
     }
 
-    .discipline-link .discipline-arrow {
+    .discipline-tagline,
+    .discipline-arrow {
       display: none;
     }
   }

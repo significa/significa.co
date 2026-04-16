@@ -262,13 +262,13 @@ export function articleJsonLd(options: {
  * are always in sync and never manually maintained.
  *
  * @example
- * // In pages/projects/[slug].astro
+ * // In pages/work/[slug].astro
  * import { creativeWorkJsonLd } from "@/lib/seo";
  *
  * const structuredData = creativeWorkJsonLd({
  *   title: project.data.title,
  *   description: project.data.tagline ?? project.data.title,
- *   url: `https://significa.co/projects/${project.id}`,
+ *   url: `https://significa.co/work/${project.id}`,
  *   image: project.data.heroImage ?? project.data.thumbnail,
  *   datePublished: project.data.date,
  *   client: project.data.client,
@@ -343,21 +343,21 @@ export function creativeWorkJsonLd(options: {
 // ============================================================
 
 /**
- * CollectionPage schema for the /projects listing page.
+ * CollectionPage schema for the /work listing page.
  * Tells search engines this page is a curated list of portfolio items.
  *
  * Pull from the same getProjects() call you are already making so the list
  * is always accurate and complete.
  *
  * @example
- * // In pages/projects/index.astro
+ * // In pages/work/index.astro
  * import { portfolioCollectionJsonLd } from "@/lib/seo";
  *
  * const structuredData = portfolioCollectionJsonLd({
  *   projects: projects.map((p) => ({
  *     title: p.data.title,
  *     description: p.data.tagline ?? p.data.title,
- *     url: `https://significa.co/projects/${p.id}`,
+ *     url: `https://significa.co/work/${p.id}`,
  *     image: p.data.thumbnail,
  *   })),
  * });
@@ -373,10 +373,10 @@ export function portfolioCollectionJsonLd(options: {
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Projects | Significa",
+    name: "Work | Significa",
     description:
       "Case studies and portfolio work from Significa. Digital product design and engineering for companies that care about craft.",
-    url: "https://significa.co/projects",
+    url: "https://significa.co/work",
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: options.projects.length,
@@ -456,8 +456,8 @@ export function faqPageJsonLd(options: { title: string; description: string; url
  * @example
  * breadcrumbJsonLd([
  *   { name: "Home", url: "https://significa.co" },
- *   { name: "Projects", url: "https://significa.co/projects" },
- *   { name: project.data.title, url: `https://significa.co/projects/${project.id}` },
+ *   { name: "Projects", url: "https://significa.co/work" },
+ *   { name: project.data.title, url: `https://significa.co/work/${project.id}` },
  * ])
  */
 export function breadcrumbJsonLd(items: BreadcrumbItem[]) {
@@ -574,12 +574,12 @@ export function pageWithArticleJsonLd(
  * This is the most important schema on the site. Use on every project page.
  *
  * @example
- * // In pages/projects/[slug].astro
+ * // In pages/work/[slug].astro
  * structuredData={pageWithProjectJsonLd(
  *   {
  *     title: project.data.title,
  *     description: project.data.tagline ?? project.data.title,
- *     url: `https://significa.co/projects/${project.id}`,
+ *     url: `https://significa.co/work/${project.id}`,
  *     image: project.data.heroImage ?? project.data.thumbnail,
  *     datePublished: project.data.date,
  *     client: project.data.client,
@@ -589,8 +589,8 @@ export function pageWithArticleJsonLd(
  *   },
  *   [
  *     { name: "Home", url: "https://significa.co" },
- *     { name: "Projects", url: "https://significa.co/projects" },
- *     { name: project.data.title, url: `https://significa.co/projects/${project.id}` },
+ *     { name: "Projects", url: "https://significa.co/work" },
+ *     { name: project.data.title, url: `https://significa.co/work/${project.id}` },
  *   ]
  * )}
  */
@@ -616,14 +616,14 @@ export function pageWithProjectJsonLd(
  * Projects listing — CollectionPage
  *
  * @example
- * // In pages/projects/index.astro
+ * // In pages/work/index.astro
  * const projects = await getProjects();
  *
  * structuredData={pageWithPortfolioJsonLd(
  *   projects.map((p) => ({
  *     title: p.data.title,
  *     description: p.data.tagline ?? p.data.title,
- *     url: `https://significa.co/projects/${p.id}`,
+ *     url: `https://significa.co/work/${p.id}`,
  *     image: p.data.thumbnail,
  *   }))
  * )}

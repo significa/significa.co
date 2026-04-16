@@ -29,5 +29,5 @@ npm-debug.log*
 pnpm-debug.log*
 
 # claude
-.claude/
+.claude/worktrees
 .entire

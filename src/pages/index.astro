@@ -255,7 +255,7 @@ const structuredData = [webSiteJsonLd()];
           <FeaturedMeta items={featuredMeta} />
 
           <p class="featured-link-row">
-            <LinkCall href={`/projects/${featured.id}`}>Read the case study</LinkCall>
+            <LinkCall href={`/work/${featured.id}`}>Read the case study</LinkCall>
           </p>
         </div>
       </section>
@@ -287,7 +287,7 @@ const structuredData = [webSiteJsonLd()];
 
         <IndexList
           items={allProjects.map((p, i) => ({
-            href: `/projects/${p.id}`,
+            href: `/work/${p.id}`,
             title: p.data.title,
             tagline: p.data.tagline ?? "",
             date: String(new Date(p.data.date).getFullYear()),
@@ -296,7 +296,7 @@ const structuredData = [webSiteJsonLd()];
         />
 
         <p class="index-link-row">
-          <LinkCall href="/projects">All work</LinkCall>
+          <LinkCall href="/work">All work</LinkCall>
         </p>
       </section>
     )

@@ -67,7 +67,7 @@ const featuredProjects = service.data.featuredProjects?.length
           <Eyebrow id="projects-h">Related work</Eyebrow>
           <IndexList
             items={featuredProjects.filter(Boolean).map((project, i) => ({
-              href: `/projects/${project!.id}`,
+              href: `/work/${project!.id}`,
               title: project!.data.title,
               tagline: project!.data.tagline ?? "",
               date: String(new Date(project!.data.date).getFullYear()),
@@ -82,7 +82,7 @@ const featuredProjects = service.data.featuredProjects?.length
          Close
          ============================================================ -->
     <div class="service-close">
-      <LinkCall href="/say-hello">Start a conversation</LinkCall>
+      <LinkCall href="/hello">Start a conversation</LinkCall>
     </div>
   </article>
 </BaseLayout>

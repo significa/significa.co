@@ -1,0 +1,85 @@
+---
+title: "The main challenges you're likely to face when creating a crypto wallet on React Native."
+description: A humble perspective of what it was like to create a Crypto Currency wallet using React Native and its main challenges during the planning and the development stages.
+date: 2020-03-01
+author: Danilo Woznica
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+seo:
+  metaTitle: "The main challenges you're likely to face when creating a crypto wallet on React Native — Significa"
+  metaDescription: "A humble perspective of what it was like to create a Crypto Currency wallet using React Native and its main challenges during the planning and the development stages."
+  ogImage: https://cdn.significa.co/blog/bringing-your-blockchain-business-to-react-native/og-image.jpg
+---
+
+Crypto wallets and Decentralised Applications (dApps) are becoming more popular each day. It's already possible to find a lot of industries adopting a decentralised approach: financial business, social networks, insurance, and supply chain, only to mention a few.
+
+Also, the benefits of introducing blockchain technology on mobile devices are evident enough and apparently worth the effort for companies willing to invest in their development. Factors like immutability, transparency and security are concepts that not only users but also business owners recognise as a must when designing digital products.
+
+There is a lot of fuss around [React Native](https://reactnative.dev/) versus native apps – and even though that's an entirely different issue – we believe React Native is arguably the go-to choice when budget is somehow a matter of interest. However, when it comes to implementing blockchain technologies with React Native, the uncertainties are unquestionable: it's a fairly recent environment which still somehow lacks expert developers out there.
+
+## Background
+
+We set ourselves to challenge precisely that.
+
+When we were presented with [Vertbase](https://www.vertbase.com/), a project that entailed the abovementioned concerns, our thoughts were with React Native, straight off the bat.
+
+Still, it was far from being a walk in the park. Even though we've undergone a lot of development in ReactJS, React Native was – at the time – somewhat new to us and topping it up with blockchain technology could have been a shot in the leg.
+
+But fear not!
+
+A few hours later, it was perceptible just how efficiently React Native bridged the gap between JavaScript and the Native Modules of both iOS and Android Operating Systems.
+
+With this, and being given the challenge of building a non-custodial wallet meant to support a few Crypto assets, asset transactions, and create new wallets – amongst other features – it ended up being a pretty solid App.
+
+However, it was far from a relaxing project. The initial time estimate felt – truly – short due to all the investigation we had to perform. This was because of all the unexpected problems we had to face throughout the entire timeframe of development, which at the time were entirely unlike anything we had encountered before. We often had to rely on the open-source community that had previously done an amazing job at some React Native and blockchain libraries.
+
+## The issues
+
+As an act of reciprocity, we'll guide you through some of the most significant issues we faced whilst developing the application. Also worth mentioning, the list below is still a work in progress as we're certain further issues will pop up every day, from Operating System updates to the deprecation of some libraries we've used, as well as potential security vulnerabilities which may arise.
+
+### JavaScriptCore
+
+If you have past experience with React Native, you'll likely know that it runs a specific version of the JavaScript Engine – [JavaScriptCore](https://trac.webkit.org/wiki/JavaScriptCore), which Safari is built on.
+
+Therefore, as some JavaScript functions are not yet available in JavaScriptCore, some of the most popular JavaScript packages relevant for this kind of product – such as generating wallets or broadcasting transactions to the network – are not yet available in JavaScriptCore, meaning it's not ready to be used with React Native.
+
+However, such packages are available for NodeJS instead. Initially, what could have been a nightmare turned out plausible. Once more, with the help of the community, we got to some workarounds which made it possible to bring those functions from NodeJS to React Native.
+
+### Technical debt
+
+Things like hierarchical deterministic wallet, BIP32, BIP44, WIF, private key, address keys, lightning network, just to mention a few amongst other subjects you probably haven't heard of.
+
+Perhaps these may – or may not – be the sole reason why one hasn't built a thing on top of the blockchain technology.
+
+Even though throughout this journey, we found a lot of articles, videos, talks, crash courses, and documentation that provided us with the required information to understand the basics of the blockchain infrastructure, the practical reality is utterly different. In fact, the community lacks realistic examples of how to build applications for the real world, especially on popular languages for the web, such as JavaScript – which on its own is not so popular within the blockchain universe.
+
+### Asset implementation
+
+Most crypto assets require their own dedicated implementation. Moreover, each requires dedicated libraries and/or frameworks to connect JavaScript and blockchain technology.
+
+The complexity may increase depending on how many cryptocurrencies any given product is meant to support. In fact, there's not a one-size-fits-all when it comes to crypto assets. Almost each one of them requires a dedicated, standalone process to get the connectivity going. Truth be told, keep in mind that you'll have to implement one asset at a time while making sure it has JavaScript support.
+
+In short, there isn't a single solution that covers every single cryptocurrency out there, at least when the goal is to remain decentralised. Even though you might (correctly) assume a significant part of the assets are built on the same infrastructure – extended from others, per se – every single one of them will require basic implementation and adaptation from previously integrated assets.
+
+### Public code validation
+
+It isn't necessarily a rule, nor is this compulsory, but users within the blockchain community are keen to validate application codebases before putting any extra effort into it, making sure such applications are secure and trustworthy.
+
+Therefore, keep in mind it might make sense to open-source the code at some point. It will be scrutinised by its users, but that's just a good thing – you'll push yourself towards a better, well-documented codebase.
+
+On the flip side of the coin, ensure all sensitive data or non-meant-to-be-public information is safely located elsewhere and not exposed.
+
+### Security – Responsibility
+
+People's money is on the line with these kinds of applications. Naturally, security is a fundamental concern when developing financial applications.
+
+Users will be performing transactions, storing wallets' access keys, and even generating new ones. Due to the nature of these products, development must be responsible and lucid as every decision matters – even those that sometimes seem like no-brainers may be extremely relevant when it comes to security. The bottom line, there are no dumb questions or obvious answers when security and money are on the line.
+
+On top of this, as you might have guessed by now, open-source codebases can become an issue if you're not careful enough. Be extra cautious when adding third-party dependencies, and beware of vulnerabilities or security breaches.
+
+It's also worth pointing out that you should keep in mind that React Native and regular ReactJS – or the entire web environment as a whole – are deeply different at some point. A straightforward issue on the web might be trickier than expected to deal with on React Native. For example, when developing these kinds of products, as you know, data must be stored locally on the device. For that matter, it must be placed in a safe, concealed place to avoid exposure to malicious users. With regards to this, make sure you choose the right approach to deal with the right kind of data.
+
+## One possible approach
+
+There is no shortcut to developing React Native apps in the blockchain space. A lot of issues were solved, but a lot more will arise. That's just the nature of new technologies. Nobody is 100% certain. There isn't a formula to help you smooth your way through this kind of project. There's just too much to consider and too many variables in the mix.

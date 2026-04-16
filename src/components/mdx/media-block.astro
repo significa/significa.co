@@ -1,0 +1,77 @@
+---
+import { cdnUrl, cdnSrcset, DEFAULT_QUALITY } from "@/lib/cdn";
+import { contentError } from "@/lib/content-errors";
+
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption?: string;
+  eager?: boolean;
+  sizes?: string;
+  quality?: number;
+  /** "full" spans the full content width */
+  layout?: "full" | "default";
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  caption,
+  eager = false,
+  sizes = "100vw",
+  quality = DEFAULT_QUALITY,
+  layout = "default",
+} = Astro.props;
+
+if (!src) contentError("MediaBlock", Astro.url.pathname, "Missing required prop: src");
+if (!alt) contentError("MediaBlock", Astro.url.pathname, "Missing required prop: alt");
+if (!width) contentError("MediaBlock", Astro.url.pathname, "Missing required prop: width");
+if (!height) contentError("MediaBlock", Astro.url.pathname, "Missing required prop: height");
+
+const imgSrc = cdnUrl(src, { width: layout === "full" ? 1400 : 960, quality });
+const srcset = cdnSrcset(src, { quality });
+const imgSizes = srcset ? sizes : undefined;
+---
+
+<figure class:list={["media-block", layout === "full" && "media-block--full"]}>
+  <img
+    src={imgSrc}
+    srcset={srcset}
+    sizes={imgSizes}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={eager ? "eager" : "lazy"}
+    fetchpriority={eager ? "high" : "auto"}
+    decoding={eager ? "sync" : "async"}
+  />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .media-block {
+    margin: 2rem 0;
+  }
+
+  .media-block img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  }
+
+  .media-block--full img {
+    border-radius: 0;
+  }
+
+  figcaption {
+    margin-top: 0.75rem;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+</style>

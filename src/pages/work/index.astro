@@ -21,9 +21,9 @@ for (const award of allAwards) {
   });
 }
 
-// Extract unique industries and deliverables
-const industries = Array.from(new Set(projects.flatMap((p) => p.data.industry || []))).sort();
-const deliverables = Array.from(new Set(projects.flatMap((p) => p.data.deliverable || []))).sort();
+// Extract unique industries and deliverables from reference fields
+const industries = Array.from(new Set(projects.flatMap((p) => p.data.industry.map((r) => r.id)))).sort();
+const deliverables = Array.from(new Set(projects.flatMap((p) => p.data.deliverable.map((r) => r.id)))).sort();
 
 // Format label for display: "mobile-app" → "Mobile App"
 function formatLabel(value: string): string {
@@ -34,10 +34,10 @@ function formatLabel(value: string): string {
 }
 ---
 
-<BaseLayout title="Projects — Significa" description="Selected work from Significa's portfolio.">
+<BaseLayout title="Work — Significa" description="Selected work from Significa's portfolio.">
   <div class="page">
     <header class="page-header">
-      <h1>Projects.</h1>
+      <h1>Work.</h1>
     </header>
 
     <section class="filters" aria-label="Project filters">
@@ -115,10 +115,10 @@ function formatLabel(value: string): string {
           return (
             <article
               class="project-card"
-              data-industries={(project.data.industry || []).join(",")}
-              data-deliverables={(project.data.deliverable || []).join(",")}
+              data-industries={project.data.industry.map((r) => r.id).join(",")}
+              data-deliverables={project.data.deliverable.map((r) => r.id).join(",")}
             >
-              <a href={`/projects/${project.id}`} class="project-link">
+              <a href={`/work/${project.id}`} class="project-link">
                 {thumbnailUrl && (
                   <div class="project-thumbnail">
                     <img src={thumbnailUrl} alt={project.data.title} loading="lazy" decoding="async" />

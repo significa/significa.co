@@ -1,0 +1,21 @@
+---
+import BaseLayout from "@/layouts/base.astro";
+import { getCollection } from "astro:content";
+
+const deliverables = await getCollection("deliverables");
+const sorted = deliverables.sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+
+<BaseLayout title="Deliverables — Significa" description="The types of work we deliver — from websites and apps to design systems and more.">
+  <main>
+    <h1>Deliverables.</h1>
+    <ul>
+      {sorted.map((deliverable) => (
+        <li>
+          <a href={`/deliverables/${deliverable.id}`}>{deliverable.data.title}</a>
+          {deliverable.data.description && <p>{deliverable.data.description}</p>}
+        </li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>

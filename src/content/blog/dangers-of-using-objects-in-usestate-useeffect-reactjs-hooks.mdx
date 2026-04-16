@@ -1,0 +1,135 @@
+---
+title: "Dangers of using Objects in useState and useEffect ReactJS Hooks."
+description: In this article, we explore a problem that can easily go unnoticed when using objects with useState and useEffect hooks in ReactJS.
+date: 2023-02-01
+author: Tiago Duarte
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+seo:
+  metaTitle: "Dangers of using Objects in useState and useEffect ReactJS Hooks — Significa"
+  metaDescription: "In this article, we explore a problem that can easily go unnoticed when using objects with useState and useEffect hooks in ReactJS."
+  ogImage: https://cdn.significa.co/blog/dangers-of-using-objects-in-usestate-useeffect-reactjs-hooks/og-image.jpg
+---
+
+Hooks have been around for a few years now. They were added in React v16.8.0 and let you use state and other React features without writing a class.
+
+In this article, we won't be going into much detail about what a hook is, its syntax, and so on. For that, you can visit the [React documentation](https://reactjs.org/docs/hooks-intro.html), where we think the React team did a great job explaining it.
+
+## The problem with using objects in useState/useEffect hooks
+
+What brings us here is a problem we faced when we first started using hooks that can easily go unnoticed.
+
+Let's look at the following example:
+
+```jsx
+const { useState } = React
+
+const Counter = () => {
+  const [count, setCount] = useState(0)
+  const [objectCount, setObjectCount] = useState({ count: 0 })
+
+  return (
+    <div>
+      <h2>Count</h2>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>Increase normal count</button>
+
+      <h2>Object Count</h2>
+      <p>You clicked {objectCount.count} times</p>
+      <button
+        onClick={() => {
+          objectCount.count += 1
+          setObjectCount(objectCount)
+        }}
+      >
+        Broken increase of the object count
+      </button>
+
+      <button
+        onClick={() =>
+          setObjectCount({
+            ...objectCount,
+            count: objectCount.count + 1,
+          })
+        }
+      >
+        Functioning increase of the object count
+      </button>
+    </div>
+  )
+}
+
+ReactDOM.render(<Counter />, document.getElementById('app'))
+```
+
+We prepared [this CodePen](https://codepen.io/) with the example — feel free to visit and play around with it.
+
+In our example, we have:
+
+- A `count` state hook that stores a plain number.
+- An `objectCount` state hook that stores an object containing the `count` property.
+- An **Increase normal count** button that updates the `count` state. You can validate this by seeing that the counter updates right after pressing the button.
+- A **Broken increase of the object count** button that tries to update the `objectCount`, but fails miserably. You might be thinking, "Naah, that should work…". Go ahead and try it out on CodePen.
+- A **Functioning increase of the object count** button that properly updates the `objectCount` state.
+
+## Why does the broken button not immediately increase the object count?
+
+When a user presses the broken button, we increase the `count` property inside the `objectCount` object and then call `setObjectCount(objectCount)`.
+
+The problem is that the `useState` hook uses strict equality comparison (`===`) to determine if it should trigger a re-render, and it doesn't check whether the properties of the object actually changed.
+
+In other words, the hook compares the "old" and "new" states and concludes that the object hasn't changed — because it's still the same reference — and therefore won't trigger a re-render. This causes the object count label to stay the same.
+
+## Possible solutions
+
+### Pass a shallow copy to `setObjectCount`
+
+The **Functioning increase of the object count** button fixes the issue by creating and passing a shallow copy of `objectCount` to the setter function.
+
+It keeps the same object properties but creates a new object reference, so the hook's strict equality comparison determines that the state changed and immediately triggers a re-render.
+
+```jsx
+setObjectCount({
+  ...objectCount,
+  count: objectCount.count + 1,
+})
+```
+
+### Use one `useState` hook per property
+
+Another solution is to avoid storing objects in a `useState` hook altogether.
+
+You could use one `useState` hook per property of the object. In theory, this would be the ideal scenario, but doing this might be daunting and time-consuming depending on the shape of your data.
+
+You might have valid reasons to store an object directly as state — in our case, we were retrieving data from an API and decided to store the returned object as-is.
+
+### Use the `useReducer` hook
+
+If you are familiar with Redux, you already know how this works as it is very similar.
+
+`useReducer` accepts a reducer of type `(state, action) => newState` and returns the current state paired with a `dispatch` method.
+
+This is usually preferable to `useState` when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one.
+
+### Use immutable.js
+
+As per the [documentation](https://immutable-js.com/), "Immutable data cannot be changed once created, leading to much simpler application development, no defensive copying, and enabling advanced memoization and change detection techniques with simple logic. Persistent data presents a mutative API which does not update the data in-place, but instead always yields newly updated data."
+
+In practical terms, when using immutable.js, every object change would actually create a new object. In our example, this would cause the state hook to trigger a re-render.
+
+Keep in mind that the same problem and solutions apply to the optional list of dependencies of the `useEffect` hook.
+
+---
+
+When this problem happened to me and Rui Sousa, we spent a couple of hours hunting it down. So we felt like sharing this tip in hopes that it saves you some debug time.
+
+If you have a suggestion or a different solution than the ones listed, go ahead and drop us a message.
+
+## References
+
+- [Hooks at a Glance](https://reactjs.org/docs/hooks-overview.html)
+- [Using the State Hook](https://reactjs.org/docs/hooks-state.html)
+- [Using the Effect Hook](https://reactjs.org/docs/hooks-effect.html)
+- [MDN — Equality comparisons and sameness](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+- [Understanding Deep and Shallow Copy in JavaScript](https://javascript.plainenglish.io/understanding-deep-and-shallow-copy-in-javascript-9776cff7dc27)

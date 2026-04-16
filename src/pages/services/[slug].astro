@@ -1,0 +1,31 @@
+---
+import { render } from "astro:content";
+import BaseLayout from "@/layouts/base.astro";
+import { mdxComponents } from "@/components/mdx/components";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const services = await getCollection("services");
+  return services.map((service) => ({
+    params: { slug: service.id },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const { Content } = await render(service);
+
+const seo = service.data.seo;
+const title = seo?.metaTitle ?? service.data.title;
+const description = seo?.metaDescription ?? service.data.tagline ?? service.data.description ?? service.data.title;
+---
+
+<BaseLayout title={title} description={description} ogImage={seo?.ogImage}>
+  <article>
+    <header>
+      <h1>{service.data.title}</h1>
+      {service.data.heroTagline && <p>{service.data.heroTagline}</p>}
+    </header>
+    <Content components={mdxComponents} />
+  </article>
+</BaseLayout>

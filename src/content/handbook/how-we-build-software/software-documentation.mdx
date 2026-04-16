@@ -1,0 +1,34 @@
+---
+title: Software documentation
+description: How we approach documentation at Significa — what to write, where to write it, and how to keep it useful without turning it into an unmaintainable epic.
+date: 2024-10-29
+coverImage: https://assets.significa.co/website/test-TKzoOc.png
+group: engineering
+order: 7
+---
+
+Ah, the greatest challenge of software is getting your colleagues to document it.
+
+The documentation should be straightforward enough for anyone to find the information they need yet comprehensive enough to convey the implementation details and vision of the product. This balance is the real challenge.
+
+If you try to document every single detail and the entire history of your software, you'll end up with something utterly unreadable and unmaintainable. Instead, focus on summarising the current architecture and vision. A few historical details can help explain how you got here, but let's keep it concise — nobody wants to read the epic tale of an input field!
+
+Separating meeting notes — which quickly become outdated — from core documentation is also essential.
+
+## A-Z
+
+Build a glossary. This ensures the team is aligned and using consistent terminology across design, development, and product. It might seem obvious, but we've all been in situations where people refer to the same thing by different names. Frustration and communication gaps can quickly arise. A well-maintained glossary easily solves this issue.
+
+## Clarity, not calamity
+
+Code must be readable so that anyone can understand what it does. If a piece of code needs a lengthy comment to explain it, it's likely too complex. Ideally, code should be self-explanatory, with minimal comments, as they can become outdated and clutter the codebase. Instead, rely on small functions or modules that may include optional descriptions, condensing explanations in one place. Not everything requires documentation — some things are straightforward enough to speak for themselves.
+
+## Where to document
+
+Remember, Notion is life. We use Notion for both internal and client-facing documentation, and we don't use the GitHub Wiki feature, so we tend to leave it disabled. Storing documentation in multiple places can lead to fragmentation and chaos. We also avoid losing documentation in Google Drive; while we might use Google Workspace tools, documentation typically resides in Notion. If there's a shared Google Sheet, it will be linked or pinned to a Notion page.
+
+> "Notion is the cornerstone of everything. Everything is on Notion. Notion is life."
+>
+> **Bingo, The Dog**
+
+Creating comprehensive project `README`s is essential for documentation that speeds up project setup and is easily accessible within the repository. Relying solely on Notion can be cumbersome when getting started. However, it's perfectly reasonable — advised, really — to seek a deeper understanding of the project's vision and history, for which you'll want to refer to Notion.

@@ -1,0 +1,21 @@
+---
+import BaseLayout from "@/layouts/base.astro";
+import { getCollection } from "astro:content";
+
+const services = await getCollection("services");
+const sorted = services.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+
+<BaseLayout title="Services — Significa" description="How we help you think, design, develop, launch and scale your product.">
+  <main>
+    <h1>What we do.</h1>
+    <ul>
+      {sorted.map((service) => (
+        <li>
+          <a href={`/services/${service.id}`}>{service.data.title}</a>
+          {service.data.tagline && <p>{service.data.tagline}</p>}
+        </li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>

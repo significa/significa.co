@@ -1,0 +1,14 @@
+---
+title: Back-end persistence
+description: How we approach data persistence at Significa — delegating storage to dedicated external services and avoiding unnecessary complexity.
+date: 2024-10-29
+coverImage: https://assets.significa.co/website/test-TKzoOc.png
+group: engineering
+order: 3
+---
+
+In modern back-end applications, delegating the persistence layer to dedicated external services like databases is crucial. This approach, as noted in Software environment, enhances separation of concerns, promoting horizontal scalability and alleviating concerns about data loss.
+
+Our go-to persistence layers include databases such as PostgreSQL — see Tech stack — and storage solutions like AWS S3. These services have robust data retention policies, scalability options, and disaster recovery features, which we prefer to avoid building into our own applications.
+
+There are exceptions, like when creating simple, open-source, self-hosted tools that store data locally, such as an application using an SQLite database. However, even these should have options for external databases for serious production scenarios. A prime example is our iOS IPA App Distribution Server, which defaults to local storage but can easily be configured to use external file systems like AWS S3.

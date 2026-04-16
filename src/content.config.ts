@@ -59,10 +59,10 @@ const projects = defineCollection({
     /** Large hero image for homepage showcase and project detail header */
     heroImage: z.string().optional(),
     tags: z.array(z.string()).default([]),
-    /** Industry categories for filtering (e.g., "fintech", "e-commerce", "healthcare") */
-    industry: z.array(z.string()).default([]),
-    /** Deliverable types for filtering (e.g., "website", "mobile-app", "design-system") */
-    deliverable: z.array(z.string()).default([]),
+    /** Industry references — validated at build time against the industries collection */
+    industry: z.array(reference("industries")).default([]),
+    /** Deliverable references — validated at build time against the deliverables collection */
+    deliverable: z.array(reference("deliverables")).default([]),
     /** Key metrics shown on project cards (e.g. conversion uplift, NPS) */
     metrics: z.array(metricSchema).default([]),
     seo: seoSchema.optional(),
@@ -261,6 +261,62 @@ const handbook = defineCollection({
   }),
 });
 
+// ============================================================
+// Services — Think, Design, Develop, Launch, Scale
+// ============================================================
+
+const services = defineCollection({
+  loader: contentLoader({
+    extensions: ["mdx"],
+    base: "src/content/services",
+  }),
+  schema: z.object({
+    title: z.string(),
+    order: z.number().optional(),
+    tagline: z.string().optional(),
+    heroTagline: z.string().optional(),
+    description: z.string().optional(),
+    featuredProjects: z.array(reference("projects")).default([]),
+    seo: seoSchema.optional(),
+  }),
+});
+
+// ============================================================
+// Deliverables — types of output we produce (website, mobile-app, etc.)
+// ============================================================
+
+const deliverables = defineCollection({
+  loader: contentLoader({
+    extensions: ["mdx"],
+    base: "src/content/deliverables",
+  }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    thumbnail: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    seo: seoSchema.optional(),
+  }),
+});
+
+// ============================================================
+// Industries — sectors we work in (e-commerce, travel, etc.)
+// ============================================================
+
+const industries = defineCollection({
+  loader: contentLoader({
+    extensions: ["mdx"],
+    base: "src/content/industries",
+  }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    thumbnail: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    seo: seoSchema.optional(),
+  }),
+});
+
 export const collections = {
   projects,
   blog,
@@ -272,4 +328,7 @@ export const collections = {
   awards,
   "handbook-groups": handbookGroups,
   handbook,
+  services,
+  deliverables,
+  industries,
 };

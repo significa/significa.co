@@ -2,6 +2,30 @@ import { getCollection, getEntry } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
 /**
+ * Get all services, sorted by order ascending.
+ */
+export async function getServices() {
+  const services = await getCollection("services");
+  return services.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+}
+
+/**
+ * Get all deliverables, sorted alphabetically.
+ */
+export async function getDeliverables() {
+  const deliverables = await getCollection("deliverables");
+  return deliverables.sort((a, b) => a.data.title.localeCompare(b.data.title));
+}
+
+/**
+ * Get all industries, sorted alphabetically.
+ */
+export async function getIndustries() {
+  const industries = await getCollection("industries");
+  return industries.sort((a, b) => a.data.title.localeCompare(b.data.title));
+}
+
+/**
  * Get all projects, sorted by date descending.
  */
 export async function getProjects() {

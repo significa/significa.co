@@ -1,0 +1,21 @@
+---
+import BaseLayout from "@/layouts/base.astro";
+import { getCollection } from "astro:content";
+
+const industries = await getCollection("industries");
+const sorted = industries.sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+
+<BaseLayout title="Industries — Significa" description="The sectors and industries we work in.">
+  <main>
+    <h1>Industries.</h1>
+    <ul>
+      {sorted.map((industry) => (
+        <li>
+          <a href={`/industries/${industry.id}`}>{industry.data.title}</a>
+          {industry.data.description && <p>{industry.data.description}</p>}
+        </li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>

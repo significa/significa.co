@@ -1,0 +1,22 @@
+---
+title: Software modularity
+description: How we think about software scope, configurability, and the importance of building focused, purposeful software at Significa.
+date: 2024-10-29
+coverImage: https://assets.significa.co/website/test-TKzoOc.png
+group: engineering
+order: 8
+---
+
+Software should be opinionated and have a defined purpose — don't expect it to do everything. At Significa, we focus our software on the product we want to build. Overextending the project's scope by incorporating too many features can lead to missed deadlines and compromised quality. This also impacts design; attempting to address everything at once results in a poor user experience — and a frustrating engineering experience, too. This principle is crucial to our approach to Product Discovery.
+
+There are two sides to this: one focuses on product planning, while the other delves into the technical nitty-gritty of software configuration. At Significa, we aim to clearly define the purpose of each software piece, which we refer to as our software philosophy. Spending too much time on configuration is tedious, demotivating, and ultimately wastes time and effort. The more configurable software becomes, the greater the maintenance burden, complicating development and increasing costs. Therefore, it's crucial for every team member — technical or non-technical — to easily define the focus and specifics of the software being built.
+
+This doesn't mean you're overly restricted in fulfilling the required features. We aim to understand what truly matters for the product and focus on that rather than getting bogged down by unnecessary elements that add little value.
+
+## How does this connect to configurability?
+
+The answer is that software should be flexible enough to perform the same actions in different ways. You might change secrets, email destinations, or constants like VAT. However, we don't expect software to change the database engine or email templates without modifying the code.
+
+For a healthy codebase, it's better to make changes directly in the code rather than making everything highly configurable to accommodate every potential scenario. Often, decisions about modularity stem from assumptions about future needs rather than current specifications.
+
+Building on these assumptions is risky; it can lead to unnecessary features that clutter the software and create costly headaches down the line. We view configurable software as opinionated — it should focus on its purpose rather than being generic enough to handle every conceivable change of heart from a product owner.

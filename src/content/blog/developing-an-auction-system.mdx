@@ -1,0 +1,98 @@
+---
+title: "Developing a high-concurrency, fault-tolerant auction system."
+description: How we built a real-time, fault-tolerant auction platform for a fine arts dealer — with anti bid-sniping, WebSockets, and a distributed Elixir backend.
+date: 2025-04-17
+author: Francisco Marques
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+seo:
+  metaTitle: "Developing a high-concurrency, fault-tolerant auction system — Significa"
+  metaDescription: "How we built a real-time, fault-tolerant auction platform for a fine arts dealer — with anti bid-sniping, WebSockets, and a distributed Elixir backend."
+  ogImage: https://cdn.significa.co/blog/developing-an-auction-system/og-image.jpg
+---
+
+At Significa, we recently developed a high-performance bespoke closed-door auction platform for a fine arts dealer handling high-value transactions.
+
+The requirements were clear: a premium mobile experience, real-time bidding for a global user base, and rock-solid reliability — all wrapped in a fast, high-availability system.
+
+## Anti bid-sniping.
+
+The auction process itself is nuanced. It is not a classic short, fixed-period auction where the highest bidder wins. Instead, it implements a reservation rolling period that dynamically extends the auction time. The system intelligently prioritises the highest bidder while ensuring fairness and adaptability, preventing bid-sniping — a strategy where bidders place last-minute bids to win. This is especially important for an auction that can last several days, with bidders located across the globe. They need time to react, and they are bidding serious amounts, often in the hundreds of thousands of pounds range.
+
+## Robust backend.
+
+The backend, built in Elixir with a PostgreSQL database, was engineered with resilience and fault tolerance in mind. The architecture supports horizontal scaling and replication, enabling seamless deployments — even mid-auction — without disrupting bidding activity. The system is designed so that it never has transient states or requires reconciliation routines to maintain auction integrity. As a result, the auction flow remains uninterrupted, even in the event of a system failure.
+
+## A custom native app.
+
+The API consumer — a mobile app built with React Native — always reflects the latest auction state in real time, regardless of which instance or server it is connected to. Personalised notifications are sent to users instantly as soon as an action is taken in the bidding room. The notifications and application state dynamically update to reflect both the current and previous bidding positions of the user. To achieve this level of real-time accuracy, the system uses WebSockets, ensuring all users stay up to date.
+
+The servers are deployed in a cloud-native distributed system on [Fly.io](https://fly.io), optimised for high concurrency and reliability. With a fully tested backend, the platform is built to handle critical, high-stakes transactions without failure.
+
+## System architecture.
+
+In this section, we delve into the system architecture and design decisions behind our auction platform. This is intended for readers with a deeper technical understanding, as we explore the rationale behind our choices.
+
+<Callout title="How we build software." href="/handbook/how-we-build-software" cta="Learn more">
+  At Significa, we firmly believe that simplicity is the key to scalability, maintainability, and long-term success.
+</Callout>
+
+Simple solutions not only evolve more effectively alongside a business's growth and roadmap but also make development more agile. They streamline onboarding for new team members, reduce complexity in day-to-day operations, and make adapting to changing project requirements significantly easier. While there's no trade secret here — just well-thought-out engineering — we hope this breakdown offers insight into how we build robust, high-performance systems.
+
+### Mobile App.
+
+Developed with React Native and distributed via Expo, the app provides a sleek, premium interface for bidding in invite-only auctions. It delivers a seamless and engaging user experience, optimised for high-stakes transactions.
+
+### Backend & GraphQL API.
+
+A monolithic backend built with the [Phoenix framework](https://www.phoenixframework.org/) on Elixir, a highly concurrent, fault-tolerant functional programming language designed for reliability. The API, exposed to the front-end as a GraphQL API, is built using [Absinthe](https://hexdocs.pm/absinthe/).
+
+- Elixir, built on Erlang, excels in handling high concurrency and ensures system stability under heavy loads.
+- The backend is highly test-covered with unit and integration tests built using ExUnit, ensuring full coverage of the auction process, including database interactions and outcome validation — not just code or mocked tests.
+- Additionally, the backend includes a simple yet effective HTML/CSS-based admin panel, allowing sellers to configure auction rooms, manage user invitations, and handle media content displayed in the app.
+- The backend is packaged with Docker for simplicity, making it decoupled from any infrastructure environment and fully cloud-native.
+
+### Database.
+
+A PostgreSQL database is a battle-tested, industry-standard open-source system known for its performance, reliability, and scalability in production environments. It is deployed with High Availability (HA) in mind, with replication configured in a failover strategy.
+
+### Expo.
+
+We use Expo for distributing app builds and our open-source tool for distributing internal iOS and APK builds more efficiently. This approach gives us greater control over distribution while still leveraging Expo's integration with Firebase Cloud Messaging (FCM) and Apple Push Notification Service (APNS) to ensure real-time notifications for bidders.
+
+<Callout title="How to distribute iOS IPA builds." href="/blog/distributing-ios-ipa-builds" cta="Learn more">
+  Guiding you on how to distribute and install non-market iOS IPA applications over the air (OTA) using a simple, self-hosted server.
+</Callout>
+
+### Image Storage.
+
+We went with an [AWS S3](https://aws.amazon.com/s3/) bucket for secure storage and retrieval of images and media uploaded to the platform.
+
+### Cloud Provider.
+
+Both the backend and database are deployed on [Fly.io](https://fly.io) in a multi-region setup, ensuring high availability, low latency, and fault tolerance across different geographical locations.
+
+## Backup and disaster recovery.
+
+To ensure data integrity and resilience, the database is backed up using a dual-layer strategy. Within Fly.io, automatic daily snapshots are performed. Additionally, daily offsite backups performed with [pg-dump-to-s3](https://github.com/significa/fly-pg-dump-to-s3) are stored in a dedicated AWS S3 bucket, providing an extra layer of security and redundancy. These backups are protected by strict Role-Based Access Control (RBAC) policies, ensuring that even the credentials used to create them cannot be deleted, safeguarding against accidental or malicious data loss. A configured retention period guarantees that historical backups remain available for restoration while managing storage efficiently. This approach ensures the system remains highly resilient, even in the face of unexpected incidents.
+
+## Environments & development workflow.
+
+To ensure proper testing and maintain a production-ready development flow, we have a structured multi-environment setup. This includes:
+
+- **Staging (QA)** — A dedicated environment for quality assurance, testing, and validation before changes are pushed to production.
+- **Production** — The live environment where the application runs for end-users, optimised for performance, reliability, and scalability.
+- **Local Development** — The local development environment is fully isolated from the deployed environments.
+
+Each environment is completely separate, with unique credentials and accounts, ensuring that configurations, data, and operations do not overlap. This isolation enhances security, stability, and testing accuracy, allowing for a robust and risk-free deployment process.
+
+<Callout title="Safety first!" href="/blog/secure-your-secrets-1password-cli-for-devs" cta="Learn more">
+  We built an open-source CLI utility that integrates seamlessly with 1Password to keep secrets safe across all environments.
+</Callout>
+
+## Final thoughts.
+
+The Acquisition Room strongly represents how we approach complex engineering challenges: blending battle-tested technologies with practical, maintainable architecture. From concurrent processing and real-time feedback to robust backups and isolated environments, the system was built with performance, integrity, and fault tolerance at its core — ready to handle critical, high-stakes transactions without breaking a sweat.
+
+It's not just about scale or speed — it's about trust, accuracy, and building infrastructure that holds up when it matters most. By leaning into simplicity, concurrency, and resilience, we delivered a system that performs under pressure and continues to scale with the client's ambitions. Whether it's fine art or fintech, real-time, distributed systems like this aren't a luxury; they're necessary. And this is the kind of engineering we love doing at Significa.

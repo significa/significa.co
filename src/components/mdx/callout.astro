@@ -1,0 +1,86 @@
+---
+interface Props {
+  title: string;
+  href?: string;
+  cta?: string;
+}
+
+const { title, href, cta } = Astro.props;
+---
+
+<aside class="callout">
+  {
+    href ? (
+      <a href={href} class="callout-link" target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined}>
+        <span class="callout-title">{title}</span>
+        {cta && <span class="callout-cta">{cta} →</span>}
+      </a>
+    ) : (
+      <div class="callout-block">
+        <span class="callout-title">{title}</span>
+        <div class="callout-content">
+          <slot />
+        </div>
+      </div>
+    )
+  }
+</aside>
+
+<style>
+  .callout {
+    margin: 1.5rem 0;
+    padding: 1.25rem 1.5rem;
+    background: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+
+  .callout-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .callout-link:hover {
+    opacity: 0.7;
+  }
+
+  .callout-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .callout-title {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+
+  .callout-cta {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+
+  .callout-content :global(ul) {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .callout-content :global(li) {
+    font-size: var(--text-base);
+    color: var(--color-text);
+    line-height: var(--leading-normal);
+  }
+</style>

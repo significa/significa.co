@@ -1,0 +1,16 @@
+---
+title: Software infrastructure
+description: How we host and deploy Back-end applications at Significa — containerisation, load balancing, and keeping infrastructure simple.
+date: 2024-10-29
+coverImage: https://assets.significa.co/website/test-TKzoOc.png
+group: engineering
+order: 2
+---
+
+K.I.S.S. — we keep it simple by hosting our Back-end applications on container platforms. We're big fans of Fly.io because it streamlines deployment.
+
+Containerising our apps keeps them decoupled from infrastructure, allowing for flexible deployment. We typically use a load balancer to manage traffic, which Fly.io provides out of the box. On AWS, though, you'll need to set this up manually.
+
+Another key principle we follow, in line with Software security, is that only applications intended for external traffic are exposed to the internet. This is straightforward with simple infrastructure providers like Fly.io or more complex setups involving VPCs.
+
+Remember, deployments should always be automated, never from development machines. If you haven't already, check out Continuous integration and delivery for more details.

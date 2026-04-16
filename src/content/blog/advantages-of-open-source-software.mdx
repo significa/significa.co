@@ -1,0 +1,101 @@
+---
+title: "Advantages of open-source software."
+description: When we talk about open source today, it's easy to focus on what's trendy. But behind the hype lies something far more foundational — a philosophy that has quietly come to shape the internet as we know it.
+date: 2025-05-26
+author: Francisco Marques
+thumbnail: https://assets.significa.co/website/test-TKzoOc.png
+tags:
+  - development
+  - open-source
+seo:
+  metaTitle: "Advantages of open-source software — Significa"
+  metaDescription: "Behind the hype lies something far more foundational: a philosophy that has quietly come to shape the internet as we know it. Open source pros, cons, and our contributions."
+  ogImage: https://cdn.significa.co/blog/advantages-of-open-source-software/og-image.jpg
+---
+
+When we talk about open source today, it's easy to focus on what's trendy: the buzz around GitHub stars, open-core monetisation, or the latest JavaScript framework. But behind the hype lies something far more foundational: a philosophy that has quietly come to shape the internet as we know it.
+
+The early days of computing were defined by closed systems and proprietary silos. Software lived inside corporations, guarded by licenses, NDAs, and big price tags. If you wanted to build something, you needed a serious budget, and probably a mainframe from IBM or a bespoke solution from Bell Labs. For everyday developers, there was no real way in — probably the reason "everyday developers" wasn't yet a thing.
+
+<Callout title="Trivia time!" href="https://en.wikipedia.org/wiki/Bell_Works" cta="Check it out">
+  The history of Bell Labs is fascinating… but so is the architecture of its New Jersey headquarters. So much so that Severance was filmed there.
+</Callout>
+
+## From Helsinki to the world!
+
+That started to change in 1991 with the arrival of Linux: a free, community-driven alternative to the proprietary systems of the time. Its creator, Linus Torvalds, wasn't just releasing an operating system — he was inviting others to build alongside him. By replicating the foundations of the UNIX Operating System and making the source code publicly available, he gave developers something they could use, inspect, and improve.
+
+For the first time, people across the world could contribute to the same codebase — iterating, debugging, and evolving it together. It marked a turning point: software was no longer just a product built behind closed doors, but a shared process. That spirit of openness laid the groundwork for what Open Source culture is. Today, most of the web runs on its infrastructures, from servers and network protocols to development frameworks like HTTP, React and Python.
+
+## Pros and cons of Open Source.
+
+One of the best things about open source is that you can actually see what's going on. If something doesn't work, you don't have to wait for a support ticket or cross your fingers for a future fix. You can dive into the code, poke around, figure out why it's broken — and oftentimes, you even find a workaround yourself.
+
+Try doing that with proprietary software. You call support, wait a few months, and maybe someone eventually gets back to you — if they even consider it a problem. With open source, you're not locked into someone else's roadmap. Even if the maintainers stop updating a project, the code doesn't disappear. You can still use it, fork it, fix it. That level of autonomy matters, especially when you're building something that can't afford to fail. Not to mention the licensing changes, breaking updates, or surprise pricing hikes… just ask anyone who's ever been caught off guard by a CMS or plugin vendor suddenly charging double.
+
+Of course, with great freedom comes great responsibility. Publishing something as open source isn't just about slapping a repo on GitHub. It's a commitment to maintain, document, and sometimes shepherd a community. The myth that "more eyes mean fewer problems" only holds up when people are actually looking — and knowing what they're looking at.
+
+Take the Log4J vulnerability: a critical exploit in a logging library most people had forgotten was even there. It had quietly become a dependency across thousands of systems. No one touched it for years… until suddenly, everyone had to. It's a bit absurd that, as the popular [xkcd comic](https://xkcd.com/2347/) illustrates, a single maintainer, working alone in Nebraska, can end up being the reason the internet stays online. That's why May is now recognised as Maintainer Month — a small nod to the people quietly holding each patch and release together, often for free, in their spare time.
+
+<Callout title="This one is to our devs out there…" href="/handbook" cta="More on the Handbook">
+  We encourage our team to get involved with open-source projects!
+</Callout>
+
+Open source can also be frustrating, especially when everything feels fragmented, when a project is more like a box of parts than an actual tool, or when the roadmap loops endlessly and tries to do everything but doesn't do anything particularly well.
+
+Still, when you're dealing with privacy, encryption, or secure transactions, open source is often the safer bet. Not because it's flawless, but because you can see what it's doing. With proprietary software, you're left guessing what changed in the last update. With open source, the code's right there. Even if you're not reading it, you hope someone is — that alone is enough for people to be more cautious about pushing shady things.
+
+Furthermore, that transparency can be critical in politically sensitive contexts. Tools like TOR (The Onion Router), often associated with the so-called "dark web," were created to help journalists and activists communicate safely online. What makes them trustworthy isn't that they're secret; it's that anyone can inspect the source and understand how they work.
+
+Still, we can't assume that being open source automatically makes something safe or secure. There are plenty of examples — not just major vulnerabilities, but in recent years, cases where attackers have managed to commit and even distribute backdoors or malware through OSS projects.
+
+## Our contributions.
+
+At Significa, we've open-sourced some internal tools, utilities, and cleanup scripts — the kind of things we built for ourselves and figured might be useful to others too. We know the value of stumbling across a repo that solves exactly what you're looking for and changes your day for the better.
+
+Publishing code also forces us to think twice: about quality, about documentation, and about maintenance. Sometimes we release things as source available instead. It's not technically open source, but the code is there if you want to learn from it. For us, it's more of a mindset than a license type.
+
+Besides sharing on GitHub, every now and then we write about our contributions — namely how to distribute iOS IPA builds, creating a CLI utility for syncing 1Password secrets to local environment files and Fly apps, or building a variable icon font.
+
+### App distribution server.
+
+A self-hosted tool for easily sharing internal iOS `.ipa` builds without TestFlight nor Expo. We're excited to see it's been gaining traction, and even more so that a contributor made it compatible with Android `.apk`s.
+
+### Fly pg_dump to S3.
+
+This is a tool to help make unmanaged PostgreSQL logical database backups to S3. Fly only performs physical snapshots, so we've built this tool to have external, safe, read-only backups with great retention policies.
+
+### Foundations.
+
+This is one we've been investing quite a lot of time in! It is our base config for web projects — Prettier, TypeScript, ESLint, and Vitest, all wired up and ready to go. It is all about less setting up, more building.
+
+### Storyblok assets clean-up.
+
+A script to find and delete unused assets in Storyblok spaces. Keeps your CMS lean, your bills lower, and your storage less of a mess.
+
+### Palette generator.
+
+Generates colour palettes with accessible contrast ratios based on a single colour input. Handy for quick UI prototyping without guesswork.
+
+### 1Password secrets.
+
+A CLI tool to sync secrets from 1Password into local `.env` files. No copy-paste, no leaks — simply safer secret management in dev workflows.
+
+### Variable icon font.
+
+
+An open-source variable icon font designed for flexibility and visual harmony. Built to pair perfectly with Inter and adapt to any UI.
+
+<Callout title="Iconic!" href="/blog/building-a-variable-icon-font" cta="Learn more">
+  Discover how we built our open-source variable icon font — from Figma to Glyphs, with UI precision in mind.
+</Callout>
+
+## Open Source is here to stay.
+
+These days, open source is everywhere… and yes, it's trendy! Not because the idea is new, but because companies finally realised they could build businesses around it. React started as a Facebook thing. Now it powers most modern frontends. Platforms like Vercel make it easier to use, easier to deploy. Wrap it up, put a price on the convenience, and you've got a product. That's fine. It's probably what keeps a lot of these tools alive.
+
+If no one maintains it, it dies — open or not. That's the part people forget.
+
+Open source isn't just a development model. It's the foundation most of the internet runs on. Even proprietary platforms stand on top of open code. That's not going away anytime soon.
+
+We'll keep using it. We'll keep contributing when it makes sense. Not because it sounds good, but because it makes sense — and because it keeps us accountable.

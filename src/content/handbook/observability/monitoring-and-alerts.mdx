@@ -1,0 +1,30 @@
+---
+title: Monitoring and alerts
+description: How we monitor running systems and alert on critical issues at Significa — using Sentry and Uptime Kuma to stay ahead of problems before they escalate.
+date: 2024-10-29
+coverImage: https://assets.significa.co/website/test-TKzoOc.png
+group: engineering
+order: 2
+---
+
+There's little worse than an anxious client worried about an app malfunctioning, especially when it impacts customers trying to make a purchase. It's stressful for everyone involved — particularly when it happens over a weekend. But don't worry! We have effective measures in place to ensure we stay ahead of any issues before they escalate into big problemos.
+
+## Monitoring
+
+Monitoring involves observing the current state of your product at a technical level. It enables developers to explore the finer details of the running environment, from request handling to low-level logs. This level of insight is essential for understanding and troubleshooting bugs effectively.
+
+## Alerting
+
+Alerting is the tooling that notifies you as soon as possible when something on the system needs action to be taken. These are usually unhandled errors — big bad bugs that must be solved pronto.
+
+The hard part of alerting is making sure that you don't get lots of false positives. It'll ruin your experience; you need to trust the alerting system so that all, or the vast majority, of alerts are actionable. That's why, for example, for unhandled exceptions, you'll only get the alert the first time it happens or a summary of the occurrence rather than being bothered every time it happens. In code, things run millions of times; an error that happens once may happen hundreds of thousands of times before being solved. That would be a lot of annoying notifications.
+
+## Simplified alerting with Sentry
+
+The tool we use for streamlined alerting across both Front-end and Back-end projects is Sentry. It effectively tracks errors and provides actionable insights, helping us maintain system reliability without overwhelming developers.
+
+Sentry allows us to create visually appealing status pages for clients, providing transparency about the system's health and performance.
+
+We also utilise a self-hosted HTTP status monitoring tool called Uptime Kuma, which alerts us to significant incidents. It's particularly useful for identifying issues related to server availability, DNS problems, and networking challenges.
+
+Ultimately, this aligns with our Technical elements of quality control processes, ensuring that unpleasant surprises don't spoil anyone's weekend!

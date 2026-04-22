@@ -47,6 +47,8 @@
         return '';
     }
   };
+
+  $: console.log(story);
 </script>
 
 <Seo
@@ -83,7 +85,8 @@
         </div>
       {/if}
     </div>
-    {#if story.content.cover_image_light && story.content.cover_image_dark && story.content.is_active}
+
+    {#if story.content?.cover_image_light?.filename && story.content?.cover_image_dark?.filename && story.content?.is_active}
       {@const img =
         $theme === 'light' ? story.content.cover_image_light : story.content.cover_image_dark}
       {@const { src, alt } = getImageAttributes(img, { size: [720 * 2, 0] })}

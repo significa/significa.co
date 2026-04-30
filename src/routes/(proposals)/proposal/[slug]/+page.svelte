@@ -11,9 +11,9 @@
 
   const proposal = data?.story?.content;
   const awards = data?.awards ?? [];
-  const projects = data?.home?.story.content.page[0].projects ?? [];
-  const testimonials = data?.services?.story?.content?.page[0].testimonials ?? [];
-  const clients = data?.services?.story?.content?.page[0].clients ?? [];
+  const projects = data?.home?.story.content.page?.[0]?.projects ?? [];
+  const testimonials = data?.services?.story?.content?.page?.[0]?.testimonials ?? [];
+  const clients = data?.services?.story?.content?.page?.[0]?.clients ?? [];
 </script>
 
 <Seo title={proposal?.title || 'Proposal'} />

@@ -300,6 +300,11 @@
       "updated_at": "2026-01-28T16:17:22.162Z",
       "id": 5492544,
       "schema": {
+        "items_per_page": {
+          "type": "number",
+          "pos": 2,
+          "id": "A4qP3tNaRQS4VL32fFedeQ"
+        },
         "title": {
           "type": "text",
           "id": "h9MFydGdR52vC5X0OawuXg"
@@ -307,11 +312,6 @@
         "description": {
           "type": "text",
           "id": "R4uOAkluQxm3aMwnwMlT2A"
-        },
-        "items_per_page": {
-          "type": "number",
-          "pos": 2,
-          "id": "A4qP3tNaRQS4VL32fFedeQ"
         }
       },
       "image": "//a.storyblok.com/f/198185/x/7528023e3c/awards-list.png",
@@ -451,14 +451,25 @@
       "display_name": null,
       "description": null,
       "created_at": "2024-03-14T16:04:21.544Z",
-      "updated_at": "2026-01-27T11:24:17.573Z",
+      "updated_at": "2026-07-01T10:55:15.403Z",
       "id": 5498274,
       "schema": {
         "title1": {
-          "type": "text"
+          "type": "text",
+          "id": "ZfrU8DI3S5uyXvagcwN9BA",
+          "pos": 0
         },
         "title2": {
-          "type": "text"
+          "type": "text",
+          "id": "yrVoyYFlSe6eP9saC-Pmyg",
+          "pos": 1
+        },
+        "blogs": {
+          "type": "options",
+          "pos": 2,
+          "source": "internal_stories",
+          "id": "wC-t4U61SdGvwvLZy7FxAw",
+          "filter_content_type": ["blog-post"]
         }
       },
       "image": "//a.storyblok.com/f/198185/x/16c2728db7/blog-list.png",
@@ -1800,6 +1811,14 @@
       "updated_at": "2026-01-27T11:29:14.405Z",
       "id": 5219148,
       "schema": {
+        "links": {
+          "type": "bloks",
+          "pos": 2,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["link"],
+          "id": "aX_2sXHiTuSrr4mPacBlaQ"
+        },
         "clients_title": {
           "type": "text",
           "id": "pYN0qCi1TaW8aaftrXZTxg"
@@ -1810,14 +1829,6 @@
           "restrict_components": true,
           "component_whitelist": ["client-logo"],
           "id": "-xckeRNGTJyzQZbpKk4tig"
-        },
-        "links": {
-          "type": "bloks",
-          "pos": 2,
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": ["link"],
-          "id": "aX_2sXHiTuSrr4mPacBlaQ"
         }
       },
       "image": "//a.storyblok.com/f/198185/x/13edb2289f/clients.png",
@@ -4138,9 +4149,6 @@
           "type": "text",
           "pos": 0
         },
-        "subtitle": {
-          "type": "text"
-        },
         "section_description": {
           "type": "text",
           "pos": 1
@@ -4148,6 +4156,9 @@
         "title": {
           "type": "text",
           "pos": 2
+        },
+        "subtitle": {
+          "type": "text"
         }
       },
       "image": "//a.storyblok.com/f/198185/x/377ae9bd26/packages.png",
@@ -5086,6 +5097,21 @@
           "pos": 0,
           "type": "tab"
         },
+        "client": {
+          "type": "text",
+          "pos": 1,
+          "required": true
+        },
+        "validity_days": {
+          "type": "number",
+          "pos": 2,
+          "required": true,
+          "default_value": "15"
+        },
+        "company_name": {
+          "type": "text",
+          "pos": 10
+        },
         "title": {
           "type": "text",
           "required": true
@@ -5113,21 +5139,6 @@
           "required": true,
           "source": "internal_stories",
           "filter_content_type": ["team-member"]
-        },
-        "client": {
-          "type": "text",
-          "pos": 1,
-          "required": true
-        },
-        "validity_days": {
-          "type": "number",
-          "pos": 2,
-          "required": true,
-          "default_value": "15"
-        },
-        "company_name": {
-          "type": "text",
-          "pos": 10
         }
       },
       "image": null,

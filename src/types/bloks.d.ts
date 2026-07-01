@@ -106,9 +106,9 @@ export interface AwardsGridStoryblok {
 }
 
 export interface AwardsListStoryblok {
+  items_per_page?: string;
   title?: string;
   description?: string;
-  items_per_page?: string;
   _uid: string;
   component: 'awards-list';
   [k: string]: any;
@@ -143,6 +143,7 @@ export interface BlogIndexStoryblok {
 export interface BlogListStoryblok {
   title1?: string;
   title2?: string;
+  blogs?: (StoryblokStory<BlogPostStoryblok> | string)[];
   _uid: string;
   component: 'blog-list';
   [k: string]: any;
@@ -428,9 +429,9 @@ export interface ClientLogoStoryblok {
 }
 
 export interface ClientsStoryblok {
+  links?: LinkStoryblok[];
   clients_title?: string;
   clients?: ClientLogoStoryblok[];
-  links?: LinkStoryblok[];
   _uid: string;
   component: 'clients';
   [k: string]: any;
@@ -918,9 +919,9 @@ export interface OtherEntryBlockStoryblok {
 
 export interface PackagesStoryblok {
   section_title?: string;
-  subtitle?: string;
   section_description?: string;
   title?: string;
+  subtitle?: string;
   _uid: string;
   component: 'packages';
   [k: string]: any;
@@ -1131,14 +1132,14 @@ export interface ProjectsTwoColumnsStoryblok {
 
 export interface ProposalStoryblok {
   password: string;
+  client: string;
+  validity_days: string;
+  company_name?: string;
   title: string;
   description: string;
   cover: AssetStoryblok;
   versions?: (ProposalVersionPackageStoryblok | ProposalVersionStoryblok)[];
   created_by: StoryblokStory<TeamMemberStoryblok> | string;
-  client: string;
-  validity_days: string;
-  company_name?: string;
   _uid: string;
   component: 'proposal';
   [k: string]: any;

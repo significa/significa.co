@@ -143,7 +143,7 @@ export interface BlogIndexStoryblok {
 export interface BlogListStoryblok {
   title1?: string;
   title2?: string;
-  blogs?: (StoryblokStory<BlogPostStoryblok> | string)[];
+  blog_posts?: (StoryblokStory<BlogPostStoryblok> | string)[];
   _uid: string;
   component: 'blog-list';
   [k: string]: any;

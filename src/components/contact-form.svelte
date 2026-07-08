@@ -83,6 +83,13 @@
 
   let loading = false;
 
+  $: footerEmail = {
+    quote: t('quote.contact.email'),
+    career: t('careers.contact.email'),
+    contact: t('contact.email'),
+    estimations: t('quote.contact.email')
+  }[variant ?? type];
+
   $: if ($page.form?.success) {
     dispatch('success');
     toast.success({
@@ -152,7 +159,7 @@
     career: '/form/career',
     contact: '/form/contact',
     estimations: '/form/estimations'
-  }[type]}
+  }[variant ?? type]}
   use:enhance={(form) => {
     loading = true;
 
@@ -291,9 +298,7 @@
     >
     <div class="text-sm">
       <p class="leading-none text-foreground-secondary">{t('contact.footer.title')}</p>
-      <Link class="mt-0.5 inline-flex" href="mailto:{t('contact.footer.email')}"
-        >{t('contact.footer.email')}</Link
-      >
+      <Link class="mt-0.5 inline-flex" href="mailto:{footerEmail}">{footerEmail}</Link>
     </div>
   </div>
 </form>

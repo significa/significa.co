@@ -106,9 +106,9 @@ export interface AwardsGridStoryblok {
 }
 
 export interface AwardsListStoryblok {
+  items_per_page?: string;
   title?: string;
   description?: string;
-  items_per_page?: string;
   _uid: string;
   component: 'awards-list';
   [k: string]: any;
@@ -143,6 +143,7 @@ export interface BlogIndexStoryblok {
 export interface BlogListStoryblok {
   title1?: string;
   title2?: string;
+  blog_posts?: (StoryblokStory<BlogPostStoryblok> | string)[];
   _uid: string;
   component: 'blog-list';
   [k: string]: any;
@@ -158,6 +159,12 @@ export interface RichtextStoryblok {
 }
 
 export interface BlogPostStoryblok {
+  seo_title?: string;
+  seo_description?: string;
+  seo_og_image?: AssetStoryblok;
+  seo_canonical_url?: string;
+  no_index: boolean;
+  structure_data_markup?: string;
   hide_from_listings: boolean;
   cover?: AssetStoryblok;
   reading_time?: string;
@@ -168,11 +175,6 @@ export interface BlogPostStoryblok {
   deliverables?: (number | string)[];
   tech?: (number | string)[];
   industry?: (number | string)[];
-  seo_title?: string;
-  seo_description?: string;
-  seo_og_image?: AssetStoryblok;
-  seo_canonical_url?: string;
-  structure_data_markup?: string;
   body?: RichtextStoryblok;
   _uid: string;
   component: 'blog-post';
@@ -427,9 +429,9 @@ export interface ClientLogoStoryblok {
 }
 
 export interface ClientsStoryblok {
+  links?: LinkStoryblok[];
   clients_title?: string;
   clients?: ClientLogoStoryblok[];
-  links?: LinkStoryblok[];
   _uid: string;
   component: 'clients';
   [k: string]: any;
@@ -917,9 +919,9 @@ export interface OtherEntryBlockStoryblok {
 
 export interface PackagesStoryblok {
   section_title?: string;
-  subtitle?: string;
   section_description?: string;
   title?: string;
+  subtitle?: string;
   _uid: string;
   component: 'packages';
   [k: string]: any;
@@ -1064,7 +1066,14 @@ export interface PrefooterFormStoryblok {
 }
 
 export interface ProjectStoryblok {
+  seo_title?: string;
+  seo_description?: string;
+  seo_og_image?: AssetStoryblok;
+  no_index: boolean;
+  structure_data_markup?: string;
+  hide_from_listings: boolean;
   cover?: AssetStoryblok;
+  show_cover_image: boolean;
   reel?: AssetStoryblok;
   reel_button?: any;
   show_reel_controls: boolean;
@@ -1079,10 +1088,6 @@ export interface ProjectStoryblok {
   deliverables?: (number | string)[];
   services?: (number | string)[];
   links?: LinkStoryblok[];
-  seo_title?: string;
-  seo_description?: string;
-  seo_og_image?: AssetStoryblok;
-  structure_data_markup?: string;
   body?: RichtextStoryblok;
   _uid: string;
   component: 'project';
@@ -1111,6 +1116,7 @@ export interface ProjectsStoryblok {
 }
 
 export interface ProjectsIndexStoryblok {
+  autoplay_reel: boolean;
   _uid: string;
   component: 'projects-index';
   [k: string]: any;
@@ -1126,14 +1132,14 @@ export interface ProjectsTwoColumnsStoryblok {
 
 export interface ProposalStoryblok {
   password: string;
+  client: string;
+  validity_days: string;
+  company_name?: string;
   title: string;
   description: string;
   cover: AssetStoryblok;
   versions?: (ProposalVersionPackageStoryblok | ProposalVersionStoryblok)[];
   created_by: StoryblokStory<TeamMemberStoryblok> | string;
-  client: string;
-  validity_days: string;
-  company_name?: string;
   _uid: string;
   component: 'proposal';
   [k: string]: any;

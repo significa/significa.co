@@ -29,7 +29,7 @@
     {:else if page.component === 'blog-index' && blogIndex}
       <BlogIndex data={blogIndex} />
     {:else if page.component === 'projects-index' && projectsIndex}
-      <ProjectsIndex projects={projectsIndex} />
+      <ProjectsIndex projects={projectsIndex} autoplayReel={page?.autoplay_reel} />
     {/if}
   {/each}
 {/if}

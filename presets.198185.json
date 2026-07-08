@@ -16,7 +16,8 @@
       "image": "",
       "color": "",
       "icon": "",
-      "description": ""
+      "description": "",
+      "space_environment_id": null
     },
     {
       "id": 137179207487025,
@@ -36,7 +37,8 @@
       "image": "//a.storyblok.com/f/198185/x/83e3664830/screenshot-2026-01-23-at-15-03-19.png",
       "color": "",
       "icon": "",
-      "description": ""
+      "description": "",
+      "space_environment_id": null
     },
     {
       "id": 137178723921456,
@@ -83,7 +85,8 @@
       "image": "//a.storyblok.com/f/198185/x/bb95b856ce/screenshot-2026-01-23-at-15-01-25.png",
       "color": "",
       "icon": "",
-      "description": ""
+      "description": "",
+      "space_environment_id": null
     }
   ]
 }

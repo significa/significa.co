@@ -300,6 +300,11 @@
       "updated_at": "2026-01-28T16:17:22.162Z",
       "id": 5492544,
       "schema": {
+        "items_per_page": {
+          "type": "number",
+          "pos": 2,
+          "id": "A4qP3tNaRQS4VL32fFedeQ"
+        },
         "title": {
           "type": "text",
           "id": "h9MFydGdR52vC5X0OawuXg"
@@ -307,11 +312,6 @@
         "description": {
           "type": "text",
           "id": "R4uOAkluQxm3aMwnwMlT2A"
-        },
-        "items_per_page": {
-          "type": "number",
-          "pos": 2,
-          "id": "A4qP3tNaRQS4VL32fFedeQ"
         }
       },
       "image": "//a.storyblok.com/f/198185/x/7528023e3c/awards-list.png",
@@ -451,14 +451,25 @@
       "display_name": null,
       "description": null,
       "created_at": "2024-03-14T16:04:21.544Z",
-      "updated_at": "2026-01-27T11:24:17.573Z",
+      "updated_at": "2026-07-01T13:00:15.876Z",
       "id": 5498274,
       "schema": {
         "title1": {
-          "type": "text"
+          "type": "text",
+          "id": "ZfrU8DI3S5uyXvagcwN9BA",
+          "pos": 0
         },
         "title2": {
-          "type": "text"
+          "type": "text",
+          "id": "yrVoyYFlSe6eP9saC-Pmyg",
+          "pos": 1
+        },
+        "blog_posts": {
+          "type": "options",
+          "pos": 2,
+          "source": "internal_stories",
+          "id": "wC-t4U61SdGvwvLZy7FxAw",
+          "filter_content_type": ["blog-post"]
         }
       },
       "image": "//a.storyblok.com/f/198185/x/16c2728db7/blog-list.png",
@@ -483,12 +494,46 @@
       "display_name": "Author",
       "description": null,
       "created_at": "2023-02-15T13:03:53.849Z",
-      "updated_at": "2025-09-25T10:06:22.146Z",
+      "updated_at": "2026-04-07T14:04:46.091Z",
       "id": 3442347,
       "schema": {
+        "seo_title": {
+          "type": "text",
+          "pos": 0,
+          "id": "BOQalEUqQiyk1md3F5xIVA"
+        },
+        "seo_description": {
+          "type": "text",
+          "pos": 1,
+          "id": "7NAqowg8QR2aKKFF5RhbXQ"
+        },
+        "seo_og_image": {
+          "type": "asset",
+          "filetypes": ["images"],
+          "asset_folder_id": 212285,
+          "pos": 2,
+          "id": "aKZDfkIZSByFgTOpanjZyg"
+        },
+        "seo_canonical_url": {
+          "type": "text",
+          "pos": 3,
+          "description": "The default is the page URL",
+          "id": "uti5hsDBSF6WaKtICvmJ3Q"
+        },
+        "no_index": {
+          "type": "boolean",
+          "pos": 4,
+          "id": "QdaowBuQToac3Oh6NS2DQA"
+        },
+        "structure_data_markup": {
+          "type": "textarea",
+          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
+          "pos": 5,
+          "id": "jlD5mft8RjCpiuV3jnrKQA"
+        },
         "hide_from_listings": {
           "type": "boolean",
-          "pos": 0,
+          "pos": 6,
           "inline_label": true,
           "description": "Hide this blog post from anywhere that lists posts automatically (Blog index, recommendations, etc.)",
           "id": "CbspcL_HRb6xEaUOUnDMDw",
@@ -499,19 +544,19 @@
           "filetypes": ["images"],
           "asset_folder_id": 212285,
           "required": false,
-          "pos": 1,
+          "pos": 7,
           "id": "8dLyaE42R3GwiQWEMB9ZkQ"
         },
         "reading_time": {
           "type": "number",
-          "pos": 2,
+          "pos": 8,
           "display_name": "Reading Time (mins)",
           "id": "MiPFnbyLSjCWHlOysdIV2A"
         },
         "intro": {
           "type": "textarea",
           "required": true,
-          "pos": 3,
+          "pos": 9,
           "id": "ki2PS1dbQ7a2MqWpUWPImw"
         },
         "authors": {
@@ -521,12 +566,12 @@
           "required": false,
           "min_options": "0",
           "max_options": "4",
-          "pos": 4,
+          "pos": 10,
           "id": "vlcOr1lSSkynG2QKXt4YJg"
         },
         "external_authors": {
           "type": "bloks",
-          "pos": 5,
+          "pos": 11,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["external-author"],
@@ -538,14 +583,14 @@
           "type": "options",
           "source": "internal",
           "datasource_slug": "services",
-          "pos": 6,
+          "pos": 12,
           "id": "SmiU9YHQQFmiu3YKGdcK9w"
         },
         "deliverables": {
           "type": "options",
           "source": "internal",
           "datasource_slug": "deliverables",
-          "pos": 7,
+          "pos": 13,
           "id": "vF2l7ScsRUuUNq_nOYroKg"
         },
         "tech": {
@@ -553,49 +598,20 @@
           "display_name": "",
           "source": "internal",
           "datasource_slug": "tech-stack",
-          "pos": 8,
+          "pos": 14,
           "id": "uHMZJfCDR06MV30J7QHzKA"
         },
         "industry": {
           "type": "options",
           "source": "internal",
           "datasource_slug": "industry",
-          "pos": 9,
+          "pos": 15,
           "id": "CssUjMEXTo6Kjnn86kwajA"
-        },
-        "seo_title": {
-          "type": "text",
-          "pos": 10,
-          "id": "BOQalEUqQiyk1md3F5xIVA"
-        },
-        "seo_description": {
-          "type": "text",
-          "pos": 11,
-          "id": "7NAqowg8QR2aKKFF5RhbXQ"
-        },
-        "seo_og_image": {
-          "type": "asset",
-          "filetypes": ["images"],
-          "asset_folder_id": 212285,
-          "pos": 12,
-          "id": "aKZDfkIZSByFgTOpanjZyg"
-        },
-        "seo_canonical_url": {
-          "type": "text",
-          "pos": 13,
-          "description": "The default is the page URL",
-          "id": "uti5hsDBSF6WaKtICvmJ3Q"
-        },
-        "structure_data_markup": {
-          "type": "textarea",
-          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
-          "pos": 14,
-          "id": "jlD5mft8RjCpiuV3jnrKQA"
         },
         "tab-9a5d9933-3840-42d8-aa24-d87e83a9eb5d": {
           "display_name": "Content",
           "keys": ["body"],
-          "pos": 15,
+          "pos": 16,
           "type": "tab",
           "id": "ml2ZMzhAQtiqJNh-g6nrXQ"
         },
@@ -606,9 +622,10 @@
             "seo_description",
             "seo_og_image",
             "structure_data_markup",
-            "seo_canonical_url"
+            "seo_canonical_url",
+            "no_index"
           ],
-          "pos": 16,
+          "pos": 17,
           "type": "tab",
           "id": "wbZiBjNNRHCplsqaoHTiPA"
         },
@@ -641,7 +658,7 @@
             "redo",
             "color"
           ],
-          "pos": 17,
+          "pos": 18,
           "allow_custom_attributes": true,
           "id": "5ed-PQo1Sv6G4smOLUMFNg",
           "allow_target_blank": true
@@ -1794,6 +1811,14 @@
       "updated_at": "2026-01-27T11:29:14.405Z",
       "id": 5219148,
       "schema": {
+        "links": {
+          "type": "bloks",
+          "pos": 2,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": ["link"],
+          "id": "aX_2sXHiTuSrr4mPacBlaQ"
+        },
         "clients_title": {
           "type": "text",
           "id": "pYN0qCi1TaW8aaftrXZTxg"
@@ -1804,14 +1829,6 @@
           "restrict_components": true,
           "component_whitelist": ["client-logo"],
           "id": "-xckeRNGTJyzQZbpKk4tig"
-        },
-        "links": {
-          "type": "bloks",
-          "pos": 2,
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": ["link"],
-          "id": "aX_2sXHiTuSrr4mPacBlaQ"
         }
       },
       "image": "//a.storyblok.com/f/198185/x/13edb2289f/clients.png",
@@ -1891,7 +1908,7 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-02-16T10:41:06.792Z",
-      "updated_at": "2023-03-22T11:05:45.912Z",
+      "updated_at": "2026-01-30T11:14:07.790Z",
       "id": 3446841,
       "schema": {
         "width": {
@@ -1927,7 +1944,7 @@
           "required": true
         }
       },
-      "image": "//a.storyblok.com/f/198185/x/8514279d68/screenshot-2023-03-22-at-11-05-27.png",
+      "image": "//a.storyblok.com/f/198185/x/c0cff448e1/screenshot-2026-01-30-at-11-13-04.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -1936,8 +1953,8 @@
       "preset_id": null,
       "real_name": "comparison",
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
-      "color": "#fbce41",
-      "icon": "block-table",
+      "color": "var(--sb-color-accent-background-papaya-whip)",
+      "icon": "image",
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
@@ -2796,7 +2813,7 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-02-15T13:50:12.113Z",
-      "updated_at": "2025-01-27T09:45:53.842Z",
+      "updated_at": "2026-02-23T10:59:42.193Z",
       "id": 3442773,
       "schema": {
         "last_updated": {
@@ -2809,7 +2826,7 @@
         "cover": {
           "type": "asset",
           "filetypes": ["images"],
-          "asset_folder_id": 640205,
+          "asset_folder_id": null,
           "key": "cover",
           "pos": 2,
           "required": true,
@@ -3881,7 +3898,7 @@
       "display_name": null,
       "description": "",
       "created_at": "2025-06-05T09:21:58.231Z",
-      "updated_at": "2025-06-05T09:23:04.222Z",
+      "updated_at": "2026-01-30T11:11:41.489Z",
       "id": 7421133,
       "schema": {
         "blocks": {
@@ -3893,7 +3910,7 @@
           "id": "mv1xbWDMSl-lzY_TdeZUSQ"
         }
       },
-      "image": null,
+      "image": "//a.storyblok.com/f/198185/x/a701ec062e/screenshot-2026-01-30-at-11-11-11.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -3902,8 +3919,8 @@
       "preset_id": null,
       "real_name": "measurements",
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
-      "color": null,
-      "icon": null,
+      "color": "var(--sb-color-accent-background-papaya-whip)",
+      "icon": "shopping-cart",
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
@@ -4132,9 +4149,6 @@
           "type": "text",
           "pos": 0
         },
-        "subtitle": {
-          "type": "text"
-        },
         "section_description": {
           "type": "text",
           "pos": 1
@@ -4142,6 +4156,9 @@
         "title": {
           "type": "text",
           "pos": 2
+        },
+        "subtitle": {
+          "type": "text"
         }
       },
       "image": "//a.storyblok.com/f/198185/x/377ae9bd26/packages.png",
@@ -4632,27 +4649,74 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-02-15T13:07:44.621Z",
-      "updated_at": "2025-02-18T10:31:09.613Z",
+      "updated_at": "2026-04-07T14:05:04.447Z",
       "id": 3442356,
       "schema": {
+        "seo_title": {
+          "type": "text",
+          "pos": 0,
+          "key": "seo_title",
+          "id": "IAubVawWRP6I66D5pr26zg"
+        },
+        "seo_description": {
+          "type": "text",
+          "pos": 1,
+          "key": "seo_description",
+          "id": "3i3zrdtORPmaNmrOH5Tz3Q"
+        },
+        "seo_og_image": {
+          "type": "asset",
+          "filetypes": ["images"],
+          "asset_folder_id": 238159,
+          "pos": 2,
+          "key": "seo_og_image",
+          "id": "1f2qC26RQA6L8T1VxxNhRA"
+        },
+        "no_index": {
+          "type": "boolean",
+          "pos": 3,
+          "id": "l9ava016RlKPnLg06RmHHQ"
+        },
+        "structure_data_markup": {
+          "type": "textarea",
+          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
+          "pos": 4,
+          "id": "ZxgiQebySJO3YsQUZiqq7A"
+        },
+        "hide_from_listings": {
+          "type": "boolean",
+          "pos": 5,
+          "id": "EJmHcbz9Stqs_CHeqwIAFQ",
+          "description": "Hide this project from anywhere that lists projects automatically",
+          "tooltip": true,
+          "inline_label": true
+        },
         "cover": {
           "type": "asset",
           "filetypes": ["images"],
           "asset_folder_id": 212286,
-          "pos": 0,
+          "pos": 6,
           "key": "cover",
           "id": "K4bPe8P3TSyanaB86SdEAQ"
         },
+        "show_cover_image": {
+          "type": "boolean",
+          "pos": 7,
+          "default_value": false,
+          "description": "This prioritises showing the cover image over the reel video.\nSo if this toggled on the reel won't show instead you have the cover image show if there is one set",
+          "tooltip": true,
+          "id": "hjGqYKWNQ2iqIfNio0Ftyg"
+        },
         "reel": {
           "type": "asset",
-          "pos": 1,
+          "pos": 8,
           "filetypes": ["videos"],
           "key": "reel",
           "id": "S2e1YKgjRBOVvymDY0GuBw"
         },
         "reel_button": {
           "type": "section",
-          "pos": 2,
+          "pos": 9,
           "keys": ["reel_button_theme", "reel_button_label", "show_reel_controls"],
           "key": "reel_button",
           "display_name": "Reel Options",
@@ -4660,14 +4724,14 @@
         },
         "show_reel_controls": {
           "type": "boolean",
-          "pos": 3,
+          "pos": 10,
           "default_value": true,
           "id": "pYYJ-A-XQDmgVfNO66q20g"
         },
         "reel_button_theme": {
           "type": "option",
           "use_uuid": true,
-          "pos": 4,
+          "pos": 11,
           "options": [
             {
               "_uid": "ed9c0d33-e7d4-42de-a790-9adfca55481a",
@@ -4688,7 +4752,7 @@
         },
         "reel_button_label": {
           "type": "text",
-          "pos": 5,
+          "pos": 12,
           "display_name": "Reel Button Label (optional)",
           "key": "reel_button_label",
           "id": "j-F8L5tQSD2vhsuCJSmFvA"
@@ -4698,21 +4762,21 @@
           "filetypes": ["images"],
           "required": true,
           "asset_folder_id": 212286,
-          "pos": 6,
+          "pos": 13,
           "key": "thumbnail",
           "id": "gZGWhNMXSBCYDBaXqpwvmA"
         },
         "tagline": {
           "type": "text",
           "required": true,
-          "pos": 7,
+          "pos": 14,
           "key": "tagline",
           "id": "_Ada4_5uQ1erYNdMD1zyug"
         },
         "intro": {
           "type": "textarea",
           "required": true,
-          "pos": 8,
+          "pos": 15,
           "key": "intro",
           "id": "oC9vSdLEQBOkqBzSzklJaA"
         },
@@ -4720,13 +4784,13 @@
           "type": "options",
           "source": "internal_stories",
           "filter_content_type": ["team-member"],
-          "pos": 9,
+          "pos": 16,
           "key": "team",
           "id": "df5X6-EbT4mBJRNnehLikA"
         },
         "measurements": {
           "type": "bloks",
-          "pos": 10,
+          "pos": 17,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["measurement_entry"],
@@ -4737,13 +4801,13 @@
           "use_uuid": true,
           "source": "internal_stories",
           "filter_content_type": ["client"],
-          "pos": 11,
+          "pos": 18,
           "key": "client",
           "id": "xMZPyZMMQ_CmsvBzjMNlOQ"
         },
         "deliverables": {
           "type": "options",
-          "pos": 12,
+          "pos": 19,
           "source": "internal",
           "datasource_slug": "deliverables",
           "key": "deliverables",
@@ -4751,7 +4815,7 @@
         },
         "services": {
           "type": "options",
-          "pos": 13,
+          "pos": 20,
           "source": "internal",
           "datasource_slug": "services",
           "key": "services_data",
@@ -4762,40 +4826,14 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": ["link"],
-          "pos": 14,
+          "pos": 21,
           "key": "links",
           "id": "kj9itQzJR4adEdmWQ7LWyA"
-        },
-        "seo_title": {
-          "type": "text",
-          "pos": 15,
-          "key": "seo_title",
-          "id": "IAubVawWRP6I66D5pr26zg"
-        },
-        "seo_description": {
-          "type": "text",
-          "pos": 16,
-          "key": "seo_description",
-          "id": "3i3zrdtORPmaNmrOH5Tz3Q"
-        },
-        "seo_og_image": {
-          "type": "asset",
-          "filetypes": ["images"],
-          "asset_folder_id": 238159,
-          "pos": 17,
-          "key": "seo_og_image",
-          "id": "1f2qC26RQA6L8T1VxxNhRA"
-        },
-        "structure_data_markup": {
-          "type": "textarea",
-          "description": "JSON object (https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data#how-structured-data-works-in-google-search)",
-          "pos": 18,
-          "id": "ZxgiQebySJO3YsQUZiqq7A"
         },
         "tab-734adeb1-00ef-48e6-aa53-a3001ad39201": {
           "display_name": "Content",
           "keys": ["body"],
-          "pos": 19,
+          "pos": 22,
           "type": "tab",
           "key": "tab-734adeb1-00ef-48e6-aa53-a3001ad39201",
           "id": "c0resQDvSOaqU6MAGtOSAQ"
@@ -4827,14 +4865,20 @@
             "h4",
             "color"
           ],
-          "pos": 20,
+          "pos": 23,
           "key": "body",
           "id": "0ZABAogMSpqMzkXwAN-5GQ"
         },
         "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9": {
           "display_name": "SEO",
-          "keys": ["seo_title", "seo_description", "seo_og_image", "structure_data_markup"],
-          "pos": 21,
+          "keys": [
+            "seo_title",
+            "seo_description",
+            "seo_og_image",
+            "structure_data_markup",
+            "no_index"
+          ],
+          "pos": 24,
           "type": "tab",
           "key": "tab-451d56bd-d365-4df0-8a61-2007b8b22aa9",
           "id": "RR1WvdNlTfCKYSAHuLIqqQ"
@@ -4964,9 +5008,16 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-04-06T13:42:56.259Z",
-      "updated_at": "2023-04-06T13:42:56.259Z",
+      "updated_at": "2026-02-25T15:28:25.419Z",
       "id": 3757617,
-      "schema": {},
+      "schema": {
+        "autoplay_reel": {
+          "type": "boolean",
+          "pos": 0,
+          "default_value": true,
+          "id": "kPabqjtQScKLJvmecVdtqw"
+        }
+      },
       "image": null,
       "preview_field": null,
       "is_root": false,
@@ -5046,6 +5097,21 @@
           "pos": 0,
           "type": "tab"
         },
+        "client": {
+          "type": "text",
+          "pos": 1,
+          "required": true
+        },
+        "validity_days": {
+          "type": "number",
+          "pos": 2,
+          "required": true,
+          "default_value": "15"
+        },
+        "company_name": {
+          "type": "text",
+          "pos": 10
+        },
         "title": {
           "type": "text",
           "required": true
@@ -5073,21 +5139,6 @@
           "required": true,
           "source": "internal_stories",
           "filter_content_type": ["team-member"]
-        },
-        "client": {
-          "type": "text",
-          "pos": 1,
-          "required": true
-        },
-        "validity_days": {
-          "type": "number",
-          "pos": 2,
-          "required": true,
-          "default_value": "15"
-        },
-        "company_name": {
-          "type": "text",
-          "pos": 10
         }
       },
       "image": null,
@@ -8279,7 +8330,7 @@
       "display_name": null,
       "description": null,
       "created_at": "2023-02-16T10:45:31.449Z",
-      "updated_at": "2023-03-22T11:51:33.816Z",
+      "updated_at": "2026-01-30T11:12:48.038Z",
       "id": 3446844,
       "schema": {
         "width": {
@@ -8326,7 +8377,7 @@
           "type": "boolean"
         }
       },
-      "image": "//a.storyblok.com/f/198185/x/d53670833a/screenshot-2023-03-22-at-11-50-59.png",
+      "image": "//a.storyblok.com/f/198185/x/5d80c7d071/screenshot-2026-01-30-at-11-12-20.png",
       "preview_field": null,
       "is_root": false,
       "preview_tmpl": null,
@@ -8336,7 +8387,7 @@
       "real_name": "video",
       "component_group_uuid": "76b6a3af-a1fa-4ffe-b980-52a2da9245ca",
       "color": "#fbce41",
-      "icon": "block-text-img-c",
+      "icon": "image",
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,

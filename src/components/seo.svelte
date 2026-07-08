@@ -12,6 +12,7 @@
   export let image: undefined | AssetStoryblok | string = undefined;
   export let structureDataMarkup: string | undefined = undefined;
   export let twitterExtraFields: { key: string; value: string }[] = [];
+  export let noIndex: boolean = false;
 
   const inDrawer = getContext<boolean>('drawer');
 </script>
@@ -23,6 +24,9 @@
       rel="canonical"
       href={$page.data.page?.story?.content?.seo_canonical_url || `${$page.url.toString()}`}
     />
+    {#if noIndex}
+      <meta name="robots" content="noindex, nofollow" />
+    {/if}
 
     <title>{title || $page.data.page?.story?.content?.seo_title || t('seo.title')}</title>
     <meta name="twitter:card" content="summary_large_image" />

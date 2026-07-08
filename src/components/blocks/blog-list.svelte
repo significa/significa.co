@@ -13,7 +13,7 @@
     <p class="text-5xl">{block.title2}</p>
   </div>
   <div class="mt-4 md:mt-6 lg:mt-8">
-    {#each $page.data.homePosts || [] as post}
+    {#each (block?.blog_posts?.length ? block.blog_posts : $page.data.homePosts) || [] as post}
       <BlogEntry {post} />
     {/each}
   </div>

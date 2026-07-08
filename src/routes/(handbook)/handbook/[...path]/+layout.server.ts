@@ -1,7 +1,7 @@
 import { getStoryblok } from '$lib/storyblok';
 import { getHandbookHierarchyConfig } from '$components/pages/handbook/common/data.js';
 
-export const load = async ({ locals }) => {
+export const load = async ({ locals, fetch }) => {
   const version = locals.version;
   const storyblok = getStoryblok({ fetch });
 

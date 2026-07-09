@@ -143,7 +143,7 @@
           on:error={() => (error = true)}
           on:input={onInput}
         />
-        {#if visible || dirty}
+        {#if (visible || dirty) && !page.hide_nobita}
           <!-- eslint-disable svelte/no-at-html-tags -->
           <div
             data-theme="light"

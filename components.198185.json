@@ -2670,14 +2670,21 @@
       "display_name": "Budget Range Form",
       "description": null,
       "created_at": "2024-03-19T14:26:52.308Z",
-      "updated_at": "2026-01-27T11:36:07.066Z",
+      "updated_at": "2026-07-09T12:40:56.152Z",
       "id": 5523274,
       "schema": {
+        "hide_nobita": {
+          "type": "boolean",
+          "pos": 2,
+          "id": "BLlE5xRoRwmHCde5oM8tXQ"
+        },
         "title": {
-          "type": "text"
+          "type": "text",
+          "id": "rDBsjuR-RQGRuwREJNh2Cw"
         },
         "subtitle": {
-          "type": "text"
+          "type": "text",
+          "id": "nP0nfI2uQz2SLKQsobFZfw"
         }
       },
       "image": "//a.storyblok.com/f/198185/x/a0664ef716/budget-range-form.png",

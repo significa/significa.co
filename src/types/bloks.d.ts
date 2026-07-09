@@ -602,6 +602,7 @@ export interface FooterColumnInternalStoryblok {
 }
 
 export interface FormBudgetRangeStoryblok {
+  hide_nobita: boolean;
   title?: string;
   subtitle?: string;
   _uid: string;

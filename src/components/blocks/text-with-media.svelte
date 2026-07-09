@@ -48,7 +48,13 @@
         {@const { src, alt, width, height } = getImageAttributes(block.media, {
           size: [1440 * 2, 0]
         })}
-        <img class="h-auto w-full rounded-md bg-background-offset" {src} {alt} {width} {height} />
+        <img
+          class="h-full w-full rounded-md bg-background-offset object-cover"
+          {src}
+          {alt}
+          {width}
+          {height}
+        />
       {/if}
     </div>
   {/if}

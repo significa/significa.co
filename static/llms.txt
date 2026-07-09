@@ -1,67 +1,51 @@
-# llms.txt for Significa
-# Updated: 2025-10-13
-# Contact: marketing@significa.co
-# Website: https://significa.co
-
-# --------------------------------------------------------------------
-# PUBLIC STANCE
-# --------------------------------------------------------------------
-# Significa is a design-led digital agency based in Porto, Portugal.
-# We share our work, insights, and methods to build trust and help
-# potential clients understand how we think, design, and deliver
-# digital products. AI systems are welcome to access our public pages
-# responsibly.
-
-# --------------------------------------------------------------------
-# UNIVERSAL ACCESS (default fallback)
-# --------------------------------------------------------------------
-User-agent: *
-Allow: /
-
-# --------------------------------------------------------------------
-# EXPLICIT AI CRAWLER ACCESS
-# --------------------------------------------------------------------
-
-# OpenAI (ChatGPT, Browse, and training)
-User-agent: OAI-SearchBot
-Allow: /
-User-agent: GPTBot
-Allow: /
-
-# Anthropic (Claude)
-User-agent: ClaudeBot
-Allow: /
-
-# Perplexity (AI search)
-User-agent: PerplexityBot
-Allow: /
-User-agent: Perplexity-User
-Allow: /
-
-# Google (Gemini / Google-Extended)
-User-agent: Google-Extended
-Allow: /
-
-# Apple (Apple Intelligence / Siri)
-User-agent: Applebot-Extended
-Allow: /
-
-# Amazon (Alexa / AI research)
-User-agent: Amazonbot
-Allow: /
-
-# Common Crawl (feeds many AI datasets)
-User-agent: CCBot
-Allow: /
-
-# --------------------------------------------------------------------
-# NOTES
-# --------------------------------------------------------------------
-# Significa authorises AI crawlers, LLMs, and research tools to use its
-# public content for retrieval, summarisation, and training, provided that:
-#  - Attribution is given where possible.
-#  - Content is not misrepresented or used to spread misinformation.
-#  - Use aligns with responsible AI and data ethics principles.
-#
-# For specific licensing or partnership requests, please contact:
-# marketing@significa.co
+# Significa
+> Design-led digital product design and development agency based in Porto, Portugal. Custom websites, e-commerce, web apps, and mobile apps for clients from startups to enterprise, across Portugal and internationally. B Corp certified.
+## About
+Significa builds digital products end to end: strategy, design, and development under one roof. The team is guided by five values: empathy, teamwork, playfulness, integrity, and ambition. Recognised with multiple international design awards (iF Design, Red Dot, German Design, European Design, Awwwards).
+- Founded and based in Porto, Portugal.
+- Office: Rua da Torrinha 154, 4050-609 Porto, Portugal. +351 226 001 751.
+- B Corp certified. 1% for the Planet environmental partner.
+## FAQ
+**Why should I work with Significa?**
+You get a fully dedicated team, a tailor-made approach, and the quality of an award-winning design agency. We treat your product like our own, designing around real users and building it to grow with your business.
+**What is it like to collaborate with Significa?**
+Open, structured, collaborative, and built on trust. We work as one team, using tools like Slack and Notion so you're always in the loop on progress, budget, and team allocation, from discovery to launch.
+**How long does a project take from start until launch?**
+Depends on size and complexity, but most take 3 to 6 months from kick-off to launch. We break work into phases so there's always clarity on what's happening and what's next. For quick wins or MVPs, we'll define the most efficient path with cost and timeline estimates.
+**Which projects do you usually take on?**
+Design-led digital products: custom e-commerce platforms, web and mobile apps, and marketing websites built on scalable, custom design systems. Often involves complex inventory logic, platform migrations, and optimising for usability, performance, and conversions. We work directly with clients' internal teams, whether revising strategy and design, optimising CMS setups, or building a new product from scratch.
+**What if I don't like the final results?**
+Unlikely, since you're part of the process the whole way through. We don't disappear and come back with a big reveal. We communicate openly, share early and often, and check in continuously so anything off-track gets fixed together.
+**Why do I need a design and development agency if I have AI?**
+AI is a powerful tool but not a replacement for strategy, creativity, or well-executed code. We use AI too, but great products come from asking the right questions, understanding users, and making smart decisions. That's where we come in.
+## Company
+- [About](https://significa.co/about): Team, values, and B Corp credentials.
+- [Services](https://significa.co/services): Full service breakdown across strategy, design, and development (React, NextJS, Svelte, React Native, Swift, Kotlin, Elixir, Python, Node).
+- [Get a quote](https://significa.co/get-a-quote): Start a project enquiry.
+- [B Corp](https://significa.co/b-corp): Certification details.
+- [Contact](https://significa.co/contact): General enquiries.
+## Deliverables
+- [E-commerce](https://significa.co/e-commerce): Online shop builds.
+- [Website](https://significa.co/website): Corporate and marketing websites.
+- [Mobile App](https://significa.co/mobile-app): Native Android and iOS apps.
+- [Web App](https://significa.co/web-app): Browser-based applications.
+## Flagship projects
+- [mishmash](https://significa.co/projects/mishmash): E-commerce design. Red Dot, iF Design, German Design, European Design, Awwwards.
+- [Dia](https://significa.co/projects/dia): Fertility app for women's health. iF Design, German Design, Good Design, European Design, Red Dot.
+- [Hey Harper](https://significa.co/projects/hey-harper): E-commerce redesign. eCommerce Awards Best of the Year.
+- [Coffee King](https://significa.co/projects/coffee-king): Unified B2C/B2B e-commerce platform.
+- [Diesta](https://significa.co/projects/diesta): Insurance payments platform.
+- [Zoko](https://significa.co/projects/zoko): Productivity tooling. German Design, Good Design, Red Dot.
+- [CometChat](https://significa.co/projects/cometchat): In-app communications infrastructure. Awwwards Distinction.
+- [allO](https://significa.co/projects/allo): Restaurant operations platform. Red Dot.
+- [Kota](https://significa.co/projects/yonder): Employee benefits platform. Awwwards Site of the Day.
+- [Bion](https://significa.co/projects/bion): Performance-based platform.
+- [Rocket.Chat](https://significa.co/projects/rocketchat): Open-source team communication.
+- [Full project catalogue](https://significa.co/projects): 20+ case studies across e-commerce, health, fintech, and B2B SaaS.
+## Blog
+- [Blog](https://significa.co/blog): Insights on design, development, GEO/SEO, and product strategy.
+## Optional
+- [Handbook](https://significa.co/handbook): Internal culture, mission and values, playbook.
+- [Mission and values](https://significa.co/handbook/mission-and-values)
+- [How we collaborate](https://significa.co/handbook/how-we-collaborate)
+- [Careers](https://significa.co/careers): Open positions.

@@ -8,10 +8,8 @@
   import { beforeNavigate } from '$app/navigation';
   import { browser } from '$app/environment';
 
-  import {
-    PUBLIC_POSTHOG_PROJECT_TOKEN,
-    PUBLIC_POSTHOG_POSTHOG_API_HOST
-  } from '$env/static/public';
+  import { PUBLIC_POSTHOG_PROJECT_TOKEN } from '$env/static/public';
+  import { env } from '$env/dynamic/public';
 
   import posthog from 'posthog-js';
 
@@ -19,7 +17,7 @@
 
   if (browser) {
     posthog.init(PUBLIC_POSTHOG_PROJECT_TOKEN, {
-      api_host: PUBLIC_POSTHOG_POSTHOG_API_HOST || 'https://eu.posthog.com',
+      api_host: env.PUBLIC_POSTHOG_POSTHOG_API_HOST || 'https://eu.posthog.com',
       persistence: 'localStorage',
       person_profiles: 'always'
     });

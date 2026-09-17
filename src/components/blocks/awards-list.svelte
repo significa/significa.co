@@ -2,6 +2,7 @@
   import AwardsEntry from '$components/awards-entry.svelte';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
+  import { sanitizeSlug } from '$lib/utils/paths';
   import type { AwardsListStoryblok } from '$types/bloks';
   import clsx from 'clsx';
 
@@ -95,7 +96,9 @@
           {#if $query.data?.pages}
             {#each $query.data?.pages as page}
               {#each page.awards || previousData || [] as award}
-                {@const href = award.content.project.full_slug}
+                {@const href = award.content.project?.full_slug
+                  ? sanitizeSlug(award.content.project.full_slug)
+                  : undefined}
                 <li
                   class={clsx(
                     'block border-b first:border-t',

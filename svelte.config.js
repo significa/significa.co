@@ -8,7 +8,8 @@ const config = {
   preprocess: vitePreprocess(),
 
   kit: {
-    adapter: adapter(),
+    // adapter v3 only auto-detects node <=20; drop this once on adapter v5+
+    adapter: adapter({ runtime: 'nodejs24.x' }),
     alias: {
       $assets: './src/assets',
       $components: './src/components',

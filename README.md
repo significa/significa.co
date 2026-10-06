@@ -86,13 +86,14 @@ To create hotfixes:
 
 ## License
 
-This material is licensed under the AGPL License, allowing you to remix, learn, and experiment with
-it freely.
+Licensed under the AGPL. This is **not** a traditional open-source project — it is _source available_,
+published so people can **read it and learn from it**. It is not a template or a starter.
 
-However, please note that this is **not** a traditional open-source project; it is more accurately
-described as _source available_. In accordance with the AGPL License, redistribution of the source
-code under the same license, with attribution to the original author, is mandatory.
-Since the software can only be offered over a network, the source code must be properly disclosed.
+- **Do not host or serve this site over a network**, publicly or privately.
+- **Do not fork it, change the branding, and ship it as your own** — that violates this license.
+- Any redistribution must follow the AGPL: same license, attribution, full source disclosure.
 
-We do not provide support for this project, and replication or rebranding is strongly discouraged.
-However, we encourage you to explore and take inspiration from how we built our website.
+Significa's branding (name, logo, copy, imagery, identity) is not covered by the AGPL and is not
+licensed to you.
+
+We do not provide support for this project.

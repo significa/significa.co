@@ -1,6 +1,7 @@
 import { goto } from '$app/navigation';
 import { page } from '$app/stores';
 import { derived } from 'svelte/store';
+import { sanitizeSlug } from '$lib/utils/paths';
 
 function createDrawer() {
   const { subscribe } = derived(page, ($page) => {
@@ -12,7 +13,7 @@ function createDrawer() {
     open: (slug: string) => {
       const url = new URL(window.location.href);
       const searchParams = new URLSearchParams(url.searchParams);
-      searchParams.set('drawer', slug);
+      searchParams.set('drawer', sanitizeSlug(slug));
 
       goto(`${url.pathname}?${searchParams.toString()}`, { noScroll: true });
     },

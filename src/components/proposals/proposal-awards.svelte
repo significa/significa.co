@@ -2,6 +2,7 @@
   import { drawerLinks } from '$lib/actions/drawer-links';
   import clsx from 'clsx';
   import { t } from '$lib/i18n';
+  import { sanitizeSlug } from '$lib/utils/paths';
   import AwardsEntry from '$components/awards-entry.svelte';
   import type { ISbStoryData } from '@storyblok/js';
   import type { RecognitionStoryblok } from '$types/bloks';
@@ -23,7 +24,7 @@
         <div class="w-full flex-1">
           <ul use:drawerLinks>
             {#each awards as award}
-              {@const href = `/${award.content.project.full_slug}`}
+              {@const href = sanitizeSlug(award.content.project.full_slug)}
               <li
                 class={clsx(
                   'block border-b first:border-t',

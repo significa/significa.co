@@ -1,12 +1,12 @@
 <script lang="ts">
   import clsx from 'clsx';
-  import ContactForm from '$components/contact-form.svelte';
-  import type { FormBudgetRangeStoryblok, PackagesStoryblok } from '$types/bloks';
-  import { fly } from 'svelte/transition';
   import { circOut } from 'svelte/easing';
+  import { fly } from 'svelte/transition';
   import { Confetti } from 'svelte-confetti';
+  import ContactForm from '$components/contact-form.svelte';
   import { CONFETTI_COLOR_ARRAY } from '$lib/constants';
   import { truncateText } from '$lib/utils/strings';
+  import type { FormBudgetRangeStoryblok, PackagesStoryblok } from '$types/bloks';
   import { budgetRange } from './budgetRange';
 
   type Eggs =

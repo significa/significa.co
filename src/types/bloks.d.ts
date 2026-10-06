@@ -602,9 +602,10 @@ export interface FooterColumnInternalStoryblok {
 }
 
 export interface FormBudgetRangeStoryblok {
-  hide_nobita: boolean;
+  heading_type?: '' | 'h1' | 'h2';
   title?: string;
   subtitle?: string;
+  hide_nobita: boolean;
   _uid: string;
   component: 'form-budget-range';
   [k: string]: any;

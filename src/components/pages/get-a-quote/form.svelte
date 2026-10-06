@@ -116,9 +116,9 @@
 >
   <div class="flex-1">
     <div class="lg:max-w-xl">
-      <h1 class="text-7xl text-foreground-secondary">
+      <svelte:element this={page.heading_type || 'h1'} class="text-7xl text-foreground-secondary">
         {page.title}
-      </h1>
+      </svelte:element>
       <span class="text-7xl">{page.subtitle}</span>
     </div>
   </div>

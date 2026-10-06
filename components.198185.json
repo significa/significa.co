@@ -2670,21 +2670,42 @@
       "display_name": "Budget Range Form",
       "description": null,
       "created_at": "2024-03-19T14:26:52.308Z",
-      "updated_at": "2026-07-09T12:40:56.152Z",
+      "updated_at": "2026-10-06T13:21:50.479Z",
       "id": 5523274,
       "schema": {
-        "hide_nobita": {
-          "type": "boolean",
-          "pos": 2,
-          "id": "BLlE5xRoRwmHCde5oM8tXQ"
+        "heading_type": {
+          "type": "option",
+          "pos": 0,
+          "use_uuid": true,
+          "options": [
+            {
+              "_uid": "3e9a1225-5580-4ebe-9f6b-e9f387e5b29c",
+              "name": "h1",
+              "value": "h1"
+            },
+            {
+              "_uid": "8009ab98-54e5-41a3-910f-d44da11cb379",
+              "value": "h2",
+              "name": "h2"
+            }
+          ],
+          "id": "nYNwDRwUQC25f_U4gaTIVQ",
+          "default_value": "h1"
         },
         "title": {
           "type": "text",
-          "id": "rDBsjuR-RQGRuwREJNh2Cw"
+          "id": "rDBsjuR-RQGRuwREJNh2Cw",
+          "pos": 1
         },
         "subtitle": {
           "type": "text",
-          "id": "nP0nfI2uQz2SLKQsobFZfw"
+          "id": "nP0nfI2uQz2SLKQsobFZfw",
+          "pos": 2
+        },
+        "hide_nobita": {
+          "type": "boolean",
+          "pos": 3,
+          "id": "BLlE5xRoRwmHCde5oM8tXQ"
         }
       },
       "image": "//a.storyblok.com/f/198185/x/a0664ef716/budget-range-form.png",

@@ -112,7 +112,8 @@
             <a href={`/about/${member.slug}`}>
               <Avatar
                 image={getImageAttributes(member.content.photo, {
-                  size: [100, 100]
+                  size: [100, 100],
+                  smart: true
                 }).src}
                 size="sm"
               />

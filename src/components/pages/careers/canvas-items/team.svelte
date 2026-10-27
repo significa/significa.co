@@ -25,7 +25,10 @@
     <div class="flex">
       {#each roster || [] as member}
         {#if member.photo?.filename}
-          {@const { src } = getImageAttributes(member.photo, { size: [36 * 4, 40 * 4] })}
+          {@const { src } = getImageAttributes(member.photo, {
+            size: [36 * 4, 40 * 4],
+            smart: true
+          })}
           <div
             class="-ml-3 flex items-center justify-center bg-background first:ml-0"
             style="width: 40px; height: 44px; clip-path: path('M20 44C30.9998 44 40 35.2835 40 24.4299C40 19.0863 37.8073 13.07 34.3347 8.3851C30.8778 3.72139 25.8526 0 20 0C14.1474 0 9.12224 3.72139 5.66534 8.3851C2.19272 13.07 0 19.0863 0 24.4299C0 35.2835 9.00016 44 20 44Z')"

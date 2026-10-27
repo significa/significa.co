@@ -174,6 +174,9 @@ export function getImageAttributes(
   if (options?.focal) {
     const { focal } = options;
     filters.focal = `${focal.left}x${focal.top}:${focal.right}x${focal.bottom}`;
+  } else if (image.focus) {
+    // focal point set in the Storyblok asset manager
+    filters.focal = image.focus;
   }
 
   if (options?.grayscale) {
@@ -223,7 +226,8 @@ export function getImageAttributes(
 
   src += `${sizeInUrl.width}x${sizeInUrl.height}/`;
 
-  if (options?.smart) {
+  // a focal point takes precedence over face detection
+  if (options?.smart && !filters.focal) {
     src += 'smart/';
   }
 

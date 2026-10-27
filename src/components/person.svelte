@@ -18,7 +18,9 @@
 <div class={clsx('flex items-center gap-3', className)}>
   <Avatar
     class="flex-shrink-0"
-    image={photo?.filename ? getImageAttributes(photo, { size: [100, 100] }).src : undefined}
+    image={photo?.filename
+      ? getImageAttributes(photo, { size: [100, 100], smart: true }).src
+      : undefined}
     size="sm"
   />
   <div>

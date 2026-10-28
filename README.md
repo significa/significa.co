@@ -48,8 +48,7 @@ improvements and bug-fixes that do not have big impact in the features or projec
 
 ### Requirements
 
-- Install the node version specified in the [`.nvmrc`](./.nvmrc) file
-  (using your favourite node version manager).
+- Install the node version pinned in [`mise.toml`](./mise.toml): `mise install`.
 
 - Get the local development `.env` using
   [1password-secrets](https://github.com/significa/1password-secrets/):

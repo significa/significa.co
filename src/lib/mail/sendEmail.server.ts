@@ -76,7 +76,8 @@ export const sendEmailNotification = async ({
   message,
   formType,
   notionLink,
-  notionErrorMessage
+  notionErrorMessage,
+  crmErrorMessage
 }: {
   name: string;
   email: string;
@@ -84,6 +85,7 @@ export const sendEmailNotification = async ({
   formType: FormType;
   notionLink?: string;
   notionErrorMessage?: string;
+  crmErrorMessage?: string;
 }) => {
   name = escapeHTML(name);
   email = escapeHTML(email);
@@ -110,6 +112,9 @@ export const sendEmailNotification = async ({
     errorMessage = `⚠️ Failed to store submission to Notion ⚠️\n'${escapeHTML(
       notionErrorMessage
     )}'\n`;
+  }
+  if (crmErrorMessage) {
+    errorMessage += `⚠️ Failed to send submission to the CRM ⚠️\n'${escapeHTML(crmErrorMessage)}'\n`;
   }
 
   await sendEmail({

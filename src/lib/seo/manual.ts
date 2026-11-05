@@ -115,6 +115,19 @@ export function remapReferences(
 
 const URL_KEYS = new Set(['url', 'item', 'contentUrl']);
 
+/** Makes a hand-written id absolute: "#steps" becomes "<page url>#steps". */
+const absoluteId = (id: string, pageUrl: string): string => {
+  if (id.startsWith('#')) return `${pageUrl}${id}`;
+  if (id.startsWith('/') && !id.startsWith('//')) {
+    try {
+      return new URL(id, SITE_URL).href;
+    } catch {
+      return id;
+    }
+  }
+  return id;
+};
+
 /** Deep-normalises a value inside an accepted manual node. */
 function normalizeValue(value: unknown, pageUrl: string): unknown {
   if (Array.isArray(value)) return value.map((item) => normalizeValue(item, pageUrl));
@@ -128,7 +141,7 @@ function normalizeValue(value: unknown, pageUrl: string): unknown {
     if (key === '@context') continue;
 
     if (key === '@id' && typeof child === 'string') {
-      out[key] = mapKnownId(child, pageUrl) ?? child;
+      out[key] = mapKnownId(child, pageUrl) ?? absoluteId(child, pageUrl);
       continue;
     }
 
@@ -207,11 +220,7 @@ export function parseManualField(
     const finalId = `${pageUrl}#${fragment}`;
     if (originalId) {
       idMap.set(originalId, finalId);
-      try {
-        idMap.set(new URL(originalId, pageUrl).href, finalId);
-      } catch {
-        // Not a URL: the id as written is enough.
-      }
+      idMap.set(absoluteId(originalId, pageUrl), finalId);
     }
 
     accepted.push({

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import type { DynamicPage, Page } from '$lib/content';
+import type { BlogPostPage, DynamicPage, Page } from '$lib/content';
 import {
   blogIndexStory,
   blogPostStory,
@@ -440,30 +440,132 @@ describe('manual field', () => {
     expect(validateGraph(graph)).toEqual([]);
   });
 
-  it('accepts a manual FAQPage only when its questions and answers are rendered', () => {
-    const graph = graphFor(servicesPageStory);
-    expect(one(graph, 'FAQPage')['@id']).toBe('https://significa.co/services#faq');
+  describe('manual FAQPage', () => {
+    const paragraph = (text: string) => ({
+      type: 'paragraph',
+      content: [{ type: 'text', text }]
+    });
+    const manualFaq = JSON.stringify({
+      '@type': 'FAQPage',
+      '@id': '#questions',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Is AI search changing recommendations?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Yes, <b>quickly</b>.' }
+        }
+      ]
+    });
+    const postWithBody = (...texts: string[]) =>
+      mock<BlogPostPage>({
+        ...blogPostStory,
+        content: {
+          ...blogPostStory.content,
+          structure_data_markup: manualFaq,
+          body: { type: 'doc', content: texts.map(paragraph) }
+        }
+      });
 
-    // Question visible, answer not.
-    const answerHidden = mock<Page>({
-      ...servicesPageStory,
+    it('is kept when every question and answer is in the rendered body', () => {
+      const graph = graphFor(
+        postWithBody('Is AI search changing recommendations?', 'Yes, quickly.')
+      );
+      expect(one(graph, 'FAQPage')['@id']).toBe(
+        'https://significa.co/blog/how-emotions-shape-our-shopping-habits#faq'
+      );
+    });
+
+    it('is dropped when an answer is not rendered', () => {
+      const graph = graphFor(postWithBody('Is AI search changing recommendations?'));
+      expect(byType(graph, 'FAQPage')).toHaveLength(0);
+    });
+
+    it('is dropped on block pages, whose block fields may not render', () => {
+      // The services fixture has the question and answer in block fields.
+      expect(byType(graphFor(servicesPageStory), 'FAQPage')).toHaveLength(0);
+    });
+
+    it('ignores text from related stories shown as cards', () => {
+      const withCard = mock<BlogPostPage>({
+        ...postWithBody('Is AI search changing recommendations?'),
+        content: {
+          ...postWithBody('Is AI search changing recommendations?').content,
+          // A resolved related project whose body is not rendered here.
+          project: {
+            ...projectStory,
+            content: { ...projectStory.content, body: paragraph('Yes, quickly.') }
+          }
+        }
+      });
+      expect(byType(graphFor(withCard), 'FAQPage')).toHaveLength(0);
+    });
+
+    it('keeps references to it when its id is replaced by the generated one', () => {
+      const story = mock<BlogPostPage>({
+        ...postWithBody('Is AI search changing recommendations?', 'Yes, quickly.'),
+        content: {
+          ...postWithBody('Is AI search changing recommendations?', 'Yes, quickly.').content,
+          structure_data_markup: JSON.stringify([
+            JSON.parse(manualFaq),
+            { '@type': 'HowTo', name: 'Read the FAQ', subjectOf: { '@id': '#questions' } }
+          ])
+        }
+      });
+      const graph = graphFor(story);
+      expect(one(graph, 'HowTo').subjectOf).toEqual({
+        '@id': 'https://significa.co/blog/how-emotions-shape-our-shopping-habits#faq'
+      });
+      expect(validateGraph(graph)).toEqual([]);
+    });
+  });
+
+  it('does not collect FAQs from related stories rendered as cards', () => {
+    const paragraph = (text: string) => ({ type: 'paragraph', content: [{ type: 'text', text }] });
+    const faqsBlock = {
+      _uid: 'f',
+      component: 'faqs',
+      questions: [
+        {
+          _uid: 'q',
+          component: 'faq',
+          question: 'From the related project?',
+          body: { type: 'doc', content: [paragraph('No.')] }
+        }
+      ]
+    };
+    const page = mock<Page>({
+      ...homeStory,
       content: {
-        ...servicesPageStory.content,
-        blocks: [{ _uid: 'h1', component: 'hero', heading: 'What we do' }]
+        ...homeStory.content,
+        blocks: [
+          {
+            _uid: 'p',
+            component: 'projects',
+            projects: [
+              { ...projectStory, content: { ...projectStory.content, blocks: [faqsBlock] } }
+            ]
+          }
+        ]
       }
     });
-    expect(byType(graphFor(answerHidden), 'FAQPage')).toHaveLength(0);
+    expect(byType(graphFor(page), 'FAQPage')).toHaveLength(0);
+  });
 
-    // Text only in a field the template does not render does not count.
-    const onlyInUnrenderedField = mock<Page>({
-      ...servicesPageStory,
-      content: {
-        ...servicesPageStory.content,
-        blocks: [{ _uid: 'h1', component: 'hero', heading: 'Something else' }],
-        page: [{ _uid: 'sp', component: 'static-page', body: 'What we do Products.' }]
-      }
-    });
-    expect(byType(graphFor(onlyInUnrenderedField), 'FAQPage')).toHaveLength(0);
+  it('makes nested relative ids absolute so references resolve', () => {
+    const result = parseManualField(
+      JSON.stringify({
+        '@type': 'HowTo',
+        name: 'How we work',
+        step: [{ '@type': 'HowToStep', '@id': '#step-1', name: 'Discovery' }],
+        hasPart: { '@id': '#step-1' }
+      }),
+      'https://significa.co/services'
+    );
+    const node = result.accepted[0].node;
+    expect(node.step).toEqual([
+      { '@type': 'HowToStep', '@id': 'https://significa.co/services#step-1', name: 'Discovery' }
+    ]);
+    expect(node.hasPart).toEqual({ '@id': 'https://significa.co/services#step-1' });
   });
 
   it('keeps references between manual nodes when their ids are rewritten', () => {

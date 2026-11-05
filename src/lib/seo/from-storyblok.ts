@@ -66,11 +66,17 @@ const isFaqsBlock = (value: unknown): value is FaqsStoryblok =>
   isRecord(value) && value.component === 'faqs';
 
 /** FAQs rendered by `faqs` blocks anywhere in the story content. */
+/** A resolved relation (a project or post card), whose body this page does not render. */
+const isResolvedStory = (value: Record<string, unknown>) =>
+  isRecord(value.content) &&
+  typeof value.name === 'string' &&
+  (typeof value.full_slug === 'string' || typeof value.uuid === 'string');
+
 export function faqsFromContent(content: unknown): FaqItem[] {
   const faqs: FaqItem[] = [];
   const walk = (value: unknown) => {
     if (Array.isArray(value)) return value.forEach(walk);
-    if (!isRecord(value)) return;
+    if (!isRecord(value) || isResolvedStory(value)) return;
     if (isFaqsBlock(value)) {
       for (const item of value.questions ?? []) {
         const question = str(item.question);
@@ -284,7 +290,7 @@ export function landingPageParts(story: LandingPage): StorySchemaParts {
     ...storyDates(story),
     faqs: faqsFromContent(story.content.blocks),
     manual: story.content.structure_data_markup,
-    visibleText: visibleText(story.name, story.content.blocks),
+    visibleText: visibleText(story.name),
     canonicalOverride: story.content.seo_canonical_url
   };
 }
@@ -327,6 +333,12 @@ export function pageParts(story: Page, collectionItems?: ListItemInput[]): Story
   const slug = story.full_slug.replace(/\/+$/, '');
   // pages/page.svelte renders `blocks` when there are any, otherwise the `page` sub-type.
   const rendered = story.content.blocks?.length ? story.content.blocks : story.content.page;
+  // Only static pages render a rich text body directly; blocks render through components.
+  const renderedBodies = story.content.blocks?.length
+    ? []
+    : (story.content.page ?? []).flatMap((sub) =>
+        sub.component === 'static-page' && sub.body ? [sub.body] : []
+      );
 
   return {
     entity,
@@ -336,7 +348,7 @@ export function pageParts(story: Page, collectionItems?: ListItemInput[]): Story
     ...storyDates(story),
     faqs: faqsFromContent(rendered),
     manual: story.content.structure_data_markup,
-    visibleText: visibleText(story.name, rendered),
+    visibleText: visibleText(story.name, renderedBodies),
     canonicalOverride: story.content.seo_canonical_url
   };
 }

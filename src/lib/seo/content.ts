@@ -112,43 +112,26 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 const isRichTextDoc = (value: Record<string, unknown>): value is RichtextStoryblok =>
   value.type === 'doc' && Array.isArray(value.content);
 
-/** Keys that never render as text. */
-const NON_TEXT_KEYS = new Set([
-  '_uid',
-  'component',
-  'filename',
-  'id',
-  'uuid',
-  'fieldtype',
-  'focus'
-]);
-
 /**
- * Collects the text of the content fields a template renders, including rich
- * text (as plain text) and the blocks embedded in it. Callers pass only the
- * fields their template shows. Used to check that a manual FAQPage describes
- * content that is on the page.
+ * Text a template is certain to render: the plain strings it shows (name,
+ * intro, tagline, tags) and the paragraphs, headings and lists of its rich
+ * text body. Generic fields of embedded blocks and resolved related stories
+ * (project or post cards) are left out on purpose: a block may not render a
+ * field, and a card never renders the related story's body. Used to check that
+ * a manual FAQPage describes content that is on the page; being strict here
+ * only means a manual FAQ is dropped, never that one is invented.
  */
 export function collectVisibleText(value: unknown, out: string[] = []): string[] {
   if (typeof value === 'string') {
     out.push(value);
   } else if (Array.isArray(value)) {
-    value.forEach((item) => collectVisibleText(item, out));
-  } else if (isRecord(value)) {
-    if (isRichTextDoc(value)) {
-      out.push(richTextToPlainText(value));
-      value.content?.forEach((section) => {
-        if (section.type === 'blok') collectVisibleText(section.attrs?.body, out);
-      });
-      return out;
-    }
-    for (const [key, child] of Object.entries(value)) {
-      // SEO-only fields and the manual JSON-LD are not visible on the page.
-      if (key.startsWith('seo_') || key === 'structure_data_markup' || NON_TEXT_KEYS.has(key)) {
-        continue;
+    value.forEach((item) => {
+      if (typeof item === 'string' || (isRecord(item) && isRichTextDoc(item))) {
+        collectVisibleText(item, out);
       }
-      collectVisibleText(child, out);
-    }
+    });
+  } else if (isRecord(value) && isRichTextDoc(value)) {
+    out.push(richTextToPlainText(value));
   }
   return out;
 }

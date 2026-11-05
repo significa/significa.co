@@ -67,7 +67,9 @@ const downloadAttachments = async (
     const settled = responses[index];
     const response = settled.status === 'fulfilled' ? settled.value : null;
     const size = Number(response?.headers.get('content-length'));
-    if (!response?.ok || !size || total + size > MAX_ATTACHMENT_BYTES) {
+    // fetch decodes gzip & co, so Content-Length would only count the compressed bytes.
+    const encoded = (response?.headers.get('content-encoding') ?? 'identity') !== 'identity';
+    if (!response?.ok || encoded || !size || total + size > MAX_ATTACHMENT_BYTES) {
       response?.body?.cancel().catch(() => {});
       leftOver.push(url);
       return;

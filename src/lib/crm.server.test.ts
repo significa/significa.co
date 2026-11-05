@@ -130,6 +130,30 @@ describe('postToCrm', () => {
     expect(JSON.parse(init.body).attachmentUrls).toEqual([bigUrl]);
   });
 
+  it('sends a content-encoded file as a link, since its decoded size is unknown', async () => {
+    const gzUrl = 'https://bucket.s3.eu-west-3.amazonaws.com/bomb.pdf';
+    const fetch = vi.fn(async (url: string) => {
+      if (url === gzUrl)
+        return new Response(new Blob(['x']), {
+          status: 200,
+          headers: { 'content-length': '1', 'content-encoding': 'gzip' }
+        });
+      return accepted();
+    });
+
+    const result = await postToCrm({ ...submission, attachmentUrls: [gzUrl] }, config, 'key-8', {
+      fetch: fetch as unknown as typeof globalThis.fetch,
+      sleep: noSleep
+    });
+
+    expect(result.ok).toBe(true);
+    const [, init] = fetch.mock.calls.find(([url]) => url === config.url) as unknown as [
+      string,
+      RequestInit & { body: string }
+    ];
+    expect(JSON.parse(init.body).attachmentUrls).toEqual([gzUrl]);
+  });
+
   it('stops retrying once the overall deadline has passed', async () => {
     const deadline = new AbortController();
     const fetch = vi.fn().mockResolvedValue(new Response(null, { status: 503 }));

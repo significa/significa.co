@@ -80,9 +80,9 @@ Everything else is ignored (Organization, WebSite, WebPage, BreadcrumbList, Blog
 Rules applied to accepted nodes:
 
 1. `@context` is removed and `@id` is rewritten to `<canonical url>#<fragment>`.
-2. An inline Significa Organization or WebSite becomes a reference to its `@id`. Known references (`#organization`, `#website`, `#webpage`, `#homepage`) are mapped to the generated ids; references to nodes that do not exist are removed.
+2. An inline Significa Organization or WebSite (by name, or by url or `@id` on the Significa host) becomes a reference to its `@id`. References between manual nodes follow their rewritten ids. Site URLs become canonical; external URLs keep their query string and only lose tracking parameters. Known references (`#organization`, `#website`, `#webpage`, `#homepage`) are mapped to the generated ids; references to nodes that do not exist are removed.
 3. Never two nodes with the same `@id` or of the same main type. On a service landing page the manual `Service` enriches the generated one (code keeps `@id`, `url` and `provider`). A manual `ItemList` is ignored on collection pages.
-4. `FAQPage`: if the page has a `faqs` block, the generated FAQPage wins. Otherwise a manual FAQPage is accepted only if every question appears in the page content (checked against the story's text fields). FAQs must always be visible on the page; do not add FAQ schema for content that is not shown.
+4. `FAQPage`: if the page has a `faqs` block, the generated FAQPage wins. Otherwise a manual FAQPage is accepted only if every question and every answer appears in the text the template renders (only the fields each template shows are checked). FAQs must always be visible on the page; do not add FAQ schema for content that is not shown.
 5. Invalid JSON is ignored and logged as a server warning; the page still renders.
 
 `docs/seo/jsonld-field-audit.md` lists what each story has in the field today (`npm run seo:audit` regenerates it).

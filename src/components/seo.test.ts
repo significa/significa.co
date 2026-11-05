@@ -65,11 +65,11 @@ const pages: [string, DynamicPage, string, string][] = [
   ['home', homeStory, '/', 'WebPage'],
   ['services page', servicesPageStory, '/services', 'WebPage'],
   ['blog post', blogPostStory, '/blog/how-emotions-shape-our-shopping-habits', 'BlogPosting'],
-  ['team member', teamMemberStory, '/about/julieta-frade', 'Person'],
+  ['team member', teamMemberStory, '/about/julieta-frade', 'ProfilePage'],
   ['project', projectStory, '/projects/akasha', 'CreativeWork'],
   ['service landing page', serviceLandingStory, '/finance', 'Service'],
   ['institutional landing page', institutionalLandingStory, '/b-corp', 'WebPage'],
-  ['handbook page', handbookStory, '/handbook/money-matters', 'WebPage'],
+  ['handbook page', handbookStory, '/handbook/money-matters', 'Article'],
   ['career', careerStory, '/careers/designer', 'WebPage']
 ];
 

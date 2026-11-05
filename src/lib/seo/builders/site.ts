@@ -18,9 +18,22 @@ export function buildOrganization(data: OrganizationData): Organization {
     '@id': ORGANIZATION_ID,
     name: data.name,
     url: data.url,
+    ...(data.description ? { description: data.description } : {}),
+    ...(data.foundingDate ? { foundingDate: data.foundingDate } : {}),
     logo: { '@id': LOGO_ID },
     image: { '@id': LOGO_ID },
     ...(data.email ? { email: data.email } : {}),
+    ...(data.telephone ? { telephone: data.telephone } : {}),
+    ...(data.email || data.telephone
+      ? {
+          contactPoint: {
+            '@type': 'ContactPoint',
+            contactType: 'sales',
+            ...(data.email ? { email: data.email } : {}),
+            ...(data.telephone ? { telephone: data.telephone } : {})
+          }
+        }
+      : {}),
     ...(hasAddress && address
       ? {
           address: {
@@ -32,16 +45,36 @@ export function buildOrganization(data: OrganizationData): Organization {
           }
         }
       : {}),
+    ...(data.credentials?.length
+      ? {
+          hasCredential: data.credentials.map((credential) => ({
+            '@type': 'EducationalOccupationalCredential' as const,
+            name: credential.name,
+            credentialCategory: 'certification',
+            ...(credential.url ? { url: credential.url } : {})
+          }))
+        }
+      : {}),
+    ...(data.memberOf?.length
+      ? {
+          memberOf: data.memberOf.map((organization) => ({
+            '@type': 'Organization' as const,
+            name: organization.name,
+            ...(organization.url ? { url: organization.url } : {})
+          }))
+        }
+      : {}),
     ...(data.sameAs.length ? { sameAs: [...data.sameAs] } : {})
   };
 }
 
-export function buildWebSite(data: OrganizationData): WebSite {
+export function buildWebSite(data: OrganizationData, description?: string): WebSite {
   return {
     '@type': 'WebSite',
     '@id': WEBSITE_ID,
     url: data.url,
     name: data.name,
+    ...(description ? { description } : {}),
     inLanguage: SITE_LANGUAGE,
     publisher: { '@id': ORGANIZATION_ID }
   };

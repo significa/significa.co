@@ -38,7 +38,8 @@
   $: story = $page.data.page?.story ?? $page.data.story;
   $: resolvedTitle = title || story?.content?.seo_title || t('seo.title');
   $: resolvedDescription = description || story?.content?.seo_description || t('seo.description');
-  $: parts = schema ?? (story?.content ? partsFromStory(story) : undefined);
+  $: parts =
+    schema ?? (story?.content ? partsFromStory(story, { awards: $page.data.awards }) : undefined);
   // FYI: the seo_canonical_url field only exists on 'Page' | 'Landing Page' | 'Blog Post' | 'Handbook'
   $: canonical = resolveCanonical(
     $page.url.pathname,
@@ -51,6 +52,7 @@
         url: canonical,
         title: resolvedTitle,
         description: resolvedDescription,
+        siteDescription: t('seo.description'),
         manual: structureDataMarkup ?? parts?.manual,
         organization: organizationFromConfiguration($page.data.configuration?.content)
       });

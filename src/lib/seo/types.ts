@@ -3,7 +3,12 @@ import type { ImageInput } from './content';
 export type OrganizationData = {
   name: string;
   url: string;
+  description?: string;
+  foundingDate?: string;
   email?: string;
+  telephone?: string;
+  credentials?: readonly { name: string; url?: string }[];
+  memberOf?: readonly { name: string; url?: string }[];
   logo: { url: string; width?: number; height?: number };
   address?: {
     streetAddress?: string;
@@ -54,7 +59,10 @@ export type SchemaEntity =
       keywords: string[];
       /** Reading time in minutes, as shown on the page. */
       readingMinutes?: number;
+      wordCount?: number;
     }
+  /** Long-form pages written by Significa (handbook). */
+  | { kind: 'article'; headline: string }
   | { kind: 'profile'; person: PersonInput }
   | {
       kind: 'project';
@@ -63,8 +71,17 @@ export type SchemaEntity =
       client?: string;
       keywords: string[];
       contributors: { slug: string; name: string }[];
+      awards: string[];
     }
-  | { kind: 'service'; name: string; description?: string }
+  | {
+      kind: 'service';
+      name: string;
+      description?: string;
+      /** Industry the page targets (industry landing pages). */
+      audience?: string;
+      /** What is delivered (deliverable landing pages). */
+      serviceType?: string;
+    }
   /** Error pages and private pages (proposals): only the global nodes. */
   | { kind: 'none' };
 
@@ -78,6 +95,10 @@ export type PageSchemaInput = {
   /** Name of the last breadcrumb item. Defaults to the title. */
   breadcrumbName?: string;
   primaryImage?: ImageInput;
+  /** WebPage subtype for pages that have one (about, contact). */
+  webPageType?: 'AboutPage' | 'ContactPage';
+  /** Default site description, used on the WebSite node. */
+  siteDescription?: string;
   datePublished?: string;
   dateModified?: string;
   entity: SchemaEntity;

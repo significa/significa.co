@@ -27,39 +27,47 @@ The canonical URL is always built on `https://significa.co`, also on staging and
 
 Every page gets `Organization`, the logo `ImageObject`, `WebSite` and a `WebPage` (`name` = `<title>`, `description` = meta description, `inLanguage`, `isPartOf`, `datePublished` / `dateModified` from the story). Every page except the home gets a `BreadcrumbList`. Pages with a main image get a `#primaryimage` `ImageObject`.
 
-| Page                                 | Content type   | Extra nodes                                                    |
-| ------------------------------------ | -------------- | -------------------------------------------------------------- |
-| Home (`home`)                        | `page`         | WebPage `about` and `mainEntity` → Organization                |
-| Blog post (`/blog/*`)                | `blog-post`    | `BlogPosting`                                                  |
-| Team member (`/about/*`)             | `team-member`  | `ProfilePage` + `Person`                                       |
-| Project (`/projects/*`)              | `project`      | `CreativeWork`                                                 |
-| `/blog`, `/projects`, `/handbook`    | `page`, code   | `CollectionPage` + `ItemList` of the items shown on first load |
-| Industry / deliverable landing pages | `landing-page` | `Service` (slugs in `SERVICE_LANDING_PAGE_SLUGS`)              |
-| Other landing pages (`/b-corp`)      | `landing-page` | WebPage only                                                   |
-| Handbook pages, careers, legal, etc. | various        | WebPage only                                                   |
-| Error pages, proposals               | n/a            | Organization, logo and WebSite only                            |
+| Page                                 | Content type   | Extra nodes                                                                  |
+| ------------------------------------ | -------------- | ---------------------------------------------------------------------------- |
+| Home (`home`)                        | `page`         | WebPage `about` and `mainEntity` → Organization                              |
+| `/about`, `/get-a-quote`             | `page`         | `AboutPage`, `ContactPage`                                                   |
+| Blog post (`/blog/*`)                | `blog-post`    | `BlogPosting`                                                                |
+| Team member (`/about/*`)             | `team-member`  | `ProfilePage` with the `Person` nested in `mainEntity` (Google profile page) |
+| Project (`/projects/*`)              | `project`      | `CreativeWork`                                                               |
+| `/blog`, `/projects`, `/handbook`    | `page`, code   | `CollectionPage` + `ItemList` of the items shown on first load               |
+| Industry / deliverable landing pages | `landing-page` | `Service` (slugs in `SERVICE_LANDING_PAGE_SLUGS`)                            |
+| Other landing pages (`/b-corp`)      | `landing-page` | WebPage only                                                                 |
+| Handbook pages                       | `handbook`     | `Article` (author and publisher: Significa)                                  |
+| Careers, legal, etc.                 | various        | WebPage only                                                                 |
+| Error pages, proposals               | n/a            | Organization, logo and WebSite only                                          |
 
 Any page with a visible `faqs` block also gets a `FAQPage` generated from that block.
 
 ## Where each field comes from
 
-| Property                                  | Source                                                                                                  |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| Organization `name`, `url`, `logo`, etc.  | `configuration` story fields `org_*` if present, else `ORGANIZATION_FALLBACK`                           |
-| `WebPage.name` / `description`            | Same values as `<title>` and `<meta name="description">`                                                |
-| `datePublished` / `dateModified`          | `first_published_at` / `published_at` (handbook: `content.last_updated`)                                |
-| `BlogPosting.headline`                    | Story name (the H1)                                                                                     |
-| `BlogPosting.author`                      | `authors` (team members, linked to `/about/<slug>#person`) and `external_authors`; Organization if none |
-| `BlogPosting.keywords`                    | Story tags                                                                                              |
-| `BlogPosting.image`, `CreativeWork.image` | `cover`, else `seo_og_image`                                                                            |
-| `Person.jobTitle`, `description`, `image` | `position`, `bio`, `photo`                                                                              |
-| `Person.worksFor`                         | Only when `is_active` is true                                                                           |
-| `Person.sameAs`                           | `links` and URL `buttons` on known profile hosts (`PROFILE_HOSTS`)                                      |
-| `CreativeWork.sourceOrganization`         | `client`                                                                                                |
-| `CreativeWork.keywords`                   | `services` and `deliverables`                                                                           |
-| `CreativeWork.contributor`                | `team`                                                                                                  |
-| `Service.name` / `description`            | Story name / `seo_description`, enriched by a manual `Service` if present                               |
-| `FAQPage`                                 | `faqs` blocks (question + answer as plain text)                                                         |
+| Property                                                                                                     | Source                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| Organization `name`, `url`, `description`, `foundingDate`, `logo`, `email`, `telephone`, `address`, `sameAs` | `configuration` story fields `org_*` if present, else `ORGANIZATION_FALLBACK` (confirmed with the team) |
+| Organization `contactPoint`                                                                                  | Sales contact from `email` and `telephone`                                                              |
+| Organization `hasCredential`, `memberOf`                                                                     | `ORGANIZATION_FALLBACK`: B Corp and 1% for the Planet, both shown on the site                           |
+| `WebPage.name` / `description`                                                                               | Same values as `<title>` and `<meta name="description">`                                                |
+| `datePublished` / `dateModified`                                                                             | `first_published_at` / `published_at` (handbook: `content.last_updated`)                                |
+| `BlogPosting.headline`                                                                                       | Story name (the H1)                                                                                     |
+| `BlogPosting.author`                                                                                         | `authors` (team members, linked to `/about/<slug>#person`) and `external_authors`; Organization if none |
+| `BlogPosting.keywords`                                                                                       | Story tags                                                                                              |
+| `BlogPosting.image`, `Article.image`                                                                         | `cover` (else `seo_og_image`) plus 16:9, 4:3 and 1:1 Storyblok crops at 1200px wide                     |
+| `BlogPosting.timeRequired`, `wordCount`                                                                      | `reading_time`, words in the body                                                                       |
+| `CreativeWork.image`                                                                                         | `cover`, else `seo_og_image`                                                                            |
+| `CreativeWork.award`                                                                                         | Recognition entries for the project (shown on the project page)                                         |
+| `Person.jobTitle`, `description`, `image`                                                                    | `position`, `bio`, `photo`                                                                              |
+| `Person.worksFor`                                                                                            | Only when `is_active` is true                                                                           |
+| `Person.sameAs`                                                                                              | `links` and URL `buttons` on known profile hosts (`PROFILE_HOSTS`)                                      |
+| `CreativeWork.sourceOrganization`                                                                            | `client`                                                                                                |
+| `CreativeWork.keywords`                                                                                      | `services` and `deliverables`                                                                           |
+| `CreativeWork.contributor`                                                                                   | `team`                                                                                                  |
+| `Service.name` / `description`                                                                               | Story name / `seo_description`, enriched by a manual `Service` if present                               |
+| `Service.audience` / `serviceType`                                                                           | The page name, for industry / deliverable landing pages                                                 |
+| `FAQPage`                                                                                                    | `faqs` blocks (question + answer as plain text)                                                         |
 
 Properties without data are omitted. Nothing is invented: no ratings, reviews, awards or dates that are not in the CMS.
 
@@ -81,7 +89,7 @@ Rules applied to accepted nodes:
 
 ## Proposed Organization fields in Storyblok
 
-Not created yet. When approved, add an "Organization" tab to the `configuration` content type with: `org_name` (text), `org_url` (text), `org_email` (text), `org_logo` (asset), `org_street_address`, `org_address_locality`, `org_postal_code`, `org_address_country` (text) and `org_same_as` (blocks or a list of links with a `url`). `organizationFromConfiguration` already reads them and falls back to the constants per field.
+Not created yet. When approved, add an "Organization" tab to the `configuration` content type with: `org_name`, `org_url`, `org_description`, `org_founding_date`, `org_email`, `org_telephone` (text), `org_logo` (asset), `org_street_address`, `org_address_locality`, `org_postal_code`, `org_address_country` (text) and `org_same_as` (blocks or a list of links with a `url`). `organizationFromConfiguration` already reads them and falls back to the constants per field.
 
 ## Adding a new type
 
@@ -90,4 +98,8 @@ Not created yet. When approved, add an "Organization" tab to the `configuration`
 3. Map the story to the new variant in `from-storyblok.ts`.
 4. Add a fixture and a case to `graph.test.ts` and `src/components/seo.test.ts`.
 
-New service landing page in Storyblok? Add its slug to `SERVICE_LANDING_PAGE_SLUGS`.
+New service landing page in Storyblok? Add its slug to `INDUSTRY_LANDING_PAGE_SLUGS` or `DELIVERABLE_LANDING_PAGE_SLUGS`.
+
+## Validation
+
+Before releasing schema changes, paste a page's JSON-LD (or the preview URL) into the [Schema Markup Validator](https://validator.schema.org/) and the [Rich Results Test](https://search.google.com/test/rich-results). Google only recognises a `ProfilePage` when the `Person` is nested in `mainEntity`, which is why that page type nests it.

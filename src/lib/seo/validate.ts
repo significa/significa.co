@@ -21,7 +21,7 @@ export const SINGLETON_TYPES = [
   'HowTo'
 ] as const;
 
-const WEBPAGE_TYPES = ['WebPage', 'CollectionPage', 'ProfilePage'];
+const WEBPAGE_TYPES = ['WebPage', 'CollectionPage', 'ProfilePage', 'AboutPage', 'ContactPage'];
 const URL_KEYS = new Set(['url', 'item', 'contentUrl', 'mainEntityOfPage']);
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>

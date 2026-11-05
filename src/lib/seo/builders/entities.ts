@@ -1,5 +1,14 @@
-import type { BlogPosting, CreativeWork, FAQPage, Person, Question, Service } from 'schema-dts';
-import { ORGANIZATION_ID, SITE_LANGUAGE, WEBSITE_ID } from '../constants';
+import type {
+  Article,
+  BlogPosting,
+  CreativeWork,
+  FAQPage,
+  Person,
+  Question,
+  Service
+} from 'schema-dts';
+import { ARTICLE_IMAGE_CROPS, ORGANIZATION_ID, SITE_LANGUAGE, WEBSITE_ID } from '../constants';
+import { storyblokCrop } from '../content';
 import type { AuthorInput, FaqItem, PageSchemaInput, PersonInput } from '../types';
 import { canonicalFromPath, pageNodeIds, personIdFromSlug } from '../urls';
 
@@ -23,10 +32,30 @@ function buildAuthor(author: AuthorInput): Person {
   };
 }
 
+/**
+ * Article images: the primary ImageObject plus the 16:9, 4:3 and 1:1 crops
+ * Google recommends for article results.
+ */
+function articleImages(input: PageSchemaInput) {
+  if (!input.primaryImage) return undefined;
+  const image = input.primaryImage;
+  const crops = ARTICLE_IMAGE_CROPS.map(([w, h]) => storyblokCrop(image, w, h)).filter(
+    (url): url is string => !!url
+  );
+  return [{ '@id': pageNodeIds(input.url).primaryImage }, ...crops];
+}
+
 export function buildBlogPosting(
   input: PageSchemaInput,
-  data: { headline: string; authors: AuthorInput[]; keywords: string[]; readingMinutes?: number }
+  data: {
+    headline: string;
+    authors: AuthorInput[];
+    keywords: string[];
+    readingMinutes?: number;
+    wordCount?: number;
+  }
 ): BlogPosting {
+  const images = articleImages(input);
   const ids = pageNodeIds(input.url);
   const author = data.authors.length ? data.authors.map(buildAuthor) : { '@id': ORGANIZATION_ID };
 
@@ -36,7 +65,7 @@ export function buildBlogPosting(
     headline: data.headline,
     ...(input.description ? { description: input.description } : {}),
     url: input.url,
-    ...(input.primaryImage ? { image: { '@id': ids.primaryImage } } : {}),
+    ...(images ? { image: images } : {}),
     ...(input.datePublished ? { datePublished: input.datePublished } : {}),
     ...(input.dateModified ? { dateModified: input.dateModified } : {}),
     author,
@@ -45,6 +74,29 @@ export function buildBlogPosting(
     isPartOf: { '@id': WEBSITE_ID },
     ...(data.keywords.length ? { keywords: data.keywords.join(', ') } : {}),
     ...(data.readingMinutes ? { timeRequired: `PT${data.readingMinutes}M` } : {}),
+    ...(data.wordCount ? { wordCount: data.wordCount } : {}),
+    inLanguage: SITE_LANGUAGE
+  };
+}
+
+/** Long-form pages written by Significa itself (handbook). */
+export function buildArticle(input: PageSchemaInput, data: { headline: string }): Article {
+  const ids = pageNodeIds(input.url);
+  const images = articleImages(input);
+
+  return {
+    '@type': 'Article',
+    '@id': ids.article,
+    headline: data.headline,
+    ...(input.description ? { description: input.description } : {}),
+    url: input.url,
+    ...(images ? { image: images } : {}),
+    ...(input.datePublished ? { datePublished: input.datePublished } : {}),
+    ...(input.dateModified ? { dateModified: input.dateModified } : {}),
+    author: { '@id': ORGANIZATION_ID },
+    publisher: { '@id': ORGANIZATION_ID },
+    mainEntityOfPage: { '@id': ids.webpage },
+    isPartOf: { '@id': WEBSITE_ID },
     inLanguage: SITE_LANGUAGE
   };
 }
@@ -74,6 +126,7 @@ export function buildProject(
     client?: string;
     keywords: string[];
     contributors: { slug: string; name: string }[];
+    awards: string[];
   }
 ): CreativeWork {
   const ids = pageNodeIds(input.url);
@@ -100,6 +153,7 @@ export function buildProject(
         }
       : {}),
     ...(data.keywords.length ? { keywords: data.keywords.join(', ') } : {}),
+    ...(data.awards.length ? { award: data.awards } : {}),
     ...(input.datePublished ? { datePublished: input.datePublished } : {}),
     ...(input.dateModified ? { dateModified: input.dateModified } : {}),
     inLanguage: SITE_LANGUAGE,
@@ -109,7 +163,7 @@ export function buildProject(
 
 export function buildService(
   input: PageSchemaInput,
-  data: { name: string; description?: string }
+  data: { name: string; description?: string; audience?: string; serviceType?: string }
 ): Service {
   return {
     '@type': 'Service',
@@ -117,6 +171,10 @@ export function buildService(
     name: data.name,
     ...(data.description ? { description: data.description } : {}),
     url: input.url,
+    ...(data.serviceType ? { serviceType: data.serviceType } : {}),
+    ...(data.audience
+      ? { audience: { '@type': 'BusinessAudience', audienceType: data.audience } }
+      : {}),
     provider: { '@id': ORGANIZATION_ID }
   };
 }

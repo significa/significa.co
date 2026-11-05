@@ -56,11 +56,11 @@ const cases: [string, DynamicPage, string][] = [
   ['home', homeStory, 'WebPage'],
   ['page (services)', servicesPageStory, 'WebPage'],
   ['blog post', blogPostStory, 'BlogPosting'],
-  ['team member', teamMemberStory, 'Person'],
+  ['team member', teamMemberStory, 'ProfilePage'],
   ['project', projectStory, 'CreativeWork'],
   ['service landing page', serviceLandingStory, 'Service'],
   ['institutional landing page', institutionalLandingStory, 'WebPage'],
-  ['handbook', handbookStory, 'WebPage'],
+  ['handbook', handbookStory, 'Article'],
   ['career', careerStory, 'WebPage']
 ];
 
@@ -119,6 +119,29 @@ describe('global nodes', () => {
     expect(byType(graph, 'BreadcrumbList')).toHaveLength(0);
   });
 
+  it('describes Significa with the confirmed facts', () => {
+    const org = one(graphFor(homeStory), 'Organization');
+    expect(org).toMatchObject({
+      description: expect.stringContaining('B Corp certified'),
+      foundingDate: '2014',
+      telephone: '+351926429132',
+      address: expect.objectContaining({ postalCode: '4050-609' }),
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'sales',
+        email: 'newbusiness@significa.co',
+        telephone: '+351926429132'
+      },
+      hasCredential: [expect.objectContaining({ name: 'Certified B Corporation' })],
+      memberOf: [expect.objectContaining({ name: '1% for the Planet' })]
+    });
+  });
+
+  it('uses AboutPage for /about', () => {
+    const about = { ...servicesPageStory, full_slug: 'about/', name: 'About' };
+    expect(one(graphFor(about), 'AboutPage').url).toBe('https://significa.co/about');
+  });
+
   it('reads Organization fields from the configuration story when present', () => {
     const org = organizationFromConfiguration({
       org_name: 'Significa Lda',
@@ -146,9 +169,13 @@ describe('blog post', () => {
       },
       keywords: 'Design, E-commerce',
       timeRequired: 'PT6M',
-      image: {
-        '@id': 'https://significa.co/blog/how-emotions-shape-our-shopping-habits#primaryimage'
-      }
+      wordCount: 2,
+      image: [
+        { '@id': 'https://significa.co/blog/how-emotions-shape-our-shopping-habits#primaryimage' },
+        'https://a.storyblok.com/f/198185/3840x1920/c6df7a31db/cover.jpg/m/1200x675/smart',
+        'https://a.storyblok.com/f/198185/3840x1920/c6df7a31db/cover.jpg/m/1200x900/smart',
+        'https://a.storyblok.com/f/198185/3840x1920/c6df7a31db/cover.jpg/m/1200x1200/smart'
+      ]
     });
     expect(post).not.toHaveProperty('articleBody');
   });
@@ -195,17 +222,19 @@ describe('blog post', () => {
 describe('team member', () => {
   const graph = graphFor(teamMemberStory);
 
-  it('is a ProfilePage about the Person', () => {
-    expect(one(graph, 'ProfilePage').mainEntity).toEqual({
-      '@id': 'https://significa.co/about/julieta-frade#person'
-    });
-    expect(one(graph, 'Person')).toMatchObject({
+  it('is a ProfilePage with the Person nested as mainEntity (Google profile page)', () => {
+    const profile = one(graph, 'ProfilePage');
+    expect(profile.dateCreated).toBe(profile.datePublished);
+    expect(profile.mainEntity).toMatchObject({
+      '@type': 'Person',
+      '@id': 'https://significa.co/about/julieta-frade#person',
       name: 'Julieta Frade',
       jobTitle: 'Product Designer',
       worksFor: { '@id': 'https://significa.co/#organization' },
       // Only profile links, without tracking parameters.
       sameAs: ['https://www.linkedin.com/in/julieta']
     });
+    expect(byType(graph, 'Person')).toHaveLength(0);
   });
 
   it('does not claim former team members still work at Significa', () => {
@@ -213,11 +242,35 @@ describe('team member', () => {
       ...teamMemberStory,
       content: { ...teamMemberStory.content, is_active: false }
     };
-    expect(one(graphFor(former), 'Person')).not.toHaveProperty('worksFor');
+    expect(one(graphFor(former), 'ProfilePage').mainEntity).not.toHaveProperty('worksFor');
   });
 });
 
 describe('project', () => {
+  it('lists the awards shown on the project page', () => {
+    const awards = [
+      {
+        content: {
+          year: '2025',
+          project: { id: projectStory.id },
+          recognition: { content: { title: 'Red Dot', label: 'Award' } }
+        }
+      },
+      {
+        content: {
+          year: '2024',
+          project: { id: 999 },
+          recognition: { content: { title: 'iF Design', label: 'Award' } }
+        }
+      }
+    ];
+    const work = one(
+      graphFor(projectStory, partsFromStory(projectStory, { awards })),
+      'CreativeWork'
+    );
+    expect(work.award).toEqual(['Red Dot: Award (2025)']);
+  });
+
   it('is a CreativeWork by Significa for the client', () => {
     const work = one(graphFor(projectStory), 'CreativeWork');
     expect(work).toMatchObject({
@@ -256,6 +309,13 @@ describe('landing pages', () => {
     ]);
   });
 
+  it('names the industry as the audience of an industry service', () => {
+    expect(one(graphFor(serviceLandingStory), 'Service').audience).toEqual({
+      '@type': 'BusinessAudience',
+      audienceType: 'Finance'
+    });
+  });
+
   it('does not generate a Service for landing pages that are not services', () => {
     expect(byType(graphFor(institutionalLandingStory), 'Service')).toHaveLength(0);
   });
@@ -263,6 +323,17 @@ describe('landing pages', () => {
   it('classifies every known landing page', () => {
     const all = [...SERVICE_LANDING_PAGE_SLUGS, ...NON_SERVICE_LANDING_PAGE_SLUGS];
     expect(new Set(all).size).toBe(all.length);
+  });
+});
+
+describe('handbook', () => {
+  it('is an Article written and published by Significa, dated by last_updated', () => {
+    expect(one(graphFor(handbookStory), 'Article')).toMatchObject({
+      headline: 'Money matters',
+      author: { '@id': 'https://significa.co/#organization' },
+      publisher: { '@id': 'https://significa.co/#organization' },
+      dateModified: new Date('2026-02-01T00:00').toISOString()
+    });
   });
 });
 

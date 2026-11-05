@@ -39,7 +39,11 @@ export type NodeFragment = (typeof NODE_FRAGMENT)[keyof typeof NODE_FRAGMENT];
 export const ORGANIZATION_FALLBACK = {
   name: SITE_NAME,
   url: SITE_URL,
+  description:
+    'Award-winning digital product design and development agency based in Porto, Portugal. B Corp certified and member of 1% for the Planet.',
+  foundingDate: '2014',
   email: 'newbusiness@significa.co',
+  telephone: '+351926429132',
   logo: {
     url: 'https://a.storyblok.com/f/198185/1600x1600/708e2e3a4f/logo_significa.png',
     width: 1600,
@@ -47,9 +51,13 @@ export const ORGANIZATION_FALLBACK = {
   },
   address: {
     streetAddress: 'Rua da Torrinha 154',
+    postalCode: '4050-609',
     addressLocality: 'Porto',
     addressCountry: 'PT'
   },
+  /** Shown on the home page and on /b-corp. */
+  credentials: [{ name: 'Certified B Corporation', url: `${SITE_URL}/b-corp` }],
+  memberOf: [{ name: '1% for the Planet', url: 'https://www.onepercentfortheplanet.org/' }],
   sameAs: [
     'https://www.linkedin.com/company/significadotco/',
     'https://www.instagram.com/significadotco/',
@@ -80,19 +88,38 @@ export const BREADCRUMB_SECTION_LABELS = {
  *
  * Adding a new service landing page in Storyblok? Add its slug here.
  */
-export const SERVICE_LANDING_PAGE_SLUGS = [
-  // Industries
+export const INDUSTRY_LANDING_PAGE_SLUGS = [
   'art-culture',
   'finance',
   'hospitality',
   'health-wellness',
-  'sports',
-  // Deliverables
+  'sports'
+] as const;
+
+export const DELIVERABLE_LANDING_PAGE_SLUGS = [
   'web-app',
   'website',
   'mobile-app',
   'e-commerce',
   'e-commerce-design-development'
+] as const;
+
+export const SERVICE_LANDING_PAGE_SLUGS = [
+  ...INDUSTRY_LANDING_PAGE_SLUGS,
+  ...DELIVERABLE_LANDING_PAGE_SLUGS
+] as const;
+
+/** WebPage subtypes for specific pages. */
+export const WEBPAGE_TYPE_BY_SLUG = {
+  about: 'AboutPage',
+  'get-a-quote': 'ContactPage'
+} as const satisfies Record<string, string>;
+
+/** Article image crops recommended by Google (16:9, 4:3, 1:1), all 1200px wide. */
+export const ARTICLE_IMAGE_CROPS = [
+  [1200, 675],
+  [1200, 900],
+  [1200, 1200]
 ] as const;
 
 /** Landing pages known not to be services. Used by tests to catch unclassified pages. */

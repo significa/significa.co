@@ -18,11 +18,19 @@ import { HOME_SLUG } from '../constants';
 import {
   collectVisibleText,
   imageFromAsset,
+  countWords,
   richTextToPlainText,
   toIsoDate,
   type ImageInput
 } from './content';
-import { ORGANIZATION_FALLBACK, PROFILE_HOSTS, SERVICE_LANDING_PAGE_SLUGS } from './constants';
+import {
+  DELIVERABLE_LANDING_PAGE_SLUGS,
+  INDUSTRY_LANDING_PAGE_SLUGS,
+  ORGANIZATION_FALLBACK,
+  PROFILE_HOSTS,
+  SERVICE_LANDING_PAGE_SLUGS,
+  WEBPAGE_TYPE_BY_SLUG
+} from './constants';
 import type { AuthorInput, FaqItem, ListItemInput, OrganizationData, SchemaEntity } from './types';
 import { canonicalFromSlug, normalizeUrl } from './urls';
 
@@ -31,6 +39,7 @@ export type StorySchemaParts = {
   entity: SchemaEntity;
   breadcrumbName?: string;
   primaryImage?: ImageInput;
+  webPageType?: 'AboutPage' | 'ContactPage';
   datePublished?: string;
   dateModified?: string;
   faqs?: FaqItem[];
@@ -132,7 +141,8 @@ export function blogPostParts(story: BlogPostPage): StorySchemaParts {
       headline: story.name,
       authors: [...internal, ...external],
       keywords: story.tag_list ?? [],
-      readingMinutes: readingMinutes(story.content.reading_time)
+      readingMinutes: readingMinutes(story.content.reading_time),
+      wordCount: countWords(richTextToPlainText(story.content.body)) || undefined
     },
     breadcrumbName: story.name,
     primaryImage: imageFromAsset(story.content.cover) ?? imageFromAsset(story.content.seo_og_image),
@@ -143,7 +153,37 @@ export function blogPostParts(story: BlogPostPage): StorySchemaParts {
   };
 }
 
-export function projectParts(story: ProjectPage): StorySchemaParts {
+type ResolvedRecognitionEntry = {
+  content: {
+    year?: unknown;
+    project: { id: number };
+    recognition: { content: { label?: unknown; title?: unknown } };
+  };
+};
+
+const isResolvedRecognitionEntry = (value: unknown): value is ResolvedRecognitionEntry =>
+  isRecord(value) &&
+  isRecord(value.content) &&
+  isRecord(value.content.project) &&
+  typeof value.content.project.id === 'number' &&
+  isRecord(value.content.recognition) &&
+  isRecord(value.content.recognition.content);
+
+/**
+ * Awards shown on a project page ("Red Dot: Award (2025)"), from the
+ * recognition entries the layout loads (`$page.data.awards`).
+ */
+export function projectAwards(projectId: number, entries: unknown[] = []): string[] {
+  return entries.filter(isResolvedRecognitionEntry).flatMap((entry) => {
+    if (entry.content.project.id !== projectId) return [];
+    const { title, label } = entry.content.recognition.content;
+    const name = [str(title), str(label)].filter(Boolean).join(': ');
+    const year = str(entry.content.year);
+    return name ? [year ? `${name} (${year})` : name] : [];
+  });
+}
+
+export function projectParts(story: ProjectPage, awards: unknown[] = []): StorySchemaParts {
   return {
     entity: {
       kind: 'project',
@@ -158,7 +198,8 @@ export function projectParts(story: ProjectPage): StorySchemaParts {
       ],
       contributors: (story.content.team ?? [])
         .filter(isResolvedTeamMember)
-        .map((member) => ({ slug: member.slug, name: member.name }))
+        .map((member) => ({ slug: member.slug, name: member.name })),
+      awards: projectAwards(story.id, awards)
     },
     breadcrumbName: story.name,
     primaryImage: imageFromAsset(story.content.cover) ?? imageFromAsset(story.content.seo_og_image),
@@ -210,12 +251,22 @@ export function teamMemberParts(story: TeamMemberPage): StorySchemaParts {
   };
 }
 
-export const isServiceLandingPage = (slug: string) =>
-  (SERVICE_LANDING_PAGE_SLUGS as readonly string[]).includes(slug.replace(/\/+$/, ''));
+const slugIn = (list: readonly string[], slug: string) => list.includes(slug.replace(/\/+$/, ''));
+
+export const isServiceLandingPage = (slug: string) => slugIn(SERVICE_LANDING_PAGE_SLUGS, slug);
 
 export function landingPageParts(story: LandingPage): StorySchemaParts {
   const entity: SchemaEntity = isServiceLandingPage(story.full_slug)
-    ? { kind: 'service', name: story.name, description: str(story.content.seo_description) }
+    ? {
+        kind: 'service',
+        name: story.name,
+        description: str(story.content.seo_description),
+        // The page name is the industry ("Finance") or the deliverable ("Web App").
+        audience: slugIn(INDUSTRY_LANDING_PAGE_SLUGS, story.full_slug) ? story.name : undefined,
+        serviceType: slugIn(DELIVERABLE_LANDING_PAGE_SLUGS, story.full_slug)
+          ? story.name
+          : undefined
+      }
     : { kind: 'page', institutional: true };
 
   return {
@@ -232,7 +283,7 @@ export function landingPageParts(story: LandingPage): StorySchemaParts {
 
 export function handbookParts(story: HandbookPage): StorySchemaParts {
   return {
-    entity: { kind: 'page', institutional: true },
+    entity: { kind: 'article', headline: story.name },
     breadcrumbName: story.name,
     primaryImage: imageFromAsset(story.content.cover) ?? imageFromAsset(story.content.seo_og_image),
     datePublished: toIsoDate(story.first_published_at),
@@ -263,10 +314,13 @@ export function pageParts(story: Page, collectionItems?: ListItemInput[]): Story
       ? { kind: 'collection', items: collectionItems }
       : { kind: 'page', institutional: true };
 
+  const slug = story.full_slug.replace(/\/+$/, '');
+
   return {
     entity,
     breadcrumbName: story.name,
     primaryImage: imageFromAsset(story.content.seo_og_image),
+    webPageType: hasWebPageType(slug) ? WEBPAGE_TYPE_BY_SLUG[slug] : undefined,
     ...storyDates(story),
     faqs: faqsFromContent(story.content.blocks),
     manual: story.content.structure_data_markup,
@@ -274,6 +328,9 @@ export function pageParts(story: Page, collectionItems?: ListItemInput[]): Story
     canonicalOverride: story.content.seo_canonical_url
   };
 }
+
+const hasWebPageType = (slug: string): slug is keyof typeof WEBPAGE_TYPE_BY_SLUG =>
+  Object.hasOwn(WEBPAGE_TYPE_BY_SLUG, slug);
 
 type StoryByComponent = {
   'blog-post': BlogPostPage;
@@ -290,10 +347,13 @@ export const isStory = <K extends keyof StoryByComponent>(
   component: K
 ): story is StoryByComponent[K] => story.content.component === component;
 
+/** Data from the layout that some pages need (awards for projects). */
+export type SchemaContext = { awards?: unknown[] };
+
 /** Default parts for any dynamic page, picked by content type. */
-export function partsFromStory(story: DynamicPage): StorySchemaParts {
+export function partsFromStory(story: DynamicPage, context: SchemaContext = {}): StorySchemaParts {
   if (isStory(story, 'blog-post')) return blogPostParts(story);
-  if (isStory(story, 'project')) return projectParts(story);
+  if (isStory(story, 'project')) return projectParts(story, context.awards);
   if (isStory(story, 'team-member')) return teamMemberParts(story);
   if (isStory(story, 'landing-page')) return landingPageParts(story);
   if (isStory(story, 'handbook')) return handbookParts(story);
@@ -333,12 +393,17 @@ export function organizationFromConfiguration(content: unknown): OrganizationDat
   return {
     name: str(config.org_name) ?? fallback.name,
     url: normalizeUrl(str(config.org_url) ?? '')?.replace(/\/$/, '') ?? fallback.url,
+    description: str(config.org_description) ?? fallback.description,
+    foundingDate: str(config.org_founding_date) ?? fallback.foundingDate,
     email: str(config.org_email) ?? fallback.email,
+    telephone: str(config.org_telephone) ?? fallback.telephone,
+    credentials: fallback.credentials,
+    memberOf: fallback.memberOf,
     logo: logo ? { url: logo.url, width: logo.width, height: logo.height } : { ...fallback.logo },
     address: {
       streetAddress: str(config.org_street_address) ?? fallback.address.streetAddress,
       addressLocality: str(config.org_address_locality) ?? fallback.address.addressLocality,
-      postalCode: str(config.org_postal_code),
+      postalCode: str(config.org_postal_code) ?? fallback.address.postalCode,
       addressCountry: str(config.org_address_country) ?? fallback.address.addressCountry
     },
     sameAs: sameAs.length ? sameAs : [...fallback.sameAs]

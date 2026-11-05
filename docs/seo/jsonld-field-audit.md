@@ -59,8 +59,7 @@ Properties found in ignored nodes that the generated graph does not have. Most a
 
 | Story                                                                 | Type                | Not generated                                                             |
 | --------------------------------------------------------------------- | ------------------- | ------------------------------------------------------------------------- |
-| `/about/`                                                             | AboutPage           | mainEntity                                                                |
-| `/about/`                                                             | Organization        | description, foundingDate                                                 |
+| `/about/`                                                             | AboutPage           | url, name, description, inLanguage, mainEntity, about                     |
 | `/b-corp`                                                             | WebPage             | keywords                                                                  |
 | `/blog/`                                                              | Blog                | blogPost                                                                  |
 | `/blog/advantages-of-open-source-software`                            | BlogPosting         | genre                                                                     |
@@ -74,8 +73,8 @@ Properties found in ignored nodes that the generated graph does not have. Most a
 | `/blog/designing-for-trust-turning-impact-into-reality`               | BlogPosting         | genre                                                                     |
 | `/blog/developer-terms-for-dummies`                                   | BlogPosting         | genre                                                                     |
 | `/blog/developing-an-auction-system`                                  | BlogPosting         | genre                                                                     |
-| `/blog/e-commerce-tales`                                              | BlogPosting         | wordCount, genre                                                          |
-| `/blog/future-proof-your-e-commerce-platform-migration`               | BlogPosting         | wordCount, genre                                                          |
+| `/blog/e-commerce-tales`                                              | BlogPosting         | genre                                                                     |
+| `/blog/future-proof-your-e-commerce-platform-migration`               | BlogPosting         | genre                                                                     |
 | `/blog/helping-ssf-share-life-saving-open-source-knowledge`           | BlogPosting         | genre                                                                     |
 | `/blog/how-ai-search-is-changing-business-recommendations`            | BlogPosting         | mentions                                                                  |
 | `/blog/how-ai-will-impact-e-commerce-design-and-development-in-2025`  | BlogPosting         | genre                                                                     |
@@ -83,7 +82,7 @@ Properties found in ignored nodes that the generated graph does not have. Most a
 | `/blog/how-emotions-shape-our-shopping-habits`                        | BlogPosting         | genre                                                                     |
 | `/blog/how-fast-should-your-product-deliver-results`                  | BlogPosting         | genre                                                                     |
 | `/blog/how-much-does-an-e-commerce-website-cost`                      | BlogPosting         | genre                                                                     |
-| `/blog/how-quality-assurance-elevates-design-development-and-ux`      | BlogPosting         | wordCount, genre                                                          |
+| `/blog/how-quality-assurance-elevates-design-development-and-ux`      | BlogPosting         | genre                                                                     |
 | `/blog/how-to-choose-the-right-design-system`                         | BlogPosting         | genre                                                                     |
 | `/blog/how-to-know-when-you-need-a-design-agency`                     | BlogPosting         | genre                                                                     |
 | `/blog/how-to-measure-impact-without-revenue-metrics`                 | BlogPosting         | genre                                                                     |
@@ -92,17 +91,17 @@ Properties found in ignored nodes that the generated graph does not have. Most a
 | `/blog/how-we-use-posthog-to-improve-ux`                              | BlogPosting         | genre                                                                     |
 | `/blog/interning-at-a-digital-product-agency`                         | BlogPosting         | genre                                                                     |
 | `/blog/preventing-architectural-decay`                                | BlogPosting         | genre                                                                     |
-| `/blog/seo-vs-ai-search-in-2025`                                      | BlogPosting         | wordCount, genre                                                          |
+| `/blog/seo-vs-ai-search-in-2025`                                      | BlogPosting         | genre                                                                     |
 | `/blog/the-storyblok-cleanup-tool-we-forgot-we-built`                 | BlogPosting         | genre                                                                     |
 | `/blog/turning-the-ecommerce-summer-slump-into-a-strategic-move`      | BlogPosting         | genre                                                                     |
 | `/blog/what-can-t-ai-do-for-your-business`                            | BlogPosting         | about                                                                     |
 | `/blog/what-can-t-ai-do-for-your-business`                            | BusinessEvent       | name, startDate, location, organizer, performer                           |
 | `/blog/what-is-a-design-system`                                       | BlogPosting         | genre                                                                     |
 | `/blog/why-and-when-we-choose-payload-or-storyblok`                   | BlogPosting         | mentions                                                                  |
-| `/blog/why-your-business-needs-a-native-app`                          | BlogPosting         | wordCount, genre                                                          |
-| `/blog/women-building-the-digital-world`                              | BlogPosting         | wordCount, genre                                                          |
+| `/blog/why-your-business-needs-a-native-app`                          | BlogPosting         | genre                                                                     |
+| `/blog/women-building-the-digital-world`                              | BlogPosting         | genre                                                                     |
 | `/e-commerce-design-development`                                      | WebPage             | potentialAction, hasPart                                                  |
-| `/get-a-quote`                                                        | ContactPage         | mainEntity                                                                |
+| `/get-a-quote`                                                        | ContactPage         | url, name, description, inLanguage, about, breadcrumb, mainEntity         |
 | `/handbook/back-end-development/`                                     | WebPage             | author                                                                    |
 | `/handbook/back-end-development/back-end-persistence`                 | WebPage             | author                                                                    |
 | `/handbook/back-end-development/software-architecture`                | WebPage             | author                                                                    |
@@ -207,7 +206,6 @@ Properties found in ignored nodes that the generated graph does not have. Most a
 | `/handbook/why-we-design`                                             | WebPage             | author                                                                    |
 | `/handbook/working-hours-and-location/`                               | WebPage             | author                                                                    |
 | `/handbook/working-hours-and-location/company-travel`                 | WebPage             | author                                                                    |
-| `/home`                                                               | Organization        | description                                                               |
 | `/home`                                                               | WebSite             | description                                                               |
 | `/impact-report-2024`                                                 | Report              | name, url, description, publisher, datePublished, inLanguage              |
 | `/projects/`                                                          | CollectionPage      | hasPart                                                                   |

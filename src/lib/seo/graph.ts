@@ -1,5 +1,6 @@
 import { buildImageObject, normalizeText } from './content';
 import {
+  buildArticle,
   buildBlogPosting,
   buildFaqPage,
   buildPerson,
@@ -67,6 +68,12 @@ function buildMainNode(input: PageSchemaInput, entity: SchemaEntity): MainNode |
         node: toNode(buildPerson(input, entity.person)),
         webPageType: 'ProfilePage',
         aboutOrganization: false
+      };
+    case 'article':
+      return {
+        node: toNode(buildArticle(input, entity)),
+        webPageType: 'WebPage',
+        aboutOrganization: true
       };
     case 'project':
       return {
@@ -150,7 +157,7 @@ export function buildPageGraph(
   const nodes: JsonLdNode[] = [
     toNode(buildOrganization(input.organization)),
     toNode(buildLogo(input.organization)),
-    toNode(buildWebSite(input.organization))
+    toNode(buildWebSite(input.organization, input.siteDescription))
   ];
 
   if (input.entity.kind === 'none') {
@@ -208,7 +215,11 @@ export function buildPageGraph(
           return decide(type, 'merged', 'Merged into the generated Service');
         }
         if (acceptedTypes.has(type)) return decide(type, 'ignored', 'Duplicate Service');
-        service = { ...node, provider: { '@id': ORGANIZATION_ID } };
+        service = {
+          ...node,
+          url: typeof node.url === 'string' ? node.url : input.url,
+          provider: { '@id': ORGANIZATION_ID }
+        };
         extras.push(service);
         break;
       case 'ItemList':
@@ -235,9 +246,12 @@ export function buildPageGraph(
   const mainEntityId =
     entity.kind === 'home' ? ORGANIZATION_ID : main ? String(main.node['@id']) : undefined;
 
+  // Google only recognises a ProfilePage when the Person is nested in mainEntity.
+  const nestMain = entity.kind === 'profile' && main !== undefined;
+
   const webPage = toNode(
     buildWebPage(input, {
-      type: main?.webPageType ?? 'WebPage',
+      type: input.webPageType ?? main?.webPageType ?? 'WebPage',
       aboutOrganization:
         entity.kind === 'home' ||
         (entity.kind === 'page' && entity.institutional) ||
@@ -248,11 +262,19 @@ export function buildPageGraph(
     })
   );
 
+  if (nestMain && main) {
+    // Nested, the back reference to the page is redundant.
+    const person: JsonLdNode = { ...main.node };
+    delete person.mainEntityOfPage;
+    webPage.mainEntity = person;
+    if (webPage.datePublished) webPage.dateCreated = webPage.datePublished;
+  }
+
   nodes.push(webPage);
   if (breadcrumb) nodes.push(toNode(breadcrumb));
   if (input.primaryImage)
     nodes.push(toNode(buildImageObject(input.primaryImage, ids.primaryImage)));
-  if (main) nodes.push(main.node);
+  if (main && !nestMain) nodes.push(main.node);
   nodes.push(...extras);
 
   // One node per @id: the first (code-generated) wins.

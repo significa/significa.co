@@ -12,7 +12,12 @@ import { canonicalFromPath, pageNodeIds } from '../urls';
 const isSection = (segment: string): segment is keyof typeof BREADCRUMB_SECTION_LABELS =>
   Object.hasOwn(BREADCRUMB_SECTION_LABELS, segment);
 
-export type WebPageType = 'WebPage' | 'CollectionPage' | 'ProfilePage';
+export type WebPageType =
+  | 'WebPage'
+  | 'CollectionPage'
+  | 'ProfilePage'
+  | 'AboutPage'
+  | 'ContactPage';
 
 type WebPageOptions = {
   type: WebPageType;

@@ -9,11 +9,16 @@ export type ImageInput = {
   width?: number;
   height?: number;
   caption?: string;
+  /** Storyblok focal point ("x1xy1:x2xy2"), used for crops. */
+  focus?: string;
 };
 
 /** Converts a Storyblok asset into image data. Returns undefined for empty assets and videos. */
 export function imageFromAsset(
-  asset: (Pick<AssetStoryblok, 'filename'> & { alt?: string | null }) | undefined | null
+  asset:
+    | (Pick<AssetStoryblok, 'filename'> & { alt?: string | null; focus?: string | null })
+    | undefined
+    | null
 ): ImageInput | undefined {
   if (!asset?.filename) return undefined;
 
@@ -28,9 +33,30 @@ export function imageFromAsset(
     url: asset.filename.replace(/^http:\/\//, 'https://'),
     width: width && width > 0 ? width : undefined,
     height: height && height > 0 ? height : undefined,
-    caption: asset.alt?.trim() || undefined
+    caption: asset.alt?.trim() || undefined,
+    focus: asset.focus?.trim() || undefined
   };
 }
+
+/**
+ * Storyblok image service crop of an asset, centred on its focal point (or
+ * smart-cropped). Only for Storyblok assets at least as large as the crop.
+ */
+export function storyblokCrop(
+  image: ImageInput,
+  width: number,
+  height: number
+): string | undefined {
+  if (!STORYBLOK_DIMENSIONS.test(image.url)) return undefined;
+  if (!image.width || !image.height || image.width < width || image.height < height) {
+    return undefined;
+  }
+  const filter = image.focus ? `filters:focal(${image.focus})` : 'smart';
+  return `${image.url}/m/${width}x${height}/${filter}`;
+}
+
+/** Number of words in a text. */
+export const countWords = (text: string): number => text.split(/\s+/).filter(Boolean).length;
 
 /**
  * ImageObject node. Typed locally because schema-dts models width/height as

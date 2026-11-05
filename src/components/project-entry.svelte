@@ -20,7 +20,7 @@
   export let autoplayReel = true;
 
   const scopeLevel = getHeadingLevel();
-  $: nameLevel = as ? toHeadingLevel(Number(as.slice(1))) : scopeLevel;
+  $: nameLevel = as ? toHeadingLevel(Number(as.slice(1))) : $scopeLevel;
 
   let index = 0;
   let video: HTMLVideoElement;

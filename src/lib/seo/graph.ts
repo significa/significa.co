@@ -1,4 +1,4 @@
-import { buildImageObject, normalizeText } from './content';
+import { buildImageObject, squashText } from './content';
 import {
   buildArticle,
   buildBlogPosting,
@@ -10,7 +10,7 @@ import {
 import { buildBreadcrumb, buildItemList, buildWebPage, type WebPageType } from './builders/page';
 import { buildLogo, buildOrganization, buildWebSite } from './builders/site';
 import { ORGANIZATION_ID } from './constants';
-import { faqQuestions, parseManualField, type ManualNode } from './manual';
+import { faqEntries, parseManualField, remapReferences, type ManualNode } from './manual';
 import type { JsonLdGraph, JsonLdNode, PageSchemaInput, SchemaEntity } from './types';
 import { pageNodeIds } from './urls';
 
@@ -134,11 +134,18 @@ function dropDanglingReferences(value: unknown, defined: Set<string>): unknown {
   return out;
 }
 
+/** A manual FAQPage is kept only when every question and every answer is rendered on the page. */
 function manualFaqIsVisible(node: JsonLdNode, visibleText: string[] | undefined): boolean {
-  const questions = faqQuestions(node);
-  if (!questions.length || !visibleText?.length) return false;
-  const haystack = normalizeText(visibleText.join(' \n '));
-  return questions.every((question) => haystack.includes(normalizeText(question)));
+  const entries = faqEntries(node);
+  if (!entries.length || !visibleText?.length) return false;
+  const haystack = squashText(visibleText.join(' '));
+  return entries.every(
+    ({ question, answer }) =>
+      question &&
+      answer &&
+      haystack.includes(squashText(question)) &&
+      haystack.includes(squashText(answer))
+  );
 }
 
 /**
@@ -184,6 +191,11 @@ export function buildPageGraph(
   }
 
   const acceptedTypes = new Set<string>();
+  // Manual node ids replaced by generated ones, so references to them follow.
+  const replacedIds = new Map<string, string>();
+  const replaceId = (from: unknown, to: string) => {
+    if (typeof from === 'string' && from !== to) replacedIds.set(from, to);
+  };
   const accept = ({ type, node }: ManualNode) => {
     switch (type) {
       case 'FAQPage':
@@ -191,12 +203,13 @@ export function buildPageGraph(
         if (hasCodeFaq) return decide(type, 'ignored', 'Generated from the faqs block on the page');
         if (acceptedTypes.has(type)) return decide(type, 'ignored', 'Duplicate FAQPage');
         if (!manualFaqIsVisible(node, input.visibleText)) {
-          decide(type, 'ignored', 'Questions are not visible on the page');
+          decide(type, 'ignored', 'Questions or answers are not visible on the page');
           logger.warn(
-            `[seo] Ignoring FAQPage on ${input.url}: questions are not visible on the page`
+            `[seo] Ignoring FAQPage on ${input.url}: questions or answers are not visible on the page`
           );
           return;
         }
+        replaceId(node['@id'], ids.faq);
         extras.push({ ...node, '@id': ids.faq });
         break;
       case 'Service':
@@ -210,6 +223,7 @@ export function buildPageGraph(
             url: input.url,
             provider: { '@id': ORGANIZATION_ID }
           };
+          replaceId(node['@id'], ids.service);
           service = merged;
           if (main) main.node = merged;
           return decide(type, 'merged', 'Merged into the generated Service');
@@ -287,8 +301,9 @@ export function buildPageGraph(
     return true;
   });
 
-  const defined = collectDefinedIds(unique);
-  const cleaned = unique
+  const relinked = unique.map((node) => toNode(remapReferences(node, replacedIds, input.url)));
+  const defined = collectDefinedIds(relinked);
+  const cleaned = relinked
     .map((node) => dropDanglingReferences(node, defined))
     .filter((node): node is JsonLdNode => isRecord(node) && '@type' in node)
     .map(toNode);

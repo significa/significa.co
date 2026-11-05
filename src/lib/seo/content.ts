@@ -106,25 +106,56 @@ export function richTextToPlainText(doc: RichtextStoryblok | undefined | null): 
     .trim();
 }
 
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null && !Array.isArray(value);
+
+const isRichTextDoc = (value: Record<string, unknown>): value is RichtextStoryblok =>
+  value.type === 'doc' && Array.isArray(value.content);
+
+/** Keys that never render as text. */
+const NON_TEXT_KEYS = new Set([
+  '_uid',
+  'component',
+  'filename',
+  'id',
+  'uuid',
+  'fieldtype',
+  'focus'
+]);
+
 /**
- * Collects every string value inside a story's content tree, including rich
- * text. Used to check that FAQ questions from the manual field are visible
- * on the page.
+ * Collects the text of the content fields a template renders, including rich
+ * text (as plain text) and the blocks embedded in it. Callers pass only the
+ * fields their template shows. Used to check that a manual FAQPage describes
+ * content that is on the page.
  */
 export function collectVisibleText(value: unknown, out: string[] = []): string[] {
   if (typeof value === 'string') {
     out.push(value);
   } else if (Array.isArray(value)) {
     value.forEach((item) => collectVisibleText(item, out));
-  } else if (value && typeof value === 'object') {
+  } else if (isRecord(value)) {
+    if (isRichTextDoc(value)) {
+      out.push(richTextToPlainText(value));
+      value.content?.forEach((section) => {
+        if (section.type === 'blok') collectVisibleText(section.attrs?.body, out);
+      });
+      return out;
+    }
     for (const [key, child] of Object.entries(value)) {
-      // Skip SEO-only fields and the manual JSON-LD itself: they are not visible on the page.
-      if (key.startsWith('seo_') || key === 'structure_data_markup') continue;
+      // SEO-only fields and the manual JSON-LD are not visible on the page.
+      if (key.startsWith('seo_') || key === 'structure_data_markup' || NON_TEXT_KEYS.has(key)) {
+        continue;
+      }
       collectVisibleText(child, out);
     }
   }
   return out;
 }
+
+/** Text reduced for containment checks: lower case, unified quotes, no whitespace, no HTML. */
+export const squashText = (value: string): string =>
+  normalizeText(value.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, '');
 
 export function normalizeText(value: string): string {
   return value

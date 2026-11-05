@@ -1,7 +1,7 @@
 import { collectDefinedIds } from './graph';
 import { nodeTypes } from './manual';
 import type { JsonLdGraph } from './types';
-import { isCanonicalUrl } from './urls';
+import { isAbsoluteHttps, isCanonicalUrl, isSiteUrl } from './urls';
 
 /** Types that may appear at most once per page as top-level nodes. */
 export const SINGLETON_TYPES = [
@@ -88,24 +88,27 @@ export function validateGraph(graph: JsonLdGraph): string[] {
       }
     });
 
-  // URLs must be absolute and canonical; ids must be absolute https.
+  // Site URLs must be absolute and canonical; external URLs absolute https;
+  // ids absolute https.
+  const urlProblem = (url: string) =>
+    isSiteUrl(url) ? !isCanonicalUrl(url) || url.includes('#') : !isAbsoluteHttps(url);
   const walkUrls = (value: unknown, path: string) => {
     if (Array.isArray(value)) return value.forEach((v, i) => walkUrls(v, `${path}[${i}]`));
     if (!isRecord(value)) return;
     for (const [key, child] of Object.entries(value)) {
       if (typeof child === 'string') {
-        if (URL_KEYS.has(key) && (!isCanonicalUrl(child) || child.includes('#'))) {
+        if (URL_KEYS.has(key) && urlProblem(child)) {
           errors.push(`Non-canonical URL at ${path}.${key}: ${child}`);
         }
         if (key === '@id' && !child.startsWith('https://')) {
           errors.push(`@id is not an absolute https URL at ${path}: ${child}`);
         }
-        if (key === 'sameAs' && !isCanonicalUrl(child)) {
+        if (key === 'sameAs' && !isAbsoluteHttps(child)) {
           errors.push(`sameAs is not an absolute https URL at ${path}: ${child}`);
         }
       } else if (key === 'sameAs' && Array.isArray(child)) {
         child.forEach((url, i) => {
-          if (typeof url !== 'string' || !isCanonicalUrl(url)) {
+          if (typeof url !== 'string' || !isAbsoluteHttps(url)) {
             errors.push(`sameAs is not an absolute https URL at ${path}.sameAs[${i}]`);
           }
         });

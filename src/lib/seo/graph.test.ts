@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import type { DynamicPage } from '$lib/content';
+import type { DynamicPage, Page } from '$lib/content';
 import {
   blogIndexStory,
   blogPostStory,
@@ -8,6 +8,7 @@ import {
   handbookStory,
   homeStory,
   institutionalLandingStory,
+  mock,
   projectStory,
   serviceLandingStory,
   servicesPageStory,
@@ -326,6 +327,53 @@ describe('landing pages', () => {
   });
 });
 
+describe('FAQs in article bodies', () => {
+  it('generates the FAQPage from a faqs block embedded in a blog post body', () => {
+    const story = {
+      ...blogPostStory,
+      content: {
+        ...blogPostStory.content,
+        body: {
+          type: 'doc',
+          content: [
+            {
+              type: 'blok',
+              attrs: {
+                body: [
+                  {
+                    _uid: 'f',
+                    component: 'faqs',
+                    questions: [
+                      {
+                        _uid: 'q',
+                        component: 'faq',
+                        question: 'Is this rendered?',
+                        body: {
+                          type: 'doc',
+                          content: [
+                            { type: 'paragraph', content: [{ type: 'text', text: 'Yes.' }] }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    };
+    expect(one(graphFor(story), 'FAQPage').mainEntity).toEqual([
+      {
+        '@type': 'Question',
+        name: 'Is this rendered?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Yes.' }
+      }
+    ]);
+  });
+});
+
 describe('handbook', () => {
   it('is an Article written and published by Significa, dated by last_updated', () => {
     expect(one(graphFor(handbookStory), 'Article')).toMatchObject({
@@ -392,15 +440,77 @@ describe('manual field', () => {
     expect(validateGraph(graph)).toEqual([]);
   });
 
-  it('accepts a manual FAQPage only when its questions are visible', () => {
+  it('accepts a manual FAQPage only when its questions and answers are rendered', () => {
     const graph = graphFor(servicesPageStory);
     expect(one(graph, 'FAQPage')['@id']).toBe('https://significa.co/services#faq');
 
-    const hidden = {
+    // Question visible, answer not.
+    const answerHidden = mock<Page>({
       ...servicesPageStory,
-      content: { ...servicesPageStory.content, blocks: [] }
-    };
-    expect(byType(graphFor(hidden), 'FAQPage')).toHaveLength(0);
+      content: {
+        ...servicesPageStory.content,
+        blocks: [{ _uid: 'h1', component: 'hero', heading: 'What we do' }]
+      }
+    });
+    expect(byType(graphFor(answerHidden), 'FAQPage')).toHaveLength(0);
+
+    // Text only in a field the template does not render does not count.
+    const onlyInUnrenderedField = mock<Page>({
+      ...servicesPageStory,
+      content: {
+        ...servicesPageStory.content,
+        blocks: [{ _uid: 'h1', component: 'hero', heading: 'Something else' }],
+        page: [{ _uid: 'sp', component: 'static-page', body: 'What we do Products.' }]
+      }
+    });
+    expect(byType(graphFor(onlyInUnrenderedField), 'FAQPage')).toHaveLength(0);
+  });
+
+  it('keeps references between manual nodes when their ids are rewritten', () => {
+    const result = parseManualField(
+      JSON.stringify([
+        { '@type': 'HowTo', '@id': '#how', name: 'How we work', step: { '@id': '#steps' } },
+        { '@type': 'ItemList', '@id': '#steps', itemListElement: [] }
+      ]),
+      'https://significa.co/services'
+    );
+    expect(result.accepted[0].node.step).toEqual({ '@id': 'https://significa.co/services#steps' });
+    expect(result.accepted[1].node['@id']).toBe('https://significa.co/services#steps');
+  });
+
+  it('only treats ids on the Significa host as Significa nodes', () => {
+    const result = parseManualField(
+      JSON.stringify({
+        '@type': 'Service',
+        name: 'X',
+        provider: { '@id': 'https://significa.co/#organization' },
+        broker: {
+          '@type': 'Organization',
+          '@id': 'https://partner.example/#organization',
+          name: 'Partner'
+        }
+      }),
+      'https://significa.co/services'
+    );
+    expect(result.accepted[0].node.broker).toEqual({
+      '@type': 'Organization',
+      '@id': 'https://partner.example/#organization',
+      name: 'Partner'
+    });
+  });
+
+  it('keeps query parameters that identify external resources, drops tracking', () => {
+    const result = parseManualField(
+      JSON.stringify({
+        '@type': 'HowTo',
+        name: 'Video',
+        video: { '@type': 'VideoObject', url: 'https://www.youtube.com/watch?v=abc&utm_source=x' }
+      }),
+      'https://significa.co/services'
+    );
+    expect(result.accepted[0].node.video).toMatchObject({
+      url: 'https://www.youtube.com/watch?v=abc'
+    });
   });
 
   it('never produces dangling references or duplicate main nodes', () => {

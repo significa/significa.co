@@ -51,7 +51,7 @@ const base = (fields: { name: string; slug: string; full_slug: string }) => ({
  * Test mock: Storyblok's ISbStoryData has dozens of required fields the schema
  * code never reads, so fixtures intentionally leave them out.
  */
-const mock = <T extends ISbStoryData>(value: unknown) => value as T;
+export const mock = <T extends ISbStoryData>(value: unknown) => value as T;
 
 export const julieta = {
   ...base({ name: 'Julieta Frade', slug: 'julieta-frade', full_slug: 'about/julieta-frade' }),
@@ -67,7 +67,7 @@ export const julieta = {
         _uid: 'l1',
         component: 'team-member-link',
         type: 'linkedin',
-        link: 'https://www.linkedin.com/in/julieta?utm=1'
+        link: 'https://www.linkedin.com/in/julieta?utm_source=share'
       }
     ],
     buttons: [
@@ -225,8 +225,12 @@ export const servicesPageStory = mock<Page>({
     component: 'page',
     seo_title: 'Services',
     seo_description: 'Strategy, design and engineering.',
-    page: [],
-    blocks: [{ _uid: 'h1', component: 'hero', heading: 'What we do' }],
+    blocks: [
+      { _uid: 'h1', component: 'hero', heading: 'What we do' },
+      { _uid: 't1', component: 'text-with-media', text: 'Products.' }
+    ],
+    // Not rendered when `blocks` is set (pages/page.svelte), so not "visible".
+    page: [{ _uid: 'sp', component: 'static-page', body: 'Hidden answer.' }],
     structure_data_markup: JSON.stringify({
       '@context': 'https://schema.org',
       '@graph': [

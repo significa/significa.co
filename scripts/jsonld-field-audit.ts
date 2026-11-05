@@ -156,8 +156,10 @@ function auditStory(story: DynamicPage, configuration: unknown): Row {
     if (!ignoredTypes.includes(label)) return;
     if (label === 'FAQPage') {
       const decision = row.decisions.find((d) => d.type === 'FAQPage');
-      if (decision?.reason === 'Questions are not visible on the page') {
-        row.losses.push('FAQPage: questions not visible on the page (FAQ schema dropped)');
+      if (decision?.reason === 'Questions or answers are not visible on the page') {
+        row.losses.push(
+          'FAQPage: questions or answers not visible on the page (FAQ schema dropped)'
+        );
       }
       return;
     }

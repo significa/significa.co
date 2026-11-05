@@ -43,7 +43,7 @@
   import DynamicBlock from './blocks/dynamic-block.svelte';
   import type { HTMLAttributes } from 'svelte/elements';
   import { sanitizeSlug } from '$lib/utils/paths';
-  import { getHeadingLevel, mapHeadingLevels, toHeadingLevel } from '$lib/heading-level';
+  import { getHeadingLevel, normalizeHeadingLevels, toHeadingLevel } from '$lib/heading-level';
   import HeadingScope from './heading-scope.svelte';
 
   type Section = NonNullable<ISbRichtext['content']>[number];
@@ -55,6 +55,7 @@
     getAttributes?: (section: Section, block?: Block) => Partial<Record<string, string>>;
     as?: string;
     patternMatchReplace?: [PatternMatchString, string][];
+    firstHeadingIsTitle?: boolean;
   };
 
   let className: $$Props['class'] = undefined;
@@ -64,24 +65,30 @@
   export let as: $$Props['as'] = 'div';
   export let patternMatchReplace: $$Props['patternMatchReplace'] = undefined;
 
-  // Headings written in the CMS keep their look (data-heading-style) but get consecutive
-  // levels starting at the current scope, so an H3 right under the page H1 becomes an H2.
-  const baseLevel = getHeadingLevel();
-  const cmsLevel = (section: Section): number => Number(section.attrs?.level) || baseLevel;
+  /** The first heading of the body is the page H1 (static pages without a template title). */
+  export let firstHeadingIsTitle: $$Props['firstHeadingIsTitle'] = false;
+
+  // Headings written in the CMS keep their look (data-heading-style) but get levels that
+  // never skip, starting at the current scope: an H3 right under the page H1 becomes an H2.
+  const scope = getHeadingLevel();
   $: sections = doc.content ?? [];
-  $: levelMap = mapHeadingLevels(
-    sections.filter((section) => section.type === 'heading').map(cmsLevel),
-    baseLevel
+  $: cmsLevels = sections.map((section) => Number(section.attrs?.level) || $scope);
+  // Only headings that render (empty ones are skipped below).
+  $: headingIndexes = sections.flatMap((section, index) =>
+    section.type === 'heading' && section.content?.length ? [index] : []
   );
+  $: normalized = normalizeHeadingLevels(
+    headingIndexes.map((index) => cmsLevels[index]),
+    $scope,
+    { firstIsTitle: firstHeadingIsTitle }
+  );
+  $: semanticLevels = new Map(headingIndexes.map((index, i) => [index, normalized[i]]));
   // Blocks embedded in the text sit one level below the last heading before them.
   $: blockLevels = sections.map((_, index) => {
-    const previous = sections
-      .slice(0, index)
-      .reverse()
-      .find((section) => section.type === 'heading');
-    return previous
-      ? toHeadingLevel((levelMap.get(cmsLevel(previous)) ?? baseLevel) + 1)
-      : baseLevel;
+    const previous = headingIndexes.filter((headingIndex) => headingIndex < index).pop();
+    return previous === undefined
+      ? $scope
+      : toHeadingLevel((semanticLevels.get(previous) ?? $scope) + 1);
   });
 
   const renderSection = (section: ISbRichtext) => {
@@ -105,8 +112,8 @@
       {:else if section.type === 'heading' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}
         {@const content = renderSection(section)}
-        {@const visual = cmsLevel(section)}
-        {@const semantic = levelMap.get(visual) ?? baseLevel}
+        {@const visual = cmsLevels[index]}
+        {@const semantic = semanticLevels.get(index) ?? $scope}
         <svelte:element
           this={`h${semantic}`}
           data-heading-style={semantic !== visual ? `h${visual}` : undefined}

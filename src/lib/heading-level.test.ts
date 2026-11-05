@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { mapHeadingLevels, toHeadingLevel } from './heading-level';
+import { normalizeHeadingLevels, toHeadingLevel } from './heading-level';
 
 describe('heading levels', () => {
   it('clamps to 1..6', () => {
@@ -8,19 +8,23 @@ describe('heading levels', () => {
     expect(toHeadingLevel(9)).toBe(6);
   });
 
-  it('maps CMS levels to consecutive levels from the scope', () => {
-    // Handbook: only H3 under the page H1 -> H2.
-    expect([...mapHeadingLevels([3, 3, 3], 2)]).toEqual([[3, 2]]);
-    // Post with H2 and H4 -> H2 and H3.
-    expect([...mapHeadingLevels([2, 4, 2, 4], 2)]).toEqual([
-      [2, 2],
-      [4, 3]
-    ]);
-    // Static page that owns its H1.
-    expect([...mapHeadingLevels([1, 2, 3], 1)]).toEqual([
-      [1, 1],
-      [2, 2],
-      [3, 3]
-    ]);
+  it('starts at the scope: handbook H3s under the page H1 become H2', () => {
+    expect(normalizeHeadingLevels([3, 3, 3], 2)).toEqual([2, 2, 2]);
+  });
+
+  it('never skips a level in document order', () => {
+    expect(normalizeHeadingLevels([2, 4, 3], 2)).toEqual([2, 3, 3]);
+    expect(normalizeHeadingLevels([2, 4, 2, 4], 2)).toEqual([2, 3, 2, 3]);
+    expect(normalizeHeadingLevels([2, 5, 6, 3, 2], 2)).toEqual([2, 3, 4, 3, 2]);
+  });
+
+  it('goes back up to the closest lower heading', () => {
+    expect(normalizeHeadingLevels([2, 3, 4, 3, 4], 2)).toEqual([2, 3, 4, 3, 4]);
+  });
+
+  it('promotes only the first heading to H1 when the body carries the title', () => {
+    expect(normalizeHeadingLevels([2, 2, 3], 2, { firstIsTitle: true })).toEqual([1, 2, 3]);
+    expect(normalizeHeadingLevels([1, 2, 3], 2, { firstIsTitle: true })).toEqual([1, 2, 3]);
+    expect(normalizeHeadingLevels([1, 1, 2], 2, { firstIsTitle: true })).toEqual([1, 2, 3]);
   });
 });

@@ -15,7 +15,7 @@
 
   const scope = getHeadingLevel();
 
-  $: resolved = level ?? toHeadingLevel(scope + offset);
+  $: resolved = level ?? toHeadingLevel($scope + offset);
   $: headingStyle = visual && visual !== resolved ? `h${visual}` : undefined;
 </script>
 

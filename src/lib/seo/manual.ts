@@ -67,13 +67,51 @@ const isInlineSignificaOrganization = (value: Record<string, unknown>) => {
   const name = typeof value.name === 'string' ? value.name.trim().toLowerCase() : '';
   const url = typeof value.url === 'string' ? value.url : '';
   const id = typeof value['@id'] === 'string' ? value['@id'] : '';
-  return name === 'significa' || (url && isSignificaUrl(url)) || id.endsWith('#organization');
+  // An id only identifies Significa when it is on the Significa host.
+  return (
+    name === 'significa' ||
+    (url && isSignificaUrl(url)) ||
+    (id.endsWith('#organization') && isSignificaUrl(id))
+  );
 };
 
-const isInlineSignificaWebSite = (value: Record<string, unknown>) =>
-  nodeTypes(value).includes('WebSite') &&
-  ((typeof value.url === 'string' && isSignificaUrl(value.url)) ||
-    (typeof value['@id'] === 'string' && value['@id'].endsWith('#website')));
+const isInlineSignificaWebSite = (value: Record<string, unknown>) => {
+  if (!nodeTypes(value).includes('WebSite')) return false;
+  const url = typeof value.url === 'string' ? value.url : '';
+  const id = typeof value['@id'] === 'string' ? value['@id'] : '';
+  return (url && isSignificaUrl(url)) || (id.endsWith('#website') && isSignificaUrl(id));
+};
+
+/**
+ * Rewrites references (`{"@id": ...}`) using `ids` (old id to new id). Ids
+ * are compared as written and resolved against `baseUrl`, so "#steps" and
+ * "https://significa.co/page#steps" both match.
+ */
+export function remapReferences(
+  value: unknown,
+  ids: Map<string, string>,
+  baseUrl: string
+): unknown {
+  if (!ids.size) return value;
+  const resolve = (id: string) => {
+    try {
+      return new URL(id, baseUrl).href;
+    } catch {
+      return id;
+    }
+  };
+  const walk = (current: unknown): unknown => {
+    if (Array.isArray(current)) return current.map(walk);
+    if (!isRecord(current)) return current;
+    if (typeof current['@id'] === 'string' && Object.keys(current).length === 1) {
+      const id = current['@id'];
+      const mapped = ids.get(id) ?? ids.get(resolve(id));
+      return mapped ? { '@id': mapped } : current;
+    }
+    return Object.fromEntries(Object.entries(current).map(([key, child]) => [key, walk(child)]));
+  };
+  return walk(value);
+}
 
 const URL_KEYS = new Set(['url', 'item', 'contentUrl']);
 
@@ -134,6 +172,8 @@ export function parseManualField(
 
   const accepted: ManualNode[] = [];
   const ignored: IgnoredManualNode[] = [];
+  // Original id (as written and resolved) to the canonical id assigned below.
+  const idMap = new Map<string, string>();
 
   for (const candidate of extractNodes(parsed)) {
     if (!isRecord(candidate)) {
@@ -164,13 +204,42 @@ export function parseManualField(
       ? originalId.split('#').pop() || DEFAULT_FRAGMENT[acceptedType]
       : DEFAULT_FRAGMENT[acceptedType];
 
+    const finalId = `${pageUrl}#${fragment}`;
+    if (originalId) {
+      idMap.set(originalId, finalId);
+      try {
+        idMap.set(new URL(originalId, pageUrl).href, finalId);
+      } catch {
+        // Not a URL: the id as written is enough.
+      }
+    }
+
     accepted.push({
       type: acceptedType,
-      node: { ...normalized, '@type': acceptedType, '@id': `${pageUrl}#${fragment}` }
+      node: { ...normalized, '@type': acceptedType, '@id': finalId }
     });
   }
 
-  return { status: 'ok', accepted, ignored };
+  // References between manual nodes follow the ids they were given.
+  const remapped = accepted.map(({ type, node }) => {
+    const next = remapReferences(node, idMap, pageUrl);
+    return { type, node: isRecord(next) ? { ...node, ...next } : node };
+  });
+
+  return { status: 'ok', accepted: remapped, ignored };
+}
+
+/** Question and answer pairs of a manual FAQPage node. */
+export function faqEntries(node: JsonLdNode): { question: string; answer: string }[] {
+  const entities = Array.isArray(node.mainEntity) ? node.mainEntity : [node.mainEntity];
+  return entities.filter(isRecord).map((q) => {
+    const answers = Array.isArray(q.acceptedAnswer) ? q.acceptedAnswer : [q.acceptedAnswer];
+    const answer = answers.find(isRecord);
+    return {
+      question: typeof q.name === 'string' ? q.name : '',
+      answer: answer && typeof answer.text === 'string' ? answer.text : ''
+    };
+  });
 }
 
 /** Questions of a manual FAQPage node. */

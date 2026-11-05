@@ -18,11 +18,16 @@ export function canonicalFromSlug(fullSlug: string): string {
   return canonicalFromPath(fullSlug);
 }
 
+/** Query parameters that only track a visit and never identify a resource. */
+const TRACKING_PARAMS =
+  /^(utm_.+|fbclid|gclid|dclid|gbraid|wbraid|msclkid|mc_cid|mc_eid|igshid|_hsenc|_hsmi|yclid)$/i;
+
 /**
- * Normalises any URL (absolute or relative) into a canonical form.
- * Relative URLs and URLs on the Significa host are rebuilt on `SITE_URL`;
- * external URLs keep their host but are forced to https and lose the query
- * and hash. Returns `undefined` for values that are not URLs.
+ * Normalises any URL (absolute or relative).
+ * Relative URLs and URLs on the Significa host become canonical page URLs on
+ * `SITE_URL` (no query, no hash). External URLs are forced to https and lose
+ * tracking parameters only: other query parameters can identify the resource
+ * (for example YouTube's `?v=`). Returns `undefined` for values that are not URLs.
  */
 export function normalizeUrl(value: string): string | undefined {
   const trimmed = value.trim();
@@ -45,8 +50,9 @@ export function normalizeUrl(value: string): string | undefined {
   if (host === SITE_HOST) return canonicalFromPath(parsed.pathname);
 
   parsed.protocol = 'https:';
-  parsed.search = '';
-  parsed.hash = '';
+  [...parsed.searchParams.keys()]
+    .filter((key) => TRACKING_PARAMS.test(key))
+    .forEach((key) => parsed.searchParams.delete(key));
   return parsed.toString();
 }
 
@@ -85,6 +91,24 @@ export function isCanonicalUrl(value: string): boolean {
   try {
     const url = new URL(value);
     return url.protocol === 'https:' && url.search === '' && !value.includes('?');
+  } catch {
+    return false;
+  }
+}
+
+/** True when a URL is absolute https. */
+export function isAbsoluteHttps(value: string): boolean {
+  try {
+    return new URL(value).protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
+/** True when a URL points at the Significa site. */
+export function isSiteUrl(value: string): boolean {
+  try {
+    return new URL(value).host.replace(/^www\./, '') === SITE_HOST;
   } catch {
     return false;
   }

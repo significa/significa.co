@@ -90,10 +90,8 @@ const storyDates = (story: Pick<ISbStoryData, 'first_published_at' | 'published_
   dateModified: toIsoDate(story.published_at) ?? toIsoDate(story.first_published_at)
 });
 
-const visibleText = (story: Pick<ISbStoryData, 'name' | 'content'>) => [
-  story.name,
-  ...collectVisibleText(story.content)
-];
+/** Text of the fields the template renders (never related stories or unused fields). */
+const visibleText = (name: string, ...fields: unknown[]) => [name, ...collectVisibleText(fields)];
 
 const stringList = (values: unknown): string[] =>
   Array.isArray(values)
@@ -148,7 +146,8 @@ export function blogPostParts(story: BlogPostPage): StorySchemaParts {
     primaryImage: imageFromAsset(story.content.cover) ?? imageFromAsset(story.content.seo_og_image),
     ...storyDates(story),
     manual: story.content.structure_data_markup,
-    visibleText: visibleText(story),
+    faqs: faqsFromContent(story.content.body),
+    visibleText: visibleText(story.name, story.tag_list, story.content.intro, story.content.body),
     canonicalOverride: story.content.seo_canonical_url
   };
 }
@@ -205,7 +204,16 @@ export function projectParts(story: ProjectPage, awards: unknown[] = []): StoryS
     primaryImage: imageFromAsset(story.content.cover) ?? imageFromAsset(story.content.seo_og_image),
     ...storyDates(story),
     manual: story.content.structure_data_markup,
-    visibleText: visibleText(story)
+    faqs: faqsFromContent(story.content.body),
+    visibleText: visibleText(
+      story.name,
+      story.content.tagline,
+      story.content.intro,
+      story.content.services,
+      story.content.deliverables,
+      story.content.measurements,
+      story.content.body
+    )
   };
 }
 
@@ -247,7 +255,7 @@ export function teamMemberParts(story: TeamMemberPage): StorySchemaParts {
     breadcrumbName: story.name,
     primaryImage: imageFromAsset(story.content.photo),
     ...storyDates(story),
-    visibleText: visibleText(story)
+    visibleText: visibleText(story.name, story.content.position, story.content.bio)
   };
 }
 
@@ -276,7 +284,7 @@ export function landingPageParts(story: LandingPage): StorySchemaParts {
     ...storyDates(story),
     faqs: faqsFromContent(story.content.blocks),
     manual: story.content.structure_data_markup,
-    visibleText: visibleText(story),
+    visibleText: visibleText(story.name, story.content.blocks),
     canonicalOverride: story.content.seo_canonical_url
   };
 }
@@ -290,7 +298,8 @@ export function handbookParts(story: HandbookPage): StorySchemaParts {
     // `last_updated` is the date shown on the page.
     dateModified: toIsoDate(story.content.last_updated) ?? toIsoDate(story.published_at),
     manual: story.content.structure_data_markup,
-    visibleText: visibleText(story),
+    faqs: faqsFromContent(story.content.body),
+    visibleText: visibleText(story.name, story.content.body),
     canonicalOverride: story.content.seo_canonical_url
   };
 }
@@ -302,7 +311,8 @@ export function careerParts(story: CareerPage): StorySchemaParts {
     primaryImage: imageFromAsset(story.content.cover) ?? imageFromAsset(story.content.seo_og_image),
     ...storyDates(story),
     manual: story.content.structure_data_markup,
-    visibleText: visibleText(story)
+    faqs: faqsFromContent(story.content.body),
+    visibleText: visibleText(story.name, story.content.body)
   };
 }
 
@@ -315,6 +325,8 @@ export function pageParts(story: Page, collectionItems?: ListItemInput[]): Story
       : { kind: 'page', institutional: true };
 
   const slug = story.full_slug.replace(/\/+$/, '');
+  // pages/page.svelte renders `blocks` when there are any, otherwise the `page` sub-type.
+  const rendered = story.content.blocks?.length ? story.content.blocks : story.content.page;
 
   return {
     entity,
@@ -322,9 +334,9 @@ export function pageParts(story: Page, collectionItems?: ListItemInput[]): Story
     primaryImage: imageFromAsset(story.content.seo_og_image),
     webPageType: hasWebPageType(slug) ? WEBPAGE_TYPE_BY_SLUG[slug] : undefined,
     ...storyDates(story),
-    faqs: faqsFromContent(story.content.blocks),
+    faqs: faqsFromContent(rendered),
     manual: story.content.structure_data_markup,
-    visibleText: visibleText(story),
+    visibleText: visibleText(story.name, rendered),
     canonicalOverride: story.content.seo_canonical_url
   };
 }

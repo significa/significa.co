@@ -17,7 +17,7 @@
 </script>
 
 <Seo
-  title={story.content.seo_title || story.content.tagline}
+  title={story.content.seo_title || story.name}
   description={story.content.seo_description || story.content.intro}
   image={story.content.seo_og_image || story.content.cover}
   structureDataMarkup={story.content.structure_data_markup}

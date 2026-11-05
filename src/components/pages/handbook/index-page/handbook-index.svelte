@@ -8,12 +8,27 @@
 
   import type { HandbookLevelStoryblok } from '$types/bloks';
   import { Button, Input } from '@significa/svelte-ui';
-  import { structureDataMarkup } from './structure-data-markup';
+  import { storiesToListItems } from '$lib/seo';
 
   import { createBreakpointMediaQueryStore } from '$lib/stores/media';
   import clsx from 'clsx';
 
   export let hierarchy: HandbookLevelStoryblok[];
+
+  // The chapters and pages listed on the index, in the order they are shown.
+  $: listedPages = storiesToListItems(
+    hierarchy.flatMap((chapter) => [
+      ...(chapter.homepage?.full_slug
+        ? [{ full_slug: chapter.homepage.full_slug, name: chapter.name || chapter.homepage.name }]
+        : []),
+      ...(chapter.children ?? [])
+        .filter((subchapter) => subchapter.homepage?.full_slug)
+        .map((subchapter) => ({
+          full_slug: subchapter.homepage.full_slug,
+          name: subchapter.homepage.name
+        }))
+    ])
+  );
 
   let searchInputValue = '';
   const desktop = createBreakpointMediaQueryStore('md');
@@ -30,7 +45,10 @@
   title="Handbook by Significa"
   description="Our handbook: the ultimate source of truth for everything about Significa—our culture, values, and the way we work."
   image={handbookOG}
-  {structureDataMarkup}
+  schema={{
+    entity: { kind: 'collection', items: listedPages, institutional: true },
+    breadcrumbName: 'Handbook'
+  }}
 />
 <div class="container mx-auto px-container">
   <h1 class="sr-only">Handbook by Significa</h1>

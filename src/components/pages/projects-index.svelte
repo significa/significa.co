@@ -8,6 +8,7 @@
   import clsx from 'clsx';
   import { slide } from 'svelte/transition';
   import { page } from '$app/stores';
+  import { pageParts, storiesToListItems } from '$lib/seo';
 
   export let projects: ISbStoryData<ProjectStoryblok>[];
   export let autoplayReel = true;
@@ -53,7 +54,10 @@
   });
 </script>
 
-<Seo structureDataMarkup={$page.data.page.story.content.structure_data_markup} />
+<Seo
+  structureDataMarkup={$page.data.page.story.content.structure_data_markup}
+  schema={pageParts($page.data.page.story, storiesToListItems(projects))}
+/>
 <main>
   <h1 class="container mx-auto mt-10 px-container text-7xl md:mt-14 lg:mt-20">
     {t('projects.title')}

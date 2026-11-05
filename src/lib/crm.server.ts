@@ -58,31 +58,35 @@ const downloadAttachments = async (
 ) => {
   const signal = AbortSignal.any([deadline, AbortSignal.timeout(ATTEMPT_TIMEOUT_MS)]);
   const responses = await Promise.allSettled(urls.map((url) => fetchFn(url, { signal })));
-  const files: File[] = [];
   const leftOver: string[] = [];
+  const accepted: { url: string; index: number; response: Response }[] = [];
   let total = 0;
 
-  for (const [index, url] of urls.entries()) {
+  // Budget by Content-Length first, so nothing is buffered that won't be sent.
+  urls.forEach((url, index) => {
     const settled = responses[index];
     const response = settled.status === 'fulfilled' ? settled.value : null;
     const size = Number(response?.headers.get('content-length'));
     if (!response?.ok || !size || total + size > MAX_ATTACHMENT_BYTES) {
       response?.body?.cancel().catch(() => {});
       leftOver.push(url);
-      continue;
+      return;
     }
-    try {
-      const blob = await response.blob();
-      total += blob.size;
-      files.push(
-        new File([blob], fileName(url, index), {
-          type: blob.type || response.headers.get('content-type') || 'application/octet-stream'
-        })
-      );
-    } catch {
-      leftOver.push(url);
-    }
-  }
+    total += size;
+    accepted.push({ url, index, response });
+  });
+
+  const blobs = await Promise.allSettled(accepted.map(({ response }) => response.blob()));
+  const files: File[] = [];
+  blobs.forEach((blob, i) => {
+    const { url, index, response } = accepted[i];
+    if (blob.status === 'rejected') return void leftOver.push(url);
+    files.push(
+      new File([blob.value], fileName(url, index), {
+        type: blob.value.type || response.headers.get('content-type') || 'application/octet-stream'
+      })
+    );
+  });
 
   return { files, leftOver };
 };

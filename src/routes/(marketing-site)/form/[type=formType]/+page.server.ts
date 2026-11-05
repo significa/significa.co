@@ -30,11 +30,18 @@ type FormFields = {
   estimations?: string;
 };
 
-/** Only files our own upload flow put in the bucket. */
+/** Only files our own upload flow put in the bucket. Deduplicated and capped, as the list comes from the visitor. */
+const MAX_ATTACHMENTS = 10;
 const getAttachmentUrls = (attachmentsUrls: string) =>
-  attachmentsUrls
-    .split(',')
-    .filter((url) => url && url.startsWith(`https://${AWS_S3_BUCKET}.s3.eu-west-3.amazonaws.com/`));
+  [
+    ...new Set(
+      attachmentsUrls
+        .split(',')
+        .filter(
+          (url) => url && url.startsWith(`https://${AWS_S3_BUCKET}.s3.eu-west-3.amazonaws.com/`)
+        )
+    )
+  ].slice(0, MAX_ATTACHMENTS);
 
 const getNotionAttachments = (attachmentsUrls: string) => {
   return getAttachmentUrls(attachmentsUrls).map((url) => {
@@ -213,23 +220,16 @@ export const actions = {
       });
     }
 
-    try {
-      await sendEmailNotification({
-        name,
-        email,
-        message,
-        formType,
-        notionLink,
-        notionErrorMessage,
-        crmErrorMessage
-      });
-    } catch {
-      return fail(500, {
-        error: {
-          message: 'Failed to send internal email notification'
-        }
-      });
-    }
+    // The submission is already stored; a failed internal email must not make the visitor resubmit.
+    await sendEmailNotification({
+      name,
+      email,
+      message,
+      formType,
+      notionLink,
+      notionErrorMessage,
+      crmErrorMessage
+    }).catch((emailError) => console.error('Failed to send email notification', emailError));
 
     try {
       const subject = t('form.subject');

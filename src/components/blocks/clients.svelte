@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import type { ClientStoryblok } from '$types/bloks';
@@ -7,7 +8,9 @@
 </script>
 
 <section use:storyblokEditable={block} class="container mx-auto mb-16 mt-20 px-container lg:my-20">
-  <h3 class="text-center text-lg text-foreground-secondary">{block.clients_title}</h3>
+  <Heading offset={0} visual={3} class="text-center text-lg text-foreground-secondary"
+    >{block.clients_title}</Heading
+  >
   {#if block.clients}
     <div class="flex flex-wrap justify-center gap-12 p-6">
       {#each block.clients as client, i}

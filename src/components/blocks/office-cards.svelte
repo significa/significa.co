@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import type { OfficeCardsStoryblok } from '$types/bloks';
   import HoverableGallery from '$components/hoverable-gallery.svelte';
   import clsx from 'clsx';
@@ -17,7 +18,9 @@
     <div class="container mx-auto px-container pt-8 lg:pt-12">
       <div class="flex flex-col justify-between gap-7 lg:flex-row lg:gap-4">
         <div class="lg:max-w-lg">
-          <h2 class="text-5xl text-foreground-secondary">{block.office_title1}</h2>
+          <Heading offset={0} visual={2} class="text-5xl text-foreground-secondary"
+            >{block.office_title1}</Heading
+          >
           <p class="text-5xl">{block.office_title2}</p>
 
           {#if block.btn_link?.story?.url && block.btn_label}

@@ -50,7 +50,7 @@
     breadcrumbName: 'Handbook'
   }}
 />
-<div class="container mx-auto px-container">
+<main class="container mx-auto px-container">
   <h1 class="sr-only">Handbook by Significa</h1>
   <!--
     NOTE: Tirar bonecada
@@ -103,4 +103,4 @@
       {/if}
     </div>
   {/each}
-</div>
+</main>

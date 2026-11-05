@@ -87,7 +87,7 @@
     : undefined}
 />
 
-<main>
+<div>
   <div class="container mx-auto px-container">
     <h1 class="mt-10 text-7xl md:mt-14 lg:mt-20">
       {#if paramsTags.length}
@@ -174,4 +174,4 @@
       <p class="py-8 text-5xl">{t('blog.no-results')}</p>
     {/if}
   </div>
-</main>
+</div>

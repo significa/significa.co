@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import type { ServiceStoryblok } from '$types/bloks';
 
   export let block: ServiceStoryblok;
@@ -7,8 +8,10 @@
 <section class="mt-14 md:mt-24 lg:mb-12">
   <div class="container mx-auto flex px-container">
     <div class="xl:max-w-3xl">
-      <h3 class="text-5xl text-foreground-secondary">{block.services_title}</h3>
-      <h3 class="mb-2 text-5xl">{block.services_subtitle}</h3>
+      <Heading offset={0} visual={3} class="text-5xl text-foreground-secondary"
+        >{block.services_title}</Heading
+      >
+      <Heading offset={0} visual={3} class="mb-2 text-5xl">{block.services_subtitle}</Heading>
       <p class="text-2xl text-foreground-secondary">{block.services_description}</p>
     </div>
   </div>

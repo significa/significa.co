@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import ContactForm from '$components/contact-form.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { t } from '$lib/i18n';
@@ -17,10 +18,10 @@
   <div class="grid grid-cols-3 overflow-hidden rounded-lg border">
     <div class="col-span-1 hidden flex-col bg-background-panel @5xl:flex">
       <div class="p-8">
-        <h3 class="text-4xl">
+        <Heading offset={0} visual={3} class="text-4xl">
           {t('prefooter.title.line1')}<br />
           {t('prefooter.title.line2')}
-        </h3>
+        </Heading>
         <p class="mt-4 text-xl text-foreground-secondary">
           {t('prefooter.description')}
         </p>

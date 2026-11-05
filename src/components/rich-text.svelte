@@ -43,6 +43,8 @@
   import DynamicBlock from './blocks/dynamic-block.svelte';
   import type { HTMLAttributes } from 'svelte/elements';
   import { sanitizeSlug } from '$lib/utils/paths';
+  import { getHeadingLevel, mapHeadingLevels, toHeadingLevel } from '$lib/heading-level';
+  import HeadingScope from './heading-scope.svelte';
 
   type Section = NonNullable<ISbRichtext['content']>[number];
   type Block = NonNullable<Section['attrs']['body']>[number];
@@ -62,6 +64,26 @@
   export let as: $$Props['as'] = 'div';
   export let patternMatchReplace: $$Props['patternMatchReplace'] = undefined;
 
+  // Headings written in the CMS keep their look (data-heading-style) but get consecutive
+  // levels starting at the current scope, so an H3 right under the page H1 becomes an H2.
+  const baseLevel = getHeadingLevel();
+  const cmsLevel = (section: Section): number => Number(section.attrs?.level) || baseLevel;
+  $: sections = doc.content ?? [];
+  $: levelMap = mapHeadingLevels(
+    sections.filter((section) => section.type === 'heading').map(cmsLevel),
+    baseLevel
+  );
+  // Blocks embedded in the text sit one level below the last heading before them.
+  $: blockLevels = sections.map((_, index) => {
+    const previous = sections
+      .slice(0, index)
+      .reverse()
+      .find((section) => section.type === 'heading');
+    return previous
+      ? toHeadingLevel((levelMap.get(cmsLevel(previous)) ?? baseLevel) + 1)
+      : baseLevel;
+  });
+
   const renderSection = (section: ISbRichtext) => {
     let text: string = resolver.render(section);
 
@@ -76,14 +98,20 @@
 <!-- eslint-disable svelte/no-at-html-tags -->
 {#if doc.type === 'doc' && doc.content?.length}
   <svelte:element this={as} class={clsx('group rich-text @container', className)}>
-    {#each doc.content as section}
+    {#each sections as section, index}
       {#if section.type === 'paragraph' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}
         <p {...attributes}>{@html renderSection(section)}</p>
       {:else if section.type === 'heading' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}
         {@const content = renderSection(section)}
-        <svelte:element this={`h${[section.attrs.level.toString()]}`} {...attributes}>
+        {@const visual = cmsLevel(section)}
+        {@const semantic = levelMap.get(visual) ?? baseLevel}
+        <svelte:element
+          this={`h${semantic}`}
+          data-heading-style={semantic !== visual ? `h${visual}` : undefined}
+          {...attributes}
+        >
           {@html content}
         </svelte:element>
       {:else if section.type === 'bullet_list' && section.content?.length}
@@ -99,14 +127,16 @@
         {@const attributes = getAttributes?.(section) || {}}
         <hr {...attributes} />
       {:else if section.type === 'blok'}
-        {#each section.attrs.body as block}
-          {@const attributes = getAttributes?.(section, block) || {}}
-          <DynamicBlock
-            {block}
-            {...attributes}
-            class={clsx('block', `block-${block.component}`, attributes.class)}
-          />
-        {/each}
+        <HeadingScope level={blockLevels[index]}>
+          {#each section.attrs.body as block}
+            {@const attributes = getAttributes?.(section, block) || {}}
+            <DynamicBlock
+              {block}
+              {...attributes}
+              class={clsx('block', `block-${block.component}`, attributes.class)}
+            />
+          {/each}
+        </HeadingScope>
       {/if}
     {/each}
   </svelte:element>

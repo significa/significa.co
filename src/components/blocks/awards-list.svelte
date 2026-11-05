@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import AwardsEntry from '$components/awards-entry.svelte';
   import { drawerLinks } from '$lib/actions/drawer-links';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
@@ -48,7 +49,9 @@
 <section use:storyblokEditable={block} class="mt-10 md:mt-14">
   <div class="container mx-auto flex px-container">
     <div class="xl:max-w-3xl">
-      <h3 class="text-5xl text-foreground-secondary">{block.title}</h3>
+      <Heading offset={0} visual={3} class="text-5xl text-foreground-secondary"
+        >{block.title}</Heading
+      >
       <p class="text-5xl">{block.description}</p>
     </div>
   </div>

@@ -58,7 +58,7 @@
   structureDataMarkup={$page.data.page.story.content.structure_data_markup}
   schema={pageParts($page.data.page.story, storiesToListItems(projects))}
 />
-<main>
+<div>
   <h1 class="container mx-auto mt-10 px-container text-7xl md:mt-14 lg:mt-20">
     {t('projects.title')}
   </h1>
@@ -120,4 +120,4 @@
       variant={i === 0 && !filters.length ? 'featured' : 'default'}
     />
   {/each}
-</main>
+</div>

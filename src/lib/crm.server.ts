@@ -12,6 +12,8 @@ const MAX_ATTACHMENT_BYTES = 25 * 1024 * 1024;
 const MAX_ATTEMPTS = 3;
 const ATTEMPT_TIMEOUT_MS = 15_000;
 const RETRY_DELAYS_MS = [500, 1500];
+/** Downloads and every attempt share this budget, leaving the route (maxDuration 60s) time for Notion and email. */
+const TOTAL_DEADLINE_MS = 40_000;
 
 export type CrmSubmission = {
   name: string;
@@ -31,6 +33,7 @@ export type CrmResult = { ok: true; submissionId: string | null } | { ok: false;
 type Deps = {
   fetch?: typeof fetch;
   sleep?: (ms: number) => Promise<void>;
+  deadline?: AbortSignal;
 };
 
 export const signPayload = (payload: string, secret: string): string =>
@@ -44,21 +47,32 @@ const fileName = (url: string, index: number) => {
   return last ? decodeURIComponent(last) : `attachment-${index + 1}`;
 };
 
-/** Downloads attachments until the size limit. Returns the files and the URLs left over. */
-const downloadAttachments = async (urls: string[], fetchFn: typeof fetch) => {
+/**
+ * Starts every download at once and reads only the bodies that fit the size limit, judged by
+ * Content-Length before anything is buffered. Returns the files and the URLs left over.
+ */
+const downloadAttachments = async (
+  urls: string[],
+  fetchFn: typeof fetch,
+  deadline: AbortSignal
+) => {
+  const signal = AbortSignal.any([deadline, AbortSignal.timeout(ATTEMPT_TIMEOUT_MS)]);
+  const responses = await Promise.allSettled(urls.map((url) => fetchFn(url, { signal })));
   const files: File[] = [];
   const leftOver: string[] = [];
   let total = 0;
 
   for (const [index, url] of urls.entries()) {
+    const settled = responses[index];
+    const response = settled.status === 'fulfilled' ? settled.value : null;
+    const size = Number(response?.headers.get('content-length'));
+    if (!response?.ok || !size || total + size > MAX_ATTACHMENT_BYTES) {
+      response?.body?.cancel().catch(() => {});
+      leftOver.push(url);
+      continue;
+    }
     try {
-      const response = await fetchFn(url, { signal: AbortSignal.timeout(ATTEMPT_TIMEOUT_MS) });
-      if (!response.ok) throw new Error(`status ${response.status}`);
       const blob = await response.blob();
-      if (total + blob.size > MAX_ATTACHMENT_BYTES) {
-        leftOver.push(url);
-        continue;
-      }
       total += blob.size;
       files.push(
         new File([blob], fileName(url, index), {
@@ -77,9 +91,17 @@ export const postToCrm = async (
   submission: CrmSubmission,
   config: CrmConfig,
   idempotencyKey: string,
-  { fetch: fetchFn = fetch, sleep = (ms) => new Promise((r) => setTimeout(r, ms)) }: Deps = {}
+  {
+    fetch: fetchFn = fetch,
+    sleep = (ms) => new Promise((r) => setTimeout(r, ms)),
+    deadline = AbortSignal.timeout(TOTAL_DEADLINE_MS)
+  }: Deps = {}
 ): Promise<CrmResult> => {
-  const { files, leftOver } = await downloadAttachments(submission.attachmentUrls, fetchFn);
+  const { files, leftOver } = await downloadAttachments(
+    submission.attachmentUrls,
+    fetchFn,
+    deadline
+  );
 
   const payload = JSON.stringify({
     name: submission.name,
@@ -107,20 +129,20 @@ export const postToCrm = async (
     headers['Content-Type'] = 'application/json';
   }
 
-  let lastError = 'unknown error';
+  let lastError = 'CRM deadline exceeded';
 
-  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS && !deadline.aborted; attempt++) {
     try {
       const response = await fetchFn(config.url, {
         method: 'POST',
         headers,
         body,
-        signal: AbortSignal.timeout(ATTEMPT_TIMEOUT_MS)
+        signal: AbortSignal.any([deadline, AbortSignal.timeout(ATTEMPT_TIMEOUT_MS)])
       });
 
-      if (response.status === 202 || response.ok) {
-        const body = (await response.json().catch(() => ({}))) as { submissionId?: string };
-        return { ok: true, submissionId: body.submissionId ?? null };
+      if (response.ok) {
+        const json = (await response.json().catch(() => ({}))) as { submissionId?: string };
+        return { ok: true, submissionId: json.submissionId ?? null };
       }
 
       lastError = `CRM answered ${response.status}`;
@@ -129,7 +151,8 @@ export const postToCrm = async (
       lastError = error instanceof Error ? error.name : 'network error';
     }
 
-    if (attempt < MAX_ATTEMPTS) await sleep(RETRY_DELAYS_MS[attempt - 1] ?? 1500);
+    if (attempt < MAX_ATTEMPTS && !deadline.aborted)
+      await sleep(RETRY_DELAYS_MS[attempt - 1] ?? 1500);
   }
 
   return { ok: false, error: lastError };

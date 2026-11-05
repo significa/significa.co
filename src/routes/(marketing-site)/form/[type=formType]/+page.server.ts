@@ -194,7 +194,7 @@ export const actions = {
     } catch (error) {
       console.error('Failed to store submission', error);
 
-      sendEmailNotification({
+      await sendEmailNotification({
         name,
         email,
         message,
@@ -204,7 +204,7 @@ export const actions = {
             ? error.message.toString()
             : 'unknown error, please check the logs',
         crmErrorMessage
-      });
+      }).catch((emailError) => console.error('Failed to send email notification', emailError));
 
       return fail(500, {
         error: {
@@ -214,7 +214,7 @@ export const actions = {
     }
 
     try {
-      sendEmailNotification({
+      await sendEmailNotification({
         name,
         email,
         message,

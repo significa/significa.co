@@ -71,7 +71,10 @@ describe('postToCrm', () => {
     const missingUrl = 'https://bucket.s3.eu-west-3.amazonaws.com/gone.pdf';
     const fetch = vi.fn(async (url: string) => {
       if (url === fileUrl)
-        return new Response(new Blob(['%PDF'], { type: 'application/pdf' }), { status: 200 });
+        return new Response(new Blob(['%PDF'], { type: 'application/pdf' }), {
+          status: 200,
+          headers: { 'content-length': '4' }
+        });
       if (url === missingUrl) return new Response(null, { status: 404 });
       return accepted();
     });
@@ -97,5 +100,48 @@ describe('postToCrm', () => {
     expect(file.type).toBe('application/pdf');
     // The file that couldn't be downloaded still reaches the CRM, as a link.
     expect(JSON.parse(payload).attachmentUrls).toEqual([missingUrl]);
+  });
+
+  it('sends a file over the size limit as a link without reading its body', async () => {
+    const bigUrl = 'https://bucket.s3.eu-west-3.amazonaws.com/huge.zip';
+    const cancel = vi.fn().mockResolvedValue(undefined);
+    const fetch = vi.fn(async (url: string) => {
+      if (url === bigUrl)
+        return {
+          ok: true,
+          headers: new Headers({ 'content-length': String(26 * 1024 * 1024) }),
+          body: { cancel },
+          blob: () => Promise.reject(new Error('body must not be read'))
+        } as unknown as Response;
+      return accepted();
+    });
+
+    const result = await postToCrm({ ...submission, attachmentUrls: [bigUrl] }, config, 'key-6', {
+      fetch: fetch as unknown as typeof globalThis.fetch,
+      sleep: noSleep
+    });
+
+    expect(result.ok).toBe(true);
+    expect(cancel).toHaveBeenCalled();
+    const [, init] = fetch.mock.calls.find(([url]) => url === config.url) as unknown as [
+      string,
+      RequestInit & { body: string }
+    ];
+    expect(JSON.parse(init.body).attachmentUrls).toEqual([bigUrl]);
+  });
+
+  it('stops retrying once the overall deadline has passed', async () => {
+    const deadline = new AbortController();
+    const fetch = vi.fn().mockResolvedValue(new Response(null, { status: 503 }));
+    const sleep = async () => deadline.abort();
+
+    const result = await postToCrm(submission, config, 'key-7', {
+      fetch,
+      sleep,
+      deadline: deadline.signal
+    });
+
+    expect(result).toEqual({ ok: false, error: 'CRM answered 503' });
+    expect(fetch).toHaveBeenCalledTimes(1);
   });
 });

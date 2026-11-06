@@ -9,6 +9,7 @@
   import { browser } from '$app/environment';
   import { applyAction, enhance } from '$app/forms';
   import { page } from '$app/stores';
+  import { HONEYPOT_CHECKBOX, HONEYPOT_FIELD } from '$lib/honeypot';
   import { t } from '$lib/i18n';
   import {
     type FileUploadItem,
@@ -177,6 +178,24 @@
 >
   <slot name="estimationsform" />
   <input type="hidden" name="return-to" value={$page.url.pathname} />
+  {#if type === 'quote'}
+    <!-- Honeypot ($lib/honeypot.ts): people never see or reach these, bots fill them in. -->
+    <div aria-hidden="true" class="extra-fields">
+      <label for={HONEYPOT_FIELD}>Referral code (optional)</label>
+      <input
+        type="text"
+        id={HONEYPOT_FIELD}
+        name={HONEYPOT_FIELD}
+        tabindex="-1"
+        autocomplete="off"
+        value=""
+      />
+      <label>
+        <input type="checkbox" name={HONEYPOT_CHECKBOX} value="yes" tabindex="-1" />
+        Send me Significa's newsletter
+      </label>
+    </div>
+  {/if}
   <div class="flex flex-col gap-4">
     <div class="flex w-full flex-col gap-4 md:flex-row">
       <FloatingInput
@@ -302,3 +321,15 @@
     </div>
   </div>
 </form>
+
+<style>
+  /* Off-screen rather than display: none, which some bots check for. */
+  .extra-fields {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+</style>

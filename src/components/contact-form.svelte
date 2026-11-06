@@ -9,6 +9,7 @@
   import { browser } from '$app/environment';
   import { applyAction, enhance } from '$app/forms';
   import { page } from '$app/stores';
+  import { HONEYPOT_FIELD } from '$lib/honeypot';
   import { t } from '$lib/i18n';
   import {
     type FileUploadItem,
@@ -177,6 +178,20 @@
 >
   <slot name="estimationsform" />
   <input type="hidden" name="return-to" value={$page.url.pathname} />
+  {#if type === 'quote'}
+    <!-- Honeypot: people never see or reach this field, bots fill it in ($lib/honeypot.ts). -->
+    <div aria-hidden="true" class="absolute -left-[10000px] top-auto h-px w-px overflow-hidden">
+      <label for={HONEYPOT_FIELD}>Leave this field empty</label>
+      <input
+        type="text"
+        id={HONEYPOT_FIELD}
+        name={HONEYPOT_FIELD}
+        tabindex="-1"
+        autocomplete="off"
+        value=""
+      />
+    </div>
+  {/if}
   <div class="flex flex-col gap-4">
     <div class="flex w-full flex-col gap-4 md:flex-row">
       <FloatingInput

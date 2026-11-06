@@ -7,6 +7,7 @@ import {
 } from '$env/static/private';
 import { env } from '$env/dynamic/private';
 import { postToCrm } from '$lib/crm.server.js';
+import { isHoneypotTripped } from '$lib/honeypot';
 import { t } from '$lib/i18n';
 import { sendEmailNotification, sendTransactionalEmail } from '$lib/mail/sendEmail.server.js';
 import { notion } from '$lib/notion.server.js';
@@ -68,6 +69,15 @@ export const actions = {
 
     const fields = Object.fromEntries(data.entries()) as FormFields;
     const { name, email, message } = fields;
+
+    // A bot filled the hidden field: answer as if it worked, and store or send nothing.
+    if (formType === 'quote' && isHoneypotTripped(fields)) {
+      console.info('Form submission dropped: honeypot field filled');
+      if (fields['submitted-using-progressive-enhancement']) {
+        return { success: true };
+      }
+      throw redirect(302, fields['return-to'] || '/');
+    }
 
     if (!name || !email || !message) {
       return fail(400, {

@@ -105,7 +105,8 @@
         if (destroyed) return;
         turnstileWidgetId = window.turnstile.render(node, {
           sitekey,
-          appearance: 'interaction-only',
+          appearance:
+            env.PUBLIC_TURNSTILE_ALWAYS_VISIBLE === 'true' ? 'always' : 'interaction-only',
           callback: (token) => (turnstileToken = token),
           'expired-callback': () => (turnstileToken = ''),
           'error-callback': () => (turnstileToken = '')

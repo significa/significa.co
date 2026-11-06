@@ -9,9 +9,11 @@
 
 <Seo />
 <div class="container mx-auto px-container">
+  <!-- Static pages have no template title: the first heading of the body is the page H1. -->
   <RichText
     class="my-10 md:my-14 lg:my-20"
     doc={body}
+    firstHeadingIsTitle
     getAttributes={(_, block) => ({
       class: `mx-auto ${richTextBlockWidths[block?.width || 'narrow']}`
     })}

@@ -122,7 +122,7 @@
   $: matrix = getMatrix(screenWidth, screenHeight, centerWidth, centerHeight);
 </script>
 
-<Seo title="4🥚4" />
+<Seo title="4🥚4" schema={{ entity: { kind: 'none' } }} />
 {#if matrix}
   <div
     bind:clientWidth={screenWidth}

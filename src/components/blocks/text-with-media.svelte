@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { VIDEO_EXTENSIONS } from '$lib/constants';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
@@ -66,10 +67,10 @@
     )}
   >
     <div>
-      <h3 class="mb-6 text-5xl lg:max-w-2xl">
+      <Heading offset={0} visual={3} class="mb-6 text-5xl lg:max-w-2xl">
         <span class="text-foreground-secondary">{block.eyebrow}</span> <br />
         {block.title}
-      </h3>
+      </Heading>
       <p class="mb-8 text-2xl text-foreground-secondary">{block.description}</p>
       {#if block.cta && block.cta?.[0]}
         {@const { href } = getAnchorFromCmsLink(block.cta[0]?.link)}

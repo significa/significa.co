@@ -43,6 +43,8 @@
   import DynamicBlock from './blocks/dynamic-block.svelte';
   import type { HTMLAttributes } from 'svelte/elements';
   import { sanitizeSlug } from '$lib/utils/paths';
+  import { getHeadingLevel, normalizeHeadingLevels, toHeadingLevel } from '$lib/heading-level';
+  import HeadingScope from './heading-scope.svelte';
 
   type Section = NonNullable<ISbRichtext['content']>[number];
   type Block = NonNullable<Section['attrs']['body']>[number];
@@ -53,6 +55,7 @@
     getAttributes?: (section: Section, block?: Block) => Partial<Record<string, string>>;
     as?: string;
     patternMatchReplace?: [PatternMatchString, string][];
+    firstHeadingIsTitle?: boolean;
   };
 
   let className: $$Props['class'] = undefined;
@@ -61,6 +64,32 @@
   export let getAttributes: $$Props['getAttributes'] = () => ({});
   export let as: $$Props['as'] = 'div';
   export let patternMatchReplace: $$Props['patternMatchReplace'] = undefined;
+
+  /** The first heading of the body is the page H1 (static pages without a template title). */
+  export let firstHeadingIsTitle: $$Props['firstHeadingIsTitle'] = false;
+
+  // Headings written in the CMS keep their look (data-heading-style) but get levels that
+  // never skip, starting at the current scope: an H3 right under the page H1 becomes an H2.
+  const scope = getHeadingLevel();
+  $: sections = doc.content ?? [];
+  $: cmsLevels = sections.map((section) => Number(section.attrs?.level) || $scope);
+  // Only headings that render (empty ones are skipped below).
+  $: headingIndexes = sections.flatMap((section, index) =>
+    section.type === 'heading' && section.content?.length ? [index] : []
+  );
+  $: normalized = normalizeHeadingLevels(
+    headingIndexes.map((index) => cmsLevels[index]),
+    $scope,
+    { firstIsTitle: firstHeadingIsTitle }
+  );
+  $: semanticLevels = new Map(headingIndexes.map((index, i) => [index, normalized[i]]));
+  // Blocks embedded in the text sit one level below the last heading before them.
+  $: blockLevels = sections.map((_, index) => {
+    const previous = headingIndexes.filter((headingIndex) => headingIndex < index).pop();
+    return previous === undefined
+      ? $scope
+      : toHeadingLevel((semanticLevels.get(previous) ?? $scope) + 1);
+  });
 
   const renderSection = (section: ISbRichtext) => {
     let text: string = resolver.render(section);
@@ -76,14 +105,20 @@
 <!-- eslint-disable svelte/no-at-html-tags -->
 {#if doc.type === 'doc' && doc.content?.length}
   <svelte:element this={as} class={clsx('group rich-text @container', className)}>
-    {#each doc.content as section}
+    {#each sections as section, index}
       {#if section.type === 'paragraph' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}
         <p {...attributes}>{@html renderSection(section)}</p>
       {:else if section.type === 'heading' && section.content?.length}
         {@const attributes = getAttributes?.(section) || {}}
         {@const content = renderSection(section)}
-        <svelte:element this={`h${[section.attrs.level.toString()]}`} {...attributes}>
+        {@const visual = cmsLevels[index]}
+        {@const semantic = semanticLevels.get(index) ?? $scope}
+        <svelte:element
+          this={`h${semantic}`}
+          data-heading-style={semantic !== visual ? `h${visual}` : undefined}
+          {...attributes}
+        >
           {@html content}
         </svelte:element>
       {:else if section.type === 'bullet_list' && section.content?.length}
@@ -99,14 +134,16 @@
         {@const attributes = getAttributes?.(section) || {}}
         <hr {...attributes} />
       {:else if section.type === 'blok'}
-        {#each section.attrs.body as block}
-          {@const attributes = getAttributes?.(section, block) || {}}
-          <DynamicBlock
-            {block}
-            {...attributes}
-            class={clsx('block', `block-${block.component}`, attributes.class)}
-          />
-        {/each}
+        <HeadingScope level={blockLevels[index]}>
+          {#each section.attrs.body as block}
+            {@const attributes = getAttributes?.(section, block) || {}}
+            <DynamicBlock
+              {block}
+              {...attributes}
+              class={clsx('block', `block-${block.component}`, attributes.class)}
+            />
+          {/each}
+        </HeadingScope>
       {/if}
     {/each}
   </svelte:element>

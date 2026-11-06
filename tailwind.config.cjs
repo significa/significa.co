@@ -1,6 +1,46 @@
 const path = require('path');
 const parseAlphaColor = (color) => color?.replace('<alpha-value>', '1');
 
+/** Rich text heading styles per visual level (used by tag and by data-heading-style). */
+const headingStyles = (theme) => ({
+  h1: {
+    '@apply text-5xl': {},
+    fontWeight: theme('fontWeight.semibold'),
+    marginBottom: '1ch',
+
+    '&:not(:first-child)': {
+      marginTop: '4ch'
+    }
+  },
+  h2: {
+    '@apply text-3xl': {},
+    fontWeight: theme('fontWeight.semibold'),
+    marginBottom: '1ch',
+
+    '&:not(:first-child)': {
+      marginTop: '3.5ch'
+    }
+  },
+  h3: {
+    '@apply text-2xl': {},
+    fontWeight: theme('fontWeight.semibold'),
+    marginBottom: '1ch',
+
+    '&:not(:first-child)': {
+      marginTop: '3ch'
+    }
+  },
+  h4: {
+    '@apply text-xl': {},
+    fontWeight: theme('fontWeight.semibold'),
+    marginBottom: '1ch',
+
+    '&:not(:first-child)': {
+      marginTop: '2.5ch'
+    }
+  }
+});
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -112,45 +152,19 @@ module.exports = {
             marginBlock: '32px'
           },
           // headings
-          'h1, h2, h3, h4': {
+          // Styles are keyed by level so the semantic tag can differ from the look:
+          // <h3 data-heading-style="h4"> is an H3 in the outline and looks like an H4.
+          // See src/lib/heading-level.ts.
+          'h1, h2, h3, h4, h5, h6, [data-heading-style]': {
             scrollMarginTop: '1rem'
           },
-          h1: {
-            '@apply text-5xl': {},
-            fontWeight: theme('fontWeight.semibold'),
-            marginBottom: '1ch',
-
-            '&:not(:first-child)': {
-              marginTop: '4ch'
-            }
-          },
-          h2: {
-            '@apply text-3xl': {},
-            fontWeight: theme('fontWeight.semibold'),
-            marginBottom: '1ch',
-
-            '&:not(:first-child)': {
-              marginTop: '3.5ch'
-            }
-          },
-          h3: {
-            '@apply text-2xl': {},
-            fontWeight: theme('fontWeight.semibold'),
-            marginBottom: '1ch',
-
-            '&:not(:first-child)': {
-              marginTop: '3ch'
-            }
-          },
-          h4: {
-            '@apply text-xl': {},
-            fontWeight: theme('fontWeight.semibold'),
-            marginBottom: '1ch',
-
-            '&:not(:first-child)': {
-              marginTop: '2.5ch'
-            }
-          },
+          ...headingStyles(theme),
+          ...Object.fromEntries(
+            Object.entries(headingStyles(theme)).map(([level, style]) => [
+              `[data-heading-style="${level}"]`,
+              style
+            ])
+          ),
           // break
           hr: {
             border: 'none',

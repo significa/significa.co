@@ -4,9 +4,12 @@
   import type { ProjectDetailedEntryStoryblok } from '$types/bloks';
   import { Button, CircleButton } from '@significa/svelte-ui';
   import clsx from 'clsx';
+  import Heading from './heading.svelte';
+  import { toHeadingLevel } from '$lib/heading-level';
 
   export let project: ProjectDetailedEntryStoryblok;
-  export let as: 'h2' | 'h3' = 'h3';
+  /** Heading tag for the project name. Defaults to the current heading scope. */
+  export let as: 'h2' | 'h3' | undefined = undefined;
 
   let index = 0;
 </script>
@@ -73,9 +76,13 @@
   {/if}
   <div class={clsx('flex flex-1 flex-col items-start justify-between')}>
     <div class="pb-6 pt-8">
-      <svelte:element this={as} class="text-4xl font-semibold text-foreground-secondary">
+      <Heading
+        level={as ? toHeadingLevel(Number(as.slice(1))) : undefined}
+        visual={3}
+        class="text-4xl font-semibold text-foreground-secondary"
+      >
         {project.name}
-      </svelte:element>
+      </Heading>
       <p class={clsx('text-4xl')}>
         {project.tagline}
       </p>

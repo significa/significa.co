@@ -1,17 +1,18 @@
+import type { Config } from '@sveltejs/adapter-vercel';
+import { fail, redirect } from '@sveltejs/kit';
 import { isFormType } from '$components/contact-form.svelte';
+import { env } from '$env/dynamic/private';
 import {
   AWS_S3_BUCKET,
-  NOTION_DB_LEADS,
   NOTION_DB_CANDIDATES,
-  NOTION_DB_CONTACTS
+  NOTION_DB_CONTACTS,
+  NOTION_DB_LEADS
 } from '$env/static/private';
-import { env } from '$env/dynamic/private';
 import { postToCrm } from '$lib/crm.server.js';
 import { t } from '$lib/i18n';
 import { sendEmailNotification, sendTransactionalEmail } from '$lib/mail/sendEmail.server.js';
 import { notion } from '$lib/notion.server.js';
-import { fail, redirect } from '@sveltejs/kit';
-import type { Config } from '@sveltejs/adapter-vercel';
+import { verifyTurnstile } from '$lib/turnstile.server.js';
 
 // Room for attachment downloads and up to 3 CRM attempts (15s timeout each) on top of Notion.
 export const config: Config = {
@@ -28,6 +29,7 @@ type FormFields = {
   'submitted-using-progressive-enhancement'?: string;
   'return-to'?: string;
   estimations?: string;
+  'cf-turnstile-response'?: string;
 };
 
 /** Only files our own upload flow put in the bucket. Deduplicated and capped, as the list comes from the visitor. */
@@ -69,6 +71,18 @@ export const actions = {
     const fields = Object.fromEntries(data.entries()) as FormFields;
     const { name, email, message } = fields;
 
+    // ponytail: unset secret skips the check, for local dev and previews
+    if (
+      env.TURNSTILE_SECRET_KEY &&
+      !(await verifyTurnstile(
+        fields['cf-turnstile-response'],
+        env.TURNSTILE_SECRET_KEY,
+        event.getClientAddress()
+      ))
+    ) {
+      return fail(400, { error: { type: 'captcha' } });
+    }
+
     if (!name || !email || !message) {
       return fail(400, {
         error: {
@@ -97,12 +111,19 @@ export const actions = {
                   Name: { title: [{ text: { content: name } }] },
                   Email: { email: email },
                   Budget: { select: { name: fields.budget || 'n/a' } },
-                  Message: { rich_text: [{ text: { content: message || '' } }] },
+                  Message: {
+                    rich_text: [{ text: { content: message || '' } }]
+                  },
                   Status: { select: { name: 'To triage' } },
                   Type: { select: { name: 'Organic' } },
                   Source: { select: { name: 'Website' } },
                   'Account Owner': {
-                    people: [{ id: 'd8a42f29-ea96-44d4-80bb-4129259b1d41', object: 'user' }]
+                    people: [
+                      {
+                        id: 'd8a42f29-ea96-44d4-80bb-4129259b1d41',
+                        object: 'user'
+                      }
+                    ]
                   },
                   Attachments: {
                     files: getNotionAttachments(fields.attachments || '')
@@ -157,7 +178,9 @@ export const actions = {
                 Email: { email: email },
                 Message: { rich_text: [{ text: { content: message || '' } }] },
                 Status: { select: { name: 'To triage' } },
-                Estimations: { rich_text: [{ text: { content: fields.estimations || '' } }] },
+                Estimations: {
+                  rich_text: [{ text: { content: fields.estimations || '' } }]
+                },
                 Attachments: {
                   files: getNotionAttachments(fields.attachments || '')
                 }

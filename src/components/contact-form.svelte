@@ -3,10 +3,21 @@
   export type FormType = (typeof formTypes)[number];
   export const isFormType = (type: string): type is FormType =>
     formTypes.some((formType) => formType === type);
+
+  let turnstileScript: Promise<void> | undefined;
+  const loadTurnstile = () =>
+    (turnstileScript ??= new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      script.onload = () => resolve();
+      script.onerror = reject;
+      document.head.append(script);
+    }));
 </script>
 
 <script lang="ts">
   import { browser } from '$app/environment';
+  import { env } from '$env/dynamic/public';
   import { applyAction, enhance } from '$app/forms';
   import { page } from '$app/stores';
   import { t } from '$lib/i18n';
@@ -82,6 +93,33 @@
   ];
 
   let loading = false;
+
+  const turnstileSiteKey = env.PUBLIC_TURNSTILE_SITE_KEY;
+  let turnstileWidgetId: string | undefined;
+  let turnstileToken = '';
+
+  const turnstile = (node: HTMLElement, sitekey: string) => {
+    let destroyed = false;
+    loadTurnstile()
+      .then(() => {
+        if (destroyed) return;
+        turnstileWidgetId = window.turnstile.render(node, {
+          sitekey,
+          appearance: 'interaction-only',
+          callback: (token) => (turnstileToken = token),
+          'expired-callback': () => (turnstileToken = ''),
+          'error-callback': () => (turnstileToken = '')
+        });
+      })
+      .catch((error) => console.error('Failed to load Turnstile', error));
+
+    return {
+      destroy() {
+        destroyed = true;
+        if (turnstileWidgetId) window.turnstile.remove(turnstileWidgetId);
+      }
+    };
+  };
 
   $: footerEmail = {
     quote: t('quote.contact.email'),
@@ -169,6 +207,9 @@
     return async ({ update, result }) => {
       loading = false;
       files = [];
+      // tokens are single-use, and the form stays mounted for another submission
+      turnstileToken = '';
+      if (turnstileWidgetId) window.turnstile.reset(turnstileWidgetId);
 
       await applyAction(result);
       await update();
@@ -282,6 +323,9 @@
       />
       <input type="hidden" name="attachments" bind:value={attachments} />
     {/if}
+    {#if turnstileSiteKey}
+      <div use:turnstile={turnstileSiteKey} />
+    {/if}
     {#if disclaimer}
       <p class="my-3 text-base text-foreground-secondary">{disclaimer}</p>
       <hr />
@@ -293,8 +337,9 @@
       size="lg"
       arrow
       {loading}
-      disabled={loading || files.some((f) => f.status === 'uploading')}
-      >{t('contact.submit')}</Button
+      disabled={loading ||
+        files.some((f) => f.status === 'uploading') ||
+        (!!turnstileSiteKey && !turnstileToken)}>{t('contact.submit')}</Button
     >
     <div class="text-sm">
       <p class="leading-none text-foreground-secondary">{t('contact.footer.title')}</p>

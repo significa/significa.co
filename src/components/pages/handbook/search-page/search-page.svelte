@@ -6,8 +6,6 @@
   import Seo from '$components/seo.svelte';
   import handbookOG from '$assets/handbook/HandbookOG.jpg';
 
-  import { structureDataMarkup } from '../index-page/structure-data-markup';
-
   import { fetchEntries } from '$lib/content';
   import type { HandbookPage } from '$lib/content';
   import clsx from 'clsx';
@@ -49,7 +47,7 @@
   title="Handbook by Significa"
   description="Our handbook: the ultimate source of truth for everything about Significa—our culture, values, and the way we work."
   image={handbookOG}
-  {structureDataMarkup}
+  schema={{ entity: { kind: 'page', institutional: true }, breadcrumbName: 'Search' }}
 />
 
 <main>

@@ -3,6 +3,7 @@
   import BlogEntry from '$components/blog-entry.svelte';
   import Seo from '$components/seo.svelte';
   import { BLOG_PARAMS } from '$lib/content';
+  import { pageParts, storiesToListItems } from '$lib/seo';
   import { t } from '$lib/i18n';
   import { getStoryblok } from '$lib/storyblok';
   import type { BlogPostStoryblok } from '$types/bloks';
@@ -81,9 +82,12 @@
     ? t('blog.tag-meta-description', { tags: paramsTags.join(', ') })
     : $page.data.page?.story?.content?.seo_description}
   structureDataMarkup={$page.data.page?.story?.content?.structure_data_markup}
+  schema={$page.data.page?.story
+    ? pageParts($page.data.page.story, storiesToListItems(data.data.stories))
+    : undefined}
 />
 
-<main>
+<div>
   <div class="container mx-auto px-container">
     <h1 class="mt-10 text-7xl md:mt-14 lg:mt-20">
       {#if paramsTags.length}
@@ -170,4 +174,4 @@
       <p class="py-8 text-5xl">{t('blog.no-results')}</p>
     {/if}
   </div>
-</main>
+</div>

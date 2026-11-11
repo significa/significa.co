@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import type { ListStoryblok } from '$types/bloks';
@@ -28,7 +29,9 @@
         'xl:sticky xl:top-8 xl:max-w-xl xl:self-start xl:pr-6'
       )}
     >
-      <h3 class="text-5xl text-foreground-secondary">{block.title}</h3>
+      <Heading offset={0} visual={3} class="text-5xl text-foreground-secondary"
+        >{block.title}</Heading
+      >
       <p class="text-5xl">{block.subtitle}</p>
       {#if block.description}
         <p class="mt-6 text-2xl text-foreground-secondary">{block.description}</p>

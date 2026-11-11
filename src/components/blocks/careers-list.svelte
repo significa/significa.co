@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import { page } from '$app/stores';
   import type { CareersListStoryblok } from '$types/bloks';
 
@@ -17,7 +18,7 @@
     <div class="container mx-auto justify-between gap-12 px-container lg:flex">
       <div class="flex flex-1 flex-col items-start">
         <div class="w-full flex-1">
-          <h2 class="text-5xl">{block.title}</h2>
+          <Heading offset={0} visual={2} class="text-5xl">{block.title}</Heading>
           <ul class="mt-10">
             {#each $page.data.careers as career}
               {@const href = sanitizeSlug(career.full_slug)}
@@ -56,7 +57,7 @@
           : undefined}
       >
         <div class="flex-1">
-          <h3 class="text-4xl">{block.handbook_title}</h3>
+          <Heading offset={0} visual={3} class="text-4xl">{block.handbook_title}</Heading>
           <p class="mt-4 text-xl text-foreground-secondary">{block.handbook_description}</p>
         </div>
 

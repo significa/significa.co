@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import PhysicsSection from '$components/physics-section.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
@@ -25,7 +26,9 @@
     <div class="container mx-auto px-container">
       <div class="md:flex">
         <div class="flex-1 pt-10 md:pt-14 lg:pt-20">
-          <h3 class="text-5xl text-foreground-secondary">{block.section_title1}</h3>
+          <Heading offset={0} visual={3} class="text-5xl text-foreground-secondary"
+            >{block.section_title1}</Heading
+          >
           <p class="text-5xl">{block.section_title2}</p>
 
           <p class="mt-4 max-w-md text-2xl text-foreground-secondary">

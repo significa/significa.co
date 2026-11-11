@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import type { TimelineStoryblok } from '$types/bloks';
   import clsx from 'clsx';
@@ -12,7 +13,9 @@
       class="container mx-auto flex flex-col justify-between gap-6 px-container py-8 lg:flex-row lg:gap-4 lg:py-12"
     >
       <div class="lg:max-w-xl">
-        <h2 class="text-5xl text-foreground-secondary">{block.title1}</h2>
+        <Heading offset={0} visual={2} class="text-5xl text-foreground-secondary"
+          >{block.title1}</Heading
+        >
         <p class="text-5xl">{block.title2}</p>
       </div>
 

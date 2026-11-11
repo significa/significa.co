@@ -14,10 +14,19 @@
 
   export let story: BlogPostPage;
   export let related: BlogPostPage[];
+
+  // Same dates as datePublished / dateModified in the JSON-LD (src/lib/seo).
+  $: publishedAt = story.first_published_at || story.published_at || story.created_at;
+  $: updatedAt =
+    story.published_at &&
+    story.first_published_at &&
+    story.published_at.slice(0, 10) !== story.first_published_at.slice(0, 10)
+      ? story.published_at
+      : undefined;
 </script>
 
 <Seo
-  title={story.content.seo_title || story.content.tagline}
+  title={story.content.seo_title || story.name}
   description={story.content.seo_description || story.content.intro}
   image={story.content.seo_og_image || story.content.cover}
   structureDataMarkup={story.content.structure_data_markup}
@@ -31,17 +40,23 @@
       ]
     : []}
 />
-<div class="container mx-auto px-container">
+<article class="container mx-auto px-container">
   <header class="mx-auto mb-10 mt-10 max-w-2xl md:mt-14 lg:mt-20">
-    <div class="flex gap-2">
+    <div class="flex flex-wrap gap-2">
       {#if story.first_published_at}
         <p class="text-base font-medium text-foreground-secondary">
-          {formatDate(
-            new Date(story.first_published_at || story.published_at || story.created_at),
-            {
-              dateStyle: 'medium'
-            }
-          )}
+          <time datetime={publishedAt}>
+            {formatDate(new Date(publishedAt), { dateStyle: 'medium' })}
+          </time>
+        </p>
+      {/if}
+      {#if updatedAt}
+        <p class="text-base text-foreground-secondary/80">•</p>
+        <!-- TODO: move "Updated" to the Storyblok strings datasource -->
+        <p class="text-base text-foreground-secondary/80">
+          Updated <time datetime={updatedAt}
+            >{formatDate(new Date(updatedAt), { dateStyle: 'medium' })}</time
+          >
         </p>
       {/if}
       {#if story.first_published_at && story.content.reading_time}
@@ -136,14 +151,14 @@
       {/if}
     </div>
   {/if}
-</div>
+</article>
 
 <div class="mx-auto px-container">
   <div class="relative mx-auto mt-12 max-w-2xl">
     <div data-theme="yellow" class="flex justify-between gap-8 rounded-3xl p-6 md:p-8">
       <div class="flex flex-col items-start">
         <div class="flex-1">
-          <h4 class="max-w-md text-3xl font-bold">{t('blog.pre-footer.title')}</h4>
+          <h2 class="max-w-md text-3xl font-bold">{t('blog.pre-footer.title')}</h2>
         </div>
         <Button class="mt-6" as="a" href="/get-a-quote" arrow icon="document"
           >{t('blog.pre-footer.cta')}</Button
@@ -152,9 +167,9 @@
       <TwoEggs class="hidden w-60 sm:block" />
     </div>
   </div>
-  <h4 class="mb-[-40px] mt-10 block text-foreground-secondary md:hidden">
+  <h2 class="mb-[-40px] mt-10 block text-foreground-secondary md:hidden">
     {t('blog.pre-footer.related')}
-  </h4>
+  </h2>
 </div>
 
 <!-- Related Posts -->

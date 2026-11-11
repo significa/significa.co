@@ -10,6 +10,7 @@
   import clsx from 'clsx';
   import { theme } from '$lib/stores/theme';
   import { Button } from '@significa/svelte-ui';
+  import HeadingScope from '$components/heading-scope.svelte';
 
   export let story: ISbStoryData<TeamMemberStoryblok>;
   export let posts: BlogPostPage[];
@@ -123,14 +124,18 @@
 <div>
   {#if projects.length && tab === 'projects'}
     <div>
-      {#each projects as project}
-        <ProjectEntry {project} />
-      {/each}
+      <h2 class="sr-only">{t('member.projects.title')}</h2>
+      <HeadingScope>
+        {#each projects as project}
+          <ProjectEntry {project} />
+        {/each}
+      </HeadingScope>
     </div>
   {/if}
 
   {#if posts.length && tab === 'posts'}
     <div>
+      <h2 class="sr-only">{t('member.posts.title')}</h2>
       {#each posts as post}
         <BlogEntry {post} />
       {/each}

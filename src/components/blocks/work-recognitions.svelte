@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import type { RecognitionEntryStoryblok, WorkRecognitionsStoryblok } from '$types/bloks';
 
   import { page } from '$app/stores';
@@ -37,23 +38,23 @@
   >
     <img src={EggChicken} class="absolute -bottom-80 -right-56 block drop-shadow-md" alt="" />
     <img src={SeggChicken} class="absolute -left-72 top-12 block w-[20%] drop-shadow-md" alt="" />
-    <h3 class="text-5xl font-semibold">{block.title}</h3>
+    <Heading offset={0} visual={3} class="text-5xl font-semibold">{block.title}</Heading>
   </section>
 
   <div class="container mx-auto max-w-[1056px] px-container">
     <section use:drawerLinks class="mb-8 mt-10 md:mt-14 lg:mt-20">
-      <h4 class="mb-6 text-lg font-semibold text-foreground-secondary">
+      <Heading offset={1} visual={4} class="mb-6 text-lg font-semibold text-foreground-secondary">
         {block.small_highlights_title}
-      </h4>
+      </Heading>
       <SmallHighlights highlights={block.small_highlights} class="xl:grid-cols-3" />
     </section>
   </div>
 
   <div class="container mx-auto max-w-[1056px] px-container">
     <section use:drawerLinks class="mb-8 mt-10 md:mt-10 lg:mb-40 lg:mt-12">
-      <h4 class="mb-6 text-lg font-semibold text-foreground-secondary">
+      <Heading offset={1} visual={4} class="mb-6 text-lg font-semibold text-foreground-secondary">
         {block.awards_title}
-      </h4>
+      </Heading>
       <div class="grid grid-cols-3 gap-4 md:gap-6">
         {#each awardsArray as award}
           <div

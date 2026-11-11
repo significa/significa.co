@@ -54,7 +54,8 @@ const getNotionAttachments = (attachmentsUrls: string) => {
 
 export const actions = {
   default: async (event) => {
-    const data = await event.request.formData();
+    const data = await event.request.formData().catch(() => null);
+    if (!data) return fail(400, { error: { type: 'body' } });
     const formType = event.params.type;
     let notionLink = '';
     let notionErrorMessage: string | undefined;

@@ -1,3 +1,4 @@
+import { fail } from '@sveltejs/kit';
 import { STORYBLOK_PROPOSALS_TOKEN } from '$env/static/private';
 import { getStoryblok } from '$lib/storyblok';
 import { fetchAwards, fetchPage } from '$lib/content';
@@ -78,7 +79,8 @@ export const load = async ({ locals, cookies, fetch, params, url }) => {
 
 export const actions = {
   default: async ({ request, cookies, params }) => {
-    const formData = await request.formData();
+    const formData = await request.formData().catch(() => null);
+    if (!formData) return fail(400);
     const password = formData.get('password');
 
     if (password && typeof password === 'string') {

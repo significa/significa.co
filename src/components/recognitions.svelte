@@ -2,9 +2,12 @@
   import { getImageAttributes } from '$lib/utils/cms';
   import type { RecognitionEntryStoryblok } from '$types/bloks';
   import type { ISbStoryData } from '@storyblok/js';
+  import Heading from './heading.svelte';
+  import type { HeadingLevel } from '$lib/heading-level';
 
   export let recognitions: ISbStoryData<RecognitionEntryStoryblok>[];
-  export let as: 'h2' | 'h3' | 'h4' = 'h4';
+  /** Level of the recognition labels. Defaults to the current heading scope. */
+  export let level: HeadingLevel | undefined = undefined;
 </script>
 
 {#each recognitions as recognition}
@@ -17,9 +20,13 @@
       <img class="mr-2 h-auto w-14 rounded-md bg-background-offset" {src} {alt} {width} {height} />
     {/if}
     <div>
-      <svelte:element this={as} class="text-xs uppercase tracking-wider text-foreground-secondary">
+      <Heading
+        {level}
+        visual={4}
+        class="text-xs uppercase tracking-wider text-foreground-secondary"
+      >
         {label}
-      </svelte:element>
+      </Heading>
       <p class="text-sm font-medium">{title}</p>
     </div>
   </div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import { page } from '$app/stores';
   import { t } from '$lib/i18n';
   import type { AwardsGridStoryblok, RecognitionEntryStoryblok } from '$types/bloks';
@@ -48,9 +49,13 @@
       {/each}
     </div>
     {#if block.description}
-      <h4 class="mt-12 flex items-center text-4xl font-semibold text-foreground-secondary">
+      <Heading
+        offset={0}
+        visual={4}
+        class="mt-12 flex items-center text-4xl font-semibold text-foreground-secondary"
+      >
         {block.description}
-      </h4>
+      </Heading>
     {/if}
   </section>
 </div>

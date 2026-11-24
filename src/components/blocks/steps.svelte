@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { theme } from '$lib/stores/theme';
   import type { GetAQuotePageStoryblok, StepsStoryblok } from '$types/bloks';
@@ -14,7 +15,9 @@
     <!-- Title -->
     <div class="lg:flex-1">
       <div class={clsx('max-w-md pt-12', 'md:pt-20', 'lg:max-w-sm')}>
-        <h3 class="text-5xl text-foreground-secondary">{block.steps_title}</h3>
+        <Heading offset={0} visual={3} class="text-5xl text-foreground-secondary"
+          >{block.steps_title}</Heading
+        >
         <p class="text-5xl">{block.steps_subtitle}</p>
       </div>
     </div>
@@ -50,7 +53,7 @@
               )}>{i + 1}</span
             >
             <div class="max-w-xl text-xl xs:text-2xl" bind:offsetHeight={lastItemHeight}>
-              <h4 class="leading-tight">{step.title}</h4>
+              <Heading offset={1} visual={4} class="leading-tight">{step.title}</Heading>
               <p class="mt-1 leading-tight text-foreground-secondary">
                 {step.description}
               </p>

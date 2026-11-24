@@ -9,7 +9,9 @@
 </script>
 
 <TopNavigation configuration={data.configuration.content} />
-<slot />
+<main>
+  <slot />
+</main>
 {#if !$page.error}
   <Footer configuration={data.configuration.content} />
 {/if}

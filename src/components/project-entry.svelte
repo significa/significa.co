@@ -10,11 +10,17 @@
   import Recognitions from './recognitions.svelte';
   import type { ProjectPage } from '$lib/content';
   import { page } from '$app/stores';
+  import Heading from './heading.svelte';
+  import { getHeadingLevel, toHeadingLevel } from '$lib/heading-level';
 
   export let project: ISbStoryData<ProjectStoryblok> | ProjectPage;
   export let variant: 'featured' | 'default' = 'default';
-  export let as: 'h2' | 'h3' = 'h3';
+  /** Heading tag for the project name. Defaults to the current heading scope. */
+  export let as: 'h2' | 'h3' | undefined = undefined;
   export let autoplayReel = true;
+
+  const scopeLevel = getHeadingLevel();
+  $: nameLevel = as ? toHeadingLevel(Number(as.slice(1))) : $scopeLevel;
 
   let index = 0;
   let video: HTMLVideoElement;
@@ -52,9 +58,9 @@
     >
       <div class="mr-6">
         <a class="elevated-link" href={`/projects/${project.slug}`}>
-          <svelte:element this={as} class="text-5xl text-foreground-secondary">
+          <Heading level={nameLevel} visual={3} class="text-5xl text-foreground-secondary">
             {project.name}
-          </svelte:element>
+          </Heading>
           <p class={clsx('text-5xl', variant === 'default' ? 'max-w-lg' : 'max-w-3xl')}>
             {project.content.tagline}
           </p>
@@ -66,7 +72,7 @@
               variant === 'featured' && '@5xl:flex'
             )}
           >
-            <Recognitions as={as === 'h2' ? 'h3' : 'h4'} {recognitions} />
+            <Recognitions level={toHeadingLevel(nameLevel + 1)} {recognitions} />
           </div>
         {/if}
       </div>

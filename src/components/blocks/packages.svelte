@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import type { PackagesStoryblok } from '$types/bloks';
 
   import Form from '$components/pages/get-a-quote/form.svelte';
@@ -12,8 +13,12 @@
     class="container mx-auto flex max-w-md flex-col items-center px-container text-center @container"
   >
     <img width="122" src={HandAsset} alt="" class="-mt-14" />
-    <h3 class="text-5xl font-semibold text-foreground-secondary">{block.section_title}</h3>
-    <h3 class="text-5xl font-semibold">{block.section_description}</h3>
+    <Heading offset={0} visual={3} class="text-5xl font-semibold text-foreground-secondary"
+      >{block.section_title}</Heading
+    >
+    <Heading offset={0} visual={3} class="text-5xl font-semibold"
+      >{block.section_description}</Heading
+    >
   </div>
 </section>
 <Form page={block} />

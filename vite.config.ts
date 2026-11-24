@@ -20,7 +20,9 @@ export default defineConfig({
     ...extraPlugins
   ],
   test: {
-    include: ['src/**/*.{test,spec}.{js,ts}']
+    include: ['src/**/*.{test,spec}.{js,ts}'],
+    // Compile Svelte components for SSR so tests see exactly what the server renders.
+    transformMode: { ssr: [/\.svelte$/] }
   },
   server: {
     https: HTTPS_ENABLED,

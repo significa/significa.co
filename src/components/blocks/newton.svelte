@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { device } from '$lib/stores/device';
   import type { NewtonStoryblok } from '$types/bloks';
@@ -37,10 +38,10 @@
     class="container grid place-items-center border-b px-container lg:max-w-none lg:border-none lg:px-0"
   >
     <div class="py-14 lg:max-w-2xl lg:p-12">
-      <h3 class="mb-6 text-5xl">
+      <Heading offset={0} visual={3} class="mb-6 text-5xl">
         <span class="text-foreground-secondary">{block.title1}</span> <br />
         {block.title2}
-      </h3>
+      </Heading>
       <p class="mb-8 text-2xl text-foreground-secondary">{block.description}</p>
       {#if block.cta_label && block.cta_link}
         {@const { href } = getAnchorFromCmsLink(block.cta_link)}

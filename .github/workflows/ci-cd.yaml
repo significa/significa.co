@@ -22,7 +22,8 @@ jobs:
       npm_scope: '@significa'
       install_registry_url: 'https://npm.pkg.github.com/'
       # FIXME: We cannot run `npm run validate` because `svelte-check` requires runtime env vars to be set
-      lint_command: 'npm run lint'
+      # Tests run here too: the shared workflow has no separate test step. They need no env vars.
+      lint_command: 'npm run lint && npm test'
       staging_domain: ${{ vars.STAGING_DOMAIN }}
       production_domain: ${{ vars.PRODUCTION_DOMAIN }}
     secrets:

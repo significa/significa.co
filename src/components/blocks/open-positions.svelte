@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import { page } from '$app/stores';
   import type { OpenPositionsStoryblok } from '$types/bloks';
 
@@ -21,7 +22,9 @@
 <section use:storyblokEditable={block} class="mt-10 border-t md:mt-14 lg:mt-20">
   <div class="container mx-auto flex px-container pt-8 lg:pt-12">
     <div class="xl:max-w-xl">
-      <h3 class="text-5xl text-foreground-secondary">{block.open_positions_title}</h3>
+      <Heading offset={0} visual={3} class="text-5xl text-foreground-secondary"
+        >{block.open_positions_title}</Heading
+      >
       <p class="text-5xl">{block.open_positions_description}</p>
     </div>
   </div>

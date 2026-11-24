@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { getImageAttributes } from '$lib/utils/cms';
   import type { CoreValuesStoryblok } from '$types/bloks';
@@ -13,7 +14,9 @@
   >
     <div class="flex flex-col justify-between gap-6 lg:max-w-xl lg:py-12">
       <div>
-        <h2 class="text-5xl text-foreground-secondary">{block.values_title1}</h2>
+        <Heading offset={0} visual={2} class="text-5xl text-foreground-secondary"
+          >{block.values_title1}</Heading
+        >
         <p class="text-5xl">{block.values_title2}</p>
       </div>
 
@@ -32,7 +35,7 @@
             {/if}
 
             <div>
-              <h3 class="text-2xl font-semibold">{value.title}</h3>
+              <Heading offset={1} visual={3} class="text-2xl font-semibold">{value.title}</Heading>
               <p class="text-2xl text-foreground-secondary">{value.description}</p>
             </div>
           </div>

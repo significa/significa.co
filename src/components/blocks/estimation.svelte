@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import type { EstimationStoryblok } from '$types/bloks';
   import IllustrationEmply from '../illustrations/assets/illustration-emply.webp';
   import IllustrationEmplyLight from '../illustrations/assets/illustration-emply-light.webp';
@@ -61,8 +62,12 @@
     class="container mx-auto flex max-w-lg flex-col items-center px-container text-center @container"
   >
     <img width="122" src={HandAsset} alt="" class="-mt-14" />
-    <h3 class="text-5xl font-semibold text-foreground-secondary">{block.section_title}</h3>
-    <h3 class="text-5xl font-semibold">{block.section_description}</h3>
+    <Heading offset={0} visual={3} class="text-5xl font-semibold text-foreground-secondary"
+      >{block.section_title}</Heading
+    >
+    <Heading offset={0} visual={3} class="text-5xl font-semibold"
+      >{block.section_description}</Heading
+    >
   </div>
 </section>
 
@@ -79,9 +84,9 @@
       <div class="block w-full">
         <div class="relative z-10 flex h-full flex-col">
           <div class="order-1 px-container xl:px-8 xl:pt-8">
-            <h3 class="max-w-md text-4xl">
+            <Heading offset={0} visual={3} class="max-w-md text-4xl">
               {block.title}
-            </h3>
+            </Heading>
             <p class="my-4 max-w-md text-xl text-foreground-secondary">
               {block.description}
             </p>
@@ -211,9 +216,9 @@
       )}
     >
       <div>
-        <h3 class="max-w-[300px] text-4xl">
+        <Heading offset={0} visual={3} class="max-w-[300px] text-4xl">
           {block.form_title}
-        </h3>
+        </Heading>
         <p class="mb-10 mt-4 max-w-lg text-xl text-foreground-secondary">
           {block.form_description}
         </p>

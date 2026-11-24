@@ -14,6 +14,7 @@
   import type { ProjectPage } from '$lib/content';
   import { page } from '$app/stores';
   import Popover from '$components/proposals/popover.svelte';
+  import HeadingScope from '$components/heading-scope.svelte';
 
   export let story: ProjectPage;
   export let related: ProjectPage[];
@@ -29,7 +30,7 @@
   structureDataMarkup={story.content.structure_data_markup}
   noIndex={story.content.no_index}
 />
-<div use:drawerLinks class="container mx-auto px-container">
+<article use:drawerLinks class="container mx-auto px-container">
   <header>
     {#if story.content.reel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(story.content.reel.filename))}
       <Reel
@@ -63,11 +64,13 @@
 
   {#if recognitions?.length}
     <div class="mx-auto mt-8 max-w-2xl border-b pb-8">
-      <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
+      <h2 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
         {t('recognitions')}
-      </h4>
+      </h2>
       <div class="grid grid-cols-1 gap-4 xs:grid-cols-2 xs:gap-6 md:grid-cols-3">
-        <Recognitions {recognitions} />
+        <HeadingScope>
+          <Recognitions {recognitions} />
+        </HeadingScope>
       </div>
     </div>
   {/if}
@@ -77,35 +80,36 @@
   >
     {#each [{ title: t('services'), data: story.content.services }, { title: t('deliverables'), data: story.content.deliverables }, { title: t('links'), data: story.content.links }] as { title, data }}
       {#if data}
-        <ul class="col-span-1">
-          <h4 class="mb-2 text-xs uppercase tracking-wider text-foreground-secondary">{title}</h4>
-
-          <!-- Links -->
-          {#each data as line}
-            {#if typeof line === 'object'}
-              {@const { href, target, rel } = getAnchorFromCmsLink(line.link)}
-              {#if href}
-                <li class="mb-2 flex items-center gap-1">
-                  <Link {href} {target} {rel}>{line.label}</Link>
-                  <Icon class="mt-0.5" icon="arrow-external" />
+        <div class="col-span-1">
+          <h2 class="mb-2 text-xs uppercase tracking-wider text-foreground-secondary">{title}</h2>
+          <ul>
+            <!-- Links -->
+            {#each data as line}
+              {#if typeof line === 'object'}
+                {@const { href, target, rel } = getAnchorFromCmsLink(line.link)}
+                {#if href}
+                  <li class="mb-2 flex items-center gap-1">
+                    <Link {href} {target} {rel}>{line.label}</Link>
+                    <Icon class="mt-0.5" icon="arrow-external" />
+                  </li>
+                {/if}
+              {:else}
+                <li>
+                  <p class="mb-2 text-base">{line}</p>
                 </li>
               {/if}
-            {:else}
-              <li>
-                <p class="mb-2 text-base">{line}</p>
-              </li>
-            {/if}
-          {/each}
-        </ul>
+            {/each}
+          </ul>
+        </div>
       {/if}
     {/each}
   </div>
 
   {#if story.content.team?.length}
     <div class="mx-auto mt-8 max-w-2xl border-b pb-8">
-      <h4 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
+      <h2 class="mb-4 text-xs uppercase tracking-wider text-foreground-secondary">
         {t('project.team')}
-      </h4>
+      </h2>
       <div class="flex flex-wrap gap-2">
         {#each story.content.team as member}
           {#if member.content?.photo?.filename}
@@ -166,7 +170,7 @@
       })}
     />
   {/if}
-</div>
+</article>
 
 <!-- Prefooter -->
 <!-- TODO: Remove this code since it's repeated on prefooter-form (block) as soon as we change this page to blocks -->

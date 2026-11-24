@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Heading from '$components/heading.svelte';
   import { storyblokEditable } from '$lib/actions/storyblok-editable';
   import { getAnchorFromCmsLink, getImageAttributes } from '$lib/utils/cms';
   import type { BoxStoryblok } from '$types/bloks';
@@ -59,7 +60,7 @@
   {/if}
   <div class="flex flex-col">
     <div class="flex-1">
-      <h4 class="text-xl font-semibold">{block.title}</h4>
+      <Heading offset={0} visual={4} class="text-xl font-semibold">{block.title}</Heading>
       <p class="mt-0.5 text-xl">{block.text}</p>
     </div>
     {#if block.link?.length}

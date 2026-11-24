@@ -26,7 +26,7 @@
     </div>
   {/if}
   <div class="mx-auto my-10 max-w-2xl border-t pt-10 md:my-14 md:pt-14 lg:my-20 lg:pt-20">
-    <h4 class="text-lg font-medium leading-none">Sounds good?</h4>
+    <h2 class="text-lg font-medium leading-none">Sounds good?</h2>
     <p class="mb-6 text-lg font-medium text-foreground-secondary">Submit your application here</p>
     <ContactForm variant="career" position={story.name} />
   </div>

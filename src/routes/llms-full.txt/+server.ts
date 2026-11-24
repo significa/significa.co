@@ -26,7 +26,13 @@ type Page = { slug: string; title: string };
 const COMPANY_PAGES = [HOME_SLUG, 'about', 'services', 'careers', 'b-corp', 'legal'];
 
 /** Twins requested at once; most are served from the ISR cache. */
-const CONCURRENCY = 16;
+const CONCURRENCY = 10;
+
+/** Statuses worth retrying: rate limits and temporary server errors. */
+const RETRYABLE = new Set([429, 500, 502, 503, 504]);
+const RETRY_DELAYS_MS = [500, 2000];
+
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const hidden = (story: Story) =>
   story.content.no_index === true || story.content.hide_from_listings === true;
@@ -65,13 +71,20 @@ export const GET: RequestHandler = async ({ fetch, locals, url: requestUrl }) =>
    * the request goes through Vercel's routing and the twins' ISR cache.
    *
    * A 404 means the page is intentionally left out (removed, or kept out of search) and is
-   * skipped. Any other failure fails the whole request, so ISR keeps serving the last
-   * complete file instead of caching a partial one.
+   * skipped. Temporary failures (429, 5xx) are retried twice; any failure left fails the
+   * whole request, so ISR keeps serving the last complete file instead of caching a partial one.
    */
   async function twin({ slug, title }: Page): Promise<LlmsFullEntry | undefined> {
     const pageUrl = canonicalFromSlug(slug);
     const twinUrl = new URL(markdownTwinPath(new URL(pageUrl).pathname), requestUrl.origin);
-    const response = await globalThis.fetch(twinUrl, { headers: { accept: 'text/markdown' } });
+    // Right after a deploy every twin renders at once and Storyblok can rate-limit;
+    // temporary failures are retried before giving up.
+    let response = await globalThis.fetch(twinUrl, { headers: { accept: 'text/markdown' } });
+    for (const delay of RETRY_DELAYS_MS) {
+      if (!RETRYABLE.has(response.status)) break;
+      await wait(delay);
+      response = await globalThis.fetch(twinUrl, { headers: { accept: 'text/markdown' } });
+    }
     if (response.status === 404) return undefined;
     if (!response.ok) {
       console.error(`[llms-full] ${twinUrl} returned ${response.status}`);

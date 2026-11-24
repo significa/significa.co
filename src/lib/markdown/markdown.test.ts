@@ -5,7 +5,14 @@ import { markdownHandle } from './handle';
 import { htmlFragmentToMarkdown, pageHtmlToMarkdown } from './html-to-markdown';
 import { codeLines, mapOutsideFences } from './fences';
 import { buildLlmsFull, nestHeadings, parseTwin, stripFrontMatter } from './llms-full';
-import { EXCLUDED_PREFIXES, hasMarkdownTwin, markdownTwinPath, pageForMarkdownTwin } from './paths';
+import {
+  EXCLUDED_PREFIXES,
+  MARKDOWN_ACCEPT_PATTERN,
+  hasMarkdownTwin,
+  markdownTwinPath,
+  pageForMarkdownTwin,
+  prefersMarkdown
+} from './paths';
 
 const page = (main: string, head = '') => `<!doctype html><html lang="en"><head>
 <title>Finance Digital Products.</title>
@@ -154,10 +161,18 @@ dateModified: "2026-10-06T14:03:32.856Z"
 
 type Fetch = (input: string, init?: RequestInit) => Promise<Response>;
 
-function event(pathname: string, fetchImpl: Fetch, locals: App.Locals = { version: 'published' }) {
+function event(
+  pathname: string,
+  fetchImpl: Fetch,
+  locals: App.Locals = { version: 'published' },
+  options: { accept?: string; routeId?: string } = {}
+) {
   return {
     url: new URL(`https://significa.co${pathname}`),
-    request: new Request(`https://significa.co${pathname}`),
+    request: new Request(`https://significa.co${pathname}`, {
+      headers: options.accept ? { accept: options.accept } : {}
+    }),
+    route: { id: options.routeId ?? '/(marketing-site)/[...path]' },
     locals,
     fetch: vi.fn(fetchImpl)
   } as unknown as RequestEvent; // Test mock: only the fields the handle reads.
@@ -220,6 +235,36 @@ describe('markdown handle', () => {
       resolve: vi.fn()
     });
     expect(response.status).toBe(502);
+  });
+
+  it('answers Accept: text/markdown in the app for handbook routes only', async () => {
+    const accept = 'text/markdown, text/html;q=0.9';
+    const handbook = await markdownHandle({
+      event: event('/handbook/money-matters', async () => html(page('<h1>Money</h1>')), undefined, {
+        accept,
+        routeId: '/(handbook)/handbook/[...path]'
+      }),
+      resolve: vi.fn()
+    });
+    expect(handbook.headers.get('content-type')).toBe('text/markdown; charset=utf-8');
+
+    // The ISR catch-all negotiates in vercel.json, never in the app (it would poison the cache).
+    const resolve = vi.fn(async () => html('<p>page</p>'));
+    const marketing = await markdownHandle({
+      event: event('/finance', async () => html(''), undefined, { accept }),
+      resolve
+    });
+    expect(resolve).toHaveBeenCalled();
+    expect(marketing.headers.get('content-type')).toContain('text/html');
+
+    const browser = await markdownHandle({
+      event: event('/handbook/money-matters', async () => html(''), undefined, {
+        accept: 'text/html,*/*;q=0.8',
+        routeId: '/(handbook)/handbook/[...path]'
+      }),
+      resolve
+    });
+    expect(browser.headers.get('content-type')).toContain('text/html');
   });
 
   it('sends moved pages to the twin of their new location', async () => {
@@ -346,12 +391,14 @@ describe('Vercel and robots configuration', () => {
   const vercel = JSON.parse(readFileSync('vercel.json', 'utf8'));
   const robots = readFileSync('static/robots.txt', 'utf8');
   const [homeRewrite, pageRewrite] = vercel.rewrites;
-  const accept = new RegExp(`^${homeRewrite.has[0].value}`);
+  const accept = { test: prefersMarkdown };
 
   it('rewrites Markdown requests to the twins, before the cache', () => {
     expect(homeRewrite).toMatchObject({ source: '/', destination: '/index.md' });
     expect(pageRewrite.destination).toBe('/:path.md');
     expect(pageRewrite.has[0].value).toBe(homeRewrite.has[0].value);
+    // One pattern for the Vercel rewrite and the in-app negotiation.
+    expect(homeRewrite.has[0].value).toBe(MARKDOWN_ACCEPT_PATTERN);
   });
 
   it('only treats Accept headers that prefer Markdown as Markdown requests', () => {

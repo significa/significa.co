@@ -1,6 +1,15 @@
 import type { Handle, RequestEvent } from '@sveltejs/kit';
 import { pageHtmlToMarkdown } from './html-to-markdown';
-import { hasMarkdownTwin, markdownTwinPath, pageForMarkdownTwin } from './paths';
+import { hasMarkdownTwin, markdownTwinPath, pageForMarkdownTwin, prefersMarkdown } from './paths';
+
+/**
+ * Routes whose Accept negotiation happens here rather than in vercel.json.
+ * Vercel matches the handbook's own routes before vercel.json rewrites, so the
+ * rewrite never reaches them. They are not ISR-cached (max-age=0), so answering
+ * by Accept here cannot mix HTML and Markdown in a cache. The marketing
+ * catch-all is ISR-cached and must keep negotiating in vercel.json.
+ */
+const NEGOTIATED_IN_APP = ['/(handbook)'];
 
 const REDIRECT = new Set([301, 302, 303, 307, 308]);
 
@@ -66,9 +75,17 @@ export async function serveMarkdownTwin(event: RequestEvent, page: string): Prom
  * `vercel.json`, before the ISR cache, so HTML and Markdown are cached apart.
  */
 export const markdownHandle: Handle = async ({ event, resolve }) => {
+  const readable = event.request.method === 'GET' || event.request.method === 'HEAD';
   const page = pageForMarkdownTwin(event.url.pathname);
-  if (page && (event.request.method === 'GET' || event.request.method === 'HEAD')) {
-    return serveMarkdownTwin(event, page);
+  if (page && readable) return serveMarkdownTwin(event, page);
+
+  if (
+    readable &&
+    NEGOTIATED_IN_APP.some((group) => event.route.id?.startsWith(group)) &&
+    hasMarkdownTwin(event.url.pathname) &&
+    prefersMarkdown(event.request.headers.get('accept'))
+  ) {
+    return serveMarkdownTwin(event, event.url.pathname);
   }
 
   const response = await resolve(event);

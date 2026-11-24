@@ -23,6 +23,18 @@ export const EXCLUDED_PREFIXES = [
 
 const MARKDOWN_SUFFIX = '.md';
 
+/**
+ * Accept header values that prefer Markdown: `text/markdown` with no q, or q=1.
+ * The same pattern is used by the rewrite in vercel.json (a test keeps them equal).
+ */
+export const MARKDOWN_ACCEPT_PATTERN =
+  '(?:^|.*,)\\s*text/markdown\\s*(?:;\\s*q\\s*=\\s*1(?:\\.0{0,3})?\\s*)?(?:,.*)?$';
+
+const markdownAccept = new RegExp(MARKDOWN_ACCEPT_PATTERN);
+
+/** True when an Accept header asks for Markdown over HTML. */
+export const prefersMarkdown = (accept: string | null) => markdownAccept.test(accept ?? '');
+
 const isExcluded = (pathname: string) =>
   EXCLUDED_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
 

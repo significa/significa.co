@@ -130,10 +130,7 @@ function event(pathname: string, fetchImpl: Fetch, locals: App.Locals = { versio
 }
 
 const html = (body: string, status = 200) =>
-  new Response(body, {
-    status,
-    headers: { 'content-type': 'text/html; charset=utf-8' }
-  });
+  new Response(body, { status, headers: { 'content-type': 'text/html; charset=utf-8' } });
 
 describe('markdown handle', () => {
   it('serves the twin as Markdown with canonical and Vary headers', async () => {
@@ -179,26 +176,17 @@ describe('markdown handle', () => {
 
   it('advertises the twin on HTML pages, except pages kept out of search', async () => {
     const resolve = vi.fn(async () => html('<p>page</p>'));
-    const shown = await markdownHandle({
-      event: event('/finance', async () => html('')),
-      resolve
-    });
+    const shown = await markdownHandle({ event: event('/finance', async () => html('')), resolve });
     expect(shown.headers.get('link')).toBe('</finance.md>; rel="alternate"; type="text/markdown"');
     expect(shown.headers.get('vary')).toBe('Accept');
 
     const hidden = await markdownHandle({
-      event: event('/post', async () => html(''), {
-        version: 'published',
-        noMarkdownTwin: true
-      }),
+      event: event('/post', async () => html(''), { version: 'published', noMarkdownTwin: true }),
       resolve
     });
     expect(hidden.headers.get('link')).toBeNull();
 
-    const file = await markdownHandle({
-      event: event('/rss.xml', async () => html('')),
-      resolve
-    });
+    const file = await markdownHandle({ event: event('/rss.xml', async () => html('')), resolve });
     expect(file.headers.get('link')).toBeNull();
   });
 });
@@ -248,14 +236,12 @@ describe('llms-full.txt', () => {
 
 describe('Vercel and robots configuration', () => {
   const vercel = JSON.parse(readFileSync('vercel.json', 'utf8'));
+  const robots = readFileSync('static/robots.txt', 'utf8');
   const [homeRewrite, pageRewrite] = vercel.rewrites;
   const accept = new RegExp(`^${homeRewrite.has[0].value}`);
 
   it('rewrites Markdown requests to the twins, before the cache', () => {
-    expect(homeRewrite).toMatchObject({
-      source: '/',
-      destination: '/index.md'
-    });
+    expect(homeRewrite).toMatchObject({ source: '/', destination: '/index.md' });
     expect(pageRewrite.destination).toBe('/:path.md');
     expect(pageRewrite.has[0].value).toBe(homeRewrite.has[0].value);
   });
@@ -292,5 +278,15 @@ describe('Vercel and robots configuration', () => {
     for (const file of ['robots.txt', 'llms.txt', 'blog/post.md', 'fonts/a.woff2']) {
       expect(path.test(file), file).toBe(false);
     }
+  });
+
+  it('states the content usage preferences in robots.txt and as a header', () => {
+    expect(robots).toMatch(/^Content-Signal: search=yes, ai-input=yes, ai-train=yes$/m);
+    expect(robots).toMatch(/^Content-Usage: search=y, ai-use=y, train-ai=y$/m);
+    const headers = vercel.headers[0].headers;
+    expect(headers).toContainEqual({
+      key: 'Content-Usage',
+      value: 'search=y, ai-use=y, train-ai=y'
+    });
   });
 });

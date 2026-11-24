@@ -33,6 +33,10 @@
         {
           "key": "Cross-Origin-Opener-Policy",
           "value": "same-origin"
+        },
+        {
+          "key": "Content-Usage",
+          "value": "search=y, ai-use=y, train-ai=y"
         }
       ]
     }

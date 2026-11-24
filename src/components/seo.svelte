@@ -16,6 +16,7 @@
   import { getFileExtension } from '$lib/utils/strings';
   import type { AssetStoryblok } from '$types/bloks';
   import { getContext } from 'svelte';
+  import { hasMarkdownTwin, markdownTwinPath } from '$lib/markdown/paths';
 
   export let title: undefined | string = undefined;
   export let description: undefined | string = undefined;
@@ -54,18 +55,30 @@
         description: resolvedDescription,
         siteDescription: t('seo.description'),
         manual: structureDataMarkup ?? parts?.manual,
-        organization: organizationFromConfiguration($page.data.configuration?.content)
+        // Organization fields live on the main `configuration` story. The handbook loads its
+        // navigation story as `configuration`, so it passes the main one as `siteConfiguration`.
+        organization: organizationFromConfiguration(
+          ($page.data.siteConfiguration ?? $page.data.configuration)?.content
+        )
       });
   $: if (dev && graph) {
     const problems = validateGraph(graph);
     if (problems.length) console.warn(`[seo] JSON-LD problems on ${canonical}:`, problems);
   }
   $: jsonLd = graph ? jsonLdScriptTag(graph) : '';
+  // Markdown version of the page for agents (served by src/lib/markdown/handle.ts).
+  $: markdownTwin =
+    !noIndex && parts?.entity.kind !== 'none' && hasMarkdownTwin($page.url.pathname)
+      ? markdownTwinPath($page.url.pathname)
+      : undefined;
 </script>
 
 <svelte:head>
   {#if !inDrawer}
     <link rel="canonical" href={canonical} />
+    {#if markdownTwin}
+      <link rel="alternate" type="text/markdown" href={markdownTwin} />
+    {/if}
     {#if noIndex}
       <meta name="robots" content="noindex, nofollow" />
     {/if}

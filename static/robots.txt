@@ -1,4 +1,9 @@
+# Significa welcomes search engines and AI systems.
+# Content-Signal: https://contentsignals.org (Cloudflare Content Signals Policy)
+# Content-Usage: IETF AIPREF (draft-ietf-aipref-attach, draft-ietf-aipref-vocab)
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Content-Usage: search=y, ai-use=y, train-ai=y
 Allow: /
 
 Sitemap: https://significa.co/sitemap.xml

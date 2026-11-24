@@ -14,6 +14,10 @@ export const load = async ({ params, locals, fetch, url }) => {
     url
   });
 
+  if ('no_index' in page.story.content && page.story.content.no_index) {
+    locals.noMarkdownTwin = true;
+  }
+
   return { page };
 };
 

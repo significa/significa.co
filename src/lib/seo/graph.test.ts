@@ -125,13 +125,13 @@ describe('global nodes', () => {
     expect(org).toMatchObject({
       description: expect.stringContaining('B Corp certified'),
       foundingDate: '2014',
-      telephone: '+351926429132',
+      telephone: '+351226001751',
       address: expect.objectContaining({ postalCode: '4050-609' }),
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'sales',
         email: 'newbusiness@significa.co',
-        telephone: '+351926429132'
+        telephone: '+351226001751'
       },
       hasCredential: [expect.objectContaining({ name: 'Certified B Corporation' })],
       memberOf: [expect.objectContaining({ name: '1% for the Planet' })]

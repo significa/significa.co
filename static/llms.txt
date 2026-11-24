@@ -41,3 +41,6 @@ Projects usually take 3 to 6 months from kick-off to launch. Significa works as 
 - [Mission and values](https://significa.co/handbook/mission-and-values)
 - [How we collaborate](https://significa.co/handbook/how-we-collaborate)
 - [Careers](https://significa.co/careers): Open positions.
+- [Full text](https://significa.co/llms-full.txt): Every public page in one Markdown file, with each page's URL.
+
+Every page is also available as Markdown: append `.md` to its URL (the home page is https://significa.co/index.md), or request the page with `Accept: text/markdown`.

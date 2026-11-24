@@ -48,8 +48,6 @@
         return '';
     }
   };
-
-  $: console.log(story);
 </script>
 
 <Seo

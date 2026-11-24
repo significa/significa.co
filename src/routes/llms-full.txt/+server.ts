@@ -1,4 +1,5 @@
 import { BYPASS_TOKEN } from '$env/static/private';
+import { error } from '@sveltejs/kit';
 import { resolver } from '$components/rich-text.svelte';
 import { HOME_SLUG } from '$lib/constants';
 import { htmlFragmentToMarkdown } from '$lib/markdown/html-to-markdown';
@@ -42,7 +43,7 @@ const list = (values: unknown) =>
 const hidden = (story: Story) =>
   story.content.no_index === true || story.content.hide_from_listings === true;
 
-export const GET: RequestHandler = async ({ fetch, locals }) => {
+export const GET: RequestHandler = async ({ fetch, locals, url: requestUrl }) => {
   const storyblok = getStoryblok({ fetch });
 
   async function stories(params: Record<string, string>): Promise<Story[]> {
@@ -60,12 +61,23 @@ export const GET: RequestHandler = async ({ fetch, locals }) => {
     }
   }
 
-  /** Pages built from blocks reuse their Markdown twin, so the text is what the page renders. */
-  async function twin(slug: string, title: string): Promise<LlmsFullEntry | undefined> {
+  /**
+   * Pages built from blocks reuse their Markdown twin, so the text is what the page renders.
+   *
+   * Twins are requested over HTTP from this deployment, not with SvelteKit's internal fetch:
+   * on Vercel this endpoint runs in its own function (its own maxDuration), whose manifest
+   * does not include the page routes, so an internal request would 404. Over HTTP the request
+   * goes through Vercel's routing and the twins' ISR cache.
+   */
+  async function twin(slug: string, title: string): Promise<LlmsFullEntry> {
     const url = canonicalFromSlug(slug);
-    const path = new URL(url).pathname;
-    const response = await fetch(markdownTwinPath(path));
-    if (!response.ok) return undefined;
+    const twinUrl = new URL(markdownTwinPath(new URL(url).pathname), requestUrl.origin);
+    const response = await globalThis.fetch(twinUrl, { headers: { accept: 'text/markdown' } });
+    // Never publish an incomplete file: fail, and ISR keeps serving the last complete one.
+    if (!response.ok) {
+      console.error(`[llms-full] ${twinUrl} returned ${response.status}`);
+      throw error(503, `Could not render ${twinUrl.pathname}`);
+    }
     const markdown = await response.text();
     const dates = markdown.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? '';
     const field = (name: string) => dates.match(new RegExp(`^${name}: "(.*)"$`, 'm'))?.[1];
@@ -85,7 +97,7 @@ export const GET: RequestHandler = async ({ fetch, locals }) => {
       const batch = await Promise.all(
         items.slice(i, i + 4).map((item) => twin(item.slug, item.title))
       );
-      entries.push(...batch.filter((entry): entry is LlmsFullEntry => entry !== undefined));
+      entries.push(...batch);
     }
     return entries;
   }

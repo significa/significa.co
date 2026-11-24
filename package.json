@@ -34,6 +34,7 @@
     "@tailwindcss/typography": "^0.5.15",
     "@types/matter-js": "^0.18.5",
     "@types/prismjs": "^1.26.5",
+    "@types/turndown": "^5.0.6",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
     "autoprefixer": "^10.4.20",
@@ -75,10 +76,12 @@
     "@significa/svelte-ui": "^0.0.34",
     "@storyblok/js": "^3.1.9",
     "@tanstack/svelte-query": "^4.43.0",
+    "linkedom": "^0.18.15",
     "matter-js": "^0.19.0",
     "openapi-fetch": "^0.13.4",
     "posthog-js": "^1.242.2",
     "prism-svelte": "^0.5.0",
-    "svelte-confetti": "^1.4.0"
+    "svelte-confetti": "^1.4.0",
+    "turndown": "^7.2.5"
   }
 }

@@ -9,6 +9,8 @@ declare global {
     // interface Error {}
     interface Locals {
       version: 'published' | 'draft';
+      /** Set by pages kept out of search (no_index): no Markdown twin is advertised. */
+      noMarkdownTwin?: boolean;
     }
     interface PageData {
       awards: ISbStoryData<RecognitionEntryStoryblok>[];

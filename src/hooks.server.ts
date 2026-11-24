@@ -4,6 +4,7 @@ import type { Handle } from '@sveltejs/kit';
 import { dev } from '$app/environment';
 import * as Sentry from '@sentry/sveltekit';
 import { PUBLIC_SENTRY_DNS, PUBLIC_SENTRY_ENVIRONMENT } from '$env/static/public';
+import { markdownHandle } from '$lib/markdown/handle';
 
 if (!dev) {
   Sentry.init({
@@ -25,6 +26,6 @@ const validateDraftMode: Handle = async ({ event, resolve }) => {
   return response;
 };
 
-export const handle = sequence(validateDraftMode, Sentry.sentryHandle());
+export const handle = sequence(validateDraftMode, Sentry.sentryHandle(), markdownHandle);
 
 export const handleError = Sentry.handleErrorWithSentry();

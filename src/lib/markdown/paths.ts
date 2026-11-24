@@ -1,0 +1,52 @@
+/**
+ * Which URLs have a Markdown twin, and where it lives.
+ *
+ * Every public page at `/path` has a twin at `/path.md` (the home page at
+ * `/index.md`). Agents find it through `<link rel="alternate">` and the `Link`
+ * header, or get it by sending `Accept: text/markdown` (see `vercel.json`).
+ *
+ * Keep EXCLUDED_PREFIXES in sync with the negative lookahead in the Accept
+ * rewrite in `vercel.json`; a test checks it.
+ */
+
+/** Routes that are not public content pages (private, utility or API routes). */
+export const EXCLUDED_PREFIXES = [
+  '/proposal',
+  '/preview',
+  '/exit-preview',
+  '/get-signed-url',
+  '/healthz',
+  '/form',
+  '/segg',
+  '/handbook/search'
+] as const;
+
+const MARKDOWN_SUFFIX = '.md';
+
+const isExcluded = (pathname: string) =>
+  EXCLUDED_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+
+/** True when a page at this path gets a Markdown twin. */
+export function hasMarkdownTwin(pathname: string): boolean {
+  if (isExcluded(pathname)) return false;
+  // Files (robots.txt, sitemap.xml, llms.txt, images...) have an extension in the last segment.
+  const last = pathname.split('/').pop() ?? '';
+  return !last.includes('.');
+}
+
+/** `/blog/post` -> `/blog/post.md`, `/` -> `/index.md`. */
+export function markdownTwinPath(pathname: string): string {
+  const clean = pathname.replace(/\/+$/, '');
+  return clean ? `${clean}${MARKDOWN_SUFFIX}` : `/index${MARKDOWN_SUFFIX}`;
+}
+
+/**
+ * The HTML page a Markdown twin request is for, or null when the path is not a
+ * twin. `/blog/post.md` -> `/blog/post`, `/index.md` -> `/`.
+ */
+export function pageForMarkdownTwin(pathname: string): string | null {
+  if (!pathname.endsWith(MARKDOWN_SUFFIX)) return null;
+  const page = pathname.slice(0, -MARKDOWN_SUFFIX.length);
+  const target = page === '/index' || page === '' ? '/' : page;
+  return hasMarkdownTwin(target) ? target : null;
+}

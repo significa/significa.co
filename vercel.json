@@ -64,5 +64,29 @@
       "source": "/labs/css-only-slider",
       "destination": "/blog/css-only-slider"
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(?:^|.*,)\\s*text/markdown\\s*(?:;\\s*q\\s*=\\s*1(?:\\.0{0,3})?\\s*)?(?:,.*)?$"
+        }
+      ],
+      "destination": "/index.md"
+    },
+    {
+      "source": "/:path((?!(?:proposal|preview|exit-preview|get-signed-url|healthz|form|segg|handbook/search)(?:/|$))[^.]*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(?:^|.*,)\\s*text/markdown\\s*(?:;\\s*q\\s*=\\s*1(?:\\.0{0,3})?\\s*)?(?:,.*)?$"
+        }
+      ],
+      "destination": "/:path.md"
+    }
   ]
 }

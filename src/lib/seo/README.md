@@ -87,9 +87,11 @@ Rules applied to accepted nodes:
 
 `docs/seo/jsonld-field-audit.md` lists what each story has in the field today (`npm run seo:audit` regenerates it).
 
-## Proposed Organization fields in Storyblok
+## Organization fields in Storyblok
 
-Not created yet. When approved, add an "Organization" tab to the `configuration` content type with: `org_name`, `org_url`, `org_description`, `org_founding_date`, `org_email`, `org_telephone` (text), `org_logo` (asset), `org_street_address`, `org_address_locality`, `org_postal_code`, `org_address_country` (text) and `org_same_as` (blocks or a list of links with a `url`). `organizationFromConfiguration` already reads them and falls back to the constants per field.
+The `configuration` content type has an "Organization" tab with `org_name`, `org_url`, `org_description`, `org_founding_date`, `org_email`, `org_telephone`, `org_street_address`, `org_postal_code`, `org_address_locality`, `org_address_country` (text), `org_logo` (asset) and `org_same_as` (`org-profile` blocks, each with a `url`). `organizationFromConfiguration` reads them and falls back to `ORGANIZATION_FALLBACK` for every field left empty.
+
+They are filled in on the story named "Navigation" (slug `configuration`), not on "Handbook Navigation". Every page reads that story: the marketing layout loads it as `configuration`, the handbook layout as `siteConfiguration`. Changes go live with the next ISR revalidation (about a minute), without a deploy. Proposals use the code fallback.
 
 ## Adding a new type
 

@@ -43,7 +43,7 @@ export const ORGANIZATION_FALLBACK = {
     'Award-winning digital product design and development agency based in Porto, Portugal. B Corp certified and member of 1% for the Planet.',
   foundingDate: '2014',
   email: 'newbusiness@significa.co',
-  telephone: '+351926429132',
+  telephone: '+351226001751',
   logo: {
     url: 'https://a.storyblok.com/f/198185/1600x1600/708e2e3a4f/logo_significa.png',
     width: 1600,

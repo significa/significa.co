@@ -103,6 +103,23 @@ describe('<Seo> server-rendered JSON-LD', () => {
     expect(webPage?.name).toBe(title);
   });
 
+  it('handbook pages read the Organization from the main configuration story', async () => {
+    // The handbook layout loads its navigation story as `configuration` and the main one as
+    // `siteConfiguration`; the Organization must come from the main one.
+    state.url = 'http://localhost:5173/handbook/money-matters';
+    state.data = {
+      page: { story: handbookStory },
+      configuration: { content: { org_name: 'Handbook navigation story' } },
+      siteConfiguration: { content: { org_name: 'Significa from Storyblok' } }
+    };
+    const mod = await import('./seo.svelte');
+    const seo: unknown = mod.default;
+    if (!isSsrComponent(seo)) throw new Error('seo.svelte was not compiled for SSR');
+    const [graph] = extractJsonLd(seo.render().head);
+    const org = graph['@graph'].find((n) => n['@type'] === 'Organization');
+    expect(org?.name).toBe('Significa from Storyblok');
+  });
+
   it('error pages only get the global nodes', async () => {
     const head = await renderSeo(homeStory, '/missing', { schema: { entity: { kind: 'none' } } });
     const [graph] = extractJsonLd(head);

@@ -54,7 +54,11 @@
         description: resolvedDescription,
         siteDescription: t('seo.description'),
         manual: structureDataMarkup ?? parts?.manual,
-        organization: organizationFromConfiguration($page.data.configuration?.content)
+        // Organization fields live on the main `configuration` story. The handbook loads its
+        // navigation story as `configuration`, so it passes the main one as `siteConfiguration`.
+        organization: organizationFromConfiguration(
+          ($page.data.siteConfiguration ?? $page.data.configuration)?.content
+        )
       });
   $: if (dev && graph) {
     const problems = validateGraph(graph);

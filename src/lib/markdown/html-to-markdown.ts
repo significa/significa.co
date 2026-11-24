@@ -66,7 +66,9 @@ function createTurndown(): TurndownService {
     codeBlockStyle: 'fenced',
     emDelimiter: '_',
     strongDelimiter: '**',
-    hr: '---'
+    hr: '---',
+    // A backslash hard break survives the trailing-whitespace cleanup; two spaces would not.
+    br: '\\'
   });
 
   turndown.addRule('absoluteLinks', {

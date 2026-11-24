@@ -26,7 +26,7 @@ type Page = { slug: string; title: string };
 const COMPANY_PAGES = [HOME_SLUG, 'about', 'services', 'careers', 'b-corp', 'legal'];
 
 /** Twins requested at once; most are served from the ISR cache. */
-const CONCURRENCY = 10;
+const CONCURRENCY = 16;
 
 /** Statuses worth retrying: rate limits and temporary server errors. */
 const RETRYABLE = new Set([429, 500, 502, 503, 504]);
@@ -103,16 +103,25 @@ export const GET: RequestHandler = async ({ fetch, locals, url: requestUrl }) =>
     return entries;
   }
 
-  const [pages, landingPages, projects, posts, handbook] = await Promise.all([
+  // The same page types as the sitemap (scripts/sitemap.ts), minus hidden and no_index stories.
+  const [pages, landingPages, projects, posts, handbook, people, careers] = await Promise.all([
     stories({ content_type: 'page' }),
     stories({ content_type: 'landing-page' }),
     stories({ content_type: 'project', sort_by: 'first_published_at:desc' }),
     stories({ content_type: 'blog-post', sort_by: 'first_published_at:desc' }),
-    stories({ content_type: 'handbook', starts_with: 'handbook/' })
+    stories({ content_type: 'handbook', starts_with: 'handbook/' }),
+    stories({ content_type: 'team-member', sort_by: 'name:asc' }),
+    stories({ content_type: 'career' })
   ]);
 
+  const visible = (list: Story[]) => list.filter((story) => !hidden(story));
+  const slugOf = (story: Story) => story.full_slug.replace(/\/$/, '');
+  const serviceSlugs = new Set<string>([
+    ...INDUSTRY_LANDING_PAGE_SLUGS,
+    ...DELIVERABLE_LANDING_PAGE_SLUGS
+  ]);
   const bySlug = new Map(
-    [...pages, ...landingPages].map((story) => [story.full_slug.replace(/\/$/, ''), story])
+    visible([...pages, ...landingPages]).map((story) => [slugOf(story), story])
   );
   const named = (slugs: readonly string[]) =>
     slugs.flatMap((slug) => {
@@ -120,13 +129,22 @@ export const GET: RequestHandler = async ({ fetch, locals, url: requestUrl }) =>
       return story ? [toPage(story)] : [];
     });
 
+  // Company: the main pages first, then every other page and landing page that is not a service.
+  const otherCompanyPages = visible([...pages, ...landingPages])
+    .filter((story) => !COMPANY_PAGES.includes(slugOf(story)) && !serviceSlugs.has(slugOf(story)))
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map(toPage);
+
   const groups: [string, Page[]][] = [
-    ['Company', named(COMPANY_PAGES)],
+    ['Company', [...named(COMPANY_PAGES), ...otherCompanyPages]],
     ['Industries', named(INDUSTRY_LANDING_PAGE_SLUGS)],
     ['Deliverables', named(DELIVERABLE_LANDING_PAGE_SLUGS)],
-    ['Projects', projects.filter((story) => !hidden(story)).map(toPage)],
-    ['Blog', posts.filter((story) => !hidden(story)).map(toPage)],
-    ['Handbook', handbook.map(toPage)]
+    ['Careers', visible(careers).map(toPage)],
+    ['Projects', visible(projects).map(toPage)],
+    ['Blog', visible(posts).map(toPage)],
+    // The handbook index is a route in the code, not a Storyblok story.
+    ['Handbook', [{ slug: 'handbook', title: 'Handbook' }, ...visible(handbook).map(toPage)]],
+    ['People', visible(people).map(toPage)]
   ];
 
   const sections: LlmsFullSection[] = [];

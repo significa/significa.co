@@ -144,6 +144,12 @@ dateModified: "2026-10-06T14:03:32.856Z"
     );
   });
 
+  it('keeps explicit line breaks as Markdown hard breaks', () => {
+    expect(htmlFragmentToMarkdown('<p>Rua da Torrinha 154<br>4050-609 Porto</p>')).toBe(
+      'Rua da Torrinha 154\\\n4050-609 Porto'
+    );
+  });
+
   it('leaves code blocks untouched', () => {
     const markdown = htmlFragmentToMarkdown(
       '<p>Example:</p><pre><code>const a = `line one\n\n\n\nline five`;   \n</code></pre>'

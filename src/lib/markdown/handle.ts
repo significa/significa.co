@@ -12,7 +12,12 @@ const notFound = () =>
 
 /** Serves `/path.md` by rendering `/path` and converting its HTML to Markdown. */
 async function serveMarkdownTwin(event: RequestEvent, page: string): Promise<Response> {
-  const response = await event.fetch(`${page}${event.url.search}`, {
+  // Only the path changes: the page is always fetched from this site, never another origin.
+  const target = new URL(event.url);
+  target.pathname = page;
+  if (target.origin !== event.url.origin) return notFound();
+
+  const response = await event.fetch(target, {
     headers: { accept: 'text/html' },
     redirect: 'manual'
   });
@@ -30,6 +35,13 @@ async function serveMarkdownTwin(event: RequestEvent, page: string): Promise<Res
     return notFound();
   }
 
+  // Server errors stay errors, so callers (llms-full.txt) can tell them from missing pages.
+  if (response.status >= 500) {
+    return new Response('Upstream error\n', {
+      status: response.status === 503 ? 503 : 502,
+      headers: { 'content-type': 'text/plain; charset=utf-8' }
+    });
+  }
   const contentType = response.headers.get('content-type') ?? '';
   if (response.status !== 200 || !contentType.includes('text/html')) return notFound();
 

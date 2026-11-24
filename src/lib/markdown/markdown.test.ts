@@ -3,7 +3,8 @@ import { describe, expect, it, vi } from 'vitest';
 import type { RequestEvent } from '@sveltejs/kit';
 import { markdownHandle } from './handle';
 import { htmlFragmentToMarkdown, pageHtmlToMarkdown } from './html-to-markdown';
-import { buildLlmsFull, nestHeadings, stripFrontMatter } from './llms-full';
+import { mapOutsideFences } from './fences';
+import { buildLlmsFull, nestHeadings, parseTwin, stripFrontMatter } from './llms-full';
 import { EXCLUDED_PREFIXES, hasMarkdownTwin, markdownTwinPath, pageForMarkdownTwin } from './paths';
 
 const page = (main: string, head = '') => `<!doctype html><html lang="en"><head>
@@ -32,6 +33,13 @@ describe('markdown twin paths', () => {
     expect(hasMarkdownTwin('/formula')).toBe(true);
     expect(pageForMarkdownTwin('/proposal/acme.md')).toBeNull();
     expect(pageForMarkdownTwin('/robots.txt.md')).toBeNull();
+  });
+
+  it('rejects protocol-relative and backslash paths that would point at another host', () => {
+    expect(pageForMarkdownTwin('//127.0.0.1:8443/internal.md')).toBeNull();
+    expect(pageForMarkdownTwin('//evil.example/x.md')).toBeNull();
+    expect(pageForMarkdownTwin('/\\evil.example/x.md')).toBeNull();
+    expect(hasMarkdownTwin('//evil.example/x')).toBe(false);
   });
 });
 
@@ -110,6 +118,21 @@ dateModified: "2026-10-06T14:03:32.856Z"
     );
   });
 
+  it('uses the article as the document when the page has one', () => {
+    const { markdown } = pageHtmlToMarkdown(
+      page('<article><h1>Post</h1><p>Body</p></article><h2>Related articles</h2><p>Other post</p>')
+    );
+    expect(markdown).toContain('# Post\n\nBody');
+    expect(markdown).not.toContain('Related articles');
+  });
+
+  it('leaves code blocks untouched', () => {
+    const markdown = htmlFragmentToMarkdown(
+      '<p>Example:</p><pre><code>const a = `line one\n\n\n\nline five`;   \n</code></pre>'
+    );
+    expect(markdown).toContain('const a = `line one\n\n\n\nline five`;   ');
+  });
+
   it('detects pages kept out of search', () => {
     expect(
       pageHtmlToMarkdown(page('<h1>x</h1>', '<meta name="robots" content="noindex, nofollow">'))
@@ -162,6 +185,32 @@ describe('markdown handle', () => {
     expect(hidden.status).toBe(404);
   });
 
+  it('never fetches another origin, even from a protocol-relative path', async () => {
+    const fetchSpy = vi.fn(async () => html(page('<h1>x</h1>')));
+    const resolve = vi.fn(async () => new Response('routed normally', { status: 404 }));
+    const response = await markdownHandle({
+      event: event('//127.0.0.1:8443/internal.md', fetchSpy),
+      resolve
+    });
+    expect(fetchSpy).not.toHaveBeenCalled();
+    expect(response.status).toBe(404);
+  });
+
+  it('fetches the page from the same origin with only the path changed', async () => {
+    const fetchSpy = vi.fn(async () => html(page('<h1>x</h1>')));
+    await markdownHandle({ event: event('/finance.md?t=1', fetchSpy), resolve: vi.fn() });
+    const [target] = fetchSpy.mock.calls[0] as unknown as [URL];
+    expect(String(target)).toBe('https://significa.co/finance?t=1');
+  });
+
+  it('keeps server errors as errors instead of turning them into 404s', async () => {
+    const response = await markdownHandle({
+      event: event('/finance.md', async () => new Response('boom', { status: 500 })),
+      resolve: vi.fn()
+    });
+    expect(response.status).toBe(502);
+  });
+
   it('sends moved pages to the twin of their new location', async () => {
     const response = await markdownHandle({
       event: event(
@@ -199,6 +248,30 @@ describe('llms-full.txt', () => {
     expect(nestHeadings('## A\n\n```\n# not a heading\n```', 'B')).toBe(
       '#### A\n\n```\n# not a heading\n```'
     );
+  });
+
+  it('drops the repeated title even after a date line, and keeps code blocks intact', () => {
+    expect(nestHeadings('20 Jan 2025\n\n# Post\n\nBody\n\n## Part', 'Post')).toBe(
+      '20 Jan 2025\n\nBody\n\n#### Part'
+    );
+    expect(nestHeadings('## A\n\n```js\nconst x = 1;\n\n\n\nconst y = 2;\n```', 'B')).toBe(
+      '#### A\n\n```js\nconst x = 1;\n\n\n\nconst y = 2;\n```'
+    );
+    expect(
+      mapOutsideFences('a\n\n\nb\n```\nx\n\n\ny\n```', (p) => p.replace(/\n{3,}/g, '\n\n'))
+    ).toBe('a\n\nb\n```\nx\n\n\ny\n```');
+  });
+
+  it('reads the canonical URL and dates from a twin', () => {
+    const twin = parseTwin(
+      '---\ntitle: "Post"\nurl: "https://significa.co/blog/canonical-override"\ndatePublished: "2025-01-20T10:00:00Z"\n---\n\n# Post'
+    );
+    expect(twin).toEqual({
+      url: 'https://significa.co/blog/canonical-override',
+      datePublished: '2025-01-20T10:00:00Z',
+      dateModified: undefined,
+      body: '# Post'
+    });
   });
 
   it('strips front matter from twins', () => {

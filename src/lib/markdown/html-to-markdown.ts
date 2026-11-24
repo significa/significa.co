@@ -8,6 +8,7 @@
 import { parseHTML } from 'linkedom';
 import TurndownService from 'turndown';
 import { SITE_URL } from '$lib/seo/constants';
+import { mapOutsideFences } from './fences';
 
 /** Elements that are not content, or that need JavaScript to mean anything. */
 const NON_CONTENT = [
@@ -183,12 +184,13 @@ function prepareContent(root: LinkedomNode, document: LinkedomDocument) {
 }
 
 const cleanMarkdown = (markdown: string) =>
-  markdown
-    .replace(/[ \t]+\n/g, '\n')
-    // Visual separators between inline facts ("20 Jan 2025 • 6 min read").
-    .replace(/\n\n[•·|]\n\n/g, ' · ')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
+  mapOutsideFences(markdown, (prose) =>
+    prose
+      .replace(/[ \t]+\n/g, '\n')
+      // Visual separators between inline facts ("20 Jan 2025 • 6 min read").
+      .replace(/\n\n[•·|]\n\n/g, ' · ')
+      .replace(/\n{3,}/g, '\n\n')
+  ).trim();
 
 /** Converts an HTML fragment (for example a rich text body) to Markdown. */
 export function htmlFragmentToMarkdown(html: string): string {
@@ -251,7 +253,10 @@ export function pageHtmlToMarkdown(html: string): MarkdownPage {
     document.querySelector('link[rel="canonical"]')?.getAttribute('href')?.trim() || undefined;
   const { published, modified } = pageDates(document);
 
-  const main = document.querySelector('main') ?? document.body;
+  // Articles (posts, projects) are the page's content; what follows them in <main>
+  // (calls to action, related posts) is navigation, not part of the document.
+  const main =
+    document.querySelector('main article') ?? document.querySelector('main') ?? document.body;
   prepareContent(main, document);
   // Turndown only needs the DOM interface; linkedom implements it.
   const body = cleanMarkdown(turndown.turndown(main as unknown as HTMLElement));

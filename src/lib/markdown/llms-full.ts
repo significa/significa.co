@@ -3,6 +3,7 @@
  * file, grouped by section, with each page's canonical URL under its heading
  * so an agent can cite the page rather than the file.
  */
+import { mapOutsideFences } from './fences';
 
 export type LlmsFullEntry = {
   title: string;
@@ -18,26 +19,54 @@ export type LlmsFullSection = { title: string; entries: LlmsFullEntry[] };
 /** Entries sit at `###`, so their own headings start at `####`. */
 const ENTRY_HEADING_DEPTH = 3;
 
+/**
+ * Reads a Markdown twin: its front matter (values are JSON strings, as written
+ * by pageHtmlToMarkdown) and its body.
+ */
+export function parseTwin(markdown: string): {
+  url?: string;
+  datePublished?: string;
+  dateModified?: string;
+  body: string;
+} {
+  const frontMatter = markdown.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? '';
+  const field = (name: string) => {
+    const raw = frontMatter.match(new RegExp(`^${name}: (".*")$`, 'm'))?.[1];
+    if (!raw) return undefined;
+    try {
+      const value: unknown = JSON.parse(raw);
+      return typeof value === 'string' ? value : undefined;
+    } catch {
+      return undefined;
+    }
+  };
+  return {
+    url: field('url'),
+    datePublished: field('datePublished'),
+    dateModified: field('dateModified'),
+    body: stripFrontMatter(markdown)
+  };
+}
+
 /** Removes YAML front matter from a Markdown twin. */
 export const stripFrontMatter = (markdown: string) =>
   markdown.replace(/^---\n[\s\S]*?\n---\n+/, '');
 
 /**
  * Shifts every ATX heading so the shallowest one becomes `####`, capped at
- * `######`. A leading heading equal to the entry title is dropped, since the
- * entry already has it.
+ * `######`. The first heading is dropped when it repeats the entry title, since
+ * the entry already has it.
  */
 export function nestHeadings(markdown: string, title: string): string {
   const lines = markdown.split('\n');
   const normalize = (value: string) => value.replace(/\W+/g, '').toLowerCase();
 
-  // The page's own title heading, when it is the first thing in the content.
-  const firstContent = lines.findIndex((line) => line.trim());
+  // The page's own title: the first heading, when it repeats the entry title
+  // (a date line or tags may come before it, as on blog posts).
+  const firstHeading = lines.findIndex((line) => /^#{1,6} /.test(line));
   const titleLine =
-    firstContent >= 0 &&
-    /^#{1,6} /.test(lines[firstContent]) &&
-    normalize(lines[firstContent].replace(/^#+ /, '')) === normalize(title)
-      ? firstContent
+    firstHeading >= 0 && normalize(lines[firstHeading].replace(/^#+ /, '')) === normalize(title)
+      ? firstHeading
       : -1;
 
   // Heading lines outside fenced code blocks, except the title line.
@@ -51,7 +80,7 @@ export function nestHeadings(markdown: string, title: string): string {
   const levels = [...headingLines].map((index) => lines[index].match(/^#+/)?.[0].length ?? 1);
   const shift = ENTRY_HEADING_DEPTH + 1 - (levels.length ? Math.min(...levels) : 1);
 
-  return lines
+  const nested = lines
     .flatMap((line, index) => {
       if (index === titleLine) return [];
       if (!headingLines.has(index)) return [line];
@@ -59,8 +88,8 @@ export function nestHeadings(markdown: string, title: string): string {
       return [`${'#'.repeat(Math.min(6, (hashes?.length ?? 1) + shift))} ${text}`];
     })
     .join('\n')
-    .replace(/^\n+/, '')
-    .replace(/\n{3,}/g, '\n\n');
+    .replace(/^\n+/, '');
+  return mapOutsideFences(nested, (prose) => prose.replace(/\n{3,}/g, '\n\n'));
 }
 
 const day = (iso?: string) => (iso ? iso.slice(0, 10) : undefined);

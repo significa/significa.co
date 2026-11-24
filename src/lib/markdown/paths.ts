@@ -26,9 +26,17 @@ const MARKDOWN_SUFFIX = '.md';
 const isExcluded = (pathname: string) =>
   EXCLUDED_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
 
+/**
+ * A same-site absolute path: one leading slash, no backslashes. Rejects
+ * protocol-relative values such as `//127.0.0.1/x`, which a URL parser or
+ * fetch would treat as another host.
+ */
+const isSitePath = (pathname: string) =>
+  pathname.startsWith('/') && !pathname.startsWith('//') && !pathname.includes('\\');
+
 /** True when a page at this path gets a Markdown twin. */
 export function hasMarkdownTwin(pathname: string): boolean {
-  if (isExcluded(pathname)) return false;
+  if (!isSitePath(pathname) || isExcluded(pathname)) return false;
   // Files (robots.txt, sitemap.xml, llms.txt, images...) have an extension in the last segment.
   const last = pathname.split('/').pop() ?? '';
   return !last.includes('.');

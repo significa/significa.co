@@ -75,7 +75,9 @@ function createTurndown(): TurndownService {
       const href = absoluteUrl(node.getAttribute('href') ?? '');
       const text = content.trim();
       if (!text) return '';
-      return href ? `[${text}](${href})` : text;
+      // Links rendered back to back (a list of avatars) still need a space between them.
+      const separator = node.previousSibling?.nodeName === 'A' ? ' ' : '';
+      return `${separator}${href ? `[${text}](${href})` : text}`;
     }
   });
 
@@ -171,12 +173,13 @@ function prepareContent(root: LinkedomNode, document: LinkedomDocument) {
     if (!link.querySelector(BLOCK_CHILDREN)) return;
     const href = link.getAttribute('href');
     const title = link.querySelector(HEADINGS) ?? link.querySelector('p');
-    if (href && title) {
-      const inner = document.createElement('a');
-      inner.setAttribute('href', href);
-      while (title.firstChild) inner.appendChild(title.firstChild);
-      title.appendChild(inner);
-    }
+    // Without a title to carry the URL (an avatar, an image), keep the link as it is:
+    // the normal link rule turns it into [its text](url).
+    if (!href || !title) return;
+    const inner = document.createElement('a');
+    inner.setAttribute('href', href);
+    while (title.firstChild) inner.appendChild(title.firstChild);
+    title.appendChild(inner);
     const container = document.createElement('div');
     while (link.firstChild) container.appendChild(link.firstChild);
     link.replaceWith(container);

@@ -3,7 +3,7 @@
  * file, grouped by section, with each page's canonical URL under its heading
  * so an agent can cite the page rather than the file.
  */
-import { mapOutsideFences } from './fences';
+import { codeLines, mapOutsideFences } from './fences';
 
 export type LlmsFullEntry = {
   title: string;
@@ -61,21 +61,21 @@ export function nestHeadings(markdown: string, title: string): string {
   const lines = markdown.split('\n');
   const normalize = (value: string) => value.replace(/\W+/g, '').toLowerCase();
 
+  // One traversal of fenced code decides what is a heading, for both the title and the rest.
+  const inCode = codeLines(lines);
+  const isHeading = (index: number) => !inCode[index] && /^#{1,6} /.test(lines[index]);
+
   // The page's own title: the first heading, when it repeats the entry title
   // (a date line or tags may come before it, as on blog posts).
-  const firstHeading = lines.findIndex((line) => /^#{1,6} /.test(line));
+  const firstHeading = lines.findIndex((_, index) => isHeading(index));
   const titleLine =
     firstHeading >= 0 && normalize(lines[firstHeading].replace(/^#+ /, '')) === normalize(title)
       ? firstHeading
       : -1;
 
-  // Heading lines outside fenced code blocks, except the title line.
-  let inFence = false;
-  const headingLines = new Set<number>();
-  lines.forEach((line, index) => {
-    if (line.startsWith('```')) inFence = !inFence;
-    else if (!inFence && /^#{1,6} /.test(line) && index !== titleLine) headingLines.add(index);
-  });
+  const headingLines = new Set(
+    lines.flatMap((_, index) => (isHeading(index) && index !== titleLine ? [index] : []))
+  );
 
   const levels = [...headingLines].map((index) => lines[index].match(/^#+/)?.[0].length ?? 1);
   const shift = ENTRY_HEADING_DEPTH + 1 - (levels.length ? Math.min(...levels) : 1);

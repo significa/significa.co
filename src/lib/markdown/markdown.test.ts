@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import type { RequestEvent } from '@sveltejs/kit';
 import { markdownHandle } from './handle';
 import { htmlFragmentToMarkdown, pageHtmlToMarkdown } from './html-to-markdown';
-import { mapOutsideFences } from './fences';
+import { codeLines, mapOutsideFences } from './fences';
 import { buildLlmsFull, nestHeadings, parseTwin, stripFrontMatter } from './llms-full';
 import { EXCLUDED_PREFIXES, hasMarkdownTwin, markdownTwinPath, pageForMarkdownTwin } from './paths';
 
@@ -124,6 +124,17 @@ dateModified: "2026-10-06T14:03:32.856Z"
     );
     expect(markdown).toContain('# Post\n\nBody');
     expect(markdown).not.toContain('Related articles');
+  });
+
+  it('keeps links that have no title to carry them, separated from each other', () => {
+    const { markdown } = pageHtmlToMarkdown(
+      page(
+        '<h2>Team</h2><div><a href="/about/ana"><img src="/a.jpg" alt=""><span>Ana</span></a><a href="/about/rui"><img src="/r.jpg" alt=""><span>Rui</span></a></div>'
+      )
+    );
+    expect(markdown).toContain(
+      '[Ana](https://significa.co/about/ana) [Rui](https://significa.co/about/rui)'
+    );
   });
 
   it('leaves code blocks untouched', () => {
@@ -260,6 +271,30 @@ describe('llms-full.txt', () => {
     expect(
       mapOutsideFences('a\n\n\nb\n```\nx\n\n\ny\n```', (p) => p.replace(/\n{3,}/g, '\n\n'))
     ).toBe('a\n\nb\n```\nx\n\n\ny\n```');
+  });
+
+  it('closes a fence only on the same character with at least the same length', () => {
+    const doc = ['````md', '```', '# not a heading', '', '', '', '```', '````', '# Real'].join(
+      '\n'
+    );
+    expect(codeLines(doc.split('\n'))).toEqual([
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false
+    ]);
+    expect(mapOutsideFences(doc, (p) => p.toUpperCase())).toBe(doc.replace('# Real', '# REAL'));
+    expect(nestHeadings(`## A\n\n${doc}`, 'B')).toBe(
+      `##### A\n\n${doc.replace('# Real', '#### Real')}`
+    );
+    // Tildes, and an unclosed fence runs to the end.
+    expect(codeLines(['~~~', '```', '# x', '~~~', '# y'])).toEqual([true, true, true, true, false]);
+    expect(codeLines(['```', '# x'])).toEqual([true, true]);
   });
 
   it('reads the canonical URL and dates from a twin', () => {

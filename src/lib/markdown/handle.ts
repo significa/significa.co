@@ -11,7 +11,7 @@ const notFound = () =>
   });
 
 /** Serves `/path.md` by rendering `/path` and converting its HTML to Markdown. */
-async function serveMarkdownTwin(event: RequestEvent, page: string): Promise<Response> {
+export async function serveMarkdownTwin(event: RequestEvent, page: string): Promise<Response> {
   // Only the path changes: the page is always fetched from this site, never another origin.
   const target = new URL(event.url);
   target.pathname = page;

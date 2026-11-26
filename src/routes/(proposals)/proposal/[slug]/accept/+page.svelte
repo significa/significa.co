@@ -22,7 +22,7 @@
     try {
       const response = await fetch('/proposal', {
         method: 'POST',
-        body: JSON.stringify({ client: proposal?.client, title: proposal?.title }),
+        body: JSON.stringify({ slug: data?.story?.slug }),
         headers: {
           'content-type': 'application/json'
         }

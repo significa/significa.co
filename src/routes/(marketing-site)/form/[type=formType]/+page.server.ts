@@ -1,5 +1,5 @@
 import type { Config } from '@sveltejs/adapter-vercel';
-import { fail, redirect } from '@sveltejs/kit';
+import { error, fail, redirect } from '@sveltejs/kit';
 import { isFormType } from '$components/contact-form.svelte';
 import { env } from '$env/dynamic/private';
 import {
@@ -50,6 +50,12 @@ const getNotionAttachments = (attachmentsUrls: string) => {
     const parts = url.split('/');
     return { name: parts[parts.length - 1], external: { url } };
   });
+};
+
+// ponytail: endpoint-only route with no +page.svelte. Without this, GETs and failed no-JS POSTs
+// (mostly bots) try to render a page that doesn't exist and crash with "node.component is not a function"
+export const load = () => {
+  throw error(404, 'Not found');
 };
 
 export const actions = {
